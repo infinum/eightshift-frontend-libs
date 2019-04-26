@@ -1,0 +1,17 @@
+@mixin custom-bullets( $bullet-color: $base-primary-color, $bullet-size: 10px, $bullet-spacing: 25px) {
+
+  list-style: none;
+  position: relative;
+  padding-left: $bullet-spacing;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-color: $bullet-color;
+    width: $bullet-size;
+    height: $bullet-size;
+    transform: translateY(-50%);
+  }
+}
