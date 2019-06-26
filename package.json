@@ -1,0 +1,27 @@
+{
+  "name": "eightshift-frontend-libs",
+  "version": "1.0.0",
+  "description": "A collection of useful frontend utility modules. powered by Eightshift",
+  "main": "eightshift.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinum/eightshift-frontend-libs.git"
+  },
+  "keywords": [
+    "frontend",
+    "scss",
+    "mixin",
+    "js",
+    "utility",
+    "module"
+  ],
+  "author": "Team Eightshift <team@eightshift.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
+  },
+  "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme"
+}
