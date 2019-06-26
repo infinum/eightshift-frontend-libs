@@ -1,0 +1,8 @@
+//Link single color item from map
+@mixin link-color($key) {
+  color: map-get-strict($key, color);
+
+  &:hover {
+    color: map-get-strict($key, hover);
+  }
+}

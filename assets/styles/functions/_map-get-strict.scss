@@ -1,0 +1,9 @@
+@function map-get-strict($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+
+  @else {
+    @error 'ERROR: Specified index does not exist in map #{$map}, with value: #{$key}';
+  }
+}

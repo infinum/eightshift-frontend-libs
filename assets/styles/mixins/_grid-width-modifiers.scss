@@ -1,0 +1,15 @@
+@mixin grid-width-modifiers($cols: $base-col-number, $wrapper: false) {
+  @for $i from 1 through $cols {
+    &--#{$i} {
+      @if $wrapper {
+        #{$wrapper} {
+          @include flex-grid-width($i);
+        }
+      }
+
+      @else {
+        @include flex-grid-width($i);
+      }
+    }
+  }
+}

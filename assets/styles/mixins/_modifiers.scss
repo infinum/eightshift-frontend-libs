@@ -1,0 +1,7 @@
+@mixin modifiers($map, $selector) {
+  @each $key, $value in $map {
+    &--#{$key} {
+      #{$selector}: $value;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+@function calc-grid-width( $cols ) {
+  @return percentage($cols/$base-col-number);
+}
