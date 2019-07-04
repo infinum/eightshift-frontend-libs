@@ -1,34 +1,11 @@
 // Config.
 @import "config";
 
-// Placeholders.
-@import "placeholders/bg-image";
-@import "placeholders/button";
-@import "placeholders/clearfix";
-@import "placeholders/dl";
-@import "placeholders/heading";
-@import "placeholders/input";
-@import "placeholders/list";
-@import "placeholders/paragraph";
+// Placeholders all.
+@import "placeholders/all";
 
-// Functions.
-@import "functions/calc-column-width";
-@import "functions/calc-grid-width";
-@import "functions/map-get-deep";
-@import "functions/map-get-strict";
+// Functions all.
+@import "functions/all";
 
-// Mixins.
-@import "mixins/box-sizing";
-@import "mixins/flex-column-width";
-@import "mixins/column-width-modifiers";
-@import "mixins/flex-grid-width";
-@import "mixins/flex-vertical-align-modifiers";
-@import "mixins/flex";
-@import "mixins/font-smoothing";
-@import "mixins/grid-offset-modifiers";
-@import "mixins/grid-width-modifiers";
-@import "mixins/link-color";
-@import "mixins/list";
-@import "mixins/modifiers";
-@import "mixins/placeholder";
-@import "mixins/text-align-modifiers";
+// Mixins all.
+@import "mixins/all";
