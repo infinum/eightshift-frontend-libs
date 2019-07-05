@@ -1,0 +1,53 @@
+// Create output for selectors with media brakepoints.
+@mixin responsive-map($selector, $map) {
+  $i: 0;
+
+  @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
+    @if (type-of($brakepointMap) == 'map') {
+      @if $i == 0 {
+        @each $cssSelector, $cssValue in $brakepointMap {
+          #{$cssSelector}: $cssValue;
+        }
+      }
+
+      @else {
+        @include media(#{$breakpoint} up) {
+          @each $cssSelector, $cssValue in $brakepointMap {
+            #{$cssSelector}: $cssValue;
+          }
+        }
+      }
+    }
+
+    @else {
+      @error 'ERROR: Responsive Map brakepointMap items are not map please check: #{$map} with key: #{brakepointMap}';
+    }
+    $i: $i + 1;
+  }
+}
+
+
+// Usage.
+// $res-map: (
+//   paragraph: (
+//     mobile: (
+//       font-size: 10px,
+//       line-height: 1,
+//       margin: 10px,
+//     ),
+//     tablet: (
+//       font-size: 20px,
+//       line-height: 2,
+//       margin: 20px,
+//     ),
+//     desktop: (
+//       font-size: 30px,
+//       line-height: 3,
+//       margin: 30px,
+//     ),
+//   ),
+// );
+
+// .paragraph {
+//   @include responsive-map(paragraph, $res-map);
+// }

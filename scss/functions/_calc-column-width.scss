@@ -1,3 +1,3 @@
-@function calc-column-width( $cols ) {
+@function calc-column-width($cols: $base-col-number) {
   @return (100/$cols) + 0%;
 }
