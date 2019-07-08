@@ -1,0 +1,79 @@
+// Create output for selectors with media brakepoints and modifiers.
+@mixin responsive-modifiers-map($map, $selector) {
+  $i: 0;
+
+  @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
+    @if (type-of($brakepointMap) == 'map') {
+      @if $i == 0 {
+        @each $modifier, $modifierMap in $brakepointMap {
+          @if (type-of($modifierMap) == 'map') {
+            &--#{$modifier} {
+              @each $cssSelector, $cssValue in $modifierMap {
+                #{$cssSelector}: $cssValue;
+              }
+            }
+          }
+
+          @else {
+            @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
+          }
+        }
+      }
+
+      @else {
+        @include media(#{$breakpoint} up) {
+          @each $modifier, $modifierMap in $brakepointMap {
+            @if (type-of($modifierMap) == 'map') {
+              &--#{$modifier} {
+                @each $cssSelector, $cssValue in $modifierMap {
+                  #{$cssSelector}: $cssValue;
+                }
+              }
+            }
+  
+            @else {
+              @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
+            }
+          }
+        }
+      }
+    }
+
+    @else {
+      @error 'ERROR: Responsive Map brakepointMap items are not map please check: #{$map} with key: #{brakepointMap}';
+    }
+    $i: $i + 1;
+  }
+}
+
+// Usage.
+// $heading: (
+//   sizes: (
+//     mobile: (
+//       default: (
+//         font-size: 64px,
+//         line-height: 0.92,
+//       ),
+//       big: (
+//         font-size: 42px,
+//         line-height: 1.12,
+//       ),
+//     ),
+//     tablet: (
+//       default: (
+//         font-size: 115px,
+//         line-height: 0.92,
+//       ),
+//       big: (
+//         font-size: 90px,
+//         line-height: 1,
+//       ),
+//     ),
+//   )
+// );
+
+// .heading {
+//   &__size {
+//     @include responsive-modifiers-map($heading, sizes);
+//   }
+// }

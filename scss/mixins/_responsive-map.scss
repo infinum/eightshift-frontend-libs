@@ -1,5 +1,5 @@
 // Create output for selectors with media brakepoints.
-@mixin responsive-map($selector, $map) {
+@mixin responsive-map($map, $selector) {
   $i: 0;
 
   @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
@@ -49,5 +49,5 @@
 // );
 
 // .paragraph {
-//   @include responsive-map(paragraph, $res-map);
+//   @include responsive-map($res-map, paragraph);
 // }

@@ -1,0 +1,7 @@
+@mixin link-modifiers($map) {
+  @each $key, $value in $map {
+    &--#{$key} {
+      @include link-color($value);
+    }
+  }
+}
