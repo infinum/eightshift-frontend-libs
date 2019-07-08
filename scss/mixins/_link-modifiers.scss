@@ -1,7 +1,84 @@
-@mixin link-modifiers($map) {
-  @each $key, $value in $map {
-    &--#{$key} {
-      @include link-color($value);
+// Mixin creates output for and valid html state, :hover, :focus, :active but only default state has to be in normal key.
+// All selectors must be valid html selectors.
+
+@mixin link-modifiers($map, $selector) {
+  @each $modifier, $modifierMap in map-get-strict($map, $selector) {
+    &--#{$modifier} {
+      @if (type-of($modifierMap) == 'map') {
+        @each $state, $stateMap in $modifierMap {
+          @if $state == 'normal' {
+            @if (type-of($stateMap) == 'map') {
+              @each $cssSelector, $cssValue in $stateMap {
+                #{$cssSelector}: $cssValue;
+              }
+            }
+          }
+
+          @else {
+            &:#{$state} {
+              @if (type-of($stateMap) == 'map') {
+                @each $cssSelector, $cssValue in $stateMap {
+                  #{$cssSelector}: $cssValue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @else {
+        @error 'ERROR: Responsive Map brakepointMap items are not map please check: #{$map} with key: #{brakepointMap}';
+      }
     }
   }
 }
+
+// Usage.
+// $btn: (
+//   colors: (
+//     default: (
+//       normal: (
+//         background-color: $base-black-color,
+//         color: $base-white-color,
+//       ),
+//       hover: (
+//         background-color: $base-white-color,
+//         color: $base-black-color,
+//       ),
+//     ),
+//     primary: (
+//       normal: (
+//         background-color: $base-primary-color,
+//         color: $base-white-color,
+//       ),
+//       hover: (
+//         background-color: $base-black-color,
+//         color: $base-white-color,
+//       ),
+//     ),
+//   ),
+// );
+
+// Selector.
+// .btn {
+//   &__color {
+//     @include link-modifiers($btn, colors);
+//   }
+// }
+
+// Output.
+// .btn__color--default {
+//   background-color: #000000;
+//   color: #FFFFFF; }
+// .btn__color--default:hover {
+//   background-color: #FFFFFF;
+//   color: #000000;
+// }
+// .btn__color--primary {
+//   background-color: #C3151B;
+//   color: #FFFFFF;
+// }
+// .btn__color--primary:hover {
+//   background-color: #000000;
+//   color: #FFFFFF;
+// }

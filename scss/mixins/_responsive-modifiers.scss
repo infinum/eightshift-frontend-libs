@@ -1,5 +1,7 @@
-// Create output for selectors with media brakepoints and modifiers.
-@mixin responsive-modifiers-map($map, $selector) {
+// Mixin creates output modifiers for specific map key, with provided media brakepoints.
+// Selectors must be valid html selectors.
+// If operates the same way as "responsive" mixin except it will output modifiers classes.
+@mixin responsive-modifiers($map, $selector) {
   $i: 0;
 
   @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
@@ -72,8 +74,29 @@
 //   )
 // );
 
+// Selector.
 // .heading {
 //   &__size {
-//     @include responsive-modifiers-map($heading, sizes);
+//     @include responsive-modifiers($heading, sizes);
+//   }
+// }
+
+// Output.
+// .heading__size--default {
+//   font-size: 64px;
+//   line-height: 1;
+// }
+// .heading__size--big {
+//   font-size: 42px;
+//   line-height: 1.1;
+// }
+// @media (min-width: 768px) {
+//   .heading__size--default {
+//     font-size: 115px;
+//     line-height: 0.9;
+//   }
+//   .heading__size--big {
+//     font-size: 90px;
+//     line-height: 1;
 //   }
 // }

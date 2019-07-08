@@ -1,5 +1,6 @@
-// Create output for selectors with media brakepoints.
-@mixin responsive-map($map, $selector) {
+// Mixin creates output for specific map key, with provided media brakefpoints.
+// Selectors must be valid html selectors.
+@mixin responsive($map, $selector) {
   $i: 0;
 
   @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
@@ -48,6 +49,28 @@
 //   ),
 // );
 
+// Selector.
 // .paragraph {
-//   @include responsive-map($res-map, paragraph);
+//   @include responsive($res-map, paragraph);
+// }
+
+// Output.
+// .paragraph {
+//   font-size: 10px;
+//   line-height: 1;
+//   margin: 10px;
+// }
+// @media (min-width: 768px) {
+//   .paragraph {
+//     font-size: 20px;
+//     line-height: 2;
+//     margin: 20px;
+//   }
+// }
+// @media (min-width: 992px) {
+//   .paragraph {
+//     font-size: 30px;
+//     line-height: 3;
+//     margin: 30px;
+//   }
 // }

@@ -1,3 +1,4 @@
+// Mixin will output modifiers classes for specific selector.
 @mixin modifiers($map, $selector) {
   @each $key, $value in $map {
     &--#{$key} {
