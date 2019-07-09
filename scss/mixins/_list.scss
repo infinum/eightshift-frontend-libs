@@ -1,4 +1,4 @@
-@mixin custom-bullets( $bullet-color: false, $bullet-size: 10px, $bullet-spacing: 25px) {
+@mixin custom-bullets( $bullet-color: $base-primary-color, $bullet-size: 10px, $bullet-spacing: 25px) {
 
   list-style: none;
   position: relative;

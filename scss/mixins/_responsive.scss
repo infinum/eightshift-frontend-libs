@@ -1,19 +1,19 @@
-// Mixin creates output for specific map key, with provided media brakefpoints.
+// Mixin creates output for specific map key, with provided media breakpoints.
 // Selectors must be valid html selectors.
 @mixin responsive($map, $selector) {
   $i: 0;
 
-  @each $breakpoint, $brakepointMap in map-get-strict($map, $selector) {
-    @if (type-of($brakepointMap) == 'map') {
+  @each $breakpoint, $breakpointMap in map-get-strict($map, $selector) {
+    @if (type-of($breakpointMap) == 'map') {
       @if $i == 0 {
-        @each $cssSelector, $cssValue in $brakepointMap {
+        @each $cssSelector, $cssValue in $breakpointMap {
           #{$cssSelector}: $cssValue;
         }
       }
 
       @else {
         @include media(#{$breakpoint} up) {
-          @each $cssSelector, $cssValue in $brakepointMap {
+          @each $cssSelector, $cssValue in $breakpointMap {
             #{$cssSelector}: $cssValue;
           }
         }
@@ -21,7 +21,7 @@
     }
 
     @else {
-      @error 'ERROR: Responsive Map brakepointMap items are not map please check: #{$map} with key: #{brakepointMap}';
+      @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
     }
     $i: $i + 1;
   }

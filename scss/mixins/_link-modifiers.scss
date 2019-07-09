@@ -27,7 +27,7 @@
       }
 
       @else {
-        @error 'ERROR: Responsive Map brakepointMap items are not map please check: #{$map} with key: #{brakepointMap}';
+        @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{modifierMap}';
       }
     }
   }
