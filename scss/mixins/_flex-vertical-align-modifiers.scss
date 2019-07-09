@@ -1,0 +1,13 @@
+@mixin flex-vertical-align-modifiers() {
+  &--top {
+    align-self: flex-start;
+  }
+
+  &--center {
+    align-self: center;
+  }
+
+  &--bottom {
+    align-self: flex-end;
+  }
+}

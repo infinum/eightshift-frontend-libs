@@ -1,8 +1,9 @@
 {
   "name": "eightshift-frontend-libs",
-  "version": "1.0.0",
+  "version": "1.0.15",
   "description": "A collection of useful frontend utility modules. powered by Eightshift",
-  "main": "eightshift.scss",
+  "main": "scss/eightshift-frontend-libs.scss",
+  "style": "scss/eightshift-frontend-libs.scss",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,10 +19,26 @@
     "utility",
     "module"
   ],
-  "author": "Team Eightshift <team@eightshift.com>",
+  "author": {
+    "name": "Team Eightshift",
+    "email": "team@eightshift.com",
+    "url": "https://eightshift.com/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
   },
-  "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme"
+  "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
+  "devDependencies": {
+    "eyeglass": "^1.1.2"
+  },
+  "directories": {
+    "lib": "scss"
+  },
+  "eyeglass": {
+    "sassDir": "scss",
+    "exports": false,
+    "name": "eightshift-frontend-libs",
+    "needs": "*"
+  }
 }

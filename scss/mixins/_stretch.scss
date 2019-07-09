@@ -1,0 +1,8 @@
+// Stretch mixing for positions
+@mixin stretch($top: 0, $right: 0, $bottom: 0, $left: 0, $position: absolute) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
