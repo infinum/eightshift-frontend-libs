@@ -1,3 +1,29 @@
+// Map-get-deep
+
+// Returns item from map that is nested multiple times.
+
+// $map - Map to search.
+// $keys - List all keys to find.
+
+// Map:
+// $map: (
+//   test2: (
+//     test1: (
+//       test: 50%,
+//     ),
+//   ),
+// );
+
+// Markup:
+// .test {
+//   width: map-get-deep($map, test2, test1, test);
+// }
+
+// Output:
+// .test {
+//   width: 50%;
+// }
+
 @function map-get-deep($map, $keys...) {
   $value: $map;
 

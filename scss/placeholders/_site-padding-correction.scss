@@ -1,3 +1,18 @@
+// Site-padding-correction
+
+// Placeholder used to add default negative margin on containers. Used to move grid containers back to rigth place.
+
+// Markup:
+// .test {
+//   @extend %site-padding-correction;
+// }
+
+// Output:
+// .test {
+//   margin-left: -25px;
+//   margin-right: -25px;
+// }
+
 %site-padding-correction {
   margin-left: (-$base-gutter-size);
   margin-right: (-$base-gutter-size);

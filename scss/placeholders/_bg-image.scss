@@ -1,3 +1,21 @@
+// Bg-image
+
+// Placeholder used to add background cover image to div.
+
+// Markup:
+// .test {
+//   @extend %bg-image;
+// }
+
+// Output:
+// .test {
+//   background: {
+//     size: cover;
+//     position: center;
+//     repeat: no-repeat;
+//   }
+// }
+
 %bg-image {
   background: {
     size: cover;

@@ -1,0 +1,17 @@
+// Link-transition
+
+// Placeholder used to add default transition to links.
+
+// Markup:
+// .test {
+//   @extend %link-transition;
+// }
+
+// Output:
+// .test {
+//   transition: color 0.2s ease-in;
+// }
+
+%link-transition {
+  transition: color 0.2s ease-in;
+}

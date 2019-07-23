@@ -1,3 +1,19 @@
+// Box-sizing
+
+// Outputs box sizing value.
+
+// $box-model - Define box sizing to use. Default: border-box.
+
+// Markup:
+// .test {
+//   @include box-sizing;
+// }
+
+// Output:
+// .test {
+//   box-sizing: border-box;
+// }
+
 @mixin box-sizing($box-model: border-box) {
   box-sizing: $box-model;
 }

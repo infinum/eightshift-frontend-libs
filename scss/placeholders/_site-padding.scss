@@ -1,3 +1,18 @@
+// Site-padding
+
+// Placeholder used to add default padding on containers.
+
+// Markup:
+// .test {
+//   @extend %site-padding;
+// }
+
+// Output:
+// .test {
+//   padding-left: 25px;
+//   padding-right: 25px;
+// }
+
 %site-padding {
   padding-left: $base-gutter-size;
   padding-right: $base-gutter-size;

@@ -1,0 +1,54 @@
+// Flex-column-width-modifiers
+
+// Mixin takes flex-column-width mixing and creates modifiers classes from it. Used for flex grid with columns.
+
+// $cols - Total number of columns. Default: $base-col-number.
+// $wrapper - Wrap output item with additional markup.
+
+// Markup:
+// .test {
+//   @include column-width-modifiers;
+// }
+
+// Output:
+// .test--1 {
+//   flex: 0 0 100%;
+//   max-width: 100%;
+// }
+// .test--2 {
+//   flex: 0 0 50%;
+//   max-width: 50%;
+// }
+// ...
+
+// Markup With $wrapper:
+// .test {
+//   @include column-width-modifiers($wrapper: '.item');
+// }
+
+// Output With $wrapper:
+// .test--1 .item {
+//   flex: 0 0 100%;
+//   max-width: 100%;
+// }
+// .test--2. item {
+//   flex: 0 0 50%;
+//   max-width: 50%;
+// }
+// ...
+
+@mixin flex-column-width-modifiers($cols: $base-col-number, $wrapper: false) {
+  @for $i from 1 through $cols {
+    &--#{$i} {
+      @if $wrapper {
+        #{$wrapper} {
+          @include flex-column-width($i);
+        }
+      }
+
+      @else {
+        @include flex-column-width($i);
+      }
+    }
+  }
+}

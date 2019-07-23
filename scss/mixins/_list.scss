@@ -1,3 +1,33 @@
+// Custom-bullets
+
+// Mixin creates custom bullet list style.
+
+// $bullet-color - Set bullet custom color. Default: $base-primary-color.
+// $bullet-size - Set bullet custom size. Default: 10px.
+// $bullet-spacing - Set bullet custom spacing. Default: 25px.
+
+// Markup:
+// .test {
+//   @include custom-bullets;
+// }
+
+// Output:
+// .test {
+//   list-style: none;
+//   position: relative;
+//   padding-left: 25px;
+// }
+// .test::before {
+//   content: '';
+//   position: absolute;
+//   left: 0;
+//   top: 50%;
+//   background-color: #D8262C;
+//   width: 10px;
+//   height: 10px;
+//   transform: translateY(-50%);
+// }
+
 @mixin custom-bullets( $bullet-color: $base-primary-color, $bullet-size: 10px, $bullet-spacing: 25px) {
 
   list-style: none;

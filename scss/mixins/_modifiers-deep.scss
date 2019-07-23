@@ -1,0 +1,39 @@
+// Modifiers-deep
+
+// Mixin will output modifiers classes for specific selector from map key.
+
+// $map - Map to search.
+// $selector - HTML valid selector.
+
+// Map:
+// $test: (
+//   test: (
+//     black: $base-black-color,
+//     white: $base-white-color,
+//     primary: $base-primary-color,
+//   )
+// );
+
+// Markup:
+// .test {
+//   @include modifiers1($test, test, color);
+// }
+
+// Output:
+// .test--black {
+//   color: #000000;
+// }
+// .test--white {
+//   color: #FFFFFF;
+// }
+// .test--primary {
+//   color: #D8262C;
+// }
+
+@mixin modifiers-deep($map, $key, $selector) {
+  @each $modifier, $value in map-get-strict($map, $key) {
+    &--#{$modifier} {
+      #{$selector}: $value;
+    }
+  }
+}

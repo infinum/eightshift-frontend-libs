@@ -1,3 +1,39 @@
+// Grid-offset-modifiers
+
+// Mixin takes calc-grid-width mixing and creates modifiers classes from it. Used for flex grid.
+
+// $cols - Total number of columns. Default: $base-col-number.
+// $wrapper - Wrap output item with additional markup.
+// $selector - HTML valid selector. Define offset type used. Default: margin-left.
+
+// Markup:
+// .test {
+//   @include grid-offset-modifiers;
+// }
+
+// Output:
+// .test--1 {
+//   margin-left: 8.33333%;
+// }
+// .test--2 {
+//   margin-left: 16.66667%;
+// }
+// ...
+
+// Markup With $wrapper:
+// .test {
+//   @include grid-offset-modifiers($wrapper: '.item');
+// }
+
+// Output With $wrapper:
+// .test--1 .item {
+//   margin-left: 8.33333%;
+// }
+// .test--2 .item {
+//   margin-left: 16.66667%;
+// }
+// ...
+
 @mixin grid-offset-modifiers($cols: $base-col-number, $wrapper: false, $selector: 'margin-left') {
   @for $i from 1 through $cols {
     &--#{$i} {

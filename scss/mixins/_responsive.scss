@@ -1,9 +1,46 @@
+// Responsive
+
 // Mixin creates output for specific map key, with provided media breakpoints.
 // Selectors must be valid html selectors.
-@mixin responsive($map, $selector) {
+
+// $map - Map to search.
+// $key - Map key to find.
+
+// Map:
+// $test: (
+//   test: (
+//     mobile: (
+//       font-size: 64px,
+//       line-height: 0.92,
+//     ),
+//     tablet: (
+//       font-size: 42px,
+//       line-height: 1.12,
+//     ),
+//   )
+// );
+
+// Markup:
+// .test {
+//   @include responsive($test, test);
+// }
+
+// Output:
+// .test {
+//   font-size: 64px;
+//   line-height: 0.92;
+// }
+// @media (min-width: 768px) {
+//   .test {
+//     font-size: 42px;
+//     line-height: 1.12;
+//   }
+// }
+
+@mixin responsive($map, $key) {
   $i: 0;
 
-  @each $breakpoint, $breakpointMap in map-get-strict($map, $selector) {
+  @each $breakpoint, $breakpointMap in map-get-strict($map, $key) {
     @if (type-of($breakpointMap) == 'map') {
       @if $i == 0 {
         @each $cssSelector, $cssValue in $breakpointMap {
@@ -26,51 +63,3 @@
     $i: $i + 1;
   }
 }
-
-
-// Usage.
-// $res-map: (
-//   paragraph: (
-//     mobile: (
-//       font-size: 10px,
-//       line-height: 1,
-//       margin: 10px,
-//     ),
-//     tablet: (
-//       font-size: 20px,
-//       line-height: 2,
-//       margin: 20px,
-//     ),
-//     desktop: (
-//       font-size: 30px,
-//       line-height: 3,
-//       margin: 30px,
-//     ),
-//   ),
-// );
-
-// Selector.
-// .paragraph {
-//   @include responsive($res-map, paragraph);
-// }
-
-// Output.
-// .paragraph {
-//   font-size: 10px;
-//   line-height: 1;
-//   margin: 10px;
-// }
-// @media (min-width: 768px) {
-//   .paragraph {
-//     font-size: 20px;
-//     line-height: 2;
-//     margin: 20px;
-//   }
-// }
-// @media (min-width: 992px) {
-//   .paragraph {
-//     font-size: 30px;
-//     line-height: 3;
-//     margin: 30px;
-//   }
-// }
