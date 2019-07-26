@@ -1,12 +1,12 @@
 // Flex-grid-width
 
-// Mixin creates flex width for columns for column.
+// Mixin that creates flex width of one column based on the column number.
 
 // $cols - Total number of columns. Default: $base-col-number.
 
 // Markup:
 // .test {
-//   @include flex-column-width;
+//   @include flex-grid-width;
 // }
 
 // Output:
