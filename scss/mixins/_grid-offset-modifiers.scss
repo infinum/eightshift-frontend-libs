@@ -1,6 +1,6 @@
 // Grid-offset-modifiers
 
-// Mixin takes calc-grid-width mixing and creates modifiers classes from it. Used for flex grid.
+// Mixin that takes calc-grid-width mixin and creates modifier classes from it. Used by flex grid.
 
 // $cols - Total number of columns. Default: $base-col-number.
 // $wrapper - Wrap output item with additional markup.
