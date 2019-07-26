@@ -1,10 +1,10 @@
 // Responsive-modifiers
 
-// Mixin creates output modifiers for specific map key, with provided media breakpoints.
+// Mixin that creates output modifiers for specific map key, with provided media breakpoints.
 // Selectors must be valid html selectors.
-// It operates the same way as "responsive" mixin except it will output modifiers classes.
+// It operates the same way as "responsive" mixin, except it will output modifier classes.
 
-// $map - Map to search.
+// $map - Map to search for.
 // $key - Map key to find.
 
 // Map:
