@@ -1,10 +1,68 @@
-// Mixin creates output modifiers for specific map key, with provided media breakpoints.
+// Responsive-modifiers
+
+// Mixin that creates output modifiers for specific map key, with provided media breakpoints.
 // Selectors must be valid html selectors.
-// If operates the same way as "responsive" mixin except it will output modifiers classes.
-@mixin responsive-modifiers($map, $selector) {
+// It operates the same way as "responsive" mixin, except it will output modifier classes.
+
+// $map - Map to search for.
+// $key - Map key to find.
+
+// Map:
+// $test: (
+//   sizes: (
+//     mobile: (
+//       default: (
+//         font-size: 64px,
+//         line-height: 0.92,
+//       ),
+//       big: (
+//         font-size: 42px,
+//         line-height: 1.12,
+//       ),
+//     ),
+//     tablet: (
+//       default: (
+//         font-size: 115px,
+//         line-height: 0.92,
+//       ),
+//       big: (
+//         font-size: 90px,
+//         line-height: 1,
+//       ),
+//     ),
+//   )
+// );
+
+// Markup:
+// .test {
+//   @include responsive-modifiers($test, sizes);
+// }
+
+// Output:
+// .test--default {
+//   font-size: 64px;
+//   line-height: 0.92;
+// }
+// .test--big {
+//   font-size: 42px;
+//   line-height: 1.12;
+// }
+
+// @media (min-width: 768px) {
+//   .test--default {
+//     font-size: 115px;
+//     line-height: 0.92;
+//   }
+//   .test--big {
+//     font-size: 90px;
+//     line-height: 1;
+//   }
+// }
+
+@mixin responsive-modifiers($map, $key) {
   $i: 0;
 
-  @each $breakpoint, $breakpointMap in map-get-strict($map, $selector) {
+  @each $breakpoint, $breakpointMap in map-get-strict($map, $key) {
     @if (type-of($breakpointMap) == 'map') {
       @if $i == 0 {
         @each $modifier, $modifierMap in $breakpointMap {
@@ -47,56 +105,3 @@
     $i: $i + 1;
   }
 }
-
-// Usage.
-// $heading: (
-//   sizes: (
-//     mobile: (
-//       default: (
-//         font-size: 64px,
-//         line-height: 0.92,
-//       ),
-//       big: (
-//         font-size: 42px,
-//         line-height: 1.12,
-//       ),
-//     ),
-//     tablet: (
-//       default: (
-//         font-size: 115px,
-//         line-height: 0.92,
-//       ),
-//       big: (
-//         font-size: 90px,
-//         line-height: 1,
-//       ),
-//     ),
-//   )
-// );
-
-// Selector.
-// .heading {
-//   &__size {
-//     @include responsive-modifiers($heading, sizes);
-//   }
-// }
-
-// Output.
-// .heading__size--default {
-//   font-size: 64px;
-//   line-height: 1;
-// }
-// .heading__size--big {
-//   font-size: 42px;
-//   line-height: 1.1;
-// }
-// @media (min-width: 768px) {
-//   .heading__size--default {
-//     font-size: 115px;
-//     line-height: 0.9;
-//   }
-//   .heading__size--big {
-//     font-size: 90px;
-//     line-height: 1;
-//   }
-// }

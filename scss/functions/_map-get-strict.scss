@@ -1,3 +1,25 @@
+// Map-get-strict
+
+// Returns an item from map. Function behaves the same as native map-get but it adds additional error handling.
+
+// $map - Map to search.
+// $key - Map key to find.
+
+// Map:
+// $map: (
+//   test: 50%,
+// );
+
+// Markup:
+// .test {
+//   width: map-get-strict($map, test);
+// }
+
+// Output:
+// .test {
+//   width: 50%;
+// }
+
 @function map-get-strict($map, $key) {
   @if map-has-key($map, $key) {
     @return map-get($map, $key);

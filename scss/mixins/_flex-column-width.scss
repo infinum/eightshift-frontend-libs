@@ -1,3 +1,20 @@
+// Flex-column-width
+
+// Mixin that creates flex width for column.
+
+// $cols - Total number of columns. Default: $base-col-number.
+
+// Markup:
+// .test {
+//   @include flex-column-width;
+// }
+
+// Output:
+// .test {
+//   flex: 0 0 100%;
+//   max-width: 100%;
+// }
+
 @mixin flex-column-width($cols: $base-col-number) {
   flex: 0 0 calc-column-width($cols);
   max-width: calc-column-width($cols);

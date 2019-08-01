@@ -1,8 +1,60 @@
-// Mixin creates output for and valid html state, :hover, :focus, :active but only default state has to be in normal key.
+// Link-modifiers
+
+// Mixin that creates output modifiers for any valid html state, :hover, :focus, :active but only the default state has to be in normal key.
 // All selectors must be valid html selectors.
 
-@mixin link-modifiers($map, $selector) {
-  @each $modifier, $modifierMap in map-get-strict($map, $selector) {
+// $map - Map to search.
+// $key - Map key to find.
+
+// Map:
+// $test: (
+//   test: (
+//     default: (
+//       normal: (
+//         background-color: $base-black-color,
+//         color: $base-white-color,
+//       ),
+//       hover: (
+//         background-color: $base-white-color,
+//         color: $base-black-color,
+//       ),
+//       focus: (
+//         background-color: $base-white-color,
+//         color: $base-black-color,
+//       ),
+//       active: (
+//         background-color: $base-white-color,
+//         color: $base-black-color,
+//       ),
+//     ),
+//   ),
+// );
+
+// Markup:
+// .test {
+//   @include link-modifiers($test, test);
+// }
+
+// Output:
+// .test--default {
+//   background-color: #000000;
+//   color: #FFFFFF;
+// }
+// .test--default:hover {
+//   background-color: #FFFFFF;
+//   color: #000000;
+// }
+// .test--default:focus {
+//   background-color: #FFFFFF;
+//   color: #000000;
+// }
+// .test--default:active {
+//   background-color: #FFFFFF;
+//   color: #000000;
+// }
+
+@mixin link-modifiers($map, $key) {
+  @each $modifier, $modifierMap in map-get-strict($map, $key) {
     &--#{$modifier} {
       @if (type-of($modifierMap) == 'map') {
         @each $state, $stateMap in $modifierMap {
@@ -31,54 +83,4 @@
       }
     }
   }
-}
-
-// Usage.
-// $btn: (
-//   colors: (
-//     default: (
-//       normal: (
-//         background-color: $base-black-color,
-//         color: $base-white-color,
-//       ),
-//       hover: (
-//         background-color: $base-white-color,
-//         color: $base-black-color,
-//       ),
-//     ),
-//     primary: (
-//       normal: (
-//         background-color: $base-primary-color,
-//         color: $base-white-color,
-//       ),
-//       hover: (
-//         background-color: $base-black-color,
-//         color: $base-white-color,
-//       ),
-//     ),
-//   ),
-// );
-
-// Selector.
-// .btn {
-//   &__color {
-//     @include link-modifiers($btn, colors);
-//   }
-// }
-
-// Output.
-.btn__color--default {
-  background-color: #000000;
-  color: #FFFFFF; }
-.btn__color--default:hover {
-  background-color: #FFFFFF;
-  color: #000000;
-}
-.btn__color--primary {
-  background-color: #C3151B;
-  color: #FFFFFF;
-}
-.btn__color--primary:hover {
-  background-color: #000000;
-  color: #FFFFFF;
 }

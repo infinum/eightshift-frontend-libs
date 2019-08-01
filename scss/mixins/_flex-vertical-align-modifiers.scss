@@ -1,3 +1,23 @@
+// Flex-vertical-align-modifiers
+
+// Mixin that creates flex vertical align modifiers.
+
+// Markup:
+// .test {
+//   @include flex-vertical-align-modifiers;
+// }
+
+// Output:
+// .test--top {
+//   align-self: flex-start;
+// }
+// .test--center {
+//   align-self: center;
+// }
+// .test--bottom {
+//   align-self: flex-end;
+// }
+
 @mixin flex-vertical-align-modifiers() {
   &--top {
     align-self: flex-start;

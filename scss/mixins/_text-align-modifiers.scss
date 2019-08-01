@@ -1,3 +1,23 @@
+// Text-align-modifiers
+
+// Mixin that create text align modifiers.
+
+// Markup:
+// .test {
+//   @include text-align-modifiers;
+// }
+
+// Output:
+// .test--left {
+//   text-align: left;
+// }
+// .test--center {
+//   text-align: center;
+// }
+// .test--right {
+//   text-align: right;
+// }
+
 @mixin text-align-modifiers() {
   &--left {
     text-align: left;

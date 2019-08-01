@@ -1,3 +1,18 @@
+// Heading-reset
+
+// Placeholder that is used to reset browser default styles for heading.
+
+// Markup:
+// .test {
+//   @extend %heading-reset;
+// }
+
+// Output:
+// .test {
+//   padding: 0;
+//   margin: 0;
+// }
+
 %heading-reset {
   margin: 0;
   padding: 0;
