@@ -1,6 +1,6 @@
 {
   "name": "eightshift-frontend-libs",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "A collection of useful frontend utility modules. powered by Eightshift",
   "main": "scss/eightshift-frontend-libs.scss",
   "style": "scss/eightshift-frontend-libs.scss",
