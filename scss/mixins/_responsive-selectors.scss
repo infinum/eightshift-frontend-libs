@@ -1,0 +1,69 @@
+// Responsive-selectors
+
+// Mixin that will output provided contend wrapped in responsive selectors from $media-blender brakepoints map.
+// Responsive configuration is Desktop First!!!
+
+// $brakepoints - Map from media-blender brakepoints.
+
+// Map:
+// $media-breakpoints: (
+//   small: 0 543,
+//   mobile: 544 767,
+//   tablet: 768 991,
+//   desktop: 992 1199,
+//   large: 1200
+// ) !default;
+
+// Markup:
+// .test {
+//   @include responsive-selectors {
+//     width: 10%;
+//   }
+// }
+
+// Output:
+// .test-large {
+//   width: 10%;
+// }
+// @media (max-width: 1199px) {
+//   .test-desktop {
+//     width: 10%;
+//   }
+// }
+// @media (max-width: 991px) {
+//   .test-tablet {
+//     width: 10%;
+//   }
+// }
+// @media (max-width: 767px) {
+//   .test-mobile {
+//     width: 10%;
+//   }
+// }
+// @media (max-width: 543px) {
+//   .test-small {
+//     width: 10%;
+//   }
+// }
+
+@mixin responsive-selectors($brakepoints: $media-breakpoints) {
+  $i: 1;
+  @each $brakepoint in map-reverse($brakepoints) {
+    $point: nth($brakepoint, 1);
+
+    @if $i == 1 {
+      &-#{$point} {
+        @content;
+      }
+    }
+    @else {
+      @include media(#{$point} down) {
+        &-#{$point} {
+          @content;
+        }
+      }
+    }
+
+    $i: $i + 1;
+  }
+}

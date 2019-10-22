@@ -3,6 +3,7 @@
 // Mixin that creates output modifiers for specific map key, with provided media breakpoints.
 // Selectors must be valid html selectors.
 // It operates the same way as "responsive" mixin, except it will output modifier classes.
+// Also supports multiple nested maps as a key.
 
 // $map - Map to search for.
 // $key - Map key to find.
@@ -59,10 +60,10 @@
 //   }
 // }
 
-@mixin responsive-modifiers($map, $key) {
+@mixin responsive-modifiers($map, $keys...) {
   $i: 0;
 
-  @each $breakpoint, $breakpointMap in map-get-strict($map, $key) {
+  @each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
     @if (type-of($breakpointMap) == 'map') {
       @if $i == 0 {
         @each $modifier, $modifierMap in $breakpointMap {

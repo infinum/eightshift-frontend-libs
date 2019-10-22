@@ -16,7 +16,7 @@
 
 // Markup:
 // .test {
-//   @include modifiers1($test, test, color);
+//   @include modifiers-deep($test, test, color);
 // }
 
 // Output:

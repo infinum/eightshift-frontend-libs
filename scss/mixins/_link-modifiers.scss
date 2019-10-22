@@ -2,6 +2,7 @@
 
 // Mixin that creates output modifiers for any valid html state, :hover, :focus, :active but only the default state has to be in normal key.
 // All selectors must be valid html selectors.
+// Also supports multiple nested maps as a key.
 
 // $map - Map to search.
 // $key - Map key to find.
@@ -53,8 +54,8 @@
 //   color: #000000;
 // }
 
-@mixin link-modifiers($map, $key) {
-  @each $modifier, $modifierMap in map-get-strict($map, $key) {
+@mixin link-modifiers($map, $keys...) {
+  @each $modifier, $modifierMap in map-get-deep($map, $keys...) {
     &--#{$modifier} {
       @if (type-of($modifierMap) == 'map') {
         @each $state, $stateMap in $modifierMap {
