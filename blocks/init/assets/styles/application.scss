@@ -1,0 +1,21 @@
+/**
+ * This is a main entry point for project style used in `frontend`.
+ *
+ * Usage: `frontend`.
+ *
+ * @since 1.0.0
+ */
+
+// Vendors - node modules
+@import 'normalize-scss';
+@include normalize(); // stylelint-disable-line at-rule-empty-line-before
+
+// Globals.
+@import './parts/shared';
+
+// Config.
+@import './parts/core';
+
+// Find all layout components and require component_name-style.scss inside it.
+@import './../../layout/*/*-style.scss';
+

@@ -1,0 +1,37 @@
+{
+  "blockName": "paragraph",
+  "title": "Paragraph",
+  "description" : "Paragraph Block",
+  "category": "common",
+  "icon": {
+    "src": "editor-rtl"
+  },
+  "keywords": [
+    "Paragraph"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "styleAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleType": {
+      "type": "string",
+      "default": "primary"
+    },
+    "styleSize": {
+      "type": "string",
+      "default": "default"
+    },
+    "removeStyle": {
+      "type": "bool",
+      "default": false
+    }
+  }
+}

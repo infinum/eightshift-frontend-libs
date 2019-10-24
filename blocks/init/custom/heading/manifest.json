@@ -1,0 +1,34 @@
+{
+  "blockName": "heading",
+  "title": "Heading",
+  "description" : "Heading Block",
+  "category": "common",
+  "icon": {
+    "src": "editor-textcolor"
+  },
+  "keywords": [
+    "Heading",
+    "Title"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "styleAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleSize": {
+      "type": "string",
+      "default": "default"
+    }
+  }
+}

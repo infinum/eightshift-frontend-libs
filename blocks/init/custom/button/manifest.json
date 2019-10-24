@@ -1,0 +1,35 @@
+{
+  "blockName": "button",
+  "title": "Button",
+  "description" : "Button Block",
+  "category": "common",
+  "icon": {
+    "src": "editor-removeformatting"
+  },
+  "keywords": [
+    "Button"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "styleSize": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleSizeWidth": {
+      "type": "string",
+      "default": "default"
+    },
+    "btnId": {
+      "type": "string"
+    }
+  }
+}

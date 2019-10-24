@@ -1,0 +1,21 @@
+{
+  "blockName": "lists",
+  "title": "Lists",
+  "description" : "Lists Block",
+  "category": "common",
+  "icon": {
+    "src": "editor-rtl"
+  },
+  "keywords": [
+    "Lists"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "ordered": {
+      "type": "string",
+      "default": "ul"
+    }
+  }
+}

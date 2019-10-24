@@ -1,0 +1,18 @@
+$lists: (
+  default: (
+    mobile: (
+      font-size: 18px,
+      line-height: 1.44,
+    ),
+  ),
+);
+
+.lists {
+  @extend %list-reset;
+
+  @include responsive($lists, default);
+
+  li {
+    @extend %list-reset;
+  }
+}

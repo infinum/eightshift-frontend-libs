@@ -1,0 +1,110 @@
+{
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "styleBackgroundColor": {
+      "type": "string",
+      "default": "white"
+    },
+    "hasWrapper": {
+      "type": "bool",
+      "default": true
+    },
+
+    "styleContentWidthLarge": {
+      "type": "number",
+      "default": 12
+    },
+    "styleContentOffsetLarge": {
+      "type": "string",
+      "default": "center"
+    },
+    "styleContainerWidthLarge": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleContainerSpacingLarge": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleSpacingTopLarge": {
+      "type": "number"
+    },
+    "styleSpacingBottomLarge": {
+      "type": "number",
+      "default": 40
+    },
+    "styleHideBlockLarge": {
+      "type": "bool",
+      "default": false
+    },
+
+    "styleContentWidthDesktop": {
+      "type": "number"
+    },
+    "styleContentOffsetDesktop": {
+      "type": "string"
+    },
+    "styleContainerWidthDesktop": {
+      "type": "string"
+    },
+    "styleContainerSpacingDesktop": {
+      "type": "string"
+    },
+    "styleSpacingTopDesktop": {
+      "type": "number"
+    },
+    "styleSpacingBottomDesktop": {
+      "type": "number"
+    },
+    "styleHideBlockDesktop": {
+      "type": "bool",
+      "default": false
+    },
+
+    "styleContentWidthTablet": {
+      "type": "number"
+    },
+    "styleContentOffsetTablet": {
+      "type": "string"
+    },
+    "styleContainerWidthTablet": {
+      "type": "string"
+    },
+    "styleContainerSpacingTablet": {
+      "type": "string"
+    },
+    "styleSpacingTopTablet": {
+      "type": "number"
+    },
+    "styleSpacingBottomTablet": {
+      "type": "number"
+    },
+    "styleHideBlockTablet": {
+      "type": "bool"
+    },
+
+    "styleContentWidthMobile": {
+      "type": "number"
+    },
+    "styleContentOffsetMobile": {
+      "type": "string"
+    },
+    "styleContainerWidthMobile": {
+      "type": "string"
+    },
+    "styleContainerSpacingMobile": {
+      "type": "string"
+    },
+    "styleSpacingTopMobile": {
+      "type": "number"
+    },
+    "styleSpacingBottomMobile": {
+      "type": "number"
+    },
+    "styleHideBlockMobile": {
+      "type": "bool"
+    }
+  }
+}

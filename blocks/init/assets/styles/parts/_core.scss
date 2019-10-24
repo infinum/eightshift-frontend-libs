@@ -1,0 +1,19 @@
+/* stylelint-disable-line selector-no-type */
+*,
+*::after,
+*::before {
+  @include box-sizing;
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  @include font-smoothing;
+  font-family: $base-font-family;
+  color: $base-text-color;
+  background-color: $base-background-color;
+  position: relative;
+  overflow-x: hidden;
+}

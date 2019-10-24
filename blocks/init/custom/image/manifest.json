@@ -1,0 +1,28 @@
+{
+  "blockName": "image",
+  "title": "Image",
+  "description" : "Image block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "format-image"
+  },
+  "keywords": [
+    "Image",
+    "Block Image"
+  ],
+  "attributes": {
+    "mediaId": {
+      "type": "number",
+      "manualAction": true
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": "https://via.placeholder.com/500",
+      "manualAction": true
+    },
+    "mediaSize": {
+      "type": "string",
+      "default": "large"
+    }
+  }
+}

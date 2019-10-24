@@ -1,0 +1,17 @@
+{
+  "blockName": "example",
+  "title": "Example",
+  "description" : "Example Descriptions",
+  "category": "common",
+  "icon": {
+    "src": "heading"
+  },
+  "keywords": [
+    "Example Keyword"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    }
+  }
+}

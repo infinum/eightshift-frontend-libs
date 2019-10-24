@@ -1,0 +1,22 @@
+/**
+ * This is a main entry point for Gutenberg blocks styles used on `frontend` and `editor`.
+ * File names must follow naming convention to be able run dynamically.
+ *
+ * `src/blocks/custom/block_name/block_name-style.scss`.
+ *
+ * Usage: `frontend` and `editor`.
+ *
+ * @since 1.0.0
+ */
+
+// Globals.
+@import './parts/shared';
+
+// Register Wrapper block styles.
+@import './../../wrapper/wrapper-style.scss';
+
+// Find all components and require component_name-style.scss inside it.
+@import './../../components/*/*-style.scss';
+
+// Find all blocks and require block_name-style.scss inside it.
+@import './../../custom/*/*-style.scss';

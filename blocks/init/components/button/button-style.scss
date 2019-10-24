@@ -1,0 +1,88 @@
+$btn: (
+  colors: (
+    default: (
+      normal: (
+        background-color: $base-black-color,
+        color: $base-white-color,
+      ),
+      hover: (
+        background-color: $base-white-color,
+        color: $base-black-color,
+      ),
+    ),
+    primary: (
+      normal: (
+        background-color: $base-primary-color,
+        color: $base-white-color,
+      ),
+      hover: (
+        background-color: $base-black-color,
+        color: $base-white-color,
+      ),
+    ),
+  ),
+  sizes: (
+    mobile: (
+      default: (
+        font-size: 16px,
+        line-height: 1.4,
+        height: 56px,
+      ),
+      big: (
+        font-size: 18px,
+        line-height: 1.4,
+        height: 80px,
+      ),
+    ),
+    tablet: (
+      default: (
+        font-size: 18px,
+        line-height: 1.4,
+        height: 70px,
+      ),
+      big: (
+        font-size: 20px,
+        line-height: 1.4,
+        height: 100px,
+      )
+    )
+  )
+);
+
+.btn {
+  @extend %button-reset;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 12px 50px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: {
+    property: background-color, color, border-color;
+    timing-function: ease-in;
+    duration: 0.3s;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &__size-width {
+    &--block {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  &__color {
+    @include link-modifiers($btn, colors);
+  }
+
+  &__size {
+    @include responsive-modifiers($btn, sizes);
+  }
+}
