@@ -8,11 +8,12 @@ $lists: (
 );
 
 .lists {
-  @extend %list-reset;
+  margin: 0;
+  padding: 0;
 
   @include responsive($lists, default);
 
   li {
-    @extend %list-reset;
+    margin-left: 22px;
   }
 }

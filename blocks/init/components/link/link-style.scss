@@ -1,14 +1,6 @@
 $link: (
   colors: (
-    default: (
-      normal: (
-        color: $base-primary-color,
-      ),
-      hover: (
-        color: $base-black-color,
-      ),
-    ),
-    inverse: (
+    black: (
       normal: (
         color: $base-black-color,
       ),
@@ -16,7 +8,15 @@ $link: (
         color: $base-primary-color,
       ),
     ),
-  )
+    primary: (
+      normal: (
+        color: $base-primary-color,
+      ),
+      hover: (
+        color: $base-black-color,
+      ),
+    ),
+  ),
 );
 
 .link {

@@ -27,7 +27,7 @@ export const Link = (props) => {
           url={url}
           onChangeUrl={actions.onChangeUrl}
           styleColor={styleColor}
-          onChangeColor={actions.onChangeColor}
+          onChangeStyleColor={actions.onChangeStyleColor}
           isAnchor={isAnchor}
           onChangeIsAnchor={actions.onChangeIsAnchor}
         />

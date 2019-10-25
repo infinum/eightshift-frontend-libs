@@ -6,7 +6,6 @@
  * @since 2.0.0
  */
 
-const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');

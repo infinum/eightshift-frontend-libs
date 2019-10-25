@@ -24,7 +24,7 @@ export const Wrapper = (props) => {
     <Fragment>
       {hasWrapper ?
         <Fragment>
-          <InspectorControls> 
+          <InspectorControls>
             <WrapperOptions
               attributes={attributes}
               actions={actions}
