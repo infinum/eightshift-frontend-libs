@@ -1,0 +1,28 @@
+{
+  "blockName": "link",
+  "title": "Link",
+  "description" : "Link Block",
+  "category": "common",
+  "icon": {
+    "src": "admin-links"
+  },
+  "keywords": [
+    "Link"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "isAnchor": {
+      "type": "bool",
+      "default": false
+    }
+  }
+}

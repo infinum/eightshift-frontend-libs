@@ -1,0 +1,16 @@
+{
+  "blockName": "group",
+  "title": "Group",
+  "description" : "Group block used to group multiple blocks.",
+  "category": "common",
+  "icon": {
+    "src": "screenoptions"
+  },
+  "keywords": [
+    "container",
+    "section",
+    "group"
+  ],
+  "hasInnerBlocks": true,
+  "hasWrapper": false
+}
