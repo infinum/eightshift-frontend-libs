@@ -1,9 +1,9 @@
 /**
- * This is a main entry point for Application used in `frontend`.
- * This file registers styles and scripts and all other assets only for the frontend.
+ * This is the main entry point for Application used for the `WordPress frontend screen`.
+ * This file registers styles and scripts and all other assets only for the WordPress frontend screen.
  * You would load images, fonts, helpers, header, footed, etc, everything not related to Gutenberg here.
  *
- * Usage: `frontend`.
+ * Usage: `WordPress frontend screen`.
  *
  * @since 1.0.0
  */

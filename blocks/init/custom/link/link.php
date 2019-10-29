@@ -12,9 +12,9 @@ $this->render_block_view(
   '/components/link/link.php',
   [
     'blockClass' => $attributes['blockClass'] ?? '',
-    'title' => $attributes['title'] ?? '',
-    'url' => $attributes['url'] ?? '',
+    'title'      => $attributes['title'] ?? '',
+    'url'        => $attributes['url'] ?? '',
     'styleColor' => $attributes['styleColor'] ?? '',
-    'isAnchor' => $attributes['isAnchor'] ?? false,
+    'isAnchor'   => $attributes['isAnchor'] ?? false,
   ]
 );

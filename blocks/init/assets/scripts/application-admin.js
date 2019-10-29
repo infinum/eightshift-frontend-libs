@@ -1,7 +1,7 @@
 /**
- * This is a main entry point for project scripts used in `admin`.
+ * This is the main entry point for project scripts used for the `WordPress admin screen`.
  *
- * Usage: `admin`.
+ * Usage: `WordPress admin screen`.
  *
  * @since 1.0.0
  */

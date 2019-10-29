@@ -1,8 +1,8 @@
 /**
- * This is a main entry point for Gutenberg blocks used on `frontend` and `editor`.
+ * This is the main entry point for Gutenberg blocks used for the `WordPress frontend screen` and `WordPress admin editor`.
  * This file registers styles and scripts.
  *
- * Usage: `frontend` and `editor`.
+ * Usage: `WordPress frontend screen` and `WordPress admin editor`.
  *
  * @since 1.0.0
  */

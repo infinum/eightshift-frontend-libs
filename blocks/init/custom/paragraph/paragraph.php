@@ -11,10 +11,10 @@ namespace Eightshift_Boilerplate\Blocks;
 $this->render_block_view(
   '/components/paragraph/paragraph.php',
   [
-    'blockClass' => $attributes['blockClass'] ?? '',
-    'content' => $attributes['content'] ?? '',
-    'styleAlign' => $attributes['styleAlign'] ?? '',
-    'styleColor' => $attributes['styleColor'] ?? '',
+    'blockClass'  => $attributes['blockClass'] ?? '',
+    'content'     => $attributes['content'] ?? '',
+    'styleAlign'  => $attributes['styleAlign'] ?? '',
+    'styleColor'  => $attributes['styleColor'] ?? '',
     'styleSize'   => $attributes['styleSize'] ?? '',
     'removeStyle' => $attributes['removeStyle'] ?? false,
   ]

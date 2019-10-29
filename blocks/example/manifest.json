@@ -1,7 +1,7 @@
 {
   "blockName": "example",
   "title": "Example",
-  "description" : "Example Descriptions",
+  "description" : "Example Description",
   "category": "common",
   "icon": {
     "src": "heading"

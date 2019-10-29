@@ -12,7 +12,7 @@ $this->render_block_view(
   '/components/lists/lists.php',
   [
     'blockClass' => $attributes['blockClass'] ?? '',
-    'content' => $attributes['content'] ?? '',
-    'ordered' => $attributes['ordered'] ?? '',
+    'content'    => $attributes['content'] ?? '',
+    'ordered'    => $attributes['ordered'] ?? '',
   ]
 );

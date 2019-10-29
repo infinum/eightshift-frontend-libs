@@ -1,5 +1,5 @@
 /**
- * Get and require all files fetched using require.context method.
+ * Loop all paths required using require.context method.
  *
  * @param {object} paths All require.context patch to iterate.
  *

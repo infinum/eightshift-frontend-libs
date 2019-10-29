@@ -55,11 +55,5 @@ module.exports = {
         regenerator: false,
       },
     ],
-    // [
-    //   '@wordpress/babel-plugin-makepot',
-    //   {
-    //     'output': 'src/languages/infinum_js.pot'
-    //   }
-    // ]
   ],
 };

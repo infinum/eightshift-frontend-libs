@@ -1,9 +1,9 @@
 /**
- * This is a main entry point for Application Admin used in `admin`.
+ * This is the main entry point for Application Admin used for the `WordPress admin screen`.
  * This file registers styles and scripts and all other assets only for the admin but not the editor.
  * You would load helpers, scripts, styles for admin here.
  *
- * Usage: `admin`.
+ * Usage: `WordPress admin screen`.
  *
  * @since 1.0.0
  */

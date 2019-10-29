@@ -1,7 +1,7 @@
 /**
- * This is a main entry point for project scripts used in `frontend`.
+ * This is the main entry point for project scripts used for the `WordPress frontend screen`.
  *
- * Usage: `frontend`.
+ * Usage: `WordPress frontend screen`.
  *
  * @since 1.0.0
  */
