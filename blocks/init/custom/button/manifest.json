@@ -1,13 +1,15 @@
 {
   "blockName": "button",
   "title": "Button",
-  "description" : "Button Block",
-  "category": "common",
+  "description" : "Button block with custom settings.",
+  "category": "eightshift",
   "icon": {
     "src": "editor-removeformatting"
   },
   "keywords": [
-    "Button"
+    "button",
+    "btn",
+    "link"
   ],
   "attributes": {
     "title": {

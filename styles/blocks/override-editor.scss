@@ -1,7 +1,7 @@
 /*
  * Setting up overrides for default editor styles.
  *
- * @since 1.0.4
+ * @since 1.0.5
 */
 
 $editor: (
@@ -34,11 +34,13 @@ $editor: (
 
 // Add new block button.
 .block-list-appender {
-  position: absolute;
-  right: 0;
-  bottom: -11px;
-  border-radius: 10px 0 0;
-  z-index: 1;
+  position: fixed;
+  right: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100px;
+  z-index: 100;
+  border-radius: 10px 10px 0 0;
   background-color: map-get-strict($editor, appender-bg-color);
 
   button {
@@ -60,10 +62,14 @@ $editor: (
 
     // Block appender. Used with inner blocks.
     .block-list-appender {
+      position: absolute;
       right: 10px;
       bottom: 5px;
+      transform: none;
+      width: auto;
       border-radius: 50%;
       background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
+
     }
 
     // On hover, select wrapper state.
