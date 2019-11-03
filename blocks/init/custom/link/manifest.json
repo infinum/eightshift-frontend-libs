@@ -1,13 +1,15 @@
 {
   "blockName": "link",
   "title": "Link",
-  "description" : "Link Block",
-  "category": "common",
+  "description" : "Link block with custom settings.",
+  "category": "eightshift",
   "icon": {
     "src": "admin-links"
   },
   "keywords": [
-    "Link"
+    "link",
+    "anchor",
+    "href"
   ],
   "attributes": {
     "title": {

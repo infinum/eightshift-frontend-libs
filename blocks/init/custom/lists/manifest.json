@@ -1,13 +1,15 @@
 {
   "blockName": "lists",
   "title": "Lists",
-  "description" : "Lists Block",
-  "category": "common",
+  "description" : "List block with custom settings.",
+  "category": "eightshift",
   "icon": {
-    "src": "editor-rtl"
+    "src": "list-view"
   },
   "keywords": [
-    "Lists"
+    "lists",
+    "list",
+    "order"
   ],
   "attributes": {
     "content": {

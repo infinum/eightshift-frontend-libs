@@ -2,7 +2,7 @@
 /**
  * Main header bar
  *
- * @package Eightshift_Boilerplate\Views\Header
+ * @package Eightshift_Boilerplate\Layout\Header
  *
  * @since 1.0.0
  */
