@@ -9,11 +9,11 @@ const cloneRepoTo = async (repo, folderName) => {
   const command = `git clone ${repo} ${folderName}`;
   return exec(command);
 };
-const installNodeDependencies = async () => exec('npm install');
-const installComposerDependencies = async () => exec('composer install --ignore-platform-reqs');
-const updateComposerAutoloader = async () => exec('composer -o dump-autoload');
-const buildAssets = async () => exec('npm run build', { maxBuffer });
-const wpCoreDownload = async () => exec('wp core download');
+const installNodeDependencies = async projectPath => exec(`cd ${projectPath} && npm install`);
+const installComposerDependencies = async projectPath => exec(`cd ${projectPath} && composer install --ignore-platform-reqs`);
+const updateComposerAutoloader = async projectPath => exec(`cd ${projectPath} && composer -o dump-autoload`);
+const buildAssets = async projectPath => exec(`cd ${projectPath} && npm run build`, { maxBuffer });
+const wpCoreDownload = async projectPath => exec(`cd ${projectPath} && wp core download`);
 
 module.exports = {
   cloneRepoTo,

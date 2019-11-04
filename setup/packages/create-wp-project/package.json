@@ -1,16 +1,16 @@
 {
   "name": "create-wp-project",
   "description": "This is a setup script for creating a WordPress project.",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "author": "Team Eightshift",
   "main": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infinum/eightshift-scripts"
+    "url": "git+https://github.com/infinum/eightshift-frontend-libs"
   },
   "bugs": {
-    "url": "https://github.com/infinum/eightshift-scripts/issues"
+    "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --mode production",
@@ -22,7 +22,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
-    "eightshift-scripts": "^0.0.8",
+    "eightshift-scripts": "^0.0.10",
     "figlet": "^1.2.3",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.1",

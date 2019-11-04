@@ -1,15 +1,15 @@
 {
   "name": "eightshift-scripts",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "author": "Team Eightshift",
   "main": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infinum/eightshift-scripts"
+    "url": "git+https://github.com/infinum/eightshift-frontend-libs"
   },
   "bugs": {
-    "url": "https://github.com/infinum/eightshift-scripts/issues"
+    "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
   },
   "scripts": {
     "lint": "eslint",
@@ -32,11 +32,7 @@
     "replace-in-file": "^3.4.2"
   },
   "devDependencies": {
-    "@infinumjs/eslint-config": "^1.3.0",
     "del": "^4.1.1",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0",
     "jest": "^24.8.0"
   }
 }
