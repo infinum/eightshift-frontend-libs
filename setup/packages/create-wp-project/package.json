@@ -7,10 +7,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infinum/eightshift-scripts"
+    "url": "git+https://github.com/infinum/eightshift-frontend-libs"
   },
   "bugs": {
-    "url": "https://github.com/infinum/eightshift-scripts/issues"
+    "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --mode production",
