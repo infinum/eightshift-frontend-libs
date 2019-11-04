@@ -29,7 +29,11 @@ const scriptArguments = [
     message: 'Please specify the namespace name (e.g. Package_Name):',
     buildFrom: {
       name: 'projectName',
-      how: sourceArg => sourceArg.charAt(0).toUpperCase() + sourceArg.slice(1).split(' ').join('_'),
+      how: sourceArg => sourceArg
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('_'),
     },
   },
   {
@@ -44,6 +48,7 @@ const scriptArguments = [
         let prefix = '';
         const sourceWords = sourceArg.split(' ');
         if (sourceWords && sourceWords.length >= 2) {
+          // eslint-disable-next-line no-restricted-syntax
           for (const word of sourceWords) {
             prefix += word.charAt(0).toUpperCase();
           }
@@ -69,11 +74,11 @@ const scriptArguments = [
   },
   {
     type: 'text',
-    name: 'assetManifest',
-    message: 'Please specify the assetManifest name (e.g. INF_ASSETS_MANIFEST):',
+    name: 'projectPrefix',
+    message: 'Please specify the projectPrefix name (e.g. eb8):',
     buildFrom: {
       name: 'prefix',
-      how: sourceArg => `${sourceArg}_ASSETS_MANIFEST`,
+      how: sourceArg => sourceArg.toLowerCase(),
     },
   },
 ];
