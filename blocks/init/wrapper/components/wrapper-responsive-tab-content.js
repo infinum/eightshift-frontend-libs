@@ -23,7 +23,7 @@ export const WrapperResponsiveTabContent = (props) => {
   } = props;
 
   const spacingOptions = {
-    min: -1,
+    min: -10,
     max: 300,
     step: 10,
   };
@@ -119,7 +119,7 @@ export const WrapperResponsiveTabContent = (props) => {
               {__('Spacing Top', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Change Block Spacing from the top. If you set a value to -1 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
           value={spacingTop}
           onChange={onChangeSpacingTop}
           min={spacingOptions.min}
@@ -136,7 +136,7 @@ export const WrapperResponsiveTabContent = (props) => {
               {__('Spacing Bottom', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Change Block Spacing from the bottom. If you set a value to -1 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
           value={spacingBottom}
           onChange={onChangeSpacingBottom}
           min={spacingOptions.min}

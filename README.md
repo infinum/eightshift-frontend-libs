@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Eightshift Frontend Libs" src="package/logo.svg"/>
+  <img alt="Eightshift Frontend Libs" src="https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/logo.svg?raw=true&sanitize=true"/>
 </p>
 
 [![Travis](https://img.shields.io/travis/infinum/eightshift-frontend-libs.svg?style=for-the-badge)](https://github.com/infinum/eightshift-frontend-libs)
@@ -36,4 +36,4 @@ Eightshift WordPress Boilerplate is maintained and sponsored by
 
 ## :scroll: License
 
-Infinum WordPress Boilerplate is Copyright ©2018 Infinum. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Infinum WordPress Boilerplate is Copyright ©2019 Infinum. It is free software, and may be redistributed under the terms specified in the LICENSE file.
