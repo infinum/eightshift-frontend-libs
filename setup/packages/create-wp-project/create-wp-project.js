@@ -30,7 +30,7 @@ const run = async () => {
 
   await installStep({
     describe: '1. Cloning repo',
-    thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate-internal.git', projectPath),
+    thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate.git', projectPath),
     isFatal: true,
   });
 
