@@ -8,6 +8,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.2] - 2019-11-06
+
+### Added
+- Fixing readme logo image.
+- Fixing Wrapper block spacing.
+
 ## [2.0.1] - 2019-11-06
 
 ### Added
