@@ -1,0 +1,38 @@
+{
+  "name": "eightshift-scripts",
+  "version": "0.0.10",
+  "author": "Team Eightshift",
+  "main": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinum/eightshift-frontend-libs"
+  },
+  "bugs": {
+    "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "build": "cross-env NODE_ENV=production webpack --progress --mode production",
+    "test": "jest"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cross-env": "^5.2.0",
+    "figlet": "^1.2.3",
+    "file-loader": "^2.0.0",
+    "fs-extra": "^7.0.1",
+    "generate-password": "^1.4.1",
+    "inquirer": "^6.4.1",
+    "minimist": "^1.2.0",
+    "node-emoji": "^1.8.1",
+    "ora": "^3.0.0",
+    "promisify-child-process": "^2.1.2",
+    "prompt-sync": "^4.1.6",
+    "replace-in-file": "^3.4.2"
+  },
+  "devDependencies": {
+    "del": "^4.1.1",
+    "jest": "^24.8.0"
+  }
+}
