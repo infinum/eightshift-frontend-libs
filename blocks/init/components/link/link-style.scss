@@ -1,0 +1,29 @@
+$link: (
+  colors: (
+    black: (
+      normal: (
+        color: $base-black-color,
+      ),
+      hover: (
+        color: $base-primary-color,
+      ),
+    ),
+    primary: (
+      normal: (
+        color: $base-primary-color,
+      ),
+      hover: (
+        color: $base-black-color,
+      ),
+    ),
+  ),
+);
+
+.link {
+  text-decoration: none;
+  display: block;
+
+  &__color {
+    @include link-modifiers($link, colors);
+  }
+}

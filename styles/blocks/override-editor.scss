@@ -1,0 +1,173 @@
+/*
+ * Setting up overrides for default editor styles.
+ *
+ * @since 1.0.5
+*/
+
+$editor: (
+  block-hovered-outline-color: $base-black-color,
+  appender-bg-color: $base-primary-color,
+  appender-text-color: $base-white-color,
+  icon-color: $base-white-color,
+  font-size: $base-font-size,
+  font-family: $base-font-family,
+);
+
+// General.
+.wp-block {
+  @include font-smoothing;
+  font-size: map-get-strict($editor, font-size);
+  max-width: unset;
+  font-family: map-get-strict($editor, font-family);
+}
+
+/* stylelint-disable */
+// Overrides default styles from inline editor.
+.editor-styles-wrapper {
+  font-family: inherit !important;
+}
+
+// Removes add more section before each block.
+.editor-block-list__insertion-point {
+  display: none;
+}
+
+// Add new block button.
+.block-list-appender {
+  position: fixed;
+  right: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100px;
+  z-index: 100;
+  border-radius: 10px 10px 0 0;
+  background-color: map-get-strict($editor, appender-bg-color);
+
+  button {
+    color: map-get-strict($editor, appender-text-color);
+    outline: none;
+    padding: 5px;
+  }
+}
+
+// Sending my love to the guy that wrote WP Gutenberg css (sarcasam) :S
+// Set min-height to block if it is empty
+// Change add more block in section button style.
+.editor-block-list__layout {
+  padding: 0;
+
+  // Block wrapper.
+  .editor-block-list__block {
+    padding: 0;
+
+    // Block appender. Used with inner blocks.
+    .block-list-appender {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      transform: none;
+      width: auto;
+      border-radius: 50%;
+      background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
+
+    }
+
+    // On hover, select wrapper state.
+    .editor-block-list__block-edit {
+      margin: 0;
+      min-height: 20px;
+
+      &::before {
+        z-index: 1;
+        right: 0;
+        top: 0;
+        left: 0;
+        bottom: 1px;
+        border: 1px solid transparent;
+        box-shadow: none !important;
+      }
+    }
+
+    &.is-hovered > {
+      .editor-block-list__block-edit::before {
+        border-color: map-get-strict($editor, block-hovered-outline-color);
+        outline-color: map-get-strict($editor, block-hovered-outline-color);
+      }
+    }
+
+    // Inner block layout.
+    .editor-block-list__layout {
+      margin: 0;
+    }
+
+    // Place to add block.
+    .editor-block-drop-zone {
+      margin: 0;
+    }
+
+    // Block Toolbar.
+    .editor-block-contextual-toolbar {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    // Block mover.
+    .editor-block-mover {
+      left: 10px;
+      top: 18px;
+    }
+  }
+}
+
+// Spread sidebar default input to full width.
+.edit-post-sidebar {
+  .editor-url-input input[type=text] {
+    width: 100%;
+  }
+}
+
+// Block Toolbar icon.
+.components-button {
+  &.block-editor-block-switcher__no-switcher-icon:disabled {
+    .block-editor-block-icon.has-colors {
+      color: map-get-strict($editor, icon-color) !important;
+
+      svg {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}
+
+// Removing empty div at the bottom of the page.
+.edit-post-visual-editor{
+  .block-editor-writing-flow__click-redirect {
+    display: none !important;
+  }
+}
+
+// Creating custom button tabs style.
+.custom-button-tabs {
+  .components-tab-panel__tabs {
+    display: flex;
+  }
+
+  .custom-button-with-icon {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Aligning image and text vertically.
+.components-base-control .components-base-control__label {
+  display: flex;
+  align-items: center;
+
+  .dashicon,
+  svg {
+    margin-right: 10px;
+  }
+}
+

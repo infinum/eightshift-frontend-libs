@@ -1,0 +1,25 @@
+{
+  "blockName": "video",
+  "title": "Video",
+  "description" : "Video block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "video-alt2"
+  },
+  "keywords": [
+    "video",
+    "video tag",
+    "preview"
+  ],
+  "attributes": {
+    "mediaId": {
+      "type": "number",
+      "manualAction": true
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": "https://via.placeholder.com/500",
+      "manualAction": true
+    }
+  }
+}

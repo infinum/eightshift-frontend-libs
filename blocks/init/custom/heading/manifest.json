@@ -1,0 +1,35 @@
+{
+  "blockName": "heading",
+  "title": "Heading",
+  "description" : "Heading block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "editor-textcolor"
+  },
+  "keywords": [
+    "heading",
+    "title",
+    "label"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "styleAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleSize": {
+      "type": "string",
+      "default": "default"
+    }
+  }
+}

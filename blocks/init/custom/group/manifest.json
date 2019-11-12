@@ -1,0 +1,16 @@
+{
+  "blockName": "group",
+  "title": "Group",
+  "description" : "Group block used to grouping multiple blocks.",
+  "category": "eightshift",
+  "icon": {
+    "src": "screenoptions"
+  },
+  "keywords": [
+    "container",
+    "section",
+    "group"
+  ],
+  "hasInnerBlocks": true,
+  "hasWrapper": false
+}

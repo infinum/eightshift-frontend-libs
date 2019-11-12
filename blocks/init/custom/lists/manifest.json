@@ -1,0 +1,23 @@
+{
+  "blockName": "lists",
+  "title": "Lists",
+  "description" : "List block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "list-view"
+  },
+  "keywords": [
+    "lists",
+    "list",
+    "order"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "ordered": {
+      "type": "string",
+      "default": "ul"
+    }
+  }
+}

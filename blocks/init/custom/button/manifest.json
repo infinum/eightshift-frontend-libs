@@ -1,0 +1,37 @@
+{
+  "blockName": "button",
+  "title": "Button",
+  "description" : "Button block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "editor-removeformatting"
+  },
+  "keywords": [
+    "button",
+    "btn",
+    "link"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "styleSize": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "styleSizeWidth": {
+      "type": "string",
+      "default": "default"
+    },
+    "btnId": {
+      "type": "string"
+    }
+  }
+}

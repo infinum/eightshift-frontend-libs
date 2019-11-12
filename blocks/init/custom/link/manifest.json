@@ -1,0 +1,30 @@
+{
+  "blockName": "link",
+  "title": "Link",
+  "description" : "Link block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "admin-links"
+  },
+  "keywords": [
+    "link",
+    "anchor",
+    "href"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "styleColor": {
+      "type": "string",
+      "default": "default"
+    },
+    "isAnchor": {
+      "type": "bool",
+      "default": false
+    }
+  }
+}
