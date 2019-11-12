@@ -8,6 +8,14 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.3] - 2019-11-12
+
+### Changed
+- Changing postcss setup.
+
+### Removed
+- Classnames package from package.json.
+
 ## [2.0.2] - 2019-11-06
 
 ### Added
@@ -41,6 +49,8 @@ _No documentation available about unreleased changes as of yet._
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[2.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.2...v2.0.3
+[2.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/1.0.19...v2.0.0
 [1.0.19]: https://github.com/infinum/eightshift-frontend-libs/compare/1.0.18...1.0.19
