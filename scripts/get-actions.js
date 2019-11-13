@@ -153,7 +153,7 @@ export const getActions = (props, manifest) => {
   const { attributes } = manifest || {};
 
   // Prepare output variable.
-  const actionsOutput = {};
+  let actionsOutput = {};
 
   // Iterate all object keys. This is the fastest way.
   for (const key in attributes) {
