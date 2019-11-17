@@ -1,0 +1,18 @@
+// Vendors - node modules
+@import 'normalize-scss';
+@include normalize(); // stylelint-disable-line at-rule-empty-line-before
+
+// Globals.
+@import './../blocks/init/assets/styles/parts/shared';
+
+// Config.
+@import './../blocks/init/assets/styles/parts/core';
+
+// Register Wrapper block styles.
+@import './../blocks/init/wrapper/wrapper-style.scss';
+
+// Find all components and require component_name-style.scss inside it.
+@import './../blocks/init/components/*/*-style.scss';
+
+// Find all blocks and require block_name-style.scss inside it.
+@import './../blocks/init/custom/*/*-style.scss';

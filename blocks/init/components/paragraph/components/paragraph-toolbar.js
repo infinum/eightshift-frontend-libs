@@ -1,3 +1,4 @@
+import React from 'react';
 import { AlignmentToolbar } from '@wordpress/editor';
 import { Fragment } from '@wordpress/element';
 

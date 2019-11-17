@@ -1,3 +1,4 @@
+import React from 'react';
 import { Fragment } from '@wordpress/element';
 
 import { getActions } from 'EighshiftBlocksGetActions';
