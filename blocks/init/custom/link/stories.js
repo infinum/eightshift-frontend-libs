@@ -24,11 +24,11 @@ export const blockDefault = () => (
   />
 );
 
-export const colorPrimary = () => (
+export const colorBlack = () => (
   <Link
     attributes={{
       ...defaultProps,
-      styleColor: 'primary',
+      styleColor: 'black',
     }}
   />
 );

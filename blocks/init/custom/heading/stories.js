@@ -34,11 +34,11 @@ export const sizeBig = () => (
   />
 );
 
-export const colorPrimary = () => (
+export const colorBlack = () => (
   <Heading
     attributes={{
       ...defaultProps,
-      styleColor: 'primary',
+      styleColor: 'black',
     }}
   />
 );

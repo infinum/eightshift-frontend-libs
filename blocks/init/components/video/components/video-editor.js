@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const VideoEditor = (props) => {
   const {
     blockClass,

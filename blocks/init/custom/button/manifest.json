@@ -24,7 +24,7 @@
     },
     "styleColor": {
       "type": "string",
-      "default": "default"
+      "default": "primary"
     },
     "styleSizeWidth": {
       "type": "string",

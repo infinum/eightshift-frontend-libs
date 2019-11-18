@@ -1,3 +1,4 @@
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { PanelBody, Button, Dashicon } from '@wordpress/components';

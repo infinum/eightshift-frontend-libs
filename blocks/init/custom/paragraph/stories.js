@@ -43,11 +43,11 @@ export const alignRight = () => (
   />
 );
 
-export const colorPrimary = () => (
+export const colorBlack = () => (
   <Paragraph
     attributes={{
       ...defaultProps,
-      styleColor: 'primary',
+      styleColor: 'black',
     }}
   />
 );

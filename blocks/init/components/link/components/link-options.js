@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, ToggleControl, Icon } from '@wordpress/components';
+import { PanelBody, ToggleControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const LinkOptions = (props) => {

@@ -29,8 +29,8 @@ export const ParagraphOptions = (props) => {
               }
               help={__('Change Paragraph color.', 'eightshift-boilerplate')}
               colors={[
-                globalSettings.colors.black,
                 globalSettings.colors.primary,
+                globalSettings.colors.black,
               ]}
               value={styleColor}
               onChange={onChangeStyleColor}

@@ -20,7 +20,7 @@
     },
     "styleColor": {
       "type": "string",
-      "default": "black"
+      "default": "primary"
     },
     "isAnchor": {
       "type": "bool",

@@ -1,13 +1,5 @@
 $link: (
   colors: (
-    black: (
-      normal: (
-        color: $base-black-color,
-      ),
-      hover: (
-        color: $base-primary-color,
-      ),
-    ),
     primary: (
       normal: (
         color: $base-primary-color,
@@ -16,12 +8,26 @@ $link: (
         color: $base-black-color,
       ),
     ),
+    black: (
+      normal: (
+        color: $base-black-color,
+      ),
+      hover: (
+        color: $base-primary-color,
+      ),
+    ),
   ),
 );
 
 .link {
   text-decoration: none;
   display: block;
+  cursor: pointer;
+  transition: {
+    property: color;
+    timing-function: ease-in;
+    duration: 0.3s;
+  }
 
   &__color {
     @include link-modifiers($link, colors);
