@@ -67,8 +67,8 @@ module.exports = (options) => {
         EighshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
 
         // Components.
-        EighshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom.js'),
-        EighshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level.js'),
+        EighshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom', 'color-palette-custom.js'),
+        EighshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level', 'heading-level.js'),
       },
     },
   };

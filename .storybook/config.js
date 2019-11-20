@@ -18,4 +18,5 @@ configure([
   require.context("./../blocks/init/custom", true, /story.js$/),
   require.context("./../blocks/init/wrapper", true, /story.js$/),
   require.context("./../blocks/playground", true, /story.js$/),
+  require.context("./../components/", true, /story.js$/),
 ], module);

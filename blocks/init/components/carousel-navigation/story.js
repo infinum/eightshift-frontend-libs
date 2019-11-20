@@ -14,7 +14,7 @@ const defaultProps = {
   btnId: '',
 };
 
-export const componentDefault = () => (
+export const component = () => (
   <CarouselNavigation
     attributes={{
       ...defaultProps
