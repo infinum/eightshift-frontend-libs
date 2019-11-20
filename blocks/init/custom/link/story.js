@@ -6,7 +6,7 @@ export default {
   title: 'Initial Blocks|Link',
 };
 
-export const blocks = [
+const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
@@ -19,10 +19,9 @@ export const blocks = [
     innerBlocks: [],
     isValid: true,
     name: `eightshift-boilerplate/${manifest.blockName}`,
-    originalContent: '',
   },
 ];
 
-export const defaultBlock = () => (
+export const block = () => (
   <Gutenberg blocks={blocks} />
 );

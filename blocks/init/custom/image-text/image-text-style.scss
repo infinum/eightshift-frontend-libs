@@ -1,0 +1,127 @@
+// stylelint-disable max-nesting-depth
+
+$block-image-text: (
+  heading: (
+    mobile: (
+      font-size: 36px,
+      line-height: 1.16,
+    ),
+    large: (
+      font-size: 50px,
+      line-height: 1.16,
+    ),
+  ),
+  paragraph: (
+    mobile: (
+      font-size: 16px,
+      line-height: 1.4,
+    ),
+    large: (
+      font-size: 24px,
+      line-height: 1.33,
+    ),
+  ),
+  heading-color: $base-primary-color,
+  paragraph-color: $base-black-color,
+);
+
+.block-image-text {
+  $this: &;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  @include media(tablet up) {
+    flex-direction: row;
+  }
+
+  &__full-height--1,
+  &__full-height--true {
+    @include media(tablet up) {
+      height: 100vh;
+    }
+  }
+
+  &__media-position {
+    &--right {
+      #{$this}__media-wrap {
+        @include media(tablet up) {
+          order: 2;
+        }
+      }
+
+      #{$this}__content-wrap {
+        @include media(tablet up) {
+          order: 1;
+          padding-right: calc-grid-width(1);
+        }
+      }
+    }
+
+    &--left {
+      #{$this}__media-wrap {
+        @include media(tablet up) {
+          order: 1;
+        }
+      }
+
+      #{$this}__content-wrap {
+        @include media(tablet up) {
+          order: 2;
+          padding-left: calc-grid-width(1);
+        }
+      }
+    }
+  }
+
+  &__media-wrap,
+  &__content-wrap {
+    @include media(tablet up) {
+      @include flex-grid-width(6);
+    }
+  }
+
+
+  &__media-wrap {
+    margin-bottom: 30px;
+
+    @include media(tablet up) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    // @extend %heading;
+
+    @include responsive($block-image-text, heading);
+    color: map-get-strict($block-image-text, heading-color);
+    font-weight: bold;
+  }
+
+  &__paragraph {
+    @include responsive($block-image-text, paragraph);
+    color: map-get-strict($block-image-text, paragraph-color);
+    margin-top: 25px;
+
+    @include media(tablet up) {
+      margin-top: 35px;
+    }
+  }
+
+  &__btn {
+    margin-top: 25px;
+
+    @include media(tablet up) {
+      margin-top: 35px;
+    }
+  }
+}

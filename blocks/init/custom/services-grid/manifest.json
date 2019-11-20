@@ -1,0 +1,25 @@
+{
+  "blockName": "services-grid",
+  "title": "Services Grid",
+  "description" : "Services Grid block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "admin-settings"
+  },
+  "keywords": [
+    "Services",
+    "Grid"
+  ],
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "infinum/service-box"
+      ]
+    }
+  }
+}

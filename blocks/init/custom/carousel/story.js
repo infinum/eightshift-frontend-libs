@@ -1,13 +1,13 @@
 import React from 'react';
 import manifest from './manifest.json';
-import { blocks as item } from '../carousel-image/story';
-import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
+import { block as item } from './../carousel-image/story';
+import { Gutenberg, id, blockDetails, blockInnerBlocks } from './../../../../.storybook/helpers'
 
 export default {
   title: 'Blocks|Carousel',
 };
 
-export const blocks = [
+const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
@@ -16,13 +16,13 @@ export const blocks = [
       isLoop: manifest.attributes.isLoop.default,
     },
     clientId: id(),
-    innerBlocks: blockInnerBlocks(item, 3),
+    innerBlocks: blockInnerBlocks(item().props.blocks, 3),
     isValid: true,
-    name: 'eightshift-boilerplate/carousel',
+    name: `eightshift-boilerplate/${manifest.blockName}`,
   },
 ];
 
-export const defaultBlock = () => (
+export const block = () => (
   <Gutenberg blocks={blocks} />
 );
 

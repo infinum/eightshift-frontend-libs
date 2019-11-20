@@ -1,0 +1,26 @@
+{
+  "blockName": "lists-info",
+  "title": "Lists Info",
+  "description" : "Lists Info block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "editor-ul"
+  },
+  "keywords": [
+    "List",
+    "Lists",
+    "Info"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "ordered": {
+      "type": "string",
+      "default": "ul"
+    }
+  }
+}

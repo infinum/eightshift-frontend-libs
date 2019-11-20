@@ -1,0 +1,119 @@
+// stylelint-disable max-nesting-depth
+$block-services: (
+  number-border-color: $base-black-color,
+  number: (
+    mobile: (
+      font-size: 18px,
+      line-height: 1.33,
+      font-weight: bold,
+    ),
+    large: (
+      font-size: 24px,
+    ),
+  ),
+  title: (
+    mobile: (
+      font-size: 36px,
+      line-height: 1.11,
+      font-weight: bold,
+    ),
+    large: (
+      font-size: 50px,
+      line-height: 1.04,
+    ),
+  ),
+  spacing: (
+    mobile: (
+      bottom: 40px,
+      vertical: 25px,
+    ),
+    desktop: (
+      bottom: 60px,
+      vertical: 34px,
+    )
+  ),
+);
+
+.block-services {
+  $this: &;
+  overflow: hidden;
+  margin-bottom: -(map-get-deep($block-services, spacing, mobile, bottom));
+
+  @include media(desktop up) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__intro {
+    margin-bottom: 40px;
+
+    &--empty {
+      margin: 0;
+    }
+
+    @include media(desktop up) {
+      @include flex-grid-width(4);
+      margin: 0;
+    }
+  }
+
+  &__number {
+    @include responsive($block-services, number);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid map-get-strict($block-services, number-border-color);
+    display: inline-block;
+    min-width: 70px;
+
+    @include media(tablet up) {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__title {
+    @include responsive($block-services, title);
+    transition: {
+      property: font-size, line-height;
+      duration: 0.2s;
+    }
+  }
+
+  &__content {
+    @include media(desktop up) {
+      @include flex-grid-width(8);
+    }
+  }
+
+  &__content-wrap,
+  .editor-block-list__layout {
+    $default-vertical-spacing-mobile: map-get-deep($block-services, spacing, mobile, vertical);
+    $default-vertical-spacing-desktop: map-get-deep($block-services, spacing, desktop, vertical);
+
+    @include media(tablet up) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -($default-vertical-spacing-mobile);
+      margin-right: -($default-vertical-spacing-mobile);
+    }
+    @include media(desktop up) {
+      margin-left: -($default-vertical-spacing-desktop);
+      margin-right: -($default-vertical-spacing-desktop);
+    }
+
+    > .block-service-box,
+    > .wp-block {
+      margin-bottom: map-get-deep($block-services, spacing, mobile, bottom);
+
+      @include media(tablet up) {
+        @include flex-grid-width(6);
+        padding-left: $default-vertical-spacing-mobile;
+        padding-right: $default-vertical-spacing-mobile;
+      }
+      @include media(desktop up) {
+        margin-bottom: map-get-deep($block-services, spacing, desktop, bottom);
+        padding-left: $default-vertical-spacing-desktop;
+        padding-right: $default-vertical-spacing-desktop;
+      }
+    }
+  }
+}

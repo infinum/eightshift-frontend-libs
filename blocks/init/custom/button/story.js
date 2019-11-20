@@ -6,7 +6,7 @@ export default {
   title: 'Initial Blocks|Button',
 };
 
-export const blocks = [
+const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
@@ -25,6 +25,6 @@ export const blocks = [
   },
 ];
 
-export const defaultBlock = () => (
+export const block = () => (
   <Gutenberg blocks={blocks} />
 );

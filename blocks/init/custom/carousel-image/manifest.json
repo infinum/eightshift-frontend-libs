@@ -16,11 +16,13 @@
   ],
   "attributes": {
     "mediaId": {
-      "type": "number"
+      "type": "number",
+      "manualAction": true
     },
     "mediaUrl": {
       "type": "string",
-      "default": "https://via.placeholder.com/500"
+      "default": "https://via.placeholder.com/500",
+      "manualAction": true
     },
     "mediaSize": {
       "type": "string",

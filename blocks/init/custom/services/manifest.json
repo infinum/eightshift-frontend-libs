@@ -1,0 +1,30 @@
+{
+  "blockName": "services",
+  "title": "Services",
+  "description" : "Services block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "admin-settings"
+  },
+  "keywords": [
+    "Services"
+  ],
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/service-box"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    }
+  }
+}

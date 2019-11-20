@@ -1,0 +1,73 @@
+{
+  "blockName": "image-text",
+  "title": "Image Text",
+  "description" : "Image Text with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "vault"
+  },
+  "keywords": [
+    "Image",
+    "Image Text",
+    "Block Image"
+  ],
+  "attributes": {
+    "styleFullHeight": {
+      "type": "bool",
+      "default": false
+    },
+
+    "mediaId": {
+      "type": "number",
+      "manualAction": true
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": "https://via.placeholder.com/500",
+      "manualAction": true
+    },
+    "mediaSize": {
+      "type": "string",
+      "default": "large"
+    },
+
+    "heading": {
+      "type": "string"
+    },
+
+    "paragraph": {
+      "type": "string"
+    },
+
+    "imagePosition": {
+      "type": "string",
+      "default": "left"
+    },
+
+    "buttonTitle": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "buttonStyleSize": {
+      "type": "string",
+      "default": "default"
+    },
+    "buttonStyleColor": {
+      "type": "string",
+      "default": "primary"
+    },
+    "buttonStyleSizeWidth": {
+      "type": "string",
+      "default": "default"
+    },
+    "buttonId": {
+      "type": "string"
+    },
+    "buttonIcon": {
+      "type": "string",
+      "default": "none"
+    }
+  }
+}

@@ -1,19 +1,21 @@
 import React from 'react';
 import manifest from './manifest.json';
-import { block as item } from '../heading/story';
-import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
+import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers'
 
 export default {
-  title: 'Initial Blocks|Group',
+  title: 'Blocks|Carousel Image',
 };
 
 const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
+      mediaId: '',
+      mediaUrl: manifest.attributes.mediaUrl.default,
+      mediaSize: manifest.attributes.mediaSize.default,
     },
     clientId: id(),
-    innerBlocks: blockInnerBlocks(item().props.blocks, 3),
+    innerBlocks: [],
     isValid: true,
     name: `eightshift-boilerplate/${manifest.blockName}`,
   },
@@ -22,4 +24,3 @@ const blocks = [
 export const block = () => (
   <Gutenberg blocks={blocks} />
 );
-

@@ -47,6 +47,7 @@ $editor: (
     color: map-get-strict($editor, appender-text-color);
     outline: none;
     padding: 5px;
+    background-color: inherit;
   }
 }
 
@@ -69,7 +70,6 @@ $editor: (
       width: auto;
       border-radius: 50%;
       background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
-
     }
 
     // On hover, select wrapper state.
@@ -171,3 +171,6 @@ $editor: (
   }
 }
 
+.screen-reader-text {
+  display: none;
+}

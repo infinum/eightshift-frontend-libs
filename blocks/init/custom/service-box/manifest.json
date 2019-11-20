@@ -1,0 +1,40 @@
+{
+  "blockName": "service-box",
+  "title": "Service Box",
+  "description" : "Service Box with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "buddicons-buddypress-logo"
+  },
+  "keywords": [
+    "Service",
+    "Box",
+    "Service Box"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/services",
+    "eightshift-boilerplate/services-grid"
+  ],
+  "attributes": {
+    "mediaId": {
+      "type": "number",
+      "manualAction": true
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": "https://via.placeholder.com/500",
+      "manualAction": true
+    },
+    "mediaSize": {
+      "type": "string",
+      "default": "large"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  }
+}
