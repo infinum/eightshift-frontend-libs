@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 export const GroupEditor = (props) => {
   const {

@@ -1,0 +1,13 @@
+.block-carousel {
+  > .block-editor-inner-blocks {
+    > .block-editor-block-list__layout {
+      display: flex;
+      overflow-y: hidden;
+
+      .wp-block {
+        @include flex-grid-width(6);
+        padding-right: 10px;
+      }
+    }
+  }
+}

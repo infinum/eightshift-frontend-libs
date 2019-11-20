@@ -1,3 +1,8 @@
+// Playground styles.
+@import './styles/style';
+
+// ---------------------------------------------------------------------
+// Aplication.scss
 // Vendors - node modules
 @import 'normalize-scss';
 @include normalize(); // stylelint-disable-line at-rule-empty-line-before
@@ -8,6 +13,12 @@
 // Config.
 @import './../blocks/init/assets/styles/parts/core';
 
+// Find all layout components and require component_name-style.scss inside it.
+@import './../blocks/init/layout/*/*-style.scss';
+
+// ---------------------------------------------------------------------
+// Aplication-blocks.scss
+
 // Register Wrapper block styles.
 @import './../blocks/init/wrapper/wrapper-style.scss';
 
@@ -16,3 +27,17 @@
 
 // Find all blocks and require block_name-style.scss inside it.
 @import './../blocks/init/custom/*/*-style.scss';
+
+// ---------------------------------------------------------------------
+// Aplication-blocks-editor.scss
+// Ovveride default editor styles.
+@import 'EighshiftEditorStyleOverride';
+
+// Register Wrapper block styles.
+@import './../blocks/init/wrapper/wrapper-editor.scss';
+
+// Find all components and require component_name-style.scss inside it.
+@import './../blocks/init/components/*/*-editor.scss';
+
+// Find all blocks and require block_name-editor.scss inside it.
+@import './../blocks/init/custom/*/*-editor.scss';

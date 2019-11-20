@@ -1,4 +1,4 @@
-import { InspectorControls, BlockControls } from '@wordpress/editor';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';

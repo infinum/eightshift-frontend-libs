@@ -2,7 +2,7 @@
   "blockName": "lists",
   "title": "Lists",
   "description" : "List block with custom settings.",
-  "category": "eightshift",
+  "category": "common",
   "icon": {
     "src": "list-view"
   },

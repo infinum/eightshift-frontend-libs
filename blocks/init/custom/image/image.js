@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/editor';
+import { InspectorControls } from '@wordpress/block-editor';
 
 import { ImageEditor } from '../../components/image/components/image-editor';
 import { ImageOptions } from '../../components/image/components/image-options';

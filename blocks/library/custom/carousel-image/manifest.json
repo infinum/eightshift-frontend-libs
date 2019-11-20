@@ -1,0 +1,30 @@
+{
+  "blockName": "carousel-image",
+  "title": "Carousel Image",
+  "description" : "Carousel Image block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "format-image"
+  },
+  "keywords": [
+    "Image",
+    "Block Image"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/carousel"
+  ],
+  "attributes": {
+    "mediaId": {
+      "type": "number"
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": "https://via.placeholder.com/500"
+    },
+    "mediaSize": {
+      "type": "string",
+      "default": "full"
+    }
+  }
+}

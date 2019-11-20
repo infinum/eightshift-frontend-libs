@@ -1,0 +1,15 @@
+.block-carousel-image {
+  &__img {
+    width: auto;
+    height: auto;
+    display: block;
+
+    max-width: 300px;
+    max-height: 300px;
+
+    @include media(tablet up) {
+      max-width: 540px;
+      max-height: 540px;
+    }
+  }
+}

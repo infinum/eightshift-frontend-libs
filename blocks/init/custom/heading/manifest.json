@@ -2,7 +2,7 @@
   "blockName": "heading",
   "title": "Heading",
   "description" : "Heading block with custom settings.",
-  "category": "eightshift",
+  "category": "common",
   "icon": {
     "src": "editor-textcolor"
   },

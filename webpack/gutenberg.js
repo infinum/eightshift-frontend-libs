@@ -21,6 +21,7 @@ function getExternals() {
     'blocks',
     'element',
     'editor',
+    'block-editor',
     'date',
     'data',
     'i18n',

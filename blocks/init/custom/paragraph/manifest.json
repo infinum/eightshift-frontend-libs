@@ -2,7 +2,7 @@
   "blockName": "paragraph",
   "title": "Paragraph",
   "description" : "Paragraph block with custom settings.",
-  "category": "eightshift",
+  "category": "common",
   "icon": {
     "src": "editor-rtl"
   },
