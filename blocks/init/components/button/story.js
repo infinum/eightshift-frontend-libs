@@ -1,6 +1,6 @@
 import React from 'react';
-
 import manifest from './../../custom/button/manifest.json';
+
 import { ButtonEditor } from './components/button-editor';
 
 export default {
@@ -17,35 +17,27 @@ const defaultProps = {
 
 export const component = () => (
   <ButtonEditor
-  props={{
-      ...defaultProps
-    }}
+    {...defaultProps}
   />
 );
 
 export const sizeBig = () => (
   <ButtonEditor
-    props={{
-      ...defaultProps,
-      styleSize: 'big',
-    }}
+    {...defaultProps}
+    styleSize= {'big'}
   />
 );
 
 export const colorBlack = () => (
   <ButtonEditor
-    props={{
-      ...defaultProps,
-      styleColor: 'black',
-    }}
+    {...defaultProps}
+    styleColor= {'black'}
   />
 );
 
 export const sizeWidthBlock = () => (
   <ButtonEditor
-    props={{
-      ...defaultProps,
-      styleSizeWidth: 'block',
-    }}
+    {...defaultProps}
+    styleSizeWidth= {'block'}
   />
 );

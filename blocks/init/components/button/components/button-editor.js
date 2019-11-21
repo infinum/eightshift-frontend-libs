@@ -10,9 +10,6 @@ export const ButtonEditor = (props) => {
     styleSizeWidth,
   } = props;
 
-  console.log(props);
-  
-
   const componentClass = 'btn';
 
   const buttonClass = `
