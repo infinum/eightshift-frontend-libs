@@ -2,20 +2,30 @@ import React from 'react';
 import manifest from './../../custom/image/manifest.json';
 
 import { ImageEditor } from './components/image-editor';
+import { ImageOptions } from './components/image-options';
 
 export default {
   title: 'Components|Image',
 };
 
-const defaultProps = {
+const editorProps = {
   blockClass: 'block-image',
-  mediaId: '',
   url: manifest.attributes.mediaUrl.default,
-  mediaSize: manifest.attributes.mediaSize.default,
+};
+
+const optionsProps = {
+  url: manifest.attributes.mediaUrl.default,
+  onChangeMedia: () => {},
 };
 
 export const component = () => (
   <ImageEditor
-    {...defaultProps}
+    {...editorProps}
+  />
+);
+
+export const options = () => (
+  <ImageOptions
+    {...optionsProps}
   />
 );

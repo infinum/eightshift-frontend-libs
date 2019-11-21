@@ -2,35 +2,50 @@ import React from 'react';
 import manifest from './../../custom/link/manifest.json';
 
 import { LinkEditor } from './components/link-editor';
+import { LinkOptions } from './components/link-options';
 
 export default {
   title: 'Components|Link',
 };
 
-const defaultProps = {
+const editorProps = {
   blockClass: 'block-link',
   title: 'Link Title',
-  url: '',
+  onChangeTitle: () => {},
   styleColor: manifest.attributes.styleColor.default,
-  isAnchor: manifest.attributes.isAnchor.default,
 };
 
-export const component = () => (
+const optionsProps = {
+  url: 'https://fakeurl.com',
+  onChangeUrl: () => {},
+  styleColor: manifest.attributes.styleColor.default,
+  onChangeStyleColor: () => {},
+  isAnchor: manifest.attributes.isAnchor.default,
+  onChangeIsAnchor: () => {},
+};
+
+export const editor = () => (
   <LinkEditor
-    {...defaultProps}
+    {...editorProps}
+  />
+);
+
+export const options = () => (
+  <LinkOptions
+    {...optionsProps}
   />
 );
 
 export const colorBlack = () => (
   <LinkEditor
-    {...defaultProps}
+    {...editorProps}
     styleColor={'black'}
   />
 );
 
 export const isAnchor = () => (
   <LinkEditor
-    {...defaultProps}
+    {...editorProps}
     isAnchor={true}
   />
 );

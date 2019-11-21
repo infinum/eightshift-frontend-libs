@@ -3,7 +3,7 @@ import React from 'react';
 import { HeadingLevel } from './heading-level';
 
 export default {
-  title: 'Sidebar Components|Heading Level',
+  title: 'Options|Heading Level',
 };
 
 const defaultProps = {

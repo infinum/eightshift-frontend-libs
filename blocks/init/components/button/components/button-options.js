@@ -8,6 +8,8 @@ import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
   const {
+    title,
+    onChangeTitle,
     url,
     onChangeUrl,
     styleSize,
@@ -18,12 +20,28 @@ export const ButtonOptions = (props) => {
     onChangeStyleSizeWidth,
     id,
     onChangeId,
-    title,
-    onChangeTitle,
   } = props;
 
   return (
     <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
+
+      {onChangeTitle &&
+        <TextControl
+          label={__('Button Title', 'eightshift-boilerplate')}
+          value={title}
+          onChange={onChangeTitle}
+        />
+      }
+
+      {onChangeUrl &&
+        <div className="components-base-control">
+          <label className="components-base-control__label" htmlFor="url">{__('Button Link', 'eightshift-boilerplate')}</label>
+          <URLInput
+            value={url}
+            onChange={onChangeUrl}
+          />
+        </div>
+      }
 
       {onChangeStyleColor &&
         <ColorPaletteCustom
@@ -64,24 +82,6 @@ export const ButtonOptions = (props) => {
             { label: __('Block', 'eightshift-boilerplate'), value: 'block' },
           ]}
           onChange={onChangeStyleSizeWidth}
-        />
-      }
-
-      {onChangeUrl &&
-        <div className="components-base-control">
-          <label className="components-base-control__label" htmlFor="url">{__('Button Link', 'eightshift-boilerplate')}</label>
-          <URLInput
-            value={url}
-            onChange={onChangeUrl}
-          />
-        </div>
-      }
-
-      {onChangeTitle &&
-        <TextControl
-          label={__('Button Title', 'eightshift-boilerplate')}
-          value={title}
-          onChange={onChangeTitle}
         />
       }
 

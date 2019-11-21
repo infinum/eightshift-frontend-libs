@@ -5,7 +5,7 @@ import globalSettings from './../../blocks/init/manifest.json';
 import { ColorPaletteCustom } from './color-palette-custom';
 
 export default {
-  title: 'Sidebar Components|Color Palette',
+  title: 'Options|Color Palette',
 };
 
 

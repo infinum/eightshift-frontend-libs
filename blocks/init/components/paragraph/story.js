@@ -7,7 +7,7 @@ export default {
   title: 'Components|Paragraph',
 };
 
-const defaultProps = {
+const editorProps = {
   blockClass: 'block-paragraph',
   content: 'Paragraph Content',
   styleAlign: manifest.attributes.styleAlign.default,
@@ -18,41 +18,41 @@ const defaultProps = {
 
 export const component = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
   />
 );
 
 export const alignCenter = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
     styleAlign={'center'}
   />
 );
 
 export const alignRight = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
     styleAlign={'right'}
   />
 );
 
 export const colorBlack = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
     styleColor={'black'}
   />
 );
 
 export const sizeSmall = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
     styleSize={'small'}
   />
 );
 
 export const removeStyle = () => (
   <ParagraphEditor
-    {...defaultProps}
+    {...editorProps}
     removeStyle={true}
   />
 );

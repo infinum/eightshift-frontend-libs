@@ -2,50 +2,78 @@ import React from 'react';
 import manifest from './../../custom/heading/manifest.json';
 
 import { HeadingEditor } from './components/heading-editor';
+import { HeadingOptions } from './components/heading-options';
+import { HeadingToolbar } from './components/heading-toolbar';
 
 export default {
   title: 'Components|Heading',
 };
 
-const defaultProps = {
+const editorProps = {
   blockClass: 'block-heading',
   content: 'Heading Content',
-  level: manifest.attributes.level.default,
+  onChangeContent: () => {},
   styleAlign: manifest.attributes.styleAlign.default,
   styleColor: manifest.attributes.styleColor.default,
   styleSize: manifest.attributes.styleSize.default,
 };
 
-export const component = () => (
+const optionsProps = {
+  styleColor: manifest.attributes.styleColor.default,
+  onChangeStyleColor: () => {},
+  styleSize: manifest.attributes.styleSize.default,
+  onChangeStyleSize: () => {},
+};
+
+const toolbarProps = {
+  level: manifest.attributes.level.default,
+  onChangeLevel: () => {},
+  styleAlign: manifest.attributes.styleAlign.default,
+  onChangeStyleAlign: () => {},
+};
+
+export const editor = () => (
   <HeadingEditor
-    {...defaultProps}
+    {...editorProps}
+  />
+);
+
+export const options = () => (
+  <HeadingOptions
+    {...optionsProps}
+  />
+);
+
+export const toolbar = () => (
+  <HeadingToolbar
+    {...toolbarProps}
   />
 );
 
 export const sizeBig = () => (
   <HeadingEditor
-    {...defaultProps}
+    {...editorProps}
     styleSize = {'big'}
   />
 );
 
 export const colorBlack = () => (
   <HeadingEditor
-    {...defaultProps}
+    {...editorProps}
     styleColor = {'black'}
   />
 );
 
 export const alignCenter = () => (
   <HeadingEditor
-    {...defaultProps}
+    {...editorProps}
     styleAlign = {'center'}
   />
 );
 
 export const alignRight = () => (
   <HeadingEditor
-    {...defaultProps}
+    {...editorProps}
     styleAlign = {'right'}
   />
 );

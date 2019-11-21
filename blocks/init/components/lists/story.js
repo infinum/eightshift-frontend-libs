@@ -7,21 +7,21 @@ export default {
   title: 'Components|Lists',
 };
 
-const defaultProps = {
+const editorProps = {
   blockClass: 'block-lists',
   content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
   ordered: manifest.attributes.ordered.default,
 };
 
-export const component = () => (
+export const editor = () => (
   <ListsEditor
-    {...defaultProps}
+    {...editorProps}
   />
 );
 
 export const ordered = () => (
   <ListsEditor
-    {...defaultProps}
+    {...editorProps}
     ordered={'ol'}
   />
 );
