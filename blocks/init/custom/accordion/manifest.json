@@ -1,0 +1,24 @@
+{
+  "blockName": "accordion",
+  "title": "Accordion",
+  "description" : "Accordion block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "editor-kitchensink"
+  },
+  "keywords": [
+    "accordion"
+  ],
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/accordion-item"
+      ]
+    }
+  }
+}

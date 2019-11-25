@@ -1,0 +1,64 @@
+$block-tabs-item: (
+  head: (
+    mobile: (
+      font-size: 24px,
+      line-height: 1.33,
+      border-bottom: 1px solid $base-primary-color,
+      padding: 20px 40px 20px 0,
+      font-weight: bold,
+      display: block,
+      position: relative,
+    ),
+  ),
+  content-inner: (
+    mobile: (
+      font-size: 18px,
+      line-height: 1.5,
+      padding: 20px 0,
+    ),
+  ),
+  icon: (
+    bg-color: $base-black-color,
+    color: $base-black-color,
+    size: 24px,
+  )
+);
+
+
+.block-accordion-item {
+  &__head {
+    @include responsive($block-tabs-item, head);
+
+    &::after {
+      content: '\25bc';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      color: map-get-deep($block-tabs-item, icon, color);
+      font-size: 14px;
+      transform: translateY(-50%);
+
+      transition: {
+        property: transform;
+        timing-function: ease-in;
+        duration: 0.3s;
+      }
+    }
+
+    &.is-active::after {
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+
+  &__content {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  &__content-inner {
+    @include responsive($block-tabs-item, content-inner);
+  }
+}

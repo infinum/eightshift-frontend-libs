@@ -1,0 +1,24 @@
+{
+  "blockName": "tabs",
+  "title": "Tabs",
+  "description" : "Tabs block with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "editor-kitchensink"
+  },
+  "keywords": [
+    "tabs"
+  ],
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/tabs-item"
+      ]
+    }
+  }
+}

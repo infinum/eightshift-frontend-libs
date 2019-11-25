@@ -15,19 +15,17 @@ export const QuoteEditor = (props) => {
     },
   } = props;
 
-  const authorClass = `${blockClass}__author`;
-  const contentClass = `${blockClass}__content`;
-
   return (
     <div className={blockClass}>
-      <div className={contentClass}>
+      <div className={`${blockClass}__content`}>
         <RichText
           placeholder={__('Add quote text', 'eightshift-boilerplate')}
           onChange={onChangeContent}
           value={content}
         />
       </div>
-      <div className={authorClass}>
+      <div class={`${blockClass}__clear`}></div>
+      <div className={`${blockClass}__author`}>
         <RichText
           placeholder={__('Add author', 'eightshift-boilerplate')}
           onChange={onChangeAuthor}
