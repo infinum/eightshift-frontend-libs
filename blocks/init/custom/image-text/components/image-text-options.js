@@ -17,7 +17,7 @@ export const ImageTextOptions = (props) => {
   } = props;
 
   return (
-    <PanelBody title={__('Image Text Settings', 'eightshift-boilerplate')}>
+    <PanelBody title={__('Image Text Details', 'eightshift-boilerplate')}>
 
       {onChangeImagePosition &&
         <SelectControl

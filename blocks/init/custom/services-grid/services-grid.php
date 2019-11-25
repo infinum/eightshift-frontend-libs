@@ -3,10 +3,10 @@
  * Template for the Services Grid Block.
  *
  * @since 1.0.0
- * @package Infinum\Blocks.
+ * @package Eightshift_Boilerplate\Blocks.
  */
 
-namespace Infinum\Blocks;
+namespace Eightshift_Boilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? '';
 

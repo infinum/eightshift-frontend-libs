@@ -1,0 +1,22 @@
+{
+  "blockName": "quote",
+  "title": "Quote",
+  "description" : "Quote with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "format-quote"
+  },
+  "keywords": [
+    "Quotes",
+    "Box",
+    "Quote"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    }
+  }
+}

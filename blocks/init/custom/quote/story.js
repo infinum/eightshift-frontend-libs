@@ -3,25 +3,20 @@ import manifest from './manifest.json';
 import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers'
 
 export default {
-  title: 'Blocks|Button',
+  title: 'Blocks|Quote',
 };
 
 const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
-      title: 'Button Title',
-      url: 'https://fakeurl.com/',
-      styleSize: manifest.attributes.styleSize.default,
-      styleColor: manifest.attributes.styleColor.default,
-      styleSizeWidth: manifest.attributes.styleSizeWidth.default,
-      btnId: '',
+      author: 'Narcotics Anonymous',
+      content: 'Insanity is doing the same thing, over and over again, but expecting different results.',
     },
     clientId: id(),
     innerBlocks: [],
     isValid: true,
     name: `eightshift-boilerplate/${manifest.blockName}`,
-    originalContent: '',
   },
 ];
 

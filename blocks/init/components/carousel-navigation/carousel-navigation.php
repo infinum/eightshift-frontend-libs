@@ -3,10 +3,10 @@
  * Template for the Carousel Navigation Component.
  *
  * @since 1.0.0
- * @package Infinum\Blocks.
+ * @package Eightshift_Boilerplate\Blocks.
  */
 
-namespace Infinum\Blocks;
+namespace Eightshift_Boilerplate\Blocks;
 
 $component_class       = 'carousel-navigation';
 $arrow_item_prev_class = "

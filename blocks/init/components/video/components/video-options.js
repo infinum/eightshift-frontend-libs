@@ -14,7 +14,7 @@ export const VideoOptions = (props) => {
   };
 
   return (
-    <PanelBody title={__('Video Settings', 'eightshift-boilerplate')}>
+    <PanelBody title={__('Video Details', 'eightshift-boilerplate')}>
       <div className="components-base-control">
         <label className="components-base-control__label" htmlFor="url">{__('Video', 'eightshift-boilerplate')}</label>
         {!url ?
