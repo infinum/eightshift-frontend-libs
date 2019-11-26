@@ -1,25 +1,26 @@
-// Map-reverse
-
-// Returns an the same map only fliped in reverse.
-
-// $map - Map to search.
-
-// Map:
-// $map: (
-//   test: 50%,
-//   test2: 30%,
-//   test3: 20%,
-// );
-
-// Markup:
-// $test: map-reverse($map);
-
-// Output:
-// $map: (
-//   test3: 20%,
-//   test2: 30%,
-//   test: 50%,
-// );
+/// Returns an the same map only fliped in reverse.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @param {string} $map - Map to search.
+///
+/// Map:
+/// $map: (
+///   test: 50%,
+///   test2: 30%,
+///   test3: 20%,
+/// );
+///
+/// @example
+/// $test: map-reverse($map);
+///
+/// @return {string}
+/// ```scss
+/// $map: (
+///   test3: 20%,
+///   test2: 30%,
+///   test: 50%,
+/// );
 
 @function map-reverse($map) {
   $result: null;

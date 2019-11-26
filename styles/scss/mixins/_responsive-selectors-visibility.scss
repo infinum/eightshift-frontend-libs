@@ -1,54 +1,54 @@
-// Responsive-selectors-visibility
-
-// Mixin that will output provided contend wrapped in responsive selectors from $media-blender brakepoints map.
-// Unlike responsive-selectors mixing this one will wrap first and last item in a separate brakepoint.
-// Responsive configuration is Desktop First!!!
-// Used for setting up responsivnes visibility for a selector.
-
-// $brakepoints - Map from media-blender brakepoints.
-
-// Map:
-// $media-breakpoints: (
-//   small: 0 543,
-//   mobile: 544 767,
-//   tablet: 768 991,
-//   desktop: 992 1199,
-//   large: 1200
-// ) !default;
-
-// Markup:
-// .test {
-//   @include responsive-selectors-visibility {
-//     width: 10%;
-//   }
-// }
-
-// Output:
-// @media (min-width: 1200px) {
-//   .test-large {
-//     display: none;
-//   }
-// }
-// @media (min-width: 992px) and (max-width: 1199px) {
-//   .test-desktop {
-//     display: none;
-//   }
-// }
-// @media (min-width: 768px) and (max-width: 991px) {
-//   .test-tablet {
-//     display: none;
-//   }
-// }
-// @media (min-width: 544px) and (max-width: 767px) {
-//   .test-mobile {
-//     display: none;
-//   }
-// }
-// @media (max-width: 543px) {
-//   .test-small {
-//     display: none;
-//   }
-// }
+/// Mixin that will output provided contend wrapped in responsive selectors from $media-blender brakepoints map.
+/// Unlike responsive-selectors mixing this one will wrap first and last item in a separate brakepoint.
+/// Responsive configuration is Desktop First!!!
+/// Used for setting up responsivnes visibility for a selector.
+///
+/// @param {string} $brakepoints - Map from media-blender brakepoints.
+///
+/// Map:
+/// $media-breakpoints: (
+///   small: 0 543,
+///   mobile: 544 767,
+///   tablet: 768 991,
+///   desktop: 992 1199,
+///   large: 1200
+/// ) !default;
+///
+/// @example
+/// .test {
+///   @include responsive-selectors-visibility {
+///     width: 10%;
+///   }
+/// }
+///
+/// @output
+/// ```scss
+/// \@media (min-width: 1200px) {
+///   .test-large {
+///     display: none;
+///   }
+/// }
+/// \@media (min-width: 992px) and (max-width: 1199px) {
+///   .test-desktop {
+///     display: none;
+///   }
+/// }
+/// \@media (min-width: 768px) and (max-width: 991px) {
+///   .test-tablet {
+///     display: none;
+///   }
+/// }
+/// \@media (min-width: 544px) and (max-width: 767px) {
+///   .test-mobile {
+///     display: none;
+///   }
+/// }
+/// \@media (max-width: 543px) {
+///   .test-small {
+///     display: none;
+///   }
+/// }
+/// ```
 
 @mixin responsive-visibility-selectors($brakepoints: $media-breakpoints) {
   $i: 1;

@@ -1,17 +1,19 @@
-// Paragraph-reset
-
-// Placeholder that is used to reset browser default styles for paragraph.
-
-// Markup:
-// .test {
-//   @extend %paragraph-reset;
-// }
-
-// Output:
-// .test {
-//   padding: 0;
-//   margin: 0;
-// }
+/// Placeholder that is used to reset browser default styles for paragraph.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %paragraph-reset;
+/// }
+///
+/// @output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   margin: 0;
+/// }
+/// ```
 
 %paragraph-reset {
   padding: 0;

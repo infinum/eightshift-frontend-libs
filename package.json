@@ -81,7 +81,7 @@
     }
   },
   "scripts": {
-    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss/mixins"
+    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss"
   },
   "devDependencies": {
     "sassdoc": "^2.7.1"

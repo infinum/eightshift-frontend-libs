@@ -1,17 +1,19 @@
-// Dl-reset
-
-// Placeholder that is used to reset browser default styles for dl.
-
-// Markup:
-// .test {
-//   @extend %dl-reset;
-// }
-
-// Output:
-// .test {
-//   padding: 0;
-//   margin: 0;
-// }
+/// Placeholder that is used to reset browser default styles for dl.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %dl-reset;
+/// }
+///
+/// @output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   margin: 0;
+/// }
+/// ```
 
 %dl-reset {
   margin: 0;

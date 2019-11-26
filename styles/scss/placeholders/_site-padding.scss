@@ -1,17 +1,19 @@
-// Site-padding
-
-// Placeholder that is used to add default padding on containers.
-
-// Markup:
-// .test {
-//   @extend %site-padding;
-// }
-
-// Output:
-// .test {
-//   padding-left: 25px;
-//   padding-right: 25px;
-// }
+/// Placeholder that is used to add default padding on containers.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %site-padding;
+/// }
+///
+/// @output
+/// ```scss
+/// .test {
+///   padding-left: 25px;
+///   padding-right: 25px;
+/// }
+/// ```
 
 %site-padding {
   padding-left: $base-gutter-size;

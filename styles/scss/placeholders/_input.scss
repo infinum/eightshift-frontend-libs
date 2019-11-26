@@ -1,18 +1,20 @@
-// Input-reset
-
-// Placeholder that is used to reset browser default styles for inputs.
-
-// Markup:
-// .test {
-//   @extend %input-reset;
-// }
-
-// Output:
-// .test {
-//   padding: 0;
-//   border: none;
-//   appearance: none;
-// }
+/// Placeholder that is used to reset browser default styles for inputs.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %input-reset;
+/// }
+///
+/// @output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   border: none;
+///   appearance: none;
+/// }
+/// ```
 
 %input-reset {
   padding: 0;
