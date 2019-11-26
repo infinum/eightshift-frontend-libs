@@ -17,9 +17,11 @@ export const TabsEditor = (props) => {
 
   return (
     <div className={componentClass}>
-      <InnerBlocks
-        allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
-      />
+      <div className={`${blockClass}__head`}>
+        <InnerBlocks
+          allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
+        />
+      </div>
     </div>
   );
 };

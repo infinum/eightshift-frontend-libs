@@ -1,20 +1,20 @@
 import React from 'react';
 import manifest from './manifest.json';
-import { block as item } from '../tabs-item-head/story';
-import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
+import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers'
 
 export default {
-  title: 'Blocks|Tabs',
+  title: 'Blocks|Tabs Item Head',
 };
 
 const blocks = [
   {
     attributes: {
       ...blockDetails(manifest.blockName),
-      allowedBlocks: ['eightshift-boilerplate/tabs-item-head'],
+      id: '',
+      title: 'Tab',
     },
     clientId: id(),
-    innerBlocks: blockInnerBlocks(item().props.blocks, 3),
+    innerBlocks: [],
     isValid: true,
     name: `eightshift-boilerplate/${manifest.blockName}`,
   },
@@ -23,4 +23,3 @@ const blocks = [
 export const block = () => (
   <Gutenberg blocks={blocks} />
 );
-

@@ -1,8 +1,11 @@
 .block-tabs {
-  &__head {
+  .editor-inner-blocks {
+    width: 100%;
+  }
+
+  .editor-block-list__layout {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    text-align: center;
   }
 }

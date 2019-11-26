@@ -1,0 +1,26 @@
+{
+  "blockName": "tabs-item-content",
+  "title": "Tabs Item Content",
+  "description" : "Tabs Item Content with custom settings.",
+  "category": "common",
+  "icon": {
+    "src": "editor-kitchensink"
+  },
+  "keywords": [
+    "Tabs",
+    "Tabs Item",
+    "Tabs Item Content"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/tabs"
+  ],
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

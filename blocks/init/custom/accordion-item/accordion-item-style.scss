@@ -3,8 +3,8 @@ $block-accordion-item: (
     mobile: (
       font-size: 24px,
       line-height: 1.33,
-      border-bottom: 1px solid $base-primary-color,
-      padding: 20px 40px 20px 0,
+      border-top: 1px solid $base-primary-color,
+      padding: 20px 40px 20px 20px,
       font-weight: bold,
       display: block,
       position: relative,
@@ -14,7 +14,7 @@ $block-accordion-item: (
     mobile: (
       font-size: 18px,
       line-height: 1.5,
-      padding: 20px 0,
+      padding: 0 20px 20px 20px,
     ),
   ),
   icon: (
@@ -32,7 +32,7 @@ $block-accordion-item: (
     &::after {
       content: '\25bc';
       position: absolute;
-      right: 0;
+      right: 20px;
       top: 50%;
       color: map-get-deep($block-accordion-item, icon, color);
       font-size: 14px;

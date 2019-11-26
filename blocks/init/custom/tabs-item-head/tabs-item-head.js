@@ -5,8 +5,8 @@ import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
 
-import { TabsItemEditor } from './components/tabs-item-editor';
-import { TabsItemOptions } from './components/tabs-item-options';
+import { TabsItemHeadEditor } from './components/tabs-item-head-editor';
+import { TabsItemHeadOptions } from './components/tabs-item-head-options';
 
 export const TabsItem = (props) => {
 
@@ -19,11 +19,12 @@ export const TabsItem = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <TabsItemOptions
+        <TabsItemHeadOptions
+          attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <TabsItemEditor
+      <TabsItemHeadEditor
         attributes={attributes}
         actions={actions}
       />

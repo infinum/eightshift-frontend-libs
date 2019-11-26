@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for the Accordion Block.
+ * Template for the Tabs Block.
  *
  * @since 1.0.0
  * @package Eightshift_Boilerplate\Blocks.

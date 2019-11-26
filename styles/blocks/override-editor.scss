@@ -70,6 +70,10 @@ $editor: (
       width: auto;
       border-radius: 50%;
       background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
+
+      button {
+        border-radius: 50%;
+      }
     }
 
     // On hover, select wrapper state.
