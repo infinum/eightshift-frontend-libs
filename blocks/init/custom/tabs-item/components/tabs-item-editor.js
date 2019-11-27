@@ -1,12 +1,13 @@
 import React from 'react';
+import { Fragment } from '@wordpress/element';
 import { RichText } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 
-export const TabsItemContentEditor = (props) => {
+export const TabsItemEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      id,
+      head,
       content,
     },
     actions: {
@@ -15,7 +16,10 @@ export const TabsItemContentEditor = (props) => {
   } = props;
 
   return (
-    <div className={blockClass} data-tab={id}>
+    <Fragment>
+      <div className={`${blockClass}__head`}>
+        {head}
+      </div>
       <div className={`${blockClass}__content`}>
         <RichText
           placeholder={__('Add content', 'eightshift-boilerplate')}
@@ -23,6 +27,6 @@ export const TabsItemContentEditor = (props) => {
           value={content}
         />
       </div>
-    </div>
+    </Fragment>
   );
 };

@@ -1,8 +1,16 @@
 .block-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   &__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
+    order: 1;
+  }
+
+  &__content {
+    @include flex-grid-width;
+    order: 2;
   }
 }
+

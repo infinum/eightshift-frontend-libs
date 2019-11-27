@@ -1,6 +1,6 @@
 import React from 'react';
 import manifest from './manifest.json';
-import { block as item } from '../tabs-item-head/story';
+import { block as item } from '../tabs-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
 
 export default {
@@ -24,3 +24,15 @@ export const block = () => (
   <Gutenberg blocks={blocks} />
 );
 
+export const test = () => (
+  <div className="test">
+    <div className="test__head">head</div>
+    <div className="test__content">content</div>
+    <div className="test__head">head</div>
+    <div className="test__content">content</div>
+    <div className="test__head">head</div>
+    <div className="test__content">content</div>
+    <div className="test__head">head</div>
+    <div className="test__content">content</div>
+  </div>
+);

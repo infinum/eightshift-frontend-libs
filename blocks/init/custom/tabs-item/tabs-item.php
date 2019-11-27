@@ -8,7 +8,7 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$title   = $attributes['title'] ?? '';
+$head   = $attributes['head'] ?? '';
 $content = $attributes['content'] ?? '';
 
 $id              = $attributes['id'] ?? '';
@@ -18,9 +18,9 @@ $block_js_class  = $attributes['blockJsClass'] ?? '';
 ?>
 
 <div class="<?php echo esc_attr( $block_class ); ?>">
-  <?php if ( ! empty( $title ) ) { ?>
+  <?php if ( ! empty( $head ) ) { ?>
     <div class="<?php echo esc_attr( "{$block_class}__head {$block_js_class}-head" ); ?>" data-head="<?php echo esc_attr( $id ); ?>">
-      <?php echo wp_kses_post( $title ); ?>
+      <?php echo wp_kses_post( $head ); ?>
     </div>
   <?php } ?>
 

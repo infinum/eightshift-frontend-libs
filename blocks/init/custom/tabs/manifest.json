@@ -17,8 +17,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift-boilerplate/tabs-item-head",
-        "eightshift-boilerplate/tabs-item-content"
+        "eightshift-boilerplate/tabs-item"
       ]
     }
   }
