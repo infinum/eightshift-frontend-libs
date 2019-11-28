@@ -1,11 +1,7 @@
 /// Returns an item from map that is nested multiple times.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @param {string} $map - Map to search.
-/// @param {string} $keys - List all keys to find.
-///
-/// Map:
+/// ### Map
+/// ```scss
 /// $map: (
 ///   test2: (
 ///     test1: (
@@ -13,18 +9,23 @@
 ///     ),
 ///   ),
 /// );
-///
-/// @example
-/// .test {
-///   width: map-get-deep($map, test2, test1, test);
-/// }
-///
-/// @return {string}
+/// ```
+/// ### Output
 /// ```scss
 /// .test {
 ///   width: 50%;
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @param {string} $map - Map to search.
+/// @param {string} $keys - List all keys to find.
+///
+/// @example
+/// .test {
+///   width: map-get-deep($map, test2, test1, test);
+/// }
 
 @function map-get-deep($map, $keys...) {
   $value: $map;

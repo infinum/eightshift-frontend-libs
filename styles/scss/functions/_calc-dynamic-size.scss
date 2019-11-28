@@ -1,5 +1,12 @@
 /// Calculate dynamic sizes using linear function for calculations.
 ///
+/// ### Output
+/// ```scss
+/// .test {
+///   font-size: calc(0.1374 * 100vw + -64.74809px);
+/// }
+/// ```
+///
 /// @access public
 /// @author Ivan Ruzevic
 /// @param {Size} $min-size - Minimal size after after responsiveness.
@@ -11,13 +18,6 @@
 /// .test {
 ///   font-size: calc-dynamic-size(10px, 100px, mobile, desktop);
 /// }
-///
-/// @return {string}
-/// ```scss
-/// .test {
-///   font-size: calc(0.1374 * 100vw + -64.74809px);
-/// }
-/// ```
 
 @function calc-dynamic-size($min-size, $max-size, $min-width: tablet, $max-width: desktop) {
 

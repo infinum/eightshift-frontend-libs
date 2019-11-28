@@ -1,13 +1,6 @@
 /// Placeholder that is used to reset browser default styles for lists.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %list-reset;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   padding: 0;
@@ -15,6 +8,13 @@
 ///   list-style: none;
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %list-reset;
+/// }
 
 %list-reset {
   margin: 0;

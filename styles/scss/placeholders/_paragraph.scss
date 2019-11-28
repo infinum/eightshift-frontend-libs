@@ -1,19 +1,19 @@
 /// Placeholder that is used to reset browser default styles for paragraph.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %paragraph-reset;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   padding: 0;
 ///   margin: 0;
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %paragraph-reset;
+/// }
 
 %paragraph-reset {
   padding: 0;

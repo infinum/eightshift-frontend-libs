@@ -1,13 +1,6 @@
 /// Placeholder that is used to reset browser default styles.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %button-reset;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   padding: 0;
@@ -19,6 +12,12 @@
 ///   }
 /// }
 /// ```
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %button-reset;
+/// }
 
 %button-reset {
   padding: 0;

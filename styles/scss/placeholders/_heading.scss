@@ -1,19 +1,19 @@
 /// Placeholder that is used to reset browser default styles for heading.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %heading-reset;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   padding: 0;
 ///   margin: 0;
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %heading-reset;
+/// }
 
 %heading-reset {
   margin: 0;

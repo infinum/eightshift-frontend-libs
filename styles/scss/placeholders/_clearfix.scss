@@ -1,13 +1,6 @@
 /// Placeholder that is used to add clearfix after floating divs.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %clearfix;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   &::after {
@@ -17,6 +10,13 @@
 ///   }
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %clearfix;
+/// }
 
 %clearfix {
   &::after {

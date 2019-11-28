@@ -1,19 +1,19 @@
 /// Placeholder that is used to reset browser default styles for dl.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %dl-reset;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   padding: 0;
 ///   margin: 0;
 /// }
 /// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %dl-reset;
+/// }
 
 %dl-reset {
   margin: 0;

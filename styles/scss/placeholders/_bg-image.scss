@@ -1,13 +1,6 @@
 /// Placeholder that is used to set size of element background image to cover.
 ///
-/// @access public
-/// @author Ivan Ruzevic
-/// @example
-/// .test {
-///   @extend %bg-image;
-/// }
-///
-/// @output
+/// ### Output
 /// ```scss
 /// .test {
 ///   background: {
@@ -17,6 +10,12 @@
 ///   }
 /// }
 /// ```
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %bg-image;
+/// }
 
 %bg-image {
   background: {

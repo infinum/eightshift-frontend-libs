@@ -2,10 +2,8 @@
 /// Selectors must be valid html selectors.
 /// Also supports multiple nested maps as a key.
 ///
-/// @param {string} $map - Map to search for.
-/// @param {string} $key - Map key to find.
-///
-/// Map:
+/// ### Map
+/// ```scss
 /// $test: (
 ///   test: (
 ///     mobile: (
@@ -18,28 +16,14 @@
 ///     ),
 ///   )
 /// );
+/// ```
+/// @param {string} $map - Map to search for.
+/// @param {string} $key - Map key to find.
 ///
 /// @example
 /// .test {
 ///   @include responsive($test, test);
 /// }
-///
-/// Map:
-/// $map: (
-///   test2: (
-///     test1: (
-///        mobile: (
-///          font-size: 64px,
-///          line-height: 0.92,
-///        ),
-///        tablet: (
-///          font-size: 42px,
-///          line-height: 1.12,
-///        ),
-///     ),
-///   ),
-/// );
-///
 /// @example
 /// .test {
 ///   @include responsive($test, test2, test1);
