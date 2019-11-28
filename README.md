@@ -11,6 +11,9 @@
 # Eightshift Frontend Libs
 
 This lib is intended to work in correlation with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by hosting all frontend parts for your project.
+
+## Storybook
+You can check all our blocks in storybook on this [link](https://infinum.github.io/eightshift-frontend-libs).
  
 ## It contains:
 - All node modules required for the webpack build.
