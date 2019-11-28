@@ -8,6 +8,16 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.7] - 2019-11-28
+
+### Added
+- Changelog for `2.0.6`
+
+## [2.0.6] - 2019-11-28
+
+### Added
+- `%visually-hidden` placeholder - hide an element visually without preventing element rendering (like `display: none;` does) and without hiding from accessibility tools - [reference](https://www.w3.org/WAI/tutorials/forms/labels/#hiding-the-label-element)
+
 ## [2.0.5] - 2019-11-13
 
 ### Changed
