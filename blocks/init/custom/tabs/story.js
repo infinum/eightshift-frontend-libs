@@ -4,7 +4,7 @@ import { block as item } from '../tabs-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
 
 export default {
-  title: 'Blocks|Tabs',
+  title: 'Blocks|Tabs - NOT FINISHED',
 };
 
 const blocks = [
