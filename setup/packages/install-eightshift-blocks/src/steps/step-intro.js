@@ -1,11 +1,12 @@
 const chalk = require('chalk');
+
 const { log } = console;
 
-const clearConsole = async () => {
-  process.stdout.write('\033c'); // eslint-disable-line
-}
+const clearConsole = async() => {
+  process.stdout.write('\x1Bc'); // eslint-disable-line
+};
 
-const writeIntro = async () => {
+const writeIntro = async() => {
   log(chalk.green('---------------------------------------------------------------'));
   log(chalk.green(''));
   log(chalk.green('    . .  .  __  ___  __  .    .  '));
@@ -25,9 +26,9 @@ const writeIntro = async () => {
   log(chalk.green(''));
   log('This script lets you easily setup new blocks in your project, assuming it\'s using eightshift-blocks library.');
   log(chalk.green(''));
-}
+};
 
 module.exports = {
   clearConsole,
-  writeIntro
-}
+  writeIntro,
+};

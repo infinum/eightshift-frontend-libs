@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/heading/manifest.json';
 
 import { HeadingEditor } from './components/heading-editor';
@@ -53,27 +53,27 @@ export const toolbar = () => (
 export const sizeBig = () => (
   <HeadingEditor
     {...editorProps}
-    styleSize = {'big'}
+    styleSize={'big'}
   />
 );
 
 export const colorBlack = () => (
   <HeadingEditor
     {...editorProps}
-    styleColor = {'black'}
+    styleColor={'black'}
   />
 );
 
 export const alignCenter = () => (
   <HeadingEditor
     {...editorProps}
-    styleAlign = {'center'}
+    styleAlign={'center'}
   />
 );
 
 export const alignRight = () => (
   <HeadingEditor
     {...editorProps}
-    styleAlign = {'right'}
+    styleAlign={'right'}
   />
 );

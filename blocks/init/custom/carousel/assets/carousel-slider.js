@@ -7,6 +7,7 @@ export class CarouselSlider {
   }
 
   init() {
+
     // $.each($(this.defaultElement), function(index, item) {
     //   const $item = $(item);
 

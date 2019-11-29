@@ -1,14 +1,15 @@
-const { join } = require('path');
-const { setupComposer, tearDownComposer, composerTimeout } = require('./bootstrap');
-const del = require('del');
-const {
-  files: { readdirAsync },
-  variables: { eightshiftBlocksModuleName },
-} = require('eightshift-scripts');
+// const { join } = require('path');
+// const { setupComposer, tearDownComposer, composerTimeout } = require('./bootstrap');
+// const del = require('del');
+// const {
+//   files: { readdirAsync },
+//   variables: { eightshiftBlocksModuleName },
+// } = require('eightshift-scripts');
 
-const { blockInstallPath, installBlock } = require('../src/steps/step-install');
+// const { blockInstallPath, installBlock } = require('../src/steps/step-install');
 
 describe('When installing new block...', () => {
+
   // beforeEach( async() => {
   //   await setupComposer(eightshiftBlocksModuleName);
   // }, composerTimeout);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';

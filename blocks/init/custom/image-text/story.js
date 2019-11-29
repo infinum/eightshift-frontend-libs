@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
-import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers'
+import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers';
 
 export default {
   title: 'Blocks|Image Text',
@@ -18,7 +18,7 @@ const blocks = [
       paragraph: 'Paragraph Content',
       imagePosition: manifest.attributes.imagePosition.default,
       buttonTitle: 'Button Title',
-      buttonUrl:  '',
+      buttonUrl: '',
       buttonStyleSize: manifest.attributes.buttonStyleSize.default,
       buttonStyleSizeWidth: manifest.attributes.buttonStyleSizeWidth.default,
       buttonStyleColor: manifest.attributes.buttonStyleColor.default,

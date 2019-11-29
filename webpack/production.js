@@ -16,9 +16,7 @@ module.exports = (options) => {
 
   // Clean public files before next build.
   if (isUsed(options.plugins, 'cleanWebpackPlugin')) {
-    plugins.push(
-      new CleanWebpackPlugin()
-    );
+    plugins.push(new CleanWebpackPlugin());
   }
 
   // All Optimizations used in production build.
@@ -28,17 +26,15 @@ module.exports = (options) => {
   
   // Plugin used to minify output.
   if (isUsed(options.optimization, 'terserPlugin')) {
-    optimization.minimizer.push(
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          output: {
-            comments: false,
-          },
+    optimization.minimizer.push(new TerserPlugin({
+      cache: true,
+      parallel: true,
+      terserOptions: {
+        output: {
+          comments: false,
         },
       },
-    ));
+    }));
   }
 
   return {

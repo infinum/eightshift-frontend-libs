@@ -22,7 +22,7 @@ const { searchReplace } = require('./src/search-replace');
 const { copyBlocksFolder } = require('./src/copy-blocks');
 const { cleanup } = require('./src/cleanup');
 
-const run = async () => {
+const run = async() => {
   await clearConsole();
 
   const promptedInfo = await maybePrompt(scriptArguments);

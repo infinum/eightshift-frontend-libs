@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
 import { block as item } from '../tabs-item/story';
-import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers'
+import { Gutenberg, id, blockDetails, blockInnerBlocks } from '../../../../.storybook/helpers';
 
 export default {
   title: 'Blocks|Tabs - NOT FINISHED',

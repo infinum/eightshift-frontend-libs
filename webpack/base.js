@@ -41,15 +41,14 @@ module.exports = (options) => {
 
   // Copy files to new destination.
   if (isUsed(options.plugins, 'copyWebpackPlugin')) {
-    plugins.push(
-      new CopyWebpackPlugin([
-        // Find jQuery in node_modules and copy it to public folder
-        {
-          from: `${options.config.libNodeModules}/jquery/dist/jquery.min.js`,
-          to: options.config.outputPath,
-        },
-      ])
-    );
+    plugins.push(new CopyWebpackPlugin([
+
+      // Find jQuery in node_modules and copy it to public folder
+      {
+        from: `${options.config.libNodeModules}/jquery/dist/jquery.min.js`,
+        to: options.config.outputPath,
+      },
+    ]));
   }
 
   // All Optimizations used in production and development build.

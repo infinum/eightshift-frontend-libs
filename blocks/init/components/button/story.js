@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/button/manifest.json';
 
 import { ButtonEditor } from './components/button-editor';
@@ -46,20 +46,20 @@ export const options = () => (
 export const sizeBig = () => (
   <ButtonEditor
     {...editorProps}
-    styleSize= {'big'}
+    styleSize={'big'}
   />
 );
 
 export const colorBlack = () => (
   <ButtonEditor
     {...editorProps}
-    styleColor= {'black'}
+    styleColor={'black'}
   />
 );
 
 export const sizeWidthBlock = () => (
   <ButtonEditor
     {...editorProps}
-    styleSizeWidth= {'block'}
+    styleSizeWidth={'block'}
   />
 );

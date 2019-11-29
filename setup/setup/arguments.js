@@ -7,7 +7,7 @@ const { log, label } = require('./misc');
  *
  * @param {array} answers Array of user-provided answers.
  */
-const summary = async (answers) => {
+const summary = async(answers) => {
   log('');
   log(label('Summary: '));
   Object.keys(answers).forEach((key) => {
@@ -30,7 +30,7 @@ const summary = async (answers) => {
  *
  * @param {array} scriptArguments Array of defined script arguments.
  */
-const maybePrompt = async (scriptArguments) => {
+const maybePrompt = async(scriptArguments) => {
   let answers = {};
   let confirm = false;
   do {

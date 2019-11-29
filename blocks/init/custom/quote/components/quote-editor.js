@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { RichText } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 
@@ -24,7 +24,7 @@ export const QuoteEditor = (props) => {
           value={content}
         />
       </div>
-      <div class={`${blockClass}__clear`}></div>
+      <div className={`${blockClass}__clear`}></div>
       <div className={`${blockClass}__author`}>
         <RichText
           placeholder={__('Add author', 'eightshift-boilerplate')}

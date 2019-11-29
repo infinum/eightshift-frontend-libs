@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { InnerBlocks } from '@wordpress/block-editor';
 import { CarouselNavigation } from '../../../components/carousel-navigation/carousel-navigation';
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
-import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers'
+import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers';
 
 export default {
   title: 'Blocks|Quote',

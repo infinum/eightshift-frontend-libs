@@ -26,7 +26,12 @@
   "scripts": {
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "__eslintTheme": "eslint '**/*.{js,jsx}'",
+    "__stylelintTheme": "stylelint **/*.scss",
+    "lintStyle": "npm run __stylelintTheme",
+    "lintJs": "npm run __eslintTheme",
+    "lint": "npm run lintJs && npm run lintStyle"
   },
   "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
   "license": "MIT",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';

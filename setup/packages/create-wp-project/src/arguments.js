@@ -20,7 +20,7 @@ const scriptArguments = [
     message: 'Please specify the package name (e.g. package_name):',
     buildFrom: {
       name: 'projectName',
-      how: sourceArg => sourceArg.toLowerCase().split(' ').join('-'),
+      how: (sourceArg) => sourceArg.toLowerCase().split(' ').join('-'),
     },
   },
   {
@@ -29,10 +29,10 @@ const scriptArguments = [
     message: 'Please specify the namespace name (e.g. Package_Name):',
     buildFrom: {
       name: 'projectName',
-      how: sourceArg => sourceArg
+      how: (sourceArg) => sourceArg
         .toLowerCase()
         .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join('_'),
     },
   },
@@ -43,6 +43,7 @@ const scriptArguments = [
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => {
+
         // Build prefix from theme name using one of 2 methods.
         // 1. If theme name has 2 or mor more words, use first letters of each word
         let prefix = '';
@@ -69,7 +70,7 @@ const scriptArguments = [
     message: 'Please specify the env variable name (e.g. INF_ENV):',
     buildFrom: {
       name: 'prefix',
-      how: sourceArg => `${sourceArg}_ENV`,
+      how: (sourceArg) => `${sourceArg}_ENV`,
     },
   },
   {
@@ -78,7 +79,7 @@ const scriptArguments = [
     message: 'Please specify the projectPrefix name (e.g. eb8):',
     buildFrom: {
       name: 'prefix',
-      how: sourceArg => sourceArg.toLowerCase(),
+      how: (sourceArg) => sourceArg.toLowerCase(),
     },
   },
 ];

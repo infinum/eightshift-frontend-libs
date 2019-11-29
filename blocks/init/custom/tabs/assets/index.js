@@ -1,6 +1,6 @@
 const selector = '.js-block-tabs';
 if ($(selector).length) {
-  import('./tabs').then(({Tabs}) => {
+  import('./tabs').then(({ Tabs }) => {
     const tabs = new Tabs(
       parent = selector,
       head = 'js-block-tabs-head',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/video/manifest.json';
 
 import { VideoEditor } from './components/video-editor';

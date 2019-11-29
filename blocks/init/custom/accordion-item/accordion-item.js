@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/editor';
 
@@ -19,9 +19,7 @@ export const AccordionItem = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <AccordionItemOptions
-          actions={actions}
-        />
+        <AccordionItemOptions />
       </InspectorControls>
       <AccordionItemEditor
         attributes={attributes}

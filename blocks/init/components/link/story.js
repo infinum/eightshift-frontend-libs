@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/link/manifest.json';
 
 import { LinkEditor } from './components/link-editor';
