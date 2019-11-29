@@ -1,20 +1,21 @@
-// Bg-image
-
-// Placeholder that is used to set size of element background image to cover.
-
-// Markup:
-// .test {
-//   @extend %bg-image;
-// }
-
-// Output:
-// .test {
-//   background: {
-//     size: cover;
-//     position: center;
-//     repeat: no-repeat;
-//   }
-// }
+/// Placeholder that is used to set size of element background image to cover.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   background: {
+///     size: cover;
+///     position: center;
+///     repeat: no-repeat;
+///   }
+/// }
+/// ```
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %bg-image;
+/// }
 
 %bg-image {
   background: {

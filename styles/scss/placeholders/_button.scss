@@ -1,22 +1,23 @@
-// Button-reset
-
-// Placeholder that is used to reset browser default styles.
-
-// Markup:
-// .test {
-//   @extend %button-reset;
-// }
-
-// Output:
-// .test {
-//   padding: 0;
-//   border: 0;
-//   appearance: none;
-//   font-family: inherit;
-//   &:focus {
-//     outline: none;
-//   }
-// }
+/// Placeholder that is used to reset browser default styles.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   border: 0;
+///   appearance: none;
+///   font-family: inherit;
+///   &:focus {
+///     outline: none;
+///   }
+/// }
+/// ```
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %button-reset;
+/// }
 
 %button-reset {
   padding: 0;

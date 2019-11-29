@@ -79,5 +79,11 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "scripts": {
+    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss"
+  },
+  "devDependencies": {
+    "sassdoc": "^2.7.1"
   }
 }

@@ -1,20 +1,22 @@
-// Clearfix
-
-// Placeholder that is used to add clearfix after floating divs.
-
-// Markup:
-// .test {
-//   @extend %clearfix;
-// }
-
-// Output:
-// .test {
-//   &::after {
-//     content: '';
-//     display: table;
-//     clear: both;
-//   }
-// }
+/// Placeholder that is used to add clearfix after floating divs.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   &::after {
+///     content: '';
+///     display: table;
+///     clear: both;
+///   }
+/// }
+/// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %clearfix;
+/// }
 
 %clearfix {
   &::after {

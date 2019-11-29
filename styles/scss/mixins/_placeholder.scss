@@ -1,27 +1,27 @@
-// Placeholder
-
-// Mixin that creates input specific selectors. Used to customise placeholders in different browsers.
-
-// Markup:
-// .test {
-//   @include placeholder {
-//     color: $base-black-color;
-//   };
-// }
-
-// Output:
-// .test::-webkit-input-placeholder {
-//   color: #000000;
-// }
-// .test:-moz-placeholder {
-//   color: #000000;
-// }
-// .test::-moz-placeholder {
-//   color: #000000;
-// }
-// .test:-ms-input-placeholder {
-//   color: #000000;
-// }
+/// Mixin that creates input specific selectors. Used to customise placeholders in different browsers.
+///
+/// @example
+/// .test {
+///   @include placeholder {
+///     color: $base-black-color;
+///   };
+/// }
+///
+/// @output
+/// ```scss
+/// .test::-webkit-input-placeholder {
+///   color: #000000;
+/// }
+/// .test:-moz-placeholder {
+///   color: #000000;
+/// }
+/// .test::-moz-placeholder {
+///   color: #000000;
+/// }
+/// .test:-ms-input-placeholder {
+///   color: #000000;
+/// }
+/// ```
 
 @mixin placeholder {
   &::-webkit-input-placeholder {

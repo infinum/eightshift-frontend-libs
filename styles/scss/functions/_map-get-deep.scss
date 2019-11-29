@@ -1,28 +1,31 @@
-// Map-get-deep
-
-// Returns an item from map that is nested multiple times.
-
-// $map - Map to search.
-// $keys - List all keys to find.
-
-// Map:
-// $map: (
-//   test2: (
-//     test1: (
-//       test: 50%,
-//     ),
-//   ),
-// );
-
-// Markup:
-// .test {
-//   width: map-get-deep($map, test2, test1, test);
-// }
-
-// Output:
-// .test {
-//   width: 50%;
-// }
+/// Returns an item from map that is nested multiple times.
+///
+/// ### Map
+/// ```scss
+/// $map: (
+///   test2: (
+///     test1: (
+///       test: 50%,
+///     ),
+///   ),
+/// );
+/// ```
+/// ### Output
+/// ```scss
+/// .test {
+///   width: 50%;
+/// }
+/// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @param {string} $map - Map to search.
+/// @param {string} $keys - List all keys to find.
+///
+/// @example
+/// .test {
+///   width: map-get-deep($map, test2, test1, test);
+/// }
 
 @function map-get-deep($map, $keys...) {
   $value: $map;
