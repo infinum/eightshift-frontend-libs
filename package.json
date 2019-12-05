@@ -1,6 +1,6 @@
 {
   "name": "@eightshift/frontend-libs",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "description": "A collection of useful frontend utility modules. powered by Eightshift",
   "author": {
     "name": "Team Eightshift",
@@ -25,13 +25,14 @@
   },
   "scripts": {
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook -c .storybook -o .out",
+    "build-storybook": "build-storybook -c .storybook -o .out/storybook",
     "deploy-storybook": "storybook-to-ghpages",
     "__eslintTheme": "eslint '**/*.{js,jsx}'",
     "__stylelintTheme": "stylelint **/*.scss",
     "lintStyle": "npm run __stylelintTheme",
     "lintJs": "npm run __eslintTheme",
-    "lint": "npm run lintJs && npm run lintStyle"
+    "lint": "npm run lintJs && npm run lintStyle",
+    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest .out/sassdoc"
   },
   "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
   "license": "MIT",
@@ -119,5 +120,8 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "devDependencies": {
+    "sassdoc": "^2.7.1"
   }
 }

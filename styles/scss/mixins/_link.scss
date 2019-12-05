@@ -1,55 +1,55 @@
-// Link
-
-// Mixin that creates output for any valid html state, :hover, :focus, :active but only the default state has to be in normal key.
-// All selectors must be valid html selectors.
-
-// $map - Map to search.
-// $key - Map key to find.
-
-// Map:
-// $test: (
-//   test: (
-//     normal: (
-//       background-color: $base-black-color,
-//       color: $base-white-color,
-//     ),
-//     hover: (
-//       background-color: $base-white-color,
-//       color: $base-black-color,
-//     ),
-//     focus: (
-//       background-color: $base-white-color,
-//       color: $base-black-color,
-//     ),
-//     active: (
-//       background-color: $base-white-color,
-//       color: $base-black-color,
-//     ),
-//   ),
-// );
-
-// Markup:
-// .test {
-//   @include link($test, test);
-// }
-
-// Output:
-// .test {
-//   background-color: #000000;
-//   color: #FFFFFF;
-// }
-// .test:hover {
-//   background-color: #FFFFFF;
-//   color: #000000;
-// }
-// .test:focus {
-//   background-color: #FFFFFF;
-//   color: #000000;
-// }
-// .test:active {
-//   background-color: #FFFFFF;
-//   color: #000000;
-// }
+/// Mixin that creates output for any valid html state, :hover, :focus, :active but only the default state has to be in normal key.
+/// All selectors must be valid html selectors.
+///
+/// @param {string} $map - Map to search.
+/// @param {string} $key - Map key to find.
+///
+/// Map:
+/// $test: (
+///   test: (
+///     normal: (
+///       background-color: $base-black-color,
+///       color: $base-white-color,
+///     ),
+///     hover: (
+///       background-color: $base-white-color,
+///       color: $base-black-color,
+///     ),
+///     focus: (
+///       background-color: $base-white-color,
+///       color: $base-black-color,
+///     ),
+///     active: (
+///       background-color: $base-white-color,
+///       color: $base-black-color,
+///     ),
+///   ),
+/// );
+///
+/// @example
+/// .test {
+///   @include link($test, test);
+/// }
+///
+/// @output
+/// ```scss
+/// .test {
+///   background-color: #000000;
+///   color: #FFFFFF;
+/// }
+/// .test:hover {
+///   background-color: #FFFFFF;
+///   color: #000000;
+/// }
+/// .test:focus {
+///   background-color: #FFFFFF;
+///   color: #000000;
+/// }
+/// .test:active {
+///   background-color: #FFFFFF;
+///   color: #000000;
+/// }
+/// ```
 
 @mixin link($map, $key) {
   @if (type-of($map) == 'map') {

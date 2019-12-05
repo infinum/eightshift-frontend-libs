@@ -1,18 +1,20 @@
-// List-reset
-
-// Placeholder that is used to reset browser default styles for lists.
-
-// Markup:
-// .test {
-//   @extend %list-reset;
-// }
-
-// Output:
-// .test {
-//   padding: 0;
-//   margin: 0;
-//   list-style: none;
-// }
+/// Placeholder that is used to reset browser default styles for lists.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   margin: 0;
+///   list-style: none;
+/// }
+/// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @example
+/// .test {
+///   @extend %list-reset;
+/// }
 
 %list-reset {
   margin: 0;
