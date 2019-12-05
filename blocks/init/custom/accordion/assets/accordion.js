@@ -1,15 +1,10 @@
 export class Accordion {
-  constructor(
-    parentElement,
-    headElement,
-    contentElement,
-    ACTIVE_CLASS,
-  ) {
-    this.parentElement = parentElement;
-    this.headElement = headElement;
-    this.contentElement = contentElement;
+  constructor(options) {
+    this.parentElement = options.parentElement;
+    this.headElement = options.headElement;
+    this.contentElement = options.contentElement;
 
-    this.ACTIVE_CLASS = ACTIVE_CLASS;
+    this.ACTIVE_CLASS = options.ACTIVE_CLASS;
 
     this.$head = $(this.headElement);
   }
