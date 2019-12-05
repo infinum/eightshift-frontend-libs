@@ -3,7 +3,7 @@ import manifest from './manifest.json';
 import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers';
 
 export default {
-  title: 'Blocks|Tabs Item',
+  title: 'Blocks|Tabs Item - NOT FINISHED',
 };
 
 const blocks = [

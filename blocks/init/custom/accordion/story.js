@@ -1,11 +1,18 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { withKnobs, boolean } from '@storybook/addon-knobs';
+
 import manifest from './manifest.json';
 import { block as item } from './../accordion-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks } from './../../../../.storybook/helpers';
 
+
 export default {
-  title: 'Blocks|Accordion',
+  title: 'Blocks|Accordion - NOT FINISHED',
+  decorators: [withKnobs],
 };
+
+const label = 'Use Wrapper';
+const defaultValue = true;
 
 const blocks = [
   {
@@ -20,7 +27,10 @@ const blocks = [
   },
 ];
 
+console.log(boolean(label, defaultValue));
+
+
 export const block = () => (
-  <Gutenberg blocks={blocks} />
+  <Gutenberg blocks={blocks} hasWrapper={boolean(label, defaultValue)} />
 );
 

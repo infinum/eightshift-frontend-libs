@@ -3,7 +3,7 @@ import manifest from './manifest.json';
 import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers';
 
 export default {
-  title: 'Blocks|Accordion Item',
+  title: 'Blocks|Accordion Item - NOT FINISHED',
 };
 
 const blocks = [
