@@ -11,6 +11,7 @@ module.exports = {
     'block-opening-brace-newline-after': 'always',
     'block-closing-brace-newline-after': 'always',
     'max-empty-lines': 2,
+    'max-line-length': 250,
     'rule-empty-line-before': [
       'always', {
         except: ['first-nested'],

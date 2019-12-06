@@ -54,6 +54,8 @@
 /// }
 /// ```
 
+// stylelint-disable max-nesting-depth
+
 @mixin link-modifiers($map, $keys...) {
   @each $modifier, $modifierMap in map-get-deep($map, $keys...) {
     &--#{$modifier} {

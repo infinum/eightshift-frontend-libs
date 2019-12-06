@@ -24,7 +24,7 @@
     "url": "https://github.com/infinum/eightshift-frontend-libs/issues"
   },
   "scripts": {
-    "__eslintTheme": "eslint '**/*.{js,jsx}'",
+    "__eslintTheme": "eslint '**/*.js'",
     "__stylelintTheme": "stylelint **/*.scss",
     "lintStyle": "npm run __stylelintTheme",
     "lintJs": "npm run __eslintTheme",

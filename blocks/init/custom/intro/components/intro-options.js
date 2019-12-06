@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
-import { MediaPlaceholder } from '@wordpress/editor';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 
 export const IntroOptions = (props) => {

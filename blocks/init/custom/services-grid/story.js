@@ -1,10 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
 import { block as item } from './../service-box/story';
-import { Gutenberg, id, blockDetails, blockInnerBlocks } from './../../../../.storybook/helpers';
+import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } from './../../../../.storybook/helpers';
 
 export default {
   title: 'Blocks|Services Grid',
+  ...hasWrapperDecorator(manifest),
 };
 
 const blocks = [
@@ -14,12 +15,12 @@ const blocks = [
       allowedBlocks: ['eightshift-boilerplate/service-box'],
     },
     clientId: id(),
-    innerBlocks: blockInnerBlocks(item().props.blocks, 8),
+    innerBlocks: blockInnerBlocks(item(), 8),
     isValid: true,
     name: `eightshift-boilerplate/${manifest.blockName}`,
   },
 ];
 
 export const block = () => (
-  <Gutenberg blocks={blocks} />
+  <Gutenberg props={{ blocks }} />
 );

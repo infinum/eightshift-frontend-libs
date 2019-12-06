@@ -1,9 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
-import { Gutenberg, id, blockDetails } from '../../../../.storybook/helpers';
+import { Gutenberg, id, blockDetails, hasWrapperDecorator } from '../../../../.storybook/helpers';
 
 export default {
   title: 'Blocks|Image Text',
+  ...hasWrapperDecorator(manifest),
 };
 
 const blocks = [
@@ -33,5 +34,5 @@ const blocks = [
 ];
 
 export const block = () => (
-  <Gutenberg blocks={blocks} />
+  <Gutenberg props={{ blocks }} />
 );

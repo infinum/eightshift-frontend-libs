@@ -28,21 +28,32 @@ export const hasWrapper = (isActive) => {
     styleHideBlockDesktop: wrapperManifest.attributes.styleHideBlockDesktop.default,
   };
 
-  console.log(isActive);
-  
-
   return isActive ? wrapper : {};
 }
 
-export const Gutenberg = (blocks, useWrapper) => {
+export const hasWrapperDecorator = (manifest) => {
+  if ( typeof manifest.hasWrapper === 'undefined' ) {
+    manifest.hasWrapper = true;
+  }
 
-  const blocksProps = blocks.blocks.map((block) => {
+  return (manifest.hasWrapper ? { decorators: [withKnobs] } : '')
+};
+
+export const Gutenberg = (props) => {
+  const {
+    props: {
+      blocks,
+      useWrapper = false,
+    },
+  } = props;
+
+  const blocksProps = blocks.map((block) => {
     return {
       ...block,
-      attributes: {...block.attributes, ...hasWrapper(useWrapper)},
+      attributes: {...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper))},
     }
   });
-  console.log(blocksProps);
+
   return (
     <div className="playground">
       <SlotFillProvider>
@@ -88,8 +99,8 @@ export const blockInnerBlocks = (blocks, count) => {
 
   for(let i = 1; i <= count; i++) {
     output.push({
-      ...blocks[0],
-      clientId: `${blocks[0].clientId}${i}`,
+      ...blocks.props.props.blocks[0],
+      clientId: `${blocks.props.props.blocks[0].clientId}${i}`,
     });
   }
 
