@@ -6,6 +6,9 @@ import { ButtonOptions } from './components/button-options';
 
 export default {
   title: 'Components|Button',
+  parameters: {
+    notes: 'My notes',
+  },
 };
 
 const editorProps = {

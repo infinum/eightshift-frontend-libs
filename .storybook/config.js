@@ -11,6 +11,7 @@ import blocksSettings from './../blocks/init/manifest.json';
 window.wp.element = require('./../node_modules/@wordpress/element/build-module');
 window.wp.compose = require('./../node_modules/@wordpress/compose/build-module');
 window.wp.hooks = require('./../node_modules/@wordpress/hooks/build-module');
+window.wp.components = require('./../node_modules/@wordpress/components/build-module');
 
 // STUFF THAT I WILL POTENTIALLY NEED SOMEDAY
 // window.wp.blockEditor = require('./../node_modules/@wordpress/block-editor/build-module');

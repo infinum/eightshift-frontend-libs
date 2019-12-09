@@ -178,3 +178,8 @@ $editor: (
 .screen-reader-text {
   display: none;
 }
+
+// Hack for storybook.
+.components-range-control__slider {
+  min-width: 1px;
+}
