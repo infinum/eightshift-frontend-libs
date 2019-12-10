@@ -90,27 +90,27 @@ export const WrapperOptions = (props) => {
       <PanelBody title={__('Block Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
         <TabPanel
           className="custom-button-tabs"
-          activeClass="button button-primary"
+          activeClass="components-button is-button is-primary"
           tabs={[
             {
               name: 'large',
               title: <Dashicon icon="desktop" />,
-              className: 'tab-large button button-secondary custom-button-with-icon',
+              className: 'tab-large components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'desktop',
               title: <Dashicon icon="laptop" />,
-              className: 'tab-desktop button button-secondary custom-button-with-icon',
+              className: 'tab-desktop components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'tablet',
               title: <Dashicon icon="tablet" />,
-              className: 'tab-tablet button button-secondary custom-button-with-icon',
+              className: 'tab-tablet components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'mobile',
               title: <Dashicon icon="smartphone" />,
-              className: 'tab-mobile button button-secondary custom-button-with-icon',
+              className: 'tab-mobile components-button is-button is-default custom-button-with-icon',
             },
           ]
           }
