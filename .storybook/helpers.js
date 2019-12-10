@@ -15,7 +15,6 @@ import {
   DropZoneProvider,
 } from '@wordpress/components';
 
-
 export const hasWrapper = (isActive) => {
   const wrapper = {
     hasWrapper: true,

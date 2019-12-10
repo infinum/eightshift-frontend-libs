@@ -2,7 +2,7 @@
   "blockName": "link",
   "title": "Link",
   "description" : "Link block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "admin-links"
   },

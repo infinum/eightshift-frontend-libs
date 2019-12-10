@@ -2,7 +2,7 @@
   "blockName": "accordion",
   "title": "Accordion",
   "description" : "Accordion block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "editor-kitchensink"
   },

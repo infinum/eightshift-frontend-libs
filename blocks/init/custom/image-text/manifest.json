@@ -2,7 +2,7 @@
   "blockName": "image-text",
   "title": "Image Text",
   "description" : "Image Text with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "vault"
   },

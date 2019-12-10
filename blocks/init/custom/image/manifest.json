@@ -2,7 +2,7 @@
   "blockName": "image",
   "title": "Image",
   "description" : "Image block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "format-image"
   },

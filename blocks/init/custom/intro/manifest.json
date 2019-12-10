@@ -2,7 +2,7 @@
   "blockName": "intro",
   "title": "Intro",
   "description" : "Intro with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "vault"
   },

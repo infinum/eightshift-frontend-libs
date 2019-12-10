@@ -2,7 +2,7 @@
   "blockName": "example",
   "title": "Example",
   "description" : "Example Description",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "heading"
   },

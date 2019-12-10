@@ -2,7 +2,7 @@
   "blockName": "video",
   "title": "Video",
   "description" : "Video block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "video-alt2"
   },

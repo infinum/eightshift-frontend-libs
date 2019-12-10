@@ -2,7 +2,7 @@
   "blockName": "lists-info",
   "title": "Lists Info",
   "description" : "Lists Info block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "editor-ul"
   },

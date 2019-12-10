@@ -12,20 +12,32 @@ window.wp.element = require('./../node_modules/@wordpress/element/build-module')
 window.wp.compose = require('./../node_modules/@wordpress/compose/build-module');
 window.wp.hooks = require('./../node_modules/@wordpress/hooks/build-module');
 window.wp.components = require('./../node_modules/@wordpress/components/build-module');
+window.wp.data = require('./../node_modules/@wordpress/data/build-module');
+window.wp.coreData = require('./../node_modules/@wordpress/core-data/build-module');
 
 // STUFF THAT I WILL POTENTIALLY NEED SOMEDAY
 // window.wp.blockEditor = require('./../node_modules/@wordpress/block-editor/build-module');
 // window.wp.editor = require('./../node_modules/@wordpress/editor/build-module');
 // window.wp.blockLibrary = require('./../node_modules/@wordpress/block-library/build-module');
 // window.wp.blocks = require('./../node_modules/@wordpress/blocks/build-module');
-// window.wp.data = require('./../node_modules/@wordpress/data/build-module');
-// window.wp.components = require('./../node_modules/@wordpress/components/build-module');
-// window.wp.coreData = require('./../node_modules/@wordpress/core-data/build-module');
 // window.wp.reduxRoutine = require('./../node_modules/@wordpress/redux-routine/build-module');
 // window.wp.priorityQueue = require('./../node_modules/@wordpress/priority-queue/build-module');
 // window.wp.plugins = require('./../node_modules/@wordpress/plugins/build-module');
 
-// Register Editor Blocks.
+// Manualy populate categories for blocks.
+wp.data.dispatch( 'core/blocks').setCategories([
+  {
+    slug: 'eightshift',
+    title: 'Eightshift',
+    'icon': 'admin-settings',
+  },
+  {
+    slug: 'common',
+    title: 'Common',
+  },
+]
+);
+
 registerBlocks(
   require.context('./../blocks/init/custom', true, /manifest\.json$/),
   require.context('./../blocks/init/custom', true, /\.js$/),

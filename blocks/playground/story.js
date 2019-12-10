@@ -6,5 +6,9 @@ export default {
 };
 
 export const block = () => (
-  <Gutenberg blocks={[]} />
+  <Gutenberg props={
+    {
+      blocks: [],
+    }
+  } />
 );

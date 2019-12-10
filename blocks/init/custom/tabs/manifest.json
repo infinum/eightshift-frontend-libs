@@ -2,7 +2,7 @@
   "blockName": "tabs",
   "title": "Tabs",
   "description" : "Tabs block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "editor-kitchensink"
   },

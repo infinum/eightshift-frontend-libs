@@ -2,7 +2,7 @@
   "blockName": "carousel",
   "title": "Carousel",
   "description" : "Carousel block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "format-gallery"
   },

@@ -2,7 +2,7 @@
   "blockName": "group",
   "title": "Group",
   "description" : "Group block used to grouping multiple blocks.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "screenoptions"
   },

@@ -2,7 +2,7 @@
   "blockName": "quote",
   "title": "Quote",
   "description" : "Quote with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "format-quote"
   },

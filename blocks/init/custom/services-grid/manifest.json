@@ -2,7 +2,7 @@
   "blockName": "services-grid",
   "title": "Services Grid",
   "description" : "Services Grid block with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "admin-settings"
   },

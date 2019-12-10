@@ -2,7 +2,7 @@
   "blockName": "service-box",
   "title": "Service Box",
   "description" : "Service Box with custom settings.",
-  "category": "common",
+  "category": "eightshift",
   "icon": {
     "src": "buddicons-buddypress-logo"
   },
