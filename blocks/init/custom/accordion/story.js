@@ -5,7 +5,7 @@ import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } fr
 
 
 export default {
-  title: 'Blocks|Accordion - NOT FINISHED',
+  title: 'NOT FINISHED Blocks|Accordion',
   ...hasWrapperDecorator(manifest),
 };
 

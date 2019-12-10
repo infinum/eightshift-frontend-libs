@@ -4,7 +4,7 @@ import { block as item } from '../tabs-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } from '../../../../.storybook/helpers';
 
 export default {
-  title: 'Blocks|Tabs - NOT FINISHED',
+  title: 'NOT FINISHED Blocks|Tabs',
   ...hasWrapperDecorator(manifest),
 };
 

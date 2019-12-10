@@ -3,7 +3,7 @@ import manifest from './manifest.json';
 import { Gutenberg, id, blockDetails, hasWrapperDecorator } from '../../../../.storybook/helpers';
 
 export default {
-  title: 'Blocks|Accordion Item - NOT FINISHED',
+  title: 'NOT FINISHED Blocks|Accordion Item',
   ...hasWrapperDecorator(manifest),
 };
 
