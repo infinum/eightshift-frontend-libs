@@ -50,8 +50,13 @@ export const Gutenberg = (props) => {
     return {
       ...block,
       attributes: {...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper))},
+      clientId: id(),
+      isValid: true,
     }
   });
+
+  console.log(blocksProps);
+  
 
   return (
     <div className="playground">
@@ -99,7 +104,8 @@ export const blockInnerBlocks = (blocks, count) => {
   for(let i = 1; i <= count; i++) {
     output.push({
       ...blocks.props.props.blocks[0],
-      clientId: `${blocks.props.props.blocks[0].clientId}${i}`,
+      clientId: id(),
+      isValid: true,
     });
   }
 
