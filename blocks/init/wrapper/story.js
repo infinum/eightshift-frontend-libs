@@ -1,11 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
+import readme from './readme.md';
 
 import { WrapperOptions } from './components/wrapper-options';
 import { WrapperResponsiveTabContent } from './components/wrapper-responsive-tab-content';
 
 export default {
   title: 'Wrapper|Wrapper',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const optionsProps = {

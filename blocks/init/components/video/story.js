@@ -1,11 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/video/manifest.json';
-
+import readme from './readme.md';
 import { VideoEditor } from './components/video-editor';
 import { VideoOptions } from './components/video-options';
 
 export default {
   title: 'Components|Video',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

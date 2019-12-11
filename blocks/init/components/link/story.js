@@ -1,11 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/link/manifest.json';
-
+import readme from './readme.md';
 import { LinkEditor } from './components/link-editor';
 import { LinkOptions } from './components/link-options';
 
 export default {
   title: 'Components|Link',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

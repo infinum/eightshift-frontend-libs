@@ -1,12 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/paragraph/manifest.json';
-
+import readme from './readme.md';
 import { ParagraphEditor } from './components/paragraph-editor';
 import { ParagraphOptions } from './components/paragraph-options';
 import { ParagraphToolbar } from './components/paragraph-toolbar';
 
 export default {
   title: 'Components|Paragraph',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

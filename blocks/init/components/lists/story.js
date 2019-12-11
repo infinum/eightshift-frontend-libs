@@ -1,10 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/lists/manifest.json';
-
+import readme from './readme.md';
 import { ListsEditor } from './components/lists-editor';
 
 export default {
   title: 'Components|Lists',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

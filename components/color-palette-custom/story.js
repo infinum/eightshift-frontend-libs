@@ -1,11 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-
 import globalSettings from './../../blocks/init/manifest.json';
-
+import readme from './readme.md';
 import { ColorPaletteCustom } from './color-palette-custom';
 
 export default {
   title: 'Options|Color Palette',
+  parameters: {
+    notes: readme,
+  },
 };
 
 

@@ -1,11 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/image/manifest.json';
-
+import readme from './readme.md';
 import { ImageEditor } from './components/image-editor';
 import { ImageOptions } from './components/image-options';
 
 export default {
   title: 'Components|Image',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

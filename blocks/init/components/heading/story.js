@@ -1,12 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/heading/manifest.json';
-
+import readme from './readme.md';
 import { HeadingEditor } from './components/heading-editor';
 import { HeadingOptions } from './components/heading-options';
 import { HeadingToolbar } from './components/heading-toolbar';
 
 export default {
   title: 'Components|Heading',
+  parameters: {
+    notes: readme,
+  },
 };
 
 const editorProps = {

@@ -1,5 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../../custom/button/manifest.json';
+import readme from './readme.md';
 
 import { ButtonEditor } from './components/button-editor';
 import { ButtonOptions } from './components/button-options';
@@ -7,7 +8,7 @@ import { ButtonOptions } from './components/button-options';
 export default {
   title: 'Components|Button',
   parameters: {
-    notes: 'My notes',
+    notes: readme,
   },
 };
 

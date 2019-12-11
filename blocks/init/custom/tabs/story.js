@@ -1,11 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
+import readme from './readme.md';
 import { block as item } from '../tabs-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } from '../../../../.storybook/helpers';
 
 export default {
   title: 'NOT FINISHED Blocks|Tabs',
   ...hasWrapperDecorator(manifest),
+  parameters: {
+    notes: readme,
+  },
 };
 
 const blocks = [

@@ -1,5 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './manifest.json';
+import readme from './readme.md';
 import { block as item } from './../accordion-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } from './../../../../.storybook/helpers';
 
@@ -7,6 +8,9 @@ import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } fr
 export default {
   title: 'NOT FINISHED Blocks|Accordion',
   ...hasWrapperDecorator(manifest),
+  parameters: {
+    notes: readme,
+  },
 };
 
 const blocks = [
