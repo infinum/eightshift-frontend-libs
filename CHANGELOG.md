@@ -8,8 +8,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ### Added
 - Installed `sassdoc`
-- Modified comments for all functions / mixins / placeholders to fit Sassdoc's template
 - Added `npm run build-sassdoc` script which builds `sassdoc` (generated file: `sassdoc/index.html`)
+- Added `.gitattributes`
+
+### Changed
+- Modified comments for all functions / mixins / placeholders to fit Sassdoc's template
 
 ## [2.0.7] - 2019-11-28
 
