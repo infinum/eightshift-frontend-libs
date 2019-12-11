@@ -3,10 +3,8 @@ import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
-
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-
 import { HeadingEditor } from '../../components/heading/components/heading-editor';
 import { HeadingOptions } from '../../components/heading/components/heading-options';
 import { HeadingToolbar } from '../../components/heading/components/heading-toolbar';

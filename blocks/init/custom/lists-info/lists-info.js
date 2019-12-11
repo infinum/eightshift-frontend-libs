@@ -1,9 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-
 import { ListsInfoEditor } from './components/lists-info-editor';
 
 export const ListsInfo = (props) => {

@@ -4,7 +4,6 @@ import readme from './readme.md';
 import { block as item } from './../accordion-item/story';
 import { Gutenberg, id, blockDetails, blockInnerBlocks, hasWrapperDecorator } from './../../../../.storybook/helpers';
 
-
 export default {
   title: 'NOT FINISHED Blocks|Accordion',
   ...hasWrapperDecorator(manifest),

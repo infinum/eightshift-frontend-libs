@@ -1,8 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-
 import { ServicesEditor } from './components/services-editor';
 
 export const Services = (props) => {

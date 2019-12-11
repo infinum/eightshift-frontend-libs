@@ -3,7 +3,6 @@ import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
-
 import { VideoEditor } from '../../components/video/components/video-editor';
 import { VideoOptions } from '../../components/video/components/video-options';
 

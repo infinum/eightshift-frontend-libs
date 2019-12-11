@@ -4,7 +4,6 @@ import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon } from '@wordpress/components';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
-
 import globalSettings from '../../manifest.json';
 
 export const WrapperOptions = (props) => {

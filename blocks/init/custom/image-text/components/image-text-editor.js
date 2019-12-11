@@ -1,7 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-
 import { ButtonEditor } from './../../../components/button/components/button-editor';
 import { ImageEditor } from './../../../components/image/components/image-editor';
 

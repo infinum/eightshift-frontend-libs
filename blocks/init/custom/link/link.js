@@ -3,10 +3,8 @@ import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
-
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-
 import { LinkEditor } from '../../components/link/components/link-editor';
 import { LinkOptions } from '../../components/link/components/link-options';
 
