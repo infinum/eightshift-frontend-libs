@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 import { getActions } from 'EighshiftBlocksGetActions';
@@ -24,14 +26,16 @@ export const Link = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <LinkOptions
-          url={url}
-          onChangeUrl={actions.onChangeUrl}
-          styleColor={styleColor}
-          onChangeStyleColor={actions.onChangeStyleColor}
-          isAnchor={isAnchor}
-          onChangeIsAnchor={actions.onChangeIsAnchor}
-        />
+        <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
+          <LinkOptions
+            url={url}
+            onChangeUrl={actions.onChangeUrl}
+            styleColor={styleColor}
+            onChangeStyleColor={actions.onChangeStyleColor}
+            isAnchor={isAnchor}
+            onChangeIsAnchor={actions.onChangeIsAnchor}
+          />
+        </PanelBody>
       </InspectorControls>
       <LinkEditor
         blockClass={blockClass}

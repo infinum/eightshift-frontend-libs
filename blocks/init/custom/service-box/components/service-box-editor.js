@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { ImageEditor } from './../../../components/image/components/image-editor';
 
 export const ServiceBoxEditor = (props) => {
   const {
@@ -19,12 +20,14 @@ export const ServiceBoxEditor = (props) => {
   const titleClass = `${blockClass}__title`;
   const contentClass = `${blockClass}__content`;
   const imageClass = `${blockClass}__image`;
-  const imgClass = `${blockClass}__img`;
 
   return (
     <div className={blockClass}>
       <div className={imageClass}>
-        <img src={mediaUrl} className={imgClass} alt="" />
+        <ImageEditor
+          blockClass={blockClass}
+          url={mediaUrl}
+        />
       </div>
       <div className={titleClass}>
         <RichText

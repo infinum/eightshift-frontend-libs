@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 import { ImageEditor } from '../../components/image/components/image-editor';
@@ -26,10 +28,12 @@ export const Image = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <ImageOptions
-          url={mediaUrl}
-          onChangeMedia={actions.onChangeMedia}
-        />
+        <PanelBody title={__('Image Details', 'eightshift-boilerplate')}>
+          <ImageOptions
+            url={mediaUrl}
+            onChangeMedia={actions.onChangeMedia}
+          />
+        </PanelBody>
       </InspectorControls>
       <ImageEditor
         blockClass={blockClass}

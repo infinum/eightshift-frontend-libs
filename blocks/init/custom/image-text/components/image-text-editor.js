@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
 import { ButtonEditor } from './../../../components/button/components/button-editor';
+import { ImageEditor } from './../../../components/image/components/image-editor';
 
 export const ImageTextEditor = (props) => {
   const {
@@ -31,7 +32,6 @@ export const ImageTextEditor = (props) => {
     ${blockClass}__full-height--${styleFullHeight}
   `;
   const mediaWrapClass = `${blockClass}__media-wrap`;
-  const imgClass = `${blockClass}__img`;
   const wrapClass = `${blockClass}__content-wrap`;
   const headingClass = `${blockClass}__heading`;
   const contentClass = `${blockClass}__paragraph`;
@@ -39,7 +39,10 @@ export const ImageTextEditor = (props) => {
   return (
     <div className={componentClass}>
       <div className={mediaWrapClass}>
-        <img src={mediaUrl} className={imgClass} alt="" />
+        <ImageEditor
+          blockClass={blockClass}
+          url={mediaUrl}
+        />
       </div>
       <div className={wrapClass}>
         <div className={headingClass}>

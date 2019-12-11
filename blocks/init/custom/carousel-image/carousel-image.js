@@ -1,14 +1,19 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 import { CarouselImageEditor } from './components/carousel-image-editor';
-import { CarouselImageOptions } from './components/carousel-image-options';
+import { ImageOptions } from '../../components/image/components/image-options';
 
 export const CarouselImage = (props) => {
   const {
     setAttributes,
     attributes,
+    attributes: {
+      mediaUrl,
+    },
   } = props;
 
   const actions = {
@@ -23,9 +28,12 @@ export const CarouselImage = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <CarouselImageOptions
-          actions={actions}
-        />
+        <PanelBody title={__('Carousel Image Details', 'eightshift-boilerplate')}>
+          <ImageOptions
+            url={mediaUrl}
+            onChangeMedia={actions.onChangeMedia}
+          />
+        </PanelBody>
       </InspectorControls>
       <CarouselImageEditor
         attributes={attributes}

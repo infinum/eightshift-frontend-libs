@@ -53,9 +53,6 @@ $block-intro: (
   &__img {
     max-width: 200px;
     width: auto;
-    height: auto;
-    display: block;
-    margin: 0 auto;
 
     @include media(tablet up) {
       max-width: 100%;

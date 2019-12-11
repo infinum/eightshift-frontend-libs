@@ -12,20 +12,13 @@ $block_class = $attributes['blockClass'] ?? '';
 
 $heading   = $attributes['heading'] ?? '';
 $paragraph = $attributes['paragraph'] ?? '';
+$media_id  = $attributes['mediaId'] ?? '';
 
 $image_class            = "{$block_class}__image";
-$img_class              = "{$block_class}__img";
 $wrap_class             = "{$block_class}__wrap";
 $heading_class          = "{$block_class}__heading";
 $content_class          = "{$block_class}__paragraph";
 
-
-$media = \wp_get_attachment_image(
-  $attributes['mediaId'],
-  $attributes['mediaSize'] ?? 'large',
-  '',
-  [ 'class' => $img_class ]
-);
 ?>
 
 <div class="<?php echo esc_attr( $block_class ); ?>">
@@ -46,9 +39,19 @@ $media = \wp_get_attachment_image(
 
   </div>
 
-  <div class="<?php echo esc_attr( $image_class ); ?>">
-    <?php echo wp_kses_post( $media ); ?>
-  </div>
+  <?php if ( ! empty( $media_id ) ) { ?>
+    <div class="<?php echo esc_attr( $image_class ); ?>">
+      <?php $this->render_block_view(
+        '/components/image/image.php',
+        [
+          'blockClass' => $attributes['blockClass'] ?? '',
+          'id' => $media_id,
+          'size' => $attributes['mediaSize'] ?? 'large',
+        ]
+      );
+      ?>
+    </div>
+  <?php } ?>
 </div>
 
 

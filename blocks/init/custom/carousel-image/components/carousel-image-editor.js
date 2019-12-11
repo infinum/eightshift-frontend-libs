@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 
+import { ImageEditor } from './../../../components/image/components/image-editor';
+
 export const CarouselImageEditor = (props) => {
   const {
     attributes: {
@@ -8,11 +10,12 @@ export const CarouselImageEditor = (props) => {
     },
   } = props;
 
-  const imageClass = `${blockClass}__img`;
-
   return (
     <div className={blockClass}>
-      <img src={mediaUrl} className={imageClass} alt="" />
+      <ImageEditor
+        blockClass={blockClass}
+        url={mediaUrl}
+      />
     </div>
   );
 };

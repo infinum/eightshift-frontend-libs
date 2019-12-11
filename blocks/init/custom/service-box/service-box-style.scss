@@ -19,13 +19,6 @@ $block-service-box: (
     margin-bottom: 25px;
   }
 
-  &__img {
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    display: block;
-  }
-
   &__title {
     @include responsive($block-service-box, title);
     font-weight: bold;

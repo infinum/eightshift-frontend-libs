@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, ToggleControl, Icon } from '@wordpress/components';
+import { ToggleControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const LinkOptions = (props) => {
@@ -17,7 +17,7 @@ export const LinkOptions = (props) => {
   } = props;
 
   return (
-    <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
+    <Fragment>
 
       {onChangeStyleColor &&
         <ColorPaletteCustom
@@ -55,6 +55,6 @@ export const LinkOptions = (props) => {
         />
       }
 
-    </PanelBody>
+    </Fragment>
   );
 };

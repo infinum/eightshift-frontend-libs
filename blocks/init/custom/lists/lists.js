@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { Fragment } from '@wordpress/element';
 
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
@@ -18,14 +17,12 @@ export const Lists = (props) => {
   const actions = getActions(props, manifest);
 
   return (
-    <Fragment>
-      <ListsEditor
-        blockClass={blockClass}
-        content={content}
-        onChangeContent={actions.onChangeContent}
-        ordered={ordered}
-        onChangeOrdered={actions.onChangeOrdered}
-      />
-    </Fragment>
+    <ListsEditor
+      blockClass={blockClass}
+      content={content}
+      onChangeContent={actions.onChangeContent}
+      ordered={ordered}
+      onChangeOrdered={actions.onChangeOrdered}
+    />
   );
 };

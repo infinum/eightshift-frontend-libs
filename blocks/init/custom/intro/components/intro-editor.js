@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import { ImageEditor } from './../../../components/image/components/image-editor';
 
 export const IntroEditor = (props) => {
   const {
@@ -17,7 +18,6 @@ export const IntroEditor = (props) => {
   } = props;
 
   const imageClass = `${blockClass}__image`;
-  const imgClass = `${blockClass}__img`;
   const wrapClass = `${blockClass}__wrap`;
   const headingClass = `${blockClass}__heading`;
   const contentClass = `${blockClass}__paragraph`;
@@ -42,7 +42,10 @@ export const IntroEditor = (props) => {
       </div>
 
       <div className={imageClass}>
-        <img className={imgClass} src={mediaUrl} alt="" />
+        <ImageEditor
+          blockClass={blockClass}
+          url={mediaUrl}
+        />
       </div>
     </div>
   );

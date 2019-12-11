@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 
 import { getActions } from 'EighshiftBlocksGetActions';
@@ -26,12 +28,14 @@ export const Heading = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <HeadingOptions
-          styleColor={styleColor}
-          onChangeStyleColor={actions.onChangeStyleColor}
-          styleSize={styleSize}
-          onChangeStyleSize={actions.onChangeStyleSize}
-        />
+        <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
+          <HeadingOptions
+            styleColor={styleColor}
+            onChangeStyleColor={actions.onChangeStyleColor}
+            styleSize={styleSize}
+            onChangeStyleSize={actions.onChangeStyleSize}
+          />
+        </PanelBody>
       </InspectorControls>
       <BlockControls>
         <HeadingToolbar

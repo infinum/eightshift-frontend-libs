@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 import { VideoEditor } from '../../components/video/components/video-editor';
@@ -26,10 +28,12 @@ export const Video = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <VideoOptions
-          url={mediaUrl}
-          onChangeMedia={actions.onChangeMedia}
-        />
+        <PanelBody title={__('Carousel Image Details', 'eightshift-boilerplate')}>
+          <VideoOptions
+            url={mediaUrl}
+            onChangeMedia={actions.onChangeMedia}
+          />
+        </PanelBody>
       </InspectorControls>
       <VideoEditor
         blockClass={blockClass}

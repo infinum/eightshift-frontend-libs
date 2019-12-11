@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, Icon } from '@wordpress/components';
+import { SelectControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const HeadingOptions = (props) => {
@@ -14,7 +14,7 @@ export const HeadingOptions = (props) => {
   } = props;
 
   return (
-    <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
+    <Fragment>
 
       {onChangeStyleColor &&
         <ColorPaletteCustom
@@ -46,6 +46,6 @@ export const HeadingOptions = (props) => {
         />
       }
 
-    </PanelBody>
+    </Fragment>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, Icon } from '@wordpress/components';
+import { SelectControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ParagraphOptions = (props) => {
@@ -17,7 +17,7 @@ export const ParagraphOptions = (props) => {
   return (
     <Fragment>
       {removeStyle !== true &&
-        <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
+        <Fragment>
 
           {onChangeStyleColor &&
             <ColorPaletteCustom
@@ -49,7 +49,7 @@ export const ParagraphOptions = (props) => {
             />
           }
 
-        </PanelBody>
+        </Fragment>
       }
     </Fragment>
   );

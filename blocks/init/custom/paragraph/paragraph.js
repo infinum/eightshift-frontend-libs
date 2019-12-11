@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { PanelBody } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 
 import { getActions } from 'EighshiftBlocksGetActions';
@@ -26,13 +28,15 @@ export const Paragraph = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <ParagraphOptions
-          styleAlign={styleAlign}
-          onChangeStyleAlign={actions.onChangeStyleAlign}
-          styleColor={styleColor}
-          onChangeStyleColor={actions.onChangeStyleColor}
-          removeStyle={removeStyle}
-        />
+        <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
+          <ParagraphOptions
+            styleAlign={styleAlign}
+            onChangeStyleAlign={actions.onChangeStyleAlign}
+            styleColor={styleColor}
+            onChangeStyleColor={actions.onChangeStyleColor}
+            removeStyle={removeStyle}
+          />
+        </PanelBody>
       </InspectorControls>
       <BlockControls>
         <ParagraphToolbar

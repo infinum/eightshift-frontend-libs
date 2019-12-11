@@ -11,7 +11,7 @@ namespace Eightshift_Boilerplate\Blocks;
 $block_class    = $attributes['blockClass'] ?? '';
 $block_js_class = $attributes['blockJsClass'] ?? '';
 
-$media_url         = $attributes['mediaUrl'] ?? '';
+$media_id          = $attributes['mediaId'] ?? '';
 $heading           = $attributes['heading'] ?? '';
 $paragraph         = $attributes['paragraph'] ?? '';
 $image_position    = $attributes['imagePosition'] ?? '';
@@ -26,7 +26,6 @@ $component_class  = "
   {$block_js_class}
 ";
 $media_wrap_class = "{$block_class}__media-wrap";
-$img_class        = "{$block_class}__img";
 $wrap_class       = "{$block_class}__content-wrap";
 $heading_class    = "{$block_class}__heading";
 $content_class    = "{$block_class}__paragraph";
@@ -35,20 +34,19 @@ $content_class    = "{$block_class}__paragraph";
 
 <div class="<?php echo esc_attr( $component_class ); ?>">
 
-  <div class="<?php echo esc_attr( $media_wrap_class ); ?>">
-    <?php
-    if ( ! empty( $media_url ) ) {
-        $media = \wp_get_attachment_image(
-          $attributes['mediaId'] ?? null,
-          $attributes['mediaSize'] ?? 'large',
-          '',
-          [ 'class' => $img_class ]
-        );
-
-        echo wp_kses_post( $media );
+  <?php if ( ! empty( $media_id ) ) { ?>
+    <div class="<?php echo esc_attr( $media_wrap_class ); ?>">
+      <?php $this->render_block_view(
+        '/components/image/image.php',
+        [
+          'blockClass' => $attributes['blockClass'] ?? '',
+          'id' => $media_id,
+          'size' => $attributes['mediaSize'] ?? 'large',
+        ]
+      );
       ?>
-    <?php } ?>
-  </div>
+    </div>
+  <?php } ?>
 
   <div class="<?php echo esc_attr( $wrap_class ); ?>">
 

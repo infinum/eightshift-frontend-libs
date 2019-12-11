@@ -8,29 +8,29 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$title   = $attributes['title'] ?? '';
-$content = $attributes['content'] ?? '';
-
+$title    = $attributes['title'] ?? '';
+$content  = $attributes['content'] ?? '';
+$media_id = $attributes['mediaId'] ?? '';
 
 $block_class   = $attributes['blockClass'] ?? '';
 $title_class   = "{$block_class}__title";
 $content_class = "{$block_class}__content";
 $image_class   = "{$block_class}__image";
-$img_class     = "{$block_class}__img";
-
-$media = \wp_get_attachment_image(
-  $attributes['mediaId'] ?? '',
-  $attributes['mediaSize'] ?? 'large',
-  '',
-  [ 'class' => $img_class ]
-);
 
 ?>
 
 <div class="<?php echo esc_attr( $block_class ); ?>">
-  <?php if ( ! empty( $media ) ) { ?>
+  <?php if ( ! empty( $media_id ) ) { ?>
     <div class="<?php echo esc_attr( $image_class ); ?>">
-      <?php echo wp_kses_post( $media ); ?>
+      <?php $this->render_block_view(
+        '/components/image/image.php',
+        [
+          'blockClass' => $attributes['blockClass'] ?? '',
+          'id' => $media_id,
+          'size' => $attributes['mediaSize'] ?? 'large',
+        ]
+      );
+      ?>
     </div>
   <?php } ?>
   <?php if ( ! empty( $title ) ) { ?>

@@ -216,7 +216,6 @@ export const WrapperOptions = (props) => {
             </Fragment>
           )}
         </TabPanel>
-        
       </PanelBody>
 
       <PanelBody title={__('Block Colors', 'eightshift-boilerplate')} initialOpen={false}>

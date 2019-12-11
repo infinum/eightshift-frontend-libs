@@ -12,7 +12,7 @@ const blocks = [
     attributes: {
       ...blockDetails(manifest.blockName),
       mediaId: '',
-      mediaUrl: '',
+      mediaUrl: manifest.attributes.mediaUrl.default,
       mediaSize: manifest.attributes.mediaSize.default,
       title: 'Box title',
       content: 'Box content',

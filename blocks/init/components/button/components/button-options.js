@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, TextControl, Icon } from '@wordpress/components';
+import { SelectControl, TextControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
@@ -23,7 +23,7 @@ export const ButtonOptions = (props) => {
   } = props;
 
   return (
-    <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
+    <Fragment>
 
       {onChangeTitle &&
         <TextControl
@@ -93,6 +93,6 @@ export const ButtonOptions = (props) => {
         />
       }
 
-    </PanelBody>
+    </Fragment>
   );
 };
