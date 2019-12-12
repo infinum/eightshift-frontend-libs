@@ -5,8 +5,14 @@ const gutenberg = require('./../webpack/gutenberg')();
 
 module.exports = ({ config }) => {
 
+  /**
+   * Load Project Aliases.
+   */
   config.resolve.alias = {...config.resolve.alias, ...gutenberg.resolve.alias};
 
+  /**
+   * Generate css file from sass.
+   */
   config.module.rules.push(
     {
       test: /\.scss$/,
@@ -32,15 +38,12 @@ module.exports = ({ config }) => {
     }
   );
 
+  /**
+   * Extract css from sass.
+   */
   config.plugins.push(
     new MiniCssExtractPlugin()
   );
-
-  config.module.rules.push({
-    test: /\.stories\.js?$/,
-    loaders: [require.resolve('@storybook/source-loader')],
-    enforce: 'pre'
-  });
 
   return config;
 };
