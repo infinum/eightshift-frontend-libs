@@ -1,0 +1,25 @@
+{
+  "blockName": "cards-grid",
+  "title": "Cards Grid",
+  "description" : "Cards Grid block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "admin-settings"
+  },
+  "keywords": [
+    "Cards",
+    "Grid"
+  ],
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/service-box"
+      ]
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { block as item } from './../card/story';
 import { Gutenberg, blockDetails, blockInnerBlocks, hasWrapperDecorator } from './../../../../.storybook/helpers';
 
 export default {
-  title: 'Blocks|Services',
+  title: 'Blocks|Cards Grid',
   ...hasWrapperDecorator(manifest),
   parameters: {
     notes: readme,
@@ -20,10 +20,8 @@ export const block = () => (
           attributes: {
             ...blockDetails(manifest.blockName),
             allowedBlocks: ['eightshift-boilerplate/card'],
-            title: 'Intro Content',
-            number: '01',
           },
-          innerBlocks: blockInnerBlocks(item(), 8),
+          innerBlocks: blockInnerBlocks(item(), 6),
           name: `eightshift-boilerplate/${manifest.blockName}`,
         },
       ],

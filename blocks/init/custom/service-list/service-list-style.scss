@@ -1,0 +1,35 @@
+$block-service-list: (
+  title: (
+    mobile: (
+      font-size: 24px,
+      line-height: 1.33,
+    ),
+  ),
+  content: (
+    mobile: (
+      font-size: 18px,
+      line-height: 1.5,
+    ),
+  ),
+);
+
+
+.block-service-list {
+  &__image {
+    margin-bottom: 25px;
+  }
+
+  &__wrap {
+    text-align: center;
+  }
+
+  &__title {
+    @include responsive($block-service-list, title);
+    font-weight: bold;
+  }
+
+  &__content {
+    @include responsive($block-service-list, content);
+    margin-top: 15px;
+  }
+}

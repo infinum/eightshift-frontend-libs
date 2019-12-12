@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { SelectControl, TextControl, Icon } from '@wordpress/components';
+import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
@@ -34,13 +34,12 @@ export const ButtonOptions = (props) => {
       }
 
       {onChangeUrl &&
-        <div className="components-base-control">
-          <label className="components-base-control__label" htmlFor="url">{__('Button Link', 'eightshift-boilerplate')}</label>
+        <BaseControl label={__('Button Link', 'eightshift-boilerplate')}>
           <URLInput
             value={url}
             onChange={onChangeUrl}
           />
-        </div>
+        </BaseControl>
       }
 
       {onChangeStyleColor &&
