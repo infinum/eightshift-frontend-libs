@@ -1,0 +1,13 @@
+// stylelint-disable max-nesting-depth
+$block-cards-list: (
+  spacing: (
+    bottom: 60px,
+  )
+);
+
+.block-cards-list,
+.block-cards-list .editor-block-list__layout {
+  > .block-card-list {
+    margin-bottom: map-get-deep($block-cards-list, spacing, bottom);
+  }
+}

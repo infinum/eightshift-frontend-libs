@@ -13,7 +13,7 @@ export const ParagraphToolbar = (props) => {
     <Fragment>
       {removeStyle !== true &&
         <Fragment>
-          {styleAlign &&
+          {onChangeStyleAlign &&
             <AlignmentToolbar
               value={styleAlign}
               onChange={onChangeStyleAlign}

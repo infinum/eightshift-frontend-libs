@@ -26,7 +26,7 @@ export const ParagraphEditor = (props) => {
   return (
     <RichText
       className={removeStyle ? '' : paragraphClass}
-      placeholder={__('Add your paragraph', 'eightshift-block')}
+      placeholder={__('Add your paragraph', 'eightshift-boilerplate')}
       onChange={onChangeContent}
       value={content}
     />

@@ -1,14 +1,14 @@
 {
-  "blockName": "cards-grid",
-  "title": "Cards Grid",
-  "description" : "Cards Grid block with custom settings.",
+  "blockName": "cards-list",
+  "title": "Cards List",
+  "description" : "Cards List block with custom settings.",
   "category": "eightshift",
   "icon": {
     "src": "admin-settings"
   },
   "keywords": [
     "Cards",
-    "Grid"
+    "List"
   ],
   "hasInnerBlocks": true,
   "attributes": {
@@ -18,7 +18,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift-boilerplate/card"
+        "eightshift-boilerplate/card-list"
       ]
     }
   }

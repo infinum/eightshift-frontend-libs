@@ -11,31 +11,25 @@ namespace Eightshift_Boilerplate\Blocks;
 $block_class    = $attributes['blockClass'] ?? '';
 $block_js_class = $attributes['blockJsClass'] ?? '';
 
-$media             = $attributes['media'] ?? [];
-$heading           = $attributes['heading'] ?? '';
-$paragraph         = $attributes['paragraph'] ?? '';
-$image_position    = $attributes['imagePosition'] ?? '';
-$button_title      = $attributes['buttonTitle'] ?? '';
-$button_url        = $attributes['buttonUrl'] ?? '';
-$style_full_height = $attributes['styleFullHeight'] ?? false;
+$media          = $attributes['media'] ?? [];
+$heading        = $attributes['heading'] ?? '';
+$paragraph      = $attributes['paragraph'] ?? '';
+$image_position = $attributes['imagePosition'] ?? '';
+$button_title   = $attributes['buttonTitle'] ?? '';
+$button_url     = $attributes['buttonUrl'] ?? '';
 
 $component_class  = "
   {$block_class}
   {$block_class}__media-position--{$image_position}
-  {$block_class}__full-height--{$style_full_height}
   {$block_js_class}
 ";
-$media_wrap_class = "{$block_class}__media-wrap";
-$wrap_class       = "{$block_class}__content-wrap";
-$heading_class    = "{$block_class}__heading";
-$content_class    = "{$block_class}__paragraph";
 
 ?>
 
 <div class="<?php echo esc_attr( $component_class ); ?>">
 
   <?php if ( ! empty( $media_id ) ) { ?>
-    <div class="<?php echo esc_attr( $media_wrap_class ); ?>">
+    <div class="<?php echo esc_attr( "{$block_class}__media" ); ?>">
       <?php $this->render_block_view(
         '/components/image/image.php',
         [
@@ -47,16 +41,16 @@ $content_class    = "{$block_class}__paragraph";
     </div>
   <?php } ?>
 
-  <div class="<?php echo esc_attr( $wrap_class ); ?>">
+  <div class="<?php echo esc_attr( "{$block_class}__content" ); ?>">
 
     <?php if ( ! empty( $heading ) ) { ?>
-      <div class="<?php echo esc_attr( $heading_class ); ?>">
+      <div class="<?php echo esc_attr( "{$block_class}__heading" ); ?>">
         <?php echo wp_kses_post( $heading ); ?>
       </div>
     <?php } ?>
 
     <?php if ( ! empty( $paragraph ) ) { ?>
-      <div class="<?php echo esc_attr( $content_class ); ?>">
+      <div class="<?php echo esc_attr( "{$block_class}__paragraph" ); ?>">
         <?php echo wp_kses_post( $paragraph ); ?>
       </div>
     <?php } ?>

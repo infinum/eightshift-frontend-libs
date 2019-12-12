@@ -10,12 +10,11 @@
     "Card List",
     "Block Card List"
   ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/cards-list"
+  ],
   "attributes": {
-    "styleFullHeight": {
-      "type": "bool",
-      "default": false
-    },
-
     "media": {
       "type": "object",
       "default": {},
@@ -24,20 +23,16 @@
       },
       "mediaAction": true
     },
-
-    "heading": {
-      "type": "string"
-    },
-
-    "paragraph": {
-      "type": "string"
-    },
-
-    "imagePosition": {
+    "mediaPosition": {
       "type": "string",
       "default": "left"
     },
-
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "string"
+    },
     "buttonTitle": {
       "type": "string"
     },

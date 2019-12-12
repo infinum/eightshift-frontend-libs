@@ -28,13 +28,13 @@ $block-card-list: (
 
   &__media-position {
     &--right {
-      #{$this}__media-wrap {
+      #{$this}__media {
         @include media(tablet up) {
           order: 2;
         }
       }
 
-      #{$this}__content-wrap {
+      #{$this}__content {
         @include media(tablet up) {
           order: 1;
           padding-right: calc-grid-width(1);
@@ -43,13 +43,13 @@ $block-card-list: (
     }
 
     &--left {
-      #{$this}__media-wrap {
+      #{$this}__media {
         @include media(tablet up) {
           order: 1;
         }
       }
 
-      #{$this}__content-wrap {
+      #{$this}__content {
         @include media(tablet up) {
           order: 2;
           padding-left: calc-grid-width(1);
@@ -58,15 +58,14 @@ $block-card-list: (
     }
   }
 
-  &__media-wrap,
-  &__content-wrap {
+  &__media,
+  &__content {
     @include media(tablet up) {
       @include flex-grid-width(6);
     }
   }
 
-
-  &__media-wrap {
+  &__media {
     margin-bottom: 30px;
 
     @include media(tablet up) {

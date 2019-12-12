@@ -1,3 +1,4 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
@@ -14,7 +15,7 @@ export const ExampleEditor = (props) => {
 
   return (
     <RichText
-      placeholder={__('Add your content', 'eightshift-blocks')}
+      placeholder={__('Add Content', 'eightshift-blocks')}
       className={blockClass}
       onChange={onChangeContent}
       value={content}

@@ -18,15 +18,14 @@ export const block = () => (
         {
           attributes: {
             ...blockDetails(manifest.blockName),
-            styleFullHeight: manifest.attributes.styleFullHeight.default,
             media: {
               id: 0,
-              url: 'https://picsum.photos/400/400',
+              url: 'https://picsum.photos/1000/700',
               title: 'Card Title',
             },
             heading: 'Lorem ipsum dolor sit amet',
             paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. ',
-            imagePosition: manifest.attributes.imagePosition.default,
+            mediaPosition: manifest.attributes.mediaPosition.default,
             buttonTitle: 'Button Title',
             buttonUrl: '',
             buttonStyleSize: manifest.attributes.buttonStyleSize.default,

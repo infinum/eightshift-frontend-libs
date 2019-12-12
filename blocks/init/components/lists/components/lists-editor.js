@@ -23,7 +23,7 @@ export const ListsEditor = (props) => {
       tagName={ordered}
       multiline="li"
       className={listsClass}
-      placeholder={__('Add your list item', 'eightshift-block')}
+      placeholder={__('Add your list item', 'eightshift-boilerplate')}
       onChange={onChangeContent}
       value={content}
       onTagNameChange={onChangeOrdered}

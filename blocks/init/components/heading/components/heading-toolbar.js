@@ -13,14 +13,14 @@ export const HeadingToolbar = (props) => {
 
   return (
     <Fragment>
-      {level &&
+      {onChangeLevel &&
         <HeadingLevel
           selectedLevel={level}
           onChange={onChangeLevel}
         />
       }
 
-      {styleAlign &&
+      {onChangeStyleAlign &&
         <AlignmentToolbar
           value={styleAlign}
           onChange={onChangeStyleAlign}

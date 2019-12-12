@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for the Cards Grid Block.
+ * Template for the Cards List Block.
  *
  * @since 1.0.0
  * @package Eightshift_Boilerplate\Blocks.

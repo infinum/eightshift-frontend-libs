@@ -1,68 +1,41 @@
 // stylelint-disable max-nesting-depth
 $block-cards-grid: (
-  title: (
-    mobile: (
-      font-size: 36px,
-      line-height: 1.11,
-      font-weight: bold,
-    ),
-    large: (
-      font-size: 50px,
-      line-height: 1.04,
-    ),
-  ),
   spacing: (
-    mobile: (
-      bottom: 60px,
-    ),
-    tablet: (
-      vertical: 20px,
-      bottom: 100px,
-    )
+    bottom: 60px,
+    vertical: 20px,
   )
 );
 
-.block-cards-grid {
+.block-cards-grid,
+.block-cards-grid .editor-block-list__layout {
   $this: &;
   overflow: hidden;
-  margin-bottom: -(map-get-deep($block-cards-grid, spacing, mobile, bottom));
+  margin-bottom: -(map-get-deep($block-cards-grid, spacing, bottom));
 
   @include media(tablet up) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
-  &__content,
-  .editor-block-list__layout {
+  > .block-card {
     @include media(tablet up) {
-      display: flex;
-      flex-wrap: wrap;
-      margin: {
-        left: -(map-get-deep($block-cards-grid, spacing, tablet, vertical));
-        right: -(map-get-deep($block-cards-grid, spacing, tablet, vertical));
+      @include flex-grid-width(4);
+    }
+    @include media(tablet up) {
+      padding: {
+        left: map-get-deep($block-cards-grid, spacing, vertical);
+        right: map-get-deep($block-cards-grid, spacing, vertical);
       }
     }
+    margin: {
+      left: 0;
+      right: 0;
+      bottom: map-get-deep($block-cards-grid, spacing, bottom);
+    }
 
-    > .block-service-box,
-    > .wp-block {
-      @include media(tablet up) {
-        @include flex-grid-width(4);
-      }
-      @include media(tablet up) {
-        padding: {
-          left: map-get-deep($block-cards-grid, spacing, tablet, vertical);
-          right: map-get-deep($block-cards-grid, spacing, tablet, vertical);
-        }
-      }
-      margin: {
-        left: 0;
-        right: 0;
-        bottom: map-get-deep($block-cards-grid, spacing, mobile, bottom);
-      }
-
-      @include media(tablet up) {
-        margin-bottom: map-get-deep($block-cards-grid, spacing, tablet, bottom);
-      }
+    @include media(tablet up) {
+      margin-bottom: map-get-deep($block-cards-grid, spacing, bottom);
     }
   }
 }

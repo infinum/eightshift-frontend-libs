@@ -13,8 +13,7 @@
   ],
   "hasWrapper": false,
   "parent": [
-    "eightshift-boilerplate/services",
-    "eightshift-boilerplate/services-grid"
+    "eightshift-boilerplate/cards-grid"
   ],
   "attributes": {
     "media": {
