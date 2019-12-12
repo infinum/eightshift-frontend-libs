@@ -5,7 +5,7 @@ export const CarouselImageEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      mediaUrl,
+      media,
     },
   } = props;
 
@@ -13,7 +13,7 @@ export const CarouselImageEditor = (props) => {
     <div className={blockClass}>
       <ImageEditor
         blockClass={blockClass}
-        url={mediaUrl}
+        media={media}
       />
     </div>
   );

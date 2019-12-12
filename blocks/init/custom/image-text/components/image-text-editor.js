@@ -11,7 +11,7 @@ export const ImageTextEditor = (props) => {
       heading,
       paragraph,
       imagePosition,
-      mediaUrl,
+      media,
       buttonStyleSize,
       buttonStyleSizeWidth,
       buttonStyleColor,
@@ -40,7 +40,7 @@ export const ImageTextEditor = (props) => {
       <div className={mediaWrapClass}>
         <ImageEditor
           blockClass={blockClass}
-          url={mediaUrl}
+          media={media}
         />
       </div>
       <div className={wrapClass}>

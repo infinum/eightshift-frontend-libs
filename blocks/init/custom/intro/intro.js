@@ -10,29 +10,20 @@ import { ImageOptions } from '../../components/image/components/image-options';
 
 export const Intro = (props) => {
   const {
-    setAttributes,
     attributes,
     attributes: {
-      mediaUrl,
+      media,
     },
   } = props;
 
-  const actions = {
-    ...getActions(props, manifest),
-    onChangeMedia: (value) => {
-      setAttributes({
-        mediaId: value.id,
-        mediaUrl: value.url,
-      });
-    },
-  };
+  const actions = getActions(props, manifest);
 
   return (
     <Fragment>
       <InspectorControls>
         <PanelBody title={__('Intro Details', 'eightshift-boilerplate')}>
           <ImageOptions
-            url={mediaUrl}
+            media={media}
             onChangeMedia={actions.onChangeMedia}
           />
         </PanelBody>

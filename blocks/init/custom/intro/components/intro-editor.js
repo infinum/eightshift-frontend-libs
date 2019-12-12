@@ -9,7 +9,7 @@ export const IntroEditor = (props) => {
       blockClass,
       heading,
       paragraph,
-      mediaUrl,
+      media,
     },
     actions: {
       onChangeHeading,
@@ -44,7 +44,7 @@ export const IntroEditor = (props) => {
       <div className={imageClass}>
         <ImageEditor
           blockClass={blockClass}
-          url={mediaUrl}
+          media={media}
         />
       </div>
     </div>

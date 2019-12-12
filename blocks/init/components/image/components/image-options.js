@@ -7,27 +7,25 @@ import { Button, Dashicon } from '@wordpress/components';
 export const ImageOptions = (props) => {
   const {
     onChangeMedia,
-    url,
+    media,
+    accept = 'image/*',
+    allowedTypes = ['image'],
   } = props;
-
-  const onResetMedia = () => {
-    onChangeMedia({});
-  };
 
   return (
     <Fragment>
       <div className="components-base-control">
-        <label className="components-base-control__label" htmlFor="url">{__('Image', 'eightshift-boilerplate')}</label>
-        {!url ?
+        <label className="components-base-control__label" htmlFor="media">{__('Image', 'eightshift-boilerplate')}</label>
+        {!media.url ?
           <MediaPlaceholder
             icon="format-image"
             onSelect={onChangeMedia}
-            accept={'image/*'}
-            allowedTypes={['image', 'application/json']}
+            accept={accept}
+            allowedTypes={allowedTypes}
           /> :
           <Button
             isDefault
-            onClick={onResetMedia}
+            onClick={() => onChangeMedia({})}
           >
             <Dashicon icon="trash" />
             {__('Remove Image', 'eightshift-boilerplate')}

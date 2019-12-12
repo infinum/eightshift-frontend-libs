@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $title    = $attributes['title'] ?? '';
 $content  = $attributes['content'] ?? '';
-$media_id = $attributes['mediaId'] ?? '';
+$media    = $attributes['media'] ?? [];
 
 $block_class   = $attributes['blockClass'] ?? '';
 $title_class   = "{$block_class}__title";
@@ -26,8 +26,7 @@ $image_class   = "{$block_class}__image";
         '/components/image/image.php',
         [
           'blockClass' => $attributes['blockClass'] ?? '',
-          'id' => $media_id,
-          'size' => $attributes['mediaSize'] ?? 'large',
+          'media'      => $media,
         ]
       );
       ?>

@@ -11,19 +11,13 @@
     "Intro Block"
   ],
   "attributes": {
-    "mediaId": {
-      "type": "number",
-      "useManual": true
-    },
-    "mediaUrl": {
-      "type": "string",
-      "default": "https://picsum.photos/400/400",
-      "useManual": true
-    },
-    "mediaSize": {
-      "type": "string",
-      "default": "large",
-      "useManual": true
+    "media": {
+      "type": "object",
+      "default": {},
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
     },
     "heading": {
       "type": "string"

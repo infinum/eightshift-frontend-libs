@@ -17,18 +17,13 @@
     "eightshift-boilerplate/services-grid"
   ],
   "attributes": {
-    "mediaId": {
-      "type": "number",
-      "manualAction": true
-    },
-    "mediaUrl": {
-      "type": "string",
-      "default": "https://picsum.photos/400/400",
-      "manualAction": true
-    },
-    "mediaSize": {
-      "type": "string",
-      "default": "large"
+    "media": {
+      "type": "object",
+      "default": {},
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
     },
     "title": {
       "type": "string"

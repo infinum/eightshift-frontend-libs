@@ -12,7 +12,7 @@ $block_class = $attributes['blockClass'] ?? '';
 
 $heading   = $attributes['heading'] ?? '';
 $paragraph = $attributes['paragraph'] ?? '';
-$media_id  = $attributes['mediaId'] ?? '';
+$media     = $attributes['media'] ?? [];
 
 $image_class            = "{$block_class}__image";
 $wrap_class             = "{$block_class}__wrap";
@@ -45,8 +45,7 @@ $content_class          = "{$block_class}__paragraph";
         '/components/image/image.php',
         [
           'blockClass' => $attributes['blockClass'] ?? '',
-          'id' => $media_id,
-          'size' => $attributes['mediaSize'] ?? 'large',
+          'media'      => $media,
         ]
       );
       ?>

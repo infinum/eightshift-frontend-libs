@@ -13,27 +13,18 @@ export const ServiceBox = (props) => {
   const {
     attributes,
     attributes: {
-      mediaUrl,
+      media,
     },
-    setAttributes,
   } = props;
 
-  const actions = {
-    ...getActions(props, manifest),
-    onChangeMedia: (value) => {
-      setAttributes({
-        mediaId: value.id,
-        mediaUrl: value.url,
-      });
-    },
-  };
+  const actions = getActions(props, manifest);
 
   return (
     <Fragment>
       <InspectorControls>
         <PanelBody title={__('Service Box Details', 'eightshift-boilerplate')}>
           <ImageOptions
-            url={mediaUrl}
+            media={media}
             onChangeMedia={actions.onChangeMedia}
           />
         </PanelBody>

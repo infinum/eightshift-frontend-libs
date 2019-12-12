@@ -12,6 +12,6 @@ $this->render_block_view(
   '/components/video/video.php',
   [
     'blockClass' => $attributes['blockClass'] ?? '',
-    'url'        => $attributes['mediaUrl'] ?? '',
+    'media'      => $attributes['media'] ?? [],
   ]
 );

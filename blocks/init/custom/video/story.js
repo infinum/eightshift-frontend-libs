@@ -18,8 +18,11 @@ export const block = () => (
         {
           attributes: {
             ...blockDetails(manifest.blockName),
-            mediaId: '',
-            mediaUrl: manifest.attributes.mediaUrl.default,
+            media: {
+              id: 0,
+              url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
+              title: 'video Title',
+            },
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,

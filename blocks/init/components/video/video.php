@@ -8,7 +8,10 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$url = $attributes['url'] ?? '';
+$media = $attributes['media'] ?? [];
+if ( ! isset( $media['url'] ) && ! empty( $media['url'] ) ) {
+  return;
+}
 
 $component_class = 'video';
 $block_class     = $attributes['blockClass'] ?? '';
@@ -21,7 +24,7 @@ $video_class = "
 ?>
 
 <video
-  src="<?php echo esc_url( $url ); ?>"
+  src="<?php echo esc_url( $media['url'] ); ?>"
   class="<?php echo esc_attr( $video_class ); ?>"
   autoplay
   loop

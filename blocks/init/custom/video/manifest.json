@@ -12,14 +12,13 @@
     "preview"
   ],
   "attributes": {
-    "mediaId": {
-      "type": "number",
-      "manualAction": true
-    },
-    "mediaUrl": {
-      "type": "string",
-      "default": "https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4",
-      "manualAction": true
+    "media": {
+      "type": "object",
+      "default": {},
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
     }
   }
 }

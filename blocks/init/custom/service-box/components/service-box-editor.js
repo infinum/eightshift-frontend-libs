@@ -9,7 +9,7 @@ export const ServiceBoxEditor = (props) => {
       blockClass,
       title,
       content,
-      mediaUrl,
+      media,
     },
     actions: {
       onChangeTitle,
@@ -26,7 +26,7 @@ export const ServiceBoxEditor = (props) => {
       <div className={imageClass}>
         <ImageEditor
           blockClass={blockClass}
-          url={mediaUrl}
+          media={media}
         />
       </div>
       <div className={titleClass}>

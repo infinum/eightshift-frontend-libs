@@ -8,9 +8,9 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$media_id = $attributes['mediaId'] ?? '';
+$media = $attributes['media'] ?? [];
 
-if ( empty( $media_id ) ) {
+if ( empty( $media ) ) {
   return;
 }
 
@@ -28,8 +28,7 @@ $component_class = "
     '/components/image/image.php',
     [
       'blockClass' => $attributes['blockClass'] ?? '',
-      'id' => $media_id,
-      'size' => $attributes['mediaSize'] ?? 'large',
+      'media' => $media,
     ]
   );
   ?>

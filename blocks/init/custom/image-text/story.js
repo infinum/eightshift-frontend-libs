@@ -19,9 +19,11 @@ export const block = () => (
           attributes: {
             ...blockDetails(manifest.blockName),
             styleFullHeight: manifest.attributes.styleFullHeight.default,
-            mediaId: '',
-            mediaUrl: manifest.attributes.mediaUrl.default,
-            mediaSize: manifest.attributes.mediaSize.default,
+            media: {
+              id: 0,
+              url: 'https://picsum.photos/400/400',
+              title: 'Image Text Title',
+            },
             heading: 'Heading Title',
             paragraph: 'Paragraph Content',
             imagePosition: manifest.attributes.imagePosition.default,

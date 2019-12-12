@@ -16,7 +16,7 @@ export const ImageTextOptions = (props) => {
       buttonId,
       buttonIcon,
       buttonTitle,
-      mediaUrl,
+      media,
     },
     actions: {
       onChangeMedia,
@@ -56,7 +56,7 @@ export const ImageTextOptions = (props) => {
       }
 
       <ImageOptions
-        url={mediaUrl}
+        media={media}
         onChangeMedia={onChangeMedia}
       />
 

@@ -9,18 +9,9 @@ import { ImageTextOptions } from './components/image-text-options';
 export const ImageText = (props) => {
   const {
     attributes,
-    setAttributes,
   } = props;
 
-  const actions = {
-    ...getActions(props, manifest),
-    onChangeMedia: (value) => {
-      setAttributes({
-        mediaId: value.id,
-        mediaUrl: value.url,
-      });
-    },
-  };
+  const actions = getActions(props, manifest);
 
   return (
     <Fragment>

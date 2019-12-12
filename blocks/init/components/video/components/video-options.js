@@ -7,26 +7,24 @@ import { Button, Dashicon } from '@wordpress/components';
 export const VideoOptions = (props) => {
   const {
     onChangeMedia,
-    url,
+    media,
+    accept = 'video/*',
+    allowedTypes = ['video'],
   } = props;
-
-  const onResetMedia = () => {
-    onChangeMedia({});
-  };
 
   return (
     <Fragment>
       <div className="components-base-control">
         <label className="components-base-control__label" htmlFor="url">{__('Video', 'eightshift-boilerplate')}</label>
-        {!url ?
+        {!media.url ?
           <MediaPlaceholder
             onSelect={onChangeMedia}
-            accept={'video/*'}
-            allowedTypes={['video']}
+            accept={accept}
+            allowedTypes={allowedTypes}
           /> :
           <Button
             isDefault
-            onClick={onResetMedia}
+            onClick={() => onChangeMedia({})}
           >
             <Dashicon icon="trash" />
             {__('Remove Video', 'eightshift-boilerplate')}

@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../custom/video/manifest.json';
 import readme from './readme.md';
 import { VideoEditor } from './components/video-editor';
 import { VideoOptions } from './components/video-options';
@@ -13,11 +12,19 @@ export default {
 
 const editorProps = {
   blockClass: 'block-video',
-  url: manifest.attributes.mediaUrl.default,
+  media: {
+    id: 0,
+    url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
+    title: 'Video Title',
+  },
 };
 
 const optionsProps = {
-  url: manifest.attributes.mediaUrl.default,
+  media: {
+    id: 0,
+    url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
+    title: 'Video Title',
+  },
   onChangeMedia: () => {},
 };
 

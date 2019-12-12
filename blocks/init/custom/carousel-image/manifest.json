@@ -15,18 +15,13 @@
     "eightshift-boilerplate/carousel"
   ],
   "attributes": {
-    "mediaId": {
-      "type": "number",
-      "manualAction": true
-    },
-    "mediaUrl": {
-      "type": "string",
-      "default": "https://picsum.photos/400/400",
-      "manualAction": true
-    },
-    "mediaSize": {
-      "type": "string",
-      "default": "full"
+    "media": {
+      "type": "object",
+      "default": {},
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
     }
   }
 }

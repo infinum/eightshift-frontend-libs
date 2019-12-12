@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../custom/image/manifest.json';
 import readme from './readme.md';
 import { ImageEditor } from './components/image-editor';
 import { ImageOptions } from './components/image-options';
@@ -13,11 +12,19 @@ export default {
 
 const editorProps = {
   blockClass: 'block-image',
-  url: manifest.attributes.mediaUrl.default,
+  media: {
+    id: 0,
+    url: 'https://picsum.photos/400/400',
+    title: 'Image Title',
+  },
 };
 
 const optionsProps = {
-  url: manifest.attributes.mediaUrl.default,
+  media: {
+    id: 0,
+    url: 'https://picsum.photos/400/400',
+    title: 'Image Title',
+  },
   onChangeMedia: () => {},
 };
 
