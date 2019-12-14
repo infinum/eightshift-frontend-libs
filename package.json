@@ -84,6 +84,7 @@
     "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss"
   },
   "devDependencies": {
+    "docpress": "0.8.0",
     "sassdoc": "^2.7.1"
   }
 }
