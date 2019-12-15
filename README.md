@@ -2,15 +2,17 @@
 * Installation and setup
   * [Installation and Requirements](installation/instalation-and-requirements.md)
   * [Register Webpack](installation/register-webpack.md)
-  * [Blocks Folder Structure](installation/folder-structure-blocks.md)
-  * [Single Block Folder Structure](installation/folder-structure-block.md)
-  * [Folder Structure Block Manifest](installation/folder-structure-block-manifest.md)
-  * [Folder Structure Component](installation/folder-structure-component.md)
-  * [Folder Structure Block From Component](installation/folder-structure-block-from-component.md)
-  * [Tips](installation/tips.md)
+* Structure
+  * [Blocks Structure](structure/blocks-structure.md)
+  * [Component Structure](structure/component-structure.md)
+  * [Custom Block Structure](structure/custom-block-structure.md)
+  * [Block Manifest Structure](structure/manifest-structure.md)
+  * [Creating Block From Components](structure/creating-block-from-components.md)
+  * [Layout](structure/layout.md)
 * Helpers
   * [JavaScript Dynamic Import](helpers/javascript-dynamic-import.md)
   * [JavaScript GetActions](helpers/javascript-get-actions.md)
   * [PHP Render Block View](helpers/php-render-block-view.md)
-
+* Tips
+  * [Useful Tips](tips/tips.md)
 
