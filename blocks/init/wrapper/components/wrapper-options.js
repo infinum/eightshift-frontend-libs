@@ -215,9 +215,10 @@ export const WrapperOptions = (props) => {
             </Fragment>
           )}
         </TabPanel>
-      </PanelBody>
 
-      <PanelBody title={__('Block Colors', 'eightshift-boilerplate')} initialOpen={false}>
+        <hr />
+        <strong className="notice-title">{__('Block Colors', 'eightshift-boilerplate')}</strong>
+        <br /><br />
         {onChangeStyleBackgroundColor &&
           <ColorPaletteCustom
             label={
@@ -236,9 +237,10 @@ export const WrapperOptions = (props) => {
             onChange={onChangeStyleBackgroundColor}
           />
         }
-      </PanelBody>
 
-      <PanelBody title={__('Block General', 'eightshift-boilerplate')} initialOpen={false}>
+        <hr />
+        <strong className="notice-title">{__('Block General', 'eightshift-boilerplate')}</strong>
+        <br /><br />
         {onChangeId &&
           <TextControl
             label={
@@ -267,7 +269,6 @@ export const WrapperOptions = (props) => {
           />
         }
       </PanelBody>
-
     </Fragment>
   );
 };
