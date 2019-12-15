@@ -5,7 +5,7 @@ You may wonder: what is the difference between components and blocks? Aren't the
 They are similar, but not the same. Components are, for lack of a better word, _dumb_. They don't have any styling, they aren't bothered with the context. And they are **reusable**.  
 This is the key word in this whole ordeal. One component may be reused in different blocks. Let's look at an example. For instance, we want to create a service box block. This block consists of an image, a title and a text.
 
-```
+```shell
          Image
 
          Title
@@ -18,7 +18,7 @@ in one or multuple lines.
 
 First we'll create a block in the `src/blocks/custom/service-box` folder. The folder structure will look like this
 
-```
+```shell
 |____service-box
 | |____components
 | | |____service-box-editor.js
@@ -320,7 +320,6 @@ $block-service-box: (
     ),
   ),
 );
-
 
 .block-service-box {
   &__image {

@@ -4,7 +4,7 @@ In order for the library to work and register blocks dynamically, a specific fol
 
 Your custom block structure should look like this:
 
-```
+```shell
 |____block-name
 | |____components
 | | |____block-name-editor.js

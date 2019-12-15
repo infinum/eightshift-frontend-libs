@@ -4,7 +4,7 @@ In order for the library to work and register blocks dynamically, a specific fol
 
 Your folder structure should like this:
 
-```
+```shell
 theme-name
 |____ src
 | |____blocks
@@ -40,6 +40,7 @@ This folder contains a wrapper component that wraps all blocks with shared varia
 This file contains global settings for the project. It must contain `namespace` and `background` keys. Everything else is optional. You can store data here that you intend to share across toolbars, components and blocks.
 
 Example:
+
 ```json
 {
   "namespace": "eightshift-boilerplate", // Required.
