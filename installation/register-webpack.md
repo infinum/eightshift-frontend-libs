@@ -4,7 +4,7 @@ In order to use libraries webpack you'll need to have a `webpack.config.js` and 
 
 `webpack.config.js` is a main entrypoint for webpack config and looks like this
 
-```javascript
+```js
 /* eslint-disable import/no-dynamic-require, global-require */
 
 const merge = require('webpack-merge');
@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
 
 The `webpack-project.config.js` looks like this
 
-```javascript
+```js
 // All config and default setting overrides must be provided when using this object.
 
 module.exports = {

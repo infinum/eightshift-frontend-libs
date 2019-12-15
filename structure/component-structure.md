@@ -4,7 +4,7 @@ Component naming and folder structure are not as strict as in the case of the bl
 
 Basic component structure should like something this:
 
-```
+```shell
 |____component-name
 | |____components
 | | |____component-name-editor.js
