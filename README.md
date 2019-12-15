@@ -11,6 +11,10 @@
 # Eightshift Frontend Libs
 
 This library is intended to work with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) library and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by containing all frontend parts for your project.
+
+## Prerequisites
+
+It's recommended that you know how to work with core editor components and if you know some React.js, as this library is focused on working with new editor, and contains custom blocks. If you want to create your own custom blocks, that knowledge will come in handy. 
  
 ## The library contains
 
