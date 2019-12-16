@@ -6,5 +6,5 @@
  * @since 1.0.0
  */
 
-import '@babel/polyfill';
-import 'whatwg-fetch';
+import 'EighshiftBlocksBabelPolyfill';
+import 'EighshiftBlocksWhatwgFetch';

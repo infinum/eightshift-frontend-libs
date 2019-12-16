@@ -1,4 +1,4 @@
-import Swiper from 'swiper/dist/js/swiper';
+import Swiper from 'EighshiftBlocksSwiper';
 import { media } from 'EighshiftBlocksUtilityHelpersPath/media';
 
 export class CarouselSlider {

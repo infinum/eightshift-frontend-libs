@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { SelectControl, Icon } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
+import globalSettings from '../../../manifest.json';
 
 export const HeadingOptions = (props) => {
   const {
@@ -39,8 +39,8 @@ export const HeadingOptions = (props) => {
           label={__('Heading Size', 'eightshift-boilerplate')}
           value={styleSize}
           options={[
-            { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-            { label: __('Big', 'eightshift-boilerplate'), value: 'big' },
+            { label: __('Default (115px)', 'eightshift-boilerplate'), value: 'default' },
+            { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
           ]}
           onChange={onChangeStyleSize}
         />

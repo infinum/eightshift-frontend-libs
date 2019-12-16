@@ -42,11 +42,9 @@ $media_horizontal_position   = $attributes['mediaHorizontalPosition'] ?? '';
   <div class="<?php echo esc_attr( "
       {$block_class}__content
       {$block_class}__content--vertical-{$content_vertical_position}
+      {$block_class}__content--horizontal-{$content_horizontal_position}
     " ); ?>">
-    <div class="<?php echo esc_attr( "
-      {$block_class}__content-wrap
-      {$block_class}__content-wrap--horizontal-{$content_horizontal_position}
-    " ); ?>">
+    <div class="<?php echo esc_attr( "{$block_class}__content-wrap" ); ?>">
       <?php if ( ! empty( $heading ) ) { ?>
         <div class="<?php echo esc_attr( "{$block_class}__heading" ); ?>">
           <?php echo wp_kses_post( $heading ); ?>

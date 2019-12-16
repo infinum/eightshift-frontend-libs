@@ -4,7 +4,7 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
+import globalSettings from '../../../manifest.json';
 
 export const ButtonOptions = (props) => {
   const {

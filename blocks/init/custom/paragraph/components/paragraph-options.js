@@ -7,12 +7,12 @@ export const ParagraphOptions = (props) => {
   const {
     attributes: {
       styleColor,
-      styleAlign,
+      styleSize,
       removeStyle,
     },
     actions: {
       onChangeStyleColor,
-      onChangeStyleAlign,
+      onChangeStyleSize,
     },
   } = props;
 
@@ -20,8 +20,8 @@ export const ParagraphOptions = (props) => {
     <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
 
       <ParagraphOptionsComponent
-        styleAlign={styleAlign}
-        onChangeStyleAlign={onChangeStyleAlign}
+        styleSize={styleSize}
+        onChangeStyleSize={onChangeStyleSize}
         styleColor={styleColor}
         onChangeStyleColor={onChangeStyleColor}
         removeStyle={removeStyle}

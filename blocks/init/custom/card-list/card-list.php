@@ -14,13 +14,13 @@ $block_js_class = $attributes['blockJsClass'] ?? '';
 $media          = $attributes['media'] ?? [];
 $heading        = $attributes['heading'] ?? '';
 $paragraph      = $attributes['paragraph'] ?? '';
-$image_position = $attributes['imagePosition'] ?? '';
+$media_position = $attributes['mediaPosition'] ?? '';
 $button_title   = $attributes['buttonTitle'] ?? '';
 $button_url     = $attributes['buttonUrl'] ?? '';
 
 $component_class  = "
   {$block_class}
-  {$block_class}__media-position--{$image_position}
+  {$block_class}__media-position--{$media_position}
   {$block_js_class}
 ";
 
@@ -34,7 +34,7 @@ $component_class  = "
         '/components/image/image.php',
         [
           'blockClass' => $attributes['blockClass'] ?? '',
-          'id'         => $media,
+          'media'      => $media,
         ]
       );
       ?>

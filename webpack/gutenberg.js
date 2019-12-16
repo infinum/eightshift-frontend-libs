@@ -64,6 +64,14 @@ module.exports = (options) => {
         EighshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
         EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
 
+        // Libs
+        EighshiftBlocksNormalize: path.resolve(__dirname, '..', 'node_modules', 'normalize-scss'),
+        EighshiftBlocksMediaBlender: path.resolve(__dirname, '..', 'node_modules', 'media-blender'),
+        EighshiftBlocksWhatwgFetch: path.resolve(__dirname, '..', 'node_modules', 'whatwg-fetch'),
+        EighshiftBlocksSwiper: path.resolve(__dirname, '..', 'node_modules', 'swiper'),
+        EighshiftBlocksSwiperStyle: path.resolve(__dirname, '..', 'node_modules', 'swiper', 'swiper.scss'),
+        EighshiftBlocksBabelPolyfill: path.resolve(__dirname, '..', 'node_modules', '@babel/polyfill'),
+
         // Blocks Editor Styles.
         EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
         EighshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
