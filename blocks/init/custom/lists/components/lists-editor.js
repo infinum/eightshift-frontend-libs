@@ -5,22 +5,20 @@ export const ListsEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      content,
-      ordered,
+      lists,
     },
     actions: {
-      onChangeContent,
-      onChangeOrdered,
+      onChangeListsContent,
+      onChangeListsOrdered,
     },
   } = props;
 
   return (
     <ListsEditorComponent
       blockClass={blockClass}
-      content={content}
-      onChangeContent={onChangeContent}
-      ordered={ordered}
-      onChangeOrdered={onChangeOrdered}
+      lists={lists}
+      onChangeContent={onChangeListsContent}
+      onChangeOrdered={onChangeListsOrdered}
     />
   );
 };

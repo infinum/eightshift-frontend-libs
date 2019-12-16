@@ -4,21 +4,23 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
-import globalSettings from '../../../manifest.json';
+import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
   const {
-    title,
+    button: {
+      title,
+      url,
+      styleSize,
+      styleColor,
+      styleSizeWidth,
+      id,
+    },
     onChangeTitle,
-    url,
     onChangeUrl,
-    styleSize,
     onChangeStyleSize,
-    styleColor,
     onChangeStyleColor,
-    styleSizeWidth,
     onChangeStyleSizeWidth,
-    id,
     onChangeId,
   } = props;
 

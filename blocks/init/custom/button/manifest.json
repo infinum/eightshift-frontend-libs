@@ -12,26 +12,20 @@
     "link"
   ],
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "url": {
-      "type": "string"
-    },
-    "styleSize": {
-      "type": "string",
-      "default": "default"
-    },
-    "styleColor": {
-      "type": "string",
-      "default": "primary"
-    },
-    "styleSizeWidth": {
-      "type": "string",
-      "default": "default"
-    },
-    "btnId": {
-      "type": "string"
+    "button": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "url": "",
+        "styleSize": "default",
+        "styleColor": "primary",
+        "styleSizeWidth": "default",
+        "id": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
     }
   }
 }

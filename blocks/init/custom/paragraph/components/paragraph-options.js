@@ -6,13 +6,11 @@ import { ParagraphOptions as ParagraphOptionsComponent } from '../../../componen
 export const ParagraphOptions = (props) => {
   const {
     attributes: {
-      styleColor,
-      styleSize,
-      removeStyle,
+      paragraph,
     },
     actions: {
-      onChangeStyleColor,
-      onChangeStyleSize,
+      onChangeParagraphStyleColor,
+      onChangeParagraphStyleSize,
     },
   } = props;
 
@@ -20,11 +18,9 @@ export const ParagraphOptions = (props) => {
     <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
 
       <ParagraphOptionsComponent
-        styleSize={styleSize}
-        onChangeStyleSize={onChangeStyleSize}
-        styleColor={styleColor}
-        onChangeStyleColor={onChangeStyleColor}
-        removeStyle={removeStyle}
+        paragraph={paragraph}
+        onChangeStyleSize={onChangeParagraphStyleSize}
+        onChangeStyleColor={onChangeParagraphStyleColor}
       />
 
     </PanelBody>

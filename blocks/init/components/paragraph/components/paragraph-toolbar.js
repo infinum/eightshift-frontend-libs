@@ -4,9 +4,11 @@ import { Fragment } from '@wordpress/element';
 
 export const ParagraphToolbar = (props) => {
   const {
-    styleAlign,
+    paragraph: {
+      styleAlign,
+      removeStyle,
+    },
     onChangeStyleAlign,
-    removeStyle,
   } = props;
 
   return (

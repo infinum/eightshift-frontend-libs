@@ -5,15 +5,17 @@ import { Button, Dashicon, BaseControl } from '@wordpress/components';
 
 export const ImageOptions = (props) => {
   const {
+    media: {
+      url,
+      accept = 'image/*',
+      allowedTypes = ['image'],
+    },
     onChangeMedia,
-    media,
-    accept = 'image/*',
-    allowedTypes = ['image'],
   } = props;
 
   return (
     <BaseControl label={__('Image', 'eightshift-boilerplate')}>
-      {!media.url ?
+      {!url ?
         <MediaPlaceholder
           icon="format-image"
           onSelect={onChangeMedia}

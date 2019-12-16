@@ -5,9 +5,11 @@ import { RichText } from '@wordpress/editor';
 export const ListsEditor = (props) => {
   const {
     blockClass,
-    content,
+    lists: {
+      content,
+      ordered,
+    },
     onChangeContent,
-    ordered,
     onChangeOrdered,
   } = props;
 

@@ -6,14 +6,12 @@ import { LinkOptions as LinkOptionsComponent } from '../../../components/link/co
 export const LinkOptions = (props) => {
   const {
     attributes: {
-      url,
-      styleColor,
-      isAnchor,
+      link,
     },
     actions: {
-      onChangeUrl,
-      onChangeStyleColor,
-      onChangeIsAnchor,
+      onChangeLinkUrl,
+      onChangeLinkStyleColor,
+      onChangeLinkIsAnchor,
     },
   } = props;
 
@@ -21,12 +19,10 @@ export const LinkOptions = (props) => {
     <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
 
       <LinkOptionsComponent
-        url={url}
-        onChangeUrl={onChangeUrl}
-        styleColor={styleColor}
-        onChangeStyleColor={onChangeStyleColor}
-        isAnchor={isAnchor}
-        onChangeIsAnchor={onChangeIsAnchor}
+        link={link}
+        onChangeUrl={onChangeLinkUrl}
+        onChangeStyleColor={onChangeLinkStyleColor}
+        onChangeIsAnchor={onChangeLinkIsAnchor}
       />
 
     </PanelBody>

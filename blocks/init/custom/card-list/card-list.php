@@ -9,19 +9,16 @@
 namespace Eightshift_Boilerplate\Blocks;
 
 $block_class    = $attributes['blockClass'] ?? '';
-$block_js_class = $attributes['blockJsClass'] ?? '';
 
 $media          = $attributes['media'] ?? [];
 $heading        = $attributes['heading'] ?? '';
 $paragraph      = $attributes['paragraph'] ?? '';
 $media_position = $attributes['mediaPosition'] ?? '';
-$button_title   = $attributes['buttonTitle'] ?? '';
-$button_url     = $attributes['buttonUrl'] ?? '';
+$button         = $attributes['button'] ?? [];
 
 $component_class  = "
   {$block_class}
   {$block_class}__media-position--{$media_position}
-  {$block_js_class}
 ";
 
 ?>
@@ -56,21 +53,13 @@ $component_class  = "
     <?php } ?>
     
     <?php
-    if ( ! empty( $button_title ) || ! empty( $button_url ) ) {
-      $this->render_block_view(
-        '/components/button/button.php',
-        [
-          'blockClass' => $attributes['blockClass'] ?? '',
-          'title' => $button_title,
-          'url' => $button_url,
-          'styleSize' => $attributes['buttonStyleSize'] ?? '',
-          'styleSizeWidth' => $attributes['buttonStyleSizeWidth'] ?? '',
-          'styleColor' => $attributes['buttonStyleColor'] ?? '',
-          'id' => $attributes['buttonId'] ?? '',
-          'icon' => $attributes['buttonIcon'] ?? '',
-        ]
-      );
-    }
+    $this->render_block_view(
+      '/components/button/button.php',
+      [
+        'blockClass' => $attributes['blockClass'] ?? '',
+        'button'     => $button,
+      ]
+    );
     ?>
 
   </div>

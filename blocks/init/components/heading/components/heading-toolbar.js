@@ -5,9 +5,11 @@ import { HeadingLevel } from 'EighshiftComponentHeadingLevel';
 
 export const HeadingToolbar = (props) => {
   const {
-    level,
+    heading: {
+      level,
+      styleAlign,
+    },
     onChangeLevel,
-    styleAlign,
     onChangeStyleAlign,
   } = props;
 

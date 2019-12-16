@@ -5,26 +5,18 @@ export const ParagraphEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      content,
-      styleAlign,
-      styleColor,
-      styleSize,
-      removeStyle,
+      paragraph,
     },
     actions: {
-      onChangeContent,
+      onChangeParagraphContent,
     },
   } = props;
 
   return (
     <ParagraphEditorComponent
       blockClass={blockClass}
-      content={content}
-      onChangeContent={onChangeContent}
-      styleAlign={styleAlign}
-      styleColor={styleColor}
-      styleSize={styleSize}
-      removeStyle={removeStyle}
+      paragraph={paragraph}
+      onChangeContent={onChangeParagraphContent}
     />
   );
 };

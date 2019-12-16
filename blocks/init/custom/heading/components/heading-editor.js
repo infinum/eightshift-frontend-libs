@@ -5,26 +5,18 @@ export const HeadingEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      content,
-      level,
-      styleAlign,
-      styleColor,
-      styleSize,
+      heading,
     },
     actions: {
-      onChangeContent,
+      onChangeHeadingContent,
     },
   } = props;
 
   return (
     <HeadingEditorComponent
       blockClass={blockClass}
-      content={content}
-      onChangeContent={onChangeContent}
-      level={level}
-      styleAlign={styleAlign}
-      styleColor={styleColor}
-      styleSize={styleSize}
+      heading={heading}
+      onChangeContent={onChangeHeadingContent}
     />
   );
 };

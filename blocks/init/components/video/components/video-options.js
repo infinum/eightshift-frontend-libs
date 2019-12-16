@@ -5,15 +5,17 @@ import { Button, Dashicon, BaseControl } from '@wordpress/components';
 
 export const VideoOptions = (props) => {
   const {
+    media: {
+      url,
+      accept = 'video/*',
+      allowedTypes = ['video'],
+    },
     onChangeMedia,
-    media,
-    accept = 'video/*',
-    allowedTypes = ['video'],
   } = props;
 
   return (
     <BaseControl label={__('Video', 'eightshift-boilerplate')}>
-      {!media.url ?
+      {!url ?
         <MediaPlaceholder
           onSelect={onChangeMedia}
           accept={accept}

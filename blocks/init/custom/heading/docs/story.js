@@ -1,4 +1,3 @@
-
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from '../manifest.json';
 import readme from './readme.md';

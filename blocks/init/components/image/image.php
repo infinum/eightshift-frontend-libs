@@ -14,7 +14,7 @@ if ( ! isset( $media['id'] ) || empty( $media['id'] ) ) {
   return;
 }
 
-$size = $attributes['size'] ?? 'large';
+$size = $media['size'] ?? 'large';
 
 $component_class = 'image';
 $block_class     = $attributes['blockClass'] ?? '';

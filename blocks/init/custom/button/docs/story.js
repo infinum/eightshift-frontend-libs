@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from '../manifest.json';
+import manifest from './../manifest.json';
 import readme from './readme.md';
 import { Gutenberg, blockDetails, hasWrapperDecorator } from 'EighshiftBlocksStorybookHelpers';
 
@@ -18,12 +18,14 @@ export const block = () => (
         {
           attributes: {
             ...blockDetails(manifest.blockName),
-            title: 'Button Title',
-            url: 'https://fakeurl.com/',
-            styleSize: manifest.attributes.styleSize.default,
-            styleColor: manifest.attributes.styleColor.default,
-            styleSizeWidth: manifest.attributes.styleSizeWidth.default,
-            btnId: '',
+            button: {
+              title: 'Button Title',
+              url: 'https://fakeurl.com/',
+              styleSize: manifest.attributes.button.default.styleSize,
+              styleColor: manifest.attributes.button.default.styleColor,
+              styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
+              id: '',
+            }
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,

@@ -6,12 +6,11 @@ import { HeadingOptions as HeadingOptionsComponent } from '../../../components/h
 export const HeadingOptions = (props) => {
   const {
     attributes: {
-      styleColor,
-      styleSize,
+      heading,
     },
     actions: {
-      onChangeStyleSize,
-      onChangeStyleColor,
+      onChangeHeadingStyleSize,
+      onChangeHeadingStyleColor,
     },
   } = props;
 
@@ -19,10 +18,9 @@ export const HeadingOptions = (props) => {
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
 
       <HeadingOptionsComponent
-        styleColor={styleColor}
-        onChangeStyleColor={onChangeStyleColor}
-        styleSize={styleSize}
-        onChangeStyleSize={onChangeStyleSize}
+        heading={heading}
+        onChangeStyleColor={onChangeHeadingStyleColor}
+        onChangeStyleSize={onChangeHeadingStyleSize}
       />
 
     </PanelBody>

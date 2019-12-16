@@ -5,22 +5,18 @@ export const LinkEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      title,
-      styleColor,
-      isAnchor,
+      link,
     },
     actions: {
-      onChangeTitle,
+      onChangeLinkTitle,
     },
   } = props;
 
   return (
     <LinkEditorComponent
       blockClass={blockClass}
-      title={title}
-      onChangeTitle={onChangeTitle}
-      styleColor={styleColor}
-      isAnchor={isAnchor}
+      link={link}
+      onChangeTitle={onChangeLinkTitle}
     />
   );
 };

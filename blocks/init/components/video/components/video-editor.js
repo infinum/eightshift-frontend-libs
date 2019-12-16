@@ -3,7 +3,9 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 export const VideoEditor = (props) => {
   const {
     blockClass,
-    media,
+    media: {
+      url,
+    },
   } = props;
 
   const componentClass = 'video';
@@ -15,7 +17,7 @@ export const VideoEditor = (props) => {
 
   return (
     <video className={videoClass} muted>
-      <source src={media.url} type="video/mp4" />
+      <source src={url} type="video/mp4" />
     </video>
   );
 };

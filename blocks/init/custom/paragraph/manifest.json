@@ -12,24 +12,19 @@
     "content"
   ],
   "attributes": {
-    "content": {
-      "type": "string"
-    },
-    "styleAlign": {
-      "type": "string",
-      "default": "left"
-    },
-    "styleColor": {
-      "type": "string",
-      "default": "primary"
-    },
-    "styleSize": {
-      "type": "string",
-      "default": "default"
-    },
-    "removeStyle": {
-      "type": "bool",
-      "default": false
+    "paragraph": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "styleAlign": "left",
+        "styleColor": "primary",
+        "styleSize": "default",
+        "removeStyle": false
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
     }
   }
 }

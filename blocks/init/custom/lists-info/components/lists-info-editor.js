@@ -1,20 +1,19 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/editor';
-import { ListsEditor } from '../../../components/lists/components/lists-editor';
+import { ListsEditor } from './../../../components/lists/components/lists-editor';
 
 export const ListsInfoEditor = (props) => {
   const {
     attributes: {
       blockClass,
       title,
-      content,
-      ordered,
+      lists,
     },
     actions: {
       onChangeTitle,
-      onChangeContent,
-      onChangeOrdered,
+      onChangeListsContent,
+      onChangeListsOrdered,
     },
   } = props;
 
@@ -36,10 +35,9 @@ export const ListsInfoEditor = (props) => {
       <div className={contentClass}>
         <ListsEditor
           blockClass={blockClass}
-          content={content}
-          onChangeContent={onChangeContent}
-          ordered={ordered}
-          onChangeOrdered={onChangeOrdered}
+          lists={lists}
+          onChangeContent={onChangeListsContent}
+          onChangeOrdered={onChangeListsOrdered}
         />
       </div>
     </div>

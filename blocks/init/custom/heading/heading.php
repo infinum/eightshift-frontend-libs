@@ -12,10 +12,6 @@ $this->render_block_view(
   '/components/heading/heading.php',
   [
     'blockClass' => $attributes['blockClass'] ?? '',
-    'content'    => $attributes['content'] ?? '',
-    'level'      => $attributes['level'] ?? '',
-    'styleAlign' => $attributes['styleAlign'] ?? '',
-    'styleColor' => $attributes['styleColor'] ?? '',
-    'styleSize'  => $attributes['styleSize'] ?? '',
+    'heading'    => $attributes['heading'] ?? [],
   ]
 );

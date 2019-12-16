@@ -12,24 +12,19 @@
     "label"
   ],
   "attributes": {
-    "content": {
-      "type": "string"
-    },
-    "level": {
-      "type": "number",
-      "default": 2
-    },
-    "styleAlign": {
-      "type": "string",
-      "default": "left"
-    },
-    "styleColor": {
-      "type": "string",
-      "default": "primary"
-    },
-    "styleSize": {
-      "type": "string",
-      "default": "default"
+    "heading": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "level": 2,
+        "styleAlign": "left",
+        "styleColor": "primary",
+        "styleSize": "default"
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
     }
   }
 }

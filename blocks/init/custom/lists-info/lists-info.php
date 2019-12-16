@@ -32,8 +32,7 @@ $content_class = "{$block_class}__content";
       '/components/lists/lists.php',
       [
         'blockClass' => $attributes['blockClass'] ?? '',
-        'content'    => $attributes['content'] ?? '',
-        'ordered'    => $attributes['ordered'] ?? '',
+        'lists'      => $attributes['lists'] ?? [],
       ]
     );
     ?>

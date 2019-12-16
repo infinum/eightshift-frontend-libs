@@ -12,19 +12,18 @@
     "href"
   ],
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "url": {
-      "type": "string"
-    },
-    "styleColor": {
-      "type": "string",
-      "default": "primary"
-    },
-    "isAnchor": {
-      "type": "bool",
-      "default": false
+    "link": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "url": "",
+        "styleColor": "primary",
+        "isAnchor": false
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
     }
   }
 }

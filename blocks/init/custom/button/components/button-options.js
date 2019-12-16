@@ -6,20 +6,15 @@ import { ButtonOptions as ButtonOptionsComponent } from '../../../components/but
 export const ButtonOptions = (props) => {
   const {
     attributes: {
-      title,
-      url,
-      styleSize,
-      styleColor,
-      styleSizeWidth,
-      btnId,
+      button,
     },
     actions: {
-      onChangeUrl,
-      onChangeStyleSize,
-      onChangeStyleColor,
-      onChangeStyleSizeWidth,
-      onChangeBtnId,
-      onChangeTitle,
+      onChangeButtonTitle,
+      onChangeButtonUrl,
+      onChangeButtonStyleSize,
+      onChangeButtonStyleColor,
+      onChangeButtonStyleSizeWidth,
+      onChangeButtonId,
     },
   } = props;
 
@@ -27,18 +22,13 @@ export const ButtonOptions = (props) => {
     <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
 
       <ButtonOptionsComponent
-        url={url}
-        onChangeUrl={onChangeUrl}
-        styleSize={styleSize}
-        onChangeStyleSize={onChangeStyleSize}
-        styleColor={styleColor}
-        onChangeStyleColor={onChangeStyleColor}
-        styleSizeWidth={styleSizeWidth}
-        onChangeStyleSizeWidth={onChangeStyleSizeWidth}
-        btnId={btnId}
-        onChangeBtnId={onChangeBtnId}
-        title={title}
-        onChangeTitle={onChangeTitle}
+        button={button}
+        onChangeTitle={onChangeButtonTitle}
+        onChangeUrl={onChangeButtonUrl}
+        onChangeStyleSize={onChangeButtonStyleSize}
+        onChangeStyleColor={onChangeButtonStyleColor}
+        onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}
+        onChangeId={onChangeButtonId}
       />
 
     </PanelBody>

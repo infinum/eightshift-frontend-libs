@@ -3,7 +3,10 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 export const ImageEditor = (props) => {
   const {
     blockClass,
-    media,
+    media: {
+      url,
+      title,
+    },
   } = props;
 
   const componentClass = 'image';
@@ -14,6 +17,6 @@ export const ImageEditor = (props) => {
   `;
 
   return (
-    <img className={imageClass} src={media.url} alt={media.title} />
+    <img className={imageClass} src={url} alt={title} />
   );
 };

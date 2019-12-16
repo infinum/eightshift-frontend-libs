@@ -12,11 +12,7 @@ export const CardListEditor = (props) => {
       paragraph,
       mediaPosition,
       media,
-      buttonStyleSize,
-      buttonStyleSizeWidth,
-      buttonStyleColor,
-      buttonIcon,
-      buttonTitle,
+      button,
     },
     actions: {
       onChangeHeading,
@@ -54,11 +50,7 @@ export const CardListEditor = (props) => {
         </div>
         <ButtonEditor
           blockClass={blockClass}
-          styleColor={buttonStyleColor}
-          styleSize={buttonStyleSize}
-          styleSizeWidth={buttonStyleSizeWidth}
-          icon={buttonIcon}
-          title={buttonTitle}
+          button={button}
         />
       </div>
     </div>

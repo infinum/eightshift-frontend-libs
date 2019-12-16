@@ -14,24 +14,30 @@ export default {
 
 const editorProps = {
   blockClass: 'block-heading',
-  content: 'Heading Content',
+  heading: {
+    content: 'Heading Content',
+    styleAlign: manifest.attributes.heading.default.styleAlign,
+    styleColor: manifest.attributes.heading.default.styleColor,
+    styleSize: manifest.attributes.heading.default.styleSize,
+  },
   onChangeContent: () => {},
-  styleAlign: manifest.attributes.styleAlign.default,
-  styleColor: manifest.attributes.styleColor.default,
-  styleSize: manifest.attributes.styleSize.default,
 };
 
 const optionsProps = {
-  styleColor: manifest.attributes.styleColor.default,
+  heading: {
+    styleColor: manifest.attributes.heading.default.styleColor,
+    styleSize: manifest.attributes.heading.default.styleSize,
+  },
   onChangeStyleColor: () => {},
-  styleSize: manifest.attributes.styleSize.default,
   onChangeStyleSize: () => {},
 };
 
 const toolbarProps = {
-  level: manifest.attributes.level.default,
+  heading: {
+    level: manifest.attributes.heading.default.level,
+    styleAlign: manifest.attributes.heading.default.styleAlign,
+  },
   onChangeLevel: () => {},
-  styleAlign: manifest.attributes.styleAlign.default,
   onChangeStyleAlign: () => {},
 };
 
@@ -55,28 +61,36 @@ export const toolbar = () => (
 
 export const sizeBig = () => (
   <HeadingEditor
-    {...editorProps}
-    styleSize={'big'}
+    heading={{
+      ...editorProps.heading,
+      styleSize: 'big',
+    }}
   />
 );
 
 export const colorBlack = () => (
   <HeadingEditor
-    {...editorProps}
-    styleColor={'black'}
+    heading={{
+      ...editorProps.heading,
+      styleColor: 'black',
+    }}
   />
 );
 
 export const alignCenter = () => (
   <HeadingEditor
-    {...editorProps}
-    styleAlign={'center'}
+    heading={{
+      ...editorProps.heading,
+      styleAlign: 'center',
+    }}
   />
 );
 
 export const alignRight = () => (
   <HeadingEditor
-    {...editorProps}
-    styleAlign={'right'}
+    heading={{
+      ...editorProps.heading,
+      styleAlign: 'right',
+    }}
   />
 );

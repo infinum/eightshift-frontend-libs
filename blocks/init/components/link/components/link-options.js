@@ -4,15 +4,17 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
-import globalSettings from '../../../manifest.json';
+import globalSettings from './../../../manifest.json';
 
 export const LinkOptions = (props) => {
   const {
-    url,
+    link: {
+      url,
+      styleColor,
+      isAnchor,
+    },
     onChangeUrl,
-    styleColor,
     onChangeStyleColor,
-    isAnchor,
     onChangeIsAnchor,
   } = props;
 

@@ -4,21 +4,19 @@ import { HeadingToolbar as HeadingToolbarComponent } from '../../../components/h
 export const HeadingToolbar = (props) => {
   const {
     attributes: {
-      level,
-      styleAlign,
+      heading,
     },
     actions: {
-      onChangeLevel,
-      onChangeStyleAlign,
+      onChangeHeadingLevel,
+      onChangeHeadingStyleAlign,
     },
   } = props;
 
   return (
     <HeadingToolbarComponent
-      level={level}
-      onChangeLevel={onChangeLevel}
-      styleAlign={styleAlign}
-      onChangeStyleAlign={onChangeStyleAlign}
+      heading={heading}
+      onChangeLevel={onChangeHeadingLevel}
+      onChangeStyleAlign={onChangeHeadingStyleAlign}
     />
   );
 };

@@ -37,30 +37,20 @@
     "paragraph": {
       "type": "string"
     },
-    "buttonTitle": {
-      "type": "string"
-    },
-    "buttonUrl": {
-      "type": "string"
-    },
-    "buttonStyleSize": {
-      "type": "string",
-      "default": "default"
-    },
-    "buttonStyleColor": {
-      "type": "string",
-      "default": "primary"
-    },
-    "buttonStyleSizeWidth": {
-      "type": "string",
-      "default": "default"
-    },
-    "buttonId": {
-      "type": "string"
-    },
-    "buttonIcon": {
-      "type": "string",
-      "default": "none"
+    "button": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "url": "",
+        "styleSize": "default",
+        "styleColor": "primary",
+        "styleSizeWidth": "default",
+        "id": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
     }
   }
 }

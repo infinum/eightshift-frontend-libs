@@ -15,15 +15,15 @@ const editorProps = {
   blockClass: 'block-link',
   title: 'Link Title',
   onChangeTitle: () => {},
-  styleColor: manifest.attributes.styleColor.default,
+  styleColor: manifest.attributes.link.default.styleColor,
 };
 
 const optionsProps = {
   url: 'https://fakeurl.com',
   onChangeUrl: () => {},
-  styleColor: manifest.attributes.styleColor.default,
+  styleColor: manifest.attributes.link.default.styleColor,
   onChangeStyleColor: () => {},
-  isAnchor: manifest.attributes.isAnchor.default,
+  isAnchor: manifest.attributes.link.default.isAnchor,
   onChangeIsAnchor: () => {},
 };
 
@@ -41,14 +41,18 @@ export const options = () => (
 
 export const colorBlack = () => (
   <LinkEditor
-    {...editorProps}
-    styleColor={'black'}
+    link={{
+      ...editorProps.link,
+      styleColor: 'black',
+    }}
   />
 );
 
 export const isAnchor = () => (
   <LinkEditor
-    {...editorProps}
-    isAnchor={true}
+    link={{
+      ...editorProps.link,
+      isAnchor: true,
+    }}
   />
 );

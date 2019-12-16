@@ -8,14 +8,8 @@ export const CardListOptions = (props) => {
   const {
     attributes: {
       mediaPosition,
-      buttonUrl,
-      buttonStyleSize,
-      buttonStyleSizeWidth,
-      buttonStyleColor,
-      buttonId,
-      buttonIcon,
-      buttonTitle,
       media,
+      button,
     },
     actions: {
       onChangeMedia,
@@ -25,8 +19,7 @@ export const CardListOptions = (props) => {
       onChangeButtonStyleSizeWidth,
       onChangeButtonStyleColor,
       onChangeButtonId,
-      onChangeButtonIcon,
-      onChangeButtonTitle,
+      onChangeButtonTitle
     },
   } = props;
 
@@ -51,19 +44,12 @@ export const CardListOptions = (props) => {
       />
 
       <ButtonOptions
-        url={buttonUrl}
+        button={button}
         onChangeUrl={onChangeButtonUrl}
-        styleSize={buttonStyleSize}
         onChangeStyleSize={onChangeButtonStyleSize}
-        styleSizeWidth={buttonStyleSizeWidth}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}
-        styleColor={buttonStyleColor}
         onChangeStyleColor={onChangeButtonStyleColor}
-        id={buttonId}
         onChangeId={onChangeButtonId}
-        icon={buttonIcon}
-        onChangeIcon={onChangeButtonIcon}
-        title={buttonTitle}
         onChangeTitle={onChangeButtonTitle}
       />
     </PanelBody>

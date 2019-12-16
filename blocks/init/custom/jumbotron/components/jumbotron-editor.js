@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/editor';
-import { ImageEditor } from '../../../components/image/components/image-editor';
+import { ImageEditor } from './../../../components/image/components/image-editor';
 
 export const JumbotronEditor = (props) => {
   const {

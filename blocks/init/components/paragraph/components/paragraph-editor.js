@@ -5,12 +5,14 @@ import { RichText } from '@wordpress/editor';
 export const ParagraphEditor = (props) => {
   const {
     blockClass,
-    content,
+    paragraph: {
+      content,
+      styleAlign,
+      styleColor,
+      styleSize,
+      removeStyle,
+    },
     onChangeContent,
-    styleAlign,
-    styleColor,
-    styleSize,
-    removeStyle,
   } = props;
 
   const componentClass = 'paragraph';

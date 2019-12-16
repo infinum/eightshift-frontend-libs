@@ -4,19 +4,17 @@ import { ParagraphToolbar as ParagraphToolbarComponent } from '../../../componen
 export const ParagraphToolbar = (props) => {
   const {
     attributes: {
-      styleAlign,
-      removeStyle,
+      paragraph,
     },
     actions: {
-      onChangeStyleAlign,
+      onChangeParagraphStyleAlign,
     },
   } = props;
 
   return (
     <ParagraphToolbarComponent
-      styleAlign={styleAlign}
-      onChangeStyleAlign={onChangeStyleAlign}
-      removeStyle={removeStyle}
+      paragraph={paragraph}
+      onChangeStyleAlign={onChangeParagraphStyleAlign}
     />
   );
 };

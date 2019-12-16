@@ -3,13 +3,15 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { SelectControl, Icon } from '@wordpress/components';
-import globalSettings from '../../../manifest.json';
+import globalSettings from './../../../manifest.json';
 
 export const HeadingOptions = (props) => {
   const {
-    styleColor,
+    heading: {
+      styleColor,
+      styleSize,
+    },
     onChangeStyleColor,
-    styleSize,
     onChangeStyleSize,
   } = props;
 

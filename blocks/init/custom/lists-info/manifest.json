@@ -12,15 +12,19 @@
     "Info"
   ],
   "attributes": {
+    "lists": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "ordered": "ul"
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
+    },
     "title": {
       "type": "string"
-    },
-    "content": {
-      "type": "string"
-    },
-    "ordered": {
-      "type": "string",
-      "default": "ul"
     }
   }
 }

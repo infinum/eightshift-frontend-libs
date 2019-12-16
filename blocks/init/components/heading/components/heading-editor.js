@@ -5,11 +5,13 @@ import { RichText } from '@wordpress/editor';
 export const HeadingEditor = (props) => {
   const {
     blockClass,
-    content,
+    heading: {
+      content,
+      styleAlign,
+      styleColor,
+      styleSize,
+    },
     onChangeContent,
-    styleAlign,
-    styleColor,
-    styleSize,
   } = props;
 
   const componentClass = 'heading';

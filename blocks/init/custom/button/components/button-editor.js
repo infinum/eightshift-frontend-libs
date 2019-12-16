@@ -5,24 +5,14 @@ export const ButtonEditor = (props) => {
   const {
     attributes: {
       blockClass,
-      title,
-      styleSize,
-      styleColor,
-      styleSizeWidth,
-    },
-    actions: {
-      onChangeTitle,
+      button,
     },
   } = props;
 
   return (
     <ButtonEditorComponent
       blockClass={blockClass}
-      title={title}
-      onChangeTitle={onChangeTitle}
-      styleSize={styleSize}
-      styleColor={styleColor}
-      styleSizeWidth={styleSizeWidth}
+      button={button}
     />
   );
 };

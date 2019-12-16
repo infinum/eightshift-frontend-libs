@@ -14,24 +14,28 @@ export default {
 
 const editorProps = {
   blockClass: 'block-button',
-  title: 'Button Title',
-  styleSize: manifest.attributes.styleSize.default,
-  styleColor: manifest.attributes.styleColor.default,
-  styleSizeWidth: manifest.attributes.styleSizeWidth.default,
+  button: {
+    title: 'Button Title',
+    styleSize: manifest.attributes.button.default.styleSize,
+    styleColor: manifest.attributes.button.default.styleColor,
+    styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
+  }
 };
 
 const optionsProps = {
-  title: 'Button Title',
+  button: {
+    title: 'Button Title',
+    url: 'https://fakeurl.com',
+    styleSize: manifest.attributes.button.default.styleSize,
+    styleColor: manifest.attributes.button.default.styleColor,
+    styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
+    id: 'ID',
+  },
   onChangeTitle: () => {},
-  url: 'https://fakeurl.com',
   onChangeUrl: () => {},
-  styleSize: manifest.attributes.styleSize.default,
   onChangeStyleSize: () => {},
-  styleColor: manifest.attributes.styleColor.default,
   onChangeStyleColor: () => {},
-  styleSizeWidth: manifest.attributes.styleSizeWidth.default,
   onChangeStyleSizeWidth: () => {},
-  id: 'ID',
   onChangeId: () => {},
 };
 
@@ -49,21 +53,27 @@ export const options = () => (
 
 export const sizeBig = () => (
   <ButtonEditor
-    {...editorProps}
-    styleSize={'big'}
+    button={{
+      ...editorProps.button,
+      styleSize: 'big',
+    }}
   />
 );
 
 export const colorBlack = () => (
   <ButtonEditor
-    {...editorProps}
-    styleColor={'black'}
+    button={{
+      ...editorProps.button,
+      styleColor: 'black',
+    }}
   />
 );
 
 export const sizeWidthBlock = () => (
   <ButtonEditor
-    {...editorProps}
-    styleSizeWidth={'block'}
+    button={{
+      ...editorProps.button,
+      styleSizeWidth: 'block',
+    }}
   />
 );
