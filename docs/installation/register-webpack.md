@@ -1,6 +1,6 @@
 # Register Webpack
 
-In order to use libraries webpack you'll need to have a `webpack.config.js` and `webpack-project.config.js` files in the root of your theme.
+In order to use this library, you'll need to have a `webpack.config.js` and `webpack-project.config.js` files in the root of your theme.
 
 `webpack.config.js` is a main entrypoint for webpack config and looks like this
 
