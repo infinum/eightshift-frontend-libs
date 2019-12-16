@@ -1,13 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { ParagraphEditor } from './components/paragraph-editor';
-import { ParagraphOptions } from './components/paragraph-options';
-import { ParagraphToolbar } from './components/paragraph-toolbar';
+import { ButtonEditor } from './components/button-editor';
+import { ButtonOptions } from './components/button-options';
 
-export const Paragraph = (props) => {
+export const Button = (props) => {
   const {
     attributes,
   } = props;
@@ -17,18 +16,12 @@ export const Paragraph = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <ParagraphOptions
+        <ButtonOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <BlockControls>
-        <ParagraphToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <ParagraphEditor
+      <ButtonEditor
         attributes={attributes}
         actions={actions}
       />

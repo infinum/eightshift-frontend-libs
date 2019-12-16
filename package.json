@@ -86,7 +86,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-wordpress": "^0.1.0",
     "file-loader": "^5.0.2",
-    "html-loader": "^0.5.5",
     "husky": "^3.1.0",
     "import-glob-loader": "^1.1.0",
     "jquery": "^3.4.1",
@@ -116,9 +115,9 @@
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^5.2.8",
-    "@storybook/addon-notes": "^5.2.8",
     "@storybook/addon-docs": "^5.2.8",
     "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-notes": "^5.2.8",
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
     "@storybook/storybook-deployer": "^2.8.1",

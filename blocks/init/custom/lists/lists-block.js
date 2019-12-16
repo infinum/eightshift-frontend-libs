@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { ListsEditor } from './/components/lists-editor';
+import { ListsEditor } from './components/lists-editor';
 
 export const Lists = (props) => {
   const {

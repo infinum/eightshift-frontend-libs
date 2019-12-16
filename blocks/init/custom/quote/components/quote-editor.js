@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { RichText } from '@wordpress/block-editor';
+import { RichText } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 
 export const QuoteEditor = (props) => {

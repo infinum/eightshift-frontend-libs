@@ -1,13 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { HeadingEditor } from './components/heading-editor';
-import { HeadingOptions } from './components/heading-options';
-import { HeadingToolbar } from './components/heading-toolbar';
+import { LinkEditor } from './components/link-editor';
+import { LinkOptions } from './components/link-options';
 
-export const Heading = (props) => {
+export const Link = (props) => {
   const {
     attributes,
   } = props;
@@ -17,18 +16,12 @@ export const Heading = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <HeadingOptions
+        <LinkOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <BlockControls>
-        <HeadingToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <HeadingEditor
+      <LinkEditor
         attributes={attributes}
         actions={actions}
       />

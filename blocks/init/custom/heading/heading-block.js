@@ -1,13 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
+import { InspectorControls, BlockControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { ExampleEditor } from './components/example-editor';
-import { ExampleOptions } from './components/example-options';
-import { ExampleToolbar } from './components/example-toolbar';
+import { HeadingEditor } from './components/heading-editor';
+import { HeadingOptions } from './components/heading-options';
+import { HeadingToolbar } from './components/heading-toolbar';
 
-export const Example = (props) => {
+export const Heading = (props) => {
   const {
     attributes,
   } = props;
@@ -17,18 +17,18 @@ export const Example = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <ExampleOptions
+        <HeadingOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
       <BlockControls>
-        <ExampleToolbar
+        <HeadingToolbar
           attributes={attributes}
           actions={actions}
         />
       </BlockControls>
-      <ExampleEditor
+      <HeadingEditor
         attributes={attributes}
         actions={actions}
       />

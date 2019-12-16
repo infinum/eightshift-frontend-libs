@@ -56,7 +56,7 @@ wp.data.dispatch( 'core/blocks').setCategories([
  */
 registerBlocks(
   require.context('./../blocks/init/custom', true, /manifest\.json$/),
-  require.context('./../blocks/init/custom', true, /\.js$/),
+  require.context('./../blocks/init/custom', true, /\-block.js$/),
   blocksSettings,
   Wrapper,
 );

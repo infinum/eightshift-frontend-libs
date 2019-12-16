@@ -1,13 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { CardEditor } from './components/card-editor';
-import { CardOptions } from './components/card-options';
+import { CarouselOptions } from './components/carousel-options';
+import { CarouselEditor } from './components/carousel-editor';
 
-export const Card = (props) => {
-
+export const Carousel = (props) => {
   const {
     attributes,
   } = props;
@@ -17,14 +16,13 @@ export const Card = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <CardOptions
+        <CarouselOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <CardEditor
+      <CarouselEditor
         attributes={attributes}
-        actions={actions}
       />
     </Fragment>
   );

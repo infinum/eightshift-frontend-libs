@@ -1,12 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { AccordionItemEditor } from './components/accordion-item-editor';
-import { AccordionItemOptions } from './components/accordion-item-options';
+import { CardEditor } from './components/card-editor';
+import { CardOptions } from './components/card-options';
 
-export const AccordionItem = (props) => {
+export const Card = (props) => {
 
   const {
     attributes,
@@ -17,9 +17,12 @@ export const AccordionItem = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <AccordionItemOptions />
+        <CardOptions
+          attributes={attributes}
+          actions={actions}
+        />
       </InspectorControls>
-      <AccordionItemEditor
+      <CardEditor
         attributes={attributes}
         actions={actions}
       />

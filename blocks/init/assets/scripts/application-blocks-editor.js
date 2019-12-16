@@ -19,7 +19,7 @@ import blocksSettings from './../../manifest.json';
 
 registerBlocks(
   require.context('./../../custom', true, /manifest\.json$/),
-  require.context('./../../custom', true, /\.js$/),
+  require.context('./../../custom', true, /-block.js$/),
   blocksSettings,
   Wrapper,
 );

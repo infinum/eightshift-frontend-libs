@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from './../manifest.json';
 import readme from './readme.md';
-import { Gutenberg, blockDetails, hasWrapperDecorator } from '../../../../../.storybook/helpers';
+import { Gutenberg, blockDetails, hasWrapperDecorator } from 'EighshiftBlocksStorybookHelpers';
 
 export default {
   title: 'Blocks|Paragraph',

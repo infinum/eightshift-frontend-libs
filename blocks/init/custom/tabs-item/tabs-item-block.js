@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { LinkEditor } from './components/link-editor';
-import { LinkOptions } from './components/link-options';
+import { TabsItemEditor } from './components/tabs-item-editor';
+import { TabsItemOptions } from './components/tabs-item-options';
 
-export const Link = (props) => {
+export const TabsItem = (props) => {
+
   const {
     attributes,
   } = props;
@@ -16,12 +17,12 @@ export const Link = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <LinkOptions
+        <TabsItemOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <LinkEditor
+      <TabsItemEditor
         attributes={attributes}
         actions={actions}
       />

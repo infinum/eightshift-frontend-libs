@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, BlockControls } from '@wordpress/editor';
 import { Fragment } from '@wordpress/element';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { JumbotronEditor } from './components/jumbotron-editor';
-import { JumbotronOptions } from './components/jumbotron-options';
+import { ExampleEditor } from './components/example-editor';
+import { ExampleOptions } from './components/example-options';
+import { ExampleToolbar } from './components/example-toolbar';
 
-export const Jumbotron = (props) => {
+export const Example = (props) => {
   const {
     attributes,
   } = props;
@@ -16,12 +17,18 @@ export const Jumbotron = (props) => {
   return (
     <Fragment>
       <InspectorControls>
-        <JumbotronOptions
+        <ExampleOptions
           attributes={attributes}
           actions={actions}
         />
       </InspectorControls>
-      <JumbotronEditor
+      <BlockControls>
+        <ExampleToolbar
+          attributes={attributes}
+          actions={actions}
+        />
+      </BlockControls>
+      <ExampleEditor
         attributes={attributes}
         actions={actions}
       />
