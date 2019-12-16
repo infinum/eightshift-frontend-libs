@@ -38,6 +38,7 @@
   "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "7.7.4",
@@ -107,7 +108,8 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-manifest-plugin": "^2.2.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "husky": {
     "hooks": {
