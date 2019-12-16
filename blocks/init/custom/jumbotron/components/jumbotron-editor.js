@@ -35,11 +35,9 @@ export const JumbotronEditor = (props) => {
       <div className={`
         ${blockClass}__content
         ${blockClass}__content--vertical-${contentVerticalPosition}
+        ${blockClass}__content--horizontal-${contentHorizontalPosition}
       `}>
-        <div className={`
-          ${blockClass}__content-wrap
-          ${blockClass}__content-wrap--horizontal-${contentHorizontalPosition}
-        `}>
+        <div className={`${blockClass}__content-wrap`}>
           <div className={`${blockClass}__heading`}>
             <RichText
               placeholder={__('Add Heading', 'infinum')}

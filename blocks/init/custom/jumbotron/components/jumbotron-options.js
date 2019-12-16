@@ -28,6 +28,7 @@ export const JumbotronOptions = (props) => {
           value={contentHorizontalPosition}
           options={[
             { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
+            { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
             { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
           ]}
           onChange={onChangeContentHorizontalPosition}

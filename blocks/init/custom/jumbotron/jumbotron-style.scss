@@ -20,8 +20,9 @@ $block-jumbotron: (
   position: relative;
 
   &__content {
-    // @extend %container-spacing;
-    margin: 25px auto 0;
+    padding-left: $base-gutter-size;
+    padding-right: $base-gutter-size;
+    margin: 0 auto;
     max-width: map-get-strict($block-jumbotron, container-size);
 
     @include media(desktop up) {
@@ -36,6 +37,7 @@ $block-jumbotron: (
 
     display: flex;
     align-items: flex-start;
+    justify-content: flex-start;
     height: 100%;
 
     &--vertical-center {
@@ -45,30 +47,24 @@ $block-jumbotron: (
     &--vertical-bottom {
       align-items: flex-end;
     }
+
+    &--horizontal-center {
+      justify-content: center;
+    }
+
+    &--horizontal-right {
+      justify-content: flex-end;
+    }
   }
 
   &__content-wrap {
     width: 100%;
-
-    &--horizontal-left {
-      @include media(tablet up) {
-        padding-left: calc-grid-width(1);
-      }
-    }
-
-    &--horizontal-right {
-      @include media(tablet) {
-        padding-left: calc-grid-width(1);
-      }
-      @include media(desktop up) {
-        padding-left: calc-grid-width(4);
-      }
-    }
+    max-width: calc-grid-width(6);
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   &__heading {
-    // @extend %heading;
-
     @include responsive($block-jumbotron, heading);
   }
 

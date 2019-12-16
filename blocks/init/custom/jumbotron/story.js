@@ -22,7 +22,7 @@ export const block = () => (
             paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum.',
             media: {
               id: 0,
-              url: 'https://picsum.photos/400/400',
+              url: 'https://picsum.photos/1200/800',
               title: 'Carousel Image Title',
             },
           },
