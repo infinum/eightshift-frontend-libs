@@ -51,7 +51,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   };
 
   // Provide different save method for InnerBlocks.
-  if (hasInnerBlocks) {
+  if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
     save = () => createElement(InnerBlocks.Content);
   }
 
