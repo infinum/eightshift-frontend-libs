@@ -14,7 +14,11 @@
   "attributes": {
     "media": {
       "type": "object",
-      "default": {},
+      "default": {
+        "id": 0,
+        "url": "",
+        "title": ""
+      },
       "items": {
         "type": "object"
       },

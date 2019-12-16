@@ -66,9 +66,9 @@ dynamicImport(require.context('./../blocks/init/custom', true, /hooks\/index.js$
 
 // Run all storybook stories.
 configure([
-  require.context("./../blocks/init/components", true, /story.js$/),
-  require.context("./../blocks/init/custom", true, /story.js$/),
-  require.context("./../blocks/init/wrapper", true, /story.js$/),
+  require.context("./../blocks/init/components", true, /docs\/story.js$/),
+  require.context("./../blocks/init/custom", true, /docs\/story.js$/),
+  require.context("./../blocks/init/wrapper", true, /docs\/story.js$/),
   require.context("./../blocks/playground", true, /story.js$/),
-  require.context("./../components/", true, /story.js$/),
+  require.context("./../components", true, /docs\/story.js$/),
 ], module);

@@ -3,8 +3,8 @@ import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
-import { VideoEditor } from '../../components/video/components/video-editor';
-import { VideoOptions } from '../../components/video/components/video-options';
+import { VideoEditor } from './components/video-editor';
+import { VideoOptions } from './components/video-options';
 
 export const Video = (props) => {
   const {
