@@ -61,9 +61,6 @@ registerBlocks(
   Wrapper,
 );
 
-// Find all blocks hooks require hooks index.js inside it.
-dynamicImport(require.context('./../blocks/init/custom', true, /hooks\/index.js$/));
-
 // Run all storybook stories.
 configure([
   require.context("./../blocks/init/components", true, /docs\/story.js$/),

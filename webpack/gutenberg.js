@@ -62,6 +62,7 @@ module.exports = (options) => {
         EighshiftBlocksUcfirst: path.resolve(__dirname, '..', 'scripts', 'ucfirst'),
         EighshiftBlocksGetActions: path.resolve(__dirname, '..', 'scripts', 'get-actions'),
         EighshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
+        EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
 
         // Blocks Editor Styles.
         EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),

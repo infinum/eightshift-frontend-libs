@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/editor';
 import { createElement } from '@wordpress/element';
 import { withWrapper } from './with-wrapper';
 

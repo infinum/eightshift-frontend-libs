@@ -18,7 +18,7 @@ $block_class = $attributes['blockClass'] ?? '';
 
 <div class="<?php echo esc_attr( $block_class ); ?>">
 
-  <?php if ( ! empty( $media_id ) ) { ?>
+  <?php if ( ! empty( $media ) ) { ?>
     <div class="<?php echo esc_attr( "{$block_class}__media" ); ?>">
       <?php $this->render_block_view(
         '/components/image/image.php',

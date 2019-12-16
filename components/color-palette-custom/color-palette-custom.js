@@ -1,6 +1,6 @@
 import { find } from 'lodash';
 import { useState } from 'react';
-import { getColorObjectByColorValue } from '@wordpress/block-editor';
+import { getColorObjectByColorValue } from '@wordpress/editor';
 import { ColorPalette } from '@wordpress/components';
 import { createElement } from '@wordpress/element';
 

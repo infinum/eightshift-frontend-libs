@@ -5,6 +5,7 @@ import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { CardEditor } from './components/card-editor';
 import { CardOptions } from './components/card-options';
+import './hooks';
 
 export const Card = (props) => {
 

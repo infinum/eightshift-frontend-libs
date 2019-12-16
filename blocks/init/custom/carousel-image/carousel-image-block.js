@@ -5,7 +5,7 @@ import { getActions } from 'EighshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { CarouselImageOptions } from './components/carousel-image-options';
 import { CarouselImageEditor } from './components/carousel-image-editor';
-
+import './hooks';
 
 export const CarouselImage = (props) => {
   const {
