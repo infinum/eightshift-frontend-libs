@@ -14,8 +14,8 @@
   * [JavaScript GetActions](helpers/javascript-get-actions.md)
   * [PHP Render Block View](helpers/php-render-block-view.md)
 * Documentation
-  * [Storybook](https://infinum.github.io/eightshift-frontend-libs/storybook/)
-  * [Sass Docs](https://infinum.github.io/eightshift-frontend-libs/sassdoc/)
+  * [Storybook](documentation/storybook.md)
+  * [Sass Docs](documentation/sassdocs.md)
 * Tips
   * [Useful Tips](tips/tips.md)
 
