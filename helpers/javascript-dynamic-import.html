@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=90051322">
+    <script src="../assets/script.js?t=93f1a66c"></script>
+    <title>JavaScript Dynamic Import - Eightshift Frontend Libs</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Eightshift Frontend Libs</a>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Installation and setup</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-installationinstalation-and-requirements" href="../installation/instalation-and-requirements.html">Installation and Requirements</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-installationregister-webpack" href="../installation/register-webpack.html">Register Webpack</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Structure</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-structureblocks-structure" href="../structure/blocks-structure.html">Blocks Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecomponent-structure" href="../structure/component-structure.html">Component Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecustom-block-structure" href="../structure/custom-block-structure.html">Custom Block Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structuremanifest-structure" href="../structure/manifest-structure.html">Block Manifest Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecreating-block-from-components" href="../structure/creating-block-from-components.html">Creating Block From Components</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurelayout" href="../structure/layout.html">Layout</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Helpers</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title -active link-helpersjavascript-dynamic-import" href="../helpers/javascript-dynamic-import.html">JavaScript Dynamic Import</a>
+                    <ul class="headings heading-list">
+                      <li class="heading-item -depth-3"><a class="hlink link-usage" href="#usage">Usage</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-get-actions" href="../helpers/javascript-get-actions.html">JavaScript GetActions</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersphp-render-block-view" href="../helpers/php-render-block-view.html">PHP Render Block View</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Tips</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-tipstips" href="../tips/tips.html">Useful Tips</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-helpersjavascript-dynamic-import">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/infinum/eightshift-frontend-libs" data-title="infinum/eightshift-frontend-libs">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="javascript-dynamic-import-helper">JavaScript Dynamic Import Helper</h1>
+<p>In order to get (require) all the files using <code>require.context</code> method we created a helper (located <a href="https://github.com/infinum/eightshift-frontend-libs/blob/develop/scripts/dynamic-import.js">here</a>).</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Loop all paths required using require.context method.
+ *
+ * <span class="hljs-doctag">@param <span class="hljs-type">{object}</span> </span>paths All require.context patch to iterate.
+ *
+ * <span class="hljs-doctag">@since </span>1.0.0
+ */</span>
+<span class="pl-k">export</span> <span class="hljs-function"><span class="pl-k">function</span> <span class="pl-ent">dynamicImport</span>(<span class="hljs-params">paths</span>) </span>{
+  paths.keys().forEach(paths);
+}
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>Find all the blocks and require assets index.js inside it.</p>
+<pre><code class="lang-js">dynamicImport(<span class="pl-c1">require</span>.context(<span class="pl-s">&apos;./../../custom&apos;</span>, <span class="pl-c1">true</span>, /assets\/index.js$/));
+</code></pre>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../structure/layout.html"><span class="title">Layout</span></a></div>
+          <div class="right"><a href="../helpers/javascript-get-actions.html"><span class="label">Next: </span><span class="title">JavaScript GetActions</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
