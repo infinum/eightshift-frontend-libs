@@ -4,7 +4,7 @@
 import './application-styles.scss';
 
 /**
- * Load Storybook addons
+ * Load Storybook add-ons.
  */
 import { configure } from '@storybook/react';
 
