@@ -62,9 +62,9 @@
               </li>
               <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
                 <ul class="submenu">
-                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libsstorybook" href="../https://infinum.github.io/eightshift-frontend-libs/storybook/">Storybook</a>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
                   </li>
-                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libssassdoc" href="../https://infinum.github.io/eightshift-frontend-libs/sassdoc/">Sass Docs</a>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
                   </li>
                 </ul>
               </li>
@@ -113,7 +113,7 @@
 <p>Most of the keys are the same as <code>registerBlockType</code> method, but we also have some custom attributes here:</p>
 <h3 id="attributes">attributes</h3>
 <p>Attributes key is an object of attributes that you define and where you set up default values for a block. These attributes are then provided for you in the editor as props, and the PHP view part in the <code>$attributes</code> variable.
-We are using the same structure as described in <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-attributes/">Gutenberg documentation</a>.</p>
+We are using the same structure as described in <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-attributes/">Block Editor documentation</a>.</p>
 <h3 id="hasinnerblocks">hasInnerBlocks</h3>
 <p><code>default: false</code></p>
 <p>If the <code>hasInnerBlocks</code> key is set to true, blocks <code>save</code> method for inner blocks will be used. This method is used if the block has <a href="https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/inner-blocks"><code>InnerBlocks</code></a>. In PHP you now have <code>$inner_block_content</code> variable available. Here is an example what happends in the back:</p>

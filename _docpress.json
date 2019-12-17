@@ -339,15 +339,15 @@
         "sections": [
           {
             "title": "Storybook",
-            "source": "https://infinum.github.io/eightshift-frontend-libs/storybook/",
-            "url": "https://infinum.github.io/eightshift-frontend-libs/storybook/",
-            "slug": "httpsinfinumgithubioeightshift-frontend-libsstorybook"
+            "source": "documentation/documentation/storybook.md",
+            "url": "documentation/storybook.html",
+            "slug": "documentationstorybook"
           },
           {
             "title": "Sass Docs",
-            "source": "https://infinum.github.io/eightshift-frontend-libs/sassdoc/",
-            "url": "https://infinum.github.io/eightshift-frontend-libs/sassdoc/",
-            "slug": "httpsinfinumgithubioeightshift-frontend-libssassdoc"
+            "source": "documentation/documentation/sassdocs.md",
+            "url": "documentation/sassdocs.html",
+            "slug": "documentationsassdocs"
           }
         ]
       },
@@ -683,17 +683,17 @@
         }
       ]
     },
-    "https://infinum.github.io/eightshift-frontend-libs/storybook/": {
-      "source": "https://infinum.github.io/eightshift-frontend-libs/storybook/",
+    "documentation/storybook.html": {
+      "source": "documentation/documentation/storybook.md",
       "title": "Storybook - Eightshift Frontend Libs",
       "pageTitle": "Storybook",
-      "slug": "httpsinfinumgithubioeightshift-frontend-libsstorybook"
+      "slug": "documentationstorybook"
     },
-    "https://infinum.github.io/eightshift-frontend-libs/sassdoc/": {
-      "source": "https://infinum.github.io/eightshift-frontend-libs/sassdoc/",
+    "documentation/sassdocs.html": {
+      "source": "documentation/documentation/sassdocs.md",
       "title": "Sass Docs - Eightshift Frontend Libs",
       "pageTitle": "Sass Docs",
-      "slug": "httpsinfinumgithubioeightshift-frontend-libssassdoc"
+      "slug": "documentationsassdocs"
     },
     "tips/tips.html": {
       "source": "documentation/tips/tips.md",
@@ -715,8 +715,8 @@
     "documentation/helpers/javascript-dynamic-import.md": "helpers/javascript-dynamic-import.html",
     "documentation/helpers/javascript-get-actions.md": "helpers/javascript-get-actions.html",
     "documentation/helpers/php-render-block-view.md": "helpers/php-render-block-view.html",
-    "https://infinum.github.io/eightshift-frontend-libs/storybook/": "https://infinum.github.io/eightshift-frontend-libs/storybook/",
-    "https://infinum.github.io/eightshift-frontend-libs/sassdoc/": "https://infinum.github.io/eightshift-frontend-libs/sassdoc/",
+    "documentation/documentation/storybook.md": "documentation/storybook.html",
+    "documentation/documentation/sassdocs.md": "documentation/sassdocs.html",
     "documentation/tips/tips.md": "tips/tips.html"
   }
 }

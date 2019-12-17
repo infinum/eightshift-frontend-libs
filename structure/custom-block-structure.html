@@ -66,9 +66,9 @@
               </li>
               <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
                 <ul class="submenu">
-                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libsstorybook" href="../https://infinum.github.io/eightshift-frontend-libs/storybook/">Storybook</a>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
                   </li>
-                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libssassdoc" href="../https://infinum.github.io/eightshift-frontend-libs/sassdoc/">Sass Docs</a>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
                   </li>
                 </ul>
               </li>
@@ -104,7 +104,7 @@
 </code></pre>
 <p>For example, you can check <a href="https://infinum.github.io/eightshift-frontend-libs/storybook/">storybook</a>.</p>
 <h3 id="components">components</h3>
-<p>Components folder holds three files <code>block-name-options.js</code>, <code>block-name-editor.js</code> and <code>block-name-toolbars.js</code>. Each of these files represents a part of the Gutenberg block that is used in the editor. We have separated options, editor and toolbar in separate components for the sake of readability and reusing components in different projects.</p>
+<p>Components folder holds three files <code>block-name-options.js</code>, <code>block-name-editor.js</code> and <code>block-name-toolbars.js</code>. Each of these files represents a part of the Block Editor block that is used in the editor. We have separated options, editor and toolbar in separate components for the sake of readability and reusing components in different projects.</p>
 <h3 id="block-name-block.js">block-name-block.js</h3>
 <p>This file represents the <code>edit</code> callback method used in WordPress <code>registerBlockType</code> method.
 We are not using the <code>save</code> callback component because this library is used to create dynamic blocks. The <code>edit</code> method describes how your block will be rendered in the editor once the block is used.</p>
@@ -112,7 +112,7 @@ We are not using the <code>save</code> callback component because this library i
 <p>This file will pass the properties you&apos;ve set in the <code>block-name.js</code> and use the <code>render_block_view()</code> method from the <a href="https://github.com/infinum/eightshift-blocks/blob/44c168f74ba57cc596f352d34a3e4c6441fc2b8b/src/class-blocks.php#L193">eightshift libs</a>. It is used to provide frontend layout for your block.</p>
 <h3 id="block-name-editor.scss">block-name-editor.scss</h3>
 <p>Holds only the editor styling for the block. You should be using this file to override styles in the editor set by the component. In 90% of cases, you will not need to write any overrides here. But if you are using any columns layout like a grid, flex, etc., you may need to add some corrections.</p>
-<p>Corrections in the columns layout are necessary because Gutenberg editor adds its additional HTML and you can&apos;t change it.<br>
+<p>Corrections in the columns layout are necessary because Block Editor editor adds its additional HTML and you can&apos;t change it.<br>
 <em>This file is optional</em>.</p>
 <h3 id="block-name-style.scss">block-name-style.scss</h3>
 <p>Holds all the frontend and editor styling for the component. Like the above file, in most cases it can be avoided.<br>
