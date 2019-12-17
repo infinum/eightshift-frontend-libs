@@ -20,7 +20,7 @@ Your custom block structure should look like this:
 For example, you can check [storybook](https://infinum.github.io/eightshift-frontend-libs/storybook/).
 
 ### components
-Components folder holds three files `block-name-options.js`, `block-name-editor.js` and `block-name-toolbars.js`. Each of these files represents a part of the Gutenberg block that is used in the editor. We have separated options, editor and toolbar in separate components for the sake of readability and reusing components in different projects.
+Components folder holds three files `block-name-options.js`, `block-name-editor.js` and `block-name-toolbars.js`. Each of these files represents a part of the Block Editor block that is used in the editor. We have separated options, editor and toolbar in separate components for the sake of readability and reusing components in different projects.
 
 ### block-name-block.js
 This file represents the `edit` callback method used in WordPress `registerBlockType` method.
@@ -32,7 +32,7 @@ This file will pass the properties you've set in the `block-name.js` and use the
 ### block-name-editor.scss
 Holds only the editor styling for the block. You should be using this file to override styles in the editor set by the component. In 90% of cases, you will not need to write any overrides here. But if you are using any columns layout like a grid, flex, etc., you may need to add some corrections.
 
-Corrections in the columns layout are necessary because Gutenberg editor adds its additional HTML and you can't change it.  
+Corrections in the columns layout are necessary because Block Editor editor adds its additional HTML and you can't change it.  
 _This file is optional_.
 
 ### block-name-style.scss

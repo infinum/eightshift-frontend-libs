@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $lists = $attributes['lists'] ?? [];
 
-if ( empty( $lists ) ) {
+if ( ! $lists ) {
   return;
 }
 

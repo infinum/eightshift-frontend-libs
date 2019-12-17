@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $link = $attributes['link'] ?? [];
 
-if ( empty( $link ) ) {
+if ( ! $link ) {
   return;
 }
 

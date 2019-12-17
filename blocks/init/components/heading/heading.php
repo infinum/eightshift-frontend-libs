@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $heading = $attributes['heading'] ?? [];
 
-if ( empty( $heading ) ) {
+if ( ! $heading ) {
   return;
 }
 

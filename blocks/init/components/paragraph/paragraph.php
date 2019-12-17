@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $paragraph = $attributes['paragraph'] ?? [];
 
-if ( empty( $paragraph ) ) {
+if ( ! $paragraph ) {
   return;
 }
 

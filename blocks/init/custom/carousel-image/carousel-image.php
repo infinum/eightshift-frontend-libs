@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $media = $attributes['media'] ?? [];
 
-if ( empty( $media ) ) {
+if ( ! $media ) {
   return;
 }
 

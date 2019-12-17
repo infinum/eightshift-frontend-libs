@@ -19,7 +19,7 @@ theme-name
 In the case you need to override the default way styles and scripts are enqueued, you'd extend the `class-enqueue.php`, and in the case you need to override or extend the default way blocks are behaving, you'd extend the `class-blocks.php` inside your theme/plugin.
 
 ### Blocks folder
-This folder contains all the Gutenberg blocks defined in your project. Each block is located in the `custom` folder, and every component is located in the `components` folder. Gutenberg blocks are comprised of one or more smaller components.
+This folder contains all the Block Editor blocks defined in your project. Each block is located in the `custom` folder, and every component is located in the `components` folder. Block Editor blocks are comprised of one or more smaller components.
 
 ### assets
 This folder contains all the additional javascript, images, fonts and style functionality for the blocks that you only need to use on the frontend and in the editor (admin).
@@ -28,7 +28,7 @@ This folder contains all the additional javascript, images, fonts and style func
 This folder contains all the components that are shared across blocks. Components are not registered as blocks. 
 
 ### custom
-This folder contains all the custom Gutenberg blocks defined and used in your project.
+This folder contains all the custom Block Editor blocks defined and used in your project.
 
 ### layout
 This folder contains all other layout elements such as header or footer. Each layout part goes in its own folder, and they contain PHP, JS and SCSS files.

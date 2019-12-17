@@ -1,7 +1,0 @@
-$block-accordion: (
-  item-border-color: $base-primary-color,
-);
-
-.block-accordion {
-  border-bottom: 1px solid map-get($block-accordion, item-border-color);
-}

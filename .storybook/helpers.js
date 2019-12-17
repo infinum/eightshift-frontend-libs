@@ -45,11 +45,11 @@ export const hasWrapperDecorator = (manifest) => {
     manifest.hasWrapper = true;
   }
 
-  return (manifest.hasWrapper ? { decorators: [withKnobs] } : '')
+  return (manifest.hasWrapper ? { decorators: [withKnobs] } : '');
 };
 
 /**
- * Load actial Gutenberg and all the magic.
+ * Load actual Block Editor and all the magic.
  *
  * @param {object} props All Props for blocks.
  */

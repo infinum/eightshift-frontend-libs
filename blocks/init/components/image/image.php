@@ -10,7 +10,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 $media = $attributes['media'] ?? [];
 
-if ( ! isset( $media['id'] ) || empty( $media['id'] ) ) {
+if ( ! $media['id'] ) {
   return;
 }
 

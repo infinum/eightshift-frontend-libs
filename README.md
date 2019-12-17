@@ -17,7 +17,9 @@ For the full documentation please check this [link](https://infinum.github.io/ei
 
 ## Prerequisites
 
-It's recommended that you know how to work with core editor components and if you know some React.js, as this library is focused on working with new editor, and contains custom blocks. If you want to create your own custom blocks, that knowledge will come in handy.
+The knowledge of the core editor components and React.js is recommended since this library is focused on working with new editor, and contains custom blocks. If you want to create your own custom blocks, that knowledge will come in handy.
+
+The library can be used for pure webpack/js/scss functionality, but if the blocks are to be used, [Eightshift Libs](https://github.com/infinum/eightshift-libs/) must be used in tandem.
 
 ## The library contains
 
@@ -27,11 +29,11 @@ It's recommended that you know how to work with core editor components and if yo
 - Babel ruleset
 - A collection of useful frontend utility modules
 - Complete storybook of over 30+ useful blocks and components.
-- Gutenberg Block example
-- Gutenberg Blocks initial setup for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
-- Some cool custom components for Gutenberg
+- Block Editor Block example
+- Block Editor Blocks initial setup for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
+- Some cool custom components for Block Editor
 - Complete webpack build for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
-- Helpers for creating dynamimc Gutenberg blocks
+- Helpers for creating dynamimc Block Editor blocks
 
 For detailed documentation please check on [Eightshift Boilerplate Wiki](https://github.com/infinum/eightshift-boilerplate/wiki)
 

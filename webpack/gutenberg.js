@@ -1,5 +1,5 @@
 /**
- * Project Gutenberg config used for Gutenberg specific build.
+ * Project Block Editor config used for Block Editor specific build.
  *
  * @since 2.0.0
  */
@@ -8,7 +8,7 @@ const path = require('path');
 
 /**
  * Return all global objects from window object.
- * Add all Gutenberg external libs so you can use it like @wordpress/lib_name.
+ * Add all Block Editor external libs so you can use it like @wordpress/lib_name.
  *
  * @since 2.0.0
  */

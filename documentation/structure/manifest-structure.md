@@ -33,7 +33,7 @@ Most of the keys are the same as `registerBlockType` method, but we also have so
 
 ### attributes
 Attributes key is an object of attributes that you define and where you set up default values for a block. These attributes are then provided for you in the editor as props, and the PHP view part in the `$attributes` variable.
-We are using the same structure as described in [Gutenberg documentation](https://developer.wordpress.org/block-editor/developers/block-api/block-attributes/).
+We are using the same structure as described in [Block Editor documentation](https://developer.wordpress.org/block-editor/developers/block-api/block-attributes/).
 
 ### hasInnerBlocks
 `default: false`
