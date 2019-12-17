@@ -14,8 +14,8 @@
   * [JavaScript GetActions](helpers/javascript-get-actions.md)
   * [PHP Render Block View](helpers/php-render-block-view.md)
 * Documentation
-  * [Storybook](documentation/storybook.md)
-  * [Sass Docs](documentation/sassdocs.md)
+  * [Storybook ](documentation/storybook.md)
+  * [Sass Documentation](documentation/sassdocs.md)
 * Tips
   * [Useful Tips](tips/tips.md)
 
