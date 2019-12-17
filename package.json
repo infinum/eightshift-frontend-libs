@@ -30,9 +30,10 @@
     "lintJs": "npm run __eslintTheme",
     "lint": "npm run lintJs && npm run lintStyle",
     "storybook": "start-storybook",
+    "docs": "docpress b && docpress s",
     "build-storybook": "build-storybook -c .storybook -o docs/storybook",
     "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdoc",
-    "build-docs": "npm run build-sassdoc && npm run build-storybook",
+    "build-docs": "rm -rf docs && docpress b && npm run build-sassdoc && npm run build-storybook",
     "deploy-docs": "storybook-to-ghpages"
   },
   "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
@@ -117,7 +118,6 @@
     }
   },
   "devDependencies": {
-
     "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-docs": "^5.2.8",
     "@storybook/addon-knobs": "^5.2.8",
@@ -127,5 +127,10 @@
     "@storybook/storybook-deployer": "^2.8.1",
     "docpress": "0.8.0",
     "sassdoc": "^2.7.1"
+  },
+  "docpress": {
+    "github": "infinum/eightshift-frontend-libs",
+    "docs": "documentation",
+    "dist": "docs"
   }
 }

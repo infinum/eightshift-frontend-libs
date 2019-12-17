@@ -9,17 +9,13 @@ Helper is located in the [eightshift-libs](https://github.com/infinum/eightshift
 Inside your block view PHP file you'd write:
 
 ```php
-use Eightshift_Blocks\Helpers\Block_View_Helper;
-
-Block_View_Helper::render_block_view(
-  '/components/paragraph/paragraph.php',
+$this->render_block_view(
+  '/components/heading/heading.php',
   [
     'blockClass' => $attributes['blockClass'] ?? '',
-    'content'    => $attributes['content'] ?? '',
-    'styleAlign' => $attributes['styleAlign'] ?? '',
-    'styleColor' => $attributes['styleColor'] ?? '',
+    'heading'    => $attributes['heading'] ?? [],
   ]
 );
 ```
 
-In the case you are using libs with dependency injection container, this should be handled by the library. 
+In the case you are using libs with dependency injection container, this should be handled by the library and `render_block_view` method is provided in block view by default.

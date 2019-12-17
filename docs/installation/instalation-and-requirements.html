@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=90051322">
+    <script src="../assets/script.js?t=93f1a66c"></script>
+    <title>Installation and Requirements - Eightshift Frontend Libs</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Eightshift Frontend Libs</a>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Installation and setup</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title -active link-installationinstalation-and-requirements" href="../installation/instalation-and-requirements.html">Installation and Requirements</a>
+                    <ul class="headings heading-list">
+                      <li class="heading-item -depth-3"><a class="hlink link-examples" href="#examples">Examples</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-installationregister-webpack" href="../installation/register-webpack.html">Register Webpack</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Structure</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-structureblocks-structure" href="../structure/blocks-structure.html">Blocks Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecomponent-structure" href="../structure/component-structure.html">Component Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecustom-block-structure" href="../structure/custom-block-structure.html">Custom Block Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structuremanifest-structure" href="../structure/manifest-structure.html">Block Manifest Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecreating-block-from-components" href="../structure/creating-block-from-components.html">Creating Block From Components</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurelayout" href="../structure/layout.html">Layout</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Helpers</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-dynamic-import" href="../helpers/javascript-dynamic-import.html">JavaScript Dynamic Import</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-get-actions" href="../helpers/javascript-get-actions.html">JavaScript GetActions</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersphp-render-block-view" href="../helpers/php-render-block-view.html">PHP Render Block View</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libsstorybook" href="../https://infinum.github.io/eightshift-frontend-libs/storybook/">Storybook</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-httpsinfinumgithubioeightshift-frontend-libssassdoc" href="../https://infinum.github.io/eightshift-frontend-libs/sassdoc/">Sass Docs</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Tips</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-tipstips" href="../tips/tips.html">Useful Tips</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-installationinstalation-and-requirements">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/infinum/eightshift-frontend-libs" data-title="infinum/eightshift-frontend-libs">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="installation-and-requirements">Installation and Requirements</h1>
+<p>Implementing of this library inside your existing project is not that trivial.</p>
+<p>That is why we created a boilerplate repository that incorporates this library. To see the detailed implementation and how it works in action check the <a href="https://github.com/infinum/eightshift-boilerplate">Eightshift Boilerplate repo</a>.</p>
+<p><strong>In order to incorporate this lib inside your project you need to have:</strong></p>
+<ol>
+<li><a href="https://nodejs.org/en/">Node.js</a> and <a href="https://getcomposer.org/">Composer</a> installed on your system</li>
+</ol>
+<p><strong>Implementation process:</strong></p>
+<ol>
+<li>
+<p>Install the frontend library and eightshift libs</p>
+<pre><code class="lang-shell">npm install @eightshift/frontend-libs
+composer require infinum/eightshift-libs
+</code></pre>
+</li>
+<li>
+<p>If you have an existing Webpack config, look at how the config is set up in <a href="https://github.com/infinum/eightshift-boilerplate/blob/develop/webpack.config.js">Eightshift Boilerplate repo</a> and merge any changes you have.</p>
+</li>
+</ol>
+<p>The <code>eightshift-libs</code> composer package contains a lot of useful abstract classes, interfaces and dependency injection container implementation that you can use in your project.</p>
+<h3 id="examples">Examples</h3>
+<p>Inside your theme&apos;s <code>functions.php</code> you&apos;d register a main class like this</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+<span class="pl-c">/**
+ * Theme Name: Your Theme
+ * Description: Your theme description
+ * Author: You
+ * Author URI: 
+ * Version: 1.0.0
+ * Text Domain: your-theme-namespace
+ *
+ * <span class="hljs-doctag">@package</span> Your_Theme_Namespace
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+
+<span class="pl-k">declare</span>( strict_types=<span class="hljs-number">1</span> );
+
+<span class="pl-k">namespace</span> <span class="pl-ent">Your_Theme_Namespace</span>;
+
+<span class="pl-c">/**
+ * If this file is called directly, abort.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+<span class="pl-k">if</span> ( ! \defined( <span class="pl-s">&apos;WPINC&apos;</span> ) ) {
+  <span class="pl-k">die</span>;
+}
+
+<span class="pl-c">/**
+ * Include the autoloader so we can dynamically include the rest of the classes.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+<span class="pl-k">require</span> <span class="pl-k">__DIR__</span> . <span class="pl-s">&apos;/vendor/autoload.php&apos;</span>;
+
+<span class="pl-c">/**
+ * Begins execution of the theme.
+ *
+ * Since everything within the theme is registered via hooks,
+ * then kicking off the theme from this point in the file does
+ * not affect the page life cycle.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+( <span class="pl-k">new</span> Core\Main() )-&gt;register();
+</code></pre>
+<p>It&apos;s assumed that you&apos;ll have a <code>src</code> folder that contains a <code>class-main.php</code> file with a list of services that will be registered and handled by the dependency injection container (DIC) from the <code>eightshift-libs</code></p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+<span class="pl-c">/**
+ * The file that defines the main start class.
+ *
+ * A class definition that includes attributes and functions used across both the
+ * theme-facing side of the site and the admin area.
+ *
+ * <span class="hljs-doctag">@since</span>   1.0.0
+ * <span class="hljs-doctag">@package</span> Your_Theme_Namespace\Core
+ */</span>
+
+<span class="pl-k">declare</span>( strict_types=<span class="hljs-number">1</span> );
+
+<span class="pl-k">namespace</span> <span class="pl-ent">Your_Theme_Namespace</span>\<span class="pl-ent">Core</span>;
+
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">Core</span>\<span class="pl-ent">Main</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_Core</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">Manifest</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_Manifest</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">Enqueue</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_Enqueue</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">I18n</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_I18n</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">Login</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_Login</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Eightshift_Libs</span>\<span class="pl-ent">Blocks</span> <span class="pl-ent">as</span> <span class="pl-ent">Lib_Blocks</span>;
+
+<span class="pl-c">/**
+ * The main start class.
+ *
+ * This is used to define admin-specific hooks, and
+ * theme-facing site hooks.
+ *
+ * Also maintains the unique identifier of this theme as well as the current
+ * version of the theme.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+<span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">Main</span> <span class="pl-k">extends</span> <span class="pl-ent">Lib_Core</span> </span>{
+
+  <span class="pl-c">/**
+   * Get the list of services to register.
+   *
+   * A list of classes which contain hooks.
+   *
+   * <span class="hljs-doctag">@return</span> array&lt;string&gt; Array of fully qualified class names.
+   *
+   * <span class="hljs-doctag">@since</span> 1.0.0
+   */</span>
+  <span class="pl-k">protected</span> <span class="hljs-function"><span class="pl-k">function</span> <span class="pl-ent">get_service_classes</span><span class="hljs-params">()</span> : <span class="pl-ent">array</span> </span>{
+    <span class="pl-k">return</span> [
+
+      <span class="pl-c">// Config.</span>
+      Config::class,
+
+      <span class="pl-c">// Manifest.</span>
+      Lib_Manifest\Manifest::class =&gt; [ Config::class ],
+
+      <span class="pl-c">// I18n.</span>
+      Lib_I18n\I18n::class =&gt; [ Config::class ],
+
+      <span class="pl-c">// Enqueue.</span>
+      Lib_Enqueue\Enqueue_Admin::class =&gt; [ Config::class, Lib_Manifest\Manifest::class ],
+      Lib_Enqueue\Enqueue_Theme::class =&gt; [ Config::class, Lib_Manifest\Manifest::class ],
+      Lib_Enqueue\Enqueue_Blocks::class =&gt; [ Config::class, Lib_Manifest\Manifest::class ],
+
+      <span class="pl-c">// Login.</span>
+      Lib_Login\Login::class,
+		
+      <span class="pl-c">// Blocks.</span>
+      Lib_Blocks\Blocks::class =&gt; [ Config::class ],
+    ];
+  }
+}
+</code></pre>
+<p>For more details, check the <a href="https://github.com/infinum/eightshift-boilerplate">Eightshift Boilerplate repo</a></p>
+<p>In the case you are using the library in a plugin, in the <code>plugin-name.php</code> file you&apos;d have something similar to</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+<span class="pl-c">/**
+ * Plugin main file starting point
+ *
+ * <span class="hljs-doctag">@since</span>             1.0.0
+ * <span class="hljs-doctag">@package</span>           Your_Plugin_Name
+ *
+ * <span class="hljs-doctag">@wordpress</span>-plugin
+ * Plugin Name:       Your Cool Plugin
+ * Plugin URI:
+ * Description:       Plugin description
+ * Version:           1.0.0
+ * Author:            You
+ * Author URI:
+ * License:           MIT
+ * License URI:       https://opensource.org/licenses/MIT
+ * Text Domain:       your-plugin
+ * Requires PHP:      7.2
+ */</span>
+
+<span class="pl-k">declare</span>( strict_types=<span class="hljs-number">1</span> );
+
+<span class="pl-k">namespace</span> <span class="pl-ent">Your_Plugin_Name</span>;
+
+<span class="pl-k">use</span> <span class="pl-ent">Your_Plugin_Name</span>\<span class="pl-ent">Core</span>\<span class="pl-ent">Plugin_Factory</span>;
+<span class="pl-k">use</span> <span class="pl-ent">Your_Plugin_Name</span>\<span class="pl-ent">Exception</span>\<span class="pl-ent">Plugin_Activation_Failure</span>;
+
+<span class="pl-c">/*
+ * Make sure this file is only run from within WordPress.
+ */</span>
+<span class="pl-k">if</span> ( ! defined( <span class="pl-s">&apos;ABSPATH&apos;</span> ) ) {
+  $error_message = esc_html__( <span class="pl-s">&apos;You cannot access this file outside WordPress.&apos;</span>, <span class="pl-s">&apos;your-plugin&apos;</span> );
+  <span class="pl-k">throw</span> Plugin_Activation_Failure::activation_message( $error_message );
+}
+
+<span class="pl-c">/**
+ * Include the autoloader so we can dynamically include the rest of the classes.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+<span class="pl-k">require_once</span> <span class="pl-k">__DIR__</span> . <span class="pl-s">&apos;/vendor/autoload.php&apos;</span>;
+
+<span class="pl-c">/**
+ * Plugin URL const
+ */</span>
+define( <span class="pl-s">&apos;PLUGIN_BASE_URL&apos;</span>, plugin_dir_url( <span class="pl-k">__FILE__</span> ) );
+
+<span class="pl-c">/**
+ * The code that runs during plugin activation.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+register_activation_hook(
+  <span class="pl-k">__FILE__</span>,
+  <span class="hljs-function"><span class="pl-k">function</span><span class="hljs-params">()</span> </span>{
+    Plugin_Factory::create()-&gt;activate();
+  }
+);
+
+<span class="pl-c">/**
+ * The code that runs during plugin deactivation.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+register_deactivation_hook(
+  <span class="pl-k">__FILE__</span>,
+  <span class="hljs-function"><span class="pl-k">function</span><span class="hljs-params">()</span> </span>{
+    Plugin_Factory::create()-&gt;deactivate();
+  }
+);
+
+<span class="pl-c">/**
+ * Begins plugin execution.
+ *
+ * <span class="hljs-doctag">@since</span> 1.0.0
+ */</span>
+Plugin_Factory::create()-&gt;register();
+</code></pre>
+<p>The <code>Plugin_Factory</code> class will create an instance of your plugin that will handle activation, deactivation hooks as well as registering the classes with the DIC in the same fashion as in the themes.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../index.html"><span class="title">Eightshift Frontend Libs</span></a></div>
+          <div class="right"><a href="../installation/register-webpack.html"><span class="label">Next: </span><span class="title">Register Webpack</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

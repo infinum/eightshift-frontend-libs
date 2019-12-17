@@ -12,8 +12,8 @@
 
 This library is intended to work with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) library and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by containing all frontend parts for your project.
 
-## Storybook
-You can check all our blocks in storybook on this [link](https://infinum.github.io/eightshift-frontend-libs).
+## Documentaiton
+For the full documentation please check this [link](https://infinum.github.io/eightshift-frontend-libs).
 
 ## Prerequisites
 
@@ -26,6 +26,7 @@ It's recommended that you know how to work with core editor components and if yo
 - StyleLint ruleset
 - Babel ruleset
 - A collection of useful frontend utility modules
+- Complete storybook of over 30+ useful blocks and components.
 - Gutenberg Block example
 - Gutenberg Blocks initial setup for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
 - Some cool custom components for Gutenberg
@@ -37,7 +38,7 @@ For detailed documentation please check on [Eightshift Boilerplate Wiki](https:/
 
 ## Who do I talk to?
 
-If you have any questions or problems, please [open an issue](https://github.com/infinum/eightshift-boilerplate/issues) on github and we will do our best to give you a timely answer.
+If you have any questions or problems, please [open an issue](https://github.com/infinum/eightshift-frontend-libs/issues) on github and we will do our best to give you a timely answer.
 
 Eightshift WordPress Boilerplate is maintained and sponsored by
 [Eightshift](https://eightshift.com) and [Infinum](https://infinum.co).

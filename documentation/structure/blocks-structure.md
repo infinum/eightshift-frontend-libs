@@ -44,15 +44,21 @@ Example:
 ```json
 {
   "namespace": "eightshift-boilerplate", // Required.
-  "background": "#52368C", // Required.
-  "maxCols": 12 // Optional.
+  "background": "#900000", // Required.
+  "maxCols": 12, // Optional.
+  "colors": { // Optional.
+    "primary": {
+      "name": "primary",
+      "color": "#C3151B"
+    },
+    "black": {
+      "name": "black",
+      "color": "#000000"
+    },
+    "white": {
+      "name": "white",
+      "color": "#FFFFFF"
+    }
+  }
 }
 ```
-
-### class-blocks.php
-This class is used to extend Eightshift Blocks abstract `class-blocks.php` class and default functionality.  
-_This file is optional_. 
-
-### class-enqueue.php
-This class is used to extend Eightshift Enqueue abstract `class-enqueue.php` default functionality.   
-_This file is optional_.

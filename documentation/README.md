@@ -13,6 +13,9 @@
   * [JavaScript Dynamic Import](helpers/javascript-dynamic-import.md)
   * [JavaScript GetActions](helpers/javascript-get-actions.md)
   * [PHP Render Block View](helpers/php-render-block-view.md)
+* Documentation
+  * [Storybook](https://infinum.github.io/eightshift-frontend-libs/storybook/)
+  * [Sass Docs](https://infinum.github.io/eightshift-frontend-libs/sassdoc/)
 * Tips
   * [Useful Tips](tips/tips.md)
 
