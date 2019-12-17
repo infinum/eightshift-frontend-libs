@@ -1,0 +1,15 @@
+{
+  "github": "infinum/eightshift-frontend-libs",
+  "docs": "docs",
+  "lang": "en",
+  "markdown": {
+    "typographer": true,
+    "plugins": {
+      "decorate": {}
+    }
+  },
+  "plugins": {
+    "docpress-core": {},
+    "docpress-base": {}
+  }
+}
