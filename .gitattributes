@@ -9,6 +9,7 @@
 /package export-ignore
 /setup export-ignore
 /.github export-ignore
+/docs export-ignore
 
 #
 # Auto detect text files and perform LF normalization

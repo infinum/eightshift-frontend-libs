@@ -10,33 +10,38 @@
 
 # Eightshift Frontend Libs
 
-This lib is intended to work in correlation with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by hosting all frontend parts for your project.
+This library is intended to work with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) library and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by containing all frontend parts for your project.
 
 ## Storybook
 You can check all our blocks in storybook on this [link](https://infinum.github.io/eightshift-frontend-libs).
- 
-## It contains:
-- All node modules required for the webpack build.
-- Eslinter ruleset.
-- Stylelinter ruleset.
-- Babel ruleset.
-- A collection of useful frontend utility modules.
-- Gutenberg Block example.
-- Gutenberg Blocks initial setup for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate).
-- Some cool custom components for Gutenberg.
-- Complete webpack build for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate).
-- Helpers for dynamically create Gutenberg blocks.
+
+## Prerequisites
+
+It's recommended that you know how to work with core editor components and if you know some React.js, as this library is focused on working with new editor, and contains custom blocks. If you want to create your own custom blocks, that knowledge will come in handy.
+
+## The library contains
+
+- All js packages required for the webpack build
+- ESLint ruleset
+- StyleLint ruleset
+- Babel ruleset
+- A collection of useful frontend utility modules
+- Gutenberg Block example
+- Gutenberg Blocks initial setup for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
+- Some cool custom components for Gutenberg
+- Complete webpack build for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate)
+- Helpers for creating dynamimc Gutenberg blocks
 
 For detailed documentation please check on [Eightshift Boilerplate Wiki](https://github.com/infinum/eightshift-boilerplate/wiki)
 
 
-## :mailbox: Who do I talk to?
+## Who do I talk to?
 
 If you have any questions or problems, please [open an issue](https://github.com/infinum/eightshift-boilerplate/issues) on github and we will do our best to give you a timely answer.
 
 Eightshift WordPress Boilerplate is maintained and sponsored by
 [Eightshift](https://eightshift.com) and [Infinum](https://infinum.co).
 
-## :scroll: License
+## License
 
 Infinum WordPress Boilerplate is Copyright ©2019 Infinum. It is free software, and may be redistributed under the terms specified in the LICENSE file.
