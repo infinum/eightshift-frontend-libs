@@ -19,8 +19,10 @@ export const block = () => (
           attributes: {
             ...blockDetails(manifest.blockName),
             title: 'Intro Title',
-            content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
-            ordered: manifest.attributes.ordered.default,
+            lists: {
+              content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
+              ordered: manifest.attributes.lists.default.ordered,
+            },
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,

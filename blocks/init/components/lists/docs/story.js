@@ -12,8 +12,10 @@ export default {
 
 const editorProps = {
   blockClass: 'block-lists',
-  content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
-  ordered: manifest.attributes.ordered.default,
+  lists: {
+    content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
+    ordered: manifest.attributes.lists.default.ordered,
+  },
 };
 
 export const editor = () => (
@@ -24,7 +26,10 @@ export const editor = () => (
 
 export const ordered = () => (
   <ListsEditor
+    lists={{
+      ...editorProps.lists,
+      ordered: 'ol',
+    }}
     {...editorProps}
-    ordered={'ol'}
   />
 );

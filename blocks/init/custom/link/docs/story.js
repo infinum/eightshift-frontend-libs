@@ -18,10 +18,12 @@ export const block = () => (
         {
           attributes: {
             ...blockDetails(manifest.blockName),
-            title: 'Link Title',
-            url: '',
-            styleColor: manifest.attributes.styleColor.default,
-            isAnchor: manifest.attributes.isAnchor.default,
+            link: {
+              title: 'Link Title',
+              url: 'https://fakeurl.com',
+              styleColor: manifest.attributes.link.default.styleColor,
+              isAnchor: manifest.attributes.link.default.isAnchor,
+            },
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,

@@ -14,26 +14,34 @@ export default {
 
 const editorProps = {
   blockClass: 'block-paragraph',
-  content: 'Paragraph Content',
+  paragraph: {
+    content: 'Paragraph Content',
+    styleAlign: manifest.attributes.paragraph.default.styleAlign,
+    styleColor: manifest.attributes.paragraph.default.styleColor,
+    styleSize: manifest.attributes.paragraph.default.styleSize,
+    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+  },
   onChangeContent: () => {},
-  styleAlign: manifest.attributes.styleAlign.default,
-  styleColor: manifest.attributes.styleColor.default,
-  styleSize: manifest.attributes.styleSize.default,
-  removeStyle: manifest.attributes.removeStyle.default,
 };
 
 const optionsProps = {
-  styleColor: manifest.attributes.styleColor.default,
+  paragraph: {
+    content: 'Paragraph Content',
+    styleColor: manifest.attributes.paragraph.default.styleColor,
+    styleSize: manifest.attributes.paragraph.default.styleSize,
+    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+  },
   onChangeStyleColor: () => {},
-  styleSize: manifest.attributes.styleSize.default,
   onChangeStyleSize: () => {},
-  removeStyle: manifest.attributes.removeStyle.default,
 };
 
 const toolbarProps = {
-  styleAlign: manifest.attributes.styleAlign.default,
+  paragraph: {
+    content: 'Paragraph Content',
+    styleAlign: manifest.attributes.paragraph.default.styleAlign,
+    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+  },
   onChangeStyleAlign: () => {},
-  removeStyle: manifest.attributes.removeStyle.default,
 };
 
 export const component = () => (
@@ -56,35 +64,45 @@ export const toolbar = () => (
 
 export const alignCenter = () => (
   <ParagraphEditor
-    {...editorProps}
-    styleAlign={'center'}
+    paragraph={{
+      ...editorProps.paragraph,
+      styleAlign: 'center',
+    }}
   />
 );
 
 export const alignRight = () => (
   <ParagraphEditor
-    {...editorProps}
-    styleAlign={'right'}
+    paragraph={{
+      ...editorProps.paragraph,
+      styleAlign: 'right',
+    }}
   />
 );
 
 export const colorBlack = () => (
   <ParagraphEditor
-    {...editorProps}
-    styleColor={'black'}
+    paragraph={{
+      ...editorProps.paragraph,
+      styleColor: 'black',
+    }}
   />
 );
 
 export const sizeSmall = () => (
   <ParagraphEditor
-    {...editorProps}
-    styleSize={'small'}
+    paragraph={{
+      ...editorProps.paragraph,
+      styleSize: 'small',
+    }}
   />
 );
 
 export const removeStyle = () => (
   <ParagraphEditor
-    {...editorProps}
-    removeStyle={true}
+    paragraph={{
+      ...editorProps.paragraph,
+      removeStyle: true,
+    }}
   />
 );

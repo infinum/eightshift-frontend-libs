@@ -13,17 +13,22 @@ export default {
 
 const editorProps = {
   blockClass: 'block-link',
-  title: 'Link Title',
+  link: {
+    title: 'Link Title',
+    styleColor: manifest.attributes.link.default.styleColor,
+  },
   onChangeTitle: () => {},
-  styleColor: manifest.attributes.link.default.styleColor,
 };
 
 const optionsProps = {
-  url: 'https://fakeurl.com',
+  link: {
+    title: 'Link Title',
+    url: 'https://fakeurl.com',
+    styleColor: manifest.attributes.link.default.styleColor,
+    isAnchor: manifest.attributes.link.default.isAnchor,
+  },
   onChangeUrl: () => {},
-  styleColor: manifest.attributes.link.default.styleColor,
   onChangeStyleColor: () => {},
-  isAnchor: manifest.attributes.link.default.isAnchor,
   onChangeIsAnchor: () => {},
 };
 

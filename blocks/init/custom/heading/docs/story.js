@@ -18,11 +18,12 @@ export const block = () => (
         {
           attributes: {
             ...blockDetails(manifest.blockName),
-            content: 'Heading Content',
-            level: manifest.attributes.level.default,
-            styleAlign: manifest.attributes.styleAlign.default,
-            styleColor: manifest.attributes.styleColor.default,
-            styleSize: manifest.attributes.styleSize.default,
+            heading: {
+              content: 'Heading Content',
+              styleAlign: manifest.attributes.heading.default.styleAlign,
+              styleColor: manifest.attributes.heading.default.styleColor,
+              styleSize: manifest.attributes.heading.default.styleSize,
+            },
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,
