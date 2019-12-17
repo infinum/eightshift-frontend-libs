@@ -46,10 +46,10 @@
 // ---------------------------------------------------------------------
 // Playground
 
-@import "~@wordpress/base-styles/colors";
-@import "~@wordpress/base-styles/variables";
-@import "~@wordpress/base-styles/mixins";
-@import "~@wordpress/base-styles/breakpoints";
+@import '~@wordpress/base-styles/colors';
+@import '~@wordpress/base-styles/variables';
+@import '~@wordpress/base-styles/mixins';
+@import '~@wordpress/base-styles/breakpoints';
 
 .playground {
   @include break-small() {
@@ -72,6 +72,7 @@
 
   // Temporarily disable the sidebar on mobile
   display: none;
+
   @include break-small() {
     display: block;
   }

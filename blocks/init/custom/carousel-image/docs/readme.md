@@ -15,4 +15,5 @@ Block used to provide carousel image functionality to your project. This block i
 5. Implement project specific styles.
 
 ## Note
+
 This block uses dependencies from the components folder. If you are going to use this block in your project, be sure to copy/paste all the dependencies as well.

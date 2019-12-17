@@ -7,6 +7,7 @@ Wrapper is a parent component that you can use inside your block. When you regis
 1. Child component
 
 ## Implementation
+
 1. Copy/Paste block folder in your project.
 2. Rename `eightshift-boilerplate` namespace to your project's namespace.
 3. Add or remove features you are going to use.

@@ -49,54 +49,6 @@ export const hasWrapperDecorator = (manifest) => {
 };
 
 /**
- * Load actual Block Editor and all the magic.
- *
- * @param {object} props All Props for blocks.
- */
-export const Gutenberg = (props) => {
-  const {
-    props: {
-      blocks,
-      useWrapper = false,
-    },
-  } = props;
-
-  const blocksProps = blocks.map((block) => {
-    return {
-      ...block,
-      attributes: {...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper))},
-      clientId: id(),
-      isValid: true,
-    }
-  });
-
-  return (
-    <div className="playground">
-      <SlotFillProvider>
-        <DropZoneProvider>
-          <BlockEditorProvider
-            value={ blocksProps }
-          >
-            <div className="playground__sidebar">
-              <BlockInspector />
-            </div>
-            <div className="editor-styles-wrapper">
-              <BlockEditorKeyboardShortcuts />
-              <WritingFlow>
-                <ObserveTyping>
-                  <BlockList />
-                </ObserveTyping>
-              </WritingFlow>
-            </div>
-            <Popover.Slot />
-          </BlockEditorProvider>
-        </DropZoneProvider>
-      </SlotFillProvider>
-    </div>
-  );
-};
-
-/**
  * Define generic block ID.
  */
 export const id = () => (Math.random() * Math.floor(10)).toString(36).substring(2);
@@ -147,3 +99,51 @@ export const blockInnerBlocks = (blocks, count) => {
 
   return output;
 }
+
+/**
+ * Load actual Block Editor and all the magic.
+ *
+ * @param {object} props All Props for blocks.
+ */
+export const Gutenberg = (props) => {
+  const {
+    props: {
+      blocks,
+      useWrapper = false,
+    },
+  } = props;
+
+  const blocksProps = blocks.map((block) => {
+    return {
+      ...block,
+      attributes: {...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper))},
+      clientId: id(),
+      isValid: true,
+    }
+  });
+
+  return (
+    <div className="playground">
+      <SlotFillProvider>
+        <DropZoneProvider>
+          <BlockEditorProvider
+            value={ blocksProps }
+          >
+            <div className="playground__sidebar">
+              <BlockInspector />
+            </div>
+            <div className="editor-styles-wrapper">
+              <BlockEditorKeyboardShortcuts />
+              <WritingFlow>
+                <ObserveTyping>
+                  <BlockList />
+                </ObserveTyping>
+              </WritingFlow>
+            </div>
+            <Popover.Slot />
+          </BlockEditorProvider>
+        </DropZoneProvider>
+      </SlotFillProvider>
+    </div>
+  );
+};

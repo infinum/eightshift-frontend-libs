@@ -7,6 +7,7 @@ A component used in multiple blocks with all or partial features.
 None
 
 ## Implementation
+
 1. Copy/Paste component folder in your project.
 2. Rename `eightshift-boilerplate` namespace to your project's namespace.
 3. Add or remove features you are going to use.
