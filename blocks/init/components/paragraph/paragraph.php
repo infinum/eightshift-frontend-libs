@@ -8,15 +8,21 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$content      = $attributes['content'] ?? '';
-$remove_style = $attributes['removeStyle'] ?? false;
+$paragraph = $attributes['paragraph'] ?? [];
+
+if ( ! $paragraph ) {
+  return;
+}
+
+$content      = $paragraph['content'] ?? '';
+$remove_style = $paragraph['removeStyle'] ?? false;
 
 if ( ! $remove_style ) {
   $component_class = 'paragraph';
   $block_class     = $attributes['blockClass'] ?? '';
-  $style_align     = isset( $attributes['styleAlign'] ) ? "{$component_class}__align--{$attributes['styleAlign']}" : '';
-  $style_color     = isset( $attributes['styleColor'] ) ? "{$component_class}__color--{$attributes['styleColor']}" : '';
-  $style_size      = isset( $attributes['styleSize'] ) ? "{$component_class}__size--{$attributes['styleSize']}" : '';
+  $style_align     = isset( $paragraph['styleAlign'] ) ? "{$component_class}__align--{$paragraph['styleAlign']}" : '';
+  $style_color     = isset( $paragraph['styleColor'] ) ? "{$component_class}__color--{$paragraph['styleColor']}" : '';
+  $style_size      = isset( $paragraph['styleSize'] ) ? "{$component_class}__size--{$paragraph['styleSize']}" : '';
 
   $paragraph_class = "
     {$component_class}

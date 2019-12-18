@@ -1,64 +1,65 @@
-// Responsive-modifiers
+/// Mixin that creates output modifiers for specific map key, with provided media breakpoints.
+/// Selectors must be valid html selectors.
+/// It operates the same way as "responsive" mixin, except it will output modifier classes.
+/// Also supports multiple nested maps as a key.
+///
+/// @param {string} $map - Map to search for.
+/// @param {string} $key - Map key to find.
+///
+/// Map:
+/// $test: (
+///   sizes: (
+///     mobile: (
+///       default: (
+///         font-size: 64px,
+///         line-height: 0.92,
+///       ),
+///       big: (
+///         font-size: 42px,
+///         line-height: 1.12,
+///       ),
+///     ),
+///     tablet: (
+///       default: (
+///         font-size: 115px,
+///         line-height: 0.92,
+///       ),
+///       big: (
+///         font-size: 90px,
+///         line-height: 1,
+///       ),
+///     ),
+///   )
+/// );
+///
+/// @example
+/// .test {
+///   @include responsive-modifiers($test, sizes);
+/// }
+///
+/// @output
+/// ```scss
+/// .test--default {
+///   font-size: 64px;
+///   line-height: 0.92;
+/// }
+/// .test--big {
+///   font-size: 42px;
+///   line-height: 1.12;
+/// }
+/// \@media (min-width: 768px) {
+///   .test--default {
+///     font-size: 115px;
+///     line-height: 0.92;
+///   }
+///   .test--big {
+///     font-size: 90px;
+///     line-height: 1;
+///   }
+/// }
+/// ```
 
-// Mixin that creates output modifiers for specific map key, with provided media breakpoints.
-// Selectors must be valid html selectors.
-// It operates the same way as "responsive" mixin, except it will output modifier classes.
-// Also supports multiple nested maps as a key.
-
-// $map - Map to search for.
-// $key - Map key to find.
-
-// Map:
-// $test: (
-//   sizes: (
-//     mobile: (
-//       default: (
-//         font-size: 64px,
-//         line-height: 0.92,
-//       ),
-//       big: (
-//         font-size: 42px,
-//         line-height: 1.12,
-//       ),
-//     ),
-//     tablet: (
-//       default: (
-//         font-size: 115px,
-//         line-height: 0.92,
-//       ),
-//       big: (
-//         font-size: 90px,
-//         line-height: 1,
-//       ),
-//     ),
-//   )
-// );
-
-// Markup:
-// .test {
-//   @include responsive-modifiers($test, sizes);
-// }
-
-// Output:
-// .test--default {
-//   font-size: 64px;
-//   line-height: 0.92;
-// }
-// .test--big {
-//   font-size: 42px;
-//   line-height: 1.12;
-// }
-
-// @media (min-width: 768px) {
-//   .test--default {
-//     font-size: 115px;
-//     line-height: 0.92;
-//   }
-//   .test--big {
-//     font-size: 90px;
-//     line-height: 1;
-//   }
-// }
+// stylelint-disable max-nesting-depth
 
 @mixin responsive-modifiers($map, $keys...) {
   $i: 0;
@@ -91,7 +92,7 @@
                 }
               }
             }
-  
+
             @else {
               @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
             }

@@ -1,7 +1,16 @@
 const del = require('del');
 const path = require('path');
-const { existsSync, writeFileSync, readFile, mkdirSync } = require('fs');
-const { fullPath, findReplace, readdirAsync } = require('../files.js');
+const {
+  existsSync,
+  writeFileSync,
+  readFile,
+  mkdirSync,
+} = require('fs');
+const {
+  fullPath,
+  findReplace,
+  readdirAsync,
+} = require('../files.js');
 const { promisify } = require('util');
 
 const testFiles = {
@@ -11,12 +20,12 @@ const testFiles = {
   file2: path.join(`${fullPath}/jestTestDir/test2.json`),
   ignoredDir: path.join(`${fullPath}/jestTestDir/node_modules`),
   ignoredDirFile: path.join(`${fullPath}/jestTestDir/node_modules/test.json`),
-}
+};
 
 beforeEach(() => {
   const testData = {
     name: 'This is a test string.',
-  }
+  };
 
   if (!existsSync(testFiles.dir)) {
     mkdirSync(testFiles.dir);
@@ -35,7 +44,7 @@ beforeEach(() => {
   writeFileSync(testFiles.ignoredDirFile, JSON.stringify(testData));
 });
 
-afterEach(async () => {
+afterEach(async() => {
   await del(testFiles.dir);
   await del(testFiles.dirEmpty);
 });
@@ -44,10 +53,7 @@ afterEach(async () => {
 // Test readdirAsync
 test('Make sure we got the correct number of files back', async() => {
   const files = await readdirAsync(testFiles.dir);
-  expect(
-    files.length === 3 &&
-    files.some((file) => file === 'test.json')
-  ).toBe(true)
+  expect(files.length === 3 && files.some((file) => file === 'test.json')).toBe(true);
 });
 
 test('Make sure we receive nothing from empty directory', async() => {

@@ -1,0 +1,30 @@
+{
+  "blockName": "lists-info",
+  "title": "Lists Info",
+  "description" : "Lists Info block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "editor-ul"
+  },
+  "keywords": [
+    "List",
+    "Lists",
+    "Info"
+  ],
+  "attributes": {
+    "lists": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "ordered": "ul"
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

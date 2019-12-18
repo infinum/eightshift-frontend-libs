@@ -16,8 +16,9 @@ const defaultValues = {
   url: 'dev.boilerplate.com',
 };
 
-const searchReplace = async (data, projectPath) => {
-  // Name
+const searchReplace = async(data, projectPath) => {
+
+  // Name.
   if (data.projectName) {
     await replace({
       files: path.join(projectPath, 'functions.php'),

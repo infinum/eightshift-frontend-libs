@@ -1,22 +1,25 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, Icon } from '@wordpress/components';
+import { SelectControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ParagraphOptions = (props) => {
   const {
-    styleColor,
+    paragraph: {
+      styleColor,
+      styleSize,
+      removeStyle,
+    },
     onChangeStyleColor,
-    styleSize,
     onChangeStyleSize,
-    removeStyle,
   } = props;
 
   return (
     <Fragment>
       {removeStyle !== true &&
-        <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
+        <Fragment>
 
           {onChangeStyleColor &&
             <ColorPaletteCustom
@@ -28,8 +31,8 @@ export const ParagraphOptions = (props) => {
               }
               help={__('Change Paragraph color.', 'eightshift-boilerplate')}
               colors={[
-                globalSettings.colors.black,
                 globalSettings.colors.primary,
+                globalSettings.colors.black,
               ]}
               value={styleColor}
               onChange={onChangeStyleColor}
@@ -41,14 +44,14 @@ export const ParagraphOptions = (props) => {
               label={__('Paragraph Font Size', 'eightshift-boilerplate')}
               value={styleSize}
               options={[
-                { label: __('Default (22px)', 'infinum'), value: 'default' },
-                { label: __('Small (20px)', 'infinum'), value: 'small' },
+                { label: __('Default (22px)', 'eightshift-boilerplate'), value: 'default' },
+                { label: __('Small (20px)', 'eightshift-boilerplate'), value: 'small' },
               ]}
               onChange={onChangeStyleSize}
             />
           }
 
-        </PanelBody>
+        </Fragment>
       }
     </Fragment>
   );

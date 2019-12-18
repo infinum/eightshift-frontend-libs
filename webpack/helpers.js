@@ -22,23 +22,23 @@ const path = require('path');
 function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, outputPathConfig) {
 
   if (typeof projectDir === 'undefined') {
-    throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname';
+    throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'; // eslint-disable-line no-throw-literal
   }
 
   if (typeof proxyUrl === 'undefined') {
-    throw 'proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com';
+    throw 'proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com'; // eslint-disable-line no-throw-literal
   }
 
   if (typeof projectPathConfig === 'undefined') {
-    throw 'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate';
+    throw 'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate'; // eslint-disable-line no-throw-literal
   }
 
   if (typeof assetsPathConfig === 'undefined') {
-    throw 'assetsPath parameter is empty, please provide. This key represents: Assets path after projectPath location. For example: src/blocks/assets';
+    throw 'assetsPath parameter is empty, please provide. This key represents: Assets path after projectPath location. For example: src/blocks/assets'; // eslint-disable-line no-throw-literal
   }
 
   if (typeof outputPathConfig === 'undefined') {
-    throw 'outputPath parameter is empty, please provide. This key represents: Public output path after projectPath location. For example: public';
+    throw 'outputPath parameter is empty, please provide. This key represents: Public output path after projectPath location. For example: public'; // eslint-disable-line no-throw-literal
   }
 
   // Clear all slashes from user config.

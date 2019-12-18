@@ -43,7 +43,7 @@ const promptFor = ({
 /**
  * Performs an install step with the ora spinner.
  */
-const installStep = async({describe, thisHappens, isFatal = false}) => {
+const installStep = async({ describe, thisHappens, isFatal = false }) => {
   const spinner = ora(describe).start();
 
   if (!thisHappens) {
@@ -96,15 +96,14 @@ const promptData = async(whatToPromptFor) => {
 /**
  * Empties the console.
  */
-const clearConsole = async () => {
-  process.stdout.write('\033c'); // eslint-disable-line
-}
+const clearConsole = async() => {
+  process.stdout.write('\x1Bc'); // eslint-disable-line
+};
 
 module.exports = {
   promptFor,
   installStep,
   installStepFinal,
   promptData,
-  clearConsole
-}
-
+  clearConsole,
+};

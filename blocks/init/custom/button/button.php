@@ -11,11 +11,7 @@ namespace Eightshift_Boilerplate\Blocks;
 $this->render_block_view(
   '/components/button/button.php',
   [
-    'blockClass'     => $attributes['blockClass'] ?? '',
-    'title'          => $attributes['title'] ?? '',
-    'url'            => $attributes['url'] ?? '',
-    'styleColor'     => $attributes['styleColor'] ?? '',
-    'styleSize'      => $attributes['styleSize'] ?? '',
-    'styleSizeWidth' => $attributes['styleSizeWidth'] ?? '',
+    'blockClass' => $attributes['blockClass'] ?? '',
+    'button'     => $attributes['button'] ?? [],
   ]
 );

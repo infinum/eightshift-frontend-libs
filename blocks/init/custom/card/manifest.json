@@ -1,0 +1,38 @@
+{
+  "blockName": "card",
+  "title": "Card",
+  "description" : "Card with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "buddicons-buddypress-logo"
+  },
+  "keywords": [
+    "Service",
+    "Box",
+    "Card"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/cards-grid"
+  ],
+  "attributes": {
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": "",
+        "title": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
+    },
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "string"
+    }
+  }
+}

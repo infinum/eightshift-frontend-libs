@@ -8,16 +8,20 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$content = $attributes['content'] ?? '';
-$ordered = $attributes['ordered'] ?? 'ul';
+$lists = $attributes['lists'] ?? [];
+
+if ( ! $lists ) {
+  return;
+}
+
+$content = $lists['content'] ?? '';
+$ordered = $lists['ordered'] ?? 'ul';
 
 $component_class = 'lists';
 $block_class     = $attributes['blockClass'] ?? '';
-$style_type      = isset( $attributes['styleType'] ) ? "{$component_class}__type--{$attributes['styleType']}" : '';
 
 $lists_class = "
   {$component_class}
-  {$style_type}
   {$block_class}__lists
 ";
 

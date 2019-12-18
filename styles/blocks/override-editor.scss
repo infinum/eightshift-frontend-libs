@@ -47,10 +47,11 @@ $editor: (
     color: map-get-strict($editor, appender-text-color);
     outline: none;
     padding: 5px;
+    background-color: inherit;
   }
 }
 
-// Sending my love to the guy that wrote WP Gutenberg css (sarcasam) :S
+// Sending my love to the guy that wrote WP Block Editor css (sarcasam) :S
 // Set min-height to block if it is empty
 // Change add more block in section button style.
 .editor-block-list__layout {
@@ -70,6 +71,9 @@ $editor: (
       border-radius: 50%;
       background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
 
+      button {
+        border-radius: 50%;
+      }
     }
 
     // On hover, select wrapper state.
@@ -171,3 +175,11 @@ $editor: (
   }
 }
 
+.screen-reader-text {
+  display: none;
+}
+
+// Hack for storybook.
+.components-range-control__slider {
+  min-width: 1px;
+}

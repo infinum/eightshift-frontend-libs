@@ -3,7 +3,7 @@ import { registerBlock } from './register-block';
 import { getBlockEditComponent } from './get-block-edit-component';
 
 /**
- * Register all Gutenberg blocks using WP registerBlockType method.
+ * Register all Block Editor blocks using WP registerBlockType method.
  * Due to restrictions in dynamic import using dynamic names all block are registred using require.context.
  *
  * @param {function} blocksManifests Must provide require.context for all blocks manifest.json-s.

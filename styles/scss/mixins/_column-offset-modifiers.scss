@@ -1,39 +1,36 @@
-// column-offset-modifiers
-
-// Mixin that takes calc-column-width mixin and creates modifier classes from it. Used by flex grid.
-
-// $cols - Total number of columns. Default: $base-col-number.
-// $wrapper - Wrap output item with additional markup.
-// $selector - HTML valid selector. Define offset type used. Default: margin-left.
-
-// Markup:
-// .test {
-//   @include column-offset-modifiers;
-// }
-
-// Output:
-// .test--1 {
-//   margin-left: 100%;
-// }
-// .test--2 {
-//   margin-left: 50%;
-// }
-// ...
-
-// Markup With $wrapper:
-// .test {
-//   @include column-offset-modifiers($wrapper: '.item');
-// }
-
-// Output With $wrapper:
-// .test--1 .item {
-//   margin-left: 100%;
-// }
-// .test--2 .item {
-//   margin-left: 50%;
-// }
-// ...
-
+/// Mixin that takes calc-column-width mixin and creates modifier classes from it. Used by flex grid.
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @param {string} $cols [$base-col-number] - Total number of columns.
+/// @param {string} $wrapper - Wrap output item with additional markup.
+/// @param {string} $selector [margin-left] - HTML valid selector. Define offset type used. Default: .
+/// @example
+/// .test {
+///   @include column-offset-modifiers;
+/// }
+/// @example
+/// .test {
+///   @include column-offset-modifiers($wrapper: '.item');
+/// }
+/// @output
+/// ```scss
+/// .test--1 {
+///   margin-left: 100%;
+/// }
+///
+/// .test--2 {
+///   margin-left: 50%;
+/// }
+/// ```
+/// ```scss
+/// .test--1 .item {
+///   margin-left: 100%;
+/// }
+/// .test--2 .item {
+///   margin-left: 50%;
+/// }
+/// ```
 @mixin column-offset-modifiers($cols: $base-col-number, $wrapper: false, $selector: 'margin-left') {
   @for $i from 1 through $cols {
     &--#{$i} {

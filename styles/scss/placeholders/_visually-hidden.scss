@@ -1,0 +1,34 @@
+/// Hide information visually but keep it available to screen reader and other assistive technology.
+/// [Documentation](https://www.w3.org/WAI/tutorials/forms/labels/#hiding-the-label-element)
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   border: 0;
+///   clip: rect(0 0 0 0);
+///   height: 1px;
+///   margin: -1px;
+///   overflow: hidden;
+///   padding: 0;
+///   position: absolute;
+///   width: 1px;
+/// }
+/// ```
+///
+/// @access public
+/// @author Ivan Grginov
+/// @example
+/// .test {
+///   @extend %visually-hidden;
+/// }
+
+%visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

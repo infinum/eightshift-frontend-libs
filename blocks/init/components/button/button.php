@@ -8,15 +8,25 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$url   = $attributes['url'] ?? '';
-$title = $attributes['title'] ?? '';
-$id    = $attributes['id'] ?? '';
+$button = $attributes['button'] ?? [];
+
+if ( empty( $button ) ) {
+  return;
+}
+
+$url   = $button['url'] ?? '';
+$title = $button['title'] ?? '';
+$id    = $button['id'] ?? '';
+
+if ( empty( $url ) || empty( $title ) ) {
+  return;
+}
 
 $component_class  = 'btn';
 $block_class      = $attributes['blockClass'] ?? '';
-$style_color      = isset( $attributes['styleColor'] ) ? "{$component_class}__color--{$attributes['styleColor']}" : '';
-$style_size       = isset( $attributes['styleSize'] ) ? "{$component_class}__size--{$attributes['styleSize']}" : '';
-$style_size_width = isset( $attributes['styleSizeWidth'] ) ? "{$component_class}__size-width--{$attributes['styleSizeWidth']}" : '';
+$style_color      = isset( $button['styleColor'] ) ? "{$component_class}__color--{$button['styleColor']}" : '';
+$style_size       = isset( $button['styleSize'] ) ? "{$component_class}__size--{$button['styleSize']}" : '';
+$style_size_width = isset( $button['styleSizeWidth'] ) ? "{$component_class}__size-width--{$button['styleSizeWidth']}" : '';
 
 $button_class = "
   {$component_class}

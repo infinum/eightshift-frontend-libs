@@ -1,7 +1,11 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
+
 export const VideoEditor = (props) => {
   const {
     blockClass,
-    url,
+    media: {
+      url,
+    },
   } = props;
 
   const componentClass = 'video';

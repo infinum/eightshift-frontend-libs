@@ -6,7 +6,31 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
-_No documentation available about unreleased changes as of yet._
+## [3.0.0] - 2019-12-18
+
+### Added
+- Installed `sassdoc`
+- Added `npm run build-sassdoc` script which builds `sassdoc` (generated file: `sassdoc/index.html`)
+- Added `.gitattributes`
+- Storybook
+- Merged sassdocs from @IvanGrginovInf
+- Merged docpress from @dingo-d
+- Added readme for every block
+- Added multiple block/components
+- Added Gutenberg playground
+- Added multiple new helpers
+- Merged multipleProps and media props from @tihomirselak
+- Blocks refactor
+
+## [2.0.7] - 2019-11-28
+
+### Added
+- Changelog for `2.0.6`
+
+## [2.0.6] - 2019-11-28
+
+### Added
+- `%visually-hidden` placeholder - hide an element visually without preventing element rendering (like `display: none;` does) and without hiding from accessibility tools - [reference](https://www.w3.org/WAI/tutorials/forms/labels/#hiding-the-label-element)
 
 ## [2.0.5] - 2019-11-13
 
@@ -62,6 +86,9 @@ _No documentation available about unreleased changes as of yet._
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.7...v3.0.0
+[2.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.6...v2.0.7
+[2.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.2...v2.0.3

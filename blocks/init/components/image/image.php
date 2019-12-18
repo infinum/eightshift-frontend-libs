@@ -8,7 +8,13 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$size = $attributes['size'] ?? 'large';
+$media = $attributes['media'] ?? [];
+
+if ( ! $media['id'] ) {
+  return;
+}
+
+$size = $media['size'] ?? 'large';
 
 $component_class = 'image';
 $block_class     = $attributes['blockClass'] ?? '';
@@ -19,7 +25,7 @@ $image_class = "
 ";
 
 $media = \wp_get_attachment_image(
-  $attributes['id'],
+  $media['id'],
   $size,
   '',
   [ 'class' => $image_class ]

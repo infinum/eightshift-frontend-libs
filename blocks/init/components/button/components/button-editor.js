@@ -1,12 +1,15 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 
 export const ButtonEditor = (props) => {
   const {
     blockClass,
-    title,
-    styleSize,
-    styleColor,
-    styleSizeWidth,
+    button: {
+      title,
+      styleSize,
+      styleColor,
+      styleSizeWidth,
+    },
   } = props;
 
   const componentClass = 'btn';

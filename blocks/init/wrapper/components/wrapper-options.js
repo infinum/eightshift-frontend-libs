@@ -1,9 +1,9 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon } from '@wordpress/components';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
-
 import globalSettings from '../../manifest.json';
 
 export const WrapperOptions = (props) => {
@@ -89,27 +89,27 @@ export const WrapperOptions = (props) => {
       <PanelBody title={__('Block Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
         <TabPanel
           className="custom-button-tabs"
-          activeClass="button button-primary"
+          activeClass="components-button is-button is-primary"
           tabs={[
             {
               name: 'large',
               title: <Dashicon icon="desktop" />,
-              className: 'tab-large button button-secondary custom-button-with-icon',
+              className: 'tab-large components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'desktop',
               title: <Dashicon icon="laptop" />,
-              className: 'tab-desktop button button-secondary custom-button-with-icon',
+              className: 'tab-desktop components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'tablet',
               title: <Dashicon icon="tablet" />,
-              className: 'tab-tablet button button-secondary custom-button-with-icon',
+              className: 'tab-tablet components-button is-button is-default custom-button-with-icon',
             },
             {
               name: 'mobile',
               title: <Dashicon icon="smartphone" />,
-              className: 'tab-mobile button button-secondary custom-button-with-icon',
+              className: 'tab-mobile components-button is-button is-default custom-button-with-icon',
             },
           ]
           }
@@ -215,10 +215,10 @@ export const WrapperOptions = (props) => {
             </Fragment>
           )}
         </TabPanel>
-        
-      </PanelBody>
 
-      <PanelBody title={__('Block Colors', 'eightshift-boilerplate')} initialOpen={false}>
+        <hr />
+        <strong className="notice-title">{__('Block Colors', 'eightshift-boilerplate')}</strong>
+        <br /><br />
         {onChangeStyleBackgroundColor &&
           <ColorPaletteCustom
             label={
@@ -237,9 +237,10 @@ export const WrapperOptions = (props) => {
             onChange={onChangeStyleBackgroundColor}
           />
         }
-      </PanelBody>
 
-      <PanelBody title={__('Block General', 'eightshift-boilerplate')} initialOpen={false}>
+        <hr />
+        <strong className="notice-title">{__('Block General', 'eightshift-boilerplate')}</strong>
+        <br /><br />
         {onChangeId &&
           <TextControl
             label={
@@ -268,7 +269,6 @@ export const WrapperOptions = (props) => {
           />
         }
       </PanelBody>
-
     </Fragment>
   );
 };
