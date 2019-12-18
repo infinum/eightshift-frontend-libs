@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=90051322">
+    <script src="../assets/script.js?t=93f1a66c"></script>
+    <title>Custom Block Structure - Eightshift Frontend Libs</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Eightshift Frontend Libs</a>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Installation and setup</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-installationinstalation-and-requirements" href="../installation/instalation-and-requirements.html">Installation and Requirements</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-installationregister-webpack" href="../installation/register-webpack.html">Register Webpack</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Structure</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-structureblocks-structure" href="../structure/blocks-structure.html">Blocks Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecomponent-structure" href="../structure/component-structure.html">Component Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title -active link-structurecustom-block-structure" href="../structure/custom-block-structure.html">Custom Block Structure</a>
+                    <ul class="headings heading-list">
+                      <li class="heading-item -depth-3"><a class="hlink link-components" href="#components">components</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-block-name-block.js" href="#block-name-block.js">block-name-block.js</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-block-name.php" href="#block-name.php">block-name.php</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-block-name-editor.scss" href="#block-name-editor.scss">block-name-editor.scss</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-block-name-style.scss" href="#block-name-style.scss">block-name-style.scss</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-manifest.json" href="#manifest.json">manifest.json</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structuremanifest-structure" href="../structure/manifest-structure.html">Block Manifest Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecreating-block-from-components" href="../structure/creating-block-from-components.html">Creating Block From Components</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurelayout" href="../structure/layout.html">Layout</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Helpers</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-dynamic-import" href="../helpers/javascript-dynamic-import.html">JavaScript Dynamic Import</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-get-actions" href="../helpers/javascript-get-actions.html">JavaScript GetActions</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersphp-render-block-view" href="../helpers/php-render-block-view.html">PHP Render Block View</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Tips</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-tipstips" href="../tips/tips.html">Useful Tips</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-structurecustom-block-structure">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/infinum/eightshift-frontend-libs" data-title="infinum/eightshift-frontend-libs">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="custom-block-structure">Custom Block Structure</h1>
+<p>In order for the library to work and register blocks dynamically, a specific folder structure and naming must be followed. Individual blocks are placed in the <code>custom</code> folder.</p>
+<p>Your custom block structure should look like this:</p>
+<pre><code class="lang-shell">|____block-name
+| |____components
+| | |____block-name-editor.js
+| | |____block-name-options.js
+| | |____block-name-toolbar.js
+| |____block-name-block.js
+| |____block-name.php
+| |____block-name-editor.scss
+| |____block-name-style.scss
+| |____manifest.json
+</code></pre>
+<p>For example, you can check <a href="https://infinum.github.io/eightshift-frontend-libs/storybook/">storybook</a>.</p>
+<h3 id="components">components</h3>
+<p>Components folder holds three files <code>block-name-options.js</code>, <code>block-name-editor.js</code> and <code>block-name-toolbars.js</code>. Each of these files represents a part of the Block Editor block that is used in the editor. We have separated options, editor and toolbar in separate components for the sake of readability and reusing components in different projects.</p>
+<h3 id="block-name-block.js">block-name-block.js</h3>
+<p>This file represents the <code>edit</code> callback method used in WordPress <code>registerBlockType</code> method.
+We are not using the <code>save</code> callback component because this library is used to create dynamic blocks. The <code>edit</code> method describes how your block will be rendered in the editor once the block is used.</p>
+<h3 id="block-name.php">block-name.php</h3>
+<p>This file will pass the properties you&apos;ve set in the <code>block-name.js</code> and use the <code>render_block_view()</code> method from the <a href="https://github.com/infinum/eightshift-blocks/blob/44c168f74ba57cc596f352d34a3e4c6441fc2b8b/src/class-blocks.php#L193">eightshift libs</a>. It is used to provide frontend layout for your block.</p>
+<h3 id="block-name-editor.scss">block-name-editor.scss</h3>
+<p>Holds only the editor styling for the block. You should be using this file to override styles in the editor set by the component. In 90% of cases, you will not need to write any overrides here. But if you are using any columns layout like a grid, flex, etc., you may need to add some corrections.</p>
+<p>Corrections in the columns layout are necessary because Block Editor editor adds its additional HTML and you can&apos;t change it.<br>
+<em>This file is optional</em>.</p>
+<h3 id="block-name-style.scss">block-name-style.scss</h3>
+<p>Holds all the frontend and editor styling for the component. Like the above file, in most cases it can be avoided.<br>
+<em>This file is optional</em>.</p>
+<h3 id="manifest.json">manifest.json</h3>
+<p>This file contains all the configuration required for a block to work. It&apos;s used in WordPress <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-registration/"><code>registerBlockType</code></a> method to register a block.</p>
+<p>It looks like this:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">&quot;blockName&quot;</span>: <span class="pl-s">&quot;button&quot;</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="pl-s">&quot;Button&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span> : <span class="pl-s">&quot;Button block with custom settings.&quot;</span>,
+  <span class="hljs-attr">&quot;category&quot;</span>: <span class="pl-s">&quot;eightshift&quot;</span>,
+  <span class="hljs-attr">&quot;icon&quot;</span>: {
+    <span class="hljs-attr">&quot;src&quot;</span>: <span class="pl-s">&quot;editor-removeformatting&quot;</span>
+  },
+  <span class="hljs-attr">&quot;keywords&quot;</span>: [
+    <span class="pl-s">&quot;button&quot;</span>,
+    <span class="pl-s">&quot;btn&quot;</span>,
+    <span class="pl-s">&quot;link&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;attributes&quot;</span>: {
+    <span class="hljs-attr">&quot;title&quot;</span>: {
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="pl-s">&quot;string&quot;</span>
+    }
+  }
+}
+</code></pre>
+<p>For manifest.json details please check this <a href="manifest-structure.html">link</a>.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../structure/component-structure.html"><span class="title">Component Structure</span></a></div>
+          <div class="right"><a href="../structure/manifest-structure.html"><span class="label">Next: </span><span class="title">Block Manifest Structure</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

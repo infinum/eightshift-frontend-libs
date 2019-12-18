@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=90051322">
+    <script src="../assets/script.js?t=93f1a66c"></script>
+    <title>Layout - Eightshift Frontend Libs</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Eightshift Frontend Libs</a>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Installation and setup</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-installationinstalation-and-requirements" href="../installation/instalation-and-requirements.html">Installation and Requirements</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-installationregister-webpack" href="../installation/register-webpack.html">Register Webpack</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Structure</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-structureblocks-structure" href="../structure/blocks-structure.html">Blocks Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecomponent-structure" href="../structure/component-structure.html">Component Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecustom-block-structure" href="../structure/custom-block-structure.html">Custom Block Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structuremanifest-structure" href="../structure/manifest-structure.html">Block Manifest Structure</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-structurecreating-block-from-components" href="../structure/creating-block-from-components.html">Creating Block From Components</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title -active link-structurelayout" href="../structure/layout.html">Layout</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Helpers</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-dynamic-import" href="../helpers/javascript-dynamic-import.html">JavaScript Dynamic Import</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-get-actions" href="../helpers/javascript-get-actions.html">JavaScript GetActions</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersphp-render-block-view" href="../helpers/php-render-block-view.html">PHP Render Block View</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Documentation</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
+                  </li>
+                  <li class="menu-item -level-2"><a class="link title  link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item -level-1 -parent"><span class="title">Tips</span>
+                <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-tipstips" href="../tips/tips.html">Useful Tips</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-structurelayout">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/infinum/eightshift-frontend-libs" data-title="infinum/eightshift-frontend-libs">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="layout">Layout</h1>
+<p>We&apos;ve opted to move the theme layout (header, footer, widgets etc.) to the <code>blocks</code> folder, since this is going to be all block based <a href="https://make.wordpress.org/core/2019/09/05/defining-content-block-areas/">in the near future</a>.</p>
+<p>Inside the <code>blocks</code> folder you&apos;ll create a <code>layout</code> folder, and in it you&apos;ll place the <code>header</code> folder for instance. Inside you can then have separate <code>search</code> part, and separate <code>navigation</code> part. Those parts can then be fetched using the <code>get_template_part</code> inside your <code>header.php</code> partial.</p>
+<p>This partial will then be fetched inside your <code>header.php</code> template (in the theme root) like</p>
+<pre><code class="lang-php">&lt;?php
+/**
+ * Main header file
+ *
+ * @since 1.0.0
+ */
+
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html &lt;?php language_attributes(); ?&gt;&gt;
+&lt;head&gt;
+  &lt;?php
+    get_template_part( &apos;src/blocks/layout/header/components/head/head&apos; );
+    wp_head();
+  ?&gt;
+&lt;/head&gt;
+&lt;body &lt;?php body_class(); ?&gt;&gt;
+
+&lt;?php get_template_part( &apos;src/blocks/layout/header/header&apos; ); ?&gt;
+
+&lt;main class=&quot;main-content&quot;&gt;
+</code></pre>
+<p>Similar would be done with the footer and other layout blocks.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../structure/creating-block-from-components.html"><span class="title">Creating Block From Components</span></a></div>
+          <div class="right"><a href="../helpers/javascript-dynamic-import.html"><span class="label">Next: </span><span class="title">JavaScript Dynamic Import</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
