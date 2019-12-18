@@ -1,5 +1,5 @@
-# Storybook
+# SassDocs
 
-We have created a full storybook that hosts all our blocks with fully functional Block Editor, where you can try how blocks work and behave.
+For years we have collected a list of useful SASS mixins, functions, and all other stuff that you can use in a project. You don't need to have all this in your project; check out our documentation and import it from Eightshift Frontend Libs.
 
-Visit [Storybook ](https://infinum.github.io/eightshift-frontend-libs/storybook/) for more details.
+Visit [SassDocs](https://infinum.github.io/eightshift-frontend-libs/sassdocs/) for more details.

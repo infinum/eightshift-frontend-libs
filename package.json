@@ -32,7 +32,7 @@
     "storybook": "start-storybook",
     "docs": "docpress b && docpress s",
     "build-storybook": "build-storybook -c .storybook -o docs/storybook",
-    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdoc",
+    "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs",
     "build-docs": "rm -rf docs && docpress b && npm run build-sassdoc && npm run build-storybook",
     "deploy-docs": "git subtree push --prefix docs origin gh-pages"
   },
