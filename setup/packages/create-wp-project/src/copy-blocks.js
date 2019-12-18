@@ -1,7 +1,7 @@
 const { join } = require('path');
 const { copy } = require('fs-extra');
 
-const copyBlocksFolder = async (projectPath) => {
+const copyBlocksFolder = async(projectPath) => {
   const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init');
   const targetPath = join(projectPath, 'src', 'blocks');
 

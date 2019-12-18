@@ -1,22 +1,25 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, ToggleControl, Icon } from '@wordpress/components';
+import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const LinkOptions = (props) => {
   const {
-    url,
+    link: {
+      url,
+      styleColor,
+      isAnchor,
+    },
     onChangeUrl,
-    styleColor,
     onChangeStyleColor,
-    isAnchor,
     onChangeIsAnchor,
   } = props;
 
   return (
-    <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
+    <Fragment>
 
       {onChangeStyleColor &&
         <ColorPaletteCustom
@@ -37,13 +40,12 @@ export const LinkOptions = (props) => {
       }
 
       {onChangeUrl &&
-        <div className="components-base-control">
-          <label className="components-base-control__label" htmlFor="url">{__('Link Url', 'eightshift-boilerplate')}</label>
+        <BaseControl label={__('Link Url', 'eightshift-boilerplate')}>
           <URLInput
             value={url}
             onChange={onChangeUrl}
           />
-        </div>
+        </BaseControl>
       }
 
       {onChangeIsAnchor &&
@@ -54,6 +56,6 @@ export const LinkOptions = (props) => {
         />
       }
 
-    </PanelBody>
+    </Fragment>
   );
 };

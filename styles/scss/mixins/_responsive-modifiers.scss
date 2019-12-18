@@ -59,6 +59,8 @@
 /// }
 /// ```
 
+// stylelint-disable max-nesting-depth
+
 @mixin responsive-modifiers($map, $keys...) {
   $i: 0;
 
@@ -90,7 +92,7 @@
                 }
               }
             }
-  
+
             @else {
               @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
             }

@@ -1,36 +1,34 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/editor';
-import { PanelBody, Button, Dashicon } from '@wordpress/components';
+import { Button, Dashicon, BaseControl } from '@wordpress/components';
 
 export const VideoOptions = (props) => {
   const {
+    media: {
+      url,
+      accept = 'video/*',
+      allowedTypes = ['video'],
+    },
     onChangeMedia,
-    url,
   } = props;
 
-  const onResetMedia = () => {
-    onChangeMedia({});
-  };
-
   return (
-    <PanelBody title={__('Video Settings', 'eightshift-boilerplate')}>
-      <div className="components-base-control">
-        <label className="components-base-control__label" htmlFor="url">{__('Video', 'eightshift-boilerplate')}</label>
-        {!url ?
-          <MediaPlaceholder
-            onSelect={onChangeMedia}
-            accept={'video/*'}
-            allowedTypes={['video']}
-          /> :
-          <Button
-            isDefault
-            onClick={onResetMedia}
-          >
-            <Dashicon icon="trash" />
-            {__('Remove Video', 'eightshift-boilerplate')}
-          </Button>
-        }
-      </div>
-    </PanelBody>
+    <BaseControl label={__('Video', 'eightshift-boilerplate')}>
+      {!url ?
+        <MediaPlaceholder
+          onSelect={onChangeMedia}
+          accept={accept}
+          allowedTypes={allowedTypes}
+        /> :
+        <Button
+          isDefault
+          onClick={() => onChangeMedia({})}
+        >
+          <Dashicon icon="trash" />
+          {__('Remove Video', 'eightshift-boilerplate')}
+        </Button>
+      }
+    </BaseControl>
   );
 };

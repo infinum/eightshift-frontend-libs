@@ -56,7 +56,7 @@
 
       @else {
         @include media(#{$breakpoint} up) {
-          @each $cssSelector, $cssValue in $breakpointMap {
+          @each $cssSelector, $cssValue in $breakpointMap { // stylelint-disable-line max-nesting-depth
             #{$cssSelector}: $cssValue;
           }
         }

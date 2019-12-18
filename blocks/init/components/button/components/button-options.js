@@ -1,28 +1,48 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
 import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
-import { PanelBody, SelectControl, TextControl, Icon } from '@wordpress/components';
+import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
   const {
-    url,
-    onChangeUrl,
-    styleSize,
-    onChangeStyleSize,
-    styleColor,
-    onChangeStyleColor,
-    styleSizeWidth,
-    onChangeStyleSizeWidth,
-    id,
-    onChangeId,
-    title,
+    button: {
+      title,
+      url,
+      styleSize,
+      styleColor,
+      styleSizeWidth,
+      id,
+    },
     onChangeTitle,
+    onChangeUrl,
+    onChangeStyleSize,
+    onChangeStyleColor,
+    onChangeStyleSizeWidth,
+    onChangeId,
   } = props;
 
   return (
-    <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
+    <Fragment>
+
+      {onChangeTitle &&
+        <TextControl
+          label={__('Button Title', 'eightshift-boilerplate')}
+          value={title}
+          onChange={onChangeTitle}
+        />
+      }
+
+      {onChangeUrl &&
+        <BaseControl label={__('Button Link', 'eightshift-boilerplate')}>
+          <URLInput
+            value={url}
+            onChange={onChangeUrl}
+          />
+        </BaseControl>
+      }
 
       {onChangeStyleColor &&
         <ColorPaletteCustom
@@ -66,24 +86,6 @@ export const ButtonOptions = (props) => {
         />
       }
 
-      {onChangeUrl &&
-        <div className="components-base-control">
-          <label className="components-base-control__label" htmlFor="url">{__('Button Link', 'eightshift-boilerplate')}</label>
-          <URLInput
-            value={url}
-            onChange={onChangeUrl}
-          />
-        </div>
-      }
-
-      {onChangeTitle &&
-        <TextControl
-          label={__('Button Title', 'eightshift-boilerplate')}
-          value={title}
-          onChange={onChangeTitle}
-        />
-      }
-
       {onChangeId &&
         <TextControl
           label={__('Button ID', 'eightshift-boilerplate')}
@@ -92,6 +94,6 @@ export const ButtonOptions = (props) => {
         />
       }
 
-    </PanelBody>
+    </Fragment>
   );
 };

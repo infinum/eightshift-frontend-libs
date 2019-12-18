@@ -8,14 +8,20 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$content = $attributes['content'] ?? '';
-$level   = isset( $attributes['level'] ) ? "h{$attributes['level']}" : 'h2';
+$heading = $attributes['heading'] ?? [];
+
+if ( ! $heading ) {
+  return;
+}
+
+$content = $heading['content'] ?? '';
+$level   = isset( $heading['level'] ) ? "h{$heading['level']}" : 'h2';
 
 $component_class = 'heading';
 $block_class     = $attributes['blockClass'] ?? '';
-$style_align     = isset( $attributes['styleAlign'] ) ? "{$component_class}__align--{$attributes['styleAlign']}" : '';
-$style_color     = isset( $attributes['styleColor'] ) ? "{$component_class}__color--{$attributes['styleColor']}" : '';
-$style_size      = isset( $attributes['styleSize'] ) ? "{$component_class}__size--{$attributes['styleSize']}" : '';
+$style_align     = isset( $heading['styleAlign'] ) ? "{$component_class}__align--{$heading['styleAlign']}" : '';
+$style_color     = isset( $heading['styleColor'] ) ? "{$component_class}__color--{$heading['styleColor']}" : '';
+$style_size      = isset( $heading['styleSize'] ) ? "{$component_class}__size--{$heading['styleSize']}" : '';
 
 $heading_class = "
   {$component_class}

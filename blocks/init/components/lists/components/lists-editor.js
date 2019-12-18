@@ -1,12 +1,15 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/editor';
 
 export const ListsEditor = (props) => {
   const {
     blockClass,
-    content,
+    lists: {
+      content,
+      ordered,
+    },
     onChangeContent,
-    ordered,
     onChangeOrdered,
   } = props;
 
@@ -22,7 +25,7 @@ export const ListsEditor = (props) => {
       tagName={ordered}
       multiline="li"
       className={listsClass}
-      placeholder={__('Add your list item', 'eightshift-block')}
+      placeholder={__('Add your list item', 'eightshift-boilerplate')}
       onChange={onChangeContent}
       value={content}
       onTagNameChange={onChangeOrdered}

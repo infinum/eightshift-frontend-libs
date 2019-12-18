@@ -12,18 +12,17 @@
     "img"
   ],
   "attributes": {
-    "mediaId": {
-      "type": "number",
-      "manualAction": true
-    },
-    "mediaUrl": {
-      "type": "string",
-      "default": "https://via.placeholder.com/500",
-      "manualAction": true
-    },
-    "mediaSize": {
-      "type": "string",
-      "default": "large"
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": "",
+        "title": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
     }
   }
 }

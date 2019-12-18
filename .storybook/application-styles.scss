@@ -1,0 +1,79 @@
+// Block Editor editor.
+@import '~@wordpress/components/build-style/style.css';
+@import '~@wordpress/block-editor/build-style/style.css';
+@import '~@wordpress/format-library/build-style/style.css';
+
+// ---------------------------------------------------------------------
+// Aplication.scss
+
+// Vendors - node modules
+@import 'normalize-scss';
+@include normalize(); // stylelint-disable-line at-rule-empty-line-before
+
+// Globals.
+@import './../blocks/init/assets/styles/parts/shared';
+
+// Config.
+@import './../blocks/init/assets/styles/parts/core';
+
+// ---------------------------------------------------------------------
+// Aplication-blocks.scss
+
+// Register Wrapper block styles.
+@import './../blocks/init/wrapper/wrapper-style.scss';
+
+// Find all components and require component_name-style.scss inside it.
+@import './../blocks/init/components/*/*-style.scss';
+
+// Find all blocks and require block_name-style.scss inside it.
+@import './../blocks/init/custom/*/*-style.scss';
+
+// ---------------------------------------------------------------------
+// Aplication-blocks-editor.scss
+
+// Overide default editor styles.
+@import 'EighshiftEditorStyleOverride';
+
+// Register Wrapper block styles.
+@import './../blocks/init/wrapper/wrapper-editor.scss';
+
+// Find all components and require component_name-style.scss inside it.
+@import './../blocks/init/components/*/*-editor.scss';
+
+// Find all blocks and require block_name-editor.scss inside it.
+@import './../blocks/init/custom/*/*-editor.scss';
+
+// ---------------------------------------------------------------------
+// Playground
+
+@import '~@wordpress/base-styles/colors';
+@import '~@wordpress/base-styles/variables';
+@import '~@wordpress/base-styles/mixins';
+@import '~@wordpress/base-styles/breakpoints';
+
+.playground {
+  @include break-small() {
+    width: calc(100% - #{$sidebar-width});
+  }
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.playground__sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  border-left: $border-width solid $light-gray-500;
+  height: auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // Temporarily disable the sidebar on mobile
+  display: none;
+
+  @include break-small() {
+    display: block;
+  }
+}

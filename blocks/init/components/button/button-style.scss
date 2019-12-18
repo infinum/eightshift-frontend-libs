@@ -1,14 +1,5 @@
 $btn: (
   colors: (
-    black: (
-      normal: (
-        background-color: $base-black-color,
-        color: $base-white-color,
-      ),
-      hover: (
-        background-color: $base-primary-color,
-      ),
-    ),
     primary: (
       normal: (
         background-color: $base-primary-color,
@@ -16,6 +7,15 @@ $btn: (
       ),
       hover: (
         background-color: $base-black-color,
+      ),
+    ),
+    black: (
+      normal: (
+        background-color: $base-black-color,
+        color: $base-white-color,
+      ),
+      hover: (
+        background-color: $base-primary-color,
       ),
     ),
   ),

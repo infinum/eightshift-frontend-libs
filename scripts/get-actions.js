@@ -3,8 +3,8 @@ import { ucfirst } from './ucfirst';
 /**
  * This method is used when atributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
  * This function generates callback for each of the values from attribute. Generate callback with name onChange${attribute_name}${propery_name}
- * 
- * Example: 
+ *
+ * Example:
  * "attributes": {
  *    "heading": {
  *       "type": "object",
@@ -89,8 +89,8 @@ const siglePropsAction = (setAttributes, key) => {
 /**
  * This method is used for setting media attributes. It is property type `object` with default values of `id`, `url`, `title`.
  * This function generates callback that saves `id`, `url` and `title` of attribute.
- * 
- * Example: 
+ *
+ * Example:
  * "attributes": {
  *   "primaryVideo": {
  *     "type": "object",
@@ -104,7 +104,7 @@ const siglePropsAction = (setAttributes, key) => {
  * }
  *
  * Inside actions there will be `onChangePrimaryVideo` function that will update `id`, `url` and `title` and expect that a given object have those properties
- * 
+ *
  * @param {object} setAttributes Method for saving atributes.
  * @param {string} key Came of the property in manifest.
  *
@@ -133,7 +133,7 @@ const mediaPropsAction = (setAttributes, key) => {
 
 /**
  * Create attributes actions from blocks manifest.json.
- * 
+ *
  * Actions are passed in child components in order to update props on event.
  * Default function output is `onChange` + attribute name.
  * Example `onChangeContent`.

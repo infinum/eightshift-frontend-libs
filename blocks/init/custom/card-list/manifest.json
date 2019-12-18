@@ -1,0 +1,56 @@
+{
+  "blockName": "card-list",
+  "title": "Card List",
+  "description" : "Card List with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "vault"
+  },
+  "keywords": [
+    "Card List",
+    "Block Card List"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/cards-list"
+  ],
+  "attributes": {
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": "",
+        "title": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
+    },
+    "mediaPosition": {
+      "type": "string",
+      "default": "left"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "string"
+    },
+    "button": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "url": "",
+        "styleSize": "default",
+        "styleColor": "primary",
+        "styleSizeWidth": "default",
+        "id": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
+    }
+  }
+}

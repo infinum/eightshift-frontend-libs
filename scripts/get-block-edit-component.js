@@ -8,5 +8,5 @@
  * @since 1.0.0
  */
 export const getBlockEditComponent = (blockName, blocksFilePathsKeys) => {
-  return blocksFilePathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}.js`);
+  return blocksFilePathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-block.js`);
 };

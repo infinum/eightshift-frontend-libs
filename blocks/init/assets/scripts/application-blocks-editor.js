@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions, import/no-unresolved */
 
 /**
- * This is the main entry point for Gutenberg blocks scripts used for the `WordPress admin editor`.
+ * This is the main entry point for Block Editor blocks scripts used for the `WordPress admin editor`.
  * This file registers blocks dynamically using `registerBlocks` helper method.
  * File names must follow the naming convention to be able to run dynamically.
  *
@@ -19,7 +19,7 @@ import blocksSettings from './../../manifest.json';
 
 registerBlocks(
   require.context('./../../custom', true, /manifest\.json$/),
-  require.context('./../../custom', true, /\.js$/),
+  require.context('./../../custom', true, /-block.js$/),
   blocksSettings,
   Wrapper,
 );

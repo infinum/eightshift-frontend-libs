@@ -1,0 +1,86 @@
+$block-jumbotron: (
+  heading: (
+    mobile: (
+      font-size: 36px,
+      line-height: 1.11,
+      font-weight: bold,
+    ),
+  ),
+  paragraph: (
+    mobile: (
+      font-size: 20px,
+      line-height: 1.33,
+      margin-top: 25px,
+    ),
+  ),
+  container-size: $base-container-size,
+);
+
+.block-jumbotron {
+  position: relative;
+
+  &__content {
+    padding-left: $base-gutter-size;
+    padding-right: $base-gutter-size;
+    margin: 0 auto;
+    max-width: map-get-strict($block-jumbotron, container-size);
+
+    @include media(desktop up) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      margin-top: 0;
+    }
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+
+    &--vertical-center {
+      align-items: center;
+    }
+
+    &--vertical-bottom {
+      align-items: flex-end;
+    }
+
+    &--horizontal-center {
+      justify-content: center;
+    }
+
+    &--horizontal-right {
+      justify-content: flex-end;
+    }
+  }
+
+  &__content-wrap {
+    width: 100%;
+    max-width: calc-grid-width(6);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  &__heading {
+    @include responsive($block-jumbotron, heading);
+  }
+
+  &__paragraph {
+    @include responsive($block-jumbotron, paragraph);
+  }
+
+  &__media {
+    display: flex;
+
+    &--horizontal-left {
+      align-items: flex-start;
+    }
+
+    &--horizontal-right {
+      align-items: flex-end;
+    }
+  }
+}

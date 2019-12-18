@@ -35,7 +35,7 @@ module.exports = (options) => {
 
   // Load filename Output.
   if (isUsed(options.output, 'filename')) {
-    output.filename ='[name]-[hash].js';
+    output.filename = '[name]-[hash].js';
   }
 
   return {

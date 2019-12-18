@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
-const { join } = require('path');
-const { exec } = require('promisify-child-process');
+
+// const { join } = require('path');
+// const { exec } = require('promisify-child-process');
 
 const {
   misc: { log, variable },
@@ -25,22 +26,22 @@ const promptForBlock = async() => {
       {
         name: 'New block',
         value: 'example',
-        short: 'New block'
+        short: 'New block',
       },
       {
         name: 'Existing block',
         value: 'custom',
-        short: 'Existing block'
+        short: 'Existing block',
       },
-    ]
+    ],
   });
 
   if (blockType.blockType === 'example') {
     blockName = blockType.blockType;
   } else {
-    log('')
-    log(`For more information about available blocks, please visit ${variable('https://github.com/infinum/eightshift-blocks')}.`)
-    log('')
+    log('');
+    log(`For more information about available blocks, please visit ${variable('https://github.com/infinum/eightshift-blocks')}.`);
+    log('');
 
     const chooseBlock = await inquirer.prompt({
       type: 'list',
@@ -51,10 +52,10 @@ const promptForBlock = async() => {
   }
 
   return blockName;
-}
+};
 
 
 
 module.exports = {
-  promptForBlock
-}
+  promptForBlock,
+};

@@ -1,5 +1,5 @@
 /**
- * Project Gutenberg config used for Gutenberg specific build.
+ * Project Block Editor config used for Block Editor specific build.
  *
  * @since 2.0.0
  */
@@ -8,7 +8,7 @@ const path = require('path');
 
 /**
  * Return all global objects from window object.
- * Add all Gutenberg external libs so you can use it like @wordpress/lib_name.
+ * Add all Block Editor external libs so you can use it like @wordpress/lib_name.
  *
  * @since 2.0.0
  */
@@ -21,6 +21,7 @@ function getExternals() {
     'blocks',
     'element',
     'editor',
+    'block-editor',
     'date',
     'data',
     'i18n',
@@ -60,14 +61,24 @@ module.exports = (options) => {
         EighshiftBlocksRegisterBlocks: path.resolve(__dirname, '..', 'scripts', 'register-blocks'),
         EighshiftBlocksUcfirst: path.resolve(__dirname, '..', 'scripts', 'ucfirst'),
         EighshiftBlocksGetActions: path.resolve(__dirname, '..', 'scripts', 'get-actions'),
+        EighshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
+        EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
+
+        // Libs
+        EighshiftBlocksNormalize: path.resolve(__dirname, '..', 'node_modules', 'normalize-scss'),
+        EighshiftBlocksMediaBlender: path.resolve(__dirname, '..', 'node_modules', 'media-blender'),
+        EighshiftBlocksWhatwgFetch: path.resolve(__dirname, '..', 'node_modules', 'whatwg-fetch'),
+        EighshiftBlocksSwiper: path.resolve(__dirname, '..', 'node_modules', 'swiper'),
+        EighshiftBlocksSwiperStyle: path.resolve(__dirname, '..', 'node_modules', 'swiper', 'swiper.scss'),
+        EighshiftBlocksBabelPolyfill: path.resolve(__dirname, '..', 'node_modules', '@babel/polyfill'),
 
         // Blocks Editor Styles.
         EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
         EighshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
 
         // Components.
-        EighshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom.js'),
-        EighshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level.js'),
+        EighshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom', 'color-palette-custom.js'),
+        EighshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level', 'heading-level.js'),
       },
     },
   };

@@ -8,9 +8,7 @@ const {
   console: { installStep },
 } = require('eightshift-scripts');
 
-let blockName = '';
-
-const run = async () => {
+const run = async() => {
 
   await installStep({
     describe: 'Running some checks to see if we can proceed...',
@@ -34,6 +32,6 @@ const run = async () => {
     thisHappens: installBlockDependencies(),
     isFatal: true,
   });
-}
+};
 
 run();

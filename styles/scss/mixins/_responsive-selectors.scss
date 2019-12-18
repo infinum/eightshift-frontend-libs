@@ -48,6 +48,7 @@
 
 @mixin responsive-selectors($breakpoints: $media-breakpoints) {
   $i: 1;
+
   @each $breakpoint in map-reverse($breakpoints) {
     $point: nth($breakpoint, 1);
 
@@ -56,6 +57,7 @@
         @content;
       }
     }
+
     @else {
       @include media(#{$point} down) {
         &-#{$point} {

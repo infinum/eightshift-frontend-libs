@@ -51,6 +51,8 @@
 /// }
 /// ```
 
+// stylelint-disable max-nesting-depth
+
 @mixin link($map, $key) {
   @if (type-of($map) == 'map') {
     @each $state, $stateMap in map-get-strict($map, $key) {
