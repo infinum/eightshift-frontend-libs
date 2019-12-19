@@ -6,6 +6,16 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.0.1] - 2019-12-19
+
+## Changed
+- Added option to override any Webpack build options
+- Removed postcss
+- Changed readme docs for Webpack
+- Updating alliases
+- Removing unnecesery packages
+- Optimizations for storybook
+
 ## [3.0.0] - 2019-12-18
 
 ### Added
@@ -86,6 +96,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.7...v3.0.0
 [2.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.6...v2.0.7
 [2.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.5...v2.0.6
