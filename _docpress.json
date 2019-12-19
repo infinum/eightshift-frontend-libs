@@ -54,13 +54,36 @@
             "title": "Register Webpack",
             "source": "documentation/installation/register-webpack.md",
             "url": "installation/register-webpack.html",
-            "slug": "installationregister-webpack"
+            "slug": "installationregister-webpack",
+            "headings": [
+              {
+                "title": "Default Config",
+                "depth": 2,
+                "id": "default-config"
+              },
+              {
+                "title": "Override built-in functionality",
+                "depth": 2,
+                "id": "override-built-in-functionality"
+              },
+              {
+                "title": "Add Custom build",
+                "depth": 2,
+                "id": "add-custom-build"
+              }
+            ]
           }
         ]
       },
       {
         "title": "Structure",
         "sections": [
+          {
+            "title": "Blocks Registration",
+            "source": "documentation/structure/blocks-registration.md",
+            "url": "structure/blocks-registration.html",
+            "slug": "structureblocks-registration"
+          },
           {
             "title": "Blocks Structure",
             "source": "documentation/structure/blocks-structure.md",
@@ -263,23 +286,73 @@
         "title": "Helpers",
         "sections": [
           {
-            "title": "JavaScript Dynamic Import",
-            "source": "documentation/helpers/javascript-dynamic-import.md",
-            "url": "helpers/javascript-dynamic-import.html",
-            "slug": "helpersjavascript-dynamic-import",
+            "title": "Aliases",
+            "source": "documentation/helpers/aliases.md",
+            "url": "helpers/aliases.html",
+            "slug": "helpersaliases",
             "headings": [
               {
-                "title": "Usage",
-                "depth": 3,
-                "id": "usage"
+                "title": "Helpful aliases",
+                "depth": 2,
+                "id": "helpful-aliases"
+              },
+              {
+                "title": "JavaScript Dynamic Import Helper",
+                "depth": 2,
+                "id": "javascript-dynamic-import-helper"
+              },
+              {
+                "title": "JavaScript Ucfirst Helper",
+                "depth": 2,
+                "id": "javascript-ucfirst-helper"
+              },
+              {
+                "title": "JavaScript Utilities path",
+                "depth": 2,
+                "id": "javascript-utilities-path"
+              },
+              {
+                "title": "JavaScript WhatwgFetch",
+                "depth": 2,
+                "id": "javascript-whatwgfetch"
+              },
+              {
+                "title": "JavaScript Swiper",
+                "depth": 2,
+                "id": "javascript-swiper"
+              },
+              {
+                "title": "JavaScript Babel Polyfill",
+                "depth": 2,
+                "id": "javascript-babel-polyfill"
+              },
+              {
+                "title": "Scss EighshiftFrontendLibs",
+                "depth": 2,
+                "id": "scss-eighshiftfrontendlibs"
+              },
+              {
+                "title": "Scss Normalize",
+                "depth": 2,
+                "id": "scss-normalize"
+              },
+              {
+                "title": "Scss Media Blender",
+                "depth": 2,
+                "id": "scss-media-blender"
+              },
+              {
+                "title": "Scss EditorStyleOverride",
+                "depth": 2,
+                "id": "scss-editorstyleoverride"
               }
             ]
           },
           {
-            "title": "JavaScript GetActions",
-            "source": "documentation/helpers/javascript-get-actions.md",
-            "url": "helpers/javascript-get-actions.html",
-            "slug": "helpersjavascript-get-actions",
+            "title": "GetActions",
+            "source": "documentation/helpers/get-actions.md",
+            "url": "helpers/get-actions.html",
+            "slug": "helpersget-actions",
             "headings": [
               {
                 "title": "Default Attribute",
@@ -347,7 +420,19 @@
             "title": "Sass Docs",
             "source": "documentation/documentation/sassdocs.md",
             "url": "documentation/sassdocs.html",
-            "slug": "documentationsassdocs"
+            "slug": "documentationsassdocs",
+            "headings": [
+              {
+                "title": "Default usage",
+                "depth": 2,
+                "id": "default-usage"
+              },
+              {
+                "title": "Not using Webpack Build",
+                "depth": 2,
+                "id": "not-using-webpack-build"
+              }
+            ]
           }
         ]
       },
@@ -415,7 +500,30 @@
       "source": "documentation/installation/register-webpack.md",
       "title": "Register Webpack - Eightshift Frontend Libs",
       "pageTitle": "Register Webpack",
-      "slug": "installationregister-webpack"
+      "slug": "installationregister-webpack",
+      "headings": [
+        {
+          "title": "Default Config",
+          "depth": 2,
+          "id": "default-config"
+        },
+        {
+          "title": "Override built-in functionality",
+          "depth": 2,
+          "id": "override-built-in-functionality"
+        },
+        {
+          "title": "Add Custom build",
+          "depth": 2,
+          "id": "add-custom-build"
+        }
+      ]
+    },
+    "structure/blocks-registration.html": {
+      "source": "documentation/structure/blocks-registration.md",
+      "title": "Blocks Registration - Eightshift Frontend Libs",
+      "pageTitle": "Blocks Registration",
+      "slug": "structureblocks-registration"
     },
     "structure/blocks-structure.html": {
       "source": "documentation/structure/blocks-structure.md",
@@ -613,24 +721,74 @@
       "pageTitle": "Layout",
       "slug": "structurelayout"
     },
-    "helpers/javascript-dynamic-import.html": {
-      "source": "documentation/helpers/javascript-dynamic-import.md",
-      "title": "JavaScript Dynamic Import - Eightshift Frontend Libs",
-      "pageTitle": "JavaScript Dynamic Import",
-      "slug": "helpersjavascript-dynamic-import",
+    "helpers/aliases.html": {
+      "source": "documentation/helpers/aliases.md",
+      "title": "Aliases - Eightshift Frontend Libs",
+      "pageTitle": "Aliases",
+      "slug": "helpersaliases",
       "headings": [
         {
-          "title": "Usage",
-          "depth": 3,
-          "id": "usage"
+          "title": "Helpful aliases",
+          "depth": 2,
+          "id": "helpful-aliases"
+        },
+        {
+          "title": "JavaScript Dynamic Import Helper",
+          "depth": 2,
+          "id": "javascript-dynamic-import-helper"
+        },
+        {
+          "title": "JavaScript Ucfirst Helper",
+          "depth": 2,
+          "id": "javascript-ucfirst-helper"
+        },
+        {
+          "title": "JavaScript Utilities path",
+          "depth": 2,
+          "id": "javascript-utilities-path"
+        },
+        {
+          "title": "JavaScript WhatwgFetch",
+          "depth": 2,
+          "id": "javascript-whatwgfetch"
+        },
+        {
+          "title": "JavaScript Swiper",
+          "depth": 2,
+          "id": "javascript-swiper"
+        },
+        {
+          "title": "JavaScript Babel Polyfill",
+          "depth": 2,
+          "id": "javascript-babel-polyfill"
+        },
+        {
+          "title": "Scss EighshiftFrontendLibs",
+          "depth": 2,
+          "id": "scss-eighshiftfrontendlibs"
+        },
+        {
+          "title": "Scss Normalize",
+          "depth": 2,
+          "id": "scss-normalize"
+        },
+        {
+          "title": "Scss Media Blender",
+          "depth": 2,
+          "id": "scss-media-blender"
+        },
+        {
+          "title": "Scss EditorStyleOverride",
+          "depth": 2,
+          "id": "scss-editorstyleoverride"
         }
       ]
     },
-    "helpers/javascript-get-actions.html": {
-      "source": "documentation/helpers/javascript-get-actions.md",
-      "title": "JavaScript GetActions - Eightshift Frontend Libs",
-      "pageTitle": "JavaScript GetActions",
-      "slug": "helpersjavascript-get-actions",
+    "helpers/get-actions.html": {
+      "source": "documentation/helpers/get-actions.md",
+      "title": "GetActions - Eightshift Frontend Libs",
+      "pageTitle": "GetActions",
+      "slug": "helpersget-actions",
       "headings": [
         {
           "title": "Default Attribute",
@@ -693,7 +851,19 @@
       "source": "documentation/documentation/sassdocs.md",
       "title": "Sass Docs - Eightshift Frontend Libs",
       "pageTitle": "Sass Docs",
-      "slug": "documentationsassdocs"
+      "slug": "documentationsassdocs",
+      "headings": [
+        {
+          "title": "Default usage",
+          "depth": 2,
+          "id": "default-usage"
+        },
+        {
+          "title": "Not using Webpack Build",
+          "depth": 2,
+          "id": "not-using-webpack-build"
+        }
+      ]
     },
     "tips/tips.html": {
       "source": "documentation/tips/tips.md",
@@ -706,14 +876,15 @@
     "README.md": "index.html",
     "documentation/installation/instalation-and-requirements.md": "installation/instalation-and-requirements.html",
     "documentation/installation/register-webpack.md": "installation/register-webpack.html",
+    "documentation/structure/blocks-registration.md": "structure/blocks-registration.html",
     "documentation/structure/blocks-structure.md": "structure/blocks-structure.html",
     "documentation/structure/component-structure.md": "structure/component-structure.html",
     "documentation/structure/custom-block-structure.md": "structure/custom-block-structure.html",
     "documentation/structure/manifest-structure.md": "structure/manifest-structure.html",
     "documentation/structure/creating-block-from-components.md": "structure/creating-block-from-components.html",
     "documentation/structure/layout.md": "structure/layout.html",
-    "documentation/helpers/javascript-dynamic-import.md": "helpers/javascript-dynamic-import.html",
-    "documentation/helpers/javascript-get-actions.md": "helpers/javascript-get-actions.html",
+    "documentation/helpers/aliases.md": "helpers/aliases.html",
+    "documentation/helpers/get-actions.md": "helpers/get-actions.html",
     "documentation/helpers/php-render-block-view.md": "helpers/php-render-block-view.html",
     "documentation/documentation/storybook.md": "documentation/storybook.html",
     "documentation/documentation/sassdocs.md": "documentation/sassdocs.html",

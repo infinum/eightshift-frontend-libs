@@ -26,6 +26,8 @@
               </li>
               <li class="menu-item -level-1 -parent"><span class="title">Structure</span>
                 <ul class="submenu">
+                  <li class="menu-item -level-2"><a class="link title  link-structureblocks-registration" href="../structure/blocks-registration.html">Blocks Registration</a>
+                  </li>
                   <li class="menu-item -level-2"><a class="link title  link-structureblocks-structure" href="../structure/blocks-structure.html">Blocks Structure</a>
                   </li>
                   <li class="menu-item -level-2"><a class="link title  link-structurecomponent-structure" href="../structure/component-structure.html">Component Structure</a>
@@ -42,9 +44,9 @@
               </li>
               <li class="menu-item -level-1 -parent"><span class="title">Helpers</span>
                 <ul class="submenu">
-                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-dynamic-import" href="../helpers/javascript-dynamic-import.html">JavaScript Dynamic Import</a>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersaliases" href="../helpers/aliases.html">Aliases</a>
                   </li>
-                  <li class="menu-item -level-2"><a class="link title  link-helpersjavascript-get-actions" href="../helpers/javascript-get-actions.html">JavaScript GetActions</a>
+                  <li class="menu-item -level-2"><a class="link title  link-helpersget-actions" href="../helpers/get-actions.html">GetActions</a>
                   </li>
                   <li class="menu-item -level-2"><a class="link title  link-helpersphp-render-block-view" href="../helpers/php-render-block-view.html">PHP Render Block View</a>
                   </li>
@@ -55,6 +57,12 @@
                   <li class="menu-item -level-2"><a class="link title  link-documentationstorybook" href="../documentation/storybook.html">Storybook</a>
                   </li>
                   <li class="menu-item -level-2"><a class="link title -active link-documentationsassdocs" href="../documentation/sassdocs.html">Sass Docs</a>
+                    <ul class="headings heading-list">
+                      <li class="heading-item -depth-2"><a class="hlink link-default-usage" href="#default-usage">Default usage</a>
+                      </li>
+                      <li class="heading-item -depth-2"><a class="hlink link-not-using-webpack-build" href="#not-using-webpack-build">Not using Webpack Build</a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
@@ -77,6 +85,25 @@
         <div class="markdown-body"><h1 id="sassdocs">SassDocs</h1>
 <p>For years we have collected a list of useful SASS mixins, functions, and all other stuff that you can use in a project. You don&apos;t need to have all this in your project; check out our documentation and import it from Eightshift Frontend Libs.</p>
 <p>Visit <a href="https://infinum.github.io/eightshift-frontend-libs/sassdocs/">SassDocs</a> for more details.</p>
+<h2 id="default-usage">Default usage</h2>
+<p>Sass mixing, functions, helpers are located in <code>node_modules/@eighshift/frontent-libs/styles/scss/eightshift-frontend-libs.scss</code> file. If you are using our webpack build then you are all set, and you can use it by importing it to your project like this:</p>
+<pre><code class="lang-scss"><span class="pl-k">@import</span> <span class="pl-s">&apos;EighshiftFrontendLibs&apos;</span>;
+</code></pre>
+<h2 id="not-using-webpack-build">Not using Webpack Build</h2>
+<p>To be able to use <code>EighshiftFrontendLibs</code> as a shorthand, we have provided and <code>alias</code> in our webpack build under the <code>resolve</code> object key.</p>
+<p>If you don&apos;t use our full build for some reason and want only to use Eightshift Frontend Libs you can provide this in your webpack build:</p>
+<pre><code class="lang-js">resolve: {
+  <span class="hljs-attr">alias</span>: {
+    <span class="hljs-attr">EighshiftFrontendLibs</span>: path.resolve(<span class="pl-s">&apos;node_modules&apos;</span>, <span class="pl-s">&apos;@eightshift&apos;</span>, <span class="pl-s">&apos;frontend-libs&apos;</span>, <span class="pl-s">&apos;styles&apos;</span>, <span class="pl-s">&apos;scss&apos;</span>, <span class="pl-s">&apos;eightshift-frontend-libs.scss&apos;</span>),
+  }
+}
+</code></pre>
+<p>and then importing it like this:</p>
+<pre><code class="lang-scss"><span class="pl-k">@import</span> <span class="pl-s">&apos;EighshiftFrontendLibs&apos;</span>;
+</code></pre>
+<p>or you can import it directly like this, but be careful where your node_modules folder is located:</p>
+<pre><code class="lang-scss"><span class="pl-k">@import</span> <span class="pl-s">&apos;node_modules/@eightshift/frontend-libs/styles/scss/eightshift-frontend-libs.scss&apos;</span>;
+</code></pre>
 
         </div>
         <div class="footer-nav">
