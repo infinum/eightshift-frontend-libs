@@ -1,6 +1,6 @@
 {
   "name": "@eightshift/frontend-libs",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A collection of useful frontend utility modules. powered by Eightshift",
   "author": {
     "name": "Team Eightshift",
@@ -103,7 +103,7 @@
     "stylelint": "^12.0.0",
     "swiper": "^5.2.1",
     "terser-webpack-plugin": "^2.3.0",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2",
