@@ -14,13 +14,7 @@ module.exports = (mode, optionsData = {}) => {
   // All config and default setting overrides must be provided using this object.
   const options = {
     config: {},
-    entry: {},
-    output: {},
-    plugins: {},
-    module: {},
-    optimization: {},
-    externals: {},
-    resolve: {},
+    overrides: {},
     ...optionsData,
   };
 
@@ -33,6 +27,9 @@ module.exports = (mode, optionsData = {}) => {
     optionsData.config.outputPath
   );
 
+  options.config.mode = mode;
+  options.config.filesOutput = (mode === 'production' ? '[name]-[hash]' : '[name]');
+
   // Get all webpack partials.
   const base = require('./base')(options);
   const project = require('./project')(options);
@@ -44,11 +41,13 @@ module.exports = (mode, optionsData = {}) => {
   const outputDefault = merge(project, base, gutenberg);
 
   // Output development setup by default.
-  let output = merge(outputDefault, development);
+  let output = [];
 
   // Output production setup if mode is set inside package.json.
   if (mode === 'production') {
     output = merge(outputDefault, production);
+  } else {
+    output = merge(outputDefault, development);
   }
 
   return output;

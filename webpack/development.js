@@ -16,25 +16,12 @@ module.exports = (options) => {
   const plugins = [];
 
   // Use BrowserSync to see live preview of all changes.
-  if (isUsed(options.plugins, 'browserSyncPlugin')) {
-    plugins.push(new BrowserSyncPlugin(({
+  if (isUsed(options.overrides, 'browserSyncPlugin')) {
+    plugins.push(new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
       proxy: options.config.proxyUrl,
-      files: [
-        {
-          match: [
-            '**/*.php',
-            '**/*.js',
-            '**/*.css',
-          ],
-        },
-      ],
-      notify: true,
-    },
-    {
-      reload: true,
-    }),));
+    }));
   }
 
   return {

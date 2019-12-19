@@ -65,12 +65,13 @@ module.exports = (options) => {
         EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
 
         // Libs
-        EighshiftBlocksNormalize: path.resolve(__dirname, '..', 'node_modules', 'normalize-scss'),
-        EighshiftBlocksMediaBlender: path.resolve(__dirname, '..', 'node_modules', 'media-blender'),
-        EighshiftBlocksWhatwgFetch: path.resolve(__dirname, '..', 'node_modules', 'whatwg-fetch'),
-        EighshiftBlocksSwiper: path.resolve(__dirname, '..', 'node_modules', 'swiper'),
-        EighshiftBlocksSwiperStyle: path.resolve(__dirname, '..', 'node_modules', 'swiper', 'swiper.scss'),
-        EighshiftBlocksBabelPolyfill: path.resolve(__dirname, '..', 'node_modules', '@babel/polyfill'),
+        EighshiftBlocksNormalize: path.resolve(options.config.libNodeModules, 'normalize-scss'),
+        EighshiftBlocksMediaBlender: path.resolve(options.config.libNodeModules, 'media-blender'),
+        EighshiftBlocksWhatwgFetch: path.resolve(options.config.libNodeModules, 'whatwg-fetch'),
+        EighshiftBlocksSwiper: path.resolve(options.config.libNodeModules, 'swiper'),
+        EighshiftBlocksSwiperStyle: path.resolve(options.config.libNodeModules, 'swiper', 'swiper.scss'),
+        EighshiftBlocksBabelPolyfill: path.resolve(options.config.libNodeModules, '@babel/polyfill'),
+        EighshiftBlocksAutoprefixer: path.resolve(options.config.libNodeModules, 'autoprefixer'),
 
         // Blocks Editor Styles.
         EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),

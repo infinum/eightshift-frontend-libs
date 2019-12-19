@@ -1,7 +1,13 @@
-
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const gutenberg = require('./../webpack/gutenberg')();
+const config = {
+  config: {
+    libNodeModules: path.resolve(__dirname, '..', 'node_modules'),
+  }
+};
+
+const gutenberg = require('./../webpack/gutenberg')(config);
 
 module.exports = ({ config }) => {
 

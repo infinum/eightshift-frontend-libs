@@ -14,28 +14,28 @@ module.exports = (options) => {
   };
 
   // Load Application Entrypoint.
-  if (isUsed(options.entry, 'applicationEntry')) {
+  if (isUsed(options.overrides, 'application')) {
     entry.application = options.config.applicationEntry;
   }
 
   // Load ApplicationAdmin Entrypoint.
-  if (isUsed(options.entry, 'applicationAdminEntry')) {
+  if (isUsed(options.overrides, 'applicationAdmin')) {
     entry.applicationAdmin = options.config.applicationAdminEntry;
   }
 
   // Load ApplicationBlocks Entrypoint.
-  if (isUsed(options.entry, 'applicationBlocksEntry')) {
+  if (isUsed(options.overrides, 'applicationBlocks')) {
     entry.applicationBlocks = options.config.applicationBlocksEntry;
   }
 
   // Load ApplicationBlocksEditor Entrypoint.
-  if (isUsed(options.entry, 'applicationBlocksEditorEntry')) {
+  if (isUsed(options.overrides, 'applicationBlocksEditor')) {
     entry.applicationBlocksEditor = options.config.applicationBlocksEditorEntry;
   }
 
   // Load filename Output.
-  if (isUsed(options.output, 'filename')) {
-    output.filename = '[name]-[hash].js';
+  if (isUsed(options.overrides, 'filename')) {
+    output.filename = `${options.config.filesOutput}.js`;
   }
 
   return {

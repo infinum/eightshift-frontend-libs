@@ -78,7 +78,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
  * @since 2.0.0
  */
 function isUsed(config, key) {
-  if (config.hasOwnProperty(key) && !config[key]) {
+  if (config.hasOwnProperty(key) && config[key]) {
     return false;
   }
 
