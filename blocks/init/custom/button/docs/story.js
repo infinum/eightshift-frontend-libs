@@ -25,7 +25,7 @@ export const block = () => (
               styleColor: manifest.attributes.button.default.styleColor,
               styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
               id: '',
-            }
+            },
           },
           innerBlocks: [],
           name: `eightshift-boilerplate/${manifest.blockName}`,

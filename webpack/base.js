@@ -103,7 +103,13 @@ module.exports = (options) => {
       exclude: /node_modules/,
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader', 'postcss-loader', 'sass-loader', 'import-glob-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+          },
+        },
+        'postcss-loader', 'sass-loader', 'import-glob-loader',
       ],
     });
   }

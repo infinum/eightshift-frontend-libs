@@ -64,17 +64,17 @@ module.exports = (options) => {
         EighshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
         EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
 
-        // Libs
-        EighshiftBlocksNormalize: path.resolve(options.config.libNodeModules, 'normalize-scss'),
-        EighshiftBlocksMediaBlender: path.resolve(options.config.libNodeModules, 'media-blender'),
+        // JavaScript
         EighshiftBlocksWhatwgFetch: path.resolve(options.config.libNodeModules, 'whatwg-fetch'),
         EighshiftBlocksSwiper: path.resolve(options.config.libNodeModules, 'swiper'),
-        EighshiftBlocksSwiperStyle: path.resolve(options.config.libNodeModules, 'swiper', 'swiper.scss'),
         EighshiftBlocksBabelPolyfill: path.resolve(options.config.libNodeModules, '@babel/polyfill'),
         EighshiftBlocksAutoprefixer: path.resolve(options.config.libNodeModules, 'autoprefixer'),
 
-        // Blocks Editor Styles.
+        // Scss.
         EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
+        EighshiftBlocksNormalize: path.resolve(options.config.libNodeModules, 'normalize-scss'),
+        EighshiftBlocksMediaBlender: path.resolve(options.config.libNodeModules, 'media-blender'),
+        EighshiftBlocksSwiperStyle: path.resolve(options.config.libNodeModules, 'swiper', 'swiper.scss'),
         EighshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
 
         // Components.
