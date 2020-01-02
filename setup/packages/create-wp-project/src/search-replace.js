@@ -70,10 +70,10 @@ const searchReplace = async(data, projectPath) => {
     });
   }
 
-  // webpack-project.config.js - BrowserSync proxy url.
+  // webpack.config.js - BrowserSync proxy url.
   if (data.url) {
     await replace({
-      files: path.join(projectPath, 'webpack-project.config.js'),
+      files: path.join(projectPath, 'webpack.config.js'),
       from: new RegExp(defaultValues.url, 'g'),
       to: data.url,
     });
