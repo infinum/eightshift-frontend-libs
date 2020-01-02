@@ -1,4 +1,9 @@
-const { capCase } = require('../misc.js');
+/**
+ * Unit tests for misc.js
+ *
+ * @group unit
+ */
+const { capCase } = require('../../../src/basics/misc.js');
 
 test('Should make cap case of: aaa aaa', () => {
   expect(capCase('aaa aaa')).toBe('Aaa_Aaa');

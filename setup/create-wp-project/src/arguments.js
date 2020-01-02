@@ -20,7 +20,7 @@ const scriptArguments = {
     describe: 'Package name: name of the folder, text domain name (e.g. package-name):',
     buildFrom: {
       name: 'projectName',
-      how: (sourceArg) => sourceArg.toLowerCase().split(' ').join('-'),
+      how: (sourceArg) => sourceArg.replace(/[^a-z0-9 -]/gi,'').toLowerCase().split(' ').join('-'),
     },
   },
   namespace: {
@@ -30,9 +30,10 @@ const scriptArguments = {
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => sourceArg
+        .replace(/[^a-z0-9 _]/gi,'') // leave only digits, letters, spaces and underscores
         .toLowerCase()
-        .split(' ')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .split(/[ _]+/) // split on space and underscore
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize first letter of each word
         .join('_'),
     },
   },

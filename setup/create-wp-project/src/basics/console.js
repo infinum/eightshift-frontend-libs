@@ -59,7 +59,7 @@ const installStep = async({describe, thisHappens, isFatal = false}) => {
 
     if (isFatal) {
       error(`'${describe}' was a required step, exiting now.`);
-      process.exit();
+      process.exit(1);
     }
   });
 };

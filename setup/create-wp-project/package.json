@@ -1,7 +1,7 @@
 {
   "name": "create-wp-project",
   "description": "This is a setup script for creating a WordPress project.",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "author": "Team Eightshift",
   "main": "",
   "license": "MIT",
@@ -24,11 +24,12 @@
     "cross-env": "^5.2.0",
     "del": "^5.0.0",
     "eightshift-scripts": "^0.0.10",
-    "figlet": "^1.2.3",
+    "figlet-promised": "^1.0.0",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.1",
     "generate-password": "^1.4.1",
     "inquirer": "^7.0.0",
+    "jest-runner-groups": "^1.0.0",
     "minimist": "^1.2.0",
     "node-emoji": "^1.8.1",
     "node-wget-promise": "^0.1.6",
@@ -40,5 +41,8 @@
   },
   "devDependencies": {
     "jest": "^24.8.0"
+  },
+  "jest": {
+    "runner": "groups"
   }
 }

@@ -1,7 +1,12 @@
+/**
+ * Unit tests for files.js
+ *
+ * @group unit
+ */
 const del = require('del');
 const path = require('path');
 const { existsSync, writeFileSync, readFile, mkdirSync } = require('fs');
-const { fullPath, findReplace, readdirAsync } = require('../files.js');
+const { fullPath, findReplace, readdirAsync } = require('../../../src/basics/files.js');
 const { promisify } = require('util');
 
 const testFiles = {

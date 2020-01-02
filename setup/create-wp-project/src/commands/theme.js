@@ -90,4 +90,5 @@ exports.handler = async (argv) => {
   log('2. In wp-config.php - Make sure to require wp-config-project.php (at the end of the file)');
   log('3. Activate your new theme');
   log('----------------');
+  process.exit(0);
 };
