@@ -82,4 +82,5 @@ const searchReplace = async(data, projectPath) => {
 
 module.exports = {
   searchReplace,
+  defaultValues,
 };
