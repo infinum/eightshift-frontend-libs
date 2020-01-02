@@ -5,6 +5,7 @@ const {
   console: {
     clearConsole,
     installStep,
+    writeIntro,
   },
   arguments: { maybePrompt },
   commandLine: {
@@ -28,6 +29,7 @@ exports.builder = scriptArguments;
 
 exports.handler = async (argv) => {
   await clearConsole();
+  await writeIntro();
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const projectPath = path.join(fullPath, promptedInfo.package);

@@ -9,7 +9,8 @@ const {
   label,
   capCase,
 } = require('./misc.js');
-
+const figlet = require('figlet-promised');
+ 
 /**
  * Prompts a user for something
  *
@@ -100,11 +101,21 @@ const clearConsole = async () => {
   process.stdout.write('\033c'); // eslint-disable-line
 }
 
+/**
+ * Writes the Boilerplate intro.
+ */
+const writeIntro = async () => {
+  console.log('');
+  console.log(await figlet('Eightshift Boilerplate'));
+  console.log('');
+}
+
 module.exports = {
   promptFor,
   installStep,
   installStepFinal,
   promptData,
-  clearConsole
+  clearConsole,
+  writeIntro
 }
 
