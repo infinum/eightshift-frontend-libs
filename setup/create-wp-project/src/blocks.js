@@ -23,6 +23,14 @@ const blocksToCopy = [
     componentDependencies: [{ name: 'image' }],
   },
   {
+    name: 'link',
+    componentDependencies: [{ name: 'link' }],
+  },
+  {
+    name: 'lists',
+    componentDependencies: [{ name: 'lists' }],
+  },
+  {
     name: 'paragraph',
     componentDependencies: [{ name: 'paragraph' }],
   },
