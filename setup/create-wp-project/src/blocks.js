@@ -38,8 +38,8 @@ const copyBlocksFolder = async (projectPath) => {
   // Copy only some blocks
   const fileToCopy = [];
   for (const block of blocksToCopy) {
-    const blockFolderSource = join(sourcePath, 'custom', block.name);
-    const blockFolderTarget = join(targetPath, 'custom', block.name);
+    const blockFolderSource = join(sourcePath, 'custom', block);
+    const blockFolderTarget = join(targetPath, 'custom', block);
 
     if (!await pathExists(blockFolderSource)) { // eslint-disable-line no-await-in-loop
       throw new Error(`Trying to copy non-existent block: ${blockFolderSource}`);
@@ -49,8 +49,8 @@ const copyBlocksFolder = async (projectPath) => {
   }
 
   for (const component of componentsToCopy) {
-    const componentFolderSource = join(sourcePath, 'components', component.name);
-    const componentFolderTarget = join(targetPath, 'components', component.name);
+    const componentFolderSource = join(sourcePath, 'components', component);
+    const componentFolderTarget = join(targetPath, 'components', component);
 
     if (!await pathExists(componentFolderSource)) { // eslint-disable-line no-await-in-loop
       throw new Error(`Trying to copy non-existent component: ${componentFolderSource}`);
