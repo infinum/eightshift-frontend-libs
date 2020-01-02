@@ -1,32 +1,32 @@
-const scriptArguments = [
-  {
+const scriptArguments = {
+  projectName: {
     type: 'text',
     name: 'projectName',
-    message: 'Please enter your project name (e.g. Your Project Name):',
+    describe: 'Please enter your project name (e.g. Your Project Name):',
   },
-  {
+  url: {
     type: 'text',
     name: 'url',
-    message: 'Your dev url (e.g. dev.wordpress.com):',
+    describe: 'Your dev url (e.g. dev.wordpress.com):',
   },
-  {
+  description: {
     type: 'text',
     name: 'description',
-    message: 'Your project\'s description:',
+    describe: 'Your project\'s description:',
   },
-  {
+  package: {
     type: 'text',
     name: 'package',
-    message: 'Please specify the package name (e.g. package_name):',
+    describe: 'Package name: name of the folder, text domain name (e.g. package-name):',
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => sourceArg.toLowerCase().split(' ').join('-'),
     },
   },
-  {
+  namespace: {
     type: 'text',
     name: 'namespace',
-    message: 'Please specify the namespace name (e.g. Package_Name):',
+    describe: 'Namespace for your project / files (e.g. Package_Name):',
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => sourceArg
@@ -36,10 +36,10 @@ const scriptArguments = [
         .join('_'),
     },
   },
-  {
+  prefix: {
     type: 'text',
     name: 'prefix',
-    message: 'Please specify the prefix (e.g. INF):',
+    describe: 'Prefix for any globals. (e.g. INF):',
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => {
@@ -64,25 +64,31 @@ const scriptArguments = [
       },
     },
   },
-  {
+  env: {
     type: 'text',
     name: 'env',
-    message: 'Please specify the env variable name (e.g. INF_ENV):',
+    describe: 'Environment variable used for env-specific settings (e.g. INF_ENV):',
     buildFrom: {
       name: 'prefix',
       how: (sourceArg) => `${sourceArg}_ENV`,
     },
   },
-  {
+  projectPrefix: {
     type: 'text',
     name: 'projectPrefix',
-    message: 'Please specify the projectPrefix name (e.g. eb8):',
+    describe: 'Project prefix (e.g. esh):',
     buildFrom: {
       name: 'prefix',
       how: (sourceArg) => sourceArg.toLowerCase(),
     },
   },
-];
+  noSummary: {
+    name: 'noSummary',
+    describe: 'Skip the summary prompt',
+    type: 'boolean',
+    skipPrompt: true,
+  },
+};
 
 module.exports = {
   scriptArguments,

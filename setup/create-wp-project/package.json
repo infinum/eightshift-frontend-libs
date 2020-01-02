@@ -22,12 +22,13 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
+    "del": "^5.0.0",
     "eightshift-scripts": "^0.0.10",
     "figlet": "^1.2.3",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.1",
     "generate-password": "^1.4.1",
-    "inquirer": "^6.4.1",
+    "inquirer": "^7.0.0",
     "minimist": "^1.2.0",
     "node-emoji": "^1.8.1",
     "node-wget-promise": "^0.1.6",
@@ -35,7 +36,7 @@
     "promisify-child-process": "^2.1.2",
     "prompt-sync": "^4.1.6",
     "replace-in-file": "^3.4.2",
-    "del": "^5.0.0"
+    "yargs": "^15.0.0"
   },
   "devDependencies": {
     "jest": "^24.8.0"

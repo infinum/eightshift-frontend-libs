@@ -64,6 +64,7 @@ module.exports = {
     },
   },
   rules: {
+    'space-before-function-paren': 0,
     allowImportExportEverywhere: 0,
     yoda: [
       'error',
