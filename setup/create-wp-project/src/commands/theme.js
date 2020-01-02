@@ -16,10 +16,10 @@ const {
     buildAssets,
   },
   files: { fullPath },
-  misc: { log },
+  misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
-const { copyBlocksFolder } = require('../copy-blocks');
+const { copyBlocksFolder } = require('../blocks');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
@@ -86,9 +86,11 @@ exports.handler = async (argv) => {
   log('Success!!!');
   log('');
   log('Please do the following steps manually to complete the setup:');
-  log(`1. In wp-config.php - Make sure to define your env const (${promptedInfo.env}) to 'develop'`);
-  log('2. In wp-config.php - Make sure to require wp-config-project.php (at the end of the file)');
+  log(`1. In ${variable('wp-config.php')} - Make sure to define your env const ${variable(promptedInfo.env)} to ${variable('develop')} like so: <?php define( '${promptedInfo.env}', 'develop' ); ?>`);
+  log(`2. In ${variable('wp-config.php')} - Make sure to require ${variable('wp-config-project.php')} (at the end of the file)`);
   log('3. Activate your new theme');
+  log('');
+  log(`Note that only some basic Gutenberg blocks were copied. If you need more blocks, please go to ${variable('https://infinum.github.io/eightshift-frontend-libs/storybook')}. There you will find instructions on how to add other blocks to your project.`);
   log('----------------');
   process.exit(0);
 };

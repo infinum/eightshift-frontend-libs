@@ -65,18 +65,6 @@ const installStep = async({describe, thisHappens, isFatal = false}) => {
 };
 
 /**
- * Outputs a success message after successfully setting up the plugin.
- */
-const installStepFinal = async() => {
-  log('');
-  log(`${emoji.get('tada')}${emoji.get('tada')}${emoji.get('tada')} Your plugin is now ready! ${emoji.get('tada')}${emoji.get('tada')}${emoji.get('tada')}`);
-  log('');
-  log(`Please run ${variable('npm start')} to start developing.`);
-  log('');
-  log(chalk.red('---------------------------------------------------------------'));
-};
-
-/**
  * Prompts the user for all things defined in whatToPromptFor.
  */
 const promptData = async(whatToPromptFor) => {
@@ -113,7 +101,6 @@ const writeIntro = async () => {
 module.exports = {
   promptFor,
   installStep,
-  installStepFinal,
   promptData,
   clearConsole,
   writeIntro
