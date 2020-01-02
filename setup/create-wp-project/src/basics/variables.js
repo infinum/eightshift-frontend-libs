@@ -7,5 +7,5 @@ const eightshiftBlocksPath = join(`vendor/${eightshiftBlocksModuleName}`);
 module.exports = {
   eightshiftLibsModuleName,
   eightshiftBlocksModuleName,
-  eightshiftBlocksPath,
-};
+  eightshiftBlocksPath
+}

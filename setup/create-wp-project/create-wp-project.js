@@ -15,7 +15,7 @@ const {
   arguments: { maybePrompt },
   files: { fullPath },
   misc: { log },
-} = require('eightshift-scripts');
+} = require('./src/basics');
 
 const { scriptArguments } = require('./src/arguments');
 const { searchReplace } = require('./src/search-replace');
