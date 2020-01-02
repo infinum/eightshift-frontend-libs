@@ -1,43 +1,27 @@
 const { join } = require('path');
 const { copy, pathExists } = require('fs-extra');
 
+const componentsToCopy = [
+  'button',
+  'heading',
+  'image',
+  'link',
+  'lists',
+  'paragraph',
+  'tracking',
+  'video',
+  'google-rich-snippets',
+];
+
 const blocksToCopy = [
-  {
-    name: 'button',
-    componentDependencies: [{ name: 'button' }],
-  },
-  {
-    name: 'example',
-    componentDependencies: [],
-  },
-  {
-    name: 'group',
-    componentDependencies: [],
-  },
-  {
-    name: 'heading',
-    componentDependencies: [{ name: 'heading' }],
-  },
-  {
-    name: 'image',
-    componentDependencies: [{ name: 'image' }],
-  },
-  {
-    name: 'link',
-    componentDependencies: [{ name: 'link' }],
-  },
-  {
-    name: 'lists',
-    componentDependencies: [{ name: 'lists' }],
-  },
-  {
-    name: 'paragraph',
-    componentDependencies: [{ name: 'paragraph' }],
-  },
-  {
-    name: 'video',
-    componentDependencies: [{ name: 'video' }],
-  },
+  'button',
+  'heading',
+  'image',
+  'link',
+  'lists',
+  'paragraph',
+  'video',
+  'example',
 ];
 
 const copyBlocksFolder = async (projectPath) => {
@@ -62,17 +46,17 @@ const copyBlocksFolder = async (projectPath) => {
     }
 
     fileToCopy.push(copy(blockFolderSource, blockFolderTarget));
+  }
 
-    for (const blockDependency of block.componentDependencies) {
-      const blockDependencyFolderSource = join(sourcePath, 'components', blockDependency.name);
-      const blockDependencyFolderTarget = join(targetPath, 'components', blockDependency.name);
+  for (const component of componentsToCopy) {
+    const componentFolderSource = join(sourcePath, 'components', component.name);
+    const componentFolderTarget = join(targetPath, 'components', component.name);
 
-      if (!await pathExists(blockDependencyFolderSource)) { // eslint-disable-line no-await-in-loop
-        throw new Error(`Trying to copy non-existent component: ${blockDependencyFolderSource}`);
-      }
-
-      fileToCopy.push(copy(blockDependencyFolderSource, blockDependencyFolderTarget));
+    if (!await pathExists(componentFolderSource)) { // eslint-disable-line no-await-in-loop
+      throw new Error(`Trying to copy non-existent component: ${componentFolderSource}`);
     }
+
+    fileToCopy.push(copy(componentFolderSource, componentFolderTarget));
   }
 
   return Promise.all(fileToCopy);
