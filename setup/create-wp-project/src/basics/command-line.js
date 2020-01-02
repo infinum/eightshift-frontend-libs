@@ -7,14 +7,13 @@ const maxBuffer = 500 * 1024;
 
 const cloneRepoTo = async (repo, folderName) => {
   const command = `git clone ${repo} ${folderName}`;
-  console.log('Cmmand: ', command);
   return exec(command);
 };
-const installNodeDependencies = async projectPath => exec(`cd ${projectPath} && npm install`);
-const installComposerDependencies = async projectPath => exec(`cd ${projectPath} && composer install --ignore-platform-reqs`);
-const updateComposerAutoloader = async projectPath => exec(`cd ${projectPath} && composer -o dump-autoload`);
-const buildAssets = async projectPath => exec(`cd ${projectPath} && npm run build`, { maxBuffer });
-const wpCoreDownload = async projectPath => exec(`cd ${projectPath} && wp core download`);
+const installNodeDependencies = async (projectPath) => exec(`cd ${projectPath} && npm install`);
+const installComposerDependencies = async (projectPath) => exec(`cd ${projectPath} && composer install --ignore-platform-reqs`);
+const updateComposerAutoloader = async (projectPath) => exec(`cd ${projectPath} && composer -o dump-autoload`);
+const buildAssets = async (projectPath) => exec(`cd ${projectPath} && npm run build`, { maxBuffer });
+const wpCoreDownload = async (projectPath) => exec(`cd ${projectPath} && wp core download`);
 
 module.exports = {
   cloneRepoTo,
