@@ -1,17 +1,17 @@
-const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
 const inquirer = require('inquirer');
-const { log, label } = require('./misc');
+const { log, label, variable } = require('./misc');
 
 /**
  * Output a summary for all user-provided answers and ask for a confirmation.
  *
- * @param {array} answers Array of user-provided answers.
+ * @param  {array} answers Array of user-provided answers.
+ * @return {bool}
  */
 const summary = async(answers) => {
   log('');
   log(label('Summary: '));
   Object.keys(answers).forEach((key) => {
-    log(`- ${key}: ${chalk.cyan(answers[key])}`);
+    log(`- ${key}: ${variable(answers[key])}`);
   });
 
   const { confirmSummary } = await inquirer.prompt({
@@ -26,16 +26,16 @@ const summary = async(answers) => {
 /**
  * Should prompt the user for all scriptArguments.
  *
- * TODO: Only prompt for things not provided as arguments on command line.
- *
- * @param {array} scriptArguments Array of defined script arguments.
+ * @param  {array} scriptArguments Array of defined script arguments.
+ * @param  {array} argv            Array of CLI arguments.
+ * @return {array}
  */
 const maybePrompt = async(scriptArguments, argv) => {
   let answers = {};
   let confirm = false;
 
   do {
-    for (const argName in scriptArguments) { // eslint-disable-line no-restricted-syntax
+    for (const argName in scriptArguments) {
       if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
         const argument = {
           ...scriptArguments[argName],

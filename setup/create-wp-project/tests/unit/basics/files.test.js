@@ -5,7 +5,12 @@
  */
 const del = require('del');
 const path = require('path');
-const { existsSync, writeFileSync, readFile, mkdirSync } = require('fs');
+const {
+  existsSync,
+  writeFileSync,
+  readFile,
+  mkdirSync,
+} = require('fs');
 const { fullPath, findReplace, readdirAsync } = require('../../../src/basics/files.js');
 const { promisify } = require('util');
 
@@ -16,12 +21,12 @@ const testFiles = {
   file2: path.join(`${fullPath}/jestTestDir/test2.json`),
   ignoredDir: path.join(`${fullPath}/jestTestDir/node_modules`),
   ignoredDirFile: path.join(`${fullPath}/jestTestDir/node_modules/test.json`),
-}
+};
 
 beforeEach(() => {
   const testData = {
     name: 'This is a test string.',
-  }
+  };
 
   if (!existsSync(testFiles.dir)) {
     mkdirSync(testFiles.dir);
@@ -47,42 +52,39 @@ afterEach(async () => {
 
 
 // Test readdirAsync
-test('Make sure we got the correct number of files back', async() => {
+test('Make sure we got the correct number of files back', async () => {
   const files = await readdirAsync(testFiles.dir);
-  expect(
-    files.length === 3 &&
-    files.some((file) => file === 'test.json')
-  ).toBe(true)
+  expect(files.length === 3 && files.some((file) => file === 'test.json')).toBe(true);
 });
 
-test('Make sure we receive nothing from empty directory', async() => {
+test('Make sure we receive nothing from empty directory', async () => {
   const files = await readdirAsync(testFiles.dirEmpty);
   expect(files.length).toBe(0);
 });
 
 // Test findReplace
-test('Make sure find & replace replaced the search string', async() => {
+test('Make sure find & replace replaced the search string', async () => {
   await findReplace(testFiles.dir, 'test string', 'hello world');
   const readFileAsync = promisify(readFile);
   const fileContents = JSON.parse(await readFileAsync(testFiles.file, 'utf-8'));
   expect(fileContents.name).not.toMatch('This is a test string.');
 });
 
-test('Make sure find & replace inserted the new string', async() => {
+test('Make sure find & replace inserted the new string', async () => {
   await findReplace(testFiles.dir, 'test string', 'hello world');
   const readFileAsync = promisify(readFile);
   const fileContents = JSON.parse(await readFileAsync(testFiles.file, 'utf-8'));
   expect(fileContents.name).toMatch('hello world');
 });
 
-test('Make sure find & replace is working in multiple files', async() => {
+test('Make sure find & replace is working in multiple files', async () => {
   await findReplace(testFiles.dir, 'test string', 'hello world');
   const readFileAsync = promisify(readFile);
   const fileContents = JSON.parse(await readFileAsync(testFiles.file2, 'utf-8'));
   expect(fileContents.name).toMatch('hello world');
 });
 
-test('Make sure find & replace didnt do anything in an ignored folder', async() => {
+test('Make sure find & replace didn\'t do anything in an ignored folder', async () => {
   await findReplace(testFiles.dir, 'test string', 'hello world');
   const readFileAsync = promisify(readFile);
   const fileContents = JSON.parse(await readFileAsync(testFiles.ignoredDirFile, 'utf-8'));

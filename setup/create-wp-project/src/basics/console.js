@@ -1,16 +1,14 @@
-const ora = require('ora'); // eslint-disable-line import/no-extraneous-dependencies
-const emoji = require('node-emoji'); // eslint-disable-line import/no-extraneous-dependencies
-const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
-const prompt = require('prompt-sync')(); // eslint-disable-line import/no-extraneous-dependencies
+const ora = require('ora');
+const emoji = require('node-emoji');
+const prompt = require('prompt-sync')();
 const {
   log,
   error,
-  variable,
   label,
   capCase,
 } = require('./misc.js');
 const figlet = require('figlet-promised');
- 
+
 /**
  * Prompts a user for something
  *
@@ -44,7 +42,7 @@ const promptFor = ({
 /**
  * Performs an install step with the ora spinner.
  */
-const installStep = async({describe, thisHappens, isFatal = false}) => {
+const installStep = async ({ describe, thisHappens, isFatal = false }) => {
   const spinner = ora(describe).start();
 
   if (!thisHappens) {
@@ -67,9 +65,9 @@ const installStep = async({describe, thisHappens, isFatal = false}) => {
 /**
  * Prompts the user for all things defined in whatToPromptFor.
  */
-const promptData = async(whatToPromptFor) => {
+const promptData = async (whatToPromptFor) => {
   const data = {};
-  whatToPromptFor.forEach(async(singlePrompt) => {
+  whatToPromptFor.forEach(async (singlePrompt) => {
     data[singlePrompt.key] = promptFor(singlePrompt);
   });
 
@@ -86,23 +84,23 @@ const promptData = async(whatToPromptFor) => {
  * Empties the console.
  */
 const clearConsole = async () => {
-  process.stdout.write('\033c'); // eslint-disable-line
-}
+  process.stdout.write('\x1Bc');
+};
 
 /**
  * Writes the Boilerplate intro.
  */
 const writeIntro = async () => {
-  console.log('');
-  console.log(await figlet('Eightshift Boilerplate'));
-  console.log('');
-}
+  log('');
+  log(await figlet('Eightshift Boilerplate'));
+  log('');
+};
 
 module.exports = {
   promptFor,
   installStep,
   promptData,
   clearConsole,
-  writeIntro
-}
+  writeIntro,
+};
 

@@ -1,6 +1,6 @@
-const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
+const chalk = require('chalk');
 
-const log = (msg) => console.log(msg);
+const log = (msg) => console.log(msg); // eslint-disable-line no-console
 const error = (msg) => log(`${chalk.bgRed('Error')}${chalk.red(' - ')}${msg}`);
 const label = (msg) => chalk.green(msg);
 const variable = (msg) => chalk.cyan(msg);

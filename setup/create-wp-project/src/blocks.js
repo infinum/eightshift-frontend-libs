@@ -24,7 +24,13 @@ const blocksToCopy = [
   'example',
 ];
 
-const copyBlocksFolder = async (projectPath) => {
+/**
+ * Copies some blocks / components (see `blocksToCopy` && `componentsToCopy`) from eightshift-frontend-libs to the project.
+ *
+ * @param  {string} projectPath Path to the project, needed to figure out where to pull blocks from.
+ * @return {Promise}
+ */
+const copyBlocks = async (projectPath) => {
 
   const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init');
   const targetPath = join(projectPath, 'src', 'blocks');
@@ -36,7 +42,7 @@ const copyBlocksFolder = async (projectPath) => {
   await copy(join(sourcePath, 'manifest.json'), join(targetPath, 'manifest.json'));
 
   // Copy only some blocks
-  const fileToCopy = [];
+  const foldersToCopy = [];
   for (const block of blocksToCopy) {
     const blockFolderSource = join(sourcePath, 'custom', block);
     const blockFolderTarget = join(targetPath, 'custom', block);
@@ -45,7 +51,7 @@ const copyBlocksFolder = async (projectPath) => {
       throw new Error(`Trying to copy non-existent block: ${blockFolderSource}`);
     }
 
-    fileToCopy.push(copy(blockFolderSource, blockFolderTarget));
+    foldersToCopy.push(copy(blockFolderSource, blockFolderTarget));
   }
 
   for (const component of componentsToCopy) {
@@ -56,13 +62,13 @@ const copyBlocksFolder = async (projectPath) => {
       throw new Error(`Trying to copy non-existent component: ${componentFolderSource}`);
     }
 
-    fileToCopy.push(copy(componentFolderSource, componentFolderTarget));
+    foldersToCopy.push(copy(componentFolderSource, componentFolderTarget));
   }
 
-  return Promise.all(fileToCopy);
+  return Promise.all(foldersToCopy);
 };
 
 module.exports = {
-  copyBlocksFolder,
+  copyBlocks,
 };
 

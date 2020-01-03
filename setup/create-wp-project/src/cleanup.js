@@ -1,4 +1,4 @@
-const del = require('del'); // eslint-disable-line
+const del = require('del');
 const { join } = require('path');
 
 const cleanup = async(projectPath) => {

@@ -7,7 +7,7 @@ const {
     installStep,
     writeIntro,
   },
-  arguments: { maybePrompt },
+  argumentOperations: { maybePrompt },
   commandLine: {
     cloneRepoTo,
     installNodeDependencies,
@@ -19,12 +19,12 @@ const {
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
-const { copyBlocksFolder } = require('../blocks');
+const { copyBlocks } = require('../blocks');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
 exports.command = '*';
-exports.desc = 'Setup a new WordPress theme (or plugin soon!). Should be run inside your theme folder (wp-content/themes).';
+exports.desc = 'Setup a new WordPress theme (plugin install is coming soon). Should be run inside your theme folder (wp-content/themes).';
 exports.builder = scriptArguments;
 
 exports.handler = async (argv) => {
@@ -54,7 +54,7 @@ exports.handler = async (argv) => {
 
   await installStep({
     describe: '4. Installing blocks',
-    thisHappens: copyBlocksFolder(projectPath),
+    thisHappens: copyBlocks(projectPath),
     isFatal: true,
   });
 

@@ -3,7 +3,7 @@ const files = require('./files');
 const misc = require('./misc');
 const variables = require('./variables');
 const commandLine = require('./command-line');
-const arguments = require('./arguments');
+const argumentOperations = require('./argument-operations');
 
 module.exports = {
   console,
@@ -11,5 +11,5 @@ module.exports = {
   misc,
   variables,
   commandLine,
-  arguments,
-}
+  argumentOperations,
+};

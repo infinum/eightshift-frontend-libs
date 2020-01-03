@@ -1,4 +1,4 @@
-const replace = require('replace-in-file'); // eslint-disable-line import/no-extraneous-dependencies
+const replace = require('replace-in-file');
 const path = require('path');
 const { readdir, rename } = require('fs-extra');
 
@@ -37,7 +37,7 @@ const findReplace = async (pathToFolder, findString, replaceString) => {
  *
  * @param {string} path
  */
-const readdirAsync = async dirPath => new Promise((resolve, reject) => {
+const readdirAsync = async (dirPath) => new Promise((resolve, reject) => {
   readdir(dirPath, (error, result) => {
     if (error) {
       reject(error);

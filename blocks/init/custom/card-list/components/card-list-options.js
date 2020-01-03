@@ -19,7 +19,7 @@ export const CardListOptions = (props) => {
       onChangeButtonStyleSizeWidth,
       onChangeButtonStyleColor,
       onChangeButtonId,
-      onChangeButtonTitle
+      onChangeButtonTitle,
     },
   } = props;
 

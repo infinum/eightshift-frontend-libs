@@ -50,7 +50,6 @@ const scriptArguments = {
         let prefix = '';
         const sourceWords = sourceArg.split(' ');
         if (sourceWords && sourceWords.length >= 2) {
-          // eslint-disable-next-line no-restricted-syntax
           for (const word of sourceWords) {
             prefix += word.charAt(0).toUpperCase();
           }
