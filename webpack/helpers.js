@@ -70,7 +70,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
 }
 
 /**
- * Check if user config is added and it is used.s
+ * Check if user config is added and it is used
  *
  * @param {object} config Config object to check.
  * @param {string} key Config object key to test if is false.
@@ -78,7 +78,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
  * @since 2.0.0
  */
 function isUsed(config, key) {
-  if (config.hasOwnProperty(key) && config[key]) {
+  if (config.hasOwnProperty(key) || config[key]) {
     return false;
   }
 
