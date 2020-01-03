@@ -1,7 +1,0 @@
-node_modules
-
-# Testing related stuff
-vendor
-composer.json
-composer.lock
-blocks

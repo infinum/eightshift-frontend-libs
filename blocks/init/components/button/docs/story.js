@@ -19,7 +19,7 @@ const editorProps = {
     styleSize: manifest.attributes.button.default.styleSize,
     styleColor: manifest.attributes.button.default.styleColor,
     styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
-  }
+  },
 };
 
 const optionsProps = {

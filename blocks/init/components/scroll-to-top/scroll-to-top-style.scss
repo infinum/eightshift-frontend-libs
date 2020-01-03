@@ -1,4 +1,5 @@
 .scroll-to-top {
+  @extend %button-reset;
   position: fixed;
   right: 15px;
   bottom: 15px;
