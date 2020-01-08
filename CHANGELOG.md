@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+## Changed
+- Complete rewrite of setup script for boilerplate
+- Updating CleanWebpackPlugin option to fix removing items in watch mode
+- Updating readme and docs
 
 ## [3.0.2] - 2019-12-19
 
