@@ -20,7 +20,9 @@ module.exports = (options) => {
 
   // Clean public files before next build.
   if (isUsed(options.overrides, 'cleanWebpackPlugin')) {
-    plugins.push(new CleanWebpackPlugin());
+    plugins.push(new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }));
   }
 
   // Provide global variables to window object.
