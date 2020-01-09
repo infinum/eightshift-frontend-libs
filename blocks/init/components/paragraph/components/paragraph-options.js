@@ -45,7 +45,7 @@ export const ParagraphOptions = (props) => {
               value={styleSize}
               options={[
                 { label: __('Default (22px)', 'eightshift-boilerplate'), value: 'default' },
-                { label: __('Small (20px)', 'eightshift-boilerplate'), value: 'small' },
+                { label: __('Small (18px)', 'eightshift-boilerplate'), value: 'small' },
               ]}
               onChange={onChangeStyleSize}
             />
