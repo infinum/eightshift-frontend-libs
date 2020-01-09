@@ -2,7 +2,7 @@
 /**
  * Main header bar
  *
- * @package Eightshift_Boilerplate\Layout\Header
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  */
@@ -24,6 +24,6 @@ $logo_img         = apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_F
   <?php
     echo esc_html( Menu::bem_menu( 'header_main_nav', 'main-navigation' ) );
 
-    get_template_part( 'src/blocks/layout/header/components/search/search' );
+    get_template_part( 'src/blocks/components/header/components/search/search' );
   ?>
 </div>

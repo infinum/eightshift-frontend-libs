@@ -2,11 +2,10 @@
 /**
  * Google Rich Snippets
  *
- * @package Eightshift_Boilerplate\Views\Parts
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  *
- * TODO: Create this as a class with attributes.
  */
 
 use Eightshift_Boilerplate\Core\Config;

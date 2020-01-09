@@ -2,7 +2,7 @@
 /**
  * Header Serch form
  *
- * @package Eightshift_Boilerplate\Views\Header
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  */

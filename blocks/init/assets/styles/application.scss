@@ -15,7 +15,3 @@
 
 // Config.
 @import './parts/core';
-
-// Find all layout components and require component_name-style.scss inside it.
-@import './../../layout/*/*-style.scss';
-

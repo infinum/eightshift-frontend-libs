@@ -2,7 +2,7 @@
 /**
  * Display footer content
  *
- * @package Eightshift_Boilerplate\Views\Footer
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  */
