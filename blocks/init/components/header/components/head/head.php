@@ -2,7 +2,7 @@
 /**
  * Head section for meta data
  *
- * @package Eightshift_Boilerplate\Views\Header\Head
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  */

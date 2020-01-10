@@ -9,6 +9,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Complete rewrite of setup script for boilerplate
 - Updating CleanWebpackPlugin option to fix removing items in watch mode
 - Updating readme and docs
+- Moved all src/blocks/layout/... to src/blocks/components
 
 ## [3.0.2] - 2019-12-19
 
