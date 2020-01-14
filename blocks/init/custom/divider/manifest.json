@@ -1,0 +1,18 @@
+{
+  "blockName": "divider",
+  "title": "Divider",
+  "description" : "Divider Description",
+  "category": "eightshift",
+  "icon": {
+    "src": "tide"
+  },
+  "keywords": [
+    "Divider"
+  ],
+  "attributes": {
+    "color": {
+      "type": "string",
+      "default": "primary"
+    }
+  }
+}

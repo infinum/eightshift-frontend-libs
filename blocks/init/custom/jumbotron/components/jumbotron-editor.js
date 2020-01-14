@@ -40,7 +40,7 @@ export const JumbotronEditor = (props) => {
         <div className={`${blockClass}__content-wrap`}>
           <div className={`${blockClass}__heading`}>
             <RichText
-              placeholder={__('Add Heading', 'infinum')}
+              placeholder={__('Add Heading', 'eightshift-boilerplate')}
               className={`${blockClass}__heading`}
               onChange={onChangeHeading}
               value={heading}
@@ -49,7 +49,7 @@ export const JumbotronEditor = (props) => {
           
           <div className={`${blockClass}__paragraph`}>
             <RichText
-              placeholder={__('Add Paragraph', 'infinum')}
+              placeholder={__('Add Paragraph', 'eightshift-boilerplate')}
               className={`${blockClass}__paragraph`}
               onChange={onChangeParagraph}
               value={paragraph}
