@@ -1,0 +1,15 @@
+$block-divider: (
+  colors: (
+    primary: $base-primary-color,
+    black: $base-black-color,
+    white: $base-white-color,
+  ),
+);
+
+.block-divider {
+  height: 1px;
+
+  &__color {
+    @include modifiers-deep($block-divider, colors, background-color);
+  }
+}

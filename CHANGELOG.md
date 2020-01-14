@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+
+## Added
+- New divider block
+
 ## Changed
 - Complete rewrite of setup script for boilerplate
 - Updating CleanWebpackPlugin option to fix removing items in watch mode
