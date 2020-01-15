@@ -9,31 +9,30 @@
 ///
 /// @access public
 /// @author Karlo Volf
-/// @param {percentage} $thickness [percentage] - Thickness of the line in percentage.
-/// @param {seconds} $duration [s] - How long animation lasts.
-/// @param {timing-function} $timing-function [timing-function] - Execution speed function.
-/// @param {string} $color [hex] - Color of the line.
-/// @param {pixel} $breakpoint [px] - Minimum width of the element.
-/// @param {boolean} $wrapper [bool] - If wrapper is used as hover reference.
-/// @param {selector} $element [] - Element on which you want underline.
-/// @param {string} $state [string] - The state in which it becomes underline element.
+/// @param {percentage} $thickness [10%] - Thickness of the line in percentage.
+/// @param {seconds} $duration [.5s] - How long animation lasts.
+/// @param {timing-function} $timing-function [cubic-bezier(.79, .01, .22, .99)] - Execution speed function.
+/// @param {hex} $color [currentColor] - Color of the line.
+/// @param {boolean} $wrapper [false] - If wrapper is used as hover reference.
+/// @param {string} $element [.underline-text] - Element on which you want underline.
+/// @param {string} $state [hover] - The state in which it becomes underline element.
 /// @example
 /// .test {
 ///   @include underline-text();
 /// }
 /// .test2 {
-///   @include underline-text(4px, .5s, ease-in, #132031, true, a.link, hover);
+///   @include underline-text(10, .7s, ease-in, #132031, true, a.link, hover);
 /// }
 /// @output
 /// ```scss
 /// .test {
-///  display: inline;
-///  transition: background-size 0.5s ease-in 0s, background-position 0s step-end 0.5s;
-///  text-decoration: none;
-///  background-image: linear-gradient(transparent 95%, #132031 95%, #132031 100%);
-///  background-repeat: no-repeat;
-///  background-position-y: bottom;
-///  background-size: 0% 100%;
+///   display: inline;
+///   transition: background-size 0.5s cubic-bezier(0.79, 0.01, 0.22, 0.99) 0s, background-position 0s step-end 0.5s;
+///   text-decoration: none;
+///   background-image: linear-gradient(transparent 90%, currentColor 90%, currentColor 100%);
+///   background-repeat: no-repeat;
+///   background-position-y: bottom;
+///   background-size: 0% 100%;
 ///   &:hover {
 ///     background-position-x: right;
 ///     background-position-y: bottom;
@@ -41,17 +40,16 @@
 ///   }
 /// }
 /// .test2 {
-///   text-decoration: none;
-///   & a.link {
+///   & .link {
 ///     display: inline;
-///     transition: background-size 0.5s ease-in 0s, background-position 0s step-end 0.5s;
+///     transition: background-size 0.7s ease-in 0s, background-position 0s step-end 0.7s;
 ///     text-decoration: none;
 ///     background-image: linear-gradient(transparent 95%, #132031 95%, #132031 100%);
 ///     background-repeat: no-repeat;
 ///     background-position-y: bottom;
 ///     background-size: 0% 100%;
 ///   }
-///   &:hover a.link {
+///   &:hover .link {
 ///     background-position-x: right;
 ///     background-position-y: bottom;
 ///     background-size: 100% 100%;
@@ -60,24 +58,6 @@
 /// ```
 ///
 
-
-.test2 {
-  text-decoration: none;
-  & a.link {
-    display: inline;
-    transition: background-size 0.5s ease-in 0s, background-position 0s step-end 0.5s;
-    text-decoration: none;
-    background-image: linear-gradient(transparent 95%, #132031 95%, #132031 100%);
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-    background-size: 0% 100%;
-  }
-  &:hover a.link {
-    background-position-x: right;
-    background-position-y: bottom;
-    background-size: 100% 100%;
-  }
-}
 
 @mixin underline-text($thickness: 10%, $duration: .5s, $timing-function: cubic-bezier(.79, .01, .22, .99), $color: currentColor, $wrapper: false, $element: '.underline-text', $state: 'hover') {
   $thickness: 100% - $thickness;

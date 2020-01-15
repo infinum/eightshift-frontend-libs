@@ -3,11 +3,11 @@
 ///
 /// @access public
 /// @author Karlo Volf
-/// @param {pixel} $thickness [px] - Thickness of the line.
-/// @param {seconds} $duration [s] - How long animation lasts.
-/// @param {timing-function} $timing-function [timing-function] - Execution speed function.
-/// @param {string} $color [hex] - Color of the line.
-/// @param {pixel} $breakpoint [px] - Minimum width of the element.
+/// @param {pixel} $thickness [2px] - Thickness of the line.
+/// @param {seconds} $duration [.3s] - How long animation lasts.
+/// @param {timing-function} $timing-function [cubic-bezier(.79, .01, .22, .99)] - Execution speed function.
+/// @param {hex} $color [currentColor] - Color of the line.
+/// @param {pixel} $breakpoint [1080px] - Minimum width of the element.
 /// @example
 /// .test {
 ///   @include underline();
