@@ -13,7 +13,7 @@
 ///   @include underline();
 /// }
 /// .test2 {
-///   @include underline(4px, .5s, ease-in, #132031, 300px);
+///   @include underline(4px, 0.5s, ease-in, #132031, 300px);
 /// }
 /// @output
 /// ```scss
@@ -31,7 +31,7 @@
 ///     height: 2px;
 ///     transform: scaleX(0);
 ///     transform-origin: left center;
-///     transition: transform .3s cubic-bezier(.79, .01, .22, .99) 0s, transform-origin 0s step-end .3s;
+///     transition: transform .3s cubic-bezier(0.79, 0.01, 0.22, 0.99) 0s, transform-origin 0s step-end 0.3s;
 ///     background-color: currentColor;
 ///   }
 ///   @media (min-width: 1080px) {
@@ -56,7 +56,7 @@
 ///     height: 4px;
 ///     transform: scaleX(0);
 ///     transform-origin: left center;
-///     transition: transform .5s ease-in 0s, transform-origin 0s step-end .5s;
+///     transition: transform 0.5s ease-in 0s, transform-origin 0s step-end 0.5s;
 ///     background-color: #132031;
 ///   }
 ///   @media (min-width: 300px) {
@@ -70,7 +70,7 @@
 /// ```
 ///
 
-@mixin underline($thickness: 2px, $duration: .3s, $timing-function: cubic-bezier(.79, .01, .22, .99), $color: currentColor, $breakpoint: 1080px) {
+@mixin underline($thickness: 2px, $duration: 0.3s, $timing-function: cubic-bezier(0.79, 0.01, 0.22, 0.99), $color: currentColor, $breakpoint: 1080px) {
   position: relative;
 
   &:hover {
@@ -102,7 +102,6 @@
     }
   }
 }
-
 @mixin for-each-attribute($map) {
   @each $key, $value in $map {
     #{$key}: #{$value};
