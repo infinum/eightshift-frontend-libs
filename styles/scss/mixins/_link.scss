@@ -51,9 +51,7 @@
 /// }
 /// ```
 
-// stylelint-disable max-nesting-depth
-
-@mixin link($map, $key) {
+@mixin link($map, $key) { // stylelint-disable max-nesting-depth
   @if (type-of($map) == 'map') {
     @each $state, $stateMap in map-get-strict($map, $key) {
       @if $state == 'normal' {

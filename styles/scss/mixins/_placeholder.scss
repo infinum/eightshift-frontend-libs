@@ -23,9 +23,7 @@
 /// }
 /// ```
 
-// stylelint-disable selector-no-vendor-prefix
-
-@mixin placeholder {
+@mixin placeholder { // stylelint-disable selector-no-vendor-prefix
   &::-webkit-input-placeholder {
     @content;
   }
