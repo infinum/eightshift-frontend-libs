@@ -17,6 +17,7 @@
 ///
 /// @access public
 /// @author Karlo Volf
+///
 /// @param {percentage} $thickness [10%] - Thickness of the line in percentage. Percentage refers to the font size.
 /// @param {seconds} $duration [.5s] - How long animation lasts.
 /// @param {timing-function} $timing-function [cubic-bezier(0.79, 0.01, 0.22, 0.99)] - Execution speed function.
@@ -31,7 +32,7 @@
 /// }
 ///
 /// .test2 {
-///   @include underline-text(5%, .7s, ease-in, #132031, true, "link", hover);
+///   @include underline-text(5%, .7s, ease-in, #132031, true, ".link", hover);
 /// }
 ///
 /// .test3 {
@@ -59,7 +60,7 @@
 ///  .test2 {
 ///    text-decoration: none;
 ///
-///    link {
+///    .link {
 ///      display: inline;
 ///      transition: background-size 0.7s ease-in 0s, background-position 0s step-end 0.7s;
 ///      text-decoration: none;
@@ -69,7 +70,7 @@
 ///      background-size: 0% 100%;
 ///    }
 ///
-///    &:hover link {
+///    &:hover .link {
 ///      background-position-x: right;
 ///      background-position-y: bottom;
 ///      background-size: 100% 100%;
