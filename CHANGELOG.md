@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [Unreleased]
+
 ## [3.0.3] - 2020-01-16
 
 ## Added
