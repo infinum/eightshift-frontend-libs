@@ -9,21 +9,23 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [3.0.3] - 2020-01-16
 
 ## Added
-- New divider block
+- Added new divider block.
 - Added blocksAssetsPathConfig also as a default value in Webpack helper.
-- Adding assetsPath and outputPath to default values in Webpack helper.
+- Added assetsPath and outputPath to default values in Webpack helper.
+- Added option to not load webpack entrypoint file if it doesn't exist.
 
 ## Changed
-- Complete rewrite of setup script for boilerplate.
-- Updating CleanWebpackPlugin option to fix removing items in watch mode.
-- Updating readme and docs.
+- Changed setup script for boilerplate.
+- Changed Webpack overrides key from object to array.
+- Changed CleanWebpackPlugin option to fix removing items in watch mode.
+- Changed readme and docs.
+- Changed documentation.
+- Changed setup script new structure.
+
+# Moved
+- Decoupled normal assets from blocks for extra flexibility.
 - Moved all src/blocks/layout/... to src/blocks/components.
 - Moved inital blocks setup to a separate folder.
-- Decoupled normal assets from blocks for extra flexibility.
-- Updating documentation.
-- Changed Webpack overrides key from object to array.
-- Added option to not load webpack entrypoint file if it doesn't exist.
-- Updating setup script new structure.
 
 ## [3.0.2] - 2019-12-19
 
