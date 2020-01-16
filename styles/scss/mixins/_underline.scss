@@ -3,18 +3,22 @@
 ///
 /// @access public
 /// @author Karlo Volf
+///
 /// @param {pixel} $thickness [2px] - Thickness of the line.
 /// @param {seconds} $duration [.3s] - How long animation lasts.
 /// @param {timing-function} $timing-function [cubic-bezier(.79, .01, .22, .99)] - Execution speed function.
 /// @param {hex} $color [currentColor] - Color of the line.
-/// @param {pixel} $breakpoint [1080px] - Minimum width of the element.
+/// @param {pixel} $breakpoint [1080px] - Minimum width of the device. Classic media query.
+///
 /// @example
 /// .test {
 ///   @include underline();
 /// }
+///
 /// .test2 {
 ///   @include underline(4px, 0.5s, ease-in, #132031, 300px);
 /// }
+///
 /// @output
 /// ```scss
 /// .test {
@@ -22,6 +26,7 @@
 ///   &:hover {
 ///     text-decoration: none;
 ///   }
+///
 ///   &::after {
 ///     content: "";
 ///     position: absolute;
@@ -34,6 +39,7 @@
 ///     transition: transform .3s cubic-bezier(0.79, 0.01, 0.22, 0.99) 0s, transform-origin 0s step-end 0.3s;
 ///     background-color: currentColor;
 ///   }
+///
 ///   @media (min-width: 1080px) {
 ///     .test:hover::after {
 ///       content: "";
@@ -42,6 +48,7 @@
 ///     }
 ///   }
 /// }
+///
 /// .test2 {
 ///   position: relative;
 ///   &:hover {
@@ -100,10 +107,5 @@
       transform: scaleX(1);
       transform-origin: right center;
     }
-  }
-}
-@mixin for-each-attribute($map) {
-  @each $key, $value in $map {
-    #{$key}: #{$value};
   }
 }
