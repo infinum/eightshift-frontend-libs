@@ -4,7 +4,7 @@
  * @since 2.0.0
  */
 
-const { isUsed } = require('./helpers');
+const fs = require('fs');
 
 module.exports = (options) => {
   const entry = {};
@@ -14,27 +14,27 @@ module.exports = (options) => {
   };
 
   // Load Application Entrypoint.
-  if (isUsed(options.overrides, 'application')) {
+  if (!options.overrides.includes('application') && fs.existsSync(options.config.applicationEntry)) {
     entry.application = options.config.applicationEntry;
   }
 
   // Load ApplicationAdmin Entrypoint.
-  if (isUsed(options.overrides, 'applicationAdmin')) {
+  if (!options.overrides.includes('applicationAdmin') && fs.existsSync(options.config.applicationAdminEntry)) {
     entry.applicationAdmin = options.config.applicationAdminEntry;
   }
 
   // Load ApplicationBlocks Entrypoint.
-  if (isUsed(options.overrides, 'applicationBlocks')) {
+  if (!options.overrides.includes('applicationBlocks') && fs.existsSync(options.config.applicationBlocksEntry)) {
     entry.applicationBlocks = options.config.applicationBlocksEntry;
   }
 
   // Load ApplicationBlocksEditor Entrypoint.
-  if (isUsed(options.overrides, 'applicationBlocksEditor')) {
+  if (!options.overrides.includes('applicationBlocksEditor') && fs.existsSync(options.config.applicationBlocksEditorEntry)) {
     entry.applicationBlocksEditor = options.config.applicationBlocksEditorEntry;
   }
 
   // Load filename Output.
-  if (isUsed(options.overrides, 'filename')) {
+  if (!options.overrides.includes('filename')) {
     output.filename = `${options.config.filesOutput}.js`;
   }
 

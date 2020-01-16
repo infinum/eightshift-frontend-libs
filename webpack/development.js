@@ -7,7 +7,6 @@
  */
 
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const { isUsed } = require('./helpers');
 
 // Define developmentConfig setup.
 module.exports = (options) => {
@@ -16,7 +15,7 @@ module.exports = (options) => {
   const plugins = [];
 
   // Use BrowserSync to see live preview of all changes.
-  if (isUsed(options.overrides, 'browserSyncPlugin')) {
+  if (!options.overrides.includes('browserSyncPlugin')) {
     plugins.push(new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,

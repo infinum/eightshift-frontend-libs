@@ -24,6 +24,7 @@ module.exports = (mode, optionsData = {}) => {
     optionsData.config.projectUrl,
     optionsData.config.projectPath,
     optionsData.config.assetsPath,
+    optionsData.config.blocksAssetsPath,
     optionsData.config.outputPath
   );
 
