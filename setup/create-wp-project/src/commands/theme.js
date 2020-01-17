@@ -24,7 +24,7 @@ const { copyAssets } = require('../assets');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
-exports.command = '*';
+exports.command = ['*', 'theme'];
 exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
 exports.builder = scriptArguments;
 
