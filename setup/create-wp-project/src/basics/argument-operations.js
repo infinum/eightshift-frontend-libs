@@ -61,6 +61,7 @@ const maybePrompt = async(scriptArguments, argv) => {
     // Skip summary if noSummary argument is provided
     if (!argv.noSummary) {
       confirm = await summary(answers); // eslint-disable-line no-await-in-loop
+      log('');
     } else {
       confirm = true;
     }
@@ -69,6 +70,24 @@ const maybePrompt = async(scriptArguments, argv) => {
   return answers;
 };
 
+/**
+ * Converts a y/n prompt question to a boolean
+ *
+ * @param  {string} prompt Answer to prompted y/n question
+ * @return {bool}
+ */
+const promptToBool = async(prompt) => {
+  const lwrPrompt = prompt.toLowerCase();
+
+  return lwrPrompt === 'y' ||
+    lwrPrompt === 'yes' ||
+    lwrPrompt === '1' ||
+    lwrPrompt === 1 ||
+    lwrPrompt === 'confirm' ||
+    lwrPrompt === 'i do';
+};
+
 module.exports = {
   maybePrompt,
+  promptToBool,
 };

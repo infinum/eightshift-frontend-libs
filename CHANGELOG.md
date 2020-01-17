@@ -11,6 +11,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## Changed
 - Complete rewrite of setup script for boilerplate
+- Added setup script for plugin
 - Updating CleanWebpackPlugin option to fix removing items in watch mode
 - Updating readme and docs
 - Moved all src/blocks/layout/... to src/blocks/components
@@ -28,8 +29,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added option to override any Webpack build options
 - Removed postcss
 - Changed readme docs for Webpack
-- Updating alliases
-- Removing unnecesery packages
+- Updating aliases
+- Removing unnecessary packages
 - Optimizations for storybook
 
 ## [3.0.0] - 2019-12-18
@@ -93,7 +94,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [2.0.0] - 2019-11-04
 
-- Complete refactor on project organisation.
+- Complete refactor on project organization.
 - Moving, Babel, Webpack, linters config from boilerplate to eightshift-frontend-libs.
 - Adding blocks init and blocks example.
 - Creating components to reuse on blocks project.
