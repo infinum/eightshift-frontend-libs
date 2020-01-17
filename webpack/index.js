@@ -14,7 +14,7 @@ module.exports = (mode, optionsData = {}) => {
   // All config and default setting overrides must be provided using this object.
   const options = {
     config: {},
-    overrides: {},
+    overrides: [],
     ...optionsData,
   };
 
@@ -24,6 +24,7 @@ module.exports = (mode, optionsData = {}) => {
     optionsData.config.projectUrl,
     optionsData.config.projectPath,
     optionsData.config.assetsPath,
+    optionsData.config.blocksAssetsPath,
     optionsData.config.outputPath
   );
 

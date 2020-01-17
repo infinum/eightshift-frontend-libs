@@ -12,8 +12,11 @@
 
 This library is intended to work with [Eightshift Libs](https://github.com/infinum/eightshift-libs/) library and [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) by containing all the frontend parts for your project.
 
+==============================================================================
 ## Documentaiton
-For the full documentation please check this [link](https://infinum.github.io/eightshift-frontend-libs).
+### For the full documentation please check this [link](https://infinum.github.io/eightshift-frontend-libs).
+
+==============================================================================
 
 ## Prerequisites
 

@@ -18,8 +18,9 @@ module.exports = (env, argv) => {
       projectDir: __dirname, // Current project directory absolute path.
       projectUrl: 'local-url.test', // Used for providing browsersync functionality.
       projectPath: 'wp-content/themes/your-theme-name', // Project path relative to project root.
-      assetsPath: 'src/blocks/assets', // Assets path after projectPath location.
-      outputPath: 'public', // Public output path after projectPath location.
+      assetsPath: 'src/blocks/assets', // Assets path after projectPath location. (add this key only to override the default value.)
+      blocksAssetsPathConfig: 'src/blocks/assets', // Blocks assets path after projectPath location. (add this key only to override the default value.)
+      outputPath: 'public', // Public output path after projectPath location. (add this key only to override the default value.)
     },
   };
 
@@ -34,8 +35,8 @@ module.exports = (env, argv) => {
 
 ## Override built-in functionality
 
-To remove built-in functionality, add a new object to the config called `overrides`.
-If you provide any of the `overrides keys` set to `true`, it will remove that config from the build.
+To remove built-in functionality, add a new array to the config called `overrides`.
+If you provide any of the `overrides keys`, it will remove that config from the build.
 Here is a list of all the features that we use and how to remove them.
 
 ```js
@@ -44,26 +45,26 @@ const projectConfig = {
   config: {
     ...
   },
-  overrides: {
-    application: true,
-    applicationAdmin: true,
-    applicationBlocks: true,
-    applicationBlocksEditor: true,
-    filename: true,
-    cleanWebpackPlugin: true,
-    terserPlugin: true,
-    browserSyncPlugin: true,
-    providePlugin: true,
-    manifestPlugin: true,
-    miniCssExtractPlugin: true,
-    copyWebpackPlugin: true,
-    optimizeCSSAssetsPlugin: true,
-    js: true,
-    scss: true,
-    images: true,
-    fonts: true,
-    runtimeChunk: true,
-  }
+  overrides: [
+    'application',
+    'applicationAdmin',
+    'applicationBlocks',
+    'applicationBlocksEditor',
+    'filename',
+    'cleanWebpackPlugin',
+    'terserPlugin',
+    'browserSyncPlugin',
+    'providePlugin',
+    'manifestPlugin',
+    'miniCssExtractPlugin',
+    'copyWebpackPlugin',
+    'optimizeCSSAssetsPlugin',
+    'js',
+    'scss',
+    'images',
+    'fonts',
+    'runtimeChunk',
+  ],
 }
 ```
 

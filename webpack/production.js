@@ -7,7 +7,6 @@
 
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { isUsed } = require('./helpers');
 
 module.exports = (options) => {
 
@@ -20,7 +19,7 @@ module.exports = (options) => {
   };
   
   // Plugin used to minify output.
-  if (isUsed(options.overrides, 'terserPlugin')) {
+  if (!options.overrides.includes('terserPlugin')) {
     optimization.minimizer.push(new TerserPlugin({
       cache: true,
       parallel: true,
@@ -32,7 +31,7 @@ module.exports = (options) => {
     }));
   }
 
-  if (isUsed(options.overrides, 'optimizeCSSAssetsPlugin')) {
+  if (!options.overrides.includes('optimizeCSSAssetsPlugin')) {
     optimization.minimizer.push(new OptimizeCssAssetsPlugin({
       cssProcessorPluginOptions: {
         preset: [

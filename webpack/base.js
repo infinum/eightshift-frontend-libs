@@ -11,7 +11,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { isUsed } = require('./helpers');
 
 module.exports = (options) => {
 
@@ -19,14 +18,12 @@ module.exports = (options) => {
   const plugins = [];
 
   // Clean public files before next build.
-  if (isUsed(options.overrides, 'cleanWebpackPlugin')) {
-    plugins.push(new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
-    }));
+  if (!options.overrides.includes('cleanWebpackPlugin')) {
+    plugins.push(new CleanWebpackPlugin());
   }
 
   // Provide global variables to window object.
-  if (isUsed(options.overrides, 'providePlugin')) {
+  if (!options.overrides.includes('providePlugin')) {
     plugins.push(new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -34,14 +31,14 @@ module.exports = (options) => {
   }
 
   // Output css from Js.
-  if (isUsed(options.overrides, 'miniCssExtractPlugin')) {
+  if (!options.overrides.includes('miniCssExtractPlugin')) {
     plugins.push(new MiniCssExtractPlugin({
       filename: `${options.config.filesOutput}.css`,
     }));
   }
 
   // Copy files to new destination.
-  if (isUsed(options.overrides, 'copyWebpackPlugin')) {
+  if (!options.overrides.includes('copyWebpackPlugin')) {
     plugins.push(new CopyWebpackPlugin([
 
       // Find jQuery in node_modules and copy it to public folder
@@ -53,7 +50,7 @@ module.exports = (options) => {
   }
 
   // Create manifest.json file.
-  if (isUsed(options.overrides, 'manifestPlugin')) {
+  if (!options.overrides.includes('manifestPlugin')) {
     plugins.push(new ManifestPlugin({
       seed: {},
     }));
@@ -62,7 +59,7 @@ module.exports = (options) => {
   // All Optimizations used in production and development build.
   const optimization = {};
 
-  if (isUsed(options.overrides, 'runtimeChunk')) {
+  if (!options.overrides.includes('runtimeChunk')) {
     optimization.runtimeChunk = false;
   }
 
@@ -72,7 +69,7 @@ module.exports = (options) => {
   };
 
   // Module for JS and JSX.
-  if (isUsed(options.overrides, 'js')) {
+  if (!options.overrides.includes('js')) {
     module.rules.push({
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
@@ -81,7 +78,7 @@ module.exports = (options) => {
   }
 
   // Module for Images.
-  if (isUsed(options.overrides, 'images')) {
+  if (!options.overrides.includes('images')) {
     module.rules.push({
       test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
       exclude: [/fonts/, /node_modules/],
@@ -90,7 +87,7 @@ module.exports = (options) => {
   }
 
   // Module for Fonts.
-  if (isUsed(options.overrides, 'fonts')) {
+  if (!options.overrides.includes('fonts')) {
     module.rules.push({
       test: /\.(eot|otf|ttf|woff|woff2|svg)$/,
       exclude: [/images/, /node_modules/],
@@ -99,7 +96,7 @@ module.exports = (options) => {
   }
 
   // Module for Scss.
-  if (isUsed(options.overrides, 'scss')) {
+  if (!options.overrides.includes('scss')) {
     module.rules.push({
       test: /\.scss$/,
       exclude: /node_modules/,
