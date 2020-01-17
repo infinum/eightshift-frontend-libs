@@ -42,7 +42,7 @@ const promptFor = ({
 /**
  * Performs an install step with the ora spinner.
  */
-const installStep = async ({ describe, thisHappens, isFatal = false }) => {
+const installStep = async ({ describe, thisHappens, isFatal = true }) => {
   const spinner = ora(describe).start();
 
   if (!thisHappens) {

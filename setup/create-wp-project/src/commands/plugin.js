@@ -7,7 +7,9 @@ const {
     installStep,
     writeIntro,
   },
-  argumentOperations: { maybePrompt },
+  argumentOperations: {
+    maybePrompt,
+  },
   commandLine: {
     cloneRepoTo,
     installNodeDependencies,
@@ -24,8 +26,8 @@ const { copyAssets } = require('../assets');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
-exports.command = ['*', 'theme'];
-exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
+exports.command = 'plugin';
+exports.desc = 'Setup a new WordPress plugin. Should be run inside your plugins folder (wp-content/plugins).';
 exports.builder = scriptArguments;
 
 exports.handler = async (argv) => {
@@ -35,10 +37,11 @@ exports.handler = async (argv) => {
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const projectPath = path.join(fullPath, promptedInfo.package);
-  
+  log('');
+
   await installStep({
     describe: `${step}. Cloning repo`,
-    thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate.git', projectPath),
+    thisHappens: cloneRepoTo('git@github.com:infinum/eightshift-boilerplate-plugin.git', projectPath),
   });
   step++;
 
@@ -57,6 +60,7 @@ exports.handler = async (argv) => {
   await installStep({
     describe: `${step}. Copying assets`,
     thisHappens: copyAssets(projectPath),
+    isFatal: true,
   });
   step++;
 

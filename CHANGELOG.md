@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+- Fixed theme setup script
+- Added setup script for plugin
 
 ## [3.0.3] - 2020-01-16
 
@@ -40,8 +42,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added option to override any Webpack build options
 - Removed postcss
 - Changed readme docs for Webpack
-- Updating alliases
-- Removing unnecesery packages
+- Updating aliases
+- Removing unnecessary packages
 - Optimizations for storybook
 
 ## [3.0.0] - 2019-12-18
@@ -105,7 +107,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [2.0.0] - 2019-11-04
 
-- Complete refactor on project organisation.
+- Complete refactor on project organization.
 - Moving, Babel, Webpack, linters config from boilerplate to eightshift-frontend-libs.
 - Adding blocks init and blocks example.
 - Creating components to reuse on blocks project.

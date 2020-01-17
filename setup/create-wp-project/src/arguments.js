@@ -88,6 +88,12 @@ const scriptArguments = {
     type: 'boolean',
     skipPrompt: true,
   },
+  noBlocks: {
+    name: 'noBlocks',
+    describe: 'Pass this argument to prevent block installation',
+    type: 'boolean',
+    skipPrompt: true,
+  },
 };
 
 module.exports = {
