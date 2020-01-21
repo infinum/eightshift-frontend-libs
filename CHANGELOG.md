@@ -8,6 +8,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Fixed theme setup script
 - Added setup script for plugin
 - Added absolute-position scss placeholder
+- Updating documentation
 
 ## [3.0.3] - 2020-01-16
 
