@@ -3,15 +3,10 @@
     "sections": [
       {
         "title": "Eightshift Frontend Libs",
-        "source": "README.md",
+        "source": "documentation/index.md",
         "url": "index.html",
         "slug": "index",
         "headings": [
-          {
-            "title": "Documentaiton",
-            "depth": 2,
-            "id": "documentaiton"
-          },
           {
             "title": "Prerequisites",
             "depth": 2,
@@ -451,16 +446,11 @@
   },
   "index": {
     "index.html": {
-      "source": "README.md",
+      "source": "documentation/index.md",
       "title": "Eightshift Frontend Libs",
       "pageTitle": "Eightshift Frontend Libs",
       "slug": "index",
       "headings": [
-        {
-          "title": "Documentaiton",
-          "depth": 2,
-          "id": "documentaiton"
-        },
         {
           "title": "Prerequisites",
           "depth": 2,
@@ -873,7 +863,7 @@
     }
   },
   "sources": {
-    "README.md": "index.html",
+    "documentation/index.md": "index.html",
     "documentation/installation/instalation-and-requirements.md": "installation/instalation-and-requirements.html",
     "documentation/installation/register-webpack.md": "installation/register-webpack.html",
     "documentation/structure/blocks-registration.md": "structure/blocks-registration.html",

@@ -98,8 +98,9 @@
       <span class="hljs-attr">projectDir</span>: __dirname, <span class="pl-c">// Current project directory absolute path.</span>
       <span class="hljs-attr">projectUrl</span>: <span class="pl-s">&apos;local-url.test&apos;</span>, <span class="pl-c">// Used for providing browsersync functionality.</span>
       <span class="hljs-attr">projectPath</span>: <span class="pl-s">&apos;wp-content/themes/your-theme-name&apos;</span>, <span class="pl-c">// Project path relative to project root.</span>
-      <span class="hljs-attr">assetsPath</span>: <span class="pl-s">&apos;src/blocks/assets&apos;</span>, <span class="pl-c">// Assets path after projectPath location.</span>
-      <span class="hljs-attr">outputPath</span>: <span class="pl-s">&apos;public&apos;</span>, <span class="pl-c">// Public output path after projectPath location.</span>
+      <span class="hljs-attr">assetsPath</span>: <span class="pl-s">&apos;src/blocks/assets&apos;</span>, <span class="pl-c">// Assets path after projectPath location. (add this key only to override the default value.)</span>
+      <span class="hljs-attr">blocksAssetsPathConfig</span>: <span class="pl-s">&apos;src/blocks/assets&apos;</span>, <span class="pl-c">// Blocks assets path after projectPath location. (add this key only to override the default value.)</span>
+      <span class="hljs-attr">outputPath</span>: <span class="pl-s">&apos;public&apos;</span>, <span class="pl-c">// Public output path after projectPath location. (add this key only to override the default value.)</span>
     },
   };
 
@@ -112,34 +113,34 @@
 };
 </code></pre>
 <h2 id="override-built-in-functionality">Override built-in functionality</h2>
-<p>To remove built-in functionality, add a new object to the config called <code>overrides</code>.
-If you provide any of the <code>overrides keys</code> set to <code>true</code>, it will remove that config from the build.
+<p>To remove built-in functionality, add a new array to the config called <code>overrides</code>.
+If you provide any of the <code>overrides keys</code>, it will remove that config from the build.
 Here is a list of all the features that we use and how to remove them.</p>
 <pre><code class="lang-js">
 <span class="pl-k">const</span> projectConfig = {
   <span class="hljs-attr">config</span>: {
     ...
   },
-  <span class="hljs-attr">overrides</span>: {
-    <span class="hljs-attr">application</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">applicationAdmin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">applicationBlocks</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">applicationBlocksEditor</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">filename</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">cleanWebpackPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">terserPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">browserSyncPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">providePlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">manifestPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">miniCssExtractPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">copyWebpackPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">optimizeCSSAssetsPlugin</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">js</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">scss</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">images</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">fonts</span>: <span class="pl-c1">true</span>,
-    <span class="hljs-attr">runtimeChunk</span>: <span class="pl-c1">true</span>,
-  }
+  <span class="hljs-attr">overrides</span>: [
+    <span class="pl-s">&apos;application&apos;</span>,
+    <span class="pl-s">&apos;applicationAdmin&apos;</span>,
+    <span class="pl-s">&apos;applicationBlocks&apos;</span>,
+    <span class="pl-s">&apos;applicationBlocksEditor&apos;</span>,
+    <span class="pl-s">&apos;filename&apos;</span>,
+    <span class="pl-s">&apos;cleanWebpackPlugin&apos;</span>,
+    <span class="pl-s">&apos;terserPlugin&apos;</span>,
+    <span class="pl-s">&apos;browserSyncPlugin&apos;</span>,
+    <span class="pl-s">&apos;providePlugin&apos;</span>,
+    <span class="pl-s">&apos;manifestPlugin&apos;</span>,
+    <span class="pl-s">&apos;miniCssExtractPlugin&apos;</span>,
+    <span class="pl-s">&apos;copyWebpackPlugin&apos;</span>,
+    <span class="pl-s">&apos;optimizeCSSAssetsPlugin&apos;</span>,
+    <span class="pl-s">&apos;js&apos;</span>,
+    <span class="pl-s">&apos;scss&apos;</span>,
+    <span class="pl-s">&apos;images&apos;</span>,
+    <span class="pl-s">&apos;fonts&apos;</span>,
+    <span class="pl-s">&apos;runtimeChunk&apos;</span>,
+  ],
 }
 </code></pre>
 <h2 id="add-custom-build">Add Custom build</h2>
