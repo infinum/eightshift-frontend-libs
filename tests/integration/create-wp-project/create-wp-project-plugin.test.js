@@ -8,7 +8,7 @@ const { ensureDir } = require('fs-extra');
 const del = require('del');
 
 const timeout = 180000;
-const testingFolder = 'temp';
+const testingFolder = './temp-plugin';
 
 // When this runs on Travis, make sure to override boilerplate's frontend-libs version
 // with the Pull Request branch.
