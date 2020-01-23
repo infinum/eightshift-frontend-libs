@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import wrapperManifest from './../blocks/init/wrapper/manifest.json';
+import wrapperManifest from './../blocks/init/src/blocks/wrapper/manifest.json';
 import {
   BlockEditorKeyboardShortcuts,
   BlockEditorProvider,
