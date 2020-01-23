@@ -26,7 +26,7 @@ afterEach(async () => {
  * However, sometimes we need to test the local version while developing and need
  * to be able to run that one when needed (without having it run automatically on each test run)
  */
-it.only('tests create-wp-project script (npx version) - creates a theme', async() => { // eslint-disable-line jest/no-focused-tests
+it('tests create-wp-project script (npx version) - creates a theme', async() => { // eslint-disable-line jest/no-focused-tests
 
   // Add travis's branch if needed
   let overrideBranch = '';

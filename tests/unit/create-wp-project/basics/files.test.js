@@ -11,7 +11,7 @@ const {
   readFile,
   mkdirSync,
 } = require('fs');
-const { fullPath, findReplace, readdirAsync } = require('../../../src/basics/files.js');
+const { fullPath, findReplace, readdirAsync } = require('../../../../setup/create-wp-project/src/basics/files.js');
 const { promisify } = require('util');
 
 const testFiles = {
