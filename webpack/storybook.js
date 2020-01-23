@@ -16,10 +16,10 @@ module.exports = ({ config }) => {
   config.resolve.alias = {
     ...config.resolve.alias,
     ...gutenberg.resolve.alias,
-    EighshiftBlocksStorybookWindowObjects: path.resolve(__dirname, '..', '.storybook', 'parts', 'window-objects'),
-    EighshiftBlocksStorybookDefaultCategories: path.resolve(__dirname, '..', '.storybook', 'parts', 'default-categories'),
-    EighshiftBlocksStorybookStyles: path.resolve(__dirname, '..', '.storybook', 'parts', 'styles.scss'),
-    EighshiftBlocksStorybookAddons: path.resolve(__dirname, '..', '.storybook', 'addons'),
+    EightshiftBlocksStorybookWindowObjects: path.resolve(__dirname, '..', '.storybook', 'parts', 'window-objects'),
+    EightshiftBlocksStorybookDefaultCategories: path.resolve(__dirname, '..', '.storybook', 'parts', 'default-categories'),
+    EightshiftBlocksStorybookStyles: path.resolve(__dirname, '..', '.storybook', 'parts', 'styles.scss'),
+    EightshiftBlocksStorybookAddons: path.resolve(__dirname, '..', '.storybook', 'addons'),
   };
 
   /**

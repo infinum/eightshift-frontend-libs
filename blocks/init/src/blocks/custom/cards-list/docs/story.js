@@ -1,4 +1,4 @@
-import { Gutenberg, blockDetails, blockInnerBlocks, hasWrapperDecorator } from 'EighshiftBlocksStorybookHelpers';
+import { Gutenberg, blockDetails, blockInnerBlocks, hasWrapperDecorator } from 'EightshiftBlocksStorybookHelpers';
 import React from 'react'; // eslint-disable-line no-unused-vars
 import manifest from '../manifest.json';
 import readme from './readme.md';

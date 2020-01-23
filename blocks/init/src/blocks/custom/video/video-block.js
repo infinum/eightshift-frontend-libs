@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/editor';
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { VideoEditor } from './components/video-editor';
 import { VideoOptions } from './components/video-options';

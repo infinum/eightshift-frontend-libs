@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/editor';
-import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
+import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 

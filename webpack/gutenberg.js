@@ -57,29 +57,29 @@ module.exports = (options) => {
       alias: {
 
         // Block Helpers.
-        EighshiftBlocksDynamicImport: path.resolve(__dirname, '..', 'scripts', 'dynamic-import'),
-        EighshiftBlocksRegisterBlocks: path.resolve(__dirname, '..', 'scripts', 'register-blocks'),
-        EighshiftBlocksUcfirst: path.resolve(__dirname, '..', 'scripts', 'ucfirst'),
-        EighshiftBlocksGetActions: path.resolve(__dirname, '..', 'scripts', 'get-actions'),
-        EighshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
-        EighshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
+        EightshiftBlocksDynamicImport: path.resolve(__dirname, '..', 'scripts', 'dynamic-import'),
+        EightshiftBlocksRegisterBlocks: path.resolve(__dirname, '..', 'scripts', 'register-blocks'),
+        EightshiftBlocksUcfirst: path.resolve(__dirname, '..', 'scripts', 'ucfirst'),
+        EightshiftBlocksGetActions: path.resolve(__dirname, '..', 'scripts', 'get-actions'),
+        EightshiftBlocksStorybookHelpers: path.resolve(__dirname, '..', '.storybook', 'helpers'),
+        EightshiftBlocksUtilityHelpersPath: path.resolve(__dirname, '..', 'scripts', 'helpers'),
 
         // JavaScript
-        EighshiftBlocksWhatwgFetch: path.resolve(options.config.libNodeModules, 'whatwg-fetch'),
-        EighshiftBlocksSwiper: path.resolve(options.config.libNodeModules, 'swiper'),
-        EighshiftBlocksBabelPolyfill: path.resolve(options.config.libNodeModules, '@babel/polyfill'),
-        EighshiftBlocksAutoprefixer: path.resolve(options.config.libNodeModules, 'autoprefixer'),
+        EightshiftBlocksWhatwgFetch: path.resolve(options.config.libNodeModules, 'whatwg-fetch'),
+        EightshiftBlocksSwiper: path.resolve(options.config.libNodeModules, 'swiper'),
+        EightshiftBlocksBabelPolyfill: path.resolve(options.config.libNodeModules, '@babel/polyfill'),
+        EightshiftBlocksAutoprefixer: path.resolve(options.config.libNodeModules, 'autoprefixer'),
 
         // Scss.
-        EighshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
-        EighshiftBlocksNormalize: path.resolve(options.config.libNodeModules, 'normalize-scss'),
-        EighshiftBlocksMediaBlender: path.resolve(options.config.libNodeModules, 'media-blender'),
-        EighshiftBlocksSwiperStyle: path.resolve(options.config.libNodeModules, 'swiper', 'swiper.scss'),
-        EighshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
+        EightshiftFrontendLibs: path.resolve(__dirname, '..', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
+        EightshiftBlocksNormalize: path.resolve(options.config.libNodeModules, 'normalize-scss'),
+        EightshiftBlocksMediaBlender: path.resolve(options.config.libNodeModules, 'media-blender'),
+        EightshiftBlocksSwiperStyle: path.resolve(options.config.libNodeModules, 'swiper', 'swiper.scss'),
+        EightshiftEditorStyleOverride: path.resolve(__dirname, '..', 'styles', 'blocks', 'override-editor.scss'),
 
         // Components.
-        EighshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom', 'color-palette-custom.js'),
-        EighshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level', 'heading-level.js'),
+        EightshiftComponentColorPalette: path.resolve(__dirname, '..', 'components', 'color-palette-custom', 'color-palette-custom.js'),
+        EightshiftComponentHeadingLevel: path.resolve(__dirname, '..', 'components', 'heading-level', 'heading-level.js'),
       },
     },
   };

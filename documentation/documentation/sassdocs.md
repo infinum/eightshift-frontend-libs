@@ -5,22 +5,22 @@ For years we have collected a list of useful SASS mixins, functions, and all oth
 **Visit [SassDocs](https://infinum.github.io/eightshift-frontend-libs/sassdocs/) for more details.**
 
 ## Default usage
-Sass mixing, functions, helpers are located in `node_modules/@eighshift/frontent-libs/styles/scss/eightshift-frontend-libs.scss` file. If you are using our webpack build then you are all set, and you can use it by importing it to your project like this:
+Sass mixing, functions, helpers are located in `node_modules/@Eightshift/frontent-libs/styles/scss/eightshift-frontend-libs.scss` file. If you are using our webpack build then you are all set, and you can use it by importing it to your project like this:
 
 ```scss
-@import 'EighshiftFrontendLibs';
+@import 'EightshiftFrontendLibs';
 ```
 
 ## Not using Webpack Build
 
-To be able to use `EighshiftFrontendLibs` as a shorthand, we have provided and `alias` in our webpack build under the `resolve` object key.
+To be able to use `EightshiftFrontendLibs` as a shorthand, we have provided and `alias` in our webpack build under the `resolve` object key.
 
 If you don't use our full build for some reason and want only to use Eightshift Frontend Libs you can provide this in your webpack build:
 
 ```js
 resolve: {
   alias: {
-    EighshiftFrontendLibs: path.resolve('node_modules', '@eightshift', 'frontend-libs', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
+    EightshiftFrontendLibs: path.resolve('node_modules', '@eightshift', 'frontend-libs', 'styles', 'scss', 'eightshift-frontend-libs.scss'),
   }
 }
 ```
@@ -28,7 +28,7 @@ resolve: {
 and then importing it like this:
 
 ```scss
-@import 'EighshiftFrontendLibs';
+@import 'EightshiftFrontendLibs';
 ```
 
 or you can import it directly like this, but be careful where your node_modules folder is located:

@@ -1,6 +1,6 @@
 # Creating Block from Components
 
-You may wonder: what is the difference between components and blocks? Aren't they the same thing? 
+You may wonder: what is the difference between components and blocks? Aren't they the same thing?
 
 They are similar, but not the same. Components are, for lack of a better word, _dumb_. They aren't bothered with the context and they are **reusable**.
 This is the key word in this whole ordeal. One component may be reused in different blocks. Also, the main difference is that the component is not registered in WordPress; its sole purpose is to provide reusable parts for your blocks.
@@ -21,7 +21,7 @@ First we'll create a block in the `src/blocks/custom/card` folder. The folder st
 | |card.php
 | |card-style.scss
 | |manifest.json
-``` 
+```
 
 The `manifest.json` will hold all the default attributes and data about the new block
 
@@ -168,7 +168,7 @@ Back to the block, we need to create the `edit` method functionality and the vie
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/editor';
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { CardEditor } from './components/card-editor';
 import { CardOptions } from './components/card-options';
@@ -199,8 +199,8 @@ export const Card = (props) => {
 };
 ```
 
-Here we'll use our ready made component (built out of other components - reusability), and wrap it in [React Fragment](https://reactjs.org/docs/fragments.html). It is a pattern used so that we can return multiple elements.  
-Another thing you'll note is the usage of `<InspectorControls />` [component](https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/inspector-controls). It is used to display settings of the block in the sidebar (in our case our options that contain the image upload component).  
+Here we'll use our ready made component (built out of other components - reusability), and wrap it in [React Fragment](https://reactjs.org/docs/fragments.html). It is a pattern used so that we can return multiple elements.
+Another thing you'll note is the usage of `<InspectorControls />` [component](https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/inspector-controls). It is used to display settings of the block in the sidebar (in our case our options that contain the image upload component).
 Lastly, both our `<CardEditor />` and `<InspectorControls />` are wrapped in the `<Fragment />` wrapper due to Reacts one top-level element rule. If your block doesn't have Options, you can only have `<CardEditor />` component in here.
 
 ### PHP view
@@ -274,7 +274,7 @@ Notice how we used
 ?>
 ```
 
-To render out our `image` component. Again, we're showing the power of reusability here. 
+To render out our `image` component. Again, we're showing the power of reusability here.
 
 ### Styling
 

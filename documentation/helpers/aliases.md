@@ -10,7 +10,7 @@ It finds all files recursively in the folder using regex. This example will requ
 
 #### Usage
 ```js
-import { dynamicImport } from 'EighshiftBlocksDynamicImport';
+import { dynamicImport } from 'EightshiftBlocksDynamicImport';
 
 dynamicImport(require.context('./../../custom', true, /assets\/index.js$/));
 ```
@@ -21,7 +21,7 @@ Converts the first letter of the string to uppercase.
 
 #### Usage
 ```js
-import { ucfirst } from 'EighshiftBlocksUcfirst';
+import { ucfirst } from 'EightshiftBlocksUcfirst';
 
 ucfirst('custom string');
 ```
@@ -34,7 +34,7 @@ This alias provides only path to helpers folder.
 
 #### Usage
 ```js
-import { media } from 'EighshiftBlocksUtilityHelpersPath/media';
+import { media } from 'EightshiftBlocksUtilityHelpersPath/media';
 ```
 
 ## JavaScript WhatwgFetch
@@ -43,7 +43,7 @@ Alias providing [Whatwg-fetch](https://www.npmjs.com/package/whatwg-fetch). Chec
 
 #### Usage
 ```js
-import 'EighshiftBlocksWhatwgFetch';
+import 'EightshiftBlocksWhatwgFetch';
 ```
 
 ## JavaScript Swiper
@@ -54,12 +54,12 @@ Alias providing [Swiper](https://www.npmjs.com/package/swiper). Check documentat
 
 JavaScript
 ```js
-import 'EighshiftBlocksSwiper';
+import 'EightshiftBlocksSwiper';
 ```
 
 Styles:
 ```scss
-@import 'EighshiftBlocksSwiperStyle';
+@import 'EightshiftBlocksSwiperStyle';
 ```
 
 ## JavaScript Babel Polyfill
@@ -69,18 +69,18 @@ Alias providing [Babel Polyfill](https://babeljs.io/docs/en/babel-polyfill). Che
 #### Usage
 
 ```js
-import 'EighshiftBlocksBabelPolyfill';
+import 'EightshiftBlocksBabelPolyfill';
 ```
 
-## Scss EighshiftFrontendLibs
+## Scss EightshiftFrontendLibs
 
-Alias providing [Eighshift Frontend Libs](https://infinum.github.io/eightshift-frontend-libs/sassdocs/). 
+Alias providing [Eightshift Frontend Libs](https://infinum.github.io/eightshift-frontend-libs/sassdocs/).
 
 #### Usage
 
 Styles:
 ```scss
-@import 'EighshiftFrontendLibs';
+@import 'EightshiftFrontendLibs';
 ```
 
 ## Scss Normalize
@@ -91,7 +91,7 @@ Alias providing [Normalize](https://www.npmjs.com/package/normalize-scss). Check
 
 Styles:
 ```scss
-@import 'EighshiftBlocksNormalize';
+@import 'EightshiftBlocksNormalize';
 @include normalize(); // stylelint-disable-line at-rule-empty-line-before
 ```
 
@@ -103,7 +103,7 @@ Alias providing [Media Blender](https://github.com/infinum/media-blender). Check
 
 Styles:
 ```scss
-@import 'EighshiftBlocksMediaBlender';
+@import 'EightshiftBlocksMediaBlender';
 ```
 
 ## Scss EditorStyleOverride
@@ -114,5 +114,5 @@ It provides the Block Editor overrides on some styles to give better UX for our 
 
 Styles:
 ```scss
-@import 'EighshiftEditorStyleOverride';
+@import 'EightshiftEditorStyleOverride';
 ```

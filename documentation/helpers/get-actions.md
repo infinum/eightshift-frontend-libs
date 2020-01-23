@@ -5,7 +5,7 @@ Actions are passed in child components in order to update props on an event (`on
 
 ## Default Attribute
 
-Default function output is `onChange` + attribute name.  
+Default function output is `onChange` + attribute name.
 Example: `onChangeContent`.
 
 Helper is located [here](https://github.com/infinum/eightshift-frontend-libs/blob/d14c02804c1e55fc4ca11af0546a40205fee93a7/scripts/get-actions.js).
@@ -29,7 +29,7 @@ Helper is located [here](https://github.com/infinum/eightshift-frontend-libs/blo
 ### Usage
 
 ```js
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 
 const actions = getActions(props, manifest);
@@ -80,7 +80,7 @@ If attribute needs to save multiple values at the same time for media (images, v
 ### Usage
 
 ```js
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 
 const actions = getActions(props, manifest);
@@ -131,7 +131,7 @@ If attribute needs to save multiple values at the same time, generally used for 
 ### Usage
 
 ```js
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 
 const actions = getActions(props, manifest);
