@@ -10,6 +10,10 @@ const del = require('del');
 const timeout = 180000;
 const testingFolder = './temp';
 
+// When this runs on Travis, make sure to override boilerplate's frontend-libs version
+// with the Pull Request branch.
+const overrideBranch = process.env.TRAVIS_PULL_REQUEST_BRANCH ? ` eightshiftLibsBranch="${process.env.TRAVIS_PULL_REQUEST_BRANCH}"` : '';
+
 beforeEach(async () => {
   await del(testingFolder);
   await ensureDir(testingFolder);
@@ -19,22 +23,14 @@ afterEach(async () => {
   await del(testingFolder);
 }, timeout);
 
-/**
- * By adding `.only` here, we ensure this is the only test in the file that is run.
- *
- * This is because by default we wish to test the live script on a test run.
- * However, sometimes we need to test the local version while developing and need
- * to be able to run that one when needed (without having it run automatically on each test run)
- */
 it('tests create-wp-project script (npx version) - creates a theme', async() => { // eslint-disable-line jest/no-focused-tests
+  const { err } = await exec(`cd ${testingFolder} && npx create-wp-project@latest --projectName="Test theme" --url="eightshift.local" --description="This is a description for a theme" --noSummary ${overrideBranch}`);
 
-  // Add travis's branch if needed
-  let overrideBranch = '';
-  if (process.env.TRAVIS_PULL_REQUEST_BRANCH) {
-    overrideBranch = ` eightshiftLibsBranch="${process.env.TRAVIS_PULL_REQUEST_BRANCH}"`;
-  }
+  expect(err).toBeFalsy();
+}, timeout);
 
-  const { err } = await exec(`cd ${testingFolder} && npx create-wp-project@latest --projectName="Test project" --url="eightshift.local" --description="This is a description" --noSummary ${overrideBranch}`);
+it('tests create-wp-project script (npx version) - creates a plugin', async() => { // eslint-disable-line jest/no-focused-tests
+  const { err } = await exec(`cd ${testingFolder} && npx create-wp-project@latest plugin --projectName="Test plugin" --url="eightshift.local" --description="This is a description for a plugin" --noSummary ${overrideBranch}`);
 
   expect(err).toBeFalsy();
 }, timeout);
