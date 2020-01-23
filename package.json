@@ -35,7 +35,9 @@
     "build-sassdoc": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs",
     "build-docs": "rm -rf docs && docpress b && npm run build-sassdoc && npm run build-storybook",
     "deploy-docs": "git subtree push --prefix docs origin gh-pages",
-    "test": "jest"
+    "test": "jest --maxWorkers=2",
+    "test-unit": "jest --testPathPattern=tests/unit",
+    "test-integration": "jest --testPathPattern=tests/integration"
   },
   "homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
   "license": "MIT",

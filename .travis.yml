@@ -1,3 +1,5 @@
 language: node_js
 node_js:
- - "node"
+  - lts/erbium  # v12.14.0
+  - lts/dubnium # v10.18.0
+  - lts/carbon  # v8.17.0
