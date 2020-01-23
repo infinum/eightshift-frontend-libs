@@ -5,9 +5,16 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+
+*No documentation available about unreleased changes as of yet.*
+
+## [3.0.4] - 2020-01-23
+
 - Fixed theme setup script
 - Added setup script for plugin
 - Added absolute-position scss placeholder
+- Updating documentation
+- updating packages and fixing vulnerabilities
 
 ## [3.0.3] - 2020-01-16
 
@@ -127,6 +134,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.0...v3.0.1

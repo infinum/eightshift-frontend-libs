@@ -33,7 +33,7 @@ const blocksToCopy = [
  */
 const copyBlocks = async (projectPath) => {
 
-  const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init', 'blocks');
+  const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init', 'src', 'blocks');
   const targetPath = join(projectPath, 'src', 'blocks');
 
   // Copy assets

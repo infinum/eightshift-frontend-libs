@@ -30,7 +30,7 @@ export const registerBlocks = (blocksManifests, blocksFilePaths, blocksSettings,
 
     // If edit component is missing throw and error.
     if (typeof editComponent === 'undefined') {
-      throw Error(`It looks like you are missing block edit component for block: ${block.blockName}`);
+      throw Error(`It looks like you are missing block edit component for block: ${block.blockName}, please check if you have ${block.blockName}-block.js file in your block folder.`);
     }
 
     // No mater if class of functional component is used fetch the first item in an object.
@@ -38,7 +38,7 @@ export const registerBlocks = (blocksManifests, blocksFilePaths, blocksSettings,
 
     // If edit component callback is missing throw and error.
     if (typeof editCallback === 'undefined') {
-      throw Error(`It looks like you are missing block edit component callback for block: ${block.blockName}`);
+      throw Error(`It looks like you are missing block edit component for block: ${block.blockName}, please check if you have ${block.blockName}-block.js file in your block folder.`);
     }
 
     // Pass data to registerBlock helper to get final output for registerBlockType.
