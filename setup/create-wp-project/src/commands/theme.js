@@ -23,6 +23,7 @@ const { copyBlocks, removeBlocksSupport } = require('../blocks');
 const { copyAssets } = require('../assets');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
+const { installModifiedNodeDependencies } = require('../dependencies');
 
 exports.command = ['*', 'theme'];
 exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
@@ -35,17 +36,25 @@ exports.handler = async (argv) => {
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const projectPath = path.join(fullPath, promptedInfo.package);
-  
+
   await installStep({
     describe: `${step}. Cloning repo`,
     thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate.git', projectPath),
   });
   step++;
 
-  await installStep({
-    describe: `${step}. Installing Node dependencies`,
-    thisHappens: installNodeDependencies(projectPath),
-  });
+  // Install all node packages as is or overwrite frontend-libs
+  if (argv.eightshiftFrontendLibsBranch) {
+    await installStep({
+      describe: `${step}. Installing modified Node dependencies`,
+      thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
+    });
+  } else {
+    await installStep({
+      describe: `${step}. Installing Node dependencies`,
+      thisHappens: installNodeDependencies(projectPath),
+    });
+  }
   step++;
 
   await installStep({
