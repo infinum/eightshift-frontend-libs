@@ -5,7 +5,7 @@ wp.data.dispatch( 'core/blocks').setCategories([
   {
     slug: 'eightshift',
     title: 'Eightshift',
-    'icon': 'admin-settings',
+    icon: 'admin-settings',
   },
   {
     slug: 'common',

@@ -53,7 +53,6 @@ module.exports = ({ config }) => {
    */
   config.plugins.push(new MiniCssExtractPlugin());
 
-  // REMOVE ONCE jQuery is removed from the libs.
   config.plugins.push(new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
