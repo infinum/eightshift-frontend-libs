@@ -18,3 +18,6 @@ This library is aimed at bringing the modern development tools to the [Eightshif
 ## Maintainers
 Eightshift Frontend Libs is maintained and sponsored by
 [Eightshift](https://eightshift.com) and [Infinum](https://infinum.com).
+
+## License
+Eightshift Frontend Libs is Copyright &copy;2020 Infinum. It is free software, and may be redistributed under the terms specified in the LICENSE file.
