@@ -1,7 +1,7 @@
 {
   "name": "create-wp-project",
   "description": "This is a setup script for creating a WordPress project.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Team Eightshift",
   "main": "",
   "license": "MIT",
