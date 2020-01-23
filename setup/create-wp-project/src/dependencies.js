@@ -21,6 +21,7 @@ const areDependenciesModified = (argv) => {
  */
 const installModifiedNodeDependencies = async (projectPath, branch) => {
   return installNodePackage(projectPath, `${eightshiftFrontendLibsRepo}#${branch} --save`);
+  
 };
 
 module.exports = {
