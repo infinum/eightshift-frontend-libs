@@ -28,9 +28,3 @@ it('tests create-wp-project script (npx version) - creates a theme', async() => 
 
   expect(err).toBeFalsy();
 }, timeout);
-
-it('tests create-wp-project script (npx version) - creates a plugin', async() => { // eslint-disable-line jest/no-focused-tests
-  const { err } = await exec(`cd ${testingFolder} && npx create-wp-project@latest plugin --projectName="Test plugin" --url="eightshift.local" --description="This is a description for a plugin" --noSummary ${overrideBranch}`);
-
-  expect(err).toBeFalsy();
-}, timeout);
