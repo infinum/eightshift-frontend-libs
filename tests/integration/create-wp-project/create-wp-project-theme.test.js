@@ -24,7 +24,9 @@ afterEach(async () => {
 }, timeout);
 
 it('tests create-wp-project script (npx version) - creates a theme', async() => { // eslint-disable-line jest/no-focused-tests
-  const { err } = await exec(`cd ${testingFolder} && npx create-wp-project@latest --projectName="Test theme" --url="eightshift.local" --description="This is a description for a theme" --noSummary ${overrideBranch}`);
+  const command = `npx create-wp-project@latest --projectName="Test theme" --url="eightshift.local" --description="This is a description for a theme" --noSummary ${overrideBranch}`;
+  console.log('Running command: ', command);
+  const { err } = await exec(`cd ${testingFolder} && ${command}`);
 
   expect(err).toBeFalsy();
 }, timeout);
