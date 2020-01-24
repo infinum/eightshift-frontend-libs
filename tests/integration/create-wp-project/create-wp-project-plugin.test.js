@@ -24,8 +24,7 @@ it('tests create-wp-project script (npx version) - creates a plugin', async() =>
 
   // When this runs on Travis, make sure to override boilerplate's frontend-libs version
   // with the Pull Request branch.
-  log('--- Debug environment vars: ', process.env);
-  const overrideBranch = process.env.TRAVIS_PULL_REQUEST_BRANCH ? ` eightshiftFrontendLibsBranch="${process.env.TRAVIS_PULL_REQUEST_BRANCH}"` : '';
+  const overrideBranch = process.env.TRAVIS_PULL_REQUEST_BRANCH ? ` --eightshiftFrontendLibsBranch="${process.env.TRAVIS_PULL_REQUEST_BRANCH}"` : '';
 
   const command = `npx create-wp-project@latest plugin --projectName="Test plugin" --url="eightshift.local" --description="This is a description for a plugin" --noSummary ${overrideBranch}`;
   log('Running command: ', command);
