@@ -28,7 +28,6 @@ it('tests create-wp-project script (npx version) - creates a plugin', async() =>
 
   const command = `npx create-wp-project@latest plugin --projectName="Test plugin" --url="eightshift.local" --description="This is a description for a plugin" --noSummary ${overrideBranch}`;
   log('Running command: ', command);
-  log('Running command: ', command);
   const { err } = await exec(`cd ${testingFolder} && ${command}`);
 
   expect(err).toBeFalsy();
