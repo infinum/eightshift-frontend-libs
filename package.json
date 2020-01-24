@@ -107,7 +107,14 @@
     "webpack-cli": "^3.3.10",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "@storybook/addon-a11y": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-notes": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@storybook/storybook-deployer": "^2.8.1"
   },
   "husky": {
     "hooks": {
@@ -115,13 +122,6 @@
     }
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^5.2.8",
-    "@storybook/addon-docs": "^5.2.8",
-    "@storybook/addon-knobs": "^5.2.8",
-    "@storybook/addon-notes": "^5.2.8",
-    "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8",
-    "@storybook/storybook-deployer": "^2.8.1",
     "docpress": "0.8.0",
     "sassdoc": "^2.7.1"
   },

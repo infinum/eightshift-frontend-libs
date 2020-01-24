@@ -1,4 +1,5 @@
 /* eslint-disable valid-typeof */
+const packageJson = require('./../package.json');
 
 /**
  * File holding webpack helpers used to create project webpack build setup.
@@ -46,8 +47,6 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
     proxyUrl,
     absolutePath,
 
-    libNodeModules: path.resolve(absolutePath, 'node_modules'),
-
     // Output files absolute location.
     outputPath: path.resolve(absolutePath, outputPathConfigClean),
 
@@ -62,6 +61,21 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
   };
 }
 
+/**
+ * Generate project paths for node_modules and libs root path.
+ *
+ * @param string nodeModules Path to node modules in general it is __dirname.
+ *
+ * @since 2.0.0
+ */
+function getPackagesPath(nodeModules, isProject = true) {
+  return {
+    nodeModulesPath: path.resolve(nodeModules, 'node_modules'),
+    libsPath: isProject ? path.resolve(nodeModules, 'node_modules', packageJson.name) : path.resolve(__dirname, '..'),
+  };
+}
+
 module.exports = {
   getConfig,
+  getPackagesPath,
 };

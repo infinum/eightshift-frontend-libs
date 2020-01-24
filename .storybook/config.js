@@ -10,21 +10,24 @@ configure([
   require.context("./../blocks/init/src/blocks/components", true, /docs\/story.js$/),
   require.context("./../blocks/init/src/blocks/custom", true, /docs\/story.js$/),
   require.context("./../blocks/init/src/blocks/wrapper", true, /docs\/story.js$/),
-  require.context("./../blocks/playground", true, /story.js$/),
-  require.context("./../components", true, /docs\/story.js$/),
 ], module);
 
 // @WP Editor set default categories.
 require( 'EighshiftBlocksStorybookDefaultCategories' );
 
+// WP styles.
+require( 'EighshiftBlocksStorybookWpStyles' );
+
 // @WP Editor Styles.
-require( 'EighshiftBlocksStorybookStyles');
+require( 'EighshiftBlocksStorybookEditorStyles' );
 
 // Project styles.
-require( './../blocks/init/assets/styles/application.scss');
+require( './../blocks/init/assets/styles/application.scss' );
 
 // Project Blocks Frontend Part.
-require( './../blocks/init/src/blocks/assets/application-blocks');
+
+require( './../blocks/init/src/blocks/assets/styles/application-blocks.scss');
+require( './../blocks/init/src/blocks/assets/styles/application-blocks-editor.scss');
 
 // Project Blocks Editor Part.
-require( './../blocks/init/src/blocks/assets/application-blocks-editor');
+require( './../blocks/init/src/blocks/assets/scripts/application-blocks-editor');

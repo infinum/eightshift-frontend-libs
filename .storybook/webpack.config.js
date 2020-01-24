@@ -1,3 +1,6 @@
+const path = require('path');
+
 module.exports = ({ config }) => {
-  return require('./../webpack/storybook')({config});
+  const nodeModules = path.resolve(__dirname, '..');
+  return require('./../webpack/storybook')({config}, nodeModules, false);
 };

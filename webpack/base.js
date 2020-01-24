@@ -12,7 +12,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = (options) => {
+module.exports = (options, packagesPath) => {
 
   // All Plugins used in production and development build.
   const plugins = [];
@@ -45,7 +45,7 @@ module.exports = (options) => {
 
       // Find jQuery in node_modules and copy it to public folder
       {
-        from: `${options.config.libNodeModules}/jquery/dist/jquery.min.js`,
+        from: `${packagesPath.nodeModulesPath}/jquery/dist/jquery.min.js`,
         to: options.config.outputPath,
       },
     ]));
