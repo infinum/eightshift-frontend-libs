@@ -13,7 +13,7 @@
  * @since 1.0.0
  */
 
-import { registerBlocks } from 'EighshiftBlocksRegisterBlocks';
+import { registerBlocks } from 'EightshiftBlocksRegisterBlocks';
 import { Wrapper } from './../../wrapper/wrapper';
 import blocksSettings from './../../manifest.json';
 

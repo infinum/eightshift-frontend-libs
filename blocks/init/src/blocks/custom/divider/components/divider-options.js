@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
+import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import globalSettings from './../../../manifest.json';
 
 export const DividerOptions = (props) => {

@@ -12,28 +12,28 @@ module.exports = (packagesPath) => {
       alias: {
 
         // Node Modules.
-        EighshiftBlocksWhatwgFetch: path.resolve(packagesPath.nodeModulesPath, 'whatwg-fetch'),
-        EighshiftBlocksSwiper: path.resolve(packagesPath.nodeModulesPath, 'swiper'),
-        EighshiftBlocksBabelPolyfill: path.resolve(packagesPath.nodeModulesPath, '@babel/polyfill'),
-        EighshiftBlocksAutoprefixer: path.resolve(packagesPath.nodeModulesPath, 'autoprefixer'),
-        EighshiftBlocksNormalize: path.resolve(packagesPath.nodeModulesPath, 'normalize-scss'),
-        EighshiftBlocksMediaBlender: path.resolve(packagesPath.nodeModulesPath, 'media-blender'),
-        EighshiftBlocksSwiperStyle: path.resolve(packagesPath.nodeModulesPath, 'swiper', 'swiper.scss'),
+        EightshiftBlocksWhatwgFetch: path.resolve(packagesPath.nodeModulesPath, 'whatwg-fetch'),
+        EightshiftBlocksSwiper: path.resolve(packagesPath.nodeModulesPath, 'swiper'),
+        EightshiftBlocksBabelPolyfill: path.resolve(packagesPath.nodeModulesPath, '@babel/polyfill'),
+        EightshiftBlocksAutoprefixer: path.resolve(packagesPath.nodeModulesPath, 'autoprefixer'),
+        EightshiftBlocksNormalize: path.resolve(packagesPath.nodeModulesPath, 'normalize-scss'),
+        EightshiftBlocksMediaBlender: path.resolve(packagesPath.nodeModulesPath, 'media-blender'),
+        EightshiftBlocksSwiperStyle: path.resolve(packagesPath.nodeModulesPath, 'swiper', 'swiper.scss'),
 
         // Libs Paths Block Helpers.
-        EighshiftBlocksDynamicImport: path.resolve(packagesPath.libsPath, 'scripts', 'dynamic-import'),
-        EighshiftBlocksRegisterBlocks: path.resolve(packagesPath.libsPath, 'scripts', 'register-blocks'),
-        EighshiftBlocksUcfirst: path.resolve(packagesPath.libsPath, 'scripts', 'ucfirst'),
-        EighshiftBlocksGetActions: path.resolve(packagesPath.libsPath, 'scripts', 'get-actions'),
-        EighshiftBlocksUtilityHelpersPath: path.resolve(packagesPath.libsPath, 'scripts', 'helpers'),
+        EightshiftBlocksDynamicImport: path.resolve(packagesPath.libsPath, 'scripts', 'dynamic-import'),
+        EightshiftBlocksRegisterBlocks: path.resolve(packagesPath.libsPath, 'scripts', 'register-blocks'),
+        EightshiftBlocksUcfirst: path.resolve(packagesPath.libsPath, 'scripts', 'ucfirst'),
+        EightshiftBlocksGetActions: path.resolve(packagesPath.libsPath, 'scripts', 'get-actions'),
+        EightshiftBlocksUtilityHelpersPath: path.resolve(packagesPath.libsPath, 'scripts', 'helpers'),
 
         // Scss.
-        EighshiftFrontendLibs: path.resolve(packagesPath.libsPath, 'styles', 'scss', 'eightshift-frontend-libs.scss'),
-        EighshiftEditorStyleOverride: path.resolve(packagesPath.libsPath, 'styles', 'blocks', 'override-editor.scss'),
+        EightshiftFrontendLibs: path.resolve(packagesPath.libsPath, 'styles', 'scss', 'eightshift-frontend-libs.scss'),
+        EightshiftEditorStyleOverride: path.resolve(packagesPath.libsPath, 'styles', 'blocks', 'override-editor.scss'),
 
         // Components.
-        EighshiftComponentColorPalette: path.resolve(packagesPath.libsPath, 'components', 'color-palette-custom', 'color-palette-custom.js'),
-        EighshiftComponentHeadingLevel: path.resolve(packagesPath.libsPath, 'components', 'heading-level', 'heading-level.js'),
+        EightshiftComponentColorPalette: path.resolve(packagesPath.libsPath, 'components', 'color-palette-custom', 'color-palette-custom.js'),
+        EightshiftComponentHeadingLevel: path.resolve(packagesPath.libsPath, 'components', 'heading-level', 'heading-level.js'),
       },
     },
   };

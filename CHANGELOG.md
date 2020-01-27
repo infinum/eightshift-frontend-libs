@@ -8,6 +8,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 *No documentation available about unreleased changes as of yet.*
 
+## [3.0.7] - 2020-01-27
+
+## Changed
+- Searched and replaced all instances of Eighshift with Eightshift.
+
 ## [3.0.6] - 2020-01-27
 
 ## Removed
@@ -144,6 +149,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.4...v3.0.6
 [3.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.2...v3.0.3

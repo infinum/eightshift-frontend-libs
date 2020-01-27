@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { InspectorControls } from '@wordpress/editor';
 import { Fragment } from '@wordpress/element';
-import { getActions } from 'EighshiftBlocksGetActions';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { JumbotronEditor } from './components/jumbotron-editor';
 import { JumbotronOptions } from './components/jumbotron-options';

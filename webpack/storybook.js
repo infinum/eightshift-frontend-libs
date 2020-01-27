@@ -55,13 +55,13 @@ module.exports = ({ config }, nodeModules, isProject) => {
   config.resolve.alias = {
     ...config.resolve.alias,
     ...aliases.resolve.alias,
-    EighshiftBlocksStorybookWindowObjects: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'window-objects'),
-    EighshiftBlocksStorybookDefaultCategories: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'default-categories'),
-    EighshiftBlocksStorybookEditorStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'editor-styles.scss'),
-    EighshiftBlocksStorybookAddons: path.resolve(packagesPath.libsPath, '.storybook', 'addons'),
-    EighshiftBlocksStorybookWpStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'wp-styles'),
-    EighshiftBlocksStorybookHelpers: path.resolve(packagesPath.libsPath, '.storybook', 'helpers'),
-    EighshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
+    EightshiftBlocksStorybookWindowObjects: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'window-objects'),
+    EightshiftBlocksStorybookDefaultCategories: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'default-categories'),
+    EightshiftBlocksStorybookEditorStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'editor-styles.scss'),
+    EightshiftBlocksStorybookAddons: path.resolve(packagesPath.libsPath, '.storybook', 'addons'),
+    EightshiftBlocksStorybookWpStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'wp-styles'),
+    EightshiftBlocksStorybookHelpers: path.resolve(packagesPath.libsPath, '.storybook', 'helpers'),
+    EightshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
   };
 
   return config;
