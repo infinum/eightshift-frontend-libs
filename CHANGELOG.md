@@ -10,10 +10,15 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [3.0.6] - 2020-01-27
 
+## Removed
 - Removing docs to new repository
+
+## Changed
 - Fixing options to include storybook inside a project.
 
 ## [3.0.4] - 2020-01-23
+
+## Added
 
 - Fixed theme setup script
 - Added setup script for plugin
