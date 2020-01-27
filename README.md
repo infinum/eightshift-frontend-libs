@@ -13,7 +13,7 @@
 This library is aimed at bringing the modern development tools to the [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate) or [Eightshift Boilerplate Plugin](https://github.com/infinum/eightshift-boilerplate-plugin), but you can use it on any WordPress project.
 
 ## Documentaiton
-**For the full documentation please check this [link](https://infinum.github.io/eightshift-frontend-libs).**
+**For the full documentation please check this [link](https://infinum.github.io/eightshift-docs).**
 
 ## Maintainers
 Eightshift Frontend Libs is maintained and sponsored by

@@ -1,4 +1,4 @@
-require('EighshiftBlocksStorybookWp/editor/build-style/editor-styles.css');
+// require('EighshiftBlocksStorybookWp/editor/build-style/editor-styles.css');
 require('EighshiftBlocksStorybookWp/editor/build-style/style-rtl.css');
 require('EighshiftBlocksStorybookWp/editor/build-style/style.css');
 require('EighshiftBlocksStorybookWp/components/build-style/style.css');
