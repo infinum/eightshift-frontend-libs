@@ -28,6 +28,7 @@ function getExternals() {
     'blob',
     'url',
     'apiFetch',
+    'api-fetch',
   ];
   wplib.forEach((name) => {
     ext[`@wp/${name}`] = `wp.${name}`;

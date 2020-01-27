@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getPackagesPath } = require('./helpers');
 
-module.exports = ({ config }, nodeModules, isProject = true) => {
+module.exports = ({ config }, nodeModules, isProject) => {
 
   // Packages helper for correct node modules path.
   const packagesPath = getPackagesPath(nodeModules, isProject);
@@ -32,7 +32,6 @@ module.exports = ({ config }, nodeModules, isProject = true) => {
     item.include = [
       packagesPath.libsPath,
       nodeModules,
-      path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
     ];
     item.exclude = /node_modules\/(?!(@eightshift|@wordpress)\/).*/;
     return item;
