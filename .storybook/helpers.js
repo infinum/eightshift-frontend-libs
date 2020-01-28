@@ -122,9 +122,6 @@ export const Gutenberg = (props) => {
     }
   });
 
-  console.log(blocksProps);
-  
-
   return (
     <div className="playground">
       <SlotFillProvider>
