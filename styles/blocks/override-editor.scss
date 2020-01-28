@@ -6,8 +6,6 @@
 
 $editor: (
   block-hovered-outline-color: $base-black-color,
-  appender-bg-color: $base-primary-color,
-  appender-text-color: $base-white-color,
   icon-color: $base-white-color,
   font-size: $base-font-size,
   font-family: $base-font-family,
@@ -38,21 +36,7 @@ $editor: (
 
 // Add new block button.
 .block-list-appender {
-  position: fixed;
-  right: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 100px;
-  z-index: 100;
-  border-radius: 10px 10px 0 0;
-  background-color: map-get-strict($editor, appender-bg-color);
-
-  button {
-    color: map-get-strict($editor, appender-text-color);
-    outline: none;
-    padding: 5px;
-    background-color: inherit;
-  }
+  width: 100%;
 }
 
 // Sending my love to the guy that wrote WP Block Editor css (sarcasam) :S
@@ -64,21 +48,6 @@ $editor: (
   // Block wrapper.
   .editor-block-list__block {
     padding: 0;
-
-    // Block appender. Used with inner blocks.
-    .block-list-appender {
-      position: absolute;
-      right: 10px;
-      bottom: 5px;
-      transform: none;
-      width: auto;
-      border-radius: 50%;
-      background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
-
-      button {
-        border-radius: 50%;
-      }
-    }
 
     // On hover, select wrapper state.
     .editor-block-list__block-edit {
@@ -150,7 +119,7 @@ $editor: (
 // Removing empty div at the bottom of the page.
 .edit-post-visual-editor{
   .block-editor-writing-flow__click-redirect {
-    display: none !important;
+    // display: none !important;
   }
 }
 
