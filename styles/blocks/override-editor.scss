@@ -25,6 +25,10 @@ $editor: (
 // Overrides default styles from inline editor.
 .editor-styles-wrapper {
   font-family: inherit !important;
+
+  [data-block] {
+    margin: 0;
+  }
 }
 
 // Removes add more section before each block.

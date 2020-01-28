@@ -5,6 +5,17 @@
  */
 
 /**
+ * Convert any string to camelcase.
+ *
+ * @param string str String to convert
+ *
+ * @since 2.0.0
+ */
+function camalize(str) {
+  return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+}
+
+/**
  * Return all global objects from window object.
  * Add all Block Editor external libs so you can use it like @wordpress/lib_name.
  *
@@ -27,13 +38,13 @@ function getExternals() {
     'viewport',
     'blob',
     'url',
-    'apiFetch',
     'api-fetch',
   ];
   wplib.forEach((name) => {
-    ext[`@wp/${name}`] = `wp.${name}`;
-    ext[`@wordpress/${name}`] = `wp.${name}`;
+    ext[`@wp/${name}`] = `wp.${camalize(name)}`;
+    ext[`@wordpress/${name}`] = `wp.${camalize(name)}`;
   });
+
   ext.ga = 'ga';
   ext.gtag = 'gtag';
   ext.jquery = 'jQuery';

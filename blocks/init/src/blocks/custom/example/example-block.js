@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { InspectorControls, BlockControls } from '@wordpress/editor';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
