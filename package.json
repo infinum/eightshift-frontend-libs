@@ -143,7 +143,8 @@
     "@storybook/addon-notes": "^5.3.9",
     "@storybook/addons": "^5.3.9",
     "@storybook/react": "^5.3.9",
-    "@storybook/storybook-deployer": "^2.8.1"
+    "@storybook/storybook-deployer": "^2.8.1",
+    "lodash": "^4.17.15"
   },
   "husky": {
     "hooks": {

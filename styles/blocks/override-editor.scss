@@ -12,17 +12,18 @@ body {
     line-height: inherit;
     font-size: inherit;
     color: inherit;
-  
-    // Removing block spacing.
-    [data-block] {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
   }
 
   // Moving border around the block to the actual block line.
   .block-editor-block-list__layout {
     .eightshift-block {
+
+      // Removing block spacing.
+      [data-block] {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
       &.block-editor-block-list__block {
 
         // Move plus sign for adding new block before selected block to the right.
@@ -33,16 +34,16 @@ body {
           top: 0;
         }
 
+        // Remove border padding line over the block.
         .block-editor-block-list__block-edit:before {
           top: 0;
           bottom: 0;
         }
-
-        // Hack until this issue si fixed https://github.com/WordPress/gutenberg/issues/8288.
-        &.is-reusable {
-          max-width: none;
-        }
       }
+    }
+
+    .block-editor-block-list__block.is-reusable {
+      max-width: none;
     }
   }
 

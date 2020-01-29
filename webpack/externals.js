@@ -1,19 +1,10 @@
+import { camelCase } from 'lodash';
+
 /**
  * Project Block Editor config used for Block Editor specific build to provide external sources.
  *
  * @since 2.0.0
  */
-
-/**
- * Convert any string to camelcase.
- *
- * @param string str String to convert
- *
- * @since 2.0.0
- */
-function toCamelcase(str) {
-  return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-}
 
 /**
  * Return all global objects from window object.
@@ -41,8 +32,8 @@ function getExternals() {
     'api-fetch',
   ];
   wplib.forEach((name) => {
-    ext[`@wp/${name}`] = `wp.${toCamelcase(name)}`;
-    ext[`@wordpress/${name}`] = `wp.${toCamelcase(name)}`;
+    ext[`@wp/${name}`] = `wp.${camelCase(name)}`;
+    ext[`@wordpress/${name}`] = `wp.${camelCase(name)}`;
   });
 
   ext.ga = 'ga';
