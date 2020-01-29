@@ -21,6 +21,10 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     category,
     keywords,
     parent,
+    transforms,
+    example,
+    styles,
+    supports,
     hasInnerBlocks = false,
     isInactive = false,
     hasWrapper = true,
@@ -33,7 +37,6 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
 
   let {
     icon,
-    supports,
   } = manifest;
 
   const {
@@ -50,15 +53,6 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     src: icon.src,
   };
 
-  // Provide full width for wrapper block.
-  if (typeof supports === 'undefined') {
-    supports = {
-      align: [
-        'full',
-      ],
-    };
-  }
-
   // Provide different save method for InnerBlocks.
   if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
     save = () => createElement(InnerBlocks.Content);
@@ -74,6 +68,9 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
       keywords,
       supports,
       parent,
+      transforms,
+      example,
+      styles,
       edit: (hasWrapper && wrapper !== null) ? withWrapper(edit, wrapper) : edit,
       save,
     },

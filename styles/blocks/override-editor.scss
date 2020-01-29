@@ -25,9 +25,10 @@ body {
       }
 
       &.block-editor-block-list__block {
+        max-width: none;
 
         // Move plus sign for adding new block before selected block to the right.
-        &[data-align=full]>.block-editor-block-list__insertion-point {
+        &>.block-editor-block-list__insertion-point {
           left: auto;
           right: 0;
           width: 50px;
@@ -35,7 +36,7 @@ body {
         }
 
         // Remove border padding line over the block.
-        .block-editor-block-list__block-edit:before {
+        .block-editor-block-list__block-edit::before {
           top: 0;
           bottom: 0;
         }
