@@ -1,4 +1,4 @@
-import { camelCase } from 'lodash';
+const _ = require('lodash');
 
 /**
  * Project Block Editor config used for Block Editor specific build to provide external sources.
@@ -32,8 +32,8 @@ function getExternals() {
     'api-fetch',
   ];
   wplib.forEach((name) => {
-    ext[`@wp/${name}`] = `wp.${camelCase(name)}`;
-    ext[`@wordpress/${name}`] = `wp.${camelCase(name)}`;
+    ext[`@wp/${name}`] = `wp.${_.camelCase(name)}`;
+    ext[`@wordpress/${name}`] = `wp.${_.camelCase(name)}`;
   });
 
   ext.ga = 'ga';
