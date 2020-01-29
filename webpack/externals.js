@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 /**
  * Project Block Editor config used for Block Editor specific build to provide external sources.
  *
@@ -21,7 +19,6 @@ function getExternals() {
     'blocks',
     'element',
     'editor',
-    'block-editor',
     'date',
     'data',
     'i18n',
@@ -29,12 +26,13 @@ function getExternals() {
     'viewport',
     'blob',
     'url',
-    'api-fetch',
   ];
   wplib.forEach((name) => {
-    ext[`@wp/${name}`] = `wp.${_.camelCase(name)}`;
-    ext[`@wordpress/${name}`] = `wp.${_.camelCase(name)}`;
+    ext[`@wordpress/${name}`] = `wp.${name}`;
   });
+
+  ext['@wordpress/block-editor'] = 'wp.blockEditor';
+  ext['@wordpress/api-fetch'] = 'wp.apiFetch';
 
   ext.ga = 'ga';
   ext.gtag = 'gtag';
