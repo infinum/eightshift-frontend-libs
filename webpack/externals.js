@@ -11,7 +11,7 @@
  *
  * @since 2.0.0
  */
-function camalize(str) {
+function toCamelcase(str) {
   return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
 
@@ -41,8 +41,8 @@ function getExternals() {
     'api-fetch',
   ];
   wplib.forEach((name) => {
-    ext[`@wp/${name}`] = `wp.${camalize(name)}`;
-    ext[`@wordpress/${name}`] = `wp.${camalize(name)}`;
+    ext[`@wp/${name}`] = `wp.${toCamelcase(name)}`;
+    ext[`@wordpress/${name}`] = `wp.${toCamelcase(name)}`;
   });
 
   ext.ga = 'ga';
