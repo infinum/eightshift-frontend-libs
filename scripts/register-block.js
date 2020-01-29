@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import { withWrapper } from './with-wrapper';
 
@@ -20,7 +20,6 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     description,
     category,
     keywords,
-    supports,
     parent,
     hasInnerBlocks = false,
     isInactive = false,
@@ -34,6 +33,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
 
   let {
     icon,
+    supports,
   } = manifest;
 
   const {
@@ -49,6 +49,15 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
     src: icon.src,
   };
+
+  // Provide full width for wrapper block.
+  if (typeof supports === 'undefined') {
+    supports = {
+      align: [
+        'full',
+      ],
+    };
+  }
 
   // Provide different save method for InnerBlocks.
   if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
