@@ -13,8 +13,8 @@
 // Globals.
 @import './../../../../assets/styles/parts/shared';
 
-// Ovveride default editor styles.
-@import 'EightshiftEditorStyleOverride';
+// Editor styles overrides.
+@import './editor/editor';
 
 // Register Wrapper block styles.
 @import './../../wrapper/wrapper-editor.scss';

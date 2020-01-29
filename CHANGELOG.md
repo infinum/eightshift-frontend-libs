@@ -8,6 +8,14 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 *No documentation available about unreleased changes as of yet.*
 
+## [3.0.8] - 2020-01-29
+
+## Changed
+- Added align support full to block registration
+- Added align full as default align for wrapper
+- Removed some of editor style overrides.
+- Adding wrapper default align style.
+
 ## [3.0.7] - 2020-01-27
 
 ## Changed
