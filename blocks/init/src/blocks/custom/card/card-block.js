@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/editor';
-import { getActions } from 'EighshiftBlocksGetActions';
+import { InspectorControls } from '@wordpress/block-editor';
+import { getActions } from 'EightshiftBlocksGetActions';
 import manifest from './manifest.json';
 import { CardEditor } from './components/card-editor';
 import { CardOptions } from './components/card-options';

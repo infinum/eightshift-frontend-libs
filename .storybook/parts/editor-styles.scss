@@ -1,0 +1,41 @@
+// Playground styles.
+
+$sidebar-width: 280px;
+$light-gray-500: #E2E4E7;
+$break-small: 600px;
+
+.playground {
+  @media (min-width: #{ ($break-small) }) {
+    width: calc(100% - #{$sidebar-width});
+  }
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.playground__sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  border-left: 1px solid $light-gray-500;
+  height: auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // Temporarily disable the sidebar on mobile
+  display: none;
+
+  @media (min-width: #{ ($break-small) }) {
+    display: block;
+  }
+
+  .block-editor-block-card {
+    padding: 16px;
+  }
+}
+
+// TEMP Hide until we fix option to add items.
+.block-list-appender {
+  display: none !important; // stylelint-disable-line
+}

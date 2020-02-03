@@ -13,7 +13,8 @@
  * @since 1.0.0
  */
 
-import { registerBlocks } from 'EighshiftBlocksRegisterBlocks';
+import { registerBlocks } from 'EightshiftBlocksRegisterBlocks';
+import { dynamicImport } from 'EightshiftBlocksDynamicImport';
 import { Wrapper } from './../../wrapper/wrapper';
 import blocksSettings from './../../manifest.json';
 
@@ -23,3 +24,6 @@ registerBlocks(
   blocksSettings,
   Wrapper,
 );
+
+// Find all blocks hooks require hooks index.js inside it.
+dynamicImport(require.context('./../../wrapper', true, /hooks\/index.js$/));

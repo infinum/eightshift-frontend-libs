@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import { withWrapper } from './with-wrapper';
 
@@ -20,8 +20,11 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     description,
     category,
     keywords,
-    supports,
     parent,
+    transforms,
+    example,
+    styles,
+    supports,
     hasInnerBlocks = false,
     isInactive = false,
     hasWrapper = true,
@@ -65,6 +68,9 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
       keywords,
       supports,
       parent,
+      transforms,
+      example,
+      styles,
       edit: (hasWrapper && wrapper !== null) ? withWrapper(edit, wrapper) : edit,
       save,
     },

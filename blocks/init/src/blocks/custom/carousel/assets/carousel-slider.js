@@ -1,5 +1,5 @@
-import Swiper from 'EighshiftBlocksSwiper';
-import { media } from 'EighshiftBlocksUtilityHelpersPath/media';
+import Swiper from 'EightshiftBlocksSwiper';
+import { media } from 'EightshiftBlocksUtilityHelpersPath/media';
 
 export class CarouselSlider {
   constructor(defaultElement) {

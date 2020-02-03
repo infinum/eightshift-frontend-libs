@@ -8,7 +8,45 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 *No documentation available about unreleased changes as of yet.*
 
+## [3.0.11] - 2020-01-29
+
+## Changed
+- Reverting override styles.
+
+## [3.0.10] - 2020-01-29
+
+## Changed
+- Fixed externals import.
+
+## [3.0.9] - 2020-01-29
+
+## Changed
+- Fixed loadash import.
+
+## [3.0.8] - 2020-01-29
+
+## Changed
+- Added align support full to block registration
+- Added align full as default align for wrapper
+- Removed some of editor style overrides.
+- Adding wrapper default align style.
+
+## [3.0.7] - 2020-01-27
+
+## Changed
+- Searched and replaced all instances of Eighshift with Eightshift.
+
+## [3.0.6] - 2020-01-27
+
+## Removed
+- Removing docs to new repository
+
+## Changed
+- Fixing options to include storybook inside a project.
+
 ## [3.0.4] - 2020-01-23
+
+## Added
 
 - Fixed theme setup script
 - Added setup script for plugin
@@ -134,6 +172,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.11]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.10...v3.0.11
+[3.0.10]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.9...v3.0.10
+[3.0.9]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.8...v3.0.9
+[3.0.8]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.7...v3.0.8
+[3.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.6...v3.0.7
+[3.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.4...v3.0.6
 [3.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.1...v3.0.2

@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon } from '@wordpress/components';
-import { ColorPaletteCustom } from 'EighshiftComponentColorPalette';
+import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 import globalSettings from '../../manifest.json';
 

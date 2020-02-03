@@ -1,51 +1,40 @@
+/* eslint-disable import/no-extraneous-dependencies, global-require*/
+
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { getPackagesPath } = require('./helpers');
 
-const gutenberg = require('./../webpack/gutenberg')({
-  config: {
-    libNodeModules: path.resolve(__dirname, '..', 'node_modules'),
-  },
-});
+module.exports = ({ config }, nodeModules, isProject) => {
 
-module.exports = ({ config }) => {
-
-  /**
-   * Load Project Aliases.
-   */
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    ...gutenberg.resolve.alias,
-    EighshiftBlocksStorybookWindowObjects: path.resolve(__dirname, '..', '.storybook', 'parts', 'window-objects'),
-    EighshiftBlocksStorybookDefaultCategories: path.resolve(__dirname, '..', '.storybook', 'parts', 'default-categories'),
-    EighshiftBlocksStorybookStyles: path.resolve(__dirname, '..', '.storybook', 'parts', 'styles.scss'),
-    EighshiftBlocksStorybookAddons: path.resolve(__dirname, '..', '.storybook', 'addons'),
-  };
+  // Packages helper for correct node modules path.
+  const packagesPath = getPackagesPath(nodeModules, isProject);
 
   /**
    * Generate css file from sass.
    */
   config.module.rules.push({
-    test: /\.scss$/,
+    test: /\.(scss|sass)$/i,
     use: [
       MiniCssExtractPlugin.loader,
       {
         loader: 'css-loader',
         options: {
-          sourceMap: true,
           url: false,
         },
       },
-      {
-        loader: 'sass-loader',
-        options: {
-          sourceMap: true,
-        },
-      },
-      {
-        loader: 'import-glob-loader',
-      },
+      'sass-loader', 'import-glob-loader',
     ],
+  });
+
+  // Add include/exclude paths to all loaders.
+  config.module.rules.map((item) => {
+    item.include = [
+      packagesPath.libsPath,
+      nodeModules,
+    ];
+    item.exclude = /node_modules\/(?!(@eightshift|@wordpress)\/).*/;
+    return item;
   });
 
   /**
@@ -57,6 +46,23 @@ module.exports = ({ config }) => {
     $: 'jquery',
     jQuery: 'jquery',
   }));
+
+  /**
+   * Load Project Aliases.
+   */
+  const aliases = require('./aliases')(packagesPath);
+
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    ...aliases.resolve.alias,
+    EightshiftBlocksStorybookWindowObjects: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'window-objects'),
+    EightshiftBlocksStorybookDefaultCategories: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'default-categories'),
+    EightshiftBlocksStorybookEditorStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'editor-styles.scss'),
+    EightshiftBlocksStorybookAddons: path.resolve(packagesPath.libsPath, '.storybook', 'addons'),
+    EightshiftBlocksStorybookWpStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'wp-styles'),
+    EightshiftBlocksStorybookHelpers: path.resolve(packagesPath.libsPath, '.storybook', 'helpers'),
+    EightshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
+  };
 
   return config;
 };
