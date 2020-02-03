@@ -8,7 +8,7 @@ const { ensureDir } = require('fs-extra');
 const del = require('del');
 
 const { log } = console;
-const timeout = 180000;
+const timeout = 360000; // in ms
 const testingFolder = './temp-theme';
 
 beforeEach(async () => {
