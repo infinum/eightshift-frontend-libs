@@ -6,7 +6,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
-*No documentation available about unreleased changes as of yet.*
+- Added `.travis.yml`
+- Added integration test for setting up a plugin using `npx create-wp-project plugin`
+- Made `create-wp-project` tests run in travis
+- Moved all tests from `create-wp-project` to `eightshift-frontend-libs`
 
 ## [3.0.11] - 2020-01-29
 
