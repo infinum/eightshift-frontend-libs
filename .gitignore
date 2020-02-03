@@ -2,4 +2,6 @@ node_modules
 /docs
 
 # Used for tests.
-/setup/create-wp-project/temp
+/temp
+/temp-plugin
+/temp-theme
