@@ -72,12 +72,31 @@ export const blockJsClass = (name) => `js-block-${name}`;
  *
  * @param {string} name Block Name
  */
-export const blockDetails = (name) => {
-  return {
-    blockName: name,
-    blockClass: blockClass(name),
-    blockJsClass: blockJsClass(name),
+export const blockDetails = (manifest, globalManifest, customOutput = false) => {
+  const {blockName} = manifest;
+  const {namespace} = globalManifest;
+
+  const output = {
+    attributes: {
+      blockName: blockName,
+      blockClass: blockClass(blockName),
+      blockJsClass: blockJsClass(blockName),
+      ...manifest.example,
+    },
+    innerBlocks: [],
+    name: `${namespace}/${blockName}`,
+    originalContent: '',
+  };
+
+  if (!customOutput) {
+    return {
+      blocks: [
+        output
+      ]
+    }
   }
+
+  return output;
 };
 
 /**

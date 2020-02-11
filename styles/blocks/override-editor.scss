@@ -4,6 +4,12 @@
  * @since 1.0.5
 */
 
+$base-sea-color: #F5F5F5;
+
+$override-map: (
+  tabs-panel: $base-sea-color,
+);
+
 /* stylelint-disable */
 // Overrides default styles from inline editor.
 body {
@@ -62,6 +68,10 @@ body {
 
   // Creating custom button tabs style.
   .custom-button-tabs {
+    background-color: $base-sea-color;
+    padding: 16px;
+    margin: -5px -16px 25px;
+
     .components-tab-panel__tabs {
       display: flex;
     }
