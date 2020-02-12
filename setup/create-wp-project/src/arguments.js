@@ -88,12 +88,6 @@ const scriptArguments = {
     type: 'boolean',
     skipPrompt: true,
   },
-  noBlocks: {
-    name: 'noBlocks',
-    describe: 'Pass this argument to prevent block installation',
-    type: 'boolean',
-    skipPrompt: true,
-  },
   eightshiftLibsBranch: {
     name: 'eightshiftLibsBranch',
     describe: 'Use this to override which infinum/eightshift-libs version is loaded (mainly used for testing).',

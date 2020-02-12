@@ -1,4 +1,3 @@
-const replace = require('replace-in-file');
 const { join } = require('path');
 const { copy, pathExists } = require('fs-extra');
 
@@ -70,40 +69,7 @@ const copyBlocks = async (projectPath) => {
   return Promise.all(foldersToCopy);
 };
 
-/**
- * Removes block instantiation code from project.
- *
- * @param  {string} projectPath Path to the project, needed to figure out where to pull blocks from.
- * @return {Promise}
- */
-const removeBlocksSupport = async (projectPath) => {
-  const pathMainPhp = join(projectPath, 'src', 'class-main.php');
-
-  if (!(await pathExists)) {
-    throw Error('Missing class-main.php, unable to remove stuff from it.');
-  }
-
-  // All of these lines should be commented (prefixed with '// ').
-  const thingsToComment = [
-    'use Eightshift_Libs\\Blocks as Lib_Blocks',
-    'Lib_Enqueue\\Enqueue_Blocks::class',
-    'Lib_Blocks\\Blocks::class',
-  ];
-
-  for (const thing of thingsToComment) {
-
-    // We can't do this in parallel because it's all happening in a single file.
-    // eslint-disable-next-line no-await-in-loop
-    await replace({
-      files: pathMainPhp,
-      from: thing,
-      to: `// ${thing}`,
-    });
-  }
-};
-
 module.exports = {
   copyBlocks,
-  removeBlocksSupport,
 };
 
