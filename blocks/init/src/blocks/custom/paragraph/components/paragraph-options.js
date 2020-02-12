@@ -18,7 +18,7 @@ export const ParagraphOptions = (props) => {
     <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
 
       <ParagraphOptionsComponent
-        paragraph={paragraph}
+        paragraph={(typeof paragraph === 'undefined') || paragraph}
         onChangeStyleSize={onChangeParagraphStyleSize}
         onChangeStyleColor={onChangeParagraphStyleColor}
       />

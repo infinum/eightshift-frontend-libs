@@ -12,7 +12,7 @@ export const ImageEditor = (props) => {
   return (
     <ImageEditorComponent
       blockClass={blockClass}
-      media={media}
+      media={(typeof media === 'undefined') || media}
     />
   );
 };

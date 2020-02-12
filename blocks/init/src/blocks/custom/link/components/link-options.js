@@ -19,7 +19,7 @@ export const LinkOptions = (props) => {
     <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
 
       <LinkOptionsComponent
-        link={link}
+        link={(typeof link === 'undefined') || link}
         onChangeUrl={onChangeLinkUrl}
         onChangeStyleColor={onChangeLinkStyleColor}
         onChangeIsAnchor={onChangeLinkIsAnchor}

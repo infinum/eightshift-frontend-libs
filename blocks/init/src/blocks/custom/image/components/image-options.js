@@ -17,7 +17,7 @@ export const ImageOptions = (props) => {
     <PanelBody title={__('Image Details', 'eightshift-boilerplate')}>
 
       <ImageOptionsComponent
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
 

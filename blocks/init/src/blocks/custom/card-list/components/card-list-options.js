@@ -39,12 +39,12 @@ export const CardListOptions = (props) => {
       }
 
       <ImageOptions
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
 
       <ButtonOptions
-        button={button}
+        button={(typeof button === 'undefined') || button}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}

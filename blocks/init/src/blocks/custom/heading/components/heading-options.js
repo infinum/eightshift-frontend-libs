@@ -18,7 +18,7 @@ export const HeadingOptions = (props) => {
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
 
       <HeadingOptionsComponent
-        heading={heading}
+        heading={(typeof heading === 'undefined') || heading}
         onChangeStyleColor={onChangeHeadingStyleColor}
         onChangeStyleSize={onChangeHeadingStyleSize}
       />

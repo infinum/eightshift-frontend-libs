@@ -15,7 +15,7 @@ export const ParagraphEditor = (props) => {
   return (
     <ParagraphEditorComponent
       blockClass={blockClass}
-      paragraph={paragraph}
+      paragraph={(typeof paragraph === 'undefined') || paragraph}
       onChangeContent={onChangeParagraphContent}
     />
   );

@@ -15,7 +15,7 @@ export const LinkEditor = (props) => {
   return (
     <LinkEditorComponent
       blockClass={blockClass}
-      link={link}
+      link={(typeof link === 'undefined') || link}
       onChangeTitle={onChangeLinkTitle}
     />
   );

@@ -12,7 +12,7 @@ export const VideoEditor = (props) => {
   return (
     <VideoEditorComponent
       blockClass={blockClass}
-      media={media}
+      media={(typeof media === 'undefined') || media}
     />
   );
 };

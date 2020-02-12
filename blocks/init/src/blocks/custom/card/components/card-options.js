@@ -16,7 +16,7 @@ export const CardOptions = (props) => {
   return (
     <PanelBody title={__('Card Details', 'eightshift-boilerplate')}>
       <ImageOptions
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
     </PanelBody>

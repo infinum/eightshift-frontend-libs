@@ -13,7 +13,7 @@ export const CarouselImageEditor = (props) => {
     <div className={blockClass}>
       <ImageEditor
         blockClass={blockClass}
-        media={media}
+        media={(typeof media === 'undefined') || media}
       />
     </div>
   );

@@ -35,7 +35,7 @@ export const ListsInfoEditor = (props) => {
       <div className={contentClass}>
         <ListsEditor
           blockClass={blockClass}
-          lists={lists}
+          lists={(typeof lists === 'undefined') || lists}
           onChangeContent={onChangeListsContent}
           onChangeOrdered={onChangeListsOrdered}
         />

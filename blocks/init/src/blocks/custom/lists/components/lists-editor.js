@@ -16,7 +16,7 @@ export const ListsEditor = (props) => {
   return (
     <ListsEditorComponent
       blockClass={blockClass}
-      lists={lists}
+      lists={(typeof lists === 'undefined') || lists}
       onChangeContent={onChangeListsContent}
       onChangeOrdered={onChangeListsOrdered}
     />

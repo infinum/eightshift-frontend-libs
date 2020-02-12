@@ -28,7 +28,7 @@ export const JumbotronEditor = (props) => {
       `}>
         <ImageEditor
           blockClass={blockClass}
-          media={media}
+          media={(typeof media === 'undefined') || media}
         />
       </div>
 
