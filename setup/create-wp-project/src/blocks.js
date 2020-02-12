@@ -12,6 +12,8 @@ const componentsToCopy = [
   'tracking',
   'video',
   'google-rich-snippets',
+  'header',
+  'footer',
 ];
 
 const blocksToCopy = [
