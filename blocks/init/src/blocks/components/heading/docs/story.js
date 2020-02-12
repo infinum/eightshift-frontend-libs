@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../../custom/heading/manifest.json';
 import readme from './readme.md';
 import { HeadingEditor } from '../components/heading-editor';
 import { HeadingOptions } from '../components/heading-options';
@@ -16,17 +15,17 @@ const editorProps = {
   blockClass: 'block-heading',
   heading: {
     content: 'Heading Content',
-    styleAlign: manifest.attributes.heading.default.styleAlign,
-    styleColor: manifest.attributes.heading.default.styleColor,
-    styleSize: manifest.attributes.heading.default.styleSize,
+    styleAlign: 'left',
+    styleColor: 'primary',
+    styleSize: 'default',
   },
   onChangeContent: () => {},
 };
 
 const optionsProps = {
   heading: {
-    styleColor: manifest.attributes.heading.default.styleColor,
-    styleSize: manifest.attributes.heading.default.styleSize,
+    styleColor: 'primary',
+    styleSize: 'default',
   },
   onChangeStyleColor: () => {},
   onChangeStyleSize: () => {},
@@ -34,8 +33,8 @@ const optionsProps = {
 
 const toolbarProps = {
   heading: {
-    level: manifest.attributes.heading.default.level,
-    styleAlign: manifest.attributes.heading.default.styleAlign,
+    level: 2,
+    styleAlign: 'left',
   },
   onChangeLevel: () => {},
   onChangeStyleAlign: () => {},

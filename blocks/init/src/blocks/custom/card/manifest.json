@@ -15,13 +15,20 @@
   "parent": [
     "eightshift-boilerplate/cards-grid"
   ],
+  "example": {
+    "media": {
+      "id": 0,
+      "url": "https://picsum.photos/400/400"
+    },
+    "heading": "Lorem ipsum dolor sit amet",
+    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. "
+  },
   "attributes": {
     "media": {
       "type": "object",
       "default": {
         "id": 0,
-        "url": "",
-        "title": ""
+        "url": ""
       },
       "items": {
         "type": "object"

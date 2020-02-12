@@ -9,6 +9,9 @@
   "keywords": [
     "Example Keyword"
   ],
+  "example": {
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum."
+  },
   "attributes": {
     "content": {
       "type": "string"

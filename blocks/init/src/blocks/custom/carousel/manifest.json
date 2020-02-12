@@ -9,6 +9,11 @@
   "keywords": [
     "carousel"
   ],
+  "example": {
+    "allowedBlocks": ["eightshift-boilerplate/carousel-image"],
+    "isFreeMode": false,
+    "isLoop": true
+  },
   "hasInnerBlocks": true,
   "attributes": {
     "allowedBlocks": {

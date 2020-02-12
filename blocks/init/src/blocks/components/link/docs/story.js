@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../../custom/link/manifest.json';
 import readme from './readme.md';
 import { LinkEditor } from '../components/link-editor';
 import { LinkOptions } from '../components/link-options';
@@ -15,7 +14,7 @@ const editorProps = {
   blockClass: 'block-link',
   link: {
     title: 'Link Title',
-    styleColor: manifest.attributes.link.default.styleColor,
+    styleColor: 'primary',
   },
   onChangeTitle: () => {},
 };
@@ -24,8 +23,8 @@ const optionsProps = {
   link: {
     title: 'Link Title',
     url: 'https://fakeurl.com',
-    styleColor: manifest.attributes.link.default.styleColor,
-    isAnchor: manifest.attributes.link.default.isAnchor,
+    styleColor: 'primary',
+    isAnchor: false,
   },
   onChangeUrl: () => {},
   onChangeStyleColor: () => {},

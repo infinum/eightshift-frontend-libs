@@ -10,6 +10,9 @@
     "Cards",
     "Grid"
   ],
+  "example": {
+    "allowedBlocks": ["eightshift-boilerplate/card"]
+  },
   "hasInnerBlocks": true,
   "attributes": {
     "allowedBlocks": {

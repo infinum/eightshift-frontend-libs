@@ -11,6 +11,15 @@
     "text",
     "content"
   ],
+  "example": {
+    "paragraph": {
+      "content": "Paragraph Content",
+      "styleAlign": "left",
+      "styleColor": "primary",
+      "styleSize": "default",
+      "removeStyle": false
+    }
+  },
   "attributes": {
     "paragraph": {
       "type": "object",

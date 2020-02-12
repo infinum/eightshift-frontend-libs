@@ -9,6 +9,9 @@
   "keywords": [
     "Divider"
   ],
+  "example": {
+    "color": "primary"
+  },
   "attributes": {
     "color": {
       "type": "string",

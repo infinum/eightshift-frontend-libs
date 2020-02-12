@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../../custom/lists/manifest.json';
 import readme from './readme.md';
 import { ListsEditor } from '../components/lists-editor';
 
@@ -14,7 +13,7 @@ const editorProps = {
   blockClass: 'block-lists',
   lists: {
     content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
-    ordered: manifest.attributes.lists.default.ordered,
+    ordered: 'ul',
   },
 };
 

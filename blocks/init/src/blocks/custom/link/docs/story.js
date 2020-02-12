@@ -1,10 +1,13 @@
+/* eslint-disable no-unused-vars */
+
 import { Gutenberg, blockDetails, hasWrapperDecorator } from 'EightshiftBlocksStorybookHelpers';
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 import readme from './readme.md';
 
 export default {
-  title: 'Blocks|Link',
+  title: `Blocks|${manifest.title}`,
   ...hasWrapperDecorator(manifest),
   parameters: {
     notes: readme,
@@ -12,23 +15,5 @@ export default {
 };
 
 export const block = () => (
-  <Gutenberg props={
-    {
-      blocks: [
-        {
-          attributes: {
-            ...blockDetails(manifest.blockName),
-            link: {
-              title: 'Link Title',
-              url: 'https://fakeurl.com',
-              styleColor: manifest.attributes.link.default.styleColor,
-              isAnchor: manifest.attributes.link.default.isAnchor,
-            },
-          },
-          innerBlocks: [],
-          name: `eightshift-boilerplate/${manifest.blockName}`,
-        },
-      ],
-    }
-  } />
+  <Gutenberg props={blockDetails(manifest, globalManifest)} />
 );
