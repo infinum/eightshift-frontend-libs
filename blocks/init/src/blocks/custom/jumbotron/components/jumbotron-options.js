@@ -61,7 +61,7 @@ export const JumbotronOptions = (props) => {
       }
 
       <ImageOptions
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
 

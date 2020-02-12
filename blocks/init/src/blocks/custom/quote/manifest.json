@@ -11,6 +11,10 @@
     "Box",
     "Quote"
   ],
+  "example": {
+    "author": "Narcotics Anonymous",
+    "content": "Insanity is doing the same thing, over and over again, but expecting different results."
+  },
   "attributes": {
     "content": {
       "type": "string"

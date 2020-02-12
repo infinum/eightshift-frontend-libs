@@ -15,7 +15,7 @@ export const HeadingEditor = (props) => {
   return (
     <HeadingEditorComponent
       blockClass={blockClass}
-      heading={heading}
+      heading={(typeof heading === 'undefined') || heading}
       onChangeContent={onChangeHeadingContent}
     />
   );

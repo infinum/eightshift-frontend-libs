@@ -14,7 +14,7 @@ export const HeadingToolbar = (props) => {
 
   return (
     <HeadingToolbarComponent
-      heading={heading}
+      heading={(typeof heading === 'undefined') || heading}
       onChangeLevel={onChangeHeadingLevel}
       onChangeStyleAlign={onChangeHeadingStyleAlign}
     />

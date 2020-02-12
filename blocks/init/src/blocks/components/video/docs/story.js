@@ -15,7 +15,6 @@ const editorProps = {
   media: {
     id: 0,
     url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
-    title: 'Video Title',
   },
 };
 
@@ -23,7 +22,6 @@ const optionsProps = {
   media: {
     id: 0,
     url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
-    title: 'Video Title',
   },
   onChangeMedia: () => {},
 };

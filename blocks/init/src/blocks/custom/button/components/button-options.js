@@ -22,7 +22,7 @@ export const ButtonOptions = (props) => {
     <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
 
       <ButtonOptionsComponent
-        button={button}
+        button={(typeof button === 'undefined') || button}
         onChangeTitle={onChangeButtonTitle}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}

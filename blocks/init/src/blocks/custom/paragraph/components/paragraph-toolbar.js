@@ -13,7 +13,7 @@ export const ParagraphToolbar = (props) => {
 
   return (
     <ParagraphToolbarComponent
-      paragraph={paragraph}
+      paragraph={(typeof paragraph === 'undefined') || paragraph}
       onChangeStyleAlign={onChangeParagraphStyleAlign}
     />
   );

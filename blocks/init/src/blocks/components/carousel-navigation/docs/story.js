@@ -9,18 +9,6 @@ export default {
   },
 };
 
-
-const defaultProps = {
-  blockClass: 'block-button',
-  title: 'Button Title',
-  url: '',
-  btnId: '',
-};
-
 export const component = () => (
-  <CarouselNavigation
-    attributes={{
-      ...defaultProps,
-    }}
-  />
+  <CarouselNavigation />
 );

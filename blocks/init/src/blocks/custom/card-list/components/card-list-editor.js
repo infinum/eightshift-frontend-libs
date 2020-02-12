@@ -30,7 +30,7 @@ export const CardListEditor = (props) => {
       <div className={`${blockClass}__media`}>
         <ImageEditor
           blockClass={blockClass}
-          media={media}
+          media={(typeof media === 'undefined') || media}
         />
       </div>
       <div className={`${blockClass}__content`}>
@@ -50,7 +50,7 @@ export const CardListEditor = (props) => {
         </div>
         <ButtonEditor
           blockClass={blockClass}
-          button={button}
+          button={(typeof button === 'undefined') || button}
         />
       </div>
     </div>

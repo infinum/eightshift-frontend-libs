@@ -15,7 +15,6 @@ const editorProps = {
   media: {
     id: 0,
     url: 'https://picsum.photos/400/400',
-    title: 'Image Title',
   },
 };
 
@@ -23,7 +22,6 @@ const optionsProps = {
   media: {
     id: 0,
     url: 'https://picsum.photos/400/400',
-    title: 'Image Title',
   },
   onChangeMedia: () => {},
 };

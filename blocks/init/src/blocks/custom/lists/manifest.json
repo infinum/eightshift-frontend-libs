@@ -11,6 +11,12 @@
     "list",
     "order"
   ],
+  "example": {
+    "lists": {
+      "content": "<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>",
+      "ordered": "ul"
+    }
+  },
   "attributes": {
     "lists": {
       "type": "object",

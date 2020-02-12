@@ -22,7 +22,7 @@ export const CardEditor = (props) => {
       <div className={`${blockClass}__media`}>
         <ImageEditor
           blockClass={blockClass}
-          media={media}
+          media={(typeof media === 'undefined') || media}
         />
       </div>
       <div className={`${blockClass}__content`}>

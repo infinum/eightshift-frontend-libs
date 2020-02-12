@@ -5,7 +5,6 @@ export const ImageEditor = (props) => {
     blockClass,
     media: {
       url,
-      title,
     },
   } = props;
 
@@ -17,6 +16,6 @@ export const ImageEditor = (props) => {
   `;
 
   return (
-    <img className={imageClass} src={url} alt={title} />
+    <img className={imageClass} src={url} alt="" />
   );
 };

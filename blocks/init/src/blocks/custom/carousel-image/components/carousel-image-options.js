@@ -16,7 +16,7 @@ export const CarouselImageOptions = (props) => {
   return (
     <PanelBody title={__('Carousel Image Details', 'eightshift-boilerplate')}>
       <ImageOptions
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
     </PanelBody>

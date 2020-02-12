@@ -6,10 +6,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
-- Added `.travis.yml`
-- Added integration test for setting up a plugin using `npx create-wp-project plugin`
-- Made `create-wp-project` tests run in travis
-- Moved all tests from `create-wp-project` to `eightshift-frontend-libs`
+- Added `.travis.yml`.
+- Added integration test for setting up a plugin using `npx create-wp-project plugin`.
+- Made `create-wp-project` tests run in travis.
+- Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
+- Linting fixes.
+- Added auto detection of React version to eslint config.
+- Refactoring stories to simpler setup.
 
 ## [3.0.11] - 2020-01-29
 

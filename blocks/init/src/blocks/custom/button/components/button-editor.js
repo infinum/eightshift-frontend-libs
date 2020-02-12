@@ -12,7 +12,7 @@ export const ButtonEditor = (props) => {
   return (
     <ButtonEditorComponent
       blockClass={blockClass}
-      button={button}
+      button={(typeof button === 'undefined') || button}
     />
   );
 };

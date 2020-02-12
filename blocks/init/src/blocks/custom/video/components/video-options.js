@@ -17,7 +17,7 @@ export const VideoOptions = (props) => {
     <PanelBody title={__('Video Details', 'eightshift-boilerplate')}>
 
       <VideoOptionsComponent
-        media={media}
+        media={(typeof media === 'undefined') || media}
         onChangeMedia={onChangeMedia}
       />
 

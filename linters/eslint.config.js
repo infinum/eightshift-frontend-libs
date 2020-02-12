@@ -61,6 +61,7 @@ module.exports = {
     ],
     react: {
       pragma: 'wp',
+      version: 'detect',
     },
   },
   rules: {

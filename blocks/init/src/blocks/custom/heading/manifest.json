@@ -11,6 +11,15 @@
     "title",
     "label"
   ],
+  "example": {
+      "heading": {
+      "content": "Heading Content",
+      "level": 2,
+      "styleAlign": "left",
+      "styleColor": "primary",
+      "styleSize": "default"
+    }
+  },
   "attributes": {
     "heading": {
       "type": "object",

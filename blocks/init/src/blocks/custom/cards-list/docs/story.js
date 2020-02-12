@@ -1,11 +1,14 @@
-import { Gutenberg, blockDetails, blockInnerBlocks, hasWrapperDecorator } from 'EightshiftBlocksStorybookHelpers';
-import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from '../manifest.json';
+/* eslint-disable no-unused-vars */
+
+import { Gutenberg, blockDetails, hasWrapperDecorator } from 'EightshiftBlocksStorybookHelpers';
+import React from 'react';
+import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 import readme from './readme.md';
 import { block as item } from '../../card-list/docs/story';
 
 export default {
-  title: 'Blocks|Cards List',
+  title: `Blocks|${manifest.title}`,
   ...hasWrapperDecorator(manifest),
   parameters: {
     notes: readme,
@@ -13,18 +16,5 @@ export default {
 };
 
 export const block = () => (
-  <Gutenberg props={
-    {
-      blocks: [
-        {
-          attributes: {
-            ...blockDetails(manifest.blockName),
-            allowedBlocks: ['eightshift-boilerplate/card-list'],
-          },
-          innerBlocks: blockInnerBlocks(item(), 6),
-          name: `eightshift-boilerplate/${manifest.blockName}`,
-        },
-      ],
-    }
-  } />
+  <Gutenberg props={blockDetails(manifest, globalManifest, item())} />
 );

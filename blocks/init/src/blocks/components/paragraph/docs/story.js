@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../../custom/paragraph/manifest.json';
 import readme from './readme.md';
 import { ParagraphEditor } from '../components/paragraph-editor';
 import { ParagraphOptions } from '../components/paragraph-options';
@@ -16,10 +15,10 @@ const editorProps = {
   blockClass: 'block-paragraph',
   paragraph: {
     content: 'Paragraph Content',
-    styleAlign: manifest.attributes.paragraph.default.styleAlign,
-    styleColor: manifest.attributes.paragraph.default.styleColor,
-    styleSize: manifest.attributes.paragraph.default.styleSize,
-    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+    styleAlign: 'left',
+    styleColor: 'primary',
+    styleSize: 'default',
+    removeStyle: false,
   },
   onChangeContent: () => {},
 };
@@ -27,9 +26,9 @@ const editorProps = {
 const optionsProps = {
   paragraph: {
     content: 'Paragraph Content',
-    styleColor: manifest.attributes.paragraph.default.styleColor,
-    styleSize: manifest.attributes.paragraph.default.styleSize,
-    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+    styleColor: 'primary',
+    styleSize: 'default',
+    removeStyle: false,
   },
   onChangeStyleColor: () => {},
   onChangeStyleSize: () => {},
@@ -38,8 +37,8 @@ const optionsProps = {
 const toolbarProps = {
   paragraph: {
     content: 'Paragraph Content',
-    styleAlign: manifest.attributes.paragraph.default.styleAlign,
-    removeStyle: manifest.attributes.paragraph.default.removeStyle,
+    styleAlign: 'left',
+    removeStyle: false,
   },
   onChangeStyleAlign: () => {},
 };

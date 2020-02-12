@@ -11,13 +11,18 @@
     "video tag",
     "preview"
   ],
+  "example": {
+    "media": {
+      "id": 0,
+      "url": "https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4"
+    }
+  },
   "attributes": {
     "media": {
       "type": "object",
       "default": {
         "id": 0,
-        "url": "",
-        "title": ""
+        "url": ""
       },
       "items": {
         "type": "object"

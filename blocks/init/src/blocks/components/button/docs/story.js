@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import manifest from './../../../custom/button/manifest.json';
 import readme from './readme.md';
 
 import { ButtonEditor } from '../components/button-editor';
@@ -16,9 +15,9 @@ const editorProps = {
   blockClass: 'block-button',
   button: {
     title: 'Button Title',
-    styleSize: manifest.attributes.button.default.styleSize,
-    styleColor: manifest.attributes.button.default.styleColor,
-    styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
+    styleSize: 'default',
+    styleColor: 'primary',
+    styleSizeWidth: 'default',
   },
 };
 
@@ -26,9 +25,9 @@ const optionsProps = {
   button: {
     title: 'Button Title',
     url: 'https://fakeurl.com',
-    styleSize: manifest.attributes.button.default.styleSize,
-    styleColor: manifest.attributes.button.default.styleColor,
-    styleSizeWidth: manifest.attributes.button.default.styleSizeWidth,
+    styleSize: 'default',
+    styleColor: 'primary',
+    styleSizeWidth: 'default',
     id: 'ID',
   },
   onChangeTitle: () => {},
