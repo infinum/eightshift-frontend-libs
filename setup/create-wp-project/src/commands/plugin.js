@@ -21,7 +21,7 @@ const {
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
-const { copyBlocks, removeBlocksSupport } = require('../blocks');
+const { copyBlocks } = require('../blocks');
 const { copyAssets } = require('../assets');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
@@ -64,19 +64,11 @@ exports.handler = async (argv) => {
   });
   step++;
 
-  if (argv.noBlocks) {
-    await installStep({
-      describe: `${step}. Removing blocks`,
-      thisHappens: removeBlocksSupport(projectPath),
-    });
-    step++;
-  } else {
-    await installStep({
-      describe: `${step}. Installing blocks`,
-      thisHappens: copyBlocks(projectPath),
-    });
-    step++;
-  }
+  await installStep({
+    describe: `${step}. Installing blocks`,
+    thisHappens: copyBlocks(projectPath),
+  });
+  step++;
 
   await installStep({
     describe: `${step}. Replacing theme info`,
