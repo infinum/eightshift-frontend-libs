@@ -1,0 +1,78 @@
+/* stylelint-disable max-nesting-depth */
+
+$hamburger: (
+  colors: (
+    line: rgb(44, 44, 44),
+  ),
+  width: 24px,
+  line-height: 2px,
+  padding: 8px
+);
+
+body {
+  .hamburger {
+    @extend %button-reset;
+    $this: &;
+    background: transparent;
+    height: 100%;
+    padding: map-get-deep($hamburger, padding);
+    margin: 0 -#{map-get-deep($hamburger, padding)};
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+    display: inline-block;
+
+    @include media(desktop up) {
+      display: none;
+    }
+
+    &__wrapper {
+      position: relative;
+      width: map-get-deep($hamburger, width);
+      height: 16px;
+    }
+
+    &__line {
+      position: absolute;
+      width: 100%;
+      height: map-get-deep($hamburger, line-height);
+      background: map-get-deep($hamburger, colors, line);
+      top: 0;
+      bottom: 0;
+      margin: auto;
+
+      transition: 0.3s transform ease-out;
+
+      &--1 {
+        transform: translateY(-8px);
+      }
+
+      &--2 {
+        transition: 0.3s opacity ease-out;
+        opacity: 1;
+      }
+
+      &--3 {
+        transform: translateY(8px);
+      }
+    }
+  }
+
+  &.menu-is-open {
+    .hamburger {
+      &__line {
+        &--1 {
+          transform: rotate(-45deg) translateY(0);
+        }
+
+        &--2 {
+          opacity: 0;
+        }
+
+        &--3 {
+          transform: rotate(45deg) translateY(0);
+        }
+      }
+    }
+  }
+}

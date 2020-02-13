@@ -14,4 +14,5 @@
 import { dynamicImport } from 'EightshiftBlocksDynamicImport';
 
 // Find all blocks and require assets index.js inside it.
+dynamicImport(require.context('./../../components', true, /assets\/index\.js$/));
 dynamicImport(require.context('./../../custom', true, /assets\/index\.js$/));

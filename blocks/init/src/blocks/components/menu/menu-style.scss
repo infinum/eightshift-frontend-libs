@@ -1,0 +1,54 @@
+$menu: (
+  colors: (
+    item-active: $base-primary-color,
+    item-hover: $base-primary-color,
+  ),
+  link-padding: 16px,
+);
+
+$main-navigation-item-line-width: 120px;
+
+.menu {
+  $this: &;
+  margin: 0;
+  height: 100%;
+  display: none;
+
+  @include media(desktop up) {
+    display: block;
+  }
+
+  &__item {
+    padding-bottom: 0;
+    height: 100%;
+    display: inline-block;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    padding: 0 map-get-deep($menu, link-padding);
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    transition: 0.3s color ease-in-out;
+
+    &:hover {
+      color: map-get-deep($menu, colors, item-hover);
+    }
+
+    &:active {
+      color: map-get-deep($menu, colors, item-active);
+    }
+  }
+
+  &--footer {
+    #{$this}__link {
+      &::before {
+        bottom: auto;
+        top: 0;
+      }
+    }
+  }
+}

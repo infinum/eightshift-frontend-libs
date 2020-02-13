@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [Unreleased - header component PR]
+- Added component - `header`
+- Added component - `menu`
+- Added component - `menu-drawer`
+- Added component - `hamburger`
+
 ## [Unreleased]
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.

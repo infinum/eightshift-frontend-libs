@@ -40,6 +40,7 @@ const copyBlocks = async (projectPath) => {
   // Copy assets
   await copy(join(sourcePath, 'assets'), join(targetPath, 'assets'));
   await copy(join(sourcePath, 'wrapper'), join(targetPath, 'wrapper'));
+  await copy(join(sourcePath, 'helpers'), join(targetPath, 'helpers'));
   await copy(join(sourcePath, 'manifest.json'), join(targetPath, 'manifest.json'));
 
   // Copy only some blocks

@@ -1,29 +1,35 @@
 <?php
 /**
- * Main header bar
+ * Main header-plain bar
  *
- * @package Eightshift_Boilerplate\Blocks
+ * @package Eightshift_Libs\Layout\Header
  *
  * @since 1.0.0
  */
 
-use Eightshift_Boilerplate\Menu\Menu;
-use Eightshift_Boilerplate\Core\Config;
-use Eightshift_Libs\Manifest\Manifest;
+use Eightshift_Libs\Blocks\Helpers\Components;
 
-$blog_name        = get_bloginfo( 'name' );
-$blog_description = get_bloginfo( 'description' );
-$header_logo_info = $blog_name . ' - ' . $blog_description;
-$logo_img         = apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_FILTER_NAME ), 'logo.svg' );
+$block_class = $attributes['blockClass'] ?? 'header';
+$mobile_menu = $attributes['mobileMenu'] ?? '';
+
+$left_component   = ! empty( $attributes['leftComponent'] ) ? Components::ensure_string( $attributes['leftComponent'] ) : '';
+$center_component = ! empty( $attributes['centerComponent'] ) ? Components::ensure_string( $attributes['centerComponent'] ) : '';
+$right_component  = ! empty( $attributes['rightComponent'] ) ? Components::ensure_string( $attributes['rightComponent'] ) : '';
 
 ?>
-<div class="header">
-  <a class="header__logo-link" href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( $blog_name ); ?>">
-    <img class="header__logo-img" src="<?php echo esc_url( $logo_img ); ?>" title="<?php echo esc_attr( $header_logo_info ); ?>" alt="<?php echo esc_attr( $header_logo_info ); ?>" />
-  </a>
-  <?php
-    echo esc_html( Menu::bem_menu( 'header_main_nav', 'main-navigation' ) );
-
-    get_template_part( 'src/blocks/components/header/components/search/search' );
-  ?>
-</div>
+<header class="<?php echo esc_attr( $block_class ); ?>">
+  <div class="<?php echo esc_attr( "{$block_class}__wrapper" ); ?>">
+    <div class="<?php echo esc_attr( "{$block_class}__column {$block_class}__column--left" ); ?>">
+      <?php echo wp_kses_post( $left_component ); ?>
+    </div>
+    <div class="<?php echo esc_attr( "{$block_class}__column {$block_class}__column--center" ); ?>">
+      <?php echo wp_kses_post( $center_component ); ?>
+    </div>
+    <div class="<?php echo esc_attr( "{$block_class}__column {$block_class}__column--right" ); ?>">
+      <?php echo wp_kses_post( $right_component ); ?>
+    </div>
+    <div class="<?php echo esc_attr( "{$block_class}__mobile-menu-wrapper" ); ?>">
+      <?php echo wp_kses_post( $mobile_menu ); ?> 
+    </div>
+  </div>
+</header>
