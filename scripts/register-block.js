@@ -42,6 +42,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   const {
     namespace,
     background: backgroundGlobal,
+    foreground: foregroundGlobal,
   } = blocksSettings;
 
   // Default save method.
@@ -50,6 +51,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   // Append globalManifest data in to output.
   icon = {
     background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+    foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
     src: icon.src,
   };
 

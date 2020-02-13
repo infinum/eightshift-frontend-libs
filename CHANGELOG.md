@@ -14,6 +14,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Refactoring stories to simpler setup.
 - Added footer & header to copy blocks script
 
+- Added foreground color for icons
+
 ## [3.0.11] - 2020-01-29
 
 ## Changed
