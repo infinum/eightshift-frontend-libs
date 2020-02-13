@@ -2,7 +2,7 @@
 /**
  * Helpers for components
  *
- * @package Eightshift_Libs\Helpers
+ * @package Eightshift_Libs\Blocks\Helpers
  */
 
 declare( strict_types=1 );

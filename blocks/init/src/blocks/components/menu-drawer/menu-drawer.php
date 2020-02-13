@@ -3,7 +3,7 @@
 /**
  * Mobile menu as drawer
  *
- * @package Eightshift_Libs\Layout\Header
+ * @package Eightshift_Boilerplate\Components
  *
  * @since 1.0.0
  */

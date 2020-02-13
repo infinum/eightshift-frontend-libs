@@ -2,8 +2,7 @@
 /**
  * Template for the Button Component.
  *
- * @since 1.0.0
- * @package Eightshift_Libs\Blocks.
+ * @package Eightshift_Boilerplate\Components.
  */
 
 namespace Eightshift_Libs\Blocks;

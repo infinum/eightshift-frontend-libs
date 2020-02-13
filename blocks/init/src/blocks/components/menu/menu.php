@@ -1,8 +1,8 @@
 <?php
 /**
- * Main header-plain bar
+ * Menu component.
  *
- * @package Eightshift_Libs\Layout\Header
+ * @package Eightshift_Boilerplate\Components
  *
  * @since 1.0.0
  */
