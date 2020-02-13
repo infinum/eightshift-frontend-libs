@@ -8,6 +8,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 *No documentation available about unreleased changes as of yet.*
 
+- Added foreground color for icons
+
 ## [3.0.11] - 2020-01-29
 
 ## Changed
