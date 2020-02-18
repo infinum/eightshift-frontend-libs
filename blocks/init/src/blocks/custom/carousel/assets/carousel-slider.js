@@ -3,17 +3,17 @@ import { media } from 'EightshiftBlocksUtilityHelpersPath/media';
 
 export class CarouselSlider {
   constructor(defaultElement) {
-    this.defaultElement = defaultElement;
+    this.defaultElements = document.querySelectorAll(defaultElement);
   }
 
   init() {
 
-    $.each($(this.defaultElement), function(index, item) {
-      const $item = $(item);
+    [...this.defaultElements].forEach((el) => {
+      const item = el;
 
       const mySwiper = new Swiper(item, { // eslint-disable-line no-unused-vars
-        loop: $item.attr('data-swiper-loop'),
-        freeMode: $item.attr('data-swiper-freeMode'),
+        loop: item.getAttribute('data-swiper-loop'),
+        freeMode: item.getAttribute('data-swiper-freeMode'),
         slidesPerView: 'auto',
         spaceBetween: 25,
         keyboard: {
