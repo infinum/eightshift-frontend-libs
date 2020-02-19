@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+
+
 ## [Unreleased]
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
@@ -15,6 +17,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added footer & header to copy blocks script
 
 - Added foreground color for icons
+
+- Added underline-text mixin
+- Added underline mixin
+- Added for-each-attribute mixin
 
 ## [3.0.11] - 2020-01-29
 
