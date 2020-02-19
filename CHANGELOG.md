@@ -16,6 +16,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 - Added foreground color for icons
 
+- Added underline-text mixin
+- Added underline mixin
+- Added for-each-attribute mixin
+
 ## [3.0.11] - 2020-01-29
 
 ## Changed
