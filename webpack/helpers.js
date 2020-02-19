@@ -1,4 +1,5 @@
 /* eslint-disable valid-typeof */
+const packageJson = require('./../package.json');
 
 /**
  * File holding webpack helpers used to create project webpack build setup.
@@ -19,7 +20,7 @@ const path = require('path');
  *
  * @since 2.0.0
  */
-function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, outputPathConfig) {
+function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/blocks/assets', outputPathConfig = 'public') {
 
   if (typeof projectDir === 'undefined') {
     throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'; // eslint-disable-line no-throw-literal
@@ -33,17 +34,10 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
     throw 'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate'; // eslint-disable-line no-throw-literal
   }
 
-  if (typeof assetsPathConfig === 'undefined') {
-    throw 'assetsPath parameter is empty, please provide. This key represents: Assets path after projectPath location. For example: src/blocks/assets'; // eslint-disable-line no-throw-literal
-  }
-
-  if (typeof outputPathConfig === 'undefined') {
-    throw 'outputPath parameter is empty, please provide. This key represents: Public output path after projectPath location. For example: public'; // eslint-disable-line no-throw-literal
-  }
-
   // Clear all slashes from user config.
   const projectPathConfigClean = projectPathConfig.replace(/^\/|\/$/g, '');
   const assetsPathConfigClean = assetsPathConfig.replace(/^\/|\/$/g, '');
+  const blocksAssetsPathConfigClean = blocksAssetsPathConfig.replace(/^\/|\/$/g, '');
   const outputPathConfigClean = outputPathConfig.replace(/^\/|\/$/g, '');
 
   // Create absolute path from the projects relative path.
@@ -52,8 +46,6 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
   return {
     proxyUrl,
     absolutePath,
-
-    libNodeModules: path.resolve(absolutePath, 'node_modules'),
 
     // Output files absolute location.
     outputPath: path.resolve(absolutePath, outputPathConfigClean),
@@ -64,28 +56,26 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig, ou
     // Source files entries absolute locations.
     applicationEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application.js'),
     applicationAdminEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application-admin.js'),
-    applicationBlocksEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application-blocks.js'),
-    applicationBlocksEditorEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application-blocks-editor.js'),
+    applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
+    applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
   };
 }
 
 /**
- * Check if user config is added and it is used.s
+ * Generate project paths for node_modules and libs root path.
  *
- * @param {object} config Config object to check.
- * @param {string} key Config object key to test if is false.
+ * @param string nodeModules Path to node modules in general it is __dirname.
  *
  * @since 2.0.0
  */
-function isUsed(config, key) {
-  if (config.hasOwnProperty(key) && config[key]) {
-    return false;
-  }
-
-  return true;
+function getPackagesPath(nodeModules, isProject = true) {
+  return {
+    nodeModulesPath: path.resolve(nodeModules, 'node_modules'),
+    libsPath: isProject ? path.resolve(nodeModules, 'node_modules', packageJson.name) : path.resolve(__dirname, '..'),
+  };
 }
 
 module.exports = {
   getConfig,
-  isUsed,
+  getPackagesPath,
 };

@@ -20,67 +20,85 @@ const {
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
 const { copyBlocks } = require('../blocks');
+const { copyAssets } = require('../assets');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
+const { installModifiedNodeDependencies } = require('../dependencies');
 
-exports.command = '*';
-exports.desc = 'Setup a new WordPress theme (plugin install is coming soon). Should be run inside your theme folder (wp-content/themes).';
+exports.command = ['*', 'theme'];
+exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
 exports.builder = scriptArguments;
 
 exports.handler = async (argv) => {
   await clearConsole();
   await writeIntro();
+  let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const projectPath = path.join(fullPath, promptedInfo.package);
 
   await installStep({
-    describe: '1. Cloning repo',
+    describe: `${step}. Cloning repo`,
     thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate.git', projectPath),
-    isFatal: true,
   });
+  step++;
+
+  // Install all node packages as is or overwrite frontend-libs
+  if (argv.eightshiftFrontendLibsBranch) {
+    await installStep({
+      describe: `${step}. Installing modified Node dependencies`,
+      thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
+    });
+  } else {
+    await installStep({
+      describe: `${step}. Installing Node dependencies`,
+      thisHappens: installNodeDependencies(projectPath),
+    });
+  }
+  step++;
 
   await installStep({
-    describe: '2. Installing Node dependencies',
-    thisHappens: installNodeDependencies(projectPath),
-    isFatal: true,
-  });
-
-  await installStep({
-    describe: '3. Installing Composer dependencies',
+    describe: `${step}. Installing Composer dependencies`,
     thisHappens: installComposerDependencies(projectPath),
-    isFatal: true,
   });
+  step++;
 
   await installStep({
-    describe: '4. Installing blocks',
+    describe: `${step}. Copying assets`,
+    thisHappens: copyAssets(projectPath),
+  });
+  step++;
+
+  await installStep({
+    describe: `${step}. Installing blocks`,
     thisHappens: copyBlocks(projectPath),
-    isFatal: true,
   });
+  step++;
 
   await installStep({
-    describe: '5. Replacing theme info',
+    describe: `${step}. Replacing theme info`,
     thisHappens: searchReplace(promptedInfo, projectPath),
-    isFatal: true,
   });
+  step++;
 
   await installStep({
-    describe: '6. Updating composer autoloader',
+    describe: `${step}. Updating composer autoloader`,
     thisHappens: updateComposerAutoloader(projectPath),
-    isFatal: true,
   });
+  step++;
 
   await installStep({
-    describe: '7. Building assets',
+    describe: `${step}. Building assets`,
     thisHappens: buildAssets(projectPath),
     isFatal: true,
   });
+  step++;
 
   await installStep({
-    describe: '8. Cleaning up',
+    describe: `${step}. Cleaning up`,
     thisHappens: cleanup(projectPath),
-    isFatal: true,
   });
+  step++;
 
   log('----------------');
   log('Success!!!');

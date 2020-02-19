@@ -1,0 +1,37 @@
+{
+  "blockName": "link",
+  "title": "Link",
+  "description" : "Link block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "admin-links"
+  },
+  "keywords": [
+    "link",
+    "anchor",
+    "href"
+  ],
+  "example": {
+    "link": {
+      "title": "Link Title",
+      "url": "https://fakeurl.com",
+      "styleColor": "primary",
+      "isAnchor": false
+    }
+  },
+  "attributes": {
+    "link": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "url": "",
+        "styleColor": "primary",
+        "isAnchor": false
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
+    }
+  }
+}

@@ -5,15 +5,83 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+- Added `.travis.yml`.
+- Added integration test for setting up a plugin using `npx create-wp-project plugin`.
+- Made `create-wp-project` tests run in travis.
+- Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
+- Linting fixes.
+- Added auto detection of React version to eslint config.
+- Refactoring stories to simpler setup.
+- Added footer & header to copy blocks script
 
-## Added
-- New divider block
+- Added foreground color for icons
+
+## [3.0.11] - 2020-01-29
 
 ## Changed
-- Complete rewrite of setup script for boilerplate
-- Updating CleanWebpackPlugin option to fix removing items in watch mode
-- Updating readme and docs
-- Moved all src/blocks/layout/... to src/blocks/components
+- Reverting override styles.
+
+## [3.0.10] - 2020-01-29
+
+## Changed
+- Fixed externals import.
+
+## [3.0.9] - 2020-01-29
+
+## Changed
+- Fixed loadash import.
+
+## [3.0.8] - 2020-01-29
+
+## Changed
+- Added align support full to block registration
+- Added align full as default align for wrapper
+- Removed some of editor style overrides.
+- Adding wrapper default align style.
+
+## [3.0.7] - 2020-01-27
+
+## Changed
+- Searched and replaced all instances of Eighshift with Eightshift.
+
+## [3.0.6] - 2020-01-27
+
+## Removed
+- Removing docs to new repository
+
+## Changed
+- Fixing options to include storybook inside a project.
+
+## [3.0.4] - 2020-01-23
+
+## Added
+
+- Fixed theme setup script
+- Added setup script for plugin
+- Added absolute-position scss placeholder
+- Updating documentation
+- updating packages and fixing vulnerabilities
+
+## [3.0.3] - 2020-01-16
+
+## Added
+- Added new divider block.
+- Added blocksAssetsPathConfig also as a default value in Webpack helper.
+- Added assetsPath and outputPath to default values in Webpack helper.
+- Added option to not load webpack entrypoint file if it doesn't exist.
+
+## Changed
+- Changed setup script for boilerplate.
+- Changed Webpack overrides key from object to array.
+- Changed CleanWebpackPlugin option to fix removing items in watch mode.
+- Changed readme and docs.
+- Changed documentation.
+- Changed setup script new structure.
+
+# Moved
+- Decoupled normal assets from blocks for extra flexibility.
+- Moved all src/blocks/layout/... to src/blocks/components.
+- Moved inital blocks setup to a separate folder.
 
 ## [3.0.2] - 2019-12-19
 
@@ -28,8 +96,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added option to override any Webpack build options
 - Removed postcss
 - Changed readme docs for Webpack
-- Updating alliases
-- Removing unnecesery packages
+- Updating aliases
+- Removing unnecessary packages
 - Optimizations for storybook
 
 ## [3.0.0] - 2019-12-18
@@ -93,7 +161,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [2.0.0] - 2019-11-04
 
-- Complete refactor on project organisation.
+- Complete refactor on project organization.
 - Moving, Babel, Webpack, linters config from boilerplate to eightshift-frontend-libs.
 - Adding blocks init and blocks example.
 - Creating components to reuse on blocks project.
@@ -112,6 +180,14 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.0.11]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.10...v3.0.11
+[3.0.10]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.9...v3.0.10
+[3.0.9]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.8...v3.0.9
+[3.0.8]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.7...v3.0.8
+[3.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.6...v3.0.7
+[3.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.4...v3.0.6
+[3.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.3...v3.0.4
+[3.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v2.0.7...v3.0.0

@@ -1,0 +1,39 @@
+{
+  "blockName": "paragraph",
+  "title": "Paragraph",
+  "description" : "Paragraph block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "editor-rtl"
+  },
+  "keywords": [
+    "paragraph",
+    "text",
+    "content"
+  ],
+  "example": {
+    "paragraph": {
+      "content": "Paragraph Content",
+      "styleAlign": "left",
+      "styleColor": "primary",
+      "styleSize": "default",
+      "removeStyle": false
+    }
+  },
+  "attributes": {
+    "paragraph": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "styleAlign": "left",
+        "styleColor": "primary",
+        "styleSize": "default",
+        "removeStyle": false
+      },
+      "items": {
+        "type": "object"
+      },
+      "multipleProps": true
+    }
+  }
+}

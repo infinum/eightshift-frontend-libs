@@ -8,13 +8,14 @@
 
 const merge = require('webpack-merge');
 const { getConfig } = require('./helpers');
+const { getPackagesPath } = require('./helpers');
 
 module.exports = (mode, optionsData = {}) => {
 
   // All config and default setting overrides must be provided using this object.
   const options = {
     config: {},
-    overrides: {},
+    overrides: [],
     ...optionsData,
   };
 
@@ -24,21 +25,26 @@ module.exports = (mode, optionsData = {}) => {
     optionsData.config.projectUrl,
     optionsData.config.projectPath,
     optionsData.config.assetsPath,
+    optionsData.config.blocksAssetsPath,
     optionsData.config.outputPath
   );
 
   options.config.mode = mode;
   options.config.filesOutput = (mode === 'production' ? '[name]-[hash]' : '[name]');
 
+  // Packages helper for correct node modules path.
+  const packagesPath = getPackagesPath(options.config.absolutePath);
+
   // Get all webpack partials.
-  const base = require('./base')(options);
+  const base = require('./base')(options, packagesPath);
   const project = require('./project')(options);
   const development = require('./development')(options);
   const production = require('./production')(options);
-  const gutenberg = require('./gutenberg')(options);
+  const aliases = require('./aliases')(packagesPath);
+  const externals = require('./externals');
 
   // Default output that is going to be merged in any env.
-  const outputDefault = merge(project, base, gutenberg);
+  const outputDefault = merge(project, base, externals, aliases);
 
   // Output development setup by default.
   let output = [];

@@ -4,182 +4,100 @@
  * @since 1.0.5
 */
 
-$editor: (
-  block-hovered-outline-color: $base-black-color,
-  appender-bg-color: $base-primary-color,
-  appender-text-color: $base-white-color,
-  icon-color: $base-white-color,
-  font-size: $base-font-size,
-  font-family: $base-font-family,
-);
+$base-sea-color: #F5F5F5;
 
-// General.
-.wp-block {
-  @include font-smoothing;
-  font-size: map-get-strict($editor, font-size);
-  max-width: unset;
-  font-family: map-get-strict($editor, font-family);
-}
+$override-map: (
+  tabs-panel: $base-sea-color,
+);
 
 /* stylelint-disable */
 // Overrides default styles from inline editor.
-.editor-styles-wrapper {
-  font-family: inherit !important;
-}
-
-// Removes add more section before each block.
-.editor-block-list__insertion-point {
-  display: none;
-}
-
-// Add new block button.
-.block-list-appender {
-  position: fixed;
-  right: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 100px;
-  z-index: 100;
-  border-radius: 10px 10px 0 0;
-  background-color: map-get-strict($editor, appender-bg-color);
-
-  button {
-    color: map-get-strict($editor, appender-text-color);
-    outline: none;
-    padding: 5px;
-    background-color: inherit;
+body {
+  .editor-styles-wrapper {
+    font-family: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    color: inherit;
   }
-}
 
-// Sending my love to the guy that wrote WP Block Editor css (sarcasam) :S
-// Set min-height to block if it is empty
-// Change add more block in section button style.
-.editor-block-list__layout {
-  padding: 0;
+  // Moving border around the block to the actual block line.
+  .block-editor-block-list__layout {
+    .eightshift-block {
 
-  // Block wrapper.
-  .editor-block-list__block {
-    padding: 0;
+      // Removing block spacing.
+      [data-block] {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
 
-    // Block appender. Used with inner blocks.
-    .block-list-appender {
-      position: absolute;
-      right: 10px;
-      bottom: 5px;
-      transform: none;
-      width: auto;
-      border-radius: 50%;
-      background-color: darken(map-get-strict($editor, appender-bg-color), 15%);
+      &.block-editor-block-list__block {
+        max-width: none;
 
-      button {
-        border-radius: 50%;
+        // Move plus sign for adding new block before selected block to the right.
+        &>.block-editor-block-list__insertion-point {
+          left: auto;
+          right: 0;
+          width: 50px;
+          top: 0;
+        }
+
+        // Remove border padding line over the block.
+        .block-editor-block-list__block-edit::before {
+          top: 0;
+          bottom: 0;
+        }
       }
     }
 
-    // On hover, select wrapper state.
-    .editor-block-list__block-edit {
-      margin: 0;
-      min-height: 20px;
-
-      &::before {
-        z-index: 1;
-        right: 0;
-        top: 0;
-        left: 0;
-        bottom: 1px;
-        border: 1px solid transparent;
-        box-shadow: none !important;
-      }
-    }
-
-    &.is-hovered > {
-      .editor-block-list__block-edit::before {
-        border-color: map-get-strict($editor, block-hovered-outline-color);
-        outline-color: map-get-strict($editor, block-hovered-outline-color);
-      }
-    }
-
-    // Inner block layout.
-    .editor-block-list__layout {
-      margin: 0;
-    }
-
-    // Place to add block.
-    .editor-block-drop-zone {
-      margin: 0;
-    }
-
-    // Block Toolbar.
-    .editor-block-contextual-toolbar {
-      margin-left: 10px;
-      margin-right: 0;
-    }
-
-    // Block mover.
-    .editor-block-mover {
-      left: 10px;
-      top: 18px;
+    .block-editor-block-list__block.is-reusable {
+      max-width: none;
     }
   }
-}
 
-// Spread sidebar default input to full width.
-.edit-post-sidebar {
-  .editor-url-input input[type=text] {
+  // // Add new block button fix width if it is flex.
+  .block-list-appender {
     width: 100%;
   }
-}
 
-// Block Toolbar icon.
-.components-button {
-  &.block-editor-block-switcher__no-switcher-icon:disabled {
-    .block-editor-block-icon.has-colors {
-      color: map-get-strict($editor, icon-color) !important;
-
-      svg {
-        margin-right: 0 !important;
-      }
+  // Spread sidebar default input to full width.
+  .edit-post-sidebar {
+    .editor-url-input input[type=text] {
+      width: 100%;
     }
   }
-}
 
-// Removing empty div at the bottom of the page.
-.edit-post-visual-editor{
-  .block-editor-writing-flow__click-redirect {
-    display: none !important;
+  // Creating custom button tabs style.
+  .custom-button-tabs {
+    background-color: $base-sea-color;
+    padding: 16px;
+    margin: -5px -16px 25px;
+
+    .components-tab-panel__tabs {
+      display: flex;
+    }
+
+    .custom-button-with-icon {
+      display: inline-flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
   }
-}
 
-// Creating custom button tabs style.
-.custom-button-tabs {
-  .components-tab-panel__tabs {
+  // Aligning image and text vertically.
+  .components-base-control .components-base-control__label {
     display: flex;
-  }
-
-  .custom-button-with-icon {
-    display: inline-flex;
-    width: 100%;
     align-items: center;
-    justify-content: center;
+
+    .dashicon,
+    svg {
+      margin-right: 10px;
+    }
   }
-}
 
-// Aligning image and text vertically.
-.components-base-control .components-base-control__label {
-  display: flex;
-  align-items: center;
-
-  .dashicon,
-  svg {
-    margin-right: 10px;
+  // Hack for storybook.
+  .components-range-control__slider {
+    min-width: 1px;
   }
-}
 
-.screen-reader-text {
-  display: none;
-}
-
-// Hack for storybook.
-.components-range-control__slider {
-  min-width: 1px;
 }

@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import wrapperManifest from './../blocks/init/wrapper/manifest.json';
+import wrapperManifest from './../blocks/init/src/blocks/wrapper/manifest.json';
 import {
   BlockEditorKeyboardShortcuts,
   BlockEditorProvider,
@@ -72,12 +72,35 @@ export const blockJsClass = (name) => `js-block-${name}`;
  *
  * @param {string} name Block Name
  */
-export const blockDetails = (name) => {
-  return {
-    blockName: name,
-    blockClass: blockClass(name),
-    blockJsClass: blockJsClass(name),
+export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6,  customOutput = false) => {
+  const {blockName} = manifest;
+  const {namespace} = globalManifest;
+
+  const output = {
+    attributes: {
+      blockName: blockName,
+      blockClass: blockClass(blockName),
+      blockJsClass: blockJsClass(blockName),
+      ...manifest.example,
+    },
+    innerBlocks: [],
+    name: `${namespace}/${blockName}`,
+    originalContent: '',
+  };
+
+  if ( innerBlocks !== null ) {
+    output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
   }
+
+  if (!customOutput) {
+    return {
+      blocks: [
+        output
+      ]
+    }
+  }
+
+  return output;
 };
 
 /**

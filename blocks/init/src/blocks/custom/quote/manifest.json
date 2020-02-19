@@ -1,0 +1,26 @@
+{
+  "blockName": "quote",
+  "title": "Quote",
+  "description" : "Quote with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "format-quote"
+  },
+  "keywords": [
+    "Quotes",
+    "Box",
+    "Quote"
+  ],
+  "example": {
+    "author": "Narcotics Anonymous",
+    "content": "Insanity is doing the same thing, over and over again, but expecting different results."
+  },
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    }
+  }
+}

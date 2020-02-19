@@ -1,0 +1,54 @@
+{
+  "blockName": "jumbotron",
+  "title": "Jumbotron",
+  "description" : "Jumbotron Description",
+  "category": "eightshift",
+  "icon": {
+    "src": "heading"
+  },
+  "keywords": [
+    "Jumbotron"
+  ],
+  "example": {
+    "heading": "Lorem ipsum dolor sit amet",
+    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum.",
+    "contentHorizontalPosition": "left",
+    "contentVerticalPosition": "top",
+    "media": {
+      "id": 0,
+      "url": "https://picsum.photos/1200/800"
+    },
+    "mediaHorizontalPosition": "left"
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "string"
+    },
+    "contentHorizontalPosition": {
+      "type": "string",
+      "defalut": "left"
+    },
+    "contentVerticalPosition": {
+      "type": "string",
+      "defalut": "top"
+    },
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
+    },
+    "mediaHorizontalPosition": {
+      "type": "string",
+      "defalut": "left"
+    }
+  }
+}

@@ -59,9 +59,7 @@
 /// }
 /// ```
 
-// stylelint-disable max-nesting-depth
-
-@mixin responsive-modifiers($map, $keys...) {
+@mixin responsive-modifiers($map, $keys...) { // stylelint-disable max-nesting-depth
   $i: 0;
 
   @each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {

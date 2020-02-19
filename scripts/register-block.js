@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import { withWrapper } from './with-wrapper';
 
@@ -20,8 +20,11 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     description,
     category,
     keywords,
-    supports,
     parent,
+    transforms,
+    example,
+    styles,
+    supports,
     hasInnerBlocks = false,
     isInactive = false,
     hasWrapper = true,
@@ -39,6 +42,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   const {
     namespace,
     background: backgroundGlobal,
+    foreground: foregroundGlobal,
   } = blocksSettings;
 
   // Default save method.
@@ -47,6 +51,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   // Append globalManifest data in to output.
   icon = {
     background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+    foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
     src: icon.src,
   };
 
@@ -65,6 +70,9 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
       keywords,
       supports,
       parent,
+      transforms,
+      example,
+      styles,
       edit: (hasWrapper && wrapper !== null) ? withWrapper(edit, wrapper) : edit,
       save,
     },

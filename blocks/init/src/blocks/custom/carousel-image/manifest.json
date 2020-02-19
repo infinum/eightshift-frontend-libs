@@ -1,0 +1,36 @@
+{
+  "blockName": "carousel-image",
+  "title": "Carousel Image",
+  "description" : "Carousel Image block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "format-image"
+  },
+  "keywords": [
+    "Image",
+    "Block Image"
+  ],
+  "hasWrapper": false,
+  "parent": [
+    "eightshift-boilerplate/carousel"
+  ],
+  "example": {
+    "media": {
+      "id": 0,
+      "url": "https://picsum.photos/400/400"
+    }
+  },
+  "attributes": {
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": ""
+      },
+      "items": {
+        "type": "object"
+      },
+      "mediaAction": true
+    }
+  }
+}

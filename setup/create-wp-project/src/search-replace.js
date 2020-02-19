@@ -1,6 +1,7 @@
 
 const replace = require('replace-in-file');
 const path = require('path');
+const fs = require('fs-extra');
 
 const {
   files: {
@@ -11,36 +12,48 @@ const {
 const defaultValues = {
   package: 'eightshift-boilerplate',
   namespace: 'Eightshift_Boilerplate',
-  env: 'ES_ENV',
-  projectPrefix: 'eb8',
+  env: 'EB_ENV',
+  projectPrefix: 'eb',
   url: 'dev.boilerplate.com',
 };
 
 const searchReplace = async(data, projectPath) => {
+  const pathFunctionsPhp = path.join(projectPath, 'functions.php');
+  const pathStyleCss = path.join(projectPath, 'style.css');
+  const pathClassConfigPhp = path.join(projectPath, 'src', 'class-config.php');
+  const pathWebpackConfigJs = path.join(projectPath, 'webpack.config.js');
 
   // Name.
-  if (data.projectName) {
+  if (
+    data.projectName &&
+    await fs.pathExists(pathFunctionsPhp) &&
+    await fs.pathExists(pathStyleCss)
+  ) {
     await replace({
-      files: path.join(projectPath, 'functions.php'),
+      files: pathFunctionsPhp,
       from: /^ \* Theme Name:.*$/m,
       to: ` * Theme Name: ${data.projectName}`,
     });
     await replace({
-      files: path.join(projectPath, 'style.css'),
+      files: pathStyleCss,
       from: /^Theme Name: .*$/m,
       to: `Theme Name: ${data.projectName}`,
     });
   }
 
   // Description
-  if (data.description) {
+  if (
+    data.description &&
+    await fs.pathExists(pathFunctionsPhp) &&
+    await fs.pathExists(pathStyleCss)
+  ) {
     await replace({
-      files: path.join(projectPath, 'functions.php'),
+      files: pathFunctionsPhp,
       from: /^ \* Description:.*$/m,
       to: ` * Description: ${data.description}`,
     });
     await replace({
-      files: path.join(projectPath, 'style.css'),
+      files: pathStyleCss,
       from: /^Description: .*$/m,
       to: `Description: ${data.description}`,
     });
@@ -62,18 +75,18 @@ const searchReplace = async(data, projectPath) => {
   }
 
   // src/class-config.php - project-prefix
-  if (data.projectPrefix) {
+  if (data.projectPrefix && await fs.pathExists(pathClassConfigPhp)) {
     await replace({
-      files: path.join(projectPath, 'src', 'class-config.php'),
+      files: pathClassConfigPhp,
       from: new RegExp(defaultValues.projectPrefix, 'g'),
       to: data.projectPrefix,
     });
   }
 
   // webpack.config.js - BrowserSync proxy url.
-  if (data.url) {
+  if (data.url && await fs.pathExists(pathWebpackConfigJs)) {
     await replace({
-      files: path.join(projectPath, 'webpack.config.js'),
+      files: pathWebpackConfigJs,
       from: new RegExp(defaultValues.url, 'g'),
       to: data.url,
     });

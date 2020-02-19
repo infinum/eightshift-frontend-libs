@@ -1,0 +1,28 @@
+{
+  "blockName": "cards-list",
+  "title": "Cards List",
+  "description" : "Cards List block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "admin-settings"
+  },
+  "keywords": [
+    "Cards",
+    "List"
+  ],
+  "example": {
+    "allowedBlocks": ["eightshift-boilerplate/card-list"]
+  },
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/card-list"
+      ]
+    }
+  }
+}

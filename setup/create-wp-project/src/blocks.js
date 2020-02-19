@@ -11,6 +11,8 @@ const componentsToCopy = [
   'tracking',
   'video',
   'google-rich-snippets',
+  'header',
+  'footer',
 ];
 
 const blocksToCopy = [
@@ -32,12 +34,11 @@ const blocksToCopy = [
  */
 const copyBlocks = async (projectPath) => {
 
-  const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init');
+  const sourcePath = join(projectPath, 'node_modules', '@eightshift', 'frontend-libs', 'blocks', 'init', 'src', 'blocks');
   const targetPath = join(projectPath, 'src', 'blocks');
 
   // Copy assets
   await copy(join(sourcePath, 'assets'), join(targetPath, 'assets'));
-  await copy(join(sourcePath, 'layout'), join(targetPath, 'layout'));
   await copy(join(sourcePath, 'wrapper'), join(targetPath, 'wrapper'));
   await copy(join(sourcePath, 'manifest.json'), join(targetPath, 'manifest.json'));
 
