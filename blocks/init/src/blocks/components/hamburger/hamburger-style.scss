@@ -4,9 +4,11 @@ $hamburger: (
   colors: (
     line: $base-text-color,
   ),
-  width: 24px,
-  line-height: 2px,
-  padding: 8px
+  width: 24px,          // Width of lines / hamburger
+  line-height: 2px,     // Height of each line
+  padding: 8px,         // Padding around hamburger (more padding = easier to click)
+  line-spacing: 8px     // Space between hamburger lines
+  wrapper-height: 16px, // Height the entire wrapper
 );
 
 body {
@@ -15,8 +17,8 @@ body {
     $this: &;
     background: transparent;
     height: 100%;
-    padding: map-get-deep($hamburger, padding);
-    margin: 0 -#{map-get-deep($hamburger, padding)};
+    padding: map-get-strict($hamburger, padding);
+    margin: 0 -#{map-get-strict($hamburger, padding)};
     position: relative;
     z-index: 100;
     cursor: pointer;
@@ -28,14 +30,14 @@ body {
 
     &__wrapper {
       position: relative;
-      width: map-get-deep($hamburger, width);
-      height: 16px;
+      width: map-get-strict($hamburger, width);
+      height: map-get-strict($hamburger, wrapper-height);
     }
 
     &__line {
       position: absolute;
       width: 100%;
-      height: map-get-deep($hamburger, line-height);
+      height: map-get-strict($hamburger, line-height);
       background: map-get-deep($hamburger, colors, line);
       top: 0;
       bottom: 0;
@@ -44,7 +46,7 @@ body {
       transition: 0.3s transform ease-out;
 
       &--1 {
-        transform: translateY(-8px);
+        transform: translateY(-#{map-get-strict($hamburger, line-spacing)});
       }
 
       &--2 {
@@ -53,7 +55,7 @@ body {
       }
 
       &--3 {
-        transform: translateY(8px);
+        transform: translateY(map-get-strict($hamburger, line-spacing));
       }
     }
   }
