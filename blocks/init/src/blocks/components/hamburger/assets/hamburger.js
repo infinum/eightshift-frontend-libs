@@ -1,51 +1,58 @@
 import { getNavigatorVibrate } from './navigator';
 
-const CLASS_IS_OPEN = 'menu-is-open';
-const CLASS_NO_SCROLL = 'u-no-scroll';
-const selector = '.js-hamburger';
-const hamburger = document.querySelector(selector);
-const overlay = document.querySelector(`.${hamburger.getAttribute('data-overlay')}`);
-
-export const preventScroll = () => {
-  document.body.style.top = `-${window.scrollY}px`;
-  document.body.classList.add(CLASS_NO_SCROLL);
-};
-
-export const enableScroll = () => {
-  const scrollY = document.body.style.top;
-  document.body.classList.remove(CLASS_NO_SCROLL);
-  document.body.style.top = '';
-  window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-};
-
-export const openMobileMenu = () => {
-  document.body.classList.add(CLASS_IS_OPEN);
-  preventScroll();
-};
-
-export const closeMobileMenu = () => {
-  document.body.classList.remove(CLASS_IS_OPEN);
-  enableScroll();
-};
-
-export const hamburgerInit = () => {
-  hamburger.addEventListener('click', () => {
-    navigator.vibrate = getNavigatorVibrate();
-
-    if (navigator.vibrate) {
-      navigator.vibrate(30);
-    }
-
-    if (document.body.classList.contains(CLASS_IS_OPEN)) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  });
-};
-
-export const closeMobileMenuOnOverlayClick = () => {
-  overlay.addEventListener('click', () => {
-    closeMobileMenu();
-  });
-};
+export class Hamburger {
+  constructor(
+    selector = '.js-hamburger',
+    CLASS_IS_OPEN = 'menu-is-open',
+    CLASS_NO_SCROLL = 'u-no-scroll'
+  ) {
+    this.CLASS_IS_OPEN = CLASS_IS_OPEN;
+    this.CLASS_NO_SCROLL = CLASS_NO_SCROLL;
+    this.hamburger = document.querySelector(selector);
+    this.overlay = document.querySelector(`.${this.hamburger.getAttribute('data-overlay')}`);
+  }
+  
+  preventScroll() {
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.classList.add(this.CLASS_NO_SCROLL);
+  }
+  
+  enableScroll() {
+    const scrollY = document.body.style.top;
+    document.body.classList.remove(this.CLASS_NO_SCROLL);
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+  }
+  
+  openMobileMenu() {
+    document.body.classList.add(this.CLASS_IS_OPEN);
+    this.preventScroll();
+  }
+  
+  closeMobileMenu() {
+    document.body.classList.remove(this.CLASS_IS_OPEN);
+    this.enableScroll();
+  }
+  
+  hamburgerInit() {
+    this.hamburger.addEventListener('click', () => {
+      navigator.vibrate = getNavigatorVibrate();
+  
+      if (navigator.vibrate) {
+        navigator.vibrate(30);
+      }
+  
+      if (document.body.classList.contains(this.CLASS_IS_OPEN)) {
+        this.closeMobileMenu();
+      } else {
+        this.openMobileMenu();
+      }
+    });
+  }
+  
+  closeMobileMenuOnOverlayClick() {
+    this.overlay.addEventListener('click', () => {
+      this.closeMobileMenu();
+    });
+  }
+}
