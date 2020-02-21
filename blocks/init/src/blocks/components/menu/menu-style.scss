@@ -1,12 +1,17 @@
 $menu: (
-  colors: (
-    item-active: $base-primary-color,
-    item-hover: $base-primary-color,
-  ),
   link-padding: 16px,
+  link-modifiers: (
+    normal: (
+      color: inherit,
+    ),
+    hover: (
+      color: $base-primary-color,
+    ),
+    active: (
+      color: $base-primary-color,
+    ),
+  ),
 );
-
-$main-navigation-item-line-width: 120px;
 
 .menu {
   $this: &;
@@ -27,28 +32,13 @@ $main-navigation-item-line-width: 120px;
   &__link {
     text-decoration: none;
     color: inherit;
-    padding: 0 map-get-deep($menu, link-padding);
+    padding: 0 map-get-strict($menu, link-padding);
     height: 100%;
     display: inline-flex;
     align-items: center;
     position: relative;
     transition: 0.3s color ease-in-out;
 
-    &:hover {
-      color: map-get-deep($menu, colors, item-hover);
-    }
-
-    &:active {
-      color: map-get-deep($menu, colors, item-active);
-    }
-  }
-
-  &--footer {
-    #{$this}__link {
-      &::before {
-        bottom: auto;
-        top: 0;
-      }
-    }
+    @include link-modifiers($menu, link-modifiers);
   }
 }
