@@ -1,4 +1,4 @@
-import { getNavigatorVibrate } from './navigator';
+import { getNavigatorVibrate } from 'EightshiftBlocksUtilityHelpersPath/navigator';
 
 export class Hamburger {
   constructor(
