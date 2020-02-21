@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for the Button Component.
+ * Template for the Hamburger component.
  *
  * @package Eightshift_Boilerplate\Components.
  */
