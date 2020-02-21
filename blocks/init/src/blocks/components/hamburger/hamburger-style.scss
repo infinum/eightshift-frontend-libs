@@ -30,12 +30,14 @@ body {
 
     &__wrapper {
       position: relative;
+      display: block;
       width: map-get-strict($hamburger, width);
       height: map-get-strict($hamburger, wrapper-height);
     }
 
     &__line {
       position: absolute;
+      display: block;
       width: 100%;
       height: map-get-strict($hamburger, line-height);
       background: map-get-deep($hamburger, colors, line);

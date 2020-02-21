@@ -17,9 +17,9 @@ $overlay_class = $attributes['overlayClass'] ?? '';
   data-overlay="<?php echo esc_attr( $overlay_class ); ?>"
   class="<?php echo esc_attr( $block_class ); ?> js-<?php echo esc_attr( $block_class ); ?>"
 >
-  <div class="<?php echo esc_attr( $block_class ); ?>__wrapper">
-    <div class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--1"></div>
-    <div class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--2"></div>
-    <div class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--3"></div>
-  </div>
+  <span class="<?php echo esc_attr( $block_class ); ?>__wrapper">
+    <span class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--1"></span>
+    <span class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--2"></span>
+    <span class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--3"></span>
+  </span>
 </button>
