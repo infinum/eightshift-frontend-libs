@@ -11,6 +11,7 @@ use Eightshift_Libs\Menu\Menu;
 
 $block_class = $attributes['blockClass'] ?? 'menu';
 $menu_name   = $attributes['menu'] ?? 'header_main_nav';
-$variation   = $attributes['variation'] ?? 'horizontal';
+$modifier    = $attributes['modifier'] ?? '';
+$variation   = isset( $attributes['variation'] ) ? "{$block_class}-{$variation}" : $block_class;
 
-echo esc_html( Menu::bem_menu( $menu_name, "{$block_class}-{$variation}", '' ) );
+echo esc_html( Menu::bem_menu( $menu_name, $variation, $modifier ? "{$block_class}--{$modifier}" : '' ) );
