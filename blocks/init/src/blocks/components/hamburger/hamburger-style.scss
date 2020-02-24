@@ -11,70 +11,69 @@ $hamburger: (
   wrapper-height: 16px, // Height the entire wrapper
 );
 
-body {
-  .hamburger {
-    @extend %button-reset;
-    $this: &;
-    background: transparent;
-    height: 100%;
-    padding: map-get-strict($hamburger, padding);
-    margin: 0 -#{map-get-strict($hamburger, padding)};
+
+.hamburger {
+  @extend %button-reset;
+  $this: &;
+  background: transparent;
+  height: 100%;
+  padding: map-get-strict($hamburger, padding);
+  margin: 0 -#{map-get-strict($hamburger, padding)};
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+  display: inline-block;
+
+  @include media(desktop up) {
+    display: none;
+  }
+
+  &__wrapper {
     position: relative;
-    z-index: 100;
-    cursor: pointer;
-    display: inline-block;
+    display: block;
+    width: map-get-strict($hamburger, width);
+    height: map-get-strict($hamburger, wrapper-height);
+  }
 
-    @include media(desktop up) {
-      display: none;
+  &__line {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: map-get-strict($hamburger, line-height);
+    background: map-get-deep($hamburger, colors, line);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: 0.3s transform ease-out;
+
+    &--1 {
+      transform: translateY(-#{map-get-strict($hamburger, line-spacing)});
     }
 
-    &__wrapper {
-      position: relative;
-      display: block;
-      width: map-get-strict($hamburger, width);
-      height: map-get-strict($hamburger, wrapper-height);
+    &--2 {
+      transition: 0.3s opacity ease-out;
+      opacity: 1;
     }
 
+    &--3 {
+      transform: translateY(map-get-strict($hamburger, line-spacing));
+    }
+  }
+}
+
+body.menu-is-open {
+  .hamburger {
     &__line {
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: map-get-strict($hamburger, line-height);
-      background: map-get-deep($hamburger, colors, line);
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      transition: 0.3s transform ease-out;
-
       &--1 {
-        transform: translateY(-#{map-get-strict($hamburger, line-spacing)});
+        transform: rotate(-45deg) translateY(0);
       }
 
       &--2 {
-        transition: 0.3s opacity ease-out;
-        opacity: 1;
+        opacity: 0;
       }
 
       &--3 {
-        transform: translateY(map-get-strict($hamburger, line-spacing));
-      }
-    }
-  }
-
-  &.menu-is-open {
-    .hamburger {
-      &__line {
-        &--1 {
-          transform: rotate(-45deg) translateY(0);
-        }
-
-        &--2 {
-          opacity: 0;
-        }
-
-        &--3 {
-          transform: rotate(45deg) translateY(0);
-        }
+        transform: rotate(45deg) translateY(0);
       }
     }
   }
