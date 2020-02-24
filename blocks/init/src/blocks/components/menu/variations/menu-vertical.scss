@@ -1,0 +1,36 @@
+$menu-vertical: (
+  link-modifiers: (
+    normal: (
+      color: inherit,
+    ),
+    hover: (
+      color: $base-primary-color,
+    ),
+    active: (
+      color: $base-primary-color,
+    ),
+  ),
+  padding-navigation: 16px,
+);
+
+.menu-vertical {
+  margin: 0;
+  list-style: none;
+  padding: map-get-strict($menu-drawer, padding-navigation);
+
+  &__item {
+    padding-bottom: 16px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s color ease-in-out;
+
+    @include link-modifiers($menu-horizontal, link-modifiers);
+
+    &:hover {
+      color: map-get-deep($menu-drawer, colors, link-hover);
+    }
+  }
+}

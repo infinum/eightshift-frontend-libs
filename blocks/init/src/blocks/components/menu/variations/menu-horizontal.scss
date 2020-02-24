@@ -1,0 +1,44 @@
+$menu-horizontal: (
+  link-padding: 16px,
+  link-modifiers: (
+    normal: (
+      color: inherit,
+    ),
+    hover: (
+      color: $base-primary-color,
+    ),
+    active: (
+      color: $base-primary-color,
+    ),
+  ),
+);
+
+.menu-horizontal {
+  $this: &;
+  margin: 0;
+  height: 100%;
+  display: none;
+
+  @include media(desktop up) {
+    display: block;
+  }
+
+  &__item {
+    padding-bottom: 0;
+    height: 100%;
+    display: inline-block;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    padding: 0 map-get-strict($menu-horizontal, link-padding);
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    transition: 0.3s color ease-in-out;
+
+    @include link-modifiers($menu-horizontal, link-modifiers);
+  }
+}

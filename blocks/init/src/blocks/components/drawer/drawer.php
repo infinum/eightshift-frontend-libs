@@ -12,8 +12,8 @@ use Eightshift_Libs\Menu\Menu;
 use Eightshift_Libs\Blocks\Helpers\Components;
 
 $block_class     = $attributes['blockClass'] ?? 'menu-drawer';
-$menu            = $attributes['menu'] ?? 'header_main_nav';
 $drawer_position = $attributes['drawerPosition'] ?? 'left';
+$menu            = $attributes['menu'] ?? '';
 
 $classes = Components::classnames([
   $block_class,
@@ -23,6 +23,6 @@ $classes = Components::classnames([
 
 ?>
 <div class="<?php echo esc_attr( $classes ); ?>">
-  <?php echo esc_html( Menu::bem_menu( $menu, 'menu-drawer-nav', '' ) ); ?>
+  <?php echo $menu; ?>
 </div>
 
