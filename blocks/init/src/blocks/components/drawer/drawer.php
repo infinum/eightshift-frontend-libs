@@ -8,7 +8,6 @@
  * @since 1.0.0
  */
 
-use Eightshift_Libs\Menu\Menu;
 use Eightshift_Libs\Blocks\Helpers\Components;
 
 $block_class     = $attributes['blockClass'] ?? 'menu-drawer';
@@ -23,6 +22,6 @@ $classes = Components::classnames([
 
 ?>
 <div class="<?php echo esc_attr( $classes ); ?>">
-  <?php echo $menu; ?>
+  <?php echo wp_kses_post( $menu ); ?>
 </div>
 

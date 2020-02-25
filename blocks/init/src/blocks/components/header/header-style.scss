@@ -1,5 +1,5 @@
 $header: (
-  height: 50px,
+  height: $base-header-height,
   site-padding: $base-gutter-size,
   site-container: $base-container-size,
   colors: (
@@ -59,10 +59,5 @@ $header: (
         order: 3;
       }
     }
-  }
-
-  .custom-logo {
-    height: map-get-strict($header, height);
-    width: auto;
   }
 }
