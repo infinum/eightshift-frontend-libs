@@ -8,7 +8,7 @@
  */
 
 $block_class = $attributes['blockClass'] ?? 'logo';
-$logo_url = $attributes['logoUrl'] ?? has_custom_logo() ? get_custom_logo() : '';
+$logo_url = $attributes['logoUrl'] ?? has_custom_logo() ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0] : '';
 $alt = $attributes['logoAlt'] ?? get_bloginfo( 'name' ) . ' logo';
 $href = $attributes['href'] ?? get_bloginfo( 'url' );
 
