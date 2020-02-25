@@ -20,6 +20,6 @@ $href = $attributes['href'] ?? get_bloginfo( 'url' );
   <img
     src="<?php echo esc_url( $logo_url ); ?>"
     alt="<?php echo esc_attr( $alt ); ?>"
-    class="logo__img"
+    class="<?php echo esc_attr( "{$block_class}__img" ); ?>"
   />
 </a>
