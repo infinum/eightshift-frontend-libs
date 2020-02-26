@@ -2,16 +2,16 @@
 /**
  * Main header bar component
  *
- * @package Eightshift_Boilerplate\Components
+ * @package Eightshift_Boilerplate\Blocks
  *
  * @since 1.0.0
  */
 
+namespace Eightshift_Boilerplate\Blocks;
+
 use Eightshift_Libs\Blocks\Helpers\Components;
 
-$block_class = $attributes['blockClass'] ?? 'header';
-$mobile_menu = $attributes['mobileMenu'] ?? '';
-
+$block_class      = $attributes['blockClass'] ?? 'header';
 $left_component   = ! empty( $attributes['leftComponent'] ) ? Components::ensure_string( $attributes['leftComponent'] ) : '';
 $center_component = ! empty( $attributes['centerComponent'] ) ? Components::ensure_string( $attributes['centerComponent'] ) : '';
 $right_component  = ! empty( $attributes['rightComponent'] ) ? Components::ensure_string( $attributes['rightComponent'] ) : '';
@@ -27,9 +27,6 @@ $right_component  = ! empty( $attributes['rightComponent'] ) ? Components::ensur
     </div>
     <div class="<?php echo esc_attr( "{$block_class}__column {$block_class}__column--right" ); ?>">
       <?php echo wp_kses_post( $right_component ); ?>
-    </div>
-    <div class="<?php echo esc_attr( "{$block_class}__mobile-menu-wrapper" ); ?>">
-      <?php echo wp_kses_post( $mobile_menu ); ?> 
     </div>
   </div>
 </header>

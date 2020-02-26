@@ -2,20 +2,25 @@
 /**
  * Template for the Hamburger component.
  *
- * @package Eightshift_Boilerplate\Components.
+ * @package Eightshift_Boilerplate\Blocks.
  */
 
-namespace Eightshift_Libs\Blocks;
+namespace Eightshift_Boilerplate\Blocks;
 
-$block_class   = $attributes['blockClass'] ?? 'hamburger';
-$trigger       = $attributes['trigger'] ?? '';
-$overlay_class = $attributes['overlayClass'] ?? '';
+use Eightshift_Libs\Blocks\Helpers\Components;
+
+$block_class = $attributes['blockClass'] ?? 'hamburger';
+
+$classes = Components::classnames([
+  $block_class,
+  "js-{$block_class}",
+]);
 ?>
 
 <button
   data-trigger="<?php echo esc_attr( $trigger ); ?>"
   data-overlay="<?php echo esc_attr( $overlay_class ); ?>"
-  class="<?php echo esc_attr( $block_class ); ?> js-<?php echo esc_attr( $block_class ); ?>"
+  class="<?php echo esc_attr( $classes ); ?>"
 >
   <span class="<?php echo esc_attr( $block_class ); ?>__wrapper">
     <span class="<?php echo esc_attr( $block_class ); ?>__line <?php echo esc_attr( $block_class ); ?>__line--1"></span>

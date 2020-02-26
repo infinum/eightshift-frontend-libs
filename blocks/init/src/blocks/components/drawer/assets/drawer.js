@@ -1,15 +1,16 @@
-import { getNavigatorVibrate } from 'EightshiftBlocksUtilityHelpersPath/navigator';
-
-export class Hamburger {
+export class Drawer {
   constructor(
-    selector = '.js-hamburger',
+    selector = '.js-drawer',
     CLASS_IS_OPEN = 'menu-is-open',
+    CLASS_OVERLAY_IS_SHOWING = 'page-overlay-shown',
     CLASS_NO_SCROLL = 'u-no-scroll'
   ) {
     this.CLASS_IS_OPEN = CLASS_IS_OPEN;
+    this.CLASS_OVERLAY_IS_SHOWING = CLASS_OVERLAY_IS_SHOWING;
     this.CLASS_NO_SCROLL = CLASS_NO_SCROLL;
-    this.hamburger = document.querySelector(selector);
-    this.overlay = document.querySelector(`.${this.hamburger.getAttribute('data-overlay')}`);
+    this.drawer = document.querySelector(selector);
+    this.trigger = document.querySelector(`.${this.drawer.getAttribute('data-trigger')}`);
+    this.overlay = document.querySelector(`.${this.drawer.getAttribute('data-overlay')}`);
   }
   
   preventScroll() {
@@ -26,33 +27,33 @@ export class Hamburger {
   
   openMobileMenu() {
     document.body.classList.add(this.CLASS_IS_OPEN);
+    document.body.classList.add(this.CLASS_OVERLAY_IS_SHOWING);
     this.preventScroll();
   }
   
   closeMobileMenu() {
     document.body.classList.remove(this.CLASS_IS_OPEN);
+    document.body.classList.remove(this.CLASS_OVERLAY_IS_SHOWING);
     this.enableScroll();
   }
   
-  hamburgerInit() {
-    this.hamburger.addEventListener('click', () => {
-      navigator.vibrate = getNavigatorVibrate();
-  
-      if (navigator.vibrate) {
-        navigator.vibrate(30);
-      }
-  
+  closeMobileMenuOnOverlayClick() {
+    if (this.overlay) {
+      this.overlay.addEventListener('click', () => {
+        this.closeMobileMenu();
+      });
+    }
+  }
+
+  drawerInit() {
+    this.trigger.addEventListener('click', () => {
       if (document.body.classList.contains(this.CLASS_IS_OPEN)) {
         this.closeMobileMenu();
       } else {
         this.openMobileMenu();
       }
     });
-  }
-  
-  closeMobileMenuOnOverlayClick() {
-    this.overlay.addEventListener('click', () => {
-      this.closeMobileMenu();
-    });
+
+    this.closeMobileMenuOnOverlayClick();
   }
 }
