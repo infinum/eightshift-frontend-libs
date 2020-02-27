@@ -15,6 +15,7 @@ import { withWrapper } from './with-wrapper';
  */
 export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) => {
   const {
+    namespace,
     blockName,
     title,
     description,
@@ -40,7 +41,6 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   } = manifest;
 
   const {
-    namespace,
     background: backgroundGlobal,
     foreground: foregroundGlobal,
   } = blocksSettings;
@@ -60,8 +60,11 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     save = () => createElement(InnerBlocks.Content);
   }
 
+  // Check if namespace is defined in block or in global manifest settings.
+  const namespaceFinal = (typeof namespace === 'undefined') ? blocksSettings.namespace : namespace;
+
   return {
-    blockName: `${namespace}/${blockName}`,
+    blockName: `${namespaceFinal}/${blockName}`,
     options: {
       title,
       description,
