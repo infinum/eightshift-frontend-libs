@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+import domReady from '@wordpress/dom-ready';
+
+domReady(() => {
   const drawerSelector = '.js-drawer';
   const drawerElem = document.querySelector(drawerSelector);
 
@@ -8,4 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
       drawer.drawerInit();
     });
   }
-}, false);
+});
