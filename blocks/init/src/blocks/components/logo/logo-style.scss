@@ -1,0 +1,10 @@
+$logo: (
+  height: $base-header-height,
+);
+
+.logo {
+  &__img {
+    height: map-get-strict($logo, height);
+    width: auto;
+  }
+}
