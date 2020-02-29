@@ -10,7 +10,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added component - `menu-drawer`
 - Added component - `hamburger`
 
-## [Unreleased]
+## [Unreleased - add media blender modifiers to menu component PR]
+- Removed hardcoded media-specific display properties
+- Added 2 possible modifiers to menu for media-specific display property
 
 ## Added
 - Added `.travis.yml`.
