@@ -29,20 +29,4 @@ $menu-vertical: (
 
     @include link-modifiers($menu-horizontal, link-modifiers);
   }
-
-  &--desktop-only {
-    display: none;
-
-    @include media(desktop up) {
-      display: block;
-    }
-  }
-
-  &--mobile-only {
-    display: block;
-
-    @include media(desktop up) {
-      display: none;
-    }
-  }
 }
