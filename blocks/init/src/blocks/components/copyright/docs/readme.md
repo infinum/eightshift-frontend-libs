@@ -8,7 +8,7 @@ None
 
 ## Attributes
 
-* _@param_ **blockClass** | `string` | default: `"header"` | Component's class. If modifying make sure the provide the default class as well (see example call).
+* _@param_ **blockClass** | `string` | default: `"header"` | Component's class. If modifying make sure the provide the default class as well (see an example call).
 * _@param_ **by** | `string` | default: `"Infinum"` | Name of copyright holder. Generally should be your website / company's name.
 * _@param_ **year** | `int` | default: `gmdate( 'Y' ) (current year)` | Year of the copyright, defaults to current year.
 

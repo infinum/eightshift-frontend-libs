@@ -14,7 +14,7 @@ components/menu
 
 ## Attributes
 
-* _@param_ **blockClass** | `string` | default: `"footer"` | Component's class. If modifying make sure the provide the default class as well (see example call).
+* _@param_ **blockClass** | `string` | default: `"footer"` | Component's class. If modifying make sure the provide the default class as well (see an example call).
 * _@param_ **leftComponent** | `string|array` | Component (html string or array of html strings) to render on the **left** side of the footer.
 * _@param_ **centerComponent** | `string|array` | Component (html string or array of html strings) to render in the **center** of the footer.
 * _@param_ **rightComponent** | `string|array` | Component (html string or array of html strings) to render on the **right** side of the footer.
