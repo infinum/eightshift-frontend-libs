@@ -20,6 +20,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added underline mixin
 - Added for-each-attribute mixin
 
+- Added footer component
+- Added copyright component
+
 ## [3.0.11] - 2020-01-29
 
 ## Changed
