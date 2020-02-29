@@ -17,11 +17,6 @@ $menu-horizontal: (
   $this: &;
   margin: 0;
   height: 100%;
-  display: none;
-
-  @include media(desktop up) {
-    display: block;
-  }
 
   &__item {
     padding-bottom: 0;

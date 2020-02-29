@@ -60,4 +60,13 @@ $header: (
       }
     }
   }
+
+  &__menu {
+    height: 100%;
+    display: none;
+
+    @include media(desktop up) {
+      display: block;
+    }
+  }
 }
