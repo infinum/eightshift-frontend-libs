@@ -1,11 +1,17 @@
-const selector = '.js-scroll-to-top';
+import { domReady } from '../../../assets/scripts/utils/dom';
 
-if ($(selector).length) {
-  $(selector).click((event) => {
-    event.preventDefault();
+domReady(() => {
+  const selector = 'js-scroll-to-top';
+  const elements = document.getElementsByClassName(selector);
 
-    $('html, body').animate({
-      scrollTop: 0,
-    }, 2000);
+  [...elements].forEach((element) => {
+    element.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    });
   });
-}
+});
