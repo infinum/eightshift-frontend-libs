@@ -15,6 +15,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added 2 possible modifiers to menu for media-specific display property
 
 ## [Unreleased - modify setup script for components]
+- Added copying of components used by header & footer
 
 ## Added
 - Added `.travis.yml`.
