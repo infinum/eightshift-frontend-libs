@@ -30,8 +30,6 @@ $footer: (
   &__column {
     flex: 1 0 auto;
     height: 100%;
-    position: relative;
-    z-index: 100;
 
     &--center {
       text-align: center;
