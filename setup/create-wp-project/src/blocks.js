@@ -13,6 +13,11 @@ const componentsToCopy = [
   'google-rich-snippets',
   'header',
   'footer',
+  'logo',
+  'drawer',
+  'menu',
+  'hamburger',
+  'copyright',
 ];
 
 const blocksToCopy = [

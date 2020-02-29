@@ -14,6 +14,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Removed hardcoded media-specific display properties
 - Added 2 possible modifiers to menu for media-specific display property
 
+## [Unreleased - modify setup script for components]
+
 ## Added
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
