@@ -24,7 +24,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added underline-text mixin.
 - Added underline mixin.
 - Added for-each-attribute mixin.
-- Added block manifesdt registration ability to register blocks in different manifest than global settings.
+- Added block manifest registration ability to register blocks in different manifest than global settings.
 
 ## Changed
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
