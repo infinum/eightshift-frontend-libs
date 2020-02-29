@@ -1,8 +1,8 @@
 import { domReady } from '@wordpress/dom-ready';
 
 domReady(() => {
-  const selector = 'js-scroll-to-top';
-  const elements = document.getElementsByClassName(selector);
+  const selector = '.js-scroll-to-top';
+  const elements = document.querySelectorAll(selector);
 
   [...elements].forEach((element) => {
     element.addEventListener('click', (event) => {
