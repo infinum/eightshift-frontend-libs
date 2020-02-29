@@ -15,13 +15,8 @@ $menu-vertical: (
 
 .menu-vertical {
   margin: 0;
-  display: block;
   list-style: none;
   padding: map-get-strict($menu-vertical, padding-navigation);
-
-  @include media(desktop up) {
-    display: none;
-  }
 
   &__item {
     padding-bottom: 16px;
@@ -33,5 +28,21 @@ $menu-vertical: (
     transition: 0.3s color ease-in-out;
 
     @include link-modifiers($menu-horizontal, link-modifiers);
+  }
+
+  &--desktop-only {
+    display: none;
+
+    @include media(desktop up) {
+      display: block;
+    }
+  }
+
+  &--mobile-only {
+    display: block;
+
+    @include media(desktop up) {
+      display: none;
+    }
   }
 }
