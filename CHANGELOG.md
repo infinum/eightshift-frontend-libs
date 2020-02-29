@@ -5,20 +5,23 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+
+## Added
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
-- Made `create-wp-project` tests run in travis.
+- Added `create-wp-project` tests run in travis.
+- Added auto detection of React version to eslint config..
+- Added footer & header to copy blocks script.
+- Added foreground color for icons.
+- Added underline-text mixin.
+- Added underline mixin.
+- Added for-each-attribute mixin.
+- Added block manifesdt registration ability to register blocks in different manifest than global settings.
+
+## Changed
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
-- Linting fixes.
-- Added auto detection of React version to eslint config.
 - Refactoring stories to simpler setup.
-- Added footer & header to copy blocks script
-
-- Added foreground color for icons
-
-- Added underline-text mixin
-- Added underline mixin
-- Added for-each-attribute mixin
+- Linting fixes.
 
 ## [3.0.11] - 2020-01-29
 
