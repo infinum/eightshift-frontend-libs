@@ -6,8 +6,14 @@ domReady(() => {
 
   if (elements.length) {
     import('./carousel-slider').then(({ CarouselSlider }) => {
-      const carouselSlider = new CarouselSlider(selector);
-      carouselSlider.init();
+      [...elements].forEach((element) => {
+        const carouselSlider = new CarouselSlider({
+          element,
+          nextEl: '.js-swiper-next',
+          prevEl: '.js-swiper-prev',
+        });
+        carouselSlider.init();
+      });
     });
   }
 });
