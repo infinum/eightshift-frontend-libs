@@ -1,3 +1,44 @@
-// .footer {
+$base-footer-height: 50px;
+$footer: (
+  height: $base-footer-height,
+  site-padding: $base-gutter-size,
+  site-container: $base-container-size,
+  colors: (
+    background: $base-white-color,
+  ),
+);
 
-// }
+.footer {
+  $this: &;
+  padding: 0 map-get-strict($footer, site-padding);
+  top: 0;
+  background: map-get-deep($footer, colors, background);
+  height: map-get-strict($footer, height);
+  width: 100%;
+  position: relative;
+
+  &__wrapper {
+    max-width: map-get-strict($footer, site-container);
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__column {
+    flex: 1 0 auto;
+    height: 100%;
+    position: relative;
+    z-index: 100;
+
+    &--center {
+      text-align: center;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
+}
