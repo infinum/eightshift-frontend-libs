@@ -8,7 +8,7 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-use Eightshift_Libs\Blocks\Helpers\Components;
+use Eightshift_Libs\Helpers\Components;
 
 $block_class = $attributes['blockClass'] ?? 'page-overlay';
 

@@ -22,7 +22,7 @@ components/menu
 ## Example
 
 ```php
-use Eightshift_Libs\Blocks\Helpers\Components;
+use Eightshift_Libs\Helpers\Components;
 
 Components::render( 'footer', [
   'leftComponent' => Components::render( 'copyright' ),

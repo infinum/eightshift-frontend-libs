@@ -5,6 +5,7 @@ $header: (
   colors: (
     background: $base-white-color,
   ),
+  z-index: map-get-strict($zindex, header),
 );
 
 .header {
@@ -15,7 +16,7 @@ $header: (
   height: map-get-strict($header, height);
   width: 100%;
   position: relative;
-  z-index: 100;
+  z-index: map-get-strict($header, z-index);
 
   &--fixed {
     position: fixed;
@@ -35,7 +36,6 @@ $header: (
     flex: 1 0 auto;
     height: 100%;
     position: relative;
-    z-index: 100;
 
     &--center {
       text-align: center;
@@ -61,12 +61,24 @@ $header: (
     }
   }
 
+  &__logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media(desktop up) {
+      justify-content: flex-start;
+    }
+  }
+
   &__menu {
     height: 100%;
     display: none;
 
     @include media(desktop up) {
-      display: block;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }

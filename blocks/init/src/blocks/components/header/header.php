@@ -9,7 +9,7 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-use Eightshift_Libs\Blocks\Helpers\Components;
+use Eightshift_Libs\Helpers\Components;
 
 $block_class      = $attributes['blockClass'] ?? 'header';
 $left_component   = ! empty( $attributes['leftComponent'] ) ? Components::ensure_string( $attributes['leftComponent'] ) : '';

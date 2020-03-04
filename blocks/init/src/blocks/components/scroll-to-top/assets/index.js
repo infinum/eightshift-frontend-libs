@@ -1,4 +1,4 @@
-import { domReady } from '@wordpress/dom-ready';
+import domReady from '@wordpress/dom-ready';
 
 domReady(() => {
   const selector = '.js-scroll-to-top';
