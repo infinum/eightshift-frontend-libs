@@ -2,35 +2,34 @@ import Swiper from 'EightshiftBlocksSwiper';
 import { media } from 'EightshiftBlocksUtilityHelpersPath/media';
 
 export class CarouselSlider {
-  constructor(defaultElement) {
-    this.defaultElement = defaultElement;
+  constructor(options) {
+    this.element = options.element;
+    this.nextEl = options.nextEl;
+    this.prevEl = options.prevEl;
   }
 
   init() {
+    const item = this.element;
 
-    $.each($(this.defaultElement), function(index, item) {
-      const $item = $(item);
-
-      const mySwiper = new Swiper(item, { // eslint-disable-line no-unused-vars
-        loop: $item.attr('data-swiper-loop'),
-        freeMode: $item.attr('data-swiper-freeMode'),
-        slidesPerView: 'auto',
-        spaceBetween: 25,
-        keyboard: {
-          enabled: true,
+    const mySwiper = new Swiper(item, { // eslint-disable-line no-unused-vars
+      loop: item.getAttribute('data-swiper-loop'),
+      freeMode: item.getAttribute('data-swiper-freeMode'),
+      slidesPerView: 'auto',
+      spaceBetween: 25,
+      keyboard: {
+        enabled: true,
+      },
+      grabCursor: true,
+      breakpointsInverse: true,
+      breakpoints: {
+        [media.tablet]: {
+          spaceBetween: 50,
         },
-        grabCursor: true,
-        breakpointsInverse: true,
-        breakpoints: {
-          [media.tablet]: {
-            spaceBetween: 50,
-          },
-        },
-        navigation: {
-          nextEl: '.js-swiper-next',
-          prevEl: '.js-swiper-prev',
-        },
-      });
+      },
+      navigation: {
+        nextEl: this.nextEl,
+        prevEl: this.prevEl,
+      },
     });
   }
 }

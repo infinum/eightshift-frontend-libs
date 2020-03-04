@@ -1,10 +1,19 @@
-$(function() {
-  
+import domReady from '@wordpress/dom-ready';
+
+domReady(() => {
   const selector = '.js-block-carousel';
-  if ($(selector).length) {
+  const elements = document.querySelectorAll(selector);
+
+  if (elements.length) {
     import('./carousel-slider').then(({ CarouselSlider }) => {
-      const carouselSlider = new CarouselSlider(selector);
-      carouselSlider.init();
+      [...elements].forEach((element) => {
+        const carouselSlider = new CarouselSlider({
+          element,
+          nextEl: '.js-swiper-next',
+          prevEl: '.js-swiper-prev',
+        });
+        carouselSlider.init();
+      });
     });
   }
 });
