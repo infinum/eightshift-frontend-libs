@@ -4,15 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [Unreleased - header component PR]
-- Added component - `header`
-- Added component - `menu`
-- Added component - `menu-drawer`
-- Added component - `hamburger`
+## [Unreleased]
 
-## [Unreleased - add media blender modifiers to menu component PR]
-- Removed hardcoded media-specific display properties
-- Added 2 possible modifiers to menu for media-specific display property
+## [3.1.0] - 2020-03-04
 
 ## Added
 - Added `.travis.yml`.
@@ -26,6 +20,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added for-each-attribute mixin.
 - Added block manifest registration ability to register blocks in different manifest than global settings.
 - Added new alias `EightshiftBlocksSwiperIE` for Swiper slider with IE 11 support.
+- Added component - `header`.
+- Added component - `menu`.
+- Added component - `menu-drawer`.
+- Added component - `hamburger`.
+- Added component - `footer`.
+- Added component - `copyright`.
+- Added 2 possible modifiers to menu for media-specific display property.
 
 ## Changed
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
@@ -33,8 +34,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Linting fixes.
 - Removed jQuery from scroll-to-top component and carousel.
 
-- Added footer component
-- Added copyright component
+### Removed
+- Removed hardcoded media-specific display properties
 
 ## [3.0.11] - 2020-01-29
 
@@ -200,6 +201,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.8...v3.0.9

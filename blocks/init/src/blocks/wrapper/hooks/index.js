@@ -27,4 +27,4 @@ const parentComponentBlock = wp.compose.createHigherOrderComponent((BlockListBlo
   };
 }, 'parentComponentBlock');
 
-wp.hooks.addFilter('editor.BlockListBlock', 'infinum', parentComponentBlock);
+wp.hooks.addFilter('editor.BlockListBlock', manifest.namespace, parentComponentBlock);
