@@ -25,11 +25,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Added underline mixin.
 - Added for-each-attribute mixin.
 - Added block manifest registration ability to register blocks in different manifest than global settings.
+- Added new alias `EightshiftBlocksSwiperIE` for Swiper slider with IE 11 support.
 
 ## Changed
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
 - Refactoring stories to simpler setup.
 - Linting fixes.
+- Removed jQuery from scroll-to-top component and carousel.
 
 - Added footer component
 - Added copyright component
