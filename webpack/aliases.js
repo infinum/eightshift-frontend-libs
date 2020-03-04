@@ -14,6 +14,7 @@ module.exports = (packagesPath) => {
         // Node Modules.
         EightshiftBlocksWhatwgFetch: path.resolve(packagesPath.nodeModulesPath, 'whatwg-fetch'),
         EightshiftBlocksSwiper: path.resolve(packagesPath.nodeModulesPath, 'swiper'),
+        EightshiftBlocksSwiperIE: path.resolve(packagesPath.nodeModulesPath, 'swiper/js/swiper.min'),
         EightshiftBlocksBabelPolyfill: path.resolve(packagesPath.nodeModulesPath, '@babel/polyfill'),
         EightshiftBlocksAutoprefixer: path.resolve(packagesPath.nodeModulesPath, 'autoprefixer'),
         EightshiftBlocksNormalize: path.resolve(packagesPath.nodeModulesPath, 'normalize-scss'),
