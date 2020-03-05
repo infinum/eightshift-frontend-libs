@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+* Added `page-overlay` to block copying.
 
 ## [3.1.1] - 2020-03-05
 

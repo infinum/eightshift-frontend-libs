@@ -18,6 +18,7 @@ const componentsToCopy = [
   'menu',
   'hamburger',
   'copyright',
+  'page-overlay',
 ];
 
 const blocksToCopy = [
