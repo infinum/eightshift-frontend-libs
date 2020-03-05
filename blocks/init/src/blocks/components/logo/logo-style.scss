@@ -3,8 +3,11 @@ $logo: (
 );
 
 .logo {
+  display: block;
+  width: 220px;
+
   &__img {
-    height: map-get-strict($logo, height);
-    width: auto;
+    max-width: 100%;
+    height: auto;
   }
 }

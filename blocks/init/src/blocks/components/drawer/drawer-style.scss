@@ -1,16 +1,10 @@
 $drawer: (
-  width: 256px,
+  width: 250px,
   colors: (
     background: $base-white-color,
-    link: $base-text-color,
-    link-hover: $base-primary-color
   ),
-  navigation: (
-    font-size: 24px,
-    font-family: $base-font-family
-  ),
-  link-offset: 24px,
-  vertical-padding: 26px,
+  padding: 25px,
+  z-index: map-get-strict($zindex, drawer),
 );
 
 .drawer {
@@ -18,9 +12,9 @@ $drawer: (
   position: fixed;
   top: auto;
   height: 100%;
-  z-index: 99;
+  z-index: map-get-strict($drawer, z-index);
   margin: auto;
-  padding: map-get-strict($drawer, vertical-padding);
+  padding: map-get-strict($drawer, padding);
   display: block;
   background: map-get-deep($drawer, colors, background);
   width: map-get-strict($drawer, width);
@@ -32,17 +26,17 @@ $drawer: (
 
   &--left {
     left: 0;
-    transform: translate3D(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 
   &--right {
     right: 0;
-    transform: translate3D(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
 }
 
 body.menu-is-open {
   .drawer {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }

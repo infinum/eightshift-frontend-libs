@@ -19,10 +19,7 @@ $hamburger: (
   height: 100%;
   padding: map-get-strict($hamburger, padding);
   margin: 0 -#{map-get-strict($hamburger, padding)};
-  position: relative;
-  z-index: 100;
   cursor: pointer;
-  display: inline-block;
 
   @include media(desktop up) {
     display: none;

@@ -1,39 +1,35 @@
 $menu-horizontal: (
-  link-padding: 16px,
+  link-padding: 0 15px,
   link-modifiers: (
     normal: (
-      color: inherit,
+      color: $base-black-color,
     ),
     hover: (
       color: $base-primary-color,
-    ),
-    active: (
-      color: $base-primary-color,
-    ),
+    )
   ),
 );
 
 .menu-horizontal {
+  @extend %list-reset;
   $this: &;
-  margin: 0;
   height: 100%;
+  display: flex;
+  align-items: center;
 
   &__item {
-    padding-bottom: 0;
     height: 100%;
-    display: inline-block;
   }
 
   &__link {
     text-decoration: none;
-    color: inherit;
-    padding: 0 map-get-strict($menu-horizontal, link-padding);
     height: 100%;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
+    padding: map-get-strict($menu-horizontal, link-padding);
     transition: 0.3s color ease-in-out;
 
-    @include link-modifiers($menu-horizontal, link-modifiers);
+    @include link($menu-horizontal, link-modifiers);
   }
 }

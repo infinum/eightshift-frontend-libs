@@ -6,6 +6,17 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+### Fixed
+* Wrong namespace in components helpers.
+* Removing unnecessary map keys for components style.
+* Fixing drawer styles.
+* Fixing menu styles.
+* Loading z-index from external map.
+* Fixing typo translate3D to translate3d.
+* Removing display: inline-block;
+* Fixing logo styles.
+* Fixing broken scroll to top method.
+
 ## [3.1.0] - 2020-03-04
 
 ## Added
