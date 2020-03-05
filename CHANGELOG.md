@@ -19,6 +19,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [3.1.0] - 2020-03-04
 
+## [Unreleased - modify setup script for components]
+- Added copying of components used by header & footer
+
 ## Added
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
