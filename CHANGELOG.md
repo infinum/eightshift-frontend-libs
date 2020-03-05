@@ -6,6 +6,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.1.1] - 2020-03-05
+
 ### Fixed
 * Wrong namespace in components helpers.
 * Removing unnecessary map keys for components style.
@@ -64,7 +66,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [3.0.9] - 2020-01-29
 
 ## Changed
-- Fixed loadash import.
+- Fixed lodash import.
 
 ## [3.0.8] - 2020-01-29
 
@@ -77,7 +79,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [3.0.7] - 2020-01-27
 
 ## Changed
-- Searched and replaced all instances of Eighshift with Eightshift.
+- Searched and replaced all instances of Eightshift with Eightshift.
 
 ## [3.0.6] - 2020-01-27
 
@@ -116,7 +118,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 # Moved
 - Decoupled normal assets from blocks for extra flexibility.
 - Moved all src/blocks/layout/... to src/blocks/components.
-- Moved inital blocks setup to a separate folder.
+- Moved initial blocks setup to a separate folder.
 
 ## [3.0.2] - 2019-12-19
 
@@ -215,6 +217,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.9...v3.0.10
