@@ -1,0 +1,61 @@
+{
+  "blockName": "column",
+  "title": "Column",
+  "description" : "Column block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "format-image"
+  },
+  "keywords": [
+    "column"
+  ],
+  "hasWrapper": false,
+  "hasInnerBlocks": true,
+  "parent": [
+    "eightshift-boilerplate/columns"
+  ],
+  "attributes": {
+    "widthLarge": {
+      "type": "number",
+      "default": 4
+    },
+    "hideLarge": {
+      "type": "bool"
+    },
+    "offsetLarge": {
+      "type": "number"
+    },
+
+    "widthDesktop": {
+      "type": "number"
+    },
+    "hideDesktop": {
+      "type": "bool"
+    },
+    "offsetDesktop": {
+      "type": "number"
+    },
+
+    "widthTablet": {
+      "type": "number",
+      "default": 6
+    },
+    "hideTablet": {
+      "type": "bool"
+    },
+    "offsetTablet": {
+      "type": "number"
+    },
+
+    "widthMobile": {
+      "type": "number",
+      "default": 12
+    },
+    "hideMobile": {
+      "type": "bool"
+    },
+    "offsetMobile": {
+      "type": "number"
+    }
+  }
+}

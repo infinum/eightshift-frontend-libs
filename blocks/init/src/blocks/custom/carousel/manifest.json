@@ -10,7 +10,7 @@
     "carousel"
   ],
   "example": {
-    "allowedBlocks": ["eightshift-boilerplate/carousel-image"],
+    "allowedBlocks": ["eightshift-boilerplate/column"],
     "isFreeMode": false,
     "isLoop": true
   },
@@ -22,7 +22,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift-boilerplate/carousel-image"
+        "eightshift-boilerplate/column"
       ]
     },
     "isFreeMode": {
