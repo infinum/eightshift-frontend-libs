@@ -10,7 +10,12 @@ export class Drawer {
     this.CLASS_NO_SCROLL = CLASS_NO_SCROLL;
     this.drawer = document.querySelector(selector);
     this.trigger = document.querySelector(`.${this.drawer.getAttribute('data-trigger')}`);
-    this.overlay = document.querySelector(`.${this.drawer.getAttribute('data-overlay')}`);
+    this.overlay = null;
+
+    // Set overlay only if there is one to select.
+    if (this.drawer.getAttribute('data-overlay')) {
+      this.overlay = document.querySelector(`.${this.drawer.getAttribute('data-overlay')}`);
+    }
   }
   
   preventScroll() {
