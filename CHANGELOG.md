@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [Unreleased]
 * Added `page-overlay` to block copying.
 
+### [Add scroll-to-target component]
+* Added scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link
+
 ## [3.1.1] - 2020-03-05
 
 ### Fixed
