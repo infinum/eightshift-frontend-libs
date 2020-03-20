@@ -7,6 +7,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [Unreleased]
 * Added `page-overlay` to block copying.
 
+### [Tweak header components PR]
+* Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in)
+* Better vertical / horizontal centering (more `flex`, less `height`, proper justifying)
+* Removed some `height: 100%` which made styling links difficult and coupled to header / footer height
+* Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
+* Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist
+
 ## [3.1.1] - 2020-03-05
 
 ### Fixed
