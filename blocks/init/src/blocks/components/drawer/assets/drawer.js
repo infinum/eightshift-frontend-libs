@@ -31,14 +31,18 @@ export class Drawer {
   }
   
   openMobileMenu() {
+    if (this.overlay) {
+      document.body.classList.add(this.CLASS_OVERLAY_IS_SHOWING);
+    }
     document.body.classList.add(this.CLASS_IS_OPEN);
-    document.body.classList.add(this.CLASS_OVERLAY_IS_SHOWING);
     this.preventScroll();
   }
   
   closeMobileMenu() {
+    if (this.overlay) {
+      document.body.classList.remove(this.CLASS_OVERLAY_IS_SHOWING);
+    }
     document.body.classList.remove(this.CLASS_IS_OPEN);
-    document.body.classList.remove(this.CLASS_OVERLAY_IS_SHOWING);
     this.enableScroll();
   }
   
