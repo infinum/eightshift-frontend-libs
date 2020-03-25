@@ -33,26 +33,34 @@ $header: (
   }
 
   &__column {
-    flex: 1 0 auto;
-    height: 100%;
+    display: flex;
+    flex: 1 0 1px;
     position: relative;
+
+    &--left {
+      justify-content: left;
+    }
 
     &--center {
       text-align: center;
+      justify-content: center;
     }
 
     &--right {
       text-align: right;
+      justify-content: flex-end;
     }
 
     @include media(desktop up) {
       &--left {
         order: 2;
+        justify-content: center;
       }
 
       &--center {
-        text-align: left;
         order: 1;
+        text-align: left;
+        justify-content: flex-start;
       }
 
       &--right {

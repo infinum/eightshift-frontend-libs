@@ -28,14 +28,21 @@ $footer: (
 
   &__column {
     flex: 1 0 auto;
-    height: 100%;
+    align-items: center;
+    display: flex;
+
+    &--left {
+      justify-content: flex-start;
+    }
 
     &--center {
       text-align: center;
+      justify-content: center;
     }
 
     &--right {
       text-align: right;
+      justify-content: flex-end;
     }
   }
 }
