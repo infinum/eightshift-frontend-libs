@@ -6,6 +6,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 * Added `page-overlay` to block copying.
+* Replaced some aliases with import from module (for example: `import { ColorPaletteCustom } from '@eightshift/frontend-libs`, instead of `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette`)
+  - Had to build an alias for `@eightshift/frontend-libs` in order for this to work while we're working on Storybook from inside the `frontend-libs` repo
 
 ### [Tweak header components PR]
 * Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in)
