@@ -11,6 +11,9 @@ module.exports = (packagesPath) => {
     resolve: {
       alias: {
 
+        // Alias this package for use when we're working on Storybook
+        '@eightshift/frontend-libs': path.resolve(packagesPath.libsPath),
+
         // Node Modules.
         EightshiftBlocksWhatwgFetch: path.resolve(packagesPath.nodeModulesPath, 'whatwg-fetch'),
         EightshiftBlocksSwiper: path.resolve(packagesPath.nodeModulesPath, 'swiper'),

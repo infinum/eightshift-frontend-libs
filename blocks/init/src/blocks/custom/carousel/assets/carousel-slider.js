@@ -1,5 +1,5 @@
 import Swiper from 'EightshiftBlocksSwiper';
-import { media } from 'EightshiftBlocksUtilityHelpersPath/media';
+import { media } from '@eightshift/frontend-libs';
 
 export class CarouselSlider {
   constructor(options) {

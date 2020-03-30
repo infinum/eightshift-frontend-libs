@@ -13,8 +13,7 @@
  * @since 1.0.0
  */
 
-import { registerBlocks } from 'EightshiftBlocksRegisterBlocks';
-import { dynamicImport } from 'EightshiftBlocksDynamicImport';
+import { registerBlocks, dynamicImport } from '@eightshift/frontend-libs';
 import { Wrapper } from './../../wrapper/wrapper';
 import blocksSettings from './../../manifest.json';
 
