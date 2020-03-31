@@ -5,7 +5,6 @@
  */
 
 const path = require('path');
-const { name } = require('../package.json');
 
 module.exports = (packagesPath) => {
   return {
@@ -15,7 +14,7 @@ module.exports = (packagesPath) => {
         // Alias this package for use when we're working on Storybook
         // With this you can always import things from index.jx using:
         // import { something } from '@eightshift/frontend-libs';
-        [name]: path.resolve(packagesPath.libsPath),
+        '@eightshift/frontend-libs': path.resolve(packagesPath.libsPath),
 
         // Node Modules.
         EightshiftBlocksWhatwgFetch: path.resolve(packagesPath.nodeModulesPath, 'whatwg-fetch'),
