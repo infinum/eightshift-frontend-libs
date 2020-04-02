@@ -4,7 +4,6 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
 
 export const ButtonOptions = (props) => {
   const {
@@ -53,10 +52,6 @@ export const ButtonOptions = (props) => {
             </Fragment>
           }
           help={__('Change Button Background color.', 'eightshift-boilerplate')}
-          colors={[
-            globalSettings.colors.primary,
-            globalSettings.colors.black,
-          ]}
           value={styleColor}
           onChange={onChangeStyleColor}
         />

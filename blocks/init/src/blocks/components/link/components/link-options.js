@@ -4,7 +4,6 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
 
 export const LinkOptions = (props) => {
   const {
@@ -30,10 +29,6 @@ export const LinkOptions = (props) => {
             </Fragment>
           }
           help={__('Change Link color.', 'eightshift-boilerplate')}
-          colors={[
-            globalSettings.colors.primary,
-            globalSettings.colors.black,
-          ]}
           value={styleColor}
           onChange={onChangeStyleColor}
         />

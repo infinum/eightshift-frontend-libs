@@ -3,7 +3,6 @@ import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { SelectControl, Icon } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
 
 export const ParagraphOptions = (props) => {
   const {
@@ -30,10 +29,6 @@ export const ParagraphOptions = (props) => {
                 </Fragment>
               }
               help={__('Change Paragraph color.', 'eightshift-boilerplate')}
-              colors={[
-                globalSettings.colors.primary,
-                globalSettings.colors.black,
-              ]}
               value={styleColor}
               onChange={onChangeStyleColor}
             />

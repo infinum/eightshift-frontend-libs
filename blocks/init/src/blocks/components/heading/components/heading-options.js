@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
 import { SelectControl, Icon } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
 
 export const HeadingOptions = (props) => {
   const {
@@ -27,10 +26,6 @@ export const HeadingOptions = (props) => {
             </Fragment>
           }
           help={__('Change Heading color.', 'eightshift-boilerplate')}
-          colors={[
-            globalSettings.colors.primary,
-            globalSettings.colors.black,
-          ]}
           value={styleColor}
           onChange={onChangeStyleColor}
         />
