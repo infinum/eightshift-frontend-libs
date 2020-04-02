@@ -6,6 +6,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 * Added `page-overlay` to block copying.
+* `editor-color-pallete` - Modified the `ColorPaletteCustom` component to get colors by default from WordPress's global store
+* `editor-color-pallete` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper)
+* `editor-color-pallete` - Added a helper (using React hooks) for reading colors from WordPress's global store.
+* Added docs for `editor-color-pallete`
 
 ### [Tweak header components PR]
 * Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in)
