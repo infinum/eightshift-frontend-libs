@@ -2,41 +2,58 @@ import { find } from 'lodash';
 import { useState } from 'react';
 import { getColorObjectByColorValue } from '@wordpress/editor';
 import { ColorPalette } from '@wordpress/components';
-import { createElement } from '@wordpress/element';
+import { withSelect } from '@wordpress/data';
 
-export function ColorPaletteCustom({
-  colors,
-  value,
-  onChange,
-  disableCustomColors = true,
-  clearable = false,
-  label,
-  help,
-}) {
+export const ColorPaletteCustom = withSelect((select, ownProps) => {
+  const { colors } = select('core/block-editor').getSettings();
+
+  // Allow overrides of editor color pallete for this block.
+  if (!ownProps.colors) {
+    ownProps.colors = colors;
+  }
+
+  return { ...ownProps };
+})((props) => {
+  const {
+    colors,
+    value,
+    onChange,
+    disableCustomColors = true,
+    clearable = false,
+    label,
+    help,
+  } = props;
+
   const [color, setColor] = useState(value);
 
   const colorValue = find(colors, { name: color });
 
-  return (
-    createElement('div', {
-      className: 'components-base-control',
-    }, label && createElement('label', {
-      htmlFor: 'color-pallete',
-      className: 'components-base-control__label',
-    }, label), createElement('br', null), createElement(ColorPalette, {
-      colors,
-      disableCustomColors,
-      value: typeof colorValue === 'undefined' ? color : colorValue.color,
-      onChange: (newColor) => {
-        const colorObject = getColorObjectByColorValue(colors, newColor);
-        
-        setColor(() => newColor);
-        onChange(typeof colorObject === 'undefined' ? '' : colorObject.name);
-      },
-      clearable,
-    }), help && createElement('p', {
-      className: 'components-base-control__help',
-    }, help))
-  );
-}
+  const baseClass = 'components-base-control';
 
+  return (
+    <div className={baseClass}>
+      <div className={`${baseClass}__label`}>{label}</div>
+      <ColorPalette
+        clearable={clearable}
+        colors={colors}
+        disableCustomColors={disableCustomColors}
+        value={typeof colorValue === 'undefined' ? color : colorValue.color}
+        onChange={(newColor) => {
+          const colorObject = getColorObjectByColorValue(colors, newColor);
+
+          setColor(() => newColor);
+
+          // For backwards compatibility, we're keeping the ability to set colors with just name.
+          // The preferred way is to use a slug.
+          let newColorValues = typeof colorObject === 'undefined' ? '' : colorObject.name;
+          if (colorObject.slug) {
+            newColorValues = colorObject.slug;
+          }
+
+          onChange(newColorValues);
+        }}
+      />
+      <p className={`${baseClass}__help`}>{help}</p>
+    </div>
+  );
+});
