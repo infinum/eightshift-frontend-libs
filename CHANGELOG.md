@@ -16,6 +16,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
 * Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist
 
+### [Add scroll-to-target component]
+* Added scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link
+
 ## [3.1.1] - 2020-03-05
 
 ### Fixed
