@@ -12,7 +12,7 @@ module.exports = (packagesPath) => {
       alias: {
 
         // Alias this package for use when we're working on Storybook
-        // With this you can always import things from index.jx using:
+        // With this you can always import things from index.js using:
         // import { something } from '@eightshift/frontend-libs';
         '@eightshift/frontend-libs': path.resolve(packagesPath.libsPath),
 
