@@ -7,7 +7,7 @@ assignees: iruzevic
 
 ---
 
-<!--- Hi there! We see that you like our boilerplate and you have found a bug. -->
+<!--- Hi there! We see that you like our frontend libs and you have found a bug. -->
 <!--- This means a lot to us because it helps us improve our code :) -->
 <!--- Please use the Title field to provide a clear summary of the issue. -->
 
