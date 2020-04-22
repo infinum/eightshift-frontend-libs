@@ -81,7 +81,6 @@ module.exports = (options, packagesPath) => {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            configFile: path.resolve(options.config.absolutePath, 'babel.config.js'),
           },
         },
       ],
