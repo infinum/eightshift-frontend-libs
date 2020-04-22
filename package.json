@@ -161,5 +161,6 @@
     "jest": "^25.1.0",
     "replace-in-file": "^5.0.2",
     "sassdoc": "^2.7.1"
-  }
+  },
+  "module": "index.js"
 }

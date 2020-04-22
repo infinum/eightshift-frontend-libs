@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs';
 import manifest from './manifest.json';
 import { CardsListEditor } from './components/cards-list-editor';
 

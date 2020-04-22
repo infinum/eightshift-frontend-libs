@@ -10,6 +10,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * `editor-color-pallete` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper)
 * `editor-color-pallete` - Added a helper (using React hooks) for reading colors from WordPress's global store.
 * Added docs for `editor-color-pallete`
+* Replaced some aliases with import from module (for example: `import { ColorPaletteCustom } from '@eightshift/frontend-libs`, instead of `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette`)
+  - Had to build an alias for `@eightshift/frontend-libs` in order for this to work while we're working on Storybook from inside the `frontend-libs` repo
 
 ### [Tweak header components PR]
 * Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in)
@@ -17,6 +19,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Removed some `height: 100%` which made styling links difficult and coupled to header / footer height
 * Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
 * Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist
+
+### [Add scroll-to-target component]
+* Added scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link
 
 ## [3.1.1] - 2020-03-05
 

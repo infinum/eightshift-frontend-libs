@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
+import { ColorPaletteCustom } from '@eightshift/frontend-libs';
 import { SelectControl, Icon } from '@wordpress/components';
 
 export const HeadingOptions = (props) => {
