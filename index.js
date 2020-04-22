@@ -6,3 +6,4 @@ export { ucfirst } from './scripts/ucfirst';
 export { getActions } from './scripts/get-actions';
 export { media } from './scripts/helpers/media';
 export { cookies } from './scripts/helpers/cookies';
+export { registerBlocks } from './scripts/register-blocks';

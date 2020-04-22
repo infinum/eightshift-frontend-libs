@@ -7,6 +7,7 @@
  */
 
 const webpack = require('webpack');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -74,8 +75,16 @@ module.exports = (options, packagesPath) => {
   if (!options.overrides.includes('js')) {
     module.rules.push({
       test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: 'babel-loader',
+      exclude: /node_modules\/(?!@eightshift)/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            configFile: path.resolve(options.config.absolutePath, 'babel.config.js'),
+          },
+        },
+      ],
     });
   }
 
