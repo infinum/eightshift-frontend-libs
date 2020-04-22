@@ -1,3 +1,4 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { range } from 'lodash';
 import { __, sprintf } from '@wordpress/i18n';
 import { Toolbar } from '@wordpress/components';
