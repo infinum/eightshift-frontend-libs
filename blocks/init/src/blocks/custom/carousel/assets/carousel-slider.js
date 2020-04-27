@@ -1,4 +1,4 @@
-import Swiper from 'EightshiftBlocksSwiper';
+import Swiper from 'swiper';
 import { media } from '@eightshift/frontend-libs';
 
 export class CarouselSlider {

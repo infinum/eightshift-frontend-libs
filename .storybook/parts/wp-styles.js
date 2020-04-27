@@ -1,21 +1,8 @@
-const storybookInternalWpStyles = () => {
-  require('./../../node_modules/@wordpress/editor/build-style/style-rtl.css');
-  require('./../../node_modules/@wordpress/editor/build-style/style.css');
-  require('./../../node_modules/@wordpress/components/build-style/style.css');
-  require('./../../node_modules/@wordpress/block-editor/build-style/style.css');
-  require('./../../node_modules/@wordpress/format-library/build-style/style.css');
-  require('./editor-styles.scss');
-}
-
-const storybookWpStyles = () => {
+export const storybookWpStyles = () => {
   require('EightshiftBlocksStorybookWp/editor/build-style/style-rtl.css');
   require('EightshiftBlocksStorybookWp/editor/build-style/style.css');
   require('EightshiftBlocksStorybookWp/components/build-style/style.css');
   require('EightshiftBlocksStorybookWp/block-editor/build-style/style.css');
   require('EightshiftBlocksStorybookWp/format-library/build-style/style.css');
-}
-
-export {
-  storybookInternalWpStyles,
-  storybookWpStyles,
+  require('EightshiftBlocksStorybookLibsPath/.storybook/parts/editor-styles.scss');
 }
