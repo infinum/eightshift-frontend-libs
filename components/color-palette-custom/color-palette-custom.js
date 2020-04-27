@@ -1,18 +1,20 @@
 import React, { useState } from 'react'; // eslint-disable-line no-unused-vars
 import { find } from 'lodash';
-import { getColorObjectByColorValue } from '@wordpress/editor';
+import { getColorObjectByColorValue } from '@wordpress/block-editor';
 import { ColorPalette } from '@wordpress/components';
 import { withSelect } from '@wordpress/data';
 
 export const ColorPaletteCustom = withSelect((select, ownProps) => {
   const { colors } = select('core/block-editor').getSettings();
 
+  let newObj = ownProps;
+
   // Allow overrides of editor color pallete for this block.
   if (!ownProps.colors) {
-    ownProps.colors = colors;
+    newObj = Object.assign({ colors }, ownProps);
   }
 
-  return { ...ownProps };
+  return { ...newObj };
 })((props) => {
   const {
     colors,

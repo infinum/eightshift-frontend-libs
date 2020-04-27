@@ -3,7 +3,7 @@
 import { configure } from '@storybook/react';
 
 // @WP Editor set default window objects.
-require('EightshiftBlocksStorybookWindowObjects');
+require('./parts/window-objects')
 
 // Run all storybook stories.
 configure([
@@ -11,16 +11,17 @@ configure([
   require.context('./../blocks/init/src/blocks/custom', true, /docs\/story.js$/),
   require.context('./../blocks/init/src/blocks/wrapper', true, /docs\/story.js$/),
   require.context('./../blocks/playground', true, /story.js$/),
+  require.context('./../components', true, /docs\/story.js$/),
 ], module);
 
 // @WP Editor set default categories.
-require('EightshiftBlocksStorybookDefaultCategories');
+require('./parts/default-mocks');
 
 // WP styles.
-require('EightshiftBlocksStorybookWpStyles');
+require('./parts/wp-styles');
 
 // @WP Editor Styles.
-require('EightshiftBlocksStorybookEditorStyles');
+require('./parts/editor-styles.scss');
 
 // Project styles.
 require('./../blocks/init/assets/styles/application.scss');
