@@ -11,7 +11,7 @@
  *
  * @since 1.0.0
  */
-import { dynamicImport } from '@eightshift/frontend-libs';
+import { dynamicImport } from '@eightshift/frontend-libs/helpers';
 
 // Find all blocks and require assets index.js inside it.
 dynamicImport(require.context('./../../components', true, /assets\/index\.js$/));

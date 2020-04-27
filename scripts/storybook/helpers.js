@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import wrapperManifest from './../blocks/init/src/blocks/wrapper/manifest.json';
 import {
   BlockEditorKeyboardShortcuts,
   BlockEditorProvider,
@@ -14,6 +13,7 @@ import {
   SlotFillProvider,
   DropZoneProvider,
 } from '@wordpress/components';
+import wrapperManifest from '../../blocks/init/src/blocks/wrapper/manifest.json';
 
 /**
  * Generate Blocks Wrapper.
@@ -33,7 +33,7 @@ export const hasWrapper = (isActive) => {
   };
 
   return isActive ? wrapper : {};
-}
+};
 
 /**
  * Define if block has wrapper decorator. Used in storybook knobs.
@@ -41,7 +41,7 @@ export const hasWrapper = (isActive) => {
  * @param {json} manifest Block Manifest data.
  */
 export const hasWrapperDecorator = (manifest) => {
-  if ( typeof manifest.hasWrapper === 'undefined' ) {
+  if (typeof manifest.hasWrapper === 'undefined') {
     manifest.hasWrapper = true;
   }
 
@@ -73,12 +73,12 @@ export const blockJsClass = (name) => `js-block-${name}`;
  * @param {string} name Block Name
  */
 export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6,  customOutput = false) => {
-  const {blockName} = manifest;
-  const {namespace} = globalManifest;
+  const { blockName } = manifest;
+  const { namespace } = globalManifest;
 
   const output = {
     attributes: {
-      blockName: blockName,
+      blockName,
       blockClass: blockClass(blockName),
       blockJsClass: blockJsClass(blockName),
       ...manifest.example,
@@ -88,16 +88,16 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
     originalContent: '',
   };
 
-  if ( innerBlocks !== null ) {
+  if (innerBlocks !== null) {
     output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
   }
 
   if (!customOutput) {
     return {
       blocks: [
-        output
-      ]
-    }
+        output,
+      ],
+    };
   }
 
   return output;
@@ -112,7 +112,7 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
 export const blockInnerBlocks = (blocks, count) => {
   const output = [];
 
-  for(let i = 1; i <= count; i++) {
+  for (let i = 1; i <= count; i++) {
     output.push({
       ...blocks.props.props.blocks[0],
       clientId: id(),
@@ -121,7 +121,7 @@ export const blockInnerBlocks = (blocks, count) => {
   }
 
   return output;
-}
+};
 
 /**
  * Load actual Block Editor and all the magic.
@@ -139,10 +139,10 @@ export const Gutenberg = (props) => {
   const blocksProps = blocks.map((block) => {
     return {
       ...block,
-      attributes: {...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper))},
+      attributes: { ...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper)) },
       clientId: id(),
       isValid: true,
-    }
+    };
   });
 
   return (
@@ -150,7 +150,7 @@ export const Gutenberg = (props) => {
       <SlotFillProvider>
         <DropZoneProvider>
           <BlockEditorProvider
-            value={ blocksProps }
+            value={blocksProps}
           >
             <div className="playground__sidebar">
               <BlockInspector />

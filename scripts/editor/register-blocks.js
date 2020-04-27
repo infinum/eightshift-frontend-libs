@@ -4,7 +4,7 @@ import { getBlockEditComponent } from './get-block-edit-component';
 
 /**
  * Register all Block Editor blocks using WP registerBlockType method.
- * Due to restrictions in dynamic import using dynamic names all block are registred using require.context.
+ * Due to restrictions in dynamic import using dynamic names all block are register using require.context.
  *
  * @param {function} blocksManifests Must provide require.context for all blocks manifest.json-s.
  * @param {function} blocksFilePaths Must provide require.context for all blocks javascript files (unable to add only block edit file due to dynamic naming).

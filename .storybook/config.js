@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import { storybookWindowObjects, storybookDefaultMocks, storybookWpStyles } from './parts';
+import { storybookWindowObjects, storybookDefaultMocks, storybookWpStyles } from './../scripts/storybook';
 
 // Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
@@ -12,7 +12,7 @@ configure([
   require.context('./../blocks/init/src/blocks/custom', true, /docs\/story.js$/),
   require.context('./../blocks/init/src/blocks/wrapper', true, /docs\/story.js$/),
   require.context('./../blocks/playground', true, /story.js$/),
-  require.context('./../components', true, /docs\/story.js$/),
+  require.context('./../scripts/components', true, /docs\/story.js$/),
 ], module);
 
 // @WP Editor set default categories.

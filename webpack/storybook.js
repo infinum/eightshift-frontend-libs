@@ -51,37 +51,6 @@ module.exports = ({ config }, nodeModules, isProject) => {
     ...aliases.resolve.alias,
     EightshiftBlocksStorybookLibsPath: packagesPath.libsPath,
     EightshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookWindowObjects: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'window-objects'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookDefaultCategories: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'default-categories'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookEditorStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'editor-styles.scss'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookAddons: path.resolve(packagesPath.libsPath, '.storybook', 'addons'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookWpStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'wp-styles'),
-
-    /**
-     * @deprecated Since version 3.2. Replace it with '@eightshift/frontend-libs'. It will be removed in the next version.
-     */
-    EightshiftBlocksStorybookHelpers: path.resolve(packagesPath.libsPath, '.storybook', 'helpers'),
-
   };
 
   return config;

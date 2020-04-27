@@ -1,7 +1,7 @@
 import { useSelect } from '@wordpress/data';
 
 /**
- * Use this hook to read editor-color-pallete colors directly from WP's built in store.
+ * Use this hook to read editor-color-pallete colors directly from WP built in store.
  *
  * Requires WP => 5.3
  */

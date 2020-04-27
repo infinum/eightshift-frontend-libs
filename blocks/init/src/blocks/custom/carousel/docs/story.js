@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { Gutenberg, blockDetails, hasWrapperDecorator } from '@eightshift/frontend-libs';
+import { Gutenberg, blockDetails, hasWrapperDecorator } from '@eightshift/frontend-libs/scripts/storybook';
 import React from 'react';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';

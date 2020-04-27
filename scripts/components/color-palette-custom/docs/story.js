@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
 import { ColorPaletteCustom } from '../color-palette-custom';
-import { getPalleteColors } from './../../../scripts/get-pallete-colors';
+import { getPalleteColors } from './../../../editor/get-pallete-colors';
 
 export default {
   title: 'Options|Color Palette',

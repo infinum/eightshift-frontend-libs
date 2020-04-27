@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs';
+import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon } from '@wordpress/components';
 
 export const ParagraphOptions = (props) => {

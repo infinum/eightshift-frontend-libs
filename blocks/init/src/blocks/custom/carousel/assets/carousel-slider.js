@@ -1,5 +1,4 @@
 import Swiper from 'swiper';
-import { media } from '@eightshift/frontend-libs';
 
 export class CarouselSlider {
   constructor(options) {
@@ -21,11 +20,6 @@ export class CarouselSlider {
       },
       grabCursor: true,
       breakpointsInverse: true,
-      breakpoints: {
-        [media.tablet]: {
-          spaceBetween: 50,
-        },
-      },
       navigation: {
         nextEl: this.nextEl,
         prevEl: this.prevEl,

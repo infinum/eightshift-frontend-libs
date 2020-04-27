@@ -72,7 +72,7 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  * @since 1.0.0
  */
 
-const siglePropsAction = (setAttributes, key) => {
+const singlePropsAction = (setAttributes, key) => {
   const output = {};
 
   // Set output as a object key with anonimus function callback.
@@ -137,7 +137,7 @@ const mediaPropsAction = (setAttributes, key) => {
  * Actions are passed in child components in order to update props on event.
  * Default function output is `onChange` + attribute name.
  * Example `onChangeContent`.
- * Depending on prope
+ * Depending on prop
  *
  * @param {object} props Block props so we can get `setAttributes` method.
  * @param {object} manifest Block manifest.json so we can get all attributes.
@@ -172,7 +172,7 @@ export const getActions = (props, manifest) => {
       } else if (attributes[key].hasOwnProperty('mediaAction')) {
         actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
       } else {
-        actionsOutput = { ...actionsOutput, ...siglePropsAction(setAttributes, key) };
+        actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
       }
     }
   }

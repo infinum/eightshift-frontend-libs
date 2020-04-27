@@ -31,7 +31,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     hasWrapper = true,
   } = manifest;
 
-  // If block is set to inactive it will not be registrated.
+  // If block is set to inactive it will not be register.
   if (isInactive === true) {
     return false;
   }

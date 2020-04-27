@@ -13,7 +13,7 @@
  * @since 1.0.0
  */
 
-import { registerBlocks, dynamicImport } from '@eightshift/frontend-libs';
+import { registerBlocks, dynamicImport } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from './../../wrapper/wrapper';
 import blocksSettings from './../../manifest.json';
 
