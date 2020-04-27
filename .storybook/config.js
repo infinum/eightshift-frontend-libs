@@ -1,7 +1,5 @@
 import { configure } from '@storybook/react';
-import { storybookWindowObjects } from './parts/window-objects';
-import { storybookDefaultMocks } from './parts/default-mocks';
-import { storybookWpStyles } from './parts/wp-styles';
+import { storybookWindowObjects, storybookDefaultMocks, storybookWpStyles } from './parts';
 
 // Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
