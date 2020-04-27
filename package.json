@@ -162,5 +162,10 @@
     "replace-in-file": "^5.0.2",
     "sassdoc": "^2.7.1"
   },
-  "module": "index.js"
+  "module": "index.js",
+  "sideEffects": [
+    "./index.js",
+    "**/*.css",
+    "**/*.scss"
+  ]
 }
