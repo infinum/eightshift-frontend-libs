@@ -74,8 +74,15 @@ module.exports = (options, packagesPath) => {
   if (!options.overrides.includes('js')) {
     module.rules.push({
       test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: 'babel-loader',
+      exclude: /node_modules\/(?!@eightshift)/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
+      ],
     });
   }
 

@@ -1,5 +1,5 @@
 // Override default editor styles.
-@import 'EightshiftEditorStyleOverride';
+@import '@eightshift/frontend-libs/styles/override-editor.scss';
 
 $override-map: (
   font-family: $base-font-family,

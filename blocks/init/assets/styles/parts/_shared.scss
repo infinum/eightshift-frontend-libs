@@ -1,6 +1,6 @@
 // Vendors - node modules
-@import 'EightshiftBlocksMediaBlender';
-@import 'EightshiftFrontendLibs';
+@import 'media-blender';
+@import '@eightshift/frontend-libs/styles/index.scss';
 
 // Project specific.
 @import 'utils/colors';

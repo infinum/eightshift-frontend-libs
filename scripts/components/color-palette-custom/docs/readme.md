@@ -19,7 +19,7 @@ By default it uses the default editor pallete (see https://developer.wordpress.o
 
 ### Example #2 - Override colors using some of the editor-color-pallete colors
 ```jsx
-import { getPalleteColors } from '@eightshift/frontend-libs';
+import { getPalleteColors } from '@eightshift/frontend-libs/scripts/editor';
 
 const {
   color1,

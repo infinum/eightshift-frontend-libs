@@ -1,9 +1,10 @@
-// Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
-
 import { configure } from '@storybook/react';
+import { storybookDefaultMocks, storybookWindowObjects, storybookWpStyles } from '@eightshift/frontend-libs/.storybook/parts';
+
+// Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
 // @WP Editor set default window objects.
-require('EightshiftBlocksStorybookWindowObjects');
+storybookWindowObjects();
 
 // Run all storybook stories.
 configure([
@@ -13,13 +14,10 @@ configure([
 ], module);
 
 // @WP Editor set default categories.
-require('EightshiftBlocksStorybookDefaultCategories');
+storybookDefaultMocks();
 
 // WP styles.
-require('EightshiftBlocksStorybookWpStyles');
-
-// @WP Editor Styles.
-require('EightshiftBlocksStorybookEditorStyles');
+storybookWpStyles();
 
 // Project styles.
 require('./../assets/styles/application.scss');

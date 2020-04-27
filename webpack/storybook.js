@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, global-require*/
 
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getPackagesPath } = require('./helpers');
 
@@ -42,11 +41,6 @@ module.exports = ({ config }, nodeModules, isProject) => {
    */
   config.plugins.push(new MiniCssExtractPlugin());
 
-  config.plugins.push(new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-  }));
-
   /**
    * Load Project Aliases.
    */
@@ -55,12 +49,7 @@ module.exports = ({ config }, nodeModules, isProject) => {
   config.resolve.alias = {
     ...config.resolve.alias,
     ...aliases.resolve.alias,
-    EightshiftBlocksStorybookWindowObjects: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'window-objects'),
-    EightshiftBlocksStorybookDefaultCategories: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'default-categories'),
-    EightshiftBlocksStorybookEditorStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'editor-styles.scss'),
-    EightshiftBlocksStorybookAddons: path.resolve(packagesPath.libsPath, '.storybook', 'addons'),
-    EightshiftBlocksStorybookWpStyles: path.resolve(packagesPath.libsPath, '.storybook', 'parts', 'wp-styles'),
-    EightshiftBlocksStorybookHelpers: path.resolve(packagesPath.libsPath, '.storybook', 'helpers'),
+    EightshiftBlocksStorybookLibsPath: packagesPath.libsPath,
     EightshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
   };
 

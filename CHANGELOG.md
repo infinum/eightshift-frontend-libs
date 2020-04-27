@@ -23,6 +23,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### [Add scroll-to-target component]
 * Added scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link
 
+### Added
+- missing registerBlocks import
+
+### Changed
+- js loader to be able to handle components from the lib
+
 ## [3.1.1] - 2020-03-05
 
 ### Fixed

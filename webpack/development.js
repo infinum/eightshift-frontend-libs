@@ -25,7 +25,6 @@ module.exports = (options) => {
 
   return {
     plugins,
-
     devtool: false,
   };
 };

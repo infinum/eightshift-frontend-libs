@@ -1,7 +1,7 @@
 /**
  * Filter array of javascript paths and get the correct edit component.
  *
- * @param {string} blockName Provided block name to find coresponding edit component.
+ * @param {string} blockName Provided block name to find corresponding edit component.
  * @param {object} blocksFilePathsKeys Array of all javascript files in a block.
  *
  * @since 1.0.4 Moving to scripts folder.
