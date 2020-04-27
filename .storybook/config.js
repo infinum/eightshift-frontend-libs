@@ -1,12 +1,12 @@
 import { configure } from '@storybook/react';
-import { storybookWindowObjects } from './parts/window-objects';
+import { storybookInternalWindowObjects } from './parts/window-objects';
 import { storybookDefaultMocks } from './parts/default-mocks';
-import { storybookWpStyles } from './parts/wp-styles';
+import { storybookInternalWpStyles } from './parts/wp-styles';
 
 // Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
 // @WP Editor set default window objects.
-storybookWindowObjects();
+storybookInternalWindowObjects();
 
 // Run all storybook stories.
 configure([
@@ -21,7 +21,7 @@ configure([
 storybookDefaultMocks();
 
 // WP styles.
-storybookWpStyles();
+storybookInternalWpStyles();
 
 // Project styles.
 require('./../blocks/init/assets/styles/application.scss');
