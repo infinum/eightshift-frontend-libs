@@ -7,3 +7,6 @@ export { getActions } from './scripts/get-actions';
 export { media } from './scripts/helpers/media';
 export { cookies } from './scripts/helpers/cookies';
 export { registerBlocks } from './scripts/register-blocks';
+export { storybookDefaultMocks } from './.storybook/parts/default-mocks';
+export { storybookWindowObjects } from './.storybook/parts/window-objects';
+export { storybookWpStyles } from './.storybook/parts/wp-styles';
