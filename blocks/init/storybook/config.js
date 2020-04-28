@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import { storybookDefaultMocks, storybookWindowObjects, storybookWpStyles } from '@eightshift/frontend-libs/.storybook/parts';
+import { storybookDefaultMocks, storybookWindowObjects, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
 
 // Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
