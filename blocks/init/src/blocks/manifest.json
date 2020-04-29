@@ -1,19 +1,24 @@
 {
   "namespace": "eightshift-boilerplate",
   "background": "#900000",
-  "maxCols": 12,
-  "colors": {
-    "primary": {
-      "name": "primary",
-      "color": "#C3151B"
-    },
-    "black": {
-      "name": "black",
-      "color": "#000000"
-    },
-    "white": {
-      "name": "white",
-      "color": "#FFFFFF"
-    }
+  "globalVariables": {
+    "maxCols": 12,
+    "colors": [
+      {
+        "name": "Primary",
+        "slug": "primary",
+        "color": "#C3151B"
+      },
+      {
+        "name": "Black",
+        "slug": "black",
+        "color": "#000000"
+      },
+      {
+        "name": "White",
+        "slug": "white",
+        "color": "#FFFFFF"
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies*/
+/* eslint-disable import/no-extraneous-dependencies, global-require, import/no-dynamic-require*/
 
 /**
  * Project Base overrides used in production and development build.
@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { convertJsonToSass } = require('./helpers');
 
 module.exports = (options, packagesPath) => {
 
@@ -106,6 +107,8 @@ module.exports = (options, packagesPath) => {
 
   // Module for Scss.
   if (!options.overrides.includes('scss')) {
+    const globalSettings = require(options.config.blocksManifestSettingsPath);
+
     module.rules.push({
       test: /\.scss$/,
       exclude: /node_modules/,
@@ -117,7 +120,18 @@ module.exports = (options, packagesPath) => {
             url: false,
           },
         },
-        'postcss-loader', 'sass-loader', 'import-glob-loader',
+        {
+          loader: 'postcss-loader',
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            prependData: convertJsonToSass(globalSettings.globalVariables),
+          },
+        },
+        {
+          loader: 'import-glob-loader',
+        },
       ],
     });
   }
