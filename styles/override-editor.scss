@@ -24,6 +24,10 @@ body {
   .block-editor-block-list__layout {
     .eightshift-block {
 
+      .wp-block {
+        max-width: 100%;
+      }
+
       // Removing block spacing.
       [data-block] {
         margin-top: 0;
