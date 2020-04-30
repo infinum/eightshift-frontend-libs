@@ -1,5 +1,5 @@
 $wrapper: (
-  background-colors: $colors,
+  background-colors: global-settings(colors),
   spacing: $base-section-spacing,
   containers: $base-container-sizes,
   container-spacing: $base-gutter-sizes,

@@ -4,7 +4,7 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
-import { getPalleteColors } from '@eightshift/frontend-libs/scripts/editor';
+import { getPaletteColors } from '@eightshift/frontend-libs/scripts/editor';
 
 export const buttonSizes = [
   { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
@@ -20,7 +20,7 @@ export const buttonColors = () => {
   const {
     primary,
     black,
-  } = getPalleteColors();
+  } = getPaletteColors();
 
   return [
     primary,

@@ -1,7 +1,7 @@
 $drawer: (
   width: 250px,
   colors: (
-    background: $base-white-color,
+    background: global-settings(colors, white),
   ),
   padding: map-get-deep($base-gutter-sizes, default),
   z-index: map-get-strict($zindex, drawer),

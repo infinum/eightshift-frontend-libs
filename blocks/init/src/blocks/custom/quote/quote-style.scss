@@ -1,7 +1,7 @@
 $block-quote: (
   content: (
     mobile: (
-      color: $base-primary-color,
+      color: global-settings(colors, primary),
       font-size: 32px,
       line-height: 1.5,
       font-style: italic,

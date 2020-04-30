@@ -3,7 +3,7 @@ $header: (
   site-padding: map-get-deep($base-gutter-sizes, default),
   site-container: map-get-deep($base-container-sizes, default),
   colors: (
-    background: $base-white-color,
+    background: global-settings(colors, white),
   ),
   z-index: map-get-strict($zindex, header),
 );

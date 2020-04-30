@@ -1,5 +1,5 @@
 $block-divider: (
-  colors: $colors,
+  colors: global-settings(colors),
 );
 
 .block-divider {

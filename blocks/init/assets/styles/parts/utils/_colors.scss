@@ -5,9 +5,3 @@ If you want to override them just define them with a new value here.
 All variables are available here:
 https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_colors.scss
 */
-
-$colors: map-get-strict($global-variables, colors);
-
-$base-primary-color: map-get-strict($colors, primary);
-$base-black-color: map-get-strict($colors, black);
-$base-white-color: map-get-strict($colors, white);

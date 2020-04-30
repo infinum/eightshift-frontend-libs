@@ -4,13 +4,13 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
-import { getPalleteColors } from '@eightshift/frontend-libs/scripts/editor';
+import { getPaletteColors } from '@eightshift/frontend-libs/scripts/editor';
 
 export const linkColors = () => {
   const {
     primary,
     black,
-  } = getPalleteColors();
+  } = getPaletteColors();
 
   return [
     primary,
