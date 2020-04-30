@@ -24,16 +24,33 @@ export const WrapperResponsiveTabContent = (props) => {
 
   const spacingOptions = {
     min: -10,
-    max: 300,
-    step: 10,
+    max: globalSettings.globalVariables.sectionSpacing.max,
+    step: globalSettings.globalVariables.sectionSpacing.step,
   };
 
   const widthOptions = {
     min: -1,
-    max: globalSettings.maxCols,
+    max: globalSettings.globalVariables.maxCols,
     step: 1,
-    initial: globalSettings.maxCols,
+    initial: globalSettings.globalVariables.maxCols,
   };
+
+  const contentOffsetOptions = [
+    { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
+    { label: __('Content Spacing', 'eightshift-boilerplate'), value: 'content-spacing' },
+    { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
+  ];
+
+  const containerWidthOptions = [
+    { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
+    { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+  ];
+  
+  const containerSpacingOptions = [
+    { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
+    { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+    { label: __('No Spacing', 'eightshift-boilerplate'), value: 'no-spacing' },
+  ];
 
   return (
     <Fragment>
@@ -65,11 +82,7 @@ export const WrapperResponsiveTabContent = (props) => {
           }
           help={__('Change content position inside a block.', 'eightshift-boilerplate')}
           value={contentOffset}
-          options={[
-            { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
-            { label: __('Content Spacing', 'eightshift-boilerplate'), value: 'content-spacing' },
-            { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
-          ]}
+          options={contentOffsetOptions}
           onChange={onChangeContentOffset}
         />
       )}
@@ -84,10 +97,7 @@ export const WrapperResponsiveTabContent = (props) => {
           }
           help={__('Change Container width. Changing this option will affect total width for Content Width option.', 'eightshift-boilerplate')}
           value={containerWidth}
-          options={[
-            { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
-            { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-          ]}
+          options={containerWidthOptions}
           onChange={onChangeContainerWidth}
         />
       }
@@ -102,11 +112,7 @@ export const WrapperResponsiveTabContent = (props) => {
           }
           help={__('Change Container spacing on the left and right.', 'eightshift-boilerplate')}
           value={containerSpacing}
-          options={[
-            { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
-            { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-            { label: __('No Spacing', 'eightshift-boilerplate'), value: 'no-spacing' },
-          ]}
+          options={containerSpacingOptions}
           onChange={onChangeContainerSpacing}
         />
       }

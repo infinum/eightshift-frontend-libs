@@ -5,6 +5,16 @@ import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
 
+export const buttonSizes = [
+  { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+  { label: __('Big', 'eightshift-boilerplate'), value: 'big' },
+];
+
+export const buttonSizeWidths = [
+  { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+  { label: __('Block', 'eightshift-boilerplate'), value: 'block' },
+];
+
 export const ButtonOptions = (props) => {
   const {
     button: {
@@ -61,10 +71,7 @@ export const ButtonOptions = (props) => {
         <SelectControl
           label={__('Button Size', 'eightshift-boilerplate')}
           value={styleSize}
-          options={[
-            { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-            { label: __('Big', 'eightshift-boilerplate'), value: 'big' },
-          ]}
+          options={buttonSizes}
           onChange={onChangeStyleSize}
         />
       }
@@ -73,10 +80,7 @@ export const ButtonOptions = (props) => {
         <SelectControl
           label={__('Button Size Width', 'eightshift-boilerplate')}
           value={styleSizeWidth}
-          options={[
-            { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-            { label: __('Block', 'eightshift-boilerplate'), value: 'block' },
-          ]}
+          options={buttonSizeWidths}
           onChange={onChangeStyleSizeWidth}
         />
       }

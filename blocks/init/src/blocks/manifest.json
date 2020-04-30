@@ -3,6 +3,18 @@
   "background": "#900000",
   "globalVariables": {
     "maxCols": 12,
+    "containers": {
+      "default": "1330px"
+    },
+    "gutters": {
+      "default": "25px",
+      "no-spacing": "0px"
+    },
+    "sectionSpacing": {
+      "min":  0,
+      "max":  300,
+      "step": 10
+    },
     "colors": [
       {
         "name": "Primary",

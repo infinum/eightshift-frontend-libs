@@ -4,6 +4,11 @@ import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon } from '@wordpress/components';
 
+export const paragraphSizes = [
+  { label: __('Default (22px)', 'eightshift-boilerplate'), value: 'default' },
+  { label: __('Small (18px)', 'eightshift-boilerplate'), value: 'small' },
+];
+
 export const ParagraphOptions = (props) => {
   const {
     paragraph: {
@@ -38,10 +43,7 @@ export const ParagraphOptions = (props) => {
             <SelectControl
               label={__('Paragraph Font Size', 'eightshift-boilerplate')}
               value={styleSize}
-              options={[
-                { label: __('Default (22px)', 'eightshift-boilerplate'), value: 'default' },
-                { label: __('Small (18px)', 'eightshift-boilerplate'), value: 'small' },
-              ]}
+              options={paragraphSizes}
               onChange={onChangeStyleSize}
             />
           }

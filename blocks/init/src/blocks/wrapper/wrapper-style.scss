@@ -1,17 +1,8 @@
 $wrapper: (
-  background-colors: (
-    white: $base-white-color,
-    primary:  $base-primary-color,
-    black:  $base-black-color,
-  ),
-  spacing: (
-    min:  0,
-    max:  300,
-    step: 10,
-  ),
-  containers: (
-    default: $base-container-size,
-  ),
+  background-colors: $colors,
+  spacing: $base-section-spacing,
+  containers: $base-container-sizes,
+  container-spacing: $base-gutter-sizes,
 );
 
 .wrapper {
@@ -54,14 +45,8 @@ $wrapper: (
 
   &__container-spacing {
     @include responsive-selectors {
-      &--default {
-        padding-left: $base-gutter-size;
-        padding-right: $base-gutter-size;
-      }
-
-      &--no-spacing {
-        padding: 0;
-      }
+      @include modifiers-deep($wrapper, container-spacing, padding-left);
+      @include modifiers-deep($wrapper, container-spacing, padding-right);
     }
   }
 

@@ -3,7 +3,7 @@ $drawer: (
   colors: (
     background: $base-white-color,
   ),
-  padding: 25px,
+  padding: map-get-deep($base-gutter-sizes, default),
   z-index: map-get-strict($zindex, drawer),
 );
 

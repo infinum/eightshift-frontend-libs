@@ -1,7 +1,7 @@
 $footer: (
   height: 50px,
-  site-padding: $base-gutter-size,
-  site-container: $base-container-size,
+  site-padding: map-get-deep($base-gutter-sizes, default),
+  site-container: map-get-deep($base-container-sizes, default),
   colors: (
     background: $base-white-color,
   ),

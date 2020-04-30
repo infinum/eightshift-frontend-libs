@@ -7,3 +7,7 @@ https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_co
 */
 
 $colors: map-get-strict($global-variables, colors);
+
+$base-primary-color: map-get-strict($colors, primary);
+$base-black-color: map-get-strict($colors, black);
+$base-white-color: map-get-strict($colors, white);
