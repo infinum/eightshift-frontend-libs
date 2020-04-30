@@ -4,6 +4,7 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, BaseControl } from '@wordpress/components';
+import { getPalleteColors } from '@eightshift/frontend-libs/scripts/editor';
 
 export const buttonSizes = [
   { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
@@ -14,6 +15,18 @@ export const buttonSizeWidths = [
   { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
   { label: __('Block', 'eightshift-boilerplate'), value: 'block' },
 ];
+
+export const buttonColors = () => {
+  const {
+    primary,
+    black,
+  } = getPalleteColors();
+
+  return [
+    primary,
+    black,
+  ];
+};
 
 export const ButtonOptions = (props) => {
   const {
@@ -63,6 +76,7 @@ export const ButtonOptions = (props) => {
           }
           help={__('Change Button Background color.', 'eightshift-boilerplate')}
           value={styleColor}
+          colors={buttonColors()}
           onChange={onChangeStyleColor}
         />
       }

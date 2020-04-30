@@ -13,7 +13,7 @@ const defaultProps = {
   minLevel: 1,
   maxLevel: 6,
   selectedLevel: 2,
-  onChange: '',
+  onChange: () => {},
 };
 
 export const component = () => (

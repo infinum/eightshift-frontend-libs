@@ -113,11 +113,24 @@ export const styleAlign = () => (
   </Fragment>
 );
 
-export const colorBlack = () => (
-  <HeadingEditor
-    heading={{
-      ...editorProps.heading,
-      styleColor: 'black',
-    }}
-  />
-);
+export const styleColor = () => {
+  const { colors } = wp.data.select('core/block-editor').getSettings();
+
+  return (
+    <Fragment>
+      {colors.map((values, index) => (
+        <Fragment key={index}>
+          <HeadingEditor
+            {...editorProps}
+            heading={{
+              ...editorProps.heading,
+              title: values.name,
+              styleColor: values.slug,
+            }}
+          />
+          <br />
+        </Fragment>
+      ))}
+    </Fragment>
+  );
+};

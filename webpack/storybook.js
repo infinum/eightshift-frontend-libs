@@ -4,13 +4,10 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { convertJsonToSass } = require('./helpers');
 
-module.exports = ({ config }, projectRoot, blocksManifestSettingsPath) => {
-
-  const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
+module.exports = ({ config }, projectRoot, blocksManifestSettingsPath, isProject = true) => {
 
   // Load global variables.
   const globalSettings = require(path.resolve(projectRoot, blocksManifestSettingsPath));
-  
 
   /**
    * Generate css file from sass.
@@ -49,14 +46,9 @@ module.exports = ({ config }, projectRoot, blocksManifestSettingsPath) => {
    */
   config.plugins.push(new MiniCssExtractPlugin());
 
-  /**
-   * Load Project Aliases.
-   */
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    '@eightshift/frontend-libs': projectRoot,
-    '@wordpress': path.resolve(nodeModulesPath, '@wordpress'),
-  };
+  if (!isProject) {
+    config.resolve.alias['@eightshift/frontend-libs'] = projectRoot;
+  }
 
   return config;
 };

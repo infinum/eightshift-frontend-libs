@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import { ButtonEditor } from '../components/button-editor';
-import { ButtonOptions, buttonSizes, buttonSizeWidths } from '../components/button-options';
+import { ButtonOptions, buttonSizes, buttonSizeWidths, buttonColors } from '../components/button-options';
 
 export default {
   title: 'Components|Button',
@@ -78,6 +78,24 @@ export const styleWidth = () => (
             ...editorProps.button,
             title: values.label,
             styleSizeWidth: values.value,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
+);
+
+export const styleColor = () => (
+  <Fragment>
+    {buttonColors().map((values, index) => (
+      <Fragment key={index}>
+        <ButtonEditor
+          {...editorProps}
+          button={{
+            ...editorProps.button,
+            title: values.name,
+            styleColor: values.slug,
           }}
         />
         <br />

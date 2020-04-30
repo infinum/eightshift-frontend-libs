@@ -26,14 +26,14 @@ export const ColorsFromColorPallete = () => (
 export const SelectedColorsFromColorPallete = () => {
 
   const {
-    'cyan-bluish-gray': cyanBluishGray,
+    primary,
   } = getPalleteColors();
 
   return (
     <ColorPaletteCustom
       {...defaultProps}
       label={'Selected colors from color pallete'}
-      colors={[cyanBluishGray]}
+      colors={[primary]}
     />
 
   );

@@ -98,14 +98,28 @@ export const styleAlign = () => (
   </Fragment>
 );
 
-export const colorBlack = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      styleColor: 'black',
-    }}
-  />
-);
+
+export const styleColor = () => {
+  const { colors } = wp.data.select('core/block-editor').getSettings();
+
+  return (
+    <Fragment>
+      {colors.map((values, index) => (
+        <Fragment key={index}>
+          <ParagraphEditor
+            {...editorProps}
+            paragraph={{
+              ...editorProps.paragraph,
+              title: values.name,
+              styleColor: values.slug,
+            }}
+          />
+          <br />
+        </Fragment>
+      ))}
+    </Fragment>
+  );
+};
 
 export const removeStyle = () => (
   <ParagraphEditor
