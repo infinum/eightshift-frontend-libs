@@ -2,6 +2,8 @@
 
 const path = require('path');
 
-module.exports = ({ config }) => {
-  return require('./../node_modules/@eightshift/frontend-libs/webpack/storybook')({ config }, path.resolve(__dirname, '..'));
-};
+module.exports = ({ config }) => require('./../node_modules/@eightshift/frontend-libs/webpack/storybook')(
+  { config },
+  path.resolve(__dirname, '..'),
+  'src/blocks/manifest.json'
+);

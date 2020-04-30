@@ -10,7 +10,8 @@ export {
 } from './helpers';
 
 export {
-  storybookDefaultMocks,
+  storybookDefaultMocksCategories,
+  storybookDefaultMocksColorPalette,
   storybookWindowObjects,
   storybookWpStyles,
 } from './parts';

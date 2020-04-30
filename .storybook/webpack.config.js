@@ -2,4 +2,8 @@
 
 const path = require('path');
 
-module.exports = ({ config }) => require('./../webpack/storybook')({ config }, path.resolve(__dirname, '..'), false);
+module.exports = ({ config }) => require('./../webpack/storybook')(
+  { config },
+  path.resolve(__dirname, '..'),
+  'blocks/init/src/blocks/manifest.json'
+);

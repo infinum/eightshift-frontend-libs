@@ -68,11 +68,31 @@ export const blockClass = (name) => `block-${name}`;
 export const blockJsClass = (name) => `js-block-${name}`;
 
 /**
+ * Create Inner Blocks object.
+ *
+ * @param {object} blocks Blocks props object.
+ * @param {int} count Number of blocks to show.
+ */
+export const blockInnerBlocks = (blocks, count) => {
+  const output = [];
+
+  for (let i = 1; i <= count; i++) {
+    output.push({
+      ...blocks.props.props.blocks[0],
+      clientId: id(),
+      isValid: true,
+    });
+  }
+
+  return output;
+};
+
+/**
  * Combine block details in one object.
  *
  * @param {string} name Block Name
  */
-export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6,  customOutput = false) => {
+export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6, customOutput = false) => {
   const { blockName } = manifest;
   const { namespace } = globalManifest;
 
@@ -98,26 +118,6 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
         output,
       ],
     };
-  }
-
-  return output;
-};
-
-/**
- * Create Inner Blocks object.
- *
- * @param {object} blocks Blocks props object.
- * @param {int} count Number of blocks to show.
- */
-export const blockInnerBlocks = (blocks, count) => {
-  const output = [];
-
-  for (let i = 1; i <= count; i++) {
-    output.push({
-      ...blocks.props.props.blocks[0],
-      clientId: id(),
-      isValid: true,
-    });
   }
 
   return output;

@@ -28,7 +28,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
   const [color, setColor] = useState(value);
 
-  const colorValue = find(colors, { name: color });
+  const colorValue = find(colors, { slug: color });
 
   const baseClass = 'components-base-control';
 

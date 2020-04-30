@@ -56,23 +56,16 @@ export const styleSize = () => (
       <Fragment key={index}>
         <ButtonEditor
           {...editorProps}
-          title={values.label}
-          styleSize={values.value}
+          button={{
+            ...editorProps.button,
+            title: values.label,
+            styleSize: values.value,
+          }}
         />
         <br />
       </Fragment>
     ))}
   </Fragment>
-);
-
-
-export const sizeWidthBlock = () => (
-  <ButtonEditor
-    button={{
-      ...editorProps.button,
-      styleSizeWidth: 'block',
-    }}
-  />
 );
 
 export const styleWidth = () => (
@@ -81,8 +74,11 @@ export const styleWidth = () => (
       <Fragment key={index}>
         <ButtonEditor
           {...editorProps}
-          title={values.label}
-          styleSizeWidth={values.value}
+          button={{
+            ...editorProps.button,
+            title: values.label,
+            styleSizeWidth: values.value,
+          }}
         />
         <br />
       </Fragment>

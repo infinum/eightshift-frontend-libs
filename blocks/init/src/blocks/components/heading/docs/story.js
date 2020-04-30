@@ -65,8 +65,11 @@ export const styleSize = () => (
       <Fragment key={index}>
         <HeadingEditor
           {...editorProps}
-          content={values.label}
-          styleSize={values.value}
+          heading={{
+            ...editorProps.heading,
+            content: values.label,
+            styleSize: values.value,
+          }}
         />
         <br />
       </Fragment>
@@ -80,8 +83,11 @@ export const level = () => (
       <Fragment key={index}>
         <HeadingEditor
           {...editorProps}
-          content={`H - ${values.toString()}`}
-          level={values}
+          heading={{
+            ...editorProps.heading,
+            content: `H - ${values.toString()}`,
+            level: values,
+          }}
         />
         <br />
       </Fragment>
@@ -95,8 +101,11 @@ export const styleAlign = () => (
       <Fragment key={index}>
         <HeadingEditor
           {...editorProps}
-          content={values}
-          styleAlign={values}
+          heading={{
+            ...editorProps.heading,
+            content: values,
+            styleAlign: values,
+          }}
         />
         <br />
       </Fragment>

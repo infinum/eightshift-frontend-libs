@@ -1,19 +1,23 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require*/
+/* eslint-disable import/no-extraneous-dependencies, global-require, import/no-dynamic-require*/
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { getPackagesPath } = require('./helpers');
+const { convertJsonToSass } = require('./helpers');
 
-module.exports = ({ config }, nodeModules, isProject) => {
+module.exports = ({ config }, projectRoot, blocksManifestSettingsPath) => {
 
-  // Packages helper for correct node modules path.
-  const packagesPath = getPackagesPath(nodeModules, isProject);
+  const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
+
+  // Load global variables.
+  const globalSettings = require(path.resolve(projectRoot, blocksManifestSettingsPath));
+  
 
   /**
    * Generate css file from sass.
    */
   config.module.rules.push({
-    test: /\.(scss|sass)$/i,
+    test: /\.scss$/,
+    exclude: /node_modules/,
     use: [
       MiniCssExtractPlugin.loader,
       {
@@ -22,16 +26,20 @@ module.exports = ({ config }, nodeModules, isProject) => {
           url: false,
         },
       },
-      'sass-loader', 'import-glob-loader',
+      {
+        loader: 'sass-loader',
+        options: {
+          prependData: convertJsonToSass(globalSettings.globalVariables),
+        },
+      },
+      {
+        loader: 'import-glob-loader',
+      },
     ],
   });
 
   // Add include/exclude paths to all loaders.
   config.module.rules.map((item) => {
-    item.include = [
-      packagesPath.libsPath,
-      nodeModules,
-    ];
     item.exclude = /node_modules\/(?!(@eightshift|@wordpress)\/).*/;
     return item;
   });
@@ -44,13 +52,10 @@ module.exports = ({ config }, nodeModules, isProject) => {
   /**
    * Load Project Aliases.
    */
-  const aliases = require('./aliases')(packagesPath);
-
   config.resolve.alias = {
     ...config.resolve.alias,
-    ...aliases.resolve.alias,
-    EightshiftBlocksStorybookLibsPath: packagesPath.libsPath,
-    EightshiftBlocksStorybookWp: path.resolve(packagesPath.nodeModulesPath, '@wordpress'),
+    '@eightshift/frontend-libs': projectRoot,
+    '@wordpress': path.resolve(nodeModulesPath, '@wordpress'),
   };
 
   return config;

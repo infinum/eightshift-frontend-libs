@@ -68,8 +68,11 @@ export const styleSize = () => (
       <Fragment key={index}>
         <ParagraphEditor
           {...editorProps}
-          content={values.label}
-          styleSize={values.value}
+          paragraph={{
+            ...editorProps.paragraph,
+            content: values.label,
+            styleSize: values.value,
+          }}
         />
         <br />
       </Fragment>
@@ -83,8 +86,11 @@ export const styleAlign = () => (
       <Fragment key={index}>
         <ParagraphEditor
           {...editorProps}
-          content={values}
-          styleAlign={values}
+          paragraph={{
+            ...editorProps.paragraph,
+            content: values,
+            styleAlign: values,
+          }}
         />
         <br />
       </Fragment>

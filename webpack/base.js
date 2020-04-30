@@ -9,11 +9,10 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { convertJsonToSass } = require('./helpers');
 
-module.exports = (options, packagesPath) => {
+module.exports = (options) => {
 
   // All Plugins used in production and development build.
   const plugins = [];
@@ -38,18 +37,6 @@ module.exports = (options, packagesPath) => {
     plugins.push(new MiniCssExtractPlugin({
       filename: `${options.config.filesOutput}.css`,
     }));
-  }
-
-  // Copy files to new destination.
-  if (!options.overrides.includes('copyWebpackPlugin')) {
-    plugins.push(new CopyWebpackPlugin([
-
-      // Find jQuery in node_modules and copy it to public folder
-      {
-        from: `${packagesPath.nodeModulesPath}/jquery/dist/jquery.min.js`,
-        to: options.config.outputPath,
-      },
-    ]));
   }
 
   // Create manifest.json file.
