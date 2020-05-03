@@ -1,9 +1,12 @@
-.block-carousel .editor-block-list__layout {
+.block-carousel .block-editor-block-list__layout {
   display: flex;
   overflow-y: hidden;
 
-  > .block-carousel-image {
+  .wp-block {
     @include flex-grid-width(6);
-    margin-right: 10px;
+
+    .block-carousel-image {
+      margin-right: 10px;
+    }
   }
 }

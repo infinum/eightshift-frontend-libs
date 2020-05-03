@@ -1,7 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl } from '@wordpress/components';
-import { ImageOptions } from './../../../components/image/components/image-options';
 
 export const jumbotronContentHorizontalPosition = [
   { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
@@ -23,13 +22,11 @@ export const jumbotronMediaHorizontalPosition = [
 export const JumbotronOptions = (props) => {
   const {
     attributes: {
-      media,
       contentHorizontalPosition,
       contentVerticalPosition,
       mediaHorizontalPosition,
     },
     actions: {
-      onChangeMedia,
       onChangeContentHorizontalPosition,
       onChangeContentVerticalPosition,
       onChangeMediaHorizontalPosition,
@@ -65,11 +62,6 @@ export const JumbotronOptions = (props) => {
           onChange={onChangeMediaHorizontalPosition}
         />
       }
-
-      <ImageOptions
-        media={(typeof media === 'undefined') || media}
-        onChangeMedia={onChangeMedia}
-      />
 
     </PanelBody>
   );

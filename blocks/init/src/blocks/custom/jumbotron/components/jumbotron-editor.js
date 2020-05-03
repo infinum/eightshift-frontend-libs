@@ -17,6 +17,7 @@ export const JumbotronEditor = (props) => {
     actions: {
       onChangeHeading,
       onChangeParagraph,
+      onChangeMedia,
     },
   } = props;
 
@@ -29,6 +30,7 @@ export const JumbotronEditor = (props) => {
         <ImageEditor
           blockClass={blockClass}
           media={(typeof media === 'undefined') || media}
+          onChangeMedia={onChangeMedia}
         />
       </div>
 

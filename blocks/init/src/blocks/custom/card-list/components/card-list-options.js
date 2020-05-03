@@ -2,7 +2,6 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { ButtonOptions } from '../../../components/button/components/button-options';
-import { ImageOptions } from '../../../components/image/components/image-options';
 
 export const cardListMediaPosition = [
   { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
@@ -13,11 +12,9 @@ export const CardListOptions = (props) => {
   const {
     attributes: {
       mediaPosition,
-      media,
       button,
     },
     actions: {
-      onChangeMedia,
       onChangeMediaPosition,
       onChangeButtonUrl,
       onChangeButtonStyleSize,
@@ -39,11 +36,6 @@ export const CardListOptions = (props) => {
           onChange={onChangeMediaPosition}
         />
       }
-
-      <ImageOptions
-        media={(typeof media === 'undefined') || media}
-        onChangeMedia={onChangeMedia}
-      />
 
       <ButtonOptions
         button={(typeof button === 'undefined') || button}
