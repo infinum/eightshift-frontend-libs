@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
-
 import { ButtonEditor } from '../components/button-editor';
-import { ButtonOptions } from '../components/button-options';
+import { ButtonOptions, buttonSizes, buttonSizeWidths, buttonColors } from '../components/button-options';
 
 export default {
   title: 'Components|Button',
@@ -50,29 +50,56 @@ export const options = () => (
   />
 );
 
-export const sizeBig = () => (
-  <ButtonEditor
-    button={{
-      ...editorProps.button,
-      styleSize: 'big',
-    }}
-  />
+export const styleSize = () => (
+  <Fragment>
+    {buttonSizes.map((values, index) => (
+      <Fragment key={index}>
+        <ButtonEditor
+          {...editorProps}
+          button={{
+            ...editorProps.button,
+            title: values.label,
+            styleSize: values.value,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const colorBlack = () => (
-  <ButtonEditor
-    button={{
-      ...editorProps.button,
-      styleColor: 'black',
-    }}
-  />
+export const styleWidth = () => (
+  <Fragment>
+    {buttonSizeWidths.map((values, index) => (
+      <Fragment key={index}>
+        <ButtonEditor
+          {...editorProps}
+          button={{
+            ...editorProps.button,
+            title: values.label,
+            styleSizeWidth: values.value,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const sizeWidthBlock = () => (
-  <ButtonEditor
-    button={{
-      ...editorProps.button,
-      styleSizeWidth: 'block',
-    }}
-  />
+export const styleColor = () => (
+  <Fragment>
+    {buttonColors().map((values, index) => (
+      <Fragment key={index}>
+        <ButtonEditor
+          {...editorProps}
+          button={{
+            ...editorProps.button,
+            title: values.name,
+            styleColor: values.slug,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );

@@ -1,19 +1,36 @@
 {
   "namespace": "eightshift-boilerplate",
   "background": "#900000",
-  "maxCols": 12,
-  "colors": {
-    "primary": {
-      "name": "primary",
-      "color": "#C3151B"
+  "globalVariables": {
+    "maxCols": 12,
+    "containers": {
+      "default": "1330px"
     },
-    "black": {
-      "name": "black",
-      "color": "#000000"
+    "gutters": {
+      "default": "25px",
+      "no-spacing": "0px"
     },
-    "white": {
-      "name": "white",
-      "color": "#FFFFFF"
-    }
+    "sectionSpacing": {
+      "min":  0,
+      "max":  300,
+      "step": 10
+    },
+    "colors": [
+      {
+        "name": "Primary",
+        "slug": "primary",
+        "color": "#C3151B"
+      },
+      {
+        "name": "Black",
+        "slug": "black",
+        "color": "#000000"
+      },
+      {
+        "name": "White",
+        "slug": "white",
+        "color": "#FFFFFF"
+      }
+    ]
   }
 }

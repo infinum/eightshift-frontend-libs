@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
 import { ColorPaletteCustom } from '../color-palette-custom';
-import { getPalleteColors } from './../../../editor/get-pallete-colors';
+import { getPaletteColors } from './../../../editor/get-palette-colors';
 
 export default {
   title: 'Options|Color Palette',
@@ -17,23 +17,23 @@ const defaultProps = {
   value: 'Color',
 };
 
-export const ColorsFromColorPallete = () => (
+export const ColorsFromColorPalette = () => (
   <ColorPaletteCustom
     {...defaultProps}
   />
 );
 
-export const SelectedColorsFromColorPallete = () => {
+export const SelectedColorsFromColorPalette = () => {
 
   const {
-    'cyan-bluish-gray': cyanBluishGray,
-  } = getPalleteColors();
+    primary,
+  } = getPaletteColors();
 
   return (
     <ColorPaletteCustom
       {...defaultProps}
-      label={'Selected colors from color pallete'}
-      colors={[cyanBluishGray]}
+      label={'Selected colors from color palette'}
+      colors={[primary]}
     />
 
   );

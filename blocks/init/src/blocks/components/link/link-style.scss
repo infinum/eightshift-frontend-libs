@@ -2,18 +2,18 @@ $link: (
   colors: (
     primary: (
       normal: (
-        color: $base-primary-color,
+        color: global-settings(colors, primary),
       ),
       hover: (
-        color: $base-black-color,
+        color: global-settings(colors, black),
       ),
     ),
     black: (
       normal: (
-        color: $base-black-color,
+        color: global-settings(colors, black),
       ),
       hover: (
-        color: $base-primary-color,
+        color: global-settings(colors, primary),
       ),
     ),
   ),

@@ -5,33 +5,52 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
-* Added `page-overlay` to block copying.
-* `editor-color-pallete` - Modified the `ColorPaletteCustom` component to get colors by default from WordPress's global store
-* `editor-color-pallete` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper)
-* `editor-color-pallete` - Added a helper (using React hooks) for reading colors from WordPress's global store.
-* Added docs for `editor-color-pallete`
-* Replaced some aliases with import from module (for example: `import { ColorPaletteCustom } from '@eightshift/frontend-libs`, instead of `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette`)
-  - Had to build an alias for `@eightshift/frontend-libs` in order for this to work while we're working on Storybook from inside the `frontend-libs` repo
 
-### [Tweak header components PR]
-* Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in)
-* Better vertical / horizontal centering (more `flex`, less `height`, proper justifying)
-* Removed some `height: 100%` which made styling links difficult and coupled to header / footer height
+## Breaking change
+There has been some breaking changes in this release. 
+Follow this migration script in order for you project to work correctly with the new changes.
+
+* We have removed all Webpack aliases, to fix this search and replace this strings inside you project:
+  * `import 'EightshiftBlocksWhatwgFetch'`                                 -----> `import 'whatwg-fetch'`
+  * `import Swiper from 'EightshiftBlocksSwiper'`                          -----> `import Swiper from 'swiper'`
+  * `import 'EightshiftBlocksSwiperIE'`                                    -----> `import 'swiper/js/swiper.min'`
+  * `import 'EightshiftBlocksBabelPolyfill'`                               -----> `import '@babel/polyfill'`
+  * `import 'EightshiftBlocksAutoprefixer'`                                -----> `import 'autoprefixer'`
+  * `@import 'EightshiftBlocksNormalize'`                                  -----> `@import 'normalize-scss'`
+  * `@import 'EightshiftBlocksMediaBlender'`                               -----> `@import 'media-blender'`
+  * `@import 'EightshiftBlocksSwiperStyle'`                                -----> `@import '~swiper/swiper.scss'`
+  * `import { dynamicImport } from 'EightshiftBlocksDynamicImport'`        -----> `import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers'`
+  * `import { registerBlocks } from 'EightshiftBlocksRegisterBlocks'`      -----> `import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor'`
+  * `import { ucfirst } from 'EightshiftBlocksUcfirst'`                    -----> `import { ucfirst } from '@eightshift/frontend-libs/scripts/editor'`
+  * `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+  * `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+  * `import { ... } from 'EightshiftBlocksUtilityHelpersPath/...'`         -----> `import { ... } from '@eightshift/frontend-libs/scripts/helpers'`
+  * `@import 'EightshiftFrontendLibs'`                                     -----> `@import '@eightshift/frontend-libs/styles/index.scss'`
+  * `@import 'EightshiftEditorStyleOverride'`                              -----> `@import '@eightshift/frontend-libs/styles/override-editor.scss'`
+  * `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette'` -----> `import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components'`
+  * `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'`       -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
+* Storybook scripts and helpers have been moved and restructured. To fix this just recopy all Storybook config files in your project. Files can be found [here](https://github.com/infinum/eightshift-frontend-libs/tree/master/blocks/init/storybook).
+
+## Added
+* Missing registerBlocks import.
+* Scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link.
 * Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
-* Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist
+* Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist.
+* Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in).
+* Better vertical / horizontal centering (more `flex`, less `height`, proper justifying).
+* Removed some `height: 100%` which made styling links difficult and coupled to header / footer height.
+* `page-overlay` added to script init project.
+* `editor-color-palette` - Modified the `ColorPaletteCustom` component to get colors by default from WordPress's global store.
+* `editor-color-palette` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper).
+* `editor-color-palette` - Added a helper (using React hooks) for reading colors from WordPress's global store.
+* Added docs for `editor-color-palette`.
 
-### [Add scroll-to-target component]
-* Added scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link
-
-### Added
-- missing registerBlocks import
-
-### Changed
+## Changed
 - js loader to be able to handle components from the lib
 
 ## [3.1.1] - 2020-03-05
 
-### Fixed
+## Fixed
 * Wrong namespace in components helpers.
 * Removing unnecessary map keys for components style.
 * Fixing drawer styles.
@@ -73,7 +92,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Linting fixes.
 - Removed jQuery from scroll-to-top component and carousel.
 
-### Removed
+## Removed
 - Removed hardcoded media-specific display properties
 
 ## [3.0.11] - 2020-01-29

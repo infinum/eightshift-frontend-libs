@@ -1,9 +1,5 @@
 $block-divider: (
-  colors: (
-    primary: $base-primary-color,
-    black: $base-black-color,
-    white: $base-white-color,
-  ),
+  colors: global-settings(colors),
 );
 
 .block-divider {

@@ -4,7 +4,6 @@ import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon } from '@wordpress/components';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
-import globalSettings from '../../manifest.json';
 
 export const WrapperOptions = (props) => {
   const {
@@ -228,11 +227,6 @@ export const WrapperOptions = (props) => {
               </Fragment>
             }
             help={__('Change Block Background color. Block spacing will be included in block background color.', 'eightshift-boilerplate')}
-            colors={[
-              globalSettings.colors.white,
-              globalSettings.colors.primary,
-              globalSettings.colors.black,
-            ]}
             value={styleBackgroundColor}
             onChange={onChangeStyleBackgroundColor}
           />

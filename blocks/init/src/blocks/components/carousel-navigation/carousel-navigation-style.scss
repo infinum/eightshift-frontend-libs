@@ -1,7 +1,7 @@
 $carousel-navigation: (
-  arrow-background-color: $base-white-color,
-  arrow-background-hover-color: $base-primary-color,
-  arrow-border-color: $base-primary-color,
+  arrow-background-color: global-settings(colors, white),
+  arrow-background-hover-color: global-settings(colors, primary),
+  arrow-border-color: global-settings(colors, primary),
 );
 
 .carousel-navigation {

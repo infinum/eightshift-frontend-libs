@@ -1,7 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import { ParagraphEditor } from '../components/paragraph-editor';
-import { ParagraphOptions } from '../components/paragraph-options';
+import { ParagraphOptions, paragraphSizes } from '../components/paragraph-options';
 import { ParagraphToolbar } from '../components/paragraph-toolbar';
 
 export default {
@@ -61,41 +62,64 @@ export const toolbar = () => (
   />
 );
 
-export const alignCenter = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      styleAlign: 'center',
-    }}
-  />
+export const styleSize = () => (
+  <Fragment>
+    {paragraphSizes.map((values, index) => (
+      <Fragment key={index}>
+        <ParagraphEditor
+          {...editorProps}
+          paragraph={{
+            ...editorProps.paragraph,
+            content: values.label,
+            styleSize: values.value,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const alignRight = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      styleAlign: 'right',
-    }}
-  />
+export const styleAlign = () => (
+  <Fragment>
+    {['left', 'center', 'right'].map((values, index) => (
+      <Fragment key={index}>
+        <ParagraphEditor
+          {...editorProps}
+          paragraph={{
+            ...editorProps.paragraph,
+            content: values,
+            styleAlign: values,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const colorBlack = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      styleColor: 'black',
-    }}
-  />
-);
 
-export const sizeSmall = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      styleSize: 'small',
-    }}
-  />
-);
+export const styleColor = () => {
+  const { colors } = wp.data.select('core/block-editor').getSettings();
+
+  return (
+    <Fragment>
+      {colors.map((values, index) => (
+        <Fragment key={index}>
+          <ParagraphEditor
+            {...editorProps}
+            paragraph={{
+              ...editorProps.paragraph,
+              title: values.name,
+              styleColor: values.slug,
+            }}
+          />
+          <br />
+        </Fragment>
+      ))}
+    </Fragment>
+  );
+};
 
 export const removeStyle = () => (
   <ParagraphEditor

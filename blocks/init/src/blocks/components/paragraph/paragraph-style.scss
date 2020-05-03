@@ -19,10 +19,7 @@ $paragraph: (
       ),
     ),
   ),
-  colors: (
-    primary: $base-primary-color,
-    black: $base-black-color,
-  ),
+  colors: global-settings(colors),
 );
 
 .paragraph {

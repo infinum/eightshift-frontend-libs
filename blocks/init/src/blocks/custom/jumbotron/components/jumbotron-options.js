@@ -3,6 +3,23 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { ImageOptions } from './../../../components/image/components/image-options';
 
+export const jumbotronContentHorizontalPosition = [
+  { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
+  { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
+  { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
+];
+
+export const jumbotronContentVerticalPosition = [
+  { label: __('Top', 'eightshift-boilerplate'), value: 'top' },
+  { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
+  { label: __('Bottom', 'eightshift-boilerplate'), value: 'bottom' },
+];
+
+export const jumbotronMediaHorizontalPosition = [
+  { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
+  { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
+];
+
 export const JumbotronOptions = (props) => {
   const {
     attributes: {
@@ -26,11 +43,7 @@ export const JumbotronOptions = (props) => {
         <SelectControl
           label={__('Content Horizontal Position', 'eightshift-boilerplate')}
           value={contentHorizontalPosition}
-          options={[
-            { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
-            { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
-            { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
-          ]}
+          options={jumbotronContentHorizontalPosition}
           onChange={onChangeContentHorizontalPosition}
         />
       }
@@ -39,11 +52,7 @@ export const JumbotronOptions = (props) => {
         <SelectControl
           label={__('Content Vertical Position', 'eightshift-boilerplate')}
           value={contentVerticalPosition}
-          options={[
-            { label: __('Top', 'eightshift-boilerplate'), value: 'top' },
-            { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
-            { label: __('Bottom', 'eightshift-boilerplate'), value: 'bottom' },
-          ]}
+          options={jumbotronContentVerticalPosition}
           onChange={onChangeContentVerticalPosition}
         />
       }
@@ -52,10 +61,7 @@ export const JumbotronOptions = (props) => {
         <SelectControl
           label={__('Media Horizontal Position', 'eightshift-boilerplate')}
           value={mediaHorizontalPosition}
-          options={[
-            { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
-            { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
-          ]}
+          options={jumbotronMediaHorizontalPosition}
           onChange={onChangeMediaHorizontalPosition}
         />
       }

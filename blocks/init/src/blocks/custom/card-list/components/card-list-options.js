@@ -4,6 +4,11 @@ import { PanelBody, SelectControl } from '@wordpress/components';
 import { ButtonOptions } from '../../../components/button/components/button-options';
 import { ImageOptions } from '../../../components/image/components/image-options';
 
+export const cardListMediaPosition = [
+  { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
+  { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
+];
+
 export const CardListOptions = (props) => {
   const {
     attributes: {
@@ -30,10 +35,7 @@ export const CardListOptions = (props) => {
         <SelectControl
           label={__('Media Position', 'eightshift-boilerplate')}
           value={mediaPosition}
-          options={[
-            { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
-            { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
-          ]}
+          options={cardListMediaPosition}
           onChange={onChangeMediaPosition}
         />
       }

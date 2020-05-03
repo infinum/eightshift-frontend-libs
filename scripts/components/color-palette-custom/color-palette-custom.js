@@ -9,7 +9,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
   let newObj = ownProps;
 
-  // Allow overrides of editor color pallete for this block.
+  // Allow overrides of editor color palette for this block.
   if (!ownProps.colors) {
     newObj = Object.assign({ colors }, ownProps);
   }
@@ -28,7 +28,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
   const [color, setColor] = useState(value);
 
-  const colorValue = find(colors, { name: color });
+  const colorValue = find(colors, { slug: color });
 
   const baseClass = 'components-base-control';
 

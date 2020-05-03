@@ -1,9 +1,10 @@
 import { configure } from '@storybook/react';
-import { storybookDefaultMocks, storybookWindowObjects, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
+import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
+import globalSettings from './../src/blocks/manifest.json';
 
 // Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
-// @WP Editor set default window objects.
+// Set default window objects.
 storybookWindowObjects();
 
 // Run all storybook stories.
@@ -13,8 +14,11 @@ configure([
   require.context('./../src/blocks/wrapper', true, /docs\/story.js$/),
 ], module);
 
-// @WP Editor set default categories.
-storybookDefaultMocks();
+// Set default categories.
+storybookDefaultMocksCategories();
+
+// Set default color palette.
+storybookDefaultMocksColorPalette(globalSettings);
 
 // WP styles.
 storybookWpStyles();
