@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
@@ -40,7 +39,7 @@ export const ImageEditor = (props) => {
           >
             <Dashicon icon="trash" />
           </Button>
-        <img className={imageClass} src={url} alt="" />
+          <img className={imageClass} src={url} alt="" />
         </Fragment>
       }
     </Fragment>
