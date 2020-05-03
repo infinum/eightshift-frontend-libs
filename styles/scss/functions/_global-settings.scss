@@ -26,7 +26,9 @@
 /// }
 
 @function global-settings($keys...) {
-  @if variable-exists($global-variables) {
+  $global-variables: null !default;
+
+  @if $global-variables != null {
     $value: $global-variables;
 
     @each $key in $keys {
@@ -37,6 +39,6 @@
   }
 
   @else {
-    @error 'ERROR: $global_settings variable doesnt exist!';
+    @error 'ERROR: $global-settings variable doesnt exist!';
   }
 }
