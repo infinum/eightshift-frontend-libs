@@ -1,25 +1,15 @@
+import classnames from 'classnames';
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-export const VideoEditor = (props) => {
+export const VideoEditor = ({ blockClass, media, onChangeMedia }) => {
   const {
-    blockClass,
-    media: {
-      url,
-      accept = 'video/*',
-      allowedTypes = ['video'],
-    },
-    onChangeMedia,
-  } = props;
-
-  const componentClass = 'video';
-
-  const videoClass = `
-    ${componentClass}
-    ${blockClass}__video
-  `;
+    url,
+    accept = 'video/*',
+    allowedTypes = ['video'],
+  } = media;
 
   const removeMedia = () => {
     onChangeMedia({});
@@ -27,13 +17,7 @@ export const VideoEditor = (props) => {
 
   return (
     <Fragment>
-      {!url ?
-        <MediaPlaceholder
-          icon="format-image"
-          onSelect={onChangeMedia}
-          accept={accept}
-          allowedTypes={allowedTypes}
-        /> :
+      {url ?
         <Fragment>
           <Button
             isSecondary
@@ -42,10 +26,16 @@ export const VideoEditor = (props) => {
           >
             <Dashicon icon="trash" />
           </Button>
-          <video className={videoClass} muted>
+          <video className={classnames('video', `${blockClass}__video`)} muted>
             <source src={url} type="video/mp4" />
           </video>
-        </Fragment>
+        </Fragment> :
+        <MediaPlaceholder
+          icon="format-image"
+          onSelect={onChangeMedia}
+          accept={accept}
+          allowedTypes={allowedTypes}
+        />
       }
     </Fragment>
   );
