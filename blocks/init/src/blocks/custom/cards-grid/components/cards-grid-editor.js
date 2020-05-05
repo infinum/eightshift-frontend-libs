@@ -7,10 +7,12 @@ export const CardsGridEditor = ({ attributes }) => {
     allowedBlocks,
   } = attributes;
 
+  const blocksObject = (typeof allowedBlocks === 'undefined') || allowedBlocks;
+
   return (
     <div className={blockClass}>
       <InnerBlocks
-        allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
+        allowedBlocks={blocksObject}
       />
     </div>
   );

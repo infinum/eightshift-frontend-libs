@@ -24,6 +24,8 @@ export const CardListOptions = ({ attributes, actions }) => {
     onChangeButtonTitle,
   } = actions;
 
+  const buttonObject = (typeof button === 'undefined') || button;
+
   return (
     <PanelBody title={__('Card List Details', 'eightshift-boilerplate')}>
 
@@ -37,7 +39,7 @@ export const CardListOptions = ({ attributes, actions }) => {
       }
 
       <ButtonOptions
-        button={(typeof button === 'undefined') || button}
+        button={buttonObject}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}

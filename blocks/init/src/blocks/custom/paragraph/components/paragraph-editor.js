@@ -11,10 +11,12 @@ export const ParagraphEditor = ({ attributes, actions }) => {
     onChangeParagraphContent,
   } = actions;
 
+  const paragraphObject = (typeof paragraph === 'undefined') || paragraph;
+
   return (
     <ParagraphEditorComponent
       blockClass={blockClass}
-      paragraph={(typeof paragraph === 'undefined') || paragraph}
+      paragraph={paragraphObject}
       onChangeContent={onChangeParagraphContent}
     />
   );

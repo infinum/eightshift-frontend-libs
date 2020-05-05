@@ -14,11 +14,13 @@ export const LinkOptions = ({ attributes, actions }) => {
     onChangeLinkIsAnchor,
   } = actions;
 
+  const linkObject = (typeof link === 'undefined') || link;
+
   return (
     <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
 
       <LinkOptionsComponent
-        link={(typeof link === 'undefined') || link}
+        link={linkObject}
         onChangeUrl={onChangeLinkUrl}
         onChangeStyleColor={onChangeLinkStyleColor}
         onChangeIsAnchor={onChangeLinkIsAnchor}

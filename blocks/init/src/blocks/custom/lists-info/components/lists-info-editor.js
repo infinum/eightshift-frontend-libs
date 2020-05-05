@@ -20,6 +20,8 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
   const titleClass = `${blockClass}__title`;
   const contentClass = `${blockClass}__content`;
 
+  const listsObject = (typeof lists === 'undefined') || lists;
+
   return (
     <div className={blockClass}>
       <div className={introClass}>
@@ -34,7 +36,7 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
       <div className={contentClass}>
         <ListsEditor
           blockClass={blockClass}
-          lists={(typeof lists === 'undefined') || lists}
+          lists={listsObject}
           onChangeContent={onChangeListsContent}
           onChangeOrdered={onChangeListsOrdered}
         />

@@ -12,10 +12,12 @@ export const ListsEditor = ({ attributes, actions }) => {
     onChangeListsOrdered,
   } = actions;
 
+  const listsObject = (typeof lists === 'undefined') || lists;
+
   return (
     <ListsEditorComponent
       blockClass={blockClass}
-      lists={(typeof lists === 'undefined') || lists}
+      lists={listsObject}
       onChangeContent={onChangeListsContent}
       onChangeOrdered={onChangeListsOrdered}
     />

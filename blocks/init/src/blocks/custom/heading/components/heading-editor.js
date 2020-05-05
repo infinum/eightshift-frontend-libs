@@ -11,10 +11,12 @@ export const HeadingEditor = ({ attributes, actions }) => {
     onChangeHeadingContent,
   } = actions;
 
+  const headingObject = (typeof heading === 'undefined') || heading;
+
   return (
     <HeadingEditorComponent
       blockClass={blockClass}
-      heading={(typeof heading === 'undefined') || heading}
+      heading={headingObject}
       onChangeContent={onChangeHeadingContent}
     />
   );

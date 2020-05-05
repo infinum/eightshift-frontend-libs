@@ -32,6 +32,8 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
   const baseClass = 'components-base-control';
 
+  const colorValueObject = (typeof colorValue === 'undefined') ? color : colorValue.color;
+
   return (
     <div className={baseClass}>
       <div className={`${baseClass}__label`}>{label}</div>
@@ -39,7 +41,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
         clearable={clearable}
         colors={colors}
         disableCustomColors={disableCustomColors}
-        value={typeof colorValue === 'undefined' ? color : colorValue.color}
+        value={colorValueObject}
         onChange={(newColor) => {
           const colorObject = getColorObjectByColorValue(colors, newColor);
 
@@ -47,7 +49,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
           // For backwards compatibility, we're keeping the ability to set colors with just name.
           // The preferred way is to use a slug.
-          let newColorValues = typeof colorObject === 'undefined' ? '' : colorObject.name;
+          let newColorValues = (typeof colorObject === 'undefined') ? '' : colorObject.name;
           if (colorObject.slug) {
             newColorValues = colorObject.slug;
           }

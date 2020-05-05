@@ -11,11 +11,13 @@ export const CarouselImageEditor = ({ attributes, actions }) => {
     onChangeMedia,
   } = actions;
 
+  const mediaObject = (typeof media === 'undefined') || media;
+
   return (
     <div className={blockClass}>
       <ImageEditor
         blockClass={blockClass}
-        media={(typeof media === 'undefined') || media}
+        media={mediaObject}
         onChangeMedia={onChangeMedia}
       />
     </div>

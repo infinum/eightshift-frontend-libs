@@ -13,11 +13,13 @@ export const ParagraphOptions = ({ attributes, actions }) => {
     onChangeParagraphStyleSize,
   } = actions;
 
+  const paragraphObject = (typeof paragraph === 'undefined') || paragraph;
+
   return (
     <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
 
       <ParagraphOptionsComponent
-        paragraph={(typeof paragraph === 'undefined') || paragraph}
+        paragraph={paragraphObject}
         onChangeStyleSize={onChangeParagraphStyleSize}
         onChangeStyleColor={onChangeParagraphStyleColor}
       />

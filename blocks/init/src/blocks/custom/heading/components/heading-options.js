@@ -13,11 +13,13 @@ export const HeadingOptions = ({ attributes, actions }) => {
     onChangeHeadingStyleColor,
   } = actions;
 
+  const headingObject = (typeof heading === 'undefined') || heading;
+
   return (
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
 
       <HeadingOptionsComponent
-        heading={(typeof heading === 'undefined') || heading}
+        heading={headingObject}
         onChangeStyleColor={onChangeHeadingStyleColor}
         onChangeStyleSize={onChangeHeadingStyleSize}
       />

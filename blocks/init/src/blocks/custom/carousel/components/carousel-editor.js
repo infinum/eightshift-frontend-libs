@@ -16,10 +16,12 @@ export const CarouselEditor = ({ attributes }) => {
 
   const navigationClass = `${blockClass}__navigation`;
 
+  const blocksObject = (typeof allowedBlocks === 'undefined') || allowedBlocks;
+
   return (
     <div className={componentClass}>
       <InnerBlocks
-        allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
+        allowedBlocks={blocksObject}
       />
       <div className={navigationClass}>
         <CarouselNavigation />

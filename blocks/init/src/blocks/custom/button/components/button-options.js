@@ -17,11 +17,13 @@ export const ButtonOptions = ({ attributes, actions }) => {
     onChangeButtonId,
   } = actions;
 
+  const buttonObject = (typeof button === 'undefined') || button;
+
   return (
     <PanelBody title={__('Button Details', 'eightshift-boilerplate')}>
 
       <ButtonOptionsComponent
-        button={(typeof button === 'undefined') || button}
+        button={buttonObject}
         onChangeTitle={onChangeButtonTitle}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}

@@ -10,9 +10,11 @@ export const ParagraphToolbar = ({ attributes, actions }) => {
     onChangeParagraphStyleAlign,
   } = actions;
 
+  const paragraphObject = (typeof paragraph === 'undefined') || paragraph;
+
   return (
     <ParagraphToolbarComponent
-      paragraph={(typeof paragraph === 'undefined') || paragraph}
+      paragraph={paragraphObject}
       onChangeStyleAlign={onChangeParagraphStyleAlign}
     />
   );

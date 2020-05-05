@@ -17,12 +17,14 @@ export const CardEditor = ({ attributes, actions }) => {
     onChangeMedia,
   } = actions;
 
+  const mediaObject = (typeof media === 'undefined') || media;
+
   return (
     <div className={blockClass}>
       <div className={`${blockClass}__media`}>
         <ImageEditor
           blockClass={blockClass}
-          media={(typeof media === 'undefined') || media}
+          media={mediaObject}
           onChangeMedia={onChangeMedia}
         />
       </div>

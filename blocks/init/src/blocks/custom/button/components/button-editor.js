@@ -7,10 +7,12 @@ export const ButtonEditor = ({ attributes }) => {
     button,
   } = attributes;
 
+  const buttonObject = (typeof button === 'undefined') || button;
+
   return (
     <ButtonEditorComponent
       blockClass={blockClass}
-      button={(typeof button === 'undefined') || button}
+      button={buttonObject}
     />
   );
 };

@@ -20,6 +20,8 @@ export const JumbotronEditor = ({ attributes, actions }) => {
     onChangeMedia,
   } = actions;
 
+  const mediaObject = (typeof media === 'undefined') || media;
+
   return (
     <div className={blockClass}>
       <div className={`
@@ -28,7 +30,7 @@ export const JumbotronEditor = ({ attributes, actions }) => {
       `}>
         <ImageEditor
           blockClass={blockClass}
-          media={(typeof media === 'undefined') || media}
+          media={mediaObject}
           onChangeMedia={onChangeMedia}
         />
       </div>

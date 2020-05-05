@@ -11,9 +11,11 @@ export const HeadingToolbar = ({ attributes, actions }) => {
     onChangeHeadingStyleAlign,
   } = actions;
 
+  const headingObject = (typeof heading === 'undefined') || heading;
+
   return (
     <HeadingToolbarComponent
-      heading={(typeof heading === 'undefined') || heading}
+      heading={headingObject}
       onChangeLevel={onChangeHeadingLevel}
       onChangeStyleAlign={onChangeHeadingStyleAlign}
     />

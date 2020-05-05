@@ -11,10 +11,12 @@ export const VideoEditor = ({ attributes, actions }) => {
     onChangeMedia,
   } = actions;
 
+  const mediaObject = (typeof media === 'undefined') || media;
+
   return (
     <VideoEditorComponent
       blockClass={blockClass}
-      media={(typeof media === 'undefined') || media}
+      media={mediaObject}
       onChangeMedia={onChangeMedia}
     />
   );

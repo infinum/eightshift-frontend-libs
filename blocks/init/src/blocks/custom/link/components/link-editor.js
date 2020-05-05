@@ -11,10 +11,12 @@ export const LinkEditor = ({ attributes, actions }) => {
     onChangeLinkTitle,
   } = actions;
 
+  const linkObject = (typeof link === 'undefined') || link;
+
   return (
     <LinkEditorComponent
       blockClass={blockClass}
-      link={(typeof link === 'undefined') || link}
+      link={linkObject}
       onChangeTitle={onChangeLinkTitle}
     />
   );
