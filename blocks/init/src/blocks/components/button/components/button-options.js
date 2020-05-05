@@ -28,7 +28,7 @@ export const buttonColors = () => {
   ];
 };
 
-export const ButtonOptions = (props, { button }) => {
+export const ButtonOptions = (props) => {
   const {
     title,
     url,
@@ -36,7 +36,7 @@ export const ButtonOptions = (props, { button }) => {
     styleColor,
     styleSizeWidth,
     id,
-  } = button;
+  } = props.button;
 
   const {
     onChangeTitle,

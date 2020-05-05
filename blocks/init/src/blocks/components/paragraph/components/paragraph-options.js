@@ -9,11 +9,11 @@ export const paragraphSizes = [
   { label: __('Small (18px)', 'eightshift-boilerplate'), value: 'small' },
 ];
 
-export const ParagraphOptions = (props, { paragraph }) => {
+export const ParagraphOptions = (props) => {
   const {
     styleColor,
     styleSize,
-  } = paragraph;
+  } = props.paragraph;
 
   const {
     onChangeStyleColor,

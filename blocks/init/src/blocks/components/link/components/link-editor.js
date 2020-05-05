@@ -3,13 +3,14 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const LinkEditor = (props, { blockClass, link }) => {
+export const LinkEditor = (props) => {
   const {
     title,
     styleColor,
-  } = link;
+  } = props.link;
 
   const {
+    blockClass,
     onChangeTitle,
   } = props;
 

@@ -4,14 +4,15 @@ import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-export const VideoEditor = (props, { blockClass, media }) => {
+export const VideoEditor = (props) => {
   const {
     url,
     accept = 'video/*',
     allowedTypes = ['video'],
-  } = media;
+  } = props.media;
 
   const {
+    blockClass,
     onChangeMedia,
   } = props;
 

@@ -3,15 +3,16 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const HeadingEditor = (props, { blockClass, heading }) => {
+export const HeadingEditor = (props) => {
   const {
     content,
     styleAlign,
     styleColor,
     styleSize,
-  } = heading;
+  } = props.heading;
 
   const {
+    blockClass,
     onChangeContent,
   } = props;
 

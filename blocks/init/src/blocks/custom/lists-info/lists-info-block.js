@@ -4,7 +4,11 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { ListsInfoEditor } from './components/lists-info-editor';
 
-export const ListsInfo = (props, { attributes }) => {
+export const ListsInfo = (props) => {
+
+  const {
+    attributes,
+  } = props;
 
   const actions = getActions(props, manifest);
 

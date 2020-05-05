@@ -7,7 +7,11 @@ import { ParagraphEditor } from './components/paragraph-editor';
 import { ParagraphOptions } from './components/paragraph-options';
 import { ParagraphToolbar } from './components/paragraph-toolbar';
 
-export const Paragraph = (props, { attributes }) => {
+export const Paragraph = (props) => {
+
+  const {
+    attributes,
+  } = props;
 
   const actions = getActions(props, manifest);
 

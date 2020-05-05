@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 
-export const WrapperEditor = ({ children, attributes }) => {
+export const WrapperEditor = (props) => {
   const {
     id,
     styleBackgroundColor,
@@ -32,7 +32,11 @@ export const WrapperEditor = ({ children, attributes }) => {
     styleContainerSpacingMobile,
     styleSpacingTopMobile,
     styleSpacingBottomMobile,
-  } = attributes;
+  } = props.attributes;
+
+  const {
+    children,
+  } = props;
 
   const wrapperMainClass = 'wrapper';
 

@@ -9,11 +9,11 @@ export const headingSizes = [
   { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
 ];
 
-export const HeadingOptions = (props, { heading }) => {
+export const HeadingOptions = (props) => {
   const {
     styleColor,
     styleSize,
-  } = heading;
+  } = props.heading;
 
   const {
     onChangeStyleColor,

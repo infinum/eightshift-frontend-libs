@@ -4,14 +4,15 @@ import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-export const ImageEditor = (props, { blockClass, media }) => {
+export const ImageEditor = (props) => {
   const {
     url,
     accept = 'image/*',
     allowedTypes = ['image'],
-  } = media;
+  } = props.media;
 
   const {
+    blockClass,
     onChangeMedia,
   } = props;
 

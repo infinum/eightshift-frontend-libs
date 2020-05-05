@@ -3,7 +3,11 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { QuoteEditor } from './components/quote-editor';
 
-export const Quote = (props, { attributes }) => {
+export const Quote = (props) => {
+
+  const {
+    attributes,
+  } = props;
 
   const actions = getActions(props, manifest);
 

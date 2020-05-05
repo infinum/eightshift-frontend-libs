@@ -3,13 +3,14 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const ListsEditor = (props, { blockClass, lists }) => {
+export const ListsEditor = (props) => {
   const {
     content,
     ordered,
-  } = lists;
+  } = props.lists;
 
   const {
+    blockClass,
     onChangeContent,
     onChangeOrdered,
   } = props;

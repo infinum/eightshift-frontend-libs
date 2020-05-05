@@ -6,7 +6,11 @@ import manifest from './manifest.json';
 import { JumbotronEditor } from './components/jumbotron-editor';
 import { JumbotronOptions } from './components/jumbotron-options';
 
-export const Jumbotron = (props, { attributes }) => {
+export const Jumbotron = (props) => {
+
+  const {
+    attributes,
+  } = props;
 
   const actions = getActions(props, manifest);
 

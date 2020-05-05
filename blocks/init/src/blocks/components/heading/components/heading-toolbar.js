@@ -3,11 +3,11 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
 
-export const HeadingToolbar = (props, { heading }) => {
+export const HeadingToolbar = (props) => {
   const {
     level,
     styleAlign,
-  } = heading;
+  } = props.heading;
 
   const {
     onChangeLevel,

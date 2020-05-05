@@ -18,12 +18,12 @@ export const linkColors = () => {
   ];
 };
 
-export const LinkOptions = (props, { link }) => {
+export const LinkOptions = (props) => {
   const {
     url,
     styleColor,
     isAnchor,
-  } = link;
+  } = props.link;
 
   const {
     onChangeUrl,
