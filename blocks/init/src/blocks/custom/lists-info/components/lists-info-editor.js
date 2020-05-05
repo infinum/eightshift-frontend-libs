@@ -16,16 +16,12 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
     onChangeListsOrdered,
   } = actions;
 
-  const introClass = `${blockClass}__intro`;
-  const titleClass = `${blockClass}__title`;
-  const contentClass = `${blockClass}__content`;
-
   const listsObject = (typeof lists === 'undefined') || lists;
 
   return (
     <div className={blockClass}>
-      <div className={introClass}>
-        <div className={titleClass}>
+      <div className={`${blockClass}__intro`}>
+        <div className={`${blockClass}__title`}>
           <RichText
             placeholder={__('Add title', 'eightshift-boilerplate')}
             onChange={onChangeTitle}
@@ -33,7 +29,7 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
           />
         </div>
       </div>
-      <div className={contentClass}>
+      <div className={`${blockClass}__content`}>
         <ListsEditor
           blockClass={blockClass}
           lists={listsObject}

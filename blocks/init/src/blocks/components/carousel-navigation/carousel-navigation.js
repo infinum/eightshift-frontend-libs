@@ -1,22 +1,21 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 
 export const CarouselNavigation = () => {
 
   const componentClass = 'carousel-navigation';
 
-  const arrowItemPrevClass = `
-    ${componentClass}__arrow-item
-    ${componentClass}__arrow-item--prev
-  `;
+  const arrowItemPrevClass = classnames(
+    `${componentClass}__arrow-item`,
+    `${componentClass}__arrow-item--prev`,
+  );
 
-  const arrowItemNextClass = `
-    ${componentClass}__arrow-item
-    ${componentClass}__arrow-item--next
-  `;
+  const arrowItemNextClass = classnames(
+    `${componentClass}__arrow-item`,
+    `${componentClass}__arrow-item--next`,
+  );
 
-  const arrowIconClass = `
-    ${componentClass}__arrow-icon
-  `;
+  const arrowIconClass = classnames(`${componentClass}__arrow-icon`);
 
   return (
     <div className={componentClass}>
