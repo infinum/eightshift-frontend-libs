@@ -152,10 +152,11 @@ export const Gutenberg = (props) => {
           <BlockEditorProvider
             value={blocksProps}
           >
-            <div className="playground__sidebar">
+            <div className="playground__sidebar edit-post-sidebar">
               <BlockInspector />
             </div>
             <div className="editor-styles-wrapper">
+              <Popover.Slot name="block-toolbar" />
               <BlockEditorKeyboardShortcuts />
               <WritingFlow>
                 <ObserveTyping>

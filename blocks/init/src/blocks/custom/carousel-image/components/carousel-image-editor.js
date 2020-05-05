@@ -7,6 +7,9 @@ export const CarouselImageEditor = (props) => {
       blockClass,
       media,
     },
+    actions: {
+      onChangeMedia,
+    },
   } = props;
 
   return (
@@ -14,6 +17,7 @@ export const CarouselImageEditor = (props) => {
       <ImageEditor
         blockClass={blockClass}
         media={(typeof media === 'undefined') || media}
+        onChangeMedia={onChangeMedia}
       />
     </div>
   );

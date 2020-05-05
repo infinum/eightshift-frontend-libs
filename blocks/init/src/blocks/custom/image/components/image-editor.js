@@ -7,12 +7,16 @@ export const ImageEditor = (props) => {
       blockClass,
       media,
     },
+    actions: {
+      onChangeMedia,
+    },
   } = props;
 
   return (
     <ImageEditorComponent
       blockClass={blockClass}
       media={(typeof media === 'undefined') || media}
+      onChangeMedia={onChangeMedia}
     />
   );
 };

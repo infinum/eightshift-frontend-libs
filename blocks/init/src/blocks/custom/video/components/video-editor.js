@@ -7,12 +7,16 @@ export const VideoEditor = (props) => {
       blockClass,
       media,
     },
+    actions: {
+      onChangeMedia,
+    },
   } = props;
 
   return (
     <VideoEditorComponent
       blockClass={blockClass}
       media={(typeof media === 'undefined') || media}
+      onChangeMedia={onChangeMedia}
     />
   );
 };

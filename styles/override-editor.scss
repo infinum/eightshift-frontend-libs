@@ -65,7 +65,7 @@ body {
 
   // Spread sidebar default input to full width.
   .edit-post-sidebar {
-    .editor-url-input input[type=text] {
+    .block-editor-url-input input[type="text"] {
       width: 100%;
     }
   }
@@ -102,6 +102,13 @@ body {
   // Hack for storybook.
   .components-range-control__slider {
     min-width: 1px;
+  }
+
+  .media-remove {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 50;
   }
 
 }

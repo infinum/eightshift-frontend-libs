@@ -5,7 +5,6 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CardListEditor } from './components/card-list-editor';
 import { CardListOptions } from './components/card-list-options';
-import './hooks';
 
 export const CardList = (props) => {
   const {

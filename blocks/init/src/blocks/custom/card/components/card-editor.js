@@ -14,6 +14,7 @@ export const CardEditor = (props) => {
     actions: {
       onChangeHeading,
       onChangeParagraph,
+      onChangeMedia,
     },
   } = props;
 
@@ -23,6 +24,7 @@ export const CardEditor = (props) => {
         <ImageEditor
           blockClass={blockClass}
           media={(typeof media === 'undefined') || media}
+          onChangeMedia={onChangeMedia}
         />
       </div>
       <div className={`${blockClass}__content`}>
