@@ -3,10 +3,7 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CardsListEditor } from './components/cards-list-editor';
 
-export const CardsList = (props) => {
-  const {
-    attributes,
-  } = props;
+export const CardsList = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

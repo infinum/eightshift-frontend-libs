@@ -4,10 +4,7 @@ import manifest from './manifest.json';
 import { CarouselImageEditor } from './components/carousel-image-editor';
 import './hooks';
 
-export const CarouselImage = (props) => {
-  const {
-    attributes,
-  } = props;
+export const CarouselImage = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

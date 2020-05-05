@@ -6,10 +6,7 @@ import manifest from './manifest.json';
 import { DividerEditor } from './components/divider-editor';
 import { DividerOptions } from './components/divider-options';
 
-export const Divider = (props) => {
-  const {
-    attributes,
-  } = props;
+export const Divider = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

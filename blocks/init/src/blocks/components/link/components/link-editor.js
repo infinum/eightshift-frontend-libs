@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const LinkEditor = ({ blockClass, link, props }) => {
+export const LinkEditor = (props, { blockClass, link }) => {
   const {
     title,
     styleColor,

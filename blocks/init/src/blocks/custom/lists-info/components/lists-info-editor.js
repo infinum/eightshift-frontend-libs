@@ -3,19 +3,18 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { ListsEditor } from './../../../components/lists/components/lists-editor';
 
-export const ListsInfoEditor = (props) => {
+export const ListsInfoEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      title,
-      lists,
-    },
-    actions: {
-      onChangeTitle,
-      onChangeListsContent,
-      onChangeListsOrdered,
-    },
-  } = props;
+    blockClass,
+    title,
+    lists,
+  } = attributes;
+
+  const {
+    onChangeTitle,
+    onChangeListsContent,
+    onChangeListsOrdered,
+  } = actions;
 
   const introClass = `${blockClass}__intro`;
   const titleClass = `${blockClass}__title`;

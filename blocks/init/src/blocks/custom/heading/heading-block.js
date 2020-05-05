@@ -7,10 +7,7 @@ import { HeadingEditor } from './components/heading-editor';
 import { HeadingOptions } from './components/heading-options';
 import { HeadingToolbar } from './components/heading-toolbar';
 
-export const Heading = (props) => {
-  const {
-    attributes,
-  } = props;
+export const Heading = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

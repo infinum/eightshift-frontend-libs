@@ -3,17 +3,16 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { LinkOptions as LinkOptionsComponent } from '../../../components/link/components/link-options';
 
-export const LinkOptions = (props) => {
+export const LinkOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      link,
-    },
-    actions: {
-      onChangeLinkUrl,
-      onChangeLinkStyleColor,
-      onChangeLinkIsAnchor,
-    },
-  } = props;
+    link,
+  } = attributes;
+
+  const {
+    onChangeLinkUrl,
+    onChangeLinkStyleColor,
+    onChangeLinkIsAnchor,
+  } = actions;
 
   return (
     <PanelBody title={__('Link Details', 'eightshift-boilerplate')}>

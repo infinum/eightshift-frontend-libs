@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const ParagraphEditor = ({ blockClass, paragraph, props }) => {
+export const ParagraphEditor = (props, { blockClass, paragraph }) => {
   const {
     content,
     styleAlign,

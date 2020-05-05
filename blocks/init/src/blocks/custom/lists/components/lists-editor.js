@@ -1,17 +1,16 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { ListsEditor as ListsEditorComponent } from '../../../components/lists/components/lists-editor';
 
-export const ListsEditor = (props) => {
+export const ListsEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      lists,
-    },
-    actions: {
-      onChangeListsContent,
-      onChangeListsOrdered,
-    },
-  } = props;
+    blockClass,
+    lists,
+  } = attributes;
+
+  const {
+    onChangeListsContent,
+    onChangeListsOrdered,
+  } = actions;
 
   return (
     <ListsEditorComponent

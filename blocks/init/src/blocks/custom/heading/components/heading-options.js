@@ -3,16 +3,15 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { HeadingOptions as HeadingOptionsComponent } from '../../../components/heading/components/heading-options';
 
-export const HeadingOptions = (props) => {
+export const HeadingOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      heading,
-    },
-    actions: {
-      onChangeHeadingStyleSize,
-      onChangeHeadingStyleColor,
-    },
-  } = props;
+    heading,
+  } = attributes;
+
+  const {
+    onChangeHeadingStyleSize,
+    onChangeHeadingStyleColor,
+  } = actions;
 
   return (
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>

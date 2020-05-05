@@ -4,22 +4,21 @@ import { RichText } from '@wordpress/block-editor';
 import { ButtonEditor } from '../../../components/button/components/button-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 
-export const CardListEditor = (props) => {
+export const CardListEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      heading,
-      paragraph,
-      mediaPosition,
-      media,
-      button,
-    },
-    actions: {
-      onChangeHeading,
-      onChangeParagraph,
-      onChangeMedia,
-    },
-  } = props;
+    blockClass,
+    heading,
+    paragraph,
+    mediaPosition,
+    media,
+    button,
+  } = attributes;
+
+  const {
+    onChangeHeading,
+    onChangeParagraph,
+    onChangeMedia,
+  } = actions;
 
   const componentClass = `
     ${blockClass}

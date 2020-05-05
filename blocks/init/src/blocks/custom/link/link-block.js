@@ -6,10 +6,7 @@ import manifest from './manifest.json';
 import { LinkEditor } from './components/link-editor';
 import { LinkOptions } from './components/link-options';
 
-export const Link = (props) => {
-  const {
-    attributes,
-  } = props;
+export const Link = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

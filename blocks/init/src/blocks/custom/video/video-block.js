@@ -3,10 +3,7 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { VideoEditor } from './components/video-editor';
 
-export const Video = (props) => {
-  const {
-    attributes,
-  } = props;
+export const Video = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

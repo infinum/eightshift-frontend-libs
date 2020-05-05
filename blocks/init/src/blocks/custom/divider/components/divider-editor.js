@@ -1,12 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 
-export const DividerEditor = (props) => {
+export const DividerEditor = ({ attributes }) => {
   const {
-    attributes: {
-      blockClass,
-      color,
-    },
-  } = props;
+    blockClass,
+    color,
+  } = attributes;
 
   return (
     <div className={`${blockClass} ${blockClass}__color--${color}`}></div>

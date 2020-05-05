@@ -3,10 +3,7 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CardsGridEditor } from './components/cards-grid-editor';
 
-export const CardsGrid = (props) => {
-  const {
-    attributes,
-  } = props;
+export const CardsGrid = (props, { attributes }) => {
 
   const actions = getActions(props, manifest);
 

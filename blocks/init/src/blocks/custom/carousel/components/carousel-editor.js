@@ -2,14 +2,12 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { InnerBlocks } from '@wordpress/block-editor';
 import { CarouselNavigation } from '../../../components/carousel-navigation/carousel-navigation';
 
-export const CarouselEditor = (props) => {
+export const CarouselEditor = ({ attributes }) => {
   const {
-    attributes: {
-      blockClass,
-      blockJsClass,
-      allowedBlocks,
-    },
-  } = props;
+    blockClass,
+    blockJsClass,
+    allowedBlocks,
+  } = attributes;
 
   const componentClass = `
     ${blockClass}

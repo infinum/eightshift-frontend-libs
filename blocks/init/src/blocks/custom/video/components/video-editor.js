@@ -1,16 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { VideoEditor as VideoEditorComponent } from '../../../components/video/components/video-editor';
 
-export const VideoEditor = (props) => {
+export const VideoEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      media,
-    },
-    actions: {
-      onChangeMedia,
-    },
-  } = props;
+    blockClass,
+    media,
+  } = attributes;
+
+  const {
+    onChangeMedia,
+  } = actions;
 
   return (
     <VideoEditorComponent

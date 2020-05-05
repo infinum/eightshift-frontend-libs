@@ -18,7 +18,7 @@ export const linkColors = () => {
   ];
 };
 
-export const LinkOptions = ({ link, props }) => {
+export const LinkOptions = (props, { link }) => {
   const {
     url,
     styleColor,

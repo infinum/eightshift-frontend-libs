@@ -1,12 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { InnerBlocks } from '@wordpress/block-editor';
 
-export const GroupEditor = (props) => {
+export const GroupEditor = ({ attributes }) => {
   const {
-    attributes: {
-      blockClass,
-    },
-  } = props;
+    blockClass,
+  } = attributes;
 
   return (
     <div className={blockClass}>

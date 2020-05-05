@@ -1,16 +1,15 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 
-export const ParagraphEditor = (props) => {
+export const ParagraphEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      paragraph,
-    },
-    actions: {
-      onChangeParagraphContent,
-    },
-  } = props;
+    blockClass,
+    paragraph,
+  } = attributes;
+
+  const {
+    onChangeParagraphContent,
+  } = actions;
 
   return (
     <ParagraphEditorComponent

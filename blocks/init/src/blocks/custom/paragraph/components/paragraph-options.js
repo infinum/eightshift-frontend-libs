@@ -3,16 +3,15 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { ParagraphOptions as ParagraphOptionsComponent } from '../../../components/paragraph/components/paragraph-options';
 
-export const ParagraphOptions = (props) => {
+export const ParagraphOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      paragraph,
-    },
-    actions: {
-      onChangeParagraphStyleColor,
-      onChangeParagraphStyleSize,
-    },
-  } = props;
+    paragraph,
+  } = attributes;
+
+  const {
+    onChangeParagraphStyleColor,
+    onChangeParagraphStyleSize,
+  } = actions;
 
   return (
     <PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>

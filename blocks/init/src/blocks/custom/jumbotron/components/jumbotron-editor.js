@@ -3,23 +3,22 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { ImageEditor } from './../../../components/image/components/image-editor';
 
-export const JumbotronEditor = (props) => {
+export const JumbotronEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      heading,
-      paragraph,
-      media,
-      contentHorizontalPosition,
-      contentVerticalPosition,
-      mediaHorizontalPosition,
-    },
-    actions: {
-      onChangeHeading,
-      onChangeParagraph,
-      onChangeMedia,
-    },
-  } = props;
+    blockClass,
+    heading,
+    paragraph,
+    media,
+    contentHorizontalPosition,
+    contentVerticalPosition,
+    mediaHorizontalPosition,
+  } = attributes;
+
+  const {
+    onChangeHeading,
+    onChangeParagraph,
+    onChangeMedia,
+  } = actions;
 
   return (
     <div className={blockClass}>

@@ -28,7 +28,7 @@ export const buttonColors = () => {
   ];
 };
 
-export const ButtonOptions = ({ props, button }) => {
+export const ButtonOptions = (props, { button }) => {
   const {
     title,
     url,

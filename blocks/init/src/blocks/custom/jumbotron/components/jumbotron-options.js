@@ -19,19 +19,18 @@ export const jumbotronMediaHorizontalPosition = [
   { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
 ];
 
-export const JumbotronOptions = (props) => {
+export const JumbotronOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      contentHorizontalPosition,
-      contentVerticalPosition,
-      mediaHorizontalPosition,
-    },
-    actions: {
-      onChangeContentHorizontalPosition,
-      onChangeContentVerticalPosition,
-      onChangeMediaHorizontalPosition,
-    },
-  } = props;
+    contentHorizontalPosition,
+    contentVerticalPosition,
+    mediaHorizontalPosition,
+  } = attributes;
+
+  const {
+    onChangeContentHorizontalPosition,
+    onChangeContentVerticalPosition,
+    onChangeMediaHorizontalPosition,
+  } = actions;
 
   return (
     <PanelBody title={__('Jumbotron Details', 'eightshift-boilerplate')}>
