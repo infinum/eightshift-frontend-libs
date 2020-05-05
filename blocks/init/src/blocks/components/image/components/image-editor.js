@@ -3,7 +3,6 @@ import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-
 export const ImageEditor = (props) => {
   const {
     blockClass,
@@ -22,6 +21,10 @@ export const ImageEditor = (props) => {
     ${blockClass}__img
   `;
 
+  const removeMedia = () => {
+    onChangeMedia({});
+  };
+
   return (
     <Fragment>
       {!url ?
@@ -34,8 +37,8 @@ export const ImageEditor = (props) => {
         <Fragment>
           <Button
             isSecondary
-            onClick={() => onChangeMedia({})}
-            className={'image-remove'}
+            onClick={removeMedia}
+            className={'media-remove'}
           >
             <Dashicon icon="trash" />
           </Button>
