@@ -1,15 +1,19 @@
-import classnames from 'classnames';
 import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
 import { Button, Dashicon } from '@wordpress/components';
 
-export const ImageEditor = ({ blockClass, media, onChangeMedia }) => {
+export const ImageEditor = ({ blockClass, media, props }) => {
   const {
     url,
     accept = 'image/*',
     allowedTypes = ['image'],
   } = media;
+
+  const {
+    onChangeMedia,
+  } = props;
 
   const removeMedia = () => {
     onChangeMedia({});

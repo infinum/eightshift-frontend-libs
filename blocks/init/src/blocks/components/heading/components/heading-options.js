@@ -9,12 +9,13 @@ export const headingSizes = [
   { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
 ];
 
-export const HeadingOptions = (props) => {
+export const HeadingOptions = ({ props, heading }) => {
   const {
-    heading: {
-      styleColor,
-      styleSize,
-    },
+    styleColor,
+    styleSize,
+  } = heading;
+
+  const {
     onChangeStyleColor,
     onChangeStyleSize,
   } = props;
@@ -30,7 +31,7 @@ export const HeadingOptions = (props) => {
               {__('Heading Color', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Change Heading color.', 'eightshift-boilerplate')}
+          help={__('Change Heading color', 'eightshift-boilerplate')}
           value={styleColor}
           onChange={onChangeStyleColor}
         />

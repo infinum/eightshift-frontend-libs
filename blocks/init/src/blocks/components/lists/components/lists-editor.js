@@ -1,24 +1,25 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
-export const ListsEditor = (props) => {
+export const ListsEditor = ({ blockClass, lists, props }) => {
   const {
-    blockClass,
-    lists: {
-      content,
-      ordered,
-    },
+    content,
+    ordered,
+  } = lists;
+
+  const {
     onChangeContent,
     onChangeOrdered,
   } = props;
 
   const componentClass = 'lists';
 
-  const listsClass = `
-    ${componentClass}
-    ${blockClass}__lists
-  `;
+  const listsClass = classnames(
+    componentClass,
+    `${blockClass}__lists`,
+  );
 
   return (
     <RichText

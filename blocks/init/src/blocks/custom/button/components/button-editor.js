@@ -1,13 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { ButtonEditor as ButtonEditorComponent } from '../../../components/button/components/button-editor';
 
-export const ButtonEditor = (props) => {
+export const ButtonEditor = ({ attributes }) => {
   const {
-    attributes: {
-      blockClass,
-      button,
-    },
-  } = props;
+    blockClass,
+    button,
+  } = attributes;
 
   return (
     <ButtonEditorComponent

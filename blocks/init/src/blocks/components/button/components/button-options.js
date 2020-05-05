@@ -28,16 +28,17 @@ export const buttonColors = () => {
   ];
 };
 
-export const ButtonOptions = (props) => {
+export const ButtonOptions = ({ props, button }) => {
   const {
-    button: {
-      title,
-      url,
-      styleSize,
-      styleColor,
-      styleSizeWidth,
-      id,
-    },
+    title,
+    url,
+    styleSize,
+    styleColor,
+    styleSizeWidth,
+    id,
+  } = button;
+
+  const {
     onChangeTitle,
     onChangeUrl,
     onChangeStyleSize,
@@ -76,7 +77,7 @@ export const ButtonOptions = (props) => {
           }
           help={__('Change Button Background color.', 'eightshift-boilerplate')}
           value={styleColor}
-          colors={buttonColors()}
+          colors={buttonColors}
           onChange={onChangeStyleColor}
         />
       }

@@ -18,13 +18,14 @@ export const linkColors = () => {
   ];
 };
 
-export const LinkOptions = (props) => {
+export const LinkOptions = ({ link, props }) => {
   const {
-    link: {
-      url,
-      styleColor,
-      isAnchor,
-    },
+    url,
+    styleColor,
+    isAnchor,
+  } = link;
+
+  const {
     onChangeUrl,
     onChangeStyleColor,
     onChangeIsAnchor,
@@ -43,7 +44,7 @@ export const LinkOptions = (props) => {
           }
           help={__('Change Link color.', 'eightshift-boilerplate')}
           value={styleColor}
-          colors={linkColors()}
+          colors={linkColors}
           onChange={onChangeStyleColor}
         />
       }

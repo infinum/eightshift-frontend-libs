@@ -2,26 +2,22 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 
-export const ParagraphToolbar = (props) => {
+export const ParagraphToolbar = ({ paragraph, props }) => {
   const {
-    paragraph: {
-      styleAlign,
-      removeStyle,
-    },
+    styleAlign,
+  } = paragraph;
+
+  const {
     onChangeStyleAlign,
   } = props;
 
   return (
     <Fragment>
-      {removeStyle !== true &&
-        <Fragment>
-          {onChangeStyleAlign &&
-            <AlignmentToolbar
-              value={styleAlign}
-              onChange={onChangeStyleAlign}
-            />
-          }
-        </Fragment>
+      {onChangeStyleAlign &&
+        <AlignmentToolbar
+          value={styleAlign}
+          onChange={onChangeStyleAlign}
+        />
       }
     </Fragment>
   );
