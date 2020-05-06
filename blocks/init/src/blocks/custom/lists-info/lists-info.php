@@ -2,7 +2,6 @@
 /**
  * Template for the Lists Info Block.
  *
- * @since 1.0.0
  * @package Eightshift_Boilerplate\Blocks.
  */
 

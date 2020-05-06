@@ -11,8 +11,6 @@ import { getBlockEditComponent } from './get-block-edit-component';
  * @param {object} blocksSettings Must provide global blocks setting manifest.json.
  * @param {function} Wrapper Wrapper callback function.
  *
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 export const registerBlocks = (blocksManifests, blocksFilePaths, blocksSettings, wrapperComponent = null) => {
 

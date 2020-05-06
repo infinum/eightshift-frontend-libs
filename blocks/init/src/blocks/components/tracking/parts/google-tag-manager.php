@@ -4,7 +4,6 @@
  *
  * @package Eightshift_Boilerplate\Views\Tracking\Parts
  *
- * @since 1.0.0
  */
 
 ?>

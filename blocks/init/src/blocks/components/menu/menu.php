@@ -4,7 +4,6 @@
  *
  * @package Eightshift_Boilerplate\Components
  *
- * @since 1.0.0
  */
 
 use Eightshift_Libs\Menu\Menu;

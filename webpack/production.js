@@ -2,7 +2,6 @@
 /**
  * Project Production config used only in production build.
  *
- * @since 2.0.0
  */
 
 const TerserPlugin = require('terser-webpack-plugin');

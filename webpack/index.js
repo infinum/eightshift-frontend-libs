@@ -3,7 +3,6 @@
 /**
  * Main entrypoint location for webpack config.
  *
- * @since 2.0.0
  */
 
 const merge = require('webpack-merge');

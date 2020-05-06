@@ -3,7 +3,6 @@
 /**
  * Project Base overrides used in production and development build.
  *
- * @since 2.0.0
  */
 
 const webpack = require('webpack');
