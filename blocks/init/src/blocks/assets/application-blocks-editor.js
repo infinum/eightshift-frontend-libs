@@ -4,7 +4,6 @@
  *
  * Usage: `WordPress admin editor`.
  *
- 
  */
 
 // Styles.
