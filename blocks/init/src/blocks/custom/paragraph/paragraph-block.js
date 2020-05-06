@@ -8,6 +8,7 @@ import { ParagraphOptions } from './components/paragraph-options';
 import { ParagraphToolbar } from './components/paragraph-toolbar';
 
 export const Paragraph = (props) => {
+
   const {
     attributes,
   } = props;

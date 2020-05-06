@@ -3,27 +3,28 @@ import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 
-export const CardEditor = (props) => {
+export const CardEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      heading,
-      paragraph,
-      media,
-    },
-    actions: {
-      onChangeHeading,
-      onChangeParagraph,
-      onChangeMedia,
-    },
-  } = props;
+    blockClass,
+    heading,
+    paragraph,
+    media,
+  } = attributes;
+
+  const {
+    onChangeHeading,
+    onChangeParagraph,
+    onChangeMedia,
+  } = actions;
+
+  const mediaObject = (typeof media === 'undefined') || media;
 
   return (
     <div className={blockClass}>
       <div className={`${blockClass}__media`}>
         <ImageEditor
           blockClass={blockClass}
-          media={(typeof media === 'undefined') || media}
+          media={mediaObject}
           onChangeMedia={onChangeMedia}
         />
       </div>

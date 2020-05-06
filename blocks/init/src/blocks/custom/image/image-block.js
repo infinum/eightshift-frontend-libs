@@ -4,6 +4,7 @@ import manifest from './manifest.json';
 import { ImageEditor } from './components/image-editor';
 
 export const Image = (props) => {
+
   const {
     attributes,
   } = props;

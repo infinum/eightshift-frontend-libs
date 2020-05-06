@@ -7,6 +7,7 @@ import { JumbotronEditor } from './components/jumbotron-editor';
 import { JumbotronOptions } from './components/jumbotron-options';
 
 export const Jumbotron = (props) => {
+
   const {
     attributes,
   } = props;

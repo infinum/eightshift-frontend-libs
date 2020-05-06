@@ -1,26 +1,24 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 
-export const ButtonEditor = (props) => {
+export const ButtonEditor = ({ blockClass, button }) => {
   const {
-    blockClass,
-    button: {
-      title,
-      styleSize,
-      styleColor,
-      styleSizeWidth,
-    },
-  } = props;
+    title,
+    styleSize,
+    styleColor,
+    styleSizeWidth,
+  } = button;
 
   const componentClass = 'btn';
 
-  const buttonClass = `
-    ${componentClass}
-    ${componentClass}__size--${styleSize}
-    ${componentClass}__color--${styleColor}
-    ${componentClass}__size-width--${styleSizeWidth}
-    ${blockClass}__btn
-  `;
+  const buttonClass = classnames(
+    componentClass,
+    `${componentClass}__size--${styleSize}`,
+    `${componentClass}__color--${styleColor}`,
+    `${componentClass}__size-width--${styleSizeWidth}`,
+    `${blockClass}__btn`,
+  );
 
   return (
     <Fragment>

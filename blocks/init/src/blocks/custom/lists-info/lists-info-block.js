@@ -5,6 +5,7 @@ import manifest from './manifest.json';
 import { ListsInfoEditor } from './components/lists-info-editor';
 
 export const ListsInfo = (props) => {
+
   const {
     attributes,
   } = props;

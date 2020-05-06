@@ -7,6 +7,7 @@ import { LinkEditor } from './components/link-editor';
 import { LinkOptions } from './components/link-options';
 
 export const Link = (props) => {
+
   const {
     attributes,
   } = props;

@@ -3,22 +3,23 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { HeadingOptions as HeadingOptionsComponent } from '../../../components/heading/components/heading-options';
 
-export const HeadingOptions = (props) => {
+export const HeadingOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      heading,
-    },
-    actions: {
-      onChangeHeadingStyleSize,
-      onChangeHeadingStyleColor,
-    },
-  } = props;
+    heading,
+  } = attributes;
+
+  const {
+    onChangeHeadingStyleSize,
+    onChangeHeadingStyleColor,
+  } = actions;
+
+  const headingObject = (typeof heading === 'undefined') || heading;
 
   return (
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
 
       <HeadingOptionsComponent
-        heading={(typeof heading === 'undefined') || heading}
+        heading={headingObject}
         onChangeStyleColor={onChangeHeadingStyleColor}
         onChangeStyleSize={onChangeHeadingStyleSize}
       />

@@ -3,15 +3,14 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 
-export const DividerOptions = (props) => {
+export const DividerOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      color,
-    },
-    actions: {
-      onChangeColor,
-    },
-  } = props;
+    color,
+  } = attributes;
+
+  const {
+    onChangeColor,
+  } = actions;
 
   return (
     <PanelBody title={__('Divider Details', 'eightshift-boilerplate')}>

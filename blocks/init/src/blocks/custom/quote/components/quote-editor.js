@@ -2,18 +2,17 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-export const QuoteEditor = (props) => {
+export const QuoteEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      author,
-      content,
-    },
-    actions: {
-      onChangeAuthor,
-      onChangeContent,
-    },
-  } = props;
+    blockClass,
+    author,
+    content,
+  } = attributes;
+
+  const {
+    onChangeAuthor,
+    onChangeContent,
+  } = actions;
 
   return (
     <div className={blockClass}>

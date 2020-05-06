@@ -16,8 +16,7 @@
       "content": "Paragraph Content",
       "styleAlign": "left",
       "styleColor": "primary",
-      "styleSize": "default",
-      "removeStyle": false
+      "styleSize": "default"
     }
   },
   "attributes": {
@@ -27,8 +26,7 @@
         "content": "",
         "styleAlign": "left",
         "styleColor": "primary",
-        "styleSize": "default",
-        "removeStyle": false
+        "styleSize": "default"
       },
       "items": {
         "type": "object"

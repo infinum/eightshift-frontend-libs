@@ -30,7 +30,7 @@ export const HeadingOptions = (props) => {
               {__('Heading Color', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Change Heading color.', 'eightshift-boilerplate')}
+          help={__('Change Heading color', 'eightshift-boilerplate')}
           value={styleColor}
           onChange={onChangeStyleColor}
         />

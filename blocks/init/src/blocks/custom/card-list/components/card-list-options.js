@@ -8,22 +8,23 @@ export const cardListMediaPosition = [
   { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
 ];
 
-export const CardListOptions = (props) => {
+export const CardListOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      mediaPosition,
-      button,
-    },
-    actions: {
-      onChangeMediaPosition,
-      onChangeButtonUrl,
-      onChangeButtonStyleSize,
-      onChangeButtonStyleSizeWidth,
-      onChangeButtonStyleColor,
-      onChangeButtonId,
-      onChangeButtonTitle,
-    },
-  } = props;
+    mediaPosition,
+    button,
+  } = attributes;
+
+  const {
+    onChangeMediaPosition,
+    onChangeButtonUrl,
+    onChangeButtonStyleSize,
+    onChangeButtonStyleSizeWidth,
+    onChangeButtonStyleColor,
+    onChangeButtonId,
+    onChangeButtonTitle,
+  } = actions;
+
+  const buttonObject = (typeof button === 'undefined') || button;
 
   return (
     <PanelBody title={__('Card List Details', 'eightshift-boilerplate')}>
@@ -38,7 +39,7 @@ export const CardListOptions = (props) => {
       }
 
       <ButtonOptions
-        button={(typeof button === 'undefined') || button}
+        button={buttonObject}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}

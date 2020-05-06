@@ -4,6 +4,7 @@ import manifest from './manifest.json';
 import { VideoEditor } from './components/video-editor';
 
 export const Video = (props) => {
+
   const {
     attributes,
   } = props;

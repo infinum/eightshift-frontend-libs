@@ -4,6 +4,7 @@ import manifest from './manifest.json';
 import { CardsListEditor } from './components/cards-list-editor';
 
 export const CardsList = (props) => {
+
   const {
     attributes,
   } = props;

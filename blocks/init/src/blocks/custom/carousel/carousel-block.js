@@ -7,6 +7,7 @@ import { CarouselOptions } from './components/carousel-options';
 import { CarouselEditor } from './components/carousel-editor';
 
 export const Carousel = (props) => {
+
   const {
     attributes,
   } = props;

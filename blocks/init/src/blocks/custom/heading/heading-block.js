@@ -8,6 +8,7 @@ import { HeadingOptions } from './components/heading-options';
 import { HeadingToolbar } from './components/heading-toolbar';
 
 export const Heading = (props) => {
+
   const {
     attributes,
   } = props;

@@ -1,20 +1,21 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { HeadingToolbar as HeadingToolbarComponent } from '../../../components/heading/components/heading-toolbar';
 
-export const HeadingToolbar = (props) => {
+export const HeadingToolbar = ({ attributes, actions }) => {
   const {
-    attributes: {
-      heading,
-    },
-    actions: {
-      onChangeHeadingLevel,
-      onChangeHeadingStyleAlign,
-    },
-  } = props;
+    heading,
+  } = attributes;
+
+  const {
+    onChangeHeadingLevel,
+    onChangeHeadingStyleAlign,
+  } = actions;
+
+  const headingObject = (typeof heading === 'undefined') || heading;
 
   return (
     <HeadingToolbarComponent
-      heading={(typeof heading === 'undefined') || heading}
+      heading={headingObject}
       onChangeLevel={onChangeHeadingLevel}
       onChangeStyleAlign={onChangeHeadingStyleAlign}
     />

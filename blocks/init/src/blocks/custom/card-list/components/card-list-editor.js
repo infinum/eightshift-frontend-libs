@@ -1,37 +1,35 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { ButtonEditor } from '../../../components/button/components/button-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 
-export const CardListEditor = (props) => {
+export const CardListEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      heading,
-      paragraph,
-      mediaPosition,
-      media,
-      button,
-    },
-    actions: {
-      onChangeHeading,
-      onChangeParagraph,
-      onChangeMedia,
-    },
-  } = props;
+    blockClass,
+    heading,
+    paragraph,
+    mediaPosition,
+    media,
+    button,
+  } = attributes;
 
-  const componentClass = `
-    ${blockClass}
-    ${blockClass}__media-position--${mediaPosition}
-  `;
+  const {
+    onChangeHeading,
+    onChangeParagraph,
+    onChangeMedia,
+  } = actions;
+
+  const mediaObject = (typeof media === 'undefined') || media;
+  const buttonObject = (typeof button === 'undefined') || button;
 
   return (
-    <div className={componentClass}>
+    <div className={classnames(blockClass, `${blockClass}__media-position--${mediaPosition}`)}>
       <div className={`${blockClass}__media`}>
         <ImageEditor
           blockClass={blockClass}
-          media={(typeof media === 'undefined') || media}
+          media={mediaObject}
           onChangeMedia={onChangeMedia}
         />
       </div>
@@ -52,7 +50,7 @@ export const CardListEditor = (props) => {
         </div>
         <ButtonEditor
           blockClass={blockClass}
-          button={(typeof button === 'undefined') || button}
+          button={buttonObject}
         />
       </div>
     </div>

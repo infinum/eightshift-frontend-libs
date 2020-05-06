@@ -14,19 +14,13 @@ if ( empty( $media['url'] ) ) {
   return;
 }
 
-$component_class = 'video';
-$block_class     = $attributes['blockClass'] ?? '';
-
-$video_class = "
-  {$component_class}
-  {$block_class}__video
-";
+$block_class = $attributes['blockClass'] ?? '';
 
 ?>
 
 <video
   src="<?php echo esc_url( $media['url'] ); ?>"
-  class="<?php echo esc_attr( $video_class ); ?>"
+  class="<?php echo esc_attr( "video {$block_class}__video" ); ?>"
   autoplay
   loop
   muted

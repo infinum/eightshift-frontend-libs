@@ -8,6 +8,7 @@ import { ExampleOptions } from './components/example-options';
 import { ExampleToolbar } from './components/example-toolbar';
 
 export const Example = (props) => {
+
   const {
     attributes,
   } = props;

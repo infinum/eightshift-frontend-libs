@@ -1,19 +1,20 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { ParagraphToolbar as ParagraphToolbarComponent } from '../../../components/paragraph/components/paragraph-toolbar';
 
-export const ParagraphToolbar = (props) => {
+export const ParagraphToolbar = ({ attributes, actions }) => {
   const {
-    attributes: {
-      paragraph,
-    },
-    actions: {
-      onChangeParagraphStyleAlign,
-    },
-  } = props;
+    paragraph,
+  } = attributes;
+
+  const {
+    onChangeParagraphStyleAlign,
+  } = actions;
+
+  const paragraphObject = (typeof paragraph === 'undefined') || paragraph;
 
   return (
     <ParagraphToolbarComponent
-      paragraph={(typeof paragraph === 'undefined') || paragraph}
+      paragraph={paragraphObject}
       onChangeStyleAlign={onChangeParagraphStyleAlign}
     />
   );

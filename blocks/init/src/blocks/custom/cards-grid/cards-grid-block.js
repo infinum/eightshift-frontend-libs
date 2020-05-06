@@ -4,6 +4,7 @@ import manifest from './manifest.json';
 import { CardsGridEditor } from './components/cards-grid-editor';
 
 export const CardsGrid = (props) => {
+
   const {
     attributes,
   } = props;

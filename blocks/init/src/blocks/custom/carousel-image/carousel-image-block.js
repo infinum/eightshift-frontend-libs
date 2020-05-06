@@ -5,6 +5,7 @@ import { CarouselImageEditor } from './components/carousel-image-editor';
 import './hooks';
 
 export const CarouselImage = (props) => {
+
   const {
     attributes,
   } = props;
