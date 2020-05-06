@@ -44,7 +44,7 @@ export const LinkOptions = (props) => {
           }
           help={__('Change Link color.', 'eightshift-boilerplate')}
           value={styleColor}
-          colors={linkColors}
+          colors={linkColors()}
           onChange={onChangeStyleColor}
         />
       }

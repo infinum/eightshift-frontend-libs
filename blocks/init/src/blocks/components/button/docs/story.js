@@ -63,6 +63,7 @@ export const styleSize = () => (
           }}
         />
         <br />
+        <br />
       </Fragment>
     ))}
   </Fragment>
@@ -81,6 +82,7 @@ export const styleWidth = () => (
           }}
         />
         <br />
+        <br />
       </Fragment>
     ))}
   </Fragment>
@@ -98,6 +100,7 @@ export const styleColor = () => (
             styleColor: values.slug,
           }}
         />
+        <br />
         <br />
       </Fragment>
     ))}

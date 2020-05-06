@@ -77,7 +77,7 @@ export const ButtonOptions = (props) => {
           }
           help={__('Change Button Background color.', 'eightshift-boilerplate')}
           value={styleColor}
-          colors={buttonColors}
+          colors={buttonColors()}
           onChange={onChangeStyleColor}
         />
       }
