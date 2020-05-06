@@ -6,12 +6,11 @@ import { Button, Dashicon } from '@wordpress/components';
 
 export const ImageEditor = (props) => {
   const {
-    url,
-    accept = 'image/*',
-    allowedTypes = ['image'],
-  } = props.media;
-
-  const {
+    media: {
+      url,
+      accept = 'image/*',
+      allowedTypes = ['image'],
+    },
     blockClass,
     onChangeMedia,
   } = props;

@@ -11,11 +11,10 @@ export const headingSizes = [
 
 export const HeadingOptions = (props) => {
   const {
-    styleColor,
-    styleSize,
-  } = props.heading;
-
-  const {
+    heading: {
+      styleColor,
+      styleSize,
+    },
     onChangeStyleColor,
     onChangeStyleSize,
   } = props;

@@ -5,13 +5,12 @@ import { RichText } from '@wordpress/block-editor';
 
 export const ParagraphEditor = (props) => {
   const {
-    content,
-    styleAlign,
-    styleColor,
-    styleSize,
-  } = props.paragraph;
-
-  const {
+    paragraph: {
+      content,
+      styleAlign,
+      styleColor,
+      styleSize,
+    },
     blockClass,
     onChangeContent,
   } = props;

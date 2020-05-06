@@ -20,12 +20,11 @@ export const linkColors = () => {
 
 export const LinkOptions = (props) => {
   const {
-    url,
-    styleColor,
-    isAnchor,
-  } = props.link;
-
-  const {
+    link: {
+      url,
+      styleColor,
+      isAnchor,
+    },
     onChangeUrl,
     onChangeStyleColor,
     onChangeIsAnchor,

@@ -30,15 +30,14 @@ export const buttonColors = () => {
 
 export const ButtonOptions = (props) => {
   const {
-    title,
-    url,
-    styleSize,
-    styleColor,
-    styleSizeWidth,
-    id,
-  } = props.button;
-
-  const {
+    button: {
+      title,
+      url,
+      styleSize,
+      styleColor,
+      styleSizeWidth,
+      id,
+    },
     onChangeTitle,
     onChangeUrl,
     onChangeStyleSize,

@@ -5,11 +5,10 @@ import { RichText } from '@wordpress/block-editor';
 
 export const LinkEditor = (props) => {
   const {
-    title,
-    styleColor,
-  } = props.link;
-
-  const {
+    link: {
+      title,
+      styleColor,
+    },
     blockClass,
     onChangeTitle,
   } = props;

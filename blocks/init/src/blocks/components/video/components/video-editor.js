@@ -6,12 +6,11 @@ import { Button, Dashicon } from '@wordpress/components';
 
 export const VideoEditor = (props) => {
   const {
-    url,
-    accept = 'video/*',
-    allowedTypes = ['video'],
-  } = props.media;
-
-  const {
+    media: {
+      url,
+      accept = 'video/*',
+      allowedTypes = ['video'],
+    },
     blockClass,
     onChangeMedia,
   } = props;

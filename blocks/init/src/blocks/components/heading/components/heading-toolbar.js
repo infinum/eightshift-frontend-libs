@@ -5,11 +5,10 @@ import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
 
 export const HeadingToolbar = (props) => {
   const {
-    level,
-    styleAlign,
-  } = props.heading;
-
-  const {
+    heading: {
+      level,
+      styleAlign,
+    },
     onChangeLevel,
     onChangeStyleAlign,
   } = props;

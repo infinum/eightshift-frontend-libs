@@ -2,40 +2,39 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 
 export const WrapperEditor = (props) => {
   const {
-    id,
-    styleBackgroundColor,
-
-    styleContentWidthLarge,
-    styleContentOffsetLarge,
-    styleContainerWidthLarge,
-    styleContainerSpacingLarge,
-    styleSpacingTopLarge,
-    styleSpacingBottomLarge,
-
-    styleContentWidthDesktop,
-    styleContentOffsetDesktop,
-    styleContainerWidthDesktop,
-    styleContainerSpacingDesktop,
-    styleSpacingTopDesktop,
-    styleSpacingBottomDesktop,
-
-    styleContentWidthTablet,
-    styleContentOffsetTablet,
-    styleContainerWidthTablet,
-    styleContainerSpacingTablet,
-    styleSpacingTopTablet,
-    styleSpacingBottomTablet,
-
-    styleContentWidthMobile,
-    styleContentOffsetMobile,
-    styleContainerWidthMobile,
-    styleContainerSpacingMobile,
-    styleSpacingTopMobile,
-    styleSpacingBottomMobile,
-  } = props.attributes;
-
-  const {
     children,
+    attributes: {
+      id,
+      styleBackgroundColor,
+  
+      styleContentWidthLarge,
+      styleContentOffsetLarge,
+      styleContainerWidthLarge,
+      styleContainerSpacingLarge,
+      styleSpacingTopLarge,
+      styleSpacingBottomLarge,
+  
+      styleContentWidthDesktop,
+      styleContentOffsetDesktop,
+      styleContainerWidthDesktop,
+      styleContainerSpacingDesktop,
+      styleSpacingTopDesktop,
+      styleSpacingBottomDesktop,
+  
+      styleContentWidthTablet,
+      styleContentOffsetTablet,
+      styleContainerWidthTablet,
+      styleContainerSpacingTablet,
+      styleSpacingTopTablet,
+      styleSpacingBottomTablet,
+  
+      styleContentWidthMobile,
+      styleContentOffsetMobile,
+      styleContainerWidthMobile,
+      styleContainerSpacingMobile,
+      styleSpacingTopMobile,
+      styleSpacingBottomMobile,
+    },
   } = props;
 
   const wrapperMainClass = 'wrapper';

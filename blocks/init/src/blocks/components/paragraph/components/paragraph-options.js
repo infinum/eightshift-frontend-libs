@@ -11,11 +11,10 @@ export const paragraphSizes = [
 
 export const ParagraphOptions = (props) => {
   const {
-    styleColor,
-    styleSize,
-  } = props.paragraph;
-
-  const {
+    paragraph: {
+      styleColor,
+      styleSize,
+    },
     onChangeStyleColor,
     onChangeStyleSize,
   } = props;

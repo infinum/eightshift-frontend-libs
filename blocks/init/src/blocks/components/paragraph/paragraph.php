@@ -22,13 +22,13 @@ $style_align     = isset( $paragraph['styleAlign'] ) ? "{$component_class}__alig
 $style_color     = isset( $paragraph['styleColor'] ) ? "{$component_class}__color--{$paragraph['styleColor']}" : '';
 $style_size      = isset( $paragraph['styleSize'] ) ? "{$component_class}__size--{$paragraph['styleSize']}" : '';
 
-$paragraph_class = "
-  {$component_class}
-  {$style_color}
-  {$style_align}
-  {$style_size}
-  {$block_class}__paragraph
-";
+$paragraph_class = Components::classnames([
+  $component_class,
+  $style_color,
+  $style_align,
+  $style_size,
+  "{$block_class}__paragraph"
+]);
 
 ?>
 
