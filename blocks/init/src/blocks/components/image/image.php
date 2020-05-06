@@ -22,7 +22,7 @@ $media = \wp_get_attachment_image(
   $media['id'],
   $size,
   '',
-  [ 'class' => "{$image} {$block_class}__img" ]
+  [ 'class' => "image {$block_class}__img" ]
 );
 
 echo wp_kses_post( $media );
