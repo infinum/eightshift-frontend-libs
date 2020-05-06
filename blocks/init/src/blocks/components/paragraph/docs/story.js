@@ -19,7 +19,6 @@ const editorProps = {
     styleAlign: 'left',
     styleColor: 'primary',
     styleSize: 'default',
-    removeStyle: false,
   },
   onChangeContent: () => {},
 };
@@ -29,7 +28,6 @@ const optionsProps = {
     content: 'Paragraph Content',
     styleColor: 'primary',
     styleSize: 'default',
-    removeStyle: false,
   },
   onChangeStyleColor: () => {},
   onChangeStyleSize: () => {},
@@ -39,7 +37,6 @@ const toolbarProps = {
   paragraph: {
     content: 'Paragraph Content',
     styleAlign: 'left',
-    removeStyle: false,
   },
   onChangeStyleAlign: () => {},
 };
@@ -120,12 +117,3 @@ export const styleColor = () => {
     </Fragment>
   );
 };
-
-export const removeStyle = () => (
-  <ParagraphEditor
-    paragraph={{
-      ...editorProps.paragraph,
-      removeStyle: true,
-    }}
-  />
-);
