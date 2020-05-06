@@ -5,7 +5,6 @@
  *
  * Usage: `WordPress admin screen`.
  *
- * @since 1.0.0
  */
 
 // Load Styles

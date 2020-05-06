@@ -3,7 +3,6 @@
 /**
  * File holding webpack helpers used to create project webpack build setup.
  *
- * @since 2.0.0
  */
 
 const path = require('path');
@@ -18,7 +17,6 @@ const path = require('path');
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
- * @since 2.0.0
  */
 function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/blocks/manifest.json') {
 

@@ -4,7 +4,6 @@
  *
  * @package Eightshift_Boilerplate\Blocks
  *
- * @since 1.0.0
  */
 
 ?>

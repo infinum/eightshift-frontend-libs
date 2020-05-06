@@ -26,9 +26,6 @@ import { ucfirst } from './ucfirst';
  * @param {string} key Came of the property in manifes.
  * @param {object} propsAttributes Current atributes when this function executes.
  *
- * @since 1.0.5 Ucfirst path hotfix.
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 
 const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) => {
@@ -67,9 +64,6 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  * @param {object} setAttributes Method for saving atributes.
  * @param {string} key Came of the property in manifes.
  *
- * @since 1.0.5 Ucfirst path hotfix.
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 
 const singlePropsAction = (setAttributes, key) => {
@@ -108,9 +102,6 @@ const singlePropsAction = (setAttributes, key) => {
  * @param {object} setAttributes Method for saving atributes.
  * @param {string} key Came of the property in manifest.
  *
- * @since 1.0.5 Ucfirst path hotfix.
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 
 const mediaPropsAction = (setAttributes, key) => {
@@ -142,9 +133,6 @@ const mediaPropsAction = (setAttributes, key) => {
  * @param {object} props Block props so we can get `setAttributes` method.
  * @param {object} manifest Block manifest.json so we can get all attributes.
  *
- * @since 1.0.5 Ucfirst path hotfix.
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 export const getActions = (props, manifest) => {
 

@@ -10,7 +10,7 @@
  *
  * Usage: `WordPress admin editor`.
  *
- * @since 1.0.0
+ 
  */
 
 import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor';

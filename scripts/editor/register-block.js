@@ -10,8 +10,6 @@ import { withWrapper } from './with-wrapper';
  * @param {function} edit Edit callback function.
  * @param {function} wrapper Wrapper callback function.
  *
- * @since 1.0.4 Moving to scripts folder.
- * @since 1.0.0
  */
 export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) => {
   const {

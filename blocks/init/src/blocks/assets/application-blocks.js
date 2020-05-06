@@ -4,7 +4,7 @@
  *
  * Usage: `WordPress frontend screen` and `WordPress admin editor`.
  *
- * @since 1.0.0
+ 
  */
 
 // Styles.

@@ -1,7 +1,6 @@
 /**
  * Project config used only in development and production build.
  *
- * @since 2.0.0
  */
 
 const fs = require('fs');
