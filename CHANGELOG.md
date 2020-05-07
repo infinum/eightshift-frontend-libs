@@ -6,6 +6,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## Fixed
+* Fixed issue #96 - Plugin name / description now correctly renamed during setup
+* Fixed issue #116 - Copy storybook during setup
+* Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
+
 ## [3.2.0] - 2020-05-06
 
 ## Breaking change

@@ -23,6 +23,7 @@ const {
 const { searchReplace } = require('../search-replace');
 const { copyBlocks } = require('../blocks');
 const { copyAssets } = require('../assets');
+const { copyStorybook } = require('../storybook');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
@@ -67,6 +68,12 @@ exports.handler = async (argv) => {
   await installStep({
     describe: `${step}. Installing blocks`,
     thisHappens: copyBlocks(projectPath),
+  });
+  step++;
+
+  await installStep({
+    describe: `${step}. Setting up storybook`,
+    thisHappens: copyStorybook(projectPath),
   });
   step++;
 

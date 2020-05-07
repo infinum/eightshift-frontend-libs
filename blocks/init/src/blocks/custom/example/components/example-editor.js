@@ -14,7 +14,7 @@ export const ExampleEditor = ({ attributes, actions }) => {
 
   return (
     <RichText
-      placeholder={__('Add Content', 'eightshift-blocks')}
+      placeholder={__('Add Content', 'eightshift-boilerplate')}
       className={blockClass}
       onChange={onChangeContent}
       value={content}
