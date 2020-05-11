@@ -12,7 +12,7 @@
   ],
   "example": {
     "postType": "posts",
-    "postNumber": 1,
+    "postNumber": 3,
     "postNames": [
       "Test Post",
       "Lorem Ipsum",
