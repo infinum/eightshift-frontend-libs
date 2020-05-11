@@ -1,7 +1,7 @@
 {
   "blockName": "featured-posts",
-  "title": "Featured Post",
-  "description" : "Block for selecting and displaying featured post",
+  "title": "Featured Posts",
+  "description" : "Block for selecting and displaying featured posts",
   "category": "eightshift",
   "icon": {
     "src": "format-aside"
@@ -20,16 +20,28 @@
     ],
     "posts": [
       {
-        "title": "Test Post",
-        "excerpt": "Test Post excerpt"
+        "title": {
+          "rendered": "Test Post"
+        },
+        "excerpt": {
+          "rendered": "Test Post excerpt"
+        }
       },
       {
-        "title": "Lorem Ipsum",
-        "excerpt": "Lorem Ipsum excerpt"
+        "title": {
+          "rendered": "Lorem Ipsum"
+        },
+        "excerpt": {
+          "rendered": "Lorem Ipsum excerpt"
+        }
       },
       {
-        "title": "Hello World",
-        "excerpt": "Hello World excerpt"
+        "title": {
+          "rendered": "Hello World"
+        },
+        "excerpt": {
+          "rendered": "Hello World excerpt"
+        }
       }
     ]
   },
