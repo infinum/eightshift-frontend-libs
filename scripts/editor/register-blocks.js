@@ -2,10 +2,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import { registerBlock } from './register-block';
 
 /**
- * Filter array of javascript paths and get the correct edit component.
+ * Filter array of JavaScript paths and get the correct edit component.
  *
  * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all javascript files in a block got from require.context.
+ * @param {function} paths Function of all JavaScript files in a block got from require.context.
  *
  */
 export const getBlockEditComponent = (blockName, paths) => {
@@ -33,10 +33,10 @@ export const getBlockEditComponent = (blockName, paths) => {
 };
 
 /**
- * Filter array of javascript paths and get the correct transforms component.
+ * Filter array of JavaScript paths and get the correct transforms component.
  *
  * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all javascript files in a block got from require.context.
+ * @param {function} paths Function of all JavaScript files in a block got from require.context.
  *
  */
 export const getBlockGenericComponent = (blockName, paths, fileName) => {
@@ -61,11 +61,11 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  * Due to restrictions in dynamic import using dynamic names all block are register using require.context.
  *
  * @param {function} blocksManifests Must provide require.context for all blocks manifest.json-s.
- * @param {function} blocksFilePaths Must provide require.context for all blocks javascript files (unable to add only block edit file due to dynamic naming).
+ * @param {function} blocksFilePaths Must provide require.context for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).
  * @param {object} blocksSettings Must provide global blocks setting manifest.json.
  * @param {function} wrapperComponent Wrapper callback function.
- * @param {function} transformsPaths Function of transforms javascript files in a block got from require.context.
- * @param {function} iconsPath Function of icons javascript files in a block got from require.context.
+ * @param {function} transformsPaths Function of transforms JavaScript files in a block got from require.context.
+ * @param {function} iconsPath Function of icons JavaScript files in a block got from require.context.
  *
  */
 export const registerBlocks = (blocksManifests, blocksFilePaths, blocksSettings, wrapperComponent = null, transformsPaths = null, iconsPath = null) => {
