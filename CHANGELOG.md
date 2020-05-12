@@ -10,6 +10,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Option to add [transforms](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#transforms-optional) inside manifest.json file.
 * Option to add custom [svg](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#icon-optional) icon inside manifest.json file.
 
+## Fixed
+* Fixed issue #96 - Plugin name / description now correctly renamed during setup
+* Fixed issue #116 - Copy storybook during setup
+* Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
+
 ## [3.2.0] - 2020-05-06
 
 ## Breaking change
