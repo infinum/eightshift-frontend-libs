@@ -153,7 +153,6 @@ export const getActions = (props, manifest) => {
       }
 
       // Switch between property types default action, multiple props actions and media actions.
-      // if (attributes[key].hasOwnProperty('multipleProps')) {
       if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
         if (attributes[key].hasOwnProperty('mediaAction')) {
           actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
