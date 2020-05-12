@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import { ButtonOptions } from '../../../components/button/components/button-options';
 
 export const cardListMediaPosition = [
@@ -10,12 +10,10 @@ export const cardListMediaPosition = [
 
 export const CardListOptions = ({ attributes, actions }) => {
   const {
-    mediaPosition,
     button,
   } = attributes;
 
   const {
-    onChangeMediaPosition,
     onChangeButtonUrl,
     onChangeButtonStyleSize,
     onChangeButtonStyleSizeWidth,
@@ -29,15 +27,6 @@ export const CardListOptions = ({ attributes, actions }) => {
   return (
     <PanelBody title={__('Card List Details', 'eightshift-boilerplate')}>
 
-      {onChangeMediaPosition &&
-        <SelectControl
-          label={__('Media Position', 'eightshift-boilerplate')}
-          value={mediaPosition}
-          options={cardListMediaPosition}
-          onChange={onChangeMediaPosition}
-        />
-      }
-
       <ButtonOptions
         button={buttonObject}
         onChangeUrl={onChangeButtonUrl}
@@ -47,6 +36,7 @@ export const CardListOptions = ({ attributes, actions }) => {
         onChangeId={onChangeButtonId}
         onChangeTitle={onChangeButtonTitle}
       />
+
     </PanelBody>
   );
 };
