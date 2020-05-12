@@ -1,12 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 
-export const FeaturedPostsEditor = (props) => {
+export const FeaturedPostsEditor = ({ attributes }) => {
   const {
-    attributes: {
-      posts,
-    },
-  } = props;
+    posts,
+  } = attributes;
 
   return (
     <Fragment>

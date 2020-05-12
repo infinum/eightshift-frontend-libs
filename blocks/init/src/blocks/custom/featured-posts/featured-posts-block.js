@@ -2,9 +2,9 @@ import React, { useState } from 'react'; // eslint-disable-line no-unused-vars
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { Spinner } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import apiFetch from '@wordpress/api-fetch'; // eslint-disable-line import/no-extraneous-dependencies
-
 import manifest from './manifest.json';
 import { FeaturedPostsEditor } from './components/featured-posts-editor';
 import { FeaturedPostsOptions } from './components/featured-posts-options';
@@ -48,18 +48,16 @@ export const FeaturedPosts = (props) => {
     <Fragment>
       <InspectorControls>
         <FeaturedPostsOptions
-          attributes={attributes}
+          attributes={{ ...attributes, postResults }}
           actions={actions}
-          postResults={postResults}
         />
       </InspectorControls>
 
       {!posts.length ?
         <Fragment>
-          Click to select posts
+          {__('Click to select posts', 'eightshift-boilerplate')}
           <Spinner />
         </Fragment> :
-
         <FeaturedPostsEditor
           attributes={attributes}
           actions={actions}

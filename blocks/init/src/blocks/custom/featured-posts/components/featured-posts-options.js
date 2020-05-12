@@ -3,24 +3,23 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl, FormTokenField, RangeControl } from '@wordpress/components';
 
 export const postTypeOptions = [
-  { label: __('Posts', 'eightshift-blocks'), value: 'posts' },
+  { label: __('Posts', 'eightshift-boilerplate'), value: 'posts' },
 ];
 
-export const FeaturedPostsOptions = (props) => {
+export const FeaturedPostsOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      postNames,
-      postNumber,
-      postType,
-    },
-    actions: {
-      onChangePostType,
-      onChangePostNumber,
-      onChangePostInput,
-      onChangePost,
-    },
+    postNames,
+    postNumber,
+    postType,
     postResults,
-  } = props;
+  } = attributes;
+
+  const {
+    onChangePostType,
+    onChangePostNumber,
+    onChangePostInput,
+    onChangePost,
+  } = actions;
 
   let suggestions = [];
 
@@ -31,12 +30,12 @@ export const FeaturedPostsOptions = (props) => {
   }
 
   return (
-    <PanelBody title={__('Featured Post', 'eightshift-blocks')}>
+    <PanelBody title={__('Featured Post', 'eightshift-boilerplate')}>
 
       {onChangePostNumber &&
         <RangeControl
           value={postNumber}
-          label={__('Number of posts to show', 'eightshift-blocks')}
+          label={__('Number of posts to show', 'eightshift-boilerplate')}
           onChange={onChangePostNumber}
           min={1}
           max={10}
@@ -45,7 +44,7 @@ export const FeaturedPostsOptions = (props) => {
 
       {onChangePostType &&
         <SelectControl
-          label={__('Post Type', 'eightshift-blocks')}
+          label={__('Post Type', 'eightshift-boilerplate')}
           value={postType}
           options={postTypeOptions}
           onChange={onChangePostType}
@@ -59,7 +58,7 @@ export const FeaturedPostsOptions = (props) => {
           onInputChange={onChangePostInput}
           onChange={onChangePost}
           maxLength={postNumber}
-          label={__('Select posts', 'eightshift-blocks')}
+          label={__('Select posts', 'eightshift-boilerplate')}
         />
       }
     </PanelBody>
