@@ -75,13 +75,22 @@ export const blockJsClass = (name) => `js-block-${name}`;
  */
 export const blockInnerBlocks = (blocks, count) => {
   const output = [];
+  let internalBlocks = [];
+
+  if (!blocks.length) {
+    internalBlocks = [blocks];
+  } else {
+    internalBlocks = blocks;
+  }
 
   for (let i = 1; i <= count; i++) {
-    output.push({
-      ...blocks.props.props.blocks[0],
-      clientId: id(),
-      isValid: true,
-    });
+    for (const block of internalBlocks) {
+      output.push({
+        ...block.props.props.blocks[0],
+        clientId: id(),
+        isValid: true,
+      });
+    }
   }
 
   return output;
