@@ -11,10 +11,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Fixed issue #116 - Copy storybook during setup
 * Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
+## Added
+* Featured Posts - block that enables selecting specific posts to display on page
+
 ## [3.2.0] - 2020-05-06
 
 ## Breaking change
-There has been some breaking changes in this release. 
+There has been some breaking changes in this release.
 Follow this migration script in order for you project to work correctly with the new changes.
 
 * We have removed all Webpack aliases, to fix this search and replace this strings inside you project:
