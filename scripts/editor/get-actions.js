@@ -91,7 +91,6 @@ const singlePropsAction = (setAttributes, key) => {
  *     "default": {
  *       "id": 0,
  *       "url": "",
- *       "title": ""
  *     },
  *     "mediaAction": true
  *   }
@@ -114,7 +113,6 @@ const mediaPropsAction = (setAttributes, key) => {
       [key]: {
         id: value.id,
         url: value.url,
-        title: value.title,
       },
     });
   };
@@ -155,10 +153,13 @@ export const getActions = (props, manifest) => {
       }
 
       // Switch between property types default action, multiple props actions and media actions.
-      if (attributes[key].hasOwnProperty('multipleProps')) {
-        actionsOutput = { ...actionsOutput, ...multiplePropsActions(setAttributes, attributes, key, propsAttributes) };
-      } else if (attributes[key].hasOwnProperty('mediaAction')) {
-        actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
+      // if (attributes[key].hasOwnProperty('multipleProps')) {
+      if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
+        if (attributes[key].hasOwnProperty('mediaAction')) {
+          actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
+        } else {
+          actionsOutput = { ...actionsOutput, ...multiplePropsActions(setAttributes, attributes, key, propsAttributes) };
+        }
       } else {
         actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
       }
