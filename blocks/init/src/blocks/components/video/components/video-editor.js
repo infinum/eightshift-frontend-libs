@@ -15,25 +15,12 @@ export const VideoEditor = (props) => {
     onChangeMedia,
   } = props;
 
-  const removeMedia = () => {
-    onChangeMedia({});
-  };
-
   return (
     <Fragment>
       {url ?
-        <Fragment>
-          <Button
-            isSecondary
-            onClick={removeMedia}
-            className={'media-remove'}
-          >
-            <Dashicon icon="trash" />
-          </Button>
-          <video className={classnames('video', `${blockClass}__video`)} muted>
-            <source src={url} type="video/mp4" />
-          </video>
-        </Fragment> :
+        <video className={classnames('video', `${blockClass}__video`)} muted>
+          <source src={url} type="video/mp4" />
+        </video> :
         <MediaPlaceholder
           icon="format-image"
           onSelect={onChangeMedia}
