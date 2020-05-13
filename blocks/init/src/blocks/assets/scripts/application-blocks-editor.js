@@ -23,6 +23,8 @@ registerBlocks(
   require.context('./../../custom', true, /-block.js$/),
   blocksSettings,
   Wrapper,
+  require.context('./../../custom', true, /transforms.js$/),
+  require.context('./../../custom', true, /icons.js$/),
 );
 
 // Find all blocks hooks require hooks index.js inside it.
