@@ -6,22 +6,26 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.2.1] - 2020-05-13
+
 ### Added
 * Option to add [transforms](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#transforms-optional) inside manifest.json file.
 * Option to add custom [svg](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#icon-optional) icon inside manifest.json file.
+* Featured Posts - block that enables selecting specific posts to display on page
+* `font-face` - mixin for generating `@font-face` definitions
 
-## Fixed
+### Fixed
 * Fixed issue #96 - Plugin name / description now correctly renamed during setup
 * Fixed issue #116 - Copy storybook during setup
 * Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
-## Added
-* Featured Posts - block that enables selecting specific posts to display on page
-* `font-face` - mixin for generating `@font-face` definitions
+### Changes
+* Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
+
 
 ## [3.2.0] - 2020-05-06
 
-## Breaking change
+### Breaking change
 There has been some breaking changes in this release.
 Follow this migration script in order for you project to work correctly with the new changes.
 
@@ -46,7 +50,7 @@ Follow this migration script in order for you project to work correctly with the
   * `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'`       -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
 * Storybook scripts and helpers have been moved and restructured. To fix this just recopy all Storybook config files in your project. Files can be found [here](https://github.com/infinum/eightshift-frontend-libs/tree/master/blocks/init/storybook).
 
-## Added
+### Added
 * Missing registerBlocks import.
 * Scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link.
 * Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
@@ -60,12 +64,12 @@ Follow this migration script in order for you project to work correctly with the
 * `editor-color-palette` - Added a helper (using React hooks) for reading colors from WordPress's global store.
 * Added docs for `editor-color-palette`.
 
-## Changed
+### Changed
 - js loader to be able to handle components from the lib
 
 ## [3.1.1] - 2020-03-05
 
-## Fixed
+### Fixed
 * Wrong namespace in components helpers.
 * Removing unnecessary map keys for components style.
 * Fixing drawer styles.
@@ -78,10 +82,8 @@ Follow this migration script in order for you project to work correctly with the
 
 ## [3.1.0] - 2020-03-04
 
-## [Unreleased - modify setup script for components]
+### Added
 - Added copying of components used by header & footer
-
-## Added
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
 - Added `create-wp-project` tests run in travis.
@@ -101,33 +103,33 @@ Follow this migration script in order for you project to work correctly with the
 - Added component - `copyright`.
 - Added 2 possible modifiers to menu for media-specific display property.
 
-## Changed
+### Changed
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
 - Refactoring stories to simpler setup.
 - Linting fixes.
 - Removed jQuery from scroll-to-top component and carousel.
 
-## Removed
+### Removed
 - Removed hardcoded media-specific display properties
 
 ## [3.0.11] - 2020-01-29
 
-## Changed
+### Changed
 - Reverting override styles.
 
 ## [3.0.10] - 2020-01-29
 
-## Changed
+### Changed
 - Fixed externals import.
 
 ## [3.0.9] - 2020-01-29
 
-## Changed
+### Changed
 - Fixed lodash import.
 
 ## [3.0.8] - 2020-01-29
 
-## Changed
+### Changed
 - Added align support full to block registration
 - Added align full as default align for wrapper
 - Removed some of editor style overrides.
@@ -135,20 +137,20 @@ Follow this migration script in order for you project to work correctly with the
 
 ## [3.0.7] - 2020-01-27
 
-## Changed
+### Changed
 - Searched and replaced all instances of Eightshift with Eightshift.
 
 ## [3.0.6] - 2020-01-27
 
-## Removed
+### Removed
 - Removing docs to new repository
 
-## Changed
+### Changed
 - Fixing options to include storybook inside a project.
 
 ## [3.0.4] - 2020-01-23
 
-## Added
+### Added
 
 - Fixed theme setup script
 - Added setup script for plugin
@@ -158,13 +160,13 @@ Follow this migration script in order for you project to work correctly with the
 
 ## [3.0.3] - 2020-01-16
 
-## Added
+### Added
 - Added new divider block.
 - Added blocksAssetsPathConfig also as a default value in Webpack helper.
 - Added assetsPath and outputPath to default values in Webpack helper.
 - Added option to not load webpack entrypoint file if it doesn't exist.
 
-## Changed
+### Changed
 - Changed setup script for boilerplate.
 - Changed Webpack overrides key from object to array.
 - Changed CleanWebpackPlugin option to fix removing items in watch mode.
@@ -172,21 +174,21 @@ Follow this migration script in order for you project to work correctly with the
 - Changed documentation.
 - Changed setup script new structure.
 
-# Moved
+### Moved
 - Decoupled normal assets from blocks for extra flexibility.
 - Moved all src/blocks/layout/... to src/blocks/components.
 - Moved initial blocks setup to a separate folder.
 
 ## [3.0.2] - 2019-12-19
 
-## Changed
+### Changed
 - Fixing Scss build process
 - Updating webpack config
 - Updating readme and docs
 
 ## [3.0.1] - 2019-12-19
 
-## Changed
+### Changed
 - Added option to override any Webpack build options
 - Removed postcss
 - Changed readme docs for Webpack
@@ -274,6 +276,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.0.11...v3.1.0
