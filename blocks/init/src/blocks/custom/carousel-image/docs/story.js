@@ -17,3 +17,17 @@ export default {
 export const block = () => (
   <Gutenberg props={blockDetails(manifest, globalManifest)} />
 );
+
+export const block2 = () => (
+  <Gutenberg props={blockDetails({
+    ...manifest,
+    example: manifest.example2,
+  }, globalManifest)} />
+);
+
+export const block3 = () => (
+  <Gutenberg props={blockDetails({
+    ...manifest,
+    example: manifest.example3,
+  }, globalManifest)} />
+);
