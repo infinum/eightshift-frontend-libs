@@ -15,8 +15,7 @@ import { ucfirst } from './ucfirst';
  *         "type": "default",
  *         "weight": "normal",
  *         "family": "a1-serif"
- *       },
- *       "multipleProps": true
+ *       }
  *     }
  * }
  * Inside actions there will be `onChangeHeadingColor` where atribute name is `heading` and object property is `color`
