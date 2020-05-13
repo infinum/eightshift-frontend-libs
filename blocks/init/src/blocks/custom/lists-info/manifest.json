@@ -27,8 +27,7 @@
       },
       "items": {
         "type": "object"
-      },
-      "multipleProps": true
+      }
     },
     "title": {
       "type": "string"
