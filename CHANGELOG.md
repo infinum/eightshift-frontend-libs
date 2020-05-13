@@ -16,6 +16,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
 ## Added
+* Featured Posts - block that enables selecting specific posts to display on page
 * `font-face` - mixin for generating `@font-face` definitions
 
 ## [3.2.0] - 2020-05-06
