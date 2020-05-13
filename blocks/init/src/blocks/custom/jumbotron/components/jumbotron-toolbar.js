@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { BlockAlignmentToolbar, BlockVerticalAlignmentToolbar } from '@wordpress/block-editor';
+import { ImageToolbar as ImageToolbarComponent } from '../../../components/image/components/image-toolbar';
 
 export const jumbotronContentHorizontalPosition = [
   'left', 'center', 'right',
@@ -19,13 +20,17 @@ export const JumbotronToolbar = ({ attributes, actions }) => {
     contentHorizontalPosition,
     contentVerticalPosition,
     mediaHorizontalPosition,
+    media,
   } = attributes;
 
   const {
     onChangeContentHorizontalPosition,
     onChangeContentVerticalPosition,
     onChangeMediaHorizontalPosition,
+    onChangeMedia,
   } = actions;
+
+  const mediaObject = (typeof media === 'undefined') || media;
 
   return (
     <Fragment>
@@ -53,6 +58,11 @@ export const JumbotronToolbar = ({ attributes, actions }) => {
           controls={jumbotronMediaHorizontalPosition}
         />
       }
+
+      <ImageToolbarComponent
+        media={mediaObject}
+        onChangeMedia={onChangeMedia}
+      />
 
     </Fragment>
   );
