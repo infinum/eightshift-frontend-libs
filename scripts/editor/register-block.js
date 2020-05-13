@@ -21,7 +21,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     keywords,
     parent,
     transforms,
-    example,
+    example = {},
     styles,
     supports,
     hasInnerBlocks = false,

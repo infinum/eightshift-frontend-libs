@@ -1,0 +1,55 @@
+/// Mixin that creates `@font-face` definitions. This mixin should ideally be included in a separate SCSS partial and relatively 'early' in SCSS structure.
+///
+/// @param {string} $name - Name of the font family.
+/// @param {string} $path - Path to the font variation file (relative to the `public/` folder)
+/// @param {number} $weight [400] - Weight of the font variation.
+/// @param {string} $style [normal] - Style of the font variation.
+/// @param {string} $exts [woff2 woff] - File extensions of the font files.
+///
+/// @example
+///   @include font-face('FontName', 'FontName-Regular');
+///   @include font-face('FontName', 'FontName-Bold', 700);
+///   @include font-face('FontName2', 'FontName2', 500, normal, woff);
+///
+/// @output
+/// ```scss
+///   @font-face {
+///     font-family: "FontName";
+///     font-weight: 400;
+///     font-style: normal;
+///     src: url("FontName-Regular.woff2") format("woff2"), url("FontName-Regular.woff") format("woff");
+///     font-display: swap;
+///   }
+///
+///   @font-face {
+///     font-family: "FontName";
+///     font-weight: 700;
+///     font-style: normal;
+///     src: url("FontName-Bold.woff2") format("woff2"), url("FontName-Bold.woff") format("woff");
+///     font-display: swap;
+///   }
+///
+///   @font-face {
+///     font-family: "FontName2";
+///     font-weight: 500;
+///     font-style: normal;
+///     src: url("FontName2.woff") format("woff");
+///     font-display: swap;
+///   }
+/// ```
+
+@mixin font-face($name, $path, $weight: 400, $style: normal, $exts: woff2 woff) {
+  $src: null;
+
+  @each $ext in $exts {
+    $src: append($src, url('#{$path}.#{$ext}') format('#{$ext}'), comma);
+  }
+
+  @font-face {
+    font-family: $name;
+    font-weight: $weight;
+    font-style: $style;
+    src: $src;
+    font-display: swap;
+  }
+}

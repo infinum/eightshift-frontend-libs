@@ -7,6 +7,8 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
+use Eightshift_Libs\Helpers\Components;
+
 $paragraph = $attributes['paragraph'] ?? [];
 
 if ( ! $paragraph ) {
