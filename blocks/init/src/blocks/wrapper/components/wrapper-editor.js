@@ -4,6 +4,7 @@ export const WrapperEditor = (props) => {
   const {
     children,
     attributes: {
+      hasWrapper,
       id,
       styleBackgroundColor,
   
@@ -99,6 +100,10 @@ export const WrapperEditor = (props) => {
     ${styleContentWidthMobile && `${wrapperMainClass}__inner-content-width-mobile--${styleContentWidthMobile}`}
     ${styleContentOffsetMobile && `${wrapperMainClass}__inner-offset-mobile--${styleContentOffsetMobile}`}
   `;
+
+  if (!hasWrapper) {
+    return children;
+  }
 
   return (
     <div className={wrapperClass} id={id}>

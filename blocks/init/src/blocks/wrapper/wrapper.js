@@ -10,9 +10,6 @@ export const Wrapper = (props) => {
   const {
     props: {
       attributes,
-      attributes: {
-        hasWrapper,
-      },
     },
     children,
   } = props;
@@ -21,24 +18,17 @@ export const Wrapper = (props) => {
 
   return (
     <Fragment>
-      {hasWrapper ?
-        <Fragment>
-          <InspectorControls>
-            <WrapperOptions
-              attributes={attributes}
-              actions={actions}
-            />
-          </InspectorControls>
+      <InspectorControls>
+        <WrapperOptions
+          attributes={attributes}
+          actions={actions}
+        />
+      </InspectorControls>
 
-          <WrapperEditor
-            children={children}
-            attributes={attributes}
-          />
-        </Fragment> :
-        <Fragment>
-          {children}
-        </Fragment>
-      }
+      <WrapperEditor
+        children={children}
+        attributes={attributes}
+      />
     </Fragment>
   );
 };
