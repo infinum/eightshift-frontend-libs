@@ -1,9 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
+import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon } from '@wordpress/components';
-import globalSettings from './../../../manifest.json';
+
+export const headingSizes = [
+  { label: __('Default (115px)', 'eightshift-boilerplate'), value: 'default' },
+  { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
+];
 
 export const HeadingOptions = (props) => {
   const {
@@ -26,11 +30,7 @@ export const HeadingOptions = (props) => {
               {__('Heading Color', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Change Heading color.', 'eightshift-boilerplate')}
-          colors={[
-            globalSettings.colors.primary,
-            globalSettings.colors.black,
-          ]}
+          help={__('Change Heading color', 'eightshift-boilerplate')}
           value={styleColor}
           onChange={onChangeStyleColor}
         />
@@ -40,10 +40,7 @@ export const HeadingOptions = (props) => {
         <SelectControl
           label={__('Heading Size', 'eightshift-boilerplate')}
           value={styleSize}
-          options={[
-            { label: __('Default (115px)', 'eightshift-boilerplate'), value: 'default' },
-            { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
-          ]}
+          options={headingSizes}
           onChange={onChangeStyleSize}
         />
       }

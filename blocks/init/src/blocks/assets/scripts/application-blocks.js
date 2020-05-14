@@ -9,9 +9,8 @@
  *
  * Usage: `WordPress frontend screen`.
  *
- * @since 1.0.0
  */
-import { dynamicImport } from 'EightshiftBlocksDynamicImport';
+import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 
 // Find all blocks and require assets index.js inside it.
 dynamicImport(require.context('./../../components', true, /assets\/index\.js$/));

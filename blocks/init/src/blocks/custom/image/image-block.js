@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { BlockControls } from '@wordpress/block-editor';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { ImageEditor } from './components/image-editor';
-import { ImageOptions } from './components/image-options';
+import { ImageToolbar } from './components/image-toolbar';
 
 export const Image = (props) => {
+
   const {
     attributes,
   } = props;
@@ -15,14 +16,15 @@ export const Image = (props) => {
 
   return (
     <Fragment>
-      <InspectorControls>
-        <ImageOptions
+      <BlockControls>
+        <ImageToolbar
           attributes={attributes}
           actions={actions}
         />
-      </InspectorControls>
+      </BlockControls>
       <ImageEditor
         attributes={attributes}
+        actions={actions}
       />
     </Fragment>
   );

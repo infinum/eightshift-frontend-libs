@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
 import { VideoEditor } from '../components/video-editor';
-import { VideoOptions } from '../components/video-options';
+import { VideoToolbar } from '../components/video-toolbar';
 
 export default {
   title: 'Components|Video',
@@ -18,9 +18,8 @@ const editorProps = {
   },
 };
 
-const optionsProps = {
+const toolbarProps = {
   media: {
-    id: 0,
     url: 'https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4',
   },
   onChangeMedia: () => {},
@@ -32,8 +31,8 @@ export const component = () => (
   />
 );
 
-export const options = () => (
-  <VideoOptions
-    {...optionsProps}
+export const toolbar = () => (
+  <VideoToolbar
+    {...toolbarProps}
   />
 );

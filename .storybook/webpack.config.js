@@ -2,7 +2,9 @@
 
 const path = require('path');
 
-module.exports = ({ config }) => {
-  const nodeModules = path.resolve(__dirname, '..');
-  return require('./../webpack/storybook')({ config }, nodeModules, false);
-};
+module.exports = ({ config }) => require('./../webpack/storybook')(
+  { config },
+  path.resolve(__dirname, '..'),
+  'blocks/init/src/blocks/manifest.json',
+  false
+);

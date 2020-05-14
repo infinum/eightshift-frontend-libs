@@ -1,9 +1,7 @@
 <?php
 /**
  * Template for the Group block.
- *
- * @since 1.0.0
- * @package Eightshift_Boilerplate\Blocks.
+ *htshift_Boilerplate\Blocks.
  */
 
 namespace Eightshift_Boilerplate\Blocks;

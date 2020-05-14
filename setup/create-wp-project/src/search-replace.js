@@ -22,40 +22,52 @@ const searchReplace = async(data, projectPath) => {
   const pathStyleCss = path.join(projectPath, 'style.css');
   const pathClassConfigPhp = path.join(projectPath, 'src', 'class-config.php');
   const pathWebpackConfigJs = path.join(projectPath, 'webpack.config.js');
+  const pathEntryFile = path.join(projectPath, `${defaultValues.package}.php`);
 
-  // Name.
-  if (
-    data.projectName &&
-    await fs.pathExists(pathFunctionsPhp) &&
-    await fs.pathExists(pathStyleCss)
-  ) {
+  // functions.php.
+  if (data.projectName && data.description && await fs.pathExists(pathFunctionsPhp)) {
     await replace({
       files: pathFunctionsPhp,
       from: /^ \* Theme Name:.*$/m,
       to: ` * Theme Name: ${data.projectName}`,
     });
     await replace({
+      files: pathFunctionsPhp,
+      from: /^ \* Description:.*$/m,
+      to: ` * Description: ${data.description}`,
+    });
+  }
+
+  // style.css
+  if (data.projectName && data.description && await fs.pathExists(pathStyleCss)) {
+    await replace({
       files: pathStyleCss,
       from: /^Theme Name: .*$/m,
       to: `Theme Name: ${data.projectName}`,
     });
-  }
-
-  // Description
-  if (
-    data.description &&
-    await fs.pathExists(pathFunctionsPhp) &&
-    await fs.pathExists(pathStyleCss)
-  ) {
     await replace({
-      files: pathFunctionsPhp,
-      from: /^ \* Description:.*$/m,
-      to: ` * Description: ${data.description}`,
+      files: pathStyleCss,
+      from: /^Plugin Name: .*$/m,
+      to: `Plugin Name: ${data.projectName}`,
     });
     await replace({
       files: pathStyleCss,
       from: /^Description: .*$/m,
       to: `Description: ${data.description}`,
+    });
+  }
+
+  // eightshift-boilerplate.php
+  if (data.projectName && data.description && await fs.pathExists(pathEntryFile)) {
+    await replace({
+      files: pathEntryFile,
+      from: /^ \* Plugin Name:.*$/m,
+      to: ` * Plugin Name: ${data.projectName}`,
+    });
+    await replace({
+      files: pathEntryFile,
+      from: /^ \* Description:.*$/m,
+      to: ` * Description: ${data.description}`,
     });
   }
 
@@ -90,6 +102,11 @@ const searchReplace = async(data, projectPath) => {
       from: new RegExp(defaultValues.url, 'g'),
       to: data.url,
     });
+  }
+
+  // Rename plugin entrypoint (if setting up a plugin).
+  if (await fs.pathExists(pathEntryFile)) {
+    fs.rename(pathEntryFile, path.join(projectPath, `${data.package}.php`));
   }
 };
 

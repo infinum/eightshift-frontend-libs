@@ -1,4 +1,3 @@
-// stylelint-disable max-nesting-depth
 $block-cards-grid: (
   spacing: (
     bottom: 60px,
@@ -6,8 +5,7 @@ $block-cards-grid: (
   )
 );
 
-.block-cards-grid,
-.block-cards-grid .editor-block-list__layout {
+.block-cards-grid {
   $this: &;
   overflow: hidden;
   margin-bottom: -(map-get-deep($block-cards-grid, spacing, bottom));
@@ -18,16 +16,7 @@ $block-cards-grid: (
     justify-content: space-between;
   }
 
-  > .block-card {
-    @include media(tablet up) {
-      @include flex-grid-width(4);
-    }
-    @include media(tablet up) {
-      padding: {
-        left: map-get-deep($block-cards-grid, spacing, vertical);
-        right: map-get-deep($block-cards-grid, spacing, vertical);
-      }
-    }
+  .block-card {
     margin: {
       left: 0;
       right: 0;
@@ -35,6 +24,11 @@ $block-cards-grid: (
     }
 
     @include media(tablet up) {
+      @include flex-grid-width(4);
+      padding: {
+        left: map-get-deep($block-cards-grid, spacing, vertical);
+        right: map-get-deep($block-cards-grid, spacing, vertical);
+      }
       margin-bottom: map-get-deep($block-cards-grid, spacing, bottom);
     }
   }

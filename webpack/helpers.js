@@ -1,10 +1,8 @@
 /* eslint-disable valid-typeof */
-const packageJson = require('./../package.json');
 
 /**
  * File holding webpack helpers used to create project webpack build setup.
  *
- * @since 2.0.0
  */
 
 const path = require('path');
@@ -17,10 +15,10 @@ const path = require('path');
  * @param {string} projectPathConfig Project path relative to project root.
  * @param {string} assetsPathConfig Assets path after projectPath location.
  * @param {string} outputPathConfig Public output path after projectPath location.
+ * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
- * @since 2.0.0
  */
-function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/blocks/assets', outputPathConfig = 'public') {
+function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/blocks/manifest.json') {
 
   if (typeof projectDir === 'undefined') {
     throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'; // eslint-disable-line no-throw-literal
@@ -39,6 +37,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
   const assetsPathConfigClean = assetsPathConfig.replace(/^\/|\/$/g, '');
   const blocksAssetsPathConfigClean = blocksAssetsPathConfig.replace(/^\/|\/$/g, '');
   const outputPathConfigClean = outputPathConfig.replace(/^\/|\/$/g, '');
+  const blocksManifestSettingsPathClean = blocksManifestSettingsPath.replace(/^\/|\/$/g, '');
 
   // Create absolute path from the projects relative path.
   const absolutePath = `${projectDir}`;
@@ -58,24 +57,73 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
     applicationAdminEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application-admin.js'),
     applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
     applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
+
+    blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
   };
 }
 
 /**
- * Generate project paths for node_modules and libs root path.
+ * Convert Recursive Json data only for colors to SASS valid output.
  *
- * @param string nodeModules Path to node modules in general it is __dirname.
- *
- * @since 2.0.0
+ * @param object Json data only for colors.
  */
-function getPackagesPath(nodeModules, isProject = true) {
-  return {
-    nodeModulesPath: path.resolve(nodeModules, 'node_modules'),
-    libsPath: isProject ? path.resolve(nodeModules, 'node_modules', packageJson.name) : path.resolve(__dirname, '..'),
-  };
+function convertJsonColorsToSass(data) {
+  let output = '';
+
+  for (const property in data) {
+    if (data.hasOwnProperty(property)) {
+
+      if (typeof data[property] === 'string' && property === 'color') {
+        output += data[property];
+      }
+
+      if (typeof data[property] === 'object') {
+        output += `${data[property].slug}: ${convertJsonColorsToSass(data[property])},`;
+      }
+    }
+  }
+
+  return output;
+}
+
+/**
+ * Convert Recursive Json data to SASS valid output.
+ *
+ * @param object Json data to convert.
+ */
+function convertJsonToSassGeneral(data) {
+  let output = '';
+
+  for (const property in data) {
+    if (data.hasOwnProperty(property)) {
+      switch (typeof data[property]) {
+        case 'object':
+          if (property === 'colors') {
+            output += `${property}: (${convertJsonColorsToSass(data[property])}),`;
+          } else {
+            output += `${property}: (${convertJsonToSassGeneral(data[property])}),`;
+          }
+          break;
+        default:
+          output += `${property}: ${data[property]},`;
+          break;
+      }
+    }
+  }
+
+  return output;
+}
+
+/**
+ * Convert Json to SASS valid output and prefix it with map key.
+ *
+ * @param object Json Data object.
+ */
+function convertJsonToSass(data) {
+  return `$global-variables: (${convertJsonToSassGeneral(data)});`;
 }
 
 module.exports = {
   getConfig,
-  getPackagesPath,
+  convertJsonToSass,
 };

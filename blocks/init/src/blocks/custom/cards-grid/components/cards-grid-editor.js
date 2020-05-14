@@ -1,18 +1,18 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { InnerBlocks } from '@wordpress/block-editor';
 
-export const CardsGridEditor = (props) => {
+export const CardsGridEditor = ({ attributes }) => {
   const {
-    attributes: {
-      blockClass,
-      allowedBlocks,
-    },
-  } = props;
+    blockClass,
+    allowedBlocks,
+  } = attributes;
+
+  const blocksObject = (typeof allowedBlocks === 'undefined') || allowedBlocks;
 
   return (
     <div className={blockClass}>
       <InnerBlocks
-        allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
+        allowedBlocks={blocksObject}
       />
     </div>
   );

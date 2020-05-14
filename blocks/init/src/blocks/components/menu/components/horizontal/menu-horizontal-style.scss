@@ -2,10 +2,10 @@ $menu-horizontal: (
   link-padding: 0 15px,
   link-modifiers: (
     normal: (
-      color: $base-black-color,
+      color: global-settings(colors, black),
     ),
     hover: (
-      color: $base-primary-color,
+      color: global-settings(colors, primary),
     )
   ),
 );
@@ -16,10 +16,6 @@ $menu-horizontal: (
   height: 100%;
   display: flex;
   align-items: center;
-
-  &__item {
-    height: 100%;
-  }
 
   &__link {
     text-decoration: none;

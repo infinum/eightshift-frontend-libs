@@ -1,9 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CardsGridEditor } from './components/cards-grid-editor';
 
 export const CardsGrid = (props) => {
+
   const {
     attributes,
   } = props;

@@ -1,9 +1,9 @@
 $drawer: (
   width: 250px,
   colors: (
-    background: $base-white-color,
+    background: global-settings(colors, white),
   ),
-  padding: 25px,
+  padding: map-get-deep($base-gutter-sizes, default),
   z-index: map-get-strict($zindex, drawer),
 );
 
@@ -18,7 +18,7 @@ $drawer: (
   display: block;
   background: map-get-deep($drawer, colors, background);
   width: map-get-strict($drawer, width);
-  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 
   @include media(desktop up) {
     display: none;
@@ -33,10 +33,22 @@ $drawer: (
     right: 0;
     transform: translate3d(100%, 0, 0);
   }
+
+  &--top {
+    width: 100%;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  &--behind {
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
 }
 
 body.menu-is-open {
   .drawer {
     transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }

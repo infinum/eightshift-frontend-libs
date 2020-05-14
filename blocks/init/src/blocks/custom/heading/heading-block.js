@@ -1,13 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { HeadingEditor } from './components/heading-editor';
 import { HeadingOptions } from './components/heading-options';
 import { HeadingToolbar } from './components/heading-toolbar';
 
 export const Heading = (props) => {
+
   const {
     attributes,
   } = props;

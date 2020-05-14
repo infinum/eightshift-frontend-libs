@@ -2,10 +2,10 @@ $menu-vertical: (
   link-padding: 10px 0,
   link-modifiers: (
     normal: (
-      color: $base-black-color,
+      color: global-settings(colors, black),
     ),
     hover: (
-      color: $base-primary-color,
+      color: global-settings(colors, primary),
     ),
   ),
 );

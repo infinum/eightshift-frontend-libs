@@ -5,3 +5,15 @@ If you want to override it just define it with new value here.
 All variables are available here:
 https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_core.scss
 */
+
+// Define Base Columns Number from manifest.json
+$base-col-number: map-get-strict($global-variables, maxCols);
+
+// Define Base Gutter Size from manifest.json
+$base-gutter-sizes: map-get-strict($global-variables, gutters);
+
+// Define Base Container Size from manifest.json
+$base-container-sizes: map-get-strict($global-variables, containers);
+
+// Define Base section Spacing from manifest.json
+$base-section-spacing: map-get-strict($global-variables, sectionSpacing);

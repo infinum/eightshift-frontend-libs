@@ -1,7 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import { HeadingEditor } from '../components/heading-editor';
-import { HeadingOptions } from '../components/heading-options';
+import { HeadingOptions, headingSizes } from '../components/heading-options';
 import { HeadingToolbar } from '../components/heading-toolbar';
 
 export default {
@@ -58,38 +59,78 @@ export const toolbar = () => (
   />
 );
 
-export const sizeBig = () => (
-  <HeadingEditor
-    heading={{
-      ...editorProps.heading,
-      styleSize: 'big',
-    }}
-  />
+export const styleSize = () => (
+  <Fragment>
+    {headingSizes.map((values, index) => (
+      <Fragment key={index}>
+        <HeadingEditor
+          {...editorProps}
+          heading={{
+            ...editorProps.heading,
+            content: values.label,
+            styleSize: values.value,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const colorBlack = () => (
-  <HeadingEditor
-    heading={{
-      ...editorProps.heading,
-      styleColor: 'black',
-    }}
-  />
+export const level = () => (
+  <Fragment>
+    {Array.from({ length: 6 }, (x, i) => i + 1).map((values, index) => (
+      <Fragment key={index}>
+        <HeadingEditor
+          {...editorProps}
+          heading={{
+            ...editorProps.heading,
+            content: `H - ${values.toString()}`,
+            level: values,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const alignCenter = () => (
-  <HeadingEditor
-    heading={{
-      ...editorProps.heading,
-      styleAlign: 'center',
-    }}
-  />
+export const styleAlign = () => (
+  <Fragment>
+    {['left', 'center', 'right'].map((values, index) => (
+      <Fragment key={index}>
+        <HeadingEditor
+          {...editorProps}
+          heading={{
+            ...editorProps.heading,
+            content: values,
+            styleAlign: values,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
-export const alignRight = () => (
-  <HeadingEditor
-    heading={{
-      ...editorProps.heading,
-      styleAlign: 'right',
-    }}
-  />
-);
+export const styleColor = () => {
+  const { colors } = wp.data.select('core/block-editor').getSettings();
+
+  return (
+    <Fragment>
+      {colors.map((values, index) => (
+        <Fragment key={index}>
+          <HeadingEditor
+            {...editorProps}
+            heading={{
+              ...editorProps.heading,
+              title: values.name,
+              styleColor: values.slug,
+            }}
+          />
+          <br />
+        </Fragment>
+      ))}
+    </Fragment>
+  );
+};

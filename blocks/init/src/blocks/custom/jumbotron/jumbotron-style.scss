@@ -13,15 +13,16 @@ $block-jumbotron: (
       margin-top: 25px,
     ),
   ),
-  container-size: $base-container-size,
+  container-size: map-get-deep($base-container-sizes, default),
+  container-spacing: map-get-deep($base-gutter-sizes, default),
 );
 
 .block-jumbotron {
   position: relative;
 
   &__content {
-    padding-left: $base-gutter-size;
-    padding-right: $base-gutter-size;
+    padding-left: map-get-strict($block-jumbotron, container-spacing);
+    padding-right: map-get-strict($block-jumbotron, container-spacing);
     margin: 0 auto;
     max-width: map-get-strict($block-jumbotron, container-size);
 

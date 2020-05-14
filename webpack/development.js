@@ -3,7 +3,6 @@
 /**
  * Project Development config used only in development build.
  *
- * @since 2.0.0
  */
 
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -25,7 +24,6 @@ module.exports = (options) => {
 
   return {
     plugins,
-
     devtool: false,
   };
 };

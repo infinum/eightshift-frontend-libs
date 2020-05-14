@@ -1,7 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import { LinkEditor } from '../components/link-editor';
-import { LinkOptions } from '../components/link-options';
+import { LinkOptions, linkColors } from '../components/link-options';
 
 export default {
   title: 'Components|Link',
@@ -43,13 +44,22 @@ export const options = () => (
   />
 );
 
-export const colorBlack = () => (
-  <LinkEditor
-    link={{
-      ...editorProps.link,
-      styleColor: 'black',
-    }}
-  />
+export const styleColor = () => (
+  <Fragment>
+    {linkColors().map((values, index) => (
+      <Fragment key={index}>
+        <LinkEditor
+          {...editorProps}
+          link={{
+            ...editorProps.link,
+            title: values.name,
+            styleColor: values.slug,
+          }}
+        />
+        <br />
+      </Fragment>
+    ))}
+  </Fragment>
 );
 
 export const isAnchor = () => (

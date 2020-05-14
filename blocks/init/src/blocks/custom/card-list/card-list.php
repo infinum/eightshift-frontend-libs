@@ -2,7 +2,6 @@
 /**
  * Template for the Card List block.
  *
- * @since 1.0.0
  * @package Eightshift_Boilerplate\Blocks.
  */
 
@@ -16,14 +15,9 @@ $paragraph      = $attributes['paragraph'] ?? '';
 $media_position = $attributes['mediaPosition'] ?? '';
 $button         = $attributes['button'] ?? [];
 
-$component_class  = "
-  {$block_class}
-  {$block_class}__media-position--{$media_position}
-";
-
 ?>
 
-<div class="<?php echo esc_attr( $component_class ); ?>">
+<div class="<?php echo esc_attr( "{$block_class} {$block_class}__media-position--{$media_position}" ); ?>">
 
   <?php if ( ! empty( $media ) ) { ?>
     <div class="<?php echo esc_attr( "{$block_class}__media" ); ?>">

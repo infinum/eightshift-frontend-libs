@@ -2,7 +2,6 @@
 /**
  * Template for the Carousel Block.
  *
- * @since 1.0.0
  * @package Eightshift_Boilerplate\Blocks.
  */
 
@@ -13,16 +12,10 @@ $block_js_class = $attributes['blockJsClass'] ?? '';
 $is_free_mode   = $attributes['isFreeMode'] ?? false;
 $is_loop        = $attributes['isLoop'] ?? true;
 
-$component_class  = "
-  {$block_class}
-  {$block_js_class}
-  swiper-container
-";
-
 ?>
 
 <div
-  class="<?php echo esc_attr( $component_class ); ?>"
+  class="<?php echo esc_attr( "{$block_class} {$block_js_class} swiper-container" ); ?>"
   data-swiper-freeMode="<?php echo esc_attr( $is_free_mode ); ?>"
   data-swiper-loop="<?php echo esc_attr( $is_loop ); ?>"
 >

@@ -3,11 +3,10 @@
  *
  * Usage: `WordPress frontend screen`.
  *
- * @since 1.0.0
  */
 
 // Vendors - node modules
-@import 'EightshiftBlocksNormalize';
+@import 'normalize-scss';
 @include normalize(); // stylelint-disable-line at-rule-empty-line-before
 
 // Globals.

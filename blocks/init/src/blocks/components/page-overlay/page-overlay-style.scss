@@ -1,6 +1,6 @@
 $page-overlay: (
   colors: (
-    background: $base-black-color,
+    background: global-settings(colors, black),
   ),
   z-index: map-get-strict($zindex, overlay),
 );

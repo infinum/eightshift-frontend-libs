@@ -3,28 +3,25 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { ListsEditor } from './../../../components/lists/components/lists-editor';
 
-export const ListsInfoEditor = (props) => {
+export const ListsInfoEditor = ({ attributes, actions }) => {
   const {
-    attributes: {
-      blockClass,
-      title,
-      lists,
-    },
-    actions: {
-      onChangeTitle,
-      onChangeListsContent,
-      onChangeListsOrdered,
-    },
-  } = props;
+    blockClass,
+    title,
+    lists,
+  } = attributes;
 
-  const introClass = `${blockClass}__intro`;
-  const titleClass = `${blockClass}__title`;
-  const contentClass = `${blockClass}__content`;
+  const {
+    onChangeTitle,
+    onChangeListsContent,
+    onChangeListsOrdered,
+  } = actions;
+
+  const listsObject = (typeof lists === 'undefined') || lists;
 
   return (
     <div className={blockClass}>
-      <div className={introClass}>
-        <div className={titleClass}>
+      <div className={`${blockClass}__intro`}>
+        <div className={`${blockClass}__title`}>
           <RichText
             placeholder={__('Add title', 'eightshift-boilerplate')}
             onChange={onChangeTitle}
@@ -32,10 +29,10 @@ export const ListsInfoEditor = (props) => {
           />
         </div>
       </div>
-      <div className={contentClass}>
+      <div className={`${blockClass}__content`}>
         <ListsEditor
           blockClass={blockClass}
-          lists={(typeof lists === 'undefined') || lists}
+          lists={listsObject}
           onChangeContent={onChangeListsContent}
           onChangeOrdered={onChangeListsOrdered}
         />

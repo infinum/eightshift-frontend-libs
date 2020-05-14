@@ -1,0 +1,44 @@
+/// Function returns global_settings variable from Eightshift-frontend-libs setup.
+/// It expects $$global-variables key to be available.
+///
+/// ### Map
+/// ```scss
+/// $globalVariables: (
+///   containers: (
+///     default: "1330px"
+///   ),
+/// );
+/// ```
+/// ### Output
+/// ```scss
+/// .test {
+///   width: 1330px;
+/// }
+/// ```
+///
+/// @access public
+/// @author Ivan Ruzevic
+/// @param {string} $keys Map keys from global settings.
+///
+/// @example
+/// .test {
+///   width: global-settings(containers, default);
+/// }
+
+@function global-settings($keys...) {
+  $global-variables: null !default;
+
+  @if $global-variables != null {
+    $value: $global-variables;
+
+    @each $key in $keys {
+      $value: map-get-strict($value, $key);
+    }
+
+    @return $value;
+  }
+
+  @else {
+    @error 'ERROR: $global-settings variable doesnt exist!';
+  }
+}

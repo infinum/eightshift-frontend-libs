@@ -10,11 +10,11 @@
  *
  * Usage: `WordPress admin editor`.
  *
- * @since 1.0.0
+ 
  */
 
-import { registerBlocks } from 'EightshiftBlocksRegisterBlocks';
-import { dynamicImport } from 'EightshiftBlocksDynamicImport';
+import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor';
+import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 import { Wrapper } from './../../wrapper/wrapper';
 import blocksSettings from './../../manifest.json';
 
@@ -23,6 +23,8 @@ registerBlocks(
   require.context('./../../custom', true, /-block.js$/),
   blocksSettings,
   Wrapper,
+  require.context('./../../custom', true, /transforms.js$/),
+  require.context('./../../custom', true, /icons.js$/),
 );
 
 // Find all blocks hooks require hooks index.js inside it.

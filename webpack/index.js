@@ -3,12 +3,10 @@
 /**
  * Main entrypoint location for webpack config.
  *
- * @since 2.0.0
  */
 
 const merge = require('webpack-merge');
 const { getConfig } = require('./helpers');
-const { getPackagesPath } = require('./helpers');
 
 module.exports = (mode, optionsData = {}) => {
 
@@ -32,19 +30,15 @@ module.exports = (mode, optionsData = {}) => {
   options.config.mode = mode;
   options.config.filesOutput = (mode === 'production' ? '[name]-[hash]' : '[name]');
 
-  // Packages helper for correct node modules path.
-  const packagesPath = getPackagesPath(options.config.absolutePath);
-
   // Get all webpack partials.
-  const base = require('./base')(options, packagesPath);
+  const base = require('./base')(options);
   const project = require('./project')(options);
   const development = require('./development')(options);
   const production = require('./production')(options);
-  const aliases = require('./aliases')(packagesPath);
   const externals = require('./externals');
 
   // Default output that is going to be merged in any env.
-  const outputDefault = merge(project, base, externals, aliases);
+  const outputDefault = merge(project, base, externals);
 
   // Output development setup by default.
   let output = [];

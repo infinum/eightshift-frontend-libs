@@ -1,50 +1,34 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import { ButtonOptions } from '../../../components/button/components/button-options';
-import { ImageOptions } from '../../../components/image/components/image-options';
 
-export const CardListOptions = (props) => {
+export const cardListMediaPosition = [
+  { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
+  { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
+];
+
+export const CardListOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      mediaPosition,
-      media,
-      button,
-    },
-    actions: {
-      onChangeMedia,
-      onChangeMediaPosition,
-      onChangeButtonUrl,
-      onChangeButtonStyleSize,
-      onChangeButtonStyleSizeWidth,
-      onChangeButtonStyleColor,
-      onChangeButtonId,
-      onChangeButtonTitle,
-    },
-  } = props;
+    button,
+  } = attributes;
+
+  const {
+    onChangeButtonUrl,
+    onChangeButtonStyleSize,
+    onChangeButtonStyleSizeWidth,
+    onChangeButtonStyleColor,
+    onChangeButtonId,
+    onChangeButtonTitle,
+  } = actions;
+
+  const buttonObject = (typeof button === 'undefined') || button;
 
   return (
     <PanelBody title={__('Card List Details', 'eightshift-boilerplate')}>
 
-      {onChangeMediaPosition &&
-        <SelectControl
-          label={__('Media Position', 'eightshift-boilerplate')}
-          value={mediaPosition}
-          options={[
-            { label: __('Left', 'eightshift-boilerplate'), value: 'left' },
-            { label: __('Right', 'eightshift-boilerplate'), value: 'right' },
-          ]}
-          onChange={onChangeMediaPosition}
-        />
-      }
-
-      <ImageOptions
-        media={(typeof media === 'undefined') || media}
-        onChangeMedia={onChangeMedia}
-      />
-
       <ButtonOptions
-        button={(typeof button === 'undefined') || button}
+        button={buttonObject}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}
@@ -52,6 +36,7 @@ export const CardListOptions = (props) => {
         onChangeId={onChangeButtonId}
         onChangeTitle={onChangeButtonTitle}
       />
+
     </PanelBody>
   );
 };

@@ -1,11 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { BlockControls } from '@wordpress/block-editor';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CardEditor } from './components/card-editor';
-import { CardOptions } from './components/card-options';
-import './hooks';
+import { CardToolbar } from './components/card-toolbar';
 
 export const Card = (props) => {
 
@@ -17,12 +16,12 @@ export const Card = (props) => {
 
   return (
     <Fragment>
-      <InspectorControls>
-        <CardOptions
+      <BlockControls>
+        <CardToolbar
           attributes={attributes}
           actions={actions}
         />
-      </InspectorControls>
+      </BlockControls>
       <CardEditor
         attributes={attributes}
         actions={actions}

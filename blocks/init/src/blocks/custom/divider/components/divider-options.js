@@ -1,18 +1,16 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
-import globalSettings from './../../../manifest.json';
+import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 
-export const DividerOptions = (props) => {
+export const DividerOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      color,
-    },
-    actions: {
-      onChangeColor,
-    },
-  } = props;
+    color,
+  } = attributes;
+
+  const {
+    onChangeColor,
+  } = actions;
 
   return (
     <PanelBody title={__('Divider Details', 'eightshift-boilerplate')}>
@@ -20,11 +18,6 @@ export const DividerOptions = (props) => {
       {onChangeColor &&
         <ColorPaletteCustom
           label={__('Color', 'eightshift-boilerplate')}
-          colors={[
-            globalSettings.colors.primary,
-            globalSettings.colors.black,
-            globalSettings.colors.white,
-          ]}
           value={color}
           onChange={onChangeColor}
         />

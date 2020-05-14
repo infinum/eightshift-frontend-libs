@@ -5,7 +5,6 @@
  *
  * @package Eightshift_Boilerplate\Blocks
  *
- * @since 1.0.0
  */
 
 namespace Eightshift_Boilerplate\Blocks;

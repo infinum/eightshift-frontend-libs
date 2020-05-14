@@ -1,13 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { BlockControls } from '@wordpress/block-editor';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
-import { CarouselImageOptions } from './components/carousel-image-options';
 import { CarouselImageEditor } from './components/carousel-image-editor';
+import { CarouselImageToolbar } from './components/carousel-image-toolbar';
 import './hooks';
 
 export const CarouselImage = (props) => {
+
   const {
     attributes,
   } = props;
@@ -16,14 +17,15 @@ export const CarouselImage = (props) => {
 
   return (
     <Fragment>
-      <InspectorControls>
-        <CarouselImageOptions
+      <BlockControls>
+        <CarouselImageToolbar
           attributes={attributes}
           actions={actions}
         />
-      </InspectorControls>
+      </BlockControls>
       <CarouselImageEditor
         attributes={attributes}
+        actions={actions}
       />
     </Fragment>
   );

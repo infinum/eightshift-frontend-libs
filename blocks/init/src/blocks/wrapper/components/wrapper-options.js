@@ -2,87 +2,85 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon } from '@wordpress/components';
-import { ColorPaletteCustom } from 'EightshiftComponentColorPalette';
+import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
-import globalSettings from '../../manifest.json';
 
-export const WrapperOptions = (props) => {
+export const WrapperOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
-      id,
-      anchor,
-      styleBackgroundColor,
+    id,
+    anchor,
+    styleBackgroundColor,
 
-      styleContentWidthLarge,
-      styleContentOffsetLarge,
-      styleContainerWidthLarge,
-      styleContainerSpacingLarge,
-      styleSpacingTopLarge,
-      styleSpacingBottomLarge,
-      styleHideBlockLarge,
+    styleContentWidthLarge,
+    styleContentOffsetLarge,
+    styleContainerWidthLarge,
+    styleContainerSpacingLarge,
+    styleSpacingTopLarge,
+    styleSpacingBottomLarge,
+    styleHideBlockLarge,
 
-      styleContentWidthDesktop,
-      styleContentOffsetDesktop,
-      styleContainerWidthDesktop,
-      styleContainerSpacingDesktop,
-      styleSpacingTopDesktop,
-      styleSpacingBottomDesktop,
-      styleHideBlockDesktop,
+    styleContentWidthDesktop,
+    styleContentOffsetDesktop,
+    styleContainerWidthDesktop,
+    styleContainerSpacingDesktop,
+    styleSpacingTopDesktop,
+    styleSpacingBottomDesktop,
+    styleHideBlockDesktop,
 
-      styleContentWidthTablet,
-      styleContentOffsetTablet,
-      styleContainerWidthTablet,
-      styleContainerSpacingTablet,
-      styleSpacingTopTablet,
-      styleSpacingBottomTablet,
-      styleHideBlockTablet,
+    styleContentWidthTablet,
+    styleContentOffsetTablet,
+    styleContainerWidthTablet,
+    styleContainerSpacingTablet,
+    styleSpacingTopTablet,
+    styleSpacingBottomTablet,
+    styleHideBlockTablet,
 
-      styleContentWidthMobile,
-      styleContentOffsetMobile,
-      styleContainerWidthMobile,
-      styleContainerSpacingMobile,
-      styleSpacingTopMobile,
-      styleSpacingBottomMobile,
-      styleHideBlockMobile,
-    },
-    actions: {
-      onChangeStyleContentWidthLarge,
-      onChangeStyleContentOffsetLarge,
-      onChangeStyleContainerWidthLarge,
-      onChangeStyleContainerSpacingLarge,
-      onChangeStyleSpacingTopLarge,
-      onChangeStyleSpacingBottomLarge,
-      onChangeStyleHideBlockLarge,
+    styleContentWidthMobile,
+    styleContentOffsetMobile,
+    styleContainerWidthMobile,
+    styleContainerSpacingMobile,
+    styleSpacingTopMobile,
+    styleSpacingBottomMobile,
+    styleHideBlockMobile,
+  } = attributes;
 
-      onChangeStyleContentWidthDesktop,
-      onChangeStyleContentOffsetDesktop,
-      onChangeStyleContainerWidthDesktop,
-      onChangeStyleContainerSpacingDesktop,
-      onChangeStyleSpacingTopDesktop,
-      onChangeStyleSpacingBottomDesktop,
-      onChangeStyleHideBlockDesktop,
+  const {
+    onChangeStyleContentWidthLarge,
+    onChangeStyleContentOffsetLarge,
+    onChangeStyleContainerWidthLarge,
+    onChangeStyleContainerSpacingLarge,
+    onChangeStyleSpacingTopLarge,
+    onChangeStyleSpacingBottomLarge,
+    onChangeStyleHideBlockLarge,
 
-      onChangeStyleContentWidthTablet,
-      onChangeStyleContentOffsetTablet,
-      onChangeStyleContainerWidthTablet,
-      onChangeStyleContainerSpacingTablet,
-      onChangeStyleSpacingTopTablet,
-      onChangeStyleSpacingBottomTablet,
-      onChangeStyleHideBlockTablet,
+    onChangeStyleContentWidthDesktop,
+    onChangeStyleContentOffsetDesktop,
+    onChangeStyleContainerWidthDesktop,
+    onChangeStyleContainerSpacingDesktop,
+    onChangeStyleSpacingTopDesktop,
+    onChangeStyleSpacingBottomDesktop,
+    onChangeStyleHideBlockDesktop,
 
-      onChangeStyleContentWidthMobile,
-      onChangeStyleContentOffsetMobile,
-      onChangeStyleContainerWidthMobile,
-      onChangeStyleContainerSpacingMobile,
-      onChangeStyleSpacingTopMobile,
-      onChangeStyleSpacingBottomMobile,
-      onChangeStyleHideBlockMobile,
+    onChangeStyleContentWidthTablet,
+    onChangeStyleContentOffsetTablet,
+    onChangeStyleContainerWidthTablet,
+    onChangeStyleContainerSpacingTablet,
+    onChangeStyleSpacingTopTablet,
+    onChangeStyleSpacingBottomTablet,
+    onChangeStyleHideBlockTablet,
 
-      onChangeStyleBackgroundColor,
-      onChangeId,
-      onChangeAnchor,
-    },
-  } = props;
+    onChangeStyleContentWidthMobile,
+    onChangeStyleContentOffsetMobile,
+    onChangeStyleContainerWidthMobile,
+    onChangeStyleContainerSpacingMobile,
+    onChangeStyleSpacingTopMobile,
+    onChangeStyleSpacingBottomMobile,
+    onChangeStyleHideBlockMobile,
+
+    onChangeStyleBackgroundColor,
+    onChangeId,
+    onChangeAnchor,
+  } = actions;
 
   return (
     <Fragment>
@@ -228,11 +226,6 @@ export const WrapperOptions = (props) => {
               </Fragment>
             }
             help={__('Change Block Background color. Block spacing will be included in block background color.', 'eightshift-boilerplate')}
-            colors={[
-              globalSettings.colors.white,
-              globalSettings.colors.primary,
-              globalSettings.colors.black,
-            ]}
             value={styleBackgroundColor}
             onChange={onChangeStyleBackgroundColor}
           />

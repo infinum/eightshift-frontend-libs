@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
 import { ImageEditor } from '../components/image-editor';
-import { ImageOptions } from '../components/image-options';
+import { ImageToolbar } from '../components/image-toolbar';
 
 export default {
   title: 'Components|Image',
@@ -16,11 +16,12 @@ const editorProps = {
     id: 0,
     url: 'https://picsum.photos/400/400',
   },
+  onChangeMedia: () => {},
 };
 
-const optionsProps = {
+
+const toolbarProps = {
   media: {
-    id: 0,
     url: 'https://picsum.photos/400/400',
   },
   onChangeMedia: () => {},
@@ -32,8 +33,8 @@ export const component = () => (
   />
 );
 
-export const options = () => (
-  <ImageOptions
-    {...optionsProps}
+export const toolbar = () => (
+  <ImageToolbar
+    {...toolbarProps}
   />
 );

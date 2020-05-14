@@ -92,7 +92,8 @@ const clearConsole = async () => {
  */
 const writeIntro = async () => {
   log('');
-  log(await figlet('Eightshift Boilerplate'));
+  log(await figlet('Eightshift'));
+  log(await figlet('Boilerplate'));
   log('');
 };
 

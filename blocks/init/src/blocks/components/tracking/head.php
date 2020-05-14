@@ -4,7 +4,6 @@
  *
  * @package Eightshift_Boilerplate\Views\Tracking
  *
- * @since 1.0.0
  */
 
 get_template_part( 'src/blocks/components/tracking/parts/facebook' );

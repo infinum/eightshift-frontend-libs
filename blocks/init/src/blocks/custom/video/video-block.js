@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { BlockControls } from '@wordpress/block-editor';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { VideoEditor } from './components/video-editor';
-import { VideoOptions } from './components/video-options';
+import { VideoToolbar } from './components/video-toolbar';
 
 export const Video = (props) => {
+
   const {
     attributes,
   } = props;
@@ -15,14 +16,15 @@ export const Video = (props) => {
 
   return (
     <Fragment>
-      <InspectorControls>
-        <VideoOptions
+      <BlockControls>
+        <VideoToolbar
           attributes={attributes}
           actions={actions}
         />
-      </InspectorControls>
+      </BlockControls>
       <VideoEditor
         attributes={attributes}
+        actions={actions}
       />
     </Fragment>
   );

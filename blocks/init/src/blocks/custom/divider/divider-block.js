@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { DividerEditor } from './components/divider-editor';
 import { DividerOptions } from './components/divider-options';
 
 export const Divider = (props) => {
+
   const {
     attributes,
   } = props;
