@@ -42,9 +42,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
         `${responsiveSelectors(hide, 'hide', blockClass, false)}`,
       );
 
-      console.log(componentClass);
-      
-
       updatedProps = assign(
         {},
         innerProps,

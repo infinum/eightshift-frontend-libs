@@ -23,13 +23,12 @@ import wrapperManifest from '../../blocks/init/src/blocks/wrapper/manifest.json'
 export const hasWrapper = (isActive) => {
   const wrapper = {
     hasWrapper: true,
-    styleContentWidthLarge: wrapperManifest.attributes.styleContentWidthLarge.default,
-    styleContentOffsetLarge: wrapperManifest.attributes.styleContentOffsetLarge.default,
-    styleContainerWidthLarge: wrapperManifest.attributes.styleContainerWidthLarge.default,
-    styleContainerSpacingLarge: wrapperManifest.attributes.styleContainerSpacingLarge.default,
-    styleSpacingBottomLarge: wrapperManifest.attributes.styleSpacingBottomLarge.default,
-    styleHideBlockLarge: wrapperManifest.attributes.styleHideBlockLarge.default,
-    styleHideBlockDesktop: wrapperManifest.attributes.styleHideBlockDesktop.default,
+    styleContentWidthLarge: wrapperManifest.attributes.styleContentWidth.default.large,
+    styleContentOffsetLarge: wrapperManifest.attributes.styleContentOffset.default.large,
+    styleContainerWidthLarge: wrapperManifest.attributes.styleContainerWidth.default.large,
+    styleContainerSpacingLarge: wrapperManifest.attributes.styleContainerSpacing.default.large,
+    styleSpacingBottomLarge: wrapperManifest.attributes.styleSpacingBottom.default.large,
+    styleHideBlockLarge: wrapperManifest.attributes.styleHideBlock.default.large,
   };
 
   return isActive ? wrapper : {};

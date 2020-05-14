@@ -5,15 +5,13 @@ import classnames from 'classnames';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 import { InnerBlocks } from '@wordpress/block-editor';
 
-export const ColumnsEditor = (props) => {
+export const ColumnsEditor = ({ attributes }) => {
   const {
-    attributes: {
-      allowedBlocks,
-      blockClass,
-      gutterVertical,
-      gutterHorizontal,
-    },
-  } = props;
+    allowedBlocks,
+    blockClass,
+    gutterVertical,
+    gutterHorizontal,
+  } = attributes;
 
   const componentClass = classnames(
     blockClass,
