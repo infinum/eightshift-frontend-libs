@@ -10,38 +10,13 @@ export const WrapperOptions = ({ attributes, actions }) => {
     id,
     anchor,
     styleBackgroundColor,
-
-    styleContentWidthLarge,
-    styleContentOffsetLarge,
-    styleContainerWidthLarge,
-    styleContainerSpacingLarge,
-    styleSpacingTopLarge,
-    styleSpacingBottomLarge,
-    styleHideBlockLarge,
-
-    styleContentWidthDesktop,
-    styleContentOffsetDesktop,
-    styleContainerWidthDesktop,
-    styleContainerSpacingDesktop,
-    styleSpacingTopDesktop,
-    styleSpacingBottomDesktop,
-    styleHideBlockDesktop,
-
-    styleContentWidthTablet,
-    styleContentOffsetTablet,
-    styleContainerWidthTablet,
-    styleContainerSpacingTablet,
-    styleSpacingTopTablet,
-    styleSpacingBottomTablet,
-    styleHideBlockTablet,
-
-    styleContentWidthMobile,
-    styleContentOffsetMobile,
-    styleContainerWidthMobile,
-    styleContainerSpacingMobile,
-    styleSpacingTopMobile,
-    styleSpacingBottomMobile,
-    styleHideBlockMobile,
+    styleContentWidth,
+    styleContentOffset,
+    styleContainerWidth,
+    styleContainerSpacing,
+    styleSpacingTop,
+    styleSpacingBottom,
+    styleHideBlock,
   } = attributes;
 
   const {
@@ -82,6 +57,14 @@ export const WrapperOptions = ({ attributes, actions }) => {
     onChangeAnchor,
   } = actions;
 
+  const styleContentWidthObject = (typeof styleContentWidth === 'undefined') || styleContentWidth;
+  const styleContentOffsetObject = (typeof styleContentOffset === 'undefined') || styleContentOffset;
+  const styleContainerWidthObject = (typeof styleContainerWidth === 'undefined') || styleContainerWidth;
+  const styleContainerSpacingObject = (typeof styleContainerSpacing === 'undefined') || styleContainerSpacing;
+  const styleSpacingTopObject = (typeof styleSpacingTop === 'undefined') || styleSpacingTop;
+  const styleSpacingBottomObject = (typeof styleSpacingBottom === 'undefined') || styleSpacingBottom;
+  const styleHideBlockObject = (typeof styleHideBlock === 'undefined') || styleHideBlock;
+
   return (
     <Fragment>
       <PanelBody title={__('Block Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
@@ -121,13 +104,14 @@ export const WrapperOptions = ({ attributes, actions }) => {
                   <p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
                   <br />
                   <WrapperResponsiveTabContent
-                    contentWidth={styleContentWidthLarge}
-                    contentOffset={styleContentOffsetLarge}
-                    containerWidth={styleContainerWidthLarge}
-                    containerSpacing={styleContainerSpacingLarge}
-                    spacingTop={styleSpacingTopLarge}
-                    spacingBottom={styleSpacingBottomLarge}
-                    hideBlock={styleHideBlockLarge}
+                    type={'large'}
+                    contentWidth={styleContentWidthObject}
+                    contentOffset={styleContentOffsetObject}
+                    containerWidth={styleContainerWidthObject}
+                    containerSpacing={styleContainerSpacingObject}
+                    spacingTop={styleSpacingTopObject}
+                    spacingBottom={styleSpacingBottomObject}
+                    hideBlock={styleHideBlockObject}
                     onChangeContentWidth={onChangeStyleContentWidthLarge}
                     onChangeContentOffset={onChangeStyleContentOffsetLarge}
                     onChangeContainerWidth={onChangeStyleContainerWidthLarge}
@@ -145,13 +129,14 @@ export const WrapperOptions = ({ attributes, actions }) => {
                   <p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                   <br />
                   <WrapperResponsiveTabContent
-                    contentWidth={styleContentWidthDesktop}
-                    contentOffset={styleContentOffsetDesktop}
-                    containerWidth={styleContainerWidthDesktop}
-                    containerSpacing={styleContainerSpacingDesktop}
-                    spacingTop={styleSpacingTopDesktop}
-                    spacingBottom={styleSpacingBottomDesktop}
-                    hideBlock={styleHideBlockDesktop}
+                    type={'desktop'}
+                    contentWidth={styleContentWidthObject}
+                    contentOffset={styleContentOffsetObject}
+                    containerWidth={styleContainerWidthObject}
+                    containerSpacing={styleContainerSpacingObject}
+                    spacingTop={styleSpacingTopObject}
+                    spacingBottom={styleSpacingBottomObject}
+                    hideBlock={styleHideBlockObject}
                     onChangeContentWidth={onChangeStyleContentWidthDesktop}
                     onChangeContentOffset={onChangeStyleContentOffsetDesktop}
                     onChangeContainerWidth={onChangeStyleContainerWidthDesktop}
@@ -169,13 +154,14 @@ export const WrapperOptions = ({ attributes, actions }) => {
                   <p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                   <br />
                   <WrapperResponsiveTabContent
-                    contentWidth={styleContentWidthTablet}
-                    contentOffset={styleContentOffsetTablet}
-                    containerWidth={styleContainerWidthTablet}
-                    containerSpacing={styleContainerSpacingTablet}
-                    spacingTop={styleSpacingTopTablet}
-                    spacingBottom={styleSpacingBottomTablet}
-                    hideBlock={styleHideBlockTablet}
+                    type={'tablet'}
+                    contentWidth={styleContentWidthObject}
+                    contentOffset={styleContentOffsetObject}
+                    containerWidth={styleContainerWidthObject}
+                    containerSpacing={styleContainerSpacingObject}
+                    spacingTop={styleSpacingTopObject}
+                    spacingBottom={styleSpacingBottomObject}
+                    hideBlock={styleHideBlockObject}
                     onChangeContentWidth={onChangeStyleContentWidthTablet}
                     onChangeContentOffset={onChangeStyleContentOffsetTablet}
                     onChangeContainerWidth={onChangeStyleContainerWidthTablet}
@@ -193,13 +179,14 @@ export const WrapperOptions = ({ attributes, actions }) => {
                   <p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                   <br />
                   <WrapperResponsiveTabContent
-                    contentWidth={styleContentWidthMobile}
-                    contentOffset={styleContentOffsetMobile}
-                    containerWidth={styleContainerWidthMobile}
-                    containerSpacing={styleContainerSpacingMobile}
-                    spacingTop={styleSpacingTopMobile}
-                    spacingBottom={styleSpacingBottomMobile}
-                    hideBlock={styleHideBlockMobile}
+                    type={'mobile'}
+                    contentWidth={styleContentWidthObject}
+                    contentOffset={styleContentOffsetObject}
+                    containerWidth={styleContainerWidthObject}
+                    containerSpacing={styleContainerSpacingObject}
+                    spacingTop={styleSpacingTopObject}
+                    spacingBottom={styleSpacingBottomObject}
+                    hideBlock={styleHideBlockObject}
                     onChangeContentWidth={onChangeStyleContentWidthMobile}
                     onChangeContentOffset={onChangeStyleContentOffsetMobile}
                     onChangeContainerWidth={onChangeStyleContainerWidthMobile}

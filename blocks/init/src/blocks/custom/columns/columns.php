@@ -8,9 +8,17 @@
 
 namespace Eightshift_Boilerplate\Blocks;
 
-$block_class = $attributes['blockClass'] ?? '';
+use Eightshift_Libs\Helpers\Components;
+
+$block_class       = $attributes['blockClass'] ?? '';
+
+$component_class = Components::classnames([
+  $block_class,
+  $attributes['gutterVertical'] ? Components::responsive_selectors($attributes['gutterVertical'], 'gutter-vertical', $block_class) : '',
+  $attributes['gutterHorizontal'] ? Components::responsive_selectors($attributes['gutterHorizontal'], 'gutter-horizontal', $block_class) : '',
+]);
 ?>
 
-<div class="<?php echo \esc_attr( $block_class ); ?>">
+<div class="<?php echo \esc_attr( $component_class ); ?>">
   <?php echo \wp_kses_post( $inner_block_content ); ?>
 </div>

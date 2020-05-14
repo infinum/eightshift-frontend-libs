@@ -6,57 +6,33 @@ import { Fragment } from '@wordpress/element';
 import { PanelBody, TabPanel, Dashicon } from '@wordpress/components';
 import { ColumnResponsiveTabContent } from './column-responsive-tab-content';
 
-export const ColumnOptions = (props) => {
+export const ColumnOptions = ({ attributes, actions }) => {
   const {
-    attributes: {
+    width,
+    offset,
+    hide,
+  } = attributes;
 
-      // Large.
-      widthLarge,
-      hideLarge,
-      offsetLarge,
+  const {
+    onChangeWidthLarge,
+    onChangeHideLarge,
+    onChangeOffsetLarge,
 
-      // Desktop.
-      widthDesktop,
-      hideDesktop,
-      offsetDesktop,
+    onChangeWidthDesktop,
+    onChangeHideDesktop,
+    onChangeOffsetDesktop,
 
-      // Tablet.
-      widthTablet,
-      hideTablet,
-      offsetTablet,
+    onChangeWidthTablet,
+    onChangeHideTablet,
+    onChangeOffsetTablet,
 
-      // Mobile.
-      widthMobile,
-      hideMobile,
-      offsetMobile,
-    },
-    actions: {
-
-      // Large.
-      onChangeWidthLarge,
-      onChangeHideLarge,
-      onChangeOffsetLarge,
-
-      // Desktop.
-      onChangeWidthDesktop,
-      onChangeHideDesktop,
-      onChangeOffsetDesktop,
-
-      // Tablet.
-      onChangeWidthTablet,
-      onChangeHideTablet,
-      onChangeOffsetTablet,
-
-      // Mobile.
-      onChangeWidthMobile,
-      onChangeHideMobile,
-      onChangeOffsetMobile,
-    },
-  } = props;
+    onChangeWidthMobile,
+    onChangeHideMobile,
+    onChangeOffsetMobile,
+  } = actions;
 
   return (
     <PanelBody title={__('Column Details', 'eightshift-boilerplate')}>
-
       <TabPanel
         className="custom-button-tabs"
         activeClass="button button-primary"
@@ -93,11 +69,11 @@ export const ColumnOptions = (props) => {
                 <p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnResponsiveTabContent
-                  width={widthLarge}
+                  width={width.large}
                   onChangeWidth={onChangeWidthLarge}
-                  hide={hideLarge}
+                  hide={hide.large}
                   onChangeHide={onChangeHideLarge}
-                  offset={offsetLarge}
+                  offset={offset.large}
                   onChangeOffset={onChangeOffsetLarge}
                 />
               </Fragment>
@@ -109,11 +85,11 @@ export const ColumnOptions = (props) => {
                 <p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnResponsiveTabContent
-                  width={widthDesktop}
+                  width={width.desktop}
                   onChangeWidth={onChangeWidthDesktop}
-                  hide={hideDesktop}
+                  hide={hide.desktop}
                   onChangeHide={onChangeHideDesktop}
-                  offset={offsetDesktop}
+                  offset={offset.desktop}
                   onChangeOffset={onChangeOffsetDesktop}
                 />
               </Fragment>
@@ -125,11 +101,11 @@ export const ColumnOptions = (props) => {
                 <p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnResponsiveTabContent
-                  width={widthTablet}
+                  width={width.tablet}
                   onChangeWidth={onChangeWidthTablet}
-                  hide={hideTablet}
+                  hide={hide.tablet}
                   onChangeHide={onChangeHideTablet}
-                  offset={offsetTablet}
+                  offset={offset.tablet}
                   onChangeOffset={onChangeOffsetTablet}
                 />
               </Fragment>
@@ -141,11 +117,11 @@ export const ColumnOptions = (props) => {
                 <p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnResponsiveTabContent
-                  width={widthMobile}
+                  width={width.mobile}
                   onChangeWidth={onChangeWidthMobile}
-                  hide={hideMobile}
+                  hide={hide.mobile}
                   onChangeHide={onChangeHideMobile}
-                  offset={offsetMobile}
+                  offset={offset.mobile}
                   onChangeOffset={onChangeOffsetMobile}
                 />
               </Fragment>

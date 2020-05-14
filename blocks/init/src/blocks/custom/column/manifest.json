@@ -14,48 +14,76 @@
   "parent": [
     "eightshift-boilerplate/columns"
   ],
+  "example": {
+    "allowedBlocks": [],
+
+    "width": {
+      "large": 3,
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    },
+
+    "offset": {
+      "large": "",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    },
+
+    "hide": {
+      "large": "",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    }
+  },
   "attributes": {
-    "widthLarge": {
-      "type": "number",
-      "default": 4
-    },
-    "hideLarge": {
-      "type": "bool"
-    },
-    "offsetLarge": {
-      "type": "number"
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
     },
 
-    "widthDesktop": {
-      "type": "number"
-    },
-    "hideDesktop": {
-      "type": "bool"
-    },
-    "offsetDesktop": {
-      "type": "number"
-    },
-
-    "widthTablet": {
-      "type": "number",
-      "default": 6
-    },
-    "hideTablet": {
-      "type": "bool"
-    },
-    "offsetTablet": {
-      "type": "number"
+    "width": {
+      "type": "object",
+      "default": {
+        "large": 4,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
 
-    "widthMobile": {
-      "type": "number",
-      "default": 12
+    "offset": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
-    "hideMobile": {
-      "type": "bool"
-    },
-    "offsetMobile": {
-      "type": "number"
+
+    "hide": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { ColumnsOptions } from './components/columns-options';
 import { ColumnsEditor } from './components/columns-editor';

@@ -1,23 +1,5 @@
+@import './styles/shared';
+
 .block-column {
-  &__width {
-    @include responsive-selectors {
-      @include flex-grid-width-modifiers;
-    }
-  }
-
-  &__hide {
-    @include responsive-visibility-selectors {
-      display: none;
-    }
-  }
-
-  &__offset {
-    @include responsive-selectors {
-      &--0 {
-        margin-left: 0;
-      }
-
-      @include grid-offset-modifiers;
-    }
-  }
+  @include column;
 }

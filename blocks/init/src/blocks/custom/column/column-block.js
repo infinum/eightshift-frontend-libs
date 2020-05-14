@@ -3,11 +3,11 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from 'EightshiftBlocksGetActions';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { ColumnEditor } from './components/column-editor';
 import { ColumnOptions } from './components/column-options';
-
+import './hooks';
 
 export const Column = (props) => {
   const {

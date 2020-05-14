@@ -6,6 +6,7 @@ import globalSettings from '../../manifest.json';
 
 export const WrapperResponsiveTabContent = (props) => {
   const {
+    type,
     contentWidth,
     contentOffset,
     containerWidth,
@@ -63,7 +64,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={sprintf(__('Change block width in %d columns range. Example 6 = 50% screen width. If you set a value to -1 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate'), globalSettings.maxCols)}
-          value={contentWidth}
+          value={contentWidth[type]}
           onChange={onChangeContentWidth}
           min={widthOptions.min}
           max={widthOptions.max}
@@ -81,7 +82,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={__('Change content position inside a block.', 'eightshift-boilerplate')}
-          value={contentOffset}
+          value={contentOffset[type]}
           options={contentOffsetOptions}
           onChange={onChangeContentOffset}
         />
@@ -96,7 +97,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={__('Change Container width. Changing this option will affect total width for Content Width option.', 'eightshift-boilerplate')}
-          value={containerWidth}
+          value={containerWidth[type]}
           options={containerWidthOptions}
           onChange={onChangeContainerWidth}
         />
@@ -111,7 +112,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={__('Change Container spacing on the left and right.', 'eightshift-boilerplate')}
-          value={containerSpacing}
+          value={containerSpacing[type]}
           options={containerSpacingOptions}
           onChange={onChangeContainerSpacing}
         />
@@ -126,7 +127,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
-          value={spacingTop}
+          value={spacingTop[type]}
           onChange={onChangeSpacingTop}
           min={spacingOptions.min}
           max={spacingOptions.max}
@@ -143,7 +144,7 @@ export const WrapperResponsiveTabContent = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
-          value={spacingBottom}
+          value={spacingBottom[type]}
           onChange={onChangeSpacingBottom}
           min={spacingOptions.min}
           max={spacingOptions.max}
@@ -156,7 +157,7 @@ export const WrapperResponsiveTabContent = (props) => {
         <ToggleControl
           label={__('Hide Block', 'eightshift-boilerplate')}
           help={__('Toggle block visibility.', 'eightshift-boilerplate')}
-          checked={hideBlock}
+          checked={hideBlock[type]}
           onChange={onChangeHideBlock}
         />
       }

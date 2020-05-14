@@ -1,14 +1,8 @@
-// // stylelint-disable selector-max-specificity
+@import './styles/shared';
 
-.wp-block.block-editor-block-list__block.editor-block-list__block {
-  &.block-column {
-    &__offset {
-      @include grid-offset-modifiers();
-    }
+.block-column.wp-block.block-editor-block-list__block.block-column {
+  margin-left: 0;
+  margin-right: 0;
 
-    .block-column {
-      padding: 0;
-      margin: 0;
-    }
-  }
+  @include column;
 }

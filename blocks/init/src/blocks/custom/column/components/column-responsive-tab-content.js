@@ -20,9 +20,9 @@ export const ColumnResponsiveTabContent = (props) => {
 
   const widthOptions = {
     min: -1,
-    max: globalSettings.maxCols,
+    max: globalSettings.globalVariables.maxCols,
     step: 1,
-    initial: globalSettings.maxCols,
+    initial: globalSettings.globalVariables.maxCols,
   };
 
 
