@@ -6,6 +6,7 @@ export const WrapperEditor = (props) => {
   const {
     children,
     attributes: {
+      hasWrapper,
       id,
       styleBackgroundColor,
   
@@ -45,6 +46,10 @@ export const WrapperEditor = (props) => {
     `${responsiveSelectors(styleContentWidth, 'inner-content-width', wrapperMainClass)}`,
     `${responsiveSelectors(styleContentOffset, 'inner-offset', wrapperMainClass)}`,
   );
+
+  if (!hasWrapper) {
+    return children;
+  }
 
   return (
     <div className={wrapperClass} id={id}>

@@ -15,6 +15,7 @@ const optionsProps = {
   attributes: {
     id: 'Wrapper ID',
     anchor: '#anchor-id',
+    hasWrapper: true,
     styleBackgroundColor: manifest.attributes.styleBackgroundColor.default,
     styleContentWidth: manifest.attributes.styleContentWidth,
     styleContentOffset: manifest.attributes.styleContentOffset,
@@ -25,6 +26,8 @@ const optionsProps = {
     styleHideBlock: manifest.attributes.styleHideBlock,
   },
   actions: {
+    onChangeHasWrapper: () => {},
+
     onChangeStyleContentWidthLarge: () => {},
     onChangeStyleContentOffsetLarge: () => {},
     onChangeStyleContainerWidthLarge: () => {},
@@ -64,7 +67,7 @@ const optionsProps = {
 };
 
 const ResponsiveTabContentProps = {
-  type:'large',
+  type: 'large',
   contentWidth: manifest.attributes.styleContentWidth.default,
   contentOffset: manifest.attributes.styleContentOffset.default,
   containerWidth: manifest.attributes.styleContainerWidth.default,

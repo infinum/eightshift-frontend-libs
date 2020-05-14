@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { Gutenberg, blockDetails, hasWrapperDecorator } from '@eightshift/frontend-libs/scripts/storybook';
+import { Gutenberg, blockDetails } from '@eightshift/frontend-libs/scripts/storybook';
 import React from 'react';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
@@ -9,7 +9,6 @@ import { block as item, block2 as item2, block3 as item3 } from '../../carousel-
 
 export default {
   title: `Blocks|${manifest.title}`,
-  ...hasWrapperDecorator(manifest),
   parameters: {
     notes: readme,
   },
