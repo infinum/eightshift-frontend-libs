@@ -1,6 +1,4 @@
 export {
-  hasWrapper,
-  hasWrapperDecorator,
   id,
   blockClass,
   blockJsClass,
