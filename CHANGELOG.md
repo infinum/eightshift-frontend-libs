@@ -6,6 +6,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.2.2] - 2020-05-15
+
+### Added
+* New block Columns.
+* New block Column.
+* New responsive-selectors helper to turndown the boilerplate code.
+* Has wrapper as na option in wrapper component.
+* Wrapper option to sass modifiers-deep and modifiers mixin.
+
+## Changes
+* Storybook changes for the new setup.
+* Changes on wrapper component to have object attributes.
+
 ## [3.2.1] - 2020-05-13
 
 ### Added
