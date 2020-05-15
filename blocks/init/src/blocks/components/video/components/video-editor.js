@@ -2,7 +2,6 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/editor';
-import { Button, Dashicon } from '@wordpress/components';
 
 export const VideoEditor = (props) => {
   const {
