@@ -2,6 +2,7 @@
 ///
 /// @param {string} $map - Map to search for.
 /// @param {string} $selector - HTML valid selector.
+/// @param {string} $wrapper - Wrap output item with additional markup
 ///
 /// Map:
 /// $test: (
@@ -30,10 +31,20 @@
 /// }
 /// ```
 
-@mixin modifiers-deep($map, $key, $selector) {
+@mixin modifiers-deep($map, $key, $selector, $wrapper: false) {
   @each $modifier, $value in map-get-strict($map, $key) {
-    &--#{$modifier} {
-      #{$selector}: $value;
+    @if $wrapper {
+      &--#{$modifier} {
+        #{$wrapper} {
+          #{$selector}: $value;
+        }
+      }
+    }
+
+    @else {
+      &--#{$modifier} {
+        #{$selector}: $value;
+      }
     }
   }
 }

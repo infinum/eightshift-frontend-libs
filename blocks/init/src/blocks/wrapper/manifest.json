@@ -12,99 +12,95 @@
       "default": true
     },
 
-    "styleContentWidthLarge": {
-      "type": "number",
-      "default": 12
-    },
-    "styleContentOffsetLarge": {
-      "type": "string",
-      "default": "center"
-    },
-    "styleContainerWidthLarge": {
-      "type": "string",
-      "default": "default"
-    },
-    "styleContainerSpacingLarge": {
-      "type": "string",
-      "default": "default"
-    },
-    "styleSpacingTopLarge": {
-      "type": "number"
-    },
-    "styleSpacingBottomLarge": {
-      "type": "number",
-      "default": 40
-    },
-    "styleHideBlockLarge": {
-      "type": "bool",
-      "default": false
+    "styleContentWidth": {
+      "type": "object",
+      "default": {
+        "large": 12,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
 
-    "styleContentWidthDesktop": {
-      "type": "number"
-    },
-    "styleContentOffsetDesktop": {
-      "type": "string"
-    },
-    "styleContainerWidthDesktop": {
-      "type": "string"
-    },
-    "styleContainerSpacingDesktop": {
-      "type": "string"
-    },
-    "styleSpacingTopDesktop": {
-      "type": "number"
-    },
-    "styleSpacingBottomDesktop": {
-      "type": "number"
-    },
-    "styleHideBlockDesktop": {
-      "type": "bool",
-      "default": false
+    "styleContentOffset": {
+      "type": "object",
+      "default": {
+        "large": "center",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
 
-    "styleContentWidthTablet": {
-      "type": "number"
-    },
-    "styleContentOffsetTablet": {
-      "type": "string"
-    },
-    "styleContainerWidthTablet": {
-      "type": "string"
-    },
-    "styleContainerSpacingTablet": {
-      "type": "string"
-    },
-    "styleSpacingTopTablet": {
-      "type": "number"
-    },
-    "styleSpacingBottomTablet": {
-      "type": "number"
-    },
-    "styleHideBlockTablet": {
-      "type": "bool"
+    "styleContainerWidth": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
 
-    "styleContentWidthMobile": {
-      "type": "number"
+    "styleContainerSpacing": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
-    "styleContentOffsetMobile": {
-      "type": "string"
+
+    "styleSpacingTop": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
-    "styleContainerWidthMobile": {
-      "type": "string"
+
+    "styleSpacingBottom": {
+      "type": "object",
+      "default": {
+        "large": 40,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     },
-    "styleContainerSpacingMobile": {
-      "type": "string"
-    },
-    "styleSpacingTopMobile": {
-      "type": "number"
-    },
-    "styleSpacingBottomMobile": {
-      "type": "number"
-    },
-    "styleHideBlockMobile": {
-      "type": "bool"
+
+    "styleHideBlock": {
+      "type": "object",
+      "default": {
+        "large": false,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
     }
   }
 }

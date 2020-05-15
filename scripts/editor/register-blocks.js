@@ -93,6 +93,10 @@ export const registerBlocks = (blocksManifests, blocksFilePaths, blocksSettings,
       const iconsCallback = getBlockGenericComponent(block.blockName, iconsPath, 'icons');
   
       if (iconsCallback !== null) {
+        if (!block.hasOwnProperty('icon')) {
+          block.icon = Object.create(null);
+        }
+
         block.icon.src = iconsCallback;
       }
     }

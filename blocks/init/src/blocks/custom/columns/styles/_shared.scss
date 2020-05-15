@@ -1,0 +1,37 @@
+$block-columns: (
+  gutter-vertical: (
+    default: $base-gutter-size,
+    big: $base-gutter-size * 2,
+    none: 0,
+  ),
+  gutter-vertical-reset: (
+    default: -$base-gutter-size,
+    big: -($base-gutter-size * 2),
+  ),
+  gutter-horizontal: (
+    default: $base-gutter-size,
+    big: $base-gutter-size * 2,
+    none: 0,
+  ),
+);
+
+@mixin columns-parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+@mixin columns {
+  &__gutter-vertical {
+    @include responsive-selectors {
+      @include modifiers-deep($block-columns, gutter-vertical-reset, margin-left);
+      @include modifiers-deep($block-columns, gutter-vertical-reset, margin-right);
+      @include modifiers-deep($block-columns, gutter-vertical, padding-left, '.block-column');
+      @include modifiers-deep($block-columns, gutter-vertical, padding-right, '.block-column');
+    }
+  }
+
+  &__gutter-horizontal {
+    @include responsive-selectors {
+      @include modifiers-deep($block-columns, gutter-horizontal, margin-bottom, '.block-column');
+    }
+  }
+}

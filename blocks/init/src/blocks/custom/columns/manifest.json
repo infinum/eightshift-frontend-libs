@@ -1,0 +1,60 @@
+{
+  "blockName": "columns",
+  "title": "Columns",
+  "description" : "Columns block with custom settings.",
+  "category": "eightshift",
+  "keywords": [
+    "columns"
+  ],
+  "example": {
+    "allowedBlocks": ["eightshift-boilerplate/column"],
+    "gutterVertical": {
+      "large": "default",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    },
+    "gutterHorizontal": {
+      "large": "default",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    }
+  },
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/column"
+      ]
+    },
+    "gutterVertical": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+    "gutterHorizontal": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { withKnobs, boolean } from '@storybook/addon-knobs';
 import {
   BlockEditorKeyboardShortcuts,
   BlockEditorProvider,
@@ -13,40 +12,6 @@ import {
   SlotFillProvider,
   DropZoneProvider,
 } from '@wordpress/components';
-import wrapperManifest from '../../blocks/init/src/blocks/wrapper/manifest.json';
-
-/**
- * Generate Blocks Wrapper.
- *
- * @param {bool} isActive Set if Wrapper is active or not.
- */
-export const hasWrapper = (isActive) => {
-  const wrapper = {
-    hasWrapper: true,
-    styleContentWidthLarge: wrapperManifest.attributes.styleContentWidthLarge.default,
-    styleContentOffsetLarge: wrapperManifest.attributes.styleContentOffsetLarge.default,
-    styleContainerWidthLarge: wrapperManifest.attributes.styleContainerWidthLarge.default,
-    styleContainerSpacingLarge: wrapperManifest.attributes.styleContainerSpacingLarge.default,
-    styleSpacingBottomLarge: wrapperManifest.attributes.styleSpacingBottomLarge.default,
-    styleHideBlockLarge: wrapperManifest.attributes.styleHideBlockLarge.default,
-    styleHideBlockDesktop: wrapperManifest.attributes.styleHideBlockDesktop.default,
-  };
-
-  return isActive ? wrapper : {};
-};
-
-/**
- * Define if block has wrapper decorator. Used in storybook knobs.
- *
- * @param {json} manifest Block Manifest data.
- */
-export const hasWrapperDecorator = (manifest) => {
-  if (typeof manifest.hasWrapper === 'undefined') {
-    manifest.hasWrapper = true;
-  }
-
-  return (manifest.hasWrapper ? { decorators: [withKnobs] } : '');
-};
 
 /**
  * Define generic block ID.
@@ -141,14 +106,15 @@ export const Gutenberg = (props) => {
   const {
     props: {
       blocks,
-      useWrapper = false,
     },
   } = props;
 
   const blocksProps = blocks.map((block) => {
+    block.attributes.hasWrapper = true;
+
     return {
       ...block,
-      attributes: { ...block.attributes, ...hasWrapper(boolean('Use Wrapper', useWrapper)) },
+      attributes: { ...block.attributes, ...block.attributes.hasWrapper },
       clientId: id(),
       isValid: true,
     };

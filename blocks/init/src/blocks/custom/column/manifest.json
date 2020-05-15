@@ -1,0 +1,86 @@
+{
+  "blockName": "column",
+  "title": "Column",
+  "description" : "Column block with custom settings.",
+  "category": "eightshift",
+  "keywords": [
+    "column"
+  ],
+  "hasWrapper": false,
+  "hasInnerBlocks": true,
+  "parent": [
+    "eightshift-boilerplate/columns"
+  ],
+  "example": {
+    "allowedBlocks": [],
+
+    "width": {
+      "large": 3,
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    },
+
+    "offset": {
+      "large": "",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    },
+
+    "hide": {
+      "large": "",
+      "desktop": "",
+      "tablet": "",
+      "mobile": ""
+    }
+  },
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+
+    "width": {
+      "type": "object",
+      "default": {
+        "large": 4,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+
+    "offset": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+
+    "hide": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

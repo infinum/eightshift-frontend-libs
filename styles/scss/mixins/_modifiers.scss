@@ -2,6 +2,7 @@
 ///
 /// @param {string} $map - Map to search for.
 /// @param {string} $selector - a valid  HTML selector.
+/// @param {string} $wrapper - Wrap output item with additional markup
 ///
 /// Map:
 /// $test: (
@@ -28,10 +29,20 @@
 /// }
 /// ```
 
-@mixin modifiers($map, $selector) {
+@mixin modifiers($map, $selector, $wrapper: false) {
   @each $key, $value in $map {
-    &--#{$key} {
-      #{$selector}: $value;
+    @if $wrapper {
+      &--#{$key} {
+        #{$wrapper} {
+          #{$selector}: $value;
+        }
+      }
+    }
+
+    @else {
+      &--#{$key} {
+        #{$selector}: $value;
+      }
     }
   }
 }
