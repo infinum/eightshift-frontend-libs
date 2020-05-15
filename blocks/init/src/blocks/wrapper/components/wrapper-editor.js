@@ -9,14 +9,13 @@ export const WrapperEditor = (props) => {
       hasWrapper,
       id,
       styleBackgroundColor,
-  
       styleContentWidth,
       styleContentOffset,
       styleContainerWidth,
       styleContainerSpacing,
       styleSpacingTop,
       styleSpacingBottom,
-      styleHideBlock,
+      useSimpleWrapper,
     },
   } = props;
 
@@ -28,7 +27,6 @@ export const WrapperEditor = (props) => {
 
     `${responsiveSelectors(styleSpacingTop, 'spacing-top', wrapperMainClass)}`,
     `${responsiveSelectors(styleSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
-    `${responsiveSelectors(styleHideBlock, 'hide-block', wrapperMainClass, true)}`,
   );
 
   const wrapperContainerClass = classnames(
@@ -53,11 +51,14 @@ export const WrapperEditor = (props) => {
 
   return (
     <div className={wrapperClass} id={id}>
-      <div className={wrapperContainerClass}>
-        <div className={wrapperInnerClass}>
-          {children}
+      {useSimpleWrapper ?
+        children :
+        <div className={wrapperContainerClass}>
+          <div className={wrapperInnerClass}>
+            {children}
+          </div>
         </div>
-      </div>
+      }
     </div>
   );
 };

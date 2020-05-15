@@ -9,6 +9,7 @@ import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 export const WrapperOptions = ({ attributes, actions }) => {
   const {
     hasWrapper,
+    useSimpleWrapper,
     id,
     anchor,
     styleBackgroundColor,
@@ -120,6 +121,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'large'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -145,6 +147,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'desktop'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -170,6 +173,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'tablet'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -195,6 +199,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'mobile'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}

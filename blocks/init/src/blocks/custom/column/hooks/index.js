@@ -26,10 +26,10 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     let updatedProps = innerProps;
 
     // Remove wrapper from all blocks inside column block.
-    const parent = select('core/editor').getBlocksByClientId(rootClientId);
+    const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
     if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
-      innerProps.attributes.hasWrapper = false;
+      innerProps.attributes.useSimpleWrapper = true;
     }
 
     // Move selectors to the parent div in DOM.

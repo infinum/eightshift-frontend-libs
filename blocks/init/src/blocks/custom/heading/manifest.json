@@ -12,12 +12,14 @@
     "label"
   ],
   "example": {
+    "attributes": {
       "heading": {
-      "content": "Heading Content",
-      "level": 2,
-      "styleAlign": "left",
-      "styleColor": "primary",
-      "styleSize": "default"
+        "content": "Heading Content",
+        "level": 2,
+        "styleAlign": "left",
+        "styleColor": "primary",
+        "styleSize": "default"
+      }
     }
   },
   "attributes": {

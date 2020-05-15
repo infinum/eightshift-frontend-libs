@@ -10,9 +10,11 @@
     "carousel"
   ],
   "example": {
-    "allowedBlocks": ["eightshift-boilerplate/column"],
-    "isFreeMode": false,
-    "isLoop": true
+    "attributes": {
+      "allowedBlocks": ["eightshift-boilerplate/column"],
+      "isFreeMode": false,
+      "isLoop": true
+    }
   },
   "hasInnerBlocks": true,
   "attributes": {

@@ -10,15 +10,17 @@
     "Jumbotron"
   ],
   "example": {
-    "heading": "Lorem ipsum dolor sit amet",
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum.",
-    "contentHorizontalPosition": "left",
-    "contentVerticalPosition": "top",
-    "media": {
-      "id": 0,
-      "url": "https://picsum.photos/1200/800"
-    },
-    "mediaHorizontalPosition": "left"
+    "attributes": {
+      "heading": "Lorem ipsum dolor sit amet",
+      "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum.",
+      "contentHorizontalPosition": "left",
+      "contentVerticalPosition": "top",
+      "media": {
+        "id": 0,
+        "url": "https://picsum.photos/1200/800"
+      },
+      "mediaHorizontalPosition": "left"
+    }
   },
   "attributes": {
     "heading": {

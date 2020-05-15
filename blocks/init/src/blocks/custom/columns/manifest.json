@@ -7,18 +7,20 @@
     "columns"
   ],
   "example": {
-    "allowedBlocks": ["eightshift-boilerplate/column"],
-    "gutterVertical": {
-      "large": "default",
-      "desktop": "",
-      "tablet": "",
-      "mobile": ""
-    },
-    "gutterHorizontal": {
-      "large": "default",
-      "desktop": "",
-      "tablet": "",
-      "mobile": ""
+    "attributes": {
+      "allowedBlocks": ["eightshift-boilerplate/column"],
+      "gutterVertical": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "gutterHorizontal": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      }
     }
   },
   "hasInnerBlocks": true,

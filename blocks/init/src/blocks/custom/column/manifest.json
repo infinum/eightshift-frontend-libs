@@ -6,44 +6,37 @@
   "keywords": [
     "column"
   ],
-  "hasWrapper": false,
   "hasInnerBlocks": true,
   "parent": [
     "eightshift-boilerplate/columns"
   ],
   "example": {
-    "allowedBlocks": [],
-
-    "width": {
-      "large": 3,
-      "desktop": "",
-      "tablet": "",
-      "mobile": ""
-    },
-
-    "offset": {
-      "large": "",
-      "desktop": "",
-      "tablet": "",
-      "mobile": ""
-    },
-
-    "hide": {
-      "large": "",
-      "desktop": "",
-      "tablet": "",
-      "mobile": ""
+    "attributes": {
+      "width": {
+        "large": 3,
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "offset": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "hide": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      }
     }
   },
   "attributes": {
-    "allowedBlocks": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "default": []
+    "hasWrapper": {
+      "type": "bool",
+      "default": false
     },
-
     "width": {
       "type": "object",
       "default": {
@@ -56,7 +49,6 @@
         "type": "object"
       }
     },
-
     "offset": {
       "type": "object",
       "default": {
@@ -69,7 +61,6 @@
         "type": "object"
       }
     },
-
     "hide": {
       "type": "object",
       "default": {
