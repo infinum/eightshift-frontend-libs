@@ -8,7 +8,7 @@ import globalSettings from '../../manifest.json';
 export const WrapperResponsiveTabContent = (props) => {
   const {
     type,
-    useSimpleWrapper,
+    hasSimpleWrapper,
     contentWidth,
     contentOffset,
     containerWidth,
@@ -57,7 +57,7 @@ export const WrapperResponsiveTabContent = (props) => {
 
   return (
     <Fragment>
-      {!useSimpleWrapper &&
+      {!hasSimpleWrapper &&
         <Fragment>
           {onChangeContentWidth && (
             <RangeControl

@@ -11,9 +11,10 @@ use Eightshift_Libs\Helpers\Components;
 
 // Used to add or remove wrapper.
 $has_wrapper        = $attributes['hasWrapper'] ?? true;
-$use_simple_wrapper = $attributes['useSimpleWrapper'] ?? false;
+$has_simple_wrapper = $attributes['hasSimpleWrapper'] ?? false;
+$disable_wrapper    = $attributes['disableWrapper'] ?? false;
 
-if ( ! $has_wrapper ) {
+if ( ! $has_wrapper && $disable_wrapper ) {
   $this->render_wrapper_view(
     $template_path,
     $attributes,
@@ -49,7 +50,7 @@ $wrapper_inner_class = Components::classnames([
 
 ?>
 <div class="<?php echo esc_attr( $wrapper_class ); ?>" id="<?php echo esc_attr( $id ); ?>">
-  <?php if ( $use_simple_wrapper ) { ?>
+  <?php if ( $has_simple_wrapper ) { ?>
     <?php
       $this->render_wrapper_view(
         $template_path,

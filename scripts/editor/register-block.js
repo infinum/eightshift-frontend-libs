@@ -26,7 +26,6 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     supports,
     hasInnerBlocks = false,
     isInactive = false,
-    hasWrapper = true,
   } = manifest;
 
   // If block is set to inactive it will not be register.
@@ -74,7 +73,7 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
       transforms,
       example,
       styles,
-      edit: (hasWrapper && wrapper !== null) ? withWrapper(edit, wrapper) : edit,
+      edit: (wrapper !== null) ? withWrapper(edit, wrapper) : edit,
       save,
     },
   };

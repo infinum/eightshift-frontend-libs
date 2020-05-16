@@ -30,6 +30,8 @@ export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
  * Loading WP build files.
  */
 export const storybookWindowObjects = () => {
+  window.wp = {};
+
   window.wp.element = require('@wordpress/element/build-module');
   window.wp.compose = require('@wordpress/compose/build-module');
   window.wp.hooks = require('@wordpress/hooks/build-module');

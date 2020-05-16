@@ -1,5 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
+import { Fragment } from '@wordpress/element';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 
 export const WrapperEditor = (props) => {
@@ -7,6 +8,8 @@ export const WrapperEditor = (props) => {
     children,
     attributes: {
       hasWrapper,
+      hasSimpleWrapper,
+      disableWrapper,
       id,
       styleBackgroundColor,
       styleContentWidth,
@@ -15,7 +18,6 @@ export const WrapperEditor = (props) => {
       styleContainerSpacing,
       styleSpacingTop,
       styleSpacingBottom,
-      useSimpleWrapper,
     },
   } = props;
 
@@ -50,15 +52,20 @@ export const WrapperEditor = (props) => {
   }
 
   return (
-    <div className={wrapperClass} id={id}>
-      {useSimpleWrapper ?
+    <Fragment>
+      {disableWrapper ?
         children :
-        <div className={wrapperContainerClass}>
-          <div className={wrapperInnerClass}>
-            {children}
-          </div>
+        <div className={wrapperClass} id={id}>
+          {hasSimpleWrapper ?
+            children :
+            <div className={wrapperContainerClass}>
+              <div className={wrapperInnerClass}>
+                {children}
+              </div>
+            </div>
+          }
         </div>
       }
-    </div>
+    </Fragment>
   );
 };
