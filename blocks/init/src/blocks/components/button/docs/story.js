@@ -15,6 +15,7 @@ const editorProps = {
   blockClass: 'block-button',
   button: {
     title: 'Button Title',
+    url: 'https://fakeurl.com',
     styleSize: 'default',
     styleColor: 'primary',
     styleSizeWidth: 'default',

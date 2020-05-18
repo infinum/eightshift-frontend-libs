@@ -15,6 +15,7 @@ const editorProps = {
   blockClass: 'block-link',
   link: {
     title: 'Link Title',
+    url: 'https://fakeurl.com',
     styleColor: 'primary',
   },
   onChangeTitle: () => {},
