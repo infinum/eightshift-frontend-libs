@@ -50,8 +50,11 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
           // For backwards compatibility, we're keeping the ability to set colors with just name.
           // The preferred way is to use a slug.
           let newColorValues = (typeof colorObject === 'undefined') ? '' : colorObject.name;
-          if (colorObject.slug) {
+
+          if (typeof colorObject === 'object' && colorObject.hasOwnProperty('slug') && colorObject.slug) {
             newColorValues = colorObject.slug;
+          } else {
+            newColorValues = '';
           }
 
           onChange(newColorValues);
