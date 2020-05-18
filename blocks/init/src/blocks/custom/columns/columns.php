@@ -9,7 +9,7 @@ namespace Eightshift_Boilerplate\Blocks;
 
 use Eightshift_Libs\Helpers\Components;
 
-$block_class       = $attributes['blockClass'] ?? '';
+$block_class = $attributes['blockClass'] ?? '';
 
 $component_class = Components::classnames([
   $block_class,
