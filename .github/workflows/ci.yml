@@ -38,8 +38,5 @@ jobs:
             - name: Install node packages
               run: npm install
 
-            - name: Run JS build
-              run: npm run build
-
             - name: Run linters
               run: npm run lint
