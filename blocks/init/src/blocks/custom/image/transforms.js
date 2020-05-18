@@ -1,6 +1,6 @@
 import { createBlock } from '@wordpress/blocks';
 import manifest from './../../manifest.json';
-import manifestParagraph from './manifest.json';
+import manifestImage from './manifest.json';
 import manifestCarouselImage from './../carousel-image/manifest.json';
 
 export const Transforms = {
@@ -9,7 +9,7 @@ export const Transforms = {
       type: 'block',
       blocks: [`${manifest.namespace}/${manifestCarouselImage.blockName}`],
       transform: ({ media }) => (
-        createBlock(`${manifest.namespace}/${manifestParagraph.blockName}`, {
+        createBlock(`${manifest.namespace}/${manifestImage.blockName}`, {
           media,
         })
       ),
