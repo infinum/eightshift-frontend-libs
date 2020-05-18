@@ -26,10 +26,12 @@ const optionsProps = {
     url: 'https://fakeurl.com',
     styleColor: 'primary',
     isAnchor: false,
+    id: 'ID',
   },
   onChangeUrl: () => {},
   onChangeStyleColor: () => {},
   onChangeIsAnchor: () => {},
+  onChangeId: () => {},
 };
 
 export const editor = () => (

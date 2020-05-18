@@ -12,6 +12,7 @@ export const LinkOptions = ({ attributes, actions }) => {
     onChangeLinkUrl,
     onChangeLinkStyleColor,
     onChangeLinkIsAnchor,
+    onChangeLinkId,
   } = actions;
 
   const linkObject = (typeof link === 'undefined') || link;
@@ -24,6 +25,7 @@ export const LinkOptions = ({ attributes, actions }) => {
         onChangeUrl={onChangeLinkUrl}
         onChangeStyleColor={onChangeLinkStyleColor}
         onChangeIsAnchor={onChangeLinkIsAnchor}
+        onChangeId={onChangeLinkId}
       />
 
     </PanelBody>

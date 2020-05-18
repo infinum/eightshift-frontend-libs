@@ -19,23 +19,24 @@ const editorProps = {
     styleColor: 'primary',
     styleSizeWidth: 'default',
   },
+  onChangeTitle: () => {},
 };
 
 const optionsProps = {
   button: {
-    title: 'Button Title',
     url: 'https://fakeurl.com',
     styleSize: 'default',
     styleColor: 'primary',
     styleSizeWidth: 'default',
+    isAnchor: false,
     id: 'ID',
   },
-  onChangeTitle: () => {},
   onChangeUrl: () => {},
   onChangeStyleSize: () => {},
   onChangeStyleColor: () => {},
   onChangeStyleSizeWidth: () => {},
   onChangeId: () => {},
+  onChangeIsAnchor: () => {},
 };
 
 export const editor = () => (

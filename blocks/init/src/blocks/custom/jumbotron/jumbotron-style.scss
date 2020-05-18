@@ -13,8 +13,8 @@ $block-jumbotron: (
       margin-top: 25px,
     ),
   ),
-  container-size: map-get-deep($base-container-sizes, default),
-  container-spacing: map-get-deep($base-gutter-sizes, default),
+  container-size: global-settings(containers, default),
+  container-spacing: global-settings(gutters, default),
 );
 
 .block-jumbotron {

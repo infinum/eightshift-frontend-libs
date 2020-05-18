@@ -33,6 +33,7 @@ export const WrapperResponsiveTabContentSimple = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          allowReset={true}
           value={spacingTop[type]}
           onChange={onChangeSpacingTop}
           min={wrapperSpacingOptions.min}
@@ -50,6 +51,7 @@ export const WrapperResponsiveTabContentSimple = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          allowReset={true}
           value={spacingBottom[type]}
           onChange={onChangeSpacingBottom}
           min={wrapperSpacingOptions.min}

@@ -7,6 +7,7 @@ export const LinkEditor = (props) => {
   const {
     link: {
       title,
+      url,
       styleColor,
     },
     blockClass,
@@ -19,6 +20,7 @@ export const LinkEditor = (props) => {
     componentClass,
     `${componentClass}__color--${styleColor}`,
     `${blockClass}__link`,
+    !(title && url) ? `${componentClass}__placeholder` : '',
   );
 
   return (

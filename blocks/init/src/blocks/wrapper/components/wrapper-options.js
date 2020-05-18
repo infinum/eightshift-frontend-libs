@@ -71,7 +71,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
 
   return (
     <Fragment>
-      <PanelBody title={__('Block Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
+      <PanelBody title={__('Wrapper Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
 
         {onChangeHasWrapper &&
           <ToggleControl
@@ -221,9 +221,6 @@ export const WrapperOptions = ({ attributes, actions }) => {
               )}
             </TabPanel>
 
-            <hr />
-            <strong className="notice-title">{__('Block Colors', 'eightshift-boilerplate')}</strong>
-            <br /><br />
             {onChangeStyleBackgroundColor &&
               <ColorPaletteCustom
                 label={
@@ -238,9 +235,6 @@ export const WrapperOptions = ({ attributes, actions }) => {
               />
             }
 
-            <hr />
-            <strong className="notice-title">{__('Block General', 'eightshift-boilerplate')}</strong>
-            <br /><br />
             {onChangeId &&
               <TextControl
                 label={

@@ -24,7 +24,6 @@ export const WrapperEditor = (props) => {
   const wrapperClass = classnames(
     wrapperMainClass,
     `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-
     `${responsiveSelectors(styleSpacingTop, 'spacing-top', wrapperMainClass)}`,
     `${responsiveSelectors(styleSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
   );
@@ -32,7 +31,6 @@ export const WrapperEditor = (props) => {
   const wrapperContainerClass = classnames(
     `${wrapperMainClass}__container`,
     `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-
     `${responsiveSelectors(styleContainerWidth, 'container-width', wrapperMainClass)}`,
     `${responsiveSelectors(styleContainerSpacing, 'container-spacing', wrapperMainClass)}`,
   );
@@ -40,7 +38,6 @@ export const WrapperEditor = (props) => {
   const wrapperInnerClass = classnames(
     `${wrapperMainClass}__inner`,
     `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-
     `${responsiveSelectors(styleContentWidth, 'inner-content-width', wrapperMainClass)}`,
     `${responsiveSelectors(styleContentOffset, 'inner-offset', wrapperMainClass)}`,
   );

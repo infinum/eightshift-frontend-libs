@@ -27,7 +27,7 @@ export const ParagraphOptions = (props) => {
         <ColorPaletteCustom
           label={
             <Fragment>
-              <Icon icon={() => icons.color} />
+              <Icon icon={icons.color} />
               {__('Paragraph Color', 'eightshift-boilerplate')}
             </Fragment>
           }

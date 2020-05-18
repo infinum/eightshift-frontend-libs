@@ -13,9 +13,10 @@ if ( empty( $button ) ) {
   return;
 }
 
-$url   = $button['url'] ?? '';
-$title = $button['title'] ?? '';
-$id    = $button['id'] ?? '';
+$url       = $button['url'] ?? '';
+$title     = $button['title'] ?? '';
+$id        = $button['id'] ?? '';
+$is_anchor = $button['isAnchor'] ?? false;
 
 if ( empty( $url ) || empty( $title ) ) {
   return;
@@ -26,12 +27,14 @@ $block_class      = $attributes['blockClass'] ?? '';
 $style_color      = isset( $button['styleColor'] ) ? "{$component_class}__color--{$button['styleColor']}" : '';
 $style_size       = isset( $button['styleSize'] ) ? "{$component_class}__size--{$button['styleSize']}" : '';
 $style_size_width = isset( $button['styleSizeWidth'] ) ? "{$component_class}__size-width--{$button['styleSizeWidth']}" : '';
+$is_anchor        = ( $is_anchor === true ) ? 'js-scroll-to-anchor' : '';
 
 $button_class = "
   {$component_class}
   {$style_color}
   {$style_size}
   {$style_size_width}
+  {$is_anchor}
   {$block_class}__btn
 ";
 ?>

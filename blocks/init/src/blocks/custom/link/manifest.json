@@ -17,7 +17,8 @@
         "title": "Link Title",
         "url": "https://fakeurl.com",
         "styleColor": "primary",
-        "isAnchor": false
+        "isAnchor": false,
+        "id": "custom ID"
       }
     }
   },
@@ -28,7 +29,8 @@
         "title": "",
         "url": "",
         "styleColor": "primary",
-        "isAnchor": false
+        "isAnchor": false,
+        "id": ""
       },
       "items": {
         "type": "object"

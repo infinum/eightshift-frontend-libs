@@ -1,8 +1,8 @@
 $wrapper: (
   background-colors: global-settings(colors),
-  spacing: $base-section-spacing,
-  containers: $base-container-sizes,
-  container-spacing: $base-gutter-sizes,
+  spacing: global-settings(sectionSpacing),
+  containers: global-settings(containers),
+  container-spacing: global-settings(gutters),
 );
 
 .wrapper {

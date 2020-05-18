@@ -5,17 +5,18 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { SelectControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import globalSettings from './../../../manifest.json';
 
 export const columnsGutter = [
-  { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
-  { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
+  { label: __(`None (${globalSettings.globalVariables.gutters.none})`, 'eightshift-boilerplate'), value: 'none' },
+  { label: __(`Default (${globalSettings.globalVariables.gutters.default})`, 'eightshift-boilerplate'), value: 'default' },
+  { label: __(`Big (${globalSettings.globalVariables.gutters.big})`, 'eightshift-boilerplate'), value: 'big' },
 ];
 
 export const columsHorizontalSpacing = [
-  { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
-  { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
+  { label: __(`None (${globalSettings.globalVariables.gutters.none})`, 'eightshift-boilerplate'), value: 'none' },
+  { label: __(`Default (${globalSettings.globalVariables.gutters.default})`, 'eightshift-boilerplate'), value: 'default' },
+  { label: __(`Big (${globalSettings.globalVariables.gutters.big})`, 'eightshift-boilerplate'), value: 'big' },
 ];
 
 export const ColumnsResponsiveTabContent = (props) => {

@@ -7,8 +7,9 @@
       "default": "1330px"
     },
     "gutters": {
+      "none": "0",
       "default": "25px",
-      "no-spacing": "0px"
+      "big": "50px"
     },
     "sectionSpacing": {
       "min":  0,

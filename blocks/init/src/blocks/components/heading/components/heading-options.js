@@ -27,7 +27,7 @@ export const HeadingOptions = (props) => {
         <ColorPaletteCustom
           label={
             <Fragment>
-              <Icon icon={() => icons.color} />
+              <Icon icon={icons.color} />
               {__('Heading Color', 'eightshift-boilerplate')}
             </Fragment>
           }

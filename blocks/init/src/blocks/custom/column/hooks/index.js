@@ -18,7 +18,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
         blockClass,
         width,
         offset,
-        hide,
       },
       rootClientId,
     } = innerProps;
@@ -39,7 +38,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
         'eightshift-block',
         `${responsiveSelectors(width, 'width', blockClass)}`,
         `${responsiveSelectors(offset, 'offset', blockClass)}`,
-        `${responsiveSelectors(hide, 'hide', blockClass, false)}`,
       );
 
       updatedProps = assign(
