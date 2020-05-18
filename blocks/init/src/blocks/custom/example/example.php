@@ -1,7 +1,7 @@
 <?php
 /**
  * Template for the Example Block view.
- *htshift_Boilerplate\Blocks.
+ * Eightshift_Boilerplate\Blocks.
  */
 
 namespace Eightshift_Boilerplate\Blocks;
