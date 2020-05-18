@@ -32,7 +32,7 @@ export const ColumnResponsiveTabContent = (props) => {
         <RangeControl
           label={
             <Fragment>
-              <Icon icon={() => icons.width} />
+              <Icon icon={icons.width} />
               {__('Width', 'eightshift-boilerplate')}
             </Fragment>
           }
@@ -50,7 +50,7 @@ export const ColumnResponsiveTabContent = (props) => {
         <RangeControl
           label={
             <Fragment>
-              <Icon icon={() => icons.offset} />
+              <Icon icon={icons.offset} />
               {__('Offset', 'eightshift-boilerplate')}
             </Fragment>
           }

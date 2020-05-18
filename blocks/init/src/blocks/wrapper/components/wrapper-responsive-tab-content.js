@@ -58,7 +58,7 @@ export const WrapperResponsiveTabContent = (props) => {
             <RangeControl
               label={
                 <Fragment>
-                  <Icon icon={() => icons.width} />
+                  <Icon icon={icons.width} />
                   {__('Content Width', 'eightshift-boilerplate')}
                 </Fragment>
               }
@@ -76,7 +76,7 @@ export const WrapperResponsiveTabContent = (props) => {
             <SelectControl
               label={
                 <Fragment>
-                  <Icon icon={() => icons.offset} />
+                  <Icon icon={icons.offset} />
                   {__('Content Offset', 'eightshift-boilerplate')}
                 </Fragment>
               }
@@ -91,7 +91,7 @@ export const WrapperResponsiveTabContent = (props) => {
             <SelectControl
               label={
                 <Fragment>
-                  <Icon icon={() => icons.containerWidth} />
+                  <Icon icon={icons.containerWidth} />
                   {__('Container Width', 'eightshift-boilerplate')}
                 </Fragment>
               }
@@ -106,7 +106,7 @@ export const WrapperResponsiveTabContent = (props) => {
             <SelectControl
               label={
                 <Fragment>
-                  <Icon icon={() => icons.containerSpacing} />
+                  <Icon icon={icons.containerSpacing} />
                   {__('Container Spacing', 'eightshift-boilerplate')}
                 </Fragment>
               }

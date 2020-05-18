@@ -228,7 +228,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <ColorPaletteCustom
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.color} />
+                    <Icon icon={icons.color} />
                     {__('Background Color', 'eightshift-boilerplate')}
                   </Fragment>
                 }
@@ -245,7 +245,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <TextControl
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.id} />
+                    <Icon icon={icons.id} />
                     {__('Block ID', 'eightshift-boilerplate')}
                   </Fragment>
                 }
@@ -259,7 +259,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <TextControl
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.anchor} />
+                    <Icon icon={icons.anchor} />
                     {__('Anchor', 'eightshift-boilerplate')}
                   </Fragment>
                 }

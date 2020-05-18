@@ -29,7 +29,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
     if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
-      innerProps.attributes.hasSimpleWrapper = true;
+      innerProps.attributes.useSimpleWrapper = true;
     }
 
     // Move selectors to the parent div in DOM.

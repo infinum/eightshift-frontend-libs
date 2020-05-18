@@ -9,15 +9,15 @@ export const ColumnsEditor = ({ attributes }) => {
   const {
     allowedBlocks,
     blockClass,
-    gutterVertical,
-    gutterHorizontal,
+    gutter,
+    horizontalSpacing,
   } = attributes;
 
   const componentClass = classnames(
     blockClass,
     'eightshift-block',
-    `${responsiveSelectors(gutterVertical, 'gutter-vertical', blockClass)}`,
-    `${responsiveSelectors(gutterHorizontal, 'gutter-horizontal', blockClass)}`,
+    `${responsiveSelectors(gutter, 'gutter', blockClass)}`,
+    `${responsiveSelectors(horizontalSpacing, 'horizontal-spacing', blockClass)}`,
   );
 
   return (

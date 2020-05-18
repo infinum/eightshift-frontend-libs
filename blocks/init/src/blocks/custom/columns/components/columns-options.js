@@ -8,19 +8,19 @@ import { ColumnsResponsiveTabContent } from './columns-responsive-tab-content';
 
 export const ColumnsOptions = ({ attributes, actions }) => {
   const {
-    gutterVertical,
-    gutterHorizontal,
+    gutter,
+    horizontalSpacing,
   } = attributes;
 
   const {
-    onChangeGutterVerticalLarge,
-    onChangeGutterHorizontalLarge,
-    onChangeGutterVerticalDesktop,
-    onChangeGutterHorizontalDesktop,
-    onChangeGutterVerticalTablet,
-    onChangeGutterHorizontalTablet,
-    onChangeGutterVerticalMobile,
-    onChangeGutterHorizontalMobile,
+    onChangeGutterLarge,
+    onChangeHorizontalSpacingLarge,
+    onChangeGutterDesktop,
+    onChangeHorizontalSpacingDesktop,
+    onChangeGutterTablet,
+    onChangeHorizontalSpacingTablet,
+    onChangeGutterMobile,
+    onChangeHorizontalSpacingMobile,
   } = actions;
 
   return (
@@ -61,10 +61,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnsResponsiveTabContent
-                  gutterVertical={gutterVertical.large}
-                  onChangeGutterVertical={onChangeGutterVerticalLarge}
-                  gutterHorizontal={gutterHorizontal.large}
-                  onChangeGutterHorizontal={onChangeGutterHorizontalLarge}
+                  gutter={gutter.large}
+                  onChangeGutter={onChangeGutterLarge}
+                  horizontalSpacing={horizontalSpacing.large}
+                  onChangeHorizontalSpacing={onChangeHorizontalSpacingLarge}
                 />
               </Fragment>
             )}
@@ -75,10 +75,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnsResponsiveTabContent
-                  gutterVertical={gutterVertical.desktop}
-                  onChangeGutterVertical={onChangeGutterVerticalDesktop}
-                  gutterHorizontal={gutterHorizontal.desktop}
-                  onChangeGutterHorizontal={onChangeGutterHorizontalDesktop}
+                  gutter={gutter.desktop}
+                  onChangeGutter={onChangeGutterDesktop}
+                  horizontalSpacing={horizontalSpacing.desktop}
+                  onChangeHorizontalSpacing={onChangeHorizontalSpacingDesktop}
                 />
               </Fragment>
             )}
@@ -89,10 +89,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnsResponsiveTabContent
-                  gutterVertical={gutterVertical.tablet}
-                  onChangeGutterVertical={onChangeGutterVerticalTablet}
-                  gutterHorizontal={gutterHorizontal.tablet}
-                  onChangeGutterHorizontal={onChangeGutterHorizontalTablet}
+                  gutter={gutter.tablet}
+                  onChangeGutter={onChangeGutterTablet}
+                  horizontalSpacing={horizontalSpacing.tablet}
+                  onChangeHorizontalSpacing={onChangeHorizontalSpacingTablet}
                 />
               </Fragment>
             )}
@@ -103,10 +103,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
                 <br />
                 <ColumnsResponsiveTabContent
-                  gutterVertical={gutterVertical.mobile}
-                  onChangeGutterVertical={onChangeGutterVerticalMobile}
-                  gutterHorizontal={gutterHorizontal.mobile}
-                  onChangeGutterHorizontal={onChangeGutterHorizontalMobile}
+                  gutter={gutter.mobile}
+                  onChangeGutter={onChangeGutterMobile}
+                  horizontalSpacing={horizontalSpacing.mobile}
+                  onChangeHorizontalSpacing={onChangeHorizontalSpacingMobile}
                 />
               </Fragment>
             )}

@@ -6,13 +6,13 @@ import { Fragment } from '@wordpress/element';
 import { SelectControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
-export const columnsGutterVertical = [
+export const columnsGutter = [
   { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
   { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
   { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
 ];
 
-export const columsGutterHorizontal = [
+export const columsHorizontalSpacing = [
   { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
   { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
   { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
@@ -20,42 +20,42 @@ export const columsGutterHorizontal = [
 
 export const ColumnsResponsiveTabContent = (props) => {
   const {
-    gutterVertical,
-    onChangeGutterVertical,
-    gutterHorizontal,
-    onChangeGutterHorizontal,
+    gutter,
+    onChangeGutter,
+    horizontalSpacing,
+    onChangeHorizontalSpacing,
   } = props;
 
 
   return (
     <Fragment>
-      {onChangeGutterVertical &&
+      {onChangeGutter &&
         <SelectControl
           label={
             <Fragment>
-              <Icon icon={() => icons.containerWidth} />
-              {__('Gutter Vertical', 'eightshift-boilerplate')}
+              <Icon icon={icons.containerWidth} />
+              {__('Gutter', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Option to change vertical gutter.', 'eightshift-boilerplate')}
-          value={gutterVertical}
-          options={columnsGutterVertical}
-          onChange={onChangeGutterVertical}
+          help={__('Option to change gutter (left and right).', 'eightshift-boilerplate')}
+          value={gutter}
+          options={columnsGutter}
+          onChange={onChangeGutter}
         />
       }
 
-      {onChangeGutterHorizontal &&
+      {onChangeHorizontalSpacing &&
         <SelectControl
           label={
             <Fragment>
-              <Icon icon={() => icons.containerHeight} />
-              {__('Gutter Horizontal', 'eightshift-boilerplate')}
+              <Icon icon={icons.containerHeight} />
+              {__('Horizontal Spacing', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Option to change horizontal gutter.', 'eightshift-boilerplate')}
-          value={gutterHorizontal}
-          options={columsGutterHorizontal}
-          onChange={onChangeGutterHorizontal}
+          help={__('Option to change horizontal spacing (top and bottom).', 'eightshift-boilerplate')}
+          value={horizontalSpacing}
+          options={columsHorizontalSpacing}
+          onChange={onChangeHorizontalSpacing}
         />
       }
     </Fragment>

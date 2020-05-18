@@ -9,13 +9,13 @@
   "example": {
     "attributes": {
       "allowedBlocks": ["eightshift-boilerplate/column"],
-      "gutterVertical": {
+      "gutter": {
         "large": "default",
         "desktop": "",
         "tablet": "",
         "mobile": ""
       },
-      "gutterHorizontal": {
+      "horizontalSpacing": {
         "large": "default",
         "desktop": "",
         "tablet": "",
@@ -34,7 +34,7 @@
         "eightshift-boilerplate/column"
       ]
     },
-    "gutterVertical": {
+    "gutter": {
       "type": "object",
       "default": {
         "large": "default",
@@ -46,7 +46,7 @@
         "type": "object"
       }
     },
-    "gutterHorizontal": {
+    "horizontalSpacing": {
       "type": "object",
       "default": {
         "large": "default",

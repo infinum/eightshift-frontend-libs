@@ -28,7 +28,7 @@ export const WrapperResponsiveTabContentSimple = (props) => {
         <RangeControl
           label={
             <Fragment>
-              <Icon icon={() => icons.spacingTop} />
+              <Icon icon={icons.spacingTop} />
               {__('Spacing Top', 'eightshift-boilerplate')}
             </Fragment>
           }
@@ -45,7 +45,7 @@ export const WrapperResponsiveTabContentSimple = (props) => {
         <RangeControl
           label={
             <Fragment>
-              <Icon icon={() => icons.spacingBottom} />
+              <Icon icon={icons.spacingBottom} />
               {__('Spacing Bottom', 'eightshift-boilerplate')}
             </Fragment>
           }

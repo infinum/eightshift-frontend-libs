@@ -29,7 +29,7 @@ $wrapper_main_class = 'wrapper';
 
 $wrapper_class = Components::classnames([
   $wrapper_main_class,
-  isset( $attributes['styleBackgroundColor'] ) && ! empty( $attributes['styleBackgroundColor'] ) ? "{$wrapper_main_class}__bg-color--{$attributes['styleBackgroundColor']}" : '',
+  ! empty( $attributes['styleBackgroundColor'] ) ? "{$wrapper_main_class}__bg-color--{$attributes['styleBackgroundColor']}" : '',
   $attributes['styleSpacingTop'] ? Components::responsive_selectors($attributes['styleSpacingTop'], 'spacing-top', $wrapper_main_class) : '',
   $attributes['styleSpacingBottom'] ? Components::responsive_selectors($attributes['styleSpacingBottom'], 'spacing-bottom', $wrapper_main_class) : '',
   $attributes['styleHideBlock'] ? Components::responsive_selectors($attributes['styleHideBlock'], 'hide-block', $wrapper_main_class, true) : '',
