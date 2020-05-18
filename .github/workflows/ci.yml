@@ -8,7 +8,7 @@ on:
 
 jobs:
     lint:
-        name: File linting
+        name: File linting on Node v${{ matrix.node }}
         runs-on: ubuntu-latest
 
         strategy:
