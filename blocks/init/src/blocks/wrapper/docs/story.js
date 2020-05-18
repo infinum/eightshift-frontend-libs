@@ -3,6 +3,7 @@ import manifest from './../manifest.json';
 import readme from './readme.md';
 import { WrapperOptions } from '../components/wrapper-options';
 import { WrapperResponsiveTabContent } from '../components/wrapper-responsive-tab-content';
+import { WrapperResponsiveTabContentSimple } from '../components/wrapper-responsive-tab-content-simple';
 
 export default {
   title: 'Wrapper|Wrapper',
@@ -84,6 +85,16 @@ const ResponsiveTabContentProps = {
   onChangeHideBlock: () => {},
 };
 
+const ResponsiveTabContentSimpleProps = {
+  type: 'large',
+  spacingTop: manifest.attributes.styleSpacingBottom.default,
+  spacingBottom: manifest.attributes.styleSpacingBottom.default,
+  hideBlock: manifest.attributes.styleHideBlock.default,
+  onChangeSpacingTop: () => {},
+  onChangeSpacingBottom: () => {},
+  onChangeHideBlock: () => {},
+};
+
 export const editor = () => (
   <div>
     {'For Implementation details check block with Wrapper options checked.'}
@@ -91,13 +102,19 @@ export const editor = () => (
 );
 
 export const options = () => (
+  <WrapperOptions
+    {...optionsProps}
+  />
+);
+
+export const responsiveTabContent = () => (
   <WrapperResponsiveTabContent
     {...ResponsiveTabContentProps}
   />
 );
 
-export const responsiveTabContent = () => (
-  <WrapperOptions
-    {...optionsProps}
+export const responsiveTabContentSimple = () => (
+  <WrapperResponsiveTabContentSimple
+    {...ResponsiveTabContentSimpleProps}
   />
 );

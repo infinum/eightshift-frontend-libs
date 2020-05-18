@@ -11,11 +11,7 @@
       "type": "bool",
       "default": true
     },
-    "hasSimpleWrapper": {
-      "type": "bool",
-      "default": false
-    },
-    "disableWrapper": {
+    "useSimpleWrapper": {
       "type": "bool",
       "default": false
     },
