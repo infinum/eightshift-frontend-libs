@@ -75,12 +75,19 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
       blockName,
       blockClass: blockClass(blockName),
       blockJsClass: blockJsClass(blockName),
-      ...manifest.example,
     },
     innerBlocks: [],
     name: `${namespace}/${blockName}`,
     originalContent: '',
   };
+
+  if (manifest.hasOwnProperty('example')) {
+    output.attributes = { ...output.attributes, ...manifest.example.attributes };
+  }
+
+  if (manifest.hasOwnProperty('attributes') && !manifest.attributes.hasOwnProperty('hasWrapper')) {
+    output.attributes.hasWrapper = true;
+  }
 
   if (innerBlocks !== null) {
     output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
@@ -110,11 +117,8 @@ export const Gutenberg = (props) => {
   } = props;
 
   const blocksProps = blocks.map((block) => {
-    block.attributes.hasWrapper = true;
-
     return {
       ...block,
-      attributes: { ...block.attributes, ...block.attributes.hasWrapper },
       clientId: id(),
       isValid: true,
     };
@@ -131,13 +135,13 @@ export const Gutenberg = (props) => {
               <BlockInspector />
             </div>
             <div className="editor-styles-wrapper">
-              <Popover.Slot name="block-toolbar" />
-              <BlockEditorKeyboardShortcuts />
               <WritingFlow>
                 <ObserveTyping>
                   <BlockList />
                 </ObserveTyping>
               </WritingFlow>
+              <Popover.Slot name="block-toolbar" />
+              <BlockEditorKeyboardShortcuts />
             </div>
             <Popover.Slot />
           </BlockEditorProvider>

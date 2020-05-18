@@ -10,29 +10,39 @@
     "Image",
     "Block Image"
   ],
-  "hasWrapper": false,
   "parent": [
     "eightshift-boilerplate/carousel"
   ],
   "example": {
-    "media": {
-      "id": 0,
-      "url": "https://picsum.photos/800/800"
+    "attributes": {
+      "hasSimpleWrapper": true,
+      "media": {
+        "id": 0,
+        "url": "https://picsum.photos/800/800"
+      }
     }
   },
   "example2": {
-    "media": {
-      "id": 0,
-      "url": "https://picsum.photos/400/400"
+    "attributes": {
+      "media": {
+        "id": 0,
+        "url": "https://picsum.photos/400/400"
+      }
     }
   },
   "example3": {
-    "media": {
-      "id": 0,
-      "url": "https://picsum.photos/200/200"
+    "attributes": {
+      "media": {
+        "id": 0,
+        "url": "https://picsum.photos/200/200"
+      }
     }
   },
   "attributes": {
+    "hasSimpleWrapper": {
+      "type": "bool",
+      "default": true
+    },
     "media": {
       "type": "object",
       "default": {

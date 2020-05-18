@@ -12,11 +12,13 @@
     "content"
   ],
   "example": {
-    "paragraph": {
-      "content": "Paragraph Content",
-      "styleAlign": "left",
-      "styleColor": "primary",
-      "styleSize": "default"
+    "attributes": {
+      "paragraph": {
+        "content": "Paragraph Content",
+        "styleAlign": "left",
+        "styleColor": "primary",
+        "styleSize": "default"
+      }
     }
   },
   "attributes": {

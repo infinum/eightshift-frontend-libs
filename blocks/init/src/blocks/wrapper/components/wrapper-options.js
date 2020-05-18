@@ -9,6 +9,7 @@ import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 export const WrapperOptions = ({ attributes, actions }) => {
   const {
     hasWrapper,
+    useSimpleWrapper,
     id,
     anchor,
     styleBackgroundColor,
@@ -120,6 +121,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'large'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -145,6 +147,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'desktop'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -170,6 +173,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'tablet'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -195,6 +199,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                       <br />
                       <WrapperResponsiveTabContent
                         type={'mobile'}
+                        useSimpleWrapper={useSimpleWrapper}
                         contentWidth={styleContentWidthObject}
                         contentOffset={styleContentOffsetObject}
                         containerWidth={styleContainerWidthObject}
@@ -223,7 +228,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <ColorPaletteCustom
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.color} />
+                    <Icon icon={icons.color} />
                     {__('Background Color', 'eightshift-boilerplate')}
                   </Fragment>
                 }
@@ -240,7 +245,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <TextControl
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.id} />
+                    <Icon icon={icons.id} />
                     {__('Block ID', 'eightshift-boilerplate')}
                   </Fragment>
                 }
@@ -254,7 +259,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
               <TextControl
                 label={
                   <Fragment>
-                    <Icon icon={() => icons.anchor} />
+                    <Icon icon={icons.anchor} />
                     {__('Anchor', 'eightshift-boilerplate')}
                   </Fragment>
                 }

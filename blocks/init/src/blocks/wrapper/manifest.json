@@ -11,7 +11,10 @@
       "type": "bool",
       "default": true
     },
-
+    "useSimpleWrapper": {
+      "type": "bool",
+      "default": false
+    },
     "styleContentWidth": {
       "type": "object",
       "default": {
@@ -24,7 +27,6 @@
         "type": "object"
       }
     },
-
     "styleContentOffset": {
       "type": "object",
       "default": {
@@ -37,7 +39,6 @@
         "type": "object"
       }
     },
-
     "styleContainerWidth": {
       "type": "object",
       "default": {
@@ -50,7 +51,6 @@
         "type": "object"
       }
     },
-
     "styleContainerSpacing": {
       "type": "object",
       "default": {
@@ -63,7 +63,6 @@
         "type": "object"
       }
     },
-
     "styleSpacingTop": {
       "type": "object",
       "default": {
@@ -76,7 +75,6 @@
         "type": "object"
       }
     },
-
     "styleSpacingBottom": {
       "type": "object",
       "default": {
@@ -89,7 +87,6 @@
         "type": "object"
       }
     },
-
     "styleHideBlock": {
       "type": "object",
       "default": {

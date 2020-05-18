@@ -10,7 +10,9 @@
     "Divider"
   ],
   "example": {
-    "color": "primary"
+    "attributes": {
+      "color": "primary"
+    }
   },
   "attributes": {
     "color": {

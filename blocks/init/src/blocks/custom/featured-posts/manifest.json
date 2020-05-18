@@ -11,39 +11,41 @@
     "posts"
   ],
   "example": {
-    "postType": "posts",
-    "postNumber": 3,
-    "postNames": [
-      "Test Post",
-      "Lorem Ipsum",
-      "Hello World"
-    ],
-    "posts": [
-      {
-        "title": {
-          "rendered": "Test Post"
+    "attributes": {
+      "postType": "posts",
+      "postNumber": 3,
+      "postNames": [
+        "Test Post",
+        "Lorem Ipsum",
+        "Hello World"
+      ],
+      "posts": [
+        {
+          "title": {
+            "rendered": "Test Post"
+          },
+          "excerpt": {
+            "rendered": "Test Post excerpt"
+          }
         },
-        "excerpt": {
-          "rendered": "Test Post excerpt"
-        }
-      },
-      {
-        "title": {
-          "rendered": "Lorem Ipsum"
+        {
+          "title": {
+            "rendered": "Lorem Ipsum"
+          },
+          "excerpt": {
+            "rendered": "Lorem Ipsum excerpt"
+          }
         },
-        "excerpt": {
-          "rendered": "Lorem Ipsum excerpt"
+        {
+          "title": {
+            "rendered": "Hello World"
+          },
+          "excerpt": {
+            "rendered": "Hello World excerpt"
+          }
         }
-      },
-      {
-        "title": {
-          "rendered": "Hello World"
-        },
-        "excerpt": {
-          "rendered": "Hello World excerpt"
-        }
-      }
-    ]
+      ]
+    }
   },
   "attributes": {
     "postType": {

@@ -12,11 +12,13 @@
     "href"
   ],
   "example": {
-    "link": {
-      "title": "Link Title",
-      "url": "https://fakeurl.com",
-      "styleColor": "primary",
-      "isAnchor": false
+    "attributes": {
+      "link": {
+        "title": "Link Title",
+        "url": "https://fakeurl.com",
+        "styleColor": "primary",
+        "isAnchor": false
+      }
     }
   },
   "attributes": {
