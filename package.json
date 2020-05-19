@@ -52,7 +52,7 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
     "@babel/runtime": "^7.9.6",
-    "@infinumjs/eslint-config": "^2.0.0",
+    "@infinumjs/eslint-config": "^1.3.0",
     "@infinumjs/stylelint-config": "^1.0.2",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
