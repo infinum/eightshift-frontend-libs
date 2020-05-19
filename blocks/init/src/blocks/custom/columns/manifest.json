@@ -3,6 +3,9 @@
   "title": "Columns",
   "description" : "Columns block with custom settings.",
   "category": "eightshift",
+  "icon": {
+    "src": "controls-pause"
+  },
   "keywords": [
     "columns"
   ],
