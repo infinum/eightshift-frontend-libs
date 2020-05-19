@@ -9,7 +9,9 @@ import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 export const WrapperOptions = ({ attributes, actions }) => {
   const {
     wrapperUse,
+    wrapperUseShowControl,
     wrapperUseSimple,
+    wrapperUseSimpleShowControl,
     wrapperDisable,
     wrapperId,
     wrapperBackgroundColor,
@@ -24,6 +26,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
 
   const {
     onChangeWrapperUse,
+    onChangeWrapperUseSimple,
 
     onChangeWrapperWidthLarge,
     onChangeWrapperOffsetLarge,
@@ -74,12 +77,21 @@ export const WrapperOptions = ({ attributes, actions }) => {
       {!wrapperDisable &&
         <PanelBody title={__('Wrapper Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
 
-          {onChangeWrapperUse &&
+          {(onChangeWrapperUse && wrapperUseShowControl) &&
             <ToggleControl
               label={wrapperUse ? __('Wrapper Enabled', 'eightshift-boilerplate') : __('Wrapper Disabled', 'eightshift-boilerplate')}
               help={__('Toggle wrapper options on/off.', 'eightshift-boilerplate')}
               checked={wrapperUse}
               onChange={onChangeWrapperUse}
+            />
+          }
+
+          {(onChangeWrapperUseSimple && wrapperUse && wrapperUseSimpleShowControl) &&
+            <ToggleControl
+              label={wrapperUseSimple ? __('Wrapper Simple Enabled', 'eightshift-boilerplate') : __('Wrapper Simple Disabled', 'eightshift-boilerplate')}
+              help={__('Toggle wrapper Simple options on/off.', 'eightshift-boilerplate')}
+              checked={wrapperUseSimple}
+              onChange={onChangeWrapperUseSimple}
             />
           }
 
