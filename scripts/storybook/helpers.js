@@ -121,6 +121,8 @@ export const Gutenberg = (props) => {
       ...block,
       clientId: id(),
       isValid: true,
+      validationIssues: [],
+      originalContent: "",
     };
   });
 
@@ -129,19 +131,19 @@ export const Gutenberg = (props) => {
       <SlotFillProvider>
         <DropZoneProvider>
           <BlockEditorProvider
-            value={blocksProps}
+            value={ blocksProps }
           >
             <div className="playground__sidebar edit-post-sidebar">
               <BlockInspector />
             </div>
             <div className="editor-styles-wrapper">
+              <Popover.Slot name="block-toolbar" />
+              <BlockEditorKeyboardShortcuts />
               <WritingFlow>
                 <ObserveTyping>
                   <BlockList />
                 </ObserveTyping>
               </WritingFlow>
-              <Popover.Slot name="block-toolbar" />
-              <BlockEditorKeyboardShortcuts />
             </div>
             <Popover.Slot />
           </BlockEditorProvider>
