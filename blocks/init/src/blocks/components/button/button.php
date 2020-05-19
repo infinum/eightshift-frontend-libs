@@ -13,14 +13,17 @@ if ( empty( $button ) ) {
   return;
 }
 
+$url   = $button['url'] ?? '';
+$title = $button['title'] ?? '';
+
+if ( ! $url || ! $title  ) {
+  return;
+}
+
 $url       = $button['url'] ?? '';
 $title     = $button['title'] ?? '';
 $id        = $button['id'] ?? '';
 $is_anchor = $button['isAnchor'] ?? false;
-
-if ( empty( $url ) || empty( $title ) ) {
-  return;
-}
 
 $component_class  = 'btn';
 $block_class      = $attributes['blockClass'] ?? '';
