@@ -15,6 +15,7 @@ const editorProps = {
   blockClass: 'block-link',
   link: {
     title: 'Link Title',
+    url: 'https://fakeurl.com',
     styleColor: 'primary',
   },
   onChangeTitle: () => {},
@@ -26,10 +27,12 @@ const optionsProps = {
     url: 'https://fakeurl.com',
     styleColor: 'primary',
     isAnchor: false,
+    id: 'ID',
   },
   onChangeUrl: () => {},
   onChangeStyleColor: () => {},
   onChangeIsAnchor: () => {},
+  onChangeId: () => {},
 };
 
 export const editor = () => (

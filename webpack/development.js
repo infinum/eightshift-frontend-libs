@@ -19,6 +19,11 @@ module.exports = (options) => {
       host: 'localhost',
       port: 3000,
       proxy: options.config.proxyUrl,
+    }, {
+
+      // prevent BrowserSync from reloading the page
+      // and let Webpack Dev Server take care of this
+      reload: false,
     }));
   }
 

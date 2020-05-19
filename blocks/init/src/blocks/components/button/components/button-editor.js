@@ -1,14 +1,20 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
+import { RichText } from '@wordpress/block-editor';
 
-export const ButtonEditor = ({ blockClass, button }) => {
+export const ButtonEditor = (props) => {
   const {
-    title,
-    styleSize,
-    styleColor,
-    styleSizeWidth,
-  } = button;
+    button: {
+      title,
+      url,
+      styleColor,
+      styleSize,
+      styleSizeWidth,
+    },
+    blockClass,
+    onChangeTitle,
+  } = props;
 
   const componentClass = 'btn';
 
@@ -18,13 +24,16 @@ export const ButtonEditor = ({ blockClass, button }) => {
     `${componentClass}__color--${styleColor}`,
     `${componentClass}__size-width--${styleSizeWidth}`,
     `${blockClass}__btn`,
+    !(title && url) ? `${componentClass}__placeholder` : '',
   );
 
   return (
-    <Fragment>
-      {title && (
-        <div className={buttonClass}>{title}</div>
-      )}
-    </Fragment>
+    <RichText
+      placeholder={__('Add Button Title', 'eightshift-boilerplate')}
+      value={title}
+      onChange={onChangeTitle}
+      className={buttonClass}
+      keepPlaceholderOnFocus
+    />
   );
 };

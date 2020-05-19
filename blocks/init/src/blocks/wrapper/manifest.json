@@ -1,21 +1,33 @@
 {
   "attributes": {
-    "id": {
+    "wrapperId": {
       "type": "string"
     },
-    "styleBackgroundColor": {
+    "wrapperBackgroundColor": {
       "type": "string",
       "default": "white"
     },
-    "hasWrapper": {
+    "wrapperUse": {
       "type": "bool",
       "default": true
     },
-    "useSimpleWrapper": {
+    "wrapperUseShowControl": {
+      "type": "bool",
+      "default": true
+    },
+    "wrapperUseSimple": {
       "type": "bool",
       "default": false
     },
-    "styleContentWidth": {
+    "wrapperUseSimpleShowControl": {
+      "type": "bool",
+      "default": true
+    },
+    "wrapperDisable": {
+      "type": "bool",
+      "default": false
+    },
+    "wrapperWidth": {
       "type": "object",
       "default": {
         "large": 12,
@@ -27,43 +39,7 @@
         "type": "object"
       }
     },
-    "styleContentOffset": {
-      "type": "object",
-      "default": {
-        "large": "center",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "styleContainerWidth": {
-      "type": "object",
-      "default": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "styleContainerSpacing": {
-      "type": "object",
-      "default": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "styleSpacingTop": {
+    "wrapperOffset": {
       "type": "object",
       "default": {
         "large": "",
@@ -75,7 +51,43 @@
         "type": "object"
       }
     },
-    "styleSpacingBottom": {
+    "wrapperContainerWidth": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+    "wrapperGutter": {
+      "type": "object",
+      "default": {
+        "large": "default",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+    "wrapperSpacingTop": {
+      "type": "object",
+      "default": {
+        "large": "",
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "items": {
+        "type": "object"
+      }
+    },
+    "wrapperSpacingBottom": {
       "type": "object",
       "default": {
         "large": 40,
@@ -87,7 +99,7 @@
         "type": "object"
       }
     },
-    "styleHideBlock": {
+    "wrapperHideBlock": {
       "type": "object",
       "default": {
         "large": false,

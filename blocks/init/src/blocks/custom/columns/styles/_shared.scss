@@ -1,17 +1,17 @@
 $block-columns: (
   gutter: (
-    default: $base-gutter-size,
-    big: $base-gutter-size * 2,
-    none: 0,
+    none: global-settings(gutters, none),
+    default: global-settings(gutters, default),
+    big: global-settings(gutters, big),
   ),
   gutter-reset: (
-    default: -$base-gutter-size,
-    big: -($base-gutter-size * 2),
+    default: -(global-settings(gutters, default)),
+    big: -(global-settings(gutters, big)),
   ),
   horizontal-spacing: (
-    default: $base-gutter-size,
-    big: $base-gutter-size * 2,
-    none: 0,
+    none: global-settings(gutters, none),
+    default: global-settings(gutters, default),
+    big: global-settings(gutters, big),
   ),
 );
 

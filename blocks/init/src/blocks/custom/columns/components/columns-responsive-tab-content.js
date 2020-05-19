@@ -1,21 +1,22 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { SelectControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import globalSettings from './../../../manifest.json';
 
 export const columnsGutter = [
-  { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
-  { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
+  { label: sprintf(__('None (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.none), value: 'none' },
+  { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.default), value: 'default' },
+  { label: sprintf(__('Big (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.big), value: 'big' },
 ];
 
 export const columsHorizontalSpacing = [
-  { label: __('None (0px)', 'eightshift-boilerplate'), value: 'none' },
-  { label: __('Default (25px)', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big (50px)', 'eightshift-boilerplate'), value: 'big' },
+  { label: sprintf(__('None (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.none), value: 'none' },
+  { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.default), value: 'default' },
+  { label: sprintf(__('Big (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.big), value: 'big' },
 ];
 
 export const ColumnsResponsiveTabContent = (props) => {

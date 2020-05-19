@@ -1,8 +1,8 @@
 $wrapper: (
   background-colors: global-settings(colors),
-  spacing: $base-section-spacing,
-  containers: $base-container-sizes,
-  container-spacing: $base-gutter-sizes,
+  spacing: global-settings(sectionSpacing),
+  containers: global-settings(containers),
+  gutter: global-settings(gutters),
 );
 
 .wrapper {
@@ -43,10 +43,10 @@ $wrapper: (
     }
   }
 
-  &__container-spacing {
+  &__gutter {
     @include responsive-selectors {
-      @include modifiers-deep($wrapper, container-spacing, padding-left);
-      @include modifiers-deep($wrapper, container-spacing, padding-right);
+      @include modifiers-deep($wrapper, gutter, padding-left);
+      @include modifiers-deep($wrapper, gutter, padding-right);
     }
   }
 
@@ -55,24 +55,20 @@ $wrapper: (
     @include flex-grid-width;
   }
 
-  &__inner-content-width {
+  &__width {
     @include responsive-selectors {
       @include flex-grid-width-modifiers;
     }
   }
 
   // Content Offset.
-  &__inner-offset {
+  &__offset {
     @include responsive-selectors {
-      &--content-spacing {
-        padding-left: calc-grid-width(4);
-        margin: 0;
+      &--0 {
+        margin-left: 0;
       }
 
-      &--center {
-        margin: 0 auto;
-        padding: 0;
-      }
+      @include grid-offset-modifiers;
     }
   }
 }

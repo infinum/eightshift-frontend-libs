@@ -15,27 +15,29 @@ const editorProps = {
   blockClass: 'block-button',
   button: {
     title: 'Button Title',
-    styleSize: 'default',
-    styleColor: 'primary',
-    styleSizeWidth: 'default',
-  },
-};
-
-const optionsProps = {
-  button: {
-    title: 'Button Title',
     url: 'https://fakeurl.com',
     styleSize: 'default',
     styleColor: 'primary',
     styleSizeWidth: 'default',
-    id: 'ID',
   },
   onChangeTitle: () => {},
+};
+
+const optionsProps = {
+  button: {
+    url: 'https://fakeurl.com',
+    styleSize: 'default',
+    styleColor: 'primary',
+    styleSizeWidth: 'default',
+    isAnchor: false,
+    id: 'ID',
+  },
   onChangeUrl: () => {},
   onChangeStyleSize: () => {},
   onChangeStyleColor: () => {},
   onChangeStyleSizeWidth: () => {},
   onChangeId: () => {},
+  onChangeIsAnchor: () => {},
 };
 
 export const editor = () => (

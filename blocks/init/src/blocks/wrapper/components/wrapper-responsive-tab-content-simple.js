@@ -5,7 +5,7 @@ import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import globalSettings from '../../manifest.json';
 
-export const wrapperSpacingOptions = {
+export const spacingOptions = {
   min: -10,
   max: globalSettings.globalVariables.sectionSpacing.max,
   step: globalSettings.globalVariables.sectionSpacing.step,
@@ -33,11 +33,12 @@ export const WrapperResponsiveTabContentSimple = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          allowReset={true}
           value={spacingTop[type]}
           onChange={onChangeSpacingTop}
-          min={wrapperSpacingOptions.min}
-          max={wrapperSpacingOptions.max}
-          step={wrapperSpacingOptions.step}
+          min={spacingOptions.min}
+          max={spacingOptions.max}
+          step={spacingOptions.step}
         />
       }
 
@@ -50,11 +51,12 @@ export const WrapperResponsiveTabContentSimple = (props) => {
             </Fragment>
           }
           help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
+          allowReset={true}
           value={spacingBottom[type]}
           onChange={onChangeSpacingBottom}
-          min={wrapperSpacingOptions.min}
-          max={wrapperSpacingOptions.max}
-          step={wrapperSpacingOptions.step}
+          min={spacingOptions.min}
+          max={spacingOptions.max}
+          step={spacingOptions.step}
         />
       }
 

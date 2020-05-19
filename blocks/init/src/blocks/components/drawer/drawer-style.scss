@@ -3,7 +3,7 @@ $drawer: (
   colors: (
     background: global-settings(colors, white),
   ),
-  padding: map-get-deep($base-gutter-sizes, default),
+  padding: global-settings(gutters, default),
   z-index: map-get-strict($zindex, drawer),
 );
 

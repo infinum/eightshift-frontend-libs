@@ -35,6 +35,7 @@ export const FeaturedPostsOptions = ({ attributes, actions }) => {
       {onChangePostNumber &&
         <RangeControl
           value={postNumber}
+          allowReset={true}
           label={__('Number of posts to show', 'eightshift-boilerplate')}
           onChange={onChangePostNumber}
           min={1}
