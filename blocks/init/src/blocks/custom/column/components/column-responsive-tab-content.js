@@ -36,7 +36,7 @@ export const ColumnResponsiveTabContent = (props) => {
               {__('Width', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={sprintf(__('Option to change width block in grid from the left. Change column width in %d columns range. Example 6 = 50 percent of the screen width. If you set a value to -1 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
+          help={sprintf(__('Option to change the block width in the grid from the left. Change column width in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
           allowReset={true}
           value={width}
           onChange={onChangeWidth}
@@ -55,7 +55,7 @@ export const ColumnResponsiveTabContent = (props) => {
               {__('Offset', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={sprintf(__('Option to change offset block in grid from the left. Change block offset in %d columns range. Example 6 = 50 percent of the screen width. If you set a value to -1 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
+          help={sprintf(__('Option to change the block offset in the grid from the left. Change block offset in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
           allowReset={true}
           value={offset}
           onChange={onChangeOffset}

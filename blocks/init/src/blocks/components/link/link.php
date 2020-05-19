@@ -21,7 +21,7 @@ $is_anchor = $link['isAnchor'] ?? false;
 $component_class = 'link';
 $block_class     = $attributes['blockClass'] ?? '';
 $style_color     = isset( $link['styleColor'] ) ? "{$component_class}__color--{$link['styleColor']}" : '';
-$is_anchor       = ( $is_anchor === true ) ? 'js-scroll-to-anchor' : '';
+$is_anchor       = $is_anchor ? 'js-scroll-to-anchor' : '';
 
 $link_class = "
   {$component_class}

@@ -13,13 +13,13 @@ export const wrapperContentOffsetOptions = [
 
 export const wrapperContainerWidthOptions = [
   { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
-  { label: __(`Default (${globalSettings.globalVariables.containers.default})`, 'eightshift-boilerplate'), value: 'default' },
+  { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.containers.default), value: 'default' },
 ];
 
 export const wrapperContainerSpacingOptions = [
   { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
-  { label: __(`Default (${globalSettings.globalVariables.gutters.default})`, 'eightshift-boilerplate'), value: 'default' },
-  { label: __(`No Spacing (${globalSettings.globalVariables.gutters.none})`, 'eightshift-boilerplate'), value: 'none' },
+  { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.default), value: 'default' },
+  { label: sprintf(__('No Spacing (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.none), value: 'none' },
 ];
 
 export const WrapperResponsiveTabContent = (props) => {
@@ -48,9 +48,6 @@ export const WrapperResponsiveTabContent = (props) => {
     step: 1,
     initial: globalSettings.globalVariables.maxCols,
   };
-
-  console.log(globalSettings.globalVariables.maxCols);
-  
 
   return (
     <Fragment>

@@ -27,7 +27,7 @@ $block_class      = $attributes['blockClass'] ?? '';
 $style_color      = isset( $button['styleColor'] ) ? "{$component_class}__color--{$button['styleColor']}" : '';
 $style_size       = isset( $button['styleSize'] ) ? "{$component_class}__size--{$button['styleSize']}" : '';
 $style_size_width = isset( $button['styleSizeWidth'] ) ? "{$component_class}__size-width--{$button['styleSizeWidth']}" : '';
-$is_anchor        = ( $is_anchor === true ) ? 'js-scroll-to-anchor' : '';
+$is_anchor        = $is_anchor ? 'js-scroll-to-anchor' : '';
 
 $button_class = "
   {$component_class}
