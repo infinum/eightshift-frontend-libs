@@ -8,6 +8,7 @@ export const WrapperEditor = (props) => {
     attributes: {
       wrapperUse,
       wrapperUseSimple,
+      wrapperDisable,
       wrapperId,
       wrapperBackgroundColor,
       wrapperWidth,
@@ -18,6 +19,10 @@ export const WrapperEditor = (props) => {
       wrapperSpacingBottom,
     },
   } = props;
+
+  if (!wrapperUse || wrapperDisable) {
+    return children;
+  }
 
   const wrapperMainClass = 'wrapper';
 
