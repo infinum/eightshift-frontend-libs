@@ -9,12 +9,12 @@ export const ButtonOptions = ({ attributes, actions }) => {
   } = attributes;
 
   const {
-    onChangeButtonTitle,
     onChangeButtonUrl,
     onChangeButtonStyleSize,
     onChangeButtonStyleColor,
     onChangeButtonStyleSizeWidth,
     onChangeButtonId,
+    onChangeButtonIsAnchor,
   } = actions;
 
   const buttonObject = (typeof button === 'undefined') || button;
@@ -24,12 +24,12 @@ export const ButtonOptions = ({ attributes, actions }) => {
 
       <ButtonOptionsComponent
         button={buttonObject}
-        onChangeTitle={onChangeButtonTitle}
         onChangeUrl={onChangeButtonUrl}
         onChangeStyleSize={onChangeButtonStyleSize}
         onChangeStyleColor={onChangeButtonStyleColor}
         onChangeStyleSizeWidth={onChangeButtonStyleSizeWidth}
         onChangeId={onChangeButtonId}
+        onChangeIsAnchor={onChangeButtonIsAnchor}
       />
 
     </PanelBody>

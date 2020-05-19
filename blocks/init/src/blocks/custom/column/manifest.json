@@ -12,6 +12,7 @@
   ],
   "example": {
     "attributes": {
+      "wrapperDisable": true,
       "width": {
         "large": 3,
         "desktop": "",
@@ -33,9 +34,9 @@
     }
   },
   "attributes": {
-    "hasWrapper": {
+    "wrapperDisable": {
       "type": "bool",
-      "default": false
+      "default": true
     },
     "width": {
       "type": "object",

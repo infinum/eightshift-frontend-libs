@@ -19,6 +19,7 @@
         "styleSize": "default",
         "styleColor": "primary",
         "styleSizeWidth": "default",
+        "isAnchor": false,
         "id": "custom ID"
       }
     }
@@ -32,6 +33,7 @@
         "styleSize": "default",
         "styleColor": "primary",
         "styleSizeWidth": "default",
+        "isAnchor": false,
         "id": ""
       },
       "items": {

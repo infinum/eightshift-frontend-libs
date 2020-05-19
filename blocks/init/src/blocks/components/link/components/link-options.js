@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { ToggleControl, Icon, BaseControl } from '@wordpress/components';
+import { ToggleControl, Icon, TextControl } from '@wordpress/components';
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const linkColors = () => {
@@ -24,10 +24,12 @@ export const LinkOptions = (props) => {
       url,
       styleColor,
       isAnchor,
+      id,
     },
     onChangeUrl,
     onChangeStyleColor,
     onChangeIsAnchor,
+    onChangeId,
   } = props;
 
   return (
@@ -37,7 +39,7 @@ export const LinkOptions = (props) => {
         <ColorPaletteCustom
           label={
             <Fragment>
-              <Icon icon={() => icons.color} />
+              <Icon icon={icons.color} />
               {__('Link Color', 'eightshift-boilerplate')}
             </Fragment>
           }
@@ -49,12 +51,11 @@ export const LinkOptions = (props) => {
       }
 
       {onChangeUrl &&
-        <BaseControl label={__('Link Url', 'eightshift-boilerplate')}>
-          <URLInput
-            value={url}
-            onChange={onChangeUrl}
-          />
-        </BaseControl>
+        <URLInput
+          label={__('Link Url', 'eightshift-boilerplate')}
+          value={url}
+          onChange={onChangeUrl}
+        />
       }
 
       {onChangeIsAnchor &&
@@ -62,6 +63,15 @@ export const LinkOptions = (props) => {
           label={__('Anchor', 'eightshift-boilerplate')}
           checked={isAnchor}
           onChange={onChangeIsAnchor}
+          help={__('Using anchor option will add JavaScript selector to the link. You must provide anchor destination inside Link Url field. Example: #super-block.', 'eightshift-boilerplate')}
+        />
+      }
+
+      {onChangeId &&
+        <TextControl
+          label={__('Link ID', 'eightshift-boilerplate')}
+          value={id}
+          onChange={onChangeId}
         />
       }
 

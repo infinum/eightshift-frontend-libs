@@ -24,6 +24,7 @@ export const Button = (props) => {
       </InspectorControls>
       <ButtonEditor
         attributes={attributes}
+        actions={actions}
       />
     </Fragment>
   );

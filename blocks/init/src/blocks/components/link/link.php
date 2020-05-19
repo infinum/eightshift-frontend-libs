@@ -15,12 +15,13 @@ if ( ! $link ) {
 
 $title     = $link['title'] ?? '';
 $url       = $link['url'] ?? '';
+$id        = $link['id'] ?? '';
 $is_anchor = $link['isAnchor'] ?? false;
 
 $component_class = 'link';
 $block_class     = $attributes['blockClass'] ?? '';
 $style_color     = isset( $link['styleColor'] ) ? "{$component_class}__color--{$link['styleColor']}" : '';
-$is_anchor       = ( $is_anchor === true ) ? 'js-scroll-to-anchor' : '';
+$is_anchor       = $is_anchor ? 'js-scroll-to-anchor' : '';
 
 $link_class = "
   {$component_class}
@@ -34,6 +35,7 @@ $link_class = "
   href="<?php echo esc_url( $url ); ?>"
   class="<?php echo esc_attr( $link_class ); ?>"
   title="<?php echo esc_attr( $title ); ?>"
+  id="<?php echo esc_attr( $id ); ?>"
 >
   <?php echo esc_html( $title ); ?>
 </a>
