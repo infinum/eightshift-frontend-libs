@@ -33,7 +33,7 @@
     }
   },
   "attributes": {
-    "hasWrapper": {
+    "wrapperUse": {
       "type": "bool",
       "default": false
     },
