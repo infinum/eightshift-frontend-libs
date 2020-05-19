@@ -11,9 +11,17 @@
       "type": "bool",
       "default": true
     },
+    "wrapperUseShowControl": {
+      "type": "bool",
+      "default": true
+    },
     "wrapperUseSimple": {
       "type": "bool",
       "default": false
+    },
+    "wrapperUseSimpleShowControl": {
+      "type": "bool",
+      "default": true
     },
     "wrapperDisable": {
       "type": "bool",
