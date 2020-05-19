@@ -13,8 +13,13 @@ if ( ! $link ) {
   return;
 }
 
-$title     = $link['title'] ?? '';
-$url       = $link['url'] ?? '';
+$url   = $link['url'] ?? '';
+$title = $button['title'] ?? '';
+
+if ( ! $url || ! $title  ) {
+  return;
+}
+
 $id        = $link['id'] ?? '';
 $is_anchor = $link['isAnchor'] ?? false;
 

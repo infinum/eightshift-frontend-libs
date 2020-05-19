@@ -13,6 +13,13 @@ if ( empty( $button ) ) {
   return;
 }
 
+$url   = $button['url'] ?? '';
+$title = $button['title'] ?? '';
+
+if ( ! $url || ! $title  ) {
+  return;
+}
+
 $url       = $button['url'] ?? '';
 $title     = $button['title'] ?? '';
 $id        = $button['id'] ?? '';

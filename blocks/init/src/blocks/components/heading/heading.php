@@ -14,6 +14,11 @@ if ( ! $heading ) {
 }
 
 $content = $heading['content'] ?? '';
+
+if ( ! $content ) {
+  return;
+}
+
 $level   = isset( $heading['level'] ) ? "h{$heading['level']}" : 'h2';
 
 $component_class = 'heading';
