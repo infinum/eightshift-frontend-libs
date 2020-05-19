@@ -30,7 +30,6 @@ export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
  * Loading WP build files.
  */
 export const storybookWindowObjects = () => {
-
   window.wp.a11y = require('@wordpress/a11y/build-module');
   window.wp.apiFetch = require('@wordpress/api-fetch/build-module');
   window.wp.autop = require('@wordpress/autop/build-module');

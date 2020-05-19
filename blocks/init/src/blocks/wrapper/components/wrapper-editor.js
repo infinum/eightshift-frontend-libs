@@ -7,15 +7,15 @@ export const WrapperEditor = (props) => {
     children,
     attributes: {
       hasWrapper,
-      id,
-      styleBackgroundColor,
-      styleContentWidth,
-      styleContentOffset,
-      styleContainerWidth,
-      styleContainerSpacing,
-      styleSpacingTop,
-      styleSpacingBottom,
-      useSimpleWrapper,
+      hasSimpleWrapper,
+      wrapperId,
+      wrapperBackgroundColor,
+      wrapperWidth,
+      wrapperOffset,
+      wrapperContainerWidth,
+      wrapperGutter,
+      wrapperSpacingTop,
+      wrapperSpacingBottom,
     },
   } = props;
 
@@ -23,23 +23,21 @@ export const WrapperEditor = (props) => {
 
   const wrapperClass = classnames(
     wrapperMainClass,
-    `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-    `${responsiveSelectors(styleSpacingTop, 'spacing-top', wrapperMainClass)}`,
-    `${responsiveSelectors(styleSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
+    `${wrapperBackgroundColor && `${wrapperMainClass}__bg-color--${wrapperBackgroundColor}`}`,
+    `${responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass)}`,
+    `${responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
   );
 
   const wrapperContainerClass = classnames(
     `${wrapperMainClass}__container`,
-    `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-    `${responsiveSelectors(styleContainerWidth, 'container-width', wrapperMainClass)}`,
-    `${responsiveSelectors(styleContainerSpacing, 'container-spacing', wrapperMainClass)}`,
+    `${responsiveSelectors(wrapperContainerWidth, 'container-width', wrapperMainClass)}`,
+    `${responsiveSelectors(wrapperGutter, 'gutter', wrapperMainClass)}`,
   );
 
   const wrapperInnerClass = classnames(
     `${wrapperMainClass}__inner`,
-    `${styleBackgroundColor && `${wrapperMainClass}__bg-color--${styleBackgroundColor}`}`,
-    `${responsiveSelectors(styleContentWidth, 'inner-content-width', wrapperMainClass)}`,
-    `${responsiveSelectors(styleContentOffset, 'inner-offset', wrapperMainClass)}`,
+    `${responsiveSelectors(wrapperWidth, 'width', wrapperMainClass)}`,
+    `${responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass)}`,
   );
 
   if (!hasWrapper) {
@@ -47,8 +45,8 @@ export const WrapperEditor = (props) => {
   }
 
   return (
-    <div className={wrapperClass} id={id}>
-      {useSimpleWrapper ?
+    <div className={wrapperClass} id={wrapperId}>
+      {hasSimpleWrapper ?
         children :
         <div className={wrapperContainerClass}>
           <div className={wrapperInnerClass}>

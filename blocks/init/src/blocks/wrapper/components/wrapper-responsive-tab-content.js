@@ -6,17 +6,17 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import globalSettings from './../../manifest.json';
 import { WrapperResponsiveTabContentSimple } from './wrapper-responsive-tab-content-simple';
 
-export const wrapperContentOffsetOptions = [
+export const offsetOptions = [
   { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
   { label: __('Center', 'eightshift-boilerplate'), value: 'center' },
 ];
 
-export const wrapperContainerWidthOptions = [
+export const containerWidthOptions = [
   { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
   { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.containers.default), value: 'default' },
 ];
 
-export const wrapperContainerSpacingOptions = [
+export const gutterOptions = [
   { label: __('Not Set', 'eightshift-boilerplate'), value: '' },
   { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.default), value: 'default' },
   { label: sprintf(__('No Spacing (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.none), value: 'none' },
@@ -25,18 +25,18 @@ export const wrapperContainerSpacingOptions = [
 export const WrapperResponsiveTabContent = (props) => {
   const {
     type,
-    useSimpleWrapper,
-    contentWidth,
-    contentOffset,
+    hasSimpleWrapper,
+    width,
+    offset,
     containerWidth,
-    containerSpacing,
+    gutter,
     spacingTop,
     spacingBottom,
     hideBlock,
-    onChangeContentWidth,
-    onChangeContentOffset,
+    onChangeWidth,
+    onChangeOffset,
     onChangeContainerWidth,
-    onChangeContainerSpacing,
+    onChangeGutter,
     onChangeSpacingTop,
     onChangeSpacingBottom,
     onChangeHideBlock,
@@ -51,9 +51,9 @@ export const WrapperResponsiveTabContent = (props) => {
 
   return (
     <Fragment>
-      {!useSimpleWrapper &&
+      {!hasSimpleWrapper &&
         <Fragment>
-          {onChangeContentWidth && (
+          {onChangeWidth && (
             <RangeControl
               label={
                 <Fragment>
@@ -61,10 +61,10 @@ export const WrapperResponsiveTabContent = (props) => {
                   {__('Content Width', 'eightshift-boilerplate')}
                 </Fragment>
               }
-              help={sprintf('Change block width %s in columns range. Example: 6 = 50 percent of the screen width. If you set a value to -1 it will not be used and the parent brakepoint will be used.', globalSettings.globalVariables.maxCols)}
+              help={sprintf(__('Option to change the block width in the grid from the left. Change column width in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
               allowReset={true}
-              value={contentWidth[type]}
-              onChange={onChangeContentWidth}
+              value={width[type]}
+              onChange={onChangeWidth}
               min={widthOptions.min}
               max={widthOptions.max}
               step={widthOptions.step}
@@ -72,18 +72,22 @@ export const WrapperResponsiveTabContent = (props) => {
             />
           )}
 
-          {onChangeContentOffset && (
-            <SelectControl
+          {onChangeWidth && (
+            <RangeControl
               label={
                 <Fragment>
                   <Icon icon={icons.offset} />
                   {__('Content Offset', 'eightshift-boilerplate')}
                 </Fragment>
               }
-              help={__('Change content position inside a block. Generally if the block is aligned to the left or in the middle.', 'eightshift-boilerplate')}
-              value={contentOffset[type]}
-              options={wrapperContentOffsetOptions}
-              onChange={onChangeContentOffset}
+              help={sprintf(__('Option to change the block offset in the grid from the left. Change block offset in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
+              allowReset={true}
+              value={offset[type]}
+              onChange={onChangeOffset}
+              min={widthOptions.min}
+              max={widthOptions.max}
+              step={widthOptions.step}
+              initialPosition={widthOptions.initial}
             />
           )}
 
@@ -97,23 +101,23 @@ export const WrapperResponsiveTabContent = (props) => {
               }
               help={__('Change Container width. Changing this option will affect total width of the block and the total size of grid inside the block.', 'eightshift-boilerplate')}
               value={containerWidth[type]}
-              options={wrapperContainerWidthOptions}
+              options={containerWidthOptions}
               onChange={onChangeContainerWidth}
             />
           }
 
-          {onChangeContainerSpacing &&
+          {onChangeGutter &&
             <SelectControl
               label={
                 <Fragment>
-                  <Icon icon={icons.containerSpacing} />
+                  <Icon icon={icons.gutter} />
                   {__('Container Spacing', 'eightshift-boilerplate')}
                 </Fragment>
               }
               help={__('Change Container spacing on the left and right. More popular name is Container Gutter.', 'eightshift-boilerplate')}
-              value={containerSpacing[type]}
-              options={wrapperContainerSpacingOptions}
-              onChange={onChangeContainerSpacing}
+              value={gutter[type]}
+              options={gutterOptions}
+              onChange={onChangeGutter}
             />
           }
         </Fragment>
