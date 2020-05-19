@@ -7,15 +7,15 @@
       "type": "string",
       "default": "white"
     },
-    "hasWrapper": {
+    "wrapperUse": {
       "type": "bool",
       "default": true
     },
-    "hasSimpleWrapper": {
+    "wrapperUseSimple": {
       "type": "bool",
       "default": false
     },
-    "disableWrapper": {
+    "wrapperDisable": {
       "type": "bool",
       "default": false
     },

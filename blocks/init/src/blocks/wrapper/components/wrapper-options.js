@@ -8,9 +8,9 @@ import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 
 export const WrapperOptions = ({ attributes, actions }) => {
   const {
-    hasWrapper,
-    hasSimpleWrapper,
-    disableWrapper,
+    wrapperUse,
+    wrapperUseSimple,
+    wrapperDisable,
     wrapperId,
     wrapperBackgroundColor,
     wrapperWidth,
@@ -23,7 +23,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
   } = attributes;
 
   const {
-    onChangeHasWrapper,
+    onChangeWrapperUse,
 
     onChangeWrapperWidthLarge,
     onChangeWrapperOffsetLarge,
@@ -71,19 +71,19 @@ export const WrapperOptions = ({ attributes, actions }) => {
 
   return (
     <Fragment>
-      {!disableWrapper &&
+      {!wrapperDisable &&
         <PanelBody title={__('Wrapper Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
 
-          {onChangeHasWrapper &&
+          {onChangeWrapperUse &&
             <ToggleControl
-              label={hasWrapper ? __('Wrapper Enabled', 'eightshift-boilerplate') : __('Wrapper Disabled', 'eightshift-boilerplate')}
+              label={wrapperUse ? __('Wrapper Enabled', 'eightshift-boilerplate') : __('Wrapper Disabled', 'eightshift-boilerplate')}
               help={__('Toggle wrapper options on/off.', 'eightshift-boilerplate')}
-              checked={hasWrapper}
-              onChange={onChangeHasWrapper}
+              checked={wrapperUse}
+              onChange={onChangeWrapperUse}
             />
           }
 
-          {hasWrapper &&
+          {wrapperUse &&
             <Fragment>
               <TabPanel
                 className="custom-button-tabs"
@@ -122,7 +122,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                         <br />
                         <WrapperResponsiveTabContent
                           type={'large'}
-                          hasSimpleWrapper={hasSimpleWrapper}
+                          useSimple={wrapperUseSimple}
                           width={widthObject}
                           offset={offsetObject}
                           containerWidth={containerWidthObject}
@@ -148,7 +148,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                         <br />
                         <WrapperResponsiveTabContent
                           type={'desktop'}
-                          hasSimpleWrapper={hasSimpleWrapper}
+                          useSimple={wrapperUseSimple}
                           width={widthObject}
                           offset={offsetObject}
                           containerWidth={containerWidthObject}
@@ -174,7 +174,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                         <br />
                         <WrapperResponsiveTabContent
                           type={'tablet'}
-                          hasSimpleWrapper={hasSimpleWrapper}
+                          useSimple={wrapperUseSimple}
                           width={widthObject}
                           offset={offsetObject}
                           containerWidth={containerWidthObject}
@@ -200,7 +200,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
                         <br />
                         <WrapperResponsiveTabContent
                           type={'mobile'}
-                          hasSimpleWrapper={hasSimpleWrapper}
+                          useSimple={wrapperUseSimple}
                           width={widthObject}
                           offset={offsetObject}
                           containerWidth={containerWidthObject}

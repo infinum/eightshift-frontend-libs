@@ -6,8 +6,8 @@ export const WrapperEditor = (props) => {
   const {
     children,
     attributes: {
-      hasWrapper,
-      hasSimpleWrapper,
+      wrapperUse,
+      wrapperUseSimple,
       wrapperId,
       wrapperBackgroundColor,
       wrapperWidth,
@@ -40,13 +40,13 @@ export const WrapperEditor = (props) => {
     `${responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass)}`,
   );
 
-  if (!hasWrapper) {
+  if (!wrapperUse) {
     return children;
   }
 
   return (
     <div className={wrapperClass} id={wrapperId}>
-      {hasSimpleWrapper ?
+      {wrapperUseSimple ?
         children :
         <div className={wrapperContainerClass}>
           <div className={wrapperInnerClass}>

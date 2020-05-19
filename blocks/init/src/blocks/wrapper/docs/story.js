@@ -14,7 +14,7 @@ export default {
 
 const optionsProps = {
   attributes: {
-    hasWrapper: true,
+    wrapperUse: true,
     wrapperId: 'Wrapper ID',
     wrapperBackgroundColor: manifest.attributes.wrapperBackgroundColor.default,
     wrapperWidth: manifest.attributes.wrapperWidth,
@@ -26,7 +26,7 @@ const optionsProps = {
     wrapperHideBlock: manifest.attributes.wrapperHideBlock,
   },
   actions: {
-    onChangeHasWrapper: () => {},
+    onChangeWrapperUse: () => {},
 
     onChangeWrapperWidthLarge: () => {},
     onChangeWrapperOffsetLarge: () => {},

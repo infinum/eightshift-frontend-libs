@@ -10,11 +10,11 @@ namespace Eightshift_Boilerplate\Blocks;
 use Eightshift_Libs\Helpers\Components;
 
 // Used to add or remove wrapper.
-$has_wrapper        = $attributes['hasWrapper'] ?? true;
-$has_simple_wrapper = $attributes['hasSimpleWrapper'] ?? false;
-$disable_wrapper    = $attributes['disableWrapper'] ?? false;
+$wrapper_use        = $attributes['wrapperUse'] ?? true;
+$wrapper_use_simple = $attributes['wrapperUseSimple'] ?? false;
+$wrapper_disable    = $attributes['wrapperDisable'] ?? false;
 
-if ( ! $has_wrapper && $disable_wrapper ) {
+if ( ! $wrapper_use && $wrapper_disable ) {
   $this->render_wrapper_view(
     $template_path,
     $attributes,
@@ -50,7 +50,7 @@ $wrapper_inner_class = Components::classnames([
 
 ?>
 <div class="<?php echo esc_attr( $wrapper_class ); ?>" id="<?php echo esc_attr( $id ); ?>">
-  <?php if ( $has_simple_wrapper ) { ?>
+  <?php if ( $wrapper_use_simple ) { ?>
     <?php
       $this->render_wrapper_view(
         $template_path,

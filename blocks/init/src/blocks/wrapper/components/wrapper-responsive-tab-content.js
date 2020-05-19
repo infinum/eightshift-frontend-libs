@@ -25,7 +25,7 @@ export const gutterOptions = [
 export const WrapperResponsiveTabContent = (props) => {
   const {
     type,
-    hasSimpleWrapper,
+    useSimple,
     width,
     offset,
     containerWidth,
@@ -51,7 +51,7 @@ export const WrapperResponsiveTabContent = (props) => {
 
   return (
     <Fragment>
-      {!hasSimpleWrapper &&
+      {!useSimple &&
         <Fragment>
           {onChangeWidth && (
             <RangeControl
