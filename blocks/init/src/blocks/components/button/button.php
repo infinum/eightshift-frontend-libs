@@ -25,10 +25,6 @@ $title     = $button['title'] ?? '';
 $id        = $button['id'] ?? '';
 $is_anchor = $button['isAnchor'] ?? false;
 
-if ( empty( $url ) || empty( $title ) ) {
-  return;
-}
-
 $component_class  = 'btn';
 $block_class      = $attributes['blockClass'] ?? '';
 $style_color      = isset( $button['styleColor'] ) ? "{$component_class}__color--{$button['styleColor']}" : '';
