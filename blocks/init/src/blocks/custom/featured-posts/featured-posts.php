@@ -8,7 +8,7 @@
 $block_class = $attributes['blockClass'] ?? '';
 $posts       = $attributes['posts'] ?? '';
 
-if( ! $posts ) { return }
+if( ! $posts ) { return; }
 ?>
 
 <div class="<?php echo esc_attr( "{$block_class}" ); ?>">
