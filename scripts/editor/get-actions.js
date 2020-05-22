@@ -1,8 +1,8 @@
 import { ucfirst } from './ucfirst';
 
 /**
- * This method is used when atributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
- * This function generates callback for each of the values from attribute. Generate callback with name onChange${attribute_name}${propery_name}
+ * This method is used when attributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
+ * This function generates callback for each of the values from attribute. Generate callback with name onChange${attribute_name}${property_name}
  *
  * Example:
  * "attributes": {
@@ -18,19 +18,19 @@ import { ucfirst } from './ucfirst';
  *       }
  *     }
  * }
- * Inside actions there will be `onChangeHeadingColor` where atribute name is `heading` and object property is `color`
+ * Inside actions there will be `onChangeHeadingColor` where attribute name is `heading` and object property is `color`
  *
- * @param {object} setAttributes Method for saving atributes.
- * @param {object} attributes All atributes from namifest.json
- * @param {string} key Came of the property in manifes.
- * @param {object} propsAttributes Current atributes when this function executes.
+ * @param {object} setAttributes Method for saving attribute.
+ * @param {object} attributes All attribute from manifest.json
+ * @param {string} key Came of the property in manifest.
+ * @param {object} propsAttributes Current attribute when this function executes.
  *
  */
 
 const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) => {
   const output = {};
 
-  // Set output as a object key with anonimus function callback.
+  // Set output as a object key with anonymous function callback.
   for (const propType in attributes[key]) {
 
     // Create functions for default values.
@@ -57,18 +57,18 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
 };
 
 /**
- * This method is used to set atributes with single property.
- * This function generates callback for that propertiy value.
+ * This method is used to set attributes with single property.
+ * This function generates callback for that property value.
  *
- * @param {object} setAttributes Method for saving atributes.
- * @param {string} key Came of the property in manifes.
+ * @param {object} setAttributes Method for saving attributes.
+ * @param {string} key Came of the property in manifest.
  *
  */
 
 const singlePropsAction = (setAttributes, key) => {
   const output = {};
 
-  // Set output as a object key with anonimus function callback.
+  // Set output as a object key with anonymous function callback.
   // Keys name must be written in uppercase.
   output[`onChange${ucfirst(key)}`] = function(value) {
     setAttributes({
@@ -97,7 +97,7 @@ const singlePropsAction = (setAttributes, key) => {
  *
  * Inside actions there will be `onChangePrimaryVideo` function that will update `id`, `url` and `title` and expect that a given object have those properties
  *
- * @param {object} setAttributes Method for saving atributes.
+ * @param {object} setAttributes Method for saving attributes.
  * @param {string} key Came of the property in manifest.
  *
  */
@@ -155,6 +155,8 @@ export const getActions = (props, manifest) => {
       if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
         if (attributes[key].hasOwnProperty('mediaAction')) {
           actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
+        } else if (attributes[key].hasOwnProperty('multipleProps') && attributes[key].multipleProps === false) {
+          actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
         } else {
           actionsOutput = { ...actionsOutput, ...multiplePropsActions(setAttributes, attributes, key, propsAttributes) };
         }
