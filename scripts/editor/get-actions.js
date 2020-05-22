@@ -155,6 +155,8 @@ export const getActions = (props, manifest) => {
       if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
         if (attributes[key].hasOwnProperty('mediaAction')) {
           actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
+        } else if (attributes[key].hasOwnProperty('multipleProps') && attributes[key].multipleProps === false) {
+          actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
         } else {
           actionsOutput = { ...actionsOutput, ...multiplePropsActions(setAttributes, attributes, key, propsAttributes) };
         }
