@@ -6,6 +6,30 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.3.0] - 2020-05-15
+
+### Added
+- Wrapped new attributes: `wrapperUse`, `wrapperUseShowControl`, `wrapperUseSimple`, `wrapperUseSimpleShowControl`, `wrapperDisable`.
+- All packages from WP core for the latest build.
+- Github Actions for testing.
+
+
+### Changes
+- Fixing storybook and example field inside manifest.
+- Structural changes on all blocks.
+- Converted all wrapper attributes to objects.
+- Storybook correction for new example layout of attributes.
+- Bug fixes on `Columns` and `Column` block.
+- Bugfixes on color palette helper.
+- Added options to `Group` block.
+- Fixed and UX correction for `Button` block.
+- Some UX and UI fixed.
+- If attribute is type `object` it will now automatically build actions for each key in `manifest.json`.
+
+### Removed
+- Cards Grid block.
+- Cards List block.
+
 ## [3.2.2] - 2020-05-15
 
 ### Added
@@ -15,7 +39,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Has wrapper as na option in wrapper component.
 * Wrapper option to sass modifiers-deep and modifiers mixin.
 
-## Changes
+### Changes
 * Storybook changes for the new setup.
 * Changes on wrapper component to have object attributes.
 
@@ -289,6 +313,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.2...v3.3.0
 [3.2.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.1.1...v3.2.0
