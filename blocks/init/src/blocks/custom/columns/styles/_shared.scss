@@ -1,14 +1,14 @@
 $block-columns: (
   gutter: (
     none: global-settings(gutters, none),
-    default: global-settings(gutters, default),
-    big: global-settings(gutters, big),
+    default: global-settings(gutters, default) / 2,
+    big: global-settings(gutters, big) / 2,
   ),
   gutter-reset: (
-    default: -(global-settings(gutters, default)),
-    big: -(global-settings(gutters, big)),
+    default: -(global-settings(gutters, default) / 2),
+    big: -(global-settings(gutters, big) / 2),
   ),
-  horizontal-spacing: (
+  vertical-spacing: (
     none: global-settings(gutters, none),
     default: global-settings(gutters, default),
     big: global-settings(gutters, big),
@@ -29,9 +29,9 @@ $block-columns: (
     }
   }
 
-  &__horizontal-spacing {
+  &__vertical-spacing {
     @include responsive-selectors {
-      @include modifiers-deep($block-columns, horizontal-spacing, margin-bottom, '.block-column');
+      @include modifiers-deep($block-columns, vertical-spacing, margin-bottom, '.block-column');
     }
   }
 }

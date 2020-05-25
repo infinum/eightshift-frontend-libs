@@ -10,14 +10,14 @@ export const ColumnsEditor = ({ attributes }) => {
     allowedBlocks,
     blockClass,
     gutter,
-    horizontalSpacing,
+    verticalSpacing,
   } = attributes;
 
   const componentClass = classnames(
     blockClass,
     'eightshift-block',
     `${responsiveSelectors(gutter, 'gutter', blockClass)}`,
-    `${responsiveSelectors(horizontalSpacing, 'horizontal-spacing', blockClass)}`,
+    `${responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass)}`,
   );
 
   return (

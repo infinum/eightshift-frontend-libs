@@ -15,7 +15,7 @@
         "tablet": "",
         "mobile": ""
       },
-      "horizontalSpacing": {
+      "verticalSpacing": {
         "large": "default",
         "desktop": "",
         "tablet": "",
@@ -46,7 +46,7 @@
         "type": "object"
       }
     },
-    "horizontalSpacing": {
+    "verticalSpacing": {
       "type": "object",
       "default": {
         "large": "default",
