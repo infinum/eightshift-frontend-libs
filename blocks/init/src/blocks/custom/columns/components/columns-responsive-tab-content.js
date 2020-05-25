@@ -49,7 +49,7 @@ export const ColumnsResponsiveTabContent = (props) => {
           label={
             <Fragment>
               <Icon icon={icons.containerHeight} />
-              {__('vertical Spacing', 'eightshift-boilerplate')}
+              {__('Vertical Spacing', 'eightshift-boilerplate')}
             </Fragment>
           }
           help={__('Option to change vertical spacing (top and bottom).', 'eightshift-boilerplate')}
