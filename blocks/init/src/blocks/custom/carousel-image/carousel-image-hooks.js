@@ -36,6 +36,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
   };
 }, 'parentComponentBlock');
 
-export const Hooks = () => {
+export const hooks = () => {
   wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
 };

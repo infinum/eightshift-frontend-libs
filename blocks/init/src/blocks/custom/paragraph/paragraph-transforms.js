@@ -3,7 +3,7 @@ import manifest from '../../manifest.json';
 import manifestParagraph from './manifest.json';
 import manifestHeading from '../heading/manifest.json';
 
-export const Transforms = {
+export const transforms = {
   from: [
     {
       type: 'block',

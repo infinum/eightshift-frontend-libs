@@ -3,7 +3,7 @@ import manifest from '../../manifest.json';
 import manifestCarouselImage from './manifest.json';
 import manifestImage from '../image/manifest.json';
 
-export const Transforms = {
+export const transforms = {
   from: [
     {
       type: 'block',

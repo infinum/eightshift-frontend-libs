@@ -14,10 +14,10 @@
  */
 
 import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor';
-import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 import { Wrapper } from './../../wrapper/wrapper';
 import WrapperManifest from './../../wrapper/manifest.json';
 import globalSettings from './../../manifest.json';
+import { hooks } from './../../wrapper/wrapper-hooks';
 
 registerBlocks(
   globalSettings,
@@ -31,5 +31,5 @@ registerBlocks(
   require.context('./../../custom', true, /-icons.js$/),
 );
 
-// Find all blocks hooks require hooks index.js inside it.
-dynamicImport(require.context('./../../wrapper', true, /hooks\/index.js$/));
+// Run Wrapper hooks.
+hooks();

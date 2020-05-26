@@ -3,7 +3,7 @@ import manifest from '../../manifest.json';
 import manifestLink from './manifest.json';
 import manifestButton from '../button/manifest.json';
 
-export const Transforms = {
+export const transforms = {
   from: [
     {
       type: 'block',
