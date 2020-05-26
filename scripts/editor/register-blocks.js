@@ -119,7 +119,7 @@ export const registerBlocks = (
       const variationsCallback = getBlockGenericComponent(block.blockName, variationsPath, 'variations');
   
       if (variationsCallback !== null) {
-        block.variations = variationsCallback;
+        variationsCallback();
       }
     }
 
