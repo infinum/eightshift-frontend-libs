@@ -12,6 +12,7 @@ $override-map: (
 /* stylelint-disable */
 // Overrides default styles from inline editor.
 body {
+
   .editor-styles-wrapper {
     font-family: inherit;
     line-height: inherit;
@@ -21,7 +22,7 @@ body {
 
   // Moving border around the block to the actual block line.
   .block-editor-block-list__layout {
-    .eightshift-block {
+    .#{global-settings(customBlocksName)} {
 
       .wp-block {
         max-width: 100%;

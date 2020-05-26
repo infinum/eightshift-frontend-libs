@@ -19,7 +19,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
         {},
         innerProps,
         {
-          className: 'eightshift-block',
+          className: globalManifest.globalVariables.customBlocksName,
         }
       );
     }

@@ -35,7 +35,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
       const componentClass = classnames(
         blockClass,
-        'eightshift-block',
+        globalManifest.globalVariables.customBlocksName,
         `${responsiveSelectors(width, 'width', blockClass)}`,
         `${responsiveSelectors(offset, 'offset', blockClass)}`,
       );
