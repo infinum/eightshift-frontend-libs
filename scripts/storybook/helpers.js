@@ -88,9 +88,6 @@ export const Gutenberg = (props) => {
   // Push all created blocks in store.
   blocks.push(block);
 
-  console.log(blocks);
-  
-
   dispatch('core/block-editor').insertBlocks(blocks);
 
   return (
