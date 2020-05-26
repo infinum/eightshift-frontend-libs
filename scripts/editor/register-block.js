@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
+
+import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
-import { withWrapper } from './with-wrapper';
 
 /**
  * Return shared attributes.
@@ -27,6 +29,21 @@ export const getSharedAttributes = (blockName, namespace) => {
       default: `js-block-${blockName}`,
     },
   };
+};
+
+/**
+ * Wrap edit component with wrapper component.
+ *
+ * @param {function} Component Children callback function.
+ * @param {function} Wrapper Wrapper callback function.
+ *
+ */
+export const withWrapper = (Component, Wrapper) => (props) => {
+  return (
+    <Wrapper props={props}>
+      <Component {...props} />
+    </Wrapper>
+  );
 };
 
 /**

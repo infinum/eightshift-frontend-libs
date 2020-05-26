@@ -15,65 +15,25 @@ import {
 import '@wordpress/format-library';
 import { useState } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-
-/**
- * Define generic block ID.
- */
-export const id = () => (Math.random() * Math.floor(10)).toString(36).substring(2);
-
-/**
- * Define block Class name that you get from php part on the real project.
- *
- * @param {string} name Block Name
- */
-export const blockClass = (name) => `block-${name}`;
-
-/**
- * Define block Javascript Class name that you get from php part on the real project.
- *
- * @param {string} name Block Name
- */
-export const blockJsClass = (name) => `js-block-${name}`;
-
-/**
- * Return shared attributes.
- *
- * @param {string} blockName Block name, simple or with namespace.
- * @param {string} namespace Namespace if added will try to remove namespace from block name.
- */
-export const getSharedAttributes = (blockName, namespace = '') => {
-  let name = blockName;
-
-  if (namespace !== '') {
-    name = blockName.split('/');
-    name = name[name.length - 1];
-  }
-
-  return {
-    blockName: name,
-    blockClass: blockClass(name),
-    blockJsClass: blockJsClass(name),
-  };
-};
+import { dispatch } from '@wordpress/data';
 
 /**
  * Create Inner Blocks.
  *
  * @param {array} innerBlocks Array of inner blocks.
- * @param {string} namespace Blocks namespace.
  */
-export const getInnerBlocks = (innerBlocks = [], namespace) => {
+export const getInnerBlocks = (innerBlocks = []) => {
   return innerBlocks.map((blockItem) => {
     const blockInner = createBlock(blockItem.name);
 
+    // Set example attributes for inner block.
     blockInner.attributes = {
-      ...getSharedAttributes(blockItem.name, namespace),
       ...blockInner.attributes,
       ...blockItem.attributes,
     };
 
-    console.log(blockInner.innerBlocks);
-    blockInner.innerBlocks = getInnerBlocks(blockInner.innerBlocks, namespace);
+    // Run recursive because of multiple nested blocks.
+    blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks);
 
     return blockInner;
   });
@@ -89,17 +49,11 @@ export const blockDetails = (manifest, globalManifest) => {
   const { blockName } = manifest;
   const { namespace } = globalManifest;
 
-  const output = {
+  return {
     blockFullName: `${namespace}/${blockName}`,
-    namespace,
-    attributes: {
-      ...getSharedAttributes(blockName),
-    },
     example: manifest.example.attributes,
     innerBlocks: manifest.example.innerBlocks,
   };
-
-  return output;
 };
 
 /**
@@ -111,10 +65,8 @@ export const Gutenberg = (props) => {
   const {
     props: {
       blockFullName,
-      namespace,
       example,
       innerBlocks,
-      attributes,
     },
   } = props;
 
@@ -126,19 +78,17 @@ export const Gutenberg = (props) => {
 
   // Set attributes, shared, block and example.
   block.attributes = {
-    ...attributes,
     ...block.attributes,
     ...example,
   };
 
   // Create new block in inner block key.
-  block.innerBlocks = getInnerBlocks(innerBlocks, namespace);
+  block.innerBlocks = getInnerBlocks(innerBlocks);
 
   // Push all created blocks in store.
   blocks.push(block);
 
-  console.log(blocks);
-  
+  dispatch('core/block-editor').insertBlocks(blocks);
 
   return (
     <div className="playground">
