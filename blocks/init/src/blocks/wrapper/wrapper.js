@@ -7,7 +7,7 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';
-import { Hooks } from './hooks';
+import { Hooks } from './wrapper-hooks';
 
 export const Wrapper = (props) => {
   const {

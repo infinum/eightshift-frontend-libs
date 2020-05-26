@@ -72,6 +72,7 @@ export const getInnerBlocks = (innerBlocks = [], namespace) => {
       ...blockItem.attributes,
     };
 
+    console.log(blockInner.innerBlocks);
     blockInner.innerBlocks = getInnerBlocks(blockInner.innerBlocks, namespace);
 
     return blockInner;

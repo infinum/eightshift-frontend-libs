@@ -3,30 +3,36 @@
 import React from 'react';
 import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
+import { select } from '@wordpress/data';
 import manifest from './manifest.json';
-import globalManifest from './../../manifest.json';
+import globalManifest from '../../manifest.json';
 
+// Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
   return (innerProps) => {
     const {
-      name,
-      attributes: {
-        blockClass,
-      },
+      attributes,
+      rootClientId,
     } = innerProps;
 
     let updatedProps = innerProps;
 
-    if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
-      const componentClass = blockClass;
+    // Remove wrapper from all blocks inside column block.
+    const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
+    if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
       updatedProps = assign(
         {},
         innerProps,
         {
-          className: componentClass,
+          attributes: {
+            ...attributes,
+            wrapperUseSimple: true,
+            wrapperUseSimpleShowControl: false,
+          },
         }
       );
+
     }
 
     return wp.element.createElement(

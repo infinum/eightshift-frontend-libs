@@ -6,15 +6,16 @@ import { registerBlock } from './register-block';
  *
  * @param {string} blockName Provided block name to find corresponding edit component.
  * @param {function} paths Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName Block partial name.
  *
  */
-export const getBlockEditComponent = (blockName, paths) => {
+export const getBlockEditComponent = (blockName, paths, fileName) => {
 
   // Create an array of all blocks file paths.
   const pathsKeys = paths.keys();
 
   // Get Block edit component from block name and pathsKeys.
-  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-block.js`).map(paths)[0];
+  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}--${fileName}.js`).map(paths)[0];
 
   // If edit component is missing throw and error.
   if (typeof editComponent === 'undefined') {
@@ -37,6 +38,7 @@ export const getBlockEditComponent = (blockName, paths) => {
  *
  * @param {string} blockName Provided block name to find corresponding edit component.
  * @param {function} paths Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName Block partial name.
  *
  */
 export const getBlockGenericComponent = (blockName, paths, fileName) => {
@@ -45,7 +47,7 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
   const pathsKeys = paths.keys();
 
   // Get Block edit component from block name and pathsKeys.
-  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${fileName}.js`).map(paths)[0];
+  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
 
   // If edit component is missing throw and error.
   if (typeof editComponent === 'undefined') {
@@ -90,7 +92,7 @@ export const registerBlocks = (
   allBlocksManifestPath.map((block) => {
 
     // Get Block edit component from block name and blocksPaths.
-    const editCallback = getBlockEditComponent(block.blockName, blocksPaths);
+    const editCallback = getBlockEditComponent(block.blockName, blocksPaths, 'block');
 
     // Get Block Transforms component from block name and transformsPaths.
     if (transformsPaths !== null) {

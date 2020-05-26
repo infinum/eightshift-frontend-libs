@@ -1,7 +1,7 @@
 import { createBlock } from '@wordpress/blocks';
-import manifest from './../../manifest.json';
+import manifest from '../../manifest.json';
 import manifestCarouselImage from './manifest.json';
-import manifestImage from './../image/manifest.json';
+import manifestImage from '../image/manifest.json';
 
 export const Transforms = {
   from: [

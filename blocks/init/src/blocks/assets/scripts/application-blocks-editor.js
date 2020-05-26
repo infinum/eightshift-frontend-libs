@@ -25,10 +25,10 @@ registerBlocks(
   WrapperManifest,
   require.context('./../../custom', true, /manifest\.json$/),
   require.context('./../../custom', true, /-block.js$/),
-  require.context('./../../custom', true, /hooks.js$/),
-  require.context('./../../custom', true, /variations.js$/),
-  require.context('./../../custom', true, /transforms.js$/),
-  require.context('./../../custom', true, /icons.js$/),
+  require.context('./../../custom', true, /-hooks.js$/),
+  require.context('./../../custom', true, /-variations.js$/),
+  require.context('./../../custom', true, /-transforms.js$/),
+  require.context('./../../custom', true, /-icons.js$/),
 );
 
 // Find all blocks hooks require hooks index.js inside it.

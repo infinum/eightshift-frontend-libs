@@ -2,16 +2,23 @@
 
 import React from 'react';
 import { assign } from 'lodash';
+import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select } from '@wordpress/data';
+import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './manifest.json';
-import globalManifest from './../../manifest.json';
+import globalManifest from '../../manifest.json';
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
   return (innerProps) => {
     const {
-      attributes,
+      name,
+      attributes: {
+        blockClass,
+        width,
+        offset,
+      },
       rootClientId,
     } = innerProps;
 
@@ -21,18 +28,25 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
     if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
+      innerProps.attributes.wrapperUseSimple = true;
+    }
+
+    // Move selectors to the parent div in DOM.
+    if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
+      const componentClass = classnames(
+        blockClass,
+        'eightshift-block',
+        `${responsiveSelectors(width, 'width', blockClass)}`,
+        `${responsiveSelectors(offset, 'offset', blockClass)}`,
+      );
+
       updatedProps = assign(
         {},
         innerProps,
         {
-          attributes: {
-            ...attributes,
-            wrapperUseSimple: true,
-            wrapperUseSimpleShowControl: false,
-          },
+          className: componentClass,
         }
       );
-
     }
 
     return wp.element.createElement(

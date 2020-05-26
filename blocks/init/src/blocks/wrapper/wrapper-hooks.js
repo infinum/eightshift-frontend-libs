@@ -3,7 +3,7 @@
 import React from 'react';
 import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import globalManifest from './../manifest.json';
+import globalManifest from '../manifest.json';
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
