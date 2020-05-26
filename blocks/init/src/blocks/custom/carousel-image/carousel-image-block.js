@@ -5,7 +5,6 @@ import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { CarouselImageEditor } from './components/carousel-image-editor';
 import { CarouselImageToolbar } from './components/carousel-image-toolbar';
-import './hooks';
 
 export const CarouselImage = (props) => {
 

@@ -12,6 +12,9 @@ import {
   SlotFillProvider,
   DropZoneProvider,
 } from '@wordpress/components';
+import '@wordpress/format-library';
+import { useState } from '@wordpress/element';
+import { createBlock } from '@wordpress/blocks';
 
 /**
  * Define generic block ID.
@@ -33,73 +36,67 @@ export const blockClass = (name) => `block-${name}`;
 export const blockJsClass = (name) => `js-block-${name}`;
 
 /**
- * Create Inner Blocks object.
+ * Return shared attributes.
  *
- * @param {object} blocks Blocks props object.
- * @param {int} count Number of blocks to show.
+ * @param {string} blockName Block name, simple or with namespace.
+ * @param {string} namespace Namespace if added will try to remove namespace from block name.
  */
-export const blockInnerBlocks = (blocks, count) => {
-  const output = [];
-  let internalBlocks = [];
+export const getSharedAttributes = (blockName, namespace = '') => {
+  let name = blockName;
 
-  if (!blocks.length) {
-    internalBlocks = [blocks];
-  } else {
-    internalBlocks = blocks;
+  if (namespace !== '') {
+    name = blockName.split('/');
+    name = name[name.length - 1];
   }
 
-  for (let i = 1; i <= count; i++) {
-    for (const block of internalBlocks) {
-      output.push({
-        ...block.props.props.blocks[0],
-        clientId: id(),
-        isValid: true,
-      });
-    }
-  }
+  return {
+    blockName: name,
+    blockClass: blockClass(name),
+    blockJsClass: blockJsClass(name),
+  };
+};
 
-  return output;
+/**
+ * Create Inner Blocks.
+ *
+ * @param {array} innerBlocks Array of inner blocks.
+ * @param {string} namespace Blocks namespace.
+ */
+export const getInnerBlocks = (innerBlocks = [], namespace) => {
+  return innerBlocks.map((blockItem) => {
+    const blockInner = createBlock(blockItem.name);
+
+    blockInner.attributes = {
+      ...getSharedAttributes(blockItem.name, namespace),
+      ...blockInner.attributes,
+      ...blockItem.attributes,
+    };
+
+    blockInner.innerBlocks = getInnerBlocks(blockInner.innerBlocks, namespace);
+
+    return blockInner;
+  });
 };
 
 /**
  * Combine block details in one object.
  *
- * @param {string} name Block Name
+ * @param {object} manifest Block Manifest data.
+ * @param {object} globalManifest Global Blocks Manifest data.
  */
-export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6, customOutput = false) => {
+export const blockDetails = (manifest, globalManifest) => {
   const { blockName } = manifest;
   const { namespace } = globalManifest;
 
   const output = {
+    blockFullName: `${namespace}/${blockName}`,
+    namespace,
     attributes: {
-      blockName,
-      blockClass: blockClass(blockName),
-      blockJsClass: blockJsClass(blockName),
+      ...getSharedAttributes(blockName),
     },
-    innerBlocks: [],
-    name: `${namespace}/${blockName}`,
-    originalContent: '',
+    example: manifest.example.attributes,
+    innerBlocks: manifest.example.innerBlocks,
   };
-
-  if (manifest.hasOwnProperty('example')) {
-    output.attributes = { ...output.attributes, ...manifest.example.attributes };
-  }
-
-  if (manifest.hasOwnProperty('attributes') && !manifest.attributes.hasOwnProperty('hasWrapper')) {
-    output.attributes.hasWrapper = true;
-  }
-
-  if (innerBlocks !== null) {
-    output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
-  }
-
-  if (!customOutput) {
-    return {
-      blocks: [
-        output,
-      ],
-    };
-  }
 
   return output;
 };
@@ -112,26 +109,44 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
 export const Gutenberg = (props) => {
   const {
     props: {
-      blocks,
+      blockFullName,
+      namespace,
+      example,
+      innerBlocks,
+      attributes,
     },
   } = props;
 
-  const blocksProps = blocks.map((block) => {
-    return {
-      ...block,
-      clientId: id(),
-      isValid: true,
-      validationIssues: [],
-      originalContent: '',
-    };
-  });
+  // Set default registered blocks.
+  const [blocks, updateBlocks] = useState([]);
+
+  // Create top level blocks.
+  const block = createBlock(blockFullName);
+
+  // Set attributes, shared, block and example.
+  block.attributes = {
+    ...attributes,
+    ...block.attributes,
+    ...example,
+  };
+
+  // Create new block in inner block key.
+  block.innerBlocks = getInnerBlocks(innerBlocks, namespace);
+
+  // Push all created blocks in store.
+  blocks.push(block);
+
+  console.log(blocks);
+  
 
   return (
     <div className="playground">
       <SlotFillProvider>
         <DropZoneProvider>
           <BlockEditorProvider
-            value={blocksProps}
+            value={blocks}
+            onInput={updateBlocks}
+            onChange={updateBlocks}
           >
             <div className="playground__sidebar edit-post-sidebar">
               <BlockInspector />

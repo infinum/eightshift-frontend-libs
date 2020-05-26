@@ -1,10 +1,13 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars */
+
+import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';
+import { Hooks } from './hooks';
 
 export const Wrapper = (props) => {
   const {

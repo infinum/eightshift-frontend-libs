@@ -6,12 +6,18 @@ import { withWrapper } from './with-wrapper';
  * Map and prepare all options from block manifest.json file for usage in registerBlockType method.
  *
  * @param {object} manifest Block manifest.json object with data.
- * @param {object} blocksSettings Blocks  manifest.json object with data.
+ * @param {object} globalManifest Global blocks manifest.json object with namespace.
  * @param {function} edit Edit callback function.
  * @param {function} wrapper Wrapper callback function.
  *
  */
-export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) => {
+export const registerBlock = (
+  manifest = {},
+  globalManifest = {},
+  edit,
+  wrapperComponent,
+  wrapperManifest,
+) => {
   const {
     namespace,
     blockName,
@@ -26,6 +32,8 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
     supports,
     hasInnerBlocks = false,
     isInactive = false,
+    attributes = {},
+    variations = [],
   } = manifest;
 
   // If block is set to inactive it will not be register.
@@ -38,9 +46,15 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   } = manifest;
 
   const {
+    namespace: namespaceGlobal,
+    attributes: attributesGlobal,
     background: backgroundGlobal,
     foreground: foregroundGlobal,
-  } = blocksSettings;
+  } = globalManifest;
+
+  const {
+    attributes: attributesWrapper,
+  } = wrapperManifest;
 
   // Default save method.
   let save = () => null;
@@ -58,8 +72,14 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
   }
 
   // Check if namespace is defined in block or in global manifest settings.
-  const namespaceFinal = (typeof namespace === 'undefined') ? blocksSettings.namespace : namespace;
+  const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
+  const finalAttributes = {
+    ...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
+    ...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
+    ...attributes,
+  };
+  
   return {
     blockName: `${namespaceFinal}/${blockName}`,
     options: {
@@ -73,7 +93,9 @@ export const registerBlock = (manifest, blocksSettings, edit, wrapper = null) =>
       transforms,
       example,
       styles,
-      edit: (wrapper !== null) ? withWrapper(edit, wrapper) : edit,
+      attributes: finalAttributes,
+      variations,
+      edit: withWrapper(edit, wrapperComponent),
       save,
     },
   };
