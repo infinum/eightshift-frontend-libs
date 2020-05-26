@@ -6,6 +6,21 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+### Changed
+- Changed the file name for `transforms.js` to blockName-transforms.js.js.
+- Changed the file name for `icons` to blockName-icons.js.
+- Storybook is now loading example data the same as in the native/core blocks.
+- All example keys to match the new setup.
+- All `story.js` files to accommodate for a new example key.
+- Structural changes how `registerBlocks` and `registerBlock` methods are working.
+- Fixing some bugs in `registerBlock` method.
+- Structural changes in all storybook helpers.
+- Converted `withWrapper` method to jsx.
+
+### Added
+- Hooks specific file in blocks.
+- Variation specific file in blocks.
+
 ## [3.3.0] - 2020-05-15
 
 ### Added
@@ -13,8 +28,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - All packages from WP core for the latest build.
 - Github Actions for testing.
 
-
-### Changes
+### Changed
 - Fixing storybook and example field inside manifest.
 - Structural changes on all blocks.
 - Converted all wrapper attributes to objects.
@@ -39,7 +53,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Has wrapper as na option in wrapper component.
 * Wrapper option to sass modifiers-deep and modifiers mixin.
 
-### Changes
+### Changed
 * Storybook changes for the new setup.
 * Changes on wrapper component to have object attributes.
 
@@ -56,7 +70,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Fixed issue #116 - Copy storybook during setup
 * Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
-### Changes
+### Changed
 * Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
 
 
