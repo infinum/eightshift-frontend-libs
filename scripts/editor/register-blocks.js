@@ -15,7 +15,7 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
   const pathsKeys = paths.keys();
 
   // Get Block edit component from block name and pathsKeys.
-  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}--${fileName}.js`).map(paths)[0];
+  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
 
   // If edit component is missing throw and error.
   if (typeof editComponent === 'undefined') {
