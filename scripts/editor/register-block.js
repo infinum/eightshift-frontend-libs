@@ -3,6 +3,33 @@ import { createElement } from '@wordpress/element';
 import { withWrapper } from './with-wrapper';
 
 /**
+ * Return shared attributes.
+ *
+ * @param {string} blockName Block name, simple or with namespace.
+ * @param {string} namespace Namespace for full block name.
+ */
+export const getSharedAttributes = (blockName, namespace) => {
+  return {
+    blockName: {
+      type: 'string',
+      default: blockName,
+    },
+    blockFullName: {
+      type: 'string',
+      default: `${namespace}/${blockName}`,
+    },
+    blockClass: {
+      type: 'string',
+      default: `block-${blockName}`,
+    },
+    blockJsClass: {
+      type: 'string',
+      default: `js-block-${blockName}`,
+    },
+  };
+};
+
+/**
  * Map and prepare all options from block manifest.json file for usage in registerBlockType method.
  *
  * @param {object} manifest Block manifest.json object with data.
@@ -75,11 +102,12 @@ export const registerBlock = (
   const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
   const finalAttributes = {
+    ...getSharedAttributes(blockName, namespaceFinal),
     ...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
     ...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
     ...attributes,
   };
-  
+
   return {
     blockName: `${namespaceFinal}/${blockName}`,
     options: {
