@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [Unreleased]
 
 ### Changed
-- Changed the file name for `transforms.js` to blockName-transforms.js.
+- Changed the file name for `transforms.js` to `blockName-transforms.js`.
 - Changed the file name for `icons` to blockName-icons.js.
 - Storybook is now loading example data the same as in the native/core blocks.
 - All example keys to match the new setup.
