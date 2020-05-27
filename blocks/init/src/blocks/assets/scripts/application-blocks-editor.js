@@ -14,18 +14,22 @@
  */
 
 import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor';
-import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 import { Wrapper } from './../../wrapper/wrapper';
-import blocksSettings from './../../manifest.json';
+import WrapperManifest from './../../wrapper/manifest.json';
+import globalSettings from './../../manifest.json';
+import { hooks } from './../../wrapper/wrapper-hooks';
 
 registerBlocks(
+  globalSettings,
+  Wrapper,
+  WrapperManifest,
   require.context('./../../custom', true, /manifest\.json$/),
   require.context('./../../custom', true, /-block.js$/),
-  blocksSettings,
-  Wrapper,
-  require.context('./../../custom', true, /transforms.js$/),
-  require.context('./../../custom', true, /icons.js$/),
+  require.context('./../../custom', true, /-hooks.js$/),
+  require.context('./../../custom', true, /-variations.js$/),
+  require.context('./../../custom', true, /-transforms.js$/),
+  require.context('./../../custom', true, /-icons.js$/),
 );
 
-// Find all blocks hooks require hooks index.js inside it.
-dynamicImport(require.context('./../../wrapper', true, /hooks\/index.js$/));
+// Run Wrapper hooks.
+hooks();

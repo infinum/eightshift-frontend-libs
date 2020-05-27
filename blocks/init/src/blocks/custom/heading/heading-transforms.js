@@ -1,9 +1,9 @@
 import { createBlock } from '@wordpress/blocks';
-import manifest from './../../manifest.json';
+import manifest from '../../manifest.json';
 import manifestHeading from './manifest.json';
-import manifestParagraph from './../paragraph/manifest.json';
+import manifestParagraph from '../paragraph/manifest.json';
 
-export const Transforms = {
+export const transforms = {
   from: [
     {
       type: 'block',

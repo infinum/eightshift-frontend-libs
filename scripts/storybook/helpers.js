@@ -12,96 +12,48 @@ import {
   SlotFillProvider,
   DropZoneProvider,
 } from '@wordpress/components';
+import '@wordpress/format-library';
+import { useState } from '@wordpress/element';
+import { createBlock } from '@wordpress/blocks';
+import { dispatch } from '@wordpress/data';
 
 /**
- * Define generic block ID.
- */
-export const id = () => (Math.random() * Math.floor(10)).toString(36).substring(2);
-
-/**
- * Define block Class name that you get from php part on the real project.
+ * Create Inner Blocks.
  *
- * @param {string} name Block Name
+ * @param {array} innerBlocks Array of inner blocks.
  */
-export const blockClass = (name) => `block-${name}`;
+export const getInnerBlocks = (innerBlocks = []) => {
+  return innerBlocks.map((blockItem) => {
+    const blockInner = createBlock(blockItem.name);
 
-/**
- * Define block Javascript Class name that you get from php part on the real project.
- *
- * @param {string} name Block Name
- */
-export const blockJsClass = (name) => `js-block-${name}`;
+    // Set example attributes for inner block.
+    blockInner.attributes = {
+      ...blockInner.attributes,
+      ...blockItem.attributes,
+    };
 
-/**
- * Create Inner Blocks object.
- *
- * @param {object} blocks Blocks props object.
- * @param {int} count Number of blocks to show.
- */
-export const blockInnerBlocks = (blocks, count) => {
-  const output = [];
-  let internalBlocks = [];
+    // Run recursive because of multiple nested blocks.
+    blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks);
 
-  if (!blocks.length) {
-    internalBlocks = [blocks];
-  } else {
-    internalBlocks = blocks;
-  }
-
-  for (let i = 1; i <= count; i++) {
-    for (const block of internalBlocks) {
-      output.push({
-        ...block.props.props.blocks[0],
-        clientId: id(),
-        isValid: true,
-      });
-    }
-  }
-
-  return output;
+    return blockInner;
+  });
 };
 
 /**
  * Combine block details in one object.
  *
- * @param {string} name Block Name
+ * @param {object} manifest Block Manifest data.
+ * @param {object} globalManifest Global Blocks Manifest data.
  */
-export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6, customOutput = false) => {
+export const blockDetails = (manifest, globalManifest) => {
   const { blockName } = manifest;
   const { namespace } = globalManifest;
 
-  const output = {
-    attributes: {
-      blockName,
-      blockClass: blockClass(blockName),
-      blockJsClass: blockJsClass(blockName),
-    },
-    innerBlocks: [],
-    name: `${namespace}/${blockName}`,
-    originalContent: '',
+  return {
+    blockFullName: `${namespace}/${blockName}`,
+    example: manifest.example.attributes,
+    innerBlocks: manifest.example.innerBlocks,
   };
-
-  if (manifest.hasOwnProperty('example')) {
-    output.attributes = { ...output.attributes, ...manifest.example.attributes };
-  }
-
-  if (manifest.hasOwnProperty('attributes') && !manifest.attributes.hasOwnProperty('hasWrapper')) {
-    output.attributes.hasWrapper = true;
-  }
-
-  if (innerBlocks !== null) {
-    output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
-  }
-
-  if (!customOutput) {
-    return {
-      blocks: [
-        output,
-      ],
-    };
-  }
-
-  return output;
 };
 
 /**
@@ -112,26 +64,40 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
 export const Gutenberg = (props) => {
   const {
     props: {
-      blocks,
+      blockFullName,
+      example,
+      innerBlocks,
     },
   } = props;
 
-  const blocksProps = blocks.map((block) => {
-    return {
-      ...block,
-      clientId: id(),
-      isValid: true,
-      validationIssues: [],
-      originalContent: '',
-    };
-  });
+  // Set default registered blocks.
+  const [blocks, updateBlocks] = useState([]);
+
+  // Create top level blocks.
+  const block = createBlock(blockFullName);
+
+  // Set attributes, shared, block and example.
+  block.attributes = {
+    ...block.attributes,
+    ...example,
+  };
+
+  // Create new block in inner block key.
+  block.innerBlocks = getInnerBlocks(innerBlocks);
+
+  // Push all created blocks in store.
+  blocks.push(block);
+
+  dispatch('core/block-editor').insertBlocks(blocks);
 
   return (
     <div className="playground">
       <SlotFillProvider>
         <DropZoneProvider>
           <BlockEditorProvider
-            value={blocksProps}
+            value={blocks}
+            onInput={updateBlocks}
+            onChange={updateBlocks}
           >
             <div className="playground__sidebar edit-post-sidebar">
               <BlockInspector />

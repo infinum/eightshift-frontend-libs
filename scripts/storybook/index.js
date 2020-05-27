@@ -1,9 +1,5 @@
 export {
-  id,
-  blockClass,
-  blockJsClass,
   blockDetails,
-  blockInnerBlocks,
   Gutenberg,
 } from './helpers';
 

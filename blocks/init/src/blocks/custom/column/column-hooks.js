@@ -6,8 +6,8 @@ import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select } from '@wordpress/data';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
-import manifest from './../manifest.json';
-import globalManifest from './../../../manifest.json';
+import manifest from './manifest.json';
+import globalManifest from '../../manifest.json';
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
@@ -35,7 +35,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
       const componentClass = classnames(
         blockClass,
-        'eightshift-block',
+        globalManifest.globalVariables.customBlocksName,
         `${responsiveSelectors(width, 'width', blockClass)}`,
         `${responsiveSelectors(offset, 'offset', blockClass)}`,
       );
@@ -56,4 +56,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
   };
 }, 'parentComponentBlock');
 
-wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+export const hooks = () => {
+  wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+};
