@@ -32,7 +32,6 @@ registerBlocks(
 
 registerVariations(
   globalSettings,
-  WrapperManifest,
   require.context('./../../variations', true, /manifest.json$/),
   require.context('./../../variations', true, /-transforms.js$/),
   require.context('./../../variations', true, /-icons.js$/),
