@@ -17,7 +17,7 @@
     },
     "innerBlocks": [
       {
-        "name": "eightshift/column",
+        "name": "eightshift-boilerplate/column",
         "attributes": {
           "width": {
             "large": 6
@@ -25,7 +25,7 @@
         },
         "innerBlocks": [
           {
-            "name": "eightshift/card",
+            "name": "eightshift-boilerplate/card",
             "attributes": {
               "media": {
                 "url": "https://picsum.photos/400/400"
@@ -37,7 +37,7 @@
         ]
       },
       {
-        "name": "eightshift/column",
+        "name": "eightshift-boilerplate/column",
         "attributes": {
           "width": {
             "large": 6
@@ -45,7 +45,7 @@
         },
         "innerBlocks": [
           {
-            "name": "eightshift/card",
+            "name": "eightshift-boilerplate/card",
             "attributes": {
               "media": {
                 "url": "https://picsum.photos/400/400"
@@ -57,7 +57,7 @@
         ]
       },
       {
-        "name": "eightshift/column",
+        "name": "eightshift-boilerplate/column",
         "attributes": {
           "width": {
             "large": 6
@@ -65,7 +65,7 @@
         },
         "innerBlocks": [
           {
-            "name": "eightshift/card",
+            "name": "eightshift-boilerplate/card",
             "attributes": {
               "media": {
                 "url": "https://picsum.photos/400/400"
@@ -86,7 +86,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift/column"
+        "eightshift-boilerplate/column"
       ]
     },
     "gutter": {
