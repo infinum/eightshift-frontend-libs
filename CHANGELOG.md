@@ -8,9 +8,15 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ### Added
 - Option to create block variations from manifest.json.
+- Removing `blockName-icons.js` file and added ability to add SVG icon from `manifest.json`.
+- Changed `columns` and `column` block icon to manifest.
+- New package `react-html-parser`.
+- Variation example for `button` block.
 
 ### Changed
 - Fixes on columns block.
+- Optimization on block and variation registration.
+- Changed `application-block-editor.js` file for a new setup.
 
 ## [3.4.0] - 2020-05-28
 

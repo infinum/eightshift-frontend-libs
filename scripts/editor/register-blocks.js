@@ -5,6 +5,7 @@ import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { select } from '@wordpress/data';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
+import reactHtmlParser from 'react-html-parser';
 
 /**
  * Return shared attributes.
@@ -63,23 +64,8 @@ export const registerVariation = (
     namespace,
     parentName,
     blockName,
-    title,
-    description,
-    keywords,
-    transforms,
-    isInactive = false,
-    innerBlocks = [],
     attributes = {},
-    isDefault = false,
-  } = manifest;
-
-  // If block is set to inactive it will not be register.
-  if (isInactive === true) {
-    return false;
-  }
-
-  let {
-    icon,
+    icon = {},
   } = manifest;
 
   const {
@@ -90,10 +76,10 @@ export const registerVariation = (
 
   // Append globalManifest data in to output.
   if (typeof icon !== 'undefined') {
-    icon = {
+    manifest.icon = {
       background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
       foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-      src: icon.src,
+      src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
     };
   }
 
@@ -109,7 +95,7 @@ export const registerVariation = (
     for (const attribute in parentAttributes) {
       if (parentAttributes.hasOwnProperty(attribute)) {
         if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
-          attributes[attribute] = {
+          manifest.attributes[attribute] = {
             ...parentAttributes[attribute].default,
             ...attributes[attribute],
           };
@@ -119,17 +105,10 @@ export const registerVariation = (
   }
 
   return {
+    ...manifest,
     blockName: `${namespaceFinal}/${parentName}`,
     namespace: namespaceFinal,
     name: blockName,
-    title,
-    description,
-    icon,
-    keywords,
-    transforms,
-    attributes,
-    innerBlocks,
-    isDefault,
   };
 };
 
@@ -153,28 +132,9 @@ export const registerBlock = (
   const {
     namespace,
     blockName,
-    title,
-    description,
-    category,
-    keywords,
-    parent,
-    transforms,
-    example = {},
-    styles,
-    supports,
     hasInnerBlocks = false,
-    isInactive = false,
     attributes = {},
-    variations = [],
-  } = manifest;
-
-  // If block is set to inactive it will not be register.
-  if (isInactive === true) {
-    return false;
-  }
-
-  let {
-    icon,
+    icon = {},
   } = manifest;
 
   const {
@@ -193,10 +153,10 @@ export const registerBlock = (
 
   // Append globalManifest data in to output.
   if (typeof icon !== 'undefined') {
-    icon = {
+    manifest.icon = {
       background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
       foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-      src: icon.src,
+      src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
     };
   }
 
@@ -208,7 +168,7 @@ export const registerBlock = (
   // Check if namespace is defined in block or in global manifest settings.
   const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
-  const finalAttributes = {
+  manifest.attributes = {
     ...getSharedAttributes(blockName, namespaceFinal),
     ...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
     ...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
@@ -218,18 +178,8 @@ export const registerBlock = (
   return {
     blockName: `${namespaceFinal}/${blockName}`,
     options: {
-      title,
-      description,
-      category,
-      icon,
-      keywords,
-      supports,
-      parent,
-      transforms,
-      example,
-      styles,
-      attributes: finalAttributes,
-      variations,
+      ...manifest,
+      blockName: `${namespaceFinal}/${blockName}`,
       edit: withWrapper(edit, wrapperComponent),
       save,
     },
@@ -303,9 +253,7 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
  * @param {function} blocksPaths Must provide require.context for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).
  * @param {function} hooksPath Function of hooks JavaScript files in a block got from require.context.
- * @param {function} variationsPath Function of variations JavaScript files in a block got from require.context.
  * @param {function} transformsPaths Function of transforms JavaScript files in a block got from require.context.
- * @param {function} iconsPath Function of icons JavaScript files in a block got from require.context.
  *
  */
 export const registerBlocks = (
@@ -315,9 +263,7 @@ export const registerBlocks = (
   blocksManifestPath,
   blocksPaths,
   hooksPath = null,
-  variationsPath = null,
   transformsPaths = null,
-  iconsPath = null,
 ) => {
 
   // Create an array of Block manifests.
@@ -335,28 +281,6 @@ export const registerBlocks = (
   
       if (transformsCallback !== null) {
         block.transforms = transformsCallback;
-      }
-    }
-
-    // Get Block Transforms component from block name and iconsPath.
-    if (iconsPath !== null) {
-      const iconsCallback = getBlockGenericComponent(block.blockName, iconsPath, 'icons');
-  
-      if (iconsCallback !== null) {
-        if (!block.hasOwnProperty('icon')) {
-          block.icon = Object.create(null);
-        }
-
-        block.icon.src = iconsCallback();
-      }
-    }
-
-    // Get Block Variations component from block name and variationsPath.
-    if (variationsPath !== null) {
-      const variationsCallback = getBlockGenericComponent(block.blockName, variationsPath, 'variations');
-  
-      if (variationsCallback !== null) {
-        variationsCallback();
       }
     }
 
@@ -392,14 +316,12 @@ export const registerBlocks = (
  * @param {object} globalManifest Must provide global blocks setting manifest.json.
  * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
  * @param {function} transformsPaths Function of transforms JavaScript files in a block got from require.context.
- * @param {function} iconsPath Function of icons JavaScript files in a block got from require.context.
  *
  */
 export const registerVariations = (
   globalManifest = {},
   blocksManifestPath,
   transformsPaths = null,
-  iconsPath = null,
 ) => {
 
   // Create an array of Block manifests.
@@ -414,19 +336,6 @@ export const registerVariations = (
 
       if (transformsCallback !== null) {
         block.transforms = transformsCallback;
-      }
-    }
-
-    // Get Block Transforms component from block name and iconsPath.
-    if (iconsPath !== null) {
-      const iconsCallback = getBlockGenericComponent(block.blockName, iconsPath, 'icons');
-  
-      if (iconsCallback !== null) {
-        if (!block.hasOwnProperty('icon')) {
-          block.icon = Object.create(null);
-        }
-
-        block.icon.src = iconsCallback();
       }
     }
 

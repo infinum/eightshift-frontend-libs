@@ -3,6 +3,9 @@
   "blockName": "button-full-width",
   "title": "Button Full Width",
   "description" : "Button Block Variation for full width style.",
+  "icon": {
+    "src": "editor-removeformatting"
+  },
   "attributes": {
     "button": {
       "styleSizeWidth": "block"
