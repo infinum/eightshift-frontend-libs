@@ -8,30 +8,26 @@
   ],
   "example": {
     "attributes": {
-      "allowedBlocks": ["eightshift-boilerplate/column"],
       "gutter": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
+        "large": "default"
       },
       "verticalSpacing": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
+        "large": "default"
       }
     },
     "innerBlocks": [
       {
-        "name": "eightshift-boilerplate/column",
-        "attributes": {},
+        "name": "eightshift/column",
+        "attributes": {
+          "width": {
+            "large": 6
+          }
+        },
         "innerBlocks": [
           {
-            "name": "eightshift-boilerplate/card",
+            "name": "eightshift/card",
             "attributes": {
               "media": {
-                "id": 0,
                 "url": "https://picsum.photos/400/400"
               },
               "heading": "Lorem ipsum dolor sit amet",
@@ -41,14 +37,37 @@
         ]
       },
       {
-        "name": "eightshift-boilerplate/column",
-        "attributes": {},
+        "name": "eightshift/column",
+        "attributes": {
+          "width": {
+            "large": 6
+          }
+        },
         "innerBlocks": [
           {
-            "name": "eightshift-boilerplate/card",
+            "name": "eightshift/card",
             "attributes": {
               "media": {
-                "id": 0,
+                "url": "https://picsum.photos/400/400"
+              },
+              "heading": "Lorem ipsum dolor sit amet",
+              "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. "
+            }
+          }
+        ]
+      },
+      {
+        "name": "eightshift/column",
+        "attributes": {
+          "width": {
+            "large": 6
+          }
+        },
+        "innerBlocks": [
+          {
+            "name": "eightshift/card",
+            "attributes": {
+              "media": {
                 "url": "https://picsum.photos/400/400"
               },
               "heading": "Lorem ipsum dolor sit amet",
@@ -67,7 +86,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift-boilerplate/column"
+        "eightshift/column"
       ]
     },
     "gutter": {

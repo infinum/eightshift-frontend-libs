@@ -6,6 +6,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+### Added
+- Option to create block variations from manifest.json.
+
+### Changed
+- Fixes on columns block.
+
 ## [3.4.0] - 2020-05-28
 
 ### Changed
