@@ -17,22 +17,7 @@
     "attributes": {
       "wrapperDisable": true,
       "width": {
-        "large": 3,
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "offset": {
-        "large": "",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "hide": {
-        "large": "",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
+        "large": 3
       }
     },
     "innerBlocks": [
@@ -40,7 +25,6 @@
         "name": "eightshift-boilerplate/card",
         "attributes": {
           "media": {
-            "id": 0,
             "url": "https://picsum.photos/400/400"
           },
           "heading": "Lorem ipsum dolor sit amet",

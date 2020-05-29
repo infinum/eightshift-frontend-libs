@@ -21,10 +21,18 @@ import { dispatch } from '@wordpress/data';
  * Create Inner Blocks.
  *
  * @param {array} innerBlocks Array of inner blocks.
+ * @param {bool} isVariation Check if block is variation type.
  */
-export const getInnerBlocks = (innerBlocks = []) => {
+export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
   return innerBlocks.map((blockItem) => {
-    const blockInner = createBlock(blockItem.name);
+
+    let blockInner = '';
+    
+    if (isVariation) {
+      blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
+    } else {
+      blockInner = createBlock(blockItem.name);
+    }
 
     // Set example attributes for inner block.
     blockInner.attributes = {
@@ -33,7 +41,7 @@ export const getInnerBlocks = (innerBlocks = []) => {
     };
 
     // Run recursive because of multiple nested blocks.
-    blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks);
+    blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
 
     return blockInner;
   });
@@ -44,15 +52,26 @@ export const getInnerBlocks = (innerBlocks = []) => {
  *
  * @param {object} manifest Block Manifest data.
  * @param {object} globalManifest Global Blocks Manifest data.
+ * @param {bool} isVariation Check if block is variation type.
  */
-export const blockDetails = (manifest, globalManifest) => {
-  const { blockName } = manifest;
+export const blockDetails = (manifest, globalManifest, isVariation = false) => {
+  const { blockName, parentName } = manifest;
   const { namespace } = globalManifest;
+
+  if (isVariation) {
+    return {
+      blockFullName: `${namespace}/${parentName}`,
+      attributes: manifest.attributes,
+      innerBlocks: manifest.innerBlocks,
+      isVariation,
+    };
+  }
 
   return {
     blockFullName: `${namespace}/${blockName}`,
     example: manifest.example.attributes,
     innerBlocks: manifest.example.innerBlocks,
+    isVariation,
   };
 };
 
@@ -67,28 +86,32 @@ export const Gutenberg = (props) => {
       blockFullName,
       example,
       innerBlocks,
+      isVariation,
     },
   } = props;
 
   // Set default registered blocks.
   const [blocks, updateBlocks] = useState([]);
 
-  // Create top level blocks.
-  const block = createBlock(blockFullName);
+  if (typeof blockFullName !== 'undefined') {
 
-  // Set attributes, shared, block and example.
-  block.attributes = {
-    ...block.attributes,
-    ...example,
-  };
+    // Create top level blocks.
+    const block = createBlock(blockFullName);
 
-  // Create new block in inner block key.
-  block.innerBlocks = getInnerBlocks(innerBlocks);
-
-  // Push all created blocks in store.
-  blocks.push(block);
-
-  dispatch('core/block-editor').insertBlocks(blocks);
+    // Set attributes, shared, block and example.
+    block.attributes = {
+      ...block.attributes,
+      ...example,
+    };
+  
+    // Create new block in inner block key.
+    block.innerBlocks = getInnerBlocks(innerBlocks, isVariation);
+  
+    // Push all created blocks in store.
+    blocks.push(block);
+  
+    dispatch('core/block-editor').insertBlocks(blocks);
+  }
 
   return (
     <div className="playground">
