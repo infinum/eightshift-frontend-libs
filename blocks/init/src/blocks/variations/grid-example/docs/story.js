@@ -7,13 +7,13 @@ import globalManifest from './../../../manifest.json';
 import readme from './readme.md';
 
 export default {
-  title: `Blocks|${manifest.title}`,
+  title: `Variations|${manifest.title}`,
   parameters: {
     notes: readme,
   },
 };
 
 export const block = () => (
-  <Gutenberg props={blockDetails(manifest, globalManifest)} />
+  <Gutenberg props={blockDetails(manifest, globalManifest, true)} />
 );
 

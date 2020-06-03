@@ -12,6 +12,7 @@ configure([
   require.context('./../src/blocks/components', true, /docs\/story.js$/),
   require.context('./../src/blocks/custom', true, /docs\/story.js$/),
   require.context('./../src/blocks/wrapper', true, /docs\/story.js$/),
+  require.context('./../src/variations', true, /docs\/story.js$/),
 ], module);
 
 // Set default categories.
