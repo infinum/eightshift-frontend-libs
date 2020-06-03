@@ -6,6 +6,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.5.0] - 2020-06-03
+
 ### Added
 - Option to create block variations from manifest.json.
 - Removing `blockName-icons.js` file and added ability to add SVG icon from `manifest.json`.
@@ -19,6 +21,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Optimization on block and variation registration.
 - Changed `application-block-editor.js` file for a new setup.
 - How storybook handles variations.
+
+### Breaking change
+- Update your `application-block-editor.js` [file](https://github.com/infinum/eightshift-frontend-libs/blob/develop/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) for a new setup.
 
 ## [3.4.0] - 2020-05-28
 
@@ -343,6 +348,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.2...v3.3.0
 [3.2.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.1...v3.2.2
