@@ -61,6 +61,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.6",
+    "@storybook/theming": "^5.3.19",
     "@wordpress/a11y": "2.7.0",
     "@wordpress/annotations": "1.12.3",
     "@wordpress/api-fetch": "3.11.0",
