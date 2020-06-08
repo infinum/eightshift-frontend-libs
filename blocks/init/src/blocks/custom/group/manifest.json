@@ -12,5 +12,41 @@
     "group"
   ],
   "hasInnerBlocks": true,
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "eightshift-boilerplate/heading",
+        "attributes": {
+          "heading": {
+            "content": "Heading Content",
+            "level": 2,
+            "styleAlign": "left",
+            "styleColor": "primary",
+            "styleSize": "default"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/paragraph",
+        "attributes": {
+          "paragraph": {
+            "content": "Paragraph Content",
+            "styleAlign": "left",
+            "styleColor": "primary",
+            "styleSize": "default"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/image",
+        "attributes": {
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/800/800"
+          }
+        }
+      }
+    ]
+  },
   "attributes": {}
 }

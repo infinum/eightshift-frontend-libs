@@ -13,7 +13,7 @@ export const columnsGutter = [
   { label: sprintf(__('Big (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.big), value: 'big' },
 ];
 
-export const columsHorizontalSpacing = [
+export const columsVerticalSpacing = [
   { label: sprintf(__('None (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.none), value: 'none' },
   { label: sprintf(__('Default (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.default), value: 'default' },
   { label: sprintf(__('Big (%s)', 'eightshift-boilerplate'), globalSettings.globalVariables.gutters.big), value: 'big' },
@@ -23,10 +23,9 @@ export const ColumnsResponsiveTabContent = (props) => {
   const {
     gutter,
     onChangeGutter,
-    horizontalSpacing,
-    onChangeHorizontalSpacing,
+    verticalSpacing,
+    onChangeVerticalSpacing,
   } = props;
-
 
   return (
     <Fragment>
@@ -45,18 +44,18 @@ export const ColumnsResponsiveTabContent = (props) => {
         />
       }
 
-      {onChangeHorizontalSpacing &&
+      {onChangeVerticalSpacing &&
         <SelectControl
           label={
             <Fragment>
               <Icon icon={icons.containerHeight} />
-              {__('Horizontal Spacing', 'eightshift-boilerplate')}
+              {__('Vertical Spacing', 'eightshift-boilerplate')}
             </Fragment>
           }
-          help={__('Option to change horizontal spacing (top and bottom).', 'eightshift-boilerplate')}
-          value={horizontalSpacing}
-          options={columsHorizontalSpacing}
-          onChange={onChangeHorizontalSpacing}
+          help={__('Option to change vertical spacing (top and bottom).', 'eightshift-boilerplate')}
+          value={verticalSpacing}
+          options={columsVerticalSpacing}
+          onChange={onChangeVerticalSpacing}
         />
       }
     </Fragment>

@@ -14,7 +14,7 @@ $block_class = $attributes['blockClass'] ?? '';
 $component_class = Components::classnames([
   $block_class,
   $attributes['gutter'] ? Components::responsive_selectors($attributes['gutter'], 'gutter', $block_class) : '',
-  $attributes['horizontalSpacing'] ? Components::responsive_selectors($attributes['horizontalSpacing'], 'horizontal-spacing', $block_class) : '',
+  $attributes['verticalSpacing'] ? Components::responsive_selectors($attributes['verticalSpacing'], 'vertical-spacing', $block_class) : '',
 ]);
 ?>
 

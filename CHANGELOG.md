@@ -6,6 +6,65 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+## [3.5.0] - 2020-06-03
+
+### Added
+- Option to create block variations from manifest.json.
+- Removing `blockName-icons.js` file and added ability to add SVG icon from `manifest.json`.
+- Changed `columns` and `column` block icon to manifest.
+- New package `react-html-parser`.
+- Variation example for `button` block.
+- Variation example for `grid` block.
+
+### Changed
+- Fixes on columns block.
+- Optimization on block and variation registration.
+- Changed `application-block-editor.js` file for a new setup.
+- How storybook handles variations.
+
+### Breaking change
+- Update your `application-block-editor.js` [file](https://github.com/infinum/eightshift-frontend-libs/blob/develop/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) for a new setup.
+
+## [3.4.0] - 2020-05-28
+
+### Changed
+- Changed the file name for `transforms.js` to `blockName-transforms.js`.
+- Changed the file name for `icons` to blockName-icons.js.
+- Storybook is now loading example data the same as in the native/core blocks.
+- All example keys to match the new setup.
+- All `story.js` files to accommodate for a new example key.
+- Structural changes how `registerBlocks` and `registerBlock` methods are working.
+- Fixing some bugs in `registerBlock` method.
+- Structural changes in all storybook helpers.
+- Converted `withWrapper` method to jsx.
+
+### Added
+- Hooks specific file in blocks.
+- Variation specific file in blocks.
+
+## [3.3.0] - 2020-05-15
+
+### Added
+- Wrapped new attributes: `wrapperUse`, `wrapperUseShowControl`, `wrapperUseSimple`, `wrapperUseSimpleShowControl`, `wrapperDisable`.
+- All packages from WP core for the latest build.
+- Github Actions for testing.
+
+### Changed
+- Fixing storybook and example field inside manifest.
+- Structural changes on all blocks.
+- Converted all wrapper attributes to objects.
+- Storybook correction for new example layout of attributes.
+- Bug fixes on `Columns` and `Column` block.
+- Bugfixes on color palette helper.
+- Added options to `Group` block.
+- Fixed and UX correction for `Button` block.
+- Some UX and UI fixed.
+- If attribute is type `object` it will now automatically build actions for each key in `manifest.json`.
+
+### Removed
+- Cards Grid block.
+- Cards List block.
+
 ## [3.2.2] - 2020-05-15
 
 ### Added
@@ -15,7 +74,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Has wrapper as na option in wrapper component.
 * Wrapper option to sass modifiers-deep and modifiers mixin.
 
-## Changes
+### Changed
 * Storybook changes for the new setup.
 * Changes on wrapper component to have object attributes.
 
@@ -32,7 +91,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 * Fixed issue #116 - Copy storybook during setup
 * Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
-### Changes
+### Changed
 * Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
 
 
@@ -289,6 +348,9 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[3.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.4.0...v3.5.0
+[3.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.3.0...v3.4.0
+[3.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.2...v3.3.0
 [3.2.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.1.1...v3.2.0

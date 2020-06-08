@@ -9,18 +9,18 @@ import { ColumnsResponsiveTabContent } from './columns-responsive-tab-content';
 export const ColumnsOptions = ({ attributes, actions }) => {
   const {
     gutter,
-    horizontalSpacing,
+    verticalSpacing,
   } = attributes;
 
   const {
     onChangeGutterLarge,
-    onChangeHorizontalSpacingLarge,
+    onChangeVerticalSpacingLarge,
     onChangeGutterDesktop,
-    onChangeHorizontalSpacingDesktop,
+    onChangeVerticalSpacingDesktop,
     onChangeGutterTablet,
-    onChangeHorizontalSpacingTablet,
+    onChangeVerticalSpacingTablet,
     onChangeGutterMobile,
-    onChangeHorizontalSpacingMobile,
+    onChangeVerticalSpacingMobile,
   } = actions;
 
   return (
@@ -63,8 +63,8 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <ColumnsResponsiveTabContent
                   gutter={gutter.large}
                   onChangeGutter={onChangeGutterLarge}
-                  horizontalSpacing={horizontalSpacing.large}
-                  onChangeHorizontalSpacing={onChangeHorizontalSpacingLarge}
+                  verticalSpacing={verticalSpacing.large}
+                  onChangeVerticalSpacing={onChangeVerticalSpacingLarge}
                 />
               </Fragment>
             )}
@@ -77,8 +77,8 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <ColumnsResponsiveTabContent
                   gutter={gutter.desktop}
                   onChangeGutter={onChangeGutterDesktop}
-                  horizontalSpacing={horizontalSpacing.desktop}
-                  onChangeHorizontalSpacing={onChangeHorizontalSpacingDesktop}
+                  verticalSpacing={verticalSpacing.desktop}
+                  onChangeVerticalSpacing={onChangeVerticalSpacingDesktop}
                 />
               </Fragment>
             )}
@@ -91,8 +91,8 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <ColumnsResponsiveTabContent
                   gutter={gutter.tablet}
                   onChangeGutter={onChangeGutterTablet}
-                  horizontalSpacing={horizontalSpacing.tablet}
-                  onChangeHorizontalSpacing={onChangeHorizontalSpacingTablet}
+                  verticalSpacing={verticalSpacing.tablet}
+                  onChangeVerticalSpacing={onChangeVerticalSpacingTablet}
                 />
               </Fragment>
             )}
@@ -105,8 +105,8 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                 <ColumnsResponsiveTabContent
                   gutter={gutter.mobile}
                   onChangeGutter={onChangeGutterMobile}
-                  horizontalSpacing={horizontalSpacing.mobile}
-                  onChangeHorizontalSpacing={onChangeHorizontalSpacingMobile}
+                  verticalSpacing={verticalSpacing.mobile}
+                  onChangeVerticalSpacing={onChangeVerticalSpacingMobile}
                 />
               </Fragment>
             )}

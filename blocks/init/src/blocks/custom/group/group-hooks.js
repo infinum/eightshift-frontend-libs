@@ -4,8 +4,8 @@ import React from 'react';
 import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select } from '@wordpress/data';
-import manifest from './../manifest.json';
-import globalManifest from './../../../manifest.json';
+import manifest from './manifest.json';
+import globalManifest from '../../manifest.json';
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
@@ -21,6 +21,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
     const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
     if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
+      
       updatedProps = assign(
         {},
         innerProps,
@@ -42,4 +43,6 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
   };
 }, 'parentComponentBlock');
 
-wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+export const hooks = () => {
+  wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+};

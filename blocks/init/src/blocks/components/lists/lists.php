@@ -14,6 +14,11 @@ if ( ! $lists ) {
 }
 
 $content = $lists['content'] ?? '';
+
+if ( ! $content ) {
+  return;
+}
+
 $ordered = $lists['ordered'] ?? 'ul';
 
 $component_class = 'lists';

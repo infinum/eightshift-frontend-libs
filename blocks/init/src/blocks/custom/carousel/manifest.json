@@ -11,10 +11,42 @@
   ],
   "example": {
     "attributes": {
-      "allowedBlocks": ["eightshift-boilerplate/column"],
+      "allowedBlocks": ["eightshift-boilerplate/carousel-image"],
       "isFreeMode": false,
       "isLoop": true
-    }
+    },
+    "innerBlocks": [
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/800/800"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/300/300"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/400/400"
+          }
+        }
+      }
+    ]
   },
   "hasInnerBlocks": true,
   "attributes": {
@@ -24,7 +56,7 @@
         "type": "string"
       },
       "default": [
-        "eightshift-boilerplate/column"
+        "eightshift-boilerplate/carousel-image"
       ]
     },
     "isFreeMode": {

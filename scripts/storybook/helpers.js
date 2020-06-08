@@ -12,96 +12,67 @@ import {
   SlotFillProvider,
   DropZoneProvider,
 } from '@wordpress/components';
+import '@wordpress/format-library';
+import { useState } from '@wordpress/element';
+import { createBlock } from '@wordpress/blocks';
+import { dispatch } from '@wordpress/data';
 
 /**
- * Define generic block ID.
- */
-export const id = () => (Math.random() * Math.floor(10)).toString(36).substring(2);
-
-/**
- * Define block Class name that you get from php part on the real project.
+ * Create Inner Blocks.
  *
- * @param {string} name Block Name
+ * @param {array} innerBlocks Array of inner blocks.
+ * @param {bool} isVariation Check if block is variation type.
  */
-export const blockClass = (name) => `block-${name}`;
+export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
+  return innerBlocks.map((blockItem) => {
 
-/**
- * Define block Javascript Class name that you get from php part on the real project.
- *
- * @param {string} name Block Name
- */
-export const blockJsClass = (name) => `js-block-${name}`;
-
-/**
- * Create Inner Blocks object.
- *
- * @param {object} blocks Blocks props object.
- * @param {int} count Number of blocks to show.
- */
-export const blockInnerBlocks = (blocks, count) => {
-  const output = [];
-  let internalBlocks = [];
-
-  if (!blocks.length) {
-    internalBlocks = [blocks];
-  } else {
-    internalBlocks = blocks;
-  }
-
-  for (let i = 1; i <= count; i++) {
-    for (const block of internalBlocks) {
-      output.push({
-        ...block.props.props.blocks[0],
-        clientId: id(),
-        isValid: true,
-      });
+    let blockInner = '';
+    
+    if (isVariation) {
+      blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
+    } else {
+      blockInner = createBlock(blockItem.name);
     }
-  }
 
-  return output;
+    // Set example attributes for inner block.
+    blockInner.attributes = {
+      ...blockInner.attributes,
+      ...blockItem.attributes,
+    };
+
+    // Run recursive because of multiple nested blocks.
+    blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
+
+    return blockInner;
+  });
 };
 
 /**
  * Combine block details in one object.
  *
- * @param {string} name Block Name
+ * @param {object} manifest Block Manifest data.
+ * @param {object} globalManifest Global Blocks Manifest data.
+ * @param {bool} isVariation Check if block is variation type.
  */
-export const blockDetails = (manifest, globalManifest, innerBlocks = null, innerBlocksItems = 6, customOutput = false) => {
-  const { blockName } = manifest;
+export const blockDetails = (manifest, globalManifest, isVariation = false) => {
+  const { blockName, parentName } = manifest;
   const { namespace } = globalManifest;
 
-  const output = {
-    attributes: {
-      blockName,
-      blockClass: blockClass(blockName),
-      blockJsClass: blockJsClass(blockName),
-    },
-    innerBlocks: [],
-    name: `${namespace}/${blockName}`,
-    originalContent: '',
-  };
-
-  if (manifest.hasOwnProperty('example')) {
-    output.attributes = { ...output.attributes, ...manifest.example.attributes };
-  }
-
-  if (manifest.hasOwnProperty('attributes') && !manifest.attributes.hasOwnProperty('hasWrapper')) {
-    output.attributes.hasWrapper = true;
-  }
-
-  if (innerBlocks !== null) {
-    output.innerBlocks = blockInnerBlocks(innerBlocks, innerBlocksItems);
-  }
-
-  if (!customOutput) {
+  if (isVariation) {
     return {
-      blocks: [
-        output,
-      ],
+      blockFullName: `${namespace}/${parentName}`,
+      attributes: manifest.attributes,
+      innerBlocks: manifest.innerBlocks,
+      isVariation,
     };
   }
 
-  return output;
+  return {
+    blockFullName: `${namespace}/${blockName}`,
+    example: manifest.example.attributes,
+    innerBlocks: manifest.example.innerBlocks,
+    isVariation,
+  };
 };
 
 /**
@@ -112,26 +83,44 @@ export const blockDetails = (manifest, globalManifest, innerBlocks = null, inner
 export const Gutenberg = (props) => {
   const {
     props: {
-      blocks,
+      blockFullName,
+      example,
+      innerBlocks,
+      isVariation,
     },
   } = props;
 
-  const blocksProps = blocks.map((block) => {
-    return {
-      ...block,
-      clientId: id(),
-      isValid: true,
-      validationIssues: [],
-      originalContent: '',
+  // Set default registered blocks.
+  const [blocks, updateBlocks] = useState([]);
+
+  if (typeof blockFullName !== 'undefined') {
+
+    // Create top level blocks.
+    const block = createBlock(blockFullName);
+
+    // Set attributes, shared, block and example.
+    block.attributes = {
+      ...block.attributes,
+      ...example,
     };
-  });
+  
+    // Create new block in inner block key.
+    block.innerBlocks = getInnerBlocks(innerBlocks, isVariation);
+  
+    // Push all created blocks in store.
+    blocks.push(block);
+  
+    dispatch('core/block-editor').insertBlocks(blocks);
+  }
 
   return (
     <div className="playground">
       <SlotFillProvider>
         <DropZoneProvider>
           <BlockEditorProvider
-            value={blocksProps}
+            value={blocks}
+            onInput={updateBlocks}
+            onChange={updateBlocks}
           >
             <div className="playground__sidebar edit-post-sidebar">
               <BlockInspector />

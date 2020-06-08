@@ -4,20 +4,21 @@ import React from 'react';
 import classnames from 'classnames';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 import { InnerBlocks } from '@wordpress/block-editor';
+import globalManifest from './../../../manifest.json';
 
 export const ColumnsEditor = ({ attributes }) => {
   const {
     allowedBlocks,
     blockClass,
     gutter,
-    horizontalSpacing,
+    verticalSpacing,
   } = attributes;
 
   const componentClass = classnames(
     blockClass,
-    'eightshift-block',
+    globalManifest.globalVariables.customBlocksName,
     `${responsiveSelectors(gutter, 'gutter', blockClass)}`,
-    `${responsiveSelectors(horizontalSpacing, 'horizontal-spacing', blockClass)}`,
+    `${responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass)}`,
   );
 
   return (

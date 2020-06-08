@@ -15,33 +15,15 @@
   ],
   "example": {
     "attributes": {
-      "wrapperUseSimple": true,
+      "wrapperDisable": true,
       "media": {
         "id": 0,
         "url": "https://picsum.photos/800/800"
       }
     }
   },
-  "example2": {
-    "attributes": {
-      "wrapperUseSimple": true,
-      "media": {
-        "id": 0,
-        "url": "https://picsum.photos/400/400"
-      }
-    }
-  },
-  "example3": {
-    "attributes": {
-      "wrapperUseSimple": true,
-      "media": {
-        "id": 0,
-        "url": "https://picsum.photos/200/200"
-      }
-    }
-  },
   "attributes": {
-    "wrapperUseSimple": {
+    "wrapperDisable": {
       "type": "bool",
       "default": true
     },

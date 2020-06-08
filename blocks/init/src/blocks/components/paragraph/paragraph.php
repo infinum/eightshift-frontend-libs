@@ -17,6 +17,10 @@ if ( ! $paragraph ) {
 
 $content = $paragraph['content'] ?? '';
 
+if ( ! $content ) {
+  return;
+}
+
 $component_class = 'paragraph';
 $block_class     = $attributes['blockClass'] ?? '';
 $style_align     = isset( $paragraph['styleAlign'] ) ? "{$component_class}__align--{$paragraph['styleAlign']}" : '';
