@@ -6,6 +6,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+- Copy Carousel during setup so Image block doesn't throw errors during build time (because of image-transform.js which is expecting Carousel Image)
+
 ## [3.5.0] - 2020-06-03
 
 ### Added

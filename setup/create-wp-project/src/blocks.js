@@ -19,6 +19,7 @@ const componentsToCopy = [
   'hamburger',
   'copyright',
   'page-overlay',
+  'carousel-navigation',
 ];
 
 const blocksToCopy = [
@@ -30,6 +31,8 @@ const blocksToCopy = [
   'paragraph',
   'video',
   'example',
+  'carousel',
+  'carousel-image',
 ];
 
 /**
