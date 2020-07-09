@@ -6,6 +6,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [Unreleased]
 
+### Added
+- New video-iframe component.
+- New Vimeo block.
+- New Youtube block.
+
 ## [3.5.0] - 2020-06-03
 
 ### Added
