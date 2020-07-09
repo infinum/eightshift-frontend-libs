@@ -15,7 +15,7 @@ export const VimeoOptions = ({ attributes, actions }) => {
   } = actions;
 
   return (
-    <PanelBody title={__('Vimeo Details', 'productvie')}>
+    <PanelBody title={__('Vimeo Details', 'eightshift-boilerplate')}>
       
       <VideoIframeOptions
         id={id}

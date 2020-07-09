@@ -15,7 +15,7 @@ export const YoutubeOptions = ({ attributes, actions }) => {
   } = actions;
 
   return (
-    <PanelBody title={__('YouTube Details', 'productvie')}>
+    <PanelBody title={__('YouTube Details', 'eightshift-boilerplate')}>
       
       <VideoIframeOptions
         id={id}
