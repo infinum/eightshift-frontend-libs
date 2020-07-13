@@ -119,7 +119,10 @@ export const getActions = (props, manifest) => {
           ...singlePropsAction(setAttributes, key),
         };
       } else {
-        actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
+        actionsOutput = {
+          ...actionsOutput,
+          ...singlePropsAction(setAttributes, key),
+        };
       }
     }
   }
