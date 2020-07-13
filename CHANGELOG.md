@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 ## [Unreleased]
+- Simplified building actions (`multipleProps: true|false` is no longer needed), `getActions()` now returns both multipleProp and singleProp actions (whole object setters + individual property setters) and you can just pick and choose which ones you need
+- Removed `mediaPropActions` which is redundant
 
 ## [3.5.0] - 2020-06-03
 
