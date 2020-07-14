@@ -39,7 +39,7 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
       for (const propName in attributes[key][propType]) {
         if (attributes[key][propType].hasOwnProperty(propName)) {
 
-          output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function(value) {
+          output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
             setAttributes({
               [key]: {
                 ...propsAttributes[key],
@@ -70,49 +70,9 @@ const singlePropsAction = (setAttributes, key) => {
 
   // Set output as a object key with anonymous function callback.
   // Keys name must be written in uppercase.
-  output[`onChange${ucfirst(key)}`] = function(value) {
+  output[`onChange${ucfirst(key)}`] = function (value) {
     setAttributes({
       [key]: value,
-    });
-  };
-
-  return output;
-};
-
-/**
- * This method is used for setting media attributes. It is property type `object` with default values of `id`, `url`, `title`.
- * This function generates callback that saves `id`, `url` and `title` of attribute.
- *
- * Example:
- * "attributes": {
- *   "primaryVideo": {
- *     "type": "object",
- *     "default": {
- *       "id": 0,
- *       "url": "",
- *     },
- *     "mediaAction": true
- *   }
- * }
- *
- * Inside actions there will be `onChangePrimaryVideo` function that will update `id`, `url` and `title` and expect that a given object have those properties
- *
- * @param {object} setAttributes Method for saving attributes.
- * @param {string} key Came of the property in manifest.
- *
- */
-
-const mediaPropsAction = (setAttributes, key) => {
-  const output = {};
-
-  // Set output as an object key with anonymous function callback.
-  // Keys name must be written in uppercase.
-  output[`onChange${ucfirst(key)}`] = function(value) {
-    setAttributes({
-      [key]: {
-        id: value.id,
-        url: value.url,
-      },
     });
   };
 
@@ -153,15 +113,16 @@ export const getActions = (props, manifest) => {
 
       // Switch between property types default action, multiple props actions and media actions.
       if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
-        if (attributes[key].hasOwnProperty('mediaAction')) {
-          actionsOutput = { ...actionsOutput, ...mediaPropsAction(setAttributes, key) };
-        } else if (attributes[key].hasOwnProperty('multipleProps') && attributes[key].multipleProps === false) {
-          actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
-        } else {
-          actionsOutput = { ...actionsOutput, ...multiplePropsActions(setAttributes, attributes, key, propsAttributes) };
-        }
+        actionsOutput = {
+          ...actionsOutput,
+          ...multiplePropsActions(setAttributes, attributes, key, propsAttributes),
+          ...singlePropsAction(setAttributes, key),
+        };
       } else {
-        actionsOutput = { ...actionsOutput, ...singlePropsAction(setAttributes, key) };
+        actionsOutput = {
+          ...actionsOutput,
+          ...singlePropsAction(setAttributes, key),
+        };
       }
     }
   }
