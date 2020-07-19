@@ -2,7 +2,7 @@
 /**
  * Tracking codes in Head
  *
- * @package Eightshift_Boilerplate\Views\Tracking
+ * @package EightshiftBoilerplate\Views\Tracking
  *
  */
 

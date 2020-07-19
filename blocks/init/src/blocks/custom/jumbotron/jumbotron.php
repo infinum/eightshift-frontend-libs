@@ -2,10 +2,10 @@
 /**
  * Template for the Jumbotron Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
 $block_class                 = $attributes['blockClass'] ?? '';
 $heading                     = $attributes['heading'] ?? '';

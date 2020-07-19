@@ -2,13 +2,13 @@
 /**
  * Main header bar component
  *
- * @package Eightshift_Boilerplate\Blocks
+ * @package EightshiftBoilerplate\Blocks
  *
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
-use Eightshift_Libs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $block_class      = $attributes['blockClass'] ?? 'header';
 $left_component   = ! empty( $attributes['leftComponent'] ) ? Components::ensure_string( $attributes['leftComponent'] ) : '';

@@ -2,10 +2,10 @@
 /**
  * Template for the Video Component.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
 $media = $attributes['media'] ?? [];
 

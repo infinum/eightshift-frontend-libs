@@ -2,10 +2,10 @@
 /**
  * Template for the Carousel Image Block.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
 $media = $attributes['media'] ?? [];
 

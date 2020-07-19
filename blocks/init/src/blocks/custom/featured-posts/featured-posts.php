@@ -2,7 +2,7 @@
 /**
  * Template for the Featured Posts view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
 $block_class = $attributes['blockClass'] ?? '';

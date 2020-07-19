@@ -2,10 +2,10 @@
 /**
  * Template for the Link Component.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
 $link = $attributes['link'] ?? [];
 

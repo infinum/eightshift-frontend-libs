@@ -2,13 +2,12 @@
 /**
  * Template for the Video Iframe Component.
  *
- * @since 1.0.0
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
-use Eightshift_Libs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $url          = $attributes['url'] ?? '';
 $id           = $attributes['id'] ?? '';

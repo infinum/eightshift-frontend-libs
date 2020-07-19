@@ -2,10 +2,10 @@
 /**
  * Template for the Youtube Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate\Blocks.
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
 $this->render_block_view(
   '/components/video-iframe/video-iframe.php',

@@ -2,13 +2,13 @@
 /**
  * Main footer component
  *
- * @package Eightshift_Boilerplate\Blocks
+ * @package EightshiftBoilerplate\Blocks
  *
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+namespace EightshiftBoilerplate\Blocks;
 
-use Eightshift_Libs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $block_class      = $attributes['blockClass'] ?? 'footer';
 $left_component   = ! empty( $attributes['leftComponent'] ) ? Components::ensure_string( $attributes['leftComponent'] ) : '';
