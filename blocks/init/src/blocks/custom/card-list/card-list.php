@@ -2,10 +2,8 @@
 /**
  * Template for the Card List block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $block_class    = $attributes['blockClass'] ?? '';
 

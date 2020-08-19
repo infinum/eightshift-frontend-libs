@@ -2,8 +2,7 @@
 /**
  * Menu component responsible for rendering and styling just the menu.
  *
- * @package EightshiftBoilerplate\Components
- *
+ * @package EightshiftBoilerplate
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Menu\Menu;

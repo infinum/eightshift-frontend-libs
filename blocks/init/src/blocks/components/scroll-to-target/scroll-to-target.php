@@ -2,10 +2,8 @@
 /**
  * Template for the Scroll To Target Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $scroll_target = $attributes['scrollTarget'] ?? '';
 $scroll_text   = $attributes['scrollText'] ?? '';

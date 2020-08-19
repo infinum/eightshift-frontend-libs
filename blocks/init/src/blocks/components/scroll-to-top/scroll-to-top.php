@@ -2,10 +2,8 @@
 /**
  * Template for the Scroll To Top Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 ?>
 

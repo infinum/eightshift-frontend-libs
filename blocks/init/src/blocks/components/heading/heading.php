@@ -2,10 +2,8 @@
 /**
  * Template for the Heading Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $heading = $attributes['heading'] ?? [];
 

@@ -1,13 +1,9 @@
 <?php
-
 /**
  * Mobile menu as drawer
  *
- * @package EightshiftBoilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 

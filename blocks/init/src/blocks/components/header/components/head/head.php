@@ -2,14 +2,13 @@
 /**
  * Head section for meta data
  *
- * @package EightshiftBoilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Core\Config;
-use EightshiftBoilerplateVendor\EightshiftLibs\Manifest\Manifest;
+use EightshiftBoilerplate\Manifest\Manifest;
+use EightshiftBoilerplate\Config\Config;
 
-$icon          = apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_FILTER_NAME ), 'logo.svg' );
+$icon          = apply_filters( Manifest::MANIFEST_ITEM, 'logo.svg' );
 $project_color = Config::get_project_primary_color();
 ?>
 

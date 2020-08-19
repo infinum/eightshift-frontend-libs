@@ -2,10 +2,8 @@
 /**
  * Template for the Carousel Navigation Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $component_class       = 'carousel-navigation';
 $arrow_item_prev_class = "

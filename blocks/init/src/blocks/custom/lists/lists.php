@@ -2,10 +2,8 @@
 /**
  * Template for the Lists Block view.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $this->render_block_view(
   '/components/lists/lists.php',

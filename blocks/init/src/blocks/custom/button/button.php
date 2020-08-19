@@ -2,10 +2,8 @@
 /**
  * Template for the Button Block view.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $this->render_block_view(
   '/components/button/button.php',

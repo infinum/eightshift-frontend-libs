@@ -2,10 +2,8 @@
 /**
  * Template for the Lists Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $lists = $attributes['lists'] ?? [];
 

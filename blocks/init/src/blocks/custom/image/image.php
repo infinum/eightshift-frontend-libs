@@ -2,10 +2,8 @@
 /**
  * Template for the Image Block view.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $this->render_block_view(
   '/components/image/image.php',

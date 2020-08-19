@@ -2,10 +2,8 @@
 /**
  * Template for the Carousel Block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $block_class    = $attributes['blockClass'] ?? '';
 $block_js_class = $attributes['blockJsClass'] ?? '';

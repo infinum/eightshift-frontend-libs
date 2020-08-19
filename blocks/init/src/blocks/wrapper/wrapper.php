@@ -2,10 +2,8 @@
 /**
  * Template for the Wrapping Advance block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 

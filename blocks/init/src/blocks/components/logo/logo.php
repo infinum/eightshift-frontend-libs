@@ -2,17 +2,13 @@
 /**
  * Logo component, should be usable without any attributes.
  *
- * @package EightshiftBoilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
 
-namespace EightshiftBoilerplate\Blocks;
-
-use EightshiftBoilerplate\Core\Config;
-use EightshiftBoilerplateVendor\EightshiftLibs\Manifest\Manifest;
+use EightshiftBoilerplate\Manifest\Manifest;
 
 $block_class = $attributes['blockClass'] ?? 'logo';
-$src         = $attributes['src'] ?? apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_FILTER_NAME ), 'logo.svg' );
+$src         = $attributes['src'] ?? apply_filters( Manifest::MANIFEST_ITEM, 'logo.svg' );
 $alt         = $attributes['logoAlt'] ?? get_bloginfo( 'name' ) . ' logo';
 $href        = $attributes['href'] ?? get_bloginfo( 'url' );
 

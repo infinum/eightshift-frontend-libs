@@ -2,8 +2,7 @@
 /**
  * Tracking codes Before body end
  *
- * @package EightshiftBoilerplate\Views\Tracking
- *
+ * @package EightshiftBoilerplate
  */
 
 // Add Before body end hooks here.

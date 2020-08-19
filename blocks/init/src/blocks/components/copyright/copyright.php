@@ -2,11 +2,8 @@
 /**
  * Copyright component responsible for rendering site's copyright.
  *
- * @package EightshiftBoilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? 'copyright';
 $by          = $attributes['by'] ?? 'Infinum';

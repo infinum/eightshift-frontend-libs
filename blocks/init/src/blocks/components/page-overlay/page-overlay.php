@@ -2,10 +2,8 @@
 /**
  * Template for the Page Overlay Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 

@@ -2,10 +2,8 @@
 /**
  * Template for the Quote Block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $author   = $attributes['author'] ?? '';
 $content = $attributes['content'] ?? '';

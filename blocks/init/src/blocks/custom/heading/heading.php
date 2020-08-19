@@ -2,10 +2,8 @@
 /**
  * Template for the Heading Block view.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $this->render_block_view(
   '/components/heading/heading.php',

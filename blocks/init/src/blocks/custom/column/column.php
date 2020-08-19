@@ -2,10 +2,8 @@
 /**
  * Template for the Column Block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 

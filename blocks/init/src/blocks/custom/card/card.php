@@ -2,10 +2,8 @@
 /**
  * Template for the Card Block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $heading   = $attributes['heading'] ?? '';
 $paragraph = $attributes['paragraph'] ?? '';

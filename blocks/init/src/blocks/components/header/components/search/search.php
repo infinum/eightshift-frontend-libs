@@ -2,8 +2,7 @@
 /**
  * Header Serch form
  *
- * @package EightshiftBoilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
 
 ?>

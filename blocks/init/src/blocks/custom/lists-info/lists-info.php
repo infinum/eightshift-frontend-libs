@@ -2,10 +2,8 @@
 /**
  * Template for the Lists Info Block.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? '';
 $title       = $attributes['title'] ?? '';

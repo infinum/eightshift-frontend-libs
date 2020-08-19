@@ -2,10 +2,8 @@
 /**
  * Template for the Image Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $media = $attributes['media'] ?? [];
 

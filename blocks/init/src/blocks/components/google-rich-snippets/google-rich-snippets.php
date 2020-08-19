@@ -2,15 +2,12 @@
 /**
  * Google Rich Snippets
  *
- * @package EightshiftBoilerplate\Blocks
- *
- *
+ * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Core\Config;
-use EightshiftBoilerplateVendor\EightshiftLibs\Manifest\Manifest;
+use EightshiftBoilerplate\Manifest\Manifest;
 
-$logo_img = apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_FILTER_NAME ), 'logo.svg' );
+$logo_img = apply_filters( Manifest::MANIFEST_ITEM, 'logo.svg' );
 ?>
 
 <!-- Google Rich Snippets -->

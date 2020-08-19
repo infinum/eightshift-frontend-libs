@@ -2,10 +2,8 @@
 /**
  * Template for the Button Component.
  *
- * @package EightshiftBoilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace EightshiftBoilerplate\Blocks;
 
 $button = $attributes['button'] ?? [];
 
