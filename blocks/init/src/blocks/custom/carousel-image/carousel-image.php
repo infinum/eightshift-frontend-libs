@@ -5,6 +5,8 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $media = $attributes['media'] ?? [];
 
 if ( ! $media ) {
@@ -21,12 +23,10 @@ $component_class = "
 ?>
 
 <div class="<?php echo esc_attr( $component_class ); ?>">
-  <?php $this->render_block_view(
-    '/components/image/image.php',
-    [
+  <?php echo wp_kses_post( Components::render( 'image', [
       'blockClass' => $attributes['blockClass'] ?? '',
       'media' => $media,
     ]
-  );
+  ) );
   ?>
 </div>

@@ -5,6 +5,8 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $block_class = $attributes['blockClass'] ?? '';
 $title       = $attributes['title'] ?? '';
 
@@ -21,13 +23,11 @@ $title       = $attributes['title'] ?? '';
 
   <div class="<?php echo esc_attr( "{$block_class}__content" ); ?>">
     <?php
-    $this->render_block_view(
-      '/components/lists/lists.php',
-      [
+    echo wp_kses_post( Components::render( 'lists', [
         'blockClass' => $attributes['blockClass'] ?? '',
         'lists'      => $attributes['lists'] ?? [],
       ]
-    );
+    ) );
     ?>
   </div>
 </div>

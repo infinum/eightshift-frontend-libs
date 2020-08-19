@@ -5,10 +5,10 @@
  * @package EightshiftBoilerplate
  */
 
-$this->render_block_view(
-  '/components/lists/lists.php',
-  [
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+echo wp_kses_post( Components::render( 'lists', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'lists'      => $attributes['lists'] ?? [],
   ]
-);
+) );

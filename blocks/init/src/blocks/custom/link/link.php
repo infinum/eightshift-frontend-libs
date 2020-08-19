@@ -5,10 +5,10 @@
  * @package EightshiftBoilerplate
  */
 
-$this->render_block_view(
-  '/components/link/link.php',
-  [
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+echo wp_kses_post( Components::render( 'link', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'link'       => $attributes['link'] ?? [],
   ]
-);
+) );

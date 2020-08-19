@@ -5,10 +5,10 @@
  * @package EightshiftBoilerplate
  */
 
-$this->render_block_view(
-  '/components/video/video.php',
-  [
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+echo wp_kses_post( Components::render( 'video', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'media'      => $attributes['media'] ?? [],
   ]
-);
+) );

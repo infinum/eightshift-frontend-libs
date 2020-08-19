@@ -5,10 +5,10 @@
  * @package EightshiftBoilerplate
  */
 
-$this->render_block_view(
-  '/components/button/button.php',
-  [
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+echo wp_kses_post( Components::render( 'button', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'button'     => $attributes['button'] ?? [],
   ]
-);
+) );

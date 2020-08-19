@@ -5,10 +5,10 @@
  * @package EightshiftBoilerplate
  */
 
-$this->render_block_view(
-  '/components/paragraph/paragraph.php',
-  [
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+echo wp_kses_post( Components::render( 'paragraph', [
     'blockClass'  => $attributes['blockClass'] ?? '',
     'paragraph'   => $attributes['paragraph'] ?? [],
   ]
-);
+) );

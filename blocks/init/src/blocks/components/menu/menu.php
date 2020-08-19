@@ -5,7 +5,7 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Menu\Menu;
+use EightshiftBoilerplate\Menu\Menu;
 
 $block_class        = $attributes['blockClass'] ?? 'menu';
 $menu_name          = $attributes['menu'] ?? 'header_main_nav';

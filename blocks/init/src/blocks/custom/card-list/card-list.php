@@ -5,6 +5,8 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $block_class    = $attributes['blockClass'] ?? '';
 
 $media          = $attributes['media'] ?? [];
@@ -19,13 +21,11 @@ $button         = $attributes['button'] ?? [];
 
   <?php if ( ! empty( $media ) ) { ?>
     <div class="<?php echo esc_attr( "{$block_class}__media" ); ?>">
-      <?php $this->render_block_view(
-        '/components/image/image.php',
-        [
+      <?php echo wp_kses_post( Components::render( 'image', [
           'blockClass' => $attributes['blockClass'] ?? '',
           'media'      => $media,
         ]
-      );
+      ) );
       ?>
     </div>
   <?php } ?>
@@ -45,13 +45,11 @@ $button         = $attributes['button'] ?? [];
     <?php } ?>
     
     <?php
-    $this->render_block_view(
-      '/components/button/button.php',
-      [
+    echo wp_kses_post( Components::render( 'button', [
         'blockClass' => $attributes['blockClass'] ?? '',
         'button'     => $button,
       ]
-    );
+    ) );
     ?>
 
   </div>

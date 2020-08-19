@@ -5,6 +5,8 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $block_class                 = $attributes['blockClass'] ?? '';
 $heading                     = $attributes['heading'] ?? '';
 $paragraph                   = $attributes['paragraph'] ?? '';
@@ -24,14 +26,12 @@ $media_horizontal_position   = $attributes['mediaHorizontalPosition'] ?? '';
         {$block_class}__media--horizontal-{$media_horizontal_position}
       " ); ?>">
       <?php
-      $this->render_block_view(
-        '/components/image/image.php',
-        [
+      echo wp_kses_post( Components::render( 'image', [
           'blockClass' => $block_class,
           'media'      => $attributes['media'] ?? [],
           'size'       => 'full',
         ]
-      );
+      ) );
       ?>
     </div>
   <?php } ?>
