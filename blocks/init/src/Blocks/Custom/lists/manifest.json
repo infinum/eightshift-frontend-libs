@@ -1,0 +1,34 @@
+{
+  "blockName": "lists",
+  "title": "Lists",
+  "description" : "List block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "list-view"
+  },
+  "keywords": [
+    "lists",
+    "list",
+    "order"
+  ],
+  "example": {
+    "attributes": {
+      "lists": {
+        "content": "<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>",
+        "ordered": "ul"
+      }
+    }
+  },
+  "attributes": {
+    "lists": {
+      "type": "object",
+      "default": {
+        "content": "",
+        "ordered": "ul"
+      },
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

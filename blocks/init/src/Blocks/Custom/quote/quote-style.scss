@@ -1,0 +1,61 @@
+$block-quote: (
+  content: (
+    mobile: (
+      color: global-settings(colors, primary),
+      font-size: 32px,
+      line-height: 1.5,
+      font-style: italic,
+    ),
+  ),
+  author: (
+    mobile: (
+      font-size: 14px,
+      line-height: 1.33,
+      font-weight: bold,
+      margin-top: 5px,
+      text-align: right,
+    ),
+  ),
+);
+
+
+.block-quote {
+  @extend %clearfix;
+
+  &__content {
+    @include responsive($block-quote, content);
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-flex;
+
+    &::before,
+    &::after {
+      content: '"';
+      position: absolute;
+      line-height: 1;
+      font-size: 30px;
+    }
+
+    &::before {
+      left: 0;
+      top: 0;
+    }
+
+    &::after {
+      right: 0;
+      bottom: -10px;
+    }
+  }
+
+  &__author {
+    @include responsive($block-quote, author);
+    display: inline-flex;
+    float: right;
+
+    &::before {
+      content: '-';
+      margin-right: 10px;
+    }
+  }
+}

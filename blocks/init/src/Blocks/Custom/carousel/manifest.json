@@ -1,0 +1,71 @@
+{
+  "blockName": "carousel",
+  "title": "Carousel",
+  "description" : "Carousel block with custom settings.",
+  "category": "eightshift",
+  "icon": {
+    "src": "format-gallery"
+  },
+  "keywords": [
+    "carousel"
+  ],
+  "example": {
+    "attributes": {
+      "allowedBlocks": ["eightshift-boilerplate/carousel-image"],
+      "isFreeMode": false,
+      "isLoop": true
+    },
+    "innerBlocks": [
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/800/800"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/300/300"
+          }
+        }
+      },
+      {
+        "name": "eightshift-boilerplate/carousel-image",
+        "attributes": {
+          "wrapperDisable": true,
+          "media": {
+            "id": 0,
+            "url": "https://picsum.photos/400/400"
+          }
+        }
+      }
+    ]
+  },
+  "hasInnerBlocks": true,
+  "attributes": {
+    "allowedBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eightshift-boilerplate/carousel-image"
+      ]
+    },
+    "isFreeMode": {
+      "type": "bool",
+      "default": false
+    },
+    "isLoop": {
+      "type": "bool",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,37 @@
+$block-columns: (
+  gutter: (
+    none: global-settings(gutters, none),
+    default: global-settings(gutters, default) / 2,
+    big: global-settings(gutters, big) / 2,
+  ),
+  gutter-reset: (
+    default: -(global-settings(gutters, default) / 2),
+    big: -(global-settings(gutters, big) / 2),
+  ),
+  vertical-spacing: (
+    none: global-settings(gutters, none),
+    default: global-settings(gutters, default),
+    big: global-settings(gutters, big),
+  ),
+);
+
+@mixin columns-parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+@mixin columns {
+  &__gutter {
+    @include responsive-selectors {
+      @include modifiers-deep($block-columns, gutter-reset, margin-left);
+      @include modifiers-deep($block-columns, gutter-reset, margin-right);
+      @include modifiers-deep($block-columns, gutter, padding-left, '.block-column');
+      @include modifiers-deep($block-columns, gutter, padding-right, '.block-column');
+    }
+  }
+
+  &__vertical-spacing {
+    @include responsive-selectors {
+      @include modifiers-deep($block-columns, vertical-spacing, margin-bottom, '.block-column');
+    }
+  }
+}
