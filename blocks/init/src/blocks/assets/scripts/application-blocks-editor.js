@@ -13,26 +13,26 @@
  
  */
 
-import { registerBlocks, registerVariations } from '@eightshift/frontend-libs/scripts/editor';
-import { Wrapper } from './../../wrapper/wrapper';
-import WrapperManifest from './../../wrapper/manifest.json';
-import globalSettings from './../../manifest.json';
-import { hooks } from './../../wrapper/wrapper-hooks';
+import { registerBlocks, registerVariations } from './node_modules/@eightshift/frontend-libs/scripts/editor';
+import { Wrapper } from '../../Wrapper/wrapper';
+import WrapperManifest from '../../Wrapper/manifest.json';
+import globalSettings from '../../manifest.json';
+import { hooks } from '../../Wrapper/wrapper-hooks';
 
 registerBlocks(
   globalSettings,
   Wrapper,
   WrapperManifest,
-  require.context('./../../custom', true, /manifest.json$/),
-  require.context('./../../custom', true, /-block.js$/),
-  require.context('./../../custom', true, /-hooks.js$/),
-  require.context('./../../custom', true, /-transforms.js$/),
+  require.context('./../../Custom', true, /manifest.json$/),
+  require.context('./../../Custom', true, /-block.js$/),
+  require.context('./../../Custom', true, /-hooks.js$/),
+  require.context('./../../Custom', true, /-transforms.js$/),
 );
 
 registerVariations(
   globalSettings,
-  require.context('./../../variations', true, /manifest.json$/),
-  require.context('./../../variations', true, /-transforms.js$/),
+  require.context('./../../Variations', true, /manifest.json$/),
+  require.context('./../../Variations', true, /-transforms.js$/),
 );
 
 // Run Wrapper hooks.
