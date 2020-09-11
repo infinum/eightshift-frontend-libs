@@ -1,6 +1,6 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { Fragment } from '@wordpress/element';
-import { BlockAlignmentToolbar, BlockVerticalAlignmentToolbar } from '@wordpress/block-editor';
+import React from './node_modules/react'; // eslint-disable-line no-unused-vars
+import { Fragment } from './node_modules/@wordpress/element';
+import { BlockAlignmentToolbar, BlockVerticalAlignmentToolbar } from './node_modules/@wordpress/block-editor';
 import { ImageToolbar as ImageToolbarComponent } from '../../../components/image/components/image-toolbar';
 
 export const jumbotronContentHorizontalPosition = [

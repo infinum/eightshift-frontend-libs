@@ -1,9 +1,9 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
-import { PanelBody, TextControl, Dashicon, TabPanel, Icon, ToggleControl } from '@wordpress/components';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import React from './node_modules/react'; // eslint-disable-line no-unused-vars
+import { __ } from './node_modules/@wordpress/i18n';
+import { Fragment } from './node_modules/@wordpress/element';
+import { PanelBody, TextControl, Dashicon, TabPanel, Icon, ToggleControl } from './node_modules/@wordpress/components';
+import { ColorPaletteCustom } from './node_modules/@eightshift/frontend-libs/scripts/components';
+import { icons } from './node_modules/@eightshift/frontend-libs/scripts/editor';
 import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
 
 export const WrapperOptions = ({ attributes, actions }) => {

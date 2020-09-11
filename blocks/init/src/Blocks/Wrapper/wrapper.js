@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
-import React from 'react';
-import { Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
-import { getActions } from '@eightshift/frontend-libs/scripts/editor';
+import React from './node_modules/react';
+import { Fragment } from './node_modules/@wordpress/element';
+import { InspectorControls } from './node_modules/@wordpress/block-editor';
+import { getActions } from './node_modules/@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';

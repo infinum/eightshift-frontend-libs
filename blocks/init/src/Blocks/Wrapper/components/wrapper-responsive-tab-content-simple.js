@@ -1,8 +1,8 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
-import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import React from './node_modules/react'; // eslint-disable-line no-unused-vars
+import { __ } from './node_modules/@wordpress/i18n';
+import { Fragment } from './node_modules/@wordpress/element';
+import { RangeControl, ToggleControl, Icon } from './node_modules/@wordpress/components';
+import { icons } from './node_modules/@eightshift/frontend-libs/scripts/editor';
 import globalSettings from '../../manifest.json';
 
 export const spacingOptions = {

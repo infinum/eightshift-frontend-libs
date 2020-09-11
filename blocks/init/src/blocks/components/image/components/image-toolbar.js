@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
+import { __ } from '../../../Custom/jumbotron/components/node_modules/@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 
