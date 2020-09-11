@@ -2,8 +2,8 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { ButtonEditor } from '../../../components/button/components/button-editor';
-import { ImageEditor } from '../../../components/image/components/image-editor';
+import { ButtonEditor } from '../../../Components/button/components/button-editor';
+import { ImageEditor } from '../../../Components/image/components/image-editor';
 
 export const CardListEditor = ({ attributes, actions }) => {
   const {

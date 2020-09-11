@@ -1,5 +1,5 @@
-import React from './node_modules/react'; // eslint-disable-line no-unused-vars
-import classnames from './node_modules/classnames';
+import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
 
 export const CarouselNavigation = () => {
 

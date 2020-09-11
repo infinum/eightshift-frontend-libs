@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { ButtonOptions } from '../../../components/button/components/button-options';
+import { ButtonOptions } from '../../../Components/button/components/button-options';
 
 export const cardListMediaPosition = [
   { label: __('Left', 'eightshift-boilerplate'), value: 'left' },

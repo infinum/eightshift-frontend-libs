@@ -5,15 +5,15 @@
  * This file registers blocks dynamically using `registerBlocks` helper method.
  * File names must follow the naming convention to be able to run dynamically.
  *
- * `src/blocks/custom/block_name/manifest.json`.
- * `src/blocks/custom/block_name/block_name.js`.
+ * `src/blocks/Custom/block_name/manifest.json`.
+ * `src/blocks/Custom/block_name/block_name.js`.
  *
  * Usage: `WordPress admin editor`.
  *
  
  */
 
-import { registerBlocks, registerVariations } from './node_modules/@eightshift/frontend-libs/scripts/editor';
+import { registerBlocks, registerVariations } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../Wrapper/wrapper';
 import WrapperManifest from '../../Wrapper/manifest.json';
 import globalSettings from '../../manifest.json';

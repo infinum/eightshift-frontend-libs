@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-import React from './node_modules/react';
-import { assign } from './node_modules/lodash';
-import { createHigherOrderComponent } from './node_modules/@wordpress/compose';
+import React from 'react';
+import { assign } from 'lodash';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import globalManifest from '../manifest.json';
 
 // Add options to the Gutenberg markup.

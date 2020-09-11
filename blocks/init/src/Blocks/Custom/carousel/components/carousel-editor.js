@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { CarouselNavigation } from '../../../components/carousel-navigation/carousel-navigation';
+import { CarouselNavigation } from '../../../Components/carousel-navigation/carousel-navigation';
 
 export const CarouselEditor = ({ attributes }) => {
   const {

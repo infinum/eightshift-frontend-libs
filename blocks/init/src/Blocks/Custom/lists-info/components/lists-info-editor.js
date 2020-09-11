@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { ListsEditor } from './../../../components/lists/components/lists-editor';
+import { ListsEditor } from './../../../Components/lists/components/lists-editor';
 
 export const ListsInfoEditor = ({ attributes, actions }) => {
   const {

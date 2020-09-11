@@ -5,7 +5,7 @@
  * This file registers all blocks additional scripts dynamically using `dynamicImport` helper method.
  * File names must follow naming convention to be able run dynamically.
  *
- * `src/blocks/custom/block_name/assets/index.js`.
+ * `src/blocks/Custom/block_name/assets/index.js`.
  *
  * Usage: `WordPress frontend screen`.
  *

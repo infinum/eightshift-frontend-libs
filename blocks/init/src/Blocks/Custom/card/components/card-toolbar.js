@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { ImageToolbar } from '../../../components/image/components/image-toolbar';
+import { ImageToolbar } from '../../../Components/image/components/image-toolbar';
 
 export const CardToolbar = ({ attributes, actions }) => {
   const {

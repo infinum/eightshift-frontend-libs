@@ -1,6 +1,6 @@
 import { configure } from '@storybook/react';
 import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
-import globalSettings from './../src/blocks/manifest.json';
+import globalSettings from './../src/Blocks/manifest.json';
 
 // Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
@@ -9,10 +9,10 @@ storybookWindowObjects();
 
 // Run all storybook stories.
 configure([
-  require.context('./../src/blocks/components', true, /docs\/story.js$/),
-  require.context('./../src/blocks/custom', true, /docs\/story.js$/),
-  require.context('./../src/blocks/wrapper', true, /docs\/story.js$/),
-  require.context('./../src/variations', true, /docs\/story.js$/),
+  require.context('./../src/Blocks/Components', true, /docs\/story.js$/),
+  require.context('./../src/Blocks/Custom', true, /docs\/story.js$/),
+  require.context('./../src/Blocks/Wrapper', true, /docs\/story.js$/),
+  require.context('./../src/Blocks/Variations', true, /docs\/story.js$/),
 ], module);
 
 // Set default categories.
@@ -28,8 +28,8 @@ storybookWpStyles();
 require('./../assets/styles/application.scss');
 
 // Project Blocks Frontend Part.
-require('./../src/blocks/assets/styles/application-blocks.scss');
-require('./../src/blocks/assets/styles/application-blocks-editor.scss');
+require('./../src/Blocks/Assets/styles/application-blocks.scss');
+require('./../src/Blocks/Assets/styles/application-blocks-editor.scss');
 
 // Project Blocks Editor Part.
-require('./../src/blocks/assets/scripts/application-blocks-editor');
+require('./../src/Blocks/Assets/scripts/application-blocks-editor');

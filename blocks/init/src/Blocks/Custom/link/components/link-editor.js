@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { LinkEditor as LinkEditorComponent } from '../../../components/link/components/link-editor';
+import { LinkEditor as LinkEditorComponent } from '../../../Components/link/components/link-editor';
 
 export const LinkEditor = ({ attributes, actions }) => {
   const {

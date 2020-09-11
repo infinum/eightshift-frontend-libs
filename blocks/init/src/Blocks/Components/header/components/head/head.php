@@ -41,4 +41,4 @@ $icon = apply_filters( Manifest::MANIFEST_ITEM, 'logo.svg' );
 <link rel="shortcut icon" href="<?php echo esc_url( $icon ); ?>" />
 
 <?php
-get_template_part( 'src/blocks/components/tracking/head' );
+get_template_part( 'src/Blocks/Components/tracking/head' );

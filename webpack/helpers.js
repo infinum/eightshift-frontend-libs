@@ -18,7 +18,7 @@ const path = require('path');
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
  */
-function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/blocks/manifest.json') {
+function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'Assets', blocksAssetsPathConfig = 'src/Blocks/Assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/Blocks/manifest.json') {
 
   if (typeof projectDir === 'undefined') {
     throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'; // eslint-disable-line no-throw-literal

@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { ImageEditor } from '../../../components/image/components/image-editor';
+import { ImageEditor } from '../../../Components/image/components/image-editor';
 
 export const CardEditor = ({ attributes, actions }) => {
   const {

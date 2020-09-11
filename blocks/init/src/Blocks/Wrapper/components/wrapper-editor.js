@@ -1,6 +1,6 @@
-import React from './node_modules/react'; // eslint-disable-line no-unused-vars
-import classnames from './node_modules/classnames';
-import { responsiveSelectors } from './node_modules/@eightshift/frontend-libs/scripts/helpers';
+import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
+import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 
 export const WrapperEditor = (props) => {
   const {

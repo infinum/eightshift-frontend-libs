@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { BlockAlignmentToolbar } from '@wordpress/block-editor';
-import { ImageToolbar } from '../../../components/image/components/image-toolbar';
+import { ImageToolbar } from '../../../Components/image/components/image-toolbar';
 
 export const cardListMediaPosition = [
   'left', 'right',

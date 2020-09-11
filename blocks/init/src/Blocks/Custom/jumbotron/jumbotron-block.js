@@ -1,7 +1,7 @@
-import React from './node_modules/react'; // eslint-disable-line no-unused-vars
-import { Fragment } from './node_modules/@wordpress/element';
-import { BlockControls } from './node_modules/@wordpress/block-editor';
-import { getActions } from './node_modules/@eightshift/frontend-libs/scripts/editor';
+import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
+import { BlockControls } from '@wordpress/block-editor';
+import { getActions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './manifest.json';
 import { JumbotronEditor } from './components/jumbotron-editor';
 import { JumbotronToolbar } from './components/jumbotron-toolbar';

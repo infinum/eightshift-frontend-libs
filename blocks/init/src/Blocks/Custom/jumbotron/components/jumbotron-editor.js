@@ -1,8 +1,8 @@
-import React from './node_modules/react'; // eslint-disable-line no-unused-vars
-import classnames from './node_modules/classnames';
-import { __ } from './node_modules/@wordpress/i18n';
-import { RichText } from './node_modules/@wordpress/block-editor';
-import { ImageEditor } from '../../../components/image/components/image-editor';
+import React from 'react'; // eslint-disable-line no-unused-vars
+import classnames from 'classnames';
+import { __ } from '@wordpress/i18n';
+import { RichText } from '@wordpress/block-editor';
+import { ImageEditor } from '../../../Components/image/components/image-editor';
 
 export const JumbotronEditor = ({ attributes, actions }) => {
   const {

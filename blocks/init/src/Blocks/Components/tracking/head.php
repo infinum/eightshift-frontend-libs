@@ -5,5 +5,5 @@
  * @package EightshiftBoilerplate
  */
 
-get_template_part( 'src/blocks/components/tracking/parts/facebook' );
-get_template_part( 'src/blocks/components/tracking/parts/google-tag-manager' );
+get_template_part( 'src/Blocks/Components/tracking/parts/facebook' );
+get_template_part( 'src/Blocks/Components/tracking/parts/google-tag-manager' );
