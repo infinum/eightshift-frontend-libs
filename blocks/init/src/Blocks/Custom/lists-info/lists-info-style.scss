@@ -1,0 +1,40 @@
+// stylelint-disable max-nesting-depth
+$block-lists-info: (
+  title: (
+    mobile: (
+      font-size: 24px,
+      line-height: 1.33,
+      font-weight: bold,
+    ),
+  ),
+);
+
+.block-lists-info {
+  $this: &;
+  overflow: hidden;
+
+  @include media(tablet up) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__intro {
+    margin-bottom: 25px;
+
+    @include flex-grid-width();
+    @include media(tablet up) {
+      @include flex-grid-width(4);
+      margin: 0;
+    }
+  }
+
+  &__title {
+    @include responsive($block-lists-info, title);
+  }
+
+  &__content {
+    @include media(tablet up) {
+      @include flex-grid-width(8);
+    }
+  }
+}

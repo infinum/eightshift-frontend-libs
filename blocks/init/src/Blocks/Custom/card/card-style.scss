@@ -1,0 +1,41 @@
+$block-card: (
+  heading: (
+    mobile: (
+      font-size: 24px,
+      line-height: 1.33,
+    ),
+  ),
+  paragraph: (
+    mobile: (
+      font-size: 18px,
+      line-height: 1.5,
+    ),
+  ),
+);
+
+
+.block-card {
+  $this: &;
+
+  &__media {
+    margin-bottom: 25px;
+  }
+
+  &__img {
+    margin: 0 auto;
+  }
+
+  &__content {
+    text-align: center;
+  }
+
+  &__heading {
+    @include responsive($block-card, heading);
+    font-weight: bold;
+  }
+
+  &__paragraph {
+    @include responsive($block-card, paragraph);
+    margin-top: 15px;
+  }
+}

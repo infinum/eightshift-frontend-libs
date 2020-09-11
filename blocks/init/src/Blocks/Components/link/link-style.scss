@@ -1,0 +1,35 @@
+$link: (
+  colors: (
+    primary: (
+      normal: (
+        color: global-settings(colors, primary),
+      ),
+      hover: (
+        color: global-settings(colors, black),
+      ),
+    ),
+    black: (
+      normal: (
+        color: global-settings(colors, black),
+      ),
+      hover: (
+        color: global-settings(colors, primary),
+      ),
+    ),
+  ),
+);
+
+.link {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  transition: {
+    property: color;
+    timing-function: ease-in;
+    duration: 0.3s;
+  }
+
+  &__color {
+    @include link-modifiers($link, colors);
+  }
+}
