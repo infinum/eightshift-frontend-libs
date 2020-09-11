@@ -2,10 +2,10 @@
 /**
  * Template for the Jumbotron Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $block_class                 = $attributes['blockClass'] ?? '';
 $heading                     = $attributes['heading'] ?? '';
@@ -26,14 +26,12 @@ $media_horizontal_position   = $attributes['mediaHorizontalPosition'] ?? '';
         {$block_class}__media--horizontal-{$media_horizontal_position}
       " ); ?>">
       <?php
-      $this->render_block_view(
-        '/components/image/image.php',
-        [
+      echo wp_kses_post( Components::render( 'image', [
           'blockClass' => $block_class,
           'media'      => $attributes['media'] ?? [],
           'size'       => 'full',
         ]
-      );
+      ) );
       ?>
     </div>
   <?php } ?>

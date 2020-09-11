@@ -2,17 +2,15 @@
 /**
  * Template for the Vimeo Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$this->render_block_view(
-  '/components/video-iframe/video-iframe.php',
-  [
+echo wp_kses_post( Components::render( 'video-iframe', [
     'blockClass'  => $attributes['blockClass'] ?? '',
     'url'         => 'https://player.vimeo.com/video/',
     'id'          => $attributes['id'] ?? '',
     'aspectRatio' => $attributes['aspectRatio'] ?? '',
   ]
-);
+) );

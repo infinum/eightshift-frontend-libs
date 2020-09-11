@@ -2,8 +2,7 @@
 /**
  * Google Tag Manager tracking code
  *
- * @package Eightshift_Boilerplate\Views\Tracking\Parts
- *
+ * @package EightshiftBoilerplate
  */
 
 ?>

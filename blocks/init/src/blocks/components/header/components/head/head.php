@@ -2,15 +2,12 @@
 /**
  * Head section for meta data
  *
- * @package Eightshift_Boilerplate\Blocks
- *
+ * @package EightshiftBoilerplate
  */
 
-use Eightshift_Boilerplate\Core\Config;
-use Eightshift_Libs\Manifest\Manifest;
+use EightshiftBoilerplate\Manifest\Manifest;
 
-$icon          = apply_filters( Config::get_config( Manifest::MANIFEST_ITEM_FILTER_NAME ), 'logo.svg' );
-$project_color = Config::get_project_primary_color();
+$icon = apply_filters( Manifest::MANIFEST_ITEM, 'logo.svg' );
 ?>
 
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
@@ -32,17 +29,12 @@ $project_color = Config::get_project_primary_color();
 <link rel="dns-prefetch" href="//ajax.googleapis.com">
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-<!-- Mobile chrome -->
-<meta name="theme-color" content="<?php echo esc_attr( $project_color ); ?>">
-
 <!-- Win phone Meta -->
 <meta name="application-name" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"/>
-<meta name="msapplication-TileColor" content="<?php echo esc_attr( $project_color ); ?>"/>
 
 <!-- Apple -->
 <meta name="apple-mobile-web-app-title" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="<?php echo esc_attr( $project_color ); ?>">
 <link rel="apple-touch-startup-image" href="<?php echo esc_url( $icon ); ?>">
 
 <!-- General -->

@@ -2,12 +2,10 @@
 /**
  * Template for the Page Overlay Component.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
-
-use Eightshift_Libs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $block_class = $attributes['blockClass'] ?? 'page-overlay';
 

@@ -2,10 +2,8 @@
 /**
  * Template for the Divider Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
-
-namespace Eightshift_Boilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? '';
 $color       = $attributes['color'] ?? '';

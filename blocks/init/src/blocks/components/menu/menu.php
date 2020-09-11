@@ -2,11 +2,10 @@
 /**
  * Menu component responsible for rendering and styling just the menu.
  *
- * @package Eightshift_Boilerplate\Components
- *
+ * @package EightshiftBoilerplate
  */
 
-use Eightshift_Libs\Menu\Menu;
+use EightshiftBoilerplate\Menu\Menu;
 
 $block_class        = $attributes['blockClass'] ?? 'menu';
 $menu_name          = $attributes['menu'] ?? 'header_main_nav';

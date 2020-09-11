@@ -2,15 +2,13 @@
 /**
  * Template for the Link Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$this->render_block_view(
-  '/components/link/link.php',
-  [
+echo wp_kses_post( Components::render( 'link', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'link'       => $attributes['link'] ?? [],
   ]
-);
+) );

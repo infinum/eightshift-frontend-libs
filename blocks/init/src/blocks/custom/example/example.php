@@ -1,10 +1,9 @@
 <?php
 /**
  * Template for the Example Block view.
- * Eightshift_Boilerplate\Blocks.
+ *
+ * @package EightshiftBoilerplate
  */
-
-namespace Eightshift_Boilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? '';
 $content     = $attributes['content'] ?? '';

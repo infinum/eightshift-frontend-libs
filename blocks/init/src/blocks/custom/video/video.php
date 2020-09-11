@@ -2,15 +2,13 @@
 /**
  * Template for the Video Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$this->render_block_view(
-  '/components/video/video.php',
-  [
+echo wp_kses_post( Components::render( 'video', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'media'      => $attributes['media'] ?? [],
   ]
-);
+) );

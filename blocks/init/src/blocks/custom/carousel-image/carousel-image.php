@@ -2,10 +2,10 @@
 /**
  * Template for the Carousel Image Block.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $media = $attributes['media'] ?? [];
 
@@ -23,12 +23,10 @@ $component_class = "
 ?>
 
 <div class="<?php echo esc_attr( $component_class ); ?>">
-  <?php $this->render_block_view(
-    '/components/image/image.php',
-    [
+  <?php echo wp_kses_post( Components::render( 'image', [
       'blockClass' => $attributes['blockClass'] ?? '',
       'media' => $media,
     ]
-  );
+  ) );
   ?>
 </div>

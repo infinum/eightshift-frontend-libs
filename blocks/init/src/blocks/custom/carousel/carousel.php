@@ -2,10 +2,10 @@
 /**
  * Template for the Carousel Block.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $block_class    = $attributes['blockClass'] ?? '';
 $block_js_class = $attributes['blockJsClass'] ?? '';
@@ -24,10 +24,7 @@ $is_loop        = $attributes['isLoop'] ?? true;
   </div>
   <div class="<?php echo esc_attr( "{$block_class}__navigation" ); ?>">
     <?php
-      $this->render_block_view(
-        '/components/carousel-navigation/carousel-navigation.php',
-        $attributes
-      );
+      echo wp_kses_post( Components::render( 'carousel-navigation', $attributes ) );
       ?>
   </div>
 </div>

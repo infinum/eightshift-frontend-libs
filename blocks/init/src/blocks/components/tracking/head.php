@@ -2,8 +2,7 @@
 /**
  * Tracking codes in Head
  *
- * @package Eightshift_Boilerplate\Views\Tracking
- *
+ * @package EightshiftBoilerplate
  */
 
 get_template_part( 'src/blocks/components/tracking/parts/facebook' );

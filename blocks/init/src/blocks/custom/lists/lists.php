@@ -2,15 +2,13 @@
 /**
  * Template for the Lists Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$this->render_block_view(
-  '/components/lists/lists.php',
-  [
+echo wp_kses_post( Components::render( 'lists', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'lists'      => $attributes['lists'] ?? [],
   ]
-);
+) );

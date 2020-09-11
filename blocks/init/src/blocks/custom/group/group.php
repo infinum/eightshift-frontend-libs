@@ -1,10 +1,9 @@
 <?php
 /**
  * Template for the Group block.
- *htshift_Boilerplate\Blocks.
+ *
+ * @package EightshiftBoilerplate
  */
-
-namespace Eightshift_Boilerplate\Blocks;
 
 $block_class = $attributes['blockClass'] ?? '';
 

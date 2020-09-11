@@ -2,15 +2,13 @@
 /**
  * Template for the Button Block view.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$this->render_block_view(
-  '/components/button/button.php',
-  [
+echo wp_kses_post( Components::render( 'button', [
     'blockClass' => $attributes['blockClass'] ?? '',
     'button'     => $attributes['button'] ?? [],
   ]
-);
+) );

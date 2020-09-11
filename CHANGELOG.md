@@ -13,6 +13,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - New Vimeo block.
 - New Youtube block.
 
+### Changed
+- Changed namespace from `Eightshift_Boilerplate` to `EightshiftBoilerplate`.
+- Changed `Eightshift_Libs\Helpers\Components` to `EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components`.
+
 ## [3.5.0] - 2020-06-03
 
 ### Added

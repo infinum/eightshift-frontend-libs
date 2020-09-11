@@ -2,10 +2,10 @@
 /**
  * Template for the Card Block.
  *
- * @package Eightshift_Boilerplate\Blocks.
+ * @package EightshiftBoilerplate
  */
 
-namespace Eightshift_Boilerplate\Blocks;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $heading   = $attributes['heading'] ?? '';
 $paragraph = $attributes['paragraph'] ?? '';
@@ -19,13 +19,11 @@ $block_class = $attributes['blockClass'] ?? '';
 
   <?php if ( ! empty( $media ) ) { ?>
     <div class="<?php echo esc_attr( "{$block_class}__media" ); ?>">
-      <?php $this->render_block_view(
-        '/components/image/image.php',
-        [
+      <?php echo wp_kses_post( Components::render( 'image', [
           'blockClass' => $attributes['blockClass'] ?? '',
           'media'      => $media,
         ]
-      );
+      ) );
       ?>
     </div>
   <?php } ?>
