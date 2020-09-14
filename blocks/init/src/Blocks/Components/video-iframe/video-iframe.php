@@ -7,31 +7,31 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$url          = $attributes['url'] ?? '';
-$id           = $attributes['id'] ?? '';
-$block_class  = $attributes['blockClass'] ?? '';
-$aspect_ratio = $attributes['aspectRatio'] ?? 'default';
+$url         = $attributes['url'] ?? '';
+$id          = $attributes['id'] ?? '';
+$blockClass  = $attributes['blockClass'] ?? '';
+$aspectRatio = $attributes['aspectRatio'] ?? 'default';
 
 if ( empty( $url ) || empty( $id ) ) {
   return;
 }
 
-$component_class    = 'video-iframe';
-$aspect_ratio_class = isset( $attributes['aspectRatio'] ) ? "{$component_class}__video-ratio--{$attributes['aspectRatio']}" : '';
+$componentClass   = 'video-iframe';
+$aspectRatioClass = isset( $attributes['aspectRatio'] ) ? "{$componentClass}__video-ratio--{$attributes['aspectRatio']}" : '';
 
-$video_class = Components::classnames(
+$videoClass = Components::classnames(
   [
-    $component_class,
-    $aspect_ratio_class,
-    "{$block_class}__{$component_class}",
+    $componentClass,
+    $aspectRatioClass,
+    "{$blockClass}__{$componentClass}",
   ]
 );
 
 ?>
 
-<div class="<?php echo esc_attr( $video_class ); ?>">
+<div class="<?php echo esc_attr( $videoClass ); ?>">
   <iframe
-    class="<?php echo esc_attr( "{$component_class}__iframe" ); ?>"
+    class="<?php echo esc_attr( "{$componentClass}__iframe" ); ?>"
     src="<?php echo esc_url( $url ); ?><?php echo esc_attr( $id ); ?>"
     frameBorder="0"
     allow="autoplay; fullscreen"

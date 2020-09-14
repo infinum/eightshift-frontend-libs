@@ -7,15 +7,15 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 
-$component_class = Components::classnames([
-  $block_class,
-  $attributes['gutter'] ? Components::responsive_selectors($attributes['gutter'], 'gutter', $block_class) : '',
-  $attributes['verticalSpacing'] ? Components::responsive_selectors($attributes['verticalSpacing'], 'vertical-spacing', $block_class) : '',
+$componentClass = Components::classnames([
+  $blockClass,
+  $attributes['gutter'] ? Components::responsiveSelectors($attributes['gutter'], 'gutter', $blockClass) : '',
+  $attributes['verticalSpacing'] ? Components::responsiveSelectors($attributes['verticalSpacing'], 'vertical-spacing', $blockClass) : '',
 ]);
 ?>
 
-<div class="<?php echo \esc_attr( $component_class ); ?>">
-  <?php echo \wp_kses_post( $inner_block_content ); ?>
+<div class="<?php echo \esc_attr( $componentClass ); ?>">
+  <?php echo \wp_kses_post( $innerBlockContent ); ?>
 </div>

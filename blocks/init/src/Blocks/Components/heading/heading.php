@@ -17,24 +17,24 @@ if ( ! $content ) {
   return;
 }
 
-$level   = isset( $heading['level'] ) ? "h{$heading['level']}" : 'h2';
+$level = isset( $heading['level'] ) ? "h{$heading['level']}" : 'h2';
 
-$component_class = 'heading';
-$block_class     = $attributes['blockClass'] ?? '';
-$style_align     = isset( $heading['styleAlign'] ) ? "{$component_class}__align--{$heading['styleAlign']}" : '';
-$style_color     = isset( $heading['styleColor'] ) ? "{$component_class}__color--{$heading['styleColor']}" : '';
-$style_size      = isset( $heading['styleSize'] ) ? "{$component_class}__size--{$heading['styleSize']}" : '';
+$componentClass = 'heading';
+$blockClass     = $attributes['blockClass'] ?? '';
+$styleAlign     = isset( $heading['styleAlign'] ) ? "{$componentClass}__align--{$heading['styleAlign']}" : '';
+$styleColor     = isset( $heading['styleColor'] ) ? "{$componentClass}__color--{$heading['styleColor']}" : '';
+$styleSize      = isset( $heading['styleSize'] ) ? "{$componentClass}__size--{$heading['styleSize']}" : '';
 
-$heading_class = "
-  {$component_class}
-  {$style_align}
-  {$style_color}
-  {$style_size}
-  {$block_class}__heading
+$headingClass = "
+  {$componentClass}
+  {$styleAlign}
+  {$styleColor}
+  {$styleSize}
+  {$blockClass}__heading
 ";
 
 ?>
 
-<<?php echo esc_attr( $level ); ?> class="<?php echo esc_attr( $heading_class ); ?>">
+<<?php echo esc_attr( $level ); ?> class="<?php echo esc_attr( $headingClass ); ?>">
   <?php echo wp_kses_post( $content ); ?>
 </<?php echo esc_attr( $level ); ?>>

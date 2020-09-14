@@ -7,27 +7,27 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class                 = $attributes['blockClass'] ?? '';
-$heading                     = $attributes['heading'] ?? '';
-$paragraph                   = $attributes['paragraph'] ?? '';
-$media                       = $attributes['media'] ?? [];
-$content_horizontal_position = $attributes['contentHorizontalPosition'] ?? '';
-$content_vertical_position   = $attributes['contentVerticalPosition'] ?? '';
-$media_horizontal_position   = $attributes['mediaHorizontalPosition'] ?? '';
+$blockClass                = $attributes['blockClass'] ?? '';
+$heading                   = $attributes['heading'] ?? '';
+$paragraph                 = $attributes['paragraph'] ?? '';
+$media                     = $attributes['media'] ?? [];
+$contentHorizontalPosition = $attributes['contentHorizontalPosition'] ?? '';
+$contentVerticalPosition   = $attributes['contentVerticalPosition'] ?? '';
+$mediaHorizontalPosition   = $attributes['mediaHorizontalPosition'] ?? '';
 
 ?>
 
-<div class="<?php echo esc_attr( "{$block_class}" ); ?>">
+<div class="<?php echo esc_attr( "{$blockClass}" ); ?>">
 
   <?php if ( ! empty( $media ) ) { ?>
     <div class="<?php
       echo esc_attr( "
-        {$block_class}__media
-        {$block_class}__media--horizontal-{$media_horizontal_position}
+        {$blockClass}__media
+        {$blockClass}__media--horizontal-{$mediaHorizontalPosition}
       " ); ?>">
       <?php
       echo wp_kses_post( Components::render( 'image', [
-          'blockClass' => $block_class,
+          'blockClass' => $blockClass,
           'media'      => $attributes['media'] ?? [],
           'size'       => 'full',
         ]
@@ -37,19 +37,19 @@ $media_horizontal_position   = $attributes['mediaHorizontalPosition'] ?? '';
   <?php } ?>
 
   <div class="<?php echo esc_attr( "
-      {$block_class}__content
-      {$block_class}__content--vertical-{$content_vertical_position}
-      {$block_class}__content--horizontal-{$content_horizontal_position}
+      {$blockClass}__content
+      {$blockClass}__content--vertical-{$contentVerticalPosition}
+      {$blockClass}__content--horizontal-{$contentHorizontalPosition}
     " ); ?>">
-    <div class="<?php echo esc_attr( "{$block_class}__content-wrap" ); ?>">
+    <div class="<?php echo esc_attr( "{$blockClass}__content-wrap" ); ?>">
       <?php if ( ! empty( $heading ) ) { ?>
-        <div class="<?php echo esc_attr( "{$block_class}__heading" ); ?>">
+        <div class="<?php echo esc_attr( "{$blockClass}__heading" ); ?>">
           <?php echo wp_kses_post( $heading ); ?>
         </div>
       <?php } ?>
 
       <?php if ( ! empty( $paragraph ) ) { ?>
-        <div class="<?php echo esc_attr( "{$block_class}__paragraph" ); ?>">
+        <div class="<?php echo esc_attr( "{$blockClass}__paragraph" ); ?>">
           <?php echo wp_kses_post( $paragraph ); ?>
         </div>
       <?php } ?>

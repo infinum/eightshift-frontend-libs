@@ -5,13 +5,13 @@
  * @package EightshiftBoilerplate
  */
 
-$block_class = $attributes['blockClass'] ?? '';
-$posts       = $attributes['posts'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
+$posts      = $attributes['posts'] ?? '';
 
 if( ! $posts ) { return; }
 ?>
 
-<div class="<?php echo esc_attr( "{$block_class}" ); ?>">
+<div class="<?php echo esc_attr( "{$blockClass}" ); ?>">
   <?php foreach( $posts as $post ) {
     if ( ! empty ( $post->title->rendered ) ) { ?>
       <h3><?php echo esc_html( $post->title->rendered ); ?></h3>

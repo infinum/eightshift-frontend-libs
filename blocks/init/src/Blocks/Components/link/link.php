@@ -19,24 +19,24 @@ if ( ! $url || ! $title  ) {
 }
 
 $id        = $link['id'] ?? '';
-$is_anchor = $link['isAnchor'] ?? false;
+$isAnchor = $link['isAnchor'] ?? false;
 
-$component_class = 'link';
-$block_class     = $attributes['blockClass'] ?? '';
-$style_color     = isset( $link['styleColor'] ) ? "{$component_class}__color--{$link['styleColor']}" : '';
-$is_anchor       = $is_anchor ? 'js-scroll-to-anchor' : '';
+$componentClass = 'link';
+$blockClass     = $attributes['blockClass'] ?? '';
+$styleColor     = isset( $link['styleColor'] ) ? "{$componentClass}__color--{$link['styleColor']}" : '';
+$isAnchor       = $isAnchor ? 'js-scroll-to-anchor' : '';
 
-$link_class = "
-  {$component_class}
-  {$style_color}
-  {$is_anchor}
-  {$block_class}__link
+$linkClass = "
+  {$componentClass}
+  {$styleColor}
+  {$isAnchor}
+  {$blockClass}__link
 ";
 ?>
 
 <a
   href="<?php echo esc_url( $url ); ?>"
-  class="<?php echo esc_attr( $link_class ); ?>"
+  class="<?php echo esc_attr( $linkClass ); ?>"
   title="<?php echo esc_attr( $title ); ?>"
   id="<?php echo esc_attr( $id ); ?>"
 >

@@ -7,11 +7,11 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class = $attributes['blockClass'] ?? 'page-overlay';
+$blockClass = $attributes['blockClass'] ?? 'page-overlay';
 
 $classes = Components::classnames([
-  $block_class,
-  "js-{$block_class}",
+  $blockClass,
+  "js-{$blockClass}",
 ]);
 
 ?>

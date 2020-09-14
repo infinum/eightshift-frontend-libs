@@ -7,22 +7,22 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class    = $attributes['blockClass'] ?? '';
-$block_js_class = $attributes['blockJsClass'] ?? '';
-$is_free_mode   = $attributes['isFreeMode'] ?? false;
-$is_loop        = $attributes['isLoop'] ?? true;
+$blockClass   = $attributes['blockClass'] ?? '';
+$blockJsClass = $attributes['blockJsClass'] ?? '';
+$isFreeMode   = $attributes['isFreeMode'] ?? false;
+$isLoop       = $attributes['isLoop'] ?? true;
 
 ?>
 
 <div
-  class="<?php echo esc_attr( "{$block_class} {$block_js_class} swiper-container" ); ?>"
-  data-swiper-freeMode="<?php echo esc_attr( $is_free_mode ); ?>"
-  data-swiper-loop="<?php echo esc_attr( $is_loop ); ?>"
+  class="<?php echo esc_attr( "{$blockClass} {$blockJsClass} swiper-container" ); ?>"
+  data-swiper-freeMode="<?php echo esc_attr( $isFreeMode ); ?>"
+  data-swiper-loop="<?php echo esc_attr( $isLoop ); ?>"
 >
   <div class="<?php echo esc_attr( 'swiper-wrapper' ); ?>">
-    <?php echo wp_kses_post( $inner_block_content ); ?>
+    <?php echo wp_kses_post( $innerBlockContent ); ?>
   </div>
-  <div class="<?php echo esc_attr( "{$block_class}__navigation" ); ?>">
+  <div class="<?php echo esc_attr( "{$blockClass}__navigation" ); ?>">
     <?php
       echo wp_kses_post( Components::render( 'carousel-navigation', $attributes ) );
       ?>

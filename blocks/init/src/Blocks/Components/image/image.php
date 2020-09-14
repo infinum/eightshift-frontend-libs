@@ -19,13 +19,13 @@ if ( ! $id ) {
 
 $size = $media['size'] ?? 'large';
 
-$block_class = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 
 $media = \wp_get_attachment_image(
   $id,
   $size,
   '',
-  [ 'class' => "image {$block_class}__img" ]
+  [ 'class' => "image {$blockClass}__img" ]
 );
 
 echo wp_kses_post( $media );

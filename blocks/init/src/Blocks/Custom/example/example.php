@@ -5,11 +5,11 @@
  * @package EightshiftBoilerplate
  */
 
-$block_class = $attributes['blockClass'] ?? '';
-$content     = $attributes['content'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
+$content    = $attributes['content'] ?? '';
 
 ?>
 
-<div class="<?php echo esc_attr( $block_class ); ?>">
+<div class="<?php echo esc_attr( $blockClass ); ?>">
   <?php echo wp_kses_post( $content ); ?>
 </div>

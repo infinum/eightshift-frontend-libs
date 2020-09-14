@@ -7,16 +7,16 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 
-$component_class = Components::classnames([
-  $block_class,
-  $attributes['width'] ? Components::responsive_selectors($attributes['width'], 'width', $block_class) : '',
-  $attributes['offset'] ? Components::responsive_selectors($attributes['offset'], 'offset', $block_class) : '',
-  $attributes['hide'] ? Components::responsive_selectors($attributes['hide'], 'hide', $block_class, false) : '',
+$componentClass = Components::classnames([
+  $blockClass,
+  $attributes['width'] ? Components::responsiveSelectors($attributes['width'], 'width', $blockClass) : '',
+  $attributes['offset'] ? Components::responsiveSelectors($attributes['offset'], 'offset', $blockClass) : '',
+  $attributes['hide'] ? Components::responsiveSelectors($attributes['hide'], 'hide', $blockClass, false) : '',
 ]);
 ?>
 
-<div class="<?php echo \esc_attr( $component_class ); ?>">
-  <?php echo \wp_kses_post( $inner_block_content ); ?>
+<div class="<?php echo \esc_attr( $componentClass ); ?>">
+  <?php echo \wp_kses_post( $innerBlockContent ); ?>
 </div>

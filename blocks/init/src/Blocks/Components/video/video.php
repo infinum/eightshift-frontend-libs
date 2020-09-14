@@ -17,13 +17,13 @@ if ( ! $url ) {
   return;
 }
 
-$block_class = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 
 ?>
 
 <video
   src="<?php echo esc_url( $url ); ?>"
-  class="<?php echo esc_attr( "video {$block_class}__video" ); ?>"
+  class="<?php echo esc_attr( "video {$blockClass}__video" ); ?>"
   autoplay
   loop
   muted

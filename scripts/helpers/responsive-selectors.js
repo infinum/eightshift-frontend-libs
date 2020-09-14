@@ -11,7 +11,7 @@ import classnames from 'classnames';
  * @return string
  *
  * Example:
- * Components::responsive_selectors($attributes['width'], 'width', $block_class);
+ * Components::responsiveSelectors($attributes['width'], 'width', $blockClass);
  *
  * Output:
  * block-column__width-large--4

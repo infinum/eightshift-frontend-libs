@@ -19,22 +19,22 @@ if ( ! $content ) {
   return;
 }
 
-$component_class = 'paragraph';
-$block_class     = $attributes['blockClass'] ?? '';
-$style_align     = isset( $paragraph['styleAlign'] ) ? "{$component_class}__align--{$paragraph['styleAlign']}" : '';
-$style_color     = isset( $paragraph['styleColor'] ) ? "{$component_class}__color--{$paragraph['styleColor']}" : '';
-$style_size      = isset( $paragraph['styleSize'] ) ? "{$component_class}__size--{$paragraph['styleSize']}" : '';
+$componentClass = 'paragraph';
+$blockClass     = $attributes['blockClass'] ?? '';
+$styleAlign     = isset( $paragraph['styleAlign'] ) ? "{$componentClass}__align--{$paragraph['styleAlign']}" : '';
+$styleColor     = isset( $paragraph['styleColor'] ) ? "{$componentClass}__color--{$paragraph['styleColor']}" : '';
+$styleSize      = isset( $paragraph['styleSize'] ) ? "{$componentClass}__size--{$paragraph['styleSize']}" : '';
 
-$paragraph_class = Components::classnames([
-  $component_class,
-  $style_color,
-  $style_align,
-  $style_size,
-  "{$block_class}__paragraph"
+$paragraphClass = Components::classnames([
+  $componentClass,
+  $styleColor,
+  $styleAlign,
+  $styleSize,
+  "{$blockClass}__paragraph"
 ]);
 
 ?>
 
-<p class="<?php echo esc_attr( $paragraph_class ); ?>">
+<p class="<?php echo esc_attr( $paragraphClass ); ?>">
   <?php echo wp_kses_post( $content ); ?>
 </p>

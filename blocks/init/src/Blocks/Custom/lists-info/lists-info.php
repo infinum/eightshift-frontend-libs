@@ -7,21 +7,21 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$block_class = $attributes['blockClass'] ?? '';
-$title       = $attributes['title'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
+$title      = $attributes['title'] ?? '';
 
 ?>
 
-<div class="<?php echo esc_attr( $block_class ); ?>">
-  <div class="<?php echo esc_attr( "{$block_class}__intro" ); ?>">
+<div class="<?php echo esc_attr( $blockClass ); ?>">
+  <div class="<?php echo esc_attr( "{$blockClass}__intro" ); ?>">
     <?php if ( ! empty( $title ) ) { ?>
-      <div class="<?php echo esc_attr( "{$block_class}__title" ); ?>">
+      <div class="<?php echo esc_attr( "{$blockClass}__title" ); ?>">
         <?php echo wp_kses_post( $title ); ?>
       </div>
     <?php } ?>
   </div>
 
-  <div class="<?php echo esc_attr( "{$block_class}__content" ); ?>">
+  <div class="<?php echo esc_attr( "{$blockClass}__content" ); ?>">
     <?php
     echo wp_kses_post( Components::render( 'lists', [
         'blockClass' => $attributes['blockClass'] ?? '',

@@ -13,16 +13,16 @@ if ( ! $media ) {
   return;
 }
 
-$block_class = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 
-$component_class = "
-  {$block_class}
+$componentClass = "
+  {$blockClass}
   swiper-slide
 ";
 
 ?>
 
-<div class="<?php echo esc_attr( $component_class ); ?>">
+<div class="<?php echo esc_attr( $componentClass ); ?>">
   <?php echo wp_kses_post( Components::render( 'image', [
       'blockClass' => $attributes['blockClass'] ?? '',
       'media' => $media,
