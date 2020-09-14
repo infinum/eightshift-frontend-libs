@@ -1,0 +1,8 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+parameters:
+    level: max
+    paths:
+        - bootstrap.php
+        - src/
