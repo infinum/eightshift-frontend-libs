@@ -2,6 +2,7 @@ module.exports = {
   extends: '@infinumjs/stylelint-config',
   rules: {
     'color-no-invalid-hex': true,
+    'indentation': 'tab',
     'comment-empty-line-before': [
       'always', {
         ignore: ['stylelint-commands', 'after-comment'],
