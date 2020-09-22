@@ -73,7 +73,7 @@ function convertJsonColorsToSass(data) {
   for (const property in data) {
     if (data.hasOwnProperty(property)) {
 
-      if (typeof data[property] === 'string' && property === 'color') {
+      if (typeof data[property] === 'string' && (property === 'color' || property === 'gradient') ) {
         output += data[property];
       }
 
@@ -98,7 +98,7 @@ function convertJsonToSassGeneral(data) {
     if (data.hasOwnProperty(property)) {
       switch (typeof data[property]) {
         case 'object':
-          if (property === 'colors') {
+          if (property === 'colors' || property === 'gradient') {
             output += `${property}: (${convertJsonColorsToSass(data[property])}),`;
           } else {
             output += `${property}: (${convertJsonToSassGeneral(data[property])}),`;
@@ -119,8 +119,8 @@ function convertJsonToSassGeneral(data) {
  *
  * @param object Json Data object.
  */
-function convertJsonToSass(data) {
-  return `$global-variables: (${convertJsonToSassGeneral(data)});`;
+function convertJsonToSass(data = {}) {
+  return (data === '') ? '' : `$global-variables: (${convertJsonToSassGeneral(data.globalVariables)});`;
 }
 
 module.exports = {

@@ -80,6 +80,47 @@ const singlePropsAction = (setAttributes, key) => {
 };
 
 /**
+ * This method is used for setting media attributes. It is property type `object` with default values of `id`, `url`.
+ * This function generates callback that saves `id`, `url` of attribute.
+ *
+ * Example:
+ * "attributes": {
+ *   "media": {
+ *     "type": "object",
+ *     "default": {
+ *       "id": 0,
+ *       "url": "",
+ *     },
+ *     "mediaAction": true
+ *   }
+ * }
+ *
+ * Inside actions there will be `onChangeMedia` function that will update `id` and `url` expect that a given object have those properties
+ *
+ * @param {object} setAttributes Method for saving attributes.
+ * @param {string} key Came of the property in manifest.
+ *
+ */
+
+const mediaPropsAction = (setAttributes, key) => {
+  const output = {};
+
+  // Set output as an object key with anonymous function callback.
+  // Keys name must be written in uppercase.
+  output[`onChange${ucfirst(key)}`] = function(value) {
+    setAttributes({
+      [key]: {
+        id: value.id,
+        url: value.url,
+      },
+    });
+  };
+
+  return output;
+};
+
+
+/**
  * Create attributes actions from blocks manifest.json.
  *
  * Actions are passed in child components in order to update props on event.
@@ -113,11 +154,19 @@ export const getActions = (props, manifest) => {
 
       // Switch between property types default action, multiple props actions and media actions.
       if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
+
         actionsOutput = {
           ...actionsOutput,
           ...multiplePropsActions(setAttributes, attributes, key, propsAttributes),
           ...singlePropsAction(setAttributes, key),
         };
+
+        if (attributes[key].hasOwnProperty('mediaAction')) {
+          actionsOutput = {
+            ...actionsOutput,
+            ...mediaPropsAction(setAttributes, key)
+          };
+        }
       } else {
         actionsOutput = {
           ...actionsOutput,
