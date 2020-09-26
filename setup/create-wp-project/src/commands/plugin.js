@@ -14,16 +14,12 @@ const {
     cloneRepoTo,
     installNodeDependencies,
     installComposerDependencies,
-    updateComposerAutoloader,
     buildAssets,
   },
   files: { fullPath },
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
-const { copyBlocks } = require('../blocks');
-const { copyAssets } = require('../assets');
-const { copyStorybook } = require('../storybook');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
@@ -59,33 +55,8 @@ exports.handler = async (argv) => {
   step++;
 
   await installStep({
-    describe: `${step}. Copying assets`,
-    thisHappens: copyAssets(projectPath),
-    isFatal: true,
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Installing blocks`,
-    thisHappens: copyBlocks(projectPath),
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Setting up storybook`,
-    thisHappens: copyStorybook(projectPath),
-  });
-  step++;
-
-  await installStep({
     describe: `${step}. Replacing theme info`,
     thisHappens: searchReplace(promptedInfo, projectPath),
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Updating composer autoloader`,
-    thisHappens: updateComposerAutoloader(projectPath),
   });
   step++;
 

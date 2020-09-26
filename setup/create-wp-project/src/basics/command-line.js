@@ -13,7 +13,6 @@ const cloneRepoTo = async (repo, folderName) => {
 const installNodeDependencies = async (projectPath) => exec(`cd ${projectPath} && npm install`);
 const installNodePackage = async (projectPath, packageToInstall) => exec(`cd ${projectPath} && npm install ${packageToInstall}`);
 const installComposerDependencies = async (projectPath) => exec(`cd ${projectPath} && composer install --ignore-platform-reqs`);
-const updateComposerAutoloader = async (projectPath) => exec(`cd ${projectPath} && composer -o dump-autoload`);
 const buildAssets = async (projectPath) => exec(`cd ${projectPath} && npm run build`, { maxBuffer });
 const wpCoreDownload = async (projectPath) => exec(`cd ${projectPath} && wp core download`);
 
@@ -22,7 +21,6 @@ module.exports = {
   installNodeDependencies,
   installNodePackage,
   installComposerDependencies,
-  updateComposerAutoloader,
   buildAssets,
   wpCoreDownload,
 };
