@@ -9,24 +9,24 @@ import { ColumnEditor } from './components/column-editor';
 import { ColumnOptions } from './components/column-options';
 
 export const Column = (props) => {
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <ColumnOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <ColumnEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<ColumnOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<ColumnEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

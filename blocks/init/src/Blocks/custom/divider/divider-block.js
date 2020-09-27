@@ -8,24 +8,24 @@ import { DividerOptions } from './components/divider-options';
 
 export const Divider = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <DividerOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <DividerEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<DividerOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<DividerEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

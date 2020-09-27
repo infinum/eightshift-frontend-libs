@@ -1,11 +1,11 @@
 $block-divider: (
-  colors: global-settings(colors),
+	colors: global-settings(colors),
 );
 
 .block-divider {
-  height: 1px;
+	height: 1px;
 
-  &__color {
-    @include modifiers-deep($block-divider, colors, background-color);
-  }
+	&__color {
+		@include modifiers-deep($block-divider, colors, background-color);
+	}
 }

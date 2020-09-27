@@ -20,5 +20,5 @@ $componentClass = Components::classnames(
 ?>
 
 <div class="<?php echo \esc_attr($componentClass); ?>">
-  <?php echo \wp_kses_post($innerBlockContent); ?>
+	<?php echo \wp_kses_post($innerBlockContent); ?>
 </div>
