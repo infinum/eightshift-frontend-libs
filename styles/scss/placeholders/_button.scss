@@ -20,12 +20,12 @@
 /// }
 
 %button-reset {
-  padding: 0;
-  border: 0;
-  appearance: none;
-  font-family: inherit;
+	padding: 0;
+	border: 0;
+	appearance: none;
+	font-family: inherit;
 
-  &:focus {
-    outline: none;
-  }
+	&:focus {
+		outline: none;
+	}
 }

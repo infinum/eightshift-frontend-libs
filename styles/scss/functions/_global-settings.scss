@@ -26,19 +26,19 @@
 /// }
 
 @function global-settings($keys...) {
-  $global-variables: null !default;
+	$global-variables: null !default;
 
-  @if $global-variables != null {
-    $value: $global-variables;
+	@if $global-variables != null {
+		$value: $global-variables;
 
-    @each $key in $keys {
-      $value: map-get-strict($value, $key);
-    }
+		@each $key in $keys {
+			$value: map-get-strict($value, $key);
+		}
 
-    @return $value;
-  }
+		@return $value;
+	}
 
-  @else {
-    @error 'ERROR: $global-settings variable doesnt exist!';
-  }
+	@else {
+		@error 'ERROR: $global-settings variable doesnt exist!';
+	}
 }

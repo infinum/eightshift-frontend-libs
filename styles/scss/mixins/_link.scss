@@ -52,29 +52,29 @@
 /// ```
 
 @mixin link($map, $key) { // stylelint-disable max-nesting-depth
-  @if (type-of($map) == 'map') {
-    @each $state, $stateMap in map-get-strict($map, $key) {
-      @if $state == 'normal' {
-        @if (type-of($stateMap) == 'map') {
-          @each $cssSelector, $cssValue in $stateMap {
-            #{$cssSelector}: $cssValue;
-          }
-        }
-      }
+	@if (type-of($map) == 'map') {
+		@each $state, $stateMap in map-get-strict($map, $key) {
+			@if $state == 'normal' {
+				@if (type-of($stateMap) == 'map') {
+					@each $cssSelector, $cssValue in $stateMap {
+						#{$cssSelector}: $cssValue;
+					}
+				}
+			}
 
-      @else {
-        &:#{$state} {
-          @if (type-of($stateMap) == 'map') {
-            @each $cssSelector, $cssValue in $stateMap {
-              #{$cssSelector}: $cssValue;
-            }
-          }
-        }
-      }
-    }
-  }
+			@else {
+				&:#{$state} {
+					@if (type-of($stateMap) == 'map') {
+						@each $cssSelector, $cssValue in $stateMap {
+							#{$cssSelector}: $cssValue;
+						}
+					}
+				}
+			}
+		}
+	}
 
-  @else {
-    @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{modifierMap}';
-  }
+	@else {
+		@error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{modifierMap}';
+	}
 }

@@ -10,10 +10,10 @@ By default it uses the default editor palette (see https://developer.wordpress.o
 
 ```jsx
 <ColorPaletteCustom
-  label={'Block Color'}
-  help={'Change block color'}
-  value={styleColor}
-  onChange={onChangeStyleColor}
+	label={'Block Color'}
+	help={'Change block color'}
+	value={styleColor}
+	onChange={onChangeStyleColor}
 />
 ```
 
@@ -22,16 +22,16 @@ By default it uses the default editor palette (see https://developer.wordpress.o
 import { getPaletteColors } from '@eightshift/frontend-libs/scripts/editor';
 
 const {
-  color1,
-  color2
+	color1,
+	color2
 } = getPaletteColors();
 
 <ColorPaletteCustom
-  label={'Block Color'}
-  help={'Change block color'}
-  value={styleColor}
-  onChange={onChangeStyleColor}
-  colors={[color1, color2]}
+	label={'Block Color'}
+	help={'Change block color'}
+	value={styleColor}
+	onChange={onChangeStyleColor}
+	colors={[color1, color2]}
 />
 ```
 
@@ -39,16 +39,16 @@ const {
 ```jsx
 
 const specificColor = {
-  name: 'Specific',
-  slug: 'specific',
-  color: '#FF11BB'
+	name: 'Specific',
+	slug: 'specific',
+	color: '#FF11BB'
 };
 
 <ColorPaletteCustom
-  label={'Block Color'}
-  help={'Change block color'}
-  value={styleColor}
-  onChange={onChangeStyleColor}
-  colors={[specificColor]}
+	label={'Block Color'}
+	help={'Change block color'}
+	value={styleColor}
+	onChange={onChangeStyleColor}
+	colors={[specificColor]}
 />
 ```

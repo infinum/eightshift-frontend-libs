@@ -17,5 +17,5 @@
 /// }
 
 @function calc-column-width($cols: $base-col-number) {
-  @return (100/$cols) + 0%;
+	@return (100/$cols) + 0%;
 }

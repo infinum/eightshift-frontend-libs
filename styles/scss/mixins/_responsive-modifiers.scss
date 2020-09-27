@@ -60,48 +60,48 @@
 /// ```
 
 @mixin responsive-modifiers($map, $keys...) { // stylelint-disable max-nesting-depth
-  $i: 0;
+	$i: 0;
 
-  @each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
-    @if (type-of($breakpointMap) == 'map') {
-      @if $i == 0 {
-        @each $modifier, $modifierMap in $breakpointMap {
-          @if (type-of($modifierMap) == 'map') {
-            &--#{$modifier} {
-              @each $cssSelector, $cssValue in $modifierMap {
-                #{$cssSelector}: $cssValue;
-              }
-            }
-          }
+	@each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
+		@if (type-of($breakpointMap) == 'map') {
+			@if $i == 0 {
+				@each $modifier, $modifierMap in $breakpointMap {
+					@if (type-of($modifierMap) == 'map') {
+						&--#{$modifier} {
+							@each $cssSelector, $cssValue in $modifierMap {
+								#{$cssSelector}: $cssValue;
+							}
+						}
+					}
 
-          @else {
-            @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
-          }
-        }
-      }
+					@else {
+						@error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
+					}
+				}
+			}
 
-      @else {
-        @include media(#{$breakpoint} up) {
-          @each $modifier, $modifierMap in $breakpointMap {
-            @if (type-of($modifierMap) == 'map') {
-              &--#{$modifier} {
-                @each $cssSelector, $cssValue in $modifierMap {
-                  #{$cssSelector}: $cssValue;
-                }
-              }
-            }
+			@else {
+				@include media(#{$breakpoint} up) {
+					@each $modifier, $modifierMap in $breakpointMap {
+						@if (type-of($modifierMap) == 'map') {
+							&--#{$modifier} {
+								@each $cssSelector, $cssValue in $modifierMap {
+									#{$cssSelector}: $cssValue;
+								}
+							}
+						}
 
-            @else {
-              @error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
-            }
-          }
-        }
-      }
-    }
+						@else {
+							@error 'ERROR: Responsive Map modifierMap items are not map please check: #{$map} with key: #{modifierMap}';
+						}
+					}
+				}
+			}
+		}
 
-    @else {
-      @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
-    }
-    $i: $i + 1;
-  }
+		@else {
+			@error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
+		}
+		$i: $i + 1;
+	}
 }

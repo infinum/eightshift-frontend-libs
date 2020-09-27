@@ -99,45 +99,45 @@
 /// ```
 
 @mixin underline-text($thickness: 10%, $duration: 0.5s, $timing-function: cubic-bezier(0.79, 0.01, 0.22, 0.99), $color: currentColor, $wrapper: false, $element: '.underline-text', $state: 'hover') {
-  $thickness: 100% - $thickness;
+	$thickness: 100% - $thickness;
 
-  $underline-inactive-state: (
-    display: inline,
+	$underline-inactive-state: (
+		display: inline,
 
-    transition: (background-size $duration $timing-function 0s, background-position 0s step-end $duration),
-    text-decoration: none,
+		transition: (background-size $duration $timing-function 0s, background-position 0s step-end $duration),
+		text-decoration: none,
 
-    background-image: linear-gradient(transparent $thickness, $color $thickness, $color 100%),
-    background-repeat: no-repeat,
-    background-position-y: bottom,
-    background-size: 0% 100%,
-  );
+		background-image: linear-gradient(transparent $thickness, $color $thickness, $color 100%),
+		background-repeat: no-repeat,
+		background-position-y: bottom,
+		background-size: 0% 100%,
+	);
 
-  $underline-active-state: (
-    background-position-x: right,
-    background-position-y: bottom,
-    background-size: 100% 100%,
-  );
+	$underline-active-state: (
+		background-position-x: right,
+		background-position-y: bottom,
+		background-size: 100% 100%,
+	);
 
-  @if $wrapper {
-    text-decoration: none;
+	@if $wrapper {
+		text-decoration: none;
 
-    #{$element} {
-      @include for-each-attribute($underline-inactive-state);
-    }
+		#{$element} {
+			@include for-each-attribute($underline-inactive-state);
+		}
 
-    &:#{$state} {
-      #{$element} {
-        @include for-each-attribute($underline-active-state);
-      }
-    }
-  }
+		&:#{$state} {
+			#{$element} {
+				@include for-each-attribute($underline-active-state);
+			}
+		}
+	}
 
-  @else {
-    @include for-each-attribute($underline-inactive-state);
+	@else {
+		@include for-each-attribute($underline-inactive-state);
 
-    &:#{$state} {
-      @include for-each-attribute($underline-active-state);
-    }
-  }
+		&:#{$state} {
+			@include for-each-attribute($underline-active-state);
+		}
+	}
 }

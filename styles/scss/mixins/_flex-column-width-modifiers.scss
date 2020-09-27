@@ -35,17 +35,17 @@
 /// ```
 
 @mixin flex-column-width-modifiers($cols: $base-col-number, $wrapper: false) {
-  @for $i from 1 through $cols {
-    &--#{$i} {
-      @if $wrapper {
-        #{$wrapper} {
-          @include flex-column-width($i);
-        }
-      }
+	@for $i from 1 through $cols {
+		&--#{$i} {
+			@if $wrapper {
+				#{$wrapper} {
+					@include flex-column-width($i);
+				}
+			}
 
-      @else {
-        @include flex-column-width($i);
-      }
-    }
-  }
+			@else {
+				@include flex-column-width($i);
+			}
+		}
+	}
 }

@@ -17,5 +17,5 @@
 /// }
 
 @function calc-grid-width($cols: $base-col-number) {
-  @return percentage($cols/$base-col-number);
+	@return percentage($cols/$base-col-number);
 }

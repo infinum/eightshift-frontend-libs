@@ -47,25 +47,25 @@
 /// ```
 
 @mixin responsive-selectors($breakpoints: $media-breakpoints) {
-  $i: 1;
+	$i: 1;
 
-  @each $breakpoint in map-reverse($breakpoints) {
-    $point: nth($breakpoint, 1);
+	@each $breakpoint in map-reverse($breakpoints) {
+		$point: nth($breakpoint, 1);
 
-    @if $i == 1 {
-      &-#{$point} {
-        @content;
-      }
-    }
+		@if $i == 1 {
+			&-#{$point} {
+				@content;
+			}
+		}
 
-    @else {
-      @include media(#{$point} down) {
-        &-#{$point} {
-          @content;
-        }
-      }
-    }
+		@else {
+			@include media(#{$point} down) {
+				&-#{$point} {
+					@content;
+				}
+			}
+		}
 
-    $i: $i + 1;
-  }
+		$i: $i + 1;
+	}
 }

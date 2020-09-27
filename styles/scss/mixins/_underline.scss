@@ -114,34 +114,34 @@
 /// ```
 
 @mixin underline($thickness: 2px, $duration: 0.3s, $timing-function: cubic-bezier(0.79, 0.01, 0.22, 0.99), $color: currentColor, $breakpoint: 1080px) {
-  position: relative;
+	position: relative;
 
-  &:hover {
-    text-decoration: none;
-  }
+	&:hover {
+		text-decoration: none;
+	}
 
-  &::after {
-    content: '';
+	&::after {
+		content: '';
 
-    position: absolute;
-    right: 0;
-    bottom: 0;
+		position: absolute;
+		right: 0;
+		bottom: 0;
 
-    width: 100%;
-    height: $thickness;
+		width: 100%;
+		height: $thickness;
 
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform $duration $timing-function 0s, transform-origin 0s step-end $duration;
+		transform: scaleX(0);
+		transform-origin: left center;
+		transition: transform $duration $timing-function 0s, transform-origin 0s step-end $duration;
 
-    background-color: $color;
-  }
+		background-color: $color;
+	}
 
-  @media (min-width: $breakpoint) {
-    &:hover::after {
-      content: '';
-      transform: scaleX(1);
-      transform-origin: right center;
-    }
-  }
+	@media (min-width: $breakpoint) {
+		&:hover::after {
+			content: '';
+			transform: scaleX(1);
+			transform-origin: right center;
+		}
+	}
 }

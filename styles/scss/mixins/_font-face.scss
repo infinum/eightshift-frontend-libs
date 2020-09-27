@@ -39,17 +39,17 @@
 /// ```
 
 @mixin font-face($name, $path, $weight: 400, $style: normal, $exts: woff2 woff) {
-  $src: null;
+	$src: null;
 
-  @each $ext in $exts {
-    $src: append($src, url('#{$path}.#{$ext}') format('#{$ext}'), comma);
-  }
+	@each $ext in $exts {
+		$src: append($src, url('#{$path}.#{$ext}') format('#{$ext}'), comma);
+	}
 
-  @font-face {
-    font-family: $name;
-    font-weight: $weight;
-    font-style: $style;
-    src: $src;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: $name;
+		font-weight: $weight;
+		font-style: $style;
+		src: $src;
+		font-display: swap;
+	}
 }

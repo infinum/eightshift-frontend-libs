@@ -44,28 +44,28 @@
 /// ```
 
 @mixin responsive($map, $keys...) {
-  $i: 0;
+	$i: 0;
 
-  @each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
-    @if (type-of($breakpointMap) == 'map') {
-      @if $i == 0 {
-        @each $cssSelector, $cssValue in $breakpointMap {
-          #{$cssSelector}: $cssValue;
-        }
-      }
+	@each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
+		@if (type-of($breakpointMap) == 'map') {
+			@if $i == 0 {
+				@each $cssSelector, $cssValue in $breakpointMap {
+					#{$cssSelector}: $cssValue;
+				}
+			}
 
-      @else {
-        @include media(#{$breakpoint} up) {
-          @each $cssSelector, $cssValue in $breakpointMap { // stylelint-disable-line max-nesting-depth
-            #{$cssSelector}: $cssValue;
-          }
-        }
-      }
-    }
+			@else {
+				@include media(#{$breakpoint} up) {
+					@each $cssSelector, $cssValue in $breakpointMap { // stylelint-disable-line max-nesting-depth
+						#{$cssSelector}: $cssValue;
+					}
+				}
+			}
+		}
 
-    @else {
-      @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
-    }
-    $i: $i + 1;
-  }
+		@else {
+			@error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
+		}
+		$i: $i + 1;
+	}
 }

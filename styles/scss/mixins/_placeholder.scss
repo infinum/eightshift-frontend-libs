@@ -24,19 +24,19 @@
 /// ```
 
 @mixin placeholder { // stylelint-disable selector-no-vendor-prefix
-  &::-webkit-input-placeholder {
-    @content;
-  }
+	&::-webkit-input-placeholder {
+		@content;
+	}
 
-  &:-moz-placeholder {
-    @content;
-  }
+	&:-moz-placeholder {
+		@content;
+	}
 
-  &::-moz-placeholder {
-    @content;
-  }
+	&::-moz-placeholder {
+		@content;
+	}
 
-  &:-ms-input-placeholder {
-    @content;
-  }
+	&:-ms-input-placeholder {
+		@content;
+	}
 }

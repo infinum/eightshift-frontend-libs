@@ -4,54 +4,54 @@ import { ColorPaletteCustom } from '../color-palette-custom';
 import { getPaletteColors } from './../../../editor/get-palette-colors';
 
 export default {
-  title: 'Options|Color Palette',
-  parameters: {
-    notes: readme,
-  },
+	title: 'Options|Color Palette',
+	parameters: {
+		notes: readme,
+	},
 };
 
 const defaultProps = {
-  label: 'Color Selector',
-  help: 'Change color.',
-  onChange: () => {},
-  value: 'Color',
+	label: 'Color Selector',
+	help: 'Change color.',
+	onChange: () => {},
+	value: 'Color',
 };
 
 export const ColorsFromColorPalette = () => (
-  <ColorPaletteCustom
-    {...defaultProps}
-  />
+	<ColorPaletteCustom
+		{...defaultProps}
+	/>
 );
 
 export const SelectedColorsFromColorPalette = () => {
 
-  const {
-    primary,
-  } = getPaletteColors();
+	const {
+		primary,
+	} = getPaletteColors();
 
-  return (
-    <ColorPaletteCustom
-      {...defaultProps}
-      label={'Selected colors from color palette'}
-      colors={[primary]}
-    />
+	return (
+		<ColorPaletteCustom
+			{...defaultProps}
+			label={'Selected colors from color palette'}
+			colors={[primary]}
+		/>
 
-  );
+	);
 };
 
 export const CustomSpecificColor = () => {
-  const specificColor = {
-    name: 'Specific',
-    slug: 'specific',
-    color: '#FF11BB',
-  };
+	const specificColor = {
+		name: 'Specific',
+		slug: 'specific',
+		color: '#FF11BB',
+	};
 
-  return (
-    <ColorPaletteCustom
-      {...defaultProps}
-      label={'Custom specific color'}
-      colors={[specificColor]}
-    />
-  );
+	return (
+		<ColorPaletteCustom
+			{...defaultProps}
+			label={'Custom specific color'}
+			colors={[specificColor]}
+		/>
+	);
 };
 

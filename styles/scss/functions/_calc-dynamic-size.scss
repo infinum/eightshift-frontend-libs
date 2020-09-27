@@ -21,11 +21,11 @@
 
 @function calc-dynamic-size($min-size, $max-size, $min-width: tablet, $max-width: desktop) {
 
-  $min-width: nth(map-get-strict($media-breakpoints, $min-width), 1) * 1px;
-  $max-width: nth(map-get-strict($media-breakpoints, $max-width), 2) * 1px;
+	$min-width: nth(map-get-strict($media-breakpoints, $min-width), 1) * 1px;
+	$max-width: nth(map-get-strict($media-breakpoints, $max-width), 2) * 1px;
 
-  $ratio: (($max-size - $min-size)/($max-width - $min-width));
-  $factor: $min-size - ($ratio * $min-width);
+	$ratio: (($max-size - $min-size)/($max-width - $min-width));
+	$factor: $min-size - ($ratio * $min-width);
 
-  @return calc(#{$ratio} * 100vw + #{$factor});
+	@return calc(#{$ratio} * 100vw + #{$factor});
 }

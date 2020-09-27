@@ -16,6 +16,6 @@
 /// ```
 
 @mixin flex-grid-width($cols: $base-col-number) {
-  flex: 0 0 calc-grid-width($cols);
-  max-width: calc-grid-width($cols);
+	flex: 0 0 calc-grid-width($cols);
+	max-width: calc-grid-width($cols);
 }

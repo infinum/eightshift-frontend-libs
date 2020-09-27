@@ -1,11 +1,11 @@
 export {
-  blockDetails,
-  Gutenberg,
+	blockDetails,
+	Gutenberg,
 } from './helpers';
 
 export {
-  storybookDefaultMocksCategories,
-  storybookDefaultMocksColorPalette,
-  storybookWindowObjects,
-  storybookWpStyles,
+	storybookDefaultMocksCategories,
+	storybookDefaultMocksColorPalette,
+	storybookWindowObjects,
+	storybookWpStyles,
 } from './parts';

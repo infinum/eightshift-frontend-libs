@@ -30,19 +30,19 @@
 /// ```
 
 @mixin modifiers($map, $selector, $wrapper: false) {
-  @each $key, $value in $map {
-    @if $wrapper {
-      &--#{$key} {
-        #{$wrapper} {
-          #{$selector}: $value;
-        }
-      }
-    }
+	@each $key, $value in $map {
+		@if $wrapper {
+			&--#{$key} {
+				#{$wrapper} {
+					#{$selector}: $value;
+				}
+			}
+		}
 
-    @else {
-      &--#{$key} {
-        #{$selector}: $value;
-      }
-    }
-  }
+		@else {
+			&--#{$key} {
+				#{$selector}: $value;
+			}
+		}
+	}
 }

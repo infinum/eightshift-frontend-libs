@@ -14,24 +14,24 @@ import reactHtmlParser from 'react-html-parser';
  * @param {string} namespace Namespace for full block name.
  */
 export const getSharedAttributes = (blockName, namespace) => {
-  return {
-    blockName: {
-      type: 'string',
-      default: blockName,
-    },
-    blockFullName: {
-      type: 'string',
-      default: `${namespace}/${blockName}`,
-    },
-    blockClass: {
-      type: 'string',
-      default: `block-${blockName}`,
-    },
-    blockJsClass: {
-      type: 'string',
-      default: `js-block-${blockName}`,
-    },
-  };
+	return {
+		blockName: {
+			type: 'string',
+			default: blockName,
+		},
+		blockFullName: {
+			type: 'string',
+			default: `${namespace}/${blockName}`,
+		},
+		blockClass: {
+			type: 'string',
+			default: `block-${blockName}`,
+		},
+		blockJsClass: {
+			type: 'string',
+			default: `js-block-${blockName}`,
+		},
+	};
 };
 
 /**
@@ -42,11 +42,11 @@ export const getSharedAttributes = (blockName, namespace) => {
  *
  */
 export const withWrapper = (Component, Wrapper) => (props) => {
-  return (
-    <Wrapper props={props}>
-      <Component {...props} />
-    </Wrapper>
-  );
+	return (
+		<Wrapper props={props}>
+			<Component {...props} />
+		</Wrapper>
+	);
 };
 
 /**
@@ -57,59 +57,59 @@ export const withWrapper = (Component, Wrapper) => (props) => {
  *
  */
 export const registerVariation = (
-  manifest = {},
-  globalManifest = {},
+	manifest = {},
+	globalManifest = {},
 ) => {
-  const {
-    namespace,
-    parentName,
-    blockName,
-    attributes = {},
-    icon = {},
-  } = manifest;
+	const {
+		namespace,
+		parentName,
+		blockName,
+		attributes = {},
+		icon = {},
+	} = manifest;
 
-  const {
-    namespace: namespaceGlobal,
-    background: backgroundGlobal,
-    foreground: foregroundGlobal,
-  } = globalManifest;
+	const {
+		namespace: namespaceGlobal,
+		background: backgroundGlobal,
+		foreground: foregroundGlobal,
+	} = globalManifest;
 
-  // Append globalManifest data in to output.
-  if (typeof icon !== 'undefined') {
-    manifest.icon = {
-      background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-      foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-      src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
-    };
-  }
+	// Append globalManifest data in to output.
+	if (typeof icon !== 'undefined') {
+		manifest.icon = {
+			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+			foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
+			src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
+		};
+	}
 
-  // Check if namespace is defined in block or in global manifest settings.
-  const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
+	// Check if namespace is defined in block or in global manifest settings.
+	const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
-  // When adding attributes object attributes will not be added but ovveriden. By spreading parent attributes with variation attributes we are able to set everything.
-  const parentBlock = select(('core/blocks')).getBlockTypes().filter((item) => item.name === `${namespaceFinal}/${parentName}`);
+	// When adding attributes object attributes will not be added but ovveriden. By spreading parent attributes with variation attributes we are able to set everything.
+	const parentBlock = select(('core/blocks')).getBlockTypes().filter((item) => item.name === `${namespaceFinal}/${parentName}`);
 
-  if (parentBlock.length) {
-    const parentAttributes = parentBlock[0].attributes;
+	if (parentBlock.length) {
+		const parentAttributes = parentBlock[0].attributes;
 
-    for (const attribute in parentAttributes) {
-      if (parentAttributes.hasOwnProperty(attribute)) {
-        if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
-          manifest.attributes[attribute] = {
-            ...parentAttributes[attribute].default,
-            ...attributes[attribute],
-          };
-        }
-      }
-    }
-  }
+		for (const attribute in parentAttributes) {
+			if (parentAttributes.hasOwnProperty(attribute)) {
+				if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
+					manifest.attributes[attribute] = {
+						...parentAttributes[attribute].default,
+						...attributes[attribute],
+					};
+				}
+			}
+		}
+	}
 
-  return {
-    ...manifest,
-    blockName: `${namespaceFinal}/${parentName}`,
-    namespace: namespaceFinal,
-    name: blockName,
-  };
+	return {
+		...manifest,
+		blockName: `${namespaceFinal}/${parentName}`,
+		namespace: namespaceFinal,
+		name: blockName,
+	};
 };
 
 /**
@@ -123,67 +123,67 @@ export const registerVariation = (
  *
  */
 export const registerBlock = (
-  manifest = {},
-  globalManifest = {},
-  edit,
-  wrapperComponent,
-  wrapperManifest = {},
+	manifest = {},
+	globalManifest = {},
+	edit,
+	wrapperComponent,
+	wrapperManifest = {},
 ) => {
-  const {
-    namespace,
-    blockName,
-    hasInnerBlocks = false,
-    attributes = {},
-    icon = {},
-  } = manifest;
+	const {
+		namespace,
+		blockName,
+		hasInnerBlocks = false,
+		attributes = {},
+		icon = {},
+	} = manifest;
 
-  const {
-    namespace: namespaceGlobal,
-    attributes: attributesGlobal,
-    background: backgroundGlobal,
-    foreground: foregroundGlobal,
-  } = globalManifest;
+	const {
+		namespace: namespaceGlobal,
+		attributes: attributesGlobal,
+		background: backgroundGlobal,
+		foreground: foregroundGlobal,
+	} = globalManifest;
 
-  const {
-    attributes: attributesWrapper,
-  } = wrapperManifest;
+	const {
+		attributes: attributesWrapper,
+	} = wrapperManifest;
 
-  // Default save method.
-  let save = () => null;
+	// Default save method.
+	let save = () => null;
 
-  // Append globalManifest data in to output.
-  if (typeof icon !== 'undefined') {
-    manifest.icon = {
-      background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-      foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-      src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
-    };
-  }
+	// Append globalManifest data in to output.
+	if (typeof icon !== 'undefined') {
+		manifest.icon = {
+			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+			foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
+			src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
+		};
+	}
 
-  // Provide different save method for InnerBlocks.
-  if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
-    save = () => createElement(InnerBlocks.Content);
-  }
+	// Provide different save method for InnerBlocks.
+	if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
+		save = () => createElement(InnerBlocks.Content);
+	}
 
-  // Check if namespace is defined in block or in global manifest settings.
-  const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
+	// Check if namespace is defined in block or in global manifest settings.
+	const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
-  manifest.attributes = {
-    ...getSharedAttributes(blockName, namespaceFinal),
-    ...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
-    ...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-    ...attributes,
-  };
+	manifest.attributes = {
+		...getSharedAttributes(blockName, namespaceFinal),
+		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
+		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
+		...attributes,
+	};
 
-  return {
-    blockName: `${namespaceFinal}/${blockName}`,
-    options: {
-      ...manifest,
-      blockName: `${namespaceFinal}/${blockName}`,
-      edit: withWrapper(edit, wrapperComponent),
-      save,
-    },
-  };
+	return {
+		blockName: `${namespaceFinal}/${blockName}`,
+		options: {
+			...manifest,
+			blockName: `${namespaceFinal}/${blockName}`,
+			edit: withWrapper(edit, wrapperComponent),
+			save,
+		},
+	};
 };
 
 /**
@@ -196,26 +196,26 @@ export const registerBlock = (
  */
 export const getBlockEditComponent = (blockName, paths, fileName) => {
 
-  // Create an array of all blocks file paths.
-  const pathsKeys = paths.keys();
+	// Create an array of all blocks file paths.
+	const pathsKeys = paths.keys();
 
-  // Get Block edit component from block name and pathsKeys.
-  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
+	// Get Block edit component from block name and pathsKeys.
+	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
 
-  // If edit component is missing throw and error.
-  if (typeof editComponent === 'undefined') {
-    throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
-  }
+	// If edit component is missing throw and error.
+	if (typeof editComponent === 'undefined') {
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
+	}
 
-  // No mater if class of functional component is used fetch the first item in an object.
-  const editCallback = editComponent[Object.keys(editComponent)[0]];
+	// No mater if class of functional component is used fetch the first item in an object.
+	const editCallback = editComponent[Object.keys(editComponent)[0]];
 
-  // If edit component callback is missing throw and error.
-  if (typeof editCallback === 'undefined') {
-    throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
-  }
+	// If edit component callback is missing throw and error.
+	if (typeof editCallback === 'undefined') {
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
+	}
 
-  return editCallback;
+	return editCallback;
 };
 
 /**
@@ -228,19 +228,19 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
  */
 export const getBlockGenericComponent = (blockName, paths, fileName) => {
 
-  // Create an array of all blocks file paths.
-  const pathsKeys = paths.keys();
+	// Create an array of all blocks file paths.
+	const pathsKeys = paths.keys();
 
-  // Get Block edit component from block name and pathsKeys.
-  const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
+	// Get Block edit component from block name and pathsKeys.
+	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
 
-  // If edit component is missing throw and error.
-  if (typeof editComponent === 'undefined') {
-    return null;
-  }
+	// If edit component is missing throw and error.
+	if (typeof editComponent === 'undefined') {
+		return null;
+	}
 
-  // No mater if class of functional component is used fetch the first item in an object.
-  return editComponent[Object.keys(editComponent)[0]];
+	// No mater if class of functional component is used fetch the first item in an object.
+	return editComponent[Object.keys(editComponent)[0]];
 };
 
 /**
@@ -257,56 +257,56 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  *
  */
 export const registerBlocks = (
-  globalManifest = {},
-  wrapperComponent = null,
-  wrapperManifest = {},
-  blocksManifestPath,
-  blocksPaths,
-  hooksPath = null,
-  transformsPaths = null,
+	globalManifest = {},
+	wrapperComponent = null,
+	wrapperManifest = {},
+	blocksManifestPath,
+	blocksPaths,
+	hooksPath = null,
+	transformsPaths = null,
 ) => {
 
-  // Create an array of Block manifests.
-  const allBlocksManifestPath = blocksManifestPath.keys().map(blocksManifestPath);
+	// Create an array of Block manifests.
+	const allBlocksManifestPath = blocksManifestPath.keys().map(blocksManifestPath);
 
-  // Iterate blocks to register.
-  allBlocksManifestPath.map((block) => {
+	// Iterate blocks to register.
+	allBlocksManifestPath.map((block) => {
 
-    // Get Block edit component from block name and blocksPaths.
-    const editCallback = getBlockEditComponent(block.blockName, blocksPaths, 'block');
+		// Get Block edit component from block name and blocksPaths.
+		const editCallback = getBlockEditComponent(block.blockName, blocksPaths, 'block');
 
-    // Get Block Transforms component from block name and transformsPaths.
-    if (transformsPaths !== null) {
-      const transformsCallback = getBlockGenericComponent(block.blockName, transformsPaths, 'transforms');
-  
-      if (transformsCallback !== null) {
-        block.transforms = transformsCallback;
-      }
-    }
+		// Get Block Transforms component from block name and transformsPaths.
+		if (transformsPaths !== null) {
+			const transformsCallback = getBlockGenericComponent(block.blockName, transformsPaths, 'transforms');
+	
+			if (transformsCallback !== null) {
+				block.transforms = transformsCallback;
+			}
+		}
 
-    // Get Block Hooks component from block name and hooksPath.
-    if (hooksPath !== null) {
-      const hooksCallback = getBlockGenericComponent(block.blockName, hooksPath, 'hooks');
+		// Get Block Hooks component from block name and hooksPath.
+		if (hooksPath !== null) {
+			const hooksCallback = getBlockGenericComponent(block.blockName, hooksPath, 'hooks');
 
-      if (hooksCallback !== null) {
-        hooksCallback();
-      }
-    }
+			if (hooksCallback !== null) {
+				hooksCallback();
+			}
+		}
 
-    // Pass data to registerBlock helper to get final output for registerBlockType.
-    const blockDetails = registerBlock(
-      block,
-      globalManifest,
-      editCallback,
-      wrapperComponent,
-      wrapperManifest
-    );
+		// Pass data to registerBlock helper to get final output for registerBlockType.
+		const blockDetails = registerBlock(
+			block,
+			globalManifest,
+			editCallback,
+			wrapperComponent,
+			wrapperManifest
+		);
 
-    // Native WP method for block registration.
-    registerBlockType(blockDetails.blockName, blockDetails.options);
+		// Native WP method for block registration.
+		registerBlockType(blockDetails.blockName, blockDetails.options);
 
-    return null;
-  });
+		return null;
+	});
 };
 
 /**
@@ -319,35 +319,35 @@ export const registerBlocks = (
  *
  */
 export const registerVariations = (
-  globalManifest = {},
-  blocksManifestPath,
-  transformsPaths = null,
+	globalManifest = {},
+	blocksManifestPath,
+	transformsPaths = null,
 ) => {
 
-  // Create an array of Block manifests.
-  const allBlocksManifestPath = blocksManifestPath.keys().map(blocksManifestPath);
+	// Create an array of Block manifests.
+	const allBlocksManifestPath = blocksManifestPath.keys().map(blocksManifestPath);
 
-  // Iterate blocks to register.
-  allBlocksManifestPath.map((block) => {
+	// Iterate blocks to register.
+	allBlocksManifestPath.map((block) => {
 
-    // Get Block Transforms component from block name and transformsPaths.
-    if (transformsPaths !== null) {
-      const transformsCallback = getBlockGenericComponent(block.blockName, transformsPaths, 'transforms');
+		// Get Block Transforms component from block name and transformsPaths.
+		if (transformsPaths !== null) {
+			const transformsCallback = getBlockGenericComponent(block.blockName, transformsPaths, 'transforms');
 
-      if (transformsCallback !== null) {
-        block.transforms = transformsCallback;
-      }
-    }
+			if (transformsCallback !== null) {
+				block.transforms = transformsCallback;
+			}
+		}
 
-    // Pass data to registerVariation helper to get final output for registerBlockVariation.
-    const blockDetails = registerVariation(
-      block,
-      globalManifest
-    );
+		// Pass data to registerVariation helper to get final output for registerBlockVariation.
+		const blockDetails = registerVariation(
+			block,
+			globalManifest
+		);
 
-    // Native WP method for block registration.
-    registerBlockVariation(blockDetails.blockName, blockDetails);
+		// Native WP method for block registration.
+		registerBlockVariation(blockDetails.blockName, blockDetails);
 
-    return null;
-  });
+		return null;
+	});
 };

@@ -93,7 +93,16 @@ module.exports = {
 			'tab',
 			{
 				SwitchCase: 1,
+				
 			},
+		],
+		'react/jsx-indent': [
+			'error',
+			'tab',
+		],
+		'react/jsx-indent-props': [
+			'error',
+			'tab',
 		],
 		'no-tabs': ['error', { allowIndentationTabs: true }],
 		'space-before-function-paren': 0,
@@ -150,14 +159,6 @@ module.exports = {
 		'react/jsx-equals-spacing': [
 			2,
 			'never',
-		],
-		'react/jsx-indent': [
-			2,
-			2,
-		],
-		'react/jsx-indent-props': [
-			2,
-			2,
 		],
 		'react/jsx-key': 2,
 		'react/jsx-tag-spacing': 2,

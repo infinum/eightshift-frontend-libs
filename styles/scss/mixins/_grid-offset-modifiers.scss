@@ -32,17 +32,17 @@
 /// ```
 
 @mixin grid-offset-modifiers($cols: $base-col-number, $wrapper: false, $selector: 'margin-left') {
-  @for $i from 1 through $cols {
-    &--#{$i} {
-      @if $wrapper {
-        #{$wrapper} {
-          #{$selector}: calc-grid-width($i);
-        }
-      }
+	@for $i from 1 through $cols {
+		&--#{$i} {
+			@if $wrapper {
+				#{$wrapper} {
+					#{$selector}: calc-grid-width($i);
+				}
+			}
 
-      @else {
-        #{$selector}: calc-grid-width($i);
-      }
-    }
-  }
+			@else {
+				#{$selector}: calc-grid-width($i);
+			}
+		}
+	}
 }

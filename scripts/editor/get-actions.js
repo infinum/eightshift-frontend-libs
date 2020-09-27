@@ -28,32 +28,32 @@ import { ucfirst } from './ucfirst';
  */
 
 const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) => {
-  const output = {};
+	const output = {};
 
-  // Set output as a object key with anonymous function callback.
-  for (const propType in attributes[key]) {
+	// Set output as a object key with anonymous function callback.
+	for (const propType in attributes[key]) {
 
-    // Create functions for default values.
-    if (propType === 'default') {
+		// Create functions for default values.
+		if (propType === 'default') {
 
-      for (const propName in attributes[key][propType]) {
-        if (attributes[key][propType].hasOwnProperty(propName)) {
+			for (const propName in attributes[key][propType]) {
+				if (attributes[key][propType].hasOwnProperty(propName)) {
 
-          output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
-            setAttributes({
-              [key]: {
-                ...propsAttributes[key],
-                [propName]: value,
-              },
-            });
-          };
+					output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
+						setAttributes({
+							[key]: {
+								...propsAttributes[key],
+								[propName]: value,
+							},
+						});
+					};
 
-        }
-      }
-    }
-  }
+				}
+			}
+		}
+	}
 
-  return output;
+	return output;
 };
 
 /**
@@ -66,17 +66,17 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  */
 
 const singlePropsAction = (setAttributes, key) => {
-  const output = {};
+	const output = {};
 
-  // Set output as a object key with anonymous function callback.
-  // Keys name must be written in uppercase.
-  output[`onChange${ucfirst(key)}`] = function (value) {
-    setAttributes({
-      [key]: value,
-    });
-  };
+	// Set output as a object key with anonymous function callback.
+	// Keys name must be written in uppercase.
+	output[`onChange${ucfirst(key)}`] = function (value) {
+		setAttributes({
+			[key]: value,
+		});
+	};
 
-  return output;
+	return output;
 };
 
 /**
@@ -103,20 +103,20 @@ const singlePropsAction = (setAttributes, key) => {
  */
 
 const mediaPropsAction = (setAttributes, key) => {
-  const output = {};
+	const output = {};
 
-  // Set output as an object key with anonymous function callback.
-  // Keys name must be written in uppercase.
-  output[`onChange${ucfirst(key)}`] = function(value) {
-    setAttributes({
-      [key]: {
-        id: value.id,
-        url: value.url,
-      },
-    });
-  };
+	// Set output as an object key with anonymous function callback.
+	// Keys name must be written in uppercase.
+	output[`onChange${ucfirst(key)}`] = function(value) {
+		setAttributes({
+			[key]: {
+				id: value.id,
+				url: value.url,
+			},
+		});
+	};
 
-  return output;
+	return output;
 };
 
 
@@ -134,47 +134,47 @@ const mediaPropsAction = (setAttributes, key) => {
  */
 export const getActions = (props, manifest) => {
 
-  // Get data, if not available set to default.
-  const { setAttributes, attributes: propsAttributes } = props || {};
-  const { attributes } = manifest || {};
+	// Get data, if not available set to default.
+	const { setAttributes, attributes: propsAttributes } = props || {};
+	const { attributes } = manifest || {};
 
-  // Prepare output variable.
-  let actionsOutput = {};
+	// Prepare output variable.
+	let actionsOutput = {};
 
-  // Iterate all object keys. This is the fastest way.
-  for (const key in attributes) {
+	// Iterate all object keys. This is the fastest way.
+	for (const key in attributes) {
 
-    // If key doesn't exists skip this iteration.
-    if (attributes.hasOwnProperty(key)) {
+		// If key doesn't exists skip this iteration.
+		if (attributes.hasOwnProperty(key)) {
 
-      // If useManual key is set to true skip this attribute from actions output.
-      if (attributes[key].hasOwnProperty('manualAction')) {
-        continue;
-      }
+			// If useManual key is set to true skip this attribute from actions output.
+			if (attributes[key].hasOwnProperty('manualAction')) {
+				continue;
+			}
 
-      // Switch between property types default action, multiple props actions and media actions.
-      if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
+			// Switch between property types default action, multiple props actions and media actions.
+			if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
 
-        actionsOutput = {
-          ...actionsOutput,
-          ...multiplePropsActions(setAttributes, attributes, key, propsAttributes),
-          ...singlePropsAction(setAttributes, key),
-        };
+				actionsOutput = {
+					...actionsOutput,
+					...multiplePropsActions(setAttributes, attributes, key, propsAttributes),
+					...singlePropsAction(setAttributes, key),
+				};
 
-        if (attributes[key].hasOwnProperty('mediaAction')) {
-          actionsOutput = {
-            ...actionsOutput,
-            ...mediaPropsAction(setAttributes, key)
-          };
-        }
-      } else {
-        actionsOutput = {
-          ...actionsOutput,
-          ...singlePropsAction(setAttributes, key),
-        };
-      }
-    }
-  }
+				if (attributes[key].hasOwnProperty('mediaAction')) {
+					actionsOutput = {
+						...actionsOutput,
+						...mediaPropsAction(setAttributes, key),
+					};
+				}
+			} else {
+				actionsOutput = {
+					...actionsOutput,
+					...singlePropsAction(setAttributes, key),
+				};
+			}
+		}
+	}
 
-  return actionsOutput;
+	return actionsOutput;
 };

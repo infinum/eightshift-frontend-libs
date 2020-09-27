@@ -32,19 +32,19 @@
 /// ```
 
 @mixin modifiers-deep($map, $key, $selector, $wrapper: false) {
-  @each $modifier, $value in map-get-strict($map, $key) {
-    @if $wrapper {
-      &--#{$modifier} {
-        #{$wrapper} {
-          #{$selector}: $value;
-        }
-      }
-    }
+	@each $modifier, $value in map-get-strict($map, $key) {
+		@if $wrapper {
+			&--#{$modifier} {
+				#{$wrapper} {
+					#{$selector}: $value;
+				}
+			}
+		}
 
-    @else {
-      &--#{$modifier} {
-        #{$selector}: $value;
-      }
-    }
-  }
+		@else {
+			&--#{$modifier} {
+				#{$selector}: $value;
+			}
+		}
+	}
 }

@@ -19,15 +19,15 @@
 /// ```
 
 @mixin flex-vertical-align-modifiers() {
-  &--top {
-    align-self: flex-start;
-  }
+	&--top {
+		align-self: flex-start;
+	}
 
-  &--center {
-    align-self: center;
-  }
+	&--center {
+		align-self: center;
+	}
 
-  &--bottom {
-    align-self: flex-end;
-  }
+	&--bottom {
+		align-self: flex-end;
+	}
 }

@@ -55,33 +55,33 @@
 /// ```
 
 @mixin link-modifiers($map, $keys...) { // stylelint-disable max-nesting-depth
-  @each $modifier, $modifierMap in map-get-deep($map, $keys...) {
-    &--#{$modifier} {
-      @if (type-of($modifierMap) == 'map') {
-        @each $state, $stateMap in $modifierMap {
-          @if $state == 'normal' {
-            @if (type-of($stateMap) == 'map') {
-              @each $cssSelector, $cssValue in $stateMap {
-                #{$cssSelector}: $cssValue;
-              }
-            }
-          }
+	@each $modifier, $modifierMap in map-get-deep($map, $keys...) {
+		&--#{$modifier} {
+			@if (type-of($modifierMap) == 'map') {
+				@each $state, $stateMap in $modifierMap {
+					@if $state == 'normal' {
+						@if (type-of($stateMap) == 'map') {
+							@each $cssSelector, $cssValue in $stateMap {
+								#{$cssSelector}: $cssValue;
+							}
+						}
+					}
 
-          @else {
-            &:#{$state} {
-              @if (type-of($stateMap) == 'map') {
-                @each $cssSelector, $cssValue in $stateMap {
-                  #{$cssSelector}: $cssValue;
-                }
-              }
-            }
-          }
-        }
-      }
+					@else {
+						&:#{$state} {
+							@if (type-of($stateMap) == 'map') {
+								@each $cssSelector, $cssValue in $stateMap {
+									#{$cssSelector}: $cssValue;
+								}
+							}
+						}
+					}
+				}
+			}
 
-      @else {
-        @error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{modifierMap}';
-      }
-    }
-  }
+			@else {
+				@error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{modifierMap}';
+			}
+		}
+	}
 }

@@ -34,17 +34,17 @@
 /// ```
 
 @mixin modifiers-range($map, $key, $selector) {
-  $min: map-get-deep($map, $key, min);
-  $max: map-get-deep($map, $key, max);
-  $step: map-get-deep($map, $key, step);
+	$min: map-get-deep($map, $key, min);
+	$max: map-get-deep($map, $key, max);
+	$step: map-get-deep($map, $key, step);
 
-  $final-range: ($max+$step)/$step;
+	$final-range: ($max+$step)/$step;
 
-  @for $i from $min to $final-range {
-    $i: #{$i * $step};
+	@for $i from $min to $final-range {
+		$i: #{$i * $step};
 
-    &--#{$i} {
-      #{$selector}: #{$i}px;
-    }
-  }
+		&--#{$i} {
+			#{$selector}: #{$i}px;
+		}
+	}
 }

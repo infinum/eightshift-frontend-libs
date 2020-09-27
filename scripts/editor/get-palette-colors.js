@@ -6,12 +6,12 @@ import { useSelect } from '@wordpress/data';
  * Requires WP => 5.3
  */
 export const getPaletteColors = () => useSelect((select) => {
-  const settings = select('core/block-editor').getSettings();
-  return settings.colors.reduce(
-    (obj, item) => ({
-      ...obj,
-      [item.slug]: item,
-    }),
-    {}
-  );
+	const settings = select('core/block-editor').getSettings();
+	return settings.colors.reduce(
+		(obj, item) => ({
+			...obj,
+			[item.slug]: item,
+		}),
+		{}
+	);
 });
