@@ -31,7 +31,7 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "infinum/coding-standards-wp": "dev-feature/wpcs-update-bc",
+    "infinum/coding-standards-wp": "^1.0.1",
     "roave/security-advisories": "dev-master",
     "szepeviktor/phpstan-wordpress": "^0.6"
   },

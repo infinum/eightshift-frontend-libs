@@ -1,0 +1,43 @@
+$heading: (
+  colors: global-settings(colors),
+  sizes: (
+    mobile: (
+      default: (
+        font-size: 64px,
+        line-height: 1,
+      ),
+      big: (
+        font-size: 42px,
+        line-height: 1.1,
+      ),
+    ),
+    tablet: (
+      default: (
+        font-size: 115px,
+        line-height: 0.9,
+      ),
+      big: (
+        font-size: 90px,
+        line-height: 1,
+      ),
+    ),
+  )
+);
+
+.heading {
+  @extend %heading-reset;
+  font-weight: bold;
+  color: inherit;
+
+  &__color {
+    @include modifiers-deep($heading, colors, color);
+  }
+
+  &__size {
+    @include responsive-modifiers($heading, sizes);
+  }
+
+  &__align {
+    @include text-align-modifiers;
+  }
+}
