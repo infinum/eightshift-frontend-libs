@@ -7,6 +7,6 @@ import customEightshiftThemes from './theme';
 
 
 addons.setConfig({
-  showPanel: false,
-  theme: customEightshiftThemes,
+	showPanel: false,
+	theme: customEightshiftThemes,
 })

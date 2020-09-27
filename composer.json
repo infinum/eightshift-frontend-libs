@@ -1,50 +1,50 @@
 {
-  "name": "eightshift/eightshift-frontend-libs",
-  "version": "4.0.0",
-  "description": "A collection of useful frontend utility modules. powered by Eightshift",
-  "keywords": [
-    "composer",
-    "installer",
-    "plugin",
-    "blocks",
-    "Gutenberg",
-    "WordPress"
-  ],
-  "homepage": "https://eightshift.com/",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Eightshift team",
-      "email": "team@eightshift.com",
-      "homepage": "https://eightshift.com/",
-      "role": "Developer / IT Manager"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/infinum/eightshift-frontend-libs/issues",
-    "source": "https://github.com/infinum/eightshift-frontend-libs"
-  },
-  "require": {
-    "php": ">=7.2",
-    "ext-json": "*",
-    "php-di/php-di": "^6.2.2"
-  },
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "infinum/coding-standards-wp": "^1.0.1",
-    "roave/security-advisories": "dev-master",
-    "szepeviktor/phpstan-wordpress": "^0.6"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "config": {
-    "sort-packages": true,
-    "optimize-autoloader": true,
-    "process-timeout": 2000
-  },
-  "scripts": {
-    "analyze": "@php ./vendor/bin/phpstan analyze",
-    "standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
-  }
+	"name": "eightshift/eightshift-frontend-libs",
+	"version": "4.0.0",
+	"description": "A collection of useful frontend utility modules. powered by Eightshift",
+	"keywords": [
+		"composer",
+		"installer",
+		"plugin",
+		"blocks",
+		"Gutenberg",
+		"WordPress"
+	],
+	"homepage": "https://eightshift.com/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Eightshift team",
+			"email": "team@eightshift.com",
+			"homepage": "https://eightshift.com/",
+			"role": "Developer / IT Manager"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/infinum/eightshift-frontend-libs/issues",
+		"source": "https://github.com/infinum/eightshift-frontend-libs"
+	},
+	"require": {
+		"php": ">=7.2",
+		"ext-json": "*",
+		"php-di/php-di": "^6.2.2"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"infinum/coding-standards-wp": "^1.0.1",
+		"roave/security-advisories": "dev-master",
+		"szepeviktor/phpstan-wordpress": "^0.6"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"process-timeout": 2000
+	},
+	"scripts": {
+		"analyze": "@php ./vendor/bin/phpstan analyze",
+		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+	}
 }

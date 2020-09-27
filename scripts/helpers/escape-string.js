@@ -1,5 +1,5 @@
 export const escapeString = {
-  escapeString(string) {
-    return string.replace(/([;&,.+*~':"!^#$%@[\]()=>|])/g, '\\$1');
-  },
+	escapeString(string) {
+		return string.replace(/([;&,.+*~':"!^#$%@[\]()=>|])/g, '\\$1');
+	},
 };

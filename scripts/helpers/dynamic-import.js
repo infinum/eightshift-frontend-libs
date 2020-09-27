@@ -5,5 +5,5 @@
  *
  */
 export function dynamicImport(paths) {
-  paths.keys().forEach(paths);
+	paths.keys().forEach(paths);
 }

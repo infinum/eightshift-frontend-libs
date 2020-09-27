@@ -113,24 +113,24 @@ There has been some breaking changes in this release.
 Follow this migration script in order for you project to work correctly with the new changes.
 
 * We have removed all Webpack aliases, to fix this search and replace this strings inside you project:
-  * `import 'EightshiftBlocksWhatwgFetch'`                                 -----> `import 'whatwg-fetch'`
-  * `import Swiper from 'EightshiftBlocksSwiper'`                          -----> `import Swiper from 'swiper'`
-  * `import 'EightshiftBlocksSwiperIE'`                                    -----> `import 'swiper/js/swiper.min'`
-  * `import 'EightshiftBlocksBabelPolyfill'`                               -----> `import '@babel/polyfill'`
-  * `import 'EightshiftBlocksAutoprefixer'`                                -----> `import 'autoprefixer'`
-  * `@import 'EightshiftBlocksNormalize'`                                  -----> `@import 'normalize-scss'`
-  * `@import 'EightshiftBlocksMediaBlender'`                               -----> `@import 'media-blender'`
-  * `@import 'EightshiftBlocksSwiperStyle'`                                -----> `@import '~swiper/swiper.scss'`
-  * `import { dynamicImport } from 'EightshiftBlocksDynamicImport'`        -----> `import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers'`
-  * `import { registerBlocks } from 'EightshiftBlocksRegisterBlocks'`      -----> `import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor'`
-  * `import { ucfirst } from 'EightshiftBlocksUcfirst'`                    -----> `import { ucfirst } from '@eightshift/frontend-libs/scripts/editor'`
-  * `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
-  * `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
-  * `import { ... } from 'EightshiftBlocksUtilityHelpersPath/...'`         -----> `import { ... } from '@eightshift/frontend-libs/scripts/helpers'`
-  * `@import 'EightshiftFrontendLibs'`                                     -----> `@import '@eightshift/frontend-libs/styles/index.scss'`
-  * `@import 'EightshiftEditorStyleOverride'`                              -----> `@import '@eightshift/frontend-libs/styles/override-editor.scss'`
-  * `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette'` -----> `import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components'`
-  * `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'`       -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
+	* `import 'EightshiftBlocksWhatwgFetch'`                                 -----> `import 'whatwg-fetch'`
+	* `import Swiper from 'EightshiftBlocksSwiper'`                          -----> `import Swiper from 'swiper'`
+	* `import 'EightshiftBlocksSwiperIE'`                                    -----> `import 'swiper/js/swiper.min'`
+	* `import 'EightshiftBlocksBabelPolyfill'`                               -----> `import '@babel/polyfill'`
+	* `import 'EightshiftBlocksAutoprefixer'`                                -----> `import 'autoprefixer'`
+	* `@import 'EightshiftBlocksNormalize'`                                  -----> `@import 'normalize-scss'`
+	* `@import 'EightshiftBlocksMediaBlender'`                               -----> `@import 'media-blender'`
+	* `@import 'EightshiftBlocksSwiperStyle'`                                -----> `@import '~swiper/swiper.scss'`
+	* `import { dynamicImport } from 'EightshiftBlocksDynamicImport'`        -----> `import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers'`
+	* `import { registerBlocks } from 'EightshiftBlocksRegisterBlocks'`      -----> `import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor'`
+	* `import { ucfirst } from 'EightshiftBlocksUcfirst'`                    -----> `import { ucfirst } from '@eightshift/frontend-libs/scripts/editor'`
+	* `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+	* `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+	* `import { ... } from 'EightshiftBlocksUtilityHelpersPath/...'`         -----> `import { ... } from '@eightshift/frontend-libs/scripts/helpers'`
+	* `@import 'EightshiftFrontendLibs'`                                     -----> `@import '@eightshift/frontend-libs/styles/index.scss'`
+	* `@import 'EightshiftEditorStyleOverride'`                              -----> `@import '@eightshift/frontend-libs/styles/override-editor.scss'`
+	* `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette'` -----> `import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components'`
+	* `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'`       -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
 * Storybook scripts and helpers have been moved and restructured. To fix this just recopy all Storybook config files in your project. Files can be found [here](https://github.com/infinum/eightshift-frontend-libs/tree/master/blocks/init/storybook).
 
 ### Added

@@ -1,4 +1,4 @@
 {
-  "extends": "./linters/stylelint.config.js",
-  "ignoreFiles": ".out/**/*.css"
+	"extends": "./linters/stylelint.config.js",
+	"ignoreFiles": ".out/**/*.css"
 }

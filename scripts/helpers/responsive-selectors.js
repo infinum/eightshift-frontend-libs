@@ -17,21 +17,21 @@ import classnames from 'classnames';
  * block-column__width-large--4
  */
 export const responsiveSelectors = (items, selector, parent, useModifier = true) => {
-  const output = [];
-  
-  for (const itemKey in items) {
-    if (items.hasOwnProperty(itemKey)) {
-      if (items[itemKey] === '') {
-        continue;
-      }
+	const output = [];
+	
+	for (const itemKey in items) {
+		if (items.hasOwnProperty(itemKey)) {
+			if (items[itemKey] === '') {
+				continue;
+			}
 
-      if (useModifier) {
-        output.push(`${parent}__${selector}-${itemKey}--${items[itemKey]}`);
-      } else {
-        output.push(`${parent}__${selector}-${itemKey}`);
-      }
-    }
-  }
+			if (useModifier) {
+				output.push(`${parent}__${selector}-${itemKey}--${items[itemKey]}`);
+			} else {
+				output.push(`${parent}__${selector}-${itemKey}`);
+			}
+		}
+	}
 
-  return classnames(output);
+	return classnames(output);
 };

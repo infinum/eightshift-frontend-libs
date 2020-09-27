@@ -9,12 +9,12 @@ storybookWindowObjects();
 
 // Run all storybook stories.
 configure([
-  require.context('./../blocks/init/src/Blocks/Components', true, /docs\/story.js$/),
-  require.context('./../blocks/init/src/Blocks/Custom', true, /docs\/story.js$/),
-  require.context('./../blocks/init/src/Blocks/Wrapper', true, /docs\/story.js$/),
-  require.context('./../blocks/init/src/Blocks/Variations', true, /docs\/story.js$/),
-  require.context('./../blocks/playground', true, /story.js$/),
-  require.context('./../scripts/components', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/Components', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/Custom', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/Wrapper', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/Variations', true, /docs\/story.js$/),
+	require.context('./../blocks/playground', true, /story.js$/),
+	require.context('./../scripts/components', true, /docs\/story.js$/),
 ], module);
 
 // Set default categories.
