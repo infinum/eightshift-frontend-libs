@@ -9,30 +9,30 @@ import { ExampleToolbar } from './components/example-toolbar';
 
 export const Example = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <ExampleOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <BlockControls>
-        <ExampleToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <ExampleEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<ExampleOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<BlockControls>
+				<ExampleToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<ExampleEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

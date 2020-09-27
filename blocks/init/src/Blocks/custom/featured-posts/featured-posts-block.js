@@ -10,65 +10,60 @@ import { FeaturedPostsEditor } from './components/featured-posts-editor';
 import { FeaturedPostsOptions } from './components/featured-posts-options';
 
 export const FeaturedPosts = (props) => {
-    const {
-        setAttributes,
-        attributes,
-        attributes: {
-            postType,
-            posts,
-        },
-    } = props;
+	const {
+		setAttributes,
+		attributes,
+		attributes: {
+			postType,
+			posts,
+		},
+	} = props;
 
-    const [postResults, setPostResults] = useState(posts);
+	const [postResults, setPostResults] = useState(posts);
 
-    const actions = {
-        ...getActions(props, manifest),
+	const actions = {
+		...getActions(props, manifest),
 
-        onChangePostInput: (value) => {
-            apiFetch({ path: `/wp/v2/${postType}/?search=${value}` })
-            .then(
-                (response) => {
-                    setPostResults(response);
-                }
-            );
-        },
+		onChangePostInput: (value) => {
+			apiFetch({ path: `/wp/v2/${postType}/?search=${value}` })
+				.then((response) => {
+					setPostResults(response);
+				});
+		},
 
-        onChangePost: (postNames) => {
-            const selectedPosts = [...posts, ...postResults].filter(
-                (postResultsItem) => {
-                    return postNames.includes(postResultsItem.title.rendered);
-                }
-            );
+		onChangePost: (postNames) => {
+			const selectedPosts = [...posts, ...postResults].filter(
+				(postResultsItem) => {
+					return postNames.includes(postResultsItem.title.rendered);
+				});
 
-        setAttributes(
-            {
-                postNames,
-                posts: selectedPosts,
-            }
-        );
+			setAttributes({
+				postNames,
+				posts: selectedPosts,
+			});
 
-        },
-    };
+		},
+	};
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <FeaturedPostsOptions
-          attributes={{ ...attributes, postResults }}
-          actions={actions}
-        />
-      </InspectorControls>
+	return (
+		<Fragment>
+			<InspectorControls>
+				<FeaturedPostsOptions
+					attributes={{ ...attributes, postResults }}
+					actions={actions}
+				/>
+			</InspectorControls>
 
-      {!posts.length ?
-            <Fragment>
-            {__('Click to select posts', 'eightshift-boilerplate')}
-            <Spinner />
-            </Fragment> :
-            <FeaturedPostsEditor
-            attributes={attributes}
-            actions={actions}
-            />
-      }
-    </Fragment>
-  );
+			{!posts.length ?
+				<Fragment>
+					{__('Click to select posts', 'eightshift-boilerplate')}
+					<Spinner />
+				</Fragment> :
+				<FeaturedPostsEditor
+					attributes={attributes}
+					actions={actions}
+				/>
+			}
+		</Fragment>
+	);
 };

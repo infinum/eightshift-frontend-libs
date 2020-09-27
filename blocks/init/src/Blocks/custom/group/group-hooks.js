@@ -9,40 +9,40 @@ import globalManifest from '../../manifest.json';
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
-  return (innerProps) => {
-    const {
-      attributes,
-      rootClientId,
-    } = innerProps;
+	return (innerProps) => {
+		const {
+			attributes,
+			rootClientId,
+		} = innerProps;
 
-    let updatedProps = innerProps;
+		let updatedProps = innerProps;
 
-    // Remove wrapper from all blocks inside column block.
-    const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
+		// Remove wrapper from all blocks inside column block.
+		const parent = select('core/block-editor').getBlocksByClientId(rootClientId);
 
-    if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
-      
-      updatedProps = assign(
-        {},
-        innerProps,
-        {
-          attributes: {
-            ...attributes,
-            wrapperUseSimple: true,
-            wrapperUseSimpleShowControl: false,
-          },
-        }
-      );
+		if (parent[0] !== null && parent[0].name === `${globalManifest.namespace}/${manifest.blockName}`) {
+			
+			updatedProps = assign(
+				{},
+				innerProps,
+				{
+					attributes: {
+						...attributes,
+						wrapperUseSimple: true,
+						wrapperUseSimpleShowControl: false,
+					},
+				}
+			);
 
-    }
+		}
 
-    return wp.element.createElement(
-      BlockListBlock,
-      updatedProps
-    );
-  };
+		return wp.element.createElement(
+			BlockListBlock,
+			updatedProps
+		);
+	};
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-  wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+	wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
 };

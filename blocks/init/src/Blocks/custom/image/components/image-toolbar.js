@@ -3,20 +3,20 @@ import { ImageToolbar as ImageToolbarComponent } from '../../../components/image
 
 export const ImageToolbar = ({ attributes, actions }) => {
 
-    const {
-        media,
-    } = attributes;
+	const {
+		media,
+	} = attributes;
 
-    const {
-        onChangeMedia,
-    } = actions;
+	const {
+		onChangeMedia,
+	} = actions;
 
-    const mediaObject = (typeof media === 'undefined') || media;
+	const mediaObject = (typeof media === 'undefined') || media;
 
-    return (
-    <ImageToolbarComponent
-      media={mediaObject}
-      onChangeMedia={onChangeMedia}
-    />
-  );
+	return (
+		<ImageToolbarComponent
+			media={mediaObject}
+			onChangeMedia={onChangeMedia}
+		/>
+	);
 };

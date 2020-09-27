@@ -9,30 +9,30 @@ import { HeadingToolbar } from './components/heading-toolbar';
 
 export const Heading = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <HeadingOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <BlockControls>
-        <HeadingToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <HeadingEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<HeadingOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<BlockControls>
+				<HeadingToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<HeadingEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

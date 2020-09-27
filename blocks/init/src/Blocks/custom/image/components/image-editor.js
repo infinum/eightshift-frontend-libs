@@ -3,22 +3,22 @@ import { ImageEditor as ImageEditorComponent } from '../../../components/image/c
 
 export const ImageEditor = ({ attributes, actions }) => {
 
-    const {
-        blockClass,
-        media,
-    } = attributes;
+	const {
+		blockClass,
+		media,
+	} = attributes;
 
-    const {
-        onChangeMedia,
-    } = actions;
+	const {
+		onChangeMedia,
+	} = actions;
 
-    const mediaObject = (typeof media === 'undefined') || media;
+	const mediaObject = (typeof media === 'undefined') || media;
 
-    return (
-    <ImageEditorComponent
-      blockClass={blockClass}
-      media={mediaObject}
-      onChangeMedia={onChangeMedia}
-    />
-  );
+	return (
+		<ImageEditorComponent
+			blockClass={blockClass}
+			media={mediaObject}
+			onChangeMedia={onChangeMedia}
+		/>
+	);
 };

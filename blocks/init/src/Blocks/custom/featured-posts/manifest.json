@@ -1,74 +1,74 @@
 {
-  "blockName": "featured-posts",
-  "title": "Featured Posts",
-  "description" : "Block for selecting and displaying featured posts",
-  "category": "eightshift",
-  "icon": {
-    "src": "format-aside"
-  },
-  "keywords": [
-    "featured",
-    "posts"
-  ],
-  "example": {
-    "attributes": {
-      "postType": "posts",
-      "postNumber": 3,
-      "postNames": [
-        "Test Post",
-        "Lorem Ipsum",
-        "Hello World"
-      ],
-      "posts": [
-        {
-          "title": {
-            "rendered": "Test Post"
-          },
-          "excerpt": {
-            "rendered": "Test Post excerpt"
-          }
-        },
-        {
-          "title": {
-            "rendered": "Lorem Ipsum"
-          },
-          "excerpt": {
-            "rendered": "Lorem Ipsum excerpt"
-          }
-        },
-        {
-          "title": {
-            "rendered": "Hello World"
-          },
-          "excerpt": {
-            "rendered": "Hello World excerpt"
-          }
-        }
-      ]
-    }
-  },
-  "attributes": {
-    "postType": {
-      "type": "string",
-      "default": "posts"
-    },
-    "postNumber": {
-      "type": "number",
-      "default": 1
-    },
-    "postNames": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "string"
-      }
-    },
-    "posts": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object"
-      }
-    }
-  }
+	"blockName": "featured-posts",
+	"title": "Featured Posts",
+	"description" : "Block for selecting and displaying featured posts",
+	"category": "eightshift",
+	"icon": {
+		"src": "format-aside"
+	},
+	"keywords": [
+		"featured",
+		"posts"
+	],
+	"example": {
+		"attributes": {
+			"postType": "posts",
+			"postNumber": 3,
+			"postNames": [
+				"Test Post",
+				"Lorem Ipsum",
+				"Hello World"
+			],
+			"posts": [
+				{
+					"title": {
+						"rendered": "Test Post"
+					},
+					"excerpt": {
+						"rendered": "Test Post excerpt"
+					}
+				},
+				{
+					"title": {
+						"rendered": "Lorem Ipsum"
+					},
+					"excerpt": {
+						"rendered": "Lorem Ipsum excerpt"
+					}
+				},
+				{
+					"title": {
+						"rendered": "Hello World"
+					},
+					"excerpt": {
+						"rendered": "Hello World excerpt"
+					}
+				}
+			]
+		}
+	},
+	"attributes": {
+		"postType": {
+			"type": "string",
+			"default": "posts"
+		},
+		"postNumber": {
+			"type": "number",
+			"default": 1
+		},
+		"postNames": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"posts": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object"
+			}
+		}
+	}
 }

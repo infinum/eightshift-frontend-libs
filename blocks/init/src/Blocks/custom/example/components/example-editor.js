@@ -3,21 +3,21 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
 export const ExampleEditor = ({ attributes, actions }) => {
-    const {
-        blockClass,
-        content,
-    } = attributes;
+	const {
+		blockClass,
+		content,
+	} = attributes;
 
-    const {
-        onChangeContent,
-    } = actions;
+	const {
+		onChangeContent,
+	} = actions;
 
-    return (
-    <RichText
-      placeholder={__('Add Content', 'eightshift-boilerplate')}
-      className={blockClass}
-      onChange={onChangeContent}
-      value={content}
-    />
-  );
+	return (
+		<RichText
+			placeholder={__('Add Content', 'eightshift-boilerplate')}
+			className={blockClass}
+			onChange={onChangeContent}
+			value={content}
+		/>
+	);
 };
