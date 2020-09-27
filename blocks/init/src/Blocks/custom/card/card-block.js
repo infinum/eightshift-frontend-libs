@@ -8,24 +8,24 @@ import { CardToolbar } from './components/card-toolbar';
 
 export const Card = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <BlockControls>
-        <CardToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <CardEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<BlockControls>
+				<CardToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<CardEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

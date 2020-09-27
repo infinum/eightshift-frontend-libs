@@ -17,8 +17,8 @@ if (! $media) {
 $blockClass = $attributes['blockClass'] ?? '';
 
 $componentClass = "
-  {$blockClass}
-  swiper-slide
+	{$blockClass}
+	swiper-slide
 ";
 
 ?>

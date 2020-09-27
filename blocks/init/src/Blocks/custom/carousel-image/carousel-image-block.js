@@ -8,24 +8,24 @@ import { CarouselImageToolbar } from './components/carousel-image-toolbar';
 
 export const CarouselImage = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <BlockControls>
-        <CarouselImageToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <CarouselImageEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<BlockControls>
+				<CarouselImageToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<CarouselImageEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

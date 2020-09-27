@@ -1,42 +1,42 @@
 {
-  "blockName": "carousel-image",
-  "title": "Carousel Image",
-  "description" : "Carousel Image block with custom settings.",
-  "category": "eightshift",
-  "icon": {
-    "src": "format-image"
-  },
-  "keywords": [
-    "Image",
-    "Block Image"
-  ],
-  "parent": [
-    "eightshift-boilerplate/carousel"
-  ],
-  "example": {
-    "attributes": {
-      "wrapperDisable": true,
-      "media": {
-        "id": 0,
-        "url": "https://picsum.photos/800/800"
-      }
-    }
-  },
-  "attributes": {
-    "wrapperDisable": {
-      "type": "bool",
-      "default": true
-    },
-    "media": {
-      "type": "object",
-      "default": {
-        "id": 0,
-        "url": ""
-      },
-      "items": {
-        "type": "object"
-      },
-      "mediaAction": true
-    }
-  }
+	"blockName": "carousel-image",
+	"title": "Carousel Image",
+	"description" : "Carousel Image block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "format-image"
+	},
+	"keywords": [
+		"Image",
+		"Block Image"
+	],
+	"parent": [
+		"eightshift-boilerplate/carousel"
+	],
+	"example": {
+		"attributes": {
+			"wrapperDisable": true,
+			"media": {
+				"id": 0,
+				"url": "https://picsum.photos/800/800"
+			}
+		}
+	},
+	"attributes": {
+		"wrapperDisable": {
+			"type": "bool",
+			"default": true
+		},
+		"media": {
+			"type": "object",
+			"default": {
+				"id": 0,
+				"url": ""
+			},
+			"items": {
+				"type": "object"
+			},
+			"mediaAction": true
+		}
+	}
 }

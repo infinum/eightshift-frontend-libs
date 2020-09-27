@@ -9,30 +9,30 @@ import { CardListToolbar } from './components/card-list-toolbar';
 
 export const CardList = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <CardListOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <BlockControls>
-        <CardListToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <CardListEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<CardListOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<BlockControls>
+				<CardListToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<CardListEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

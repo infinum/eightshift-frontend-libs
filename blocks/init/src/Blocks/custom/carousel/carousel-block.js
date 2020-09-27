@@ -8,23 +8,23 @@ import { CarouselEditor } from './components/carousel-editor';
 
 export const Carousel = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <CarouselOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <CarouselEditor
-        attributes={attributes}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<CarouselOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<CarouselEditor
+				attributes={attributes}
+			/>
+		</Fragment>
+	);
 };

@@ -8,24 +8,24 @@ import { ButtonOptions } from './components/button-options';
 
 export const Button = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <ButtonOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <ButtonEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<ButtonOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<ButtonEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

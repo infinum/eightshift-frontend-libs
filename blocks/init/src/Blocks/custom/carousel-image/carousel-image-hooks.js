@@ -7,35 +7,35 @@ import manifest from './manifest.json';
 import globalManifest from '../../manifest.json';
 
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
-  return (innerProps) => {
-    const {
-      name,
-      attributes: {
-        blockClass,
-      },
-    } = innerProps;
+	return (innerProps) => {
+		const {
+			name,
+			attributes: {
+				blockClass,
+			},
+		} = innerProps;
 
-    let updatedProps = innerProps;
+		let updatedProps = innerProps;
 
-    if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
-      const componentClass = blockClass;
+		if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
+			const componentClass = blockClass;
 
-      updatedProps = assign(
-        {},
-        innerProps,
-        {
-          className: componentClass,
-        }
-      );
-    }
+			updatedProps = assign(
+				{},
+				innerProps,
+				{
+					className: componentClass,
+				}
+			);
+		}
 
-    return wp.element.createElement(
-      BlockListBlock,
-      updatedProps
-    );
-  };
+		return wp.element.createElement(
+			BlockListBlock,
+			updatedProps
+		);
+	};
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-  wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+	wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
 };
