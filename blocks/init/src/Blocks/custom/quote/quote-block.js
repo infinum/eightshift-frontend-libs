@@ -5,16 +5,16 @@ import { QuoteEditor } from './components/quote-editor';
 
 export const Quote = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <QuoteEditor
-      attributes={attributes}
-      actions={actions}
-    />
-  );
+	return (
+		<QuoteEditor
+			attributes={attributes}
+			actions={actions}
+		/>
+	);
 };

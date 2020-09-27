@@ -3,20 +3,20 @@ import { VideoToolbar as VideoToolbarComponent } from '../../../components/video
 
 export const VideoToolbar = ({ attributes, actions }) => {
 
-    const {
-        media,
-    } = attributes;
+	const {
+		media,
+	} = attributes;
 
-    const {
-        onChangeMedia,
-    } = actions;
+	const {
+		onChangeMedia,
+	} = actions;
 
-    const mediaObject = (typeof media === 'undefined') || media;
+	const mediaObject = (typeof media === 'undefined') || media;
 
-    return (
-    <VideoToolbarComponent
-      media={mediaObject}
-      onChangeMedia={onChangeMedia}
-    />
-  );
+	return (
+		<VideoToolbarComponent
+			media={mediaObject}
+			onChangeMedia={onChangeMedia}
+		/>
+	);
 };

@@ -1,40 +1,40 @@
 {
-  "blockName": "link",
-  "title": "Link",
-  "description" : "Link block with custom settings.",
-  "category": "eightshift",
-  "icon": {
-    "src": "admin-links"
-  },
-  "keywords": [
-    "link",
-    "anchor",
-    "href"
-  ],
-  "example": {
-    "attributes": {
-      "link": {
-        "title": "Link Title",
-        "url": "https://fakeurl.com",
-        "styleColor": "primary",
-        "isAnchor": false,
-        "id": "custom ID"
-      }
-    }
-  },
-  "attributes": {
-    "link": {
-      "type": "object",
-      "default": {
-        "title": "",
-        "url": "",
-        "styleColor": "primary",
-        "isAnchor": false,
-        "id": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    }
-  }
+	"blockName": "link",
+	"title": "Link",
+	"description" : "Link block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "admin-links"
+	},
+	"keywords": [
+		"link",
+		"anchor",
+		"href"
+	],
+	"example": {
+		"attributes": {
+			"link": {
+				"title": "Link Title",
+				"url": "https://fakeurl.com",
+				"styleColor": "primary",
+				"isAnchor": false,
+				"id": "custom ID"
+			}
+		}
+	},
+	"attributes": {
+		"link": {
+			"type": "object",
+			"default": {
+				"title": "",
+				"url": "",
+				"styleColor": "primary",
+				"isAnchor": false,
+				"id": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		}
+	}
 }

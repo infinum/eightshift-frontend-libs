@@ -1,28 +1,28 @@
 {
-  "blockName": "youtube",
-  "title": "YouTube",
-  "description" : "YouTube video block with custom settings.",
-  "category": "eightshift",
-  "icon": {
-    "src": "video-alt2"
-  },
-  "keywords": [
-    "Video",
-    "YouTube"
-  ],
-  "example": {
-    "attributes": {
-      "id": "DiItGE3eAyQ"
-    }
-  },
-  "attributes": {
-    "id": {
-      "type": "string",
-      "default": ""
-    },
-    "aspectRatio": {
-      "type": "string",
-      "default": "default"
-    }
-  }
+	"blockName": "youtube",
+	"title": "YouTube",
+	"description" : "YouTube video block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "video-alt2"
+	},
+	"keywords": [
+		"Video",
+		"YouTube"
+	],
+	"example": {
+		"attributes": {
+			"id": "DiItGE3eAyQ"
+		}
+	},
+	"attributes": {
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "default"
+		}
+	}
 }

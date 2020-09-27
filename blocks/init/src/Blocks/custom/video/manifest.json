@@ -1,35 +1,35 @@
 {
-  "blockName": "video",
-  "title": "Video",
-  "description" : "Video block with custom settings.",
-  "category": "eightshift",
-  "icon": {
-    "src": "video-alt2"
-  },
-  "keywords": [
-    "video",
-    "video tag",
-    "preview"
-  ],
-  "example": {
-    "attributes": {
-      "media": {
-        "id": 0,
-        "url": "https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4"
-      }
-    }
-  },
-  "attributes": {
-    "media": {
-      "type": "object",
-      "default": {
-        "id": 0,
-        "url": ""
-      },
-      "items": {
-        "type": "object"
-      },
-      "mediaAction": true
-    }
-  }
+	"blockName": "video",
+	"title": "Video",
+	"description" : "Video block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "video-alt2"
+	},
+	"keywords": [
+		"video",
+		"video tag",
+		"preview"
+	],
+	"example": {
+		"attributes": {
+			"media": {
+				"id": 0,
+				"url": "https://storage.googleapis.com/coverr-main/mp4%2FIn-The-Clouds.mp4"
+			}
+		}
+	},
+	"attributes": {
+		"media": {
+			"type": "object",
+			"default": {
+				"id": 0,
+				"url": ""
+			},
+			"items": {
+				"type": "object"
+			},
+			"mediaAction": true
+		}
+	}
 }

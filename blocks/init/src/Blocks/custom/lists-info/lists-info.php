@@ -14,15 +14,15 @@ $title      = $attributes['title'] ?? '';
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>">
-  <div class="<?php echo esc_attr("{$blockClass}__intro"); ?>">
+	<div class="<?php echo esc_attr("{$blockClass}__intro"); ?>">
 	<?php if (! empty($title)) { ?>
-	  <div class="<?php echo esc_attr("{$blockClass}__title"); ?>">
+		<div class="<?php echo esc_attr("{$blockClass}__title"); ?>">
 		<?php echo wp_kses_post($title); ?>
-	  </div>
+		</div>
 	<?php } ?>
-  </div>
+	</div>
 
-  <div class="<?php echo esc_attr("{$blockClass}__content"); ?>">
+	<div class="<?php echo esc_attr("{$blockClass}__content"); ?>">
 	<?php
 	echo wp_kses_post(
 		Components::render(
@@ -34,5 +34,5 @@ $title      = $attributes['title'] ?? '';
 		)
 	);
 	?>
-  </div>
+	</div>
 </div>

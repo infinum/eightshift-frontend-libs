@@ -8,24 +8,24 @@ import { JumbotronToolbar } from './components/jumbotron-toolbar';
 
 export const Jumbotron = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <BlockControls>
-        <JumbotronToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <JumbotronEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<BlockControls>
+				<JumbotronToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<JumbotronEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

@@ -8,24 +8,24 @@ import { VideoToolbar } from './components/video-toolbar';
 
 export const Video = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <BlockControls>
-        <VideoToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <VideoEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<BlockControls>
+				<VideoToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<VideoEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

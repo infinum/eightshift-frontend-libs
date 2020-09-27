@@ -9,30 +9,30 @@ import { ParagraphToolbar } from './components/paragraph-toolbar';
 
 export const Paragraph = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <ParagraphOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <BlockControls>
-        <ParagraphToolbar
-          attributes={attributes}
-          actions={actions}
-        />
-      </BlockControls>
-      <ParagraphEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<ParagraphOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<BlockControls>
+				<ParagraphToolbar
+					attributes={attributes}
+					actions={actions}
+				/>
+			</BlockControls>
+			<ParagraphEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };

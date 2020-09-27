@@ -8,24 +8,24 @@ import { LinkOptions } from './components/link-options';
 
 export const Link = (props) => {
 
-    const {
-        attributes,
-    } = props;
+	const {
+		attributes,
+	} = props;
 
-    const actions = getActions(props, manifest);
+	const actions = getActions(props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <LinkOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
-      <LinkEditor
-        attributes={attributes}
-        actions={actions}
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<InspectorControls>
+				<LinkOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
+			<LinkEditor
+				attributes={attributes}
+				actions={actions}
+			/>
+		</Fragment>
+	);
 };
