@@ -7,106 +7,103 @@ import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/comp
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const buttonSizes = [
-  { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big', 'eightshift-boilerplate'), value: 'big' },
+	{ label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+	{ label: __('Big', 'eightshift-boilerplate'), value: 'big' },
 ];
 
 export const buttonSizeWidths = [
-  { label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Block', 'eightshift-boilerplate'), value: 'block' },
+	{ label: __('Default', 'eightshift-boilerplate'), value: 'default' },
+	{ label: __('Block', 'eightshift-boilerplate'), value: 'block' },
 ];
 
 export const buttonColors = () => {
-    const {
-        primary,
-        black,
-    } = getPaletteColors();
+	const colors = getPaletteColors();
 
-    return [
-    primary,
-    black,
-    ];
+	return [
+		colors.primary,
+		colors.black,
+	];
 };
 
 export const ButtonOptions = (props) => {
-    const {
-        button: {
-            url,
-            styleSize,
-            styleColor,
-            styleSizeWidth,
-            id,
-            isAnchor,
-        },
-        onChangeUrl,
-        onChangeStyleSize,
-        onChangeStyleColor,
-        onChangeStyleSizeWidth,
-        onChangeId,
-        onChangeIsAnchor,
-    } = props;
+	const {
+		button: {
+			url,
+			styleSize,
+			styleColor,
+			styleSizeWidth,
+			id,
+			isAnchor,
+		},
+		onChangeUrl,
+		onChangeStyleSize,
+		onChangeStyleColor,
+		onChangeStyleSizeWidth,
+		onChangeId,
+		onChangeIsAnchor,
+	} = props;
 
-    return (
-    <Fragment>
+	return (
+		<Fragment>
 
-      {onChangeUrl &&
-            <URLInput
-            label={__('Button Url', 'eightshift-boilerplate')}
-            value={url}
-            onChange={onChangeUrl}
-            />
-      }
+			{onChangeUrl &&
+				<URLInput
+					label={__('Button Url', 'eightshift-boilerplate')}
+					value={url}
+					onChange={onChangeUrl}
+				/>
+			}
 
-      {onChangeStyleColor &&
-            <ColorPaletteCustom
-            label={
-                <Fragment>
-                <Icon icon={icons.color} />
-                {__('Button Color', 'eightshift-boilerplate')}
-                </Fragment>
-            }
-            help={__('Change Button Background color.', 'eightshift-boilerplate')}
-            value={styleColor}
-            colors={buttonColors()}
-            onChange={onChangeStyleColor}
-            />
-      }
+			{onChangeStyleColor &&
+				<ColorPaletteCustom
+					label={
+						<Fragment>
+							<Icon icon={icons.color} />
+							{__('Button Color', 'eightshift-boilerplate')}
+						</Fragment>
+					}
+					help={__('Change Button Background color.', 'eightshift-boilerplate')}
+					value={styleColor}
+					colors={buttonColors()}
+					onChange={onChangeStyleColor}
+				/>
+			}
 
-      {onChangeStyleSize &&
-            <SelectControl
-            label={__('Button Size', 'eightshift-boilerplate')}
-            value={styleSize}
-            options={buttonSizes}
-            onChange={onChangeStyleSize}
-            />
-      }
+			{onChangeStyleSize &&
+				<SelectControl
+					label={__('Button Size', 'eightshift-boilerplate')}
+					value={styleSize}
+					options={buttonSizes}
+					onChange={onChangeStyleSize}
+				/>
+			}
 
-      {onChangeStyleSizeWidth &&
-            <SelectControl
-            label={__('Button Size Width', 'eightshift-boilerplate')}
-            value={styleSizeWidth}
-            options={buttonSizeWidths}
-            onChange={onChangeStyleSizeWidth}
-            />
-      }
+			{onChangeStyleSizeWidth &&
+				<SelectControl
+					label={__('Button Size Width', 'eightshift-boilerplate')}
+					value={styleSizeWidth}
+					options={buttonSizeWidths}
+					onChange={onChangeStyleSizeWidth}
+				/>
+			}
 
-      {onChangeIsAnchor &&
-            <ToggleControl
-            label={__('Anchor', 'eightshift-boilerplate')}
-            checked={isAnchor}
-            onChange={onChangeIsAnchor}
-            help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
-            />
-      }
+			{onChangeIsAnchor &&
+				<ToggleControl
+					label={__('Anchor', 'eightshift-boilerplate')}
+					checked={isAnchor}
+					onChange={onChangeIsAnchor}
+					help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+				/>
+			}
 
-      {onChangeId &&
-            <TextControl
-            label={__('Button ID', 'eightshift-boilerplate')}
-            value={id}
-            onChange={onChangeId}
-            />
-      }
+			{onChangeId &&
+				<TextControl
+					label={__('Button ID', 'eightshift-boilerplate')}
+					value={id}
+					onChange={onChangeId}
+				/>
+			}
 
-    </Fragment>
-  );
+		</Fragment>
+	);
 };
