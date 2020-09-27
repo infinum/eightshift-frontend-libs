@@ -61,39 +61,37 @@ export const toolbar = () => (
 
 export const styleSize = () => (
 	<Fragment>
-		{paragraphSizes.map(
-			(values, index) => (
-				<Fragment key={index}>
-					<ParagraphEditor
-						{...editorProps}
-						paragraph={{
-							...editorProps.paragraph,
-							content: values.label,
-							styleSize: values.value,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{paragraphSizes.map((values, index) => (
+			<Fragment key={index}>
+				<ParagraphEditor
+					{...editorProps}
+					paragraph={{
+						...editorProps.paragraph,
+						content: values.label,
+						styleSize: values.value,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
 export const styleAlign = () => (
 	<Fragment>
-		{['left', 'center', 'right'].map(
-			(values, index) => (
-				<Fragment key={index}>
-					<ParagraphEditor
-						{...editorProps}
-						paragraph={{
-							...editorProps.paragraph,
-							content: values,
-							styleAlign: values,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{['left', 'center', 'right'].map((values, index) => (
+			<Fragment key={index}>
+				<ParagraphEditor
+					{...editorProps}
+					paragraph={{
+						...editorProps.paragraph,
+						content: values,
+						styleAlign: values,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
@@ -103,20 +101,19 @@ export const styleColor = () => {
 
 	return (
 		<Fragment>
-			{colors.map(
-				(values, index) => (
-					<Fragment key={index}>
-						<ParagraphEditor
-							{...editorProps}
-							paragraph={{
-								...editorProps.paragraph,
-								title: values.name,
-								styleColor: values.slug,
-							}}
-						/>
-						<br />
-					</Fragment>
-				))}
+			{colors.map((values, index) => (
+				<Fragment key={index}>
+					<ParagraphEditor
+						{...editorProps}
+						paragraph={{
+							...editorProps.paragraph,
+							title: values.name,
+							styleColor: values.slug,
+						}}
+					/>
+					<br />
+				</Fragment>
+			))}
 		</Fragment>
 	);
 };

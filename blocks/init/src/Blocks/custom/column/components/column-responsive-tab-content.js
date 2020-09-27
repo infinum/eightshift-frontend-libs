@@ -8,23 +8,23 @@ import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ColumnResponsiveTabContent = (props) => {
-		const {
-			width,
-			onChangeWidth,
-			hide,
-			onChangeHide,
-			offset,
-			onChangeOffset,
-			verticalAlign,
-			onChangeVerticalAlign,
-		} = props;
+	const {
+		width,
+		onChangeWidth,
+		hide,
+		onChangeHide,
+		offset,
+		onChangeOffset,
+		verticalAlign,
+		onChangeVerticalAlign,
+	} = props;
 
-		const widthOptions = {
-			min: -1,
-			max: globalSettings.globalVariables.maxCols,
-			step: 1,
-			initial: globalSettings.globalVariables.maxCols,
-		};
+	const widthOptions = {
+		min: -1,
+		max: globalSettings.globalVariables.maxCols,
+		step: 1,
+		initial: globalSettings.globalVariables.maxCols,
+	};
 
 	return (
 		<Fragment>

@@ -49,20 +49,19 @@ export const options = () => (
 
 export const styleColor = () => (
 	<Fragment>
-		{linkColors().map(
-			(values, index) => (
-				<Fragment key={index}>
-					<LinkEditor
-						{...editorProps}
-						link={{
-							...editorProps.link,
-							title: values.name,
-							styleColor: values.slug,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{linkColors().map((values, index) => (
+			<Fragment key={index}>
+				<LinkEditor
+					{...editorProps}
+					link={{
+						...editorProps.link,
+						title: values.name,
+						styleColor: values.slug,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 

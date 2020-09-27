@@ -10,9 +10,9 @@ export class CarouselSlider {
 	init() {
 		const item = this.element;
 
-		const mySwiper = new Swiper(
+		const mySwiper = new Swiper( // eslint-disable-line no-unused-vars
 			item,
-			{ // eslint-disable-line no-unused-vars
+			{
 				loop: item.getAttribute('data-swiper-loop'),
 				freeMode: item.getAttribute('data-swiper-freeMode'),
 				slidesPerView: 'auto',

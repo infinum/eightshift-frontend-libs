@@ -44,7 +44,7 @@ export const editor = () => (
 	<ButtonEditor
 		{...editorProps}
 	/>
-		);
+);
 
 export const options = () => (
 	<ButtonOptions
@@ -54,60 +54,57 @@ export const options = () => (
 
 export const styleSize = () => (
 	<Fragment>
-		{buttonSizes.map(
-			(values, index) => (
-				<Fragment key={index}>
-					<ButtonEditor
-						{...editorProps}
-						button={{
-							...editorProps.button,
-							title: values.label,
-							styleSize: values.value,
-						}}
-					/>
-					<br />
-					<br />
-				</Fragment>
-			))}
+		{buttonSizes.map((values, index) => (
+			<Fragment key={index}>
+				<ButtonEditor
+					{...editorProps}
+					button={{
+						...editorProps.button,
+						title: values.label,
+						styleSize: values.value,
+					}}
+				/>
+				<br />
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
 export const styleWidth = () => (
 	<Fragment>
-		{buttonSizeWidths.map(
-			(values, index) => (
-				<Fragment key={index}>
-					<ButtonEditor
-						{...editorProps}
-						button={{
-							...editorProps.button,
-							title: values.label,
-							styleSizeWidth: values.value,
-						}}
-					/>
-					<br />
-					<br />
-				</Fragment>
-			))}
+		{buttonSizeWidths.map((values, index) => (
+			<Fragment key={index}>
+				<ButtonEditor
+					{...editorProps}
+					button={{
+						...editorProps.button,
+						title: values.label,
+						styleSizeWidth: values.value,
+					}}
+				/>
+				<br />
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
 export const styleColor = () => (
 	<Fragment>
-		{buttonColors().map(
-			(values, index) => (
-				<Fragment key={index}>
-					<ButtonEditor
-						{...editorProps}
-						button={{
-							...editorProps.button,
-							title: values.name,
-							styleColor: values.slug,
-						}}
-					/>
-					<br />
-					<br />
-				</Fragment>
-			))}
+		{buttonColors().map((values, index) => (
+			<Fragment key={index}>
+				<ButtonEditor
+					{...editorProps}
+					button={{
+						...editorProps.button,
+						title: values.name,
+						styleColor: values.slug,
+					}}
+				/>
+				<br />
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );

@@ -61,58 +61,55 @@ export const toolbar = () => (
 
 export const styleSize = () => (
 	<Fragment>
-		{headingSizes.map(
-			(values, index) => (
-				<Fragment key={index}>
-					<HeadingEditor
-						{...editorProps}
-						heading={{
-							...editorProps.heading,
-							content: values.label,
-							styleSize: values.value,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{headingSizes.map((values, index) => (
+			<Fragment key={index}>
+				<HeadingEditor
+					{...editorProps}
+					heading={{
+						...editorProps.heading,
+						content: values.label,
+						styleSize: values.value,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
 export const level = () => (
 	<Fragment>
-		{Array.from({ length: 6 }, (x, i) => i + 1).map(
-			(values, index) => (
-				<Fragment key={index}>
-					<HeadingEditor
-						{...editorProps}
-						heading={{
-							...editorProps.heading,
-							content: `H - ${values.toString()}`,
-							level: values,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{Array.from({ length: 6 }, (x, i) => i + 1).map((values, index) => (
+			<Fragment key={index}>
+				<HeadingEditor
+					{...editorProps}
+					heading={{
+						...editorProps.heading,
+						content: `H - ${values.toString()}`,
+						level: values,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
 export const styleAlign = () => (
 	<Fragment>
-		{['left', 'center', 'right'].map(
-			(values, index) => (
-				<Fragment key={index}>
-					<HeadingEditor
-						{...editorProps}
-						heading={{
-							...editorProps.heading,
-							content: values,
-							styleAlign: values,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
+		{['left', 'center', 'right'].map((values, index) => (
+			<Fragment key={index}>
+				<HeadingEditor
+					{...editorProps}
+					heading={{
+						...editorProps.heading,
+						content: values,
+						styleAlign: values,
+					}}
+				/>
+				<br />
+			</Fragment>
+		))}
 	</Fragment>
 );
 
@@ -121,20 +118,19 @@ export const styleColor = () => {
 
 	return (
 		<Fragment>
-			{colors.map(
-				(values, index) => (
-					<Fragment key={index}>
-						<HeadingEditor
-							{...editorProps}
-							heading={{
-								...editorProps.heading,
-								title: values.name,
-								styleColor: values.slug,
-							}}
-						/>
-						<br />
-					</Fragment>
-				))}
+			{colors.map((values, index) => (
+				<Fragment key={index}>
+					<HeadingEditor
+						{...editorProps}
+						heading={{
+							...editorProps.heading,
+							title: values.name,
+							styleColor: values.slug,
+						}}
+					/>
+					<br />
+				</Fragment>
+			))}
 		</Fragment>
 	);
 };

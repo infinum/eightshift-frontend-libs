@@ -20,7 +20,7 @@ Components::render( 'page-overlay' ) );
 // or
 
 Components::render( 'page-overlay', [
-  'blockClass' => 'page-overlay page-overlay--modifier',
+	'blockClass' => 'page-overlay page-overlay--modifier',
 ] );
 ```
 

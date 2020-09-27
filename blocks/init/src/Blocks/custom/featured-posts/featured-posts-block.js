@@ -32,10 +32,9 @@ export const FeaturedPosts = (props) => {
 		},
 
 		onChangePost: (postNames) => {
-			const selectedPosts = [...posts, ...postResults].filter(
-				(postResultsItem) => {
-					return postNames.includes(postResultsItem.title.rendered);
-				});
+			const selectedPosts = [...posts, ...postResults].filter((postResultsItem) => {
+				return postNames.includes(postResultsItem.title.rendered);
+			});
 
 			setAttributes({
 				postNames,
