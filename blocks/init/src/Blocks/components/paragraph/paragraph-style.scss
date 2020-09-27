@@ -1,39 +1,39 @@
 $paragraph: (
-  sizes: (
-    mobile: (
-      default: (
-        font-size: 18px,
-        line-height: 1.56,
-      ),
-      small: (
-        font-size: 14px,
-        line-height: 1,
-      ),
-    ),
-    large: (
-      default: (
-        font-size: 22px,
-      ),
-      small: (
-        font-size: 18px,
-      ),
-    ),
-  ),
-  colors: global-settings(colors),
+	sizes: (
+		mobile: (
+			default: (
+				font-size: 18px,
+				line-height: 1.56,
+			),
+			small: (
+				font-size: 14px,
+				line-height: 1,
+			),
+		),
+		large: (
+			default: (
+				font-size: 22px,
+			),
+			small: (
+				font-size: 18px,
+			),
+		),
+	),
+	colors: global-settings(colors),
 );
 
 .paragraph {
-  @extend %paragraph-reset;
+	@extend %paragraph-reset;
 
-  &__color {
-    @include modifiers-deep($paragraph, colors, color);
-  }
+	&__color {
+		@include modifiers-deep($paragraph, colors, color);
+	}
 
-  &__size {
-    @include responsive-modifiers($paragraph, sizes);
-  }
+	&__size {
+		@include responsive-modifiers($paragraph, sizes);
+	}
 
-  &__align {
-    @include text-align-modifiers;
-  }
+	&__align {
+		@include text-align-modifiers;
+	}
 }

@@ -31,11 +31,11 @@ $videoClass = Components::classnames(
 ?>
 
 <div class="<?php echo esc_attr($videoClass); ?>">
-  <iframe
+	<iframe
 	class="<?php echo esc_attr("{$componentClass}__iframe"); ?>"
 	src="<?php echo esc_url($url); ?><?php echo esc_attr($id); ?>"
 	frameBorder="0"
 	allow="autoplay; fullscreen"
 	allowFullScreen
-  ></iframe>
+	></iframe>
 </div>

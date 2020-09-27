@@ -39,5 +39,5 @@ $paragraphClass = Components::classnames(
 ?>
 
 <p class="<?php echo esc_attr($paragraphClass); ?>">
-  <?php echo wp_kses_post($content); ?>
+	<?php echo wp_kses_post($content); ?>
 </p>

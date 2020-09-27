@@ -3,21 +3,21 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 
 export const ParagraphToolbar = (props) => {
-    const {
-        paragraph: {
-            styleAlign,
-        },
-        onChangeStyleAlign,
-    } = props;
+	const {
+		paragraph: {
+			styleAlign,
+		},
+		onChangeStyleAlign,
+	} = props;
 
-    return (
-    <Fragment>
-      {onChangeStyleAlign &&
-            <AlignmentToolbar
-            value={styleAlign}
-            onChange={onChangeStyleAlign}
-            />
-      }
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			{onChangeStyleAlign &&
+				<AlignmentToolbar
+					value={styleAlign}
+					onChange={onChangeStyleAlign}
+				/>
+			}
+		</Fragment>
+	);
 };

@@ -1,22 +1,22 @@
 $video-iframe-vars: (
-  ratio: (
-    default: 56.25% 0 0 0,
-    twentyone-nine: 42.25% 0 0 0,
-  ),
+	ratio: (
+		default: 56.25% 0 0 0,
+		twentyone-nine: 42.25% 0 0 0,
+	),
 );
 
 .video-iframe {
-  position: relative;
+	position: relative;
 
-  &__video-ratio {
-    @include modifiers-deep($video-iframe-vars, ratio, padding);
-  }
+	&__video-ratio {
+		@include modifiers-deep($video-iframe-vars, ratio, padding);
+	}
 
-  &__iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+	&__iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 }

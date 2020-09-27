@@ -9,5 +9,5 @@
 ?>
 
 <a href='#' class='js-scroll-to-top'>
-  <?php esc_html_e('To Top', 'eightshift-boilerplate'); ?>
+	<?php esc_html_e('To Top', 'eightshift-boilerplate'); ?>
 </a>

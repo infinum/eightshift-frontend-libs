@@ -23,11 +23,11 @@ $blockClass = $attributes['blockClass'] ?? '';
 ?>
 
 <video
-  src="<?php echo esc_url($url); ?>"
-  class="<?php echo esc_attr("video {$blockClass}__video"); ?>"
-  autoplay
-  loop
-  muted
-  playsinline
-  preload="metadata">
+	src="<?php echo esc_url($url); ?>"
+	class="<?php echo esc_attr("video {$blockClass}__video"); ?>"
+	autoplay
+	loop
+	muted
+	playsinline
+	preload="metadata">
 </video>
