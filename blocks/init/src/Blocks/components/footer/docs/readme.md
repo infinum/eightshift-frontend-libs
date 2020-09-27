@@ -25,9 +25,9 @@ components/menu
 use Eightshift_Libs\Helpers\Components;
 
 Components::render( 'footer', [
-  'leftComponent' => Components::render( 'copyright' ),
-  'centerComponent' => '',
-  'rightComponent' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
+	'leftComponent' => Components::render( 'copyright' ),
+	'centerComponent' => '',
+	'rightComponent' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
 ] );
 ```
 

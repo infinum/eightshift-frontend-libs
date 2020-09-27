@@ -26,9 +26,9 @@ Components::render( 'menu', [ 'variation' => 'horizontal' ] ) );
 // or
 
 Components::render( 'menu', [
-  'menu' => 'alternative_menu_name',
-  'variation' => 'vertical',
-  'modifier' => 'bem-modifier',
+	'menu' => 'alternative_menu_name',
+	'variation' => 'vertical',
+	'modifier' => 'bem-modifier',
 ] );
 ```
 

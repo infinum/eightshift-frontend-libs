@@ -20,7 +20,7 @@ Components::render( 'hamburger' );
 // or
 
 Components::render( 'hamburger', [
-  'blockClass' => 'hamburger hamburger--modifier'
+	'blockClass' => 'hamburger hamburger--modifier'
 ] );
 ```
 

@@ -6,46 +6,46 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon } from '@wordpress/components';
 
 export const headingSizes = [
-  { label: __('Default (115px)', 'eightshift-boilerplate'), value: 'default' },
-  { label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
+	{ label: __('Default (115px)', 'eightshift-boilerplate'), value: 'default' },
+	{ label: __('Big (90px)', 'eightshift-boilerplate'), value: 'big' },
 ];
 
 export const HeadingOptions = (props) => {
-    const {
-        heading: {
-            styleColor,
-            styleSize,
-        },
-        onChangeStyleColor,
-        onChangeStyleSize,
-    } = props;
+	const {
+		heading: {
+			styleColor,
+			styleSize,
+		},
+		onChangeStyleColor,
+		onChangeStyleSize,
+	} = props;
 
-    return (
-    <Fragment>
+	return (
+		<Fragment>
 
-      {onChangeStyleColor &&
-            <ColorPaletteCustom
-            label={
-                <Fragment>
-                <Icon icon={icons.color} />
-                {__('Heading Color', 'eightshift-boilerplate')}
-                </Fragment>
-            }
-            help={__('Change Heading color', 'eightshift-boilerplate')}
-            value={styleColor}
-            onChange={onChangeStyleColor}
-            />
-      }
+			{onChangeStyleColor &&
+				<ColorPaletteCustom
+					label={
+						<Fragment>
+							<Icon icon={icons.color} />
+							{__('Heading Color', 'eightshift-boilerplate')}
+						</Fragment>
+					}
+					help={__('Change Heading color', 'eightshift-boilerplate')}
+					value={styleColor}
+					onChange={onChangeStyleColor}
+				/>
+			}
 
-      {onChangeStyleSize &&
-            <SelectControl
-            label={__('Heading Size', 'eightshift-boilerplate')}
-            value={styleSize}
-            options={headingSizes}
-            onChange={onChangeStyleSize}
-            />
-      }
+			{onChangeStyleSize &&
+				<SelectControl
+					label={__('Heading Size', 'eightshift-boilerplate')}
+					value={styleSize}
+					options={headingSizes}
+					onChange={onChangeStyleSize}
+				/>
+			}
 
-    </Fragment>
-  );
+		</Fragment>
+	);
 };

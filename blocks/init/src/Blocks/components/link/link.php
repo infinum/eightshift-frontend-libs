@@ -28,18 +28,18 @@ $styleColor     = isset($link['styleColor']) ? "{$componentClass}__color--{$link
 $isAnchor       = $isAnchor ? 'js-scroll-to-anchor' : '';
 
 $linkClass = "
-  {$componentClass}
-  {$styleColor}
-  {$isAnchor}
-  {$blockClass}__link
+	{$componentClass}
+	{$styleColor}
+	{$isAnchor}
+	{$blockClass}__link
 ";
 ?>
 
 <a
-  href="<?php echo esc_url($url); ?>"
-  class="<?php echo esc_attr($linkClass); ?>"
-  title="<?php echo esc_attr($title); ?>"
-  id="<?php echo esc_attr($id); ?>"
+	href="<?php echo esc_url($url); ?>"
+	class="<?php echo esc_attr($linkClass); ?>"
+	title="<?php echo esc_attr($title); ?>"
+	id="<?php echo esc_attr($id); ?>"
 >
-  <?php echo esc_html($title); ?>
+	<?php echo esc_html($title); ?>
 </a>

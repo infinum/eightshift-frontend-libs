@@ -22,7 +22,7 @@ Components::render( 'copyright' );
 // or... 
 
 Components::render( 'copyright', [
-  'by' => 'Your site name',
+	'by' => 'Your site name',
 ] );
 ```
 

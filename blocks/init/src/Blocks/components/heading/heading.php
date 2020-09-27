@@ -27,15 +27,15 @@ $styleColor     = isset($heading['styleColor']) ? "{$componentClass}__color--{$h
 $styleSize      = isset($heading['styleSize']) ? "{$componentClass}__size--{$heading['styleSize']}" : '';
 
 $headingClass = "
-  {$componentClass}
-  {$styleAlign}
-  {$styleColor}
-  {$styleSize}
-  {$blockClass}__heading
+	{$componentClass}
+	{$styleAlign}
+	{$styleColor}
+	{$styleSize}
+	{$blockClass}__heading
 ";
 
 ?>
 
 <<?php echo esc_attr($level); ?> class="<?php echo esc_attr($headingClass); ?>">
-  <?php echo wp_kses_post($content); ?>
+	<?php echo wp_kses_post($content); ?>
 </<?php echo esc_attr($level); ?>>

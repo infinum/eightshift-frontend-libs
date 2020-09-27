@@ -25,10 +25,10 @@ Components::render( 'logo' )
 // or
 
 Components::render( 'logo', [
-  'blockClass' => 'logo logo--modifier',
-  'src' => 'http://your-site/your-logo.jpg',
-  'alt' => 'Some alternative alt tag',
-  'href' => 'http://your-alternative-link.com',
+	'blockClass' => 'logo logo--modifier',
+	'src' => 'http://your-site/your-logo.jpg',
+	'alt' => 'Some alternative alt tag',
+	'href' => 'http://your-alternative-link.com',
 ] );
 ```
 

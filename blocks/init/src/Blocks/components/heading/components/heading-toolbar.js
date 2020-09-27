@@ -4,31 +4,31 @@ import { Fragment } from '@wordpress/element';
 import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
 
 export const HeadingToolbar = (props) => {
-    const {
-        heading: {
-            level,
-            styleAlign,
-        },
-        onChangeLevel,
-        onChangeStyleAlign,
-    } = props;
+	const {
+		heading: {
+			level,
+			styleAlign,
+		},
+		onChangeLevel,
+		onChangeStyleAlign,
+	} = props;
 
-    return (
-    <Fragment>
-      {onChangeLevel &&
-            <HeadingLevel
-            selectedLevel={level}
-            onChange={onChangeLevel}
-            />
-      }
+	return (
+		<Fragment>
+			{onChangeLevel &&
+				<HeadingLevel
+					selectedLevel={level}
+					onChange={onChangeLevel}
+				/>
+			}
 
-      {onChangeStyleAlign &&
-            <AlignmentToolbar
-            value={styleAlign}
-            onChange={onChangeStyleAlign}
-            />
-      }
+			{onChangeStyleAlign &&
+				<AlignmentToolbar
+					value={styleAlign}
+					onChange={onChangeStyleAlign}
+				/>
+			}
 
-    </Fragment>
-  );
+		</Fragment>
+	);
 };

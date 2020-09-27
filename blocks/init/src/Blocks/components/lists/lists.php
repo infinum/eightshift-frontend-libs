@@ -24,8 +24,8 @@ $componentClass = 'lists';
 $blockClass     = $attributes['blockClass'] ?? '';
 
 $listsClass = "
-  {$componentClass}
-  {$blockClass}__lists
+	{$componentClass}
+	{$blockClass}__lists
 ";
 
 ?>

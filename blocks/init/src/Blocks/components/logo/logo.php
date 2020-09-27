@@ -15,12 +15,12 @@ $href        = $attributes['href'] ?? get_bloginfo('url');
 
 ?>
 <a
-  class="<?php echo esc_attr($blockClass); ?>"
-  href="<?php echo esc_url($href); ?>"
+	class="<?php echo esc_attr($blockClass); ?>"
+	href="<?php echo esc_url($href); ?>"
 >
-  <img
+	<img
 	src="<?php echo esc_url($src); ?>"
 	alt="<?php echo esc_attr($alt); ?>"
 	class="<?php echo esc_attr("{$blockClass}__img"); ?>"
-  />
+	/>
 </a>

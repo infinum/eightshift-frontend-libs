@@ -27,17 +27,17 @@ components/drawer
 use Eightshift_Libs\Helpers\Components;
 
 Components::render( 'header', [
-  'leftComponent' => [
-    Components::render( 'hamburger' ),
-    Components::render( 'drawer', [
-      'trigger' => 'js-hamburger',
-      'overlay' => 'js-page-overlay',
-      'drawerPosition' => 'left',
-      'menu' => Components::render( 'menu', [ 'variation' => 'vertical' ] ),
-    ] ),
-  ],
-  'centerComponent' => Components::render( 'logo' ),
-  'rightComponent' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
+	'leftComponent' => [
+		Components::render( 'hamburger' ),
+		Components::render( 'drawer', [
+			'trigger' => 'js-hamburger',
+			'overlay' => 'js-page-overlay',
+			'drawerPosition' => 'left',
+			'menu' => Components::render( 'menu', [ 'variation' => 'vertical' ] ),
+		] ),
+	],
+	'centerComponent' => Components::render( 'logo' ),
+	'rightComponent' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
 ] )
 ```
 
