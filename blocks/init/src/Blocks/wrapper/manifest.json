@@ -1,115 +1,115 @@
 {
-  "attributes": {
-    "wrapperId": {
-      "type": "string"
-    },
-    "wrapperBackgroundColor": {
-      "type": "string",
-      "default": "white"
-    },
-    "wrapperUse": {
-      "type": "bool",
-      "default": true
-    },
-    "wrapperUseShowControl": {
-      "type": "bool",
-      "default": true
-    },
-    "wrapperUseSimple": {
-      "type": "bool",
-      "default": false
-    },
-    "wrapperUseSimpleShowControl": {
-      "type": "bool",
-      "default": true
-    },
-    "wrapperDisable": {
-      "type": "bool",
-      "default": false
-    },
-    "wrapperWidth": {
-      "type": "object",
-      "default": {
-        "large": 12,
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperOffset": {
-      "type": "object",
-      "default": {
-        "large": "",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperContainerWidth": {
-      "type": "object",
-      "default": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperGutter": {
-      "type": "object",
-      "default": {
-        "large": "default",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperSpacingTop": {
-      "type": "object",
-      "default": {
-        "large": "",
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperSpacingBottom": {
-      "type": "object",
-      "default": {
-        "large": 40,
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    },
-    "wrapperHideBlock": {
-      "type": "object",
-      "default": {
-        "large": false,
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      },
-      "items": {
-        "type": "object"
-      }
-    }
-  }
+	"attributes": {
+		"wrapperId": {
+			"type": "string"
+		},
+		"wrapperBackgroundColor": {
+			"type": "string",
+			"default": "white"
+		},
+		"wrapperUse": {
+			"type": "bool",
+			"default": true
+		},
+		"wrapperUseShowControl": {
+			"type": "bool",
+			"default": true
+		},
+		"wrapperUseSimple": {
+			"type": "bool",
+			"default": false
+		},
+		"wrapperUseSimpleShowControl": {
+			"type": "bool",
+			"default": true
+		},
+		"wrapperDisable": {
+			"type": "bool",
+			"default": false
+		},
+		"wrapperWidth": {
+			"type": "object",
+			"default": {
+				"large": 12,
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperOffset": {
+			"type": "object",
+			"default": {
+				"large": "",
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperContainerWidth": {
+			"type": "object",
+			"default": {
+				"large": "default",
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperGutter": {
+			"type": "object",
+			"default": {
+				"large": "default",
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperSpacingTop": {
+			"type": "object",
+			"default": {
+				"large": "",
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperSpacingBottom": {
+			"type": "object",
+			"default": {
+				"large": 40,
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"wrapperHideBlock": {
+			"type": "object",
+			"default": {
+				"large": false,
+				"desktop": "",
+				"tablet": "",
+				"mobile": ""
+			},
+			"items": {
+				"type": "object"
+			}
+		}
+	}
 }

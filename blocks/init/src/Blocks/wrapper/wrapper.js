@@ -9,28 +9,28 @@ import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';
 
 export const Wrapper = (props) => {
-    const {
-        props: {
-            attributes,
-        },
-        children,
-    } = props;
+	const {
+		props: {
+			attributes,
+		},
+		children,
+	} = props;
 
-    const actions = getActions(props.props, manifest);
+	const actions = getActions(props.props, manifest);
 
-    return (
-    <Fragment>
-      <InspectorControls>
-        <WrapperOptions
-          attributes={attributes}
-          actions={actions}
-        />
-      </InspectorControls>
+	return (
+		<Fragment>
+			<InspectorControls>
+				<WrapperOptions
+					attributes={attributes}
+					actions={actions}
+				/>
+			</InspectorControls>
 
-      <WrapperEditor
-        children={children}
-        attributes={attributes}
-      />
-    </Fragment>
-  );
+			<WrapperEditor
+				children={children}
+				attributes={attributes}
+			/>
+		</Fragment>
+	);
 };

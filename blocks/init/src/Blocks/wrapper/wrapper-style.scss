@@ -1,74 +1,74 @@
 $wrapper: (
-  background-colors: global-settings(colors),
-  spacing: global-settings(sectionSpacing),
-  containers: global-settings(containers),
-  gutter: global-settings(gutters),
+	background-colors: global-settings(colors),
+	spacing: global-settings(sectionSpacing),
+	containers: global-settings(containers),
+	gutter: global-settings(gutters),
 );
 
 .wrapper {
-  $this: &;
+	$this: &;
 
-  &__bg-color {
-    @include modifiers-deep($wrapper, background-colors, background-color);
-  }
+	&__bg-color {
+		@include modifiers-deep($wrapper, background-colors, background-color);
+	}
 
-  &__spacing-top {
-    @include responsive-selectors {
-      @include modifiers-range($wrapper, spacing, padding-top);
-    }
-  }
+	&__spacing-top {
+		@include responsive-selectors {
+			@include modifiers-range($wrapper, spacing, padding-top);
+		}
+	}
 
-  &__spacing-bottom {
-    @include responsive-selectors {
-      @include modifiers-range($wrapper, spacing, padding-bottom);
-    }
-  }
+	&__spacing-bottom {
+		@include responsive-selectors {
+			@include modifiers-range($wrapper, spacing, padding-bottom);
+		}
+	}
 
-  &__hide-block {
-    @include responsive-visibility-selectors {
-      display: none;
-    }
-  }
+	&__hide-block {
+		@include responsive-visibility-selectors {
+			display: none;
+		}
+	}
 
-  // Container Div.
-  &__container {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-  }
+	// Container Div.
+	&__container {
+		margin: 0 auto;
+		width: 100%;
+		display: flex;
+	}
 
-  &__container-width {
-    @include responsive-selectors {
-      @include modifiers-deep($wrapper, containers, max-width);
-    }
-  }
+	&__container-width {
+		@include responsive-selectors {
+			@include modifiers-deep($wrapper, containers, max-width);
+		}
+	}
 
-  &__gutter {
-    @include responsive-selectors {
-      @include modifiers-deep($wrapper, gutter, padding-left);
-      @include modifiers-deep($wrapper, gutter, padding-right);
-    }
-  }
+	&__gutter {
+		@include responsive-selectors {
+			@include modifiers-deep($wrapper, gutter, padding-left);
+			@include modifiers-deep($wrapper, gutter, padding-right);
+		}
+	}
 
-  // Inner Container Div.
-  &__inner {
-    @include flex-grid-width;
-  }
+	// Inner Container Div.
+	&__inner {
+		@include flex-grid-width;
+	}
 
-  &__width {
-    @include responsive-selectors {
-      @include flex-grid-width-modifiers;
-    }
-  }
+	&__width {
+		@include responsive-selectors {
+			@include flex-grid-width-modifiers;
+		}
+	}
 
-  // Content Offset.
-  &__offset {
-    @include responsive-selectors {
-      &--0 {
-        margin-left: 0;
-      }
+	// Content Offset.
+	&__offset {
+		@include responsive-selectors {
+			&--0 {
+				margin-left: 0;
+			}
 
-      @include grid-offset-modifiers;
-    }
-  }
+			@include grid-offset-modifiers;
+		}
+	}
 }
