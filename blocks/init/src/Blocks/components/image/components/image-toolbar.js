@@ -1,33 +1,33 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '../../../custom/jumbotron/components/node_modules/@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 
 export const ImageToolbar = (props) => {
-  const {
-    media: {
-      url,
-    },
-    onChangeMedia,
-  } = props;
+    const {
+        media: {
+            url,
+        },
+        onChangeMedia,
+    } = props;
 
-  const removeMedia = () => {
-    onChangeMedia({});
-  };
+    const removeMedia = () => {
+        onChangeMedia({});
+    };
 
-  return (
+    return (
     <Fragment>
       {url &&
-        <ToolbarGroup
-          controls={[
-            {
-              icon: 'trash',
-              title: __('Remove image', 'eightshift-boilerplate'),
-              isActive: false,
-              onClick: removeMedia,
-            },
-          ]}
-        />
+            <ToolbarGroup
+            controls={[
+                {
+                    icon: 'trash',
+                    title: __('Remove image', 'eightshift-boilerplate'),
+                    isActive: false,
+                    onClick: removeMedia,
+                },
+                ]}
+            />
       }
     </Fragment>
   );

@@ -20,43 +20,43 @@ export const columsVerticalSpacing = [
 ];
 
 export const ColumnsResponsiveTabContent = (props) => {
-  const {
-    gutter,
-    onChangeGutter,
-    verticalSpacing,
-    onChangeVerticalSpacing,
-  } = props;
+    const {
+        gutter,
+        onChangeGutter,
+        verticalSpacing,
+        onChangeVerticalSpacing,
+    } = props;
 
-  return (
+    return (
     <Fragment>
       {onChangeGutter &&
-        <SelectControl
-          label={
-            <Fragment>
-              <Icon icon={icons.containerWidth} />
-              {__('Gutter', 'eightshift-boilerplate')}
-            </Fragment>
-          }
-          help={__('Option to change gutter (left and right).', 'eightshift-boilerplate')}
-          value={gutter}
-          options={columnsGutter}
-          onChange={onChangeGutter}
-        />
+            <SelectControl
+            label={
+                <Fragment>
+                <Icon icon={icons.containerWidth} />
+                {__('Gutter', 'eightshift-boilerplate')}
+                </Fragment>
+            }
+            help={__('Option to change gutter (left and right).', 'eightshift-boilerplate')}
+            value={gutter}
+            options={columnsGutter}
+            onChange={onChangeGutter}
+            />
       }
 
       {onChangeVerticalSpacing &&
-        <SelectControl
-          label={
-            <Fragment>
-              <Icon icon={icons.containerHeight} />
-              {__('Vertical Spacing', 'eightshift-boilerplate')}
-            </Fragment>
-          }
-          help={__('Option to change vertical spacing (top and bottom).', 'eightshift-boilerplate')}
-          value={verticalSpacing}
-          options={columsVerticalSpacing}
-          onChange={onChangeVerticalSpacing}
-        />
+            <SelectControl
+            label={
+                <Fragment>
+                <Icon icon={icons.containerHeight} />
+                {__('Vertical Spacing', 'eightshift-boilerplate')}
+                </Fragment>
+            }
+            help={__('Option to change vertical spacing (top and bottom).', 'eightshift-boilerplate')}
+            value={verticalSpacing}
+            options={columsVerticalSpacing}
+            onChange={onChangeVerticalSpacing}
+            />
       }
     </Fragment>
   );

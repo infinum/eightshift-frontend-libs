@@ -9,13 +9,13 @@ import { ColumnsOptions } from './components/columns-options';
 import { ColumnsEditor } from './components/columns-editor';
 
 export const Columns = (props) => {
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <ColumnsOptions

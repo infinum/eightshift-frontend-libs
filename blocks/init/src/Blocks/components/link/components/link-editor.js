@@ -4,24 +4,24 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
 export const LinkEditor = (props) => {
-  const {
-    link: {
-      title,
-      url,
-      styleColor,
-    },
-    blockClass,
-    onChangeTitle,
-  } = props;
+    const {
+        link: {
+            title,
+            url,
+            styleColor,
+        },
+        blockClass,
+        onChangeTitle,
+    } = props;
 
-  const componentClass = 'link';
+    const componentClass = 'link';
 
-  const linkClass = classnames(
-    componentClass,
-    `${componentClass}__color--${styleColor}`,
-    `${blockClass}__link`,
-    !(title && url) ? `${componentClass}__placeholder` : '',
-  );
+    const linkClass = classnames(
+        componentClass,
+        `${componentClass}__color--${styleColor}`,
+        `${blockClass}__link`,
+        !(title && url) ? `${componentClass}__placeholder` : '',
+);
 
   return (
     <RichText

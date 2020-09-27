@@ -5,106 +5,112 @@ import { ButtonEditor } from '../components/button-editor';
 import { ButtonOptions, buttonSizes, buttonSizeWidths, buttonColors } from '../components/button-options';
 
 export default {
-  title: 'Components|Button',
-  parameters: {
-    notes: readme,
-  },
-};
+    title: 'Components|Button',
+        parameters: {
+            notes: readme,
+    },
+    };
 
-const editorProps = {
-  blockClass: 'block-button',
-  button: {
-    title: 'Button Title',
-    url: 'https://fakeurl.com',
-    styleSize: 'default',
-    styleColor: 'primary',
-    styleSizeWidth: 'default',
-  },
-  onChangeTitle: () => {},
-};
+    const editorProps = {
+        blockClass: 'block-button',
+        button: {
+            title: 'Button Title',
+            url: 'https://fakeurl.com',
+            styleSize: 'default',
+            styleColor: 'primary',
+            styleSizeWidth: 'default',
+        },
+        onChangeTitle: () => {},
+    };
 
-const optionsProps = {
-  button: {
-    url: 'https://fakeurl.com',
-    styleSize: 'default',
-    styleColor: 'primary',
-    styleSizeWidth: 'default',
-    isAnchor: false,
-    id: 'ID',
-  },
-  onChangeUrl: () => {},
-  onChangeStyleSize: () => {},
-  onChangeStyleColor: () => {},
-  onChangeStyleSizeWidth: () => {},
-  onChangeId: () => {},
-  onChangeIsAnchor: () => {},
-};
+    const optionsProps = {
+        button: {
+            url: 'https://fakeurl.com',
+            styleSize: 'default',
+            styleColor: 'primary',
+            styleSizeWidth: 'default',
+            isAnchor: false,
+            id: 'ID',
+        },
+        onChangeUrl: () => {},
+        onChangeStyleSize: () => {},
+        onChangeStyleColor: () => {},
+        onChangeStyleSizeWidth: () => {},
+        onChangeId: () => {},
+        onChangeIsAnchor: () => {},
+    };
 
-export const editor = () => (
-  <ButtonEditor
+    export const editor = () => (
+    <ButtonEditor
     {...editorProps}
-  />
-);
+    />
+        );
 
-export const options = () => (
-  <ButtonOptions
-    {...optionsProps}
-  />
-);
-
-export const styleSize = () => (
-  <Fragment>
-    {buttonSizes.map((values, index) => (
-      <Fragment key={index}>
-        <ButtonEditor
-          {...editorProps}
-          button={{
-            ...editorProps.button,
-            title: values.label,
-            styleSize: values.value,
-          }}
+        export const options = () => (
+        <ButtonOptions
+        {...optionsProps}
         />
-        <br />
-        <br />
-      </Fragment>
-    ))}
-  </Fragment>
-);
+        );
 
-export const styleWidth = () => (
-  <Fragment>
-    {buttonSizeWidths.map((values, index) => (
-      <Fragment key={index}>
-        <ButtonEditor
-          {...editorProps}
-          button={{
-            ...editorProps.button,
-            title: values.label,
-            styleSizeWidth: values.value,
-          }}
-        />
-        <br />
-        <br />
-      </Fragment>
-    ))}
-  </Fragment>
-);
+        export const styleSize = () => (
+        <Fragment>
+        {buttonSizes.map(
+            (values, index) => (
+            <Fragment key={index}>
+            <ButtonEditor
+              {...editorProps}
+              button={{
+                    ...editorProps.button,
+                    title: values.label,
+                    styleSize: values.value,
+                    }}
+            />
+            <br />
+            <br />
+            </Fragment>
+            )
+        )}
+        </Fragment>
+        );
 
-export const styleColor = () => (
-  <Fragment>
-    {buttonColors().map((values, index) => (
-      <Fragment key={index}>
-        <ButtonEditor
-          {...editorProps}
-          button={{
-            ...editorProps.button,
-            title: values.name,
-            styleColor: values.slug,
-          }}
-        />
-        <br />
-        <br />
-      </Fragment>
-    ))}
-  </Fragment>
-);
+        export const styleWidth = () => (
+        <Fragment>
+        {buttonSizeWidths.map(
+            (values, index) => (
+            <Fragment key={index}>
+            <ButtonEditor
+              {...editorProps}
+              button={{
+                    ...editorProps.button,
+                    title: values.label,
+                    styleSizeWidth: values.value,
+                    }}
+            />
+            <br />
+            <br />
+            </Fragment>
+            )
+        )}
+        </Fragment>
+        );
+
+        export const styleColor = () => (
+        <Fragment>
+        {buttonColors().map(
+            (values, index) => (
+            <Fragment key={index}>
+            <ButtonEditor
+              {...editorProps}
+              button={{
+                    ...editorProps.button,
+                    title: values.name,
+                    styleColor: values.slug,
+                    }}
+            />
+            <br />
+            <br />
+            </Fragment>
+            )
+        )}
+        </Fragment>
+        );

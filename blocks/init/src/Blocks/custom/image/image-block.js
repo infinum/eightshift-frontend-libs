@@ -8,13 +8,13 @@ import { ImageToolbar } from './components/image-toolbar';
 
 export const Image = (props) => {
 
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <BlockControls>
         <ImageToolbar

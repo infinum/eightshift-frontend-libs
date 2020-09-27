@@ -8,13 +8,13 @@ import { DividerOptions } from './components/divider-options';
 
 export const Divider = (props) => {
 
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <DividerOptions

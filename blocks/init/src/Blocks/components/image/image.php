@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Image Component.
  *
@@ -7,14 +8,14 @@
 
 $media = $attributes['media'] ?? [];
 
-if ( ! $media ) {
-  return;
+if (! $media) {
+	return;
 }
 
 $id = $media['id'] ?? '';
 
-if ( ! $id ) {
-  return;
+if (! $id) {
+	return;
 }
 
 $size = $media['size'] ?? 'large';
@@ -22,12 +23,10 @@ $size = $media['size'] ?? 'large';
 $blockClass = $attributes['blockClass'] ?? '';
 
 $media = \wp_get_attachment_image(
-  $id,
-  $size,
-  '',
-  [ 'class' => "image {$blockClass}__img" ]
+	$id,
+	$size,
+	'',
+	[ 'class' => "image {$blockClass}__img" ]
 );
 
-echo wp_kses_post( $media );
-
-
+echo wp_kses_post($media);

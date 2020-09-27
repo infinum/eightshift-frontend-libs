@@ -4,28 +4,28 @@ import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 
 export const ButtonEditor = (props) => {
-  const {
-    button: {
-      title,
-      url,
-      styleColor,
-      styleSize,
-      styleSizeWidth,
-    },
-    blockClass,
-    onChangeTitle,
-  } = props;
+    const {
+        button: {
+            title,
+            url,
+            styleColor,
+            styleSize,
+            styleSizeWidth,
+        },
+        blockClass,
+        onChangeTitle,
+    } = props;
 
-  const componentClass = 'btn';
+    const componentClass = 'btn';
 
-  const buttonClass = classnames(
-    componentClass,
-    `${componentClass}__size--${styleSize}`,
-    `${componentClass}__color--${styleColor}`,
-    `${componentClass}__size-width--${styleSizeWidth}`,
-    `${blockClass}__btn`,
-    !(title && url) ? `${componentClass}__placeholder` : '',
-  );
+    const buttonClass = classnames(
+        componentClass,
+        `${componentClass}__size--${styleSize}`,
+        `${componentClass}__color--${styleColor}`,
+        `${componentClass}__size-width--${styleSizeWidth}`,
+        `${blockClass}__btn`,
+        !(title && url) ? `${componentClass}__placeholder` : '',
+);
 
   return (
     <RichText

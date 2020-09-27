@@ -4,7 +4,6 @@
  * You would load helpers, scripts, styles for admin here.
  *
  * Usage: `WordPress admin screen`.
- *
  */
 
 // Load Styles

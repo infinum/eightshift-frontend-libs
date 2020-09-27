@@ -4,30 +4,30 @@ import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 
 export const VideoToolbar = (props) => {
-  const {
-    media: {
-      url,
-    },
-    onChangeMedia,
-  } = props;
+    const {
+        media: {
+            url,
+        },
+        onChangeMedia,
+    } = props;
 
-  const removeMedia = () => {
-    onChangeMedia({});
-  };
+    const removeMedia = () => {
+        onChangeMedia({});
+    };
 
-  return (
+    return (
     <Fragment>
       {url &&
-        <ToolbarGroup
-          controls={[
-            {
-              icon: 'trash',
-              title: __('Remove video', 'eightshift-boilerplate'),
-              isActive: false,
-              onClick: removeMedia,
-            },
-          ]}
-        />
+            <ToolbarGroup
+            controls={[
+                {
+                    icon: 'trash',
+                    title: __('Remove video', 'eightshift-boilerplate'),
+                    isActive: false,
+                    onClick: removeMedia,
+                },
+                ]}
+            />
       }
     </Fragment>
   );

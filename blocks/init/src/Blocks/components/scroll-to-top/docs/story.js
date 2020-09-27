@@ -3,12 +3,12 @@ import readme from './readme.md';
 import { ScrollToTopEditor } from '../components/scroll-to-top-editor';
 
 export default {
-  title: 'Components|Scroll To Top',
-  parameters: {
-    notes: readme,
-  },
-};
+    title: 'Components|Scroll To Top',
+        parameters: {
+            notes: readme,
+    },
+    };
 
-export const component = () => (
-  <ScrollToTopEditor />
-);
+    export const component = () => (
+    <ScrollToTopEditor />
+        );

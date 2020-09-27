@@ -3,17 +3,17 @@ import classnames from 'classnames';
 
 export const CarouselNavigation = () => {
 
-  const componentClass = 'carousel-navigation';
+    const componentClass = 'carousel-navigation';
 
-  const arrowItemPrevClass = classnames(
-    `${componentClass}__arrow-item`,
-    `${componentClass}__arrow-item--prev`,
-  );
+    const arrowItemPrevClass = classnames(
+        `${componentClass}__arrow-item`,
+        `${componentClass}__arrow-item--prev`,
+);
 
-  const arrowItemNextClass = classnames(
+const arrowItemNextClass = classnames(
     `${componentClass}__arrow-item`,
     `${componentClass}__arrow-item--next`,
-  );
+);
 
   const arrowIconClass = classnames(`${componentClass}__arrow-icon`);
 

@@ -9,8 +9,6 @@
  * `src/blocks/custom/block_name/block_name.js`.
  *
  * Usage: `WordPress admin editor`.
- *
- 
  */
 
 import { registerBlocks, registerVariations } from '@eightshift/frontend-libs/scripts/editor';
@@ -20,19 +18,19 @@ import globalSettings from '../../manifest.json';
 import { hooks } from '../../wrapper/wrapper-hooks';
 
 registerBlocks(
-  globalSettings,
-  Wrapper,
-  WrapperManifest,
-  require.context('./../../custom', true, /manifest.json$/),
-  require.context('./../../custom', true, /-block.js$/),
-  require.context('./../../custom', true, /-hooks.js$/),
-  require.context('./../../custom', true, /-transforms.js$/),
+    globalSettings,
+    Wrapper,
+    WrapperManifest,
+    require.context('./../../custom', true, /manifest.json$/),
+    require.context('./../../custom', true, /-block.js$/),
+    require.context('./../../custom', true, /-hooks.js$/),
+    require.context('./../../custom', true, /-transforms.js$/),
 );
 
 registerVariations(
-  globalSettings,
-  require.context('./../../variations', true, /manifest.json$/),
-  require.context('./../../variations', true, /-transforms.js$/),
+    globalSettings,
+    require.context('./../../variations', true, /manifest.json$/),
+    require.context('./../../variations', true, /-transforms.js$/),
 );
 
 // Run Wrapper hooks.

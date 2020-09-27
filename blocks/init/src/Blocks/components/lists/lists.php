@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Lists Component.
  *
@@ -7,14 +8,14 @@
 
 $lists = $attributes['lists'] ?? [];
 
-if ( ! $lists ) {
-  return;
+if (! $lists) {
+	return;
 }
 
 $content = $lists['content'] ?? '';
 
-if ( ! $content ) {
-  return;
+if (! $content) {
+	return;
 }
 
 $ordered = $lists['ordered'] ?? 'ul';
@@ -29,6 +30,6 @@ $listsClass = "
 
 ?>
 
-<<?php echo esc_attr( $ordered ); ?> class="<?php echo esc_attr( $listsClass ); ?>">
-    <?php echo wp_kses_post( $content ); ?>
-</<?php echo esc_attr( $ordered ); ?>>
+<<?php echo esc_attr($ordered); ?> class="<?php echo esc_attr($listsClass); ?>">
+	<?php echo wp_kses_post($content); ?>
+</<?php echo esc_attr($ordered); ?>>

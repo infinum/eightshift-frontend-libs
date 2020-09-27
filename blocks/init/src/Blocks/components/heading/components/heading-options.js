@@ -11,39 +11,39 @@ export const headingSizes = [
 ];
 
 export const HeadingOptions = (props) => {
-  const {
-    heading: {
-      styleColor,
-      styleSize,
-    },
-    onChangeStyleColor,
-    onChangeStyleSize,
-  } = props;
+    const {
+        heading: {
+            styleColor,
+            styleSize,
+        },
+        onChangeStyleColor,
+        onChangeStyleSize,
+    } = props;
 
-  return (
+    return (
     <Fragment>
 
       {onChangeStyleColor &&
-        <ColorPaletteCustom
-          label={
-            <Fragment>
-              <Icon icon={icons.color} />
-              {__('Heading Color', 'eightshift-boilerplate')}
-            </Fragment>
-          }
-          help={__('Change Heading color', 'eightshift-boilerplate')}
-          value={styleColor}
-          onChange={onChangeStyleColor}
-        />
+            <ColorPaletteCustom
+            label={
+                <Fragment>
+                <Icon icon={icons.color} />
+                {__('Heading Color', 'eightshift-boilerplate')}
+                </Fragment>
+            }
+            help={__('Change Heading color', 'eightshift-boilerplate')}
+            value={styleColor}
+            onChange={onChangeStyleColor}
+            />
       }
 
       {onChangeStyleSize &&
-        <SelectControl
-          label={__('Heading Size', 'eightshift-boilerplate')}
-          value={styleSize}
-          options={headingSizes}
-          onChange={onChangeStyleSize}
-        />
+            <SelectControl
+            label={__('Heading Size', 'eightshift-boilerplate')}
+            value={styleSize}
+            options={headingSizes}
+            onChange={onChangeStyleSize}
+            />
       }
 
     </Fragment>

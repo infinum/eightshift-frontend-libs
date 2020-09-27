@@ -9,13 +9,13 @@ import { HeadingToolbar } from './components/heading-toolbar';
 
 export const Heading = (props) => {
 
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <HeadingOptions

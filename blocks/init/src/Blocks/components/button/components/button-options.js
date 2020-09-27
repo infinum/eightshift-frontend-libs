@@ -17,94 +17,94 @@ export const buttonSizeWidths = [
 ];
 
 export const buttonColors = () => {
-  const {
-    primary,
-    black,
-  } = getPaletteColors();
+    const {
+        primary,
+        black,
+    } = getPaletteColors();
 
-  return [
+    return [
     primary,
     black,
-  ];
+    ];
 };
 
 export const ButtonOptions = (props) => {
-  const {
-    button: {
-      url,
-      styleSize,
-      styleColor,
-      styleSizeWidth,
-      id,
-      isAnchor,
-    },
-    onChangeUrl,
-    onChangeStyleSize,
-    onChangeStyleColor,
-    onChangeStyleSizeWidth,
-    onChangeId,
-    onChangeIsAnchor,
-  } = props;
+    const {
+        button: {
+            url,
+            styleSize,
+            styleColor,
+            styleSizeWidth,
+            id,
+            isAnchor,
+        },
+        onChangeUrl,
+        onChangeStyleSize,
+        onChangeStyleColor,
+        onChangeStyleSizeWidth,
+        onChangeId,
+        onChangeIsAnchor,
+    } = props;
 
-  return (
+    return (
     <Fragment>
 
       {onChangeUrl &&
-        <URLInput
-          label={__('Button Url', 'eightshift-boilerplate')}
-          value={url}
-          onChange={onChangeUrl}
-        />
+            <URLInput
+            label={__('Button Url', 'eightshift-boilerplate')}
+            value={url}
+            onChange={onChangeUrl}
+            />
       }
 
       {onChangeStyleColor &&
-        <ColorPaletteCustom
-          label={
-            <Fragment>
-              <Icon icon={icons.color} />
-              {__('Button Color', 'eightshift-boilerplate')}
-            </Fragment>
-          }
-          help={__('Change Button Background color.', 'eightshift-boilerplate')}
-          value={styleColor}
-          colors={buttonColors()}
-          onChange={onChangeStyleColor}
-        />
+            <ColorPaletteCustom
+            label={
+                <Fragment>
+                <Icon icon={icons.color} />
+                {__('Button Color', 'eightshift-boilerplate')}
+                </Fragment>
+            }
+            help={__('Change Button Background color.', 'eightshift-boilerplate')}
+            value={styleColor}
+            colors={buttonColors()}
+            onChange={onChangeStyleColor}
+            />
       }
 
       {onChangeStyleSize &&
-        <SelectControl
-          label={__('Button Size', 'eightshift-boilerplate')}
-          value={styleSize}
-          options={buttonSizes}
-          onChange={onChangeStyleSize}
-        />
+            <SelectControl
+            label={__('Button Size', 'eightshift-boilerplate')}
+            value={styleSize}
+            options={buttonSizes}
+            onChange={onChangeStyleSize}
+            />
       }
 
       {onChangeStyleSizeWidth &&
-        <SelectControl
-          label={__('Button Size Width', 'eightshift-boilerplate')}
-          value={styleSizeWidth}
-          options={buttonSizeWidths}
-          onChange={onChangeStyleSizeWidth}
-        />
+            <SelectControl
+            label={__('Button Size Width', 'eightshift-boilerplate')}
+            value={styleSizeWidth}
+            options={buttonSizeWidths}
+            onChange={onChangeStyleSizeWidth}
+            />
       }
 
       {onChangeIsAnchor &&
-        <ToggleControl
-          label={__('Anchor', 'eightshift-boilerplate')}
-          checked={isAnchor}
-          onChange={onChangeIsAnchor}
-          help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
-        />
+            <ToggleControl
+            label={__('Anchor', 'eightshift-boilerplate')}
+            checked={isAnchor}
+            onChange={onChangeIsAnchor}
+            help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+            />
       }
 
       {onChangeId &&
-        <TextControl
-          label={__('Button ID', 'eightshift-boilerplate')}
-          value={id}
-          onChange={onChangeId}
-        />
+            <TextControl
+            label={__('Button ID', 'eightshift-boilerplate')}
+            value={id}
+            onChange={onChangeId}
+            />
       }
 
     </Fragment>

@@ -7,19 +7,19 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import globalManifest from './../../../manifest.json';
 
 export const ColumnsEditor = ({ attributes }) => {
-  const {
-    allowedBlocks,
-    blockClass,
-    gutter,
-    verticalSpacing,
-  } = attributes;
+    const {
+        allowedBlocks,
+        blockClass,
+        gutter,
+        verticalSpacing,
+    } = attributes;
 
-  const componentClass = classnames(
-    blockClass,
-    globalManifest.globalVariables.customBlocksName,
-    `${responsiveSelectors(gutter, 'gutter', blockClass)}`,
-    `${responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass)}`,
-  );
+    const componentClass = classnames(
+        blockClass,
+        globalManifest.globalVariables.customBlocksName,
+        `${responsiveSelectors(gutter, 'gutter', blockClass)}`,
+        `${responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass)}`,
+);
 
   return (
     <div className={componentClass}>

@@ -1,29 +1,29 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { __ } from '../../../components/image/components/node_modules/@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 
 export const JumbotronEditor = ({ attributes, actions }) => {
-  const {
-    blockClass,
-    heading,
-    paragraph,
-    media,
-    contentHorizontalPosition,
-    contentVerticalPosition,
-    mediaHorizontalPosition,
-  } = attributes;
+    const {
+        blockClass,
+        heading,
+        paragraph,
+        media,
+        contentHorizontalPosition,
+        contentVerticalPosition,
+        mediaHorizontalPosition,
+    } = attributes;
 
-  const {
-    onChangeHeading,
-    onChangeParagraph,
-    onChangeMedia,
-  } = actions;
+    const {
+        onChangeHeading,
+        onChangeParagraph,
+        onChangeMedia,
+    } = actions;
 
-  const mediaObject = (typeof media === 'undefined') || media;
+    const mediaObject = (typeof media === 'undefined') || media;
 
-  return (
+    return (
     <div className={blockClass}>
       <div className={classnames(`${blockClass}__media`, `${blockClass}__media--horizontal-${mediaHorizontalPosition}`)}>
         <ImageEditor
@@ -33,11 +33,11 @@ export const JumbotronEditor = ({ attributes, actions }) => {
         />
       </div>
 
-      <div className={classnames(
+    <div className={classnames(
         `${blockClass}__content`,
         `${blockClass}__content--vertical-${contentVerticalPosition}`,
         `${blockClass}__content--horizontal-${contentHorizontalPosition}`,
-      )}>
+    )}>
         <div className={`${blockClass}__content-wrap`}>
           <div className={`${blockClass}__heading`}>
             <RichText

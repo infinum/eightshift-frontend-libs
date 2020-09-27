@@ -1,26 +1,26 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { BlockAlignmentToolbar } from '@wordpress/block-editor';
-import { ImageToolbar } from '../../../Components/image/components/image-toolbar';
+import { ImageToolbar } from '../../../components/image/components/image-toolbar';
 
 export const cardListMediaPosition = [
   'left', 'right',
 ];
 
 export const CardListToolbar = ({ attributes, actions }) => {
-  const {
-    mediaPosition,
-    media,
-  } = attributes;
+    const {
+        mediaPosition,
+        media,
+    } = attributes;
 
-  const {
-    onChangeMediaPosition,
-    onChangeMedia,
-  } = actions;
+    const {
+        onChangeMediaPosition,
+        onChangeMedia,
+    } = actions;
 
-  const mediaObject = (typeof media === 'undefined') || media;
+    const mediaObject = (typeof media === 'undefined') || media;
 
-  return (
+    return (
     <Fragment>
 
       <ImageToolbar
@@ -29,11 +29,11 @@ export const CardListToolbar = ({ attributes, actions }) => {
       />
 
       {onChangeMediaPosition &&
-        <BlockAlignmentToolbar
-          value={mediaPosition}
-          onChange={onChangeMediaPosition}
-          controls={cardListMediaPosition}
-        />
+            <BlockAlignmentToolbar
+            value={mediaPosition}
+            onChange={onChangeMediaPosition}
+            controls={cardListMediaPosition}
+            />
       }
 
     </Fragment>

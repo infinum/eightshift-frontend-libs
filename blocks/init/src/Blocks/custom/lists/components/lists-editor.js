@@ -1,20 +1,20 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { ListsEditor as ListsEditorComponent } from '../../../Components/lists/components/lists-editor';
+import { ListsEditor as ListsEditorComponent } from '../../../components/lists/components/lists-editor';
 
 export const ListsEditor = ({ attributes, actions }) => {
-  const {
-    blockClass,
-    lists,
-  } = attributes;
+    const {
+        blockClass,
+        lists,
+    } = attributes;
 
-  const {
-    onChangeListsContent,
-    onChangeListsOrdered,
-  } = actions;
+    const {
+        onChangeListsContent,
+        onChangeListsOrdered,
+    } = actions;
 
-  const listsObject = (typeof lists === 'undefined') || lists;
+    const listsObject = (typeof lists === 'undefined') || lists;
 
-  return (
+    return (
     <ListsEditorComponent
       blockClass={blockClass}
       lists={listsObject}

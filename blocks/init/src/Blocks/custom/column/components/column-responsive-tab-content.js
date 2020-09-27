@@ -8,33 +8,33 @@ import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
 import globalSettings from './../../../manifest.json';
 
 export const ColumnResponsiveTabContent = (props) => {
-  const {
-    width,
-    onChangeWidth,
-    hide,
-    onChangeHide,
-    offset,
-    onChangeOffset,
-    verticalAlign,
-    onChangeVerticalAlign,
-  } = props;
+    const {
+        width,
+        onChangeWidth,
+        hide,
+        onChangeHide,
+        offset,
+        onChangeOffset,
+        verticalAlign,
+        onChangeVerticalAlign,
+    } = props;
 
-  const widthOptions = {
-    min: -1,
-    max: globalSettings.globalVariables.maxCols,
-    step: 1,
-    initial: globalSettings.globalVariables.maxCols,
-  };
+    const widthOptions = {
+        min: -1,
+        max: globalSettings.globalVariables.maxCols,
+        step: 1,
+        initial: globalSettings.globalVariables.maxCols,
+    };
 
-  return (
+    return (
     <Fragment>
       {onChangeWidth && (
-        <RangeControl
-          label={
-            <Fragment>
-              <Icon icon={icons.width} />
-              {__('Width', 'eightshift-boilerplate')}
-            </Fragment>
+            <RangeControl
+            label={
+                <Fragment>
+                <Icon icon={icons.width} />
+                {__('Width', 'eightshift-boilerplate')}
+                </Fragment>
           }
           help={sprintf(__('Option to change the block width in the grid from the left. Change column width in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
           allowReset={true}
@@ -48,12 +48,12 @@ export const ColumnResponsiveTabContent = (props) => {
       )}
 
       {onChangeOffset && (
-        <RangeControl
-          label={
-            <Fragment>
-              <Icon icon={icons.offset} />
-              {__('Offset', 'eightshift-boilerplate')}
-            </Fragment>
+            <RangeControl
+            label={
+                <Fragment>
+                <Icon icon={icons.offset} />
+                {__('Offset', 'eightshift-boilerplate')}
+                </Fragment>
           }
           help={sprintf(__('Option to change the block offset in the grid from the left. Change block offset in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}
           allowReset={true}
@@ -67,12 +67,12 @@ export const ColumnResponsiveTabContent = (props) => {
       )}
 
       {onChangeHide &&
-        <ToggleControl
-          label={__('Hide', 'eightshift-boilerplate')}
-          help={__('Toggle visibility.', 'eightshift-boilerplate')}
-          checked={hide}
-          onChange={onChangeHide}
-        />
+            <ToggleControl
+            label={__('Hide', 'eightshift-boilerplate')}
+            help={__('Toggle visibility.', 'eightshift-boilerplate')}
+            checked={hide}
+            onChange={onChangeHide}
+            />
       }
     </Fragment>
   );

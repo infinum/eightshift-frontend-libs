@@ -9,16 +9,16 @@ import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';
 
 export const Wrapper = (props) => {
-  const {
-    props: {
-      attributes,
-    },
-    children,
-  } = props;
+    const {
+        props: {
+            attributes,
+        },
+        children,
+    } = props;
 
-  const actions = getActions(props.props, manifest);
+    const actions = getActions(props.props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <WrapperOptions

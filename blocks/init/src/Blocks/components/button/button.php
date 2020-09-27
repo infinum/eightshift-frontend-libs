@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Button Component.
  *
@@ -7,15 +8,15 @@
 
 $button = $attributes['button'] ?? [];
 
-if ( empty( $button ) ) {
-  return;
+if (empty($button)) {
+	return;
 }
 
 $url   = $button['url'] ?? '';
 $title = $button['title'] ?? '';
 
-if ( ! $url || ! $title  ) {
-  return;
+if (! $url || ! $title) {
+	return;
 }
 
 $url      = $button['url'] ?? '';
@@ -25,9 +26,9 @@ $isAnchor = $button['isAnchor'] ?? false;
 
 $componentClass = 'btn';
 $blockClass     = $attributes['blockClass'] ?? '';
-$styleColor     = isset( $button['styleColor'] ) ? "{$componentClass}__color--{$button['styleColor']}" : '';
-$styleSize      = isset( $button['styleSize'] ) ? "{$componentClass}__size--{$button['styleSize']}" : '';
-$styleSizeWidth = isset( $button['styleSizeWidth'] ) ? "{$componentClass}__size-width--{$button['styleSizeWidth']}" : '';
+$styleColor     = isset($button['styleColor']) ? "{$componentClass}__color--{$button['styleColor']}" : '';
+$styleSize      = isset($button['styleSize']) ? "{$componentClass}__size--{$button['styleSize']}" : '';
+$styleSizeWidth = isset($button['styleSizeWidth']) ? "{$componentClass}__size-width--{$button['styleSizeWidth']}" : '';
 $isAnchor       = $isAnchor ? 'js-scroll-to-anchor' : '';
 
 $buttonClass = "
@@ -41,10 +42,10 @@ $buttonClass = "
 ?>
 
 <a
-  href="<?php echo esc_url( $url ); ?>"
-  class="<?php echo esc_attr( $buttonClass ); ?>"
-  id="<?php echo esc_attr( $id ); ?>"
-  title="<?php echo esc_attr( $title ); ?>"
+  href="<?php echo esc_url($url); ?>"
+  class="<?php echo esc_attr($buttonClass); ?>"
+  id="<?php echo esc_attr($id); ?>"
+  title="<?php echo esc_attr($title); ?>"
 >
-  <?php echo esc_html( $title ); ?>
+  <?php echo esc_html($title); ?>
 </a>

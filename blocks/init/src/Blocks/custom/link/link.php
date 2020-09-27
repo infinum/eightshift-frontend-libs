@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Link Block view.
  *
@@ -7,8 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo wp_kses_post( Components::render( 'link', [
-    'blockClass' => $attributes['blockClass'] ?? '',
-    'link'       => $attributes['link'] ?? [],
-  ]
-) );
+echo wp_kses_post(
+	Components::render(
+		'link',
+		[
+		'blockClass' => $attributes['blockClass'] ?? '',
+		'link'       => $attributes['link'] ?? [],
+		]
+	)
+);

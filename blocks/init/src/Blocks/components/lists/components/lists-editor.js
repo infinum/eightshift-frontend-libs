@@ -4,22 +4,22 @@ import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 
 export const ListsEditor = (props) => {
-  const {
-    lists: {
-      content,
-      ordered,
-    },
-    blockClass,
-    onChangeContent,
-    onChangeOrdered,
-  } = props;
+    const {
+        lists: {
+            content,
+            ordered,
+        },
+        blockClass,
+        onChangeContent,
+        onChangeOrdered,
+    } = props;
 
-  const componentClass = 'lists';
+    const componentClass = 'lists';
 
-  const listsClass = classnames(
-    componentClass,
-    `${blockClass}__lists`,
-  );
+    const listsClass = classnames(
+        componentClass,
+        `${blockClass}__lists`,
+);
 
   return (
     <RichText

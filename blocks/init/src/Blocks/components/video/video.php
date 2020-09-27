@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Video Component.
  *
@@ -7,14 +8,14 @@
 
 $media = $attributes['media'] ?? [];
 
-if ( ! $media ) {
-  return;
+if (! $media) {
+	return;
 }
 
 $url = $media['url'] ?? '';
 
-if ( ! $url ) {
-  return;
+if (! $url) {
+	return;
 }
 
 $blockClass = $attributes['blockClass'] ?? '';
@@ -22,8 +23,8 @@ $blockClass = $attributes['blockClass'] ?? '';
 ?>
 
 <video
-  src="<?php echo esc_url( $url ); ?>"
-  class="<?php echo esc_attr( "video {$blockClass}__video" ); ?>"
+  src="<?php echo esc_url($url); ?>"
+  class="<?php echo esc_attr("video {$blockClass}__video"); ?>"
   autoplay
   loop
   muted

@@ -5,15 +5,17 @@ import manifestHeading from './manifest.json';
 import manifestParagraph from '../paragraph/manifest.json';
 
 export const transforms = {
-  from: [
+    from: [
     {
-      type: 'block',
-      blocks: [`${manifest.namespace}/${manifestParagraph.blockName}`],
-      transform: ({ paragraph }) => (
-        createBlock(`${manifest.namespace}/${manifestHeading.blockName}`, {
-          heading: paragraph,
-        })
+        type: 'block',
+        blocks: [`${manifest.namespace}/${manifestParagraph.blockName}`],
+        transform: ({ paragraph }) => (
+        createBlock(
+            `${manifest.namespace}/${manifestHeading.blockName}`, {
+                heading: paragraph,
+            }
+        )
       ),
     },
-  ],
+    ],
 };

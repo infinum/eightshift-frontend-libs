@@ -7,55 +7,55 @@ import { PanelBody, TabPanel, Dashicon } from '@wordpress/components';
 import { ColumnsResponsiveTabContent } from './columns-responsive-tab-content';
 
 export const ColumnsOptions = ({ attributes, actions }) => {
-  const {
-    gutter,
-    verticalSpacing,
-  } = attributes;
+    const {
+        gutter,
+        verticalSpacing,
+    } = attributes;
 
-  const {
-    onChangeGutterLarge,
-    onChangeVerticalSpacingLarge,
-    onChangeGutterDesktop,
-    onChangeVerticalSpacingDesktop,
-    onChangeGutterTablet,
-    onChangeVerticalSpacingTablet,
-    onChangeGutterMobile,
-    onChangeVerticalSpacingMobile,
-  } = actions;
+    const {
+        onChangeGutterLarge,
+        onChangeVerticalSpacingLarge,
+        onChangeGutterDesktop,
+        onChangeVerticalSpacingDesktop,
+        onChangeGutterTablet,
+        onChangeVerticalSpacingTablet,
+        onChangeGutterMobile,
+        onChangeVerticalSpacingMobile,
+    } = actions;
 
-  return (
+    return (
     <PanelBody title={__('Columns Details', 'eightshift-boilerplate')}>
       <TabPanel
         className="custom-button-tabs"
         activeClass="button button-primary"
         tabs={[
-          {
-            name: 'large',
-            title: <Dashicon icon="desktop" />,
-            className: 'tab-large button button-secondary custom-button-with-icon',
-          },
-          {
-            name: 'desktop',
-            title: <Dashicon icon="laptop" />,
-            className: 'tab-desktop button button-secondary custom-button-with-icon',
-          },
-          {
-            name: 'tablet',
-            title: <Dashicon icon="tablet" />,
-            className: 'tab-tablet button button-secondary custom-button-with-icon',
-          },
-          {
-            name: 'mobile',
-            title: <Dashicon icon="smartphone" />,
-            className: 'tab-mobile button button-secondary custom-button-with-icon',
-          },
-        ]
+            {
+                name: 'large',
+                title: <Dashicon icon="desktop" />,
+                className: 'tab-large button button-secondary custom-button-with-icon',
+            },
+            {
+                name: 'desktop',
+                title: <Dashicon icon="laptop" />,
+                className: 'tab-desktop button button-secondary custom-button-with-icon',
+            },
+            {
+                name: 'tablet',
+                title: <Dashicon icon="tablet" />,
+                className: 'tab-tablet button button-secondary custom-button-with-icon',
+            },
+            {
+                name: 'mobile',
+                title: <Dashicon icon="smartphone" />,
+                className: 'tab-mobile button button-secondary custom-button-with-icon',
+            },
+            ]
         }
       >
         {(tab) => (
-          <Fragment>
+            <Fragment>
             {tab.name === 'large' && (
-              <Fragment>
+                <Fragment>
                 <br />
                 <strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
                 <p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
@@ -66,10 +66,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                   verticalSpacing={verticalSpacing.large}
                   onChangeVerticalSpacing={onChangeVerticalSpacingLarge}
                 />
-              </Fragment>
+                </Fragment>
             )}
             {tab.name === 'desktop' && (
-              <Fragment>
+                <Fragment>
                 <br />
                 <strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
                 <p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
@@ -80,10 +80,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                   verticalSpacing={verticalSpacing.desktop}
                   onChangeVerticalSpacing={onChangeVerticalSpacingDesktop}
                 />
-              </Fragment>
+                </Fragment>
             )}
             {tab.name === 'tablet' && (
-              <Fragment>
+                <Fragment>
                 <br />
                 <strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
                 <p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
@@ -94,10 +94,10 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                   verticalSpacing={verticalSpacing.tablet}
                   onChangeVerticalSpacing={onChangeVerticalSpacingTablet}
                 />
-              </Fragment>
+                </Fragment>
             )}
             {tab.name === 'mobile' && (
-              <Fragment>
+                <Fragment>
                 <br />
                 <strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
                 <p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
@@ -108,7 +108,7 @@ export const ColumnsOptions = ({ attributes, actions }) => {
                   verticalSpacing={verticalSpacing.mobile}
                   onChangeVerticalSpacing={onChangeVerticalSpacingMobile}
                 />
-              </Fragment>
+                </Fragment>
             )}
           </Fragment>
         )}

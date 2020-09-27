@@ -3,18 +3,18 @@ import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 export const QuoteEditor = ({ attributes, actions }) => {
-  const {
-    blockClass,
-    author,
-    content,
-  } = attributes;
+    const {
+        blockClass,
+        author,
+        content,
+    } = attributes;
 
-  const {
-    onChangeAuthor,
-    onChangeContent,
-  } = actions;
+    const {
+        onChangeAuthor,
+        onChangeContent,
+    } = actions;
 
-  return (
+    return (
     <div className={blockClass}>
       <div className={`${blockClass}__content`}>
         <RichText

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Google Tag Manager tracking code
  *

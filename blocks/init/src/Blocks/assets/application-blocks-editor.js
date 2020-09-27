@@ -3,7 +3,6 @@
  * This file registers styles and scripts.
  *
  * Usage: `WordPress admin editor`.
- *
  */
 
 // Styles.

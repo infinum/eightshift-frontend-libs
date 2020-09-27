@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template for the Heading Component.
  *
@@ -7,23 +8,23 @@
 
 $heading = $attributes['heading'] ?? [];
 
-if ( ! $heading ) {
-  return;
+if (! $heading) {
+	return;
 }
 
 $content = $heading['content'] ?? '';
 
-if ( ! $content ) {
-  return;
+if (! $content) {
+	return;
 }
 
-$level = isset( $heading['level'] ) ? "h{$heading['level']}" : 'h2';
+$level = isset($heading['level']) ? "h{$heading['level']}" : 'h2';
 
 $componentClass = 'heading';
 $blockClass     = $attributes['blockClass'] ?? '';
-$styleAlign     = isset( $heading['styleAlign'] ) ? "{$componentClass}__align--{$heading['styleAlign']}" : '';
-$styleColor     = isset( $heading['styleColor'] ) ? "{$componentClass}__color--{$heading['styleColor']}" : '';
-$styleSize      = isset( $heading['styleSize'] ) ? "{$componentClass}__size--{$heading['styleSize']}" : '';
+$styleAlign     = isset($heading['styleAlign']) ? "{$componentClass}__align--{$heading['styleAlign']}" : '';
+$styleColor     = isset($heading['styleColor']) ? "{$componentClass}__color--{$heading['styleColor']}" : '';
+$styleSize      = isset($heading['styleSize']) ? "{$componentClass}__size--{$heading['styleSize']}" : '';
 
 $headingClass = "
   {$componentClass}
@@ -35,6 +36,6 @@ $headingClass = "
 
 ?>
 
-<<?php echo esc_attr( $level ); ?> class="<?php echo esc_attr( $headingClass ); ?>">
-  <?php echo wp_kses_post( $content ); ?>
-</<?php echo esc_attr( $level ); ?>>
+<<?php echo esc_attr($level); ?> class="<?php echo esc_attr($headingClass); ?>">
+  <?php echo wp_kses_post($content); ?>
+</<?php echo esc_attr($level); ?>>

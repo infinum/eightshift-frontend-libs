@@ -6,13 +6,13 @@ import { ListsInfoEditor } from './components/lists-info-editor';
 
 export const ListsInfo = (props) => {
 
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <ListsInfoEditor
         attributes={attributes}

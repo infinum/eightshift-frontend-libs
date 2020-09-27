@@ -9,30 +9,30 @@ export const aspectRatioSizes = [
 ];
 
 export const VideoIframeOptions = (props) => {
-  const {
-    onChangeId,
-    id,
-    aspectRatio,
-    onChangeAspectRatio,
-  } = props;
+    const {
+        onChangeId,
+        id,
+        aspectRatio,
+        onChangeAspectRatio,
+    } = props;
 
-  return (
+    return (
     <Fragment>
       {onChangeId &&
-        <TextControl
-          label={__('Video ID', 'eightshift-boilerplate')}
-          value={id}
-          onChange={onChangeId}
-        />
+            <TextControl
+            label={__('Video ID', 'eightshift-boilerplate')}
+            value={id}
+            onChange={onChangeId}
+            />
       }
 
       {onChangeAspectRatio &&
-        <SelectControl
-          label={__('Aspect Ratio', 'eightshift-boilerplate')}
-          value={aspectRatio}
-          options={aspectRatioSizes}
-          onChange={onChangeAspectRatio}
-        />
+            <SelectControl
+            label={__('Aspect Ratio', 'eightshift-boilerplate')}
+            value={aspectRatio}
+            options={aspectRatioSizes}
+            onChange={onChangeAspectRatio}
+            />
       }
     </Fragment>
   );

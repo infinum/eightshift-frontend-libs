@@ -8,13 +8,13 @@ import { LinkOptions } from './components/link-options';
 
 export const Link = (props) => {
 
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <LinkOptions

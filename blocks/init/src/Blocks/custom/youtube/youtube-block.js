@@ -7,13 +7,13 @@ import { YoutubeEditor } from './components/youtube-editor';
 import { YoutubeOptions } from './components/youtube-options';
 
 export const Youtube = (props) => {
-  const {
-    attributes,
-  } = props;
+    const {
+        attributes,
+    } = props;
 
-  const actions = getActions(props, manifest);
+    const actions = getActions(props, manifest);
 
-  return (
+    return (
     <Fragment>
       <InspectorControls>
         <YoutubeOptions

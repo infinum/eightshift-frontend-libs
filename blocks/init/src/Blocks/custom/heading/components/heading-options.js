@@ -1,21 +1,21 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { HeadingOptions as HeadingOptionsComponent } from '../../../Components/heading/components/heading-options';
+import { HeadingOptions as HeadingOptionsComponent } from '../../../components/heading/components/heading-options';
 
 export const HeadingOptions = ({ attributes, actions }) => {
-  const {
-    heading,
-  } = attributes;
+    const {
+        heading,
+    } = attributes;
 
-  const {
-    onChangeHeadingStyleSize,
-    onChangeHeadingStyleColor,
-  } = actions;
+    const {
+        onChangeHeadingStyleSize,
+        onChangeHeadingStyleColor,
+    } = actions;
 
-  const headingObject = (typeof heading === 'undefined') || heading;
+    const headingObject = (typeof heading === 'undefined') || heading;
 
-  return (
+    return (
     <PanelBody title={__('Heading Details', 'eightshift-boilerplate')}>
 
       <HeadingOptionsComponent

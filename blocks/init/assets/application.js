@@ -4,7 +4,6 @@
  * You would load images, fonts, helpers, header, footed, etc, everything not related to Block Editor here.
  *
  * Usage: `WordPress frontend screen`.
- *
  */
 
 // Load Styles

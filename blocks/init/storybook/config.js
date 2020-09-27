@@ -8,12 +8,14 @@ import globalSettings from './../src/Blocks/manifest.json';
 storybookWindowObjects();
 
 // Run all storybook stories.
-configure([
-  require.context('./../src/Blocks/Components', true, /docs\/story.js$/),
-  require.context('./../src/Blocks/Custom', true, /docs\/story.js$/),
-  require.context('./../src/Blocks/Wrapper', true, /docs\/story.js$/),
-  require.context('./../src/Blocks/Variations', true, /docs\/story.js$/),
-], module);
+configure(
+    [
+    require.context('./../src/Blocks/Components', true, /docs\/story.js$/),
+    require.context('./../src/Blocks/Custom', true, /docs\/story.js$/),
+    require.context('./../src/Blocks/Wrapper', true, /docs\/story.js$/),
+    require.context('./../src/Blocks/Variations', true, /docs\/story.js$/),
+    ], module
+);
 
 // Set default categories.
 storybookDefaultMocksCategories();

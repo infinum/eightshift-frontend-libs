@@ -4,15 +4,17 @@ import manifestCarouselImage from './manifest.json';
 import manifestImage from '../image/manifest.json';
 
 export const transforms = {
-  from: [
+    from: [
     {
-      type: 'block',
-      blocks: [`${manifest.namespace}/${manifestImage.blockName}`],
-      transform: ({ media }) => (
-        createBlock(`${manifest.namespace}/${manifestCarouselImage.blockName}`, {
-          media,
-        })
+        type: 'block',
+        blocks: [`${manifest.namespace}/${manifestImage.blockName}`],
+        transform: ({ media }) => (
+        createBlock(
+            `${manifest.namespace}/${manifestCarouselImage.blockName}`, {
+                media,
+            }
+        )
       ),
     },
-  ],
+    ],
 };

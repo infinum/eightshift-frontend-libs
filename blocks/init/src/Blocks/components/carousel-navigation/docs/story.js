@@ -3,12 +3,12 @@ import readme from './readme.md';
 import { CarouselNavigation } from '../carousel-navigation';
 
 export default {
-  title: 'Components|Carousel Navigation',
-  parameters: {
-    notes: readme,
-  },
-};
+    title: 'Components|Carousel Navigation',
+        parameters: {
+            notes: readme,
+    },
+    };
 
-export const component = () => (
-  <CarouselNavigation />
-);
+    export const component = () => (
+    <CarouselNavigation />
+        );

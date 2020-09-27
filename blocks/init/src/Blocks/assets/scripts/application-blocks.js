@@ -8,7 +8,6 @@
  * `src/blocks/custom/block_name/assets/index.js`.
  *
  * Usage: `WordPress frontend screen`.
- *
  */
 import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 

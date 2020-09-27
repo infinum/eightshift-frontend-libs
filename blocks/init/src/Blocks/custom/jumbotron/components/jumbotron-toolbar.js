@@ -16,47 +16,47 @@ export const jumbotronMediaHorizontalPosition = [
 ];
 
 export const JumbotronToolbar = ({ attributes, actions }) => {
-  const {
-    contentHorizontalPosition,
-    contentVerticalPosition,
-    mediaHorizontalPosition,
-    media,
-  } = attributes;
+    const {
+        contentHorizontalPosition,
+        contentVerticalPosition,
+        mediaHorizontalPosition,
+        media,
+    } = attributes;
 
-  const {
-    onChangeContentHorizontalPosition,
-    onChangeContentVerticalPosition,
-    onChangeMediaHorizontalPosition,
-    onChangeMedia,
-  } = actions;
+    const {
+        onChangeContentHorizontalPosition,
+        onChangeContentVerticalPosition,
+        onChangeMediaHorizontalPosition,
+        onChangeMedia,
+    } = actions;
 
-  const mediaObject = (typeof media === 'undefined') || media;
+    const mediaObject = (typeof media === 'undefined') || media;
 
-  return (
+    return (
     <Fragment>
 
       {onChangeContentHorizontalPosition &&
-        <BlockAlignmentToolbar
-          value={contentHorizontalPosition}
-          onChange={onChangeContentHorizontalPosition}
-          controls={jumbotronContentHorizontalPosition}
-        />
+            <BlockAlignmentToolbar
+            value={contentHorizontalPosition}
+            onChange={onChangeContentHorizontalPosition}
+            controls={jumbotronContentHorizontalPosition}
+            />
       }
 
       {onChangeContentVerticalPosition &&
-        <BlockVerticalAlignmentToolbar
-          value={contentVerticalPosition}
-          onChange={onChangeContentVerticalPosition}
-          controls={jumbotronContentVerticalPosition}
-        />
+            <BlockVerticalAlignmentToolbar
+            value={contentVerticalPosition}
+            onChange={onChangeContentVerticalPosition}
+            controls={jumbotronContentVerticalPosition}
+            />
       }
 
       {onChangeMediaHorizontalPosition &&
-        <BlockAlignmentToolbar
-          value={mediaHorizontalPosition}
-          onChange={onChangeMediaHorizontalPosition}
-          controls={jumbotronMediaHorizontalPosition}
-        />
+            <BlockAlignmentToolbar
+            value={mediaHorizontalPosition}
+            onChange={onChangeMediaHorizontalPosition}
+            controls={jumbotronMediaHorizontalPosition}
+            />
       }
 
       <ImageToolbarComponent
