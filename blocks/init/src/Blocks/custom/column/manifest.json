@@ -35,7 +35,7 @@
 	},
 	"attributes": {
 		"wrapperDisable": {
-			"type": "bool",
+			"type": "boolean",
 			"default": true
 		},
 		"width": {

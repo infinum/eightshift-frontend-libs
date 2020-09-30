@@ -16,7 +16,6 @@ module.exports = {
 			},
 		],
 
-
 		'color-hex-case': 'upper',
 		'color-hex-length': 'long',
 		'color-named': 'never',

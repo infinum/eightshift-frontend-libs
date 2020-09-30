@@ -60,11 +60,11 @@
 			]
 		},
 		"isFreeMode": {
-			"type": "bool",
+			"type": "boolean",
 			"default": false
 		},
 		"isLoop": {
-			"type": "bool",
+			"type": "boolean",
 			"default": true
 		}
 	}
