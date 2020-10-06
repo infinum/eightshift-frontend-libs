@@ -3,14 +3,8 @@
 import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 
-export const ColumnEditor = ({ attributes }) => {
-	const {
-		allowedBlocks,
-	} = attributes;
-
+export const ColumnEditor = () => {
 	return (
-		<InnerBlocks
-			allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
-		/>
+		<InnerBlocks />
 	);
 };

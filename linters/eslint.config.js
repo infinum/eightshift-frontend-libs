@@ -12,7 +12,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:jsx-a11y/recommended',
 		'plugin:jest/recommended',
-		'airbnb-base',
+		'@infinumjs',
 	],
 	env: {
 		browser: true,
