@@ -7,15 +7,15 @@ export const ParagraphToolbar = (props) => {
 		paragraph: {
 			styleAlign,
 		},
-		onChangeStyleAlign,
+		onChangeParagraphStyleAlign,
 	} = props;
 
 	return (
 		<Fragment>
-			{onChangeStyleAlign &&
+			{onChangeParagraphStyleAlign &&
 				<AlignmentToolbar
 					value={styleAlign}
-					onChange={onChangeStyleAlign}
+					onChange={onChangeParagraphStyleAlign}
 				/>
 			}
 		</Fragment>

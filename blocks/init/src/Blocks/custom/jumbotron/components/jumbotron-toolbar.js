@@ -20,17 +20,13 @@ export const JumbotronToolbar = ({ attributes, actions }) => {
 		contentHorizontalPosition,
 		contentVerticalPosition,
 		mediaHorizontalPosition,
-		media,
 	} = attributes;
 
 	const {
 		onChangeContentHorizontalPosition,
 		onChangeContentVerticalPosition,
 		onChangeMediaHorizontalPosition,
-		onChangeMedia,
 	} = actions;
-
-	const mediaObject = (typeof media === 'undefined') || media;
 
 	return (
 		<Fragment>
@@ -60,8 +56,8 @@ export const JumbotronToolbar = ({ attributes, actions }) => {
 			}
 
 			<ImageToolbarComponent
-				media={mediaObject}
-				onChangeMedia={onChangeMedia}
+				{...attributes}
+				{...actions}
 			/>
 
 		</Fragment>

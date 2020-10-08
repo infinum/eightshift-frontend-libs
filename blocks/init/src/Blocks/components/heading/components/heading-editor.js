@@ -12,7 +12,7 @@ export const HeadingEditor = (props) => {
 			styleSize,
 		},
 		blockClass,
-		onChangeContent,
+		onChangeHeadingContent,
 	} = props;
 
 	const componentClass = 'heading';
@@ -29,7 +29,7 @@ export const HeadingEditor = (props) => {
 		<RichText
 			className={headingClass}
 			placeholder={__('Add your heading', 'eightshift-boilerplate')}
-			onChange={onChangeContent}
+			onChange={onChangeHeadingContent}
 			value={content}
 		/>
 	);

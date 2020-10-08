@@ -23,16 +23,16 @@ export const LinkOptions = (props) => {
 			isAnchor,
 			id,
 		},
-		onChangeUrl,
-		onChangeStyleColor,
-		onChangeIsAnchor,
-		onChangeId,
+		onChangeLinkUrl,
+		onChangeLinkStyleColor,
+		onChangeLinkIsAnchor,
+		onChangeLinkId,
 	} = props;
 
 	return (
 		<Fragment>
 
-			{onChangeStyleColor &&
+			{onChangeLinkStyleColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
@@ -43,32 +43,32 @@ export const LinkOptions = (props) => {
 					help={__('Change Link color.', 'eightshift-boilerplate')}
 					value={styleColor}
 					colors={linkColors()}
-					onChange={onChangeStyleColor}
+					onChange={onChangeLinkStyleColor}
 				/>
 			}
 
-			{onChangeUrl &&
+			{onChangeLinkUrl &&
 				<URLInput
 					label={__('Link Url', 'eightshift-boilerplate')}
 					value={url}
-					onChange={onChangeUrl}
+					onChange={onChangeLinkUrl}
 				/>
 			}
 
-			{onChangeIsAnchor &&
+			{onChangeLinkIsAnchor &&
 				<ToggleControl
 					label={__('Anchor', 'eightshift-boilerplate')}
 					checked={isAnchor}
-					onChange={onChangeIsAnchor}
+					onChange={onChangeLinkIsAnchor}
 					help={__('Using anchor option will add JavaScript selector to the link. You must provide anchor destination inside Link Url field. Example: #super-block.', 'eightshift-boilerplate')}
 				/>
 			}
 
-			{onChangeId &&
+			{onChangeLinkId &&
 				<TextControl
 					label={__('Link ID', 'eightshift-boilerplate')}
 					value={id}
-					onChange={onChangeId}
+					onChange={onChangeLinkId}
 				/>
 			}
 

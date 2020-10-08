@@ -9,7 +9,6 @@ export const JumbotronEditor = ({ attributes, actions }) => {
 		blockClass,
 		heading,
 		paragraph,
-		media,
 		contentHorizontalPosition,
 		contentVerticalPosition,
 		mediaHorizontalPosition,
@@ -18,18 +17,14 @@ export const JumbotronEditor = ({ attributes, actions }) => {
 	const {
 		onChangeHeading,
 		onChangeParagraph,
-		onChangeMedia,
 	} = actions;
-
-	const mediaObject = (typeof media === 'undefined') || media;
 
 	return (
 		<div className={blockClass}>
 			<div className={classnames(`${blockClass}__media`, `${blockClass}__media--horizontal-${mediaHorizontalPosition}`)}>
 				<ImageEditor
-					blockClass={blockClass}
-					media={mediaObject}
-					onChangeMedia={onChangeMedia}
+					{...attributes}
+					{...actions}
 				/>
 			</div>
 

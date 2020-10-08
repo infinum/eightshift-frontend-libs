@@ -12,7 +12,7 @@ export const ParagraphEditor = (props) => {
 			styleSize,
 		},
 		blockClass,
-		onChangeContent,
+		onChangeParagraphContent,
 	} = props;
 
 	const componentClass = 'paragraph';
@@ -29,7 +29,7 @@ export const ParagraphEditor = (props) => {
 		<RichText
 			className={paragraphClass}
 			placeholder={__('Add your paragraph', 'eightshift-boilerplate')}
-			onChange={onChangeContent}
+			onChange={onChangeParagraphContent}
 			value={content}
 		/>
 	);

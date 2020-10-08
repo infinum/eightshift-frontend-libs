@@ -8,24 +8,19 @@ export const CardEditor = ({ attributes, actions }) => {
 		blockClass,
 		heading,
 		paragraph,
-		media,
 	} = attributes;
 
 	const {
 		onChangeHeading,
 		onChangeParagraph,
-		onChangeMedia,
 	} = actions;
-
-	const mediaObject = (typeof media === 'undefined') || media;
 
 	return (
 		<div className={blockClass}>
 			<div className={`${blockClass}__media`}>
 				<ImageEditor
-					blockClass={blockClass}
-					media={mediaObject}
-					onChangeMedia={onChangeMedia}
+					{...attributes}
+					{...actions}
 				/>
 			</div>
 			<div className={`${blockClass}__content`}>

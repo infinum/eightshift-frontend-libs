@@ -16,14 +16,14 @@ export const ParagraphOptions = (props) => {
 			styleColor,
 			styleSize,
 		},
-		onChangeStyleColor,
-		onChangeStyleSize,
+		onChangeParagraphStyleColor,
+		onChangeParagraphStyleSize,
 	} = props;
 
 	return (
 		<Fragment>
 
-			{onChangeStyleColor &&
+			{onChangeParagraphStyleColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
@@ -33,16 +33,16 @@ export const ParagraphOptions = (props) => {
 					}
 					help={__('Change Paragraph color.', 'eightshift-boilerplate')}
 					value={styleColor}
-					onChange={onChangeStyleColor}
+					onChange={onChangeParagraphStyleColor}
 				/>
 			}
 
-			{onChangeStyleSize &&
+			{onChangeParagraphStyleSize &&
 				<SelectControl
 					label={__('Paragraph Font Size', 'eightshift-boilerplate')}
 					value={styleSize}
 					options={paragraphSizes}
-					onChange={onChangeStyleSize}
+					onChange={onChangeParagraphStyleSize}
 				/>
 			}
 

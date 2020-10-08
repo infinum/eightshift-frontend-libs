@@ -10,22 +10,18 @@ export const cardListMediaPosition = [
 export const CardListToolbar = ({ attributes, actions }) => {
 	const {
 		mediaPosition,
-		media,
 	} = attributes;
 
 	const {
 		onChangeMediaPosition,
-		onChangeMedia,
 	} = actions;
-
-	const mediaObject = (typeof media === 'undefined') || media;
 
 	return (
 		<Fragment>
 
 			<ImageToolbar
-				media={mediaObject}
-				onChangeMedia={onChangeMedia}
+				{...attributes}
+				{...actions}
 			/>
 
 			{onChangeMediaPosition &&

@@ -16,14 +16,14 @@ export const HeadingOptions = (props) => {
 			styleColor,
 			styleSize,
 		},
-		onChangeStyleColor,
-		onChangeStyleSize,
+		onChangeHeadingStyleColor,
+		onChangeHeadingStyleSize,
 	} = props;
 
 	return (
 		<Fragment>
 
-			{onChangeStyleColor &&
+			{onChangeHeadingStyleColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
@@ -33,16 +33,16 @@ export const HeadingOptions = (props) => {
 					}
 					help={__('Change Heading color', 'eightshift-boilerplate')}
 					value={styleColor}
-					onChange={onChangeStyleColor}
+					onChange={onChangeHeadingStyleColor}
 				/>
 			}
 
-			{onChangeStyleSize &&
+			{onChangeHeadingStyleSize &&
 				<SelectControl
 					label={__('Heading Size', 'eightshift-boilerplate')}
 					value={styleSize}
 					options={headingSizes}
-					onChange={onChangeStyleSize}
+					onChange={onChangeHeadingStyleSize}
 				/>
 			}
 

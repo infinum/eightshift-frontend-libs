@@ -13,7 +13,7 @@ export const ButtonEditor = (props) => {
 			styleSizeWidth,
 		},
 		blockClass,
-		onChangeTitle,
+		onChangeButtonTitle,
 	} = props;
 
 	const componentClass = 'btn';
@@ -31,7 +31,7 @@ export const ButtonEditor = (props) => {
 		<RichText
 			placeholder={__('Add Button Title', 'eightshift-boilerplate')}
 			value={title}
-			onChange={onChangeTitle}
+			onChange={onChangeButtonTitle}
 			className={buttonClass}
 			keepPlaceholderOnFocus
 		/>

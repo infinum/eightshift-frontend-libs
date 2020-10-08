@@ -7,16 +7,11 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
 	const {
 		blockClass,
 		title,
-		lists,
 	} = attributes;
 
 	const {
 		onChangeTitle,
-		onChangeListsContent,
-		onChangeListsOrdered,
 	} = actions;
-
-	const listsObject = (typeof lists === 'undefined') || lists;
 
 	return (
 		<div className={blockClass}>
@@ -31,10 +26,8 @@ export const ListsInfoEditor = ({ attributes, actions }) => {
 			</div>
 			<div className={`${blockClass}__content`}>
 				<ListsEditor
-					blockClass={blockClass}
-					lists={listsObject}
-					onChangeContent={onChangeListsContent}
-					onChangeOrdered={onChangeListsOrdered}
+					{...attributes}
+					{...actions}
 				/>
 			</div>
 		</div>

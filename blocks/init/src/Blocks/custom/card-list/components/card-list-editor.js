@@ -11,26 +11,19 @@ export const CardListEditor = ({ attributes, actions }) => {
 		heading,
 		paragraph,
 		mediaPosition,
-		media,
-		button,
 	} = attributes;
 
 	const {
 		onChangeHeading,
 		onChangeParagraph,
-		onChangeMedia,
 	} = actions;
-
-	const mediaObject = (typeof media === 'undefined') || media;
-	const buttonObject = (typeof button === 'undefined') || button;
 
 	return (
 		<div className={classnames(blockClass, `${blockClass}__media-position--${mediaPosition}`)}>
 			<div className={`${blockClass}__media`}>
 				<ImageEditor
-					blockClass={blockClass}
-					media={mediaObject}
-					onChangeMedia={onChangeMedia}
+					{...attributes}
+					{...actions}
 				/>
 			</div>
 			<div className={`${blockClass}__content`}>
@@ -49,8 +42,8 @@ export const CardListEditor = ({ attributes, actions }) => {
 					/>
 				</div>
 				<ButtonEditor
-					blockClass={blockClass}
-					button={buttonObject}
+					{...attributes}
+					{...actions}
 				/>
 			</div>
 		</div>

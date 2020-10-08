@@ -9,23 +9,23 @@ export const HeadingToolbar = (props) => {
 			level,
 			styleAlign,
 		},
-		onChangeLevel,
-		onChangeStyleAlign,
+		onChangeHeadingLevel,
+		onChangeHeadingStyleAlign,
 	} = props;
 
 	return (
 		<Fragment>
-			{onChangeLevel &&
+			{onChangeHeadingLevel &&
 				<HeadingLevel
 					selectedLevel={level}
-					onChange={onChangeLevel}
+					onChange={onChangeHeadingLevel}
 				/>
 			}
 
-			{onChangeStyleAlign &&
+			{onChangeHeadingStyleAlign &&
 				<AlignmentToolbar
 					value={styleAlign}
-					onChange={onChangeStyleAlign}
+					onChange={onChangeHeadingStyleAlign}
 				/>
 			}
 

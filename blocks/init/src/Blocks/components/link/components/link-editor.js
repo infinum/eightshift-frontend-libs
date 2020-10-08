@@ -11,7 +11,7 @@ export const LinkEditor = (props) => {
 			styleColor,
 		},
 		blockClass,
-		onChangeTitle,
+		onChangeLinkTitle,
 	} = props;
 
 	const componentClass = 'link';
@@ -27,7 +27,7 @@ export const LinkEditor = (props) => {
 		<RichText
 			placeholder={__('Add Link Title', 'eightshift-boilerplate')}
 			value={title}
-			onChange={onChangeTitle}
+			onChange={onChangeLinkTitle}
 			className={linkClass}
 			keepPlaceholderOnFocus
 		/>
