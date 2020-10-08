@@ -8,15 +8,15 @@ export const VideoIframeEditor = (props) => {
 			id,
 			type = 'youtube',
 			aspectRatio,
+			allow = 'autoplay; fullscreen',
 		},
+		componentClass = 'video-iframe',
 	} = props;
-
-	const componentClass = 'video-iframe';
 
 	const videoClass = classnames(
 		componentClass,
-		`${componentClass}__video-ratio--${aspectRatio}`,
-		`${blockClass}__${componentClass}`,
+		aspectRatio && `${componentClass}__video-ratio--${aspectRatio}`,
+		blockClass && `${blockClass}__${componentClass}`,
 	);
 
 	let url = '';
@@ -37,7 +37,7 @@ export const VideoIframeEditor = (props) => {
 				src={url}
 				title={id}
 				frameBorder="0"
-				allow="autoplay; fullscreen"
+				allow={allow}
 				allowFullScreen
 			></iframe>
 		</div>

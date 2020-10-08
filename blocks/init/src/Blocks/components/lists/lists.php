@@ -6,27 +6,27 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $lists = $attributes['lists'] ?? [];
 
 if (! $lists) {
 	return;
 }
 
+$componentClass = $attributes['componentClass'] ?? 'lists';
+$blockClass = $attributes['blockClass'] ?? '';
 $content = $lists['content'] ?? '';
+$ordered = $lists['ordered'] ?? 'ul';
 
 if (! $content) {
 	return;
 }
 
-$ordered = $lists['ordered'] ?? 'ul';
-
-$componentClass = 'lists';
-$blockClass     = $attributes['blockClass'] ?? '';
-
-$listsClass = "
-	{$componentClass}
-	{$blockClass}__lists
-";
+$listsClass = Components::classnames([
+	$componentClass,
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
 
 ?>
 

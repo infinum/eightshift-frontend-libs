@@ -6,11 +6,19 @@
  * @package EightshiftBoilerplate
  */
 
-$blockClass = $attributes['blockClass'] ?? 'copyright';
-$by         = $attributes['by'] ?? 'Infinum';
-$copyYear   = $attributes['year'] ?? gmdate('Y');
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+$componentClass = $attributes['componentClass'] ?? 'copyright';
+$blockClass = $attributes['blockClass'] ?? '';
+$by = $attributes['by'] ?? 'Infinum';
+$year = $attributes['year'] ?? gmdate('Y');
+
+$copyClass = Components::classnames([
+	$componentClass,
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
 
 ?>
-<div class="copyright">
-	<?php printf('%1$s %2$s %3$s', '&copy;', esc_html($copyYear), esc_html($by)); ?>
+<div class="<?php echo \esc_attr($copyClass); ?>">
+	<?php \esc_html("&copy; {$year} {$by}"); ?>
 </div>

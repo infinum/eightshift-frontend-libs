@@ -7,28 +7,27 @@ export const HeadingEditor = (props) => {
 	const {
 		heading: {
 			content,
-			styleAlign,
-			styleColor,
-			styleSize,
+			align,
+			color,
+			size,
 		},
+		componentClass = 'heading',
 		blockClass,
 		onChangeHeadingContent,
 	} = props;
 
-	const componentClass = 'heading';
-
 	const headingClass = classnames(
 		componentClass,
-		`${componentClass}__align--${styleAlign}`,
-		`${componentClass}__color--${styleColor}`,
-		`${componentClass}__size--${styleSize}`,
-		`${blockClass}__heading`,
+		align && `${componentClass}__align--${align}`,
+		color && `${componentClass}__color--${color}`,
+		size && `${componentClass}__size--${size}`,
+		blockClass && `${blockClass}__${componentClass}`,
 	);
 
 	return (
 		<RichText
 			className={headingClass}
-			placeholder={__('Add your heading', 'eightshift-boilerplate')}
+			placeholder={__('Add your text', 'eightshift-boilerplate')}
 			onChange={onChangeHeadingContent}
 			value={content}
 		/>

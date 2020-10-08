@@ -17,9 +17,9 @@ components/drawer
 ## Attributes
 
 * _@param_ **blockClass** | `string` | default: `"header"` | Component's class. If modifying make sure the provide the default class as well (see example call).
-* _@param_ **leftComponent** | `string|array` | Component (html string or array of html strings) to render on the **left** side of the header.
-* _@param_ **centerComponent** | `string|array` | Component (html string or array of html strings) to render in the **center** of the header.
-* _@param_ **rightComponent** | `string|array` | Component (html string or array of html strings) to render on the **right** side of the header.
+* _@param_ **left** | `string|array` | Component (html string or array of html strings) to render on the **left** side of the header.
+* _@param_ **center** | `string|array` | Component (html string or array of html strings) to render in the **center** of the header.
+* _@param_ **right** | `string|array` | Component (html string or array of html strings) to render on the **right** side of the header.
 
 ## Example
 
@@ -27,7 +27,7 @@ components/drawer
 use Eightshift_Libs\Helpers\Components;
 
 Components::render( 'header', [
-	'leftComponent' => [
+	'left' => [
 		Components::render( 'hamburger' ),
 		Components::render( 'drawer', [
 			'trigger' => 'js-hamburger',
@@ -36,8 +36,8 @@ Components::render( 'header', [
 			'menu' => Components::render( 'menu', [ 'variation' => 'vertical' ] ),
 		] ),
 	],
-	'centerComponent' => Components::render( 'logo' ),
-	'rightComponent' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
+	'center' => Components::render( 'logo' ),
+	'right' => Components::render( 'menu', [ 'variation' => 'horizontal' ] ),
 ] )
 ```
 

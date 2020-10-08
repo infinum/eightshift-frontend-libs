@@ -7,10 +7,10 @@ export const HeadingToolbar = (props) => {
 	const {
 		heading: {
 			level,
-			styleAlign,
+			align,
 		},
 		onChangeHeadingLevel,
-		onChangeHeadingStyleAlign,
+		onChangeHeadingAlign,
 	} = props;
 
 	return (
@@ -22,10 +22,10 @@ export const HeadingToolbar = (props) => {
 				/>
 			}
 
-			{onChangeHeadingStyleAlign &&
+			{onChangeHeadingAlign &&
 				<AlignmentToolbar
-					value={styleAlign}
-					onChange={onChangeHeadingStyleAlign}
+					value={align}
+					onChange={onChangeHeadingAlign}
 				/>
 			}
 

@@ -20,6 +20,7 @@ export const VideoIframeOptions = (props) => {
 			type,
 			aspectRatio,
 		},
+		label,
 		onChangeVideoId,
 		onChangeVideoAspectRatio,
 		onChangeVideoType,
@@ -27,9 +28,16 @@ export const VideoIframeOptions = (props) => {
 
 	return (
 		<Fragment>
+
+			{label &&
+				<h3>
+					{label}
+				</h3>
+			}
+
 			{onChangeVideoId &&
 				<TextControl
-					label={__('Video ID', 'eightshift-boilerplate')}
+					label={__('ID', 'eightshift-boilerplate')}
 					value={id}
 					onChange={onChangeVideoId}
 				/>

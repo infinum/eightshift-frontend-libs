@@ -6,28 +6,27 @@ import { RichText } from '@wordpress/block-editor';
 export const LinkEditor = (props) => {
 	const {
 		link: {
-			title,
+			content,
 			url,
 			styleColor,
 		},
+		componentClass = 'link',
 		blockClass,
-		onChangeLinkTitle,
+		onChangeLinkContent,
 	} = props;
-
-	const componentClass = 'link';
 
 	const linkClass = classnames(
 		componentClass,
-		`${componentClass}__color--${styleColor}`,
-		`${blockClass}__link`,
-		!(title && url) ? `${componentClass}__placeholder` : '',
+		styleColor && `${componentClass}__color--${styleColor}`,
+		blockClass && `${blockClass}__${componentClass}`,
+		!(content && url) && `${componentClass}__placeholder`,
 	);
 
 	return (
 		<RichText
-			placeholder={__('Add Link Title', 'eightshift-boilerplate')}
-			value={title}
-			onChange={onChangeLinkTitle}
+			placeholder={__('Add Content', 'eightshift-boilerplate')}
+			value={content}
+			onChange={onChangeLinkContent}
 			className={linkClass}
 			keepPlaceholderOnFocus
 		/>

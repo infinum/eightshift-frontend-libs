@@ -6,46 +6,44 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $button = $attributes['button'] ?? [];
 
 if (empty($button)) {
 	return;
 }
 
-$url   = $button['url'] ?? '';
-$title = $button['title'] ?? '';
+$componentClass = $attributes['componentClass'] ?? 'btn';
+$blockClass = $attributes['blockClass'] ?? '';
 
-if (! $url || ! $title) {
+$url = $button['url'] ?? '';
+$content = $button['content'] ?? '';
+$id = $button['id'] ?? '';
+$isAnchor = $button['isAnchor'] ?? false;
+$color = $button['color'] ?? '';
+$size = $button['size'] ?? '';
+$sizeWidth = $button['sizeWidth'] ?? '';
+
+if (! $url || ! $content) {
 	return;
 }
 
-$url      = $button['url'] ?? '';
-$title    = $button['title'] ?? '';
-$id       = $button['id'] ?? '';
-$isAnchor = $button['isAnchor'] ?? false;
-
-$componentClass = 'btn';
-$blockClass     = $attributes['blockClass'] ?? '';
-$styleColor     = isset($button['styleColor']) ? "{$componentClass}__color--{$button['styleColor']}" : '';
-$styleSize      = isset($button['styleSize']) ? "{$componentClass}__size--{$button['styleSize']}" : '';
-$styleSizeWidth = isset($button['styleSizeWidth']) ? "{$componentClass}__size-width--{$button['styleSizeWidth']}" : '';
-$isAnchor       = $isAnchor ? 'js-scroll-to-anchor' : '';
-
-$buttonClass = "
-	{$componentClass}
-	{$styleColor}
-	{$styleSize}
-	{$styleSizeWidth}
-	{$isAnchor}
-	{$blockClass}__btn
-";
+$buttonClass = Components::classnames([
+	$componentClass,
+	$color ? "{$componentClass}__color--{$button['color']}" : '',
+	$size ? "{$componentClass}__size--{$button['size']}" : '',
+	$sizeWidth ? "{$componentClass}__size-width--{$button['sizeWidth']}" : '',
+	$isAnchor ? 'js-scroll-to-anchor' : '',
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
 ?>
 
 <a
-	href="<?php echo esc_url($url); ?>"
-	class="<?php echo esc_attr($buttonClass); ?>"
-	id="<?php echo esc_attr($id); ?>"
-	title="<?php echo esc_attr($title); ?>"
+	href="<?php echo \esc_url($url); ?>"
+	class="<?php echo \esc_attr($buttonClass); ?>"
+	id="<?php echo \esc_attr($id); ?>"
+	title="<?php echo \esc_attr($content); ?>"
 >
-	<?php echo esc_html($title); ?>
+	<?php echo \esc_html($content); ?>
 </a>

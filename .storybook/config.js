@@ -9,10 +9,10 @@ storybookWindowObjects();
 
 // Run all storybook stories.
 configure([
-	require.context('./../blocks/init/src/Blocks/Components', true, /docs\/story.js$/),
-	require.context('./../blocks/init/src/Blocks/Custom', true, /docs\/story.js$/),
-	require.context('./../blocks/init/src/Blocks/Wrapper', true, /docs\/story.js$/),
-	require.context('./../blocks/init/src/Blocks/Variations', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/components', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/custom', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/wrapper', true, /docs\/story.js$/),
+	require.context('./../blocks/init/src/Blocks/variations', true, /docs\/story.js$/),
 	require.context('./../blocks/playground', true, /story.js$/),
 	require.context('./../scripts/components', true, /docs\/story.js$/),
 ], module);
@@ -27,11 +27,11 @@ storybookDefaultMocksColorPalette(globalSettings);
 storybookWpStyles();
 
 // Project styles.
-require('./../blocks/init/Assets/styles/application.scss');
+require('./../blocks/init/assets/styles/application.scss');
 
 // Project Blocks Frontend Part.
-require('./../blocks/init/src/Blocks/Assets/styles/application-blocks.scss');
-require('./../blocks/init/src/Blocks/Assets/styles/application-blocks-editor.scss');
+require('./../blocks/init/src/Blocks/assets/styles/application-blocks.scss');
+require('./../blocks/init/src/Blocks/assets/styles/application-blocks-editor.scss');
 
 // Project Blocks Editor Part.
-require('./../blocks/init/src/Blocks/Assets/scripts/application-blocks-editor');
+require('./../blocks/init/src/Blocks/assets/scripts/application-blocks-editor');

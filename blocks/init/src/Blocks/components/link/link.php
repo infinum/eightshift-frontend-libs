@@ -6,40 +6,40 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $link = $attributes['link'] ?? [];
 
 if (! $link) {
 	return;
 }
 
-$url   = $link['url'] ?? '';
-$title = $button['title'] ?? '';
+$componentClass = $attributes['componentClass'] ?? 'link';
+$blockClass = $attributes['blockClass'] ?? '';
 
-if (! $url || ! $title) {
+$url = $link['url'] ?? '';
+$content = $button['content'] ?? '';
+$id = $link['id'] ?? '';
+$isAnchor = $link['isAnchor'] ?? false;
+
+if (! $url || ! $content) {
 	return;
 }
 
-$id        = $link['id'] ?? '';
-$isAnchor = $link['isAnchor'] ?? false;
+$linkClass = Components::classnames([
+	$componentClass,
+	$color ? "{$componentClass}__color--{$link['color']}" : '',
+	$isAnchor ? 'js-scroll-to-anchor' : '',
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
 
-$componentClass = 'link';
-$blockClass     = $attributes['blockClass'] ?? '';
-$styleColor     = isset($link['styleColor']) ? "{$componentClass}__color--{$link['styleColor']}" : '';
-$isAnchor       = $isAnchor ? 'js-scroll-to-anchor' : '';
-
-$linkClass = "
-	{$componentClass}
-	{$styleColor}
-	{$isAnchor}
-	{$blockClass}__link
-";
 ?>
 
 <a
 	href="<?php echo esc_url($url); ?>"
 	class="<?php echo esc_attr($linkClass); ?>"
-	title="<?php echo esc_attr($title); ?>"
+	title="<?php echo esc_attr($content); ?>"
 	id="<?php echo esc_attr($id); ?>"
 >
-	<?php echo esc_html($title); ?>
+	<?php echo esc_html($content); ?>
 </a>

@@ -1,0 +1,36 @@
+$carousel-pagination: (
+	size: 15px,
+	size-mobile: 9px,
+	color: global-settings(colors, white)
+);
+
+.carousel-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	> * {
+		border-radius: 100%;
+		border: 1px solid map-get-deep($carousel-pagination, color);
+		background-color: map-get-deep($carousel-pagination, color);
+		display: block;
+		transition: {
+			property: background-color;
+			timing-function: ease-in;
+			duration: 0.3s;
+		}
+		margin: 0 5px;
+		width: map-get-strict($carousel-pagination, size-mobile);
+		height: map-get-strict($carousel-pagination, size-mobile);
+
+		@include media(tablet up) {
+			margin: 0 10px;
+			width: map-get-strict($carousel-pagination, size);
+			height: map-get-strict($carousel-pagination, size);
+		}
+
+		&.swiper-pagination-bullet-active {
+			background-color: transparent;
+		}
+	}
+}

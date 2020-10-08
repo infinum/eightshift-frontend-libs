@@ -19,12 +19,13 @@ export const LinkOptions = (props) => {
 	const {
 		link: {
 			url,
-			styleColor,
+			color,
 			isAnchor,
 			id,
 		},
+		label,
 		onChangeLinkUrl,
-		onChangeLinkStyleColor,
+		onChangeLinkColor,
 		onChangeLinkIsAnchor,
 		onChangeLinkId,
 	} = props;
@@ -32,25 +33,32 @@ export const LinkOptions = (props) => {
 	return (
 		<Fragment>
 
-			{onChangeLinkStyleColor &&
+			{label &&
+				<h3>
+					{label}
+				</h3>
+			}
+
+			{onChangeLinkColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
 							<Icon icon={icons.color} />
-							{__('Link Color', 'eightshift-boilerplate')}
+							{__('Color', 'eightshift-boilerplate')}
 						</Fragment>
 					}
-					help={__('Change Link color.', 'eightshift-boilerplate')}
-					value={styleColor}
+					help={__('Change color.', 'eightshift-boilerplate')}
+					value={color}
 					colors={linkColors()}
-					onChange={onChangeLinkStyleColor}
+					onChange={onChangeLinkColor}
 				/>
 			}
 
 			{onChangeLinkUrl &&
 				<URLInput
-					label={__('Link Url', 'eightshift-boilerplate')}
+					label={__('Url', 'eightshift-boilerplate')}
 					value={url}
+					autoFocus={false}
 					onChange={onChangeLinkUrl}
 				/>
 			}
@@ -66,7 +74,7 @@ export const LinkOptions = (props) => {
 
 			{onChangeLinkId &&
 				<TextControl
-					label={__('Link ID', 'eightshift-boilerplate')}
+					label={__('ID', 'eightshift-boilerplate')}
 					value={id}
 					onChange={onChangeLinkId}
 				/>

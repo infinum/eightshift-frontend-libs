@@ -11,7 +11,7 @@ const {
 
 const defaultValues = {
   package: 'eightshift-boilerplate',
-  namespace: 'Eightshift_Boilerplate',
+  namespace: 'EightshiftBoilerplate',
   env: 'EB_ENV',
   projectPrefix: 'eb',
   url: 'dev.boilerplate.com',

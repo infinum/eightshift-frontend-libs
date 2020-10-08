@@ -13,6 +13,7 @@ $video = $attributes['video'] ?? [];
 $id = $video['id'] ?? '';
 $aspectRatio = $video['aspectRatio'] ?? 'default';
 $type = $video['type'] ?? 'youtube';
+$allow = $video['allow'] ?? 'autoplay; fullscreen';
 
 if (!$id) {
 	return;
@@ -29,13 +30,11 @@ switch ($type) {
 
 $componentClass = 'video-iframe';
 
-$videoClass = Components::classnames(
-	[
+$videoClass = Components::classnames([
 	$componentClass,
-	"{$componentClass}__video-ratio--{$aspectRatio}",
+	$aspectRatio ? "{$componentClass}__video-ratio--{$aspectRatio}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
-	]
-);
+	]);
 
 ?>
 
@@ -44,7 +43,7 @@ $videoClass = Components::classnames(
 	class="<?php echo \esc_attr("{$componentClass}__iframe"); ?>"
 	src="<?php echo \esc_url($url); ?>"
 	frameBorder="0"
-	allow="autoplay; fullscreen"
+	allow="<?php echo \esc_attr($allow); ?>"
 	allowFullScreen
 	></iframe>
 </div>

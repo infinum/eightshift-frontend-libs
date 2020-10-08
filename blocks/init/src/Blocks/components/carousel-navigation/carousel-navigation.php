@@ -6,25 +6,36 @@
  * @package EightshiftBoilerplate
  */
 
-$componentClass       = 'carousel-navigation';
-$arrowItemPrevClass = "
-	{$componentClass}__arrow-item
-	{$componentClass}__arrow-item--prev
-	js-swiper-prev
-";
-$arrowItemNextClass = "
-	{$componentClass}__arrow-item
-	{$componentClass}__arrow-item--next
-	js-swiper-next
-";
-$arrowIconClass      = "{$componentClass}__arrow-icon";
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+$componentClass = $attributes['componentClass'] ?? 'carousel-navigation';
+$blockClass = $attributes['blockClass'] ?? '';
+$blockJsPrevClass = $attributes['blockJsPrevClass'] ?? '';
+$blockJsNextClass = $attributes['blockJsNextClass'] ?? '';
+
+$arrowItemPrevClass = Components::classnames([
+	"{$componentClass}__arrow-item",
+	"{$componentClass}__arrow-item--prev",
+	$blockClass ? "{$blockClass}__navigation-arrow-item" : '',
+	$blockClass ? "{$blockClass}__navigation-arrow-item--prev" : '',
+	$blockJsPrevClass,
+]);
+$arrowItemNextClass = Components::classnames([
+	"{$componentClass}__arrow-item",
+	"{$componentClass}__arrow-item--next",
+	$blockClass ? "{$blockClass}__navigation-arrow-item" : '',
+	$blockClass ? "{$blockClass}__navigation-arrow-item--next" : '',
+	$blockJsNextClass
+]);
+$arrowIconClass = Components::classnames([
+	"{$componentClass}__arrow-icon",
+	$blockClass ? "{$blockClass}__navigation-arrow-icon" : '',
+]);
 ?>
 
-<div class="<?php echo esc_attr($componentClass); ?>">
-	<div class="<?php echo esc_attr($arrowItemPrevClass); ?>">
-	<svg class="<?php echo esc_attr($arrowIconClass); ?>" xmlns="http://www.w3.org/2000/svg" width="30" height="12"><path fill="#353535" fill-rule="evenodd" d="M7.174 6v4.483L.686 5.657 7.174.83V5H30v1H7.174z"/></svg>
-	</div>
-	<div class="<?php echo esc_attr($arrowItemNextClass); ?>">
-	<svg class="<?php echo esc_attr($arrowIconClass); ?>" xmlns="http://www.w3.org/2000/svg" width="30" height="12"><path fill="#353535" fill-rule="evenodd" d="M22.826 5V.83l6.488 4.827-6.488 4.826V6H0V5h22.826z"/></svg>
-	</div>
+<div class="<?php echo esc_attr($arrowItemPrevClass); ?>">
+	<svg class="<?php echo esc_attr($arrowIconClass); ?>" width="22" height="40" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode:multiply" stroke="#FFF" fill="none" fill-rule="evenodd" stroke-linecap="round"><path d="M1 20L21 1M21 39L1 20"/></g></svg>
+</div>
+<div class="<?php echo esc_attr($arrowItemNextClass); ?>">
+	<svg class="<?php echo esc_attr($arrowIconClass); ?>" width="22" height="40" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode:multiply" stroke="#FFF" fill="none" fill-rule="evenodd" stroke-linecap="round"><path d="M21 20L1 1M1 39l20-19"/></g></svg>
 </div>

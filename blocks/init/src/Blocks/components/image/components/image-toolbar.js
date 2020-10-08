@@ -22,7 +22,7 @@ export const ImageToolbar = (props) => {
 					controls={[
 						{
 							icon: 'trash',
-							title: __('Remove image', 'eightshift-boilerplate'),
+							title: __('Remove', 'eightshift-boilerplate'),
 							isActive: false,
 							onClick: removeMedia,
 						},

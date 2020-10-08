@@ -26,7 +26,7 @@ module.exports = ({ config }, projectRoot, blocksManifestSettingsPath, isProject
 			{
 				loader: 'sass-loader',
 				options: {
-					prependData: convertJsonToSass(globalSettings.globalVariables),
+					prependData: convertJsonToSass(globalSettings),
 				},
 			},
 			{

@@ -10,15 +10,14 @@ export const ListsEditor = (props) => {
 			ordered,
 		},
 		blockClass,
+		componentClass = 'lists',
 		onChangeListsContent,
 		onChangeListsOrdered,
 	} = props;
 
-	const componentClass = 'lists';
-
 	const listsClass = classnames(
 		componentClass,
-		`${blockClass}__lists`,
+		blockClass && `${blockClass}__${componentClass}`,
 	);
 
 	return (
@@ -26,7 +25,7 @@ export const ListsEditor = (props) => {
 			tagName={ordered}
 			multiline="li"
 			className={listsClass}
-			placeholder={__('Add your list item', 'eightshift-boilerplate')}
+			placeholder={__('Add your item', 'eightshift-boilerplate')}
 			onChange={onChangeListsContent}
 			value={content}
 			onTagNameChange={onChangeListsOrdered}

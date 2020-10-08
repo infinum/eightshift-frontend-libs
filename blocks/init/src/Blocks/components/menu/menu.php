@@ -8,9 +8,9 @@
 
 use EightshiftBoilerplate\Menu\Menu;
 
-$blockClass       = $attributes['blockClass'] ?? 'menu';
-$menuName         = $attributes['menu'] ?? 'header_main_nav';
-$modifier         = $attributes['modifier'] ?? '';
-$variationAsClass = isset($attributes['variation']) ? "{$blockClass}-{$attributes['variation']}" : $blockClass;
+$componentClass = $attributes['componentClass'] ?? 'menu';
+$name = $attributes['menu'] ?? 'header_main_nav';
+$modifier = $attributes['modifier'] ?? '';
+$variation = isset($attributes['variation']) ? "{$componentClass}-{$attributes['variation']}" : $componentClass;
 
-echo esc_html(Menu::bemMenu($menuName, $variationAsClass, $modifier ? "{$variationAsClass}--{$modifier}" : ''));
+echo esc_html(Menu::bemMenu($name, $variation, $modifier ? "{$variation}--{$modifier}" : ''));

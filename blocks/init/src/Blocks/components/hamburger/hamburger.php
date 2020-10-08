@@ -8,20 +8,20 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$blockClass = $attributes['blockClass'] ?? 'hamburger';
+$componentClass = $attributes['componentClass'] ?? 'hamburger';
+$blockClass = $attributes['blockClass'] ?? '';
 
-$classes = Components::classnames(
-	[
-	$blockClass,
+$hamburgerClass = Components::classnames([
+	$componentClass,
 	"js-{$blockClass}",
-	]
-);
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
 ?>
 
-<button class="<?php echo esc_attr($classes); ?>">
-	<span class="<?php echo esc_attr($blockClass); ?>__wrapper">
-	<span class="<?php echo esc_attr($blockClass); ?>__line <?php echo esc_attr($blockClass); ?>__line--1"></span>
-	<span class="<?php echo esc_attr($blockClass); ?>__line <?php echo esc_attr($blockClass); ?>__line--2"></span>
-	<span class="<?php echo esc_attr($blockClass); ?>__line <?php echo esc_attr($blockClass); ?>__line--3"></span>
+<button class="<?php echo esc_attr($hamburgerClass); ?>">
+	<span class="<?php echo esc_attr("{$componentClass}__wrapper"); ?>">
+		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--1"); ?>"></span>
+		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--2"); ?>"></span>
+		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--3"); ?>"></span>
 	</span>
 </button>

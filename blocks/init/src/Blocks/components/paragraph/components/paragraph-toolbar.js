@@ -5,17 +5,17 @@ import { Fragment } from '@wordpress/element';
 export const ParagraphToolbar = (props) => {
 	const {
 		paragraph: {
-			styleAlign,
+			align,
 		},
-		onChangeParagraphStyleAlign,
+		onChangeParagraphAlign,
 	} = props;
 
 	return (
 		<Fragment>
-			{onChangeParagraphStyleAlign &&
+			{onChangeParagraphAlign &&
 				<AlignmentToolbar
-					value={styleAlign}
-					onChange={onChangeParagraphStyleAlign}
+					value={align}
+					onChange={onChangeParagraphAlign}
 				/>
 			}
 		</Fragment>

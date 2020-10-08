@@ -4,3 +4,7 @@
 	height: auto;
 	display: block;
 }
+
+.image-bg {
+	@extend %bg-image;
+}

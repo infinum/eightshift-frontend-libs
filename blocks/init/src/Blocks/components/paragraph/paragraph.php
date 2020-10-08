@@ -14,30 +14,36 @@ if (! $paragraph) {
 	return;
 }
 
+$componentClass = $attributes['componentClass'] ?? 'paragraph';
+$blockClass = $attributes['blockClass'] ?? '';
+
 $content = $paragraph['content'] ?? '';
+$align = $paragraph['align'] ?? '';
+$color = $paragraph['color'] ?? '';
+$size = $paragraph['size'] ?? '';
 
 if (! $content) {
 	return;
 }
 
-$componentClass = 'paragraph';
-$blockClass     = $attributes['blockClass'] ?? '';
-$styleAlign     = isset($paragraph['styleAlign']) ? "{$componentClass}__align--{$paragraph['styleAlign']}" : '';
-$styleColor     = isset($paragraph['styleColor']) ? "{$componentClass}__color--{$paragraph['styleColor']}" : '';
-$styleSize      = isset($paragraph['styleSize']) ? "{$componentClass}__size--{$paragraph['styleSize']}" : '';
-
-$paragraphClass = Components::classnames(
-	[
+$paragraphClass = Components::classnames([
 	$componentClass,
-	$styleColor,
-	$styleAlign,
-	$styleSize,
-	"{$blockClass}__paragraph"
-	]
-);
+	$align ? "{$componentClass}__align--{$heading['align']}" : '',
+	$color ? "{$componentClass}__color--{$heading['color']}" : '',
+	$size ? "{$componentClass}__size--{$heading['size']}" : '',
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
+
+$level = isset($heading['level']) ? "h{$heading['level']}" : 'h2';
+
+$tag = $heading['tag'] ?? '';
+
+if ($tag === 'div') {
+	$level = 'div';
+}
 
 ?>
 
-<p class="<?php echo esc_attr($paragraphClass); ?>">
-	<?php echo wp_kses_post($content); ?>
-</p>
+<<?php echo \esc_attr($level); ?> class="<?php echo \esc_attr($headingClass); ?>">
+	<?php echo \wp_kses_post($content); ?>
+</<?php echo \esc_attr($level); ?>>

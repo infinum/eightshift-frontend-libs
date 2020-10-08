@@ -6,32 +6,31 @@ import { RichText } from '@wordpress/block-editor';
 export const ButtonEditor = (props) => {
 	const {
 		button: {
-			title,
+			content,
 			url,
-			styleColor,
-			styleSize,
-			styleSizeWidth,
+			color,
+			size,
+			sizeWidth,
 		},
+		componentClass = 'btn',
 		blockClass,
-		onChangeButtonTitle,
+		onChangeButtonContent,
 	} = props;
-
-	const componentClass = 'btn';
 
 	const buttonClass = classnames(
 		componentClass,
-		`${componentClass}__size--${styleSize}`,
-		`${componentClass}__color--${styleColor}`,
-		`${componentClass}__size-width--${styleSizeWidth}`,
-		`${blockClass}__btn`,
-		!(title && url) ? `${componentClass}__placeholder` : '',
+		size && `${componentClass}__size--${size}`,
+		color && `${componentClass}__color--${color}`,
+		sizeWidth && `${componentClass}__size-width--${sizeWidth}`,
+		blockClass && `${blockClass}__${componentClass}`,
+		!(content && url) && `${componentClass}__placeholder`,
 	);
 
 	return (
 		<RichText
-			placeholder={__('Add Button Title', 'eightshift-boilerplate')}
-			value={title}
-			onChange={onChangeButtonTitle}
+			placeholder={__('Add Content', 'eightshift-boilerplate')}
+			value={content}
+			onChange={onChangeButtonContent}
 			className={buttonClass}
 			keepPlaceholderOnFocus
 		/>

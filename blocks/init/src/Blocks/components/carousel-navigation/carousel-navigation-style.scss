@@ -1,28 +1,13 @@
 $carousel-navigation: (
-	arrow-background-color: global-settings(colors, white),
-	arrow-background-hover-color: global-settings(colors, primary),
-	arrow-border-color: global-settings(colors, primary),
+	spacing: 40px,
 );
 
 .carousel-navigation {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	margin-top: 15px;
-
-	@include media(tablet up) {
-		margin-top: 30px;
-	}
-
 	&__arrow-item {
-		position: relative;
-		border: 1px solid map-get-strict($carousel-navigation, arrow-border-color);
-		background-color: map-get-strict($carousel-navigation, arrow-background-color);
+		position: absolute;
 		margin: 0;
-		top: auto;
-		width: auto;
-		height: auto;
-		padding: 18px 21px;
+		top: 50%;
+		transform: translateY(-50%);
 		transition: {
 			property: background-color;
 			timing-function: ease-in;
@@ -30,21 +15,12 @@ $carousel-navigation: (
 		}
 		cursor: pointer;
 
-		&:hover {
-			background-color: map-get-strict($carousel-navigation, arrow-background-hover-color);
-		}
-
 		&--prev {
-			left: auto;
-			margin-right: 10px;
-
-			@include media(tablet up) {
-				margin-right: 25px;
-			}
+			left: 0;
 		}
 
 		&--next {
-			right: auto;
+			right: 0;
 		}
 	}
 

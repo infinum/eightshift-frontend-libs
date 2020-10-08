@@ -9,10 +9,10 @@ storybookWindowObjects();
 
 // Run all storybook stories.
 configure([
-	require.context('./../src/Blocks/Components', true, /docs\/story.js$/),
-	require.context('./../src/Blocks/Custom', true, /docs\/story.js$/),
-	require.context('./../src/Blocks/Wrapper', true, /docs\/story.js$/),
-	require.context('./../src/Blocks/Variations', true, /docs\/story.js$/),
+	require.context('./../src/Blocks/components', true, /docs\/story.js$/),
+	require.context('./../src/Blocks/custom', true, /docs\/story.js$/),
+	require.context('./../src/Blocks/wrapper', true, /docs\/story.js$/),
+	require.context('./../src/Blocks/variations', true, /docs\/story.js$/),
 ], module);
 
 // Set default categories.
@@ -28,8 +28,8 @@ storybookWpStyles();
 require('./../assets/styles/application.scss');
 
 // Project Blocks Frontend Part.
-require('./../src/Blocks/Assets/styles/application-blocks.scss');
-require('./../src/Blocks/Assets/styles/application-blocks-editor.scss');
+require('./../src/Blocks/assets/styles/application-blocks.scss');
+require('./../src/Blocks/assets/styles/application-blocks-editor.scss');
 
 // Project Blocks Editor Part.
-require('./../src/Blocks/Assets/scripts/application-blocks-editor');
+require('./../src/Blocks/assets/scripts/application-blocks-editor');

@@ -13,36 +13,43 @@ export const paragraphSizes = [
 export const ParagraphOptions = (props) => {
 	const {
 		paragraph: {
-			styleColor,
-			styleSize,
+			color,
+			size,
 		},
-		onChangeParagraphStyleColor,
-		onChangeParagraphStyleSize,
+		label,
+		onChangeParagraphColor,
+		onChangeParagraphSize,
 	} = props;
 
 	return (
 		<Fragment>
 
-			{onChangeParagraphStyleColor &&
+			{label &&
+				<h3>
+					{label}
+				</h3>
+			}
+
+			{onChangeParagraphColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
 							<Icon icon={icons.color} />
-							{__('Paragraph Color', 'eightshift-boilerplate')}
+							{__('Color', 'eightshift-boilerplate')}
 						</Fragment>
 					}
-					help={__('Change Paragraph color.', 'eightshift-boilerplate')}
-					value={styleColor}
-					onChange={onChangeParagraphStyleColor}
+					help={__('Change Color.', 'eightshift-boilerplate')}
+					value={color}
+					onChange={onChangeParagraphColor}
 				/>
 			}
 
-			{onChangeParagraphStyleSize &&
+			{onChangeParagraphSize &&
 				<SelectControl
-					label={__('Paragraph Font Size', 'eightshift-boilerplate')}
-					value={styleSize}
+					label={__('Font Size', 'eightshift-boilerplate')}
+					value={size}
 					options={paragraphSizes}
-					onChange={onChangeParagraphStyleSize}
+					onChange={onChangeParagraphSize}
 				/>
 			}
 

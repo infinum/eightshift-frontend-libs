@@ -29,16 +29,17 @@ export const ButtonOptions = (props) => {
 	const {
 		button: {
 			url,
-			styleSize,
-			styleColor,
-			styleSizeWidth,
+			size,
+			color,
+			sizeWidth,
 			id,
 			isAnchor,
 		},
+		label,
 		onChangeButtonUrl,
-		onChangeButtonStyleSize,
-		onChangeButtonStyleColor,
-		onChangeButtonStyleSizeWidth,
+		onChangeButtonSize,
+		onChangeButtonColor,
+		onChangeButtonSizeWidth,
 		onChangeButtonId,
 		onChangeButtonIsAnchor,
 	} = props;
@@ -46,44 +47,52 @@ export const ButtonOptions = (props) => {
 	return (
 		<Fragment>
 
+			{label &&
+				<h3>
+					{label}
+				</h3>
+			}
+
 			{onChangeButtonUrl &&
 				<URLInput
-					label={__('Button Url', 'eightshift-boilerplate')}
+					label={__('Url', 'eightshift-boilerplate')}
 					value={url}
+					autoFocus={false}
 					onChange={onChangeButtonUrl}
 				/>
 			}
 
-			{onChangeButtonStyleColor &&
+			{onChangeButtonColor &&
 				<ColorPaletteCustom
 					label={
 						<Fragment>
 							<Icon icon={icons.color} />
-							{__('Button Color', 'eightshift-boilerplate')}
+							{__('Color', 'eightshift-boilerplate')}
+
 						</Fragment>
 					}
-					help={__('Change Button Background color.', 'eightshift-boilerplate')}
-					value={styleColor}
+					help={__('Change Background Color.', 'eightshift-boilerplate')}
+					value={color}
 					colors={buttonColors()}
-					onChange={onChangeButtonStyleColor}
+					onChange={onChangeButtonColor}
 				/>
 			}
 
-			{onChangeButtonStyleSize &&
+			{onChangeButtonSize &&
 				<SelectControl
-					label={__('Button Size', 'eightshift-boilerplate')}
-					value={styleSize}
+					label={__('Size', 'eightshift-boilerplate')}
+					value={size}
 					options={buttonSizes}
-					onChange={onChangeButtonStyleSize}
+					onChange={onChangeButtonSize}
 				/>
 			}
 
-			{onChangeButtonStyleSizeWidth &&
+			{onChangeButtonSizeWidth &&
 				<SelectControl
-					label={__('Button Size Width', 'eightshift-boilerplate')}
-					value={styleSizeWidth}
+					label={__('Size Width', 'eightshift-boilerplate')}
+					value={sizeWidth}
 					options={buttonSizeWidths}
-					onChange={onChangeButtonStyleSizeWidth}
+					onChange={onChangeButtonSizeWidth}
 				/>
 			}
 
@@ -98,7 +107,7 @@ export const ButtonOptions = (props) => {
 
 			{onChangeButtonId &&
 				<TextControl
-					label={__('Button ID', 'eightshift-boilerplate')}
+					label={__('ID', 'eightshift-boilerplate')}
 					value={id}
 					onChange={onChangeButtonId}
 				/>

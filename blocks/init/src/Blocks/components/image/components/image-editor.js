@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
-import { MediaPlaceholder } from '@wordpress/editor';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 
 export const ImageEditor = (props) => {
 	const {
@@ -10,14 +10,45 @@ export const ImageEditor = (props) => {
 			accept = 'image/*',
 			allowedTypes = ['image'],
 		},
+		bgImg = false,
+		usePlaceholder = false,
+		componentClass = 'image',
+		componentBgClass = 'image-bg',
+		componentPlaceholderClass = 'image-placeholder',
 		blockClass,
 		onChangeMedia,
 	} = props;
 
+	const imageClass = classnames(
+		componentClass,
+		blockClass && `${blockClass}__${componentClass}`,
+	);
+
+	const imageBgClass = classnames(
+		componentBgClass,
+		blockClass && `${blockClass}__${componentBgClass}`,
+	);
+
+	const placeholderClass = classnames(
+		componentPlaceholderClass,
+		blockClass && `${blockClass}__${componentPlaceholderClass}`,
+	);
+
 	return (
 		<Fragment>
-			{url ?
-				<img className={classnames('image', `${blockClass}__img`)} src={url} alt="" /> :
+			{(url && !bgImg) &&
+				<img className={imageClass} src={url} alt="" />
+			}
+
+			{(url && bgImg) &&
+				<div className={imageBgClass} style={{ backgroundImage: `url(${url})` }} />
+			}
+
+			{(!url && bgImg) &&
+				<div className={placeholderClass}></div>
+			}
+
+			{(!url && !usePlaceholder) &&
 				<MediaPlaceholder
 					icon="format-image"
 					onSelect={onChangeMedia}

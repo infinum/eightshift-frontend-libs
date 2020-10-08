@@ -8,7 +8,7 @@
 
 use EightshiftBoilerplate\Manifest\Manifest;
 
-$icon = apply_filters(Manifest::MANIFEST_ITEM, 'logo.svg');
+$icon = apply_filters(Manifest::MANIFEST_ITEM, 'favicon.png');
 ?>
 
 <meta charset="<?php bloginfo('charset'); ?>" />

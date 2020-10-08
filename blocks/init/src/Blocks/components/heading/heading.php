@@ -6,33 +6,41 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
 $heading = $attributes['heading'] ?? [];
 
 if (! $heading) {
 	return;
 }
 
+$componentClass = $attributes['componentClass'] ?? 'heading';
+$blockClass = $attributes['blockClass'] ?? '';
+
+$align = $heading['align'] ?? '';
+$color = $heading['color'] ?? '';
+$size = $heading['size'] ?? '';
 $content = $heading['content'] ?? '';
 
 if (! $content) {
 	return;
 }
 
+$headingClass = Components::classnames([
+	$componentClass,
+	$align ? "{$componentClass}__align--{$heading['align']}" : '',
+	$color ? "{$componentClass}__color--{$heading['color']}" : '',
+	$size ? "{$componentClass}__size--{$heading['size']}" : '',
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+]);
+
 $level = isset($heading['level']) ? "h{$heading['level']}" : 'h2';
 
-$componentClass = 'heading';
-$blockClass     = $attributes['blockClass'] ?? '';
-$styleAlign     = isset($heading['styleAlign']) ? "{$componentClass}__align--{$heading['styleAlign']}" : '';
-$styleColor     = isset($heading['styleColor']) ? "{$componentClass}__color--{$heading['styleColor']}" : '';
-$styleSize      = isset($heading['styleSize']) ? "{$componentClass}__size--{$heading['styleSize']}" : '';
+$tag = $heading['tag'] ?? '';
 
-$headingClass = "
-	{$componentClass}
-	{$styleAlign}
-	{$styleColor}
-	{$styleSize}
-	{$blockClass}__heading
-";
+if ($tag === 'div') {
+	$level = 'div';
+}
 
 ?>
 
