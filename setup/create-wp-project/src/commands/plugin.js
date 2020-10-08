@@ -14,16 +14,12 @@ const {
     cloneRepoTo,
     installNodeDependencies,
     installComposerDependencies,
-    updateComposerAutoloader,
     buildAssets,
   },
   files: { fullPath },
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
-const { copyBlocks } = require('../blocks');
-const { copyAssets } = require('../assets');
-const { copyStorybook } = require('../storybook');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 
@@ -59,33 +55,8 @@ exports.handler = async (argv) => {
   step++;
 
   await installStep({
-    describe: `${step}. Copying assets`,
-    thisHappens: copyAssets(projectPath),
-    isFatal: true,
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Installing blocks`,
-    thisHappens: copyBlocks(projectPath),
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Setting up storybook`,
-    thisHappens: copyStorybook(projectPath),
-  });
-  step++;
-
-  await installStep({
     describe: `${step}. Replacing theme info`,
     thisHappens: searchReplace(promptedInfo, projectPath),
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Updating composer autoloader`,
-    thisHappens: updateComposerAutoloader(projectPath),
   });
   step++;
 
@@ -109,8 +80,11 @@ exports.handler = async (argv) => {
   log(`1. In ${variable('wp-config.php')} - Make sure to define your env const ${variable(promptedInfo.env)} to ${variable('develop')} like so: <?php define( '${promptedInfo.env}', 'develop' ); ?>`);
   log(`2. In ${variable('wp-config.php')} - Make sure to require ${variable('wp-config-project.php')} (at the end of the file)`);
   log('3. Activate your new theme');
+  log('4. Run wp boilerplate --help');
   log('');
-  log(`Note that only some basic Gutenberg blocks were copied. If you need more blocks, please go to ${variable('https://infinum.github.io/eightshift-frontend-libs/storybook')}. There you will find instructions on how to add other blocks to your project.`);
+  log(`Please read the documentation ${variable('https://infinum.github.io/eightshift-docs/')} if you run into any issues or if you have any questions.`);
+  log('');
+  log('Best of luck!');
   log('----------------');
   process.exit(0);
 };
