@@ -11,16 +11,17 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $componentClass = $attributes['componentClass'] ?? 'image';
 $componentBgClass = $attributes['componentClass'] ?? 'image-bg';
 $blockClass = $attributes['blockClass'] ?? '';
+
 $media = $attributes['media'] ?? [];
 $bgImg = $attributes['bgImg'] ?? false;
-
-if (! $media) {
-	return;
-}
 
 $id = $media['id'] ?? '';
 $url = $media['url'] ?? '';
 $size = $media['size'] ?? 'large';
+
+if (! $media) {
+	return;
+}
 
 $imageClass = Components::classnames([
 	$componentClass,

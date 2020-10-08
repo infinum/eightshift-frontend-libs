@@ -9,11 +9,11 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'drawer';
-$blockClass     = $attributes['blockClass'] ?? '';
+$blockClass = $attributes['blockClass'] ?? '';
 $drawerPosition = $attributes['drawerPosition'] ?? 'left';
-$menu           = $attributes['menu'] ?? '';
-$trigger        = $attributes['trigger'] ?? '';
-$overlay        = $attributes['overlay'] ?? '';
+$menu = $attributes['menu'] ?? '';
+$trigger = $attributes['trigger'] ?? '';
+$overlay = $attributes['overlay'] ?? '';
 
 $drawerClass = Components::classnames([
 	$componentClass,

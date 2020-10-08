@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { CarouselPagination } from '../carousel-pagination';
+import { CarouselPaginationEditor } from './../components/carousel-pagination-editor';
 
 export default {
 	title: 'Components|Carousel Pagination',
@@ -9,6 +9,11 @@ export default {
 	},
 };
 
+const props = {
+	blockClass: 'block-selector',
+	blockJsClass: 'js-pagination',
+};
+
 export const component = () => (
-	<CarouselPagination />
+	<CarouselPaginationEditor {...props} />
 );

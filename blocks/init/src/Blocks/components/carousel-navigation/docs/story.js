@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { CarouselNavigation } from '../carousel-navigation';
+import { CarouselNavigationEditor } from './../components/carousel-navigation-editor';
 
 export default {
 	title: 'Components|Carousel Navigation',
@@ -9,6 +9,12 @@ export default {
 	},
 };
 
+const props = {
+	blockClass: 'block-selector',
+	blockJsPrevClass: 'js-prev-trigger',
+	blockJsNextClass: 'js-next-trigger',
+};
+
 export const component = () => (
-	<CarouselNavigation />
+	<CarouselNavigationEditor {...props} />
 );

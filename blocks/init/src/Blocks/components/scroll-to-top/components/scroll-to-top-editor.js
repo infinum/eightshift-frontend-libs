@@ -1,10 +1,22 @@
-import { __ } from '@wordpress/i18n';
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
-export const ScrollToTopEditor = () => {
+export const ScrollToTopEditor = (props) => {
+	const {
+		content = __('To Top', 'eightshift-boilerplate'),
+		componentClass = 'scroll-to-top',
+		blockClass,
+	} = props;
+
+	const scrollClass = classnames(
+		componentClass,
+		blockClass && `${blockClass}__${componentClass}`,
+	);
+
 	return (
-		<button className="js-scroll-to-top scroll-to-top">
-			{__('To Top', 'eightshift-boilerplate')}
+		<button className={scrollClass}>
+			{content}
 		</button>
 	);
 };

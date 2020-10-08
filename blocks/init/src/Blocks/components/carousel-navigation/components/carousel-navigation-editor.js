@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 
-export const CarouselNavigation = (props) => {
+export const CarouselNavigationEditor = (props) => {
 	const {
 		blockJsPrevClass,
 		blockJsNextClass,
@@ -13,22 +13,22 @@ export const CarouselNavigation = (props) => {
 	const arrowItemPrevClass = classnames(
 		`${componentClass}__arrow-item`,
 		`${componentClass}__arrow-item--prev`,
-		blockClass ? `${blockClass}__carousel-navigation-arrow-item` : '',
-		blockClass ? `${blockClass}__carousel-navigation-arrow-item--prev` : '',
+		blockClass && `${blockClass}__carousel-navigation-arrow-item`,
+		blockClass && `${blockClass}__carousel-navigation-arrow-item--prev`,
 		blockJsPrevClass
 	);
 
 	const arrowItemNextClass = classnames(
 		`${componentClass}__arrow-item`,
 		`${componentClass}__arrow-item--next`,
-		blockClass ? `${blockClass}__carousel-navigation-arrow-item` : '',
-		blockClass ? `${blockClass}__carousel-navigation-arrow-item--next` : '',
+		blockClass && `${blockClass}__carousel-navigation-arrow-item`,
+		blockClass && `${blockClass}__carousel-navigation-arrow-item--next`,
 		blockJsNextClass
 	);
 
 	const arrowIconClass = classnames(
 		`${componentClass}__arrow-icon`,
-		blockClass ? `${blockClass}__carousel-navigation-arrow-icon` : '',
+		blockClass && `${blockClass}__carousel-navigation-arrow-icon`,
 	);
 
 	return (

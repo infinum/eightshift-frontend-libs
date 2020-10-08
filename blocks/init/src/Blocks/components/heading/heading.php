@@ -21,6 +21,9 @@ $align = $heading['align'] ?? '';
 $color = $heading['color'] ?? '';
 $size = $heading['size'] ?? '';
 $content = $heading['content'] ?? '';
+$level = $heading['level'] ?? 'h2';
+$tag = $heading['tag'] ?? '';
+
 
 if (! $content) {
 	return;
@@ -28,15 +31,11 @@ if (! $content) {
 
 $headingClass = Components::classnames([
 	$componentClass,
-	$align ? "{$componentClass}__align--{$heading['align']}" : '',
-	$color ? "{$componentClass}__color--{$heading['color']}" : '',
-	$size ? "{$componentClass}__size--{$heading['size']}" : '',
+	$align ? "{$componentClass}__align--{$align}" : '',
+	$color ? "{$componentClass}__color--{$color}" : '',
+	$size ? "{$componentClass}__size--{$size}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
-
-$level = isset($heading['level']) ? "h{$heading['level']}" : 'h2';
-
-$tag = $heading['tag'] ?? '';
 
 if ($tag === 'div') {
 	$level = 'div';

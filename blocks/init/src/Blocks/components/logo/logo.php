@@ -11,6 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'logo';
 $blockClass = $attributes['blockClass'] ?? '';
+
 $src = $attributes['src'] ?? \apply_filters(Manifest::MANIFEST_ITEM, 'logo.svg');
 $alt = $attributes['logoAlt'] ?? \get_bloginfo('name') . ' logo';
 $href = $attributes['href'] ?? \get_bloginfo('url');

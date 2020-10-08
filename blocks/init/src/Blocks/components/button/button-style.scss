@@ -1,4 +1,4 @@
-$btn: (
+$button: (
 	colors: (
 		primary: (
 			normal: (
@@ -47,7 +47,7 @@ $btn: (
 	)
 );
 
-.btn {
+.button {
 	@extend %button-reset;
 	position: relative;
 	display: inline-flex;
@@ -69,7 +69,7 @@ $btn: (
 		cursor: not-allowed;
 	}
 
-	&__size-width {
+	&__width {
 		&--block {
 			display: flex;
 			width: 100%;
@@ -77,10 +77,10 @@ $btn: (
 	}
 
 	&__color {
-		@include link-modifiers($btn, colors);
+		@include link-modifiers($button, colors);
 	}
 
 	&__size {
-		@include responsive-modifiers($btn, sizes);
+		@include responsive-modifiers($button, sizes);
 	}
 }

@@ -12,7 +12,7 @@ export const ButtonEditor = (props) => {
 			size,
 			sizeWidth,
 		},
-		componentClass = 'btn',
+		componentClass = 'button',
 		blockClass,
 		onChangeButtonContent,
 	} = props;

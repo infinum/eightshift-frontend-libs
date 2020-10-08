@@ -9,6 +9,7 @@
 use EightshiftBoilerplate\Menu\Menu;
 
 $componentClass = $attributes['componentClass'] ?? 'menu';
+
 $name = $attributes['menu'] ?? 'header_main_nav';
 $modifier = $attributes['modifier'] ?? '';
 $variation = isset($attributes['variation']) ? "{$componentClass}-{$attributes['variation']}" : $componentClass;

@@ -16,6 +16,7 @@ if (! $lists) {
 
 $componentClass = $attributes['componentClass'] ?? 'lists';
 $blockClass = $attributes['blockClass'] ?? '';
+
 $content = $lists['content'] ?? '';
 $ordered = $lists['ordered'] ?? 'ul';
 

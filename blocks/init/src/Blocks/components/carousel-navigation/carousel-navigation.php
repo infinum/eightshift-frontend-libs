@@ -20,6 +20,7 @@ $arrowItemPrevClass = Components::classnames([
 	$blockClass ? "{$blockClass}__navigation-arrow-item--prev" : '',
 	$blockJsPrevClass,
 ]);
+
 $arrowItemNextClass = Components::classnames([
 	"{$componentClass}__arrow-item",
 	"{$componentClass}__arrow-item--next",
@@ -27,6 +28,7 @@ $arrowItemNextClass = Components::classnames([
 	$blockClass ? "{$blockClass}__navigation-arrow-item--next" : '',
 	$blockJsNextClass
 ]);
+
 $arrowIconClass = Components::classnames([
 	"{$componentClass}__arrow-icon",
 	$blockClass ? "{$blockClass}__navigation-arrow-icon" : '',

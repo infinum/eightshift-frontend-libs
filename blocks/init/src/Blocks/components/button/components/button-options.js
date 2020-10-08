@@ -11,7 +11,7 @@ export const buttonSizes = [
 	{ label: __('Big', 'eightshift-boilerplate'), value: 'big' },
 ];
 
-export const buttonSizeWidths = [
+export const buttonWidths = [
 	{ label: __('Default', 'eightshift-boilerplate'), value: 'default' },
 	{ label: __('Block', 'eightshift-boilerplate'), value: 'block' },
 ];
@@ -91,7 +91,7 @@ export const ButtonOptions = (props) => {
 				<SelectControl
 					label={__('Size Width', 'eightshift-boilerplate')}
 					value={sizeWidth}
-					options={buttonSizeWidths}
+					options={buttonWidths}
 					onChange={onChangeButtonSizeWidth}
 				/>
 			}

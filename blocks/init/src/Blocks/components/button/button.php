@@ -14,7 +14,7 @@ if (empty($button)) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'btn';
+$componentClass = $attributes['componentClass'] ?? 'button';
 $blockClass = $attributes['blockClass'] ?? '';
 
 $url = $button['url'] ?? '';
@@ -23,7 +23,7 @@ $id = $button['id'] ?? '';
 $isAnchor = $button['isAnchor'] ?? false;
 $color = $button['color'] ?? '';
 $size = $button['size'] ?? '';
-$sizeWidth = $button['sizeWidth'] ?? '';
+$width = $button['width'] ?? '';
 
 if (! $url || ! $content) {
 	return;
@@ -31,9 +31,9 @@ if (! $url || ! $content) {
 
 $buttonClass = Components::classnames([
 	$componentClass,
-	$color ? "{$componentClass}__color--{$button['color']}" : '',
-	$size ? "{$componentClass}__size--{$button['size']}" : '',
-	$sizeWidth ? "{$componentClass}__size-width--{$button['sizeWidth']}" : '',
+	$color ? "{$componentClass}__color--{$color}" : '',
+	$size ? "{$componentClass}__size--{$size}" : '',
+	$width ? "{$componentClass}__size-width--{$width}" : '',
 	$isAnchor ? 'js-scroll-to-anchor' : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);

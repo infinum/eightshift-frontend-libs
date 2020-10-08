@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import { ButtonEditor } from '../components/button-editor';
-import { ButtonOptions, buttonSizes, buttonSizeWidths, buttonColors } from '../components/button-options';
+import { ButtonOptions, buttonSizes, buttonWidths, buttonColors } from '../components/button-options';
 
 export default {
 	title: 'Components|Button',
@@ -11,57 +11,45 @@ export default {
 	},
 };
 
-const editorProps = {
+const props = {
 	blockClass: 'block-button',
 	button: {
-		title: 'Button Title',
 		url: 'https://fakeurl.com',
-		styleSize: 'default',
-		styleColor: 'primary',
-		styleSizeWidth: 'default',
-	},
-	onChangeTitle: () => {},
-};
-
-const optionsProps = {
-	button: {
-		url: 'https://fakeurl.com',
-		styleSize: 'default',
-		styleColor: 'primary',
-		styleSizeWidth: 'default',
+		content: 'This is a button',
+		size: 'default',
+		color: 'primary',
+		width: 'default',
 		isAnchor: false,
 		id: 'ID',
 	},
-	onChangeUrl: () => {},
-	onChangeStyleSize: () => {},
-	onChangeStyleColor: () => {},
-	onChangeStyleSizeWidth: () => {},
-	onChangeId: () => {},
-	onChangeIsAnchor: () => {},
+	label: 'Button',
+	onChangeButtonContent: () => {},
+	onChangeButtonUrl: () => {},
+	onChangeButtonsize: () => {},
+	onChangeButtonColor: () => {},
+	onChangeButtonWidth: () => {},
+	onChangeButtonId: () => {},
+	onChangeButtonIsAnchor: () => {},
 };
 
 export const editor = () => (
-	<ButtonEditor
-		{...editorProps}
-	/>
+	<ButtonEditor {...props} />
 );
 
 export const options = () => (
-	<ButtonOptions
-		{...optionsProps}
-	/>
+	<ButtonOptions {...props} />
 );
 
-export const styleSize = () => (
+export const size = () => (
 	<Fragment>
 		{buttonSizes.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
-					{...editorProps}
+					{...props}
 					button={{
-						...editorProps.button,
-						title: values.label,
-						styleSize: values.value,
+						...props.button,
+						content: values.label,
+						size: values.value,
 					}}
 				/>
 				<br />
@@ -71,16 +59,16 @@ export const styleSize = () => (
 	</Fragment>
 );
 
-export const styleWidth = () => (
+export const width = () => (
 	<Fragment>
-		{buttonSizeWidths.map((values, index) => (
+		{buttonWidths.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
-					{...editorProps}
+					{...props}
 					button={{
-						...editorProps.button,
-						title: values.label,
-						styleSizeWidth: values.value,
+						...props.button,
+						content: values.label,
+						width: values.value,
 					}}
 				/>
 				<br />
@@ -90,16 +78,16 @@ export const styleWidth = () => (
 	</Fragment>
 );
 
-export const styleColor = () => (
+export const color = () => (
 	<Fragment>
 		{buttonColors().map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
-					{...editorProps}
+					{...props}
 					button={{
-						...editorProps.button,
-						title: values.name,
-						styleColor: values.slug,
+						...props.button,
+						content: values.name,
+						color: values.slug,
 					}}
 				/>
 				<br />

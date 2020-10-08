@@ -18,6 +18,7 @@ $componentClass = $attributes['componentClass'] ?? 'link';
 $blockClass = $attributes['blockClass'] ?? '';
 
 $url = $link['url'] ?? '';
+$color = $button['color'] ?? '';
 $content = $button['content'] ?? '';
 $id = $link['id'] ?? '';
 $isAnchor = $link['isAnchor'] ?? false;
@@ -28,7 +29,7 @@ if (! $url || ! $content) {
 
 $linkClass = Components::classnames([
 	$componentClass,
-	$color ? "{$componentClass}__color--{$link['color']}" : '',
+	$color ? "{$componentClass}__color--{$color}" : '',
 	$isAnchor ? 'js-scroll-to-anchor' : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);

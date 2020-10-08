@@ -9,14 +9,15 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'search-bar';
-$blockClass = $attributes['blockClass'] ?? 'search-bar';
+$blockClass = $attributes['blockClass'] ?? '';
+
 $method = $attributes['method'] ?? 'get';
 $postType = $attributes['postType'] ?? 'any';
 $action = $attributes['action'] ?? home_url('/');
 $placeholder = $attributes['placeholder'] ?? esc_attr__('Type in search', 'eightshift-boilerplate');
 
 $searchClass = Components::classnames([
-	$blockClass,
+	$componentClass,
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
 

@@ -8,7 +8,9 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$componentClass = $attributes['componentClass'] ?? 'video-iframe';
 $blockClass = $attributes['blockClass'] ?? '';
+
 $video = $attributes['video'] ?? [];
 $id = $video['id'] ?? '';
 $aspectRatio = $video['aspectRatio'] ?? 'default';
@@ -28,13 +30,11 @@ switch ($type) {
 		break;
 }
 
-$componentClass = 'video-iframe';
-
 $videoClass = Components::classnames([
 	$componentClass,
 	$aspectRatio ? "{$componentClass}__video-ratio--{$aspectRatio}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
-	]);
+]);
 
 ?>
 
