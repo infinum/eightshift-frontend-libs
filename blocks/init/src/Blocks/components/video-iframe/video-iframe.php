@@ -3,37 +3,46 @@
 /**
  * Template for the Video Iframe Component.
  *
- * @package EightshiftBoilerplate
+ * @package EightshiftBoilerplates
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$url         = $attributes['url'] ?? '';
-$id          = $attributes['id'] ?? '';
-$blockClass  = $attributes['blockClass'] ?? '';
-$aspectRatio = $attributes['aspectRatio'] ?? 'default';
+$blockClass = $attributes['blockClass'] ?? '';
+$video = $attributes['video'] ?? [];
+$id = $video['id'] ?? '';
+$aspectRatio = $video['aspectRatio'] ?? 'default';
+$type = $video['type'] ?? 'youtube';
 
-if (empty($url) || empty($id)) {
+if (!$id) {
 	return;
 }
 
-$componentClass   = 'video-iframe';
-$aspectRatioClass = isset($attributes['aspectRatio']) ? "{$componentClass}__video-ratio--{$attributes['aspectRatio']}" : '';
+switch ($type) {
+	case 'vimeo':
+		$url = "https://player.vimeo.com/video/{$id}?enablejsapi=1";
+		break;
+	default:
+		$url = "https://www.youtube-nocookie.com/embed/{$id}?enablejsapi=1";
+		break;
+}
+
+$componentClass = 'video-iframe';
 
 $videoClass = Components::classnames(
 	[
 	$componentClass,
-	$aspectRatioClass,
-	"{$blockClass}__{$componentClass}",
+	"{$componentClass}__video-ratio--{$aspectRatio}",
+	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 	]
 );
 
 ?>
 
-<div class="<?php echo esc_attr($videoClass); ?>">
+<div class="<?php echo \esc_attr($videoClass); ?>">
 	<iframe
-	class="<?php echo esc_attr("{$componentClass}__iframe"); ?>"
-	src="<?php echo esc_url($url); ?><?php echo esc_attr($id); ?>"
+	class="<?php echo \esc_attr("{$componentClass}__iframe"); ?>"
+	src="<?php echo \esc_url($url); ?>"
 	frameBorder="0"
 	allow="autoplay; fullscreen"
 	allowFullScreen

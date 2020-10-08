@@ -8,30 +8,48 @@ export const aspectRatioSizes = [
 	{ label: __('21:9', 'eightshift-boilerplate'), value: 'twentyone-nine' },
 ];
 
+export const types = [
+	{ label: __('Youtube', 'eightshift-boilerplate'), value: 'youtube' },
+	{ label: __('Vimeo', 'eightshift-boilerplate'), value: 'vimeo' },
+];
+
 export const VideoIframeOptions = (props) => {
 	const {
-		onChangeId,
-		id,
-		aspectRatio,
-		onChangeAspectRatio,
+		video: {
+			id,
+			type,
+			aspectRatio,
+		},
+		onChangeVideoId,
+		onChangeVideoAspectRatio,
+		onChangeVideoType,
 	} = props;
 
 	return (
 		<Fragment>
-			{onChangeId &&
+			{onChangeVideoId &&
 				<TextControl
 					label={__('Video ID', 'eightshift-boilerplate')}
 					value={id}
-					onChange={onChangeId}
+					onChange={onChangeVideoId}
 				/>
 			}
 
-			{onChangeAspectRatio &&
+			{onChangeVideoType &&
+				<SelectControl
+					label={__('Type', 'eightshift-boilerplate')}
+					value={type}
+					options={types}
+					onChange={onChangeVideoType}
+				/>
+			}
+
+			{onChangeVideoAspectRatio &&
 				<SelectControl
 					label={__('Aspect Ratio', 'eightshift-boilerplate')}
 					value={aspectRatio}
 					options={aspectRatioSizes}
-					onChange={onChangeAspectRatio}
+					onChange={onChangeVideoAspectRatio}
 				/>
 			}
 		</Fragment>

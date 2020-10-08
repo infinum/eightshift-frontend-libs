@@ -15,7 +15,7 @@ None
 ## Example call
 
 ```php
-use Eightshift_Libs\Helpers\Components;
+use EightshiftLibs\Helpers\Components;
 
 Components::render( 'copyright' );
 

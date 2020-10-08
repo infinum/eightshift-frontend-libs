@@ -3,11 +3,12 @@ import classnames from 'classnames';
 
 export const VideoIframeEditor = (props) => {
 	const {
-		id,
-		url,
-		aspectRatio,
 		blockClass,
-		title,
+		video: {
+			id,
+			type = 'youtube',
+			aspectRatio,
+		},
 	} = props;
 
 	const componentClass = 'video-iframe';
@@ -18,12 +19,23 @@ export const VideoIframeEditor = (props) => {
 		`${blockClass}__${componentClass}`,
 	);
 
+	let url = '';
+
+	switch (type) {
+		case 'vimeo':
+			url = `https://player.vimeo.com/video/${id}`;
+			break;
+		default:
+			url = `https://www.youtube-nocookie.com/embed/${id}`;
+			break;
+	}
+
 	return (
 		<div className={videoClass}>
 			<iframe
 				className={`${componentClass}__iframe`}
-				src={`${url}${id}`}
-				title={title}
+				src={url}
+				title={id}
 				frameBorder="0"
 				allow="autoplay; fullscreen"
 				allowFullScreen
