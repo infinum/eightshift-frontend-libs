@@ -12,63 +12,44 @@ export default {
 	},
 };
 
-const editorProps = {
+const props = {
 	blockClass: 'block-heading',
 	heading: {
-		content: 'Heading Content',
-		styleAlign: 'left',
-		styleColor: 'primary',
-		styleSize: 'default',
-	},
-	onChangeContent: () => {},
-};
-
-const optionsProps = {
-	heading: {
-		styleColor: 'primary',
-		styleSize: 'default',
-	},
-	onChangeStyleColor: () => {},
-	onChangeStyleSize: () => {},
-};
-
-const toolbarProps = {
-	heading: {
+		content: 'This is Heading',
+		align: 'left',
 		level: 2,
-		styleAlign: 'left',
+		color: 'primary',
+		size: 'default',
 	},
-	onChangeLevel: () => {},
-	onChangeStyleAlign: () => {},
+	onChangeHeadingContent: () => {},
+	onChangeHeadingColor: () => {},
+	onChangeHeadingSize: () => {},
+	onChangeHeadingLevel: () => {},
+	onChangeHeadingAlign: () => {},
 };
 
 export const editor = () => (
-	<HeadingEditor
-		{...editorProps}
-	/>
+	<HeadingEditor {...props} />
 );
 
 export const options = () => (
-	<HeadingOptions
-		{...optionsProps}
-	/>
+	<HeadingOptions {...props} />
 );
 
 export const toolbar = () => (
-	<HeadingToolbar
-		{...toolbarProps}
-	/>
+	<HeadingToolbar {...props} />
 );
 
-export const styleSize = () => (
+export const size = () => (
 	<Fragment>
 		{headingSizes.map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...editorProps}
+					{...props}
 					heading={{
-						...editorProps.heading,
+						...props.heading,
 						content: values.label,
-						styleSize: values.value,
+						size: values.value,
 					}}
 				/>
 				<br />
@@ -82,9 +63,9 @@ export const level = () => (
 		{Array.from({ length: 6 }, (x, i) => i + 1).map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...editorProps}
+					{...props}
 					heading={{
-						...editorProps.heading,
+						...props.heading,
 						content: `H - ${values.toString()}`,
 						level: values,
 					}}
@@ -95,16 +76,16 @@ export const level = () => (
 	</Fragment>
 );
 
-export const styleAlign = () => (
+export const align = () => (
 	<Fragment>
 		{['left', 'center', 'right'].map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...editorProps}
+					{...props}
 					heading={{
-						...editorProps.heading,
+						...props.heading,
 						content: values,
-						styleAlign: values,
+						align: values,
 					}}
 				/>
 				<br />
@@ -113,7 +94,7 @@ export const styleAlign = () => (
 	</Fragment>
 );
 
-export const styleColor = () => {
+export const color = () => {
 	const { colors } = wp.data.select('core/block-editor').getSettings();
 
 	return (
@@ -121,11 +102,11 @@ export const styleColor = () => {
 			{colors.map((values, index) => (
 				<Fragment key={index}>
 					<HeadingEditor
-						{...editorProps}
+						{...props}
 						heading={{
-							...editorProps.heading,
+							...props.heading,
 							title: values.name,
-							styleColor: values.slug,
+							color: values.slug,
 						}}
 					/>
 					<br />

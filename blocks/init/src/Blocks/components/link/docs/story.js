@@ -11,52 +11,40 @@ export default {
 	},
 };
 
-const editorProps = {
+const props = {
 	blockClass: 'block-link',
 	link: {
-		title: 'Link Title',
+		content: 'This is a link',
 		url: 'https://fakeurl.com',
-		styleColor: 'primary',
-	},
-	onChangeTitle: () => {},
-};
-
-const optionsProps = {
-	link: {
-		title: 'Link Title',
-		url: 'https://fakeurl.com',
-		styleColor: 'primary',
+		color: 'primary',
 		isAnchor: false,
 		id: 'ID',
 	},
-	onChangeUrl: () => {},
-	onChangeStyleColor: () => {},
-	onChangeIsAnchor: () => {},
-	onChangeId: () => {},
+	onChangeLinkTitle: () => {},
+	onChangeLinkUrl: () => {},
+	onChangeLinkColor: () => {},
+	onChangeLinkIsAnchor: () => {},
+	onChangeLinkId: () => {},
 };
 
 export const editor = () => (
-	<LinkEditor
-		{...editorProps}
-	/>
+	<LinkEditor {...props} />
 );
 
 export const options = () => (
-	<LinkOptions
-		{...optionsProps}
-	/>
+	<LinkOptions {...props} />
 );
 
-export const styleColor = () => (
+export const color = () => (
 	<Fragment>
 		{linkColors().map((values, index) => (
 			<Fragment key={index}>
 				<LinkEditor
-					{...editorProps}
+					{...props}
 					link={{
-						...editorProps.link,
+						...props.link,
 						title: values.name,
-						styleColor: values.slug,
+						color: values.slug,
 					}}
 				/>
 				<br />
@@ -68,7 +56,7 @@ export const styleColor = () => (
 export const isAnchor = () => (
 	<LinkEditor
 		link={{
-			...editorProps.link,
+			...props.link,
 			isAnchor: true,
 		}}
 	/>

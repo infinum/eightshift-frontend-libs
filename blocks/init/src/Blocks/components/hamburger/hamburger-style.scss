@@ -11,7 +11,6 @@ $hamburger: (
 	wrapper-height: 16px, // Height the entire wrapper
 );
 
-
 .hamburger {
 	@extend %button-reset;
 	$this: &;
@@ -20,10 +19,6 @@ $hamburger: (
 	padding: map-get-strict($hamburger, padding);
 	margin: 0 -#{map-get-strict($hamburger, padding)};
 	cursor: pointer;
-
-	@include media(desktop up) {
-		display: none;
-	}
 
 	&__wrapper {
 		position: relative;

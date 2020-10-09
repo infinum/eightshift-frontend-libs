@@ -19,6 +19,8 @@ export const ImageEditor = (props) => {
 		onChangeMedia,
 	} = props;
 
+	console.log(props);
+
 	const imageClass = classnames(
 		componentClass,
 		blockClass && `${blockClass}__${componentClass}`,

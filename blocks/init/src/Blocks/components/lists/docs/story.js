@@ -9,26 +9,26 @@ export default {
 	},
 };
 
-const editorProps = {
+const props = {
 	blockClass: 'block-lists',
 	lists: {
 		content: '<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>',
 		ordered: 'ul',
 	},
+	onChangeListsContent: () => {},
+	onChangeListsOrdered: () => {},
 };
 
 export const editor = () => (
-	<ListsEditor
-		{...editorProps}
-	/>
+	<ListsEditor {...props} />
 );
 
 export const ordered = () => (
 	<ListsEditor
+		{...props}
 		lists={{
-			...editorProps.lists,
+			...props.lists,
 			ordered: 'ol',
 		}}
-		{...editorProps}
 	/>
 );

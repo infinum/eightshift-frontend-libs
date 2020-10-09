@@ -12,63 +12,44 @@ export default {
 	},
 };
 
-const editorProps = {
+const props = {
 	blockClass: 'block-paragraph',
 	paragraph: {
-		content: 'Paragraph Content',
-		styleAlign: 'left',
-		styleColor: 'primary',
-		styleSize: 'default',
+		content: 'This is Paragraph',
+		align: 'left',
+		color: 'primary',
+		size: 'default',
 	},
-	onChangeContent: () => {},
-};
-
-const optionsProps = {
-	paragraph: {
-		content: 'Paragraph Content',
-		styleColor: 'primary',
-		styleSize: 'default',
-	},
-	onChangeStyleColor: () => {},
-	onChangeStyleSize: () => {},
-};
-
-const toolbarProps = {
-	paragraph: {
-		content: 'Paragraph Content',
-		styleAlign: 'left',
-	},
-	onChangeStyleAlign: () => {},
+	onChangeParagraphContent: () => {},
+	onChangeParagraphColor: () => {},
+	onChangeParagraphSize: () => {},
+	onChangeParagraphAlign: () => {},
 };
 
 export const component = () => (
 	<ParagraphEditor
-		{...editorProps}
+		{...props}
 	/>
 );
 
 export const options = () => (
-	<ParagraphOptions
-		{...optionsProps}
-	/>
+	<ParagraphOptions {...props} />
 );
 
 export const toolbar = () => (
-	<ParagraphToolbar
-		{...toolbarProps}
-	/>
+	<ParagraphToolbar {...props} />
 );
 
-export const styleSize = () => (
+export const size = () => (
 	<Fragment>
 		{paragraphSizes.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
-					{...editorProps}
+					{...props}
 					paragraph={{
-						...editorProps.paragraph,
+						...props.paragraph,
 						content: values.label,
-						styleSize: values.value,
+						size: values.value,
 					}}
 				/>
 				<br />
@@ -77,16 +58,16 @@ export const styleSize = () => (
 	</Fragment>
 );
 
-export const styleAlign = () => (
+export const align = () => (
 	<Fragment>
 		{['left', 'center', 'right'].map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
-					{...editorProps}
+					{...props}
 					paragraph={{
-						...editorProps.paragraph,
+						...props.paragraph,
 						content: values,
-						styleAlign: values,
+						align: values,
 					}}
 				/>
 				<br />
@@ -96,7 +77,7 @@ export const styleAlign = () => (
 );
 
 
-export const styleColor = () => {
+export const color = () => {
 	const { colors } = wp.data.select('core/block-editor').getSettings();
 
 	return (
@@ -104,11 +85,11 @@ export const styleColor = () => {
 			{colors.map((values, index) => (
 				<Fragment key={index}>
 					<ParagraphEditor
-						{...editorProps}
+						{...props}
 						paragraph={{
-							...editorProps.paragraph,
+							...props.paragraph,
 							title: values.name,
-							styleColor: values.slug,
+							color: values.slug,
 						}}
 					/>
 					<br />

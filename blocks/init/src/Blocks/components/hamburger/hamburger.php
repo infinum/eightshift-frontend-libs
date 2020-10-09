@@ -13,7 +13,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $hamburgerClass = Components::classnames([
 	$componentClass,
-	"js-{$blockClass}",
+	"js-{$componentClass}",
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
 ?>
