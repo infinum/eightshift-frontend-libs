@@ -31,7 +31,7 @@ export const ButtonOptions = (props) => {
 			url,
 			size,
 			color,
-			sizeWidth,
+			width,
 			id,
 			isAnchor,
 		},
@@ -39,7 +39,7 @@ export const ButtonOptions = (props) => {
 		onChangeButtonUrl,
 		onChangeButtonSize,
 		onChangeButtonColor,
-		onChangeButtonSizeWidth,
+		onChangeButtonWidth,
 		onChangeButtonId,
 		onChangeButtonIsAnchor,
 	} = props;
@@ -87,12 +87,12 @@ export const ButtonOptions = (props) => {
 				/>
 			}
 
-			{onChangeButtonSizeWidth &&
+			{onChangeButtonWidth &&
 				<SelectControl
 					label={__('Size Width', 'eightshift-boilerplate')}
-					value={sizeWidth}
+					value={width}
 					options={buttonWidths}
-					onChange={onChangeButtonSizeWidth}
+					onChange={onChangeButtonWidth}
 				/>
 			}
 

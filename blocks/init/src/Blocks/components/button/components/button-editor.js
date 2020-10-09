@@ -10,10 +10,11 @@ export const ButtonEditor = (props) => {
 			url,
 			color,
 			size,
-			sizeWidth,
+			width,
 		},
 		componentClass = 'button',
 		blockClass,
+		placeholder = __('Add Content', 'eightshift-boilerplate'),
 		onChangeButtonContent,
 	} = props;
 
@@ -21,14 +22,14 @@ export const ButtonEditor = (props) => {
 		componentClass,
 		size && `${componentClass}__size--${size}`,
 		color && `${componentClass}__color--${color}`,
-		sizeWidth && `${componentClass}__size-width--${sizeWidth}`,
+		width && `${componentClass}__size-width--${width}`,
 		blockClass && `${blockClass}__${componentClass}`,
 		!(content && url) && `${componentClass}__placeholder`,
 	);
 
 	return (
 		<RichText
-			placeholder={__('Add Content', 'eightshift-boilerplate')}
+			placeholder={placeholder}
 			value={content}
 			onChange={onChangeButtonContent}
 			className={buttonClass}
