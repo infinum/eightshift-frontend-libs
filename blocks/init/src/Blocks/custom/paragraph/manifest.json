@@ -15,9 +15,9 @@
 		"attributes": {
 			"paragraph": {
 				"content": "Paragraph Content",
-				"styleAlign": "left",
-				"styleColor": "primary",
-				"styleSize": "default"
+				"align": "left",
+				"color": "primary",
+				"size": "default"
 			}
 		}
 	},
@@ -26,9 +26,9 @@
 			"type": "object",
 			"default": {
 				"content": "",
-				"styleAlign": "left",
-				"styleColor": "primary",
-				"styleSize": "default"
+				"align": "left",
+				"color": "primary",
+				"size": "default"
 			},
 			"items": {
 				"type": "object"

@@ -16,9 +16,9 @@
 			"heading": {
 				"content": "Heading Content",
 				"level": 2,
-				"styleAlign": "left",
-				"styleColor": "primary",
-				"styleSize": "default"
+				"align": "left",
+				"color": "primary",
+				"size": "default"
 			}
 		}
 	},
@@ -28,9 +28,9 @@
 			"default": {
 				"content": "",
 				"level": 2,
-				"styleAlign": "left",
-				"styleColor": "primary",
-				"styleSize": "default"
+				"align": "left",
+				"color": "primary",
+				"size": "default"
 			},
 			"items": {
 				"type": "object"

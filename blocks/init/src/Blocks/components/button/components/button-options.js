@@ -7,13 +7,25 @@ import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/comp
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const buttonSizes = [
-	{ label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-	{ label: __('Big', 'eightshift-boilerplate'), value: 'big' },
+	{
+		label: __('Default', 'eightshift-boilerplate'),
+		value: 'default',
+	},
+	{
+		label: __('Big', 'eightshift-boilerplate'),
+		value: 'big',
+	},
 ];
 
 export const buttonWidths = [
-	{ label: __('Default', 'eightshift-boilerplate'), value: 'default' },
-	{ label: __('Block', 'eightshift-boilerplate'), value: 'block' },
+	{
+		label: __('Default', 'eightshift-boilerplate'),
+		value: 'default',
+	},
+	{
+		label: __('Block', 'eightshift-boilerplate'),
+		value: 'block',
+	},
 ];
 
 export const buttonColors = () => {
@@ -36,8 +48,8 @@ export const ButtonOptions = (props) => {
 			isAnchor,
 			use = true,
 		},
-		showControls = true,
 		label = __('Button', 'eightshift-boilerplate'),
+		showControls = true,
 		onChangeButtonUrl,
 		onChangeButtonSize,
 		onChangeButtonColor,
@@ -106,7 +118,7 @@ export const ButtonOptions = (props) => {
 
 					{onChangeButtonWidth &&
 						<SelectControl
-							label={__('Size Width', 'eightshift-boilerplate')}
+							label={__('Width', 'eightshift-boilerplate')}
 							value={width}
 							options={buttonWidths}
 							onChange={onChangeButtonWidth}

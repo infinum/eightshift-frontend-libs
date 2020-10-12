@@ -9,7 +9,7 @@ export const LinkEditor = (props) => {
 		link: {
 			content,
 			url,
-			styleColor,
+			color,
 			use = true,
 		},
 		componentClass = 'link',
@@ -19,7 +19,7 @@ export const LinkEditor = (props) => {
 
 	const linkClass = classnames(
 		componentClass,
-		styleColor && `${componentClass}__color--${styleColor}`,
+		color && `${componentClass}__color--${color}`,
 		blockClass && `${blockClass}__${componentClass}`,
 		!(content && url) && `${componentClass}__placeholder`,
 	);

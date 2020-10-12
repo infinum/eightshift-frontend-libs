@@ -23,11 +23,11 @@
 			"paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. ",
 			"mediaPosition": "left",
 			"button": {
-				"title": "Button Title",
+				"content": "Button Title",
 				"url": "https://fakeurl.com/",
-				"styleSize": "default",
-				"styleColor": "primary",
-				"styleSizeWidth": "default",
+				"size": "default",
+				"color": "primary",
+				"width": "default",
 				"id": "custom ID"
 			}
 		}
@@ -57,11 +57,11 @@
 		"button": {
 			"type": "object",
 			"default": {
-				"title": "",
+				"content": "",
 				"url": "",
-				"styleSize": "default",
-				"styleColor": "primary",
-				"styleSizeWidth": "default",
+				"size": "default",
+				"color": "primary",
+				"width": "default",
 				"id": ""
 			},
 			"items": {

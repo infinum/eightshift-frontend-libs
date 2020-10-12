@@ -12,8 +12,8 @@ By default it uses the default editor palette (see https://developer.wordpress.o
 <ColorPaletteCustom
 	label={'Block Color'}
 	help={'Change block color'}
-	value={styleColor}
-	onChange={onChangeStyleColor}
+	value={color}
+	onChange={onChangeColor}
 />
 ```
 
@@ -29,8 +29,8 @@ const {
 <ColorPaletteCustom
 	label={'Block Color'}
 	help={'Change block color'}
-	value={styleColor}
-	onChange={onChangeStyleColor}
+	value={color}
+	onChange={onChangeColor}
 	colors={[color1, color2]}
 />
 ```
@@ -47,8 +47,8 @@ const specificColor = {
 <ColorPaletteCustom
 	label={'Block Color'}
 	help={'Change block color'}
-	value={styleColor}
-	onChange={onChangeStyleColor}
+	value={color}
+	onChange={onChangeColor}
 	colors={[specificColor]}
 />
 ```

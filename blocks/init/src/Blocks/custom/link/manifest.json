@@ -14,9 +14,9 @@
 	"example": {
 		"attributes": {
 			"link": {
-				"title": "Link Title",
+				"content": "Link Title",
 				"url": "https://fakeurl.com",
-				"styleColor": "primary",
+				"color": "primary",
 				"isAnchor": false,
 				"id": "custom ID"
 			}
@@ -26,9 +26,9 @@
 		"link": {
 			"type": "object",
 			"default": {
-				"title": "",
+				"content": "",
 				"url": "",
-				"styleColor": "primary",
+				"color": "primary",
 				"isAnchor": false,
 				"id": ""
 			},

@@ -14,11 +14,11 @@
 	"example": {
 		"attributes": {
 			"button": {
-				"title": "Button Title",
+				"content": "This is button",
 				"url": "https://fakeurl.com/",
-				"styleSize": "default",
-				"styleColor": "primary",
-				"styleSizeWidth": "default",
+				"size": "default",
+				"color": "primary",
+				"width": "default",
 				"isAnchor": false,
 				"id": "custom ID"
 			}
@@ -28,11 +28,11 @@
 		"button": {
 			"type": "object",
 			"default": {
-				"title": "",
+				"content": "",
 				"url": "",
-				"styleSize": "default",
-				"styleColor": "primary",
-				"styleSizeWidth": "default",
+				"size": "default",
+				"color": "primary",
+				"width": "default",
 				"isAnchor": false,
 				"id": ""
 			},
