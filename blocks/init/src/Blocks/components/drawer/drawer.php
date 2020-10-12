@@ -8,6 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
+
 $componentClass = $attributes['componentClass'] ?? 'drawer';
 $blockClass = $attributes['blockClass'] ?? '';
 $drawerPosition = $attributes['drawerPosition'] ?? 'left';
@@ -18,7 +24,7 @@ $overlay = $attributes['overlay'] ?? '';
 $drawerClass = Components::classnames([
 	$componentClass,
 	"js-{$componentClass}",
-	"{$componentClass}--{$drawerPosition}",
+	$drawerPosition ? "{$componentClass}--{$drawerPosition}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
 

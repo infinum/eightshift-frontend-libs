@@ -11,8 +11,8 @@ export default {
 
 const props = {
 	blockClass: 'block-selector',
-	blockJsPrevClass: 'js-prev-trigger',
-	blockJsNextClass: 'js-next-trigger',
+	prevClass: 'js-prev-trigger',
+	nextClass: 'js-next-trigger',
 };
 
 export const component = () => (

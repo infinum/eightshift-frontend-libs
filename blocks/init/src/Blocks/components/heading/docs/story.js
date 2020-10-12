@@ -26,6 +26,7 @@ const props = {
 	onChangeHeadingSize: () => {},
 	onChangeHeadingLevel: () => {},
 	onChangeHeadingAlign: () => {},
+	onChangeHeadingUse: () => {},
 };
 
 export const editor = () => (

@@ -8,10 +8,16 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
+
 $componentClass = $attributes['componentClass'] ?? 'scroll-to-top';
 $blockClass = $attributes['blockClass'] ?? '';
 
-$content = $attributes['content'] ?? \esc_html__('To Top', 'eightshift-boilerplate');;
+$content = $attributes['content'] ?? \esc_html__('To Top', 'eightshift-boilerplate');
 
 $scrollClass = Components::classnames([
 	$componentClass,

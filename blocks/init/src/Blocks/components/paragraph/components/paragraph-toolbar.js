@@ -6,17 +6,27 @@ export const ParagraphToolbar = (props) => {
 	const {
 		paragraph: {
 			align,
+			use = true,
 		},
+		showControls = true,
 		onChangeParagraphAlign,
 	} = props;
 
+	if (!showControls) {
+		return null;
+	}
+
 	return (
 		<Fragment>
-			{onChangeParagraphAlign &&
-				<AlignmentToolbar
-					value={align}
-					onChange={onChangeParagraphAlign}
-				/>
+			{use &&
+				<Fragment>
+					{onChangeParagraphAlign &&
+						<AlignmentToolbar
+							value={align}
+							onChange={onChangeParagraphAlign}
+						/>
+					}
+				</Fragment>
 			}
 		</Fragment>
 	);

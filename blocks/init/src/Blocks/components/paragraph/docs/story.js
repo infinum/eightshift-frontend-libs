@@ -24,6 +24,7 @@ const props = {
 	onChangeParagraphColor: () => {},
 	onChangeParagraphSize: () => {},
 	onChangeParagraphAlign: () => {},
+	onChangeParagraphUse: () => {},
 };
 
 export const component = () => (

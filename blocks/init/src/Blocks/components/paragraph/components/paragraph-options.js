@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { SelectControl, Icon } from '@wordpress/components';
+import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const paragraphSizes = [
@@ -15,42 +15,60 @@ export const ParagraphOptions = (props) => {
 		paragraph: {
 			color,
 			size,
+			use = true,
 		},
-		label,
+		showControls = true,
+		label = __('Paragraph', 'eightshift-boilerplate'),
 		onChangeParagraphColor,
 		onChangeParagraphSize,
+		onChangeParagraphUse,
 	} = props;
+
+	if (!showControls) {
+		return null;
+	}
 
 	return (
 		<Fragment>
 
 			{label &&
-				<h3>
+				<h3 className={'options-label'}>
 					{label}
 				</h3>
 			}
 
-			{onChangeParagraphColor &&
-				<ColorPaletteCustom
-					label={
-						<Fragment>
-							<Icon icon={icons.color} />
-							{__('Color', 'eightshift-boilerplate')}
-						</Fragment>
-					}
-					help={__('Change Color.', 'eightshift-boilerplate')}
-					value={color}
-					onChange={onChangeParagraphColor}
+			{onChangeParagraphUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+					checked={use}
+					onChange={onChangeParagraphUse}
 				/>
 			}
 
-			{onChangeParagraphSize &&
-				<SelectControl
-					label={__('Font Size', 'eightshift-boilerplate')}
-					value={size}
-					options={paragraphSizes}
-					onChange={onChangeParagraphSize}
-				/>
+			{use &&
+				<Fragment>
+					{onChangeParagraphColor &&
+						<ColorPaletteCustom
+							label={
+								<Fragment>
+									<Icon icon={icons.color} />
+									{__('Color', 'eightshift-boilerplate')}
+								</Fragment>
+							}
+							value={color}
+							onChange={onChangeParagraphColor}
+						/>
+					}
+
+					{onChangeParagraphSize &&
+						<SelectControl
+							label={__('Font Size', 'eightshift-boilerplate')}
+							value={size}
+							options={paragraphSizes}
+							onChange={onChangeParagraphSize}
+						/>
+					}
+				</Fragment>
 			}
 
 		</Fragment>

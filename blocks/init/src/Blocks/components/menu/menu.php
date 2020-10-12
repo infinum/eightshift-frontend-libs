@@ -7,11 +7,30 @@
  */
 
 use EightshiftBoilerplate\Menu\Menu;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
 
 $componentClass = $attributes['componentClass'] ?? 'menu';
 
 $name = $attributes['menu'] ?? 'header_main_nav';
 $modifier = $attributes['modifier'] ?? '';
 $variation = isset($attributes['variation']) ? "{$componentClass}-{$attributes['variation']}" : $componentClass;
+$jsClass = $attributes['jsClass'] ?? '';
 
-echo esc_html(Menu::bemMenu($name, $variation, $modifier ? "{$variation}--{$modifier}" : ''));
+$parentClasses = Components::classnames([
+	$jsClass ? "js-{$jsClass}" : '',
+]);
+
+echo \esc_html(
+	Menu::bemMenu(
+		$menuName,
+		$variationAsClass,
+		$parentClasses,
+		$modifier ? "{$variationAsClass}--{$modifier}" : ''
+	)
+);

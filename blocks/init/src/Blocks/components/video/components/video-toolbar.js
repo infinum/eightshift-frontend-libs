@@ -3,18 +3,18 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 
-export const ImageToolbar = (props) => {
+export const VideoToolbar = (props) => {
 	const {
-		media: {
+		video: {
 			url,
 			use = true,
 		},
 		showControls = true,
-		onChangeMedia,
+		onChangeVideo,
 	} = props;
 
 	const removeMedia = () => {
-		onChangeMedia({});
+		onChangeVideo({});
 	};
 
 	if (!showControls) {
@@ -30,7 +30,7 @@ export const ImageToolbar = (props) => {
 							controls={[
 								{
 									icon: 'trash',
-									title: __('Remove', 'eightshift-boilerplate'),
+									title: __('Remove video', 'eightshift-boilerplate'),
 									isActive: false,
 									onClick: removeMedia,
 								},

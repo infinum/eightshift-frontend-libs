@@ -10,6 +10,7 @@ export const LogoEditor = (props) => {
 		href,
 		componentClass = 'logo',
 		blockClass,
+		use = true,
 	} = props;
 
 	const logoClass = classnames(
@@ -19,17 +20,16 @@ export const LogoEditor = (props) => {
 
 	return (
 		<Fragment>
-			<a
-				className={logoClass}
-				href={href}
-			>
-				<img
-					src={src}
-					alt={alt}
-					title={title}
-					className={`${componentClass}__img`}
-				/>
-			</a>
+			{use &&
+				<a className={logoClass} href={href}>
+					<img
+						src={src}
+						alt={alt}
+						title={title}
+						className={`${componentClass}__img`}
+					/>
+				</a>
+			}
 		</Fragment>
 	);
 };

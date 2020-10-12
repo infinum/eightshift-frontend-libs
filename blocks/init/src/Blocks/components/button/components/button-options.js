@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
@@ -34,83 +34,102 @@ export const ButtonOptions = (props) => {
 			width,
 			id,
 			isAnchor,
+			use = true,
 		},
-		label,
+		showControls = true,
+		label = __('Button', 'eightshift-boilerplate'),
 		onChangeButtonUrl,
 		onChangeButtonSize,
 		onChangeButtonColor,
 		onChangeButtonWidth,
 		onChangeButtonId,
 		onChangeButtonIsAnchor,
+		onChangeButtonUse,
 	} = props;
+
+	if (!showControls) {
+		return null;
+	}
 
 	return (
 		<Fragment>
 
 			{label &&
-				<h3>
+				<h3 className={'options-label'}>
 					{label}
 				</h3>
 			}
 
-			{onChangeButtonUrl &&
-				<URLInput
-					label={__('Url', 'eightshift-boilerplate')}
-					value={url}
-					autoFocus={false}
-					onChange={onChangeButtonUrl}
-				/>
-			}
-
-			{onChangeButtonColor &&
-				<ColorPaletteCustom
-					label={
-						<Fragment>
-							<Icon icon={icons.color} />
-							{__('Color', 'eightshift-boilerplate')}
-
-						</Fragment>
-					}
-					help={__('Change Background Color.', 'eightshift-boilerplate')}
-					value={color}
-					colors={buttonColors()}
-					onChange={onChangeButtonColor}
-				/>
-			}
-
-			{onChangeButtonSize &&
-				<SelectControl
-					label={__('Size', 'eightshift-boilerplate')}
-					value={size}
-					options={buttonSizes}
-					onChange={onChangeButtonSize}
-				/>
-			}
-
-			{onChangeButtonWidth &&
-				<SelectControl
-					label={__('Size Width', 'eightshift-boilerplate')}
-					value={width}
-					options={buttonWidths}
-					onChange={onChangeButtonWidth}
-				/>
-			}
-
-			{onChangeButtonIsAnchor &&
+			{onChangeButtonUse &&
 				<ToggleControl
-					label={__('Anchor', 'eightshift-boilerplate')}
-					checked={isAnchor}
-					onChange={onChangeButtonIsAnchor}
-					help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+					checked={use}
+					onChange={onChangeButtonUse}
 				/>
 			}
 
-			{onChangeButtonId &&
-				<TextControl
-					label={__('ID', 'eightshift-boilerplate')}
-					value={id}
-					onChange={onChangeButtonId}
-				/>
+			{use &&
+				<Fragment>
+
+					{onChangeButtonUrl &&
+						<URLInput
+							label={__('Url', 'eightshift-boilerplate')}
+							value={url}
+							autoFocus={false}
+							onChange={onChangeButtonUrl}
+						/>
+					}
+
+					{onChangeButtonColor &&
+						<ColorPaletteCustom
+							label={
+								<Fragment>
+									<Icon icon={icons.color} />
+									{__('Color', 'eightshift-boilerplate')}
+
+								</Fragment>
+							}
+							value={color}
+							colors={buttonColors()}
+							onChange={onChangeButtonColor}
+						/>
+					}
+
+					{onChangeButtonSize &&
+						<SelectControl
+							label={__('Size', 'eightshift-boilerplate')}
+							value={size}
+							options={buttonSizes}
+							onChange={onChangeButtonSize}
+						/>
+					}
+
+					{onChangeButtonWidth &&
+						<SelectControl
+							label={__('Size Width', 'eightshift-boilerplate')}
+							value={width}
+							options={buttonWidths}
+							onChange={onChangeButtonWidth}
+						/>
+					}
+
+					{onChangeButtonIsAnchor &&
+						<ToggleControl
+							label={__('Anchor', 'eightshift-boilerplate')}
+							checked={isAnchor}
+							onChange={onChangeButtonIsAnchor}
+							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+						/>
+					}
+
+					{onChangeButtonId &&
+						<TextControl
+							label={__('ID', 'eightshift-boilerplate')}
+							value={id}
+							onChange={onChangeButtonId}
+						/>
+					}
+				</Fragment>
 			}
 
 		</Fragment>

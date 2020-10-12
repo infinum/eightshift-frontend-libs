@@ -6,6 +6,7 @@ export const PageOverlayEditor = (props) => {
 	const {
 		componentClass = 'page-overlay',
 		blockClass,
+		use = true,
 	} = props;
 
 	const overlayClass = classnames(
@@ -15,7 +16,9 @@ export const PageOverlayEditor = (props) => {
 
 	return (
 		<Fragment>
-			<div className={overlayClass}></div>
+			{use &&
+				<div className={overlayClass}></div>
+			}
 		</Fragment>
 	);
 };

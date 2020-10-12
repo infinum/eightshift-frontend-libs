@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -10,6 +11,7 @@ export const ParagraphEditor = (props) => {
 			align,
 			color,
 			size,
+			use = true,
 		},
 		componentClass = 'paragraph',
 		blockClass,
@@ -25,11 +27,15 @@ export const ParagraphEditor = (props) => {
 	);
 
 	return (
-		<RichText
-			className={paragraphClass}
-			placeholder={__('Add your text', 'eightshift-boilerplate')}
-			onChange={onChangeParagraphContent}
-			value={content}
-		/>
+		<Fragment>
+			{use &&
+				<RichText
+					className={paragraphClass}
+					placeholder={__('Add your text', 'eightshift-boilerplate')}
+					onChange={onChangeParagraphContent}
+					value={content}
+				/>
+			}
+		</Fragment>
 	);
 };

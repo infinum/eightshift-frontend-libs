@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $heading = $attributes['heading'] ?? [];
+$use = $heading['use'] ?? true;
 
-if (! $heading) {
+if (!$heading || !$use) {
 	return;
 }
 
@@ -21,13 +22,9 @@ $align = $heading['align'] ?? '';
 $color = $heading['color'] ?? '';
 $size = $heading['size'] ?? '';
 $content = $heading['content'] ?? '';
-$level = $heading['level'] ?? 'h2';
+$level = $heading['level'] ?? '';
 $tag = $heading['tag'] ?? '';
-
-
-if (! $content) {
-	return;
-}
+$tag = $heading['tag'] ?? '';
 
 $headingClass = Components::classnames([
 	$componentClass,
@@ -36,6 +33,8 @@ $headingClass = Components::classnames([
 	$size ? "{$componentClass}__size--{$size}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
+
+$level = $level ? "h{$level}" : 'h2';
 
 if ($tag === 'div') {
 	$level = 'div';

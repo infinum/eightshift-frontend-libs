@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 
 export const CarouselPaginationEditor = (props) => {
@@ -6,6 +7,7 @@ export const CarouselPaginationEditor = (props) => {
 		blockClass,
 		blockJsClass,
 		componentClass = 'carousel-pagination',
+		use = true,
 	} = props;
 
 	const paginationClass = classnames(
@@ -15,6 +17,10 @@ export const CarouselPaginationEditor = (props) => {
 	);
 
 	return (
-		<div className={paginationClass}></div>
+		<Fragment>
+			{use &&
+				<div className={paginationClass}></div>
+			}
+		</Fragment>
 	);
 };

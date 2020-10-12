@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $lists = $attributes['lists'] ?? [];
+$use = $lists['use'] ?? true;
 
-if (! $lists) {
+if (!$lists || !$use) {
 	return;
 }
 
@@ -19,10 +20,6 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $content = $lists['content'] ?? '';
 $ordered = $lists['ordered'] ?? 'ul';
-
-if (! $content) {
-	return;
-}
 
 $listsClass = Components::classnames([
 	$componentClass,

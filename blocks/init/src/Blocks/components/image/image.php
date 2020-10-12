@@ -8,20 +8,22 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$media = $attributes['media'] ?? [];
+$use = $media['use'] ?? true;
+
+if (!$media || !$use) {
+	return;
+}
+
 $componentClass = $attributes['componentClass'] ?? 'image';
 $componentBgClass = $attributes['componentClass'] ?? 'image-bg';
 $blockClass = $attributes['blockClass'] ?? '';
 
-$media = $attributes['media'] ?? [];
 $bgImg = $attributes['bgImg'] ?? false;
 
 $id = $media['id'] ?? '';
 $url = $media['url'] ?? '';
 $size = $media['size'] ?? 'large';
-
-if (! $media) {
-	return;
-}
 
 $imageClass = Components::classnames([
 	$componentClass,

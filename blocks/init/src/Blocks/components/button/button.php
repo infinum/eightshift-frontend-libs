@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $button = $attributes['button'] ?? [];
+$use = $button['use'] ?? true;
 
-if (empty($button)) {
+if (!$button || !$use) {
 	return;
 }
 
@@ -24,10 +25,8 @@ $isAnchor = $button['isAnchor'] ?? false;
 $color = $button['color'] ?? '';
 $size = $button['size'] ?? '';
 $width = $button['width'] ?? '';
-
-if (! $url || ! $content) {
-	return;
-}
+$ariaLabel = $button['ariaLabel'] ?? '';
+$attrs = $button['attrs'] ?? [];
 
 $buttonClass = Components::classnames([
 	$componentClass,
@@ -37,13 +36,29 @@ $buttonClass = Components::classnames([
 	$isAnchor ? 'js-scroll-to-anchor' : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
+
 ?>
 
-<a
-	href="<?php echo \esc_url($url); ?>"
-	class="<?php echo \esc_attr($buttonClass); ?>"
-	id="<?php echo \esc_attr($id); ?>"
-	title="<?php echo \esc_attr($content); ?>"
->
-	<?php echo \esc_html($content); ?>
-</a>
+<?php if (! $url) { ?>
+	<button
+		class="<?php echo \esc_attr($buttonClass); ?>"
+		id="<?php echo \esc_attr($id); ?>"
+		title="<?php echo \esc_attr($title); ?>"
+		aria-label="<?php echo \esc_attr($ariaLabel); ?>"
+		<?php echo \esc_attr(Components::ensureString($attrs)); ?>
+	>
+		<?php echo \esc_html($title); ?>
+	</button>
+
+<?php } else { ?>
+	<a
+		href="<?php echo \esc_url($url); ?>"
+		class="<?php echo \esc_attr($buttonClass); ?>"
+		id="<?php echo \esc_attr($id); ?>"
+		title="<?php echo \esc_attr($title); ?>"
+		aria-label="<?php echo \esc_attr($ariaLabel); ?>"
+		<?php echo \esc_attr(Components::ensureString($attrs)); ?>
+	>
+		<?php echo \esc_html($title); ?>
+	</a>
+<?php }

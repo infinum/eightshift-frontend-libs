@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -9,6 +10,7 @@ export const LinkEditor = (props) => {
 			content,
 			url,
 			styleColor,
+			use = true,
 		},
 		componentClass = 'link',
 		blockClass,
@@ -23,12 +25,16 @@ export const LinkEditor = (props) => {
 	);
 
 	return (
-		<RichText
-			placeholder={__('Add Content', 'eightshift-boilerplate')}
-			value={content}
-			onChange={onChangeLinkContent}
-			className={linkClass}
-			keepPlaceholderOnFocus
-		/>
+		<Fragment>
+			{use &&
+				<RichText
+					placeholder={__('Add Content', 'eightshift-boilerplate')}
+					value={content}
+					onChange={onChangeLinkContent}
+					className={linkClass}
+					keepPlaceholderOnFocus
+				/>
+			}
+		</Fragment>
 	);
 };

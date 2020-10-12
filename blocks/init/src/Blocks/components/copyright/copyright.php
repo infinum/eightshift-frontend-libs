@@ -8,6 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
+
 $componentClass = $attributes['componentClass'] ?? 'copyright';
 $blockClass = $attributes['blockClass'] ?? '';
 $by = $attributes['by'] ?? 'Infinum';

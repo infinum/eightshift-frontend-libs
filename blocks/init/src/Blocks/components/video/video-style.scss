@@ -1,18 +1,22 @@
-$video-iframe-vars: (
+$video: (
 	ratio: (
 		default: 56.25% 0 0 0,
 		twentyone-nine: 42.25% 0 0 0,
 	),
 );
 
-.video-iframe {
+.video {
 	position: relative;
 
 	&__video-ratio {
-		@include modifiers-deep($video-iframe-vars, ratio, padding);
+		@include modifiers-deep($video, ratio, padding);
 	}
 
-	&__iframe {
+	&--placeholder {
+		padding: 0;
+	}
+
+	&__video {
 		position: absolute;
 		top: 0;
 		left: 0;

@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -10,6 +11,7 @@ export const HeadingEditor = (props) => {
 			align,
 			color,
 			size,
+			use = true,
 		},
 		componentClass = 'heading',
 		blockClass,
@@ -25,11 +27,15 @@ export const HeadingEditor = (props) => {
 	);
 
 	return (
-		<RichText
-			className={headingClass}
-			placeholder={__('Add your text', 'eightshift-boilerplate')}
-			onChange={onChangeHeadingContent}
-			value={content}
-		/>
+		<Fragment>
+			{use &&
+				<RichText
+					className={headingClass}
+					placeholder={__('Add your text', 'eightshift-boilerplate')}
+					onChange={onChangeHeadingContent}
+					value={content}
+				/>
+			}
+		</Fragment>
 	);
 };

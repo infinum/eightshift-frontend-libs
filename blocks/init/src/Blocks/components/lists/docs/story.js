@@ -17,6 +17,7 @@ const props = {
 	},
 	onChangeListsContent: () => {},
 	onChangeListsOrdered: () => {},
+	onChangeListsUse: () => {},
 };
 
 export const editor = () => (

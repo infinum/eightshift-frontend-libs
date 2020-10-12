@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $paragraph = $attributes['paragraph'] ?? [];
+$use = $paragraph['use'] ?? true;
 
-if (! $paragraph) {
+if (!$paragraph || !$use) {
 	return;
 }
 
@@ -21,12 +22,7 @@ $content = $paragraph['content'] ?? '';
 $align = $paragraph['align'] ?? '';
 $color = $paragraph['color'] ?? '';
 $size = $paragraph['size'] ?? '';
-$level = $paragraph['level'] ?? 'p';
-$tag = $paragraph['tag'] ?? '';
-
-if (! $content) {
-	return;
-}
+$tag = $paragraph['tag'] ?? 'p';
 
 $paragraphClass = Components::classnames([
 	$componentClass,
@@ -35,10 +31,6 @@ $paragraphClass = Components::classnames([
 	$size ? "{$componentClass}__size--{$size}" : '',
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
-
-if ($tag === 'div') {
-	$level = 'div';
-}
 
 ?>
 

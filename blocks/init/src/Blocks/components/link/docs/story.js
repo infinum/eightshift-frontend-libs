@@ -25,6 +25,7 @@ const props = {
 	onChangeLinkColor: () => {},
 	onChangeLinkIsAnchor: () => {},
 	onChangeLinkId: () => {},
+	onChangeLinkUse: () => {},
 };
 
 export const editor = () => (

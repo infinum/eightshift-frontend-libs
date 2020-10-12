@@ -20,6 +20,7 @@ const props = {
 		url: 'https://picsum.photos/400/400',
 	},
 	onChangeMedia: () => {},
+	onChangeMediaUse: () => {},
 };
 
 export const component = () => (

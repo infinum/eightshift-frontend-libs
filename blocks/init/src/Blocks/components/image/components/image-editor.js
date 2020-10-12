@@ -9,6 +9,7 @@ export const ImageEditor = (props) => {
 			url,
 			accept = 'image/*',
 			allowedTypes = ['image'],
+			use = true,
 		},
 		bgImg = false,
 		usePlaceholder = false,
@@ -18,8 +19,6 @@ export const ImageEditor = (props) => {
 		blockClass,
 		onChangeMedia,
 	} = props;
-
-	console.log(props);
 
 	const imageClass = classnames(
 		componentClass,
@@ -38,25 +37,29 @@ export const ImageEditor = (props) => {
 
 	return (
 		<Fragment>
-			{(url && !bgImg) &&
-				<img className={imageClass} src={url} alt="" />
-			}
+			{use &&
+				<Fragment>
+					{(url && !bgImg) &&
+						<img className={imageClass} src={url} alt="" />
+					}
 
-			{(url && bgImg) &&
-				<div className={imageBgClass} style={{ backgroundImage: `url(${url})` }} />
-			}
+					{(url && bgImg) &&
+						<div className={imageBgClass} style={{ backgroundImage: `url(${url})` }} />
+					}
 
-			{(!url && bgImg) &&
-				<div className={placeholderClass}></div>
-			}
+					{(!url && bgImg) &&
+						<div className={placeholderClass}></div>
+					}
 
-			{(!url && !usePlaceholder) &&
-				<MediaPlaceholder
-					icon="format-image"
-					onSelect={onChangeMedia}
-					accept={accept}
-					allowedTypes={allowedTypes}
-				/>
+					{(!url && !usePlaceholder) &&
+						<MediaPlaceholder
+							icon="format-image"
+							onSelect={onChangeMedia}
+							accept={accept}
+							allowedTypes={allowedTypes}
+						/>
+					}
+				</Fragment>
 			}
 		</Fragment>
 	);

@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $link = $attributes['link'] ?? [];
+$use = $link['use'] ?? true;
 
-if (! $link) {
+if (!$link || !$use) {
 	return;
 }
 
@@ -22,10 +23,6 @@ $color = $button['color'] ?? '';
 $content = $button['content'] ?? '';
 $id = $link['id'] ?? '';
 $isAnchor = $link['isAnchor'] ?? false;
-
-if (! $url || ! $content) {
-	return;
-}
 
 $linkClass = Components::classnames([
 	$componentClass,

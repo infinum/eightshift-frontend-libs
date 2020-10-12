@@ -8,27 +8,36 @@ export const HeadingToolbar = (props) => {
 		heading: {
 			level,
 			align,
+			use = true,
 		},
+		showControls = true,
 		onChangeHeadingLevel,
 		onChangeHeadingAlign,
 	} = props;
 
+	if (!showControls) {
+		return null;
+	}
+
 	return (
 		<Fragment>
-			{onChangeHeadingLevel &&
-				<HeadingLevel
-					selectedLevel={level}
-					onChange={onChangeHeadingLevel}
-				/>
-			}
+			{use &&
+				<Fragment>
+					{onChangeHeadingLevel &&
+						<HeadingLevel
+							selectedLevel={level}
+							onChange={onChangeHeadingLevel}
+						/>
+					}
 
-			{onChangeHeadingAlign &&
-				<AlignmentToolbar
-					value={align}
-					onChange={onChangeHeadingAlign}
-				/>
+					{onChangeHeadingAlign &&
+						<AlignmentToolbar
+							value={align}
+							onChange={onChangeHeadingAlign}
+						/>
+					}
+				</Fragment>
 			}
-
 		</Fragment>
 	);
 };

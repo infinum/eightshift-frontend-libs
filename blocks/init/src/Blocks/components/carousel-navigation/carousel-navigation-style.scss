@@ -6,8 +6,7 @@ $carousel-navigation: (
 	&__arrow-item {
 		position: absolute;
 		margin: 0;
-		top: 50%;
-		transform: translateY(-50%);
+		top: 0;
 		transition: {
 			property: background-color;
 			timing-function: ease-in;

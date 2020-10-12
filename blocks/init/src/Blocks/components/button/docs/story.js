@@ -23,6 +23,7 @@ const props = {
 		id: 'ID',
 	},
 	label: 'Button',
+	onChangeButtonUse: () => {},
 	onChangeButtonContent: () => {},
 	onChangeButtonUrl: () => {},
 	onChangeButtonsize: () => {},

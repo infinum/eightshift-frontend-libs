@@ -9,6 +9,12 @@
 use EightshiftBoilerplate\Manifest\Manifest;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
+
 $componentClass = $attributes['componentClass'] ?? 'logo';
 $blockClass = $attributes['blockClass'] ?? '';
 

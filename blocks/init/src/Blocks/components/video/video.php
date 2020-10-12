@@ -1,14 +1,20 @@
 <?php
 
 /**
- * Template for the Video Iframe Component.
+ * Template for the Video Component.
  *
  * @package EightshiftBoilerplates
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$componentClass = $attributes['componentClass'] ?? 'video-iframe';
+$use = $attributes['use'] ?? true;
+
+if (!$use) {
+	return;
+}
+
+$componentClass = $attributes['componentClass'] ?? 'video';
 $blockClass = $attributes['blockClass'] ?? '';
 
 $video = $attributes['video'] ?? [];
@@ -16,10 +22,6 @@ $id = $video['id'] ?? '';
 $aspectRatio = $video['aspectRatio'] ?? 'default';
 $type = $video['type'] ?? 'youtube';
 $allow = $video['allow'] ?? 'autoplay; fullscreen';
-
-if (!$id) {
-	return;
-}
 
 switch ($type) {
 	case 'vimeo':

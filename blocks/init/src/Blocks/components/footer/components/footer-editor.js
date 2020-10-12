@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 
 export const FooterEditor = (props) => {
@@ -8,6 +9,7 @@ export const FooterEditor = (props) => {
 		left,
 		center,
 		right,
+		use = true,
 	} = props;
 
 	const footerClass = classnames(
@@ -16,18 +18,22 @@ export const FooterEditor = (props) => {
 	);
 
 	return (
-		<footer className={footerClass}>
-			<div className={`${componentClass}__wrapper`}>
-				<div className={`${componentClass}__column ${componentClass}__column--left`}>
-					{left}
-				</div>
-				<div className={`${componentClass}__column {componentClass}__column--center`}>
-					{center}
-				</div>
-				<div className={`${componentClass}__column {componentClass}__column--right`}>
-					{right}
-				</div>
-			</div>
-		</footer>
+		<Fragment>
+			{use &&
+				<footer className={footerClass}>
+					<div className={`${componentClass}__wrapper`}>
+						<div className={`${componentClass}__column ${componentClass}__column--left`}>
+							{left}
+						</div>
+						<div className={`${componentClass}__column {componentClass}__column--center`}>
+							{center}
+						</div>
+						<div className={`${componentClass}__column {componentClass}__column--right`}>
+							{right}
+						</div>
+					</div>
+				</footer>
+			}
+		</Fragment>
 	);
 };

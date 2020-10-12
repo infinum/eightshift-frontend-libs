@@ -1,5 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 
@@ -11,6 +12,7 @@ export const ButtonEditor = (props) => {
 			color,
 			size,
 			width,
+			use = true,
 		},
 		componentClass = 'button',
 		blockClass,
@@ -28,12 +30,16 @@ export const ButtonEditor = (props) => {
 	);
 
 	return (
-		<RichText
-			placeholder={placeholder}
-			value={content}
-			onChange={onChangeButtonContent}
-			className={buttonClass}
-			keepPlaceholderOnFocus
-		/>
+		<Fragment>
+			{use &&
+				<RichText
+					placeholder={placeholder}
+					value={content}
+					onChange={onChangeButtonContent}
+					className={buttonClass}
+					keepPlaceholderOnFocus
+				/>
+			}
+		</Fragment>
 	);
 };

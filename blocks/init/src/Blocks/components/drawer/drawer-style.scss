@@ -1,5 +1,6 @@
 $drawer: (
 	width: 250px,
+	shadow: rgba(global-settings(colors, black), 0.5),
 	colors: (
 		background: global-settings(colors, white),
 	),
@@ -19,10 +20,8 @@ $drawer: (
 	background: map-get-deep($drawer, colors, background);
 	width: map-get-strict($drawer, width);
 	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-
-	@include media(desktop up) {
-		display: none;
-	}
+	overflow-x: hidden;
+	box-shadow: 5px 5px 5px map-get-strict($drawer, shadow);
 
 	&--left {
 		left: 0;
@@ -47,6 +46,8 @@ $drawer: (
 }
 
 body.menu-is-open {
+	overflow: hidden;
+
 	.drawer {
 		transform: translate3d(0, 0, 0);
 		opacity: 1;
