@@ -6,8 +6,6 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Manifest\Manifest;
-
 $icon = $attributes['icon'] ?? '';
 $charset = $attributes['charset'] ?? \bloginfo('charset');
 $name = $attributes['name'] ?? \bloginfo('name');
