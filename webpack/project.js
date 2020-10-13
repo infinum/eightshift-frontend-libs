@@ -3,7 +3,7 @@
  *
  */
 
-const fileExists = require('file-exists');
+const fs = require('fs');
 
 module.exports = (options) => {
 	const entry = {};
@@ -13,22 +13,22 @@ module.exports = (options) => {
 	};
 
 	// Load Application Entrypoint.
-	if (!options.overrides.includes('application') && fileExists.sync(options.config.applicationEntry)) {
+	if (!options.overrides.includes('application') && fs.existsSync(options.config.applicationEntry)) {
 		entry.application = options.config.applicationEntry;
 	}
 
 	// Load ApplicationAdmin Entrypoint.
-	if (!options.overrides.includes('applicationAdmin') && fileExists.sync(options.config.applicationAdminEntry)) {
+	if (!options.overrides.includes('applicationAdmin') && fs.existsSync(options.config.applicationAdminEntry)) {
 		entry.applicationAdmin = options.config.applicationAdminEntry;
 	}
 
 	// Load ApplicationBlocks Entrypoint.
-	if (!options.overrides.includes('applicationBlocks') && fileExists.sync(options.config.applicationBlocksEntry)) {
+	if (!options.overrides.includes('applicationBlocks') && fs.existsSync(options.config.applicationBlocksEntry)) {
 		entry.applicationBlocks = options.config.applicationBlocksEntry;
 	}
 
 	// Load ApplicationBlocksEditor Entrypoint.
-	if (!options.overrides.includes('applicationBlocksEditor') && fileExists.sync(options.config.applicationBlocksEditorEntry)) {
+	if (!options.overrides.includes('applicationBlocksEditor') && fs.existsSync(options.config.applicationBlocksEditorEntry)) {
 		entry.applicationBlocksEditor = options.config.applicationBlocksEditorEntry;
 	}
 
