@@ -6,7 +6,7 @@
  */
 
 const webpack = require('webpack');
-const fs = require('fs');
+const fileExists = require('file-exists');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -97,7 +97,7 @@ module.exports = (options) => {
 		const globalSettingsPath = options.config.blocksManifestSettingsPath;
 		let globalSettings = {};
 
-		if (fs.existsSync(globalSettingsPath)) {
+		if (fileExists.sync(globalSettingsPath)) {
 			globalSettings = require(globalSettingsPath);
 		}
 
