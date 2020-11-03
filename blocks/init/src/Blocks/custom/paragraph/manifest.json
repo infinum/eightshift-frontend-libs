@@ -11,28 +11,7 @@
 		"text",
 		"content"
 	],
-	"example": {
-		"attributes": {
-			"paragraph": {
-				"content": "Paragraph Content",
-				"align": "left",
-				"color": "primary",
-				"size": "default"
-			}
-		}
-	},
-	"attributes": {
-		"paragraph": {
-			"type": "object",
-			"default": {
-				"content": "",
-				"align": "left",
-				"color": "primary",
-				"size": "default"
-			},
-			"items": {
-				"type": "object"
-			}
-		}
+	"components": {
+		"paragraph": "paragraph"
 	}
 }

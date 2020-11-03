@@ -11,30 +11,7 @@
 		"title",
 		"label"
 	],
-	"example": {
-		"attributes": {
-			"heading": {
-				"content": "Heading Content",
-				"level": 2,
-				"align": "left",
-				"color": "primary",
-				"size": "default"
-			}
-		}
-	},
-	"attributes": {
-		"heading": {
-			"type": "object",
-			"default": {
-				"content": "",
-				"level": 2,
-				"align": "left",
-				"color": "primary",
-				"size": "default"
-			},
-			"items": {
-				"type": "object"
-			}
-		}
+	"components": {
+		"heading": "heading"
 	}
 }

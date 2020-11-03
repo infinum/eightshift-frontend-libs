@@ -11,9 +11,6 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 echo \wp_kses_post(
 	Components::render(
 		'button',
-		[
-		'blockClass' => $attributes['blockClass'] ?? '',
-		'button' => $attributes['button'] ?? [],
-		]
+		$attributes
 	)
 );

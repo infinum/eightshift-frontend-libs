@@ -1,4 +1,5 @@
 {
+	"componentName": "button",
 	"title": "Button",
 	"componentClass": "button",
 	"example": {

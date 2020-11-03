@@ -13,9 +13,10 @@ import {
 	DropZoneProvider,
 } from '@wordpress/components';
 import '@wordpress/format-library';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
 import { dispatch } from '@wordpress/data';
+import { registerCoreBlocks } from '@wordpress/block-library';
 
 /**
  * Create Inner Blocks.
@@ -23,7 +24,7 @@ import { dispatch } from '@wordpress/data';
  * @param {array} innerBlocks Array of inner blocks.
  * @param {bool} isVariation Check if block is variation type.
  */
-export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
+const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 	return innerBlocks.map((blockItem) => {
 
 		let blockInner = '';
@@ -58,21 +59,20 @@ export const blockDetails = (manifest, globalManifest, isVariation = false) => {
 	const { blockName, parentName } = manifest;
 	const { namespace } = globalManifest;
 
-	if (isVariation) {
-		return {
-			blockFullName: `${namespace}/${parentName}`,
-			attributes: manifest.attributes,
-			innerBlocks: manifest.innerBlocks,
-			isVariation,
-		};
-	}
+	const block = wp.data.select('core/blocks').getBlockType(`${namespace}/${blockName}`);
 
-	return {
-		blockFullName: `${namespace}/${blockName}`,
-		example: manifest.example.attributes,
-		innerBlocks: manifest.example.innerBlocks,
-		isVariation,
-	};
+	console.log(manifest);
+
+	// if (isVariation) {
+	// 	return {
+	// 		blockFullName: `${namespace}/${parentName}`,
+	// 		attributes: manifest.attributes,
+	// 		innerBlocks: manifest.innerBlocks,
+	// 		isVariation,
+	// 	};
+	// }
+
+	return block;
 };
 
 /**
@@ -80,38 +80,23 @@ export const blockDetails = (manifest, globalManifest, isVariation = false) => {
  *
  * @param {object} props All Props for blocks.
  */
-export const Gutenberg = (props) => {
+export const Gutenberg = ({ props }) => {
 	const {
-		props: {
-			blockFullName,
-			example,
-			innerBlocks,
-			isVariation,
-		},
+		name,
+		attributes,
+		innerBlocks,
+		// isVariation,
 	} = props;
 
 	// Set default registered blocks.
 	const [blocks, updateBlocks] = useState([]);
 
-	if (typeof blockFullName !== 'undefined') {
-
-		// Create top level blocks.
-		const block = createBlock(blockFullName);
-
-		// Set attributes, shared, block and example.
-		block.attributes = {
-			...block.attributes,
-			...example,
-		};
-	
-		// Create new block in inner block key.
-		block.innerBlocks = getInnerBlocks(innerBlocks, isVariation);
-	
-		// Push all created blocks in store.
+	useEffect(() => {
+		const block = createBlock(name, attributes, innerBlocks);
 		blocks.push(block);
-	
-		dispatch('core/block-editor').insertBlocks(blocks);
-	}
+	}, []);
+
+	console.log(blocks);
 
 	return (
 		<div className="playground">

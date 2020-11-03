@@ -6,7 +6,7 @@ import manifest from './../manifest.json';
 
 const { attributes: defaults, options } = manifest;
 
-export const HeadingToolbar = (props) => {
+export const HeadingToolbar = (attributes) => {
 	const {
 		setAttributes,
 		headingShowControls = true,
@@ -17,7 +17,7 @@ export const HeadingToolbar = (props) => {
 
 		showHeadingAlign = true,
 		showHeadingLevel = true,
-	} = props;
+	} = attributes;
 
 	if (!headingShowControls) {
 		return null;

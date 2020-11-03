@@ -5,7 +5,7 @@ import manifest from './../manifest.json';
 
 const { attributes: defaults, options } = manifest;
 
-export const ParagraphToolbar = (props) => {
+export const ParagraphToolbar = (attributes) => {
 	const {
 		setAttributes,
 		paragraphShowControls = true,
@@ -14,7 +14,7 @@ export const ParagraphToolbar = (props) => {
 		paragraphAlign = defaults.paragraphAlign.default,
 
 		showParagraphAlign = true,
-	} = props;
+	} = attributes;
 
 	if (!paragraphShowControls) {
 		return null;
