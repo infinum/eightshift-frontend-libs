@@ -1,37 +1,19 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
-import { ButtonOptions, buttonSizes, buttonWidths, buttonColors } from '../components/button-options';
+import { ButtonOptions } from '../components/button-options';
+import { ButtonToolbar } from '../components/button-toolbar';
 
 export default {
-	title: 'Components|Button',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	blockClass: 'block-button',
-	button: {
-		url: 'https://fakeurl.com',
-		content: 'This is a button',
-		size: 'default',
-		color: 'primary',
-		width: 'default',
-		isAnchor: false,
-		id: 'ID',
-	},
-	label: 'Button',
-	onChangeButtonUse: () => {},
-	onChangeButtonContent: () => {},
-	onChangeButtonUrl: () => {},
-	onChangeButtonSize: () => {},
-	onChangeButtonColor: () => {},
-	onChangeButtonWidth: () => {},
-	onChangeButtonId: () => {},
-	onChangeButtonIsAnchor: () => {},
-};
+const props = manifest.example.attributes;
 
 export const editor = () => (
 	<ButtonEditor {...props} />
@@ -41,17 +23,18 @@ export const options = () => (
 	<ButtonOptions {...props} />
 );
 
+export const toolbar = () => (
+	<ButtonToolbar {...props} />
+);
+
 export const size = () => (
 	<Fragment>
-		{buttonSizes.map((values, index) => (
+		{manifest.options.sizes.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
 					{...props}
-					button={{
-						...props.button,
-						content: values.label,
-						size: values.value,
-					}}
+					buttonContent={values.label}
+					buttonSize={values.value}
 				/>
 				<br />
 				<br />
@@ -62,15 +45,12 @@ export const size = () => (
 
 export const width = () => (
 	<Fragment>
-		{buttonWidths.map((values, index) => (
+		{manifest.options.widths.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
 					{...props}
-					button={{
-						...props.button,
-						content: values.label,
-						width: values.value,
-					}}
+					buttonContent={values.label}
+					buttonWidth={values.value}
 				/>
 				<br />
 				<br />
@@ -79,17 +59,29 @@ export const width = () => (
 	</Fragment>
 );
 
-export const color = () => (
+export const align = () => (
 	<Fragment>
-		{buttonColors().map((values, index) => (
+		{manifest.options.aligns.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
 					{...props}
-					button={{
-						...props.button,
-						content: values.name,
-						color: values.slug,
-					}}
+					buttonContent={values}
+					buttonAlign={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</Fragment>
+);
+
+export const colors = () => (
+	<Fragment>
+		{manifest.options.colors.map((values, index) => (
+			<Fragment key={index}>
+				<ButtonEditor
+					{...props}
+					buttonContent={values.label}
+					buttonColor={values.value}
 				/>
 				<br />
 				<br />

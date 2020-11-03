@@ -3,42 +3,55 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const ButtonEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const ButtonEditor = (attributes) => {
 	const {
-		button: {
-			content,
-			url,
-			color,
-			size,
-			width,
-			use = true,
-		},
-		componentClass = 'button',
+		setAttributes,
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
-		onChangeButtonContent,
-	} = props;
+
+		buttonUse = defaults.buttonUse.default,
+
+		buttonContent,
+		buttonUrl,
+		buttonColor = defaults.buttonColor.default,
+		buttonSize = defaults.buttonSize.default,
+		buttonWidth = defaults.buttonWidth.default,
+		buttonAlign = defaults.buttonAlign.default,
+	} = attributes;
 
 	const buttonClass = classnames(
 		componentClass,
-		size && `${componentClass}__size--${size}`,
-		color && `${componentClass}__color--${color}`,
-		width && `${componentClass}__size-width--${width}`,
-		blockClass && `${blockClass}__${componentClass}`,
-		!(content && url) && `${componentClass}__placeholder`,
+		buttonSize && `${componentClass}__size--${buttonSize}`,
+		buttonColor && `${componentClass}__color--${buttonColor}`,
+		buttonWidth && `${componentClass}__size-width--${buttonWidth}`,
+		!(buttonContent && buttonUrl) && `${componentClass}__placeholder`,
 	);
+
+	const buttonWrapClass = classnames(
+		`${componentClass}__wrap`,
+		buttonAlign && `${componentClass}__align--${buttonAlign}`,
+		blockClass && `${blockClass}__${selectorClass}`,
+	);
+
 
 	return (
 		<Fragment>
-			{use &&
-				<RichText
-					placeholder={placeholder}
-					value={content}
-					onChange={onChangeButtonContent}
-					className={buttonClass}
-					keepPlaceholderOnFocus
-				/>
+			{buttonUse &&
+				<div className={buttonWrapClass}>
+					<RichText
+						placeholder={placeholder}
+						value={buttonContent}
+						onChange={(value) => setAttributes({ buttonContent: value })}
+						className={buttonClass}
+						keepPlaceholderOnFocus
+					/>
+				</div>
 			}
 		</Fragment>
 	);

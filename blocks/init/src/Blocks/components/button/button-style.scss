@@ -65,11 +65,13 @@ $button: (
 		duration: 0.3s;
 	}
 
+	@include link(map-get-strict($button, colors), primary);
+
 	&:disabled {
 		cursor: not-allowed;
 	}
 
-	&__width {
+	&__size-width {
 		&--block {
 			display: flex;
 			width: 100%;
@@ -82,5 +84,23 @@ $button: (
 
 	&__size {
 		@include responsive-modifiers($button, sizes);
+	}
+
+	&__wrap {
+		display: flex;
+	}
+
+	&__align {
+		&--left {
+			justify-content: flex-start;
+		}
+
+		&--center {
+			justify-content: center;
+		}
+
+		&--right {
+			justify-content: flex-end;
+		}
 	}
 }

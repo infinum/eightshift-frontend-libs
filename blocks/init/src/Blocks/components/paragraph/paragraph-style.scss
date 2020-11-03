@@ -1,4 +1,9 @@
 $paragraph: (
+	colors: (
+		primary: global-settings(colors, primary),
+		black: global-settings(colors, black),
+	),
+	link-color: map-get-strict($link, colors),
 	sizes: (
 		mobile: (
 			default: (
@@ -19,11 +24,20 @@ $paragraph: (
 			),
 		),
 	),
-	colors: global-settings(colors),
 );
 
 .paragraph {
 	@extend %paragraph-reset;
+	color: map-get-deep($heading, colors, primary);
+
+	a {
+		@include link(map-get-strict($paragraph, link-color), primary);
+		transition: {
+			property: color;
+			timing-function: ease-in;
+			duration: 0.3s;
+		}
+	}
 
 	&__color {
 		@include modifiers-deep($paragraph, colors, color);

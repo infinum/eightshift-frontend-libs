@@ -2,38 +2,43 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
+import manifest from './../manifest.json';
+
+const { attributes: defaults, options } = manifest;
 
 export const HeadingToolbar = (props) => {
 	const {
-		heading: {
-			level,
-			align,
-			use = true,
-		},
-		showControls = true,
-		onChangeHeadingLevel,
-		onChangeHeadingAlign,
+		setAttributes,
+		headingShowControls = true,
+
+		headingUse = defaults.headingUse.default,
+		headingAlign = defaults.headingAlign.default,
+		headingLevel = defaults.headingLevel.default,
+
+		showHeadingAlign = true,
+		showHeadingLevel = true,
 	} = props;
 
-	if (!showControls) {
+	if (!headingShowControls) {
 		return null;
 	}
 
 	return (
 		<Fragment>
-			{use &&
+			{headingUse &&
 				<Fragment>
-					{onChangeHeadingLevel &&
+					{showHeadingLevel &&
 						<HeadingLevel
-							selectedLevel={level}
-							onChange={onChangeHeadingLevel}
+							selectedLevel={headingLevel}
+							onChange={(value) => setAttributes({ headingLevel: value })}
 						/>
 					}
 
-					{onChangeHeadingAlign &&
+					{showHeadingAlign &&
 						<AlignmentToolbar
-							value={align}
-							onChange={onChangeHeadingAlign}
+							value={headingAlign}
+							options={options.aligns}
+							onChange={(value) => setAttributes({ headingAlign: value })}
 						/>
 					}
 				</Fragment>

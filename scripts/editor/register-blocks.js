@@ -6,6 +6,7 @@ import { select } from '@wordpress/data';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
+import { ucfirst } from './ucfirst';
 
 /**
  * Return shared attributes.
@@ -128,6 +129,7 @@ export const registerBlock = (
 	edit,
 	wrapperComponent,
 	wrapperManifest = {},
+	allComponentsManifestPaths = []
 ) => {
 	const {
 		namespace,
@@ -135,6 +137,7 @@ export const registerBlock = (
 		hasInnerBlocks = false,
 		attributes = {},
 		icon = {},
+		components = {},
 	} = manifest;
 
 	const {
@@ -168,12 +171,31 @@ export const registerBlock = (
 	// Check if namespace is defined in block or in global manifest settings.
 	const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
 
+	// console.log(manifest.components);
+	// console.log(allComponentsManifestPaths);
+
 	manifest.attributes = {
 		...getSharedAttributes(blockName, namespaceFinal),
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
 		...attributes,
 	};
+
+	const finalAttributes = {};
+
+	// console.log(manifest.attributes, 'original');
+	
+	// for (const attribute in manifest.attributes) {
+	// 	if (manifest.attributes.hasOwnProperty(attribute)) {
+	// 		if (manifest.attributes[attribute].type === 'object') {
+	// 			// console.log(manifest.attributes[attribute].default, attribute);
+	// 		} else {
+	// 			finalAttributes[attribute] = manifest.attributes[attribute];
+	// 		}
+	// 	}
+	// }
+
+	// console.log(finalAttributes, 'finalAttributes');
 
 	return {
 		blockName: `${namespaceFinal}/${blockName}`,
@@ -260,6 +282,7 @@ export const registerBlocks = (
 	globalManifest = {},
 	wrapperComponent = null,
 	wrapperManifest = {},
+	componentsManifestPath,
 	blocksManifestPath,
 	blocksPaths,
 	hooksPath = null,
@@ -293,13 +316,16 @@ export const registerBlocks = (
 			}
 		}
 
+		const allComponentsManifestPaths = componentsManifestPath.keys().map(blocksManifestPath);
+
 		// Pass data to registerBlock helper to get final output for registerBlockType.
 		const blockDetails = registerBlock(
 			block,
 			globalManifest,
 			editCallback,
 			wrapperComponent,
-			wrapperManifest
+			wrapperManifest,
+			allComponentsManifestPaths
 		);
 
 		// Native WP method for block registration.

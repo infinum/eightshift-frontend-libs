@@ -21,6 +21,7 @@ registerBlocks(
 	globalSettings,
 	Wrapper,
 	WrapperManifest,
+	require.context('./../../components', true, /manifest.json$/),
 	require.context('./../../custom', true, /manifest.json$/),
 	require.context('./../../custom', true, /-block.js$/),
 	require.context('./../../custom', true, /-hooks.js$/),

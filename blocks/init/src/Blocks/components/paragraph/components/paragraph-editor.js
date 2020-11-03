@@ -3,37 +3,42 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const ParagraphEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const ParagraphEditor = (attributes) => {
 	const {
-		paragraph: {
-			content,
-			align,
-			color,
-			size,
-			use = true,
-		},
-		componentClass = 'paragraph',
+		setAttributes,
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		onChangeParagraphContent,
-	} = props;
+		placeholder = __('Add Content', 'eightshift-boilerplate'),
+
+		paragraphUse = defaults.paragraphUse.default,
+
+		paragraphContent,
+		paragraphColor = defaults.paragraphColor.default,
+		paragraphSize = defaults.paragraphSize.default,
+		paragraphAlign = defaults.paragraphAlign.default,
+	} = attributes;
 
 	const paragraphClass = classnames(
 		componentClass,
-		align && `${componentClass}__align--${align}`,
-		color && `${componentClass}__color--${color}`,
-		size && `${componentClass}__size--${size}`,
-		blockClass && `${blockClass}__${componentClass}`,
+		paragraphAlign && `${componentClass}__align--${paragraphAlign}`,
+		paragraphColor && `${componentClass}__color--${paragraphColor}`,
+		paragraphSize && `${componentClass}__size--${paragraphSize}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{paragraphUse &&
 				<RichText
 					className={paragraphClass}
-					placeholder={__('Add your text', 'eightshift-boilerplate')}
-					onChange={onChangeParagraphContent}
-					value={content}
+					placeholder={placeholder}
+					value={paragraphContent}
+					onChange={(value) => setAttributes({ paragraphContent: value })}
 				/>
 			}
 		</Fragment>

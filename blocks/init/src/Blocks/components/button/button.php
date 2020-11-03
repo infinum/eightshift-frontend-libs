@@ -8,57 +8,70 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$button = $attributes['button'] ?? [];
-$use = $button['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
+$defaults = $manifest['attributes'];
 
-if (!$button || !$use) {
+$buttonUse = $attributes['buttonUse'] ?? $defaults['buttonUse'];
+if (!$use) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'button';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$url = $button['url'] ?? '';
-$content = $button['content'] ?? '';
-$id = $button['id'] ?? '';
-$isAnchor = $button['isAnchor'] ?? false;
-$color = $button['color'] ?? '';
-$size = $button['size'] ?? '';
-$width = $button['width'] ?? '';
-$ariaLabel = $button['ariaLabel'] ?? '';
-$attrs = $button['attrs'] ?? [];
+$buttonUrl = $attributes['buttonUrl'] ?? '';
+$buttonContent = $attributes['buttonContent'] ?? '';
+$buttonColor = $attributes['buttonColor'] ?? $defaults['buttonColor'];
+$buttonSize = $attributes['buttonSize'] ?? $defaults['buttonSize'];
+$buttonWidth = $attributes['buttonWidth'] ?? $defaults['buttonWidth'];
+$buttonAlign = $attributes['buttonAlign'] ?? $defaults['buttonAlign'];
+$buttonIsAnchor = $attributes['buttonIsAnchor'] ?? $defaults['buttonIsAnchor'];
+$buttonId = $attributes['buttonId'] ?? '';
+$buttonAriaLabel = $attributes['buttonAriaLabel'] ?? '';
+$buttonAttrs = $attributes['buttonAttrs'] ?? [];
 
 $buttonClass = Components::classnames([
 	$componentClass,
-	$color ? "{$componentClass}__color--{$color}" : '',
-	$size ? "{$componentClass}__size--{$size}" : '',
-	$width ? "{$componentClass}__size-width--{$width}" : '',
-	$isAnchor ? 'js-scroll-to-anchor' : '',
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	$buttonColor ? "{$componentClass}__color--{$buttonColor}" : '',
+	$buttonSize ? "{$componentClass}__size--{$buttonSize}" : '',
+	$buttonWidth ? "{$componentClass}__size-width--{$buttonWidth}" : '',
+	$buttonAlign ? "{$componentClass}__align--{$buttonAlign}" : '',
+	$buttonIsAnchor ? 'js-scroll-to-anchor' : '',
+	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
+]);
+
+
+$buttonWrapClass = Components::classnames([
+	"{$componentClass}__wrap",
+	$styleAlign ? "{$componentClass}__align--{$styleAlign}" : '',
+	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
 ]);
 
 ?>
 
-<?php if (! $url) { ?>
-	<button
-		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($id); ?>"
-		title="<?php echo \esc_attr($title); ?>"
-		aria-label="<?php echo \esc_attr($ariaLabel); ?>"
-		<?php echo \esc_attr(Components::ensureString($attrs)); ?>
-	>
-		<?php echo \esc_html($title); ?>
-	</button>
+<div class="<?php echo \esc_attr($buttonWrapClass); ?>">
+	<?php if (! $buttonUrl) { ?>
+		<button
+			class="<?php echo \esc_attr($buttonClass); ?>"
+			id="<?php echo \esc_attr($buttonId); ?>"
+			title="<?php echo \esc_attr($buttonContent); ?>"
+			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+			<?php echo \esc_attr(Components::ensureString($buttonAttrs)); ?>
+		>
+			<?php echo \esc_html($buttonContent); ?>
+		</button>
 
-<?php } else { ?>
-	<a
-		href="<?php echo \esc_url($url); ?>"
-		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($id); ?>"
-		title="<?php echo \esc_attr($title); ?>"
-		aria-label="<?php echo \esc_attr($ariaLabel); ?>"
-		<?php echo \esc_attr(Components::ensureString($attrs)); ?>
-	>
-		<?php echo \esc_html($title); ?>
-	</a>
-<?php }
+	<?php } else { ?>
+		<a
+			href="<?php echo \esc_url($buttonUrl); ?>"
+			class="<?php echo \esc_attr($buttonClass); ?>"
+			id="<?php echo \esc_attr($buttonId); ?>"
+			title="<?php echo \esc_attr($buttonContent); ?>"
+			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+			<?php echo \esc_attr(Components::ensureString($buttonAttrs)); ?>
+		>
+			<?php echo \esc_html($buttonContent); ?>
+		</a>
+	<?php } ?>
+</div>

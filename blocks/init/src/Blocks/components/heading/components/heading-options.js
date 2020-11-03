@@ -4,33 +4,28 @@ import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
+import manifest from './../manifest.json';
 
-export const headingSizes = [
-	{
-		label: __('Default (115px)', 'eightshift-boilerplate'),
-		value: 'default',
-	},
-	{
-		label: __('Big (90px)', 'eightshift-boilerplate'),
-		value: 'big',
-	},
-];
+const { attributes: defaults, options, title } = manifest;
 
-export const HeadingOptions = (props) => {
+
+
+export const HeadingOptions = (attributes) => {
 	const {
-		heading: {
-			color,
-			size,
-			use = true,
-		},
-		showControls = true,
-		label = __('Heading', 'eightshift-boilerplate'),
-		onChangeHeadingColor,
-		onChangeHeadingSize,
-		onChangeHeadingUse,
-	} = props;
+		setAttributes,
+		label = title,
+		headingShowControls = true,
 
-	if (!showControls) {
+		headingUse = defaults.headingUse.default,
+
+		headingColor = defaults.headingColor.default,
+		headingSize = defaults.headingSize.default,
+
+		showHeadingColor = true,
+		showHeadingSize = true,
+	} = attributes;
+
+	if (!headingShowControls) {
 		return null;
 	}
 
@@ -43,17 +38,15 @@ export const HeadingOptions = (props) => {
 				</h3>
 			}
 
-			{onChangeHeadingUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-					checked={use}
-					onChange={onChangeHeadingUse}
-				/>
-			}
+			<ToggleControl
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				checked={headingUse}
+				onChange={(value) => setAttributes({ headingUse: value })}
+			/>
 
-			{use &&
+			{headingUse &&
 				<Fragment>
-					{onChangeHeadingColor &&
+					{showHeadingColor &&
 						<ColorPaletteCustom
 							label={
 								<Fragment>
@@ -61,17 +54,17 @@ export const HeadingOptions = (props) => {
 									{__('Color', 'eightshift-boilerplate')}
 								</Fragment>
 							}
-							value={color}
-							onChange={onChangeHeadingColor}
+							value={headingColor}
+							onChange={(value) => setAttributes({ headingUse: value })}
 						/>
 					}
 
-					{onChangeHeadingSize &&
+					{showHeadingSize &&
 						<SelectControl
 							label={__('Size', 'eightshift-boilerplate')}
-							value={size}
-							options={headingSizes}
-							onChange={onChangeHeadingSize}
+							value={headingSize}
+							options={options.sizes}
+							onChange={(value) => setAttributes({ headingUse: value })}
 						/>
 					}
 				</Fragment>

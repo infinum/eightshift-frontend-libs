@@ -5,28 +5,9 @@ import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
+import manifest from './../manifest.json';
 
-export const buttonSizes = [
-	{
-		label: __('Default', 'eightshift-boilerplate'),
-		value: 'default',
-	},
-	{
-		label: __('Big', 'eightshift-boilerplate'),
-		value: 'big',
-	},
-];
-
-export const buttonWidths = [
-	{
-		label: __('Default', 'eightshift-boilerplate'),
-		value: 'default',
-	},
-	{
-		label: __('Block', 'eightshift-boilerplate'),
-		value: 'block',
-	},
-];
+const { attributes: defaults, options, title } = manifest;
 
 export const buttonColors = () => {
 	const colors = getPaletteColors();
@@ -37,29 +18,31 @@ export const buttonColors = () => {
 	];
 };
 
-export const ButtonOptions = (props) => {
+export const ButtonOptions = (attributes) => {
 	const {
-		button: {
-			url,
-			size,
-			color,
-			width,
-			id,
-			isAnchor,
-			use = true,
-		},
-		label = __('Button', 'eightshift-boilerplate'),
-		showControls = true,
-		onChangeButtonUrl,
-		onChangeButtonSize,
-		onChangeButtonColor,
-		onChangeButtonWidth,
-		onChangeButtonId,
-		onChangeButtonIsAnchor,
-		onChangeButtonUse,
-	} = props;
+		setAttributes,
+		label = title,
+		buttonShowControls = true,
 
-	if (!showControls) {
+		buttonUse = defaults.buttonUse.default,
+
+		buttonUrl,
+		buttonColor = defaults.buttonColor.default,
+		buttonSize = defaults.buttonSize.default,
+		buttonWidth = defaults.buttonWidth.default,
+		buttonIsAnchor = defaults.buttonIsAnchor.default,
+		buttonId,
+
+		showButtonUrl = true,
+		showButtonColor = true,
+		showButtonSize = true,
+		showButtonWidth = true,
+		showButtonIsAnchor = true,
+		showButtonId = true,
+
+	} = attributes;
+
+	if (!buttonShowControls) {
 		return null;
 	}
 
@@ -72,27 +55,25 @@ export const ButtonOptions = (props) => {
 				</h3>
 			}
 
-			{onChangeButtonUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-					checked={use}
-					onChange={onChangeButtonUse}
-				/>
-			}
+			<ToggleControl
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				checked={buttonUse}
+				onChange={(value) => setAttributes({ buttonUse: value })}
+			/>
 
-			{use &&
+			{buttonUse &&
 				<Fragment>
 
-					{onChangeButtonUrl &&
+					{showButtonUrl &&
 						<URLInput
 							label={__('Url', 'eightshift-boilerplate')}
-							value={url}
+							value={buttonUrl}
 							autoFocus={false}
-							onChange={onChangeButtonUrl}
+							onChange={(value) => setAttributes({ buttonUrl: value })}
 						/>
 					}
 
-					{onChangeButtonColor &&
+					{showButtonColor &&
 						<ColorPaletteCustom
 							label={
 								<Fragment>
@@ -101,44 +82,44 @@ export const ButtonOptions = (props) => {
 
 								</Fragment>
 							}
-							value={color}
+							value={buttonColor}
 							colors={buttonColors()}
-							onChange={onChangeButtonColor}
+							onChange={(value) => setAttributes({ buttonColor: value })}
 						/>
 					}
 
-					{onChangeButtonSize &&
+					{showButtonSize &&
 						<SelectControl
 							label={__('Size', 'eightshift-boilerplate')}
-							value={size}
-							options={buttonSizes}
-							onChange={onChangeButtonSize}
+							value={buttonSize}
+							options={options.sizes}
+							onChange={(value) => setAttributes({ buttonSize: value })}
 						/>
 					}
 
-					{onChangeButtonWidth &&
+					{showButtonWidth &&
 						<SelectControl
 							label={__('Width', 'eightshift-boilerplate')}
-							value={width}
-							options={buttonWidths}
-							onChange={onChangeButtonWidth}
+							value={buttonWidth}
+							options={options.widths}
+							onChange={(value) => setAttributes({ buttonWidth: value })}
 						/>
 					}
 
-					{onChangeButtonIsAnchor &&
+					{showButtonIsAnchor &&
 						<ToggleControl
 							label={__('Anchor', 'eightshift-boilerplate')}
-							checked={isAnchor}
-							onChange={onChangeButtonIsAnchor}
+							checked={buttonIsAnchor}
+							onChange={(value) => setAttributes({ buttonIsAnchor: value })}
 							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
 						/>
 					}
 
-					{onChangeButtonId &&
+					{showButtonId &&
 						<TextControl
 							label={__('ID', 'eightshift-boilerplate')}
-							value={id}
-							onChange={onChangeButtonId}
+							value={buttonId}
+							onChange={(value) => setAttributes({ buttonId: value })}
 						/>
 					}
 				</Fragment>

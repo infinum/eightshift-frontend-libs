@@ -3,37 +3,42 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const HeadingEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const HeadingEditor = (attributes) => {
 	const {
-		heading: {
-			content,
-			align,
-			color,
-			size,
-			use = true,
-		},
-		componentClass = 'heading',
+		setAttributes,
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		onChangeHeadingContent,
-	} = props;
+		placeholder = __('Add Content', 'eightshift-boilerplate'),
+
+		headingUse = defaults.headingUse.default,
+
+		headingContent,
+		headingColor = defaults.headingColor.default,
+		headingSize = defaults.headingSize.default,
+		headingAlign = defaults.headingAlign.default,
+	} = attributes;
 
 	const headingClass = classnames(
 		componentClass,
-		align && `${componentClass}__align--${align}`,
-		color && `${componentClass}__color--${color}`,
-		size && `${componentClass}__size--${size}`,
-		blockClass && `${blockClass}__${componentClass}`,
+		headingColor && `${componentClass}__color--${headingColor}`,
+		headingSize && `${componentClass}__size--${headingSize}`,
+		headingAlign && `${componentClass}__align--${headingAlign}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{headingUse &&
 				<RichText
 					className={headingClass}
-					placeholder={__('Add your text', 'eightshift-boilerplate')}
-					onChange={onChangeHeadingContent}
-					value={content}
+					placeholder={placeholder}
+					value={headingContent}
+					onChange={(value) => setAttributes({ headingContent: value })}
 				/>
 			}
 		</Fragment>

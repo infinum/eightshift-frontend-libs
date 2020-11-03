@@ -1,5 +1,8 @@
 $heading: (
-	colors: global-settings(colors),
+	colors: (
+		primary: global-settings(colors, primary),
+		black: global-settings(colors, black),
+	),
 	sizes: (
 		mobile: (
 			default: (
@@ -27,7 +30,7 @@ $heading: (
 .heading {
 	@extend %heading-reset;
 	font-weight: bold;
-	color: inherit;
+	color: map-get-deep($heading, colors, primary);
 
 	&__color {
 		@include modifiers-deep($heading, colors, color);

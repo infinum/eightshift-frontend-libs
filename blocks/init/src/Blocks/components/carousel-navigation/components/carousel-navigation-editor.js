@@ -2,56 +2,54 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 
-export const CarouselNavigationEditor = (props) => {
+export const CarouselNavigationEditor = (attributes) => {
 	const {
-		prevClass,
-		nextClass,
-		blockClass,
 		componentClass = 'carousel-navigation',
-		use = true,
-	} = props;
+		selectorClass = componentClass,
+		blockClass,
+		jsPrevClass,
+		jsNextClass,
+		theme = 'default',
+	} = attributes;
 
-	const arrowPrevClass = classnames(
-		`${componentClass}__arrow-item`,
-		`${componentClass}__arrow-item--prev`,
-		blockClass && `${blockClass}__carousel-navigation-arrow-item`,
-		blockClass && `${blockClass}__carousel-navigation-arrow-item--prev`,
-		prevClass
+	const navigationlass = classnames(
+		componentClass,
+		theme ? `${componentClass}__theme--${theme}` : '',
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
-	const arrowNextClass = classnames(
-		`${componentClass}__arrow-item`,
-		`${componentClass}__arrow-item--next`,
-		blockClass && `${blockClass}__carousel-navigation-arrow-item`,
-		blockClass && `${blockClass}__carousel-navigation-arrow-item--next`,
-		nextClass
+	const prevClass = classnames(
+		`${componentClass}__item`,
+		`${componentClass}__item--prev`,
+		jsPrevClass
 	);
 
-	const arrowIconClass = classnames(
-		`${componentClass}__arrow-icon`,
-		blockClass && `${blockClass}__carousel-navigation-arrow-icon`,
+	const nextClass = classnames(
+		`${componentClass}__item`,
+		`${componentClass}__item--next`,
+		jsNextClass
 	);
+
+	const iconClass = classnames(`${componentClass}__icon`);
 
 	return (
 		<Fragment>
-			{use &&
-				<Fragment>
-					<div className={arrowPrevClass}>
-						<svg className={arrowIconClass} width="22" height="40" xmlns="http://www.w3.org/2000/svg">
-							<g style={{ mixBlendMode: 'multiply' }} stroke="#000" fill="none" fillRule="evenodd" strokeLinecap="round">
-								<path d="M1 20L21 1M21 39L1 20" />
-							</g>
-						</svg>
-					</div>
-					<div className={arrowNextClass}>
-						<svg className={arrowIconClass} width="22" height="40" xmlns="http://www.w3.org/2000/svg">
-							<g style={{ mixBlendMode: 'multiply' }} stroke="#000" fill="none" fillRule="evenodd" strokeLinecap="round">
-								<path d="M21 20L1 1M1 39l20-19" />
-							</g>
-						</svg>
-					</div>
-				</Fragment>
-			}
+			<div className={navigationlass}>
+				<div className={prevClass}>
+					<svg className={iconClass} width="22" height="40" xmlns="http://www.w3.org/2000/svg">
+						<g style="mix-blend-mode:multiply" stroke="#FFF" fill="none" fillRule="evenodd" strokeLinecap="round">
+							<path d="M1 20L21 1M21 39L1 20" />
+						</g>
+					</svg>
+				</div>
+				<div className={nextClass}>
+					<svg className={iconClass} width="22" height="40" xmlns="http://www.w3.org/2000/svg">
+						<g style="mix-blend-mode:multiply" stroke="#FFF" fill="none" fillRule="evenodd" strokeLinecap="round">
+							<path d="M21 20L1 1M1 39l20-19" />
+						</g>
+					</svg>
+				</div>
+			</div>
 		</Fragment>
 	);
 };

@@ -5,30 +5,30 @@ import manifest from './../manifest.json';
 
 const { attributes: defaults, options } = manifest;
 
-export const ParagraphToolbar = (props) => {
+export const ButtonToolbar = (attributes) => {
 	const {
 		setAttributes,
-		paragraphShowControls = true,
+		buttonShowControls = true,
 
-		paragraphUse = defaults.paragraphUse.default,
-		paragraphAlign = defaults.paragraphAlign.default,
+		buttonUse = defaults.buttonUse.default,
+		buttonAlign = defaults.buttonAlign.default,
 
-		showParagraphAlign = true,
-	} = props;
+		showButtonAlign = true,
+	} = attributes;
 
-	if (!paragraphShowControls) {
+	if (!buttonShowControls) {
 		return null;
 	}
 
 	return (
 		<Fragment>
-			{paragraphUse &&
+			{buttonUse &&
 				<Fragment>
-					{showParagraphAlign &&
+					{showButtonAlign &&
 						<AlignmentToolbar
-							value={paragraphAlign}
+							value={buttonAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ paragraphAlign: value })}
+							onChange={(value) => setAttributes({ buttonAlign: value })}
 						/>
 					}
 				</Fragment>

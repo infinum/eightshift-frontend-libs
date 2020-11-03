@@ -11,34 +11,7 @@
 		"btn",
 		"link"
 	],
-	"example": {
-		"attributes": {
-			"button": {
-				"content": "This is button",
-				"url": "https://fakeurl.com/",
-				"size": "default",
-				"color": "primary",
-				"width": "default",
-				"isAnchor": false,
-				"id": "custom ID"
-			}
-		}
-	},
-	"attributes": {
-		"button": {
-			"type": "object",
-			"default": {
-				"content": "",
-				"url": "",
-				"size": "default",
-				"color": "primary",
-				"width": "default",
-				"isAnchor": false,
-				"id": ""
-			},
-			"items": {
-				"type": "object"
-			}
-		}
+	"components": {
+		"button": "button"
 	}
 }

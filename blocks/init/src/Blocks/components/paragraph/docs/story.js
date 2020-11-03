@@ -1,36 +1,22 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { ParagraphEditor } from '../components/paragraph-editor';
-import { ParagraphOptions, paragraphSizes } from '../components/paragraph-options';
+import { ParagraphOptions } from '../components/paragraph-options';
 import { ParagraphToolbar } from '../components/paragraph-toolbar';
 
 export default {
-	title: 'Components|Paragraph',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	blockClass: 'block-paragraph',
-	paragraph: {
-		content: 'This is Paragraph',
-		align: 'left',
-		color: 'primary',
-		size: 'default',
-	},
-	onChangeParagraphContent: () => {},
-	onChangeParagraphColor: () => {},
-	onChangeParagraphSize: () => {},
-	onChangeParagraphAlign: () => {},
-	onChangeParagraphUse: () => {},
-};
+const props = manifest.example.attributes;
 
-export const component = () => (
-	<ParagraphEditor
-		{...props}
-	/>
+export const editor = () => (
+	<ParagraphEditor {...props} />
 );
 
 export const options = () => (
@@ -43,15 +29,12 @@ export const toolbar = () => (
 
 export const size = () => (
 	<Fragment>
-		{paragraphSizes.map((values, index) => (
+		{manifest.options.sizes.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}
-					paragraph={{
-						...props.paragraph,
-						content: values.label,
-						size: values.value,
-					}}
+					paragraphContent={values.label}
+					paragraphSize={values.value}
 				/>
 				<br />
 			</Fragment>
@@ -61,15 +44,12 @@ export const size = () => (
 
 export const align = () => (
 	<Fragment>
-		{['left', 'center', 'right'].map((values, index) => (
+		{manifest.options.aligns.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}
-					paragraph={{
-						...props.paragraph,
-						content: values,
-						align: values,
-					}}
+					paragraphContent={values}
+					paragraphAlign={values}
 				/>
 				<br />
 			</Fragment>
@@ -77,25 +57,17 @@ export const align = () => (
 	</Fragment>
 );
 
-
-export const color = () => {
-	const { colors } = wp.data.select('core/block-editor').getSettings();
-
-	return (
-		<Fragment>
-			{colors.map((values, index) => (
-				<Fragment key={index}>
-					<ParagraphEditor
-						{...props}
-						paragraph={{
-							...props.paragraph,
-							title: values.name,
-							color: values.slug,
-						}}
-					/>
-					<br />
-				</Fragment>
-			))}
-		</Fragment>
-	);
-};
+export const color = () => (
+	<Fragment>
+		{manifest.options.colors.map((values, index) => (
+			<Fragment key={index}>
+				<ParagraphEditor
+					{...props}
+					paragraphContent={values.label}
+					paragraphColor={values.value}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</Fragment>
+);

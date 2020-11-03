@@ -4,27 +4,26 @@ import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import manifest from './../manifest.json';
 
-export const paragraphSizes = [
-	{ label: __('Default (22px)', 'eightshift-boilerplate'), value: 'default' },
-	{ label: __('Small (18px)', 'eightshift-boilerplate'), value: 'small' },
-];
+const { attributes: defaults, options, title } = manifest;
 
-export const ParagraphOptions = (props) => {
+export const ParagraphOptions = (attributes) => {
 	const {
-		paragraph: {
-			color,
-			size,
-			use = true,
-		},
-		showControls = true,
-		label = __('Paragraph', 'eightshift-boilerplate'),
-		onChangeParagraphColor,
-		onChangeParagraphSize,
-		onChangeParagraphUse,
-	} = props;
+		setAttributes,
+		label = title,
+		paragraphShowControls = true,
 
-	if (!showControls) {
+		paragraphUse = defaults.paragraphUse.default,
+
+		paragraphColor = defaults.paragraphColor.default,
+		paragraphSize = defaults.paragraphSize.default,
+
+		showParagraphColor = true,
+		showParagraphSize = true,
+	} = attributes;
+
+	if (!paragraphShowControls) {
 		return null;
 	}
 
@@ -37,17 +36,15 @@ export const ParagraphOptions = (props) => {
 				</h3>
 			}
 
-			{onChangeParagraphUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-					checked={use}
-					onChange={onChangeParagraphUse}
-				/>
-			}
+			<ToggleControl
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				checked={paragraphUse}
+				onChange={(value) => setAttributes({ paragraphUse: value })}
+			/>
 
-			{use &&
+			{paragraphUse &&
 				<Fragment>
-					{onChangeParagraphColor &&
+					{showParagraphColor &&
 						<ColorPaletteCustom
 							label={
 								<Fragment>
@@ -55,17 +52,17 @@ export const ParagraphOptions = (props) => {
 									{__('Color', 'eightshift-boilerplate')}
 								</Fragment>
 							}
-							value={color}
-							onChange={onChangeParagraphColor}
+							value={paragraphColor}
+							onChange={(value) => setAttributes({ paragraphUse: value })}
 						/>
 					}
 
-					{onChangeParagraphSize &&
+					{showParagraphSize &&
 						<SelectControl
-							label={__('Font Size', 'eightshift-boilerplate')}
-							value={size}
-							options={paragraphSizes}
-							onChange={onChangeParagraphSize}
+							label={__('Size', 'eightshift-boilerplate')}
+							value={paragraphSize}
+							options={options.sizes}
+							onChange={(value) => setAttributes({ paragraphUse: value })}
 						/>
 					}
 				</Fragment>
@@ -74,4 +71,3 @@ export const ParagraphOptions = (props) => {
 		</Fragment>
 	);
 };
-

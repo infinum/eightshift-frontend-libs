@@ -1,0 +1,60 @@
+{
+	"title": "Heading",
+	"componentClass": "heading",
+	"example": {
+		"attributes": {
+			"headingContent": "This is heading",
+			"headingLevel": 2,
+			"headingSize": "default",
+			"headingColor": "primary",
+			"headingAlign": "left",
+			"headingUse": true
+		}
+	},
+	"attributes": {
+		"headingContent": {
+			"type": "string"
+		},
+		"headingLevel": {
+			"type": "int",
+			"default": 2
+		},
+		"headingSize": {
+			"type": "string",
+			"default": "default"
+		},
+		"headingColor": {
+			"type": "string",
+			"default": "primary"
+		},
+		"headingAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"headingUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"options": {
+		"sizes": [
+			{
+				"label": "Default (115px)",
+				"value": "default"
+			},
+			{
+				"label": "Big (90px)",
+				"value": "big"
+			}
+		],
+		"aligns": [
+			"left",
+			"center",
+			"right"
+		],
+		"colors": [
+			"primary",
+			"black"
+		]
+	}
+}
