@@ -362,6 +362,8 @@ export const registerBlocks = (
 			blockComponent
 		);
 
+		console.log(blockDetails.options);
+
 		// Native WP method for block registration.
 		registerBlockType(blockDetails.blockName, blockDetails.options);
 

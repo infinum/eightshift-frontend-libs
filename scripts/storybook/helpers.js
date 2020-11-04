@@ -15,7 +15,7 @@ import {
 import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-import { dispatch } from '@wordpress/data';
+import { dispatch, select } from '@wordpress/data';
 import { registerCoreBlocks } from '@wordpress/block-library';
 
 /**
@@ -59,9 +59,10 @@ export const blockDetails = (manifest, globalManifest, isVariation = false) => {
 	const { blockName, parentName } = manifest;
 	const { namespace } = globalManifest;
 
-	const block = wp.data.select('core/blocks').getBlockType(`${namespace}/${blockName}`);
+	const block = select('core/blocks').getBlockType(`${namespace}/${blockName}`);
 
-	console.log(manifest);
+	// console.log(wp.data.select('core/blocks'));
+	// console.log(manifest);
 
 	// if (isVariation) {
 	// 	return {
@@ -92,11 +93,16 @@ export const Gutenberg = ({ props }) => {
 	const [blocks, updateBlocks] = useState([]);
 
 	useEffect(() => {
+		// registerCoreBlocks();
 		const block = createBlock(name, attributes, innerBlocks);
 		blocks.push(block);
+		
 	}, []);
+	
+	dispatch('core/block-editor').insertBlocks(blocks);
+	// console.log(wp.data.select('core/blocks').getBlockTypes());
 
-	console.log(blocks);
+	console.log(select('core/block-editor').getBlocks());
 
 	return (
 		<div className="playground">
