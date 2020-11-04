@@ -8,8 +8,6 @@ import manifest from './../manifest.json';
 
 const { attributes: defaults, options, title } = manifest;
 
-
-
 export const HeadingOptions = (attributes) => {
 	const {
 		setAttributes,
@@ -55,7 +53,7 @@ export const HeadingOptions = (attributes) => {
 								</Fragment>
 							}
 							value={headingColor}
-							onChange={(value) => setAttributes({ headingUse: value })}
+							onChange={(value) => setAttributes({ headingColor: value })}
 						/>
 					}
 
@@ -64,7 +62,7 @@ export const HeadingOptions = (attributes) => {
 							label={__('Size', 'eightshift-boilerplate')}
 							value={headingSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ headingUse: value })}
+							onChange={(value) => setAttributes({ headingSize: value })}
 						/>
 					}
 				</Fragment>

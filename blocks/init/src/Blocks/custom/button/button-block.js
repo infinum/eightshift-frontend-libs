@@ -6,9 +6,6 @@ import { ButtonToolbar } from './components/button-toolbar';
 import { ButtonOptions } from './components/button-options';
 
 export const Button = (props) => {
-
-	console.log(props, 'block');
-
 	return (
 		<Fragment>
 			<InspectorControls>

@@ -1,10 +1,11 @@
 /* eslint-disable global-require*/
+import { dispatch, select } from '@wordpress/data';
 
 /**
  * Manually populate categories for blocks. This is generated in the PHP part of the real project.
  */
 export const storybookDefaultMocksCategories = () => {
-	wp.data.dispatch('core/blocks').setCategories([
+	dispatch('core/blocks').setCategories([
 		{
 			slug: 'eightshift',
 			title: 'Eightshift',
@@ -23,7 +24,7 @@ export const storybookDefaultMocksCategories = () => {
  * @param object blocksGlobalManifest Full path to global blocks manifest.
  */
 export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
-	wp.data.select('core/block-editor').getSettings().colors = blocksGlobalManifest.globalVariables.colors;
+	select('core/block-editor').getSettings().colors = blocksGlobalManifest.globalVariables.colors;
 };
 
 /**

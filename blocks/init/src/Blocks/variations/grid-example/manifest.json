@@ -1,6 +1,6 @@
 {
 	"parentName": "columns",
-	"blockName": "grid-example",
+	"name": "grid-example",
 	"title": "Grid Example",
 	"description" : "Columns Block Variation for grid example.",
 	"icon": {
@@ -9,6 +9,70 @@
 	"scope": [
 		"inserter"
 	],
+	"example": {
+		"attributes": {
+			"gutter": {
+				"large": "default"
+			},
+			"verticalSpacing": {
+				"large": "default"
+			}
+		},
+		"innerBlocks": [
+			[
+				"eightshift-boilerplate/column",
+				{
+					"width": {
+						"large": 4,
+						"tablet": 6,
+						"mobile": 12
+					}
+				},
+				[
+					["eightshift-boilerplate/card"]
+				]
+			],
+			[
+				"eightshift-boilerplate/column",
+				{
+					"width": {
+						"large": 8,
+						"tablet": 6,
+						"mobile": 12
+					}
+				},
+				[
+					["eightshift-boilerplate/card"]
+				]
+			],
+			[
+				"eightshift-boilerplate/column",
+				{
+					"width": {
+						"large": 6,
+						"tablet": 6,
+						"mobile": 12
+					}
+				},
+				[
+					["eightshift-boilerplate/card"]
+				]
+			],
+			[
+				"eightshift-boilerplate/column",
+				{
+					"width": {
+						"large": 6,
+						"tablet": 6,
+						"mobile": 12
+					}
+				},
+				[
+					["eightshift-boilerplate/card"]
+				]
+			]
+		]
+	},
 	"attributes": {
 		"gutter": {
 			"large": "default"

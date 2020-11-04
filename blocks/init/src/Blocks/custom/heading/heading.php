@@ -8,12 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo wp_kses_post(
-	Components::render(
-		'heading',
-		[
-		'blockClass' => $attributes['blockClass'] ?? '',
-		'heading'    => $attributes['heading'] ?? [],
-		]
-	)
-);
+echo \wp_kses_post(Components::render( 'heading', $attributes));

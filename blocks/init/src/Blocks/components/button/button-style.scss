@@ -1,4 +1,4 @@
-$button: (
+$btn: (
 	colors: (
 		primary: (
 			normal: (
@@ -47,7 +47,7 @@ $button: (
 	)
 );
 
-.button {
+.btn {
 	@extend %button-reset;
 	position: relative;
 	display: inline-flex;
@@ -65,7 +65,7 @@ $button: (
 		duration: 0.3s;
 	}
 
-	@include link(map-get-strict($button, colors), primary);
+	@include link(map-get-strict($btn, colors), primary);
 
 	&:disabled {
 		cursor: not-allowed;
@@ -79,11 +79,11 @@ $button: (
 	}
 
 	&__color {
-		@include link-modifiers($button, colors);
+		@include link-modifiers($btn, colors);
 	}
 
 	&__size {
-		@include responsive-modifiers($button, sizes);
+		@include responsive-modifiers($btn, sizes);
 	}
 
 	&__wrap {

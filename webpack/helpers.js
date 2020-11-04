@@ -21,15 +21,15 @@ const path = require('path');
 function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/Blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/Blocks/manifest.json') {
 
 	if (typeof projectDir === 'undefined') {
-		throw 'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'; // eslint-disable-line no-throw-literal
+		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
 	}
 
 	if (typeof proxyUrl === 'undefined') {
-		throw 'proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com'; // eslint-disable-line no-throw-literal
+		throw Error('proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com');
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
-		throw 'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate'; // eslint-disable-line no-throw-literal
+		throw Error('projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate');
 	}
 
 	// Clear all slashes from user config.

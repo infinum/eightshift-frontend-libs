@@ -53,7 +53,7 @@ export const ParagraphOptions = (attributes) => {
 								</Fragment>
 							}
 							value={paragraphColor}
-							onChange={(value) => setAttributes({ paragraphUse: value })}
+							onChange={(value) => setAttributes({ paragraphColor: value })}
 						/>
 					}
 
@@ -62,7 +62,7 @@ export const ParagraphOptions = (attributes) => {
 							label={__('Size', 'eightshift-boilerplate')}
 							value={paragraphSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ paragraphUse: value })}
+							onChange={(value) => setAttributes({ paragraphSize: value })}
 						/>
 					}
 				</Fragment>

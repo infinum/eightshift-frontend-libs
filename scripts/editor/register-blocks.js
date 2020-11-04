@@ -8,12 +8,152 @@ import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 
 /**
+ * Filter array of JS paths and get the correct edit components.
+ *
+ * @param {string} blockName Provided block name to find corresponding edit component.
+ * @param {function} paths Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName Block partial name.
+ *
+ */
+export const getBlockEditComponent = (blockName, paths, fileName) => {
+
+	// Create an array of all blocks file paths.
+	const pathsKeys = paths.keys();
+
+	// Get Block edit component from block name and pathsKeys.
+	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
+
+	// If edit component is missing throw and error.
+	if (typeof editComponent === 'undefined') {
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
+	}
+
+	// No mater if class of functional component is used fetch the first item in an object.
+	const editCallback = editComponent[Object.keys(editComponent)[0]];
+
+	// If edit component callback is missing throw and error.
+	if (typeof editCallback === 'undefined') {
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
+	}
+
+	return editCallback;
+};
+
+/**
+ * Filter array of JS paths and get the correct transforms, hooks, etc components.
+ *
+ * @param {string} blockName Provided block name to find corresponding edit component.
+ * @param {function} paths Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName Block partial name.
+ *
+ */
+export const getBlockGenericComponent = (blockName, paths, fileName) => {
+
+	// Create an array of all blocks file paths.
+	const pathsKeys = paths.keys();
+
+	// Get Block edit component from block name and pathsKeys.
+	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
+
+	// If edit component is missing throw and error.
+	if (typeof editComponent === 'undefined') {
+		return null;
+	}
+
+	// No mater if class of functional component is used fetch the first item in an object.
+	return editComponent[Object.keys(editComponent)[0]];
+};
+
+/**
+ * Check if namespace is defined in block or in global manifest settings and return namespace.
+ *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getNamespace = (globalManifest, blockManifest) => {
+	return (typeof blockManifest.namespace === 'undefined') ? globalManifest.namespace : blockManifest.namespace;
+};
+
+/**
+ * Return full block name used in Block Editor with correct namespace.
+ *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getFullBlockName = (globalManifest, blockManifest) => {
+	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
+};
+
+/**
+ * Return save function based on hasInnerBlocks option of block.
+ *
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getSaveCallback = (blockManifest) => {
+	const {
+		hasInnerBlocks,
+	} = blockManifest;
+
+	if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
+		return () => createElement(InnerBlocks.Content);
+	}
+
+	return () => null;
+};
+
+/**
+ * Return edit function wrapped with Wrapper compoent.
+ *
+ * @param {function} Component Children callback function.
+ * @param {function} Wrapper Wrapper callback function.
+ *
+ */
+const getEditCallback = (Component, Wrapper) => (props) => {
+	return (
+		<Wrapper props={props}>
+			<Component {...props} />
+		</Wrapper>
+	);
+};
+
+/**
+ * Set icon object with icon, background and foreground.
+ *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getIconOptions = (globalManifest, blockManifest) => {
+	const {
+		background: backgroundGlobal,
+		foreground: foregroundGlobal,
+	} = globalManifest;
+
+	const {
+		icon,
+	} = blockManifest;
+
+	if (typeof icon === 'undefined') {
+		return {};
+	}
+
+	return {
+		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+		foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
+		src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
+	};
+};
+
+/**
  * Return shared attributes.
  *
- * @param {string} blockName Block name, simple or with namespace.
- * @param {string} namespace Namespace for full block name.
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} blockManifest Block full manifest.
  */
-const getSharedAttributes = (blockName, namespace) => {
+export const getSharedAttributes = (globalManifest, blockManifest) => {
+	const {
+		blockName,
+	} = blockManifest;
+
 	return {
 		blockName: {
 			type: 'string',
@@ -21,7 +161,7 @@ const getSharedAttributes = (blockName, namespace) => {
 		},
 		blockFullName: {
 			type: 'string',
-			default: `${namespace}/${blockName}`,
+			default: getFullBlockName(globalManifest, blockManifest),
 		},
 		blockClass: {
 			type: 'string',
@@ -35,29 +175,15 @@ const getSharedAttributes = (blockName, namespace) => {
 };
 
 /**
- * Wrap edit component with wrapper component.
- *
- * @param {function} Component Children callback function.
- * @param {function} Wrapper Wrapper callback function.
- *
- */
-const withWrapper = (Component, Wrapper) => (props) => {
-	return (
-		<Wrapper props={props}>
-			<Component {...props} />
-		</Wrapper>
-	);
-};
-
-/**
- * Iterate over component object and check if the component exists in the project.
+ * Iterate over component object in block manifest and check if the component exists in the project.
  * Search and replace the component attributes with new one.
  *
  * @param {object} componentsManifest Object of component manifests to iterate.
  * @param {object} components List of all component from block.
  * @param {string} blockName Full block name.
+ * @param {string} key Change output, can be: "attributes" or "example".
  */
-const prepareCommponentAttributes = (componentsManifest, components, blockName) => {
+export const prepareCommponentAttributes = (componentsManifest, components, blockName, key = 'attributes') => {
 	let output = {};
 
 	for (const newComponentName in components) {
@@ -68,10 +194,18 @@ const prepareCommponentAttributes = (componentsManifest, components, blockName) 
 			const findComponent = componentsManifest.filter((item) => item.componentName === realComponentName);
 
 			if (!findComponent.length) {
-				throw `Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`; // eslint-disable-line no-throw-literal
+				throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 			}
 
-			const componentAttributes = findComponent[0].attributes;
+			let componentAttributes = {};
+
+			if (key === 'attributes') {
+				componentAttributes = findComponent[0].attributes;
+			}
+
+			if (key === 'example') {
+				componentAttributes = findComponent[0].example.attributes;
+			}
 
 			let outputAttributes = {};
 
@@ -98,63 +232,58 @@ const prepareCommponentAttributes = (componentsManifest, components, blockName) 
 };
 
 /**
- * Filter array of JavaScript paths and get the correct edit component.
+ * Get Block attributes combined in one: "shared, global, wrapper, components, block".
  *
- * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all JavaScript files in a block got from require.context.
- * @param {string} fileName Block partial name.
- *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} wrapperManifest Wrapper full manifest.
+ * @param {object} componentsManifest Object of component manifests to iterate.
+ * @param {object} blockManifest Block full manifest.
  */
-const getBlockEditComponent = (blockName, paths, fileName) => {
+export const getAttributes = (globalManifest, wrapperManifest, componentsManifest, blockManifest) => {
+	const {
+		attributes: attributesGlobal,
+	} = globalManifest;
 
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
+	const {
+		attributes: attributesWrapper,
+	} = wrapperManifest;
 
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
+	const {
+		blockName,
+		attributes = {},
+		components = {},
+	} = blockManifest;
 
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	const editCallback = editComponent[Object.keys(editComponent)[0]];
-
-	// If edit component callback is missing throw and error.
-	if (typeof editCallback === 'undefined') {
-		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
-	}
-
-	return editCallback;
+	return {
+		...getSharedAttributes(globalManifest, blockManifest),
+		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
+		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
+		...prepareCommponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest)),
+		...attributes,
+	};
 };
 
 /**
- * Filter array of JavaScript paths and get the correct transforms component.
+ * Get Block example attributes combined in one: "components and block".
  *
- * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all JavaScript files in a block got from require.context.
- * @param {string} fileName Block partial name.
- *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} componentsManifest Object of component manifests to iterate.
+ * @param {object} blockManifest Block full manifest.
  */
-const getBlockGenericComponent = (blockName, paths, fileName) => {
+export const getExample = (globalManifest, componentsManifest, blockManifest) => {
+	const {
+		example = {},
+		components = {},
+	} = blockManifest;
 
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
-
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`).map(paths)[0];
-
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		return null;
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	return editComponent[Object.keys(editComponent)[0]];
+	return {
+		...prepareCommponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest), 'example'),
+		...example.attributes,
+	};
 };
 
 /**
+ * TODO:
  * Map and prepare all options from layout manifest.json file for usage in registerBlockVariation method.
  *
  * @param {object} manifest Layout manifest.json object with data.
@@ -162,59 +291,41 @@ const getBlockGenericComponent = (blockName, paths, fileName) => {
  *
  */
 export const registerVariation = (
-	manifest = {},
 	globalManifest = {},
+	blockManifest = {},
 ) => {
 	const {
-		namespace,
 		parentName,
-		blockName,
-		attributes = {},
-		icon = {},
-	} = manifest;
-
-	const {
-		namespace: namespaceGlobal,
-		background: backgroundGlobal,
-		foreground: foregroundGlobal,
-	} = globalManifest;
+	} = blockManifest;
 
 	// Append globalManifest data in to output.
-	if (typeof icon !== 'undefined') {
-		manifest.icon = {
-			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-			foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-			src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
-		};
-	}
+	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
+
+	// This is a full block name used in Block Editor.
+	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
 
 	// Check if namespace is defined in block or in global manifest settings.
-	const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
+	const namespaceFinal = getNamespace(globalManifest, blockManifest);
 
 	// When adding attributes object attributes will not be added but ovveriden. By spreading parent attributes with variation attributes we are able to set everything.
 	const parentBlock = select(('core/blocks')).getBlockTypes().filter((item) => item.name === `${namespaceFinal}/${parentName}`);
 
-	if (parentBlock.length) {
-		const parentAttributes = parentBlock[0].attributes;
+	// if (parentBlock.length) {
+	// 	const parentAttributes = parentBlock[0].attributes;
 
-		for (const attribute in parentAttributes) {
-			if (parentAttributes.hasOwnProperty(attribute)) {
-				if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
-					manifest.attributes[attribute] = {
-						...parentAttributes[attribute].default,
-						...attributes[attribute],
-					};
-				}
-			}
-		}
-	}
+	// 	for (const attribute in parentAttributes) {
+	// 		if (parentAttributes.hasOwnProperty(attribute)) {
+	// 			if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
+	// 				blockManifest.attributes[attribute] = {
+	// 					...parentAttributes[attribute].default,
+	// 					...attributes[attribute],
+	// 				};
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	return {
-		...manifest,
-		blockName: `${namespaceFinal}/${parentName}`,
-		namespace: namespaceFinal,
-		name: blockName,
-	};
+	return blockManifest;
 };
 
 /**
@@ -238,66 +349,32 @@ export const registerBlock = (
 ) => {
 
 	const {
-		namespace: namespaceGlobal,
-		attributes: attributesGlobal,
-		background: backgroundGlobal,
-		foreground: foregroundGlobal,
-	} = globalManifest;
-
-	const {
-		attributes: attributesWrapper,
-	} = wrapperManifest;
-
-	const {
-		namespace,
-		blockName,
-		hasInnerBlocks = false,
-		attributes = {},
 		icon = {},
-		components = {},
 	} = blockManifest;
 
-	const manifest = {};
-
-	// Append globalManifest data in to output.
-	if (typeof icon !== 'undefined') {
-		manifest.icon = {
-			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-			foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
-			src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
-		};
-	}
-	
-	// Default save method.
-	let save = () => null;
-	
-	// Provide different save method for InnerBlocks.
-	if (hasInnerBlocks && typeof InnerBlocks !== 'undefined') {
-		save = () => createElement(InnerBlocks.Content);
-	}
-
-	// Check if namespace is defined in block or in global manifest settings.
-	const namespaceFinal = (typeof namespace === 'undefined') ? namespaceGlobal : namespace;
+	// Block Icon option.
+	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
 
 	// This is a full block name used in Block Editor.
-	const fullBlockName = `${namespaceFinal}/${blockName}`;
+	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
 
 	// Set full attributes list.
-	blockManifest.attributes = {
-		...getSharedAttributes(blockName, namespaceFinal),
-		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
-		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-		...prepareCommponentAttributes(componentsManifest, components, fullBlockName),
-		...attributes,
-	};
+	blockManifest.attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+
+	// Set full example list.
+	if (typeof blockManifest.example === 'undefined') {
+		blockManifest.example = {};
+	}
+
+	blockManifest.example.attributes = getExample(globalManifest, componentsManifest, blockManifest);
 
 	return {
 		blockName: fullBlockName,
 		options: {
 			...blockManifest,
 			blockName: fullBlockName,
-			edit: withWrapper(blockComponent, wrapperComponent),
-			save,
+			edit: getEditCallback(blockComponent, wrapperComponent),
+			save: getSaveCallback(blockManifest),
 		},
 	};
 };
@@ -309,6 +386,7 @@ export const registerBlock = (
  * @param {object} globalManifest Must provide global blocks setting manifest.json.
  * @param {function} wrapperComponent Wrapper callback function.
  * @param {object} wrapperManifest Wrapper manifest function.
+ * @param {function} componentsManifestPath Must provide require.context for all components manifest.json-s.
  * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
  * @param {function} blocksEditComponentPath Must provide require.context for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).
  * @param {function} hooksComponentPath Function of hooks JavaScript files in a block got from require.context.
@@ -362,8 +440,6 @@ export const registerBlocks = (
 			blockComponent
 		);
 
-		console.log(blockDetails.options);
-
 		// Native WP method for block registration.
 		registerBlockType(blockDetails.blockName, blockDetails.options);
 
@@ -377,34 +453,20 @@ export const registerBlocks = (
  *
  * @param {object} globalManifest Must provide global blocks setting manifest.json.
  * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
- * @param {function} transformsComponentPath Function of transforms JavaScript files in a block got from require.context.
  *
  */
 export const registerVariations = (
 	globalManifest = {},
 	blocksManifestPath,
-	transformsComponentPath = null,
 ) => {
 
-	// Create an array of Block manifests.
-	const allBlocksManifestPath = blocksManifestPath.keys().map(blocksManifestPath);
-
 	// Iterate blocks to register.
-	allBlocksManifestPath.map((block) => {
-
-		// Get Block Transforms component from block name and transformsComponentPath.
-		if (transformsComponentPath !== null) {
-			const transformsCallback = getBlockGenericComponent(block.blockName, transformsComponentPath, 'transforms');
-
-			if (transformsCallback !== null) {
-				block.transforms = transformsCallback;
-			}
-		}
+	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
 
 		// Pass data to registerVariation helper to get final output for registerBlockVariation.
 		const blockDetails = registerVariation(
-			block,
-			globalManifest
+			globalManifest,
+			blockManifest
 		);
 
 		// Native WP method for block registration.

@@ -3,13 +3,13 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import { ParagraphOptions as ParagraphOptionsComponent } from '../../../components/paragraph/components/paragraph-options';
 
-export const ParagraphOptions = ({ attributes, actions }) => {
+export const ParagraphOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Paragraph Details', 'eightshift-boilerplate')}>
 
 			<ParagraphOptionsComponent
 				{...attributes}
-				{...actions}
+				setAttributes={setAttributes}
 			/>
 
 		</PanelBody>

@@ -8,9 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo \wp_kses_post(
-	Components::render(
-		'button',
-		$attributes
-	)
-);
+echo \wp_kses_post(Components::render( 'button', $attributes));

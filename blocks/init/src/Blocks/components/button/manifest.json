@@ -1,7 +1,7 @@
 {
 	"componentName": "button",
 	"title": "Button",
-	"componentClass": "button",
+	"componentClass": "btn",
 	"example": {
 		"attributes": {
 			"buttonContent": "This is button",
@@ -12,7 +12,8 @@
 			"buttonWidth": "default",
 			"buttonAlign": "left",
 			"buttonIsAnchor": false,
-			"buttonUse": true
+			"buttonUse": true,
+			"wrapperUse": false
 		}
 	},
 	"attributes": {

@@ -15,8 +15,8 @@ import {
 import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-import { dispatch, select } from '@wordpress/data';
-import { registerCoreBlocks } from '@wordpress/block-library';
+import { select } from '@wordpress/data';
+import { getFullBlockName, getNamespace } from './../editor/register-blocks';
 
 /**
  * Create Inner Blocks.
@@ -51,29 +51,48 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 /**
  * Combine block details in one object.
  *
- * @param {object} manifest Block Manifest data.
+ * @param {object} blockManifest Block Manifest data.
  * @param {object} globalManifest Global Blocks Manifest data.
- * @param {bool} isVariation Check if block is variation type.
+ * @param {bool} isVariation Check if block is variation type. Default: false.
  */
-export const blockDetails = (manifest, globalManifest, isVariation = false) => {
-	const { blockName, parentName } = manifest;
-	const { namespace } = globalManifest;
+export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
+	if (isVariation) {
+		const variations = select('core/blocks').getBlockVariations();
 
-	const block = select('core/blocks').getBlockType(`${namespace}/${blockName}`);
+		const variation = variations.filter((item) => item.name === blockManifest.name)[0];
 
-	// console.log(wp.data.select('core/blocks'));
-	// console.log(manifest);
+		const variationName = `${getNamespace(globalManifest, blockManifest)}/${variation.name}`;
 
-	// if (isVariation) {
-	// 	return {
-	// 		blockFullName: `${namespace}/${parentName}`,
-	// 		attributes: manifest.attributes,
-	// 		innerBlocks: manifest.innerBlocks,
-	// 		isVariation,
-	// 	};
-	// }
+		if (typeof variation.example === 'undefined') {
+			throw Error(`Your variation "${variationName}" is missing example key in manifest.json file. Please check.`);
+		}
 
-	return block;
+		if (typeof variation.example.attributes === 'undefined') {
+			throw Error(`Your variation "${variationName}" is missing example attributes key in manifest.json file. Please check.`);
+		}
+
+		return {
+			blockName: `${getNamespace(globalManifest, blockManifest)}/${variation.parentName}`,
+			attributes: variation.example.attributes,
+			isVariation,
+		};
+	}
+
+	const blockName = getFullBlockName(globalManifest, blockManifest);
+	const block = select('core/blocks').getBlockType(blockName);
+
+	if (typeof block.example === 'undefined') {
+		throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
+	}
+
+	if (typeof block.example.attributes === 'undefined') {
+		throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
+	}
+
+	return {
+		blockName,
+		attributes: block.example.attributes,
+	};
 };
 
 /**
@@ -83,26 +102,19 @@ export const blockDetails = (manifest, globalManifest, isVariation = false) => {
  */
 export const Gutenberg = ({ props }) => {
 	const {
-		name,
+		blockName,
 		attributes,
-		innerBlocks,
-		// isVariation,
 	} = props;
 
 	// Set default registered blocks.
 	const [blocks, updateBlocks] = useState([]);
 
 	useEffect(() => {
-		// registerCoreBlocks();
-		const block = createBlock(name, attributes, innerBlocks);
-		blocks.push(block);
-		
-	}, []);
-	
-	dispatch('core/block-editor').insertBlocks(blocks);
-	// console.log(wp.data.select('core/blocks').getBlockTypes());
+		select('core/blocks').getBlockTypes();
 
-	console.log(select('core/block-editor').getBlocks());
+		const block = createBlock(blockName, attributes, []);
+		blocks.push(block);
+	}, []);
 
 	return (
 		<div className="playground">
