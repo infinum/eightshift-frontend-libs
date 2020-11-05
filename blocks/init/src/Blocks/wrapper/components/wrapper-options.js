@@ -4,9 +4,9 @@ import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Dashicon, TabPanel, Icon, ToggleControl } from '@wordpress/components';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { WrapperResponsiveTabContent } from './wrapper-responsive-tab-content';
+import { WrapperTab } from './wrapper-tab';
 
-export const WrapperOptions = ({ attributes, actions }) => {
+export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const {
 		wrapperUse,
 		wrapperUseShowControl,
@@ -15,83 +15,31 @@ export const WrapperOptions = ({ attributes, actions }) => {
 		wrapperDisable,
 		wrapperId,
 		wrapperBackgroundColor,
-		wrapperWidth,
-		wrapperOffset,
-		wrapperContainerWidth,
-		wrapperGutter,
-		wrapperSpacingTop,
-		wrapperSpacingBottom,
-		wrapperHideBlock,
+
+		showWrapperId = true,
+		showWrapperBackgroundColor = true,
 	} = attributes;
-
-	const {
-		onChangeWrapperUse,
-		onChangeWrapperUseSimple,
-
-		onChangeWrapperWidthLarge,
-		onChangeWrapperOffsetLarge,
-		onChangeWrapperContainerWidthLarge,
-		onChangeWrapperGutterLarge,
-		onChangeWrapperSpacingTopLarge,
-		onChangeWrapperSpacingBottomLarge,
-		onChangeWrapperHideBlockLarge,
-
-		onChangeWrapperWidthDesktop,
-		onChangeWrapperOffsetDesktop,
-		onChangeWrapperContainerWidthDesktop,
-		onChangeWrapperGutterDesktop,
-		onChangeWrapperSpacingTopDesktop,
-		onChangeWrapperSpacingBottomDesktop,
-		onChangeWrapperHideBlockDesktop,
-
-		onChangeWrapperWidthTablet,
-		onChangeWrapperOffsetTablet,
-		onChangeWrapperContainerWidthTablet,
-		onChangeWrapperGutterTablet,
-		onChangeWrapperSpacingTopTablet,
-		onChangeWrapperSpacingBottomTablet,
-		onChangeWrapperHideBlockTablet,
-
-		onChangeWrapperWidthMobile,
-		onChangeWrapperOffsetMobile,
-		onChangeWrapperContainerWidthMobile,
-		onChangeWrapperGutterMobile,
-		onChangeWrapperSpacingTopMobile,
-		onChangeWrapperSpacingBottomMobile,
-		onChangeWrapperHideBlockMobile,
-
-		onChangeWrapperBackgroundColor,
-		onChangeWrapperId,
-	} = actions;
-
-	const widthObject = (typeof wrapperWidth === 'undefined') || wrapperWidth;
-	const offsetObject = (typeof wrapperOffset === 'undefined') || wrapperOffset;
-	const containerWidthObject = (typeof wrapperContainerWidth === 'undefined') || wrapperContainerWidth;
-	const gutterObject = (typeof wrapperGutter === 'undefined') || wrapperGutter;
-	const spacingTopObject = (typeof wrapperSpacingTop === 'undefined') || wrapperSpacingTop;
-	const spacingBottomObject = (typeof wrapperSpacingBottom === 'undefined') || wrapperSpacingBottom;
-	const hideBlockObject = (typeof wrapperHideBlock === 'undefined') || wrapperHideBlock;
 
 	return (
 		<Fragment>
 			{!wrapperDisable &&
-				<PanelBody title={__('Wrapper Responsive Layout', 'eightshift-boilerplate')} initialOpen={false}>
+				<PanelBody title={__('Block Layout', 'eightshift-boilerplate')} initialOpen={false}>
 
-					{(onChangeWrapperUse && wrapperUseShowControl) &&
+					{wrapperUseShowControl &&
 						<ToggleControl
 							label={wrapperUse ? __('Wrapper Enabled', 'eightshift-boilerplate') : __('Wrapper Disabled', 'eightshift-boilerplate')}
 							help={__('Toggle wrapper options on/off.', 'eightshift-boilerplate')}
 							checked={wrapperUse}
-							onChange={onChangeWrapperUse}
+							onChange={(value) => setAttributes({ wrapperUse: value })}
 						/>
 					}
 
-					{(onChangeWrapperUseSimple && wrapperUse && wrapperUseSimpleShowControl) &&
+					{(wrapperUse && wrapperUseSimpleShowControl) &&
 						<ToggleControl
 							label={wrapperUseSimple ? __('Wrapper Simple Enabled', 'eightshift-boilerplate') : __('Wrapper Simple Disabled', 'eightshift-boilerplate')}
 							help={__('Toggle wrapper Simple options on/off.', 'eightshift-boilerplate')}
 							checked={wrapperUseSimple}
-							onChange={onChangeWrapperUseSimple}
+							onChange={(value) => setAttributes({ wrapperUseSimple: value })}
 						/>
 					}
 
@@ -132,23 +80,10 @@ export const WrapperOptions = ({ attributes, actions }) => {
 												<strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
 												<p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
 												<br />
-												<WrapperResponsiveTabContent
-													type={'large'}
-													useSimple={wrapperUseSimple}
-													width={widthObject}
-													offset={offsetObject}
-													containerWidth={containerWidthObject}
-													gutter={gutterObject}
-													spacingTop={spacingTopObject}
-													spacingBottom={spacingBottomObject}
-													hideBlock={hideBlockObject}
-													onChangeWidth={onChangeWrapperWidthLarge}
-													onChangeOffset={onChangeWrapperOffsetLarge}
-													onChangeContainerWidth={onChangeWrapperContainerWidthLarge}
-													onChangeGutter={onChangeWrapperGutterLarge}
-													onChangeSpacingTop={onChangeWrapperSpacingTopLarge}
-													onChangeSpacingBottom={onChangeWrapperSpacingBottomLarge}
-													onChangeHideBlock={onChangeWrapperHideBlockLarge}
+												<WrapperTab
+													attributes={attributes}
+													breakPoint={'large'}
+													setAttributes={setAttributes}
 												/>
 											</Fragment>
 										)}
@@ -158,23 +93,10 @@ export const WrapperOptions = ({ attributes, actions }) => {
 												<strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
 												<p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 												<br />
-												<WrapperResponsiveTabContent
-													type={'desktop'}
-													useSimple={wrapperUseSimple}
-													width={widthObject}
-													offset={offsetObject}
-													containerWidth={containerWidthObject}
-													gutter={gutterObject}
-													spacingTop={spacingTopObject}
-													spacingBottom={spacingBottomObject}
-													hideBlock={hideBlockObject}
-													onChangeWidth={onChangeWrapperWidthDesktop}
-													onChangeOffset={onChangeWrapperOffsetDesktop}
-													onChangeContainerWidth={onChangeWrapperContainerWidthDesktop}
-													onChangeGutter={onChangeWrapperGutterDesktop}
-													onChangeSpacingTop={onChangeWrapperSpacingTopDesktop}
-													onChangeSpacingBottom={onChangeWrapperSpacingBottomDesktop}
-													onChangeHideBlock={onChangeWrapperHideBlockDesktop}
+												<WrapperTab
+													attributes={attributes}
+													breakPoint={'desktop'}
+													setAttributes={setAttributes}
 												/>
 											</Fragment>
 										)}
@@ -184,23 +106,10 @@ export const WrapperOptions = ({ attributes, actions }) => {
 												<strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
 												<p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 												<br />
-												<WrapperResponsiveTabContent
-													type={'tablet'}
-													useSimple={wrapperUseSimple}
-													width={widthObject}
-													offset={offsetObject}
-													containerWidth={containerWidthObject}
-													gutter={gutterObject}
-													spacingTop={spacingTopObject}
-													spacingBottom={spacingBottomObject}
-													hideBlock={hideBlockObject}
-													onChangeWidth={onChangeWrapperWidthTablet}
-													onChangeOffset={onChangeWrapperOffsetTablet}
-													onChangeContainerWidth={onChangeWrapperContainerWidthTablet}
-													onChangeGutter={onChangeWrapperGutterTablet}
-													onChangeSpacingTop={onChangeWrapperSpacingTopTablet}
-													onChangeSpacingBottom={onChangeWrapperSpacingBottomTablet}
-													onChangeHideBlock={onChangeWrapperHideBlockTablet}
+												<WrapperTab
+													attributes={attributes}
+													breakPoint={'tablet'}
+													setAttributes={setAttributes}
 												/>
 											</Fragment>
 										)}
@@ -210,23 +119,10 @@ export const WrapperOptions = ({ attributes, actions }) => {
 												<strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
 												<p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 												<br />
-												<WrapperResponsiveTabContent
-													type={'mobile'}
-													useSimple={wrapperUseSimple}
-													width={widthObject}
-													offset={offsetObject}
-													containerWidth={containerWidthObject}
-													gutter={gutterObject}
-													spacingTop={spacingTopObject}
-													spacingBottom={spacingBottomObject}
-													hideBlock={hideBlockObject}
-													onChangeWidth={onChangeWrapperWidthMobile}
-													onChangeOffset={onChangeWrapperOffsetMobile}
-													onChangeContainerWidth={onChangeWrapperContainerWidthMobile}
-													onChangeGutter={onChangeWrapperGutterMobile}
-													onChangeSpacingTop={onChangeWrapperSpacingTopMobile}
-													onChangeSpacingBottom={onChangeWrapperSpacingBottomMobile}
-													onChangeHideBlock={onChangeWrapperHideBlockMobile}
+												<WrapperTab
+													attributes={attributes}
+													breakPoint={'mobile'}
+													setAttributes={setAttributes}
 												/>
 											</Fragment>
 										)}
@@ -234,7 +130,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
 								)}
 							</TabPanel>
 
-							{onChangeWrapperBackgroundColor &&
+							{showWrapperBackgroundColor &&
 								<ColorPaletteCustom
 									label={
 										<Fragment>
@@ -244,11 +140,11 @@ export const WrapperOptions = ({ attributes, actions }) => {
 									}
 									help={__('Change Block Background color. Block spacing will be included in block background color.', 'eightshift-boilerplate')}
 									value={wrapperBackgroundColor}
-									onChange={onChangeWrapperBackgroundColor}
+									onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
 								/>
 							}
 
-							{onChangeWrapperId &&
+							{showWrapperId &&
 								<TextControl
 									label={
 										<Fragment>
@@ -258,7 +154,7 @@ export const WrapperOptions = ({ attributes, actions }) => {
 									}
 									help={__('Add Unique ID to the block.', 'eightshift-boilerplate')}
 									value={wrapperId}
-									onChange={onChangeWrapperId}
+									onChange={(value) => setAttributes({ wrapperId: value })}
 								/>
 							}
 

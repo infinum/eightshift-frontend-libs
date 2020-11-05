@@ -2,23 +2,20 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 
-export const WrapperEditor = (props) => {
+export const WrapperEditor = ({ attributes, children }) => {
 	const {
-		children,
-		attributes: {
-			wrapperUse,
-			wrapperUseSimple,
-			wrapperDisable,
-			wrapperId,
-			wrapperBackgroundColor,
-			wrapperWidth,
-			wrapperOffset,
-			wrapperContainerWidth,
-			wrapperGutter,
-			wrapperSpacingTop,
-			wrapperSpacingBottom,
-		},
-	} = props;
+		wrapperUse,
+		wrapperUseSimple,
+		wrapperDisable,
+		wrapperId,
+		wrapperBackgroundColor,
+		wrapperWidth,
+		wrapperOffset,
+		wrapperContainerWidth,
+		wrapperGutter,
+		wrapperSpacingTop,
+		wrapperSpacingBottom,
+	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
 		return children;

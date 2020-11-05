@@ -12,8 +12,7 @@
 			"buttonWidth": "default",
 			"buttonAlign": "left",
 			"buttonIsAnchor": false,
-			"buttonUse": true,
-			"wrapperUse": false
+			"buttonUse": true
 		}
 	},
 	"attributes": {

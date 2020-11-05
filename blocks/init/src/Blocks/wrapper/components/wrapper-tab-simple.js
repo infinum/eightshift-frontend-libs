@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import globalSettings from '../../manifest.json';
 
 export const spacingOptions = {
@@ -11,20 +11,16 @@ export const spacingOptions = {
 	step: globalSettings.globalVariables.sectionSpacing.step,
 };
 
-export const WrapperResponsiveTabContentSimple = (props) => {
+export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 	const {
-		type,
-		spacingTop,
-		spacingBottom,
-		hideBlock,
-		onChangeSpacingTop,
-		onChangeSpacingBottom,
-		onChangeHideBlock,
-	} = props;
+		wrapperShowSpacingTop = true,
+		wrapperShowSpacingBottom = true,
+		wrapperShowHideBlock = true,
+	} = attributes;
 
 	return (
 		<Fragment>
-			{onChangeSpacingTop &&
+			{wrapperShowSpacingTop &&
 				<RangeControl
 					label={
 						<Fragment>
@@ -34,15 +30,15 @@ export const WrapperResponsiveTabContentSimple = (props) => {
 					}
 					help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
 					allowReset={true}
-					value={spacingTop[type]}
-					onChange={onChangeSpacingTop}
+					value={attributes[`wrapperSpacingTop${ucfirst(breakPoint)}`]}
+					onChange={(value) => setAttributes({ [`wrapperSpacingTop${ucfirst(breakPoint)}`]: value })}
 					min={spacingOptions.min}
 					max={spacingOptions.max}
 					step={spacingOptions.step}
 				/>
 			}
 
-			{onChangeSpacingBottom &&
+			{wrapperShowSpacingBottom &&
 				<RangeControl
 					label={
 						<Fragment>
@@ -52,20 +48,20 @@ export const WrapperResponsiveTabContentSimple = (props) => {
 					}
 					help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
 					allowReset={true}
-					value={spacingBottom[type]}
-					onChange={onChangeSpacingBottom}
+					value={attributes[`wrapperSpacingBottom${ucfirst(breakPoint)}`]}
+					onChange={(value) => setAttributes({ [`wrapperSpacingBottom${ucfirst(breakPoint)}`]: value })}
 					min={spacingOptions.min}
 					max={spacingOptions.max}
 					step={spacingOptions.step}
 				/>
 			}
 
-			{onChangeHideBlock &&
+			{wrapperShowHideBlock &&
 				<ToggleControl
 					label={__('Hide Block', 'eightshift-boilerplate')}
 					help={__('Toggle block visibility.', 'eightshift-boilerplate')}
-					checked={hideBlock[type]}
-					onChange={onChangeHideBlock}
+					checked={attributes[`wrapperHideBlock${ucfirst(breakPoint)}`]}
+					onChange={(value) => setAttributes({ [`wrapperHideBlock${ucfirst(breakPoint)}`]: value })}
 				/>
 			}
 		</Fragment>
