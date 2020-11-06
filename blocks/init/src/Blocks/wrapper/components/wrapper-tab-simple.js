@@ -4,21 +4,29 @@ import { Fragment } from '@wordpress/element';
 import { RangeControl, ToggleControl, Icon } from '@wordpress/components';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import globalSettings from '../../manifest.json';
+import manifest from './../manifest.json';
 
-export const spacingOptions = {
-	min: -10,
-	max: globalSettings.globalVariables.sectionSpacing.max,
-	step: globalSettings.globalVariables.sectionSpacing.step,
-};
+const { attributes: reset } = manifest;
+const { globalVariables: defaults } = globalSettings;
 
 export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 	const {
 		wrapperShowSpacingTop = true,
 		wrapperShowSpacingBottom = true,
+		wrapperShowSpacingInTop = true,
+		wrapperShowSpacingInBottom = true,
 		wrapperShowDividerTop = true,
 		wrapperShowDividerBottom = true,
 		wrapperShowHideBlock = true,
 	} = attributes;
+
+	const wrapperSpacingTop = `wrapperSpacingTop${ucfirst(breakPoint)}`;
+	const wrapperSpacingBottom = `wrapperSpacingBottom${ucfirst(breakPoint)}`;
+	const wrapperSpacingInTop = `wrapperSpacingInTop${ucfirst(breakPoint)}`;
+	const wrapperSpacingInBottom = `wrapperSpacingInBottom${ucfirst(breakPoint)}`;
+	const wrapperDividerTop = `wrapperDividerTop${ucfirst(breakPoint)}`;
+	const wrapperDividerBottom = `wrapperDividerBottom${ucfirst(breakPoint)}`;
+	const wrapperHideBlock = `wrapperHideBlock${ucfirst(breakPoint)}`;
 
 	return (
 		<Fragment>
@@ -34,11 +42,12 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 						</Fragment>
 					}
 					allowReset={true}
-					value={attributes[`wrapperSpacingTop${ucfirst(breakPoint)}`]}
-					onChange={(value) => setAttributes({ [`wrapperSpacingTop${ucfirst(breakPoint)}`]: value })}
-					min={spacingOptions.min}
-					max={spacingOptions.max}
-					step={spacingOptions.step}
+					value={attributes[wrapperSpacingTop]}
+					onChange={(value) => setAttributes({ [wrapperSpacingTop]: value })}
+					min={defaults.sectionSpacing.min}
+					max={defaults.sectionSpacing.max}
+					step={defaults.sectionSpacing.step}
+					resetFallbackValue={reset[wrapperSpacingTop].default}
 				/>
 			}
 
@@ -51,11 +60,51 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 						</Fragment>
 					}
 					allowReset={true}
-					value={attributes[`wrapperSpacingBottom${ucfirst(breakPoint)}`]}
-					onChange={(value) => setAttributes({ [`wrapperSpacingBottom${ucfirst(breakPoint)}`]: value })}
-					min={spacingOptions.min}
-					max={spacingOptions.max}
-					step={spacingOptions.step}
+					value={attributes[wrapperSpacingBottom]}
+					onChange={(value) => setAttributes({ [wrapperSpacingBottom]: value })}
+					min={defaults.sectionSpacing.min}
+					max={defaults.sectionSpacing.max}
+					step={defaults.sectionSpacing.step}
+					resetFallbackValue={reset[wrapperSpacingBottom].default}
+				/>
+			}
+
+			<hr />
+			<br />
+
+			{wrapperShowSpacingInTop &&
+				<RangeControl
+					label={
+						<Fragment>
+							<Icon icon={icons.spacingTop} />
+							{__('Spacing In Top', 'eightshift-boilerplate')}
+						</Fragment>
+					}
+					allowReset={true}
+					value={attributes[wrapperSpacingInTop]}
+					onChange={(value) => setAttributes({ [wrapperSpacingInTop]: value })}
+					min={defaults.sectionInSpacing.min}
+					max={defaults.sectionInSpacing.max}
+					step={defaults.sectionInSpacing.step}
+					resetFallbackValue={reset[wrapperSpacingInTop].default}
+				/>
+			}
+
+			{wrapperShowSpacingInBottom &&
+				<RangeControl
+					label={
+						<Fragment>
+							<Icon icon={icons.spacingBottom} />
+							{__('Spacing In Bottom', 'eightshift-boilerplate')}
+						</Fragment>
+					}
+					allowReset={true}
+					value={attributes[wrapperSpacingInBottom]}
+					onChange={(value) => setAttributes({ [wrapperSpacingInBottom]: value })}
+					min={defaults.sectionInSpacing.min}
+					max={defaults.sectionInSpacing.max}
+					step={defaults.sectionInSpacing.step}
+					resetFallbackValue={reset[wrapperSpacingInBottom].default}
 				/>
 			}
 
@@ -65,16 +114,16 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 			{wrapperShowDividerTop &&
 				<ToggleControl
 					label={__('Divider Top', 'eightshift-boilerplate')}
-					checked={attributes[`wrapperDividerTop${ucfirst(breakPoint)}`]}
-					onChange={(value) => setAttributes({ [`wrapperDividerTop${ucfirst(breakPoint)}`]: value })}
+					checked={attributes[wrapperDividerTop]}
+					onChange={(value) => setAttributes({ [wrapperDividerTop]: value })}
 				/>
 			}
 
 			{wrapperShowDividerBottom &&
 				<ToggleControl
 					label={__('Divider Bottom', 'eightshift-boilerplate')}
-					checked={attributes[`wrapperDividerBottom${ucfirst(breakPoint)}`]}
-					onChange={(value) => setAttributes({ [`wrapperDividerBottom${ucfirst(breakPoint)}`]: value })}
+					checked={attributes[wrapperDividerBottom]}
+					onChange={(value) => setAttributes({ [wrapperDividerBottom]: value })}
 				/>
 			}
 
@@ -84,8 +133,8 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 			{wrapperShowHideBlock &&
 				<ToggleControl
 					label={__('Hide Block', 'eightshift-boilerplate')}
-					checked={attributes[`wrapperHideBlock${ucfirst(breakPoint)}`]}
-					onChange={(value) => setAttributes({ [`wrapperHideBlock${ucfirst(breakPoint)}`]: value })}
+					checked={attributes[wrapperHideBlock]}
+					onChange={(value) => setAttributes({ [wrapperHideBlock]: value })}
 				/>
 			}
 

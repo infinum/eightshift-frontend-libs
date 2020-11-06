@@ -35,7 +35,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 				<PanelBody title={__('Block Layout', 'eightshift-boilerplate')} initialOpen={false}>
 
 					<Fragment>
-						<Button isDefault isSmall onClick={() => activeModal(true)}>
+						<Button className={'custom-full-width-button'} isDefault isSmall onClick={() => activeModal(true)}>
 							{__('How to use wrapper?', 'eightshift-boilerplate')}
 						</Button>
 						{isOpen && (
@@ -44,34 +44,40 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								onRequestClose={() => activeModal(false)}>
 								<h4>{__('Block ID', 'eightshift-boilerplate')}</h4>
 								<p>{__('Add Unique ID to the block.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Block Anchor ID', 'eightshift-boilerplate')}</h4>
 								<p>{__('Add Unique Anchor ID to the block.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Content Width', 'eightshift-boilerplate')}</h4>
 								<p>{sprintf(__('Option to change the block width in the grid from the left. Change column width in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Content Offset', 'eightshift-boilerplate')}</h4>
 								<p>{sprintf(__('Option to change the block offset in the grid from the left. Change block offset in %d columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-boilerplate'), globalSettings.globalVariables.maxCols)}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Container Width', 'eightshift-boilerplate')}</h4>
 								<p>{__('Change Container width. Changing this option will affect total width of the block and the total size of grid inside the block.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Container Spacing', 'eightshift-boilerplate')}</h4>
 								<p>{__('Change Container spacing on the left and right. More popular name is Container Gutter.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Spacing Top', 'eightshift-boilerplate')}</h4>
 								<p>{__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
+								<h4>{__('Spacing In Top', 'eightshift-boilerplate')}</h4>
+								<p>{__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}</p>
+								<div className={'custom-divider'}></div>
 								<h4>{__('Divider Top', 'eightshift-boilerplate')}</h4>
 								<p></p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Spacing Bottom', 'eightshift-boilerplate')}</h4>
 								<p>{__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}</p>
-								<hr />
+								<div className={'custom-divider'}></div>
+								<h4>{__('Spacing In Bottom', 'eightshift-boilerplate')}</h4>
+								<p>{__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}</p>
+								<div className={'custom-divider'}></div>
 								<h4>{__('Divider Bottom', 'eightshift-boilerplate')}</h4>
 								<p></p>
-								<hr />
+								<div className={'custom-divider'}></div>
 								<h4>{__('Hide Block', 'eightshift-boilerplate')}</h4>
 								<p>{__('Toggle block visibility.', 'eightshift-boilerplate')}</p>
 							</Modal>

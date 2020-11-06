@@ -40,6 +40,16 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperSpacingBottomTablet,
 		wrapperSpacingBottomMobile,
 
+		wrapperSpacingInTopLarge,
+		wrapperSpacingInTopDesktop,
+		wrapperSpacingInTopTablet,
+		wrapperSpacingInTopMobile,
+
+		wrapperSpacingInBottomLarge,
+		wrapperSpacingInBottomDesktop,
+		wrapperSpacingInBottomTablet,
+		wrapperSpacingInBottomMobile,
+
 		wrapperDividerTopLarge,
 		wrapperDividerTopDesktop,
 		wrapperDividerTopTablet,
@@ -67,6 +77,20 @@ export const WrapperEditor = ({ attributes, children }) => {
 		desktop: wrapperSpacingBottomDesktop,
 		tablet: wrapperSpacingBottomTablet,
 		mobile: wrapperSpacingBottomMobile,
+	};
+
+	const wrapperSpacingInTop = {
+		large: wrapperSpacingInTopLarge,
+		desktop: wrapperSpacingInTopDesktop,
+		tablet: wrapperSpacingInTopTablet,
+		mobile: wrapperSpacingInTopMobile,
+	};
+
+	const wrapperSpacingInBottom = {
+		large: wrapperSpacingInBottomLarge,
+		desktop: wrapperSpacingInBottomDesktop,
+		tablet: wrapperSpacingInBottomTablet,
+		mobile: wrapperSpacingInBottomMobile,
 	};
 
 	const wrapperDividerTop = {
@@ -118,6 +142,8 @@ export const WrapperEditor = ({ attributes, children }) => {
 		`${wrapperBackgroundColor && `${wrapperMainClass}__bg-color--${wrapperBackgroundColor}`}`,
 		`${responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass)}`,
 		`${responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
+		`${responsiveSelectors(wrapperSpacingInTop, 'spacing-in-top', wrapperMainClass)}`,
+		`${responsiveSelectors(wrapperSpacingInBottom, 'spacing-in-bottom', wrapperMainClass)}`,
 		`${responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false)}`,
 		`${responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false)}`,
 	);

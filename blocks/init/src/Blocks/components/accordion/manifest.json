@@ -1,0 +1,24 @@
+{
+	"componentName": "accordion",
+	"title": "Accordion",
+	"componentClass": "accordion",
+	"example": {
+		"attributes": {
+			"accordionTitle": "This is accordion Title",
+			"accordionContent": "This is accordion Content",
+			"accordionIsOpen": false
+		}
+	},
+	"attributes": {
+		"accordionTitle": {
+			"type": "string"
+		},
+		"accordionContent": {
+			"type": "string"
+		},
+		"accordionIsOpen": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

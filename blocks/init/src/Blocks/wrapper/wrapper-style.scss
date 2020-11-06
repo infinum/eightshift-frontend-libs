@@ -1,6 +1,7 @@
 $wrapper: (
 	background-colors: global-settings(colors),
 	spacing: global-settings(sectionSpacing),
+	spacing-in: global-settings(sectionInSpacing),
 	containers: global-settings(containers),
 	gutter: global-settings(gutters),
 	divider-color: global-settings(colors, black),
@@ -24,13 +25,25 @@ $wrapper: (
 
 	&__spacing-top {
 		@include responsive-selectors {
-			@include modifiers-range($wrapper, spacing, padding-top);
+			@include modifiers-range($wrapper, spacing, margin-top);
 		}
 	}
 
 	&__spacing-bottom {
 		@include responsive-selectors {
-			@include modifiers-range($wrapper, spacing, padding-bottom);
+			@include modifiers-range($wrapper, spacing, margin-bottom);
+		}
+	}
+
+	&__spacing-in-top {
+		@include responsive-selectors {
+			@include modifiers-range($wrapper, spacing-in, padding-top);
+		}
+	}
+
+	&__spacing-in-bottom {
+		@include responsive-selectors {
+			@include modifiers-range($wrapper, spacing-in, padding-bottom);
 		}
 	}
 

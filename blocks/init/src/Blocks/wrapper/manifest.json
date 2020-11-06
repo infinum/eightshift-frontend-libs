@@ -147,6 +147,32 @@
 			"type": "int"
 		},
 
+		"wrapperSpacingInTopLarge": {
+			"type": "int"
+		},
+		"wrapperSpacingInTopDesktop": {
+			"type": "int"
+		},
+		"wrapperSpacingInTopTablet": {
+			"type": "int"
+		},
+		"wrapperSpacingInTopMobile": {
+			"type": "int"
+		},
+
+		"wrapperSpacingInBottomLarge": {
+			"type": "int"
+		},
+		"wrapperSpacingInBottomDesktop": {
+			"type": "int"
+		},
+		"wrapperSpacingInBottomTablet": {
+			"type": "int"
+		},
+		"wrapperSpacingInBottomMobile": {
+			"type": "int"
+		},
+
 		"wrapperDividerTopLarge": {
 			"type": "boolean"
 		},
