@@ -9,25 +9,117 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperDisable,
 		wrapperId,
 		wrapperBackgroundColor,
-		wrapperWidth,
-		wrapperOffset,
-		wrapperContainerWidth,
-		wrapperGutter,
-		wrapperSpacingTop,
-		wrapperSpacingBottom,
+
+		wrapperOffsetLarge,
+		wrapperOffsetDesktop,
+		wrapperOffsetTablet,
+		wrapperOffsetMobile,
+
+		wrapperWidthLarge,
+		wrapperWidthDesktop,
+		wrapperWidthTablet,
+		wrapperWidthMobile,
+
+		wrapperGutterLarge,
+		wrapperGutterDesktop,
+		wrapperGutterTablet,
+		wrapperGutterMobile,
+
+		wrapperContainerWidthLarge,
+		wrapperContainerWidthDesktop,
+		wrapperContainerWidthTablet,
+		wrapperContainerWidthMobile,
+
+		wrapperSpacingTopLarge,
+		wrapperSpacingTopDesktop,
+		wrapperSpacingTopTablet,
+		wrapperSpacingTopMobile,
+
+		wrapperSpacingBottomLarge,
+		wrapperSpacingBottomDesktop,
+		wrapperSpacingBottomTablet,
+		wrapperSpacingBottomMobile,
+
+		wrapperDividerTopLarge,
+		wrapperDividerTopDesktop,
+		wrapperDividerTopTablet,
+		wrapperDividerTopMobile,
+
+		wrapperDividerBottomLarge,
+		wrapperDividerBottomDesktop,
+		wrapperDividerBottomTablet,
+		wrapperDividerBottomMobile,
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
 		return children;
 	}
 
-	const wrapperMainClass = 'wrapper';
+	const wrapperSpacingTop = {
+		large: wrapperSpacingTopLarge,
+		desktop: wrapperSpacingTopDesktop,
+		tablet: wrapperSpacingTopTablet,
+		mobile: wrapperSpacingTopMobile,
+	};
+
+	const wrapperSpacingBottom = {
+		large: wrapperSpacingBottomLarge,
+		desktop: wrapperSpacingBottomDesktop,
+		tablet: wrapperSpacingBottomTablet,
+		mobile: wrapperSpacingBottomMobile,
+	};
+
+	const wrapperDividerTop = {
+		large: wrapperDividerTopLarge,
+		desktop: wrapperDividerTopDesktop,
+		tablet: wrapperDividerTopTablet,
+		mobile: wrapperDividerTopMobile,
+	};
+
+	const wrapperDividerBottom = {
+		large: wrapperDividerBottomLarge,
+		desktop: wrapperDividerBottomDesktop,
+		tablet: wrapperDividerBottomTablet,
+		mobile: wrapperDividerBottomMobile,
+	};
+
+	const wrapperContainerWidth = {
+		large: wrapperContainerWidthLarge,
+		desktop: wrapperContainerWidthDesktop,
+		tablet: wrapperContainerWidthTablet,
+		mobile: wrapperContainerWidthMobile,
+	};
+
+	const wrapperGutter = {
+		large: wrapperGutterLarge,
+		desktop: wrapperGutterDesktop,
+		tablet: wrapperGutterTablet,
+		mobile: wrapperGutterMobile,
+	};
+
+	const wrapperWidth = {
+		large: wrapperWidthLarge,
+		desktop: wrapperWidthDesktop,
+		tablet: wrapperWidthTablet,
+		mobile: wrapperWidthMobile,
+	};
+
+	const wrapperOffset = {
+		large: wrapperOffsetLarge,
+		desktop: wrapperOffsetDesktop,
+		tablet: wrapperOffsetTablet,
+		mobile: wrapperOffsetMobile,
+	};
+
+	const wrapperMainClass = 'wrap';
 
 	const wrapperClass = classnames(
 		wrapperMainClass,
 		`${wrapperBackgroundColor && `${wrapperMainClass}__bg-color--${wrapperBackgroundColor}`}`,
 		`${responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass)}`,
 		`${responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
+		`${responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false)}`,
+		`${responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false)}`,
 	);
 
 	const wrapperContainerClass = classnames(

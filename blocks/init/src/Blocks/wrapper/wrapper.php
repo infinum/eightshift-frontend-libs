@@ -24,8 +24,9 @@ if (! $wrapperUse || $wrapperDisable) {
 }
 
 $id = $attributes['id'] ?? '';
+$anchorId = $attributes['wrapperAnchorId'] ?? '';
 
-$wrapperMainClass = 'wrapper';
+$wrapperMainClass = 'wrap';
 
 $wrapperClass = Components::classnames(
 	[
@@ -55,6 +56,7 @@ $wrapperInnerClass = Components::classnames(
 
 ?>
 <div class="<?php echo esc_attr($wrapperClass); ?>" id="<?php echo esc_attr($id); ?>">
+	<div class="<?php echo esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo esc_attr($anchorId); ?>"></div>
 	<?php if ($wrapperUseSimple) { ?>
 		<?php
 		$this->renderWrapperView(

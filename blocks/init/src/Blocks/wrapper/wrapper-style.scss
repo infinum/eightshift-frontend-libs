@@ -3,10 +3,20 @@ $wrapper: (
 	spacing: global-settings(sectionSpacing),
 	containers: global-settings(containers),
 	gutter: global-settings(gutters),
+	divider-color: global-settings(colors, black),
+	anchor-position: 0,
 );
 
-.wrapper {
+.wrap {
 	$this: &;
+
+	&__anchor {
+		margin-top: -(map-get($wrapper, anchor-position));
+		height: 1px;
+		opacity: 0;
+		position: absolute;
+		z-index: -1;
+	}
 
 	&__bg-color {
 		@include modifiers-deep($wrapper, background-colors, background-color);
@@ -27,6 +37,18 @@ $wrapper: (
 	&__hide-block {
 		@include responsive-visibility-selectors {
 			display: none;
+		}
+	}
+
+	&__divider-top {
+		@include responsive-selectors {
+			border-top: 1px solid map-get-strict($wrapper, divider-color);
+		}
+	}
+
+	&__divider-bottom {
+		@include responsive-selectors {
+			border-bottom: 1px solid map-get-strict($wrapper, divider-color);
 		}
 	}
 

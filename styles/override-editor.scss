@@ -4,9 +4,11 @@
 */
 
 $base-sea-color: #F5F5F5;
+$base-rouge-color: #dc0808;
 
 $override-map: (
 	tabs-panel: $base-sea-color,
+	tabs-panel-info: $base-rouge-color,
 );
 
 /* stylelint-disable */
@@ -72,7 +74,7 @@ body {
 
 	// Creating custom button tabs style.
 	.custom-button-tabs {
-		background-color: $base-sea-color;
+		background-color: map-get-strict($override-map, tabs-panel);
 		padding: 16px;
 		margin: -5px -16px 25px;
 
@@ -85,6 +87,21 @@ body {
 			width: 100%;
 			align-items: center;
 			justify-content: center;
+			position: relative;
+			border-radius: 5px;
+
+			&.show-info::after {
+				content: '';
+				width: 12px;
+				height: 12px;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				top: -6px;
+				border-radius: 50px;
+				background-color: map-get-strict($override-map, tabs-panel-info);
+				visibility: visible;
+			}
 		}
 	}
 

@@ -15,11 +15,16 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 	const {
 		wrapperShowSpacingTop = true,
 		wrapperShowSpacingBottom = true,
+		wrapperShowDividerTop = true,
+		wrapperShowDividerBottom = true,
 		wrapperShowHideBlock = true,
 	} = attributes;
 
 	return (
 		<Fragment>
+			<hr />
+			<br />
+
 			{wrapperShowSpacingTop &&
 				<RangeControl
 					label={
@@ -28,7 +33,6 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 							{__('Spacing Top', 'eightshift-boilerplate')}
 						</Fragment>
 					}
-					help={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
 					allowReset={true}
 					value={attributes[`wrapperSpacingTop${ucfirst(breakPoint)}`]}
 					onChange={(value) => setAttributes({ [`wrapperSpacingTop${ucfirst(breakPoint)}`]: value })}
@@ -46,7 +50,6 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 							{__('Spacing Bottom', 'eightshift-boilerplate')}
 						</Fragment>
 					}
-					help={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-boilerplate')}
 					allowReset={true}
 					value={attributes[`wrapperSpacingBottom${ucfirst(breakPoint)}`]}
 					onChange={(value) => setAttributes({ [`wrapperSpacingBottom${ucfirst(breakPoint)}`]: value })}
@@ -56,14 +59,39 @@ export const WrapperTabSimple = ({ attributes, breakPoint, setAttributes }) => {
 				/>
 			}
 
+			<hr />
+			<br />
+
+			{wrapperShowDividerTop &&
+				<ToggleControl
+					label={__('Divider Top', 'eightshift-boilerplate')}
+					checked={attributes[`wrapperDividerTop${ucfirst(breakPoint)}`]}
+					onChange={(value) => setAttributes({ [`wrapperDividerTop${ucfirst(breakPoint)}`]: value })}
+				/>
+			}
+
+			{wrapperShowDividerBottom &&
+				<ToggleControl
+					label={__('Divider Bottom', 'eightshift-boilerplate')}
+					checked={attributes[`wrapperDividerBottom${ucfirst(breakPoint)}`]}
+					onChange={(value) => setAttributes({ [`wrapperDividerBottom${ucfirst(breakPoint)}`]: value })}
+				/>
+			}
+
+			<hr />
+			<br />
+
 			{wrapperShowHideBlock &&
 				<ToggleControl
 					label={__('Hide Block', 'eightshift-boilerplate')}
-					help={__('Toggle block visibility.', 'eightshift-boilerplate')}
 					checked={attributes[`wrapperHideBlock${ucfirst(breakPoint)}`]}
 					onChange={(value) => setAttributes({ [`wrapperHideBlock${ucfirst(breakPoint)}`]: value })}
 				/>
 			}
+
+			<hr />
+			<br />
+
 		</Fragment>
 	);
 };

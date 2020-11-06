@@ -21,7 +21,7 @@ export const responsiveSelectors = (items, selector, parent, useModifier = true)
 	
 	for (const itemKey in items) {
 		if (items.hasOwnProperty(itemKey)) {
-			if (items[itemKey] === '' || items[itemKey] === false) {
+			if (items[itemKey] === '' || items[itemKey] === false || typeof items[itemKey] === 'undefined') {
 				continue;
 			}
 

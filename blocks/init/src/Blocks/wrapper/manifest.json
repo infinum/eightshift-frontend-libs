@@ -30,13 +30,6 @@
 		}
 	},
 	"attributes": {
-		"wrapperId": {
-			"type": "string"
-		},
-		"wrapperBackgroundColor": {
-			"type": "string",
-			"default": "white"
-		},
 		"wrapperUse": {
 			"type": "boolean",
 			"default": true
@@ -59,6 +52,17 @@
 		},
 		"wrapperParentClass": {
 			"type": "string"
+		},
+
+		"wrapperId": {
+			"type": "string"
+		},
+		"wrapperAnchorId": {
+			"type": "string"
+		},
+		"wrapperBackgroundColor": {
+			"type": "string",
+			"default": "white"
 		},
 
 		"wrapperWidthLarge": {
@@ -141,6 +145,32 @@
 		},
 		"wrapperSpacingBottomMobile": {
 			"type": "int"
+		},
+
+		"wrapperDividerTopLarge": {
+			"type": "boolean"
+		},
+		"wrapperDividerTopDesktop": {
+			"type": "boolean"
+		},
+		"wrapperDividerTopTablet": {
+			"type": "boolean"
+		},
+		"wrapperDividerTopMobile": {
+			"type": "boolean"
+		},
+
+		"wrapperDividerBottomLarge": {
+			"type": "boolean"
+		},
+		"wrapperDividerBottomDesktop": {
+			"type": "boolean"
+		},
+		"wrapperDividerBottomTablet": {
+			"type": "boolean"
+		},
+		"wrapperDividerBottomMobile": {
+			"type": "boolean"
 		},
 
 		"wrapperHideBlockLarge": {
