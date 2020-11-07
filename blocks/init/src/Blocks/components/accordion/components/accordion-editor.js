@@ -20,6 +20,7 @@ export const AccordionEditor = (attributes) => {
 		accordionTitle,
 		accordionContent,
 		accordionIsOpen = defaults.accordionIsOpen.default,
+		accordionIcon = <svg xmlns="http://www.w3.org/2000/svg" width="199.404" height="199.404" viewBox="0 0 200 200"><path d="M199.404 63.993L171.12 35.709l-71.418 71.418-71.418-71.418L0 63.993l99.702 99.702z" /></svg>,
 	} = attributes;
 
 	const accordionClass = classnames(
@@ -32,7 +33,7 @@ export const AccordionEditor = (attributes) => {
 			{accordionUse &&
 				<div
 					className={accordionClass}
-					data-accordion-opened={accordionIsOpen}>
+					data-accordion-open={accordionIsOpen}>
 					<button className={`${componentClass}__trigger`}>
 						<RichText
 							placeholder={placeholder}
@@ -41,15 +42,7 @@ export const AccordionEditor = (attributes) => {
 							keepPlaceholderOnFocus
 						/>
 						<div className={`${componentClass}__icon`}>
-							<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-								<g transform="translate(1 1)" fill="none" fillRule="evenodd">
-									<circle stroke="#979797" cx="14" cy="14" r="14" />
-									<g stroke="#717171" strokeLinecap="square">
-										<path d="M6.341 14h14.318M13.969 7v14" className={`${componentClass}__icon--plus`}/>
-										<path d="M6.341 14h14.318" className={`${componentClass}__icon--minus`}/>
-									</g>
-								</g>
-							</svg>
+							{accordionIcon}
 						</div>
 					</button>
 					<section className={`${componentClass}__panel`}>

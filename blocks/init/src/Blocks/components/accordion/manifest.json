@@ -19,6 +19,10 @@
 		"accordionIsOpen": {
 			"type": "boolean",
 			"default": false
+		},
+		"accordionUse": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

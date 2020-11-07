@@ -1,98 +1,17 @@
 $accordion: (
-	site-padding: $container-gutter,
-	theme: (
-		light: (
-			border-color: global-settings(colors, mercury),
-			background-color: global-settings(colors, white),
-			active-background-color: global-settings(colors, concrete),
-		),
-		dark: (
-			border-color: global-settings(colors, mercury),
-			background-color: global-settings(colors, sand),
-			active-background-color: global-settings(colors, nickel),
-		),
-	),
+	border-color: global-settings(colors, light),
 	icon-size: 30px,
 );
 
 .accordion {
 	$this: &;
 	position: relative;
+	border-bottom: 1px solid map-get-strict($accordion, border-color);
 
-	&--type-contained {
-		margin-bottom: -1px;
-	}
-
-	&--theme-light {
-		border-top: 1px solid map-get-deep($accordion, theme, light, border-color);
-
-		&#{$this}--type-contained {
-			border: 1px solid map-get-deep($accordion, theme, light, border-color);
-
-			.accordion {
-				border-left: none;
-				border-right: none;
-			}
-		}
-
-		&[data-accordion-opened='true'] {
-			> #{$this}__trigger {
-				background-color: map-get-deep($accordion, theme, light, active-background-color);
-			}
-
-			> #{$this}__panel {
-				background-color: map-get-deep($accordion, theme, light, active-background-color);
-			}
-		}
-
-		#{$this}__panel {
-			background-color: map-get-deep($accordion, theme, light, background-color);
-		}
-
-		#{$this}__trigger {
-			background-color: map-get-deep($accordion, theme, light, background-color);
-		}
-	}
-
-	&--theme-dark {
-		border-top: 1px solid map-get-deep($accordion, theme, dark, border-color);
-
-		&#{$this}--type-contained {
-			border: 1px solid map-get-deep($accordion, theme, dark, border-color);
-
-			.accordion {
-				border-left: none;
-				border-right: none;
-			}
-		}
-
-		&[data-accordion-opened='true'] {
-			> #{$this}__trigger {
-				background-color: map-get-deep($accordion, theme, dark, active-background-color);
-			}
-
-			> #{$this}__panel {
-				background-color: map-get-deep($accordion, theme, dark, active-background-color);
-			}
-		}
-
-		#{$this}__panel {
-			background-color: map-get-deep($accordion, theme, dark, background-color);
-		}
-
-		#{$this}__trigger {
-			background-color: map-get-deep($accordion, theme, dark, background-color);
-		}
-	}
-
-	&[data-accordion-opened='true'] {
+	&[data-accordion-open='true'] {
 		> #{$this}__trigger {
-			#{$this}__icon--minus {
-				opacity: 1;
-			}
-
-			#{$this}__icon--plus {
-				opacity: 0;
+			#{$this}__icon {
+				transform: translateY(-50%), rotate(180deg);
 			}
 		}
 
@@ -124,12 +43,7 @@ $accordion: (
 			timing-function: ease-in;
 			duration: 0.3s;
 		}
-		padding: {
-			top: 20px;
-			left: map-get-deep($accordion, site-padding, default);
-			bottom: 20px;
-			right: map-get-deep($accordion, site-padding, default) + map-get-strict($accordion, icon-size) + 20px;
-		}
+		padding: 20px 25px;
 		font-size: 18px;
 		line-height: 1.4;
 
@@ -141,11 +55,6 @@ $accordion: (
 		&:active {
 			color: inherit;
 		}
-
-		@include media(desktop up) {
-			padding-left: map-get-deep($accordion, site-padding, big);
-			padding-right: map-get-deep($accordion, site-padding, big) + map-get-strict($accordion, icon-size) + 20px;
-		}
 	}
 
 	&__icon {
@@ -155,29 +64,15 @@ $accordion: (
 		height: map-get-strict($accordion, icon-size);
 		width: map-get-strict($accordion, icon-size);
 		pointer-events: none;
-		right: map-get-deep($accordion, site-padding, default);
+		right: 25px;
 
-		@include media(desktop up) {
-			right: map-get-deep($accordion, site-padding, big);
-		}
-
-		&--plus,
-		&--minus {
-			transition: {
-				property: opacity;
-				timing-function: ease-in;
-				duration: 0.3s;
-			}
-		}
-
-		&--minus {
-			opacity: 0;
+		svg {
+			height: map-get-strict($accordion, icon-size);
+			width: map-get-strict($accordion, icon-size);
 		}
 	}
 
 	&__content {
-		@extend %container-gutter;
-		padding-top: 25px;
-		padding-bottom: 25px;
+		padding: 25px;
 	}
 }

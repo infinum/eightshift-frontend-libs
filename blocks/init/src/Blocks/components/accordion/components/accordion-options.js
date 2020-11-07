@@ -1,7 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { SelectControl, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
+import manifest from './../manifest.json';
+
+const { attributes: defaults } = manifest;
 
 export const AccordionOptions = (attributes) => {
 	const {
@@ -9,7 +12,11 @@ export const AccordionOptions = (attributes) => {
 		label = __('Accordion', 'solplanet'),
 		showControls = true,
 
-		use = true,
+		accordionUse = defaults.accordionUse,
+
+		accordionIsOpen = defaults.accordionIsOpen.default,
+
+		showAccordionIsOpen = true,
 	} = attributes;
 
 	if (!showControls) {
@@ -27,46 +34,17 @@ export const AccordionOptions = (attributes) => {
 
 			<ToggleControl
 				label={sprintf(__('Use %s', 'solplanet'), label)}
-				checked={use}
-				onChange={(value) => setAttributes({
-					accordion: {
-						...accordion,
-						use: value,
-					},
-				})}
+				checked={accordionUse}
+				onChange={(value) => setAttributes({ accordionUse: value })}
 			/>
 
-			{use &&
+			{showAccordionIsOpen &&
 				<Fragment>
-
-					{showTheme &&
-						<SelectControl
-							label={__('Theme', 'solplanet')}
-							value={theme}
-							options={themes}
-							onChange={(value) => setAttributes({
-								accordion: {
-									...accordion,
-									theme: value,
-								},
-							})}
-						/>
-					}
-
-					{showType &&
-						<SelectControl
-							label={__('Type', 'solplanet')}
-							value={type}
-							options={types}
-							onChange={(value) => setAttributes({
-								accordion: {
-									...accordion,
-									type: value,
-								},
-							})}
-						/>
-					}
-
+					<ToggleControl
+						label={__('Is Open', 'solplanet')}
+						checked={accordionIsOpen}
+						onChange={(value) => setAttributes({ accordionIsOpen: value })}
+					/>
 				</Fragment>
 			}
 

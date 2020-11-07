@@ -10,22 +10,22 @@ export class Accordion {
 		this.trigger = this.accordion.querySelectorAll(this.triggerSelector);
 		
 		this.ATTR_HIDDEN = 'aria-hidden';
-		this.ATTR_OPENED = 'data-accordion-opened';
+		this.ATTR_OPEN = 'data-accordion-open';
 		this.ATTR_PREVENT_CLOSE = 'data-accordion-prevent-close';
 	}
 
 	init() {
 		[...this.trigger].forEach((item) => {
 			item.addEventListener('click', () => {
-				this.toggleOpened(item.parentNode);
+				this.toggleOpen(item.parentNode);
 			});
 		});
 	}
 
-	toggleOpened(item) {
+	toggleOpen(item) {
 		const panel = item.querySelector(this.panelSelector);
 
-		if (this.isOpened(item)) {
+		if (this.isOpen(item)) {
 			this.close(item, panel);
 		} else {
 			this.open(item, panel);
@@ -37,7 +37,7 @@ export class Accordion {
 		const panels = item.parentNode.querySelectorAll(this.panelSelector);
 
 		[...parents].forEach((parent) => {
-			parent.setAttribute(this.ATTR_OPENED, 'false');
+			parent.setAttribute(this.ATTR_OPEN, 'false');
 		});
 
 		[...panels].forEach((panel) => {
@@ -45,17 +45,17 @@ export class Accordion {
 		});
 	}
 
-	isOpened(item) {
-		return item.getAttribute(this.ATTR_OPENED) === 'true';
+	isOpen(item) {
+		return item.getAttribute(this.ATTR_OPEN) === 'true';
 	}
 
 	close(item, panel) {
-		item.setAttribute(this.ATTR_OPENED, 'false');
+		item.setAttribute(this.ATTR_OPEN, 'false');
 		panel.setAttribute(this.ATTR_HIDDEN, 'true');
 	}
 
 	open(item, panel) {
-		item.setAttribute(this.ATTR_OPENED, 'true');
+		item.setAttribute(this.ATTR_OPEN, 'true');
 		panel.setAttribute(this.ATTR_HIDDEN, 'false');
 	}
 
