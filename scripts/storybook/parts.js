@@ -73,6 +73,7 @@ export const storybookWindowObjects = () => {
 	window.wp.viewport = require('@wordpress/viewport/build-module');
 	window.wp.warning = require('@wordpress/warning/build-module');
 	window.wp.wordcount = require('@wordpress/wordcount/build-module');
+	window.wp.icons = require('@wordpress/icons/build-module');
 };
 
 /**

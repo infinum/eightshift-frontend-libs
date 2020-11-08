@@ -5,7 +5,7 @@
 	"example": {
 		"attributes": {
 			"buttonContent": "This is button",
-			"buttonUrl": "https://fakeurl.com/",
+			"buttonUrl": "https://infinum.github.io/eightshift-docs/",
 			"buttonId": "custom ID",
 			"buttonSize": "default",
 			"buttonColor": "primary",

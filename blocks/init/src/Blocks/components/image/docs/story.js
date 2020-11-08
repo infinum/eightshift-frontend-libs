@@ -1,69 +1,58 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { ImageEditor } from '../components/image-editor';
-import { ImageToolbar } from '../components/image-toolbar';
 import { ImageOptions } from '../components/image-options';
+import { ImageToolbar } from '../components/image-toolbar';
 
 export default {
-	title: 'Components|Image',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	blockClass: 'block-image',
-	bgImg: false,
-	usePlaceholder: false,
-	media: {
-		id: 0,
-		url: 'https://picsum.photos/400/400',
-	},
-	onChangeMedia: () => {},
-	onChangeMediaUse: () => {},
-};
+const props = manifest.example.attributes;
 
-export const component = () => (
+export const editor = () => (
 	<ImageEditor {...props} />
 );
 
 export const options = () => (
-	<ImageOptions
-		{...props}
-		media={{
-			url: '',
-		}}
-	/>
+	<ImageOptions {...props} />
 );
 
 export const toolbar = () => (
 	<ImageToolbar {...props} />
 );
 
-export const BgImage = () => (
+export const usePlaceholder = () => (
 	<ImageEditor
 		{...props}
-		bgImg={true}
+		imageUrl={''}
+		imageUsePlaceholder={true}
+		imageBg={true}
 	/>
 );
 
-export const Upload = () => (
+export const backgroundImage = () => (
 	<ImageEditor
 		{...props}
-		media={{
-			url: '',
-		}}
-		usePlaceholder={false}
+		imageBg={true}
 	/>
 );
 
-export const Placeholder = () => (
-	<ImageEditor
-		{...props}
-		media={{
-			url: '',
-		}}
-		bgImg={true}
-		usePlaceholder={true}
-	/>
+export const align = () => (
+	<Fragment>
+		{manifest.options.aligns.map((values, index) => (
+			<Fragment key={index}>
+				<ImageEditor
+					{...props}
+					imageAlign={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</Fragment>
 );

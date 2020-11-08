@@ -50,6 +50,7 @@ export const ButtonEditor = (attributes) => {
 						onChange={(value) => setAttributes({ buttonContent: value })}
 						className={buttonClass}
 						keepPlaceholderOnFocus
+						formattingControls={[]}
 					/>
 				</div>
 			}

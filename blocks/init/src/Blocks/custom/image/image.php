@@ -3,17 +3,12 @@
 /**
  * Template for the Image Block view.
  *
- * @package EightshiftBoilerplate
+ * @package Solplanet
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use SolplanetVendor\EightshiftLibs\Helpers\Components;
 
-echo wp_kses_post(
-	Components::render(
-		'image',
-		[
+echo wp_kses_post(Components::render('image', [
 		'blockClass' => $attributes['blockClass'] ?? '',
-		'media'      => $attributes['media'] ?? [],
-		]
-	)
-);
+		'media' => $attributes['media'] ?? [],
+	]));

@@ -7,10 +7,10 @@
  */
 
 $blockClass = $attributes['blockClass'] ?? '';
-$content    = $attributes['content'] ?? '';
+$content = $attributes['content'] ?? '';
 
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>">
-	<?php echo wp_kses_post($content); ?>
+<div class="<?php echo \esc_attr($blockClass); ?>">
+	<?php echo \wp_kses_post($content); ?>
 </div>

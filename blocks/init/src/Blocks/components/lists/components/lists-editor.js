@@ -33,6 +33,7 @@ export const ListsEditor = (props) => {
 					onChange={onChangeListsContent}
 					value={content}
 					onTagNameChange={onChangeListsOrdered}
+					formattingControls={[]}
 				/>
 			}
 		</Fragment>

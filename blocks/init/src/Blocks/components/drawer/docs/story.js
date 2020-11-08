@@ -15,36 +15,52 @@ const props = {
 	overlay: '',
 };
 
-document.body.classList.add('menu-is-open');
+const open = () => document.body.classList.add('menu-is-open');
 
-export const Left = () => (
-	<DrawerEditor
-		{...props}
-		drawerPosition={'left'}
-		menu={'Menu Drawer Open From the Left'}
-	/>
-);
+export const Left = () => {
+	open();
 
-export const Right = () => (
-	<DrawerEditor
-		{...props}
-		drawerPosition={'right'}
-		menu={'Menu Drawer Open From the Right'}
-	/>
-);
+	return (
+		<DrawerEditor
+			{...props}
+			drawerPosition={'left'}
+			menu={'Menu Drawer Open From the Left'}
+		/>
+	);
+};
 
-export const Top = () => (
-	<DrawerEditor
-		{...props}
-		drawerPosition={'top'}
-		menu={'Menu Drawer Open From the Top'}
-	/>
-);
+export const Right = () => {
+	open();
 
-export const Behind = () => (
-	<DrawerEditor
-		{...props}
-		drawerPosition={'behind'}
-		menu={'Menu Drawer Open From the Behind'}
-	/>
-);
+	return (
+		<DrawerEditor
+			{...props}
+			drawerPosition={'Right'}
+			menu={'Menu Drawer Open From the Right'}
+		/>
+	);
+};
+
+export const Top = () => {
+	open();
+
+	return (
+		<DrawerEditor
+			{...props}
+			drawerPosition={'Top'}
+			menu={'Menu Drawer Open From the Top'}
+		/>
+	);
+};
+
+export const Behind = () => {
+	open();
+
+	return (
+		<DrawerEditor
+			{...props}
+			drawerPosition={'Be'}
+			menu={'Menu Drawer Open From the Be'}
+		/>
+	);
+};

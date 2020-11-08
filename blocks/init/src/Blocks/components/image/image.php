@@ -3,57 +3,42 @@
 /**
  * Template for the Image Component.
  *
- * @package EightshiftBoilerplate
+ * @package Solplanet
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use SolplanetVendor\EightshiftLibs\Helpers\Components;
 
 $media = $attributes['media'] ?? [];
 $use = $media['use'] ?? true;
 
-if (!$media || !$use) {
+if (! $media || !$use) {
 	return;
 }
 
 $componentClass = $attributes['componentClass'] ?? 'image';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentBgClass = $attributes['componentClass'] ?? 'image-bg';
+$selectorBgClass = $attributes['selectorClass'] ?? $componentBgClass;
+
 $blockClass = $attributes['blockClass'] ?? '';
-
-$bgImg = $attributes['bgImg'] ?? false;
-
-$id = $media['id'] ?? '';
+$bgImg = $media['bgImg'] ?? false;
 $url = $media['url'] ?? '';
 $size = $media['size'] ?? 'large';
 
 $imageClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
 ]);
 
 $imageBgClass = Components::classnames([
 	$componentBgClass,
-	$blockClass ? "{$blockClass}__{$componentBgClass}" : '',
+	$blockClass ? "{$blockClass}__{$selectorBgClass}" : '',
 ]);
 
-if (empty($url)) {
-	$media = \wp_get_attachment_image_src(
-		$id,
-		$size
-	);
-	
-	$image = $media[0] ?? '';
-} else {
-	$image = $url;
-}
-
-if (!$image) {
-	return;
-}
-
-if (! $bgImg) { ?>
-	<img src="<?php echo esc_url($image); ?>" class="<?php echo esc_attr($imageClass); ?>" />
+if ($bgImg) { ?>
+	<div style="background-image:url(<?php echo \esc_url($url); ?>)" class="<?php echo \esc_attr($imageBgClass); ?>" ></div>
 <?php } else { ?>
-	<div style="background-image:url(<?php echo esc_url($image); ?>)" class="<?php echo esc_attr($imageBgClass); ?>" ></div>
+		<img src="<?php echo \esc_url($url); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
 	<?php
 }
 

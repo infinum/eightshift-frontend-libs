@@ -33,6 +33,7 @@ export const LinkEditor = (props) => {
 					onChange={onChangeLinkContent}
 					className={linkClass}
 					keepPlaceholderOnFocus
+					formattingControls={[]}
 				/>
 			}
 		</Fragment>

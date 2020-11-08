@@ -10,12 +10,13 @@ export const CardToolbar = (attributes) => {
 		setAttributes,
 	} = attributes;
 
-	// <ImageToolbar
-	// 	{...attributes}
-	// 	setAttributes={setAttributes}
-	// />
 	return (
 		<Fragment>
+
+			<ImageToolbar
+				{...attributes}
+				setAttributes={setAttributes}
+			/>
 
 			<HeadingToolbar
 				{...attributes}

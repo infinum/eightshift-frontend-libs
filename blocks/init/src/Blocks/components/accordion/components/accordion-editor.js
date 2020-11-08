@@ -40,6 +40,7 @@ export const AccordionEditor = (attributes) => {
 							value={accordionTitle}
 							onChange={(value) => setAttributes({ accordionTitle: value })}
 							keepPlaceholderOnFocus
+							formattingControls={[]}
 						/>
 						<div className={`${componentClass}__icon`}>
 							{accordionIcon}

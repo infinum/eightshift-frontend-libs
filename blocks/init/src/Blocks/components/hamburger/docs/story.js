@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { Fragment } from '@wordpress/element';
 import { HamburgerEditor } from '../components/hamburger-editor';
 
 export default {
@@ -10,16 +9,21 @@ export default {
 	},
 };
 
-export const component = () => (
-	<Fragment>
-		{document.body.classList.remove('menu-is-open')}
-		<HamburgerEditor />
-	</Fragment>
-);
+const open = () => document.body.classList.add('menu-is-open');
+const close = () => document.body.classList.remove('menu-is-open');
 
-export const open = () => (
-	<Fragment>
-		{document.body.classList.add('menu-is-open')}
+export const component = () => {
+	close();
+
+	return (
 		<HamburgerEditor />
-	</Fragment>
-);
+	);
+};
+
+export const isOpen = () => {
+	open();
+
+	return (
+		<HamburgerEditor />
+	);
+};

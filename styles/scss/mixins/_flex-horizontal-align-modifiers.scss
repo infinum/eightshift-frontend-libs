@@ -1,0 +1,33 @@
+/// Mixin that creates flex horizontal align modifiers.
+///
+/// @example
+/// .test {
+///   @include flex-horizontal-align-modifiers;
+/// }
+///
+/// @output
+/// ```scss
+/// .test--left {
+///   justify-content: flex-start;
+/// }
+/// .test--center {
+///   justify-content: center;
+/// }
+/// .test--right {
+///   justify-content: flex-end;
+/// }
+/// ```
+
+@mixin flex-horizontal-align-modifiers() {
+	&--left {
+		justify-content: flex-start;
+	}
+
+	&--center {
+		justify-content: center;
+	}
+
+	&--right {
+		justify-content: flex-end;
+	}
+}

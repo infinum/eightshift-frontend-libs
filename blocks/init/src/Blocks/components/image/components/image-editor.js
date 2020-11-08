@@ -1,64 +1,74 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
+import { Placeholder } from '@wordpress/components';
+import { image } from '@wordpress/icons';
 import { MediaPlaceholder } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const ImageEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const ImageEditor = (attributes) => {
 	const {
-		media: {
-			url,
-			accept = 'image/*',
-			allowedTypes = ['image'],
-			use = true,
-		},
-		bgImg = false,
-		usePlaceholder = false,
-		componentClass = 'image',
-		componentBgClass = 'image-bg',
-		componentPlaceholderClass = 'image-placeholder',
+		setAttributes,
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		onChangeMedia,
-	} = props;
+
+		imageUse = defaults.imageUse.default,
+
+		imageUrl,
+		imageSize = defaults.imageSize.default,
+		imageAlign = defaults.imageAlign.default,
+		imageAccept = defaults.imageAccept.default,
+		imageAllowedTypes = defaults.imageAllowedTypes.default,
+		imageBg = defaults.imageBg.default,
+		imageUsePlaceholder = defaults.imageUsePlaceholder.default,
+	} = attributes;
 
 	const imageClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		imageBg && `${componentClass}--bg`,
 	);
 
-	const imageBgClass = classnames(
-		componentBgClass,
-		blockClass && `${blockClass}__${componentBgClass}`,
-	);
-
-	const placeholderClass = classnames(
-		componentPlaceholderClass,
-		blockClass && `${blockClass}__${componentPlaceholderClass}`,
+	const imageWrapClass = classnames(
+		`${componentClass}__wrap`,
+		imageAlign && `${componentClass}__align--${imageAlign}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{imageUse &&
 				<Fragment>
-					{(url && !bgImg) &&
-						<img className={imageClass} src={url} alt="" />
-					}
+					<div className={imageWrapClass}>
+						{(imageUrl !== '') &&
+							<Fragment>
+								{imageBg ?
+									<div className={imageClass} style={{ backgroundImage: `url(${imageUrl})` }} /> :
+									<img className={imageClass} src={imageUrl} alt="" />
+								}
+							</Fragment>
+						}
 
-					{(url && bgImg) &&
-						<div className={imageBgClass} style={{ backgroundImage: `url(${url})` }} />
-					}
+						{(imageUrl === '') &&
+							<Fragment>
+								{imageBg &&
+									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'solplanet')} />
+								}
 
-					{(!url && bgImg) &&
-						<div className={placeholderClass}></div>
-					}
-
-					{(!url && !usePlaceholder) &&
-						<MediaPlaceholder
-							icon="format-image"
-							onSelect={onChangeMedia}
-							accept={accept}
-							allowedTypes={allowedTypes}
-						/>
-					}
+								{(!imageUsePlaceholder && !imageBg) &&
+									<MediaPlaceholder
+										icon="format-image"
+										onSelect={(value) => setAttributes({ imageUrl: value.url })}
+										accept={imageAccept}
+										allowedTypes={imageAllowedTypes}
+									/>
+								}
+							</Fragment>
+						}
+					</div>
 				</Fragment>
 			}
 		</Fragment>

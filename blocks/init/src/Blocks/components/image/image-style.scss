@@ -3,9 +3,19 @@
 	width: auto;
 	height: auto;
 	display: block;
-}
 
-.image-bg {
-	@extend %bg-image;
-	padding-bottom: 50%;
+	&--bg {
+		@extend %bg-image;
+		height: 100%;
+		width: 100%;
+		padding-bottom: 56%;
+	}
+
+	&__wrap {
+		display: flex;
+	}
+
+	&__align {
+		@include flex-horizontal-align-modifiers;
+	}
 }

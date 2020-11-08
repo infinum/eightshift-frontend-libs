@@ -2,13 +2,8 @@
 	"componentName": "card",
 	"title": "Card",
 	"componentClass": "card-simple",
-	"example": {
-		"attributes": {
-		}
-	},
-	"attributes": {
-	},
 	"components": {
+		"image": "image",
 		"heading": "heading",
 		"paragraph": "paragraph",
 		"button": "button"

@@ -19,14 +19,14 @@ export const CardEditor = (attributes) => {
 		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
-	// <ImageEditor
-	// 	{...attributes}
-	// 	setAttributes={setAttributes}
-	// 	blockClass={componentClass}
-	// />
 	return (
 		<div className={cardClass}>
 
+			<ImageEditor
+				{...attributes}
+				setAttributes={setAttributes}
+				blockClass={componentClass}
+			/>
 
 			<HeadingEditor
 				{...attributes}

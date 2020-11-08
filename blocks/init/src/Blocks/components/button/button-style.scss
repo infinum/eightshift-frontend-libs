@@ -91,16 +91,6 @@ $btn: (
 	}
 
 	&__align {
-		&--left {
-			justify-content: flex-start;
-		}
-
-		&--center {
-			justify-content: center;
-		}
-
-		&--right {
-			justify-content: flex-end;
-		}
+		@include flex-horizontal-align-modifiers;
 	}
 }

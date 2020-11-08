@@ -1,24 +1,34 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl } from '@wordpress/components';
+import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const ImageOptions = (props) => {
+const { attributes: defaults, title } = manifest;
+
+export const ImageOptions = (attributes) => {
 	const {
-		media: {
-			url,
-			accept = 'image/*',
-			allowedTypes = ['image'],
-			use = true,
-		},
-		showControls = true,
-		label = __('Image', 'eightshift-boilerplate'),
-		onChangeMedia,
-		onChangeImageUse,
-	} = props;
+		setAttributes,
+		label = title,
+		imageShowControls = true,
 
-	if (!showControls) {
+		imageUse = defaults.imageUse.default,
+
+		imageUrl,
+		imageSize = defaults.imageSize.default,
+		imageLink,
+		imageAccept = defaults.imageAccept.default,
+		imageAllowedTypes = defaults.imageAllowedTypes.default,
+		imageBg = defaults.imageBg.default,
+
+		showImageUrl = true,
+		showImageSize = true,
+		showImageLink = true,
+		showImageBg = true,
+	} = attributes;
+
+	if (!imageShowControls) {
 		return null;
 	}
 
@@ -31,24 +41,44 @@ export const ImageOptions = (props) => {
 				</h3>
 			}
 
-			{onChangeImageUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-					checked={use}
-					onChange={onChangeImageUse}
-				/>
-			}
+			<ToggleControl
+				label={sprintf(__('Use %s', 'solplanet'), label)}
+				checked={imageUse}
+				onChange={(value) => setAttributes({ imageUse: value })}
+			/>
 
-			{use &&
+			{imageUse &&
 				<Fragment>
-					{onChangeMedia && !url &&
+					{(showImageUrl && imageUrl === '' && imageBg) &&
 						<MediaPlaceholder
 							icon="format-image"
-							onSelect={onChangeMedia}
-							accept={accept}
-							allowedTypes={allowedTypes}
+							onSelect={(value) => {
+								setAttributes({ imageUrl: value.url });
+							}}
+							accept={imageAccept}
+							allowedTypes={imageAllowedTypes}
 						/>
 					}
+
+					<br />
+
+					{showImageBg &&
+						<ToggleControl
+							label={__('Use as Background Image', 'solplanet')}
+							checked={imageBg}
+							onChange={(value) => setAttributes({ imageBg: value })}
+						/>
+					}
+
+					{showImageLink &&
+						<URLInput
+							label={__('Url', 'eightshift-boilerplate')}
+							value={imageLink}
+							autoFocus={false}
+							onChange={(value) => setAttributes({ imageLink: value })}
+						/>
+					}
+
 				</Fragment>
 			}
 

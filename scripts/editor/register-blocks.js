@@ -220,7 +220,7 @@ export const prepareCommponentAttribute = (component, realComponentName, newComp
  * @param {string} blockName Full block name.
  * @param {string} key Change output, can be: "attributes" or "example".
  */
-export const prepareCommponentAttributes = (componentsManifest, components, blockName, key = 'attributes') => {
+export const prepareComponentAttributes = (componentsManifest, components, blockName, key = 'attributes') => {
 	let output = {};
 
 	for (const newComponentName in components) {
@@ -237,7 +237,7 @@ export const prepareCommponentAttributes = (componentsManifest, components, bloc
 			let outputAttributes = {};
 
 			if (component[0].hasOwnProperty('components')) {
-				outputAttributes = prepareCommponentAttributes(componentsManifest, component[0].components, blockName, key);
+				outputAttributes = prepareComponentAttributes(componentsManifest, component[0].components, blockName, key);
 			} else {
 				outputAttributes = prepareCommponentAttribute(component[0], realComponentName, newComponentName, key);
 			}
@@ -279,7 +279,7 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
 		...getSharedAttributes(globalManifest, blockManifest),
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-		...prepareCommponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest)),
+		...prepareComponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest)),
 		...attributes,
 	};
 };
@@ -298,7 +298,7 @@ export const getExample = (globalManifest, componentsManifest, blockManifest) =>
 	} = blockManifest;
 
 	return {
-		...prepareCommponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest), 'example'),
+		...prepareComponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest), 'example'),
 		...example.attributes,
 	};
 };
@@ -451,23 +451,18 @@ export const registerBlocks = (
 
 		const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 
-		if (blockManifest.blockName === 'card' || blockManifest.blockName === 'button') {
-			// Pass data to registerBlock helper to get final output for registerBlockType.
-			const blockDetails = registerBlock(
-				globalManifest,
-				wrapperManifest,
-				componentsManifest,
-				blockManifest,
-				wrapperComponent,
-				blockComponent
-			);
+		// Pass data to registerBlock helper to get final output for registerBlockType.
+		const blockDetails = registerBlock(
+			globalManifest,
+			wrapperManifest,
+			componentsManifest,
+			blockManifest,
+			wrapperComponent,
+			blockComponent
+		);
 
-			console.log(blockDetails.options);
-
-			// Native WP method for block registration.
-			registerBlockType(blockDetails.blockName, blockDetails.options);
-		}
-
+		// Native WP method for block registration.
+		registerBlockType(blockDetails.blockName, blockDetails.options);
 
 		return null;
 	});
