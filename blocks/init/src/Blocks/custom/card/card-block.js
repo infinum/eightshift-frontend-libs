@@ -1,31 +1,20 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { BlockControls } from '@wordpress/block-editor';
-import { getActions } from '@eightshift/frontend-libs/scripts/editor';
-import manifest from './manifest.json';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { CardEditor } from './components/card-editor';
 import { CardToolbar } from './components/card-toolbar';
+import { CardOptions } from './components/card-options';
 
 export const Card = (props) => {
-
-	const {
-		attributes,
-	} = props;
-
-	const actions = getActions(props, manifest);
-
 	return (
 		<Fragment>
+			<InspectorControls>
+				<CardOptions {...props} />
+			</InspectorControls>
 			<BlockControls>
-				<CardToolbar
-					attributes={attributes}
-					actions={actions}
-				/>
+				<CardToolbar {...props} />
 			</BlockControls>
-			<CardEditor
-				attributes={attributes}
-				actions={actions}
-			/>
+			<CardEditor {...props} />
 		</Fragment>
 	);
 };

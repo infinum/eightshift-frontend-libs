@@ -1,0 +1,17 @@
+.card-simple {
+	$this: &;
+	position: relative;
+	text-align: center;
+	transition: {
+		property: background-color;
+		timing-function: ease-in;
+		duration: 0.3s;
+	}
+
+	&__media {
+		padding: 0 30px;
+	}
+
+	&__paragraph {
+	}
+}

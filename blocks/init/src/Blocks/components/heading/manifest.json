@@ -40,11 +40,11 @@
 	"options": {
 		"sizes": [
 			{
-				"label": "Default (115px)",
+				"label": "Default (50px)",
 				"value": "default"
 			},
 			{
-				"label": "Big (90px)",
+				"label": "Big (70px)",
 				"value": "big"
 			}
 		],

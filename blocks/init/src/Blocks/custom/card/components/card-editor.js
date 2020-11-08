@@ -1,44 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { RichText } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
-import { ImageEditor } from '../../../components/image/components/image-editor';
+import { CardEditor as CardEditorComponent } from '../../../components/card/components/card-editor';
 
-export const CardEditor = ({ attributes, actions }) => {
-	const {
-		blockClass,
-		heading,
-		paragraph,
-	} = attributes;
-
-	const {
-		onChangeHeading,
-		onChangeParagraph,
-	} = actions;
-
+export const CardEditor = ({ attributes, setAttributes }) => {
 	return (
-		<div className={blockClass}>
-			<div className={`${blockClass}__media`}>
-				<ImageEditor
-					{...attributes}
-					{...actions}
-				/>
-			</div>
-			<div className={`${blockClass}__content`}>
-				<div className={`${blockClass}__heading`}>
-					<RichText
-						placeholder={__('Add Heading', 'eightshift-boilerplate')}
-						onChange={onChangeHeading}
-						value={heading}
-					/>
-				</div>
-				<div className={`${blockClass}__paragraph`}>
-					<RichText
-						placeholder={__('Add Paragraph', 'eightshift-boilerplate')}
-						onChange={onChangeParagraph}
-						value={paragraph}
-					/>
-				</div>
-			</div>
-		</div>
+		<CardEditorComponent
+			{...attributes}
+			setAttributes={setAttributes}
+		/>
 	);
 };

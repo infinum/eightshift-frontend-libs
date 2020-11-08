@@ -175,8 +175,45 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
 };
 
 /**
- * Iterate over component object in block manifest and check if the component exists in the project.
+ * Iterate over component object in block manifest and search and replace the component attributes with new one.
  * Search and replace the component attributes with new one.
+ *
+ * @param {object} component Object of component manifests to iterate.
+ * @param {string} realComponentName Reacl component name defined in the component manifest.
+ * @param {string} newComponentName New component name to search and replace the original.
+ * @param {string} key Change output, can be: "attributes" or "example".
+ */
+export const prepareCommponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
+	let output = {};
+
+	let componentAttributes = {};
+
+	if (key === 'attributes') {
+		componentAttributes = component.attributes;
+	}
+
+	if (key === 'example') {
+		componentAttributes = component.example.attributes;
+	}
+
+	if (realComponentName !== newComponentName) {
+		for (const componentAttribute in componentAttributes) {
+			if (componentAttributes.hasOwnProperty(componentAttribute)) {
+				const newName = componentAttribute.replace(realComponentName, newComponentName);
+
+				output[newName] = componentAttributes[componentAttribute];
+			}
+		}
+	} else {
+		output = componentAttributes;
+	}
+
+	return output;
+};
+
+/**
+ * Iterate over component object in block manifest and check if the component exists in the project.
+ * If components contains more component this function will run recursively.
  *
  * @param {object} componentsManifest Object of component manifests to iterate.
  * @param {object} components List of all component from block.
@@ -191,34 +228,18 @@ export const prepareCommponentAttributes = (componentsManifest, components, bloc
 
 			const realComponentName = components[newComponentName];
 
-			const findComponent = componentsManifest.filter((item) => item.componentName === realComponentName);
+			const component = componentsManifest.filter((item) => item.componentName === realComponentName);
 
-			if (!findComponent.length) {
+			if (!component.length) {
 				throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
-			}
-
-			let componentAttributes = {};
-
-			if (key === 'attributes') {
-				componentAttributes = findComponent[0].attributes;
-			}
-
-			if (key === 'example') {
-				componentAttributes = findComponent[0].example.attributes;
 			}
 
 			let outputAttributes = {};
 
-			if (realComponentName !== newComponentName) {
-				for (const componentAttribute in componentAttributes) {
-					if (componentAttributes.hasOwnProperty(componentAttribute)) {
-						const newName = componentAttribute.replace(realComponentName, newComponentName);
-			
-						outputAttributes[newName] = componentAttributes[componentAttribute];
-					}
-				}
+			if (component[0].hasOwnProperty('components')) {
+				outputAttributes = prepareCommponentAttributes(componentsManifest, component[0].components, blockName, key);
 			} else {
-				outputAttributes = componentAttributes;
+				outputAttributes = prepareCommponentAttribute(component[0], realComponentName, newComponentName, key);
 			}
 
 			output = {
@@ -430,18 +451,23 @@ export const registerBlocks = (
 
 		const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 
-		// Pass data to registerBlock helper to get final output for registerBlockType.
-		const blockDetails = registerBlock(
-			globalManifest,
-			wrapperManifest,
-			componentsManifest,
-			blockManifest,
-			wrapperComponent,
-			blockComponent
-		);
+		if (blockManifest.blockName === 'card' || blockManifest.blockName === 'button') {
+			// Pass data to registerBlock helper to get final output for registerBlockType.
+			const blockDetails = registerBlock(
+				globalManifest,
+				wrapperManifest,
+				componentsManifest,
+				blockManifest,
+				wrapperComponent,
+				blockComponent
+			);
 
-		// Native WP method for block registration.
-		registerBlockType(blockDetails.blockName, blockDetails.options);
+			console.log(blockDetails.options);
+
+			// Native WP method for block registration.
+			registerBlockType(blockDetails.blockName, blockDetails.options);
+		}
+
 
 		return null;
 	});

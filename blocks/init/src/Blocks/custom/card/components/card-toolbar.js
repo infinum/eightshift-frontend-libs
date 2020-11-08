@@ -1,11 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { ImageToolbar } from '../../../components/image/components/image-toolbar';
+import { CardToolbar as CardToolbarCompnent } from '../../../components/card/components/card-toolbar';
 
-export const CardToolbar = ({ attributes, actions }) => {
+export const CardToolbar = ({ attributes, setAttributes }) => {
 	return (
-		<ImageToolbar
+		<CardToolbarCompnent
 			{...attributes}
-			{...actions}
+			setAttributes={setAttributes}
 		/>
 	);
 };
