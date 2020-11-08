@@ -3,36 +3,47 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import manifest from './../manifest.json';
 
-export const ListsEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const ListsEditor = (attributes) => {
 	const {
-		lists: {
-			content,
-			ordered,
-			use = true,
-		},
+		setAttributes,
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		componentClass = 'lists',
-		onChangeListsContent,
-		onChangeListsOrdered,
-	} = props;
+		placeholder = __('Add Content', 'eightshift-boilerplate'),
+
+		listsUse = defaults.listsUse.default,
+
+		listsContent,
+		listsOrdered = defaults.listsOrdered.default,
+		listsColor = defaults.listsColor.default,
+		listsSize = defaults.listsSize.default,
+		listsAlign = defaults.listsAlign.default,
+
+	} = attributes;
 
 	const listsClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		listsAlign && `${componentClass}__align--${listsAlign}`,
+		listsColor && `${componentClass}__color--${listsColor}`,
+		listsSize && `${componentClass}__size--${listsSize}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{listsUse &&
 				<RichText
-					tagName={ordered}
+					tagName={listsOrdered}
 					multiline="li"
 					className={listsClass}
-					placeholder={__('Add your item', 'eightshift-boilerplate')}
-					onChange={onChangeListsContent}
-					value={content}
-					onTagNameChange={onChangeListsOrdered}
+					placeholder={placeholder}
+					value={listsContent}
+					onChange={(value) => setAttributes({ listsContent: value })}
+					onTagNameChange={(value) => setAttributes({ listsOrdered: value })}
 					formattingControls={[]}
 				/>
 			}

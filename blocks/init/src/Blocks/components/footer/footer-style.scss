@@ -16,7 +16,7 @@ $footer: (
 	width: 100%;
 	position: relative;
 
-	&__wrapper {
+	&__wrap {
 		max-width: map-get-strict($footer, site-container);
 		margin: 0 auto;
 		width: 100%;

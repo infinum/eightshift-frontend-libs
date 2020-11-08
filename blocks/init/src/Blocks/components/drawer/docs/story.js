@@ -1,19 +1,16 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { DrawerEditor } from '../components/drawer-editor';
 
 export default {
-	title: 'Components|Drawer',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	menu: '',
-	trigger: '',
-	overlay: '',
-};
+const props = manifest.example.attributes;
 
 const open = () => document.body.classList.add('menu-is-open');
 
@@ -21,11 +18,7 @@ export const Left = () => {
 	open();
 
 	return (
-		<DrawerEditor
-			{...props}
-			drawerPosition={'left'}
-			menu={'Menu Drawer Open From the Left'}
-		/>
+		<DrawerEditor {...props} />
 	);
 };
 
@@ -35,8 +28,8 @@ export const Right = () => {
 	return (
 		<DrawerEditor
 			{...props}
-			drawerPosition={'Right'}
-			menu={'Menu Drawer Open From the Right'}
+			drawerPosition={'right'}
+			drawerMenu={'Menu Drawer Open From the Right'}
 		/>
 	);
 };
@@ -47,8 +40,8 @@ export const Top = () => {
 	return (
 		<DrawerEditor
 			{...props}
-			drawerPosition={'Top'}
-			menu={'Menu Drawer Open From the Top'}
+			drawerPosition={'top'}
+			drawerMenu={'Menu Drawer Open From the Top'}
 		/>
 	);
 };
@@ -59,8 +52,8 @@ export const Behind = () => {
 	return (
 		<DrawerEditor
 			{...props}
-			drawerPosition={'Be'}
-			menu={'Menu Drawer Open From the Be'}
+			drawerPosition={'behind'}
+			drawerMenu={'Menu Drawer Open From the Behind'}
 		/>
 	);
 };

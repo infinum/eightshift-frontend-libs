@@ -1,14 +1,17 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { CopyrightEditor } from './../components/copyright-editor';
+import manifest from './../manifest.json';
+import { CopyrightEditor } from '../components/copyright-editor';
 
 export default {
-	title: 'Components|Copyright',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-export const component = () => (
-	<CopyrightEditor />
+const props = manifest.example.attributes;
+
+export const editor = () => (
+	<CopyrightEditor {...props} />
 );

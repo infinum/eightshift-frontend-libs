@@ -1,26 +1,33 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import manifest from './../manifest.json';
 
-export const CopyrightEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const CopyrightEditor = (attributes) => {
 	const {
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		componentClass = 'carousel-pagination',
-		by = 'Infinum',
-		year = '2020',
-		use = true,
-	} = props;
 
-	const copyClass = classnames(
+		copyrightUse = defaults.copyrightUse.default,
+
+		copyrightBy,
+		copyrightYear,
+		copyrightContent,
+	} = attributes;
+
+	const copyrightClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
-				<div className={copyClass}>
-					{'&copy'} {by} {year}
+			{copyrightUse &&
+				<div className={copyrightClass}>
+					{'&copy'} {copyrightBy} {copyrightYear} - {copyrightContent}
 				</div>
 			}
 		</Fragment>

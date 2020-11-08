@@ -1,0 +1,36 @@
+{
+	"componentName": "searchBar",
+	"title": "Search Bar",
+	"componentClass": "search-bar",
+	"example": {
+		"attributes": {
+			"searchBarMethod": "get",
+			"searchBarPostType": "any",
+			"searchBarAction": "#",
+			"searchBarPlaceholder": "Type in search",
+			"searchBarUse": true
+		}
+	},
+	"attributes": {
+		"searchBarMethod": {
+			"type": "string",
+			"default": "get"
+		},
+		"searchBarPostType": {
+			"type": "string",
+			"default": "any"
+		},
+		"searchBarAction": {
+			"type": "string",
+			"default": "#"
+		},
+		"searchBarPlaceholder": {
+			"type": "string",
+			"default": "Type in search"
+		},
+		"searchBarUse": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

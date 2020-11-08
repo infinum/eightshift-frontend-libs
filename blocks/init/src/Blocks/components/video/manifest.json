@@ -1,0 +1,91 @@
+{
+	"componentName": "video",
+	"title": "Video",
+	"componentClass": "video",
+	"example": {
+		"attributes": {
+			"videoUrl": "DiItGE3eAyQ",
+			"videoType": "youtube",
+			"videoAspectRatio": "default",
+			"videoAlign": "left",
+			"videoAccept": "video/*",
+			"videoAllowedTypes": ["video"],
+			"videoAllow": "autoplay; fullscreen",
+			"videoBg": false,
+			"videoUsePlaceholder": false,
+			"videoUse": true
+		}
+	},
+	"attributes": {
+		"videoUrl": {
+			"type": "string"
+		},
+		"videoType": {
+			"type": "string",
+			"default": "youtube"
+		},
+		"videoAspectRatio": {
+			"type": "string",
+			"default": "default"
+		},
+		"videoAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"videoAccept": {
+			"type": "string",
+			"default": "video/*"
+		},
+		"videoAllowedTypes": {
+			"type": "array",
+			"default": ["video"]
+		},
+		"videoAllow": {
+			"type": "string",
+			"default": "autoplay; fullscreen"
+		},
+		"videoBg": {
+			"type": "boolean",
+			"default": false
+		},
+		"videoUsePlaceholder": {
+			"type": "boolean",
+			"default": false
+		},
+		"videoUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"options": {
+		"types": [
+			{
+				"label": "Youtube",
+				"value": "youtube"
+			},
+			{
+				"label": "Vimeo",
+				"value": "vimeo"
+			},
+			{
+				"label": "Local",
+				"value": "local"
+			}
+		],
+		"aspectRatioSizes": [
+			{
+				"label": "16:9",
+				"value": "default"
+			},
+			{
+				"label": "21:9",
+				"value": "twentyone-nine"
+			}
+		],
+		"aligns": [
+			"left",
+			"center",
+			"right"
+		]
+	}
+}

@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 import { AlignmentToolbar } from '@wordpress/block-editor';
+import { trash } from '@wordpress/icons';
 import manifest from './../manifest.json';
 
 const { attributes: defaults, options } = manifest;
@@ -36,7 +37,7 @@ export const ImageToolbar = (attributes) => {
 						<ToolbarGroup
 							controls={[
 								{
-									icon: 'trash',
+									icon: trash,
 									title: __('Remove image', 'solplanet'),
 									isActive: false,
 									onClick: removeMedia,

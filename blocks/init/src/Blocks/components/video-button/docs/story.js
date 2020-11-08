@@ -1,18 +1,17 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
+import manifest from '../manifest.json';
 import { VideoButtonEditor } from '../components/video-button-editor';
 
 export default {
-	title: 'Components|Video Button',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	modalId: 'testID',
-};
+const props = manifest.example.attributes;
 
-export const component = () => (
+export const editor = () => (
 	<VideoButtonEditor {...props} />
 );

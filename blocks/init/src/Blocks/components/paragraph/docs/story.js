@@ -63,8 +63,8 @@ export const color = () => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}
-					paragraphContent={values.label}
-					paragraphColor={values.value}
+					paragraphContent={values}
+					paragraphColor={values}
 				/>
 				<br />
 			</Fragment>

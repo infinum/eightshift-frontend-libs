@@ -1,34 +1,40 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import manifest from './../manifest.json';
 
-export const DrawerEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const DrawerEditor = (attributes) => {
 	const {
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		componentClass = 'drawer',
-		drawerPosition = 'left',
-		menu,
-		trigger,
-		overlay,
-		use = true,
-	} = props;
+
+		drawerUse = defaults.drawerUse.default,
+
+		drawerPosition = defaults.drawerPosition.default,
+		drawerMenu,
+		drawerTrigger,
+		drawerOverlay,
+	} = attributes;
 
 	const drawerClass = classnames(
 		componentClass,
 		`js-${componentClass}`,
 		drawerPosition && `${componentClass}--${drawerPosition}`,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{drawerUse &&
 				<div
 					className={drawerClass}
-					data-trigger={trigger}
-					data-overlay={overlay}
+					data-trigger={drawerTrigger}
+					data-overlay={drawerOverlay}
 				>
-					{menu}
+					{drawerMenu}
 				</div>
 			}
 		</Fragment>

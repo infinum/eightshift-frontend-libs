@@ -1,0 +1,20 @@
+{
+	"componentName": "scrollToTop",
+	"title": "Scroll To Top",
+	"componentClass": "scroll-to-top",
+	"example": {
+		"attributes": {
+			"scrollToTopContent": "To Top",
+			"scrollToTopUse": true
+		}
+	},
+	"attributes": {
+		"scrollToTopContent": {
+			"type": "string"
+		},
+		"scrollToTopUse": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

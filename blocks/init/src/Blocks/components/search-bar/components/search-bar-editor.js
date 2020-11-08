@@ -1,40 +1,45 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import manifest from './../manifest.json';
 
-export const SearchBarEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const SearchBarEditor = (attributes) => {
 	const {
-		componentClass = 'search-bar',
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		method = 'get',
-		postType = 'any',
-		action = '#',
-		placeholder = __('Type in search', 'eightshift-boilerplate'),
-		use = true,
-	} = props;
+
+		searchBarUse = defaults.searchBarUse.default,
+
+		searchBarMethod = defaults.searchBarMethod.default,
+		searchBarPostType = defaults.searchBarPostType.default,
+		searchBarAction = defaults.searchBarAction.default,
+		searchBarPlaceholder = defaults.searchBarPlaceholder.default,
+	} = attributes;
 
 	const searchClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{searchBarUse &&
 				<form
 					role="search"
-					method={method}
+					method={searchBarMethod}
 					className={searchClass}
-					action={action}
+					action={searchBarAction}
 				>
 					<input
 						type="text"
 						name="s"
 						className={`${componentClass}__input`}
-						placeholder={placeholder}
+						placeholder={searchBarPlaceholder}
 					/>
-					<input type="hidden" name="post_type" value={postType} />
+					<input type="hidden" name="post_type" value={searchBarPostType} />
 				</form>
 			}
 		</Fragment>

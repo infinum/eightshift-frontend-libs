@@ -1,21 +1,17 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { LogoEditor } from '../components/logo-editor';
 
 export default {
-	title: 'Components|Logo',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	src: 'https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/eightshift-logo.svg?raw=true&sanitize=true',
-	alt: 'This is Alt',
-	title: 'This is Alt',
-	href: 'https://infinum.github.io/eightshift-docs/',
-};
+const props = manifest.example.attributes;
 
-export const component = () => (
+export const editor = () => (
 	<LogoEditor {...props} />
 );

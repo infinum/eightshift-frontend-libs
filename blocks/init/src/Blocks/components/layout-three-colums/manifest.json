@@ -1,0 +1,28 @@
+{
+	"componentName": "layoutThreeColumns",
+	"title": "Layout Three Columns",
+	"componentClass": "layout-three-columns",
+	"example": {
+		"attributes": {
+			"layoutLeft": "Left",
+			"layoutCenter": "Center",
+			"layoutRight": "Right",
+			"layoutUse": true
+		}
+	},
+	"attributes": {
+		"layoutLeft": {
+			"type": "string"
+		},
+		"layoutCenter": {
+			"type": "string"
+		},
+		"layoutRight": {
+			"type": "string"
+		},
+		"layoutUse": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

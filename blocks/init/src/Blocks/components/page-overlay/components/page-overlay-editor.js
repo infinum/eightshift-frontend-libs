@@ -1,22 +1,28 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
+import manifest from './../manifest.json';
 
-export const PageOverlayEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const PageOverlayEditor = (attributes) => {
 	const {
-		componentClass = 'page-overlay',
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		use = true,
-	} = props;
+
+		pageOverlayUse = defaults.pageOverlayUse.default,
+
+	} = attributes;
 
 	const overlayClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{pageOverlayUse &&
 				<div className={overlayClass}></div>
 			}
 		</Fragment>

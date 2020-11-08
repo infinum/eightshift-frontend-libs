@@ -1,0 +1,17 @@
+{
+	"blockName": "video",
+	"title": "Video",
+	"description" : "video block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "format-video"
+	},
+	"keywords": [
+		"video",
+		"picture",
+		"img"
+	],
+	"components": {
+		"video": "video"
+	}
+}

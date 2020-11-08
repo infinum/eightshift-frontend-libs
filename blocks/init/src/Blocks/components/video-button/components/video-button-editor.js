@@ -1,28 +1,34 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import manifest from './../manifest.json';
 
-export const VideoButtonEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const VideoButtonEditor = (attributes) => {
 	const {
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		componentClass = 'video-button',
-		modalId = '',
-		icon = <svg className={`${componentClass}__icon`} width="106" height="106" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" strokeWidth="2" fill="none" fillRule="evenodd"><circle cx="53" cy="53" r="52" /><path d="M78.764 53L40 72.382V33.618L78.764 53z" /></g></svg>,
-		use = true,
-	} = props;
+
+		videoButtonUse = defaults.videoButtonUse.default,
+
+		videoButtonModalId,
+		videoButtonIcon = <svg width="106" height="106" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" strokeWidth="2" fill="none" fillRule="evenodd"><circle cx="53" cy="53" r="52" /><path d="M78.764 53L40 72.382V33.618L78.764 53z" /></g></svg>,
+	} = attributes;
 
 	const videoButtonClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{videoButtonUse &&
 				<Fragment>
-					{modalId &&
+					{videoButtonModalId &&
 						<button className={`${videoButtonClass}`}>
-							{icon}
+							{videoButtonIcon}
 						</button>
 					}
 				</Fragment>

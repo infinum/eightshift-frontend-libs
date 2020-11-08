@@ -78,8 +78,8 @@ export const color = () => (
 			<Fragment key={index}>
 				<HeadingEditor
 					{...props}
-					headingContent={values.label}
-					headingColor={values.value}
+					headingContent={values}
+					headingColor={values}
 				/>
 				<br />
 			</Fragment>

@@ -1,26 +1,32 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import manifest from './../manifest.json';
 
-export const ScrollToTopEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const ScrollToTopEditor = (attributes) => {
 	const {
-		content = __('To Top', 'eightshift-boilerplate'),
-		componentClass = 'scroll-to-top',
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		use = true,
-	} = props;
+
+		scrollToTopUse = defaults.scrollToTopUse.default,
+
+		scrollToTopContent = defaults.scrollToTopContent.default,
+
+	} = attributes;
 
 	const scrollClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
+			{scrollToTopUse &&
 				<button className={scrollClass}>
-					{content}
+					{scrollToTopContent}
 				</button>
 			}
 		</Fragment>

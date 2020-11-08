@@ -17,6 +17,26 @@ $link: (
 			),
 		),
 	),
+	sizes: (
+		mobile: (
+			default: (
+				font-size: 18px,
+				line-height: 1.56,
+			),
+			small: (
+				font-size: 14px,
+				line-height: 1,
+			),
+		),
+		large: (
+			default: (
+				font-size: 22px,
+			),
+			small: (
+				font-size: 18px,
+			),
+		),
+	),
 );
 
 .link {
@@ -29,7 +49,25 @@ $link: (
 		duration: 0.3s;
 	}
 
+	@include link(map-get-strict($link, colors), primary);
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
 	&__color {
 		@include link-modifiers($link, colors);
+	}
+
+	&__size {
+		@include responsive-modifiers($link, sizes);
+	}
+
+	&__wrap {
+		display: flex;
+	}
+
+	&__align {
+		@include flex-horizontal-align-modifiers;
 	}
 }

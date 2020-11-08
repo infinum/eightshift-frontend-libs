@@ -1,21 +1,25 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { FooterEditor } from './../components/footer-editor';
+import manifest from '../manifest.json';
+import { LayoutThreeColumnsEditor } from '../../layout-three-colums/components/layout-three-columns-editor';
+import { editor as CopyrightEditor } from '../../copyright/docs/story';
 
 export default {
-	title: 'Components|Footer',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const editorProps = {
-	left: 'Column Left',
-	center: 'Column Center',
-	right: 'Column Right',
-};
-
-export const component = () => (
-	<FooterEditor {...editorProps}
+export const editor = () => (
+	<LayoutThreeColumnsEditor
+		selectorClass={manifest.componentClass}
+		layoutLeft={[
+			<CopyrightEditor key={'copyright'} />,
+		]}
+		layoutCenter={[
+		]}
+		layoutRight={[
+		]}
 	/>
 );

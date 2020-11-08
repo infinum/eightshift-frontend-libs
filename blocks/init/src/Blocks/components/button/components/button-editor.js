@@ -39,7 +39,6 @@ export const ButtonEditor = (attributes) => {
 		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
-
 	return (
 		<Fragment>
 			{buttonUse &&

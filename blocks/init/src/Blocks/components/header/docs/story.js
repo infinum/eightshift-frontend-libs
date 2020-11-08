@@ -1,21 +1,27 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { HeaderEditor } from '../components/header-editor';
+import manifest from './../manifest.json';
+import { LayoutThreeColumnsEditor } from './../../layout-three-colums/components/layout-three-columns-editor';
+import { editor as HamburgerEditor } from '../../hamburger/docs/story';
+import { editor as LogoEditor } from '../../logo/docs/story';
 
 export default {
-	title: 'Components|Header',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const editorProps = {
-	left: 'Column Left',
-	center: 'Column Center',
-	right: 'Column Right',
-};
-
-export const component = () => (
-	<HeaderEditor {...editorProps}
+export const editor = () => (
+	<LayoutThreeColumnsEditor
+		selectorClass={'header'}
+		layoutLeft={[
+			<HamburgerEditor key={'hamburger'} />,
+		]}
+		layoutCenter={[
+			<LogoEditor key={'logo'} />,
+		]}
+		layoutRight={[
+		]}
 	/>
 );

@@ -1,14 +1,17 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { SearchBarEditor } from '../components/search-bar-editor';
 
 export default {
-	title: 'Components|Search Bar',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-export const component = () => (
-	<SearchBarEditor />
+const props = manifest.example.attributes;
+
+export const editor = () => (
+	<SearchBarEditor {...props} />
 );

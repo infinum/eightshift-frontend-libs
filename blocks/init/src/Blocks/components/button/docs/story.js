@@ -37,7 +37,6 @@ export const size = () => (
 					buttonSize={values.value}
 				/>
 				<br />
-				<br />
 			</Fragment>
 		))}
 	</Fragment>
@@ -52,7 +51,6 @@ export const width = () => (
 					buttonContent={values.label}
 					buttonWidth={values.value}
 				/>
-				<br />
 				<br />
 			</Fragment>
 		))}
@@ -80,10 +78,9 @@ export const colors = () => (
 			<Fragment key={index}>
 				<ButtonEditor
 					{...props}
-					buttonContent={values.label}
-					buttonColor={values.value}
+					buttonContent={values}
+					buttonColor={values}
 				/>
-				<br />
 				<br />
 			</Fragment>
 		))}

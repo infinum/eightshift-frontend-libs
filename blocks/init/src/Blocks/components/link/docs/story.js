@@ -1,32 +1,19 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
+import manifest from './../manifest.json';
 import { LinkEditor } from '../components/link-editor';
-import { LinkOptions, linkColors } from '../components/link-options';
+import { LinkOptions } from '../components/link-options';
+import { LinkToolbar } from '../components/link-toolbar';
 
 export default {
-	title: 'Components|Link',
+	title: `Components|${manifest.title}`,
 	parameters: {
 		notes: readme,
 	},
 };
 
-const props = {
-	blockClass: 'block-link',
-	link: {
-		content: 'This is a link',
-		url: 'https://fakeurl.com',
-		color: 'primary',
-		isAnchor: false,
-		id: 'ID',
-	},
-	onChangeLinkTitle: () => {},
-	onChangeLinkUrl: () => {},
-	onChangeLinkColor: () => {},
-	onChangeLinkIsAnchor: () => {},
-	onChangeLinkId: () => {},
-	onChangeLinkUse: () => {},
-};
+const props = manifest.example.attributes;
 
 export const editor = () => (
 	<LinkEditor {...props} />
@@ -36,17 +23,18 @@ export const options = () => (
 	<LinkOptions {...props} />
 );
 
-export const color = () => (
+export const toolbar = () => (
+	<LinkToolbar {...props} />
+);
+
+export const size = () => (
 	<Fragment>
-		{linkColors().map((values, index) => (
+		{manifest.options.sizes.map((values, index) => (
 			<Fragment key={index}>
 				<LinkEditor
 					{...props}
-					link={{
-						...props.link,
-						title: values.name,
-						color: values.slug,
-					}}
+					linkContent={values.label}
+					linkSize={values.value}
 				/>
 				<br />
 			</Fragment>
@@ -54,11 +42,32 @@ export const color = () => (
 	</Fragment>
 );
 
-export const isAnchor = () => (
-	<LinkEditor
-		link={{
-			...props.link,
-			isAnchor: true,
-		}}
-	/>
+export const align = () => (
+	<Fragment>
+		{manifest.options.aligns.map((values, index) => (
+			<Fragment key={index}>
+				<LinkEditor
+					{...props}
+					linkContent={values}
+					linkAlign={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</Fragment>
+);
+
+export const colors = () => (
+	<Fragment>
+		{manifest.options.colors.map((values, index) => (
+			<Fragment key={index}>
+				<LinkEditor
+					{...props}
+					linkContent={values}
+					linkColor={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</Fragment>
 );

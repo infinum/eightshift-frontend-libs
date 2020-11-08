@@ -22,7 +22,7 @@ $header: (
 		position: fixed;
 	}
 
-	&__wrapper {
+	&__wrap {
 		max-width: map-get-strict($header, site-container);
 		margin: 0 auto;
 		width: 100%;

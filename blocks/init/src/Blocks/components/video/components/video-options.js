@@ -2,50 +2,28 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import manifest from './../manifest.json';
 
-export const aspectRatioSizes = [
-	{
-		label: __('16:9', 'eightshift-boilerplate'),
-		value: 'default',
-	},
-	{
-		label: __('21:9', 'eightshift-boilerplate'),
-		value: 'twentyone-nine',
-	},
-];
-
-export const types = [
-	{
-		label: __('Youtube', 'eightshift-boilerplate'),
-		value: 'youtube',
-	},
-	{
-		label: __('Vimeo', 'eightshift-boilerplate'),
-		value: 'vimeo',
-	},
-	{
-		label: __('Local', 'eightshift-boilerplate'),
-		value: 'local',
-	},
-];
+const { attributes: defaults, options, title } = manifest;
 
 export const VideoOptions = (props) => {
 	const {
-		video: {
-			id,
-			type = 'youtube',
-			aspectRatio = 'default',
-			use = true,
-		},
-		showControls = true,
-		label,
-		onChangeVideoId,
-		onChangeVideoAspectRatio,
-		onChangeVideoType,
-		onChangeVideoUse,
+		setAttributes,
+		label = title,
+		videoShowControls = true,
+
+		videoUse = defaults.videoUse.default,
+
+		videoUrl,
+		videoType = defaults.videoType.default,
+		videoAspectRatio = defaults.videoAspectRatio.default,
+
+		showVideoId = true,
+		showVideoAspectRatio = true,
+		showVideoType = true,
 	} = props;
 
-	if (!showControls) {
+	if (!videoShowControls) {
 		return null;
 	}
 
@@ -58,39 +36,37 @@ export const VideoOptions = (props) => {
 				</h3>
 			}
 
-			{onChangeVideoUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-					checked={use}
-					onChange={onChangeVideoUse}
-				/>
-			}
+			<ToggleControl
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				checked={videoUse}
+				onChange={(value) => setAttributes({ videoUse: value })}
+			/>
 
-			{use &&
+			{videoUse &&
 				<Fragment>
-					{onChangeVideoId &&
+					{showVideoId &&
 						<TextControl
 							label={__('ID', 'eightshift-boilerplate')}
-							value={id}
-							onChange={onChangeVideoId}
+							value={videoUrl}
+							onChange={(value) => setAttributes({ videoUrl: value })}
 						/>
 					}
 
-					{onChangeVideoType &&
+					{showVideoType &&
 						<SelectControl
 							label={__('Type', 'eightshift-boilerplate')}
-							value={type}
-							options={types}
-							onChange={onChangeVideoType}
+							value={videoType}
+							options={options.types}
+							onChange={(value) => setAttributes({ videoType: value })}
 						/>
 					}
 
-					{onChangeVideoAspectRatio &&
+					{showVideoAspectRatio &&
 						<SelectControl
 							label={__('Aspect Ratio', 'eightshift-boilerplate')}
-							value={aspectRatio}
-							options={aspectRatioSizes}
-							onChange={onChangeVideoAspectRatio}
+							value={videoAspectRatio}
+							options={options.aspectRatioSizes}
+							onChange={(value) => setAttributes({ videoAspectRatio: value })}
 						/>
 					}
 				</Fragment>

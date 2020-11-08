@@ -28,7 +28,7 @@ $paragraph: (
 
 .paragraph {
 	@extend %paragraph-reset;
-	color: map-get-deep($heading, colors, primary);
+	color: map-get-deep($paragraph, colors, primary);
 
 	a {
 		@include link(map-get-strict($paragraph, link-color), primary);

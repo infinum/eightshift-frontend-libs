@@ -1,31 +1,37 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
+import manifest from './../manifest.json';
 
-export const LogoEditor = (props) => {
+const { attributes: defaults } = manifest;
+
+export const LogoEditor = (attributes) => {
 	const {
-		src,
-		alt,
-		title,
-		href,
-		componentClass = 'logo',
+		componentClass = manifest.componentClass,
+		selectorClass = componentClass,
 		blockClass,
-		use = true,
-	} = props;
+
+		logoUse = defaults.logoUse.default,
+
+		logoSrc,
+		logoAlt,
+		logoTitle,
+		logoHref,
+	} = attributes;
 
 	const logoClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${componentClass}`,
+		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
 	return (
 		<Fragment>
-			{use &&
-				<a className={logoClass} href={href}>
+			{logoUse &&
+				<a className={logoClass} href={logoHref}>
 					<img
-						src={src}
-						alt={alt}
-						title={title}
+						src={logoSrc}
+						alt={logoAlt}
+						title={logoTitle}
 						className={`${componentClass}__img`}
 					/>
 				</a>

@@ -20,7 +20,7 @@ $hamburger: (
 	margin: 0 -#{map-get-strict($hamburger, padding)};
 	cursor: pointer;
 
-	&__wrapper {
+	&__wrap {
 		position: relative;
 		display: block;
 		width: map-get-strict($hamburger, width);
