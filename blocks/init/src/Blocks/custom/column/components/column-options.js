@@ -8,6 +8,13 @@ import { desktop, tablet, mobile, megaphone } from '@wordpress/icons';
 import { ColumnTab } from './column-tab';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
+	const {
+		hideLarge,
+		hideDesktop,
+		hideTablet,
+		hideMobile,
+	} = attributes;
+
 	return (
 		<PanelBody title={__('Column Details', 'solplanet')}>
 			<TabPanel
@@ -17,22 +24,22 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					{
 						name: 'large',
 						title: <Icon icon={desktop} />,
-						className: 'tab-large button button-secondary custom-button-with-icon',
+						className: `tab-large components-button is-button is-default custom-button-with-icon ${hideLarge && 'show-info'}`,
 					},
 					{
 						name: 'desktop',
 						title: <Icon icon={megaphone} />,
-						className: 'tab-desktop button button-secondary custom-button-with-icon',
+						className: `tab-desktop components-button is-button is-default custom-button-with-icon ${hideDesktop && 'show-info'}`,
 					},
 					{
 						name: 'tablet',
 						title: <Icon icon={tablet} />,
-						className: 'tab-tablet button button-secondary custom-button-with-icon',
+						className: `tab-tablet components-button is-button is-default custom-button-with-icon ${hideTablet && 'show-info'}`,
 					},
 					{
 						name: 'mobile',
 						title: <Icon icon={mobile} />,
-						className: 'tab-mobile button button-secondary custom-button-with-icon',
+						className: `tab-mobile components-button is-button is-default custom-button-with-icon ${hideMobile && 'show-info'}`,
 					},
 				]
 				}

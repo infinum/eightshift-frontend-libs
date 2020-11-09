@@ -10,6 +10,7 @@ import manifest from './../manifest.json';
 const { options } = manifest;
 
 export const ColumnsTab = ({ attributes, breakPoint, setAttributes }) => {
+
 	const gutter = `gutter${ucfirst(breakPoint)}`;
 	const verticalSpacing = `verticalSpacing${ucfirst(breakPoint)}`;
 

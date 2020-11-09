@@ -1,7 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
-import { PanelBody, TextControl, Dashicon, TabPanel, Icon, ToggleControl, Button, Modal } from '@wordpress/components';
+import { PanelBody, TextControl, TabPanel, Icon, ToggleControl, Button, Modal } from '@wordpress/components';
+import { desktop, tablet, mobile, megaphone } from '@wordpress/icons';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { WrapperTab } from './wrapper-tab';
@@ -112,22 +113,22 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								tabs={[
 									{
 										name: 'large',
-										title: <Dashicon icon="desktop" />,
+										title: <Icon icon={desktop} />,
 										className: `tab-large components-button is-button is-default custom-button-with-icon ${wrapperHideBlockLarge && 'show-info'}`,
 									},
 									{
 										name: 'desktop',
-										title: <Dashicon icon="laptop" />,
+										title: <Icon icon={megaphone} />,
 										className: `tab-desktop components-button is-button is-default custom-button-with-icon ${wrapperHideBlockDesktop && 'show-info'}`,
 									},
 									{
 										name: 'tablet',
-										title: <Dashicon icon="tablet" />,
+										title: <Icon icon={tablet} />,
 										className: `tab-tablet components-button is-button is-default custom-button-with-icon ${wrapperHideBlockTablet && 'show-info'}`,
 									},
 									{
 										name: 'mobile',
-										title: <Dashicon icon="smartphone" />,
+										title: <Icon icon={mobile} />,
 										className: `tab-mobile components-button is-button is-default custom-button-with-icon ${wrapperHideBlockMobile && 'show-info'}`,
 									},
 								]

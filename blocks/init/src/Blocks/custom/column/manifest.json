@@ -9,7 +9,6 @@
 	"keywords": [
 		"column"
 	],
-	"hasInnerBlocks": true,
 	"parent": [
 		"eightshift-boilerplate/columns"
 	],
@@ -29,6 +28,7 @@
 			}
 		]
 	},
+	"hasInnerBlocks": true,
 	"attributes": {
 		"wrapperDisable": {
 			"type": "boolean",
