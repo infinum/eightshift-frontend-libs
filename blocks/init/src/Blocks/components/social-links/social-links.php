@@ -3,7 +3,7 @@
 /**
  * Social Links
  *
- * @package Solplanet
+ * @package EightshiftBoilerplate
  */
 
 use Solplanet\ThemeOptions\ThemeOptions;

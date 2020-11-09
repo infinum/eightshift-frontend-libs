@@ -26,6 +26,11 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 				offsetDesktop,
 				offsetTablet,
 				offsetMobile,
+
+				orderLarge,
+				orderDesktop,
+				orderTablet,
+				orderMobile,
 			},
 		} = innerProps;
 
@@ -47,11 +52,19 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 				mobile: offsetMobile,
 			};
 
+			const order = {
+				large: orderLarge,
+				desktop: orderDesktop,
+				tablet: orderTablet,
+				mobile: orderMobile,
+			};
+
 			const componentClass = classnames(
 				blockClass,
 				globalManifest.globalVariables.customBlocksName,
 				`${responsiveSelectors(width, 'width', blockClass)}`,
 				`${responsiveSelectors(offset, 'offset', blockClass)}`,
+				`${responsiveSelectors(order, 'order', blockClass)}`,
 			);
 
 			updatedProps = assign(

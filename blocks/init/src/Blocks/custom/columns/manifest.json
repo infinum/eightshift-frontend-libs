@@ -25,7 +25,7 @@
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
 							"imageUrl": "https://picsum.photos/400/400",
-							"headingContent": "Lorem ipsum dolor sit amet",
+							"headingContent": "Heading 1",
 							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. ",
 							"buttonContent": "Click here"
 						}
@@ -42,7 +42,7 @@
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
 							"imageUrl": "https://picsum.photos/400/400",
-							"headingContent": "Lorem ipsum dolor sit amet",
+							"headingContent": "Heading 2",
 							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. ",
 							"buttonContent": "Click here"
 						}
@@ -59,7 +59,7 @@
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
 							"imageUrl": "https://picsum.photos/400/400",
-							"headingContent": "Lorem ipsum dolor sit amet",
+							"headingContent": "Heading 3",
 							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. ",
 							"buttonContent": "Click here"
 						}

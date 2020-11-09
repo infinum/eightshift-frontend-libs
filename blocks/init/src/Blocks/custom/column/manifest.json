@@ -72,12 +72,30 @@
 		},
 		"hideMobile": {
 			"type": "boolean"
+		},
+
+		"orderLarge": {
+			"type": "int"
+		},
+		"orderDesktop": {
+			"type": "int"
+		},
+		"orderTablet": {
+			"type": "int"
+		},
+		"orderMobile": {
+			"type": "int"
 		}
 	},
 	"options": {
 		"widths": {
 			"min":  1,
 			"max":  12,
+			"step": 1
+		},
+		"orders": {
+			"min":  1,
+			"max":  20,
 			"step": 1
 		}
 	}

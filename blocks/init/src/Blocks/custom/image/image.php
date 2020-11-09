@@ -3,7 +3,7 @@
 /**
  * Template for the Image Block view.
  *
- * @package Solplanet
+ * @package EightshiftBoilerplate
  */
 
 use SolplanetVendor\EightshiftLibs\Helpers\Components;

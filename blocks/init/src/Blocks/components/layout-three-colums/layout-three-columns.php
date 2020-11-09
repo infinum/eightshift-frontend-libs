@@ -3,7 +3,7 @@
 /**
  * Layout component
  *
- * @package Solplanet
+ * @package EightshiftBoilerplate
  */
 
 use SolplanetVendor\EightshiftLibs\Helpers\Components;

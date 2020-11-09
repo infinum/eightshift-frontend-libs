@@ -16,7 +16,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	return (
-		<PanelBody title={__('Column Details', 'solplanet')}>
+		<PanelBody title={__('Column Details', 'eightshift-boilerplate')}>
 			<TabPanel
 				className="custom-button-tabs"
 				activeClass="components-button is-button is-primary"
@@ -49,8 +49,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						{tab.name === 'large' && (
 							<Fragment>
 								<br />
-								<strong className="notice-title">{__('Large Layout Options', 'solplanet')}</strong>
-								<p>{__('This options will only control large screens options.', 'solplanet')}</p>
+								<strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
+								<p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
 								<br />
 								<ColumnTab
 									breakPoint={'large'}
@@ -62,8 +62,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						{tab.name === 'desktop' && (
 							<Fragment>
 								<br />
-								<strong className="notice-title">{__('Desktop Layout Options', 'solplanet')}</strong>
-								<p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'solplanet')}</p>
+								<strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
+								<p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 								<br />
 								<ColumnTab
 									breakPoint={'desktop'}
@@ -75,8 +75,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						{tab.name === 'tablet' && (
 							<Fragment>
 								<br />
-								<strong className="notice-title">{__('Tablet Layout Options', 'solplanet')}</strong>
-								<p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'solplanet')}</p>
+								<strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
+								<p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 								<br />
 								<ColumnTab
 									breakPoint={'tablet'}
@@ -88,8 +88,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						{tab.name === 'mobile' && (
 							<Fragment>
 								<br />
-								<strong className="notice-title ">{__('Mobile Layout Options', 'solplanet')}</strong>
-								<p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'solplanet')}</p>
+								<strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
+								<p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
 								<br />
 								<ColumnTab
 									breakPoint={'mobile'}

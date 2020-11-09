@@ -3,7 +3,7 @@
 /**
  * Template for the Column Block.
  *
- * @package Solplanet
+ * @package EightshiftBoilerplate
  */
 
 use SolplanetVendor\EightshiftLibs\Helpers\Components;

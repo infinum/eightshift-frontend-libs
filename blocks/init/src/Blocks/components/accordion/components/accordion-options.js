@@ -9,7 +9,7 @@ const { attributes: defaults } = manifest;
 export const AccordionOptions = (attributes) => {
 	const {
 		setAttributes,
-		label = __('Accordion', 'solplanet'),
+		label = __('Accordion', 'eightshift-boilerplate'),
 		showControls = true,
 
 		accordionUse = defaults.accordionUse,
@@ -33,7 +33,7 @@ export const AccordionOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'solplanet'), label)}
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
 				checked={accordionUse}
 				onChange={(value) => setAttributes({ accordionUse: value })}
 			/>
@@ -41,7 +41,7 @@ export const AccordionOptions = (attributes) => {
 			{showAccordionIsOpen &&
 				<Fragment>
 					<ToggleControl
-						label={__('Is Open', 'solplanet')}
+						label={__('Is Open', 'eightshift-boilerplate')}
 						checked={accordionIsOpen}
 						onChange={(value) => setAttributes({ accordionIsOpen: value })}
 					/>

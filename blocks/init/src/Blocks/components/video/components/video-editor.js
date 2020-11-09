@@ -70,7 +70,7 @@ export const VideoEditor = (attributes) => {
 					{(videoUrl === '') &&
 						<Fragment>
 							{(videoUsePlaceholder) &&
-								<Placeholder icon={video} label={__('Please add image using sidebar options!', 'solplanet')} />
+								<Placeholder icon={video} label={__('Please add image using sidebar options!', 'eightshift-boilerplate')} />
 							}
 
 							{(!videoUsePlaceholder && videoType === 'local') &&

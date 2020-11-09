@@ -3,7 +3,7 @@
 /**
  * Template for the Loader Component view.
  *
- * @package Solplanet
+ * @package EightshiftBoilerplate
  */
 
 use SolplanetVendor\EightshiftLibs\Helpers\Components;

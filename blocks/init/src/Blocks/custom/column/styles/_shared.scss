@@ -20,4 +20,18 @@
 			@include grid-offset-modifiers;
 		}
 	}
+
+	&__order {
+		@include responsive-selectors {
+
+			$i: 1;
+			@while $i < 20 {
+				&--#{$i} {
+					order: #{$i};
+				}
+
+				$i: $i + 1;
+			}
+		}
+	}
 }

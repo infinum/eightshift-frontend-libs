@@ -43,7 +43,7 @@ export const ImageOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'solplanet'), label)}
+				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
 				checked={imageUse}
 				onChange={(value) => setAttributes({ imageUse: value })}
 			/>
@@ -65,7 +65,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageBg &&
 						<ToggleControl
-							label={__('Use as Background Image', 'solplanet')}
+							label={__('Use as Background Image', 'eightshift-boilerplate')}
 							checked={imageBg}
 							onChange={(value) => setAttributes({ imageBg: value })}
 						/>
