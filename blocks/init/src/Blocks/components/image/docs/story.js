@@ -19,28 +19,42 @@ export const editor = () => (
 	<ImageEditor {...props} />
 );
 
-export const options = () => (
-	<ImageOptions {...props} />
+export const editorWithUpload = () => (
+	<ImageEditor
+		{...props}
+		imageUrl={''}
+	/>
 );
 
-export const toolbar = () => (
-	<ImageToolbar {...props} />
-);
-
-export const usePlaceholder = () => (
+export const editorWithPlaceholder = () => (
 	<ImageEditor
 		{...props}
 		imageUrl={''}
 		imageUsePlaceholder={true}
-		imageBg={true}
 	/>
 );
 
-export const backgroundImage = () => (
+export const editorBackgroundImage = () => (
 	<ImageEditor
 		{...props}
 		imageBg={true}
 	/>
+);
+
+export const options = () => (
+	<ImageOptions {...props} />
+);
+
+export const optionsWithUpload = () => (
+	<ImageOptions
+		{...props}
+		imageUrl={''}
+		imageUsePlaceholder={true}
+	/>
+);
+
+export const toolbar = () => (
+	<ImageToolbar {...props} />
 );
 
 export const align = () => (

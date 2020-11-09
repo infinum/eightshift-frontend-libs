@@ -2,6 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 import manifest from './../manifest.json';
 
 const { attributes: defaults, options, title } = manifest;
@@ -17,8 +18,11 @@ export const VideoOptions = (props) => {
 		videoUrl,
 		videoType = defaults.videoType.default,
 		videoAspectRatio = defaults.videoAspectRatio.default,
+		videoUsePlaceholder = defaults.videoUsePlaceholder.default,
+		videoAccept = defaults.videoAccept.default,
+		videoAllowedTypes = defaults.videoAllowedTypes.default,
 
-		showVideoId = true,
+		showVideoUrl = true,
 		showVideoAspectRatio = true,
 		showVideoType = true,
 	} = props;
@@ -44,12 +48,27 @@ export const VideoOptions = (props) => {
 
 			{videoUse &&
 				<Fragment>
-					{showVideoId &&
-						<TextControl
-							label={__('ID', 'eightshift-boilerplate')}
-							value={videoUrl}
-							onChange={(value) => setAttributes({ videoUrl: value })}
-						/>
+					{showVideoUrl &&
+						<Fragment>
+							{(videoUsePlaceholder && videoUrl === '') ?
+								<Fragment>
+									<MediaPlaceholder
+										icon="format-image"
+										onSelect={(value) => {
+											setAttributes({ videoUrl: value.url });
+										}}
+										accept={videoAccept}
+										allowedTypes={videoAllowedTypes}
+									/>
+									<br />
+								</Fragment> :
+								<TextControl
+									label={__('ID', 'eightshift-boilerplate')}
+									value={videoUrl}
+									onChange={(value) => setAttributes({ videoUrl: value })}
+								/>
+							}
+						</Fragment>
 					}
 
 					{showVideoType &&
@@ -57,7 +76,10 @@ export const VideoOptions = (props) => {
 							label={__('Type', 'eightshift-boilerplate')}
 							value={videoType}
 							options={options.types}
-							onChange={(value) => setAttributes({ videoType: value })}
+							onChange={(value) => setAttributes({
+								videoType: value,
+								videoUrl: '',
+							})}
 						/>
 					}
 

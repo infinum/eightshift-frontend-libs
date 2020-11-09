@@ -1,7 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
+import { Placeholder } from '@wordpress/components';
+import { video } from '@wordpress/icons';
 import manifest from './../manifest.json';
 
 const { attributes: defaults } = manifest;
@@ -16,7 +19,6 @@ export const VideoEditor = (attributes) => {
 		videoUse = defaults.videoUse.default,
 
 		videoUrl,
-		videoAlign = defaults.videoAlign.default,
 		videoType = defaults.videoType.default,
 		videoAspectRatio = defaults.videoAspectRatio.default,
 		videoAllow = defaults.videoAllow.default,
@@ -28,12 +30,6 @@ export const VideoEditor = (attributes) => {
 	const videoClass = classnames(
 		componentClass,
 		videoAspectRatio && `${componentClass}__video-ratio--${videoAspectRatio}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
-
-	const videoWrapClass = classnames(
-		`${componentClass}__wrap`,
-		videoAlign && `${componentClass}__align--${videoAlign}`,
 		blockClass && `${blockClass}__${selectorClass}`,
 	);
 
@@ -51,10 +47,14 @@ export const VideoEditor = (attributes) => {
 	return (
 		<Fragment>
 			{videoUse &&
-				<Fragment>
-					<div className={videoWrapClass}>
-						<div className={videoClass}>
-							{videoType !== 'local' &&
+				<div className={videoClass}>
+
+					{(videoUrl !== '') &&
+						<Fragment>
+							{(videoType === 'local') ?
+								<video className={`${componentClass}__video`} muted>
+									<source src={videoUrl} type="video/mp4" />
+								</video> :
 								<iframe
 									className={`${componentClass}__video`}
 									src={localUrl}
@@ -64,25 +64,26 @@ export const VideoEditor = (attributes) => {
 									allowFullScreen
 								></iframe>
 							}
+						</Fragment>
+					}
 
-							{videoType === 'local' &&
-							<Fragment>
-								{videoUrl ?
-									<video className={`${componentClass}__video`} muted>
-										<source src={videoUrl} type="video/mp4" />
-									</video> :
-									<MediaPlaceholder
-										icon="format-image"
-										onSelect={(value) => setAttributes({ videoUrl: value.url })}
-										accept={videoAccept}
-										allowedTypes={videoAllowedTypes}
-									/>
-								}
-							</Fragment>
+					{(videoUrl === '') &&
+						<Fragment>
+							{(videoUsePlaceholder) &&
+								<Placeholder icon={video} label={__('Please add image using sidebar options!', 'solplanet')} />
 							}
-						</div>
-					</div>
-				</Fragment>
+
+							{(!videoUsePlaceholder && videoType === 'local') &&
+								<MediaPlaceholder
+									icon="format-image"
+									onSelect={(value) => setAttributes({ videoUrl: value.url })}
+									accept={videoAccept}
+									allowedTypes={videoAllowedTypes}
+								/>
+							}
+						</Fragment>
+					}
+				</div>
 			}
 		</Fragment>
 	);

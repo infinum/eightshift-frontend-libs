@@ -54,17 +54,14 @@ export const ImageEditor = (attributes) => {
 
 						{(imageUrl === '') &&
 							<Fragment>
-								{imageBg &&
-									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'solplanet')} />
-								}
-
-								{(!imageUsePlaceholder && !imageBg) &&
+								{(!imageUsePlaceholder) ?
 									<MediaPlaceholder
 										icon="format-image"
 										onSelect={(value) => setAttributes({ imageUrl: value.url })}
 										accept={imageAccept}
 										allowedTypes={imageAllowedTypes}
-									/>
+									/> :
+									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'solplanet')} />
 								}
 							</Fragment>
 						}

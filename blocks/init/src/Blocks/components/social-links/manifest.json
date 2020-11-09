@@ -1,0 +1,56 @@
+{
+	"componentName": "socialLinks",
+	"title": "Social Links",
+	"componentClass": "social-links",
+	"example": {
+		"attributes": {
+			"socialLinksItems": [
+				{
+					"href": "https://www.facebook.com/infinumcom",
+					"title": "Facebook",
+					"icon": "facebook"
+				},
+				{
+					"href": "https://twitter.com/infinum",
+					"title": "Twitter",
+					"icon": "twitter"
+				},
+				{
+					"href": "https://www.linkedin.com/company/infinum/",
+					"title": "LinkedIn",
+					"icon": "linkedin"
+				},
+				{
+					"href": "https://www.youtube.com/channel/UCQV7qsvmrpe8IbCWZsv3Low",
+					"title": "Youtube",
+					"icon": "youtube"
+				},
+				{
+					"href": "https://www.instagram.com/infinumcom/",
+					"title": "Instagram",
+					"icon": "instagram"
+				}
+			],
+			"socialLinksUse": true
+		}
+	},
+	"attributes": {
+		"socialLinksItems": {
+			"type": "array",
+			"default": []
+		},
+		"socialLinksUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"options": {
+		"icons": {
+			"facebook": "<svg height='38' width='39' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><ellipse cx='19.5' cy='19' rx='18.5' ry='18' stroke='#d5d5d5'/><path d='M8.654 2.833A.35.35 0 009 2.48V.354A.35.35 0 008.654 0H6.577C4.475.002 2.772 1.745 2.769 3.896v2.479H.346A.35.35 0 000 6.729v2.125a.35.35 0 00.346.354H2.77v7.438a.35.35 0 00.346.354h2.077a.35.35 0 00.346-.354V9.208h2.424a.347.347 0 00.328-.242l.692-2.125a.356.356 0 00-.219-.448.338.338 0 00-.11-.018H5.539v-2.48a1.05 1.05 0 011.039-1.062z' fill='#d5d5d5' transform='translate(14 11)'/></g></svg>",
+			"twitter": "<svg height='38' width='39' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path d='M19.5 1C9.284 1 1 9.06 1 19s8.284 18 18.5 18S38 28.94 38 19 29.716 1 19.5 1z' stroke='#d5d5d5'/><path d='M26.465 15.99c.006.13.009.26.009.39 0 4.004-3.096 8.62-8.757 8.62A8.812 8.812 0 0113 23.64c.24.027.486.041.734.041a6.238 6.238 0 003.823-1.297 3.075 3.075 0 01-2.876-2.104 3.108 3.108 0 001.39-.052c-1.408-.277-2.469-1.502-2.469-2.97v-.038c.415.227.89.364 1.395.379a3.014 3.014 0 01-1.37-2.522c0-.555.153-1.075.417-1.522a8.784 8.784 0 006.343 3.165 2.98 2.98 0 01-.08-.69c0-1.673 1.379-3.03 3.078-3.03.886 0 1.685.368 2.247.957a6.234 6.234 0 001.954-.735 3.05 3.05 0 01-1.353 1.676A6.214 6.214 0 0028 14.42a6.201 6.201 0 01-1.535 1.57z' fill='#d5d5d5'/></g></svg>",
+			"linkedin": "<svg height='38' width='38' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><circle cx='19' cy='19' r='18' stroke='#d5d5d5'/><g fill='#d5d5d5'><path d='M13.538 10.89h.004V5.054C13.542 2.2 12.988 0 9.98 0 8.535 0 7.565.88 7.169 1.715h-.042V.267h-2.85V10.89h2.968V5.63c0-1.385.237-2.725 1.782-2.725 1.523 0 1.545 1.581 1.545 2.814v5.172zM0 10.89h2.85V0H0z' transform='translate(12.903 14.538)'/><path d='M13.806 10c-.997 0-1.806.81-1.806 1.807 0 .997.809 1.823 1.806 1.823.996 0 1.805-.826 1.805-1.823 0-.998-.81-1.807-1.805-1.807z'/></g></g></svg>",
+			"youtube": "<svg height='38' width='38' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><circle cx='19' cy='19' r='18' stroke='#d5d5d5'/><path d='M18.608 2.031A2.352 2.352 0 0016.934.397C15.447 0 9.5 0 9.5 0S3.553 0 2.066.382A2.4 2.4 0 00.39 2.032C0 3.481 0 6.49 0 6.49s0 3.023.391 4.46c.22.793.861 1.42 1.675 1.633 1.502.397 7.434.397 7.434.397s5.947 0 7.434-.382a2.352 2.352 0 001.675-1.634c.39-1.45.39-4.46.39-4.46s.017-3.023-.39-4.474z' fill='#d5d5d5' transform='translate(10 13)'/><path d='M17.238 22.533l2.376-1.327 1.375-.768 1.678-.938-5.429-3.033z' fill='#353535'/></g></svg>",
+			"instagram": "<svg height='38' width='38' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><circle cx='19' cy='19' r='18' stroke='#d5d5d5'/><g fill='#d5d5d5'><path d='M27.125 22.75a4.38 4.38 0 01-4.375 4.375h-7.5a4.38 4.38 0 01-4.375-4.375v-7.5a4.38 4.38 0 014.375-4.375h7.5a4.38 4.38 0 014.375 4.375zM22.75 9h-7.5A6.25 6.25 0 009 15.25v7.5A6.25 6.25 0 0015.25 29h7.5A6.25 6.25 0 0029 22.75v-7.5A6.25 6.25 0 0022.75 9z'/><path d='M19 22.125A3.13 3.13 0 0115.875 19c0-1.724 1.403-3.125 3.125-3.125s3.125 1.401 3.125 3.125A3.13 3.13 0 0119 22.125M19 14a5 5 0 100 10 5 5 0 000-10M25 13.5a.5.5 0 11-1 0 .5.5 0 011 0z'/></g></g></svg>"
+		}
+	}
+}

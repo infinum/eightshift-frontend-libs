@@ -1,0 +1,22 @@
+$social-links: (
+	icon-hover-color: global-settings(colors, black),
+);
+
+.social-links {
+	@extend %list-reset;
+	$this: &;
+	display: inline-flex;
+	align-items: center;
+	overflow: hidden;
+	margin: 0 -10px -10px;
+	flex-wrap: wrap;
+
+	&__link {
+		padding: 0 10px 10px;
+		display: block;
+	}
+
+	svg {
+		display: block;
+	}
+}

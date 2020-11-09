@@ -16,9 +16,6 @@ export const VideoToolbar = (attributes) => {
 		videoUse = defaults.videoUse.default,
 
 		videoUrl,
-		videoAlign = defaults.videoAlign.default,
-
-		showVideoAlign = true,
 	} = attributes;
 
 	if (!videoShowControls) {
@@ -43,15 +40,6 @@ export const VideoToolbar = (attributes) => {
 									onClick: removeMedia,
 								},
 							]}
-						/>
-					}
-
-
-					{showVideoAlign &&
-						<AlignmentToolbar
-							value={videoAlign}
-							options={options.aligns}
-							onChange={(value) => setAttributes({ videoAlign: value })}
 						/>
 					}
 

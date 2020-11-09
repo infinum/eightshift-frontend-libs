@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import manifest from './../manifest.json';
 
-const { attributes: defaults } = manifest;
+const { attributes: defaults, options } = manifest;
 
 export const AccordionEditor = (attributes) => {
 	const {
@@ -20,7 +20,6 @@ export const AccordionEditor = (attributes) => {
 		accordionTitle,
 		accordionContent,
 		accordionIsOpen = defaults.accordionIsOpen.default,
-		accordionIcon = <svg xmlns="http://www.w3.org/2000/svg" width="199.404" height="199.404" viewBox="0 0 200 200"><path d="M199.404 63.993L171.12 35.709l-71.418 71.418-71.418-71.418L0 63.993l99.702 99.702z" /></svg>,
 	} = attributes;
 
 	const accordionClass = classnames(
@@ -42,9 +41,7 @@ export const AccordionEditor = (attributes) => {
 							keepPlaceholderOnFocus
 							formattingControls={[]}
 						/>
-						<div className={`${componentClass}__icon`}>
-							{accordionIcon}
-						</div>
+						<div className={`${componentClass}__icon`} dangerouslySetInnerHTML={{ __html: options.icon }}></div>
 					</button>
 					<section className={`${componentClass}__panel`}>
 						<div className={`${componentClass}__content`}>

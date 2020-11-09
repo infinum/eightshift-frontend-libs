@@ -1,0 +1,21 @@
+{
+	"componentName": "loader",
+	"title": "Loader",
+	"componentClass": "loader",
+	"example": {
+		"attributes": {
+			"loaderOverlay": true,
+			"loaderUse": true
+		}
+	},
+	"attributes": {
+		"loaderUseOverlay": {
+			"type": "boolean",
+			"default": true
+		},
+		"loaderUse": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

@@ -21,6 +21,7 @@ export const ImageOptions = (attributes) => {
 		imageAccept = defaults.imageAccept.default,
 		imageAllowedTypes = defaults.imageAllowedTypes.default,
 		imageBg = defaults.imageBg.default,
+		imageUsePlaceholder = defaults.imageUsePlaceholder.default,
 
 		showImageUrl = true,
 		showImageSize = true,
@@ -49,7 +50,7 @@ export const ImageOptions = (attributes) => {
 
 			{imageUse &&
 				<Fragment>
-					{(showImageUrl && imageUrl === '' && imageBg) &&
+					{(showImageUrl && imageUsePlaceholder && imageUrl === '') &&
 						<MediaPlaceholder
 							icon="format-image"
 							onSelect={(value) => {

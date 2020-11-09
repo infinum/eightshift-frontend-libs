@@ -11,7 +11,7 @@ $accordion: (
 	&[data-accordion-open='true'] {
 		> #{$this}__trigger {
 			#{$this}__icon {
-				transform: translateY(-50%), rotate(180deg);
+				transform: translateY(-50%) rotate(180deg);
 			}
 		}
 
@@ -60,6 +60,11 @@ $accordion: (
 		width: map-get-strict($accordion, icon-size);
 		pointer-events: none;
 		right: 25px;
+		transition: {
+			property: transform;
+			timing-function: ease-in;
+			duration: 0.3s;
+		}
 
 		svg {
 			height: map-get-strict($accordion, icon-size);
