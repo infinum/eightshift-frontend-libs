@@ -33,7 +33,6 @@ export const WrapperTab = ({ attributes, breakPoint, setAttributes }) => {
 				setAttributes={setAttributes}
 			/>
 
-
 			{!wrapperUseSimple &&
 				<Fragment>
 					{wrapperShowWidth && (

@@ -13,7 +13,6 @@ configure([
 	require.context('./../blocks/init/src/Blocks/custom', true, /docs\/story.js$/),
 	require.context('./../blocks/init/src/Blocks/wrapper', true, /docs\/story.js$/),
 	require.context('./../blocks/init/src/Blocks/variations', true, /docs\/story.js$/),
-	require.context('./../blocks/playground', true, /story.js$/),
 	require.context('./../scripts/components', true, /docs\/story.js$/),
 ], module);
 

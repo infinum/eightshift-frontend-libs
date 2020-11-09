@@ -2,9 +2,9 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
 import { PanelBody, TextControl, TabPanel, Icon, ToggleControl, Button, Modal } from '@wordpress/components';
-import { desktop, tablet, mobile, megaphone } from '@wordpress/icons';
+import { desktop, tablet, mobile, table } from '@wordpress/icons';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, tabButtonClass } from '@eightshift/frontend-libs/scripts/editor';
 import { WrapperTab } from './wrapper-tab';
 import globalSettings from '../../manifest.json';
 
@@ -113,23 +113,23 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								tabs={[
 									{
 										name: 'large',
-										title: <Icon icon={desktop} />,
-										className: `tab-large components-button is-button is-default custom-button-with-icon ${wrapperHideBlockLarge && 'show-info'}`,
+										title: <Fragment><Icon icon={desktop} />{'Large'}</Fragment>,
+										className: `tab-large ${tabButtonClass} ${wrapperHideBlockLarge && 'show-info'}`,
 									},
 									{
 										name: 'desktop',
-										title: <Icon icon={megaphone} />,
-										className: `tab-desktop components-button is-button is-default custom-button-with-icon ${wrapperHideBlockDesktop && 'show-info'}`,
+										title: <Fragment><Icon icon={table} />{'Desktop'}</Fragment>,
+										className: `tab-desktop ${tabButtonClass} ${wrapperHideBlockDesktop && 'show-info'}`,
 									},
 									{
 										name: 'tablet',
-										title: <Icon icon={tablet} />,
-										className: `tab-tablet components-button is-button is-default custom-button-with-icon ${wrapperHideBlockTablet && 'show-info'}`,
+										title: <Fragment><Icon icon={tablet} />{'Tablet'}</Fragment>,
+										className: `tab-tablet ${tabButtonClass} ${wrapperHideBlockTablet && 'show-info'}`,
 									},
 									{
 										name: 'mobile',
-										title: <Icon icon={mobile} />,
-										className: `tab-mobile components-button is-button is-default custom-button-with-icon ${wrapperHideBlockMobile && 'show-info'}`,
+										title: <Fragment><Icon icon={mobile} />{'Mobile'}</Fragment>,
+										className: `tab-mobile ${tabButtonClass} ${wrapperHideBlockMobile && 'show-info'}`,
 									},
 								]
 								}
@@ -137,56 +137,32 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								{(tab) => (
 									<Fragment>
 										{tab.name === 'large' && (
-											<Fragment>
-												<br />
-												<strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
-												<p className="block-editor-block-card__description">{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
-												<br />
-												<WrapperTab
-													attributes={attributes}
-													breakPoint={'large'}
-													setAttributes={setAttributes}
-												/>
-											</Fragment>
+											<WrapperTab
+												attributes={attributes}
+												breakPoint={'large'}
+												setAttributes={setAttributes}
+											/>
 										)}
 										{tab.name === 'desktop' && (
-											<Fragment>
-												<br />
-												<strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
-												<p className="block-editor-block-card__description">{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-												<br />
-												<WrapperTab
-													attributes={attributes}
-													breakPoint={'desktop'}
-													setAttributes={setAttributes}
-												/>
-											</Fragment>
+											<WrapperTab
+												attributes={attributes}
+												breakPoint={'desktop'}
+												setAttributes={setAttributes}
+											/>
 										)}
 										{tab.name === 'tablet' && (
-											<Fragment>
-												<br />
-												<strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
-												<p className="block-editor-block-card__description">{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-												<br />
-												<WrapperTab
-													attributes={attributes}
-													breakPoint={'tablet'}
-													setAttributes={setAttributes}
-												/>
-											</Fragment>
+											<WrapperTab
+												attributes={attributes}
+												breakPoint={'tablet'}
+												setAttributes={setAttributes}
+											/>
 										)}
 										{tab.name === 'mobile' && (
-											<Fragment>
-												<br />
-												<strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
-												<p className="block-editor-block-card__description">{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-												<br />
-												<WrapperTab
-													attributes={attributes}
-													breakPoint={'mobile'}
-													setAttributes={setAttributes}
-												/>
-											</Fragment>
+											<WrapperTab
+												attributes={attributes}
+												breakPoint={'mobile'}
+												setAttributes={setAttributes}
+											/>
 										)}
 									</Fragment>
 								)}

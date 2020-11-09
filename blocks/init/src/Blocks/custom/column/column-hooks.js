@@ -4,7 +4,7 @@ import React from 'react';
 import { assign } from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { select } from '@wordpress/data';
+import { addFilter } from '@wordpress/hooks';
 import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './manifest.json';
 import globalManifest from '../../manifest.json';
@@ -84,5 +84,5 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-	wp.hooks.addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+	addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
 };

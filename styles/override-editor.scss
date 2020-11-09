@@ -99,12 +99,15 @@ body {
 		}
 
 		.custom-button-with-icon {
-			display: inline-flex;
+			display: flex;
 			width: 100%;
 			align-items: center;
 			justify-content: center;
 			position: relative;
 			border-radius: 5px;
+			padding: 0;
+			font-size: 12px;
+			flex-direction: column;
 
 			&.show-info::after {
 				content: '';
