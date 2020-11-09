@@ -74,6 +74,7 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 		return {
 			blockName: `${getNamespace(globalManifest, blockManifest)}/${variation.parentName}`,
 			attributes: variation.example.attributes,
+			innerBlocks: getInnerBlocks(),
 			isVariation,
 		};
 	}
@@ -92,6 +93,7 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 	return {
 		blockName,
 		attributes: block.example.attributes,
+		innerBlocks: getInnerBlocks(block.example.innerBlocks),
 	};
 };
 
@@ -104,6 +106,7 @@ export const Gutenberg = ({ props }) => {
 	const {
 		blockName,
 		attributes,
+		innerBlocks,
 	} = props;
 
 	// Set default registered blocks.
@@ -112,7 +115,7 @@ export const Gutenberg = ({ props }) => {
 	useEffect(() => {
 		select('core/blocks').getBlockTypes();
 
-		const block = createBlock(blockName, attributes, []);
+		const block = createBlock(blockName, attributes, innerBlocks);
 		blocks.push(block);
 	}, []);
 
