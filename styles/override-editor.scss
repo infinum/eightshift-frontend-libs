@@ -124,6 +124,19 @@ body {
 		}
 	}
 
+	.custom-responsive {
+		.components-base-control__field {
+			.components-base-control__label {
+				.components-button {
+					margin-left: auto;
+				}
+			}
+			.components-base-control {
+				margin-bottom: 0;
+			}
+		}
+	}
+
 	// Aligning image and text vertically.
 	.components-base-control {
 		.components-base-control__label,
@@ -131,8 +144,8 @@ body {
 			display: flex;
 			align-items: center;
 	
-			.dashicon,
-			svg {
+			> .dashicon,
+			> svg {
 				margin-right: 10px;
 			}
 		}

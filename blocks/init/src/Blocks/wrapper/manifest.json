@@ -147,29 +147,29 @@
 			"type": "int"
 		},
 
-		"wrapperSpacingInTopLarge": {
+		"wrapperSpacingTopInLarge": {
 			"type": "int"
 		},
-		"wrapperSpacingInTopDesktop": {
+		"wrapperSpacingTopInDesktop": {
 			"type": "int"
 		},
-		"wrapperSpacingInTopTablet": {
+		"wrapperSpacingTopInTablet": {
 			"type": "int"
 		},
-		"wrapperSpacingInTopMobile": {
+		"wrapperSpacingTopInMobile": {
 			"type": "int"
 		},
 
-		"wrapperSpacingInBottomLarge": {
+		"wrapperSpacingBottomInLarge": {
 			"type": "int"
 		},
-		"wrapperSpacingInBottomDesktop": {
+		"wrapperSpacingBottomInDesktop": {
 			"type": "int"
 		},
-		"wrapperSpacingInBottomTablet": {
+		"wrapperSpacingBottomInTablet": {
 			"type": "int"
 		},
-		"wrapperSpacingInBottomMobile": {
+		"wrapperSpacingBottomInMobile": {
 			"type": "int"
 		},
 
@@ -199,16 +199,16 @@
 			"type": "boolean"
 		},
 
-		"wrapperHideBlockLarge": {
+		"wrapperHideBLarge": {
 			"type": "boolean"
 		},
-		"wrapperHideBlockDesktop": {
+		"wrapperHideBDesktop": {
 			"type": "boolean"
 		},
-		"wrapperHideBlockTablet": {
+		"wrapperHideBTablet": {
 			"type": "boolean"
 		},
-		"wrapperHideBlockMobile": {
+		"wrapperHideBMobile": {
 			"type": "boolean"
 		}
 	},
@@ -250,6 +250,17 @@
 		"colors": [
 			"primary",
 			"black"
+		],
+		"widths": {
+			"min": 0,
+			"max": 12,
+			"step": 1
+		},
+		"breakpoints": [
+			"large",
+			"desktop",
+			"tablet",
+			"mobile"
 		]
 	}
 }

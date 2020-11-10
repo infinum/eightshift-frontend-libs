@@ -1,0 +1,54 @@
+# Color Palette Custom
+
+This is a slightly modified version of ColorPalette (from @wordpress/components) which saves color's slug (or name if slug not provided) rather than color's hex (which is the default behavior).
+
+The reasoning is that this way we can add color names as class modifiers to blocks and then style those blocks in CSS / SCSS (rather than having to inline colors as with the default ColorPalette component).
+
+By default it uses the default editor palette (see https://developer.wordpress.org/block-editor/developers/themes/theme-support/#block-color-palettes) but you can override the colors for particular blocks by passing your own `colors` prop.
+
+## Example #1 - Default
+
+```jsx
+<ColorPaletteCustom
+	label={'Block Color'}
+	help={'Change block color'}
+	value={color}
+	onChange={onChangeColor}
+/>
+```
+
+### Example #2 - Override colors using some of the editor-color-palette colors
+```jsx
+import { getPaletteColors } from '@eightshift/frontend-libs/scripts/editor';
+
+const {
+	color1,
+	color2
+} = getPaletteColors();
+
+<ColorPaletteCustom
+	label={'Block Color'}
+	help={'Change block color'}
+	value={color}
+	onChange={onChangeColor}
+	colors={[color1, color2]}
+/>
+```
+
+### Example #3 - Override colors using custom colors not in editor palette
+```jsx
+
+const specificColor = {
+	name: 'Specific',
+	slug: 'specific',
+	color: '#FF11BB'
+};
+
+<ColorPaletteCustom
+	label={'Block Color'}
+	help={'Change block color'}
+	value={color}
+	onChange={onChangeColor}
+	colors={[specificColor]}
+/>
+```

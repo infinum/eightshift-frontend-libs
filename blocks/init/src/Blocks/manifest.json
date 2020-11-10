@@ -5,6 +5,12 @@
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,
+		"breakpoints": {
+			"mobile": 767,
+			"tablet": 991,
+			"desktop": 1199,
+			"large": 1200
+		},
 		"containers": {
 			"default": "1330px"
 		},
