@@ -4,13 +4,11 @@
 */
 
 $base-sea-color: #F5F5F5;
-$base-silver-color: #EAEAEA;
-$base-rouge-color: #dc0808;
+$base-silver-color: #D4D1D1;
 
 $override-map: (
-	tabs-panel: $base-sea-color,
+	highlighted-panel: $base-sea-color,
 	divider: $base-silver-color,
-	tabs-panel-info: $base-rouge-color,
 );
 
 /* stylelint-disable */
@@ -84,57 +82,30 @@ body {
 	.custom-divider {
 		width: 100%;
 		height: 1px;
-		background-color: map-get-strict($override-map, tabs-panel);
+		background-color: map-get-strict($override-map, divider);
 		margin: 10px 0;
 	}
 
-	// Creating custom button tabs style.
-	.custom-button-tabs {
-		background-color: map-get-strict($override-map, tabs-panel);
-		padding: 16px;
-		margin: -5px -16px 25px;
-
-		.components-tab-panel__tabs {
-			display: flex;
-		}
-
-		.custom-button-with-icon {
-			display: flex;
-			width: 100%;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			border-radius: 5px;
-			padding: 0;
-			font-size: 12px;
-			flex-direction: column;
-
-			&.show-info::after {
-				content: '';
-				width: 12px;
-				height: 12px;
-				position: absolute;
-				left: 50%;
-				transform: translateX(-50%);
-				top: -6px;
-				border-radius: 50px;
-				background-color: map-get-strict($override-map, tabs-panel-info);
-				visibility: visible;
-			}
-		}
-	}
-
+	// Custom responsive field.
 	.custom-responsive {
 		.components-base-control__field {
-			.components-base-control__label {
-				.components-button {
-					margin-left: auto;
+			.components-button {
+				margin-left: auto;
+
+				svg {
+					margin-right: 0;
 				}
 			}
+
 			.components-base-control {
 				margin-bottom: 0;
 			}
 		}
+	}
+
+	// Highlighted panel
+	.custom-highlighted-panel {
+		background-color: map-get-strict($override-map, highlighted-panel);
 	}
 
 	// Aligning image and text vertically.
@@ -155,12 +126,4 @@ body {
 	.components-range-control__slider {
 		min-width: 1px;
 	}
-
-	.media-remove {
-		position: absolute;
-		left: 10px;
-		top: 10px;
-		z-index: 50;
-	}
-
 }
