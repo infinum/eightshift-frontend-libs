@@ -6,6 +6,6 @@
  * @package EightshiftBoilerplate
  */
 
-use SolplanetVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 echo wp_kses_post(Components::render('video', $attributes));

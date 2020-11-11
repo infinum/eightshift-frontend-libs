@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use SolplanetVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'layout';
 $selectorClass = $attributes['selectorClass'] ?? '';

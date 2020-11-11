@@ -6,8 +6,8 @@
  * @package EightshiftBoilerplate
  */
 
-use Solplanet\ThemeOptions\ThemeOptions;
-use SolplanetVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplate\ThemeOptions\ThemeOptions;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'social-links';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;

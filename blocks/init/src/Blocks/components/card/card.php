@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use SolplanetVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $componentClass = $attributes['componentClass'] ?? 'card-simple';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
