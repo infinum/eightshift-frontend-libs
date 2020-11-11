@@ -99,10 +99,6 @@ $wrapper: (
 	// Content Offset.
 	&__offset {
 		@include responsive-selectors {
-			&--0 {
-				margin-left: 0;
-			}
-
 			@include grid-offset-modifiers;
 		}
 	}

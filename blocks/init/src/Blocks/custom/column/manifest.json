@@ -88,6 +88,12 @@
 		}
 	},
 	"options": {
+		"breakpoints": [
+			"large",
+			"desktop",
+			"tablet",
+			"mobile"
+		],
 		"widths": {
 			"min":  1,
 			"max":  12,

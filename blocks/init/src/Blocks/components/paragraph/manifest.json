@@ -6,7 +6,7 @@
 		"attributes": {
 			"paragraphContent": "This is paragraph",
 			"paragraphSize": "default",
-			"paragraphColor": "primary",
+			"paragraphColor": "black",
 			"paragraphAlign": "left",
 			"paragraphUse": true
 		}
@@ -21,7 +21,7 @@
 		},
 		"paragraphColor": {
 			"type": "string",
-			"default": "primary"
+			"default": "black"
 		},
 		"paragraphAlign": {
 			"type": "string",

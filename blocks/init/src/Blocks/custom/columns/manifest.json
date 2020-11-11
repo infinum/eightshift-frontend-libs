@@ -11,8 +11,8 @@
 	],
 	"example": {
 		"attributes": {
-			"gutterLarge": "default",
-			"verticalSpacingLarge": "default"
+			"gutterLarge": 30,
+			"verticalSpacingLarge": 30
 		},
 		"innerBlocks": [
 			{
@@ -81,69 +81,44 @@
 		},
 
 		"gutterLarge": {
-			"type": "string",
-			"default": "default"
+			"type": "int",
+			"default": 30
 		},
 		"gutterDesktop": {
-			"type": "string"
+			"type": "int"
 		},
 		"gutterTablet": {
-			"type": "string"
+			"type": "int"
 		},
 		"gutterMobile": {
-			"type": "string"
+			"type": "int"
 		},
 
 		"verticalSpacingLarge": {
-			"type": "string",
-			"default": "default"
+			"type": "int",
+			"default": 30
 		},
 		"verticalSpacingDesktop": {
-			"type": "string"
+			"type": "int"
 		},
 		"verticalSpacingTablet": {
-			"type": "string"
+			"type": "int"
 		},
 		"verticalSpacingMobile": {
-			"type": "string"
+			"type": "int"
 		}
 	},
 	"options": {
-		"gutters": [
-			{
-				"label": "Not Set",
-				"value": ""
-			},
-			{
-				"label": "Big",
-				"value": "big"
-			},
-			{
-				"label": "Default",
-				"value": "default"
-			},
-			{
-				"label": "None",
-				"value": "none"
-			}
-		],
-		"verticalSpacings": [
-			{
-				"label": "Not Set",
-				"value": ""
-			},
-			{
-				"label": "None",
-				"value": "none"
-			},
-			{
-				"label": "Default",
-				"value": "default"
-			},
-			{
-				"label": "Big",
-				"value": "big"
-			}
+		"gutters": {
+			"min": 0,
+			"max": 100,
+			"step": 10
+		},
+		"breakpoints": [
+			"large",
+			"desktop",
+			"tablet",
+			"mobile"
 		]
 	}
 }

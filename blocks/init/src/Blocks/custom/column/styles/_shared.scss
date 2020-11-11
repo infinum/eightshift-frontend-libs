@@ -13,24 +13,16 @@
 
 	&__offset {
 		@include responsive-selectors {
-			&--0 {
-				margin-left: 0;
-			}
-
 			@include grid-offset-modifiers;
 		}
 	}
 
 	&__order {
 		@include responsive-selectors {
-
-			$i: 1;
-			@while $i < 20 {
+			@for $i from 1 through 20 {
 				&--#{$i} {
 					order: #{$i};
 				}
-
-				$i: $i + 1;
 			}
 		}
 	}

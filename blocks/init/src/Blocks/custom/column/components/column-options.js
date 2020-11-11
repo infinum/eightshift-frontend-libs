@@ -3,104 +3,163 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { PanelBody, TabPanel, Icon } from '@wordpress/components';
-import { desktop, tablet, mobile, megaphone } from '@wordpress/icons';
-import { ColumnTab } from './column-tab';
+import { PanelBody, Icon, RangeControl, ToggleControl } from '@wordpress/components';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
+import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
+import manifest from './../manifest.json';
+
+const { attributes: reset, options } = manifest;
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
-	const {
-		hideLarge,
-		hideDesktop,
-		hideTablet,
-		hideMobile,
-	} = attributes;
+	const width = [
+		attributes.widthLarge,
+		attributes.widthDesktop,
+		attributes.widthTablet,
+		attributes.widthMobile,
+	];
+
+	const offset = [
+		attributes.offsetLarge,
+		attributes.offsetDesktop,
+		attributes.offsetTablet,
+		attributes.offsetMobile,
+	];
+
+	const order = [
+		attributes.orderLarge,
+		attributes.orderDesktop,
+		attributes.orderTablet,
+		attributes.orderMobile,
+	];
+
+	const hide = [
+		attributes.hideLarge,
+		attributes.hideDesktop,
+		attributes.hideTablet,
+		attributes.hideMobile,
+	];
 
 	return (
 		<PanelBody title={__('Column Details', 'eightshift-boilerplate')}>
-			<TabPanel
-				className="custom-button-tabs"
-				activeClass="components-button is-button is-primary"
-				tabs={[
-					{
-						name: 'large',
-						title: <Icon icon={desktop} />,
-						className: `tab-large components-button is-button is-default custom-button-with-icon ${hideLarge && 'show-info'}`,
-					},
-					{
-						name: 'desktop',
-						title: <Icon icon={megaphone} />,
-						className: `tab-desktop components-button is-button is-default custom-button-with-icon ${hideDesktop && 'show-info'}`,
-					},
-					{
-						name: 'tablet',
-						title: <Icon icon={tablet} />,
-						className: `tab-tablet components-button is-button is-default custom-button-with-icon ${hideTablet && 'show-info'}`,
-					},
-					{
-						name: 'mobile',
-						title: <Icon icon={mobile} />,
-						className: `tab-mobile components-button is-button is-default custom-button-with-icon ${hideMobile && 'show-info'}`,
-					},
-				]
+
+			<HelpModal type="column" />
+
+			<br /><br />
+
+			<Responsive
+				label={
+					<Fragment>
+						<Icon icon={icons.width} />
+						{__('Width', 'eightshift-boilerplate')}
+					</Fragment>
 				}
 			>
-				{(tab) => (
+				{width.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `width${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.widths.min}
+								max={options.widths.max}
+								step={options.widths.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
+
+			<Responsive
+				label={
 					<Fragment>
-						{tab.name === 'large' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnTab
-									breakPoint={'large'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'desktop' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnTab
-									breakPoint={'desktop'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'tablet' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnTab
-									breakPoint={'tablet'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'mobile' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnTab
-									breakPoint={'mobile'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
+						<Icon icon={icons.offset} />
+						{__('Offset', 'eightshift-boilerplate')}
 					</Fragment>
-				)}
-			</TabPanel>
+				}
+			>
+				{offset.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `offset${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.widths.min}
+								max={options.widths.max}
+								step={options.widths.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
+
+			<Responsive
+				label={
+					<Fragment>
+						<Icon icon={icons.width} />
+						{__('Order', 'eightshift-boilerplate')}
+					</Fragment>
+				}
+			>
+				{order.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `order${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.orders.min}
+								max={options.orders.max}
+								step={options.orders.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
+
+			<Responsive
+				label={
+					<Fragment>
+						<Icon icon={icons.width} />
+						{__('Hide', 'eightshift-boilerplate')}
+					</Fragment>
+				}
+			>
+				{hide.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `hide${point}`;
+
+					return (
+						<Fragment key={index}>
+							<ToggleControl
+								label={point}
+								checked={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
 		</PanelBody>
 	);
 };

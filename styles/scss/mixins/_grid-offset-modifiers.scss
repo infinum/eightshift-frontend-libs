@@ -32,7 +32,7 @@
 /// ```
 
 @mixin grid-offset-modifiers($cols: $base-col-number, $wrapper: false, $selector: 'margin-left') {
-	@for $i from 1 through $cols {
+	@for $i from 0 through $cols {
 		&--#{$i} {
 			@if $wrapper {
 				#{$wrapper} {

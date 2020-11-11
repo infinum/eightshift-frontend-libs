@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
 import { BaseControl, Button, Tooltip } from '@wordpress/components';
 import { aspectRatio } from '@wordpress/icons';
@@ -6,7 +7,8 @@ import { aspectRatio } from '@wordpress/icons';
 export const Responsive = (props) => {
 	const {
 		label,
-		children,
+		tooltip = __('Responsive overrides', 'eightshift-boilerplate'),
+		children = [],
 	} = props;
 
 	const [isOpen, setActive] = useState(false);
@@ -16,7 +18,7 @@ export const Responsive = (props) => {
 			label={
 				<Fragment>
 					{label}
-					<Tooltip text="More information">
+					<Tooltip text={tooltip}>
 						<Button isDefault isSmall icon={aspectRatio} onClick={() => setActive(!isOpen)}></Button>
 					</Tooltip>
 				</Fragment>

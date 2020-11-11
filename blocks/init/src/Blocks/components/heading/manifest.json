@@ -7,7 +7,7 @@
 			"headingContent": "This is heading",
 			"headingLevel": 2,
 			"headingSize": "default",
-			"headingColor": "primary",
+			"headingColor": "black",
 			"headingAlign": "left",
 			"headingUse": true
 		}
@@ -26,7 +26,7 @@
 		},
 		"headingColor": {
 			"type": "string",
-			"default": "primary"
+			"default": "black"
 		},
 		"headingAlign": {
 			"type": "string",
@@ -40,11 +40,11 @@
 	"options": {
 		"sizes": [
 			{
-				"label": "Default (50px)",
+				"label": "Default (30px)",
 				"value": "default"
 			},
 			{
-				"label": "Big (70px)",
+				"label": "Big (50px)",
 				"value": "big"
 			}
 		],

@@ -3,97 +3,94 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { PanelBody, TabPanel, Icon } from '@wordpress/components';
-import { desktop, tablet, mobile, megaphone } from '@wordpress/icons';
-import { ColumnsTab } from './columns-tab';
+import { PanelBody, Icon, RangeControl } from '@wordpress/components';
+import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
+import manifest from './../manifest.json';
+
+const { attributes: reset, options } = manifest;
 
 export const ColumnsOptions = ({ attributes, setAttributes }) => {
+	const gutter = [
+		attributes.gutterLarge,
+		attributes.gutterDesktop,
+		attributes.gutterTablet,
+		attributes.gutterMobile,
+	];
+
+	const verticalSpacing = [
+		attributes.verticalSpacingLarge,
+		attributes.verticalSpacingDesktop,
+		attributes.verticalSpacingTablet,
+		attributes.verticalSpacingMobile,
+	];
+
 	return (
 		<PanelBody title={__('Columns Details', 'eightshift-boilerplate')}>
-			<TabPanel
-				className="custom-button-tabs"
-				activeClass="components-button is-button is-primary"
-				tabs={[
-					{
-						name: 'large',
-						title: <Icon icon={desktop} />,
-						className: 'tab-large button button-secondary custom-button-with-icon',
-					},
-					{
-						name: 'desktop',
-						title: <Icon icon={megaphone} />,
-						className: 'tab-desktop button button-secondary custom-button-with-icon',
-					},
-					{
-						name: 'tablet',
-						title: <Icon icon={tablet} />,
-						className: 'tab-tablet button button-secondary custom-button-with-icon',
-					},
-					{
-						name: 'mobile',
-						title: <Icon icon={mobile} />,
-						className: 'tab-mobile button button-secondary custom-button-with-icon',
-					},
-				]
+
+			<HelpModal type="columns" />
+
+			<br /><br />
+
+			<Responsive
+				label={
+					<Fragment>
+						<Icon icon={icons.containerWidth} />
+						{__('Gutter', 'eightshift-boilerplate')}
+					</Fragment>
 				}
 			>
-				{(tab) => (
+				{gutter.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `gutter${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.gutters.min}
+								max={options.gutters.max}
+								step={options.gutters.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
+
+			<Responsive
+				label={
 					<Fragment>
-						{tab.name === 'large' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Large Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control large screens options.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnsTab
-									breakPoint={'large'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'desktop' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Desktop Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control desktop screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnsTab
-									breakPoint={'desktop'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'tablet' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title">{__('Tablet Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control tablet screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnsTab
-									breakPoint={'tablet'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
-						{tab.name === 'mobile' && (
-							<Fragment>
-								<br />
-								<strong className="notice-title ">{__('Mobile Layout Options', 'eightshift-boilerplate')}</strong>
-								<p>{__('This options will only control mobile screens options. If nothing is set, parent options will be used.', 'eightshift-boilerplate')}</p>
-								<br />
-								<ColumnsTab
-									breakPoint={'mobile'}
-									attributes={attributes}
-									setAttributes={setAttributes}
-								/>
-							</Fragment>
-						)}
+						<Icon icon={icons.containerHeight} />
+						{__('Vertical Spacing', 'eightshift-boilerplate')}
 					</Fragment>
-				)}
-			</TabPanel>
+				}
+			>
+				{verticalSpacing.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `verticalSpacing${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.gutters.min}
+								max={options.gutters.max}
+								step={options.gutters.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
 		</PanelBody>
 	);
 };
