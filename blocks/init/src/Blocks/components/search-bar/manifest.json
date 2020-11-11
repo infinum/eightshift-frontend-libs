@@ -1,5 +1,5 @@
 {
-	"componentName": "searchBar",
+	"componentName": "search-bar",
 	"title": "Search Bar",
 	"componentClass": "search-bar",
 	"example": {

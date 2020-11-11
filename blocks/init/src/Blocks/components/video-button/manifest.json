@@ -1,5 +1,5 @@
 {
-	"componentName": "videoButton",
+	"componentName": "video-button",
 	"title": "Video Button",
 	"componentClass": "video-button",
 	"example": {

@@ -1,5 +1,5 @@
 {
-	"componentName": "pageOverlay",
+	"componentName": "page-overlay",
 	"title": "Page Overlay",
 	"componentClass": "page-overlay",
 	"example": {
