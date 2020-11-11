@@ -9,56 +9,6 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperDisable,
 		wrapperId,
 		wrapperBackgroundColor,
-
-		wrapperOffsetLarge,
-		wrapperOffsetDesktop,
-		wrapperOffsetTablet,
-		wrapperOffsetMobile,
-
-		wrapperWidthLarge,
-		wrapperWidthDesktop,
-		wrapperWidthTablet,
-		wrapperWidthMobile,
-
-		wrapperGutterLarge,
-		wrapperGutterDesktop,
-		wrapperGutterTablet,
-		wrapperGutterMobile,
-
-		wrapperContainerWidthLarge,
-		wrapperContainerWidthDesktop,
-		wrapperContainerWidthTablet,
-		wrapperContainerWidthMobile,
-
-		wrapperSpacingTopLarge,
-		wrapperSpacingTopDesktop,
-		wrapperSpacingTopTablet,
-		wrapperSpacingTopMobile,
-
-		wrapperSpacingBottomLarge,
-		wrapperSpacingBottomDesktop,
-		wrapperSpacingBottomTablet,
-		wrapperSpacingBottomMobile,
-
-		wrapperSpacingInTopLarge,
-		wrapperSpacingInTopDesktop,
-		wrapperSpacingInTopTablet,
-		wrapperSpacingInTopMobile,
-
-		wrapperSpacingInBottomLarge,
-		wrapperSpacingInBottomDesktop,
-		wrapperSpacingInBottomTablet,
-		wrapperSpacingInBottomMobile,
-
-		wrapperDividerTopLarge,
-		wrapperDividerTopDesktop,
-		wrapperDividerTopTablet,
-		wrapperDividerTopMobile,
-
-		wrapperDividerBottomLarge,
-		wrapperDividerBottomDesktop,
-		wrapperDividerBottomTablet,
-		wrapperDividerBottomMobile,
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -66,73 +16,73 @@ export const WrapperEditor = ({ attributes, children }) => {
 	}
 
 	const wrapperSpacingTop = {
-		large: wrapperSpacingTopLarge,
-		desktop: wrapperSpacingTopDesktop,
-		tablet: wrapperSpacingTopTablet,
-		mobile: wrapperSpacingTopMobile,
+		large: attributes.wrapperSpacingTopLarge,
+		desktop: attributes.wrapperSpacingTopDesktop,
+		tablet: attributes.wrapperSpacingTopTablet,
+		mobile: attributes.wrapperSpacingTopMobile,
 	};
 
 	const wrapperSpacingBottom = {
-		large: wrapperSpacingBottomLarge,
-		desktop: wrapperSpacingBottomDesktop,
-		tablet: wrapperSpacingBottomTablet,
-		mobile: wrapperSpacingBottomMobile,
+		large: attributes.wrapperSpacingBottomLarge,
+		desktop: attributes.wrapperSpacingBottomDesktop,
+		tablet: attributes.wrapperSpacingBottomTablet,
+		mobile: attributes.wrapperSpacingBottomMobile,
 	};
 
-	const wrapperSpacingInTop = {
-		large: wrapperSpacingInTopLarge,
-		desktop: wrapperSpacingInTopDesktop,
-		tablet: wrapperSpacingInTopTablet,
-		mobile: wrapperSpacingInTopMobile,
+	const wrapperSpacingTopIn = {
+		large: attributes.wrapperSpacingTopInLarge,
+		desktop: attributes.wrapperSpacingTopInDesktop,
+		tablet: attributes.wrapperSpacingTopInTablet,
+		mobile: attributes.wrapperSpacingTopInMobile,
 	};
 
-	const wrapperSpacingInBottom = {
-		large: wrapperSpacingInBottomLarge,
-		desktop: wrapperSpacingInBottomDesktop,
-		tablet: wrapperSpacingInBottomTablet,
-		mobile: wrapperSpacingInBottomMobile,
+	const wrapperSpacingBottomIn = {
+		large: attributes.wrapperSpacingBottomInLarge,
+		desktop: attributes.wrapperSpacingBottomInDesktop,
+		tablet: attributes.wrapperSpacingBottomInTablet,
+		mobile: attributes.wrapperSpacingBottomInMobile,
 	};
 
 	const wrapperDividerTop = {
-		large: wrapperDividerTopLarge,
-		desktop: wrapperDividerTopDesktop,
-		tablet: wrapperDividerTopTablet,
-		mobile: wrapperDividerTopMobile,
+		large: attributes.wrapperDividerTopLarge,
+		desktop: attributes.wrapperDividerTopDesktop,
+		tablet: attributes.wrapperDividerTopTablet,
+		mobile: attributes.wrapperDividerTopMobile,
 	};
 
 	const wrapperDividerBottom = {
-		large: wrapperDividerBottomLarge,
-		desktop: wrapperDividerBottomDesktop,
-		tablet: wrapperDividerBottomTablet,
-		mobile: wrapperDividerBottomMobile,
+		large: attributes.wrapperDividerBottomLarge,
+		desktop: attributes.wrapperDividerBottomDesktop,
+		tablet: attributes.wrapperDividerBottomTablet,
+		mobile: attributes.wrapperDividerBottomMobile,
 	};
 
 	const wrapperContainerWidth = {
-		large: wrapperContainerWidthLarge,
-		desktop: wrapperContainerWidthDesktop,
-		tablet: wrapperContainerWidthTablet,
-		mobile: wrapperContainerWidthMobile,
+		large: attributes.wrapperContainerWidthLarge,
+		desktop: attributes.wrapperContainerWidthDesktop,
+		tablet: attributes.wrapperContainerWidthTablet,
+		mobile: attributes.wrapperContainerWidthMobile,
 	};
 
 	const wrapperGutter = {
-		large: wrapperGutterLarge,
-		desktop: wrapperGutterDesktop,
-		tablet: wrapperGutterTablet,
-		mobile: wrapperGutterMobile,
+		large: attributes.wrapperGutterLarge,
+		desktop: attributes.wrapperGutterDesktop,
+		tablet: attributes.wrapperGutterTablet,
+		mobile: attributes.wrapperGutterMobile,
 	};
 
 	const wrapperWidth = {
-		large: wrapperWidthLarge,
-		desktop: wrapperWidthDesktop,
-		tablet: wrapperWidthTablet,
-		mobile: wrapperWidthMobile,
+		large: attributes.wrapperWidthLarge,
+		desktop: attributes.wrapperWidthDesktop,
+		tablet: attributes.wrapperWidthTablet,
+		mobile: attributes.wrapperWidthMobile,
 	};
 
 	const wrapperOffset = {
-		large: wrapperOffsetLarge,
-		desktop: wrapperOffsetDesktop,
-		tablet: wrapperOffsetTablet,
-		mobile: wrapperOffsetMobile,
+		large: attributes.wrapperOffsetLarge,
+		desktop: attributes.wrapperOffsetDesktop,
+		tablet: attributes.wrapperOffsetTablet,
+		mobile: attributes.wrapperOffsetMobile,
 	};
 
 	const wrapperMainClass = 'wrap';
@@ -142,8 +92,8 @@ export const WrapperEditor = ({ attributes, children }) => {
 		`${wrapperBackgroundColor && `${wrapperMainClass}__bg-color--${wrapperBackgroundColor}`}`,
 		`${responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass)}`,
 		`${responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperSpacingInTop, 'spacing-in-top', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperSpacingInBottom, 'spacing-in-bottom', wrapperMainClass)}`,
+		`${responsiveSelectors(wrapperSpacingTopIn, 'spacing-in-top', wrapperMainClass)}`,
+		`${responsiveSelectors(wrapperSpacingBottomIn, 'spacing-in-bottom', wrapperMainClass)}`,
 		`${responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false)}`,
 		`${responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false)}`,
 	);
