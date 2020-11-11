@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
 	const {
@@ -8,7 +9,6 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperUseSimple,
 		wrapperDisable,
 		wrapperId,
-		wrapperBackgroundColor,
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -85,34 +85,38 @@ export const WrapperEditor = ({ attributes, children }) => {
 		mobile: attributes.wrapperOffsetMobile,
 	};
 
-	const wrapperMainClass = 'wrap';
+	const wrapperHide = {
+		large: attributes.wrapperHideLarge,
+		desktop: attributes.wrapperHideDesktop,
+		tablet: attributes.wrapperHideTablet,
+		mobile: attributes.wrapperHideMobile,
+	};
+
+	const wrapperMainClass = 'wrapper';
 
 	const wrapperClass = classnames(
 		wrapperMainClass,
-		`${wrapperBackgroundColor && `${wrapperMainClass}__bg-color--${wrapperBackgroundColor}`}`,
-		`${responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperSpacingTopIn, 'spacing-in-top', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperSpacingBottomIn, 'spacing-in-bottom', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false)}`,
-		`${responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false)}`,
+		selector(wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', attributes, manifest),
+		responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass),
+		responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass),
+		responsiveSelectors(wrapperSpacingTopIn, 'spacing-top-in', wrapperMainClass),
+		responsiveSelectors(wrapperSpacingBottomIn, 'spacing-bottom-in', wrapperMainClass),
+		responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false),
+		responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false),
+		responsiveSelectors(wrapperHide, 'hide-editor', wrapperMainClass, false),
 	);
 
 	const wrapperContainerClass = classnames(
 		`${wrapperMainClass}__container`,
-		`${responsiveSelectors(wrapperContainerWidth, 'container-width', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperGutter, 'gutter', wrapperMainClass)}`,
+		responsiveSelectors(wrapperContainerWidth, 'container-width', wrapperMainClass),
+		responsiveSelectors(wrapperGutter, 'gutter', wrapperMainClass),
 	);
 
 	const wrapperInnerClass = classnames(
 		`${wrapperMainClass}__inner`,
-		`${responsiveSelectors(wrapperWidth, 'width', wrapperMainClass)}`,
-		`${responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass)}`,
+		responsiveSelectors(wrapperWidth, 'width', wrapperMainClass),
+		responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass),
 	);
-
-	if (!wrapperUse) {
-		return children;
-	}
 
 	return (
 		<div className={wrapperClass} id={wrapperId}>

@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
 import manifest from '../manifest.json';
-import { LayoutThreeColumnsEditor } from '../../layout-three-colums/components/layout-three-columns-editor';
+import { LayoutThreeColumnsEditor } from '../../layout-three-columns/components/layout-three-columns-editor';
 import { editor as CopyrightEditor } from '../../copyright/docs/story';
 
 export default {

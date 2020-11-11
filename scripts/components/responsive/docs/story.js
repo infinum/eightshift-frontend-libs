@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import readme from './readme.md';
-import { __, sprintf } from '@wordpress/i18n';
-import { PanelBody, TextControl, Icon, ToggleControl, Button, Modal, SelectControl, RangeControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { Responsive } from '../responsive';

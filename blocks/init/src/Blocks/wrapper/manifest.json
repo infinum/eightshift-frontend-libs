@@ -199,16 +199,16 @@
 			"type": "boolean"
 		},
 
-		"wrapperHideBLarge": {
+		"wrapperHideLarge": {
 			"type": "boolean"
 		},
-		"wrapperHideBDesktop": {
+		"wrapperHideDesktop": {
 			"type": "boolean"
 		},
-		"wrapperHideBTablet": {
+		"wrapperHideTablet": {
 			"type": "boolean"
 		},
-		"wrapperHideBMobile": {
+		"wrapperHideMobile": {
 			"type": "boolean"
 		}
 	},

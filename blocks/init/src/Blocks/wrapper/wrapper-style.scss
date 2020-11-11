@@ -8,7 +8,7 @@ $wrapper: (
 	anchor-position: 0,
 );
 
-.wrap {
+.wrapper {
 	$this: &;
 
 	&__anchor {
@@ -35,21 +35,27 @@ $wrapper: (
 		}
 	}
 
-	&__spacing-in-top {
+	&__spacing-top-in {
 		@include responsive-selectors {
 			@include modifiers-range($wrapper, spacing-in, padding-top);
 		}
 	}
 
-	&__spacing-in-bottom {
+	&__spacing-bottom-in {
 		@include responsive-selectors {
 			@include modifiers-range($wrapper, spacing-in, padding-bottom);
 		}
 	}
 
-	&__hide-block {
+	&__hide {
 		@include responsive-visibility-selectors {
 			display: none;
+		}
+	}
+
+	&__hide-editor {
+		@include responsive-visibility-selectors {
+			opacity: 0.5;
 		}
 	}
 
