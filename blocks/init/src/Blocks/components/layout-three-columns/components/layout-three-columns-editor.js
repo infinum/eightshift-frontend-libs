@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import manifest from './../manifest.json';
+import manifest from '../manifest.json';
 
 const { attributes: defaults } = manifest;
 
