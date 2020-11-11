@@ -28,9 +28,9 @@ $parentClasses = Components::classnames([
 
 echo \esc_html(
 	Menu::bemMenu(
-		$menuName,
-		$variationAsClass,
+		$name,
+		$variation,
 		$parentClasses,
-		$modifier ? "{$variationAsClass}--{$modifier}" : ''
+		$modifier ? "{$variation}--{$modifier}" : ''
 	)
 );
