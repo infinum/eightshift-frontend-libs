@@ -35,7 +35,7 @@ export const ParagraphEditor = (attributes) => {
 					placeholder={placeholder}
 					value={paragraphContent}
 					onChange={(value) => setAttributes({ paragraphContent: value })}
-					allowedFormats={['bold', 'link']}
+					formattingControls={['bold', 'link']}
 				/>
 			}
 		</Fragment>

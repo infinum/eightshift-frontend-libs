@@ -16,7 +16,7 @@ export const ExampleEditor = (attributes) => {
 			className={blockClass}
 			onChange={(value) => setAttributes({ content: value })}
 			value={content}
-			allowedFormats={['bold', 'link']}
+			formattingControls={['bold', 'link']}
 		/>
 	);
 };
