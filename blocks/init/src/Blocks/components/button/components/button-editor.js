@@ -3,9 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
+import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const ButtonEditor = (attributes) => {
 	const {
@@ -15,28 +14,24 @@ export const ButtonEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
 
-		buttonUse = defaults.buttonUse.default,
+		buttonUse = checkAttr('buttonUse', attributes, manifest),
 
-		buttonContent,
-		buttonUrl,
-		buttonColor = defaults.buttonColor.default,
-		buttonSize = defaults.buttonSize.default,
-		buttonWidth = defaults.buttonWidth.default,
-		buttonAlign = defaults.buttonAlign.default,
+		buttonContent = checkAttr('buttonContent', attributes, manifest),
+		buttonUrl = checkAttr('buttonUrl', attributes, manifest),
 	} = attributes;
 
 	const buttonClass = classnames(
 		componentClass,
-		buttonSize && `${componentClass}__size--${buttonSize}`,
-		buttonColor && `${componentClass}__color--${buttonColor}`,
-		buttonWidth && `${componentClass}__size-width--${buttonWidth}`,
+		selector(componentClass, 'size', 'buttonSize', attributes, manifest),
+		selector(componentClass, 'color', 'buttonColor', attributes, manifest),
+		selector(componentClass, 'size-width', 'buttonWidth', attributes, manifest),
 		!(buttonContent && buttonUrl) && `${componentClass}__placeholder`,
 	);
 
 	const buttonWrapClass = classnames(
 		`${componentClass}__wrap`,
-		buttonAlign && `${componentClass}__align--${buttonAlign}`,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selector(componentClass, 'align', 'buttonAlign', attributes, manifest),
+		selectorB(blockClass, selectorClass),
 	);
 
 	return (

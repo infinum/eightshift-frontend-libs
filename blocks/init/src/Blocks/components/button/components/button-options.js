@@ -7,7 +7,7 @@ import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/comp
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
 export const buttonColors = () => {
 	const colors = getPaletteColors();
@@ -24,13 +24,13 @@ export const ButtonOptions = (attributes) => {
 		label = title,
 		buttonShowControls = true,
 
-		buttonUse = defaults.buttonUse.default,
+		buttonUse,
 
 		buttonUrl,
-		buttonColor = defaults.buttonColor.default,
-		buttonSize = defaults.buttonSize.default,
-		buttonWidth = defaults.buttonWidth.default,
-		buttonIsAnchor = defaults.buttonIsAnchor.default,
+		buttonColor,
+		buttonSize,
+		buttonWidth,
+		buttonIsAnchor,
 		buttonId,
 
 		showButtonUrl = true,

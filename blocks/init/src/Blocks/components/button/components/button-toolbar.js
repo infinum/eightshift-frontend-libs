@@ -3,15 +3,15 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const ButtonToolbar = (attributes) => {
 	const {
 		setAttributes,
 		buttonShowControls = true,
 
-		buttonUse = defaults.buttonUse.default,
-		buttonAlign = defaults.buttonAlign.default,
+		buttonUse,
+		buttonAlign,
 
 		showButtonAlign = true,
 	} = attributes;

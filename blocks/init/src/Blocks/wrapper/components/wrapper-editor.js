@@ -1,14 +1,14 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { responsiveSelectors, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
 	const {
-		wrapperUse,
-		wrapperUseSimple,
-		wrapperDisable,
-		wrapperId,
+		wrapperUse = checkAttr('wrapperUse', attributes, manifest),
+		wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest),
+		wrapperDisable = checkAttr('wrapperDisable', attributes, manifest),
+		wrapperId = checkAttr('wrapperId', attributes, manifest),
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -16,80 +16,80 @@ export const WrapperEditor = ({ attributes, children }) => {
 	}
 
 	const wrapperSpacingTop = {
-		large: attributes.wrapperSpacingTopLarge,
-		desktop: attributes.wrapperSpacingTopDesktop,
-		tablet: attributes.wrapperSpacingTopTablet,
-		mobile: attributes.wrapperSpacingTopMobile,
+		large: checkAttr('wrapperSpacingTopLarge', attributes, manifest),
+		desktop: checkAttr('wrapperSpacingTopDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperSpacingTopTablet', attributes, manifest),
+		mobile: checkAttr('wrapperSpacingTopMobile', attributes, manifest),
 	};
 
 	const wrapperSpacingBottom = {
-		large: attributes.wrapperSpacingBottomLarge,
-		desktop: attributes.wrapperSpacingBottomDesktop,
-		tablet: attributes.wrapperSpacingBottomTablet,
-		mobile: attributes.wrapperSpacingBottomMobile,
+		large: checkAttr('wrapperSpacingBottomLarge', attributes, manifest),
+		desktop: checkAttr('wrapperSpacingBottomDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperSpacingBottomTablet', attributes, manifest),
+		mobile: checkAttr('wrapperSpacingBottomMobile', attributes, manifest),
 	};
 
 	const wrapperSpacingTopIn = {
-		large: attributes.wrapperSpacingTopInLarge,
-		desktop: attributes.wrapperSpacingTopInDesktop,
-		tablet: attributes.wrapperSpacingTopInTablet,
-		mobile: attributes.wrapperSpacingTopInMobile,
+		large: checkAttr('wrapperSpacingTopInLarge', attributes, manifest),
+		desktop: checkAttr('wrapperSpacingTopInDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperSpacingTopInTablet', attributes, manifest),
+		mobile: checkAttr('wrapperSpacingTopInMobile', attributes, manifest),
 	};
 
 	const wrapperSpacingBottomIn = {
-		large: attributes.wrapperSpacingBottomInLarge,
-		desktop: attributes.wrapperSpacingBottomInDesktop,
-		tablet: attributes.wrapperSpacingBottomInTablet,
-		mobile: attributes.wrapperSpacingBottomInMobile,
+		large: checkAttr('wrapperSpacingBottomInLarge', attributes, manifest),
+		desktop: checkAttr('wrapperSpacingBottomInDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperSpacingBottomInTablet', attributes, manifest),
+		mobile: checkAttr('wrapperSpacingBottomInMobile', attributes, manifest),
 	};
 
 	const wrapperDividerTop = {
-		large: attributes.wrapperDividerTopLarge,
-		desktop: attributes.wrapperDividerTopDesktop,
-		tablet: attributes.wrapperDividerTopTablet,
-		mobile: attributes.wrapperDividerTopMobile,
+		large: checkAttr('wrapperDividerTopLarge', attributes, manifest),
+		desktop: checkAttr('wrapperDividerTopDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperDividerTopTablet', attributes, manifest),
+		mobile: checkAttr('wrapperDividerTopMobile', attributes, manifest),
 	};
 
 	const wrapperDividerBottom = {
-		large: attributes.wrapperDividerBottomLarge,
-		desktop: attributes.wrapperDividerBottomDesktop,
-		tablet: attributes.wrapperDividerBottomTablet,
-		mobile: attributes.wrapperDividerBottomMobile,
+		large: checkAttr('wrapperDividerBottomLarge', attributes, manifest),
+		desktop: checkAttr('wrapperDividerBottomDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperDividerBottomTablet', attributes, manifest),
+		mobile: checkAttr('wrapperDividerBottomMobile', attributes, manifest),
 	};
 
 	const wrapperContainerWidth = {
-		large: attributes.wrapperContainerWidthLarge,
-		desktop: attributes.wrapperContainerWidthDesktop,
-		tablet: attributes.wrapperContainerWidthTablet,
-		mobile: attributes.wrapperContainerWidthMobile,
+		large: checkAttr('wrapperContainerWidthLarge', attributes, manifest),
+		desktop: checkAttr('wrapperContainerWidthDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperContainerWidthTablet', attributes, manifest),
+		mobile: checkAttr('wrapperContainerWidthMobile', attributes, manifest),
 	};
 
 	const wrapperGutter = {
-		large: attributes.wrapperGutterLarge,
-		desktop: attributes.wrapperGutterDesktop,
-		tablet: attributes.wrapperGutterTablet,
-		mobile: attributes.wrapperGutterMobile,
+		large: checkAttr('wrapperGutterLarge', attributes, manifest),
+		desktop: checkAttr('wrapperGutterDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperGutterTablet', attributes, manifest),
+		mobile: checkAttr('wrapperGutterMobile', attributes, manifest),
 	};
 
 	const wrapperWidth = {
-		large: attributes.wrapperWidthLarge,
-		desktop: attributes.wrapperWidthDesktop,
-		tablet: attributes.wrapperWidthTablet,
-		mobile: attributes.wrapperWidthMobile,
+		large: checkAttr('wrapperWidthLarge', attributes, manifest),
+		desktop: checkAttr('wrapperWidthDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperWidthTablet', attributes, manifest),
+		mobile: checkAttr('wrapperWidthMobile', attributes, manifest),
 	};
 
 	const wrapperOffset = {
-		large: attributes.wrapperOffsetLarge,
-		desktop: attributes.wrapperOffsetDesktop,
-		tablet: attributes.wrapperOffsetTablet,
-		mobile: attributes.wrapperOffsetMobile,
+		large: checkAttr('wrapperOffsetLarge', attributes, manifest),
+		desktop: checkAttr('wrapperOffsetDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperOffsetTablet', attributes, manifest),
+		mobile: checkAttr('wrapperOffsetMobile', attributes, manifest),
 	};
 
 	const wrapperHide = {
-		large: attributes.wrapperHideLarge,
-		desktop: attributes.wrapperHideDesktop,
-		tablet: attributes.wrapperHideTablet,
-		mobile: attributes.wrapperHideMobile,
+		large: checkAttr('wrapperHideLarge', attributes, manifest),
+		desktop: checkAttr('wrapperHideDesktop', attributes, manifest),
+		tablet: checkAttr('wrapperHideTablet', attributes, manifest),
+		mobile: checkAttr('wrapperHideMobile', attributes, manifest),
 	};
 
 	const wrapperMainClass = 'wrapper';

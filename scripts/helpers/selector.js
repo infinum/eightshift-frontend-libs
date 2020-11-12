@@ -13,6 +13,44 @@ import { checkAttr } from './check-attr';
  */
 export const selector = (block, element, key, attributes, manifest) => {
 	const modifier = checkAttr(key, attributes, manifest);
+	return this.selectorM(block, element, modifier);
+};
 
+/**
+ * Retun BEM selector for html class and check if Block element is set.
+ *
+ * @param string $block BEM Block selector.
+ * @param string $element BEM Element selector.
+ * @param string $modifier BEM Modifier selector.
+ *
+ * @return string
+ */
+export const selectorB = (block, element, modifier) => {
+	return block ? `${block}__${element}--${modifier}` : '';
+};
+
+/**
+ * Retun BEM selector for html class and check if element is set.
+ *
+ * @param string $block BEM Block selector.
+ * @param string $element BEM Element selector.
+ * @param string $modifier BEM Modifier selector.
+ *
+ * @return string
+ */
+export const selectorE = (block, element, modifier) => {
+	return element ? `${block}__${element}--${modifier}` : '';
+};
+
+/**
+ * Retun BEM selector for html class and check if Modifier element is set.
+ *
+ * @param string $block BEM Block selector.
+ * @param string $element BEM Element selector.
+ * @param string $modifier BEM Modifier selector.
+ *
+ * @return string
+ */
+export const selectorM = (block, element, modifier) => {
 	return modifier ? `${block}__${element}--${modifier}` : '';
 };
