@@ -21,7 +21,7 @@ export const ButtonEditor = (attributes) => {
 	} = attributes;
 
 	const buttonWrapClass = classnames(
-		`${componentClass}__wrap`,
+		selectorB(componentClass, 'wrap'),
 		selector(componentClass, 'align', 'buttonAlign', attributes, manifest),
 		selectorB(blockClass, selectorClass),
 	);

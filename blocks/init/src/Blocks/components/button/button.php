@@ -21,7 +21,6 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest);
 $buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest);
-
 $buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest);
 $buttonId = Components::checkAttr('buttonId', $attributes, $manifest);
 $buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest);
@@ -39,17 +38,17 @@ if ($buttonIsNewTab) {
 };
 
 $buttonWrapClass = Components::classnames([
-	"{$componentClass}__wrap",
+	$componentClass,
 	Components::selector($componentClass, 'align', 'buttonAlign', $attributes, $manifest),
 	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 $buttonClass = Components::classnames([
-	$componentClass,
+	Components::selectorB($componentClass, 'item'),
 	Components::selector($componentClass, 'color', 'buttonColor', $attributes, $manifest),
 	Components::selector($componentClass, 'size', 'buttonSize', $attributes, $manifest),
 	Components::selector($componentClass, 'size-width', 'buttonWidth', $attributes, $manifest),
-	$buttonIsAnchor ? 'js-scroll-to-anchor' : '',
+	Components::selectorB($buttonIsAnchor, 'js-scroll-to-anchor'),
 	Components::selectorB($blockClass, $selectorClass),
 ]);
 
