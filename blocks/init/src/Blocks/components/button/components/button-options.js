@@ -31,6 +31,7 @@ export const ButtonOptions = (attributes) => {
 		buttonSize,
 		buttonWidth,
 		buttonIsAnchor,
+		buttonIsNewTab,
 		buttonId,
 
 		showButtonUrl = true,
@@ -38,8 +39,8 @@ export const ButtonOptions = (attributes) => {
 		showButtonSize = true,
 		showButtonWidth = true,
 		showButtonIsAnchor = true,
+		showButtonIsNewTab = true,
 		showButtonId = true,
-
 	} = attributes;
 
 	if (!buttonShowControls) {
@@ -112,6 +113,14 @@ export const ButtonOptions = (attributes) => {
 							checked={buttonIsAnchor}
 							onChange={(value) => setAttributes({ buttonIsAnchor: value })}
 							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+						/>
+					}
+
+					{showButtonIsNewTab &&
+						<ToggleControl
+							label={__('New Tab', 'eightshift-boilerplate')}
+							checked={buttonIsNewTab}
+							onChange={(value) => setAttributes({ buttonIsNewTab: value })}
 						/>
 					}
 

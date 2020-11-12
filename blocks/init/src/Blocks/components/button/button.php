@@ -9,10 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$defaults = $manifest['attributes'];
 
-$buttonUse = $attributes['buttonUse'] ?? $defaults['buttonUse'];
-if (!$use) {
+$buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest);
+if (!$buttonUse) {
 	return;
 }
 
@@ -20,32 +19,38 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$buttonUrl = $attributes['buttonUrl'] ?? '';
-$buttonContent = $attributes['buttonContent'] ?? '';
-$buttonColor = $attributes['buttonColor'] ?? $defaults['buttonColor'];
-$buttonSize = $attributes['buttonSize'] ?? $defaults['buttonSize'];
-$buttonWidth = $attributes['buttonWidth'] ?? $defaults['buttonWidth'];
-$buttonAlign = $attributes['buttonAlign'] ?? $defaults['buttonAlign'];
-$buttonIsAnchor = $attributes['buttonIsAnchor'] ?? $defaults['buttonIsAnchor'];
-$buttonId = $attributes['buttonId'] ?? '';
-$buttonAriaLabel = $attributes['buttonAriaLabel'] ?? '';
-$buttonAttrs = $attributes['buttonAttrs'] ?? [];
+$buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest);
+$buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest);
 
-$buttonClass = Components::classnames([
-	$componentClass,
-	$buttonColor ? "{$componentClass}__color--{$buttonColor}" : '',
-	$buttonSize ? "{$componentClass}__size--{$buttonSize}" : '',
-	$buttonWidth ? "{$componentClass}__size-width--{$buttonWidth}" : '',
-	$buttonAlign ? "{$componentClass}__align--{$buttonAlign}" : '',
-	$buttonIsAnchor ? 'js-scroll-to-anchor' : '',
-	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
-]);
+$buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest);
+$buttonId = Components::checkAttr('buttonId', $attributes, $manifest);
+$buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest);
+$buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest);
+$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest);
 
+if ($buttonIsNewTab) {
+	$buttonAttrs = array_merge(
+		[
+			'target' => '_blank',
+			'rel' => '"noopener noreferrer"',
+		],
+		$buttonAttrs
+	);
+};
 
 $buttonWrapClass = Components::classnames([
 	"{$componentClass}__wrap",
-	$styleAlign ? "{$componentClass}__align--{$styleAlign}" : '',
-	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
+	Components::selector($componentClass, 'align', 'buttonAlign', $attributes, $manifest),
+	Components::selectorB($blockClass, $selectorClass),
+]);
+
+$buttonClass = Components::classnames([
+	$componentClass,
+	Components::selector($componentClass, 'color', 'buttonColor', $attributes, $manifest),
+	Components::selector($componentClass, 'size', 'buttonSize', $attributes, $manifest),
+	Components::selector($componentClass, 'size-width', 'buttonWidth', $attributes, $manifest),
+	$buttonIsAnchor ? 'js-scroll-to-anchor' : '',
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
@@ -57,7 +62,11 @@ $buttonWrapClass = Components::classnames([
 			id="<?php echo \esc_attr($buttonId); ?>"
 			title="<?php echo \esc_attr($buttonContent); ?>"
 			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
-			<?php echo \esc_attr(Components::ensureString($buttonAttrs)); ?>
+			<?php
+			foreach ($buttonAttrs as $key => $value) {
+				echo \wp_kses_post("{$key}=" . $value . " ");
+			}
+			?>
 		>
 			<?php echo \esc_html($buttonContent); ?>
 		</button>
@@ -69,7 +78,11 @@ $buttonWrapClass = Components::classnames([
 			id="<?php echo \esc_attr($buttonId); ?>"
 			title="<?php echo \esc_attr($buttonContent); ?>"
 			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
-			<?php echo \esc_attr(Components::ensureString($buttonAttrs)); ?>
+			<?php
+			foreach ($buttonAttrs as $key => $value) {
+				echo \wp_kses_post("{$key}=" . $value . " ");
+			}
+			?>
 		>
 			<?php echo \esc_html($buttonContent); ?>
 		</a>
