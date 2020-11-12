@@ -25,8 +25,14 @@ export const selector = (block, element, key, attributes, manifest) => {
  *
  * @return string
  */
-export const selectorB = (block, element, modifier) => {
-	return block ? `${block}__${element}--${modifier}` : '';
+export const selectorB = (block, element, modifier = '') => {
+	let fullModifier = '';
+
+	if (modifier) {
+		fullModifier = `--${modifier}`;
+	}
+
+	return block ? `${block}__${element}${fullModifier}` : '';
 };
 
 /**
@@ -38,8 +44,14 @@ export const selectorB = (block, element, modifier) => {
  *
  * @return string
  */
-export const selectorE = (block, element, modifier) => {
-	return element ? `${block}__${element}--${modifier}` : '';
+export const selectorE = (block, element, modifier = '') => {
+	let fullModifier = '';
+
+	if (modifier) {
+		fullModifier = `--${modifier}`;
+	}
+
+	return element ? `${block}__${element}${fullModifier}` : '';
 };
 
 /**
@@ -51,6 +63,12 @@ export const selectorE = (block, element, modifier) => {
  *
  * @return string
  */
-export const selectorM = (block, element, modifier) => {
-	return modifier ? `${block}__${element}--${modifier}` : '';
+export const selectorM = (block, element, modifier = '') => {
+	let fullModifier = '';
+
+	if (modifier) {
+		fullModifier = `--${modifier}`;
+	}
+
+	return modifier ? `${block}__${element}${fullModifier}` : '';
 };
