@@ -6,7 +6,7 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
 export const HeadingOptions = (attributes) => {
 	const {
@@ -14,10 +14,10 @@ export const HeadingOptions = (attributes) => {
 		label = title,
 		headingShowControls = true,
 
-		headingUse = defaults.headingUse.default,
+		headingUse,
 
-		headingColor = defaults.headingColor.default,
-		headingSize = defaults.headingSize.default,
+		headingColor,
+		headingSize,
 
 		showHeadingColor = true,
 		showHeadingSize = true,

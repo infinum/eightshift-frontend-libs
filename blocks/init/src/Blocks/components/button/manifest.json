@@ -49,6 +49,12 @@
 			"type": "boolean",
 			"default": false
 		},
+		"buttonAttrs": {
+			"type": "array"
+		},
+		"buttonAriaLabel": {
+			"type": "string"
+		},
 		"buttonUse": {
 			"type": "boolean",
 			"default": true

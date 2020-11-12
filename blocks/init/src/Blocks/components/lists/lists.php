@@ -8,22 +8,26 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$lists = $attributes['lists'] ?? [];
-$use = $lists['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$lists || !$use) {
+$listsUse = Components::checkAttr('listsUse', $attributes, $manifest);
+if (!$listsUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'lists';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$content = $lists['content'] ?? '';
-$ordered = $lists['ordered'] ?? 'ul';
+$listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
+$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
 $listsClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selector($componentClass, 'color', 'listsColor', $attributes, $manifest),
+	Components::selector($componentClass, 'size', 'listsSize', $attributes, $manifest),
+	Components::selector($componentClass, 'align', 'listsAlign', $attributes, $manifest),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>

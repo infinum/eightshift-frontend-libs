@@ -94,7 +94,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 
 	const wrapperMainClass = 'wrapper';
 
-	const wrapperClass = classnames(
+	const wrapperClass = classnames([
 		wrapperMainClass,
 		selector(wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', attributes, manifest),
 		responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass),
@@ -104,19 +104,19 @@ export const WrapperEditor = ({ attributes, children }) => {
 		responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false),
 		responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false),
 		responsiveSelectors(wrapperHide, 'hide-editor', wrapperMainClass, false),
-	);
+	]);
 
-	const wrapperContainerClass = classnames(
+	const wrapperContainerClass = classnames([
 		`${wrapperMainClass}__container`,
 		responsiveSelectors(wrapperContainerWidth, 'container-width', wrapperMainClass),
 		responsiveSelectors(wrapperGutter, 'gutter', wrapperMainClass),
-	);
+	]);
 
-	const wrapperInnerClass = classnames(
+	const wrapperInnerClass = classnames([
 		`${wrapperMainClass}__inner`,
 		responsiveSelectors(wrapperWidth, 'width', wrapperMainClass),
 		responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass),
-	);
+	]);
 
 	return (
 		<div className={wrapperClass} id={wrapperId}>

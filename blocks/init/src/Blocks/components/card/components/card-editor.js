@@ -1,5 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
+import { selectorB } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { HeadingEditor } from '../../../components/heading/components/heading-editor';
 import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
@@ -14,10 +15,10 @@ export const CardEditor = (attributes) => {
 		blockClass,
 	} = attributes;
 
-	const cardClass = classnames(
+	const cardClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<div className={cardClass}>

@@ -3,15 +3,15 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import manifest from '../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const ListsToolbar = (attributes) => {
 	const {
 		setAttributes,
 		listsShowControls = true,
 
-		listsUse = defaults.listsUse.default,
-		listsAlign = defaults.listsAlign.default,
+		listsUse,
+		listsAlign,
 
 		showlistsAlign = true,
 	} = attributes;

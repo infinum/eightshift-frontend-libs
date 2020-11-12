@@ -15,10 +15,10 @@ export const PageOverlayEditor = (attributes) => {
 
 	} = attributes;
 
-	const overlayClass = classnames(
+	const overlayClass = classnames([
 		componentClass,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

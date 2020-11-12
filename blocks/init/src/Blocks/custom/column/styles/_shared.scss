@@ -11,6 +11,12 @@
 		}
 	}
 
+	&__hide-editor {
+		@include responsive-visibility-selectors {
+			opacity: 0.5;
+		}
+	}
+
 	&__offset {
 		@include responsive-selectors {
 			@include grid-offset-modifiers;

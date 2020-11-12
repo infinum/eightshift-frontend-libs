@@ -3,15 +3,15 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const ParagraphToolbar = (attributes) => {
 	const {
 		setAttributes,
 		paragraphShowControls = true,
 
-		paragraphUse = defaults.paragraphUse.default,
-		paragraphAlign = defaults.paragraphAlign.default,
+		paragraphUse,
+		paragraphAlign,
 
 		showParagraphAlign = true,
 	} = attributes;

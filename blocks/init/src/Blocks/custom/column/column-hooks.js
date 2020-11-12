@@ -5,7 +5,7 @@ import { assign } from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
-import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './manifest.json';
 import globalManifest from '../../manifest.json';
 
@@ -14,23 +14,9 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 	return (innerProps) => {
 		const {
 			name,
+			attributes,
 			attributes: {
 				blockClass,
-
-				widthLarge,
-				widthDesktop,
-				widthTablet,
-				widthMobile,
-
-				offsetLarge,
-				offsetDesktop,
-				offsetTablet,
-				offsetMobile,
-
-				orderLarge,
-				orderDesktop,
-				orderTablet,
-				orderMobile,
 			},
 		} = innerProps;
 
@@ -39,33 +25,41 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 		// Move selectors to the parent div in DOM.
 		if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
 			const width = {
-				large: widthLarge,
-				desktop: widthDesktop,
-				tablet: widthTablet,
-				mobile: widthMobile,
+				large: checkAttr('widthLarge', attributes, manifest),
+				desktop: checkAttr('widthDesktop', attributes, manifest),
+				tablet: checkAttr('widthTablet', attributes, manifest),
+				mobile: checkAttr('widthMobile', attributes, manifest),
 			};
-		
+
 			const offset = {
-				large: offsetLarge,
-				desktop: offsetDesktop,
-				tablet: offsetTablet,
-				mobile: offsetMobile,
+				large: checkAttr('offsetLarge', attributes, manifest),
+				desktop: checkAttr('offsetDesktop', attributes, manifest),
+				tablet: checkAttr('offsetTablet', attributes, manifest),
+				mobile: checkAttr('offsetMobile', attributes, manifest),
+			};
+
+			const hide = {
+				large: checkAttr('hideLarge', attributes, manifest),
+				desktop: checkAttr('hideDesktop', attributes, manifest),
+				tablet: checkAttr('hideTablet', attributes, manifest),
+				mobile: checkAttr('hideMobile', attributes, manifest),
 			};
 
 			const order = {
-				large: orderLarge,
-				desktop: orderDesktop,
-				tablet: orderTablet,
-				mobile: orderMobile,
+				large: checkAttr('orderLarge', attributes, manifest),
+				desktop: checkAttr('orderDesktop', attributes, manifest),
+				tablet: checkAttr('orderTablet', attributes, manifest),
+				mobile: checkAttr('orderMobile', attributes, manifest),
 			};
 
-			const componentClass = classnames(
+			const componentClass = classnames([
 				blockClass,
 				globalManifest.globalVariables.customBlocksName,
-				`${responsiveSelectors(width, 'width', blockClass)}`,
-				`${responsiveSelectors(offset, 'offset', blockClass)}`,
-				`${responsiveSelectors(order, 'order', blockClass)}`,
-			);
+				responsiveSelectors(width, 'width', blockClass),
+				responsiveSelectors(offset, 'offset', blockClass),
+				responsiveSelectors(order, 'order', blockClass),
+				responsiveSelectors(hide, 'hide-editor', blockClass),
+			]);
 
 			updatedProps = assign(
 				{},

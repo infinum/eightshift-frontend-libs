@@ -3,15 +3,15 @@ import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import manifest from '../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const LinkToolbar = (attributes) => {
 	const {
 		setAttributes,
 		linkShowControls = true,
 
-		linkUse = defaults.linkUse.default,
-		linkAlign = defaults.linkAlign.default,
+		linkUse,
+		linkAlign,
 
 		showLinkAlign = true,
 	} = attributes;

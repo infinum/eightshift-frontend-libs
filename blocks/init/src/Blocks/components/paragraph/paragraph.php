@@ -8,32 +8,29 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$paragraph = $attributes['paragraph'] ?? [];
-$use = $paragraph['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$paragraph || !$use) {
+$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest);
+if (!$paragraphUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'paragraph';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$content = $paragraph['content'] ?? '';
-$align = $paragraph['align'] ?? '';
-$color = $paragraph['color'] ?? '';
-$size = $paragraph['size'] ?? '';
-$tag = $paragraph['tag'] ?? 'p';
+$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
 
 $paragraphClass = Components::classnames([
 	$componentClass,
-	$align ? "{$componentClass}__align--{$align}" : '',
-	$color ? "{$componentClass}__color--{$color}" : '',
-	$size ? "{$componentClass}__size--{$size}" : '',
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selector($componentClass, 'color', 'paragraphColor', $attributes, $manifest),
+	Components::selector($componentClass, 'size', 'paragraphSize', $attributes, $manifest),
+	Components::selector($componentClass, 'align', 'paragraphAlign', $attributes, $manifest),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
 
-<<?php echo \esc_attr($level); ?> class="<?php echo \esc_attr($headingClass); ?>">
-	<?php echo \wp_kses_post($content); ?>
-</<?php echo \esc_attr($level); ?>>
+<p class="<?php echo \esc_attr($paragraphClass); ?>">
+	<?php echo \wp_kses_post($paragraphContent); ?>
+</p>

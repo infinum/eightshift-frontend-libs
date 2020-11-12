@@ -14,11 +14,11 @@ export const HamburgerEditor = (attributes) => {
 		hamburgerUse = defaults.hamburgerUse.default,
 	} = attributes;
 
-	const hamburgerClass = classnames(
+	const hamburgerClass = classnames([
 		componentClass,
 		`js-${componentClass}`,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

@@ -8,40 +8,32 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$heading = $attributes['heading'] ?? [];
-$use = $heading['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$heading || !$use) {
+$headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
+if (!$headingUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'heading';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$align = $heading['align'] ?? '';
-$color = $heading['color'] ?? '';
-$size = $heading['size'] ?? '';
-$content = $heading['content'] ?? '';
-$level = $heading['level'] ?? '';
-$tag = $heading['tag'] ?? '';
-$tag = $heading['tag'] ?? '';
+$headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
+$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
 
 $headingClass = Components::classnames([
 	$componentClass,
-	$align ? "{$componentClass}__align--{$align}" : '',
-	$color ? "{$componentClass}__color--{$color}" : '',
-	$size ? "{$componentClass}__size--{$size}" : '',
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selector($componentClass, 'color', 'headingColor', $attributes, $manifest),
+	Components::selector($componentClass, 'size', 'headingSize', $attributes, $manifest),
+	Components::selector($componentClass, 'align', 'headingAlign', $attributes, $manifest),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
-$level = $level ? "h{$level}" : 'h2';
-
-if ($tag === 'div') {
-	$level = 'div';
-}
+$headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 
 ?>
 
-<<?php echo esc_attr($level); ?> class="<?php echo esc_attr($headingClass); ?>">
-	<?php echo wp_kses_post($content); ?>
-</<?php echo esc_attr($level); ?>>
+<<?php echo esc_attr($headingLevel); ?> class="<?php echo esc_attr($headingClass); ?>">
+	<?php echo wp_kses_post($headingContent); ?>
+</<?php echo esc_attr($headingLevel); ?>>

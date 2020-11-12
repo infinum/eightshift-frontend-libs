@@ -18,37 +18,37 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		layoutRight,
 	} = attributes;
 
-	const layoutClass = classnames(
+	const layoutClass = classnames([
 		componentClass,
 		selectorClass,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
-	const wrapClass = classnames(
+	const wrapClass = classnames([
 		`${componentClass}__wrap`,
 		`${selectorClass}__wrap`,
-	);
+	]);
 
-	const columnLeftClass = classnames(
+	const columnLeftClass = classnames([
 		`${componentClass}__column`,
 		`${selectorClass}__column`,
 		`${componentClass}__column--left`,
 		`${selectorClass}__column--left`,
-	);
+	]);
 
-	const columnCenterClass = classnames(
+	const columnCenterClass = classnames([
 		`${componentClass}__column`,
 		`${selectorClass}__column`,
 		`${componentClass}__column--center`,
 		`${selectorClass}__column--center`,
-	);
+	]);
 
-	const columnRightClass = classnames(
+	const columnRightClass = classnames([
 		`${componentClass}__column`,
 		`${selectorClass}__column`,
 		`${componentClass}__column--right`,
 		`${selectorClass}__column--right`,
-	);
+	]);
 
 	return (
 		<Fragment>

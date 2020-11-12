@@ -19,10 +19,10 @@ export const LogoEditor = (attributes) => {
 		logoHref,
 	} = attributes;
 
-	const logoClass = classnames(
+	const logoClass = classnames([
 		componentClass,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

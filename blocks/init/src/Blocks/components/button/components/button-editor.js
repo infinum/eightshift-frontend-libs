@@ -20,19 +20,20 @@ export const ButtonEditor = (attributes) => {
 		buttonUrl = checkAttr('buttonUrl', attributes, manifest),
 	} = attributes;
 
-	const buttonWrapClass = classnames(
+	const buttonWrapClass = classnames([
 		selectorB(componentClass, 'wrap'),
 		selector(componentClass, 'align', 'buttonAlign', attributes, manifest),
-		selectorB(blockClass, selectorClass),
-	);
+		selectorB(blockClass, `${selectorClass}-wrap`),
+	]);
 
-	const buttonClass = classnames(
+	const buttonClass = classnames([
 		componentClass,
 		selector(componentClass, 'size', 'buttonSize', attributes, manifest),
 		selector(componentClass, 'color', 'buttonColor', attributes, manifest),
 		selector(componentClass, 'size-width', 'buttonWidth', attributes, manifest),
-		!(buttonContent && buttonUrl) && `${componentClass}__placeholder`,
-	);
+		!(buttonContent && buttonUrl) && `${componentClass}-placeholder`,
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>

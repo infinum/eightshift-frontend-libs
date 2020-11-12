@@ -18,10 +18,10 @@ export const CopyrightEditor = (attributes) => {
 		copyrightContent,
 	} = attributes;
 
-	const copyrightClass = classnames(
+	const copyrightClass = classnames([
 		componentClass,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

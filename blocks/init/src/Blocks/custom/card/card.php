@@ -8,17 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo wp_kses_post(
-	Components::render(
-		'card',
-		[
-			'blockClass' => $attributes['blockClass'] ?? '',
-			'media'      => $attributes['media'] ?? [],
-			'heading'    => $attributes['heading'] ?? '',
-			'subHeading' => $attributes['subHeading'] ?? '',
-			'paragraph'  => $attributes['paragraph'] ?? '',
-			'subParagraph'  => $attributes['subParagraph'] ?? '',
-			'button'     => $attributes['button'] ?? [],
-		]
-	)
-);
+echo wp_kses_post(Components::render('card', $attributes));

@@ -3,9 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import manifest from '../manifest.json';
-
-const { attributes: defaults } = manifest;
+import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import manifest from './../manifest.json';
 
 export const LinkEditor = (attributes) => {
 	const {
@@ -15,29 +14,25 @@ export const LinkEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
 
-		linkUse = defaults.linkUse.default,
+		linkUse = checkAttr('linkUse', attributes, manifest),
 
-		linkContent,
-		linkUrl,
-		linkColor = defaults.linkColor.default,
-		linkSize = defaults.linkSize.default,
-		linkWidth = defaults.linkWidth.default,
-		linkAlign = defaults.linkAlign.default,
+		linkContent = checkAttr('linkContent', attributes, manifest),
+		linkUrl = checkAttr('linkUrl', attributes, manifest),
 	} = attributes;
 
-	const linkClass = classnames(
-		componentClass,
-		linkSize && `${componentClass}__size--${linkSize}`,
-		linkColor && `${componentClass}__color--${linkColor}`,
-		linkWidth && `${componentClass}__size-width--${linkWidth}`,
-		!(linkContent && linkUrl) && `${componentClass}__placeholder`,
-	);
+	const linkWrapClass = classnames([
+		selectorB(componentClass, 'wrap'),
+		selector(componentClass, 'align', 'linkAlign', attributes, manifest),
+		selectorB(blockClass, `${selectorClass}-wrap`),
+	]);
 
-	const linkWrapClass = classnames(
-		`${componentClass}__wrap`,
-		linkAlign && `${componentClass}__align--${linkAlign}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	const linkClass = classnames([
+		componentClass,
+		selector(componentClass, 'size', 'linkSize', attributes, manifest),
+		selector(componentClass, 'color', 'linkColor', attributes, manifest),
+		!(linkContent && linkUrl) && `${componentClass}-placeholder`,
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>

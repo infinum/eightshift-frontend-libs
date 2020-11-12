@@ -3,9 +3,8 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const ListsEditor = (attributes) => {
 	const {
@@ -15,23 +14,19 @@ export const ListsEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
 
-		listsUse = defaults.listsUse.default,
+		listsUse = checkAttr('listsUse', attributes, manifest),
 
-		listsContent,
-		listsOrdered = defaults.listsOrdered.default,
-		listsColor = defaults.listsColor.default,
-		listsSize = defaults.listsSize.default,
-		listsAlign = defaults.listsAlign.default,
-
+		listsContent = checkAttr('listsContent', attributes, manifest),
+		listsOrdered = checkAttr('listsOrdered', attributes, manifest),
 	} = attributes;
 
-	const listsClass = classnames(
+	const listsClass = classnames([
 		componentClass,
-		listsAlign && `${componentClass}__align--${listsAlign}`,
-		listsColor && `${componentClass}__color--${listsColor}`,
-		listsSize && `${componentClass}__size--${listsSize}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selector(componentClass, 'color', 'listsColor', attributes, manifest),
+		selector(componentClass, 'size', 'listsSize', attributes, manifest),
+		selector(componentClass, 'align', 'listsAlign', attributes, manifest),
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>

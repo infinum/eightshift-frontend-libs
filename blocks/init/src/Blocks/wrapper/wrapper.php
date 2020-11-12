@@ -107,35 +107,29 @@ $wrapperOffset = [
 
 $wrapperMainClass = 'wrapper';
 
-$wrapperClass = Components::classnames(
-	[
-		$wrapperMainClass,
-		Components::selector($wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', $attributes, $manifest),
-		Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false),
-		Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false),
-		Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false),
-	]
-);
+$wrapperClass = Components::classnames([
+	$wrapperMainClass,
+	Components::selector($wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', $attributes, $manifest),
+	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false),
+	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false),
+	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false),
+]);
 
-$wrapperContainerClass = Components::classnames(
-	[
-		"{$wrapperMainClass}__container",
-		Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
-	]
-);
+$wrapperContainerClass = Components::classnames([
+	"{$wrapperMainClass}__container",
+	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
+]);
 
-$wrapperInnerClass = Components::classnames(
-	[
-		"{$wrapperMainClass}__inner",
-		Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass),
-		Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
-	]
-);
+$wrapperInnerClass = Components::classnames([
+	"{$wrapperMainClass}__inner",
+	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
+]);
 
 ?>
 <div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr(($wrapperId) ? 'id=" '. $wrapperId . '"' : ''); ?>>

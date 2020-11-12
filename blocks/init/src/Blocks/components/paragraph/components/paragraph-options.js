@@ -6,7 +6,7 @@ import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
 export const ParagraphOptions = (attributes) => {
 	const {
@@ -14,10 +14,10 @@ export const ParagraphOptions = (attributes) => {
 		label = title,
 		paragraphShowControls = true,
 
-		paragraphUse = defaults.paragraphUse.default,
+		paragraphUse,
 
-		paragraphColor = defaults.paragraphColor.default,
-		paragraphSize = defaults.paragraphSize.default,
+		paragraphColor,
+		paragraphSize,
 
 		showParagraphColor = true,
 		showParagraphSize = true,

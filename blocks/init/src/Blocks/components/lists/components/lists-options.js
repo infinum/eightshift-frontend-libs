@@ -6,7 +6,7 @@ import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from '../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
 export const ListsOptions = (attributes) => {
 	const {
@@ -14,10 +14,10 @@ export const ListsOptions = (attributes) => {
 		label = title,
 		listsShowControls = true,
 
-		listsUse = defaults.listsUse.default,
+		listsUse,
 
-		listsColor = defaults.listsColor.default,
-		listsSize = defaults.listsSize.default,
+		listsColor,
+		listsSize,
 
 		showListsColor = true,
 		showListsSize = true,

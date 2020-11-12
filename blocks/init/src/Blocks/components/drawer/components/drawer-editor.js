@@ -19,12 +19,12 @@ export const DrawerEditor = (attributes) => {
 		drawerOverlay,
 	} = attributes;
 
-	const drawerClass = classnames(
+	const drawerClass = classnames([
 		componentClass,
 		`js-${componentClass}`,
 		drawerPosition && `${componentClass}--${drawerPosition}`,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

@@ -3,9 +3,8 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const ParagraphEditor = (attributes) => {
 	const {
@@ -15,21 +14,18 @@ export const ParagraphEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
 
-		paragraphUse = defaults.paragraphUse.default,
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
 
-		paragraphContent,
-		paragraphColor = defaults.paragraphColor.default,
-		paragraphSize = defaults.paragraphSize.default,
-		paragraphAlign = defaults.paragraphAlign.default,
+		paragraphContent = checkAttr('paragraphContent', attributes, manifest),
 	} = attributes;
 
-	const paragraphClass = classnames(
+	const paragraphClass = classnames([
 		componentClass,
-		paragraphAlign && `${componentClass}__align--${paragraphAlign}`,
-		paragraphColor && `${componentClass}__color--${paragraphColor}`,
-		paragraphSize && `${componentClass}__size--${paragraphSize}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selector(componentClass, 'color', 'paragraphColor', attributes, manifest),
+		selector(componentClass, 'size', 'paragraphSize', attributes, manifest),
+		selector(componentClass, 'align', 'paragraphAlign', attributes, manifest),
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>

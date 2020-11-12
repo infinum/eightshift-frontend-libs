@@ -2,46 +2,37 @@
 
 import React from 'react';
 import classnames from 'classnames';
-import { responsiveSelectors } from '@eightshift/frontend-libs/scripts/helpers';
 import { InnerBlocks } from '@wordpress/block-editor';
+import { responsiveSelectors, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ColumnsEditor = ({ attributes }) => {
 	const {
 		allowedBlocks,
 		blockClass,
-
-		gutterLarge,
-		gutterDesktop,
-		gutterTablet,
-		gutterMobile,
-
-		verticalSpacingLarge,
-		verticalSpacingDesktop,
-		verticalSpacingTablet,
-		verticalSpacingMobile,
 	} = attributes;
 
 	const gutter = {
-		large: gutterLarge,
-		desktop: gutterDesktop,
-		tablet: gutterTablet,
-		mobile: gutterMobile,
+		large: checkAttr('gutterLarge', attributes, manifest),
+		desktop: checkAttr('gutterDesktop', attributes, manifest),
+		tablet: checkAttr('gutterTablet', attributes, manifest),
+		mobile: checkAttr('gutterMobile', attributes, manifest),
 	};
 
 	const verticalSpacing = {
-		large: verticalSpacingLarge,
-		desktop: verticalSpacingDesktop,
-		tablet: verticalSpacingTablet,
-		mobile: verticalSpacingMobile,
+		large: checkAttr('verticalSpacingLarge', attributes, manifest),
+		desktop: checkAttr('verticalSpacingDesktop', attributes, manifest),
+		tablet: checkAttr('verticalSpacingTablet', attributes, manifest),
+		mobile: checkAttr('verticalSpacingMobile', attributes, manifest),
 	};
 
-	const componentClass = classnames(
+	const componentClass = classnames([
 		blockClass,
 		globalManifest.globalVariables.customBlocksName,
-		`${responsiveSelectors(gutter, 'gutter', blockClass)}`,
-		`${responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass)}`,
-	);
+		responsiveSelectors(gutter, 'gutter', blockClass),
+		responsiveSelectors(verticalSpacing, 'verticalSpacing', blockClass),
+	]);
 
 	return (
 		<div className={componentClass}>

@@ -4,16 +4,16 @@ import { Fragment } from '@wordpress/element';
 import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const HeadingToolbar = (attributes) => {
 	const {
 		setAttributes,
 		headingShowControls = true,
 
-		headingUse = defaults.headingUse.default,
-		headingAlign = defaults.headingAlign.default,
-		headingLevel = defaults.headingLevel.default,
+		headingUse,
+		headingAlign,
+		headingLevel,
 
 		showHeadingAlign = true,
 		showHeadingLevel = true,

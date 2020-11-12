@@ -27,16 +27,16 @@ export const ImageEditor = (attributes) => {
 		imageUsePlaceholder = defaults.imageUsePlaceholder.default,
 	} = attributes;
 
-	const imageClass = classnames(
+	const imageClass = classnames([
 		componentClass,
 		imageBg && `${componentClass}--bg`,
-	);
+	]);
 
-	const imageWrapClass = classnames(
+	const imageWrapClass = classnames([
 		`${componentClass}__wrap`,
 		imageAlign && `${componentClass}__align--${imageAlign}`,
 		blockClass && `${blockClass}__${selectorClass}`,
-	);
+	]);
 
 	return (
 		<Fragment>

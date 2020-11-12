@@ -45,6 +45,16 @@
 			"type": "boolean",
 			"default": false
 		},
+		"linkIsNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkAttrs": {
+			"type": "array"
+		},
+		"linkAriaLabel": {
+			"type": "string"
+		},
 		"linkUse": {
 			"type": "boolean",
 			"default": true

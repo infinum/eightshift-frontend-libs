@@ -7,7 +7,7 @@ import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/comp
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from '../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
 export const linkColors = () => {
 	const colors = getPaletteColors();
@@ -24,13 +24,13 @@ export const LinkOptions = (attributes) => {
 		label = title,
 		linkShowControls = true,
 
-		linkUse = defaults.linkUse.default,
+		linkUse,
 
 		linkUrl,
-		linkColor = defaults.linkColor.default,
-		linkSize = defaults.linkSize.default,
-		linkWidth = defaults.linkWidth.default,
-		linkIsAnchor = defaults.linkIsAnchor.default,
+		linkColor,
+		linkSize,
+		linkWidth,
+		linkIsAnchor,
 		linkId,
 
 		showLinkUrl = true,

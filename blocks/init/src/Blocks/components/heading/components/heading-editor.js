@@ -3,9 +3,8 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
+import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const HeadingEditor = (attributes) => {
 	const {
@@ -15,21 +14,18 @@ export const HeadingEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-boilerplate'),
 
-		headingUse = defaults.headingUse.default,
+		headingUse = checkAttr('headingUse', attributes, manifest),
 
-		headingContent,
-		headingColor = defaults.headingColor.default,
-		headingSize = defaults.headingSize.default,
-		headingAlign = defaults.headingAlign.default,
+		headingContent = checkAttr('headingContent', attributes, manifest),
 	} = attributes;
 
-	const headingClass = classnames(
+	const headingClass = classnames([
 		componentClass,
-		headingColor && `${componentClass}__color--${headingColor}`,
-		headingSize && `${componentClass}__size--${headingSize}`,
-		headingAlign && `${componentClass}__align--${headingAlign}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selector(componentClass, 'color', 'headingColor', attributes, manifest),
+		selector(componentClass, 'size', 'headingSize', attributes, manifest),
+		selector(componentClass, 'align', 'headingAlign', attributes, manifest),
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>
