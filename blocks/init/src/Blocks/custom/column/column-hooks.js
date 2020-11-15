@@ -4,10 +4,11 @@ import React from 'react';
 import { assign } from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import { responsiveSelectors, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './manifest.json';
 import globalManifest from '../../manifest.json';
+
+const blockName = `${globalManifest.namespace}/${manifest.blockName}`;
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
@@ -23,7 +24,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 		let updatedProps = innerProps;
 
 		// Move selectors to the parent div in DOM.
-		if (name === `${globalManifest.namespace}/${manifest.blockName}`) {
+		if (name === blockName) {
 			const width = {
 				large: checkAttr('widthLarge', attributes, manifest),
 				desktop: checkAttr('widthDesktop', attributes, manifest),
@@ -78,5 +79,5 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-	addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+	wp.hooks.addFilter('editor.BlockListBlock', blockName, parentComponentBlock);
 };

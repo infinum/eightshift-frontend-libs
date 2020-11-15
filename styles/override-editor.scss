@@ -9,6 +9,7 @@ $base-silver-color: #D4D1D1;
 $override-map: (
 	highlighted-panel: $base-sea-color,
 	divider: $base-silver-color,
+	hover: $base-black-color,
 );
 
 /* stylelint-disable */
@@ -28,6 +29,13 @@ body {
 
 			.wp-block {
 				max-width: 100%;
+				box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.15);
+	
+				transition: {
+					property: box-shadow;
+					timing-function: ease-in;
+					duration: 0.3s;
+				}
 			}
 
 			// Removing block spacing.

@@ -13,9 +13,9 @@ export const Column = (props) => {
 	} = props;
 
 	// Set this attributes to all inner blocks once inserted in DOM.
-	useSelect((select) => {
-		overrideInnerBlockSimpleWrapperAttributes(select, clientId);
-	});
+	// useSelect((select) => {
+	// 	overrideInnerBlockSimpleWrapperAttributes(select, clientId);
+	// });
 
 	return (
 		<Fragment>

@@ -3,8 +3,9 @@
 import React from 'react';
 import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import globalManifest from '../manifest.json';
+
+const { namespace } = globalManifest;
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
@@ -15,7 +16,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 
 		let updatedProps = innerProps;
 
-		if (name.split('/')[0] === globalManifest.namespace) {
+		if (name.split('/')[0] === namespace) {
 			updatedProps = assign(
 				{},
 				innerProps,
@@ -33,5 +34,5 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-	addFilter('editor.BlockListBlock', globalManifest.namespace, parentComponentBlock);
+	wp.hooks.addFilter('editor.BlockListBlock', namespace, parentComponentBlock);
 };
