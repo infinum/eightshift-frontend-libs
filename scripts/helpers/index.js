@@ -5,5 +5,5 @@ export { dynamicImport } from './dynamic-import';
 export { escapeString } from './escape-string';
 export { getNavigatorVibrate } from './navigator';
 export { responsiveSelectors } from './responsive-selectors';
-export { selector, selectorB, selectorE, selectorM } from './selector';
+export { selector, selectorB, selectorE, selectorM, selectorCustom } from './selector';
 export { checkAttr } from './check-attr';
