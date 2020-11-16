@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import manifest from './../manifest.json';
 import { checkAttr, selector, selectorB, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import manifest from './../manifest.json';
 
 export const DrawerEditor = (attributes) => {
 	const {

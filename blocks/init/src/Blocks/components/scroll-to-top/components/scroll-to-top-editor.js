@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const ScrollToTopEditor = (attributes) => {
 	const {
@@ -11,15 +10,15 @@ export const ScrollToTopEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		scrollToTopUse = defaults.scrollToTopUse.default,
+		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest),
 
-		scrollToTopContent = defaults.scrollToTopContent.default,
+		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest),
 
 	} = attributes;
 
 	const scrollClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	);
 
 	return (

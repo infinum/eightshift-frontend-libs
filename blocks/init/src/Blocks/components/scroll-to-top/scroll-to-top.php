@@ -8,25 +8,28 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$scrollToTopUse = Components::checkAttr('scrollToTopUse', $attributes, $manifest);
+if (!$scrollToTopUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'scroll-to-top';
+
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$content = $attributes['content'] ?? \esc_html__('To Top', 'EightshiftBoilerplate');
+$scrollToTopContent = Components::checkAttr('scrollToTopContent', $attributes, $manifest);
 
 $scrollClass = Components::classnames([
 	$componentClass,
-	"js-{$componentClass}",
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorCustom($componentClass, "js-{$componentClass}"),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
 
-<a href="#" class="<?php echo \esc_attr($scrollClass); ?>">
-	<?php \esc_html($content); ?>
-</a>
+<button class="<?php echo \esc_attr($scrollClass); ?>">
+	<?php echo \esc_html($scrollToTopContent); ?>
+</button>

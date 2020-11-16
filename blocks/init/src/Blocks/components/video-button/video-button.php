@@ -8,22 +8,24 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$videoButtonUse = Components::checkAttr('videoButtonUse', $attributes, $manifest);
+if (!$videoButtonUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'video-button';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$modalId = $attributes['modalId'] ?? '';
-$label = $attributes['label'] ?? esc_html__('Play Video', 'EightshiftBoilerplate');
-$icon = $attributes['icon'] ?? "<svg class='{$componentClass}__icon' width='106' height='106' xmlns='http://www.w3.org/2000/svg'><g stroke='#FFF' stroke-width='2' fill='none' fill-rule='evenodd'><circle cx='53' cy='53' r='52' /><path d='M78.764 53L40 72.382V33.618L78.764 53z' /></g></svg>";
+$videoButtonModalId = Components::checkAttr('videoButtonModalId', $attributes, $manifest);
+$videoButtonLabel = Components::checkAttr('videoButtonLabel', $attributes, $manifest);
+$icon = $manifest['options']['icon'] ?? '';
 
 $videoButtonClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
@@ -32,8 +34,8 @@ $videoButtonClass = Components::classnames([
 	class="<?php echo \esc_attr($videoButtonClass); ?>"
 	role="button"
 	tabindex="0"
-	data-micromodal-trigger="<?php echo \esc_attr($modalId); ?>"
-	aria-label="<?php echo \esc_html($label); ?>"
+	data-micromodal-trigger="<?php echo \esc_attr($videoButtonModalId); ?>"
+	aria-label="<?php echo \esc_html($videoButtonLabel); ?>"
 >
 	<?php echo \wp_kses_post($icon); ?>
 </button>

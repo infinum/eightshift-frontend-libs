@@ -8,16 +8,23 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$componentClass = $attributes['componentClass'] ?? 'loader';
+$manifest = Components::getManifest(__DIR__);
+
+$loaderUse = Components::checkAttr('loaderUse', $attributes, $manifest);
+if (!$loaderUse) {
+	return;
+}
+
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$useOverlay = $attributes['useOverlay'] ?? false;
+$loaderUseOverlay = Components::checkAttr('loaderUseOverlay', $attributes, $manifest);
 
 $loaderClass = Components::classnames([
 	$componentClass,
-	$useOverlay ? "{$componentClass}--use-overlay" : '',
-	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
+	Components::selectorCustom($loaderUseOverlay, $componentClass, '', 'use-overlay'),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 ?>
 

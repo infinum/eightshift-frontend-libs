@@ -18,6 +18,10 @@
 		"videoButtonIcon": {
 			"type": "string"
 		},
+		"videoButtonLabel": {
+			"type": "string",
+			"default": "Play Video"
+		},
 		"videoButtonUse": {
 			"type": "boolean",
 			"default": true

@@ -1,9 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { attributes: defaults } = manifest;
+const { options } = manifest;
 
 export const VideoButtonEditor = (attributes) => {
 	const {
@@ -11,15 +12,15 @@ export const VideoButtonEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		videoButtonUse = defaults.videoButtonUse.default,
+		videoButtonUse = checkAttr('videoButtonUse', attributes, manifest),
 
-		videoButtonModalId,
-		videoButtonIcon = <svg width="106" height="106" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" strokeWidth="2" fill="none" fillRule="evenodd"><circle cx="53" cy="53" r="52" /><path d="M78.764 53L40 72.382V33.618L78.764 53z" /></g></svg>,
+		videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest),
+		videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest),
 	} = attributes;
 
 	const videoButtonClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	);
 
 	return (
@@ -27,9 +28,11 @@ export const VideoButtonEditor = (attributes) => {
 			{videoButtonUse &&
 				<Fragment>
 					{videoButtonModalId &&
-						<button className={`${videoButtonClass}`}>
-							{videoButtonIcon}
-						</button>
+						<button
+							className={`${videoButtonClass}`}
+							dangerouslySetInnerHTML={{ __html: options.icons }}
+							ariaLabel={videoButtonLabel}
+						></button>
 					}
 				</Fragment>
 			}

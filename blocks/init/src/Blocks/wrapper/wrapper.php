@@ -132,7 +132,7 @@ $wrapperInnerClass = Components::classnames([
 ]);
 
 ?>
-<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr(($wrapperId) ? 'id=" '. $wrapperId . '"' : ''); ?>>
+<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr(($wrapperId) ? 'id=" ' . $wrapperId . '"' : ''); ?>>
 
 	<?php if ($wrapperAnchorId) { ?>
 		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>

@@ -8,32 +8,41 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$componentClass = $attributes['componentClass'] ?? 'accordion';
+$manifest = Components::getManifest(__DIR__);
+
+$accordionUse = Components::checkAttr('accordionUse', $attributes, $manifest);
+if (!$accordionUse) {
+	return;
+}
+
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
-$componentJsClass = $attributes['componentJsClass'] ?? 'js-accordion';
 
-$title = $attributes['title'] ?? '';
-$content = $attributes['content'] ?? '';
-$isOpen = $attributes['isOpen'] ?? false;
+$accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest);
+$accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest);
+$accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest);
+
+$componentJsClass = Components::selectorCustom($componentClass, "js-{$componentClass}");
 
 $accordionClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
+	$componentJsClass,
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
 
 <div
-	class="<?php echo \esc_attr("{$accordionClass} {$componentJsClass}-parent"); ?>"
-	data-accordion-open="<?php echo $isOpen ? 'true' : 'false'; ?>"
+	class="<?php echo \esc_attr("{$accordionClass}"); ?>"
+	data-accordion-open="<?php echo $accordionIsOpen ? 'true' : 'false'; ?>"
 >
 	<button
 		class="<?php echo \esc_attr("{$componentClass}__trigger {$componentJsClass}-trigger"); ?>"
-		aria-label="<?php echo esc_html($title); ?>"
+		aria-label="<?php echo esc_html($accordionTitle); ?>"
 		aria-controls
 	>
-		<?php echo \esc_html($title); ?>
+		<?php echo \esc_html($accordionTitle); ?>
 		<div class="<?php echo \esc_attr("{$componentClass}__icon"); ?>" aria-hidden="true" >
 			<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
 				<g transform="translate(1 1)" fill="none" fill-rule="evenodd">
@@ -48,10 +57,10 @@ $accordionClass = Components::classnames([
 	</button>
 	<section
 		class="<?php echo \esc_attr("{$componentClass}__panel {$componentJsClass}-panel"); ?>"
-		aria-hidden="<?php echo $isOpen ? 'false' : 'true'; ?>"
+		aria-hidden="<?php echo $accordionIsOpen ? 'false' : 'true'; ?>"
 	>
 		<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
-			<?php echo \wp_kses_post($content); ?>
+			<?php echo \wp_kses_post($accordionContent); ?>
 		</div>
 	</section>
 </div>

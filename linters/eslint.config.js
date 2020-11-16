@@ -124,6 +124,7 @@ module.exports = {
 		'no-useless-computed-key': 2,
 		'no-useless-return': 2,
 		'arrow-body-style': 0,
+		'jsx-a11y/no-autofocus': 0,
 		'jsx-a11y/media-has-caption': 0,
 		'jsx-a11y/no-noninteractive-tabindex': 0,
 		'jsx-a11y/role-has-required-aria-props': 0,

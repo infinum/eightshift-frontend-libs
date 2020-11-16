@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const SearchBarEditor = (attributes) => {
 	const {
@@ -11,17 +10,17 @@ export const SearchBarEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		searchBarUse = defaults.searchBarUse.default,
+		searchBarUse = checkAttr('searchBarUse', attributes, manifest),
 
-		searchBarMethod = defaults.searchBarMethod.default,
-		searchBarPostType = defaults.searchBarPostType.default,
-		searchBarAction = defaults.searchBarAction.default,
-		searchBarPlaceholder = defaults.searchBarPlaceholder.default,
+		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest),
+		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest),
+		searchBarAction = checkAttr('searchBarAction', attributes, manifest),
+		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest),
 	} = attributes;
 
 	const searchClass = classnames(
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	);
 
 	return (

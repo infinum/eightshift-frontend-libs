@@ -1,5 +1,4 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { Fragment } from '@wordpress/element';
 import readme from './readme.md';
 import manifest from './../manifest.json';
 import { AccordionEditor } from '../components/accordion-editor';

@@ -3,7 +3,6 @@ export class Accordion {
 		this.accordion = options.accordion;
 		this.accordionSelector = options.accordionSelector;
 
-		this.parentSelector = `${options.accordionSelector}-parent`;
 		this.triggerSelector = `${options.accordionSelector}-trigger`;
 		this.panelSelector = `${options.accordionSelector}-panel`;
 
@@ -33,7 +32,7 @@ export class Accordion {
 	}
 
 	closeAll(item) {
-		const parents = item.parentNode.querySelectorAll(this.parentSelector);
+		const parents = item.parentNode.querySelectorAll(this.accordion);
 		const panels = item.parentNode.querySelectorAll(this.panelSelector);
 
 		[...parents].forEach((parent) => {

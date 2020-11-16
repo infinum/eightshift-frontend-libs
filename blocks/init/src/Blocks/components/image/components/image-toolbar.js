@@ -4,8 +4,8 @@ import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { trash } from '@wordpress/icons';
-import manifest from './../manifest.json';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import manifest from './../manifest.json';
 
 const { options } = manifest;
 

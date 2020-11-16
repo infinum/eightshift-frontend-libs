@@ -8,40 +8,41 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$searchBarUse = Components::checkAttr('searchBarUse', $attributes, $manifest);
+if (!$searchBarUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'search-bar';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$method = $attributes['method'] ?? 'get';
-$postType = $attributes['postType'] ?? 'any';
-$action = $attributes['action'] ?? home_url('/');
-$placeholder = $attributes['placeholder'] ?? esc_attr__('Type in search', 'EightshiftBoilerplate');
+$searchBarMethod = Components::checkAttr('searchBarMethod', $attributes, $manifest);
+$searchBarPostType = Components::checkAttr('searchBarPostType', $attributes, $manifest);
+$searchBarAction = Components::checkAttr('searchBarAction', $attributes, $manifest);
+$searchBarPlaceholder = Components::checkAttr('searchBarPlaceholder', $attributes, $manifest);
 
 $searchClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
 
-
 <form
 	role="search"
-	method="<?php echo \esc_attr($method); ?>"
+	method="<?php echo \esc_attr($searchBarMethod); ?>"
 	class="<?php echo \esc_attr($searchClass); ?>"
-	action="<?php echo \esc_url($action); ?>"
+	action="<?php echo \esc_url($searchBarAction); ?>"
 >
 	<input
 		type="text"
 		value="<?php echo \get_search_query(); ?>"
 		name="s"
 		class="<?php echo \esc_attr("{$componentClass}__input"); ?>"
-		placeholder="<?php echo \esc_attr($placeholder); ?>"
+		placeholder="<?php echo \esc_attr($searchBarPlaceholder); ?>"
 	/>
-	<input type="hidden" name="post_type" value="<?php echo \esc_attr($postType); ?>" />
+	<input type="hidden" name="post_type" value="<?php echo \esc_attr($searchBarPostType); ?>" />
 </form>

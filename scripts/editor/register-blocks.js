@@ -315,36 +315,9 @@ export const registerVariation = (
 	globalManifest = {},
 	blockManifest = {},
 ) => {
-	const {
-		parentName,
-	} = blockManifest;
 
 	// Append globalManifest data in to output.
 	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
-
-	// This is a full block name used in Block Editor.
-	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
-
-	// Check if namespace is defined in block or in global manifest settings.
-	const namespaceFinal = getNamespace(globalManifest, blockManifest);
-
-	// When adding attributes object attributes will not be added but ovveriden. By spreading parent attributes with variation attributes we are able to set everything.
-	const parentBlock = select(('core/blocks')).getBlockTypes().filter((item) => item.name === `${namespaceFinal}/${parentName}`);
-
-	// if (parentBlock.length) {
-	// 	const parentAttributes = parentBlock[0].attributes;
-
-	// 	for (const attribute in parentAttributes) {
-	// 		if (parentAttributes.hasOwnProperty(attribute)) {
-	// 			if (parentAttributes[attribute].type === 'object' && attributes.hasOwnProperty(attribute)) {
-	// 				blockManifest.attributes[attribute] = {
-	// 					...parentAttributes[attribute].default,
-	// 					...attributes[attribute],
-	// 				};
-	// 			}
-	// 		}
-	// 	}
-	// }
 
 	return blockManifest;
 };

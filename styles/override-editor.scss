@@ -29,12 +29,14 @@ body {
 
 			.wp-block {
 				max-width: 100%;
-				box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.15);
-	
 				transition: {
 					property: box-shadow;
 					timing-function: ease-in;
 					duration: 0.3s;
+				}
+
+				&:hover {
+					box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.15);
 				}
 			}
 

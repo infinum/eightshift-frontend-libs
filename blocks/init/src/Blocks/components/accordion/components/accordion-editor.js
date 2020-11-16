@@ -3,9 +3,10 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const AccordionEditor = (attributes) => {
 	const {
@@ -15,24 +16,23 @@ export const AccordionEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'EightshiftBoilerplate'),
 
-		accordionUse = defaults.accordionUse.default,
+		accordionUse = checkAttr('accordionUse', attributes, manifest),
 
-		accordionTitle,
-		accordionContent,
-		accordionIsOpen = defaults.accordionIsOpen.default,
+		accordionTitle = checkAttr('accordionTitle', attributes, manifest),
+		accordionContent = checkAttr('accordionContent', attributes, manifest),
 	} = attributes;
 
-	const accordionClass = classnames(
+	const accordionClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selectorB(blockClass, selectorClass),
+	]);
 
 	return (
 		<Fragment>
 			{accordionUse &&
 				<div
 					className={accordionClass}
-					data-accordion-open={accordionIsOpen}>
+					data-accordion-open={true}>
 					<button className={`${componentClass}__trigger`}>
 						<RichText
 							placeholder={placeholder}

@@ -1,0 +1,16 @@
+{
+	"blockName": "accordion",
+	"title": "Accordion",
+	"description" : "accordion block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "editor-removeformatting"
+	},
+	"keywords": [
+		"accordion"
+	],
+	"hasInnerBlocks": true,
+	"components": {
+		"accordion": "accordion"
+	}
+}

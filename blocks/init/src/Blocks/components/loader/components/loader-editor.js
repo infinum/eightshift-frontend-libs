@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const LoaderEditor = (attributes) => {
 	const {
@@ -11,14 +10,15 @@ export const LoaderEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		loaderUse = defaults.loaderUse.default,
-		loaderUseOverlay = defaults.loaderUseOverlay.default,
+		loaderUse = checkAttr('loaderUse', attributes, manifest),
+
+		loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest),
 	} = attributes;
 
 	const loaderClass = classnames(
 		componentClass,
-		loaderUseOverlay && `${componentClass}--use-overlay`,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorCustom(loaderUseOverlay, componentClass, '', 'use-overlay'),
+		selectorB(blockClass, selectorClass),
 	);
 
 	return (
