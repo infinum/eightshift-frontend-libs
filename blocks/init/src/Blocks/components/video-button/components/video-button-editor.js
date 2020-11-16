@@ -31,7 +31,7 @@ export const VideoButtonEditor = (attributes) => {
 						<button
 							className={`${videoButtonClass}`}
 							dangerouslySetInnerHTML={{ __html: options.icons }}
-							ariaLabel={videoButtonLabel}
+							aria-label={videoButtonLabel}
 						></button>
 					}
 				</Fragment>

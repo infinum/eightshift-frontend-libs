@@ -5,7 +5,7 @@
 	"example": {
 		"attributes": {
 			"wrapperId": "This a custom ID",
-			"wrapperBackgroundColor": "black",
+			"wrapperBackgroundColor": "white",
 			"wrapperUse": true,
 			"wrapperUseShowControl": true,
 			"wrapperUseSimple": false,
