@@ -3,49 +3,69 @@
 /**
  * Template for the Video Component.
  *
- * @package EightshiftBoilerplates
+ * @package EightshiftBoilerplate
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
+if (!$videoUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'video';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$video = $attributes['video'] ?? [];
-$id = $video['id'] ?? '';
-$aspectRatio = $video['aspectRatio'] ?? 'default';
-$type = $video['type'] ?? 'youtube';
-$allow = $video['allow'] ?? 'autoplay; fullscreen';
+$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest);
+$videoType = Components::checkAttr('videoType', $attributes, $manifest);
+$videoAspectRatio = Components::checkAttr('videoAspectRatio', $attributes, $manifest);
+$videoAllow = Components::checkAttr('videoAllow', $attributes, $manifest);
+$videoAccept = Components::checkAttr('videoAccept', $attributes, $manifest);
+$videoAllowedTypes = Components::checkAttr('videoAllowedTypes', $attributes, $manifest);
+$videoUsePlaceholder = Components::checkAttr('videoUsePlaceholder', $attributes, $manifest);
 
-switch ($type) {
-	case 'vimeo':
-		$url = "https://player.vimeo.com/video/{$id}?enablejsapi=1";
-		break;
-	default:
-		$url = "https://www.youtube-nocookie.com/embed/{$id}?enablejsapi=1";
-		break;
-}
+$videoWrapClass = Components::classnames([
+	Components::selectorB($componentClass, 'wrap'),
+	Components::selectorM($componentClass, 'ratio', $videoAspectRatio),
+	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
+]);
 
 $videoClass = Components::classnames([
 	$componentClass,
-	$aspectRatio ? "{$componentClass}__video-ratio--{$aspectRatio}" : '',
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorB($blockClass, $selectorClass),
 ]);
+
+$localUrl = '';
+
+switch ($videoType) {
+	case 'vimeo':
+		$localUrl = "https://player.vimeo.com/video/{$videoUrl}";
+		break;
+	case 'youtube':
+		$localUrl = "https://www.youtube-nocookie.com/embed/{$videoUrl}";
+		break;
+	default:
+		$localUrl = $videoUrl;
+		break;
+}
 
 ?>
 
-<div class="<?php echo \esc_attr($videoClass); ?>">
-	<iframe
-	class="<?php echo \esc_attr("{$componentClass}__iframe"); ?>"
-	src="<?php echo \esc_url($url); ?>"
-	frameBorder="0"
-	allow="<?php echo \esc_attr($allow); ?>"
-	allowFullScreen
-	></iframe>
+<div class="<?php echo \esc_attr($videoWrapClass); ?>">
+	<?php if ($videoType === 'local') { ?>
+		<video class="<?php echo \esc_attr($videoClass); ?>" muted>
+			<source src="<?php echo \esc_url($localUrl); ?>" type="video/mp4" />
+		</video>
+	<?php } else { ?>
+		<iframe
+		class="<?php echo \esc_attr($videoClass); ?>"
+		src="<?php echo \esc_url($localUrl); ?>"
+		frameBorder="0"
+		allow="<?php echo \esc_attr($videoAllow); ?>"
+		allowFullScreen
+		></iframe>
+	<?php } ?>
 </div>

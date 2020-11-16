@@ -13,7 +13,7 @@ export const AccordionEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-boilerplate'),
+		placeholder = __('Add Content', 'EightshiftBoilerplate'),
 
 		accordionUse = defaults.accordionUse.default,
 

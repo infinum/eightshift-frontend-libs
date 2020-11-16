@@ -5,18 +5,19 @@ import { ToolbarGroup } from '@wordpress/components';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { trash } from '@wordpress/icons';
 import manifest from './../manifest.json';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const ImageToolbar = (attributes) => {
 	const {
 		setAttributes,
 		imageShowControls = true,
 
-		imageUse = defaults.imageUse.default,
+		imageUse = checkAttr('imageUse', attributes, manifest),
 
-		imageUrl,
-		imageAlign = defaults.imageAlign.default,
+		imageUrl = checkAttr('imageUrl', attributes, manifest),
+		imageAlign = checkAttr('imageAlign', attributes, manifest),
 
 		showImageAlign = true,
 	} = attributes;

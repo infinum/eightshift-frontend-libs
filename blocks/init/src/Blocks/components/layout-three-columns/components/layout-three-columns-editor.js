@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
@@ -11,43 +10,42 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		layoutUse = defaults.layoutUse.default,
+		layoutUse = checkAttr('layoutUse', attributes, manifest),
 
-		layoutLeft,
-		layoutCenter,
-		layoutRight,
+		layoutLeft = checkAttr('layoutLeft', attributes, manifest),
+		layoutCenter = checkAttr('layoutCenter', attributes, manifest),
+		layoutRight = checkAttr('layoutRight', attributes, manifest),
 	} = attributes;
 
 	const layoutClass = classnames([
 		componentClass,
-		selectorClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	]);
 
 	const wrapClass = classnames([
-		`${componentClass}__wrap`,
-		`${selectorClass}__wrap`,
+		selectorB(componentClass, 'wrap'),
+		selectorB(selectorClass, 'wrap'),
 	]);
 
 	const columnLeftClass = classnames([
-		`${componentClass}__column`,
-		`${selectorClass}__column`,
-		`${componentClass}__column--left`,
-		`${selectorClass}__column--left`,
+		selectorB(componentClass, 'column'),
+		selectorB(componentClass, 'column'),
+		selectorB(selectorClass, 'column', 'left'),
+		selectorB(selectorClass, 'column', 'left'),
 	]);
 
 	const columnCenterClass = classnames([
-		`${componentClass}__column`,
-		`${selectorClass}__column`,
-		`${componentClass}__column--center`,
-		`${selectorClass}__column--center`,
+		selectorB(componentClass, 'column'),
+		selectorB(componentClass, 'column'),
+		selectorB(selectorClass, 'column', 'center'),
+		selectorB(selectorClass, 'column', 'center'),
 	]);
 
 	const columnRightClass = classnames([
-		`${componentClass}__column`,
-		`${selectorClass}__column`,
-		`${componentClass}__column--right`,
-		`${selectorClass}__column--right`,
+		selectorB(componentClass, 'column'),
+		selectorB(componentClass, 'column'),
+		selectorB(selectorClass, 'column', 'right'),
+		selectorB(selectorClass, 'column', 'right'),
 	]);
 
 	return (

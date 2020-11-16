@@ -5,7 +5,7 @@ import { VideoOptions as VideoOptionsComponent } from '../../../components/video
 
 export const VideoOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Video Details', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Video Details', 'EightshiftBoilerplate')}>
 			<VideoOptionsComponent
 				{...attributes}
 				setAttributes={setAttributes}

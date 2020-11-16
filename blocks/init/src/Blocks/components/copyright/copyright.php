@@ -8,23 +8,27 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
+if (!$copyrightUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'copyright';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
-$by = $attributes['by'] ?? 'Infinum';
-$year = $attributes['year'] ?? gmdate('Y');
 
-$copyClass = Components::classnames([
+$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
+$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
+$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
+
+$copyrightClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
 ?>
-<div class="<?php echo \esc_attr($copyClass); ?>">
-	<?php \esc_html("&copy; {$year} {$by}"); ?>
+<div class="<?php echo \esc_attr($copyrightClass); ?>">
+	<?php echo \esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
 </div>

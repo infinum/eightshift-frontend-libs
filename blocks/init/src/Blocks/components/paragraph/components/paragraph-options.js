@@ -3,7 +3,9 @@ import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
@@ -14,10 +16,10 @@ export const ParagraphOptions = (attributes) => {
 		label = title,
 		paragraphShowControls = true,
 
-		paragraphUse,
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
 
-		paragraphColor,
-		paragraphSize,
+		paragraphColor = checkAttr('paragraphColor', attributes, manifest),
+		paragraphSize = checkAttr('paragraphSize', attributes, manifest),
 
 		showParagraphColor = true,
 		showParagraphSize = true,

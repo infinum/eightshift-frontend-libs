@@ -5,7 +5,6 @@
 	"example": {
 		"attributes": {
 			"imageUrl": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/logo.svg?raw=true&sanitize=true",
-			"imageSize": "large",
 			"imageAlign": "left",
 			"imageLink": "https://infinum.github.io/eightshift-docs/",
 			"imageUse": true
@@ -14,10 +13,6 @@
 	"attributes": {
 		"imageUrl": {
 			"type": "string"
-		},
-		"imageSize": {
-			"type": "string",
-			"default": "large"
 		},
 		"imageAlign": {
 			"type": "string",

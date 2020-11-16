@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const LogoEditor = (attributes) => {
 	const {
@@ -11,17 +10,21 @@ export const LogoEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		logoUse = defaults.logoUse.default,
+		logoUse = checkAttr('logoUse', attributes, manifest),
 
-		logoSrc,
-		logoAlt,
-		logoTitle,
-		logoHref,
+		logoSrc = checkAttr('logoSrc', attributes, manifest),
+		logoAlt = checkAttr('logoAlt', attributes, manifest),
+		logoTitle = checkAttr('logoTitle', attributes, manifest),
+		logoHref = checkAttr('logoHref', attributes, manifest),
 	} = attributes;
 
 	const logoClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
+	]);
+
+	const imgClass = classnames([
+		selectorB(componentClass, 'img'),
 	]);
 
 	return (
@@ -32,7 +35,7 @@ export const LogoEditor = (attributes) => {
 						src={logoSrc}
 						alt={logoAlt}
 						title={logoTitle}
-						className={`${componentClass}__img`}
+						className={imgClass}
 					/>
 				</a>
 			}

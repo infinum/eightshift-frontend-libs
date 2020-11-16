@@ -18,7 +18,7 @@ $componentClass = $attributes['componentClass'] ?? 'video-button';
 $blockClass = $attributes['blockClass'] ?? '';
 
 $modalId = $attributes['modalId'] ?? '';
-$label = $attributes['label'] ?? esc_html__('Play Video', 'eightshift-boilerplate');
+$label = $attributes['label'] ?? esc_html__('Play Video', 'EightshiftBoilerplate');
 $icon = $attributes['icon'] ?? "<svg class='{$componentClass}__icon' width='106' height='106' xmlns='http://www.w3.org/2000/svg'><g stroke='#FFF' stroke-width='2' fill='none' fill-rule='evenodd'><circle cx='53' cy='53' r='52' /><path d='M78.764 53L40 72.382V33.618L78.764 53z' /></g></svg>";
 
 $videoButtonClass = Components::classnames([

@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const PageOverlayEditor = (attributes) => {
 	const {
@@ -11,13 +10,12 @@ export const PageOverlayEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		pageOverlayUse = defaults.pageOverlayUse.default,
-
+		pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest),
 	} = attributes;
 
 	const overlayClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	]);
 
 	return (

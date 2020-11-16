@@ -1,9 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { attributes: defaults, options } = manifest;
+const { options } = manifest;
 
 export const SocialLinksEditor = (attributes) => {
 	const {
@@ -11,15 +12,15 @@ export const SocialLinksEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		socialLinksUse = defaults.socialLinksUse.default,
+		socialLinksUse = checkAttr('socialLinksUse', attributes, manifest),
 
-		socialLinksItems = defaults.socialLinksItems.default,
+		socialLinks = checkAttr('socialLinks', attributes, manifest),
 	} = attributes;
 
-	const socialLinksClass = classnames(
+	const socialLinksClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selectorB(blockClass, selectorClass),
+	]);
 
 	const SocialItem = (props) => {
 		const {
@@ -39,7 +40,7 @@ export const SocialLinksEditor = (attributes) => {
 		<Fragment>
 			{socialLinksUse &&
 				<ul className={socialLinksClass}>
-					{socialLinksItems.map((element, index) => {
+					{socialLinks.map((element, index) => {
 						return (
 							<SocialItem {...element} key={index} />
 						);

@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, selectorB, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ButtonEditor = (attributes) => {
@@ -31,7 +31,7 @@ export const ButtonEditor = (attributes) => {
 		selector(componentClass, 'size', 'buttonSize', attributes, manifest),
 		selector(componentClass, 'color', 'buttonColor', attributes, manifest),
 		selector(componentClass, 'size-width', 'buttonWidth', attributes, manifest),
-		!(buttonContent && buttonUrl) && `${componentClass}-placeholder`,
+		selectorCustom(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
 		selectorB(blockClass, selectorClass),
 	]);
 

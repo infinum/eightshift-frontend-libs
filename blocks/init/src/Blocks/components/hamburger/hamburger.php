@@ -8,24 +8,26 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest);
+if (!$hamburgerUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'hamburger';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
 $hamburgerClass = Components::classnames([
 	$componentClass,
-	"js-{$componentClass}",
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorCustom($componentClass, "js-{$componentClass}"),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 ?>
 
 <button class="<?php echo esc_attr($hamburgerClass); ?>">
-	<span class="<?php echo esc_attr("{$componentClass}__wrapper"); ?>">
+	<span class="<?php echo esc_attr("{$componentClass}__wrap"); ?>">
 		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--1"); ?>"></span>
 		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--2"); ?>"></span>
 		<span class="<?php echo esc_attr("{$componentClass}__line {$componentClass}__line--3"); ?>"></span>

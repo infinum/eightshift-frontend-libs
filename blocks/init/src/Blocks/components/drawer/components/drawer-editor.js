@@ -2,8 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
+import { checkAttr, selector, selectorB, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 
 export const DrawerEditor = (attributes) => {
 	const {
@@ -11,19 +10,18 @@ export const DrawerEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		drawerUse = defaults.drawerUse.default,
+		drawerUse = checkAttr('drawerUse', attributes, manifest),
 
-		drawerPosition = defaults.drawerPosition.default,
-		drawerMenu,
-		drawerTrigger,
-		drawerOverlay,
+		drawerMenu = checkAttr('drawerMenu', attributes, manifest),
+		drawerTrigger = checkAttr('drawerTrigger', attributes, manifest),
+		drawerOverlay = checkAttr('drawerOverlay', attributes, manifest),
 	} = attributes;
 
 	const drawerClass = classnames([
 		componentClass,
-		`js-${componentClass}`,
-		drawerPosition && `${componentClass}--${drawerPosition}`,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorCustom(componentClass, `js-${componentClass}`),
+		selector(componentClass, 'position', 'drawerPosition', attributes, manifest),
+		selectorB(blockClass, selectorClass),
 	]);
 
 	return (

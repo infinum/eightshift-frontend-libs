@@ -4,6 +4,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 const { options, title } = manifest;
@@ -14,10 +15,10 @@ export const ListsOptions = (attributes) => {
 		label = title,
 		listsShowControls = true,
 
-		listsUse,
+		listsUse = checkAttr('listsUse', attributes, manifest),
 
-		listsColor,
-		listsSize,
+		listsColor = checkAttr('listsColor', attributes, manifest),
+		listsSize = checkAttr('listsSize', attributes, manifest),
 
 		showListsColor = true,
 		showListsSize = true,

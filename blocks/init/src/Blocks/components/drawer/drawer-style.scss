@@ -23,22 +23,22 @@ $drawer: (
 	overflow-x: hidden;
 	box-shadow: 0 0 3px map-get-strict($drawer, shadow);
 
-	&--left {
+	&__position--left {
 		left: 0;
 		transform: translate3d(-100%, 0, 0);
 	}
 
-	&--right {
+	&__position--right {
 		right: 0;
 		transform: translate3d(100%, 0, 0);
 	}
 
-	&--top {
+	&__position--top {
 		width: 100%;
 		transform: translate3d(0, -100%, 0);
 	}
 
-	&--behind {
+	&__position--behind {
 		width: 100%;
 		transform: translate3d(0, 0, 0);
 		opacity: 0;

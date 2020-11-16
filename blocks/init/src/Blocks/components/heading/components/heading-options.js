@@ -4,6 +4,7 @@ import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
@@ -14,10 +15,10 @@ export const HeadingOptions = (attributes) => {
 		label = title,
 		headingShowControls = true,
 
-		headingUse,
+		headingUse = checkAttr('headingUse', attributes, manifest),
 
-		headingColor,
-		headingSize,
+		headingColor = checkAttr('headingColor', attributes, manifest),
+		headingSize = checkAttr('headingSize', attributes, manifest),
 
 		showHeadingColor = true,
 		showHeadingSize = true,

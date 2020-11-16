@@ -5,6 +5,7 @@ import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
@@ -24,15 +25,15 @@ export const ButtonOptions = (attributes) => {
 		label = title,
 		buttonShowControls = true,
 
-		buttonUse,
+		buttonUse = checkAttr('buttonUse', attributes, manifest),
 
-		buttonUrl,
-		buttonColor,
-		buttonSize,
-		buttonWidth,
-		buttonIsAnchor,
-		buttonIsNewTab,
-		buttonId,
+		buttonUrl = checkAttr('buttonUrl', attributes, manifest),
+		buttonColor = checkAttr('buttonColor', attributes, manifest),
+		buttonSize = checkAttr('buttonSize', attributes, manifest),
+		buttonWidth = checkAttr('buttonWidth', attributes, manifest),
+		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest),
+		buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest),
+		buttonId = checkAttr('buttonId', attributes, manifest),
 
 		showButtonUrl = true,
 		showButtonColor = true,

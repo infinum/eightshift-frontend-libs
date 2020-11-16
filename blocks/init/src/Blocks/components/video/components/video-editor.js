@@ -5,9 +5,8 @@ import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
 import { video } from '@wordpress/icons';
+import { selectorM, selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const VideoEditor = (attributes) => {
 	const {
@@ -16,22 +15,28 @@ export const VideoEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		videoUse = defaults.videoUse.default,
+		videoUse = checkAttr('videoUse', attributes, manifest),
 
-		videoUrl,
-		videoType = defaults.videoType.default,
-		videoAspectRatio = defaults.videoAspectRatio.default,
-		videoAllow = defaults.videoAllow.default,
-		videoAccept = defaults.videoAccept.default,
-		videoAllowedTypes = defaults.videoAllowedTypes.default,
-		videoUsePlaceholder = defaults.videoUsePlaceholder.default,
+		videoUrl = checkAttr('videoUrl', attributes, manifest),
+		videoType = checkAttr('videoType', attributes, manifest),
+		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
+		videoAllow = checkAttr('videoAllow', attributes, manifest),
+		videoAccept = checkAttr('videoAccept', attributes, manifest),
+		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
+		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
 	} = attributes;
 
-	const videoClass = classnames(
+	const videoWrapClass = classnames([
+		selectorB(componentClass, 'wrap'),
+		selectorM(componentClass, 'ratio', videoAspectRatio),
+		selectorCustom(videoType, componentClass, 'ratio', videoType),
+		selectorB(blockClass, `${selectorClass}-wrap`),
+	]);
+
+	const videoClass = classnames([
 		componentClass,
-		videoAspectRatio && `${componentClass}__video-ratio--${videoAspectRatio}`,
-		blockClass && `${blockClass}__${selectorClass}`,
-	);
+		selectorB(blockClass, selectorClass),
+	]);
 
 	let localUrl = '';
 
@@ -39,26 +44,29 @@ export const VideoEditor = (attributes) => {
 		case 'vimeo':
 			localUrl = `https://player.vimeo.com/video/${videoUrl}`;
 			break;
-		default:
+		case 'youtube':
 			localUrl = `https://www.youtube-nocookie.com/embed/${videoUrl}`;
+			break;
+		default:
+			localUrl = videoUrl;
 			break;
 	}
 
 	return (
 		<Fragment>
 			{videoUse &&
-				<div className={videoClass}>
+				<div className={videoWrapClass}>
 
 					{(videoUrl !== '') &&
 						<Fragment>
 							{(videoType === 'local') ?
-								<video className={`${componentClass}__video`} muted>
-									<source src={videoUrl} type="video/mp4" />
+								<video className={videoClass} muted>
+									<source src={localUrl} type="video/mp4" />
 								</video> :
 								<iframe
-									className={`${componentClass}__video`}
+									className={videoClass}
 									src={localUrl}
-									title={videoUrl}
+									title={localUrl}
 									frameBorder="0"
 									allow={videoAllow}
 									allowFullScreen
@@ -69,8 +77,8 @@ export const VideoEditor = (attributes) => {
 
 					{(videoUrl === '') &&
 						<Fragment>
-							{(videoUsePlaceholder) &&
-								<Placeholder icon={video} label={__('Please add image using sidebar options!', 'eightshift-boilerplate')} />
+							{(videoUsePlaceholder || videoType !== 'local') &&
+								<Placeholder icon={video} label={__('Please add video using sidebar options!', 'EightshiftBoilerplate')} />
 							}
 
 							{(!videoUsePlaceholder && videoType === 'local') &&

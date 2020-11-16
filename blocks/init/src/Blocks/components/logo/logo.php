@@ -1,41 +1,47 @@
 <?php
 
 /**
- * Logo component, should be usable without any attributes.
+ * Logo component
  *
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Manifest\Manifest;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$use = $attributes['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (!$use) {
+$logoUse = Components::checkAttr('logoUse', $attributes, $manifest);
+if (!$logoUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'logo';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$src = $attributes['src'] ?? \apply_filters(Manifest::MANIFEST_ITEM, 'logo.svg');
-$alt = $attributes['alt'] ?? \get_bloginfo('name');
-$titl = $attributes['titl'] ?? \get_bloginfo('name');
-$href = $attributes['href'] ?? \get_bloginfo('url');
+$logoSrc = Components::checkAttr('logoSrc', $attributes, $manifest);
+$logoAlt = Components::checkAttr('logoAlt', $attributes, $manifest);
+$logoTitle = Components::checkAttr('logoTitle', $attributes, $manifest);
+$logoHref = Components::checkAttr('logoHref', $attributes, $manifest);
 
 $logoClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	Components::selectorB($blockClass, $selectorClass),
+]);
+
+$imgClass = Components::classnames([
+	Components::selectorB($componentClass, 'img'),
 ]);
 
 ?>
 <a
 	class="<?php echo \esc_attr($logoClass); ?>"
-	href="<?php echo \esc_url($href); ?>"
+	href="<?php echo \esc_url($logoHref); ?>"
 >
 	<img
-	src="<?php echo \esc_url($src); ?>"
-	alt="<?php echo \esc_attr($alt); ?>"
-	class="<?php echo \esc_attr("{$componentClass}__img"); ?>"
+	src="<?php echo \esc_url($logoSrc); ?>"
+	alt="<?php echo \esc_attr($logoAlt); ?>"
+	title="<?php echo \esc_attr($logoTitle); ?>"
+	class="<?php echo \esc_attr($imgClass); ?>"
 	/>
 </a>

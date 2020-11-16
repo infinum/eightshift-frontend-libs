@@ -4,7 +4,7 @@
 	"componentClass": "social-links",
 	"example": {
 		"attributes": {
-			"socialLinksItems": [
+			"socialLinks": [
 				{
 					"href": "https://www.facebook.com/infinumcom",
 					"title": "Facebook",
@@ -35,7 +35,7 @@
 		}
 	},
 	"attributes": {
-		"socialLinksItems": {
+		"socialLinks": {
 			"type": "array",
 			"default": []
 		},

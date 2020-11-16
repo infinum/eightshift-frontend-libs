@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const HamburgerEditor = (attributes) => {
 	const {
@@ -11,13 +10,13 @@ export const HamburgerEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		hamburgerUse = defaults.hamburgerUse.default,
+		hamburgerUse = checkAttr('hamburgerUse', attributes, manifest),
 	} = attributes;
 
 	const hamburgerClass = classnames([
 		componentClass,
-		`js-${componentClass}`,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorCustom(componentClass, `js-${componentClass}`),
+		selectorB(blockClass, selectorClass),
 	]);
 
 	return (

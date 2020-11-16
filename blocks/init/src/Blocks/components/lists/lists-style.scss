@@ -27,7 +27,8 @@ $lists: (
 );
 
 .lists {
-	@extend %list-reset;
+	margin: 0;
+	padding: 0;
 	color: map-get-deep($lists, colors, primary);
 
 	li {

@@ -50,23 +50,6 @@ $header: (
 			text-align: right;
 			justify-content: flex-end;
 		}
-
-		@include media(desktop up) {
-			&--left {
-				order: 2;
-				justify-content: center;
-			}
-
-			&--center {
-				order: 1;
-				text-align: left;
-				justify-content: flex-start;
-			}
-
-			&--right {
-				order: 3;
-			}
-		}
 	}
 
 	&__logo {

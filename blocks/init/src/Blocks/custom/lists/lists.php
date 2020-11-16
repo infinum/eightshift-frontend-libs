@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Template for the Video Block view.
+ * Template for the Lists Block view.
  *
  * @package EightshiftBoilerplate
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo (Components::render('video', $attributes));
+echo \wp_kses_post(Components::render('lists', $attributes));

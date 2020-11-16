@@ -1,9 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
+import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const CopyrightEditor = (attributes) => {
 	const {
@@ -11,16 +10,16 @@ export const CopyrightEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		copyrightUse = defaults.copyrightUse.default,
+		copyrightUse = checkAttr('copyrightUse', attributes, manifest),
 
-		copyrightBy,
-		copyrightYear,
-		copyrightContent,
+		copyrightBy = checkAttr('copyrightBy', attributes, manifest),
+		copyrightYear = checkAttr('copyrightYear', attributes, manifest),
+		copyrightContent = checkAttr('copyrightContent', attributes, manifest),
 	} = attributes;
 
 	const copyrightClass = classnames([
 		componentClass,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorB(blockClass, selectorClass),
 	]);
 
 	return (

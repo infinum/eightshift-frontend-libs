@@ -17,7 +17,7 @@ if (!$use) {
 $componentClass = $attributes['componentClass'] ?? 'scroll-to-top';
 $blockClass = $attributes['blockClass'] ?? '';
 
-$content = $attributes['content'] ?? \esc_html__('To Top', 'eightshift-boilerplate');
+$content = $attributes['content'] ?? \esc_html__('To Top', 'EightshiftBoilerplate');
 
 $scrollClass = Components::classnames([
 	$componentClass,

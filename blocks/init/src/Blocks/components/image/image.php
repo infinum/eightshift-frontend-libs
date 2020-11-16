@@ -8,38 +8,50 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$media = $attributes['media'] ?? [];
-$use = $media['use'] ?? true;
+$manifest = Components::getManifest(__DIR__);
 
-if (! $media || !$use) {
+$imageUse = Components::checkAttr('imageUse', $attributes, $manifest);
+if (!$imageUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? 'image';
+$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
-$componentBgClass = $attributes['componentClass'] ?? 'image-bg';
-$selectorBgClass = $attributes['selectorClass'] ?? $componentBgClass;
-
 $blockClass = $attributes['blockClass'] ?? '';
-$bgImg = $media['bgImg'] ?? false;
-$url = $media['url'] ?? '';
-$size = $media['size'] ?? 'large';
+
+$imageUrl = Components::checkAttr('imageUrl', $attributes, $manifest);
+$imageLink = Components::checkAttr('imageLink', $attributes, $manifest);
+$imageBg = Components::checkAttr('imageBg', $attributes, $manifest);
+
+$imageWrapClass = Components::classnames([
+	Components::selectorB($componentClass, 'wrap'),
+	Components::selector($componentClass, 'align', 'imageAlign', $attributes, $manifest),
+	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
+	Components::selectorB($imageLink, $componentClass, 'is-link'),
+]);
 
 $imageClass = Components::classnames([
 	$componentClass,
-	$blockClass ? "{$blockClass}__{$selectorClass}" : '',
+	Components::selectorCustom($imageBg, $componentClass, '', 'bg'),
+	Components::selectorB($blockClass, $selectorClass),
 ]);
 
-$imageBgClass = Components::classnames([
-	$componentBgClass,
-	$blockClass ? "{$blockClass}__{$selectorBgClass}" : '',
-]);
+?>
 
-if ($bgImg) { ?>
-	<div style="background-image:url(<?php echo \esc_url($url); ?>)" class="<?php echo \esc_attr($imageBgClass); ?>" ></div>
+<?php if ($imageLink) { ?>
+	<a href="<?php echo esc_url($imageLink); ?>" class="<?php echo \esc_attr($imageWrapClass); ?>">
 <?php } else { ?>
-		<img src="<?php echo \esc_url($url); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
-	<?php
-}
+	<div class="<?php echo \esc_attr($imageWrapClass); ?>">
+<?php } ?>
 
+	<?php if ($imageBg) { ?>
+		<div style="background-image:url(<?php echo \esc_url($imageUrl); ?>)" class="<?php echo \esc_attr($imageClass); ?>" ></div>
+	<?php } else { ?>
+			<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
+	<?php } ?>
 
+<?php if ($imageLink) { ?>
+	</a>
+<?php } else { ?>
+	</div>
+<?php } ?>

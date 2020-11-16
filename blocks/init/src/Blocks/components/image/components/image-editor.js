@@ -5,9 +5,8 @@ import { Fragment } from '@wordpress/element';
 import { Placeholder } from '@wordpress/components';
 import { image } from '@wordpress/icons';
 import { MediaPlaceholder } from '@wordpress/block-editor';
+import { selector, selectorB, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const ImageEditor = (attributes) => {
 	const {
@@ -16,26 +15,25 @@ export const ImageEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
-		imageUse = defaults.imageUse.default,
+		imageUse = checkAttr('imageUse', attributes, manifest),
 
-		imageUrl,
-		imageSize = defaults.imageSize.default,
-		imageAlign = defaults.imageAlign.default,
-		imageAccept = defaults.imageAccept.default,
-		imageAllowedTypes = defaults.imageAllowedTypes.default,
-		imageBg = defaults.imageBg.default,
-		imageUsePlaceholder = defaults.imageUsePlaceholder.default,
+		imageUrl = checkAttr('imageUrl', attributes, manifest),
+		imageAccept = checkAttr('imageAccept', attributes, manifest),
+		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
+		imageBg = checkAttr('imageBg', attributes, manifest),
+		imageUsePlaceholder = checkAttr('imageBg', attributes, manifest),
 	} = attributes;
+
+	const imageWrapClass = classnames([
+		selectorB(componentClass, 'wrap'),
+		selector(componentClass, 'align', 'imageAlign', attributes, manifest),
+		selectorB(blockClass, `${selectorClass}-wrap`),
+	]);
 
 	const imageClass = classnames([
 		componentClass,
-		imageBg && `${componentClass}--bg`,
-	]);
-
-	const imageWrapClass = classnames([
-		`${componentClass}__wrap`,
-		imageAlign && `${componentClass}__align--${imageAlign}`,
-		blockClass && `${blockClass}__${selectorClass}`,
+		selectorCustom(imageBg, componentClass, '', 'bg'),
+		selectorB(blockClass, selectorClass),
 	]);
 
 	return (

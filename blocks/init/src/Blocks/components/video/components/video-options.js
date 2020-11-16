@@ -3,29 +3,30 @@ import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { MediaPlaceholder } from '@wordpress/block-editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, options, title } = manifest;
+const { options, title } = manifest;
 
-export const VideoOptions = (props) => {
+export const VideoOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = title,
 		videoShowControls = true,
 
-		videoUse = defaults.videoUse.default,
+		videoUse = checkAttr('videoUse', attributes, manifest),
 
-		videoUrl,
-		videoType = defaults.videoType.default,
-		videoAspectRatio = defaults.videoAspectRatio.default,
-		videoUsePlaceholder = defaults.videoUsePlaceholder.default,
-		videoAccept = defaults.videoAccept.default,
-		videoAllowedTypes = defaults.videoAllowedTypes.default,
+		videoUrl = checkAttr('videoUrl', attributes, manifest),
+		videoType = checkAttr('videoType', attributes, manifest),
+		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
+		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
+		videoAccept = checkAttr('videoAccept', attributes, manifest),
+		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
 
 		showVideoUrl = true,
 		showVideoAspectRatio = true,
 		showVideoType = true,
-	} = props;
+	} = attributes;
 
 	if (!videoShowControls) {
 		return null;
@@ -41,7 +42,7 @@ export const VideoOptions = (props) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'EightshiftBoilerplate'), label)}
 				checked={videoUse}
 				onChange={(value) => setAttributes({ videoUse: value })}
 			/>
@@ -63,9 +64,10 @@ export const VideoOptions = (props) => {
 									<br />
 								</Fragment> :
 								<TextControl
-									label={__('ID', 'eightshift-boilerplate')}
+									label={__('ID', 'EightshiftBoilerplate')}
 									value={videoUrl}
 									onChange={(value) => setAttributes({ videoUrl: value })}
+									help={__('Use only video ID not the full link. Example video link: https://music.youtube.com/watch?v=PsO6ZnUZI0g, ID is PsO6ZnUZI0g', 'EightshiftBoilerplate')}
 								/>
 							}
 						</Fragment>
@@ -73,7 +75,7 @@ export const VideoOptions = (props) => {
 
 					{showVideoType &&
 						<SelectControl
-							label={__('Type', 'eightshift-boilerplate')}
+							label={__('Type', 'EightshiftBoilerplate')}
 							value={videoType}
 							options={options.types}
 							onChange={(value) => setAttributes({
@@ -85,7 +87,7 @@ export const VideoOptions = (props) => {
 
 					{showVideoAspectRatio &&
 						<SelectControl
-							label={__('Aspect Ratio', 'eightshift-boilerplate')}
+							label={__('Aspect Ratio', 'EightshiftBoilerplate')}
 							value={videoAspectRatio}
 							options={options.aspectRatioSizes}
 							onChange={(value) => setAttributes({ videoAspectRatio: value })}

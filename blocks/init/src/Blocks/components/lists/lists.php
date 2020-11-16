@@ -32,6 +32,6 @@ $listsClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($ordered); ?> class="<?php echo esc_attr($listsClass); ?>">
-	<?php echo wp_kses_post($content); ?>
-</<?php echo esc_attr($ordered); ?>>
+<<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>">
+	<?php echo wp_kses_post($listsContent); ?>
+</<?php echo esc_attr($listsOrdered); ?>>

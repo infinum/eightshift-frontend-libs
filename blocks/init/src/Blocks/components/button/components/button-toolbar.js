@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options } = manifest;
@@ -10,8 +11,8 @@ export const ButtonToolbar = (attributes) => {
 		setAttributes,
 		buttonShowControls = true,
 
-		buttonUse,
-		buttonAlign,
+		buttonUse = checkAttr('buttonUse', attributes, manifest),
+		buttonAlign = checkAttr('buttonAlign', attributes, manifest),
 
 		showButtonAlign = true,
 	} = attributes;

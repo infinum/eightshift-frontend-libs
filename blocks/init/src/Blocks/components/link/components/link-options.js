@@ -5,6 +5,7 @@ import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
 import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 const { options, title } = manifest;
@@ -24,14 +25,14 @@ export const LinkOptions = (attributes) => {
 		label = title,
 		linkShowControls = true,
 
-		linkUse,
+		linkUse = checkAttr('linkUse', attributes, manifest),
 
-		linkUrl,
-		linkColor,
-		linkSize,
-		linkWidth,
-		linkIsAnchor,
-		linkId,
+		linkUrl = checkAttr('linkUrl', attributes, manifest),
+		linkColor = checkAttr('linkColor', attributes, manifest),
+		linkSize = checkAttr('linkSize', attributes, manifest),
+		linkWidth = checkAttr('linkWidth', attributes, manifest),
+		linkIsAnchor = checkAttr('linkIsAnchor', attributes, manifest),
+		linkId = checkAttr('linkId', attributes, manifest),
 
 		showLinkUrl = true,
 		showLinkColor = true,

@@ -3,9 +3,10 @@ import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
 import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { attributes: defaults, title } = manifest;
+const { title } = manifest;
 
 export const ImageOptions = (attributes) => {
 	const {
@@ -13,18 +14,16 @@ export const ImageOptions = (attributes) => {
 		label = title,
 		imageShowControls = true,
 
-		imageUse = defaults.imageUse.default,
+		imageUse = checkAttr('imageUse', attributes, manifest),
 
-		imageUrl,
-		imageSize = defaults.imageSize.default,
-		imageLink,
-		imageAccept = defaults.imageAccept.default,
-		imageAllowedTypes = defaults.imageAllowedTypes.default,
-		imageBg = defaults.imageBg.default,
-		imageUsePlaceholder = defaults.imageUsePlaceholder.default,
+		imageUrl = checkAttr('imageUrl', attributes, manifest),
+		imageLink = checkAttr('imageLink', attributes, manifest),
+		imageAccept = checkAttr('imageAccept', attributes, manifest),
+		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
+		imageBg = checkAttr('imageBg', attributes, manifest),
+		imageUsePlaceholder = checkAttr('imageUsePlaceholder', attributes, manifest),
 
 		showImageUrl = true,
-		showImageSize = true,
 		showImageLink = true,
 		showImageBg = true,
 	} = attributes;

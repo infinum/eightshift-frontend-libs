@@ -24,7 +24,7 @@ $cardClass = Components::classnames([
 	<?php
 	echo \wp_kses_post(Components::render('image', $attributes));
 	echo \wp_kses_post(Components::render('heading', $attributes));
-	echo \wp_kses_post(Components::render('paragrph', $attributes));
+	echo \wp_kses_post(Components::render('paragraph', $attributes));
 	echo \wp_kses_post(Components::render('button', $attributes));
 	?>
 </div>

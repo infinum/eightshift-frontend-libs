@@ -20,7 +20,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $method = $attributes['method'] ?? 'get';
 $postType = $attributes['postType'] ?? 'any';
 $action = $attributes['action'] ?? home_url('/');
-$placeholder = $attributes['placeholder'] ?? esc_attr__('Type in search', 'eightshift-boilerplate');
+$placeholder = $attributes['placeholder'] ?? esc_attr__('Type in search', 'EightshiftBoilerplate');
 
 $searchClass = Components::classnames([
 	$componentClass,

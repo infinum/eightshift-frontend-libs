@@ -2,20 +2,18 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
-import { AlignmentToolbar } from '@wordpress/block-editor';
 import { trash } from '@wordpress/icons';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults, options } = manifest;
 
 export const VideoToolbar = (attributes) => {
 	const {
 		setAttributes,
 		videoShowControls = true,
 
-		videoUse = defaults.videoUse.default,
+		videoUse = checkAttr('videoUse', attributes, manifest),
 
-		videoUrl,
+		videoUrl = checkAttr('videoUrl', attributes, manifest),
 	} = attributes;
 
 	if (!videoShowControls) {
@@ -30,12 +28,12 @@ export const VideoToolbar = (attributes) => {
 		<Fragment>
 			{videoUse &&
 				<Fragment>
-					{videoUrl &&
+					{(videoUrl !== '') &&
 						<ToolbarGroup
 							controls={[
 								{
 									icon: trash,
-									title: __('Remove video', 'eightshift-boilerplate'),
+									title: __('Remove video', 'EightshiftBoilerplate'),
 									isActive: false,
 									onClick: removeMedia,
 								},
