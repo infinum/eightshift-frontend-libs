@@ -14,7 +14,6 @@ const {
     cloneRepoTo,
     installNodeDependencies,
     installComposerDependencies,
-    buildAssets,
   },
   files: { fullPath },
   misc: { log, variable },
@@ -57,13 +56,6 @@ exports.handler = async (argv) => {
   await installStep({
     describe: `${step}. Replacing theme info`,
     thisHappens: searchReplace(promptedInfo, projectPath),
-  });
-  step++;
-
-  await installStep({
-    describe: `${step}. Building assets`,
-    thisHappens: buildAssets(projectPath),
-    isFatal: true,
   });
   step++;
 
