@@ -5,7 +5,7 @@ import { CardOptions as CardOptionsComponent } from '../../../components/card/co
 
 export const CardOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Card Details', 'EightshiftBoilerplate')}>
+		<PanelBody title={__('Card Details', 'eightshift-frontend-libs')}>
 			<CardOptionsComponent
 				{...attributes}
 				setAttributes={setAttributes}

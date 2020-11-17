@@ -9,7 +9,7 @@ const { attributes: defaults } = manifest;
 export const AccordionOptions = (attributes) => {
 	const {
 		setAttributes,
-		label = __('Accordion', 'EightshiftBoilerplate'),
+		label = __('Accordion', 'eightshift-frontend-libs'),
 		showControls = true,
 
 		accordionUse = defaults.accordionUse,
@@ -33,7 +33,7 @@ export const AccordionOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'EightshiftBoilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={accordionUse}
 				onChange={(value) => setAttributes({ accordionUse: value })}
 			/>
@@ -41,7 +41,7 @@ export const AccordionOptions = (attributes) => {
 			{showAccordionIsOpen &&
 				<Fragment>
 					<ToggleControl
-						label={__('Is Open', 'EightshiftBoilerplate')}
+						label={__('Is Open', 'eightshift-frontend-libs')}
 						checked={accordionIsOpen}
 						onChange={(value) => setAttributes({ accordionIsOpen: value })}
 					/>

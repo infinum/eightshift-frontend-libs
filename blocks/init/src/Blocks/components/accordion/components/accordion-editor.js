@@ -14,7 +14,7 @@ export const AccordionEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
-		placeholder = __('Add Content', 'EightshiftBoilerplate'),
+		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
 		accordionUse = checkAttr('accordionUse', attributes, manifest),
 

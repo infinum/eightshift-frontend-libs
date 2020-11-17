@@ -42,7 +42,7 @@ export const VideoOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'EightshiftBoilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={videoUse}
 				onChange={(value) => setAttributes({ videoUse: value })}
 			/>
@@ -64,10 +64,10 @@ export const VideoOptions = (attributes) => {
 									<br />
 								</Fragment> :
 								<TextControl
-									label={__('ID', 'EightshiftBoilerplate')}
+									label={__('ID', 'eightshift-frontend-libs')}
 									value={videoUrl}
 									onChange={(value) => setAttributes({ videoUrl: value })}
-									help={__('Use only video ID not the full link. Example video link: https://music.youtube.com/watch?v=PsO6ZnUZI0g, ID is PsO6ZnUZI0g', 'EightshiftBoilerplate')}
+									help={__('Use only video ID not the full link. Example video link: https://music.youtube.com/watch?v=PsO6ZnUZI0g, ID is PsO6ZnUZI0g', 'eightshift-frontend-libs')}
 								/>
 							}
 						</Fragment>
@@ -75,7 +75,7 @@ export const VideoOptions = (attributes) => {
 
 					{showVideoType &&
 						<SelectControl
-							label={__('Type', 'EightshiftBoilerplate')}
+							label={__('Type', 'eightshift-frontend-libs')}
 							value={videoType}
 							options={options.types}
 							onChange={(value) => setAttributes({
@@ -87,7 +87,7 @@ export const VideoOptions = (attributes) => {
 
 					{showVideoAspectRatio &&
 						<SelectControl
-							label={__('Aspect Ratio', 'EightshiftBoilerplate')}
+							label={__('Aspect Ratio', 'eightshift-frontend-libs')}
 							value={videoAspectRatio}
 							options={options.aspectRatioSizes}
 							onChange={(value) => setAttributes({ videoAspectRatio: value })}

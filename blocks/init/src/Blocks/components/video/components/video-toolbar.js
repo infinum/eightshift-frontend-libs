@@ -33,7 +33,7 @@ export const VideoToolbar = (attributes) => {
 							controls={[
 								{
 									icon: trash,
-									title: __('Remove video', 'EightshiftBoilerplate'),
+									title: __('Remove video', 'eightshift-frontend-libs'),
 									isActive: false,
 									onClick: removeMedia,
 								},

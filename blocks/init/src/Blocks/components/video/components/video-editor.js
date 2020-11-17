@@ -78,7 +78,7 @@ export const VideoEditor = (attributes) => {
 					{(videoUrl === '') &&
 						<Fragment>
 							{(videoUsePlaceholder || videoType !== 'local') &&
-								<Placeholder icon={video} label={__('Please add video using sidebar options!', 'EightshiftBoilerplate')} />
+								<Placeholder icon={video} label={__('Please add video using sidebar options!', 'eightshift-frontend-libs')} />
 							}
 
 							{(!videoUsePlaceholder && videoType === 'local') &&
