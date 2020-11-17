@@ -48,14 +48,14 @@ exports.handler = async (argv) => {
   step++;
 
   await installStep({
-    describe: `${step}. Installing Composer dependencies`,
-    thisHappens: installComposerDependencies(projectPath),
+    describe: `${step}. Replacing theme info`,
+    thisHappens: searchReplace(promptedInfo, projectPath),
   });
   step++;
 
   await installStep({
-    describe: `${step}. Replacing theme info`,
-    thisHappens: searchReplace(promptedInfo, projectPath),
+    describe: `${step}. Installing Composer dependencies`,
+    thisHappens: installComposerDependencies(projectPath),
   });
   step++;
 
