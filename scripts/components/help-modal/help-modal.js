@@ -221,13 +221,13 @@ export const HelpModal = (props) => {
 								{showColumnOffset &&
 									<Item
 										title={__('Offset', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs's's')}
+										content={__('', 'eightshift-frontend-libs')}
 									/>
 								}
 
 								{showColumnOrder &&
 									<Item
-										title={__('Order', 'eightshift-frontend-libs's')}
+										title={__('Order', 'eightshift-frontend-libs')}
 										content={__('', 'eightshift-frontend-libs')}
 									/>
 								}
