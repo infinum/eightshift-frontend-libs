@@ -12,7 +12,7 @@ export const LinkEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-boilerplate'),
+		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
 		linkUse = checkAttr('linkUse', attributes, manifest),
 

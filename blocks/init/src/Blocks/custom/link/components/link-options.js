@@ -5,7 +5,7 @@ import { LinkOptions as LinkOptionsComponent } from '../../../components/link/co
 
 export const LinkOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Link Details', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Link Details', 'eightshift-frontend-libs')}>
 			<LinkOptionsComponent
 				{...attributes}
 				setAttributes={setAttributes}

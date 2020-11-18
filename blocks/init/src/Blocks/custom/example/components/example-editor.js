@@ -12,7 +12,7 @@ export const ExampleEditor = (attributes) => {
 
 	return (
 		<RichText
-			placeholder={__('Add Content', 'eightshift-boilerplate')}
+			placeholder={__('Add Content', 'eightshift-frontend-libs')}
 			className={blockClass}
 			onChange={(value) => setAttributes({ content: value })}
 			value={content}

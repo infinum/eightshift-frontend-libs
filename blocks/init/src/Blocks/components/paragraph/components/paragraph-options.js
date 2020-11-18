@@ -39,7 +39,7 @@ export const ParagraphOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={paragraphUse}
 				onChange={(value) => setAttributes({ paragraphUse: value })}
 			/>
@@ -51,7 +51,7 @@ export const ParagraphOptions = (attributes) => {
 							label={
 								<Fragment>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-boilerplate')}
+									{__('Color', 'eightshift-frontend-libs')}
 								</Fragment>
 							}
 							value={paragraphColor}
@@ -61,7 +61,7 @@ export const ParagraphOptions = (attributes) => {
 
 					{showParagraphSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-boilerplate')}
+							label={__('Size', 'eightshift-frontend-libs')}
 							value={paragraphSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ paragraphSize: value })}

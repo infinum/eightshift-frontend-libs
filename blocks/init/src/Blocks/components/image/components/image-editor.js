@@ -59,7 +59,7 @@ export const ImageEditor = (attributes) => {
 										accept={imageAccept}
 										allowedTypes={imageAllowedTypes}
 									/> :
-									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'eightshift-boilerplate')} />
+									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'eightshift-frontend-libs')} />
 								}
 							</Fragment>
 						}

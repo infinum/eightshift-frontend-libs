@@ -42,7 +42,7 @@ export const ImageOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={imageUse}
 				onChange={(value) => setAttributes({ imageUse: value })}
 			/>
@@ -64,7 +64,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageBg &&
 						<ToggleControl
-							label={__('Use as Background Image', 'eightshift-boilerplate')}
+							label={__('Use as Background Image', 'eightshift-frontend-libs')}
 							checked={imageBg}
 							onChange={(value) => setAttributes({ imageBg: value })}
 						/>
@@ -72,7 +72,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageLink &&
 						<URLInput
-							label={__('Url', 'eightshift-boilerplate')}
+							label={__('Url', 'eightshift-frontend-libs')}
 							value={imageLink}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ imageLink: value })}

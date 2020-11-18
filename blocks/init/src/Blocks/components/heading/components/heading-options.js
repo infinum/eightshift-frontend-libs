@@ -38,7 +38,7 @@ export const HeadingOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={headingUse}
 				onChange={(value) => setAttributes({ headingUse: value })}
 			/>
@@ -50,7 +50,7 @@ export const HeadingOptions = (attributes) => {
 							label={
 								<Fragment>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-boilerplate')}
+									{__('Color', 'eightshift-frontend-libs')}
 								</Fragment>
 							}
 							value={headingColor}
@@ -60,7 +60,7 @@ export const HeadingOptions = (attributes) => {
 
 					{showHeadingSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-boilerplate')}
+							label={__('Size', 'eightshift-frontend-libs')}
 							value={headingSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ headingSize: value })}

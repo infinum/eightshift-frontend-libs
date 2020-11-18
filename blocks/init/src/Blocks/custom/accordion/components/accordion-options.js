@@ -5,7 +5,7 @@ import { AccordionOptions as AccordionOptionsComponent } from '../../../componen
 
 export const AccordionOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Accordion Details', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Accordion Details', 'eightshift-frontend-libs')}>
 			<AccordionOptionsComponent
 				{...attributes}
 				setAttributes={setAttributes}

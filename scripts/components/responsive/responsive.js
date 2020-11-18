@@ -7,7 +7,7 @@ import { aspectRatio } from '@wordpress/icons';
 export const Responsive = (props) => {
 	const {
 		label,
-		tooltip = __('Responsive overrides', 'eightshift-boilerplate'),
+		tooltip = __('Responsive overrides', 'eightshift-frontend-libs'),
 		children = [],
 	} = props;
 

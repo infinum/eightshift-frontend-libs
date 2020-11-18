@@ -12,7 +12,7 @@ export const HeadingEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-boilerplate'),
+		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
 		headingUse = checkAttr('headingUse', attributes, manifest),
 

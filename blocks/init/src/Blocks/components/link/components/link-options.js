@@ -57,7 +57,7 @@ export const LinkOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={linkUse}
 				onChange={(value) => setAttributes({ linkUse: value })}
 			/>
@@ -67,7 +67,7 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkUrl &&
 						<URLInput
-							label={__('Url', 'eightshift-boilerplate')}
+							label={__('Url', 'eightshift-frontend-libs')}
 							value={linkUrl}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ linkUrl: value })}
@@ -79,7 +79,7 @@ export const LinkOptions = (attributes) => {
 							label={
 								<Fragment>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-boilerplate')}
+									{__('Color', 'eightshift-frontend-libs')}
 
 								</Fragment>
 							}
@@ -91,7 +91,7 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-boilerplate')}
+							label={__('Size', 'eightshift-frontend-libs')}
 							value={linkSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ linkSize: value })}
@@ -100,7 +100,7 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkWidth &&
 						<SelectControl
-							label={__('Width', 'eightshift-boilerplate')}
+							label={__('Width', 'eightshift-frontend-libs')}
 							value={linkWidth}
 							options={options.widths}
 							onChange={(value) => setAttributes({ linkWidth: value })}
@@ -109,16 +109,16 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkIsAnchor &&
 						<ToggleControl
-							label={__('Anchor', 'eightshift-boilerplate')}
+							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={linkIsAnchor}
 							onChange={(value) => setAttributes({ linkIsAnchor: value })}
-							help={__('Using anchor option will add JavaScript selector to the link. You must provide anchor destination inside link Url field. Example: #super-block.', 'eightshift-boilerplate')}
+							help={__('Using anchor option will add JavaScript selector to the link. You must provide anchor destination inside link Url field. Example: #super-block.', 'eightshift-frontend-libs')}
 						/>
 					}
 
 					{showLinkId &&
 						<TextControl
-							label={__('ID', 'eightshift-boilerplate')}
+							label={__('ID', 'eightshift-frontend-libs')}
 							value={linkId}
 							onChange={(value) => setAttributes({ linkId: value })}
 						/>

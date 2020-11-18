@@ -40,7 +40,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 	];
 
 	return (
-		<PanelBody title={__('Column Details', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Column Details', 'eightshift-frontend-libs')}>
 
 			<HelpModal type="column" />
 
@@ -50,7 +50,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				label={
 					<Fragment>
 						<Icon icon={icons.width} />
-						{__('Width', 'eightshift-boilerplate')}
+						{__('Width', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
 			>
@@ -80,7 +80,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				label={
 					<Fragment>
 						<Icon icon={icons.offset} />
-						{__('Offset', 'eightshift-boilerplate')}
+						{__('Offset', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
 			>
@@ -110,7 +110,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				label={
 					<Fragment>
 						<Icon icon={icons.width} />
-						{__('Order', 'eightshift-boilerplate')}
+						{__('Order', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
 			>
@@ -140,7 +140,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				label={
 					<Fragment>
 						<Icon icon={icons.width} />
-						{__('Hide', 'eightshift-boilerplate')}
+						{__('Hide', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
 			>

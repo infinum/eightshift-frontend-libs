@@ -39,7 +39,7 @@ const createLevelControl = (targetLevel, selectedLevel, onChange) => {
 				isPressed={isActive}
 			/>
 		),
-		title: sprintf(__('Heading %d', 'eightshift-boilerplate'), targetLevel),
+		title: sprintf(__('Heading %d', 'eightshift-frontend-libs'), targetLevel),
 		isActive,
 		onClick: () => onChange(targetLevel),
 		subscript: String(targetLevel),
@@ -61,7 +61,7 @@ export const HeadingLevel = (props) => {
 			icon={<HeadingLevelIcon level={selectedLevel} />}
 			controls={range(minLevel, maxLevel).map((index) =>
 				createLevelControl(index, selectedLevel, onChange))}
-			label={__('Change heading level', 'eightshift-boilerplate')}
+			label={__('Change heading level', 'eightshift-frontend-libs')}
 		/>
 	);
 };

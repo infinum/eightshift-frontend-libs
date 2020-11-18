@@ -4,7 +4,7 @@ import { PanelBody } from '@wordpress/components';
 
 export const ExampleOptions = () => {
 	return (
-		<PanelBody title={__('Example Details', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Example Details', 'eightshift-frontend-libs')}>
 		</PanelBody>
 	);
 };

@@ -38,7 +38,7 @@ export const ListsOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={listsUse}
 				onChange={(value) => setAttributes({ listsUse: value })}
 			/>
@@ -50,7 +50,7 @@ export const ListsOptions = (attributes) => {
 							label={
 								<Fragment>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-boilerplate')}
+									{__('Color', 'eightshift-frontend-libs')}
 								</Fragment>
 							}
 							value={listsColor}
@@ -60,7 +60,7 @@ export const ListsOptions = (attributes) => {
 
 					{showListsSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-boilerplate')}
+							label={__('Size', 'eightshift-frontend-libs')}
 							value={listsSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ listsSize: value })}

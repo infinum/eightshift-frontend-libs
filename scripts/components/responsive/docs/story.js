@@ -124,7 +124,7 @@ export const componentRange = () => (
 		label={
 			<Fragment>
 				<Icon icon={icons.spacingBottom} />
-				{__('Spacing Bottom', 'eightshift-boilerplate')}
+				{__('Spacing Bottom', 'eightshift-frontend-libs')}
 			</Fragment>
 		}
 	>
@@ -156,7 +156,7 @@ export const componentToggle = () => (
 		label={
 			<Fragment>
 				<Icon icon={icons.dividerBottom} />
-				{__('Divider Bottom', 'eightshift-boilerplate')}
+				{__('Divider Bottom', 'eightshift-frontend-libs')}
 			</Fragment>
 		}
 	>
@@ -183,7 +183,7 @@ export const componentSelect = () => (
 		label={
 			<Fragment>
 				<Icon icon={icons.containerWidth} />
-				{__('ContainerWidth', 'eightshift-boilerplate')}
+				{__('ContainerWidth', 'eightshift-frontend-libs')}
 			</Fragment>
 		}
 	>

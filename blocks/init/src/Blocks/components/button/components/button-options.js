@@ -58,7 +58,7 @@ export const ButtonOptions = (attributes) => {
 			}
 
 			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={buttonUse}
 				onChange={(value) => setAttributes({ buttonUse: value })}
 			/>
@@ -68,7 +68,7 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonUrl &&
 						<URLInput
-							label={__('Url', 'eightshift-boilerplate')}
+							label={__('Url', 'eightshift-frontend-libs')}
 							value={buttonUrl}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ buttonUrl: value })}
@@ -80,7 +80,7 @@ export const ButtonOptions = (attributes) => {
 							label={
 								<Fragment>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-boilerplate')}
+									{__('Color', 'eightshift-frontend-libs')}
 
 								</Fragment>
 							}
@@ -92,7 +92,7 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-boilerplate')}
+							label={__('Size', 'eightshift-frontend-libs')}
 							value={buttonSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ buttonSize: value })}
@@ -101,7 +101,7 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonWidth &&
 						<SelectControl
-							label={__('Width', 'eightshift-boilerplate')}
+							label={__('Width', 'eightshift-frontend-libs')}
 							value={buttonWidth}
 							options={options.widths}
 							onChange={(value) => setAttributes({ buttonWidth: value })}
@@ -110,16 +110,16 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonIsAnchor &&
 						<ToggleControl
-							label={__('Anchor', 'eightshift-boilerplate')}
+							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={buttonIsAnchor}
 							onChange={(value) => setAttributes({ buttonIsAnchor: value })}
-							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-boilerplate')}
+							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-frontend-libs')}
 						/>
 					}
 
 					{showButtonIsNewTab &&
 						<ToggleControl
-							label={__('New Tab', 'eightshift-boilerplate')}
+							label={__('New Tab', 'eightshift-frontend-libs')}
 							checked={buttonIsNewTab}
 							onChange={(value) => setAttributes({ buttonIsNewTab: value })}
 						/>
@@ -127,7 +127,7 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonId &&
 						<TextControl
-							label={__('ID', 'eightshift-boilerplate')}
+							label={__('ID', 'eightshift-frontend-libs')}
 							value={buttonId}
 							onChange={(value) => setAttributes({ buttonId: value })}
 						/>

@@ -116,7 +116,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	return (
 		<Fragment>
 			{!wrapperDisable &&
-				<PanelBody title={__('Block Layout', 'eightshift-boilerplate')} initialOpen={false} className="custom-highlighted-panel">
+				<PanelBody title={__('Block Layout', 'eightshift-frontend-libs')} initialOpen={false} className="custom-highlighted-panel">
 
 					<HelpModal />
 
@@ -124,7 +124,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 					{wrapperUseShowControl &&
 						<ToggleControl
-							label={wrapperUse ? __('Wrapper Enabled', 'eightshift-boilerplate') : __('Wrapper Disabled', 'eightshift-boilerplate')}
+							label={wrapperUse ? __('Wrapper Enabled', 'eightshift-frontend-libs') : __('Wrapper Disabled', 'eightshift-frontend-libs')}
 							checked={wrapperUse}
 							onChange={(value) => setAttributes({ wrapperUse: value })}
 						/>
@@ -132,7 +132,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 					{(wrapperUse && wrapperUseSimpleShowControl) &&
 						<ToggleControl
-							label={wrapperUseSimple ? __('Wrapper Simple Enabled', 'eightshift-boilerplate') : __('Wrapper Simple Disabled', 'eightshift-boilerplate')}
+							label={wrapperUseSimple ? __('Wrapper Simple Enabled', 'eightshift-frontend-libs') : __('Wrapper Simple Disabled', 'eightshift-frontend-libs')}
 							checked={wrapperUseSimple}
 							onChange={(value) => setAttributes({ wrapperUseSimple: value })}
 						/>
@@ -150,7 +150,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.spacingTop} />
-													{__('Spacing Top', 'eightshift-boilerplate')}
+													{__('Spacing Top', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -182,7 +182,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.spacingBottom} />
-													{__('Spacing Bottom', 'eightshift-boilerplate')}
+													{__('Spacing Bottom', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -216,7 +216,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.spacingTop} />
-													{__('Spacing Top In', 'eightshift-boilerplate')}
+													{__('Spacing Top In', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -248,7 +248,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.spacingBottom} />
-													{__('Spacing Bottom In', 'eightshift-boilerplate')}
+													{__('Spacing Bottom In', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -282,7 +282,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.dividerTop} />
-													{__('Divider Top', 'eightshift-boilerplate')}
+													{__('Divider Top', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -309,7 +309,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.dividerBottom} />
-													{__('Divider Bottom', 'eightshift-boilerplate')}
+													{__('Divider Bottom', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -338,7 +338,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											label={
 												<Fragment>
 													<Icon icon={icons.hide} />
-													{__('Hide', 'eightshift-boilerplate')}
+													{__('Hide', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
 										>
@@ -370,7 +370,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.width} />
-											{__('Width', 'eightshift-boilerplate')}
+											{__('Width', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 								>
@@ -402,7 +402,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.offset} />
-											{__('Offset', 'eightshift-boilerplate')}
+											{__('Offset', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 								>
@@ -434,7 +434,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.containerWidth} />
-											{__('ContainerWidth', 'eightshift-boilerplate')}
+											{__('ContainerWidth', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 								>
@@ -462,7 +462,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.gutter} />
-											{__('Gutter', 'eightshift-boilerplate')}
+											{__('Gutter', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 								>
@@ -490,7 +490,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.color} />
-											{__('Background Color', 'eightshift-boilerplate')}
+											{__('Background Color', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 									value={wrapperBackgroundColor}
@@ -503,7 +503,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.anchor} />
-											{__('Block Anchor ID', 'eightshift-boilerplate')}
+											{__('Block Anchor ID', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 									value={wrapperId}
@@ -516,7 +516,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									label={
 										<Fragment>
 											<Icon icon={icons.id} />
-											{__('Block ID', 'eightshift-boilerplate')}
+											{__('Block ID', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
 									value={wrapperId}
