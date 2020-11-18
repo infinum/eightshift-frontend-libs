@@ -75,10 +75,9 @@ exports.handler = async (argv) => {
   log('Success!!!');
   log('');
   log('Please do the following steps manually to complete the setup:');
-  log(`1. In ${variable('wp-config.php')} - Make sure to define your env const ${variable(promptedInfo.env)} to ${variable('develop')} like so: <?php define( '${promptedInfo.env}', 'develop' ); ?>`);
-  log(`2. In ${variable('wp-config.php')} - Make sure to require ${variable('wp-config-project.php')} (at the end of the file)`);
-  log('3. Activate your new theme');
-  log(`4. (optionally) Run ${variable('wp boilerplate --help')} to see what's possible.`);
+  log(`1. Activate your new theme by running ${variable(`wp theme activate ${variable(promptedInfo.package)}`)}`);
+  log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
+  log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init_theme')} inside your new theme folder.`);
   log('');
   log(`Please read the documentation ${variable('https://infinum.github.io/eightshift-docs/')} if you run into any issues or if you have any questions.`);
   log('');
