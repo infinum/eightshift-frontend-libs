@@ -37,22 +37,19 @@ $wrapClass = Components::classnames([
 
 $columnLeftClass = Components::classnames([
 	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'left'),
+	Components::selectorB($selectorClass, 'column'),
 	Components::selectorB($selectorClass, 'column', 'left'),
 ]);
 
 $columnCenterClass = Components::classnames([
 	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'center'),
+	Components::selectorB($selectorClass, 'column'),
 	Components::selectorB($selectorClass, 'column', 'center'),
 ]);
 
 $columnRightClass = Components::classnames([
 	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'right'),
+	Components::selectorB($selectorClass, 'column'),
 	Components::selectorB($selectorClass, 'column', 'right'),
 ]);
 
