@@ -20,6 +20,10 @@
 		"layoutRight": {
 			"type": "string"
 		},
+		"tag": {
+			"type": "string",
+			"default": "div"
+		},
 		"layoutUse": {
 			"type": "boolean",
 			"default": true
