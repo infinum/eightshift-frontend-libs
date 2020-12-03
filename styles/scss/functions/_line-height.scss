@@ -1,0 +1,46 @@
+/// Transforms the line-height to relative value.
+///
+/// If context is not provided, it will be pulled from the $base-font-size.
+/// Line height will be specified without any unit.
+///
+/// ### Output
+/// ```scss
+///
+/// // $base-font-size = 20.
+///
+/// .test {
+///   &__subelement {
+///      line-height: 1;
+///   }
+///
+///   &__second-subelement {
+///      line-height: 1.19;
+///   }
+/// }
+/// ```
+///
+/// @access public
+/// @author Denis Zoljom
+/// @param {Number} $pixels The pixel value that should be converted to relative value. Needs to be specified without px.
+/// @param {Number} $context The relative context. Defaults to $base-font-size.
+///
+/// @example
+/// .test {
+///   font-size: 20px;
+///
+///   &__subelement {
+///      font-size: line-height(20);
+///   }
+///
+///   &__second-subelement {
+///      font-size: line-height(38, 32);
+///   }
+/// }
+///
+
+$browser-context: $base-font-size;
+
+// Calculate line-height in relative units from pixels.
+@function line-height($pixels, $context: $browser-context) {
+	@return #{$pixels/$context};
+}
