@@ -24,7 +24,7 @@ $loaderUseOverlay = Components::checkAttr('loaderUseOverlay', $attributes, $mani
 $loaderClass = Components::classnames([
 	$componentClass,
 	Components::selectorCustom($loaderUseOverlay, $componentClass, '', 'use-overlay'),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 ?>
 

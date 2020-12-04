@@ -27,7 +27,7 @@ $headingClass = Components::classnames([
 	Components::selector($componentClass, 'color', 'headingColor', $attributes, $manifest),
 	Components::selector($componentClass, 'size', 'headingSize', $attributes, $manifest),
 	Components::selector($componentClass, 'align', 'headingAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';

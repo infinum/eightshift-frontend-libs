@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorB, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, selectorBlock, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ButtonEditor = (attributes) => {
@@ -21,9 +21,9 @@ export const ButtonEditor = (attributes) => {
 	} = attributes;
 
 	const buttonWrapClass = classnames([
-		selectorB(componentClass, 'wrap'),
+		selectorBlock(componentClass, 'wrap'),
 		selector(componentClass, 'align', 'buttonAlign', attributes, manifest),
-		selectorB(blockClass, `${selectorClass}-wrap`),
+		selectorBlock(blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const buttonClass = classnames([
@@ -32,7 +32,7 @@ export const ButtonEditor = (attributes) => {
 		selector(componentClass, 'color', 'buttonColor', attributes, manifest),
 		selector(componentClass, 'size-width', 'buttonWidth', attributes, manifest),
 		selectorCustom(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (

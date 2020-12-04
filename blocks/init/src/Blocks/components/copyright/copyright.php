@@ -25,7 +25,7 @@ $copyrightContent = Components::checkAttr('copyrightContent', $attributes, $mani
 
 $copyrightClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

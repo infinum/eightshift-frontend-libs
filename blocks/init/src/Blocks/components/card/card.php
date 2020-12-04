@@ -16,7 +16,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $cardClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, "{$selectorClass}"),
+	Components::selectorBlock($blockClass, "{$selectorClass}"),
 ]);
 ?>
 

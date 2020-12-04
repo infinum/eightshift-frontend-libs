@@ -38,9 +38,9 @@ if ($linkIsNewTab) {
 };
 
 $linkWrapClass = Components::classnames([
-	Components::selectorB($componentClass, 'wrap'),
+	Components::selectorBlock($componentClass, 'wrap'),
 	Components::selector($componentClass, 'align', 'linkAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
+	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
 ]);
 
 
@@ -48,8 +48,8 @@ $linkClass = Components::classnames([
 	$componentClass,
 	Components::selector($componentClass, 'color', 'linkColor', $attributes, $manifest),
 	Components::selector($componentClass, 'size', 'linkSize', $attributes, $manifest),
-	Components::selectorB($linkIsAnchor, 'js-scroll-to-anchor'),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($linkIsAnchor, 'js-scroll-to-anchor'),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
@@ -19,33 +19,33 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 
 	const layoutClass = classnames([
 		componentClass,
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	const wrapClass = classnames([
-		selectorB(componentClass, 'wrap'),
-		selectorB(selectorClass, 'wrap'),
+		selectorBlock(componentClass, 'wrap'),
+		selectorBlock(selectorClass, 'wrap'),
 	]);
 
 	const columnLeftClass = classnames([
-		selectorB(componentClass, 'column'),
-		selectorB(componentClass, 'column'),
-		selectorB(selectorClass, 'column', 'left'),
-		selectorB(selectorClass, 'column', 'left'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(selectorClass, 'column', 'left'),
+		selectorBlock(selectorClass, 'column', 'left'),
 	]);
 
 	const columnCenterClass = classnames([
-		selectorB(componentClass, 'column'),
-		selectorB(componentClass, 'column'),
-		selectorB(selectorClass, 'column', 'center'),
-		selectorB(selectorClass, 'column', 'center'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(selectorClass, 'column', 'center'),
+		selectorBlock(selectorClass, 'column', 'center'),
 	]);
 
 	const columnRightClass = classnames([
-		selectorB(componentClass, 'column'),
-		selectorB(componentClass, 'column'),
-		selectorB(selectorClass, 'column', 'right'),
-		selectorB(selectorClass, 'column', 'right'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(componentClass, 'column'),
+		selectorBlock(selectorClass, 'column', 'right'),
+		selectorBlock(selectorClass, 'column', 'right'),
 	]);
 
 	return (

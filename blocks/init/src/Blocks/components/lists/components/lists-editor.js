@@ -3,7 +3,7 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ListsEditor = (attributes) => {
@@ -25,7 +25,7 @@ export const ListsEditor = (attributes) => {
 		selector(componentClass, 'color', 'listsColor', attributes, manifest),
 		selector(componentClass, 'size', 'listsSize', attributes, manifest),
 		selector(componentClass, 'align', 'listsAlign', attributes, manifest),
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (

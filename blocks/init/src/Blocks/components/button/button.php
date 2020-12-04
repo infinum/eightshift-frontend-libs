@@ -38,9 +38,9 @@ if ($buttonIsNewTab) {
 };
 
 $buttonWrapClass = Components::classnames([
-	Components::selectorB($componentClass, 'wrap'),
+	Components::selectorBlock($componentClass, 'wrap'),
 	Components::selector($componentClass, 'align', 'buttonAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
+	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
 ]);
 
 $buttonClass = Components::classnames([
@@ -49,7 +49,7 @@ $buttonClass = Components::classnames([
 	Components::selector($componentClass, 'size', 'buttonSize', $attributes, $manifest),
 	Components::selector($componentClass, 'size-width', 'buttonWidth', $attributes, $manifest),
 	Components::selectorCustom($buttonIsAnchor, 'js-scroll-to-anchor'),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

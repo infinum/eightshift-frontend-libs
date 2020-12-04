@@ -24,16 +24,16 @@ $imageLink = Components::checkAttr('imageLink', $attributes, $manifest);
 $imageBg = Components::checkAttr('imageBg', $attributes, $manifest);
 
 $imageWrapClass = Components::classnames([
-	Components::selectorB($componentClass, 'wrap'),
+	Components::selectorBlock($componentClass, 'wrap'),
 	Components::selector($componentClass, 'align', 'imageAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
-	Components::selectorB($imageLink, $componentClass, 'is-link'),
+	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
+	Components::selectorBlock($imageLink, $componentClass, 'is-link'),
 ]);
 
 $imageClass = Components::classnames([
 	$componentClass,
 	Components::selectorCustom($imageBg, $componentClass, '', 'bg'),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

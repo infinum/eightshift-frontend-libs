@@ -27,7 +27,7 @@ $drawerClass = Components::classnames([
 	$componentClass,
 	Components::selectorCustom($componentClass, "js-{$componentClass}"),
 	Components::selector($componentClass, 'position', 'drawerPosition', $attributes, $manifest),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

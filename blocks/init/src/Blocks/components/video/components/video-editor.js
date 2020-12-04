@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
 import { video } from '@wordpress/icons';
-import { selectorM, selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorModifier, selectorBlock, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const VideoEditor = (attributes) => {
@@ -27,15 +27,15 @@ export const VideoEditor = (attributes) => {
 	} = attributes;
 
 	const videoWrapClass = classnames([
-		selectorB(componentClass, 'wrap'),
-		selectorM(componentClass, 'ratio', videoAspectRatio),
+		selectorBlock(componentClass, 'wrap'),
+		selectorModifier(componentClass, 'ratio', videoAspectRatio),
 		selectorCustom(videoType, componentClass, 'ratio', videoType),
-		selectorB(blockClass, `${selectorClass}-wrap`),
+		selectorBlock(blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const videoClass = classnames([
 		componentClass,
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	let localUrl = '';

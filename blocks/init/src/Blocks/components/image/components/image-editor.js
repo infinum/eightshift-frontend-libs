@@ -5,7 +5,7 @@ import { Fragment } from '@wordpress/element';
 import { Placeholder } from '@wordpress/components';
 import { image } from '@wordpress/icons';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { selector, selectorB, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, selectorBlock, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ImageEditor = (attributes) => {
@@ -25,15 +25,15 @@ export const ImageEditor = (attributes) => {
 	} = attributes;
 
 	const imageWrapClass = classnames([
-		selectorB(componentClass, 'wrap'),
+		selectorBlock(componentClass, 'wrap'),
 		selector(componentClass, 'align', 'imageAlign', attributes, manifest),
-		selectorB(blockClass, `${selectorClass}-wrap`),
+		selectorBlock(blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const imageClass = classnames([
 		componentClass,
 		selectorCustom(imageBg, componentClass, '', 'bg'),
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (

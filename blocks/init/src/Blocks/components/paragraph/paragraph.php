@@ -26,7 +26,7 @@ $paragraphClass = Components::classnames([
 	Components::selector($componentClass, 'color', 'paragraphColor', $attributes, $manifest),
 	Components::selector($componentClass, 'size', 'paragraphSize', $attributes, $manifest),
 	Components::selector($componentClass, 'align', 'paragraphAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

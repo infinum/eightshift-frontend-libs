@@ -25,7 +25,7 @@ $scrollToTopContent = Components::checkAttr('scrollToTopContent', $attributes, $
 $scrollClass = Components::classnames([
 	$componentClass,
 	Components::selectorCustom($componentClass, "js-{$componentClass}"),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

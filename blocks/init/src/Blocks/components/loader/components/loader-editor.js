@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorBlock, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const LoaderEditor = (attributes) => {
@@ -18,7 +18,7 @@ export const LoaderEditor = (attributes) => {
 	const loaderClass = classnames(
 		componentClass,
 		selectorCustom(loaderUseOverlay, componentClass, '', 'use-overlay'),
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	);
 
 	return (

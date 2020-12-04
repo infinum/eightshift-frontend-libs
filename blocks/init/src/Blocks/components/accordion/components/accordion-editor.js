@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options } = manifest;
@@ -24,7 +24,7 @@ export const AccordionEditor = (attributes) => {
 
 	const accordionClass = classnames([
 		componentClass,
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (
