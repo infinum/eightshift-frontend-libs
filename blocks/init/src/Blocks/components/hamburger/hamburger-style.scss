@@ -20,6 +20,10 @@ $hamburger: (
 	margin: 0 -#{map-get-strict($hamburger, padding)};
 	cursor: pointer;
 
+	@include media(desktop up) {
+		display: none;
+	}
+
 	&__wrap {
 		position: relative;
 		display: block;
