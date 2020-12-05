@@ -28,7 +28,7 @@ $componentJsClass = Components::selectorCustom($componentClass, "js-{$componentC
 $accordionClass = Components::classnames([
 	$componentClass,
 	$componentJsClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

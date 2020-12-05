@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorB, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorBlock, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const HamburgerEditor = (attributes) => {
@@ -16,7 +16,7 @@ export const HamburgerEditor = (attributes) => {
 	const hamburgerClass = classnames([
 		componentClass,
 		selectorCustom(componentClass, `js-${componentClass}`),
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (

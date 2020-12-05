@@ -28,14 +28,14 @@ $videoAllowedTypes = Components::checkAttr('videoAllowedTypes', $attributes, $ma
 $videoUsePlaceholder = Components::checkAttr('videoUsePlaceholder', $attributes, $manifest);
 
 $videoWrapClass = Components::classnames([
-	Components::selectorB($componentClass, 'wrap'),
-	Components::selectorM($componentClass, 'ratio', $videoAspectRatio),
-	Components::selectorB($blockClass, "{$selectorClass}-wrap"),
+	Components::selectorBlock($componentClass, 'wrap'),
+	Components::selectorModifier($componentClass, 'ratio', $videoAspectRatio),
+	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
 ]);
 
 $videoClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 $localUrl = '';

@@ -26,31 +26,31 @@ $tag = Components::checkAttr('tag', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($selectorClass),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 $wrapClass = Components::classnames([
-	Components::selectorB($componentClass, 'wrap'),
-	Components::selectorB($selectorClass, 'wrap'),
+	Components::selectorBlock($componentClass, 'wrap'),
+	Components::selectorBlock($selectorClass, 'wrap'),
 ]);
 
 $columnLeftClass = Components::classnames([
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'left'),
+	Components::selectorBlock($componentClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column', 'left'),
 ]);
 
 $columnCenterClass = Components::classnames([
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'center'),
+	Components::selectorBlock($componentClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column', 'center'),
 ]);
 
 $columnRightClass = Components::classnames([
-	Components::selectorB($componentClass, 'column'),
-	Components::selectorB($selectorClass, 'column'),
-	Components::selectorB($selectorClass, 'column', 'right'),
+	Components::selectorBlock($componentClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column'),
+	Components::selectorBlock($selectorClass, 'column', 'right'),
 ]);
 
 ?>

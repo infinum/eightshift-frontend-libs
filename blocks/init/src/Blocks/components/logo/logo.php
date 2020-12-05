@@ -26,11 +26,11 @@ $logoHref = Components::checkAttr('logoHref', $attributes, $manifest);
 
 $logoClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 $imgClass = Components::classnames([
-	Components::selectorB($componentClass, 'img'),
+	Components::selectorBlock($componentClass, 'img'),
 ]);
 
 ?>

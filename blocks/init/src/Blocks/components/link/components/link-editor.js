@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const LinkEditor = (attributes) => {
@@ -21,9 +21,9 @@ export const LinkEditor = (attributes) => {
 	} = attributes;
 
 	const linkWrapClass = classnames([
-		selectorB(componentClass, 'wrap'),
+		selectorBlock(componentClass, 'wrap'),
 		selector(componentClass, 'align', 'linkAlign', attributes, manifest),
-		selectorB(blockClass, `${selectorClass}-wrap`),
+		selectorBlock(blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const linkClass = classnames([
@@ -31,7 +31,7 @@ export const LinkEditor = (attributes) => {
 		selector(componentClass, 'size', 'linkSize', attributes, manifest),
 		selector(componentClass, 'color', 'linkColor', attributes, manifest),
 		!(linkContent && linkUrl) && `${componentClass}-placeholder`,
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	]);
 
 	return (

@@ -26,7 +26,7 @@ $searchBarPlaceholder = Components::checkAttr('searchBarPlaceholder', $attribute
 
 $searchClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

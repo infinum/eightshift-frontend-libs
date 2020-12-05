@@ -27,7 +27,7 @@ $listsClass = Components::classnames([
 	Components::selector($componentClass, 'color', 'listsColor', $attributes, $manifest),
 	Components::selector($componentClass, 'size', 'listsSize', $attributes, $manifest),
 	Components::selector($componentClass, 'align', 'listsAlign', $attributes, $manifest),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 
 ?>

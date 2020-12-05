@@ -24,7 +24,7 @@ $icons = $manifest['options']['icons'] ?? [];
 
 $socialLinksClass = Components::classnames([
 	$componentClass,
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 ?>
 <ul class="<?php echo \esc_html($socialLinksClass); ?>">

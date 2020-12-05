@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorB, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options } = manifest;
@@ -20,7 +20,7 @@ export const VideoButtonEditor = (attributes) => {
 
 	const videoButtonClass = classnames(
 		componentClass,
-		selectorB(blockClass, selectorClass),
+		selectorBlock(blockClass, selectorClass),
 	);
 
 	return (

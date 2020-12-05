@@ -1,7 +1,7 @@
 import { checkAttr } from './check-attr';
 
 /**
- * Retun BEM selector for html class and check if Block element is set.
+ * Retun BEM selector for html class and check if Block part is set.
  *
  * @param string block BEM Block selector.
  * @param string element BEM Element selector.
@@ -9,7 +9,7 @@ import { checkAttr } from './check-attr';
  *
  * @return string
  */
-export const selectorB = (block, element = '', modifier = '') => {
+export const selectorBlock = (block, element = '', modifier = '') => {
 	let fullModifier = '';
 	let fullElement = '';
 
@@ -25,7 +25,7 @@ export const selectorB = (block, element = '', modifier = '') => {
 };
 
 /**
- * Retun BEM selector for html class and check if element is set.
+ * Retun BEM selector for html class and check if Element part is set.
  *
  * @param string block BEM Block selector.
  * @param string element BEM Element selector.
@@ -33,7 +33,7 @@ export const selectorB = (block, element = '', modifier = '') => {
  *
  * @return string
  */
-export const selectorE = (block, element, modifier = '') => {
+export const selectorElement = (block, element, modifier = '') => {
 	let fullModifier = '';
 
 	if (modifier) {
@@ -44,7 +44,7 @@ export const selectorE = (block, element, modifier = '') => {
 };
 
 /**
- * Retun BEM selector for html class and check if Modifier element is set.
+ * Retun BEM selector for html class and check if Modifier part is set.
  *
  * @param string block BEM Block selector.
  * @param string element BEM Element selector.
@@ -52,7 +52,7 @@ export const selectorE = (block, element, modifier = '') => {
  *
  * @return string
  */
-export const selectorM = (block, element, modifier) => {
+export const selectorModifier = (block, element, modifier) => {
 	return modifier ? `${block}__${element}--${modifier}` : '';
 };
 
@@ -69,7 +69,7 @@ export const selectorM = (block, element, modifier) => {
  */
 export const selector = (block, element, key, attributes, manifest) => {
 	const modifier = checkAttr(key, attributes, manifest);
-	return selectorM(block, element, modifier);
+	return selectorModifier(block, element, modifier);
 };
 
 
@@ -85,5 +85,5 @@ export const selector = (block, element, key, attributes, manifest) => {
  * @return string
  */
 export const selectorCustom = (condition, block, element = '', modifier = '') => {
-	return condition ? selectorB(block, element, modifier) : '';
+	return condition ? selectorBlock(block, element, modifier) : '';
 };

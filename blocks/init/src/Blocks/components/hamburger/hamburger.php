@@ -22,7 +22,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $hamburgerClass = Components::classnames([
 	$componentClass,
 	Components::selectorCustom($componentClass, "js-{$componentClass}"),
-	Components::selectorB($blockClass, $selectorClass),
+	Components::selectorBlock($blockClass, $selectorClass),
 ]);
 ?>
 
