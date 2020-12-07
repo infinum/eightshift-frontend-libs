@@ -31,6 +31,8 @@ function getExternals() {
 
 	ext['@wordpress/block-editor'] = 'wp.blockEditor';
 	ext['@wordpress/api-fetch'] = 'wp.apiFetch';
+	ext['@wordpress/dom-ready'] = 'wp.domReady';
+	ext['@wordpress/server-side-render'] = 'wp.serverSideRender';
 
 	ext.ga = 'ga';
 	ext.gtag = 'gtag';
