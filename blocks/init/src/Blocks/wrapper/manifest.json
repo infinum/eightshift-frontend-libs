@@ -12,7 +12,7 @@
 			"wrapperUseSimpleShowControl": true,
 			"wrapperDisable": false,
 			"wrapperParentClass": "",
-	
+
 			"wrapperWidthLarge": 12,
 			"wrapperWidthDesktop": 6,
 			"wrapperWidthTablet": 3,
@@ -66,30 +66,30 @@
 		},
 
 		"wrapperWidthLarge": {
-			"type": "int",
+			"type": "integer",
 			"default": 12
 		},
 		"wrapperWidthDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperWidthTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperWidthMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperOffsetLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperOffsetDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperOffsetTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperOffsetMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperContainerWidthLarge": {
@@ -121,56 +121,56 @@
 		},
 
 		"wrapperSpacingTopLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperSpacingBottomLarge": {
-			"type": "int",
+			"type": "integer",
 			"default": 40
 		},
 		"wrapperSpacingBottomDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingBottomTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingBottomMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperSpacingTopInLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopInDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopInTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingTopInMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperSpacingBottomInLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingBottomInDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingBottomInTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"wrapperSpacingBottomInMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"wrapperDividerTopLarge": {

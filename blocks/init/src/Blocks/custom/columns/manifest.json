@@ -81,31 +81,31 @@
 		},
 
 		"gutterLarge": {
-			"type": "int",
+			"type": "integer",
 			"default": 30
 		},
 		"gutterDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"gutterTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"gutterMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"verticalSpacingLarge": {
-			"type": "int",
+			"type": "integer",
 			"default": 30
 		},
 		"verticalSpacingDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"verticalSpacingTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"verticalSpacingMobile": {
-			"type": "int"
+			"type": "integer"
 		}
 	},
 	"options": {
