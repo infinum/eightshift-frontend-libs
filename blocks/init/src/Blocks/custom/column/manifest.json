@@ -35,30 +35,30 @@
 			"default": true
 		},
 		"widthLarge": {
-			"type": "int",
+			"type": "integer",
 			"default": 4
 		},
 		"widthDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"widthTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"widthMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"offsetLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"offsetDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"offsetTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"offsetMobile": {
-			"type": "int"
+			"type": "integer"
 		},
 
 		"hideLarge": {
@@ -75,16 +75,16 @@
 		},
 
 		"orderLarge": {
-			"type": "int"
+			"type": "integer"
 		},
 		"orderDesktop": {
-			"type": "int"
+			"type": "integer"
 		},
 		"orderTablet": {
-			"type": "int"
+			"type": "integer"
 		},
 		"orderMobile": {
-			"type": "int"
+			"type": "integer"
 		}
 	},
 	"options": {

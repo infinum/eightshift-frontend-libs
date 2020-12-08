@@ -17,7 +17,7 @@
 			"type": "string"
 		},
 		"headingLevel": {
-			"type": "int",
+			"type": "integer",
 			"default": 2
 		},
 		"headingSize": {
