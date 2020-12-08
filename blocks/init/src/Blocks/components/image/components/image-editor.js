@@ -5,35 +5,37 @@ import { Fragment } from '@wordpress/element';
 import { Placeholder } from '@wordpress/components';
 import { image } from '@wordpress/icons';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { selector, selectorBlock, selectorCustom, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ImageEditor = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		imageUse = checkAttr('imageUse', attributes, manifest),
+		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
-		imageUrl = checkAttr('imageUrl', attributes, manifest),
-		imageAccept = checkAttr('imageAccept', attributes, manifest),
-		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
-		imageBg = checkAttr('imageBg', attributes, manifest),
-		imageUsePlaceholder = checkAttr('imageBg', attributes, manifest),
+		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
+		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
+		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
+		imageBg = checkAttr('imageBg', attributes, manifest, componentName),
+		imageUsePlaceholder = checkAttr('imageBg', attributes, manifest, componentName),
+		imageAlign = checkAttr('imageAlign', attributes, manifest, componentName),
 	} = attributes;
 
 	const imageWrapClass = classnames([
-		selectorBlock(componentClass, 'wrap'),
-		selector(componentClass, 'align', 'imageAlign', attributes, manifest),
-		selectorBlock(blockClass, `${selectorClass}-wrap`),
+		selector(componentClass, componentClass, 'wrap'),
+		selector(imageAlign, componentClass, 'align', imageAlign),
+		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const imageClass = classnames([
 		componentClass,
-		selectorCustom(imageBg, componentClass, '', 'bg'),
-		selectorBlock(blockClass, selectorClass),
+		selector(imageBg, componentClass, '', 'bg'),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
@@ -55,7 +57,7 @@ export const ImageEditor = (attributes) => {
 								{(!imageUsePlaceholder) ?
 									<MediaPlaceholder
 										icon="format-image"
-										onSelect={(value) => setAttributes({ imageUrl: value.url })}
+										onSelect={(value) => setAttributes({ [`${componentName}Url`]: value.url })}
 										accept={imageAccept}
 										allowedTypes={imageAllowedTypes}
 									/> :

@@ -27,6 +27,7 @@ if (! $wrapperUse || $wrapperDisable) {
 
 $wrapperId = Components::checkAttr('wrapperId', $attributes, $manifest);
 $wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manifest);
+$wrapperBackgroundColor = Components::checkAttr('wrapperBackgroundColor', $attributes, $manifest);
 
 $wrapperHide = [
 	'large' => Components::checkAttr('wrapperHideLarge', $attributes, $manifest),
@@ -109,7 +110,7 @@ $wrapperMainClass = 'wrapper';
 
 $wrapperClass = Components::classnames([
 	$wrapperMainClass,
-	Components::selector($wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', $attributes, $manifest),
+	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor),
 	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass),
 	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass),
 	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass),

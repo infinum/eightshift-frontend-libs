@@ -12,13 +12,14 @@ const { options, title } = manifest;
 export const HeadingOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		headingShowControls = true,
 
-		headingUse = checkAttr('headingUse', attributes, manifest),
+		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
 
-		headingColor = checkAttr('headingColor', attributes, manifest),
-		headingSize = checkAttr('headingSize', attributes, manifest),
+		headingColor = checkAttr('headingColor', attributes, manifest, componentName),
+		headingSize = checkAttr('headingSize', attributes, manifest, componentName),
 
 		showHeadingColor = true,
 		showHeadingSize = true,
@@ -40,7 +41,7 @@ export const HeadingOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={headingUse}
-				onChange={(value) => setAttributes({ headingUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{headingUse &&
@@ -54,7 +55,7 @@ export const HeadingOptions = (attributes) => {
 								</Fragment>
 							}
 							value={headingColor}
-							onChange={(value) => setAttributes({ headingColor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
 
@@ -63,7 +64,7 @@ export const HeadingOptions = (attributes) => {
 							label={__('Size', 'eightshift-frontend-libs')}
 							value={headingSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ headingSize: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
 				</Fragment>

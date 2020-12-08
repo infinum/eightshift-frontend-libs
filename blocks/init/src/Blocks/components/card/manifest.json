@@ -4,6 +4,7 @@
 	"componentClass": "card-simple",
 	"components": {
 		"image": "image",
+		"intro": "heading",
 		"heading": "heading",
 		"paragraph": "paragraph",
 		"button": "button"

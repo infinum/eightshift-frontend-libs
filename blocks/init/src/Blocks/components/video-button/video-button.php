@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoButtonUse = Components::checkAttr('videoButtonUse', $attributes, $manifest);
+$videoButtonUse = Components::checkAttr('videoButtonUse', $attributes, $manifest, $componentName);
 if (!$videoButtonUse) {
 	return;
 }
@@ -19,13 +20,13 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$videoButtonModalId = Components::checkAttr('videoButtonModalId', $attributes, $manifest);
-$videoButtonLabel = Components::checkAttr('videoButtonLabel', $attributes, $manifest);
+$videoButtonModalId = Components::checkAttr('videoButtonModalId', $attributes, $manifest, $componentName);
+$videoButtonLabel = Components::checkAttr('videoButtonLabel', $attributes, $manifest, $componentName);
 $icon = $manifest['options']['icon'] ?? '';
 
 $videoButtonClass = Components::classnames([
 	$componentClass,
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

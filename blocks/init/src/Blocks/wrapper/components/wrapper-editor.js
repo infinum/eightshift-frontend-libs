@@ -9,6 +9,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest),
 		wrapperDisable = checkAttr('wrapperDisable', attributes, manifest),
 		wrapperId = checkAttr('wrapperId', attributes, manifest),
+		wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest),
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -96,7 +97,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 
 	const wrapperClass = classnames([
 		wrapperMainClass,
-		selector(wrapperMainClass, 'bg-color', 'wrapperBackgroundColor', attributes, manifest),
+		selector(wrapperMainClass, wrapperMainClass, 'bg-color', wrapperBackgroundColor),
 		responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass),
 		responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass),
 		responsiveSelectors(wrapperSpacingTopIn, 'spacing-top-in', wrapperMainClass),

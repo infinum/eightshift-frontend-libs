@@ -20,6 +20,14 @@ export const CardToolbar = (attributes) => {
 
 			<HeadingToolbar
 				{...attributes}
+				componentName={'intro'}
+				headingAlign={attributes.introAlign}
+				headingLevel={attributes.introLevel}
+				setAttributes={setAttributes}
+			/>
+
+			<HeadingToolbar
+				{...attributes}
 				setAttributes={setAttributes}
 			/>
 

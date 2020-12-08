@@ -2,24 +2,24 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { attributes: defaults } = manifest;
 
 export const AccordionOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = __('Accordion', 'eightshift-frontend-libs'),
-		showControls = true,
+		accordionShowControls = true,
 
-		accordionUse = defaults.accordionUse,
+		accordionUse = checkAttr('accordionUse', attributes, manifest, componentName),
 
-		accordionIsOpen = defaults.accordionIsOpen.default,
+		accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest, componentName),
 
 		showAccordionIsOpen = true,
 	} = attributes;
 
-	if (!showControls) {
+	if (!accordionShowControls) {
 		return null;
 	}
 
@@ -35,7 +35,7 @@ export const AccordionOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={accordionUse}
-				onChange={(value) => setAttributes({ accordionUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{showAccordionIsOpen &&
@@ -43,7 +43,7 @@ export const AccordionOptions = (attributes) => {
 					<ToggleControl
 						label={__('Is Open', 'eightshift-frontend-libs')}
 						checked={accordionIsOpen}
-						onChange={(value) => setAttributes({ accordionIsOpen: value })}
+						onChange={(value) => setAttributes({ [`${componentName}IsOpen`]: value })}
 					/>
 				</Fragment>
 			}

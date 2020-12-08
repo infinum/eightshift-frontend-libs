@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest);
+$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest, $componentName);
 if (!$hamburgerUse) {
 	return;
 }
@@ -21,8 +22,8 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $hamburgerClass = Components::classnames([
 	$componentClass,
-	Components::selectorCustom($componentClass, "js-{$componentClass}"),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($componentClass, "js-{$componentClass}"),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 ?>
 

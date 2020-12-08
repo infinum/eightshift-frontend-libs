@@ -1,51 +1,52 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		layoutUse = checkAttr('layoutUse', attributes, manifest),
+		layoutUse = checkAttr('layoutUse', attributes, manifest, componentName),
 
-		layoutLeft = checkAttr('layoutLeft', attributes, manifest),
-		layoutCenter = checkAttr('layoutCenter', attributes, manifest),
-		layoutRight = checkAttr('layoutRight', attributes, manifest),
+		layoutLeft = checkAttr('layoutLeft', attributes, manifest, componentName),
+		layoutCenter = checkAttr('layoutCenter', attributes, manifest, componentName),
+		layoutRight = checkAttr('layoutRight', attributes, manifest, componentName),
 	} = attributes;
 
 	const layoutClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	const wrapClass = classnames([
-		selectorBlock(componentClass, 'wrap'),
-		selectorBlock(selectorClass, 'wrap'),
+		selector(componentClass, componentClass, 'wrap'),
+		selector(selectorClass, selectorClass, 'wrap'),
 	]);
 
 	const columnLeftClass = classnames([
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(selectorClass, 'column', 'left'),
-		selectorBlock(selectorClass, 'column', 'left'),
+		selector(componentClass, componentClass, 'column'),
+		selector(componentClass, componentClass, 'column'),
+		selector(selectorClass, selectorClass, 'column', 'left'),
+		selector(selectorClass, selectorClass, 'column', 'left'),
 	]);
 
 	const columnCenterClass = classnames([
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(selectorClass, 'column', 'center'),
-		selectorBlock(selectorClass, 'column', 'center'),
+		selector(componentClass, componentClass, 'column'),
+		selector(componentClass, componentClass, 'column'),
+		selector(selectorClass, selectorClass, 'column', 'center'),
+		selector(selectorClass, selectorClass, 'column', 'center'),
 	]);
 
 	const columnRightClass = classnames([
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(componentClass, 'column'),
-		selectorBlock(selectorClass, 'column', 'right'),
-		selectorBlock(selectorClass, 'column', 'right'),
+		selector(componentClass, componentClass, 'column'),
+		selector(componentClass, componentClass, 'column'),
+		selector(selectorClass, selectorClass, 'column', 'right'),
+		selector(selectorClass, selectorClass, 'column', 'right'),
 	]);
 
 	return (

@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest);
+$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest, $componentName);
 if (!$paragraphUse) {
 	return;
 }
@@ -19,14 +20,17 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
+$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest, $componentName);
+$paragraphColor = Components::checkAttr('paragraphColor', $attributes, $manifest, $componentName);
+$paragraphSize = Components::checkAttr('paragraphSize', $attributes, $manifest, $componentName);
+$paragraphAlign = Components::checkAttr('paragraphAlign', $attributes, $manifest, $componentName);
 
 $paragraphClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, 'color', 'paragraphColor', $attributes, $manifest),
-	Components::selector($componentClass, 'size', 'paragraphSize', $attributes, $manifest),
-	Components::selector($componentClass, 'align', 'paragraphAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($paragraphColor, $componentClass, 'color', $paragraphColor),
+	Components::selector($paragraphSize, $componentClass, 'size', $paragraphSize),
+	Components::selector($paragraphAlign, $componentClass, 'align', $paragraphAlign),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

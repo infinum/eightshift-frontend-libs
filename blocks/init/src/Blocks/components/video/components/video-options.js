@@ -11,17 +11,18 @@ const { options, title } = manifest;
 export const VideoOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest),
+		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
 
-		videoUrl = checkAttr('videoUrl', attributes, manifest),
-		videoType = checkAttr('videoType', attributes, manifest),
-		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
-		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
-		videoAccept = checkAttr('videoAccept', attributes, manifest),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
+		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
+		videoType = checkAttr('videoType', attributes, manifest, componentName),
+		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest, componentName),
+		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest, componentName),
+		videoAccept = checkAttr('videoAccept', attributes, manifest, componentName),
+		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest, componentName),
 
 		showVideoUrl = true,
 		showVideoAspectRatio = true,
@@ -44,7 +45,7 @@ export const VideoOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={videoUse}
-				onChange={(value) => setAttributes({ videoUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{videoUse &&
@@ -56,7 +57,7 @@ export const VideoOptions = (attributes) => {
 									<MediaPlaceholder
 										icon="format-image"
 										onSelect={(value) => {
-											setAttributes({ videoUrl: value.url });
+											setAttributes({ [`${componentName}Url`]: value.url });
 										}}
 										accept={videoAccept}
 										allowedTypes={videoAllowedTypes}
@@ -66,7 +67,7 @@ export const VideoOptions = (attributes) => {
 								<TextControl
 									label={__('ID', 'eightshift-frontend-libs')}
 									value={videoUrl}
-									onChange={(value) => setAttributes({ videoUrl: value })}
+									onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
 									help={__('Use only video ID not the full link. Example video link: https://music.youtube.com/watch?v=PsO6ZnUZI0g, ID is PsO6ZnUZI0g', 'eightshift-frontend-libs')}
 								/>
 							}
@@ -79,8 +80,8 @@ export const VideoOptions = (attributes) => {
 							value={videoType}
 							options={options.types}
 							onChange={(value) => setAttributes({
-								videoType: value,
-								videoUrl: '',
+								[`${componentName}type`]: value,
+								[`${componentName}Url`]: '',
 							})}
 						/>
 					}
@@ -90,7 +91,7 @@ export const VideoOptions = (attributes) => {
 							label={__('Aspect Ratio', 'eightshift-frontend-libs')}
 							value={videoAspectRatio}
 							options={options.aspectRatioSizes}
-							onChange={(value) => setAttributes({ videoAspectRatio: value })}
+							onChange={(value) => setAttributes({ [`${componentName}AspectRatio`]: value })}
 						/>
 					}
 				</Fragment>

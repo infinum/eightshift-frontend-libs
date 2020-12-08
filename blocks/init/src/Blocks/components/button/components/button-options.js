@@ -22,18 +22,19 @@ export const buttonColors = () => {
 export const ButtonOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		buttonShowControls = true,
 
-		buttonUse = checkAttr('buttonUse', attributes, manifest),
+		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
 
-		buttonUrl = checkAttr('buttonUrl', attributes, manifest),
-		buttonColor = checkAttr('buttonColor', attributes, manifest),
-		buttonSize = checkAttr('buttonSize', attributes, manifest),
-		buttonWidth = checkAttr('buttonWidth', attributes, manifest),
-		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest),
-		buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest),
-		buttonId = checkAttr('buttonId', attributes, manifest),
+		buttonUrl = checkAttr('buttonUrl', attributes, manifest, componentName),
+		buttonColor = checkAttr('buttonColor', attributes, manifest, componentName),
+		buttonSize = checkAttr('buttonSize', attributes, manifest, componentName),
+		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
+		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest, componentName),
+		buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest, componentName),
+		buttonId = checkAttr('buttonId', attributes, manifest, componentName),
 
 		showButtonUrl = true,
 		showButtonColor = true,
@@ -60,7 +61,7 @@ export const ButtonOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={buttonUse}
-				onChange={(value) => setAttributes({ buttonUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{buttonUse &&
@@ -71,7 +72,7 @@ export const ButtonOptions = (attributes) => {
 							label={__('Url', 'eightshift-frontend-libs')}
 							value={buttonUrl}
 							autoFocus={false}
-							onChange={(value) => setAttributes({ buttonUrl: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
 						/>
 					}
 
@@ -86,7 +87,7 @@ export const ButtonOptions = (attributes) => {
 							}
 							value={buttonColor}
 							colors={buttonColors()}
-							onChange={(value) => setAttributes({ buttonColor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
 
@@ -95,7 +96,7 @@ export const ButtonOptions = (attributes) => {
 							label={__('Size', 'eightshift-frontend-libs')}
 							value={buttonSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ buttonSize: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
 
@@ -104,7 +105,7 @@ export const ButtonOptions = (attributes) => {
 							label={__('Width', 'eightshift-frontend-libs')}
 							value={buttonWidth}
 							options={options.widths}
-							onChange={(value) => setAttributes({ buttonWidth: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
 						/>
 					}
 
@@ -112,7 +113,7 @@ export const ButtonOptions = (attributes) => {
 						<ToggleControl
 							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={buttonIsAnchor}
-							onChange={(value) => setAttributes({ buttonIsAnchor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}IsAnchor`]: value })}
 							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-frontend-libs')}
 						/>
 					}
@@ -121,7 +122,7 @@ export const ButtonOptions = (attributes) => {
 						<ToggleControl
 							label={__('New Tab', 'eightshift-frontend-libs')}
 							checked={buttonIsNewTab}
-							onChange={(value) => setAttributes({ buttonIsNewTab: value })}
+							onChange={(value) => setAttributes({ [`${componentName}IsNewTab`]: value })}
 						/>
 					}
 
@@ -129,7 +130,7 @@ export const ButtonOptions = (attributes) => {
 						<TextControl
 							label={__('ID', 'eightshift-frontend-libs')}
 							value={buttonId}
-							onChange={(value) => setAttributes({ buttonId: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>
 					}
 				</Fragment>

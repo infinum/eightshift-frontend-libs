@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$imageUse = Components::checkAttr('imageUse', $attributes, $manifest);
+$imageUse = Components::checkAttr('imageUse', $attributes, $manifest, $componentName);
 if (!$imageUse) {
 	return;
 }
@@ -19,21 +20,22 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$imageUrl = Components::checkAttr('imageUrl', $attributes, $manifest);
-$imageLink = Components::checkAttr('imageLink', $attributes, $manifest);
-$imageBg = Components::checkAttr('imageBg', $attributes, $manifest);
+$imageUrl = Components::checkAttr('imageUrl', $attributes, $manifest, $componentName);
+$imageLink = Components::checkAttr('imageLink', $attributes, $manifest, $componentName);
+$imageBg = Components::checkAttr('imageBg', $attributes, $manifest, $componentName);
+$imageAlign = Components::checkAttr('imageAlign', $attributes, $manifest, $componentName);
 
 $imageWrapClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'wrap'),
-	Components::selector($componentClass, 'align', 'imageAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
-	Components::selectorBlock($imageLink, $componentClass, 'is-link'),
+	Components::selector($componentClass, $componentClass, 'wrap'),
+	Components::selector($imageAlign, $componentClass, 'align', $imageAlign),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
+	Components::selector($imageLink, $imageLink, $componentClass, 'is-link'),
 ]);
 
 $imageClass = Components::classnames([
 	$componentClass,
-	Components::selectorCustom($imageBg, $componentClass, '', 'bg'),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($imageBg, $componentClass, '', 'bg'),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

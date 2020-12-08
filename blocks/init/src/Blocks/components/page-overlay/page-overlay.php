@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$pageOverlayUse = Components::checkAttr('pageOverlayUse', $attributes, $manifest);
+$pageOverlayUse = Components::checkAttr('pageOverlayUse', $attributes, $manifest, $componentName);
 if (!$pageOverlayUse) {
 	return;
 }
@@ -21,7 +22,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $overlayClass = Components::classnames([
 	$componentClass,
-	Components::selectorCustom($blockClass, "js-{$blockClass}"),
+	Components::selector($blockClass, "js-{$blockClass}"),
 	$blockClass ? "{$blockClass}__{$componentClass}" : '',
 ]);
 

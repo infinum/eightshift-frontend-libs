@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest);
+$buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest, $componentName);
 if (!$buttonUse) {
 	return;
 }
@@ -19,13 +20,17 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest);
-$buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest);
-$buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest);
-$buttonId = Components::checkAttr('buttonId', $attributes, $manifest);
-$buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest);
-$buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest);
-$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest);
+$buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest, $componentName);
+$buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest, $componentName);
+$buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest, $componentName);
+$buttonId = Components::checkAttr('buttonId', $attributes, $manifest, $componentName);
+$buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest, $componentName);
+$buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest, $componentName);
+$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest, $componentName);
+$buttonAlign = Components::checkAttr('buttonAlign', $attributes, $manifest, $componentName);
+$buttonColor = Components::checkAttr('buttonColor', $attributes, $manifest, $componentName);
+$buttonSize = Components::checkAttr('buttonSize', $attributes, $manifest, $componentName);
+$buttonWidth = Components::checkAttr('buttonWidth', $attributes, $manifest, $componentName);
 
 if ($buttonIsNewTab) {
 	$buttonAttrs = array_merge(
@@ -38,18 +43,18 @@ if ($buttonIsNewTab) {
 };
 
 $buttonWrapClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'wrap'),
-	Components::selector($componentClass, 'align', 'buttonAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
+	Components::selector($componentClass, $componentClass, 'wrap'),
+	Components::selector($buttonAlign, $componentClass, 'align', $buttonAlign),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 ]);
 
 $buttonClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, 'color', 'buttonColor', $attributes, $manifest),
-	Components::selector($componentClass, 'size', 'buttonSize', $attributes, $manifest),
-	Components::selector($componentClass, 'size-width', 'buttonWidth', $attributes, $manifest),
-	Components::selectorCustom($buttonIsAnchor, 'js-scroll-to-anchor'),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($buttonColor, $componentClass, 'color', $buttonColor),
+	Components::selector($buttonSize, $componentClass, 'size', $buttonSize),
+	Components::selector($buttonWidth, $componentClass, 'size-width', $buttonWidth),
+	Components::selector($buttonIsAnchor, $buttonIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

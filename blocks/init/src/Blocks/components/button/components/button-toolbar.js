@@ -9,10 +9,11 @@ const { options } = manifest;
 export const ButtonToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		buttonShowControls = true,
 
-		buttonUse = checkAttr('buttonUse', attributes, manifest),
-		buttonAlign = checkAttr('buttonAlign', attributes, manifest),
+		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
+		buttonAlign = checkAttr('buttonAlign', attributes, manifest, componentName),
 
 		showButtonAlign = true,
 	} = attributes;
@@ -29,7 +30,7 @@ export const ButtonToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={buttonAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ buttonAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

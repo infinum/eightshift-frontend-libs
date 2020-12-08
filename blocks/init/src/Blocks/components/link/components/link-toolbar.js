@@ -9,10 +9,12 @@ const { options } = manifest;
 export const LinkToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		linkShowControls = true,
 
-		linkUse = checkAttr('linkUse', attributes, manifest),
-		linkAlign = checkAttr('linkAlign', attributes, manifest),
+		linkUse = checkAttr('linkUse', attributes, manifest, componentName),
+
+		linkAlign = checkAttr('linkAlign', attributes, manifest, componentName),
 
 		showLinkAlign = true,
 	} = attributes;
@@ -29,7 +31,7 @@ export const LinkToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={linkAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ linkAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

@@ -9,11 +9,12 @@ const { options } = manifest;
 export const ListsToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		listsShowControls = true,
 
-		listsUse = checkAttr('listsUse', attributes, manifest),
+		listsUse = checkAttr('listsUse', attributes, manifest, componentName),
 
-		listsAlign = checkAttr('listsAlign', attributes, manifest),
+		listsAlign = checkAttr('listsAlign', attributes, manifest, componentName),
 
 		showlistsAlign = true,
 	} = attributes;
@@ -30,7 +31,7 @@ export const ListsToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={listsAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ listsAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

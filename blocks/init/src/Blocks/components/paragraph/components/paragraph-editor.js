@@ -3,28 +3,32 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ParagraphEditor = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
 
-		paragraphContent = checkAttr('paragraphContent', attributes, manifest),
+		paragraphContent = checkAttr('paragraphContent', attributes, manifest, componentName),
+		paragraphColor = checkAttr('paragraphColor', attributes, manifest, componentName),
+		paragraphSize = checkAttr('paragraphSize', attributes, manifest, componentName),
+		paragraphAlign = checkAttr('paragraphAlign', attributes, manifest, componentName),
 	} = attributes;
 
 	const paragraphClass = classnames([
 		componentClass,
-		selector(componentClass, 'color', 'paragraphColor', attributes, manifest),
-		selector(componentClass, 'size', 'paragraphSize', attributes, manifest),
-		selector(componentClass, 'align', 'paragraphAlign', attributes, manifest),
-		selectorBlock(blockClass, selectorClass),
+		selector(paragraphColor, componentClass, 'color', paragraphColor),
+		selector(paragraphSize, componentClass, 'size', paragraphSize),
+		selector(paragraphAlign, componentClass, 'align', paragraphAlign),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
@@ -34,7 +38,7 @@ export const ParagraphEditor = (attributes) => {
 					className={paragraphClass}
 					placeholder={placeholder}
 					value={paragraphContent}
-					onChange={(value) => setAttributes({ paragraphContent: value })}
+					onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 					formattingControls={['bold', 'link']}
 				/>
 			}

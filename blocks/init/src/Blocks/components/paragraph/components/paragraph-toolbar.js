@@ -9,11 +9,12 @@ const { options } = manifest;
 export const ParagraphToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		paragraphShowControls = true,
 
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
 
-		paragraphAlign = checkAttr('paragraphAlign', attributes, manifest),
+		paragraphAlign = checkAttr('paragraphAlign', attributes, manifest, componentName),
 
 		showParagraphAlign = true,
 	} = attributes;
@@ -30,7 +31,7 @@ export const ParagraphToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={paragraphAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ paragraphAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

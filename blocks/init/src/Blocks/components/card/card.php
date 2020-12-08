@@ -16,15 +16,50 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $cardClass = Components::classnames([
 	$componentClass,
-	Components::selectorBlock($blockClass, "{$selectorClass}"),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}"),
 ]);
+
 ?>
 
 <div class="<?php echo \esc_attr($cardClass); ?>">
 	<?php
-	echo \wp_kses_post(Components::render('image', $attributes));
-	echo \wp_kses_post(Components::render('heading', $attributes));
-	echo \wp_kses_post(Components::render('paragraph', $attributes));
-	echo \wp_kses_post(Components::render('button', $attributes));
+	echo \wp_kses_post(Components::render('image', array_merge(
+		$attributes,
+		[
+			'blockClass' => $componentClass
+		]
+	)));
+	echo \wp_kses_post(Components::render('heading', array_merge(
+		$attributes,
+		[
+			'componentName' => 'intro',
+			'headingUse' => $attributes['introUse'],
+			'headingContent' => $attributes['introContent'] ?? '',
+			'headingLevel' => $attributes['introLevel'],
+			'headingColor' => $attributes['introColor'],
+			'headingSize' => $attributes['introSize'],
+			'headingAlign' => $attributes['introAlign'],
+			'selectorClass' => 'intro',
+			'blockClass' => $componentClass
+		]
+	)));
+	echo \wp_kses_post(Components::render('heading', array_merge(
+		$attributes,
+		[
+			'blockClass' => $componentClass
+		]
+	)));
+	echo \wp_kses_post(Components::render('paragraph', array_merge(
+		$attributes,
+		[
+			'blockClass' => $componentClass
+		]
+	)));
+	echo \wp_kses_post(Components::render('button', array_merge(
+		$attributes,
+		[
+			'blockClass' => $componentClass
+		]
+	)));
 	?>
 </div>

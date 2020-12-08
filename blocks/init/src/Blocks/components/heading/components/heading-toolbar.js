@@ -10,12 +10,13 @@ const { options } = manifest;
 export const HeadingToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		headingShowControls = true,
 
-		headingUse = checkAttr('headingUse', attributes, manifest),
+		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
 
-		headingAlign = checkAttr('headingAlign', attributes, manifest),
-		headingLevel = checkAttr('headingLevel', attributes, manifest),
+		headingAlign = checkAttr('headingAlign', attributes, manifest, componentName),
+		headingLevel = checkAttr('headingLevel', attributes, manifest, componentName),
 
 		showHeadingAlign = true,
 		showHeadingLevel = true,
@@ -32,7 +33,7 @@ export const HeadingToolbar = (attributes) => {
 					{showHeadingLevel &&
 						<HeadingLevel
 							selectedLevel={headingLevel}
-							onChange={(value) => setAttributes({ headingLevel: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Level`]: value })}
 						/>
 					}
 
@@ -40,7 +41,7 @@ export const HeadingToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={headingAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ headingAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

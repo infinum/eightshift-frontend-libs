@@ -5,7 +5,6 @@ import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
@@ -13,13 +12,14 @@ const { options, title } = manifest;
 export const ParagraphOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		paragraphShowControls = true,
 
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
 
-		paragraphColor = checkAttr('paragraphColor', attributes, manifest),
-		paragraphSize = checkAttr('paragraphSize', attributes, manifest),
+		paragraphColor = checkAttr('paragraphColor', attributes, manifest, componentName),
+		paragraphSize = checkAttr('paragraphSize', attributes, manifest, componentName),
 
 		showParagraphColor = true,
 		showParagraphSize = true,
@@ -41,7 +41,7 @@ export const ParagraphOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={paragraphUse}
-				onChange={(value) => setAttributes({ paragraphUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{paragraphUse &&
@@ -55,7 +55,7 @@ export const ParagraphOptions = (attributes) => {
 								</Fragment>
 							}
 							value={paragraphColor}
-							onChange={(value) => setAttributes({ paragraphColor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
 
@@ -64,7 +64,7 @@ export const ParagraphOptions = (attributes) => {
 							label={__('Size', 'eightshift-frontend-libs')}
 							value={paragraphSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ paragraphSize: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
 				</Fragment>

@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { selectorBlock } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { HeadingEditor } from '../../../components/heading/components/heading-editor';
 import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
@@ -17,7 +17,7 @@ export const CardEditor = (attributes) => {
 
 	const cardClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
@@ -31,9 +31,22 @@ export const CardEditor = (attributes) => {
 
 			<HeadingEditor
 				{...attributes}
+				componentName={'intro'}
+				headingContent={attributes.introContent}
+				headingColor={attributes.introColor}
+				headingSize={attributes.introSize}
+				headingAlign={attributes.introAlign}
+				setAttributes={setAttributes}
+				selectorClass={'intro'}
+				blockClass={componentClass}
+			/>
+
+			<HeadingEditor
+				{...attributes}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
+
 
 			<ParagraphEditor
 				{...attributes}

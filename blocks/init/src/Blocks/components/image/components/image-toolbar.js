@@ -12,12 +12,13 @@ const { options } = manifest;
 export const ImageToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		imageShowControls = true,
 
-		imageUse = checkAttr('imageUse', attributes, manifest),
+		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
-		imageUrl = checkAttr('imageUrl', attributes, manifest),
-		imageAlign = checkAttr('imageAlign', attributes, manifest),
+		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
+		imageAlign = checkAttr('imageAlign', attributes, manifest, componentName),
 
 		showImageAlign = true,
 	} = attributes;
@@ -27,7 +28,7 @@ export const ImageToolbar = (attributes) => {
 	}
 
 	const removeMedia = () => {
-		setAttributes({ imageUrl: '' });
+		setAttributes({ [`${componentName}Url`]: '' });
 	};
 
 	return (
@@ -51,7 +52,7 @@ export const ImageToolbar = (attributes) => {
 						<AlignmentToolbar
 							value={imageAlign}
 							options={options.aligns}
-							onChange={(value) => setAttributes({ imageAlign: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
 				</Fragment>

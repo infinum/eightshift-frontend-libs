@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
+$headingUse = Components::checkAttr('headingUse', $attributes, $manifest, $componentName);
 if (!$headingUse) {
 	return;
 }
@@ -19,15 +20,18 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
-$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
+$headingContent = Components::checkAttr('headingContent', $attributes, $manifest, $componentName);
+$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest, $componentName);
+$headingColor = Components::checkAttr('headingColor', $attributes, $manifest, $componentName);
+$headingSize = Components::checkAttr('headingSize', $attributes, $manifest, $componentName);
+$headingAlign = Components::checkAttr('headingAlign', $attributes, $manifest, $componentName);
 
 $headingClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, 'color', 'headingColor', $attributes, $manifest),
-	Components::selector($componentClass, 'size', 'headingSize', $attributes, $manifest),
-	Components::selector($componentClass, 'align', 'headingAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($headingColor, $componentClass, 'color', $headingColor),
+	Components::selector($headingSize, $componentClass, 'size', $headingSize),
+	Components::selector($headingAlign, $componentClass, 'align', $headingAlign),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';

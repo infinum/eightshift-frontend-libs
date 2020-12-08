@@ -22,17 +22,18 @@ export const linkColors = () => {
 export const LinkOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		linkShowControls = true,
 
-		linkUse = checkAttr('linkUse', attributes, manifest),
+		linkUse = checkAttr('linkUse', attributes, manifest, componentName),
 
-		linkUrl = checkAttr('linkUrl', attributes, manifest),
-		linkColor = checkAttr('linkColor', attributes, manifest),
-		linkSize = checkAttr('linkSize', attributes, manifest),
-		linkWidth = checkAttr('linkWidth', attributes, manifest),
-		linkIsAnchor = checkAttr('linkIsAnchor', attributes, manifest),
-		linkId = checkAttr('linkId', attributes, manifest),
+		linkUrl = checkAttr('linkUrl', attributes, manifest, componentName),
+		linkColor = checkAttr('linkColor', attributes, manifest, componentName),
+		linkSize = checkAttr('linkSize', attributes, manifest, componentName),
+		linkWidth = checkAttr('linkWidth', attributes, manifest, componentName),
+		linkIsAnchor = checkAttr('linkIsAnchor', attributes, manifest, componentName),
+		linkId = checkAttr('linkId', attributes, manifest, componentName),
 
 		showLinkUrl = true,
 		showLinkColor = true,
@@ -59,7 +60,7 @@ export const LinkOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={linkUse}
-				onChange={(value) => setAttributes({ linkUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{linkUse &&
@@ -70,7 +71,7 @@ export const LinkOptions = (attributes) => {
 							label={__('Url', 'eightshift-frontend-libs')}
 							value={linkUrl}
 							autoFocus={false}
-							onChange={(value) => setAttributes({ linkUrl: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
 						/>
 					}
 
@@ -85,7 +86,7 @@ export const LinkOptions = (attributes) => {
 							}
 							value={linkColor}
 							colors={linkColors()}
-							onChange={(value) => setAttributes({ linkColor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
 
@@ -94,7 +95,7 @@ export const LinkOptions = (attributes) => {
 							label={__('Size', 'eightshift-frontend-libs')}
 							value={linkSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ linkSize: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
 
@@ -103,7 +104,7 @@ export const LinkOptions = (attributes) => {
 							label={__('Width', 'eightshift-frontend-libs')}
 							value={linkWidth}
 							options={options.widths}
-							onChange={(value) => setAttributes({ linkWidth: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
 						/>
 					}
 
@@ -111,7 +112,7 @@ export const LinkOptions = (attributes) => {
 						<ToggleControl
 							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={linkIsAnchor}
-							onChange={(value) => setAttributes({ linkIsAnchor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}IsAnchor`]: value })}
 							help={__('Using anchor option will add JavaScript selector to the link. You must provide anchor destination inside link Url field. Example: #super-block.', 'eightshift-frontend-libs')}
 						/>
 					}
@@ -120,7 +121,7 @@ export const LinkOptions = (attributes) => {
 						<TextControl
 							label={__('ID', 'eightshift-frontend-libs')}
 							value={linkId}
-							onChange={(value) => setAttributes({ linkId: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>
 					}
 				</Fragment>

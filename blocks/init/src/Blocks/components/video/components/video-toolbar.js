@@ -9,11 +9,12 @@ import manifest from './../manifest.json';
 export const VideoToolbar = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest),
+		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
 
-		videoUrl = checkAttr('videoUrl', attributes, manifest),
+		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
 	} = attributes;
 
 	if (!videoShowControls) {
@@ -21,7 +22,7 @@ export const VideoToolbar = (attributes) => {
 	}
 
 	const removeMedia = () => {
-		setAttributes({ videoUrl: '' });
+		setAttributes({ [`${componentName}Url`]: '' });
 	};
 
 	return (

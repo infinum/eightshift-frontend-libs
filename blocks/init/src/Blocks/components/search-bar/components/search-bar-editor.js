@@ -1,26 +1,27 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const SearchBarEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		searchBarUse = checkAttr('searchBarUse', attributes, manifest),
+		searchBarUse = checkAttr('searchBarUse', attributes, manifest, componentName),
 
-		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest),
-		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest),
-		searchBarAction = checkAttr('searchBarAction', attributes, manifest),
-		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest),
+		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest, componentName),
+		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest, componentName),
+		searchBarAction = checkAttr('searchBarAction', attributes, manifest, componentName),
+		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest, componentName),
 	} = attributes;
 
 	const searchClass = classnames(
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	);
 
 	return (

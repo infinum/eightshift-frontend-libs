@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$linkUse = Components::checkAttr('linkUse', $attributes, $manifest);
+$linkUse = Components::checkAttr('linkUse', $attributes, $manifest, $componentName);
 if (!$linkUse) {
 	return;
 }
@@ -19,13 +20,16 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$linkUrl = Components::checkAttr('linkUrl', $attributes, $manifest);
-$linkContent = Components::checkAttr('linkContent', $attributes, $manifest);
-$linkIsAnchor = Components::checkAttr('linkIsAnchor', $attributes, $manifest);
-$linkId = Components::checkAttr('linkId', $attributes, $manifest);
-$linkIsNewTab = Components::checkAttr('linkIsNewTab', $attributes, $manifest);
-$linkAriaLabel = Components::checkAttr('linkAriaLabel', $attributes, $manifest);
-$linkAttrs = Components::checkAttr('linkAttrs', $attributes, $manifest);
+$linkUrl = Components::checkAttr('linkUrl', $attributes, $manifest, $componentName);
+$linkContent = Components::checkAttr('linkContent', $attributes, $manifest, $componentName);
+$linkIsAnchor = Components::checkAttr('linkIsAnchor', $attributes, $manifest, $componentName);
+$linkId = Components::checkAttr('linkId', $attributes, $manifest, $componentName);
+$linkIsNewTab = Components::checkAttr('linkIsNewTab', $attributes, $manifest, $componentName);
+$linkAriaLabel = Components::checkAttr('linkAriaLabel', $attributes, $manifest, $componentName);
+$linkAttrs = Components::checkAttr('linkAttrs', $attributes, $manifest, $componentName);
+$linkAlign = Components::checkAttr('linkAlign', $attributes, $manifest, $componentName);
+$linkColor = Components::checkAttr('linkColor', $attributes, $manifest, $componentName);
+$linkSize = Components::checkAttr('linkSize', $attributes, $manifest, $componentName);
 
 if ($linkIsNewTab) {
 	$linkAttrs = array_merge(
@@ -38,18 +42,18 @@ if ($linkIsNewTab) {
 };
 
 $linkWrapClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'wrap'),
-	Components::selector($componentClass, 'align', 'linkAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, "{$selectorClass}-wrap"),
+	Components::selector($componentClass, $componentClass, 'wrap'),
+	Components::selector($linkAlign, $componentClass, 'align', $linkAlign),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 ]);
 
 
 $linkClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, 'color', 'linkColor', $attributes, $manifest),
-	Components::selector($componentClass, 'size', 'linkSize', $attributes, $manifest),
-	Components::selectorBlock($linkIsAnchor, 'js-scroll-to-anchor'),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($linkColor, $componentClass, 'color', $linkColor),
+	Components::selector($linkSize, $componentClass, 'size', $linkSize),
+	Components::selector($linkIsAnchor, $linkIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

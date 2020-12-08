@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$accordionUse = Components::checkAttr('accordionUse', $attributes, $manifest);
+$accordionUse = Components::checkAttr('accordionUse', $attributes, $manifest, $componentName);
 if (!$accordionUse) {
 	return;
 }
@@ -19,16 +20,16 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest);
-$accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest);
-$accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest);
+$accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest, $componentName);
+$accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest, $componentName);
+$accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest, $componentName);
 
-$componentJsClass = Components::selectorCustom($componentClass, "js-{$componentClass}");
+$componentJsClass = Components::selector($componentClass, $componentClass, "js-{$componentClass}");
 
 $accordionClass = Components::classnames([
 	$componentClass,
 	$componentJsClass,
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

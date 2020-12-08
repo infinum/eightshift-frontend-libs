@@ -5,37 +5,38 @@ import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
 import { video } from '@wordpress/icons';
-import { selectorModifier, selectorBlock, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const VideoEditor = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		videoUse = checkAttr('videoUse', attributes, manifest),
+		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
 
-		videoUrl = checkAttr('videoUrl', attributes, manifest),
-		videoType = checkAttr('videoType', attributes, manifest),
-		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
-		videoAllow = checkAttr('videoAllow', attributes, manifest),
-		videoAccept = checkAttr('videoAccept', attributes, manifest),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
-		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
+		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
+		videoType = checkAttr('videoType', attributes, manifest, componentName),
+		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest, componentName),
+		videoAllow = checkAttr('videoAllow', attributes, manifest, componentName),
+		videoAccept = checkAttr('videoAccept', attributes, manifest, componentName),
+		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest, componentName),
+		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest, componentName),
 	} = attributes;
 
 	const videoWrapClass = classnames([
-		selectorBlock(componentClass, 'wrap'),
-		selectorModifier(componentClass, 'ratio', videoAspectRatio),
-		selectorCustom(videoType, componentClass, 'ratio', videoType),
-		selectorBlock(blockClass, `${selectorClass}-wrap`),
+		selector(componentClass, componentClass, 'wrap'),
+		selector(videoAspectRatio, componentClass, 'ratio', videoAspectRatio),
+		selector(videoType, componentClass, 'ratio', videoType),
+		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const videoClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	let localUrl = '';
@@ -84,7 +85,7 @@ export const VideoEditor = (attributes) => {
 							{(!videoUsePlaceholder && videoType === 'local') &&
 								<MediaPlaceholder
 									icon="format-image"
-									onSelect={(value) => setAttributes({ videoUrl: value.url })}
+									onSelect={(value) => setAttributes({ [`${componentName}Url`]: value.url })}
 									accept={videoAccept}
 									allowedTypes={videoAllowedTypes}
 								/>

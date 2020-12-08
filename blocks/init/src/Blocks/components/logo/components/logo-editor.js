@@ -1,30 +1,31 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const LogoEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		logoUse = checkAttr('logoUse', attributes, manifest),
+		logoUse = checkAttr('logoUse', attributes, manifest, componentName),
 
-		logoSrc = checkAttr('logoSrc', attributes, manifest),
-		logoAlt = checkAttr('logoAlt', attributes, manifest),
-		logoTitle = checkAttr('logoTitle', attributes, manifest),
-		logoHref = checkAttr('logoHref', attributes, manifest),
+		logoSrc = checkAttr('logoSrc', attributes, manifest, componentName),
+		logoAlt = checkAttr('logoAlt', attributes, manifest, componentName),
+		logoTitle = checkAttr('logoTitle', attributes, manifest, componentName),
+		logoHref = checkAttr('logoHref', attributes, manifest, componentName),
 	} = attributes;
 
 	const logoClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	const imgClass = classnames([
-		selectorBlock(componentClass, 'img'),
+		selector(componentClass, componentClass, 'img'),
 	]);
 
 	return (

@@ -1,25 +1,26 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		copyrightUse = checkAttr('copyrightUse', attributes, manifest),
+		copyrightUse = checkAttr('copyrightUse', attributes, manifest, componentName),
 
-		copyrightBy = checkAttr('copyrightBy', attributes, manifest),
-		copyrightYear = checkAttr('copyrightYear', attributes, manifest),
-		copyrightContent = checkAttr('copyrightContent', attributes, manifest),
+		copyrightBy = checkAttr('copyrightBy', attributes, manifest, componentName),
+		copyrightYear = checkAttr('copyrightYear', attributes, manifest, componentName),
+		copyrightContent = checkAttr('copyrightContent', attributes, manifest, componentName),
 	} = attributes;
 
 	const copyrightClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (

@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options } = manifest;
@@ -11,20 +11,21 @@ const { options } = manifest;
 export const AccordionEditor = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
-		accordionUse = checkAttr('accordionUse', attributes, manifest),
+		accordionUse = checkAttr('accordionUse', attributes, manifest, componentName),
 
-		accordionTitle = checkAttr('accordionTitle', attributes, manifest),
-		accordionContent = checkAttr('accordionContent', attributes, manifest),
+		accordionTitle = checkAttr('accordionTitle', attributes, manifest, componentName),
+		accordionContent = checkAttr('accordionContent', attributes, manifest, componentName),
 	} = attributes;
 
 	const accordionClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
@@ -37,7 +38,7 @@ export const AccordionEditor = (attributes) => {
 						<RichText
 							placeholder={placeholder}
 							value={accordionTitle}
-							onChange={(value) => setAttributes({ accordionTitle: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Title`]: value })}
 							keepPlaceholderOnFocus
 							formattingControls={[]}
 						/>

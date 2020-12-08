@@ -11,17 +11,18 @@ const { title } = manifest;
 export const ImageOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		imageShowControls = true,
 
-		imageUse = checkAttr('imageUse', attributes, manifest),
+		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
-		imageUrl = checkAttr('imageUrl', attributes, manifest),
-		imageLink = checkAttr('imageLink', attributes, manifest),
-		imageAccept = checkAttr('imageAccept', attributes, manifest),
-		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
-		imageBg = checkAttr('imageBg', attributes, manifest),
-		imageUsePlaceholder = checkAttr('imageUsePlaceholder', attributes, manifest),
+		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
+		imageLink = checkAttr('imageLink', attributes, manifest, componentName),
+		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
+		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
+		imageBg = checkAttr('imageBg', attributes, manifest, componentName),
+		imageUsePlaceholder = checkAttr('imageUsePlaceholder', attributes, manifest, componentName),
 
 		showImageUrl = true,
 		showImageLink = true,
@@ -44,7 +45,7 @@ export const ImageOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={imageUse}
-				onChange={(value) => setAttributes({ imageUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{imageUse &&
@@ -53,7 +54,7 @@ export const ImageOptions = (attributes) => {
 						<MediaPlaceholder
 							icon="format-image"
 							onSelect={(value) => {
-								setAttributes({ imageUrl: value.url });
+								setAttributes({ [`${componentName}Url`]: value.url });
 							}}
 							accept={imageAccept}
 							allowedTypes={imageAllowedTypes}
@@ -66,7 +67,7 @@ export const ImageOptions = (attributes) => {
 						<ToggleControl
 							label={__('Use as Background Image', 'eightshift-frontend-libs')}
 							checked={imageBg}
-							onChange={(value) => setAttributes({ imageBg: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Bg`]: value })}
 						/>
 					}
 
@@ -75,7 +76,7 @@ export const ImageOptions = (attributes) => {
 							label={__('Url', 'eightshift-frontend-libs')}
 							value={imageLink}
 							autoFocus={false}
-							onChange={(value) => setAttributes({ imageLink: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Link`]: value })}
 						/>
 					}
 

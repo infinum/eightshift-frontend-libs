@@ -1,25 +1,26 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 const { options } = manifest;
 
 export const SocialLinksEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		socialLinksUse = checkAttr('socialLinksUse', attributes, manifest),
+		socialLinksUse = checkAttr('socialLinksUse', attributes, manifest, componentName),
 
-		socialLinks = checkAttr('socialLinks', attributes, manifest),
+		socialLinks = checkAttr('socialLinks', attributes, manifest, componentName),
 	} = attributes;
 
 	const socialLinksClass = classnames([
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	const SocialItem = (props) => {

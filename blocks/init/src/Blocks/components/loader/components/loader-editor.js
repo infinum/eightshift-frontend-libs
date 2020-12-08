@@ -1,24 +1,25 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr, selectorCustom } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const LoaderEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		loaderUse = checkAttr('loaderUse', attributes, manifest),
+		loaderUse = checkAttr('loaderUse', attributes, manifest, componentName),
 
-		loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest),
+		loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest, componentName),
 	} = attributes;
 
 	const loaderClass = classnames(
 		componentClass,
-		selectorCustom(loaderUseOverlay, componentClass, '', 'use-overlay'),
-		selectorBlock(blockClass, selectorClass),
+		selector(loaderUseOverlay, componentClass, '', 'use-overlay'),
+		selector(blockClass, blockClass, selectorClass),
 	);
 
 	return (

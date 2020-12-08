@@ -1,24 +1,25 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ScrollToTopEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest),
+		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest, componentName),
 
-		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest),
+		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest, componentName),
 
 	} = attributes;
 
 	const scrollClass = classnames(
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	);
 
 	return (

@@ -3,35 +3,39 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const LinkEditor = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
-		linkUse = checkAttr('linkUse', attributes, manifest),
+		linkUse = checkAttr('linkUse', attributes, manifest, componentName),
 
-		linkContent = checkAttr('linkContent', attributes, manifest),
-		linkUrl = checkAttr('linkUrl', attributes, manifest),
+		linkContent = checkAttr('linkContent', attributes, manifest, componentName),
+		linkUrl = checkAttr('linkUrl', attributes, manifest, componentName),
+		linkAlign = checkAttr('linkAlign', attributes, manifest, componentName),
+		linkSize = checkAttr('linkSize', attributes, manifest, componentName),
+		linkColor = checkAttr('linkColor', attributes, manifest, componentName),
 	} = attributes;
 
 	const linkWrapClass = classnames([
-		selectorBlock(componentClass, 'wrap'),
-		selector(componentClass, 'align', 'linkAlign', attributes, manifest),
-		selectorBlock(blockClass, `${selectorClass}-wrap`),
+		selector(componentClass, componentClass, 'wrap'),
+		selector(linkAlign, componentClass, 'align', linkAlign),
+		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 
 	const linkClass = classnames([
 		componentClass,
-		selector(componentClass, 'size', 'linkSize', attributes, manifest),
-		selector(componentClass, 'color', 'linkColor', attributes, manifest),
-		!(linkContent && linkUrl) && `${componentClass}-placeholder`,
-		selectorBlock(blockClass, selectorClass),
+		selector(linkSize, componentClass, 'size', linkSize),
+		selector(linkColor, componentClass, 'color', linkColor),
+		selector(!(linkContent && linkUrl), `${componentClass}-placeholder`),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
@@ -41,7 +45,7 @@ export const LinkEditor = (attributes) => {
 					<RichText
 						placeholder={placeholder}
 						value={linkContent}
-						onChange={(value) => setAttributes({ linkContent: value })}
+						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 						className={linkClass}
 						keepPlaceholderOnFocus
 						formattingControls={[]}

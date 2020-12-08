@@ -1,26 +1,27 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
-import { selectorBlock, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 const { options } = manifest;
 
 export const VideoButtonEditor = (attributes) => {
 	const {
+		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		videoButtonUse = checkAttr('videoButtonUse', attributes, manifest),
+		videoButtonUse = checkAttr('videoButtonUse', attributes, manifest, componentName),
 
-		videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest),
-		videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest),
+		videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest, componentName),
+		videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest, componentName),
 	} = attributes;
 
 	const videoButtonClass = classnames(
 		componentClass,
-		selectorBlock(blockClass, selectorClass),
+		selector(blockClass, blockClass, selectorClass),
 	);
 
 	return (

@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
+$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest, $componentName);
 if (!$copyrightUse) {
 	return;
 }
@@ -19,13 +20,13 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
-$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
-$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
+$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest, $componentName);
+$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest, $componentName);
+$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest, $componentName);
 
 $copyrightClass = Components::classnames([
 	$componentClass,
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

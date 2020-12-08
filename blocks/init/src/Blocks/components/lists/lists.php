@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$listsUse = Components::checkAttr('listsUse', $attributes, $manifest);
+$listsUse = Components::checkAttr('listsUse', $attributes, $manifest, $componentName);
 if (!$listsUse) {
 	return;
 }
@@ -19,15 +20,18 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
-$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
+$listsContent = Components::checkAttr('listsContent', $attributes, $manifest, $componentName);
+$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest, $componentName);
+$listsColor = Components::checkAttr('listsColor', $attributes, $manifest, $componentName);
+$listsSize = Components::checkAttr('listsSize', $attributes, $manifest, $componentName);
+$listsAlign = Components::checkAttr('listsAlign', $attributes, $manifest, $componentName);
 
 $listsClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, 'color', 'listsColor', $attributes, $manifest),
-	Components::selector($componentClass, 'size', 'listsSize', $attributes, $manifest),
-	Components::selector($componentClass, 'align', 'listsAlign', $attributes, $manifest),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($listsColor, $componentClass, 'color', $listsColor),
+	Components::selector($listsSize, $componentClass, 'size', $listsSize),
+	Components::selector($listsAlign, $componentClass, 'align', $listsAlign),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

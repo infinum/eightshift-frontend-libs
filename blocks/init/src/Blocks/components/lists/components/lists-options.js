@@ -12,13 +12,14 @@ const { options, title } = manifest;
 export const ListsOptions = (attributes) => {
 	const {
 		setAttributes,
+		componentName = manifest.componentName,
 		label = title,
 		listsShowControls = true,
 
-		listsUse = checkAttr('listsUse', attributes, manifest),
+		listsUse = checkAttr('listsUse', attributes, manifest, componentName),
 
-		listsColor = checkAttr('listsColor', attributes, manifest),
-		listsSize = checkAttr('listsSize', attributes, manifest),
+		listsColor = checkAttr('listsColor', attributes, manifest, componentName),
+		listsSize = checkAttr('listsSize', attributes, manifest, componentName),
 
 		showListsColor = true,
 		showListsSize = true,
@@ -40,7 +41,7 @@ export const ListsOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={listsUse}
-				onChange={(value) => setAttributes({ listsUse: value })}
+				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
 
 			{listsUse &&
@@ -54,7 +55,7 @@ export const ListsOptions = (attributes) => {
 								</Fragment>
 							}
 							value={listsColor}
-							onChange={(value) => setAttributes({ listsColor: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
 
@@ -63,7 +64,7 @@ export const ListsOptions = (attributes) => {
 							label={__('Size', 'eightshift-frontend-libs')}
 							value={listsSize}
 							options={options.sizes}
-							onChange={(value) => setAttributes({ listsSize: value })}
+							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
 				</Fragment>

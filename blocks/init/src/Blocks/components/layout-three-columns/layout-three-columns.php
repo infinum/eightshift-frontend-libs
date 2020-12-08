@@ -9,8 +9,9 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest);
+$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest, $componentName);
 if (!$layoutUse) {
 	return;
 }
@@ -19,38 +20,38 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest);
-$layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest);
-$layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest);
-$tag = Components::checkAttr('tag', $attributes, $manifest);
+$layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest, $componentName);
+$layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest, $componentName);
+$layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest, $componentName);
+$tag = Components::checkAttr('tag', $attributes, $manifest, $componentName);
 
 $layoutClass = Components::classnames([
 	$componentClass,
-	Components::selectorBlock($selectorClass),
-	Components::selectorBlock($blockClass, $selectorClass),
+	Components::selector($selectorClass, $selectorClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 $wrapClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'wrap'),
-	Components::selectorBlock($selectorClass, 'wrap'),
+	Components::selector($componentClass, $componentClass, 'wrap'),
+	Components::selector($selectorClass, $selectorClass, 'wrap'),
 ]);
 
 $columnLeftClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column', 'left'),
+	Components::selector($componentClass, $componentClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column', 'left'),
 ]);
 
 $columnCenterClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column', 'center'),
+	Components::selector($componentClass, $componentClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column', 'center'),
 ]);
 
 $columnRightClass = Components::classnames([
-	Components::selectorBlock($componentClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column'),
-	Components::selectorBlock($selectorClass, 'column', 'right'),
+	Components::selector($componentClass, $componentClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column'),
+	Components::selector($selectorClass, $selectorClass, 'column', 'right'),
 ]);
 
 ?>

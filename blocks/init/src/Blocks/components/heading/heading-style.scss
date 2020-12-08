@@ -1,8 +1,5 @@
 $heading: (
-	colors: (
-		primary: global-settings(colors, primary),
-		black: global-settings(colors, black),
-	),
+	colors: global-settings(colors),
 	sizes: (
 		mobile: (
 			default: (

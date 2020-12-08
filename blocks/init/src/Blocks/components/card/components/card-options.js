@@ -22,8 +22,20 @@ export const CardOptions = (attributes) => {
 
 			<HeadingOptions
 				{...attributes}
+				componentName={'intro'}
+				label={'Intro'}
+				headingColor={attributes.introColor}
+				headingSize={attributes.introSize}
 				setAttributes={setAttributes}
 			/>
+
+			<hr />
+
+			<HeadingOptions
+				{...attributes}
+				setAttributes={setAttributes}
+			/>
+
 
 			<hr />
 
