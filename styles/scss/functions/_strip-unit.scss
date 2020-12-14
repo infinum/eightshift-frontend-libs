@@ -1,0 +1,20 @@
+/// Strips the unit from the passed value
+///
+/// ### Output
+/// ```scss
+/// $width: 960px;
+/// $unitless-width: strip-unit($width); // 960
+/// ```
+///
+/// @access public
+/// @author https://css-tricks.com/snippets/sass/strip-unit-function/
+/// @param {Number} $number The number to remove unit from.
+///
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
