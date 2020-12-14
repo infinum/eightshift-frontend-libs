@@ -21,7 +21,7 @@
 ///
 /// @access public
 /// @author Denis Zoljom
-/// @param {Number} $pixels The pixel value that should be converted to relative value. Needs to be specified without px.
+/// @param {Number} $pixels The pixel value that should be converted to relative value.
 /// @param {Number} $context The relative context. Defaults to $base-font-size.
 ///
 /// @example
@@ -42,5 +42,5 @@ $browser-context: $base-font-size;
 
 // Calculate line-height in relative units from pixels.
 @function line-height($pixels, $context: $browser-context) {
-	@return #{$pixels/$context};
+	@return #{strip-unit($pixels)/strip-unit($context)};
 }

@@ -19,7 +19,7 @@
 ///
 /// @access public
 /// @author Denis Zoljom
-/// @param {Number} $pixels The pixel value that should be converted to em. Needs to be specified without px.
+/// @param {Number} $pixels The pixel value that should be converted to em.
 /// @param {Number} $context The relative context. Defaults to relative element with font-size defined.
 ///
 /// @example
@@ -27,7 +27,7 @@
 ///   font-size: 20px;
 ///
 ///   &__subelement {
-///      font-size: em(10); // Will be 0.5em.
+///      font-size: em(10px); // Will be 0.5em.
 ///   }
 ///
 ///   &__second-subelement {
@@ -39,5 +39,5 @@
 $browser-context: $base-font-size;
 
 @function em($pixels, $context: $browser-context) {
-	@return #{$pixels/$context}em;
+	@return #{strip-unit($pixels)/strip-unit($context)}em;
 }
