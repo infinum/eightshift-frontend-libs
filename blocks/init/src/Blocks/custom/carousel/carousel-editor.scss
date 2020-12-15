@@ -1,0 +1,19 @@
+.block-carousel {
+	&[data-show-items='2'] {
+		.block-editor-block-list__layout {
+			.wp-block {
+				@include flex-grid-width(6);
+			}
+		}
+	}
+
+	.block-editor-block-list__layout {
+		display: flex;
+		overflow-y: hidden;
+		align-items: center;
+
+		.wp-block {
+			@include flex-grid-width(12);
+		}
+	}
+}

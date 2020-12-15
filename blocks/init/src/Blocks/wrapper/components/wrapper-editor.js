@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -10,10 +11,26 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperDisable = checkAttr('wrapperDisable', attributes, manifest),
 		wrapperId = checkAttr('wrapperId', attributes, manifest),
 		wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest),
+		wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest),
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
 		return children;
+	}
+
+	if (!wrapperUse || wrapperDisable) {
+		return (
+			<Fragment>
+				{wrapperParentClass ?
+					<div className={`${wrapperParentClass}__item`}>
+						<div className={`${wrapperParentClass}__item-inner`}>
+							{children}
+						</div>
+					</div> :
+					children
+				}
+			</Fragment>
+		);
 	}
 
 	const wrapperSpacingTop = {

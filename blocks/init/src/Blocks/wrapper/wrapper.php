@@ -16,11 +16,21 @@ $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $mani
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperDisable) {
+	if ($wrapperParentClass) {
+		echo '<div class="' . \esc_attr($wrapperParentClass . '__item') . '">';
+			echo '<div class="' . \esc_attr($wrapperParentClass . '__item-inner') . '">';
+	}
+
 	$this->renderWrapperView(
 		$templatePath,
 		$attributes,
 		$innerBlockContent
 	);
+
+	if ($wrapperParentClass) {
+			echo '</div>';
+		echo '</div>';
+	}
 
 	return;
 }
