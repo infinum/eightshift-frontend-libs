@@ -1,3 +1,5 @@
+import { elementChildrenHeight } from '@eightshift/frontend-libs/scripts/helpers';
+
 export class Accordion {
 	constructor(options) {
 		this.accordion = options.accordion;
@@ -7,7 +9,7 @@ export class Accordion {
 		this.panelSelector = `${options.accordionSelector}-panel`;
 
 		this.trigger = this.accordion.querySelectorAll(this.triggerSelector);
-		
+
 		this.ATTR_HIDDEN = 'aria-hidden';
 		this.ATTR_OPEN = 'data-accordion-open';
 		this.ATTR_PREVENT_CLOSE = 'data-accordion-prevent-close';
@@ -41,6 +43,7 @@ export class Accordion {
 
 		[...panels].forEach((panel) => {
 			panel.setAttribute(this.ATTR_HIDDEN, 'true');
+			panel.style.maxHeight = '';
 		});
 	}
 
@@ -51,11 +54,13 @@ export class Accordion {
 	close(item, panel) {
 		item.setAttribute(this.ATTR_OPEN, 'false');
 		panel.setAttribute(this.ATTR_HIDDEN, 'true');
+		panel.style.maxHeight = '';
 	}
 
 	open(item, panel) {
 		item.setAttribute(this.ATTR_OPEN, 'true');
 		panel.setAttribute(this.ATTR_HIDDEN, 'false');
+		panel.style.maxHeight = `${elementChildrenHeight(panel)}px`;
 	}
 
 }

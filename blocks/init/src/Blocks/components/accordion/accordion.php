@@ -24,7 +24,7 @@ $accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest
 $accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest, $componentName);
 $accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest, $componentName);
 
-$componentJsClass = Components::selector($componentClass, $componentClass, "js-{$componentClass}");
+$componentJsClass = Components::selector($componentClass, "js-{$componentClass}");
 
 $accordionClass = Components::classnames([
 	$componentClass,
