@@ -8,25 +8,26 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$manifest = Components::getManifest(__DIR__);
+
 $blockClass =  Components::checkAttr('blockClass', $attributes, $manifest);
-$blockJsClass =  Components::checkAttr('blockJsClass', $attributes, $manifest);
 $query =  Components::checkAttr('query', $attributes, $manifest);
 $excludeCurrentPost =  Components::checkAttr('excludeCurrentPost', $attributes, $manifest);
-$postType =  Components::checkAttr('postType', $attributes, $manifest);
-$posts =  Components::checkAttr('posts', $attributes, $manifest);
+$itemsPerLine =  Components::checkAttr('itemsPerLine', $attributes, $manifest);
+$showItems =  Components::checkAttr('showItems', $attributes, $manifest);
 
 global $post;
 
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>">
+<div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
 	<?php
 		$postType = $query['postType'];
 		$posts = $query['posts'];
 
 		$args = [
 			'post_type' => $postType,
-			'posts_per_page' => 100,
+			'posts_per_page' => $showItems,
 		];
 
 		if ($excludeCurrentPost) {
@@ -46,14 +47,18 @@ global $post;
 
 				$postId = get_the_ID();
 
+				$image = \get_the_post_thumbnail_url($postId, 'large');
+
 				echo \wp_kses_post(
 					Components::render(
 						'card',
 						[
-							'imageUrl' => \get_the_post_thumbnail_url($postId, 'medium'),
+							'imageUrl' => $image,
+							'imageUse' => $image ?? true,
+							'introUse' => false,
 							'headingContent' => \get_the_title($postId),
 							'paragraphContent' => \get_the_excerpt($postId),
-							'buttonContent' => __('Show More', 'eightshift-frontend-libs'),
+							'buttonContent' => __('Show More', 'EightshiftBoilerplate'),
 							'buttonUrl' => \get_the_permalink($postId),
 						]
 					)

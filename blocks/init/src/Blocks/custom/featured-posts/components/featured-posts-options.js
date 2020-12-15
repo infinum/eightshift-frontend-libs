@@ -1,9 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, SelectControl, Spinner } from '@wordpress/components';
+import { PanelBody, SelectControl, Spinner, RangeControl, Icon } from '@wordpress/components';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
-import { AccordionOptions } from '../../../components/accordion/components/accordion-options';
+
+const { attributes: reset, options } = manifest;
 
 export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 	const {
@@ -12,6 +15,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			postType,
 			posts,
 		},
+		showItems,
+		itemsPerLine,
 	} = attributes;
 
 	// Fetch all post types.
@@ -59,11 +64,11 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured Post', 'solplanet')}>
+		<PanelBody title={__('Featured Post', 'eightshift-frontend-libs')}>
 
 			{postTypeOptions[1] ?
 				<SelectControl
-					label={__('Post Type', 'solplanet')}
+					label={__('Post Type', 'eightshift-frontend-libs')}
 					value={postType}
 					options={postTypeOptions}
 					onChange={(value) => {
@@ -80,7 +85,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			{(postTypeOptions[1] && posts) ?
 				<SelectControl
-					label={__('Posts Items', 'solplanet')}
+					label={__('Posts Items', 'eightshift-frontend-libs')}
 					value={posts}
 					multiple
 					options={postsOptions}
@@ -96,11 +101,35 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				<Spinner />
 			}
 
-			<hr />
-			
-			<AccordionOptions
-				{...attributes}
-				setAttributes={setAttributes}
+			<RangeControl
+				label={
+					<Fragment>
+						<Icon icon={icons.width} />
+						{__('Items per one row', 'eightshift-frontend-libs')}
+					</Fragment>
+				}
+				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
+				allowReset={true}
+				value={itemsPerLine}
+				onChange={(value) => setAttributes({ itemsPerLine: value })}
+				min={options.itemsPerLine.min}
+				max={options.itemsPerLine.max}
+				step={options.itemsPerLine.step}
+				resetFallbackValue={reset.itemsPerLine.default}
+			/>
+
+			<RangeControl
+				label={
+					<Fragment>
+						<Icon icon={icons.width} />
+						{__('Show items', 'eightshift-frontend-libs')}
+					</Fragment>
+				}
+				help={__('Option to change the number of items to show in total.', 'eightshift-frontend-libs')}
+				allowReset={true}
+				value={showItems}
+				onChange={(value) => setAttributes({ showItems: value })}
+				step={1}
 			/>
 
 		</PanelBody>
