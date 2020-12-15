@@ -14,6 +14,7 @@ $manifest = Components::getManifest(__DIR__);
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
+$wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {

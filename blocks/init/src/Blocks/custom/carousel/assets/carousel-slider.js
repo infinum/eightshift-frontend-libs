@@ -19,7 +19,7 @@ export class CarouselSlider {
 		const item = this.element;
 
 		const showItems = item.getAttribute('data-show-items');
-		const { media } = globalSettings.globalVariables;
+		const { breakpoints } = globalSettings.globalVariables;
 
 		const mySwiper = new Swiper(item, { // eslint-disable-line no-unused-vars
 			loop: item.getAttribute('data-swiper-loop'),
@@ -42,7 +42,7 @@ export class CarouselSlider {
 				clickable: true,
 			},
 			breakpoints: {
-				[media.tablet]: {
+				[breakpoints.tablet]: {
 					slidesPerView: showItems,
 					spaceBetween: showItems === '2' ? 3 : 0,
 				},

@@ -8,10 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$blockClass     = $attributes['blockClass'] ?? '';
-$blockJsClass   = $attributes['blockJsClass'] ?? '';
-$isLoop         = Components::checkAttr('isLoop', $attributes, $manifest, $componentName);
-$showItems      = Components::checkAttr('showItems', $attributes, $manifest, $componentName);
+$manifest = Components::getManifest(__DIR__);
+
+$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
+$blockJsClass = Components::checkAttr('blockJsClass', $attributes, $manifest);
+$isLoop = Components::checkAttr('isLoop', $attributes, $manifest);
+$showItems = Components::checkAttr('showItems', $attributes, $manifest);
 
 $carouselClass = Components::classnames([
 	$blockClass,
