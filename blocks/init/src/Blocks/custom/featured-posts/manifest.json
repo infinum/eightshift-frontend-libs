@@ -1,0 +1,55 @@
+{
+	"blockName": "featured-posts",
+	"title": "Featured Posts",
+	"description" : "Block for selecting and displaying featured posts",
+	"category": "eightshift",
+	"icon": {
+		"src": "format-aside"
+	},
+	"keywords": [
+		"featured",
+		"posts"
+	],
+	"example": {
+		"attributes": {
+			"postType": "posts",
+			"postNumber": 3,
+			"posts": [
+				{
+					"id": 0,
+					"title": "Lorem Ipsum"
+				},
+				{
+					"id": 0,
+					"title": "Lorem Ipsum"
+				},
+				{
+					"id": 0,
+					"title": "Lorem Ipsum"
+				}
+			]
+		}
+	},
+	"attributes": {
+		"query": {
+			"type": "object",
+			"default": {
+				"postType": "post",
+				"posts": []
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"excludeCurrentPost": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"allowed": {
+		"postTypes": [
+			"post",
+			"page"
+		]
+	}
+}

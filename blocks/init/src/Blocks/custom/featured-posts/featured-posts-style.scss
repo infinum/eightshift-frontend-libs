@@ -1,0 +1,40 @@
+$block-featured-posts: (
+	gutter: global-settings(gutters, default),
+	gutter-bottom: (
+		default: 50px,
+		tablet: 70px
+	),
+);
+
+.block-featured-posts {
+	$this: &;
+	display: flex;
+	flex-wrap: wrap;
+	margin: {
+		left: -(map-get-deep($block-featured-posts, gutter));
+		right: -(map-get-deep($block-featured-posts, gutter));
+		bottom: -(map-get-deep($block-featured-posts, gutter-bottom, default));
+	}
+
+	@include media(tablet up) {
+		margin-bottom: -(map-get-deep($block-featured-posts, gutter-bottom, tablet));
+	}
+
+	&__item {
+		padding: {
+			left: map-get-deep($block-featured-posts, gutter);
+			right: map-get-deep($block-featured-posts, gutter);
+			bottom: map-get-deep($block-featured-posts, gutter-bottom, default);
+		}
+
+		@include media(tablet up) {
+			padding-bottom: map-get-deep($block-featured-posts, gutter-bottom, tablet);
+		}
+	}
+
+	&__item-width {
+		@include responsive-selectors {
+			@include flex-column-width-modifiers;
+		}
+	}
+}
