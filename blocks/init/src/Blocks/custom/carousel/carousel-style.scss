@@ -1,8 +1,6 @@
 @import '~swiper/swiper.scss';
 
 .block-carousel {
-	$this: &;
-
 	&__item {
 		flex-shrink: 0;
 		width: 100%;

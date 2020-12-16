@@ -12,10 +12,6 @@ export class CarouselSlider {
 	}
 
 	init() {
-		this.initCarousel();
-	}
-
-	initCarousel() {
 		const item = this.element;
 
 		const showItems = item.getAttribute('data-show-items');
