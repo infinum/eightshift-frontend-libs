@@ -29,8 +29,8 @@ if (! $wrapperUse || $wrapperDisable) {
 	);
 
 	if ($wrapperParentClass) {
-			echo '</div>';
-		echo '</div>';
+			echo '</div>
+		</div>';
 	}
 
 	return;
