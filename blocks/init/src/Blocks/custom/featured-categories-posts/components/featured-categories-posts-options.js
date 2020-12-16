@@ -1,19 +1,20 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, SelectControl, Spinner, RangeControl, ToggleControl, Icon } from '@wordpress/components';
+import { Fragment } from '@wordpress/element';
+import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import manifest from './../manifest.json';
+import manifest from '../manifest.json';
 
 const { attributes: reset, options } = manifest;
 
-export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
+export const FeaturedCategoriesPostsOptions = ({ attributes, setAttributes }) => {
 	const {
 		query: queryProps,
 		query: {
 			postType,
-			posts,
+			taxonomy,
+			terms,
 		},
 		showItems,
 		itemsPerLine,
@@ -38,13 +39,44 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 		}) ?? [];
 	});
 
-	// Fetch all posts based on the selected postType.
-	const postsOptions = useSelect((select) => {
+	// Fetch all taxonomies based on the postType selected.
+	// Filter allowed taxonomies defined in the block manifest.
+	const taxonomyOptions = useSelect((select) => {
+		const { getTaxonomy } = select('core');
+
+		const availableTaxonomies = postTypeOptions.filter((element) => element.value === postType) ?? [];
+
+		const taxonomiesList = availableTaxonomies.length ? availableTaxonomies[0].taxonomies : [];
+
+		const allowedTaxonomies = taxonomiesList.filter((element) => {
+			return manifest.allowed.taxonomies.find((item) => {
+				return element === item;
+			});
+		}) ?? [];
+
+		const data = allowedTaxonomies.map((element) => getTaxonomy(element)) ?? [];
+
+		return [
+			{
+				label: 'None',
+				value: '',
+			},
+			...data.map((item) => {
+				return {
+					label: item.labels.name,
+					value: item.slug,
+				};
+			}),
+		];
+	});
+
+	// Fetch all taxonomy terms based on the selected taxomomy and postType.
+	const termsOptions = useSelect((select) => {
 		const { getEntityRecords } = select('core');
 
 		const termsList = getEntityRecords(
-			'postType',
-			postType,
+			'taxonomy',
+			taxonomy,
 			{
 				per_page: -1, // eslint-disable-line camelcase
 			}
@@ -57,7 +89,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			},
 			...termsList.map((item) => {
 				return {
-					label: item.title.rendered,
+					label: item.name,
 					value: item.id,
 				};
 			}),
@@ -65,7 +97,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured Post', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured Categories Posts', 'eightshift-frontend-libs')}>
 
 			{postTypeOptions[0] ?
 				<SelectControl
@@ -76,7 +108,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 						setAttributes({
 							query: {
 								postType: value,
-								posts: [],
+								taxonomy: '',
+								terms: [],
 							},
 						});
 					}}
@@ -84,23 +117,43 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				<Spinner />
 			}
 
-			{(postTypeOptions[0] && posts) ?
+			{(postTypeOptions[0] && postType) ?
 				<SelectControl
-					label={__('Posts Items', 'eightshift-frontend-libs')}
-					value={posts}
-					multiple
-					options={postsOptions}
+					label={__('Categories', 'eightshift-frontend-libs')}
+					value={taxonomy}
+					options={taxonomyOptions}
 					onChange={(value) => {
 						setAttributes({
 							query: {
 								...queryProps,
-								posts: value[0] ? value : [],
+								taxonomy: value[0] ? value : [],
+								terms: [],
 							},
 						});
 					}}
 				/> :
 				<Spinner />
 			}
+
+			{(taxonomyOptions[0] && taxonomy) ?
+				<SelectControl
+					label={__('Posts Items', 'eightshift-frontend-libs')}
+					value={terms}
+					multiple
+					options={termsOptions}
+					onChange={(value) => {
+						setAttributes({
+							query: {
+								...queryProps,
+								terms: value[0] ? value : [],
+							},
+						});
+					}}
+				/> :
+				<Spinner />
+			}
+
+			<hr />
 
 			<RangeControl
 				label={

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for the Featured Posts view.
+ * Template for the Featured Categories Posts view.
  *
  * @package EightshiftBoilerplate
  */
@@ -22,21 +22,35 @@ global $post;
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
-	<?php
+
+		<?php
 		$postType = $query['postType'];
-		$posts = $query['posts'];
+		$taxonomy = $query['taxonomy'];
+		$terms = $query['terms'];
 
 		$args = [
 			'post_type' => $postType,
 			'posts_per_page' => $showItems,
 		];
 
-		if ($excludeCurrentPost) {
-			$args['post__not_in'] = $posts->ID;
-		}
+		if ($taxonomy) {
+			if ($terms) {
+				$args['tax_query'][0] = [
+					'taxonomy' => $taxonomy,
+					'field' => 'id',
+					'terms' => $terms,
+				];
+			} else {
+				$args['tax_query'] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+					[
+						'taxonomy' => $taxonomy,
+					],
+				];
+			}
+		};
 
-		if ($posts) {
-			$args['post__in'] = $posts;
+		if ($excludeCurrentPost) {
+			$args['post__not_in'] = [ $post->ID ];
 		}
 
 		$theQuery = new \WP_Query($args);
@@ -63,21 +77,19 @@ global $post;
 					$cardProps['headingTag'] = 'div';
 					$cardProps['paragraphTag'] = 'div';
 				}
-				?>
 
+				?>
 				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 					<?php
-					echo wp_kses_post(
+					echo \wp_kses_post(
 						Components::render(
 							'card',
 							$cardProps
 						)
 					);
-				?>
+					?>
 				</div>
-			<?php
-			}
-			\wp_reset_postdata();
-		}
-		?>
+			<?php }; ?>
+			<?php \wp_reset_postdata(); ?>
+		<?php }; ?>
 </div>
