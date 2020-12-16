@@ -1,0 +1,20 @@
+@import '~swiper/swiper.scss';
+
+.block-carousel {
+	&__item {
+		flex-shrink: 0;
+		width: 100%;
+		transition-property: transform;
+		display: flex;
+	}
+
+	&__item-inner {
+		align-items: center;
+		display: flex;
+		width: 100%;
+	}
+
+	.block-image__image {
+		margin: 0 auto;
+	}
+}
