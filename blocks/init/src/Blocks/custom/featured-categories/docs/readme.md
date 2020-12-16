@@ -1,4 +1,4 @@
-# Featured Posts Block
+# Featured Categories Block
 
 Block used to provide an Featured Posts functionality. You can simply copy/paste this block to your project and rename it to your new block needs.
 
