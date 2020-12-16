@@ -1,0 +1,56 @@
+{
+	"blockName": "featured-categories",
+	"title": "Featured Categories",
+	"description" : "Block for selecting and displaying featured categories",
+	"category": "eightshift",
+	"icon": {
+		"src": "format-aside"
+	},
+	"keywords": [
+		"featured",
+		"terms",
+		"taxonomy",
+		"category"
+	],
+	"example": {
+		"attributes": {
+			"query": {
+				"taxonomy": "category",
+				"terms": []
+			},
+			"itemsPerLine": 4
+		}
+	},
+	"attributes": {
+		"query": {
+			"type": "object",
+			"default": {
+				"taxonomy": "category",
+				"terms": []
+			},
+			"items": {
+				"type": "object"
+			}
+		},
+		"itemsPerLine": {
+			"type": "integer",
+			"default": 4
+		},
+		"serverSideRender": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"allowed": {
+		"taxonomies": [
+			"category"
+		]
+	},
+	"options": {
+		"itemsPerLine": {
+			"min": 1,
+			"max": 4,
+			"step": 1
+		}
+	}
+}
