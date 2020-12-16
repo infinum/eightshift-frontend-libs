@@ -7,8 +7,8 @@
  */
 
 $icon = $attributes['icon'] ?? '';
-$charset = $attributes['charset'] ?? \bloginfo('charset');
-$name = $attributes['name'] ?? \bloginfo('name');
+$charset = $attributes['charset'] ?? \get_bloginfo('charset');
+$name = $attributes['name'] ?? \get_bloginfo('name');
 ?>
 
 <meta charset="<?php echo \esc_attr($charset); ?>" />
