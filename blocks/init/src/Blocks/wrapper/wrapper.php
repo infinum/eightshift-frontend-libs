@@ -18,8 +18,8 @@ $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $
 
 if (! $wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
-		echo '<div class="' . \esc_attr($wrapperParentClass . '__item') . '">';
-			echo '<div class="' . \esc_attr($wrapperParentClass . '__item-inner') . '">';
+		echo '<div class="' , \esc_attr($wrapperParentClass . '__item') , '">
+			<div class="' , \esc_attr($wrapperParentClass . '__item-inner') , '">';
 	}
 
 	$this->renderWrapperView(
