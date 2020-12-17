@@ -4,16 +4,13 @@ Block used to provide button functionality to your project.
 
 ## Dependencies
 
-1. Component/Button
+1. components/button
 
 ## Implementation
 
-1. Copy/Paste block folder in your project.
-2. Copy/Paste component dependencies folder in your project.
-3. Rename `eightshift-boilerplate` namespace to your project's namespace.
-4. Add or remove features you are going to use.
-5. Implement project specific styles.
+Open a terminal and type in this command inside your projects root:
 
-## Note
-
-This block uses dependencies from the components folder. If you are going to use this block in your project, be sure to copy/paste all the dependencies as well.
+```shell
+wp boilerplate use_block --name=button
+wp boilerplate use_component --name=button
+```
