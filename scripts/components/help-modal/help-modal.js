@@ -11,30 +11,30 @@ export const HelpModal = (props) => {
 
 		type = 'wrapper',
 
-		showWrapperToggle = true,
-		showWrapperSimpleToggle = true,
-		showWrapperId = true,
-		showWrapperAnchorId = true,
-		showWrapperBackgroundColor = true,
-		showWrapperWidth = true,
-		showWrapperOffset = true,
-		showWrapperContainerWidth = true,
-		showWrapperGutter = true,
-		showWrapperSpacingTop = true,
-		showWrapperSpacingBottom = true,
-		showWrapperSpacingTopIn = true,
-		showWrapperSpacingBottomIn = true,
-		showWrapperDividerTop = true,
-		showWrapperDividerBottom = true,
-		showWrapperHide = true,
+		wrapperUseShow = true,
+		wrapperUseSimpleShow = true,
+		showWrapperIdShow = true,
+		wrapperAnchorIdShow = true,
+		wrapperBackgroundColorShow = true,
+		wrapperWidthShow = true,
+		wrapperOffsetShow = true,
+		wrapperContainerWidthShow = true,
+		wrapperGutterShow = true,
+		wrapperSpacingTopShow = true,
+		wrapperSpacingBottomShow = true,
+		wrapperSpacingTopInShow = true,
+		wrapperSpacingBottomInShow = true,
+		wrapperDividerTopShow = true,
+		wrapperDividerBottomShow = true,
+		wrapperHideShow = true,
 
-		showColumnsGutter = true,
-		showColumnsVerticalSpacing = true,
+		columnsGutterShow = true,
+		columnsVerticalSpacingShow = true,
 
-		showColumnWidth = true,
-		showColumnOffset = true,
-		showColumnOrder = true,
-		showColumnHide = true,
+		columnWidthShow = true,
+		columnOffsetShow = true,
+		columnOrderShow = true,
+		columnHideShow = true,
 	} = props;
 
 	const [isOpen, activeModal] = useState(false);
@@ -77,133 +77,134 @@ export const HelpModal = (props) => {
 					<Fragment>
 						{type === 'wrapper' &&
 							<Fragment>
-								{showWrapperToggle &&
+								{wrapperUseShow &&
 									<Item
-										title={__('Wrapper show Toggle', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										title={__('Wrapper Enabled', 'eightshift-frontend-libs')}
+										content={__('This toogle is used to enable od disable wrapper all together.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperSimpleToggle &&
+								{wrapperUseSimpleShow &&
 									<Item
 										title={__('Wrapper Simple Toggle', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('This toogle is used to enable od disable simple wrapper. Generally simple wrapper is used inside inner blocks to provide only simple layouting options like spacing, divider and etc.', 'eightshift-frontend-libs')}
 									/>
 								}
-		
-								{showWrapperId &&
-									<Item
-										title={__('Block ID', 'eightshift-frontend-libs')}
-										content={__('Add Unique ID to the block.', 'eightshift-frontend-libs')}
-									/>
-								}
-		
-								{showWrapperWidth &&
-									<Item
-										title={__('Content Width', 'eightshift-frontend-libs')}
-										content={__('Option to change the block width in the grid from the left. Change column width in 12 columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-frontend-libs')}
-									/>
-								}
-		
-								{showWrapperOffset &&
-									<Item
-										title={__('Content Offset', 'eightshift-frontend-libs')}
-										content={__('Option to change the block offset in the grid from the left. Change block offset in 12 columns range. Example: 6 is 50 percent of the screen width. If you set a value to -1 it will not be used and the parent breakpoint will be used.', 'eightshift-frontend-libs')}
-									/>
-								}
-		
-								{showWrapperContainerWidth &&
-									<Item
-										title={__('Container Width', 'eightshift-frontend-libs')}
-										content={__('Change Container width. Changing this option will affect total width of the block and the total size of grid inside the block.', 'eightshift-frontend-libs')}
-									/>
-								}
-		
-								{showWrapperGutter &&
-									<Item
-										title={__('Container Spacing', 'eightshift-frontend-libs')}
-										content={__('Change Container spacing on the left and right. More popular name is Container Gutter.', 'eightshift-frontend-libs')}
-									/>
-								}
-		
-								{showWrapperSpacingTop &&
+
+								{wrapperSpacingTopShow &&
 									<Item
 										title={__('Spacing Top', 'eightshift-frontend-libs')}
-										content={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-frontend-libs')}
+										content={__('Adds block spacing from the top. This value is defined as marging so if you use background color on the wrapper it will add spacing over the background color.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperSpacingBottom &&
+								{wrapperSpacingBottomShow &&
 									<Item
 										title={__('Spacing Bottom', 'eightshift-frontend-libs')}
-										content={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-frontend-libs')}
+										content={__('Adds block spacing from the bottom. This value is defined as marging so if you use background color on the wrapper it will add spacing over the background color.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperSpacingTopIn &&
+								{wrapperSpacingTopInShow &&
 									<Item
 										title={__('Spacing Top In', 'eightshift-frontend-libs')}
-										content={__('Change Block Spacing from the top. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-frontend-libs')}
+										content={__('Adds block spacing from the top. This value is defined as padding so if you use background color on the wrapper it will add spacing inside the background color.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperSpacingBottomIn &&
+								{wrapperSpacingBottomInShow &&
 									<Item
 										title={__('Spacing Bottom In', 'eightshift-frontend-libs')}
-										content={__('Change Block Spacing from the bottom. If you set a value to -10 it will not be used and the parent brakepoint will be used.', 'eightshift-frontend-libs')}
+										content={__('Adds block spacing from the bottom. This value is defined as padding so if you use background color on the wrapper it will add spacing inside the background color.', 'eightshift-frontend-libs')}
 									/>
 								}
-								
-								{showWrapperDividerTop &&
+
+								{wrapperDividerTopShow &&
 									<Item
 										title={__('Divider Top', 'eightshift-frontend-libs')}
-										content={''}
+										content={__('Adds simple divider on the top of the wrapper.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperDividerBottom &&
+								{wrapperDividerBottomShow &&
 									<Item
 										title={__('Divider Bottom', 'eightshift-frontend-libs')}
-										content={''}
+										content={__('Adds simple divider on the bottom of the wrapper.', 'eightshift-frontend-libs')}
 									/>
 								}
 		
-								{showWrapperHide &&
+								{wrapperHideShow &&
 									<Item
 										title={__('Hide Block', 'eightshift-frontend-libs')}
-										content={__('Toggle block visibility.', 'eightshift-frontend-libs')}
+										content={__('Toggles block visibility.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showWrapperAnchorId &&
+								{wrapperWidthShow &&
 									<Item
-										title={__('Anchor ID', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										title={__('Content Width', 'eightshift-frontend-libs')}
+										content={__('Option to change the block width in the grid from the left. Change column width in 12 columns range. Example: value 6 is 50 percent of the screen width.', 'eightshift-frontend-libs')}
+									/>
+								}
+		
+								{wrapperOffsetShow &&
+									<Item
+										title={__('Content Offset', 'eightshift-frontend-libs')}
+										content={__('Option to change the block offset in the grid from the left. Change block offset in 12 columns range. Example: value 6 is 50 percent of the screen width.', 'eightshift-frontend-libs')}
+									/>
+								}
+		
+								{wrapperContainerWidthShow &&
+									<Item
+										title={__('Container Width', 'eightshift-frontend-libs')}
+										content={__('Option to change container width. Changing this option will affect total width of the block and the total size of grid inside the block.', 'eightshift-frontend-libs')}
+									/>
+								}
+		
+								{wrapperGutterShow &&
+									<Item
+										title={__('Gutter', 'eightshift-frontend-libs')}
+										content={__('Option to change gutter on the left and right. More popular name is container gutter.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showWrapperBackgroundColor &&
+								{wrapperBackgroundColorShow &&
 									<Item
 										title={__('Background Color', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Option to change wrappers background color.', 'eightshift-frontend-libs')}
 									/>
 								}
+
+								{wrapperAnchorIdShow &&
+									<Item
+										title={__('Anchor ID', 'eightshift-frontend-libs')}
+										content={__('Option to add custom anchor it tag that you can use with and scroll to anchor option.', 'eightshift-frontend-libs')}
+									/>
+								}
+
+								{showWrapperIdShow &&
+									<Item
+										title={__('Block ID', 'eightshift-frontend-libs')}
+										content={__('Add Unique ID to the block, generaly used for some specifig identifier.', 'eightshift-frontend-libs')}
+									/>
+								}
+
 							</Fragment>
 						}
 
 						{type === 'columns' &&
 							<Fragment>
-								{showColumnsGutter &&
+								{columnsGutterShow &&
 									<Item
 										title={__('Gutter', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Option to change gutter on the left and right. More popular name is container gutter.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showColumnsVerticalSpacing &&
+								{columnsVerticalSpacingShow &&
 									<Item
-										title={__('VerticalSpacing', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										title={__('Vertical Spacing', 'eightshift-frontend-libs')}
+										content={__('Option to define verital spacing for all the column items inside by adding margin on the bottom.', 'eightshift-frontend-libs')}
 									/>
 								}
 							</Fragment>
@@ -211,31 +212,31 @@ export const HelpModal = (props) => {
 
 						{type === 'column' &&
 							<Fragment>
-								{showColumnWidth &&
+								{columnWidthShow &&
 									<Item
 										title={__('Width', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Option to change the column width in the grid from the left. Change column width in 12 columns range. Example: value 6 is 50 percent of the screen width.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showColumnOffset &&
+								{columnOffsetShow &&
 									<Item
 										title={__('Offset', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Option to change the column offset in the grid from the left. Change block offset in 12 columns range. Example: value 6 is 50 percent of the screen width.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showColumnOrder &&
+								{columnOrderShow &&
 									<Item
 										title={__('Order', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Option to change the column order based on the number provided. If you add order to any of the column items you must provide order to the rest of them, otherwise it wont work.', 'eightshift-frontend-libs')}
 									/>
 								}
 
-								{showColumnHide &&
+								{columnHideShow &&
 									<Item
 										title={__('Hide', 'eightshift-frontend-libs')}
-										content={__('', 'eightshift-frontend-libs')}
+										content={__('Toggles column visibility.', 'eightshift-frontend-libs')}
 									/>
 								}
 							</Fragment>
