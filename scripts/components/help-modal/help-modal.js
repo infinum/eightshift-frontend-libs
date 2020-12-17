@@ -80,7 +80,7 @@ export const HelpModal = (props) => {
 								{wrapperUseShow &&
 									<Item
 										title={__('Wrapper Enabled', 'eightshift-frontend-libs')}
-										content={__('This toogle is used to enable od disable wrapper all together.', 'eightshift-frontend-libs')}
+										content={__('This toogle is used to enable od disable wrapper alltogether.', 'eightshift-frontend-libs')}
 									/>
 								}
 		

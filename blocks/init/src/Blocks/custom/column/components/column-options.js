@@ -44,7 +44,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<HelpModal
 				type="column"
-				buttonLabel={__('How to use column?', 'eightshift-frontend-libs')}
+				buttonLabel={__('How to use a column?', 'eightshift-frontend-libs')}
 				modalLabel={__('Column', 'eightshift-frontend-libs')}
 			/>
 

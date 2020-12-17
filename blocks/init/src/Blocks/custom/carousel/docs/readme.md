@@ -1,4 +1,4 @@
-# carousel Block
+# Carousel Block
 
 Block used to provide carousel functionality to your project. This block is an inner block (repeater) block that expects children blocks to be present.
 
