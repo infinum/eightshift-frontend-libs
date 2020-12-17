@@ -18,6 +18,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		wrapperUseSimpleShowControl,
 		wrapperDisable,
 		wrapperId,
+		wrapperAnchorId,
 		wrapperBackgroundColor,
 
 		showWrapperId = true,
@@ -504,7 +505,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											{__('Block Anchor ID', 'eightshift-frontend-libs')}
 										</Fragment>
 									}
-									value={wrapperId}
+									value={wrapperAnchorId}
 									onChange={(value) => setAttributes({ wrapperAnchorId: value })}
 								/>
 							}

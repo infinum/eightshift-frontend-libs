@@ -1,19 +1,16 @@
-# Image Block
+# Video Block
 
-Block used to provide image functionality to your project.
+Block used to provide video functionality to your project.
 
 ## Dependencies
 
-1. Component/Image
+1. components/video
 
 ## Implementation
 
-1. Copy/Paste block folder in your project.
-2. Copy/Paste component dependencies folder in your project.
-3. Rename `eightshift-boilerplate` namespace to your project's namespace.
-4. Add or remove features you are going to use.
-5. Implement project specific styles.
+Open a terminal and type in this command inside your projects root:
 
-## Note
-
-This block uses dependencies from the components folder. If you are going to use this block in your project, be sure to copy/paste all the dependencies as well.
+```shell
+wp boilerplate use_block --name=video
+wp boilerplate use_component --name=video
+```

@@ -28,7 +28,11 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Columns Details', 'eightshift-frontend-libs')}>
 
-			<HelpModal type="columns" />
+			<HelpModal
+				type="columns"
+				buttonLabel={__('How to use columns?', 'eightshift-frontend-libs')}
+				modalLabel={__('Columns', 'eightshift-frontend-libs')}
+			/>
 
 			<br /><br />
 
