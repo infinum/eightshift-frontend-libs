@@ -104,6 +104,8 @@ body {
 
 				svg {
 					margin-right: 0;
+					height: auto;
+					min-width: 100%;
 				}
 			}
 
@@ -129,6 +131,10 @@ body {
 			> svg {
 				margin-right: 10px;
 			}
+		}
+
+		.components-select-control__input[multiple] {
+			min-height: 70px;
 		}
 	}
 
