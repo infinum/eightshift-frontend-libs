@@ -10,15 +10,15 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$postUrl = \get_the_permalink();
-$postTitle = \get_the_title();
-$postImage = \get_the_post_thumbnail_url(\get_the_ID(), 'large');
+$postUrl = $attributes['postUrl'] ?? \get_the_permalink();
+$postTitle = $attributes['postTitle'] ?? \get_the_title();
+$postImageUrl = $attributes['postImageUrl'] ?? \get_the_post_thumbnail_url(\get_the_ID(), 'large');
 
 $socialNetworks = [
 	'twitter' => "https://twitter.com/intent/tweet?url={$postUrl}&text={$postTitle}",
 	'linkedin' => "http://www.linkedin.com/shareArticle?mini=true&url={$postUrl}&title={$postTitle}",
 	'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$postUrl}",
-	'pinterest' => "https://pinterest.com/pin/create/button/?url={$postUrl}&media={$postImage}&description={$postTitle}",
+	'pinterest' => "https://pinterest.com/pin/create/button/?url={$postUrl}&media={$postImageUrl}&description={$postTitle}",
 ];
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
@@ -27,12 +27,12 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $shareClass = Components::classnames([
 	$componentClass,
-	Components::selector($blockClass, $blockClass, "{$selectorClass}"),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 $shareItemClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'item',),
-	Components::selector($blockClass, $blockClass, 'item',),
+	Components::selector($componentClass, $componentClass, 'item'),
+	Components::selector($blockClass, $blockClass, 'item'),
 	Components::selector($componentClass, "js-{$componentClass}-link"),
 ]);
 
