@@ -1,0 +1,34 @@
+{
+	"componentName": "share",
+	"title": "Share",
+	"componentClass": "share",
+	"example": {
+		"attributes": {
+			"shareUse": true
+		}
+	},
+	"attributes": {
+		"shareUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"socialOptions": [
+		{
+			"label": "Facebook",
+			"value": "facebook"
+		},
+		{
+			"label": "Twitter",
+			"value": "twitter"
+		},
+		{
+			"label": "LinkedIn",
+			"value": "linkedin"
+		},
+		{
+			"label": "Pinterest",
+			"value": "pinterest"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+$share: (
+	color: global-settings(colors, primary),
+	size: 20px,
+	spacing: 12px,
+);
+
+.share {
+	display: flex;
+	margin: 0 -#{map-get-strict($share, spacing)};
+
+	&__item {
+		text-decoration: none;
+		font-size: map-get-strict($share, size);
+		display: block;
+		padding: map-get-strict($share, spacing);
+		color: map-get-strict($share, color);
+	}
+}
