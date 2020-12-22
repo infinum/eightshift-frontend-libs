@@ -21,6 +21,7 @@ const props = {
 	...headingManifest.example.attributes,
 	...paragraphManifest.example.attributes,
 	...buttonManifest.example.attributes,
+	...manifest.example.attributes,
 };
 
 export const editor = () => (

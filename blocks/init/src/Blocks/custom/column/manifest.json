@@ -22,8 +22,12 @@
 				"name": "eightshift-boilerplate/card",
 				"attributes": {
 					"imageUrl": "https://picsum.photos/400/400",
-					"headingContent": "Lorem ipsum dolor sit amet",
-					"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum."
+					"introContent": "Intro",
+					"introSize": "small",
+					"introColor": "light",
+					"headingContent": "Heading",
+					"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+					"buttonUse": false
 				}
 			}
 		]
