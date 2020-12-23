@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
-import { select } from '@wordpress/data';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
@@ -82,6 +81,16 @@ export const getNamespace = (globalManifest, blockManifest) => {
  */
 export const getFullBlockName = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
+};
+
+/**
+ * Return full block name used in Block Editor with correct namespace.
+ *
+ * @param {object} globalManifest Blocks global shared manifest.
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
+	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.parentName}`;
 };
 
 /**
@@ -220,31 +229,38 @@ export const prepareCommponentAttribute = (component, realComponentName, newComp
  * @param {string} blockName Full block name.
  * @param {string} key Change output, can be: "attributes" or "example".
  */
-export const prepareComponentAttributes = (componentsManifest, components, blockName, key = 'attributes') => {
+export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes') => {
 	let output = {};
+
+	const {
+		components = {},
+		attributes = {},
+		example = {},
+	} = blockManifest;
 
 	for (const newComponentName in components) {
 		if (components.hasOwnProperty(newComponentName)) {
 
 			const realComponentName = components[newComponentName];
 
-			const component = componentsManifest.filter((item) => item.componentName === realComponentName);
+			const [component] = componentsManifest.filter((item) => item.componentName === realComponentName);
 
-			if (!component.length) {
+			if (!component) {
 				throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 			}
 
 			let outputAttributes = {};
 
-			if (component[0].hasOwnProperty('components')) {
-				outputAttributes = prepareComponentAttributes(componentsManifest, component[0].components, blockName, key);
+			if (component.hasOwnProperty('components')) {
+				outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key);
 			} else {
-				outputAttributes = prepareCommponentAttribute(component[0], realComponentName, newComponentName, key);
+				outputAttributes = prepareCommponentAttribute(component, realComponentName, newComponentName, key);
 			}
 
 			output = {
 				...output,
 				...outputAttributes,
+				...(key === 'attributes' ? attributes : example.attributes),
 			};
 		}
 	}
@@ -270,16 +286,14 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
 	} = wrapperManifest;
 
 	const {
-		blockName,
 		attributes = {},
-		components = {},
 	} = blockManifest;
 
 	return {
 		...getSharedAttributes(globalManifest, blockManifest),
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-		...prepareComponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest)),
+		...prepareComponentAttributes(componentsManifest, blockManifest, getFullBlockName(globalManifest, blockManifest)),
 		...attributes,
 	};
 };
@@ -294,11 +308,10 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
 export const getExample = (globalManifest, componentsManifest, blockManifest) => {
 	const {
 		example = {},
-		components = {},
 	} = blockManifest;
 
 	return {
-		...prepareComponentAttributes(componentsManifest, components, getFullBlockName(globalManifest, blockManifest), 'example'),
+		...prepareComponentAttributes(componentsManifest, blockManifest, getFullBlockName(globalManifest, blockManifest), 'example'),
 		...example.attributes,
 	};
 };
@@ -319,7 +332,16 @@ export const registerVariation = (
 	// Append globalManifest data in to output.
 	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
 
-	return blockManifest;
+	// This is a full block name used in Block Editor.
+	const fullBlockName = getFullBlockNameVariation(globalManifest, blockManifest);
+
+	return {
+		blockName: fullBlockName,
+		options: {
+			...blockManifest,
+			blockName: fullBlockName,
+		},
+	};
 };
 
 /**
@@ -341,10 +363,6 @@ export const registerBlock = (
 	wrapperComponent,
 	blockComponent
 ) => {
-
-	const {
-		icon = {},
-	} = blockManifest;
 
 	// Block Icon option.
 	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
@@ -464,7 +482,7 @@ export const registerVariations = (
 		);
 
 		// Native WP method for block registration.
-		registerBlockVariation(blockDetails.blockName, blockDetails);
+		registerBlockVariation(blockDetails.blockName, blockDetails.options);
 
 		return null;
 	});

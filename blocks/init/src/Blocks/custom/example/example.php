@@ -6,8 +6,13 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+
+$manifest = Components::getManifest(__DIR__);
+
 $blockClass = $attributes['blockClass'] ?? '';
-$content = $attributes['content'] ?? '';
+
+$content = Components::checkAttr('content', $attributes, $manifest);
 
 ?>
 

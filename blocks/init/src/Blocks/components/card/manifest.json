@@ -2,6 +2,13 @@
 	"componentName": "card",
 	"title": "Card",
 	"componentClass": "card-simple",
+	"example": {
+		"attributes": {
+			"introContent": "This is intro",
+			"introSize": "small",
+			"introColor": "light"
+		}
+	},
 	"components": {
 		"image": "image",
 		"intro": "heading",
