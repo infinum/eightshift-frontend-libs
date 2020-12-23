@@ -243,18 +243,18 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 
 			const realComponentName = components[newComponentName];
 
-			const component = componentsManifest.filter((item) => item.componentName === realComponentName);
+			const [component] = componentsManifest.filter((item) => item.componentName === realComponentName);
 
-			if (!component.length) {
+			if (!component) {
 				throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 			}
 
 			let outputAttributes = {};
 
-			if (component[0].hasOwnProperty('components')) {
-				outputAttributes = prepareComponentAttributes(componentsManifest, component[0], blockName, key);
+			if (component.hasOwnProperty('components')) {
+				outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key);
 			} else {
-				outputAttributes = prepareCommponentAttribute(component[0], realComponentName, newComponentName, key);
+				outputAttributes = prepareCommponentAttribute(component, realComponentName, newComponentName, key);
 			}
 
 			output = {
