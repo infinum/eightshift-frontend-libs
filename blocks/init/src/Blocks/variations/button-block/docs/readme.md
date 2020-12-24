@@ -1,15 +1,15 @@
-# Button Full Width Variation Block
+# Button Block Variation - Block Style
 
-Block variation used to extend functionality of your button block.
+Block used to provide alternative block for button.
 
 ## Dependencies
 
-1. eightshift-boilerplate/button.
+1. custom/button
 
 ## Implementation
 
-1. Copy/Paste block folder in your project.
-2. Copy/Paste blocks/components dependencies folder in your project.
-3. Rename `eightshift-boilerplate` namespace to your project's namespace.
-4. Add or remove features you are going to use.
-5. Implement project specific styles.
+Open a terminal and type in this command inside your projects root:
+
+```shell
+wp boilerplate use_variation --name=button-block
+```

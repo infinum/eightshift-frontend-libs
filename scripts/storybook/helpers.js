@@ -15,8 +15,8 @@ import {
 import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-import { select } from '@wordpress/data';
-import { getFullBlockName, getNamespace } from './../editor/register-blocks';
+import { useSelect, select as globalSelect } from '@wordpress/data';
+import { getFullBlockName, getFullBlockNameVariation } from './../editor/register-blocks';
 
 /**
  * Create Inner Blocks.
@@ -56,45 +56,47 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
  * @param {bool} isVariation Check if block is variation type. Default: false.
  */
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
+	const blockName = getFullBlockName(globalManifest, blockManifest);
+
+	const block = useSelect((select) => {
+		return select('core/blocks').getBlockType(blockName);
+	});
+
+	let output = {};
+
 	if (isVariation) {
-		const variations = select('core/blocks').getBlockVariations();
 
-		const variation = variations.filter((item) => item.name === blockManifest.name)[0];
+		const variation = useSelect((select) => {
+			const variations = select('core/blocks').getBlockTypes();
 
-		const variationName = `${getNamespace(globalManifest, blockManifest)}/${variation.name}`;
+			const variationItem = variations.filter((element) => element.variations.find((item) => item.name === blockManifest.name));
 
-		if (typeof variation.example === 'undefined') {
-			throw Error(`Your variation "${variationName}" is missing example key in manifest.json file. Please check.`);
-		}
+			return variationItem[0].variations[0];
+		});
 
-		if (typeof variation.example.attributes === 'undefined') {
-			throw Error(`Your variation "${variationName}" is missing example attributes key in manifest.json file. Please check.`);
-		}
-
-		return {
-			blockName: `${getNamespace(globalManifest, blockManifest)}/${variation.parentName}`,
+		output = {
+			blockName: getFullBlockNameVariation(globalManifest, blockManifest),
 			attributes: variation.example.attributes,
-			innerBlocks: getInnerBlocks(),
+			innerBlocks: getInnerBlocks(variation.example.innerBlocks),
 			isVariation,
+		};
+	} else {
+		if (typeof block.example === 'undefined') {
+			throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
+		}
+	
+		if (typeof block.example.attributes === 'undefined') {
+			throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
+		}
+
+		output = {
+			blockName,
+			attributes: block.example.attributes,
+			innerBlocks: getInnerBlocks(block.example.innerBlocks),
 		};
 	}
 
-	const blockName = getFullBlockName(globalManifest, blockManifest);
-	const block = select('core/blocks').getBlockType(blockName);
-
-	if (typeof block.example === 'undefined') {
-		throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
-	}
-
-	if (typeof block.example.attributes === 'undefined') {
-		throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
-	}
-
-	return {
-		blockName,
-		attributes: block.example.attributes,
-		innerBlocks: getInnerBlocks(block.example.innerBlocks),
-	};
+	return output;
 };
 
 /**
@@ -113,7 +115,7 @@ export const Gutenberg = ({ props }) => {
 	const [blocks, updateBlocks] = useState([]);
 
 	useEffect(() => {
-		select('core/blocks').getBlockTypes();
+		globalSelect('core/blocks').getBlockTypes();
 
 		const block = createBlock(blockName, attributes, innerBlocks);
 		blocks.push(block);
