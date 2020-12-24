@@ -1,0 +1,24 @@
+{
+	"parentName": "card",
+	"name": "card-simple",
+	"title": "Card Simple",
+	"description" : "Card Block Variation for simple style.",
+	"icon": {
+		"src": "editor-removeformatting"
+	},
+	"example": {
+		"attributes": {
+			"headingContent": "Test Heading",
+			"introContent": "Test Intro",
+			"buttonContent": "Button Link Test"
+		}
+	},
+	"attributes": {
+		"headingContent": "Test Heading",
+		"introContent": "Test Intro",
+		"buttonContent": "Button Link Test"
+	},
+	"scope": [
+		"inserter"
+	]
+}

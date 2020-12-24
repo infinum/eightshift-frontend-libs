@@ -317,7 +317,6 @@ export const getExample = (globalManifest, componentsManifest, blockManifest) =>
 };
 
 /**
- * TODO:
  * Map and prepare all options from layout manifest.json file for usage in registerBlockVariation method.
  *
  * @param {object} manifest Layout manifest.json object with data.
