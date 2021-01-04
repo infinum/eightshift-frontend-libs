@@ -1,4 +1,4 @@
-/* eslint-disable global-require, import/no-dynamic-require*/
+/* eslint-disable global-require */
 
 /**
  * Project Base overrides used in production and development build.

@@ -119,7 +119,7 @@ export const Gutenberg = ({ props }) => {
 
 		const block = createBlock(blockName, attributes, innerBlocks);
 		blocks.push(block);
-	}, []);
+	});
 
 	return (
 		<div className="playground">

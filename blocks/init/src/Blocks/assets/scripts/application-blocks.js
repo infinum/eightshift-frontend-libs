@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions, import/no-unresolved */
-
 /**
  * This is the main entry point for Block Editor blocks scripts used for the `WordPress frontend screen`.
  * This file registers all blocks additional scripts dynamically using `dynamicImport` helper method.

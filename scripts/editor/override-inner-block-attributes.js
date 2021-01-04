@@ -7,7 +7,7 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
 		const { attributes } = item;
 
 		for (const attribute in attributesObject) {
-			if (attributesObject.hasOwnProperty(attribute)) {
+			if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
 				if (attribute !== attributes[attribute]) {
 					attributes[attribute] = attributesObject[attribute];
 				}
