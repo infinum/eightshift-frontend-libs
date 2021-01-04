@@ -30,10 +30,10 @@
 		"php-di/php-di": "^6.2.2"
 	},
 	"require-dev": {
+		"infinum/coding-standards-wp": "^1.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"infinum/coding-standards-wp": "^1.0.1",
-		"roave/security-advisories": "dev-master",
-		"szepeviktor/phpstan-wordpress": "^0.6"
+		"szepeviktor/phpstan-wordpress": "^0.7",
+		"php-stubs/wordpress-stubs": "^5.5"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
