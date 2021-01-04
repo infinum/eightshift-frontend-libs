@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import imageManifest from './../../image/manifest.json';
 import headingManifest from './../../heading/manifest.json';
@@ -10,9 +10,11 @@ import { CardOptions } from '../components/card-options';
 import { CardToolbar } from '../components/card-toolbar';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

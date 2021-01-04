@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require, import/no-dynamic-require*/
+/* eslint-disable global-require, import/no-dynamic-require*/
 
 /**
  * Project Base overrides used in production and development build.
@@ -118,7 +118,7 @@ module.exports = (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
-						prependData: convertJsonToSass(globalSettings),
+						additionalData: convertJsonToSass(globalSettings),
 					},
 				},
 				{

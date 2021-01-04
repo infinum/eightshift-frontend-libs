@@ -1,15 +1,17 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Fragment } from '@wordpress/element';
-import readme from './readme.md';
+import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ImageEditor } from '../components/image-editor';
 import { ImageOptions } from '../components/image-options';
 import { ImageToolbar } from '../components/image-toolbar';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

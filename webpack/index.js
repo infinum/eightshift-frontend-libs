@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require*/
+/* eslint-disable global-require*/
 
 /**
  * Main entrypoint location for webpack config.

@@ -4,12 +4,14 @@ import { Gutenberg, blockDetails } from '@eightshift/frontend-libs/scripts/story
 import React from 'react';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
-import readme from './readme.md';
+import readme from './readme.mdx';
 
 export default {
-	title: `Variations|${manifest.title}`,
+	title: `Variations/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 
