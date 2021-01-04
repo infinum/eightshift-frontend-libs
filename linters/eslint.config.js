@@ -1,5 +1,4 @@
 module.exports = {
-	root: true,
 	parser: 'babel-eslint',
 	ignorePatterns: [
 		'node_modules/*',
@@ -8,22 +7,9 @@ module.exports = {
 		'tests/*',
 	],
 	extends: [
-		'wordpress',
-		'plugin:react/recommended',
-		'plugin:jsx-a11y/recommended',
-		'plugin:jest/recommended',
-		'@infinumjs',
+		'@infinumjs/eslint-config-react-js'
 	],
-	env: {
-		browser: true,
-		es6: true,
-		node: true,
-		mocha: true,
-		'jest/globals': true,
-	},
 	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 6,
 		ecmaFeatures: {
 			arrowFunctions: true,
 			blockBindings: true,
@@ -50,11 +36,6 @@ module.exports = {
 		document: true,
 		$: true,
 	},
-	plugins: [
-		'react',
-		'jsx-a11y',
-		'jest',
-	],
 	settings: {
 		'import/core-modules': [
 			'@wordpress/components',
@@ -82,11 +63,9 @@ module.exports = {
 			'jquery',
 		],
 		react: {
-			pragma: 'wp',
-			version: 'detect',
+			pragma: 'wp'
 		},
 	},
-
 	rules: {
 		indent: [
 			'error',
