@@ -9,6 +9,8 @@
  */
 import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 
+import "@babel/polyfill";
+
 // Find all blocks and require assets index.js inside it.
 dynamicImport(require.context('./../../components', true, /assets\/index\.js$/));
 dynamicImport(require.context('./../../custom', true, /assets\/index\.js$/));
