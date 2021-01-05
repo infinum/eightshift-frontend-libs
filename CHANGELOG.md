@@ -4,19 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [Unreleased]
-- Simplified building actions (`multipleProps: true|false` is no longer needed), `getActions()` now returns both multipleProp and singleProp actions (whole object setters + individual property setters) and you can just pick and choose which ones you need
-- Removed `mediaPropActions` which is redundant
+## [4.0.0] - 2021-01-05
+MAYOR BREAKING CHANGES
 
-### Added
-- New video-iframe component.
-- New Vimeo block.
-- New Youtube block.
-
-### Changed
-- Changed namespace from `Eightshift_Boilerplate` to `EightshiftBoilerplate`.
-- Changed `Eightshift_Libs\Helpers\Components` to `EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components`.
-
+- You should not try to update from version 3 to 4 because they are not compatible.
 ## [3.5.0] - 2020-06-03
 
 ### Added
@@ -359,6 +350,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[4.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.5.0...v4.0.0
 [3.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.2...v3.3.0
