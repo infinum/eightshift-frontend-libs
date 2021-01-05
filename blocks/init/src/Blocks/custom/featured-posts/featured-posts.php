@@ -73,9 +73,9 @@ global $post;
 							$cardProps
 						)
 					);
-				?>
+					?>
 				</div>
-			<?php
+				<?php
 			}
 			\wp_reset_postdata();
 		}

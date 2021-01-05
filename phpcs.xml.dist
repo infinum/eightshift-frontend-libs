@@ -2,7 +2,7 @@
 <ruleset name="Eightshift Library">
 	<description>Eightshift Library uses extended WordPress coding standards with some minor corrections.</description>
 
-	<rule ref="Infinum"/>
+	<rule ref="Eightshift"/>
 
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
