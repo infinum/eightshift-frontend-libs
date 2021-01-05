@@ -6,9 +6,11 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { convertJsonToSass } = require('./helpers');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+
 
 module.exports = (options) => {
 
@@ -38,10 +40,13 @@ module.exports = (options) => {
 	}
 
 	// Create manifest.json file.
-	if (!options.overrides.includes('manifestPlugin')) {
-		plugins.push(new ManifestPlugin({
-			seed: {},
-		}));
+	if (!options.overrides.includes('WebpackManifestPlugin')) {
+		plugins.push(new WebpackManifestPlugin());
+	}
+
+	// Enable export for all WordPress related packages
+	if (!options.overrides.includes('DependencyExtractionWebpackPlugin')) {
+		plugins.push(new DependencyExtractionWebpackPlugin());
 	}
 
 	// All Optimizations used in production and development build.

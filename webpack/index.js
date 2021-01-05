@@ -3,7 +3,7 @@
  *
  */
 
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { getConfig } = require('./helpers');
 
 module.exports = (mode, optionsData = {}) => {
