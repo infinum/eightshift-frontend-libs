@@ -33,10 +33,9 @@ module.exports = (mode, optionsData = {}) => {
 	const project = require('./project')(options);
 	const development = require('./development')(options);
 	const production = require('./production')(options);
-	const externals = require('./externals');
 
 	// Default output that is going to be merged in any env.
-	const outputDefault = merge(project, base, externals);
+	const outputDefault = merge(project, base);
 
 	// Output development setup by default.
 	let output = [];
