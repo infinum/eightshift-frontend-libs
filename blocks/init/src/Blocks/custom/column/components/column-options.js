@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars, import/no-extraneous-dependencies */
-
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';

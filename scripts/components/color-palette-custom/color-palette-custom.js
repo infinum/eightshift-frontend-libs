@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // eslint-disable-line no-unused-vars
+import React, { useState } from 'react';
 import { find } from 'lodash';
 import { getColorObjectByColorValue } from '@wordpress/block-editor';
 import { ColorPalette } from '@wordpress/components';
@@ -51,7 +51,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 					// The preferred way is to use a slug.
 					let newColorValues = (typeof colorObject === 'undefined') ? '' : colorObject.name;
 
-					if (typeof colorObject === 'object' && colorObject.hasOwnProperty('slug') && colorObject.slug) {
+					if (typeof colorObject === 'object' && Object.prototype.hasOwnProperty.call(colorObject, 'slug') && colorObject.slug) {
 						newColorValues = colorObject.slug;
 					} else {
 						newColorValues = '';

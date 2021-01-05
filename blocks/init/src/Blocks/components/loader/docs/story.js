@@ -1,12 +1,14 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import React from 'react';
+import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LoaderEditor } from '../components/loader-editor';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

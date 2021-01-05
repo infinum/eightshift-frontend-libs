@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, import/no-extraneous-dependencies */
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';

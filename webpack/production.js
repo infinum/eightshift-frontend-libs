@@ -1,11 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies*/
 /**
  * Project Production config used only in production build.
  *
  */
 
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = (options) => {
 
@@ -14,6 +13,7 @@ module.exports = (options) => {
 
 	// All Optimizations used in production build.
 	const optimization = {
+		minimize: true,
 		minimizer: [],
 	};
 	
@@ -30,9 +30,9 @@ module.exports = (options) => {
 		}));
 	}
 
-	if (!options.overrides.includes('optimizeCSSAssetsPlugin')) {
-		optimization.minimizer.push(new OptimizeCssAssetsPlugin({
-			cssProcessorPluginOptions: {
+	if (!options.overrides.includes('CssMinimizerPlugin')) {
+		optimization.minimizer.push(new CssMinimizerPlugin({
+			minimizerOptions: {
 				preset: [
 					'default',
 					{

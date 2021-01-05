@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
@@ -46,7 +46,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			'postType',
 			postType,
 			{
-				per_page: -1, // eslint-disable-line camelcase
+				per_page: -1,
 			}
 		) ?? [];
 

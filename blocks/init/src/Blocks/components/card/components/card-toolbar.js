@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { ImageToolbar } from '../../../components/image/components/image-toolbar';
 import { HeadingToolbar } from '../../../components/heading/components/heading-toolbar';

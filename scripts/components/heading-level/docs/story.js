@@ -1,11 +1,13 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import React from 'react';
+import readme from './readme.mdx';
 import { HeadingLevel } from '../heading-level';
 
 export default {
-	title: 'Options|Heading Level',
+	title: 'Options/Heading Level',
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

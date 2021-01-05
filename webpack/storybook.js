@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require, import/no-dynamic-require*/
-
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { convertJsonToSass } = require('./helpers');
@@ -26,7 +24,7 @@ module.exports = ({ config }, projectRoot, blocksManifestSettingsPath, isProject
 			{
 				loader: 'sass-loader',
 				options: {
-					prependData: convertJsonToSass(globalSettings),
+					additionalData: convertJsonToSass(globalSettings),
 				},
 			},
 			{

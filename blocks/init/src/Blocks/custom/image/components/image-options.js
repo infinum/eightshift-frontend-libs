@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { ImageOptions as ImageOptionsComponent } from '../../../components/image/components/image-options';

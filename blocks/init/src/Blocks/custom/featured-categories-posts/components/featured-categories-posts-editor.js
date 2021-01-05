@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import ServerSideRender from '@wordpress/server-side-render';
 import globalSettings from '../../../manifest.json';
 import block from '../manifest.json';

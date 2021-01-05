@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { HeadingEditor as HeadingEditorComponent } from '../../../components/heading/components/heading-editor';
 
 export const HeadingEditor = ({ attributes, setAttributes }) => {

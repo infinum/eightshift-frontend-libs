@@ -37,7 +37,7 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
 		if (propType === 'default') {
 
 			for (const propName in attributes[key][propType]) {
-				if (attributes[key][propType].hasOwnProperty(propName)) {
+				if (Object.prototype.hasOwnProperty.call(attributes[key][propType], propName)) {
 
 					output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
 						setAttributes({
@@ -145,15 +145,15 @@ export const getActions = (props, manifest) => {
 	for (const key in attributes) {
 
 		// If key doesn't exists skip this iteration.
-		if (attributes.hasOwnProperty(key)) {
+		if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 
 			// If useManual key is set to true skip this attribute from actions output.
-			if (attributes[key].hasOwnProperty('manualAction')) {
+			if (Object.prototype.hasOwnProperty.call(attributes[key], 'manualAction')) {
 				continue;
 			}
 
 			// Switch between property types default action, multiple props actions and media actions.
-			if (attributes[key].hasOwnProperty('type') && attributes[key].type === 'object') {
+			if (Object.prototype.hasOwnProperty.call(attributes[key], 'type') && attributes[key].type === 'object') {
 
 				actionsOutput = {
 					...actionsOutput,
@@ -161,7 +161,7 @@ export const getActions = (props, manifest) => {
 					...singlePropsAction(setAttributes, key),
 				};
 
-				if (attributes[key].hasOwnProperty('mediaAction')) {
+				if (Object.prototype.hasOwnProperty.call(attributes[key], 'mediaAction')) {
 					actionsOutput = {
 						...actionsOutput,
 						...mediaPropsAction(setAttributes, key),

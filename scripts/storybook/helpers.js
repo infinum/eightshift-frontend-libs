@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import {
 	BlockEditorKeyboardShortcuts,
 	BlockEditorProvider,
@@ -119,7 +119,7 @@ export const Gutenberg = ({ props }) => {
 
 		const block = createBlock(blockName, attributes, innerBlocks);
 		blocks.push(block);
-	}, []);
+	});
 
 	return (
 		<div className="playground">

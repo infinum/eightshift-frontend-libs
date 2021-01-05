@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';

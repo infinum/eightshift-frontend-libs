@@ -1,11 +1,13 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import React from 'react';
+import readme from './readme.mdx';
 import { HelpModal } from '../help-modal';
 
 export default {
-	title: 'Options|HelpModal',
+	title: 'Options/HelpModal',
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

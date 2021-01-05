@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import classnames from 'classnames';
 import { selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../../components/image/components/image-editor';

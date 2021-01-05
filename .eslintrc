@@ -1,6 +1,3 @@
 {
-	"extends": "./linters/eslint.config.js",
-	"rules": {
-		"import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": true, "peerDependencies": false}]
-	}
+	"extends": "./linters/eslint.config.js"
 }

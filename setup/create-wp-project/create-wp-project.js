@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-require('yargs') // eslint-disable-line no-unused-expressions
+require('yargs')
   .commandDir('./src/commands')
   .demandCommand()
   .help()

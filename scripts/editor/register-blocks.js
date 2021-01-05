@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import React from 'react';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
@@ -117,7 +115,7 @@ export const getSaveCallback = (blockManifest) => {
  * @param {function} Wrapper Wrapper callback function.
  *
  */
-const getEditCallback = (Component, Wrapper) => (props) => {
+export const getEditCallback = (Component, Wrapper) => (props) => {
 	return (
 		<Wrapper props={props}>
 			<Component {...props} />
@@ -207,7 +205,7 @@ export const prepareCommponentAttribute = (component, realComponentName, newComp
 
 	if (realComponentName !== newComponentName) {
 		for (const componentAttribute in componentAttributes) {
-			if (componentAttributes.hasOwnProperty(componentAttribute)) {
+			if (Object.prototype.hasOwnProperty.call(componentAttributes, componentAttribute)) {
 				const newName = componentAttribute.replace(realComponentName, newComponentName);
 
 				output[newName] = componentAttributes[componentAttribute];
@@ -239,7 +237,7 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 	} = blockManifest;
 
 	for (const newComponentName in components) {
-		if (components.hasOwnProperty(newComponentName)) {
+		if (Object.prototype.hasOwnProperty.call(components, newComponentName)) {
 
 			const realComponentName = components[newComponentName];
 
@@ -251,7 +249,7 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 
 			let outputAttributes = {};
 
-			if (component.hasOwnProperty('components')) {
+			if (Object.prototype.hasOwnProperty.call(component, 'components')) {
 				outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key);
 			} else {
 				outputAttributes = prepareCommponentAttribute(component, realComponentName, newComponentName, key);

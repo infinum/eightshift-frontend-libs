@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies*/
-
 /**
  * Project Development config used only in development build.
  *

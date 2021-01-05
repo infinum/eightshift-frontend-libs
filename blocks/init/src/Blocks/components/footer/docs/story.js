@@ -1,13 +1,15 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import React from 'react';
+import readme from './readme.mdx';
 import manifest from '../manifest.json';
 import { LayoutThreeColumnsEditor } from '../../layout-three-columns/components/layout-three-columns-editor';
 import { editor as CopyrightEditor } from '../../copyright/docs/story';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

@@ -1,15 +1,17 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import readme from './readme.md';
+import readme from './readme.mdx';
 import { Responsive } from '../responsive';
 
 export default {
-	title: 'Options|Responsive',
+	title: 'Options/Responsive',
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

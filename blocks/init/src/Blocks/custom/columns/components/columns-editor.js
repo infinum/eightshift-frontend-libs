@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars, import/no-extraneous-dependencies */
-
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';

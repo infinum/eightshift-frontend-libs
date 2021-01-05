@@ -1,14 +1,16 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import readme from './readme.md';
+import React from 'react';
+import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { VideoEditor } from '../components/video-editor';
 import { VideoOptions } from '../components/video-options';
 import { VideoToolbar } from '../components/video-toolbar';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 

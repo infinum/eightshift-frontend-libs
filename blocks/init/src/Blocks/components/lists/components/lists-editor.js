@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';

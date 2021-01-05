@@ -10,9 +10,9 @@
  */
 export const checkAttr = (key, attributes, manifest, componentName = '') => {
 
-	if ((attributes.hasOwnProperty(key))) {
+	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 		return attributes[key];
-	} else { // eslint-disable-line no-else-return
+	} else {
 		const manifestKey = manifest.attributes[key];
 
 		if (manifestKey === 'undefined') {
@@ -22,17 +22,17 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 		const defaultType = manifestKey.type;
 
 		let defaultValue = '';
-	
+
 		switch (defaultType) {
 			case 'boolean':
-				defaultValue = manifestKey.hasOwnProperty('default') ? manifestKey.default : false;
+				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : false;
 				break;
 			case 'array':
 			case 'object':
-				defaultValue = manifestKey.hasOwnProperty('default') ? manifestKey.default : [];
+				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : [];
 				break;
 			default:
-				defaultValue = manifestKey.hasOwnProperty('default') ? manifestKey.default : '';
+				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : '';
 				break;
 		}
 	

@@ -1,5 +1,3 @@
-/* eslint-disable valid-typeof */
-
 /**
  * File holding webpack helpers used to create project webpack build setup.
  *
@@ -71,7 +69,7 @@ function convertJsonColorsToSass(data) {
 	let output = '';
 
 	for (const property in data) {
-		if (data.hasOwnProperty(property)) {
+		if (Object.prototype.hasOwnProperty.call(data, property)) {
 
 			if (typeof data[property] === 'string' && (property === 'color' || property === 'gradient')) {
 				output += data[property];
@@ -95,7 +93,7 @@ function convertJsonToSassGeneral(data) {
 	let output = '';
 
 	for (const property in data) {
-		if (data.hasOwnProperty(property)) {
+		if (Object.prototype.hasOwnProperty.call(data, property)) {
 			switch (typeof data[property]) {
 				case 'object':
 					if (property === 'colors' || property === 'gradient') {

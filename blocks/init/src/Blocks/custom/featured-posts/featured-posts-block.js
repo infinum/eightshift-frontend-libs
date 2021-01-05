@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { FeaturedPostsEditor } from './components/featured-posts-editor';

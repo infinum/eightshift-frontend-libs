@@ -1,15 +1,17 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { Fragment } from '@wordpress/element';
-import readme from './readme.md';
+import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LinkEditor } from '../components/link-editor';
 import { LinkOptions } from '../components/link-options';
 import { LinkToolbar } from '../components/link-toolbar';
 
 export default {
-	title: `Components|${manifest.title}`,
+	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: { 
+			page: readme
+		}
 	},
 };
 
