@@ -5,7 +5,7 @@ module.exports = {
 			{
 				modules: false,
 				useBuiltIns: 'entry',
-				corejs: '2',
+				corejs: '3',
 				targets: {
 					browsers: [
 						'last 2 versions',
@@ -17,18 +17,18 @@ module.exports = {
 		],
 	],
 	plugins: [
-		[
-			'@babel/plugin-proposal-decorators',
-			{
-				legacy: true,
-			},
-		],
-		[
-			'@babel/plugin-proposal-class-properties',
-			{
-				loose: true,
-			},
-		],
+		// [
+		// 	'@babel/plugin-proposal-decorators',
+		// 	{
+		// 		legacy: true,
+		// 	},
+		// ],
+		// [
+		// 	'@babel/plugin-proposal-class-properties',
+		// 	{
+		// 		loose: true,
+		// 	},
+		// ],
 		'@babel/plugin-syntax-dynamic-import',
 		[
 			'@babel/plugin-proposal-object-rest-spread',
@@ -43,17 +43,17 @@ module.exports = {
 		// 		isDefault: false,
 		// 	},
 		// ],
-		[
-			'@babel/transform-react-jsx', {
-				pragma: 'React.createElement',
-			},
-		],
-		[
-			'@babel/plugin-transform-runtime',
-			{
-				helpers: true,
-				regenerator: false,
-			},
-		],
+		// [
+		// 	'@babel/transform-react-jsx', {
+		// 		pragma: 'React.createElement',
+		// 	},
+		// ],
+		// [
+		// 	'@babel/plugin-transform-runtime',
+		// 	{
+		// 		helpers: true,
+		// 		regenerator: false,
+		// 	},
+		// ],
 	],
 };

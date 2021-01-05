@@ -3,7 +3,6 @@ module.exports = {
 	ignorePatterns: [
 		'node_modules/*',
 		'vendor/*',
-		'setup/*',
 		'tests/*',
 	],
 	extends: [

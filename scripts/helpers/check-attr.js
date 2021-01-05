@@ -12,7 +12,7 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 
 	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 		return attributes[key];
-	} else { // eslint-disable-line no-else-return
+	} else {
 		const manifestKey = manifest.attributes[key];
 
 		if (manifestKey === 'undefined') {

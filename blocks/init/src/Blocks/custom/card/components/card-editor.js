@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { CardEditor as CardEditorComponent } from '../../../components/card/components/card-editor';
 
 export const CardEditor = ({ attributes, setAttributes }) => {

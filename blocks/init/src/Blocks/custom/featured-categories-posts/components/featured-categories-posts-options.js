@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
@@ -78,7 +78,7 @@ export const FeaturedCategoriesPostsOptions = ({ attributes, setAttributes }) =>
 			'taxonomy',
 			taxonomy,
 			{
-				per_page: -1, // eslint-disable-line camelcase
+				per_page: -1,
 			}
 		) ?? [];
 

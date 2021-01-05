@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 /**
  * Project Base overrides used in production and development build.
  *

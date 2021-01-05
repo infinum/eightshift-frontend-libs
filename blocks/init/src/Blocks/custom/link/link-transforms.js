@@ -1,4 +1,3 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
 import { createBlock } from '@wordpress/blocks';
 import manifest from '../../manifest.json';
 import manifestButton from '../link/manifest.json';

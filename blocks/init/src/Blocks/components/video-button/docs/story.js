@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import readme from './readme.mdx';
 import manifest from '../manifest.json';
 import { VideoButtonEditor } from '../components/video-button-editor';

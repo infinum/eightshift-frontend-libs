@@ -1,5 +1,3 @@
-/* eslint-disable valid-typeof */
-
 /**
  * File holding webpack helpers used to create project webpack build setup.
  *

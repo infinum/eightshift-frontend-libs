@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 export const GroupEditor = ({ attributes }) => {

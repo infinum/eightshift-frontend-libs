@@ -1,4 +1,3 @@
-/* eslint-disable global-require*/
 import { dispatch, select } from '@wordpress/data';
 
 /**

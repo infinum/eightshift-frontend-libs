@@ -52,7 +52,7 @@ const maybePrompt = async(scriptArguments, argv) => {
         } else {
 
           // If argument is provided from CLI use that, otherwise prompt.
-          const answer = argv[argName] ? { [argName]: argv[argName] } : await inquirer.prompt(argument); // eslint-disable-line no-await-in-loop
+          const answer = argv[argName] ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
           answers = { ...answers, ...answer };
         }
       }
@@ -60,7 +60,7 @@ const maybePrompt = async(scriptArguments, argv) => {
 
     // Skip summary if noSummary argument is provided
     if (!argv.noSummary) {
-      confirm = await summary(answers); // eslint-disable-line no-await-in-loop
+      confirm = await summary(answers);
       log('');
     } else {
       confirm = true;

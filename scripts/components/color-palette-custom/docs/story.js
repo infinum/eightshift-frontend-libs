@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import readme from './readme.mdx';
 import { ColorPaletteCustom } from '../color-palette-custom';
 import { getPaletteColors } from './../../../editor/get-palette-colors';

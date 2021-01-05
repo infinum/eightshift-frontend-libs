@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';

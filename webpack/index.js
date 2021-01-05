@@ -1,5 +1,3 @@
-/* eslint-disable global-require*/
-
 /**
  * Main entrypoint location for webpack config.
  *

@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';

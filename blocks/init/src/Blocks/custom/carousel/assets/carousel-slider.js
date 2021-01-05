@@ -17,7 +17,7 @@ export class CarouselSlider {
 		const showItems = item.getAttribute('data-show-items');
 		const { breakpoints } = globalSettings.globalVariables;
 
-		const mySwiper = new Swiper(item, { // eslint-disable-line no-unused-vars
+		new Swiper(item, {
 			loop: item.getAttribute('data-swiper-loop'),
 			slideClass: `${this.blockClass}__item`,
 			slidesPerView: 1,

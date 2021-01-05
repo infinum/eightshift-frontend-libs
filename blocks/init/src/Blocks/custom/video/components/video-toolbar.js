@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { VideoToolbar as VideoToolbarComponent } from '../../../components/video/components/video-toolbar';
 
 export const VideoToolbar = ({ attributes, setAttributes }) => {

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import React from 'react';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';

@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-import React from 'react';
 import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import globalManifest from '../manifest.json';

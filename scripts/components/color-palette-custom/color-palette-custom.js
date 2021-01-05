@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // eslint-disable-line no-unused-vars
+import React, { useState } from 'react';
 import { find } from 'lodash';
 import { getColorObjectByColorValue } from '@wordpress/block-editor';
 import { ColorPalette } from '@wordpress/components';
