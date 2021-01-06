@@ -142,4 +142,9 @@ body {
 	.components-range-control__slider {
 		min-width: 1px;
 	}
+
+	.components-panel__body-toggle.components-button .components-panel__arrow {
+		width: 24px;
+		height: 24px;
+	}
 }
