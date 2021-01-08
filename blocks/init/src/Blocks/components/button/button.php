@@ -43,8 +43,8 @@ if ($buttonIsNewTab) {
 };
 
 $buttonWrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($buttonAlign, $componentClass, 'align', $buttonAlign),
+	Components::selector($componentClass, "{$componentClass}-wrap"),
+	Components::selector($buttonAlign, "{$componentClass}-wrap", 'align', $buttonAlign),
 	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 ]);
 

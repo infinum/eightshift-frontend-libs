@@ -85,10 +85,10 @@ $btn: (
 	&__size {
 		@include responsive-modifiers($btn, sizes);
 	}
+}
 
-	&__wrap {
-		display: flex;
-	}
+.btn-wrap {
+	display: flex;
 
 	&__align {
 		@include flex-horizontal-align-modifiers;
