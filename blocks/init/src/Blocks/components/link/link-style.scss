@@ -62,12 +62,13 @@ $link: (
 	&__size {
 		@include responsive-modifiers($link, sizes);
 	}
+}
 
-	&__wrap {
-		display: flex;
-	}
+.link-wrap {
+	display: flex;
 
 	&__align {
 		@include flex-horizontal-align-modifiers;
 	}
 }
+
