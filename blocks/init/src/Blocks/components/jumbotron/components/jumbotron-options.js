@@ -1,0 +1,49 @@
+import React from 'react';
+import { Fragment } from '@wordpress/element';
+import { ImageOptions } from '../../../components/image/components/image-options';
+import { HeadingOptions } from '../../../components/heading/components/heading-options';
+import { ParagraphOptions } from '../../../components/paragraph/components/paragraph-options';
+import { ButtonOptions } from '../../../components/button/components/button-options';
+
+export const JumbotronOptions = (attributes) => {
+	const {
+		setAttributes,
+	} = attributes;
+
+	return (
+		<Fragment>
+
+			<ImageOptions
+				{...attributes}
+				setAttributes={setAttributes}
+				showImageBg={false}
+				imageBg={true}
+				imageUsePlaceholder={true}
+				showImageLink={false}
+			/>
+
+			<hr />
+
+			<HeadingOptions
+				{...attributes}
+				setAttributes={setAttributes}
+			/>
+
+
+			<hr />
+
+			<ParagraphOptions
+				{...attributes}
+				setAttributes={setAttributes}
+			/>
+
+			<hr />
+
+			<ButtonOptions
+				{...attributes}
+				setAttributes={setAttributes}
+			/>
+
+		</Fragment>
+	);
+};

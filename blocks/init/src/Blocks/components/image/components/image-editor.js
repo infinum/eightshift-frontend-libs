@@ -42,7 +42,7 @@ export const ImageEditor = (attributes) => {
 		<Fragment>
 			{imageUse &&
 				<Fragment>
-					<div className={imageWrapClass}>
+					<div className={imageWrapClass} data-align={imageAlign}>
 						{(imageUrl !== '') &&
 							<Fragment>
 								{imageBg ?

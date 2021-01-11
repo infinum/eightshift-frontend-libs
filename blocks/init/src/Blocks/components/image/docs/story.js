@@ -59,9 +59,21 @@ export const toolbar = () => (
 	<ImageToolbar {...props} />
 );
 
+const aligns = [
+	'top left',
+	'top center',
+	'top right',
+	'center left',
+	'center center',
+	'center right',
+	'bottom left',
+	'bottom center',
+	'bottom right',
+]
+
 export const align = () => (
 	<Fragment>
-		{manifest.options.aligns.map((values, index) => (
+		{aligns.map((values, index) => (
 			<Fragment key={index}>
 				<ImageEditor
 					{...props}
