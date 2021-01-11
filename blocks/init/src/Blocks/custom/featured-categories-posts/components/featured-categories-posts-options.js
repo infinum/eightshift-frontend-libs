@@ -70,7 +70,7 @@ export const FeaturedCategoriesPostsOptions = ({ attributes, setAttributes }) =>
 		];
 	});
 
-	// Fetch all taxonomy terms based on the selected taxomomy and postType.
+	// Fetch all taxonomy terms based on the selected taxonomy and postType.
 	const termsOptions = useSelect((select) => {
 		const { getEntityRecords } = select('core');
 
