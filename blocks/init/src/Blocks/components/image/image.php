@@ -26,8 +26,8 @@ $imageBg = Components::checkAttr('imageBg', $attributes, $manifest, $componentNa
 $imageAlign = Components::checkAttr('imageAlign', $attributes, $manifest, $componentName);
 
 $imageWrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($imageAlign, $componentClass, 'align', $imageAlign),
+	Components::selector($componentClass, "{$componentClass}-wrap"),
+	Components::selector($imageAlign, "{$componentClass}-wrap", 'align', $imageAlign),
 	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 	Components::selector($imageLink, $imageLink, $componentClass, 'is-link'),
 ]);

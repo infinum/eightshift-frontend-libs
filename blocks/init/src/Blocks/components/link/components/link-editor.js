@@ -25,8 +25,8 @@ export const LinkEditor = (attributes) => {
 	} = attributes;
 
 	const linkWrapClass = classnames([
-		selector(componentClass, componentClass, 'wrap'),
-		selector(linkAlign, componentClass, 'align', linkAlign),
+		selector(componentClass, `${componentClass}-wrap`),
+		selector(linkAlign, `${componentClass}-wrap`, 'align', linkAlign),
 		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 

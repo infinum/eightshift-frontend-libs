@@ -42,8 +42,8 @@ if ($linkIsNewTab) {
 };
 
 $linkWrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($linkAlign, $componentClass, 'align', $linkAlign),
+	Components::selector($componentClass, "{$componentClass}-wrap"),
+	Components::selector($linkAlign, "{$componentClass}-wrap", 'align', $linkAlign),
 	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 ]);
 

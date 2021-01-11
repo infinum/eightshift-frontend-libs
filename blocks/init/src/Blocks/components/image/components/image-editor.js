@@ -27,8 +27,8 @@ export const ImageEditor = (attributes) => {
 	} = attributes;
 
 	const imageWrapClass = classnames([
-		selector(componentClass, componentClass, 'wrap'),
-		selector(imageAlign, componentClass, 'align', imageAlign),
+		selector(componentClass, `${componentClass}-wrap`),
+		selector(imageAlign, `${componentClass}-wrap`, 'align', imageAlign),
 		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 
