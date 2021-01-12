@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fragment } from '@wordpress/element';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import imageManifest from './../../image/manifest.json';
@@ -36,4 +37,44 @@ export const options = () => (
 
 export const toolbar = () => (
 	<JumbotronToolbar {...props} />
+);
+
+const aligns = [
+	'top left',
+	'top center',
+	'top right',
+	'center left',
+	'center center',
+	'center right',
+	'bottom left',
+	'bottom center',
+	'bottom right',
+];
+
+export const contentAlign = () => (
+	<div>
+		{aligns.map((values, index) => (
+			<Fragment key={index}>
+				<JumbotronEditor
+					{...props}
+					jumbotronContentPosition={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</div>
+);
+
+export const mediaAlign = () => (
+	<div>
+		{aligns.map((values, index) => (
+			<Fragment key={index}>
+				<JumbotronEditor
+					{...props}
+					imageAlign={values}
+				/>
+				<br />
+			</Fragment>
+		))}
+	</div>
 );

@@ -7,13 +7,18 @@
 			"jumbotronContentPosition": "center center",
 			"headingAlign": "center",
 			"paragraphAlign": "center",
-			"buttonAlign": "center"
+			"buttonAlign": "center",
+			"jumbotronUse": true
 		}
 	},
 	"attributes": {
 		"jumbotronContentPosition": {
 			"type": "string",
 			"default": "center center"
+		},
+		"jumbotronUse": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"components": {

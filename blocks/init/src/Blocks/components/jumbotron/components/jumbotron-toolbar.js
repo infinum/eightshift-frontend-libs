@@ -13,39 +13,52 @@ export const JumbotronToolbar = (attributes) => {
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
+		jumbotronShowControls = true,
+
+		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),
 
 		jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest, componentName),
+
+		showJumbotronContentPosition = true,
 	} = attributes;
 
-	console.log(jumbotronContentPosition);
+	if (!jumbotronShowControls) {
+		return null;
+	}
 
 	return (
 		<Fragment>
-			<BlockAlignmentMatrixToolbar
-				label={__('Content Position', 'eightshift-frontend-libs')}
-				value={ jumbotronContentPosition }
-				onChange={(value) => setAttributes({ [`${componentName}ContentPosition`]: value })}
-			/>
+			{jumbotronUse &&
+				<Fragment>
+					{showJumbotronContentPosition &&
+						<BlockAlignmentMatrixToolbar
+							label={__('Content Position', 'eightshift-frontend-libs')}
+							value={ jumbotronContentPosition }
+							onChange={(value) => setAttributes({ [`${componentName}ContentPosition`]: value })}
+						/>
+					}
 
-			<ImageToolbar
-				{...attributes}
-				setAttributes={setAttributes}
-			/>
+					<ImageToolbar
+						{...attributes}
+						setAttributes={setAttributes}
+					/>
 
-			<HeadingToolbar
-				{...attributes}
-				setAttributes={setAttributes}
-			/>
+					<HeadingToolbar
+						{...attributes}
+						setAttributes={setAttributes}
+					/>
 
-			<ParagraphToolbar
-				{...attributes}
-				setAttributes={setAttributes}
-			/>
+					<ParagraphToolbar
+						{...attributes}
+						setAttributes={setAttributes}
+					/>
 
-			<ButtonToolbar
-				{...attributes}
-				setAttributes={setAttributes}
-			/>
+					<ButtonToolbar
+						{...attributes}
+						setAttributes={setAttributes}
+					/>
+				</Fragment>
+			}
 		</Fragment>
 	);
 };

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Template for the Image Block view.
+ * Template for the Jumbotron Block view.
  *
  * @package EightshiftBoilerplate
  */
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo wp_kses_post(Components::render('image', $attributes));
+echo wp_kses_post(Components::render('jumbotron', $attributes));

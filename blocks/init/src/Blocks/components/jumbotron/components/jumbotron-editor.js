@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../../components/image/components/image-editor';
@@ -15,6 +16,8 @@ export const JumbotronEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 
+		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),
+
 		jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest, componentName),
 	} = attributes;
 
@@ -24,46 +27,50 @@ export const JumbotronEditor = (attributes) => {
 	]);
 
 	const contentClass = classnames([
-		`${componentClass}__content`,
+		selector(componentClass, componentClass, 'content'),
 	]);
 
 	const contentWrapClass = classnames([
-		`${componentClass}__content-wrap`,
+		selector(componentClass, componentClass, 'content-wrap'),
 	]);
 
 	return (
-		<div className={jumbotronClass}>
-
-			<ImageEditor
-				{...attributes}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
-				imageUsePlaceholder={true}
-				imageBg={true}
-			/>
-
-			<div className={contentClass} data-position={jumbotronContentPosition}>
-				<div className={contentWrapClass}>
-					<HeadingEditor
+		<Fragment>
+			{jumbotronUse &&
+				<div className={jumbotronClass}>
+		
+					<ImageEditor
 						{...attributes}
 						setAttributes={setAttributes}
 						blockClass={componentClass}
+						imageUsePlaceholder={true}
+						imageBg={true}
 					/>
-
-					<ParagraphEditor
-						{...attributes}
-						setAttributes={setAttributes}
-						blockClass={componentClass}
-					/>
-
-					<ButtonEditor
-						{...attributes}
-						setAttributes={setAttributes}
-						blockClass={componentClass}
-					/>
+		
+					<div className={contentClass} data-position={jumbotronContentPosition}>
+						<div className={contentWrapClass}>
+							<HeadingEditor
+								{...attributes}
+								setAttributes={setAttributes}
+								blockClass={componentClass}
+							/>
+		
+							<ParagraphEditor
+								{...attributes}
+								setAttributes={setAttributes}
+								blockClass={componentClass}
+							/>
+		
+							<ButtonEditor
+								{...attributes}
+								setAttributes={setAttributes}
+								blockClass={componentClass}
+							/>
+						</div>
+					</div>
+		
 				</div>
-			</div>
-
-		</div>
+			}
+		</Fragment>
 	);
 };

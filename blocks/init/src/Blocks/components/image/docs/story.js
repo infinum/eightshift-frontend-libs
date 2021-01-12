@@ -69,10 +69,19 @@ const aligns = [
 	'bottom left',
 	'bottom center',
 	'bottom right',
-]
+];
 
 export const align = () => (
-	<Fragment>
+	<div css={{
+		'.image': {
+			maxWidth: '50%',
+			height: '80%',
+		},
+		'.image-wrap': {
+			height: '300px',
+			backgroundColor: 'lightslategray',
+		}
+	}}>
 		{aligns.map((values, index) => (
 			<Fragment key={index}>
 				<ImageEditor
@@ -82,5 +91,5 @@ export const align = () => (
 				<br />
 			</Fragment>
 		))}
-	</Fragment>
+	</div>
 );
