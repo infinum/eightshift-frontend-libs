@@ -47,6 +47,7 @@
 		"@infinumjs/eslint-config-react-js": "^2.2.0",
 		"@wordpress/babel-preset-default": "^4.20.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^2.9.0",
+		"@wordpress/dom-ready": "^2.11.0",
 		"@wordpress/icons": "^2.8.0",
 		"autoprefixer": "^9.8.6",
 		"babel-eslint": "^10.1.0",
