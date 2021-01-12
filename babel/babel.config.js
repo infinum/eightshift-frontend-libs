@@ -10,5 +10,11 @@ module.exports = {
 				useBuiltIns: true,
 			},
 		],
+		[
+			"@babel/plugin-proposal-class-properties",
+			{
+				"loose": true
+			}
+		]
 	],
 };
