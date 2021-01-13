@@ -79,10 +79,8 @@ export const VideoOptions = (attributes) => {
 							label={__('Type', 'eightshift-frontend-libs')}
 							value={videoType}
 							options={options.types}
-							onChange={(value) => setAttributes({
-								[`${componentName}type`]: value,
-								[`${componentName}Url`]: '',
-							})}
+							onChange={(value) => setAttributes({ [`${componentName}Type`]: value })}
+							help={__('If you want to use local video, you must remove the URL', 'eightshift-frontend-libs')}
 						/>
 					}
 
