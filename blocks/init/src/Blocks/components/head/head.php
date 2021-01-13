@@ -22,7 +22,7 @@ $name = $attributes['name'] ?? \get_bloginfo('name');
 <!-- Correct type -->
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-<!-- Disable phone formatin on safari -->
+<!-- Disable phone formatting on safari -->
 <meta name="format-detection" content="telephone=no">
 
 <!-- Speed up fetching of external assets -->
