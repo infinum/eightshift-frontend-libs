@@ -28,7 +28,6 @@ export const ImageEditor = (attributes) => {
 
 	const imageWrapClass = classnames([
 		selector(componentClass, `${componentClass}-wrap`),
-		selector(imageAlign, `${componentClass}-wrap`, 'align', imageAlign),
 		selector(blockClass, blockClass, `${selectorClass}-wrap`),
 	]);
 
@@ -42,7 +41,7 @@ export const ImageEditor = (attributes) => {
 		<Fragment>
 			{imageUse &&
 				<Fragment>
-					<div className={imageWrapClass}>
+					<div className={imageWrapClass} data-align={imageAlign}>
 						{(imageUrl !== '') &&
 							<Fragment>
 								{imageBg ?

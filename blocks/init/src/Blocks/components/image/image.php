@@ -27,7 +27,6 @@ $imageAlign = Components::checkAttr('imageAlign', $attributes, $manifest, $compo
 
 $imageWrapClass = Components::classnames([
 	Components::selector($componentClass, "{$componentClass}-wrap"),
-	Components::selector($imageAlign, "{$componentClass}-wrap", 'align', $imageAlign),
 	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
 	Components::selector($imageLink, $imageLink, $componentClass, 'is-link'),
 ]);
@@ -43,7 +42,7 @@ $imageClass = Components::classnames([
 <?php if ($imageLink) { ?>
 	<a href="<?php echo esc_url($imageLink); ?>" class="<?php echo \esc_attr($imageWrapClass); ?>">
 <?php } else { ?>
-	<div class="<?php echo \esc_attr($imageWrapClass); ?>">
+	<div class="<?php echo \esc_attr($imageWrapClass); ?>" data-align="<?php echo \esc_attr($imageAlign); ?>">
 <?php } ?>
 
 	<?php if ($imageBg) { ?>

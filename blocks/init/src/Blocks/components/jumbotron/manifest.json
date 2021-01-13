@@ -1,0 +1,30 @@
+{
+	"componentName": "jumbotron",
+	"title": "Jumbotron",
+	"componentClass": "jumbotron",
+	"example": {
+		"attributes": {
+			"jumbotronContentPosition": "center center",
+			"headingAlign": "center",
+			"paragraphAlign": "center",
+			"buttonAlign": "center",
+			"jumbotronUse": true
+		}
+	},
+	"attributes": {
+		"jumbotronContentPosition": {
+			"type": "string",
+			"default": "center center"
+		},
+		"jumbotronUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"components": {
+		"image": "image",
+		"heading": "heading",
+		"paragraph": "paragraph",
+		"button": "button"
+	}
+}

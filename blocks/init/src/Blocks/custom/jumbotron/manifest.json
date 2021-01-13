@@ -1,0 +1,16 @@
+{
+	"blockName": "jumbotron",
+	"title": "Jumbotron",
+	"description" : "Jumbotron block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "cover-image"
+	},
+	"keywords": [
+		"jumbotron",
+		"cover"
+	],
+	"components": {
+		"jumbotron": "jumbotron"
+	}
+}

@@ -2,12 +2,10 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
-import { AlignmentToolbar } from '@wordpress/block-editor';
+import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
 import { trash } from '@wordpress/icons';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-
-const { options } = manifest;
 
 export const ImageToolbar = (attributes) => {
 	const {
@@ -49,9 +47,9 @@ export const ImageToolbar = (attributes) => {
 					}
 
 					{showImageAlign &&
-						<AlignmentToolbar
-							value={imageAlign}
-							options={options.aligns}
+						<BlockAlignmentMatrixToolbar
+							label={__('Image Position', 'eightshift-frontend-libs')}
+							value={ imageAlign }
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}

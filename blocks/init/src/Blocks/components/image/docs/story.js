@@ -59,9 +59,30 @@ export const toolbar = () => (
 	<ImageToolbar {...props} />
 );
 
+const aligns = [
+	'top left',
+	'top center',
+	'top right',
+	'center left',
+	'center center',
+	'center right',
+	'bottom left',
+	'bottom center',
+	'bottom right',
+];
+
 export const align = () => (
-	<Fragment>
-		{manifest.options.aligns.map((values, index) => (
+	<div css={{
+		'.image': {
+			maxWidth: '50%',
+			height: '80%',
+		},
+		'.image-wrap': {
+			height: '300px',
+			backgroundColor: 'lightslategray',
+		}
+	}}>
+		{aligns.map((values, index) => (
 			<Fragment key={index}>
 				<ImageEditor
 					{...props}
@@ -70,5 +91,5 @@ export const align = () => (
 				<br />
 			</Fragment>
 		))}
-	</Fragment>
+	</div>
 );
