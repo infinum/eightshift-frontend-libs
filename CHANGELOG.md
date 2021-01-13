@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.1] - 2021-01-13
+
+### Added
+- New Inline font color mixin.
+- @babel/plugin-proposal-class-properties package in Babel config.
+
+### Changed
+- Wrap selector for components: Button, Image, Link.
+
+### Fixed
+- Missing Browser sync package.
+- Not working @wordpress/dom-ready package loaded from Webpack.
+
 ## [4.0.0] - 2021-01-05
 MAYOR BREAKING CHANGES
 
@@ -350,6 +363,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[4.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.5.0...v4.0.0
 [3.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.3.0...v3.4.0
