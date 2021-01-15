@@ -1,6 +1,5 @@
 {
 	"name": "eightshift/eightshift-frontend-libs",
-	"version": "4.0.1",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"keywords": [
 		"composer",

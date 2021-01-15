@@ -1,6 +1,7 @@
 node_modules
 vendor
-# composer.lock
+composer.lock
+package-lock.json
 /docs
 
 # Used for tests.
