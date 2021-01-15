@@ -1,4 +1,4 @@
-Hi there! Thanks for helping out in improving our WordPress theme boilerplate.
+Hi there! Thanks for helping out in improving our Eightshift Frontend Libs.
 
 ## Reporting an issue
 
