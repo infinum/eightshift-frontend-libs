@@ -11,6 +11,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Removed composer.lock
 - Removed version number from composer.json
 
+### Added
+- New Jumbotron block.
+- New Jumbotron component.
+
+### Changed
+- Image component align in 9 position
+- Image component wrap semantic class.
+- Link component wrap semantic class.
+- Heading component wrap semantic class.
+- Paragraph component wrap semantic class.
+- Babel config changes.
+- Video Component hotfix.
+
 ## [4.0.1] - 2021-01-13
 
 ### Added
