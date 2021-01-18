@@ -103,6 +103,11 @@
 			"max":  12,
 			"step": 1
 		},
+		"offsets": {
+			"min": 0,
+			"max": 12,
+			"step": 1
+		},
 		"orders": {
 			"min":  1,
 			"max":  20,
