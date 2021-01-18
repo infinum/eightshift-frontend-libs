@@ -14,6 +14,7 @@
 
 .image-wrap {
 	display: flex;
+	flex-direction: column;
 
 	&[data-align='top left'] {
 		align-items: flex-start;
