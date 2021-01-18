@@ -29,7 +29,7 @@ $verticalSpacing = [
 $componentClass = Components::classnames([
 	$blockClass,
 	Components::responsiveSelectors($gutter, 'gutter', $blockClass),
-	Components::responsiveSelectors($verticalSpacing, 'verticalSpacing', $blockClass),
+	Components::responsiveSelectors($verticalSpacing, 'vertical-spacing', $blockClass),
 ]);
 ?>
 
