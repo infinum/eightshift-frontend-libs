@@ -29,7 +29,7 @@ export const ColumnsEditor = ({ attributes }) => {
 		blockClass,
 		globalManifest.globalVariables.customBlocksName,
 		responsiveSelectors(gutter, 'gutter', blockClass),
-		responsiveSelectors(verticalSpacing, 'verticalSpacing', blockClass),
+		responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass),
 	]);
 
 	return (
