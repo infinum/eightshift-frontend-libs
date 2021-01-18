@@ -98,9 +98,9 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 								allowReset={true}
 								value={attributes[attr]}
 								onChange={(value) => setAttributes({ [attr]: value })}
-								min={options.widths.min}
-								max={options.widths.max}
-								step={options.widths.step}
+								min={options.offsets.min}
+								max={options.offsets.max}
+								step={options.offsets.step}
 								resetFallbackValue={reset[attr].default}
 							/>
 						</Fragment>
