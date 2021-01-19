@@ -30,7 +30,7 @@ $block-columns: (
 		}
 	}
 
-	&__vertical-spacing {
+	&__verticalSpacing {
 		@include responsive-selectors {
 			$i: map-get-deep($block-columns, gutters, min);
 			@while $i <= map-get-deep($block-columns, gutters, max) {
