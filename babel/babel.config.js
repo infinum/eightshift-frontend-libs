@@ -1,6 +1,7 @@
 module.exports = {
 	presets: [
 		"@wordpress/default",
+		"env"
 	],
 	plugins: [
 		'@babel/plugin-syntax-dynamic-import',
