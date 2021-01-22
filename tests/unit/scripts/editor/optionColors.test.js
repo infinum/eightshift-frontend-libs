@@ -54,15 +54,8 @@ it('tests optionColors helper returns correct color subset', () => {
 
 	expect(colors).toBe(
 		[
-			{
-				"name": "Primary",
-				"slug": "primary",
-				"color": "#022687"
-			}, {
-				"name": "White",
-				"slug": "white",
-				"color": "#FFFFFF"
-			}
+			coreColors.primary,
+			coreColors.white
 		]
 	);
 });
