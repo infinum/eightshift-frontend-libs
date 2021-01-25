@@ -1,4 +1,4 @@
-import {getPaletteColors} from "./get-palette-colors";
+import { getPaletteColors } from "./get-palette-colors";
 
 /**
  * Use this hook to filter the global colors out of the component or block manifest
