@@ -3,11 +3,8 @@
  *
  * @group unit
  */
-import { jest } from '@jest/globals';
 
-const { getOptionColors } = require("../../../../scripts/editor/get-option-colors");
-
-// Mock for getPaletteColors()
+// Mock for getPaletteColors() return value.
 const coreColors = {
 	"primary": {
 		"name": "Primary",
@@ -48,6 +45,7 @@ jest.mock('../../../../scripts/editor/get-palette-colors', () => ({
 	getPaletteColors: mockGetPaletteColors
 }));
 
+import { getOptionColors } from '../../../../scripts/editor/get-option-colors';
 
 it('tests optionColors helper returns correct color subset', () => {
 	const colors = getOptionColors(["primary", "white"]);
@@ -62,5 +60,6 @@ it('tests optionColors helper returns correct color subset', () => {
 
 it('tests optionColors helper fallbacks to core if no color is passed', () => {
 	const colors = getOptionColors();
+
 	expect(colors).toBe(Object.values(coreColors));
 });
