@@ -1,8 +1,5 @@
 $lists: (
-	colors: (
-		primary: global-settings(colors, primary),
-		black: global-settings(colors, black),
-	),
+	colors: global-settings(colors),
 	link-color: map-get-strict($link, colors),
 	sizes: (
 		mobile: (

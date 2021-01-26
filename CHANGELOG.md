@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.3] - 2021-01-26
+
+### Added
+- Camelize helper.
+- GetOptionsColor helper.
+
+### Fixed
+- Component image stretching issue with align.
+- Component column offset not working.
+- Component column order not working.
+- Component columns option was not working in multiple nested levels.
+- Component columns vertical align was not working.
+
+### Changed
+- Wrapper, Paragraph, Lists, Link, Heading, Button component to a new GetOptionsColor helper.
+
 ## [4.0.2] - 2021-01-15
 
 ### Removed
@@ -383,6 +399,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[4.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.2...v4.0.3
 [4.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.5.0...v4.0.0

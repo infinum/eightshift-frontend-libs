@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
 import { ColorPaletteCustom, Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import globalSettings from '../../manifest.json';
 import manifest from './../manifest.json';
 
@@ -490,6 +490,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													{__('Background Color', 'eightshift-frontend-libs')}
 												</Fragment>
 											}
+											colors={getOptionColors(options.colors)}
 											value={wrapperBackgroundColor}
 											onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
 										/>

@@ -5,6 +5,7 @@ import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
@@ -54,6 +55,7 @@ export const ParagraphOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</Fragment>
 							}
+							colors={getOptionColors(options.colors)}
 							value={paragraphColor}
 							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
