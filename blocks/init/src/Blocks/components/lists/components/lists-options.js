@@ -3,9 +3,8 @@ import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from '../manifest.json';
 
 const { options, title } = manifest;

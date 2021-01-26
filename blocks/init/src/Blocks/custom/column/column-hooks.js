@@ -50,12 +50,20 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 				mobile: checkAttr('orderMobile', attributes, manifest),
 			};
 
+			const align = {
+				large: checkAttr('alignLarge', attributes, manifest),
+				desktop: checkAttr('alignDesktop', attributes, manifest),
+				tablet: checkAttr('alignTablet', attributes, manifest),
+				mobile: checkAttr('alignMobile', attributes, manifest),
+			};
+
 			const componentClass = classnames([
 				blockClass,
 				globalManifest.globalVariables.customBlocksName,
 				responsiveSelectors(width, 'width', blockClass),
 				responsiveSelectors(offset, 'offset', blockClass),
 				responsiveSelectors(order, 'order', blockClass),
+				responsiveSelectors(align, 'align', blockClass),
 				responsiveSelectors(hide, 'hide-editor', blockClass),
 			]);
 

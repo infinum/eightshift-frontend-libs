@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { PanelBody, Icon, RangeControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, Icon, RangeControl, ToggleControl, SelectControl } from '@wordpress/components';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
@@ -28,6 +28,13 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 		attributes.orderDesktop,
 		attributes.orderTablet,
 		attributes.orderMobile,
+	];
+
+	const align = [
+		attributes.alignLarge,
+		attributes.alignDesktop,
+		attributes.alignTablet,
+		attributes.alignMobile,
 	];
 
 	const hide = [
@@ -132,6 +139,32 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 								max={options.orders.max}
 								step={options.orders.step}
 								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
+
+			<Responsive
+				label={
+					<Fragment>
+						<Icon icon={icons.spacingTop} />
+						{__('Align', 'eightshift-frontend-libs')}
+					</Fragment>
+				}
+			>
+				{align.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `align${point}`;
+
+					return (
+						<Fragment key={index}>
+							<SelectControl
+								label={point}
+								value={attributes[attr]}
+								options={options.aligns}
+								onChange={(value) => setAttributes({ [attr]: value })}
 							/>
 						</Fragment>
 					);

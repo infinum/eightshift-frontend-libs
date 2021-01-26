@@ -89,6 +89,19 @@
 		},
 		"orderMobile": {
 			"type": "integer"
+		},
+
+		"alignLarge": {
+			"type": "string"
+		},
+		"alignDesktop": {
+			"type": "string"
+		},
+		"alignTablet": {
+			"type": "string"
+		},
+		"alignMobile": {
+			"type": "string"
 		}
 	},
 	"options": {
@@ -112,6 +125,20 @@
 			"min":  1,
 			"max":  20,
 			"step": 1
-		}
+		},
+		"aligns": [
+			{
+				"label": "Top",
+				"value": "top"
+			},
+			{
+				"label": "Center",
+				"value": "center"
+			},
+			{
+				"label": "Bottom",
+				"value": "bottom"
+			}
+		]
 	}
 }
