@@ -4,10 +4,9 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
-import { getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 
 const { options, title } = manifest;
 

@@ -32,4 +32,10 @@
 			}
 		}
 	}
+
+	&__align {
+		@include responsive-selectors {
+			@include flex-vertical-align-modifiers;
+		}
+	}
 }

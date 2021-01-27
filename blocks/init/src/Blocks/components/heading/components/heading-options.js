@@ -2,10 +2,9 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;

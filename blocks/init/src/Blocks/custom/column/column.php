@@ -40,12 +40,20 @@ $order = [
 	'mobile' => Components::checkAttr('orderMobile', $attributes, $manifest),
 ];
 
+$align = [
+	'large' => Components::checkAttr('alignLarge', $attributes, $manifest),
+	'desktop' => Components::checkAttr('alignDesktop', $attributes, $manifest),
+	'tablet' => Components::checkAttr('alignTablet', $attributes, $manifest),
+	'mobile' => Components::checkAttr('alignMobile', $attributes, $manifest),
+];
+
 $componentClass = Components::classnames([
 	$blockClass,
 	Components::responsiveSelectors($width, 'width', $blockClass),
 	Components::responsiveSelectors($offset, 'offset', $blockClass),
 	Components::responsiveSelectors($hide, 'hide', $blockClass, false),
 	Components::responsiveSelectors($order, 'order', $blockClass),
+	Components::responsiveSelectors($align, 'align', $blockClass),
 ]);
 ?>
 
