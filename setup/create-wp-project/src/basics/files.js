@@ -7,6 +7,7 @@ const fullPath = path.join(process.cwd());
 /**
  * Performs a wide search & replace.
  *
+ * @param {string} pathToFolder
  * @param {string} findString
  * @param {string} replaceString
  */
@@ -35,7 +36,7 @@ const findReplace = async (pathToFolder, findString, replaceString) => {
 /**
  * Async implementation of reading a directory.
  *
- * @param {string} path
+ * @param {string} dirPath
  */
 const readdirAsync = async (dirPath) => new Promise((resolve, reject) => {
   readdir(dirPath, (error, result) => {
