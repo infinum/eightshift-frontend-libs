@@ -21,7 +21,7 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 
 		const defaultType = manifestKey.type;
 
-		let defaultValue = '';
+		let defaultValue;
 
 		switch (defaultType) {
 			case 'boolean':

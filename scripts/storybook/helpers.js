@@ -27,7 +27,7 @@ import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-
 const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 	return innerBlocks.map((blockItem) => {
 
-		let blockInner = '';
+		let blockInner;
 
 		if (isVariation) {
 			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
