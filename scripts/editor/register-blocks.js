@@ -109,7 +109,7 @@ export const getSaveCallback = (blockManifest) => {
 };
 
 /**
- * Return edit function wrapped with Wrapper compoent.
+ * Return edit function wrapped with Wrapper component.
  *
  * @param {function} Component Children callback function.
  * @param {function} Wrapper Wrapper callback function.
@@ -186,11 +186,11 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
  * Search and replace the component attributes with new one.
  *
  * @param {object} component Object of component manifests to iterate.
- * @param {string} realComponentName Reacl component name defined in the component manifest.
+ * @param {string} realComponentName React component name defined in the component manifest.
  * @param {string} newComponentName New component name to search and replace the original.
  * @param {string} key Change output, can be: "attributes" or "example".
  */
-export const prepareCommponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
+export const prepareComponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
 	let output = {};
 
 	let componentAttributes = {};
@@ -252,7 +252,7 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 			if (Object.prototype.hasOwnProperty.call(component, 'components')) {
 				outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key);
 			} else {
-				outputAttributes = prepareCommponentAttribute(component, realComponentName, newComponentName, key);
+				outputAttributes = prepareComponentAttribute(component, realComponentName, newComponentName, key);
 			}
 
 			output = {
