@@ -1,0 +1,45 @@
+$icon: (
+	colors: (
+		primary: (
+			normal: (
+				color: global-settings(colors, primary),
+			),
+			hover: (
+				color: global-settings(colors, black),
+			),
+		),
+		black: (
+			normal: (
+				color: global-settings(colors, black),
+			),
+			hover: (
+				color: global-settings(colors, primary),
+			),
+		),
+		light: (
+			normal: (
+				color: global-settings(colors, light),
+			),
+			hover: (
+				color: global-settings(colors, black),
+			),
+		),
+		white: (
+			normal: (
+				color: global-settings(colors, white),
+			),
+			hover: (
+				color: global-settings(colors, black),
+			),
+		),
+	),
+);
+
+.icon {
+	display: inline-flex;
+	transition: color 0.3s ease-in-out;
+
+	&__color {
+		@include link-modifiers($icon, colors);
+	}
+}
