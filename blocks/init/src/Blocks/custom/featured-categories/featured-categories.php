@@ -64,5 +64,5 @@ if (!$taxonomy) {
 				);
 			?>
 		</div>
-	<?php }; ?>
+	<?php } ?>
 </div>

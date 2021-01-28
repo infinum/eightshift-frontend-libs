@@ -40,7 +40,7 @@ if ($buttonIsNewTab) {
 		],
 		$buttonAttrs
 	);
-};
+}
 
 $buttonWrapClass = Components::classnames([
 	Components::selector($componentClass, "{$componentClass}-wrap"),
