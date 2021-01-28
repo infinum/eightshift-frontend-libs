@@ -22,7 +22,7 @@ import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-
  * Create Inner Blocks.
  *
  * @param {array} innerBlocks Array of inner blocks.
- * @param {bool} isVariation Check if block is variation type.
+ * @param {boolean} isVariation Check if block is variation type.
  */
 const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 	return innerBlocks.map((blockItem) => {
@@ -53,7 +53,7 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
  *
  * @param {object} blockManifest Block Manifest data.
  * @param {object} globalManifest Global Blocks Manifest data.
- * @param {bool} isVariation Check if block is variation type. Default: false.
+ * @param {boolean} isVariation Check if block is variation type. Default: false.
  */
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
 	const blockName = getFullBlockName(globalManifest, blockManifest);
