@@ -1,12 +1,12 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { ColorPaletteCustom } from '../color-palette-custom';
-import { getPaletteColors } from './../../../editor/get-palette-colors';
+import { getPaletteColors } from '../../../editor';
 
 export default {
 	title: 'Options/Color Palette',
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
