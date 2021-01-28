@@ -8,6 +8,8 @@ import { ButtonToolbar } from '../../button/components/button-toolbar';
 export const CardToolbar = (attributes) => {
 	const {
 		setAttributes,
+		introAlign,
+		introLevel,
 	} = attributes;
 
 	return (
@@ -21,8 +23,8 @@ export const CardToolbar = (attributes) => {
 			<HeadingToolbar
 				{...attributes}
 				componentName={'intro'}
-				headingAlign={attributes.introAlign}
-				headingLevel={attributes.introLevel}
+				headingAlign={introAlign}
+				headingLevel={introLevel}
 				setAttributes={setAttributes}
 			/>
 

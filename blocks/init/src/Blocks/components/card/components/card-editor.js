@@ -13,6 +13,10 @@ export const CardEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
+		introContent,
+		introColor,
+		introSize,
+		introAlign,
 	} = attributes;
 
 	const cardClass = classnames([
@@ -32,10 +36,10 @@ export const CardEditor = (attributes) => {
 			<HeadingEditor
 				{...attributes}
 				componentName={'intro'}
-				headingContent={attributes.introContent}
-				headingColor={attributes.introColor}
-				headingSize={attributes.introSize}
-				headingAlign={attributes.introAlign}
+				headingContent={introContent}
+				headingColor={introColor}
+				headingSize={introSize}
+				headingAlign={introAlign}
 				setAttributes={setAttributes}
 				selectorClass={'intro'}
 				blockClass={componentClass}

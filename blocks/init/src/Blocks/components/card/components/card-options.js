@@ -8,6 +8,8 @@ import { ButtonOptions } from '../../button/components/button-options';
 export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
+		introColor,
+		introSize,
 	} = attributes;
 
 	return (
@@ -24,8 +26,8 @@ export const CardOptions = (attributes) => {
 				{...attributes}
 				componentName={'intro'}
 				label={'Intro'}
-				headingColor={attributes.introColor}
-				headingSize={attributes.introSize}
+				headingColor={introColor}
+				headingSize={introSize}
 				setAttributes={setAttributes}
 			/>
 
