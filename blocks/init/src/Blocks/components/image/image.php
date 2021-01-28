@@ -40,7 +40,7 @@ $imageClass = Components::classnames([
 ?>
 
 <?php if ($imageLink) { ?>
-	<a href="<?php echo esc_url($imageLink); ?>" class="<?php echo \esc_attr($imageWrapClass); ?>">
+	<a href="<?php echo \esc_url($imageLink); ?>" class="<?php echo \esc_attr($imageWrapClass); ?>">
 <?php } else { ?>
 	<div class="<?php echo \esc_attr($imageWrapClass); ?>" data-align="<?php echo \esc_attr($imageAlign); ?>">
 <?php } ?>
@@ -48,7 +48,7 @@ $imageClass = Components::classnames([
 	<?php if ($imageBg) { ?>
 		<div style="background-image:url(<?php echo \esc_url($imageUrl); ?>)" class="<?php echo \esc_attr($imageClass); ?>" ></div>
 	<?php } else { ?>
-			<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
 	<?php } ?>
 
 <?php if ($imageLink) { ?>
