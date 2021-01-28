@@ -12,7 +12,6 @@ export class Accordion {
 
 		this.ATTR_HIDDEN = 'aria-hidden';
 		this.ATTR_OPEN = 'data-accordion-open';
-		this.ATTR_PREVENT_CLOSE = 'data-accordion-prevent-close';
 	}
 
 	init() {
