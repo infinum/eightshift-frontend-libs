@@ -20,7 +20,7 @@ export const storybookDefaultMocksCategories = () => {
 /**
  * Manually populate blocks color palette. This is generated in the PHP part of the real project.
  *
- * @param object blocksGlobalManifest Full path to global blocks manifest.
+ * @param {object} blocksGlobalManifest Full path to global blocks manifest.
  */
 export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
 	select('core/block-editor').getSettings().colors = blocksGlobalManifest.globalVariables.colors;

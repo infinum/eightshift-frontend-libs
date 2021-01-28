@@ -223,7 +223,7 @@ export const prepareCommponentAttribute = (component, realComponentName, newComp
  * If components contains more component this function will run recursively.
  *
  * @param {object} componentsManifest Object of component manifests to iterate.
- * @param {object} components List of all component from block.
+ * @param {object} blockManifest Object of blocks manifests to iterate.
  * @param {string} blockName Full block name.
  * @param {string} key Change output, can be: "attributes" or "example".
  */
@@ -315,10 +315,10 @@ export const getExample = (globalManifest, componentsManifest, blockManifest) =>
 };
 
 /**
- * Map and prepare all options from layout manifest.json file for usage in registerBlockVariation method.
+ * Map and prepare all options from block manifest.json file for usage in registerBlockVariation method.
  *
- * @param {object} manifest Layout manifest.json object with data.
  * @param {object} globalManifest Global blocks manifest.json object with namespace.
+ * @param {object} blockManifest Block manifest.json object with data.
  *
  */
 export const registerVariation = (
@@ -422,7 +422,7 @@ export const registerBlocks = (
 		// Get Block Transforms component from block name and transformsComponentPath.
 		if (transformsComponentPath !== null) {
 			const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
-	
+
 			if (blockTransformsComponent !== null) {
 				blockManifest.transforms = blockTransformsComponent;
 			}

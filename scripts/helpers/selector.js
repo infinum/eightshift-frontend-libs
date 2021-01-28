@@ -1,10 +1,10 @@
 /**
- * Retun BEM selector for html class and check if Condition part is set.
+ * Returns BEM selector for html class and check if Condition part is set.
  *
- * @param mixed  condition Check condition.
- * @param string block BEM Block selector.
- * @param string element BEM Element selector.
- * @param string modifier BEM Modifier selector.
+ * @param {boolean} condition Check condition.
+ * @param {string}  block BEM Block selector.
+ * @param {string}  element BEM Element selector.
+ * @param {string}  modifier BEM Modifier selector.
  *
  * @return string
  */

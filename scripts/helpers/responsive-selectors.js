@@ -3,10 +3,10 @@ import classnames from 'classnames';
 /**
  * Create responsive selectors used for responsive attributes.
  *
- * @param array   items        Array of brakepoints.
- * @param string  selector     Selector for this brakepoint.
- * @param string  parent       Parent block selector.
- * @param boolean use_modifier If false you can use this selector for visibility.
+ * @param {array}   items        Array of breakpoints.
+ * @param {string}  selector     Selector for this breakpoint.
+ * @param {string}  parent       Parent block selector.
+ * @param {boolean} useModifier  If false you can use this selector for visibility.
  *
  * @return string
  *
@@ -18,7 +18,7 @@ import classnames from 'classnames';
  */
 export const responsiveSelectors = (items, selector, parent, useModifier = true) => {
 	const output = [];
-	
+
 	for (const itemKey in items) {
 		if (Object.prototype.hasOwnProperty.call(items, itemKey)) {
 			if (items[itemKey] === '' || items[itemKey] === false || typeof items[itemKey] === 'undefined') {

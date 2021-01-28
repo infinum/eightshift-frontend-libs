@@ -1,10 +1,10 @@
 /**
  * Check if attribute exist in attributes list and add default value if not.
  *
- * @param string key Key to check.
- * @param array  attributes Array of attributes.
- * @param array  manifest Array of default attributes from manifest.json.
- * @param string componentName The real component name.
+ * @param {string} key Key to check.
+ * @param {array}  attributes Array of attributes.
+ * @param {array}  manifest Array of default attributes from manifest.json.
+ * @param {string} componentName The real component name.
  *
  * @return mixed
  */
@@ -35,7 +35,7 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : '';
 				break;
 		}
-	
+
 		return defaultValue;
 	}
 };
