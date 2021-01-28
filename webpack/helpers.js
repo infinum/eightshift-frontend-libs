@@ -47,7 +47,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
 		// Output files absolute location.
 		outputPath: path.resolve(absolutePath, outputPathConfigClean),
 
-		// Output files relative location, added before every output file in manifes.json. Should start and end with "/".
+		// Output files relative location, added before every output file in manifest.json. Should start and end with "/".
 		publicPath: path.join('/', projectPathConfigClean, outputPathConfigClean, '/'),
 
 		// Source files entries absolute locations.
