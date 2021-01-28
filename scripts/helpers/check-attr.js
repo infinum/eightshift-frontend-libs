@@ -3,7 +3,7 @@
  *
  * @param {string} key Key to check.
  * @param {array}  attributes Array of attributes.
- * @param {array}  manifest Array of default attributes from manifest.json.
+ * @param {object}  manifest Array of default attributes from manifest.json.
  * @param {string} componentName The real component name.
  *
  * @return mixed
