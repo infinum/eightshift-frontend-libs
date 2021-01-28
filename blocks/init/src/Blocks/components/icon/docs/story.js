@@ -8,7 +8,9 @@ import { IconOptions } from '../components/icon-options';
 export default {
 	title: `Components/${manifest.title}`,
 	parameters: {
-		notes: readme,
+		docs: {
+			page: readme
+		}
 	},
 };
 

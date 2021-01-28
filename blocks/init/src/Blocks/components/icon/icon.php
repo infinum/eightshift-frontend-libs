@@ -10,7 +10,6 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
-
 $iconUse = Components::checkAttr('iconUse', $attributes, $manifest, $componentName);
 
 if (!$iconUse) {

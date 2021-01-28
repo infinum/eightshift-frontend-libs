@@ -4,21 +4,10 @@ import { Fragment } from '@wordpress/element';
 import { SelectControl, ToggleControl, Icon } from '@wordpress/components';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { getPaletteColors, icons } from '@eightshift/frontend-libs/scripts/editor';
+import { getOptionColors, icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 const { options, title } = manifest;
-
-export const iconColors = () => {
-	const colors = getPaletteColors();
-
-	return [
-		colors.primary,
-		colors.black,
-		colors.light,
-		colors.white,
-	];
-};
 
 export const IconOptions = (attributes) => {
 	const {
@@ -59,11 +48,10 @@ export const IconOptions = (attributes) => {
 							<Fragment>
 								<Icon icon={icons.color} />
 								{__('Icon color', 'eightshift-frontend-libs')}
-
 							</Fragment>
 						}
 						value={iconColor}
-						colors={iconColors()}
+						colors={getOptionColors(options.colors)}
 						onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 					/>
 				</Fragment>
