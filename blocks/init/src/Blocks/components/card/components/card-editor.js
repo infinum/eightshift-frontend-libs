@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import { selector } from '@eightshift/frontend-libs/scripts/helpers';
-import { ImageEditor } from '../../../components/image/components/image-editor';
-import { HeadingEditor } from '../../../components/heading/components/heading-editor';
-import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
-import { ButtonEditor } from '../../../components/button/components/button-editor';
+import { ImageEditor } from '../../image/components/image-editor';
+import { HeadingEditor } from '../../heading/components/heading-editor';
+import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
+import { ButtonEditor } from '../../button/components/button-editor';
 import manifest from './../manifest.json';
 
 export const CardEditor = (attributes) => {

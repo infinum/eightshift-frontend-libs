@@ -1,9 +1,9 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { ImageOptions } from '../../../components/image/components/image-options';
-import { HeadingOptions } from '../../../components/heading/components/heading-options';
-import { ParagraphOptions } from '../../../components/paragraph/components/paragraph-options';
-import { ButtonOptions } from '../../../components/button/components/button-options';
+import { ImageOptions } from '../../image/components/image-options';
+import { HeadingOptions } from '../../heading/components/heading-options';
+import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
+import { ButtonOptions } from '../../button/components/button-options';
 
 export const CardOptions = (attributes) => {
 	const {
