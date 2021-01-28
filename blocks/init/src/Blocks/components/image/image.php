@@ -24,6 +24,7 @@ $imageUrl = Components::checkAttr('imageUrl', $attributes, $manifest, $component
 $imageLink = Components::checkAttr('imageLink', $attributes, $manifest, $componentName);
 $imageBg = Components::checkAttr('imageBg', $attributes, $manifest, $componentName);
 $imageAlign = Components::checkAttr('imageAlign', $attributes, $manifest, $componentName);
+$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest, $componentName);
 
 $imageWrapClass = Components::classnames([
 	Components::selector($componentClass, "{$componentClass}-wrap"),
@@ -48,7 +49,7 @@ $imageClass = Components::classnames([
 	<?php if ($imageBg) { ?>
 		<div style="background-image:url(<?php echo \esc_url($imageUrl); ?>)" class="<?php echo \esc_attr($imageClass); ?>" ></div>
 	<?php } else { ?>
-		<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" alt="<?php echo \esc_attr($imageAlt); ?>"/>
 	<?php } ?>
 
 <?php if ($imageLink) { ?>
