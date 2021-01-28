@@ -24,6 +24,10 @@ $searchBarMethod = Components::checkAttr('searchBarMethod', $attributes, $manife
 $searchBarPostType = Components::checkAttr('searchBarPostType', $attributes, $manifest, $componentName);
 $searchBarAction = Components::checkAttr('searchBarAction', $attributes, $manifest, $componentName);
 $searchBarPlaceholder = Components::checkAttr('searchBarPlaceholder', $attributes, $manifest, $componentName);
+$searchBarId = Components::checkAttr('searchBarId', $attributes, $manifest, $componentName);
+$searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest, $componentName);
+$searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest, $componentName);
+$searchBarLabelShow = Components::checkAttr('searchBarLabelShow', $attributes, $manifest, $componentName);
 
 $searchClass = Components::classnames([
 	$componentClass,
@@ -38,10 +42,14 @@ $searchClass = Components::classnames([
 	class="<?php echo \esc_attr($searchClass); ?>"
 	action="<?php echo \esc_url($searchBarAction); ?>"
 >
+	<?php if ($searchBarLabelShow) { ?>
+		<label for="<?php echo \esc_attr($searchBarId); ?>"><?php echo \esc_html($searchBarLabel); ?></label>
+	<?php } ?>
 	<input
 		type="text"
 		value="<?php echo \get_search_query(); ?>"
 		name="s"
+		id="<?php echo \esc_attr($searchBarId); ?>"
 		class="<?php echo \esc_attr("{$componentClass}__input"); ?>"
 		placeholder="<?php echo \esc_attr($searchBarPlaceholder); ?>"
 	/>
