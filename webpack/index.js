@@ -38,7 +38,7 @@ module.exports = (mode, optionsData = {}) => {
 	const outputDefault = merge(project, base);
 
 	// Output development setup by default.
-	let output = [];
+	let output;
 
 	// Output production setup if mode is set inside package.json.
 	if (mode === 'production') {
