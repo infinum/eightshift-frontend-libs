@@ -12,15 +12,12 @@ const {
 const defaultValues = {
   package: 'eightshift-boilerplate',
   namespace: 'EightshiftBoilerplate',
-  env: 'EB_ENV',
-  projectPrefix: 'eb',
   url: 'dev.boilerplate.com',
 };
 
 const searchReplace = async(data, projectPath) => {
   const pathFunctionsPhp = path.join(projectPath, 'functions.php');
   const pathStyleCss = path.join(projectPath, 'style.css');
-  const pathClassConfigPhp = path.join(projectPath, 'src', 'class-config.php');
   const pathWebpackConfigJs = path.join(projectPath, 'webpack.config.js');
   const pathEntryFile = path.join(projectPath, `${defaultValues.package}.php`);
 
@@ -79,20 +76,6 @@ const searchReplace = async(data, projectPath) => {
   // Namespace
   if (data.namespace) {
     await findReplace(projectPath, defaultValues.namespace, data.namespace);
-  }
-
-  // ENV
-  if (data.env) {
-    await findReplace(projectPath, defaultValues.env, data.env);
-  }
-
-  // src/class-config.php - project-prefix
-  if (data.projectPrefix && await fs.pathExists(pathClassConfigPhp)) {
-    await replace({
-      files: pathClassConfigPhp,
-      from: new RegExp(defaultValues.projectPrefix, 'g'),
-      to: data.projectPrefix,
-    });
   }
 
   // webpack.config.js - BrowserSync proxy url.
