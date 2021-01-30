@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { SelectControl, ToggleControl, Icon } from '@wordpress/components';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
@@ -29,7 +29,7 @@ export const IconOptions = (attributes) => {
 			{label && <h3 className={'options-label'}>{label}</h3>}
 
 			<ToggleControl
-				label={__('Use Icon', 'eightshift-frontend-libs')}
+				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={iconUse}
 				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 			/>
