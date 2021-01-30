@@ -2,34 +2,20 @@ $icon: (
 	colors: (
 		primary: (
 			normal: (
-				color: global-settings(colors, primary),
+				background-color: global-settings(colors, primary),
+				color: global-settings(colors, white),
 			),
 			hover: (
-				color: global-settings(colors, black),
+				background-color: global-settings(colors, black),
 			),
 		),
 		black: (
 			normal: (
-				color: global-settings(colors, black),
-			),
-			hover: (
-				color: global-settings(colors, primary),
-			),
-		),
-		light: (
-			normal: (
-				color: global-settings(colors, light),
-			),
-			hover: (
-				color: global-settings(colors, black),
-			),
-		),
-		white: (
-			normal: (
+				background-color: global-settings(colors, black),
 				color: global-settings(colors, white),
 			),
 			hover: (
-				color: global-settings(colors, black),
+				background-color: global-settings(colors, primary),
 			),
 		),
 	),
