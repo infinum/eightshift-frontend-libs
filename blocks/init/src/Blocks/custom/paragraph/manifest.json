@@ -4,7 +4,7 @@
 	"description" : "Paragraph block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "editor-rtl"
+		"src": "editor-paragraph"
 	},
 	"keywords": [
 		"paragraph",
