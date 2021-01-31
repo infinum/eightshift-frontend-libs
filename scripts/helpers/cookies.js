@@ -24,7 +24,7 @@ export const cookies = {
 	},
 
 	/**
-	 * get a cookie
+	 * Get a cookie
 	 *
 	 * @param {string} key Unique cookie key.
 	 *
