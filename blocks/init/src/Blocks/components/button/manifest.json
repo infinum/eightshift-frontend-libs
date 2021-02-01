@@ -17,7 +17,8 @@
 	},
 	"attributes": {
 		"buttonContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"buttonUrl": {
 			"type": "string"

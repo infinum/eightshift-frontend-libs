@@ -14,7 +14,8 @@
 			"type": "string"
 		},
 		"accordionContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"accordionIsOpen": {
 			"type": "boolean",

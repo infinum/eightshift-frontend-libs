@@ -13,7 +13,8 @@
 	},
 	"attributes": {
 		"paragraphContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"paragraphSize": {
 			"type": "string",
