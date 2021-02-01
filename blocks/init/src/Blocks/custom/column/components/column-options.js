@@ -162,13 +162,14 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						<Fragment key={index}>
 							<span className="button-group__label">{point}</span>
 							<ButtonGroup>
-								{options.aligns.map((alignment, _) => {
+								{options.aligns.map((alignment, alignIndex) => {
 									// The default (stretch) doesn't need to be set in the frontend to avoid unnecessary classnames
 									const isPressed = (align[index] ?? options.aligns[0].value) == alignment.value;
 									const outValue = alignment.value == options.aligns[0].value ? undefined : alignment.value;
 
 									return (
 										<Button
+											key={alignIndex}
 											isPressed={isPressed}
 											label={alignment.label}
 											onClick={() => setAttributes({ [attr]: outValue })}
