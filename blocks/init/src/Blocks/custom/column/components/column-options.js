@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { PanelBody, Icon, RangeControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { PanelBody, Icon, RangeControl, ToggleControl, ButtonGroup, Button } from '@wordpress/components';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
@@ -149,7 +149,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				label={
 					<Fragment>
 						<Icon icon={icons.spacingTop} />
-						{__('Align', 'eightshift-frontend-libs')}
+						{__('Vertical align', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
 			>
@@ -160,12 +160,24 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 					return (
 						<Fragment key={index}>
-							<SelectControl
-								label={point}
-								value={attributes[attr]}
-								options={options.aligns}
-								onChange={(value) => setAttributes({ [attr]: value })}
-							/>
+							<span className="button-group__label">{point}</span>
+							<ButtonGroup>
+								{options.aligns.map((alignment, _) => {
+									// The default (stretch) doesn't need to be set in the frontend to avoid unnecessary classnames
+									const isPressed = (align[index] ?? options.aligns[0].value) == alignment.value;
+									const outValue = alignment.value == options.aligns[0].value ? undefined : alignment.value;
+
+									return (
+										<Button
+											isPressed={isPressed}
+											label={alignment.label}
+											onClick={() => setAttributes({ [attr]: outValue })}
+											icon={icons[`verticalAlign${ucfirst(alignment.value)}24`]}
+										/>
+									);
+								}
+								)}
+							</ButtonGroup>
 						</Fragment>
 					);
 				})}
