@@ -174,4 +174,29 @@ body {
 		width: 24px;
 		height: 24px;
 	}
+
+	// Adding space between ColorSwatches and label
+	.components-circular-option-picker .components-circular-option-picker__swatches {
+		margin-top: 0.5rem;
+	}
+
+	// Fix label styling and stylize SVGs
+	.components-base-control__label,
+	.components-input-control__label {
+		display: flex !important;
+		align-items: center !important;
+		line-height: 1;
+		margin: 0 !important;
+		padding-bottom: 0.4rem;
+		height: 1.75rem;
+
+		svg {
+			margin: 0;
+			margin-right: 0.3rem;
+		}
+	}
+
+	.components-toggle-control__label {
+		margin-bottom: 0 !important;
+	}
 }
