@@ -59,7 +59,12 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkUrl &&
 						<URLInput
-							label={__('Url', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.link} />
+									{__('URL', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={linkUrl}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
@@ -72,7 +77,6 @@ export const LinkOptions = (attributes) => {
 								<Fragment>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-
 								</Fragment>
 							}
 							value={linkColor}
@@ -83,7 +87,12 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.textSize} />
+									{__('Text size', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={linkSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
@@ -92,7 +101,12 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkWidth &&
 						<SelectControl
-							label={__('Width', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.width} />
+									{__('Width', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={linkWidth}
 							options={options.widths}
 							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
@@ -110,7 +124,12 @@ export const LinkOptions = (attributes) => {
 
 					{showLinkId &&
 						<TextControl
-							label={__('ID', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.id} />
+									{__('ID', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={linkId}
 							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>

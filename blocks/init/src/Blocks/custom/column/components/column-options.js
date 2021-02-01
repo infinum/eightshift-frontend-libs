@@ -118,7 +118,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.width} />
+						<Icon icon={icons.order} />
 						{__('Order', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
@@ -148,7 +148,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.spacingTop} />
+						<Icon icon={icons.verticalAlign} />
 						{__('Vertical align', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
@@ -187,7 +187,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.width} />
+						<Icon icon={icons.hide} />
 						{__('Hide', 'eightshift-frontend-libs')}
 					</Fragment>
 				}

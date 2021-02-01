@@ -37,7 +37,7 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.containerWidth} />
+						<Icon icon={icons.gutter} />
 						{__('Gutter', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
@@ -67,7 +67,7 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.containerHeight} />
+						<Icon icon={icons.verticalSpacing} />
 						{__('Vertical Spacing', 'eightshift-frontend-libs')}
 					</Fragment>
 				}

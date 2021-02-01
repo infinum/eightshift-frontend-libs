@@ -62,7 +62,12 @@ export const HeadingOptions = (attributes) => {
 
 					{showHeadingSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.textSize} />
+									{__('Text size', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={headingSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
