@@ -11,7 +11,8 @@
 	"attributes": {
 		"scrollToTopContent": {
 			"type": "string",
-			"default": "To Top"
+			"default": "To Top",
+			"seo": true
 		},
 		"scrollToTopUse": {
 			"type": "boolean",

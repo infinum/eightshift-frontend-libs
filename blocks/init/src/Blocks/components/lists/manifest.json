@@ -14,7 +14,8 @@
 	},
 	"attributes": {
 		"listsContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"listsOrdered": {
 			"type": "string",

@@ -17,7 +17,8 @@
 	},
 	"attributes": {
 		"linkContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"linkUrl": {
 			"type": "string"
