@@ -51,7 +51,7 @@ class YoastSEOCustomData {
 			return newData;
 	}
 
-	// Check for the menifest data and append.
+	// Check for the manifest data and append.
 	checkData(dataType, data) {
 
 		let output = '';
@@ -65,12 +65,12 @@ class YoastSEOCustomData {
 		return output;
 	}
 
-	// Find all menifests in the provided require.context.
+	// Find all manifests in the provided require.context.
 	findManifests(items) {
 
 		const output = [];
 
-		// Find all attrobutes in that contains 
+		// Find all attributes in that contains.
 		items.keys().map(items).forEach((item) => {
 
 			// Be sure tha that attributes key exists because it is not necesery to be present.
@@ -90,8 +90,6 @@ class YoastSEOCustomData {
 
 	// Find all strings using regex in the provided data set of dynamic attributes.
 	findStrings(key, data) {
-
-		console.log(key);
 
 		const regex = new RegExp(`"${key}":".*?"`, 'gm')
 		const output = [];
@@ -119,11 +117,12 @@ class YoastSEOCustomData {
 
 export const yoastSeo = () => {
 	domReady(() => {
+
 		/**
-		* Adds eventlistener to load the plugin.
+		* Adds event listener to load the plugin.
 		*/
 		if ( typeof YoastSEO !== 'undefined' && typeof YoastSEO.app !== 'undefined' ) {
-		new YoastSEOCustomData();
+			new YoastSEOCustomData();
 		} else {
 			window.addEventListener('YoastSEO:ready', () => {
 				new YoastSEOCustomData();
