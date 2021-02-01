@@ -37,51 +37,6 @@ const scriptArguments = {
         .join('_'),
     },
   },
-  prefix: {
-    type: 'text',
-    name: 'prefix',
-    describe: 'Prefix for any globals. (e.g. INF):',
-    buildFrom: {
-      name: 'projectName',
-      how: (sourceArg) => {
-
-        // Build prefix from theme name using one of 2 methods.
-        // 1. If theme name has 2 or mor more words, use first letters of each word
-        let prefix = '';
-        const sourceWords = sourceArg.split(' ');
-        if (sourceWords && sourceWords.length >= 2) {
-          for (const word of sourceWords) {
-            prefix += word.charAt(0).toUpperCase();
-          }
-        }
-
-        // 2. If theme has only 1 word, use the first 3 letters of theme name
-        if (prefix.length < 2 && sourceArg.length > 2) {
-          prefix = (`${sourceArg.charAt(0)}${sourceArg.charAt(1)}${sourceArg.charAt(2)}`).toUpperCase();
-        }
-
-        return prefix;
-      },
-    },
-  },
-  env: {
-    type: 'text',
-    name: 'env',
-    describe: 'Environment variable used for env-specific settings (e.g. INF_ENV):',
-    buildFrom: {
-      name: 'prefix',
-      how: (sourceArg) => `${sourceArg}_ENV`,
-    },
-  },
-  projectPrefix: {
-    type: 'text',
-    name: 'projectPrefix',
-    describe: 'Project prefix (e.g. esh):',
-    buildFrom: {
-      name: 'prefix',
-      how: (sourceArg) => sourceArg.toLowerCase(),
-    },
-  },
   noSummary: {
     name: 'noSummary',
     describe: 'Skip the summary prompt',
