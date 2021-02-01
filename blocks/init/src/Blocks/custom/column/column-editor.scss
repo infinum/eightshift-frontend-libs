@@ -6,3 +6,12 @@
 
 	@include column;
 }
+
+.button-group__label {
+	display: block;
+	margin-bottom: 0.3rem;
+}
+
+.button-group__label + * {
+	margin-bottom: 0.4rem;
+}
