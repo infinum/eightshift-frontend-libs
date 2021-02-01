@@ -1,4 +1,3 @@
-import React from 'react';
 import { illustrations } from '../../editor/icons';
 
 export const helperMessages = {
