@@ -16,19 +16,19 @@ import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
 import { useSelect, select as globalSelect } from '@wordpress/data';
-import { getFullBlockName, getFullBlockNameVariation } from './../editor/register-blocks';
+import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-blocks';
 
 /**
  * Create Inner Blocks.
  *
  * @param {array} innerBlocks Array of inner blocks.
- * @param {bool} isVariation Check if block is variation type.
+ * @param {boolean} isVariation Check if block is variation type.
  */
 const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 	return innerBlocks.map((blockItem) => {
 
-		let blockInner = '';
-		
+		let blockInner;
+
 		if (isVariation) {
 			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
 		} else {
@@ -53,7 +53,7 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
  *
  * @param {object} blockManifest Block Manifest data.
  * @param {object} globalManifest Global Blocks Manifest data.
- * @param {bool} isVariation Check if block is variation type. Default: false.
+ * @param {boolean} isVariation Check if block is variation type. Default: false.
  */
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
 	const blockName = getFullBlockName(globalManifest, blockManifest);
@@ -84,7 +84,7 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 		if (typeof block.example === 'undefined') {
 			throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
 		}
-	
+
 		if (typeof block.example.attributes === 'undefined') {
 			throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
 		}

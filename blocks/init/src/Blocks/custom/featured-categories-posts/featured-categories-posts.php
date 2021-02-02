@@ -47,7 +47,7 @@ global $post;
 					],
 				];
 			}
-		};
+		}
 
 		if ($excludeCurrentPost) {
 			$args['post__not_in'] = [ $post->ID ];
@@ -89,7 +89,7 @@ global $post;
 					);
 					?>
 				</div>
-			<?php }; ?>
+			<?php } ?>
 			<?php \wp_reset_postdata(); ?>
-		<?php }; ?>
+		<?php } ?>
 </div>

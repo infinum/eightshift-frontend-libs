@@ -2,10 +2,10 @@ import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
-import { ImageToolbar } from '../../../components/image/components/image-toolbar';
-import { HeadingToolbar } from '../../../components/heading/components/heading-toolbar';
-import { ParagraphToolbar } from '../../../components/paragraph/components/paragraph-toolbar';
-import { ButtonToolbar } from '../../../components/button/components/button-toolbar';
+import { ImageToolbar } from '../../image/components/image-toolbar';
+import { HeadingToolbar } from '../../heading/components/heading-toolbar';
+import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
+import { ButtonToolbar } from '../../button/components/button-toolbar';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 

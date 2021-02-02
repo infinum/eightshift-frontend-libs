@@ -1,4 +1,16 @@
+/**
+ * Cookies helper
+ */
 export const cookies = {
+
+	/**
+	 * Set a cookie value
+	 *
+	 * @param {string} key Unique cookie key.
+	 * @param {string} value Cookie value.
+	 * @param {number} time Number denoting the expiration of the cookie.
+	 * @param {string} path URL path that must exist in the requested URL in order to send the Cookie header.
+	 */
 	setCookie(key, value, time, path) {
 		const expires = new Date();
 		expires.setTime(expires.getTime() + (time));
@@ -10,6 +22,14 @@ export const cookies = {
 
 		document.cookie = `${key}=${value};${pathValue}expires=${expires.toUTCString()}`;
 	},
+
+	/**
+	 * Get a cookie
+	 *
+	 * @param {string} key Unique cookie key.
+	 *
+	 * @return Cookie value or null if the cookie doesn't exist.
+	 */
 	getCookie(key) {
 		const keyValue = document.cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
 		return keyValue ? keyValue[2] : null;

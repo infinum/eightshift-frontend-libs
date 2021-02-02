@@ -7,6 +7,7 @@
 			"imageUrl": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/logo.svg?raw=true&sanitize=true",
 			"imageAlign": "center center",
 			"imageLink": "https://infinum.github.io/eightshift-docs/",
+			"imageAlt": "Some image description",
 			"imageUse": true
 		}
 	},
@@ -36,6 +37,9 @@
 		"imageUsePlaceholder": {
 			"type": "boolean",
 			"default": false
+		},
+		"imageAlt": {
+			"type": "string"
 		},
 		"imageUse": {
 			"type": "boolean",

@@ -17,11 +17,11 @@ const areDependenciesModified = (argv) => {
  * Installs node packages and modifies the frontendLibs to a specific branch.
  *
  * @param {string} projectPath Path to the project.
- * @param {array} argv Array of CLI arguments
+ * @param {array} branch Name of the branch to pull from.
  */
 const installModifiedNodeDependencies = async (projectPath, branch) => {
   return installNodePackage(projectPath, `${eightshiftFrontendLibsRepo}#${branch} --save`);
-  
+
 };
 
 module.exports = {

@@ -82,7 +82,6 @@ const promptToBool = async(prompt) => {
   return lwrPrompt === 'y' ||
     lwrPrompt === 'yes' ||
     lwrPrompt === '1' ||
-    lwrPrompt === 1 ||
     lwrPrompt === 'confirm' ||
     lwrPrompt === 'i do';
 };

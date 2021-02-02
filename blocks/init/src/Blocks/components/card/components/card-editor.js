@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import { selector } from '@eightshift/frontend-libs/scripts/helpers';
-import { ImageEditor } from '../../../components/image/components/image-editor';
-import { HeadingEditor } from '../../../components/heading/components/heading-editor';
-import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
-import { ButtonEditor } from '../../../components/button/components/button-editor';
+import { ImageEditor } from '../../image/components/image-editor';
+import { HeadingEditor } from '../../heading/components/heading-editor';
+import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
+import { ButtonEditor } from '../../button/components/button-editor';
 import manifest from './../manifest.json';
 
 export const CardEditor = (attributes) => {
@@ -13,6 +13,10 @@ export const CardEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
+		introContent,
+		introColor,
+		introSize,
+		introAlign,
 	} = attributes;
 
 	const cardClass = classnames([
@@ -32,10 +36,10 @@ export const CardEditor = (attributes) => {
 			<HeadingEditor
 				{...attributes}
 				componentName={'intro'}
-				headingContent={attributes.introContent}
-				headingColor={attributes.introColor}
-				headingSize={attributes.introSize}
-				headingAlign={attributes.introAlign}
+				headingContent={introContent}
+				headingColor={introColor}
+				headingSize={introSize}
+				headingAlign={introAlign}
 				setAttributes={setAttributes}
 				selectorClass={'intro'}
 				blockClass={componentClass}

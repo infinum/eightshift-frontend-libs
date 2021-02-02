@@ -1,13 +1,15 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { ImageToolbar } from '../../../components/image/components/image-toolbar';
-import { HeadingToolbar } from '../../../components/heading/components/heading-toolbar';
-import { ParagraphToolbar } from '../../../components/paragraph/components/paragraph-toolbar';
-import { ButtonToolbar } from '../../../components/button/components/button-toolbar';
+import { ImageToolbar } from '../../image/components/image-toolbar';
+import { HeadingToolbar } from '../../heading/components/heading-toolbar';
+import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
+import { ButtonToolbar } from '../../button/components/button-toolbar';
 
 export const CardToolbar = (attributes) => {
 	const {
 		setAttributes,
+		introAlign,
+		introLevel,
 	} = attributes;
 
 	return (
@@ -21,8 +23,8 @@ export const CardToolbar = (attributes) => {
 			<HeadingToolbar
 				{...attributes}
 				componentName={'intro'}
-				headingAlign={attributes.introAlign}
-				headingLevel={attributes.introLevel}
+				headingAlign={introAlign}
+				headingLevel={introLevel}
 				setAttributes={setAttributes}
 			/>
 

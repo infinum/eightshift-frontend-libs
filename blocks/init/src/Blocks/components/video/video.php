@@ -65,7 +65,6 @@ switch ($videoType) {
 		<iframe
 		class="<?php echo \esc_attr($videoClass); ?>"
 		src="<?php echo \esc_url($localUrl); ?>"
-		frameBorder="0"
 		allow="<?php echo \esc_attr($videoAllow); ?>"
 		allowFullScreen
 		></iframe>

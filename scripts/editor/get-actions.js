@@ -20,7 +20,7 @@ import { ucfirst } from './ucfirst';
  * }
  * Inside actions there will be `onChangeHeadingColor` where attribute name is `heading` and object property is `color`
  *
- * @param {object} setAttributes Method for saving attribute.
+ * @param {function} setAttributes Method for saving attribute.
  * @param {object} attributes All attribute from manifest.json
  * @param {string} key Came of the property in manifest.
  * @param {object} propsAttributes Current attribute when this function executes.
@@ -32,22 +32,24 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
 
 	// Set output as a object key with anonymous function callback.
 	for (const propType in attributes[key]) {
+		if (Object.prototype.hasOwnProperty.call(attributes[key], propType)) {
 
-		// Create functions for default values.
-		if (propType === 'default') {
+			// Create functions for default values.
+			if (propType === 'default') {
 
-			for (const propName in attributes[key][propType]) {
-				if (Object.prototype.hasOwnProperty.call(attributes[key][propType], propName)) {
+				for (const propName in attributes[key][propType]) {
+					if (Object.prototype.hasOwnProperty.call(attributes[key][propType], propName)) {
 
-					output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
-						setAttributes({
-							[key]: {
-								...propsAttributes[key],
-								[propName]: value,
-							},
-						});
-					};
+						output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
+							setAttributes({
+								[key]: {
+									...propsAttributes[key],
+									[propName]: value,
+								},
+							});
+						};
 
+					}
 				}
 			}
 		}
@@ -60,7 +62,7 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  * This method is used to set attributes with single property.
  * This function generates callback for that property value.
  *
- * @param {object} setAttributes Method for saving attributes.
+ * @param {function} setAttributes Method for saving attributes.
  * @param {string} key Came of the property in manifest.
  *
  */
@@ -97,7 +99,7 @@ const singlePropsAction = (setAttributes, key) => {
  *
  * Inside actions there will be `onChangeMedia` function that will update `id` and `url` expect that a given object have those properties
  *
- * @param {object} setAttributes Method for saving attributes.
+ * @param {function} setAttributes Method for saving attributes.
  * @param {string} key Came of the property in manifest.
  *
  */

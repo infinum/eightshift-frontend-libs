@@ -39,7 +39,7 @@ export const VideoEditor = (attributes) => {
 		selector(blockClass, blockClass, selectorClass),
 	]);
 
-	let localUrl = '';
+	let localUrl;
 
 	switch (videoType) {
 		case 'vimeo':

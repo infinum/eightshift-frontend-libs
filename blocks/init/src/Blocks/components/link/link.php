@@ -39,7 +39,7 @@ if ($linkIsNewTab) {
 		],
 		$linkAttrs
 	);
-};
+}
 
 $linkWrapClass = Components::classnames([
 	Components::selector($componentClass, "{$componentClass}-wrap"),

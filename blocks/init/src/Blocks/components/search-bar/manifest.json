@@ -8,6 +8,9 @@
 			"searchBarPostType": "any",
 			"searchBarAction": "#",
 			"searchBarPlaceholder": "Type in search",
+			"searchBarId": "search",
+			"searchBarLabel": "Search",
+			"searchBarLabelShow": true,
 			"searchBarUse": true
 		}
 	},
@@ -27,6 +30,18 @@
 		"searchBarPlaceholder": {
 			"type": "string",
 			"default": "Type in search"
+		},
+		"searchBarLabel": {
+			"type": "string",
+			"default": "Search"
+		},
+		"searchBarId": {
+			"type": "string",
+			"default": "search"
+		},
+		"searchBarLabelShow": {
+			"type": "boolean",
+			"default": true
 		},
 		"searchBarUse": {
 			"type": "boolean",

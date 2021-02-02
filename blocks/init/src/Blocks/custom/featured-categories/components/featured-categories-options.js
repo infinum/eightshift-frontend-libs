@@ -35,7 +35,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 		});
 	});
 
-	// Fetch all taxonomy terms based on the selected taxomomy.
+	// Fetch all taxonomy terms based on the selected taxonomy.
 	const termsOptions = useSelect((select) => {
 		const { getEntityRecords } = select('core');
 

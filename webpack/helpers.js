@@ -12,6 +12,7 @@ const path = require('path');
  * @param {string} proxyUrl Used for providing browsersync functionality.
  * @param {string} projectPathConfig Project path relative to project root.
  * @param {string} assetsPathConfig Assets path after projectPath location.
+ * @param {string} blocksAssetsPathConfig Path of the block assets.
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
@@ -47,7 +48,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
 		// Output files absolute location.
 		outputPath: path.resolve(absolutePath, outputPathConfigClean),
 
-		// Output files relative location, added before every output file in manifes.json. Should start and end with "/".
+		// Output files relative location, added before every output file in manifest.json. Should start and end with "/".
 		publicPath: path.join('/', projectPathConfigClean, outputPathConfigClean, '/'),
 
 		// Source files entries absolute locations.
@@ -63,7 +64,7 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
 /**
  * Convert Recursive Json data only for colors to SASS valid output.
  *
- * @param object Json data only for colors.
+ * @param {object} data Json data only for colors.
  */
 function convertJsonColorsToSass(data) {
 	let output = '';
@@ -87,7 +88,7 @@ function convertJsonColorsToSass(data) {
 /**
  * Convert Recursive Json data to SASS valid output.
  *
- * @param object Json data to convert.
+ * @param {object} data Json data to convert.
  */
 function convertJsonToSassGeneral(data) {
 	let output = '';
@@ -115,7 +116,7 @@ function convertJsonToSassGeneral(data) {
 /**
  * Convert Json to SASS valid output and prefix it with map key.
  *
- * @param object Json Data object.
+ * @param {object} data Json Data object.
  */
 function convertJsonToSass(data = {}) {
 	return (data === '') ? '' : `$global-variables: (${convertJsonToSassGeneral(data.globalVariables)});`;
