@@ -19,6 +19,7 @@ export const ImageEditor = (attributes) => {
 		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
 		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
+		imageAlt = checkAttr('imageAlt', attributes, manifest, componentName),
 		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
 		imageBg = checkAttr('imageBg', attributes, manifest, componentName),
@@ -46,7 +47,7 @@ export const ImageEditor = (attributes) => {
 							<Fragment>
 								{imageBg ?
 									<div className={imageClass} style={{ backgroundImage: `url(${imageUrl})` }} /> :
-									<img className={imageClass} src={imageUrl} alt="" />
+									<img className={imageClass} src={imageUrl} alt={imageAlt} />
 								}
 							</Fragment>
 						}
@@ -56,7 +57,12 @@ export const ImageEditor = (attributes) => {
 								{(!imageUsePlaceholder) ?
 									<MediaPlaceholder
 										icon="format-image"
-										onSelect={(value) => setAttributes({ [`${componentName}Url`]: value.url })}
+										onSelect={(value) => {
+											setAttributes({
+												[`${componentName}Url`]: value.url,
+												[`${componentName}Alt`]: value.alt
+											});
+										}}
 										accept={imageAccept}
 										allowedTypes={imageAllowedTypes}
 									/> :

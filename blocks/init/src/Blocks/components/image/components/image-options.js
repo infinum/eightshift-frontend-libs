@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl, Icon } from '@wordpress/components';
+import { ToggleControl, Icon, TextControl } from '@wordpress/components';
 import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -19,6 +19,7 @@ export const ImageOptions = (attributes) => {
 		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
 		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
+		imageAlt = checkAttr('imageAlt', attributes, manifest, componentName),
 		imageLink = checkAttr('imageLink', attributes, manifest, componentName),
 		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
@@ -26,6 +27,7 @@ export const ImageOptions = (attributes) => {
 		imageUsePlaceholder = checkAttr('imageUsePlaceholder', attributes, manifest, componentName),
 
 		showImageUrl = true,
+		showImageAlt = true,
 		showImageLink = true,
 		showImageBg = true,
 	} = attributes;
@@ -55,7 +57,10 @@ export const ImageOptions = (attributes) => {
 						<MediaPlaceholder
 							icon="format-image"
 							onSelect={(value) => {
-								setAttributes({ [`${componentName}Url`]: value.url });
+								setAttributes({
+									[`${componentName}Url`]: value.url,
+									[`${componentName}Alt`]: value.alt
+								});
 							}}
 							accept={imageAccept}
 							allowedTypes={imageAllowedTypes}
@@ -64,9 +69,17 @@ export const ImageOptions = (attributes) => {
 
 					<br />
 
+					{showImageAlt &&
+						<TextControl
+							label={__('Image alt tag', 'eightshift-frontend-libs')}
+							value={imageAlt}
+							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
+						/>
+					}
+
 					{showImageBg &&
 						<ToggleControl
-							label={__('Use as a background Image', 'eightshift-frontend-libs')}
+							label={__('Use as a background image', 'eightshift-frontend-libs')}
 							checked={imageBg}
 							onChange={(value) => setAttributes({ [`${componentName}Bg`]: value })}
 						/>
