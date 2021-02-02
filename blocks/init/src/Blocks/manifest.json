@@ -1,7 +1,7 @@
 {
 	"namespace": "eightshift-boilerplate",
-	"background": "#900000",
-	"foreground": "#FFFFFF",
+	"background": "#FFFFFF",
+	"foreground": "#0D3636",
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,
