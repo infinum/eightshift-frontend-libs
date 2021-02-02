@@ -60,7 +60,12 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonUrl &&
 						<URLInput
-							label={__('Url', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.link} />
+									{__('URL', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={buttonUrl}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
@@ -73,7 +78,6 @@ export const ButtonOptions = (attributes) => {
 								<Fragment>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-
 								</Fragment>
 							}
 							value={buttonColor}
@@ -84,7 +88,12 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.size} />
+									{__('Size', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={buttonSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
@@ -93,7 +102,12 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonWidth &&
 						<SelectControl
-							label={__('Width', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.width} />
+									{__('Width', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={buttonWidth}
 							options={options.widths}
 							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
@@ -119,7 +133,12 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonId &&
 						<TextControl
-							label={__('ID', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.id} />
+									{__('ID', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={buttonId}
 							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>

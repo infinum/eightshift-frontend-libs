@@ -1,8 +1,9 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, Icon } from '@wordpress/components';
 import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
@@ -65,7 +66,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageBg &&
 						<ToggleControl
-							label={__('Use as Background Image', 'eightshift-frontend-libs')}
+							label={__('Use as a background Image', 'eightshift-frontend-libs')}
 							checked={imageBg}
 							onChange={(value) => setAttributes({ [`${componentName}Bg`]: value })}
 						/>
@@ -73,7 +74,12 @@ export const ImageOptions = (attributes) => {
 
 					{showImageLink &&
 						<URLInput
-							label={__('Url', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.link} />
+									{__('URL', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={imageLink}
 							autoFocus={false}
 							onChange={(value) => setAttributes({ [`${componentName}Link`]: value })}

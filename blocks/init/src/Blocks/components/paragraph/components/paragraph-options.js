@@ -62,7 +62,12 @@ export const ParagraphOptions = (attributes) => {
 
 					{showParagraphSize &&
 						<SelectControl
-							label={__('Size', 'eightshift-frontend-libs')}
+							label={
+								<Fragment>
+									<Icon icon={icons.textSize} />
+									{__('Text size', 'eightshift-frontend-libs')}
+								</Fragment>
+							}
 							value={paragraphSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
