@@ -26,12 +26,20 @@ $searchBarAction = Components::checkAttr('searchBarAction', $attributes, $manife
 $searchBarPlaceholder = Components::checkAttr('searchBarPlaceholder', $attributes, $manifest, $componentName);
 $searchBarId = Components::checkAttr('searchBarId', $attributes, $manifest, $componentName);
 $searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest, $componentName);
-$searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest, $componentName);
 $searchBarLabelShow = Components::checkAttr('searchBarLabelShow', $attributes, $manifest, $componentName);
 
 $searchClass = Components::classnames([
 	$componentClass,
 	Components::selector($blockClass, $blockClass, $selectorClass),
+]);
+
+$inputClass = Components::classnames([
+	Components::selector($componentClass, $componentClass, 'input'),
+]);
+
+$labelClass = Components::classnames([
+	Components::selector($componentClass, $componentClass, 'label'),
+	Components::selector(!$searchBarLabelShow, $componentClass, 'label', 'hidden'),
 ]);
 
 ?>
@@ -42,15 +50,17 @@ $searchClass = Components::classnames([
 	class="<?php echo \esc_attr($searchClass); ?>"
 	action="<?php echo \esc_url($searchBarAction); ?>"
 >
-	<?php if ($searchBarLabelShow) { ?>
-		<label for="<?php echo \esc_attr($searchBarId); ?>"><?php echo \esc_html($searchBarLabel); ?></label>
-	<?php } ?>
+	<label
+		class="<?php echo \esc_attr($labelClass); ?>"
+		for="<?php echo \esc_attr($searchBarId); ?>">
+		    <?php echo \esc_html($searchBarLabel); ?>
+	</label>
 	<input
 		type="text"
 		value="<?php echo \get_search_query(); ?>"
 		name="s"
 		id="<?php echo \esc_attr($searchBarId); ?>"
-		class="<?php echo \esc_attr("{$componentClass}__input"); ?>"
+		class="<?php echo \esc_attr($inputClass); ?>"
 		placeholder="<?php echo \esc_attr($searchBarPlaceholder); ?>"
 	/>
 	<input type="hidden" name="post_type" value="<?php echo \esc_attr($searchBarPostType); ?>" />

@@ -17,12 +17,24 @@ export const SearchBarEditor = (attributes) => {
 		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest, componentName),
 		searchBarAction = checkAttr('searchBarAction', attributes, manifest, componentName),
 		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest, componentName),
+		searchBarId = checkAttr('searchBarId', attributes, manifest, componentName),
+		searchBarLabel = checkAttr('searchBarLabel', attributes, manifest, componentName),
+		searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest, componentName),
 	} = attributes;
 
 	const searchClass = classnames(
 		componentClass,
 		selector(blockClass, blockClass, selectorClass),
 	);
+
+	const inputClass = classnames([
+		selector(componentClass, componentClass, 'input'),
+	]);
+
+	const labelClass = classnames([
+		selector(componentClass, componentClass, 'label'),
+		selector(! searchBarLabelShow, componentClass, 'label', 'hidden'),
+	]);
 
 	return (
 		<Fragment>
@@ -33,13 +45,24 @@ export const SearchBarEditor = (attributes) => {
 					className={searchClass}
 					action={searchBarAction}
 				>
+					<label
+						className={labelClass}
+						htmlFor={searchBarId}
+					>
+							{searchBarLabel}
+					</label>
 					<input
 						type="text"
 						name="s"
-						className={`${componentClass}__input`}
+						id={searchBarId}
+						className={inputClass}
 						placeholder={searchBarPlaceholder}
 					/>
-					<input type="hidden" name="post_type" value={searchBarPostType} />
+					<input
+						type="hidden"
+						name="post_type"
+						value={searchBarPostType}
+					/>
 				</form>
 			}
 		</Fragment>
