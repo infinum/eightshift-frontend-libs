@@ -105,7 +105,9 @@
 		"globals": {
 			"NODE_ENV": "test"
 		},
-		"transformIgnorePatterns": ["/node_modules/"],
+		"transformIgnorePatterns": [
+			"/node_modules/"
+		],
 		"moduleFileExtensions": [
 			"js"
 		],
