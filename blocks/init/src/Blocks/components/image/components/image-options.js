@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl, Icon, TextControl } from '@wordpress/components';
+import { ToggleControl, Icon, TextareaControl } from '@wordpress/components';
 import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -70,7 +70,7 @@ export const ImageOptions = (attributes) => {
 					<br />
 
 					{showImageAlt &&
-						<TextControl
+						<TextareaControl
 							label={__('Image alt tag', 'eightshift-frontend-libs')}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
