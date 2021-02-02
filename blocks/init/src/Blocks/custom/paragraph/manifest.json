@@ -4,7 +4,7 @@
 	"description" : "Paragraph block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "editor-paragraph"
+		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2807 -422)' fill='none' fill-rule='evenodd'><path fill='none' d='M2807 422h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2808' y='423' width='18' height='18' rx='1.5'/><g fill='currentColor' fill-opacity='.12'><path d='M2809 423h1v18h-1a1 1 0 01-1-1v-16a1 1 0 011-1zM2810 439h16v1a1 1 0 01-1 1h-15v-2z'/></g><g fill='currentColor'><path fill-opacity='.12' d='M2817.783 426.877h2v11.151h-2z'/><path d='M2818.115 438.027V427.77h1.053v10.257h1.022V426.5h-3.834c-.981 0-1.703.269-2.164.806-.461.538-.692 1.356-.692 2.457 0 1.062.215 1.857.644 2.386.43.53 1.102.794 2.016.794.355 0 .664-.038.926-.114v5.198h1.029z' fill-rule='nonzero'/></g></g></svg>"
 	},
 	"keywords": [
 		"paragraph",
