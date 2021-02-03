@@ -58,7 +58,8 @@ export const ImageOptions = (attributes) => {
 							icon="format-image"
 							onSelect={(value) => {
 								setAttributes({
-									[`${componentName}Url`]: value.url
+									[`${componentName}Url`]: value.url,
+									[`${componentName}Alt`]: value.alt
 								});
 							}}
 							accept={imageAccept}
