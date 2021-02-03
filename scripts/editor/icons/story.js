@@ -60,7 +60,6 @@ const IconsOutput = (props) => {
 	);
 };
 
-
 export const ComponentsIcons = () => (
 	<IconsOutput label={'Components Icons'} icons={icons} />
 );
