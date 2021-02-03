@@ -1,4 +1,4 @@
-import { illustrations } from '../../editor/icons';
+import { illustrations } from '../../editor/icons/icons';
 
 export const helperMessages = {
     "columns": [
