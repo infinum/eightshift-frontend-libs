@@ -13,16 +13,25 @@ module.exports = (options) => {
 
 	// Use BrowserSync to see live preview of all changes.
 	if (!options.overrides.includes('browserSyncPlugin')) {
-		plugins.push(new BrowserSyncPlugin({
+		const syncConfig = {
 			host: 'localhost',
 			port: 3000,
-			proxy: options.config.proxyUrl,
-		}, {
+			proxy: `http://${options.config.proxyUrl}`,
+		};
 
-			// prevent BrowserSync from reloading the page
-			// and let Webpack Dev Server take care of this
-			reload: false,
-		}));
+		if (options.config.useSsl) {
+			syncConfig.proxy = `https://${options.config.proxyUrl}`;
+			syncConfig.https = true;
+		}
+
+		plugins.push(new BrowserSyncPlugin(
+			syncConfig,
+			{
+				// prevent BrowserSync from reloading the page
+				// and let Webpack Dev Server take care of this
+				reload: false,
+			}
+		));
 	}
 
 	return {
