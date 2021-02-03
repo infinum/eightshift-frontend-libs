@@ -5,17 +5,11 @@ $icon: (
 				background-color: global-settings(colors, primary),
 				color: global-settings(colors, white),
 			),
-			hover: (
-				background-color: global-settings(colors, black),
-			),
 		),
 		black: (
 			normal: (
 				background-color: global-settings(colors, black),
 				color: global-settings(colors, white),
-			),
-			hover: (
-				background-color: global-settings(colors, primary),
 			),
 		),
 	),

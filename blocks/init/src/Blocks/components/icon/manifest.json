@@ -5,15 +5,10 @@
 	"example": {
 		"attributes": {
 			"iconName": "play",
-			"iconColor": "primary",
 			"iconUse": true
 		}
 	},
 	"attributes": {
-		"iconColor": {
-			"type": "string",
-			"default": "primary"
-		},
 		"iconName": {
 			"type": "string",
 			"default": "play"
@@ -85,12 +80,6 @@
 				"label": "Rounded rectangle",
 				"value": "rounded-rectangle"
 			}
-		],
-		"colors": [
-			"primary",
-			"black",
-			"light",
-			"white"
 		]
 	},
 	"icons": {

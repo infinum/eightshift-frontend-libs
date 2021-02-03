@@ -14,13 +14,11 @@ export const IconEditor = (attributes) => {
 		blockClass,
 
 		iconUse = checkAttr('iconUse', attributes, manifest, componentName),
-		iconColor = checkAttr('iconColor', attributes, manifest, componentName),
 		iconName = checkAttr('iconName', attributes, manifest, componentName),
 	} = attributes;
 
 	const iconClass = classnames([
 		componentClass,
-		selector(iconColor, componentClass, 'color', iconColor),
 		selector(blockClass, blockClass, selectorClass),
 	]);
 
