@@ -1,25 +1,5 @@
-$icon: (
-	colors: (
-		primary: (
-			normal: (
-				background-color: global-settings(colors, primary),
-				color: global-settings(colors, white),
-			),
-		),
-		black: (
-			normal: (
-				background-color: global-settings(colors, black),
-				color: global-settings(colors, white),
-			),
-		),
-	),
-);
-
 .icon {
 	display: inline-flex;
 	transition: color 0.3s ease-in-out;
-
-	&__color {
-		@include link-modifiers($icon, colors);
-	}
+	color: inherit;
 }
