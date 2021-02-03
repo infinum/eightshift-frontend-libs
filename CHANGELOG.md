@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.4] - 2021-02-03
+
+### Added
+- Vertical align to column block.
+- Implemented new icons set for component, blocks and helper modal.
+- YoastSeo plugin helper to be able to process content for analysis.
+- Image component added alt option.
+### Changed
+- Better documentation for helper modal.
+- Cleanup for documentation.
+
 ## [4.0.3] - 2021-01-26
 
 ### Added
@@ -399,6 +410,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[4.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.3...v4.0.4
 [4.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.2...v4.0.3
 [4.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.0...v4.0.1
