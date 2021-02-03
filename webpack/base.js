@@ -47,6 +47,7 @@ module.exports = (options) => {
 	// Enable export for all WordPress related packages
 	if (!options.overrides.includes('DependencyExtractionWebpackPlugin')) {
 		plugins.push(new DependencyExtractionWebpackPlugin({
+			outputFormat: 'json',
 			requestToExternal: function ( request ) {
 				if ( request === '@wordpress/dom-ready' ) {
 					return '';
