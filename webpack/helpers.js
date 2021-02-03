@@ -12,6 +12,7 @@ const path = require('path');
  * @param {string} proxyUrl Used for providing browsersync functionality.
  * @param {string} projectPathConfig Project path relative to project root.
  * @param {string} assetsPathConfig Assets path after projectPath location.
+ * @param {string} blocksAssetsPathConfig Path of the block assets.
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  * @param {boolean} useSsl Change configuration if you have local ssl certificate, generally used only for BrowserSync.
