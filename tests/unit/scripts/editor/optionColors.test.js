@@ -40,8 +40,6 @@ const coreColors = {
 	}
 };
 
-jest.mock('../../../../scripts/editor/get-palette-colors');
-
 it('tests optionColors helper returns correct color subset', () => {
 	const colors = getOptionColors(["primary", "white"]);
 
