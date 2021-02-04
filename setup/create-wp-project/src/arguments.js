@@ -26,7 +26,7 @@ const scriptArguments = {
   namespace: {
     type: 'text',
     name: 'namespace',
-    describe: 'Namespace for your project / files (e.g. Package_Name):',
+    describe: 'Namespace for your project / files (e.g. PackageName):',
     buildFrom: {
       name: 'projectName',
       how: (sourceArg) => sourceArg
@@ -34,7 +34,7 @@ const scriptArguments = {
         .toLowerCase()
         .split(/[ _]+/) // split on space and underscore
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize first letter of each word
-        .join('_'),
+        .join(''),
     },
   },
   noSummary: {
