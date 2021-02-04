@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.5] - 2021-02-04
+
+### Changed
+- DependencyExtractionWebpackPlugin added config to json file as dependency tree.
+
+### Added
+- New config for webpack to use https in browserSync
+
 ## [4.0.4] - 2021-02-03
 
 ### Added
@@ -410,6 +418,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[4.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.4...v4.0.5
 [4.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.3...v4.0.4
 [4.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.2...v4.0.3
 [4.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.1...v4.0.2
