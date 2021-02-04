@@ -72,5 +72,5 @@ jobs:
             - name: Install node packages
               run: npm install
 
-            - name: Run linters
+            - name: Run unit tests
               run: npm run testUnit
