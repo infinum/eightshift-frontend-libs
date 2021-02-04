@@ -102,8 +102,13 @@
 	"jest": {
 		"verbose": true,
 		"transform": {
-			"\\.js$": [ "babel-jest", { "configFile": "./babel/babel.config.js" }]
-    },
+			"\\.js$": [
+				"babel-jest",
+				{
+					"configFile": "./babel/babel.config.js"
+				}
+			]
+		},
 		"setupFiles": [
 			"./tests/setup-global.js"
 		]
