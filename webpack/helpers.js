@@ -15,9 +15,19 @@ const path = require('path');
  * @param {string} blocksAssetsPathConfig Path of the block assets.
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
+ * @param {boolean} useSsl Change configuration if you have local ssl certificate, generally used only for BrowserSync.
  *
  */
-function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = 'assets', blocksAssetsPathConfig = 'src/Blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/Blocks/manifest.json') {
+function getConfig(
+		projectDir,
+		proxyUrl,
+		projectPathConfig,
+		assetsPathConfig = 'assets',
+		blocksAssetsPathConfig = 'src/Blocks/assets',
+		outputPathConfig = 'public',
+		blocksManifestSettingsPath = 'src/Blocks/manifest.json',
+		useSsl = false
+	) {
 
 	if (typeof projectDir === 'undefined') {
 		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
@@ -58,6 +68,8 @@ function getConfig(projectDir, proxyUrl, projectPathConfig, assetsPathConfig = '
 		applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
 
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
+
+		useSsl,
 	};
 }
 
