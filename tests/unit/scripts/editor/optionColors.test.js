@@ -4,6 +4,8 @@
  * @group unit
  */
 
+const { getOptionColors } = require('../../../../scripts/editor/get-option-colors');
+
 // Mock for getPaletteColors() return value.
 const coreColors = {
 	"primary": {
@@ -44,8 +46,6 @@ jest.mock('../../../../scripts/editor/get-palette-colors', () => ({
 	__esModule: true,
 	getPaletteColors: mockGetPaletteColors
 }));
-
-import { getOptionColors } from '../../../../scripts/editor/get-option-colors';
 
 it('tests optionColors helper returns correct color subset', () => {
 	const colors = getOptionColors(["primary", "white"]);
