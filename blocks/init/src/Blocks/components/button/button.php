@@ -53,7 +53,7 @@ $buttonClass = Components::classnames([
 	Components::selector($buttonColor, $componentClass, 'color', $buttonColor),
 	Components::selector($buttonSize, $componentClass, 'size', $buttonSize),
 	Components::selector($buttonWidth, $componentClass, 'size-width', $buttonWidth),
-	Components::selector($buttonIsAnchor, $buttonIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
