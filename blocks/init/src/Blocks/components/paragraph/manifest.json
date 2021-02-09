@@ -53,5 +53,12 @@
 			"primary",
 			"black"
 		]
-	}
+	},
+	"pasteAllowTags": [
+		"strong",
+		"em",
+		"b",
+		"i",
+		"span"
+	]
 }
