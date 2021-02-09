@@ -122,31 +122,42 @@ export const getMergeCallback = (blockManifest) => {
 		return (receiver, merger) => {
 			let outputObject = {};
 
+			// Remove numbers
+			const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
+
+			// Remove value labels (= everything but numbers)
+			const receiverValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
+			const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
+
+			const calculatedValue = receiverValue + mergerValue;
+
 			for (const { attribute, mergeStrategy } of mergeableAttributes) {
 				switch (mergeStrategy) {
-					case "append":
+					case "append": {
 						outputObject[attribute] = `${receiver[attribute] ?? ''}${merger[attribute] ?? ''}`;
 						break;
-					case "useDestinationAttribute":
+					}
+					case "useDestinationAttribute": {
 						outputObject[attribute] = merger[attribute] ?? ''
 						break;
-					case "addNumericIntValue":
+					}
+					case "addNumericIntValue": {
 						outputObject[attribute] = parseInt(receiver[attribute] ?? '0') + parseInt(merger[attribute] ?? '0');
 						break;
-					case "addNumericFloatValue":
+					}
+					case "addNumericFloatValue": {
 						outputObject[attribute] = parseFloat(receiver[attribute] ?? '0') + parseFloat(merger[attribute] ?? '0');
 						break;
-					case "addNumericPixelValue":
-						const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
-						const receiverValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const calculatedValue = receiverValue + mergerValue;
+					}
+					case "addNumericPixelValue": {
 						outputObject[attribute] = `${calculatedValue}${receiverUnit}`
 						break;
-					default:
+					}
+					default: {
 						// "useSourceAttribute" is default
 						outputObject[attribute] = receiver[attribute] ?? ''
 						break;
+					}
 				}
 			}
 
