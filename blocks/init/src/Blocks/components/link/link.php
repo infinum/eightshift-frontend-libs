@@ -52,7 +52,7 @@ $linkClass = Components::classnames([
 	$componentClass,
 	Components::selector($linkColor, $componentClass, 'color', $linkColor),
 	Components::selector($linkSize, $componentClass, 'size', $linkSize),
-	Components::selector($linkIsAnchor, $linkIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($linkIsAnchor, 'js-scroll-to-anchor'),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
