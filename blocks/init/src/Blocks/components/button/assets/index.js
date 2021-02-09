@@ -1,7 +1,7 @@
 import domReady from '@wordpress/dom-ready';
 
 domReady(() => {
-	const selector = '.js-scroll-to-target';
+	const selector = '.js-scroll-to-anchor';
 	const elements = document.querySelectorAll(selector);
 
 	[...elements].forEach((element) => {
