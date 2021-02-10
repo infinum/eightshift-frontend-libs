@@ -4,7 +4,7 @@
 	"description" : "Link block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><path d='M7.25 6a.75.75 0 01.11 1.492l-.11.008H5a3.5 3.5 0 00-.206 6.994L5 14.5h2.25a.75.75 0 01.11 1.492L7.25 16H5a5 5 0 01-.25-9.994L5 6h2.25zM15 6a5 5 0 01.25 9.994L15 16h-2.25a.75.75 0 01-.11-1.492l.11-.008H15a3.5 3.5 0 00.206-6.994L15 7.5h-2.25a.75.75 0 01-.11-1.492L12.75 6H15zM5 10.25h10a.75.75 0 01.102 1.493L15 11.75H5a.75.75 0 01-.102-1.493L5 10.25h10H5z' fill-opacity='.12' fill='currentColor' fill-rule='nonzero'/><path d='M7.25 5a.75.75 0 01.11 1.492l-.11.008H5a3.5 3.5 0 00-.206 6.994L5 13.5h2.25a.75.75 0 01.11 1.492L7.25 15H5a5 5 0 01-.25-9.994L5 5h2.25zM15 5a5 5 0 01.25 9.994L15 15h-2.25a.75.75 0 01-.11-1.492l.11-.008H15a3.5 3.5 0 00.206-6.994L15 6.5h-2.25a.75.75 0 01-.11-1.492L12.75 5H15zM5 9.25h10a.75.75 0 01.102 1.493L15 10.75H5a.75.75 0 01-.102-1.493L5 9.25h10H5z' fill='currentColor' fill-rule='nonzero'/></g></svg>"
+		"name": "link"
 	},
 	"keywords": [
 		"link",

@@ -4,7 +4,7 @@
 	"description" : "Example Description",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='21' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2760 -979)' fill='none' fill-rule='evenodd'><path fill='none' d='M2760 979.5h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2761' y='980.5' width='18' height='18' rx='1.5'/><g stroke='currentColor' stroke-linejoin='round' stroke-width='1.5'><path d='M2768.668 989.147c.4 2.23.109 4.179-.871 5.846-1.47 2.5-5.493 1.48-4.53-1.239.642-1.812 2.443-3.347 5.401-4.607z'/><path d='M2768.06 989.44c-.23-2.287.207-4.22 1.309-5.8 1.653-2.37 5.584-.932 4.419 1.708-.777 1.76-2.687 3.124-5.729 4.091z'/></g><g stroke='currentColor' stroke-linecap='round' stroke-width='1.5'><path stroke-linejoin='round' d='M2771.662 992.152l2.68-2.388 1.184 3.423'/><path d='M2774.018 990.662l-1.504 4.67'/></g></g></svg>"
+		"name": "example"
 	},
 	"keywords": [
 		"Example Keyword"

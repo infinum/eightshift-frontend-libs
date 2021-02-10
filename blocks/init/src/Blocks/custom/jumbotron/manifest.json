@@ -4,7 +4,7 @@
 	"description" : "Jumbotron block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='21' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2760 -735)' fill='none' fill-rule='evenodd'><path fill='none' d='M2760 735.5h20v20h-20z'/><path fill-opacity='.12' fill='currentColor' d='M2761 737h18v10h-18z'/><rect stroke='currentColor' stroke-width='1.5' x='2761' y='736.5' width='18' height='18' rx='1.5'/><g stroke='currentColor' stroke-linecap='round' stroke-width='1.5'><path d='M2764.5 740.75h11M2766.5 743.75h7'/></g><rect stroke='currentColor' stroke-width='1.5' stroke-linejoin='round' x='2766.5' y='749' width='7' height='3' rx='1.5'/></g></svg>"
+		"name": "jumbotron"
 	},
 	"keywords": [
 		"jumbotron",

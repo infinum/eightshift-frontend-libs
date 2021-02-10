@@ -4,7 +4,7 @@
 	"description" : "Button block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><g transform='translate(1 6)' stroke='currentColor' stroke-width='1.5'><rect fill-opacity='.12' fill='currentColor' width='18' height='8' rx='1.5'/><path stroke-linecap='round' d='M5 4h8'/></g></g></svg>"
+		"name": "button"
 	},
 	"keywords": [
 		"button",

@@ -4,7 +4,7 @@
 	"description" : "Columns block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><g transform='translate(1 1)' fill='currentColor' fill-opacity='.12' stroke='currentColor' stroke-width='1.5'><rect width='4.5' height='18' rx='1.5'/><rect x='6.75' width='4.5' height='18' rx='1.5'/><rect x='13.5' width='4.5' height='18' rx='1.5'/></g></g></svg>"
+		"name": "columns"
 	},
 	"keywords": [
 		"columns"

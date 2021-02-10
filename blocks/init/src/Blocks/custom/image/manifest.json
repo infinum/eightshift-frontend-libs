@@ -4,7 +4,7 @@
 	"description" : "Image block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2761 -317)' fill='none' fill-rule='evenodd'><path fill='none' d='M2761 317h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2762' y='318' width='18' height='18' rx='1.5'/><g stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'><path d='M2777.5 331.146l-3.065-3.146-2.91 3.146'/><path d='M2772.986 329.573l-3.473-4.553-4.826 5.583'/></g><circle fill='currentColor' cx='2774.5' cy='323.5' r='1.5'/><path fill-opacity='.12' fill='currentColor' d='M2764.624 331.319l6.901.553h6.011l-2.871-3.623-1.489 1.324-3.481-4.203z'/></g></svg>"
+		"name": "image"
 	},
 	"keywords": [
 		"image",

@@ -4,7 +4,7 @@
 	"description" : "lists block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><g transform='translate(3 2.75)' fill='currentColor' fill-opacity='.12' stroke='currentColor' stroke-width='1.5'><circle cx='1.5' cy='1.5' r='1.5'/><circle cx='1.5' cy='7.5' r='1.5'/><circle cx='1.5' cy='13.5' r='1.5'/></g><path stroke='currentColor' stroke-width='1.5' stroke-linecap='round' d='M9.5 4.25H17M9.5 10.25H17M9.5 16.25H17'/></g></svg>"
+		"name": "lists"
 	},
 	"keywords": [
 		"lists",

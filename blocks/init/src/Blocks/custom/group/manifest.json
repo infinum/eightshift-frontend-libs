@@ -4,7 +4,7 @@
 	"description" : "Group block used to grouping multiple blocks.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2761 -247)' fill='none' fill-rule='evenodd'><path fill='none' d='M2761 247h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2765' y='251' width='8' height='8' rx='1.5'/><rect stroke='currentColor' stroke-width='1.5' x='2769' y='255' width='8' height='8' rx='1.5'/><path d='M2762.023 252v-2.5a1.5 1.5 0 011.5-1.5h2.5M2762.023 262v2.5a1.5 1.5 0 001.5 1.5h2.5M2780.023 252v-2.5a1.5 1.5 0 00-1.5-1.5h-2.5 0M2780.023 262v2.5a1.5 1.5 0 01-1.5 1.5h-2.5 0' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path fill-opacity='.12' fill='currentColor' d='M2769 255h4v4h-4z'/></g></svg>"
+		"name": "group"
 	},
 	"keywords": [
 		"container",
