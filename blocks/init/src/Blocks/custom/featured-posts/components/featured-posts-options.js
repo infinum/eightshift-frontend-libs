@@ -59,7 +59,6 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 		const data = allowedTaxonomies.map((element) => getTaxonomy(element)) ?? [];
 
-		
 		if (!data.length) {
 			return [];
 		}
