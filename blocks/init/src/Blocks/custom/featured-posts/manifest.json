@@ -13,7 +13,10 @@
 	"example": {
 		"attributes": {
 			"query": {
-				"postType": "post"
+				"postType": "post",
+				"taxonomy": "",
+				"terms": [],
+				"posts": []
 			},
 			"itemsPerLine": 4,
 			"showItems": 20,
@@ -25,6 +28,8 @@
 			"type": "object",
 			"default": {
 				"postType": "post",
+				"taxonomy": "",
+				"terms": [],
 				"posts": []
 			},
 			"items": {
@@ -51,6 +56,9 @@
 		"postTypes": [
 			"post",
 			"page"
+		],
+		"taxonomies": [
+			"category"
 		]
 	},
 	"options": {

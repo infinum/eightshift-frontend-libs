@@ -73,6 +73,8 @@
 		"promisify-child-process": "^4.1.1",
 		"raw-loader": "^4.0.2",
 		"react-html-parser": "^2.0.2",
+		"react-select": "^4.1.0",
+		"react-sortable-hoc": "^1.11.0",
 		"sass-loader": "^10.1.0",
 		"style-loader": "^2.0.0",
 		"stylelint": "^13.8.0",

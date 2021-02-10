@@ -24,6 +24,8 @@ global $post;
 <div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
 	<?php
 		$postType = $query['postType'];
+		$taxonomy = $query['taxonomy'];
+		$terms = $query['terms'];
 		$posts = $query['posts'];
 
 		$args = [
@@ -31,12 +33,36 @@ global $post;
 			'posts_per_page' => $showItems,
 		];
 
+		if ($taxonomy) {
+                      $args['tax_query'][0] = [
+				'taxonomy' => $taxonomy,
+				'field' => 'id',
+			];
+							
+			if ($terms) {
+				$args['tax_query'][0]['terms'] = array_map(
+					function ($item) {
+						return $item['value'];
+					},
+					$terms
+				);
+			} else {
+				$args['tax_query'][0]['operator'] = 'NOT IN'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			}
+		};
+
 		if ($excludeCurrentPost) {
 			$args['post__not_in'] = [ $post->ID ];
 		}
 
 		if ($posts) {
-			$args['post__in'] = $posts;
+			$args['post__in'] = array_map(
+				function ($item) {
+					return $item['value'];
+				},
+				$posts
+			);
+			$args['orderby'] = 'post__in';
 		}
 
 		$theQuery = new \WP_Query($args);
@@ -67,11 +93,9 @@ global $post;
 
 				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 					<?php
-					echo wp_kses_post(
-						Components::render(
-							'card',
-							$cardProps
-						)
+					echo Components::render( // phpcs:ignore
+						'card',
+						$cardProps
 					);
 					?>
 				</div>

@@ -1,9 +1,11 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
+import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 const { attributes: reset, options } = manifest;
@@ -49,7 +51,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 
 		return [
 			{
-				label: __('All', 'eightshift-frontend-libs'),
+				label: __('No Filter used', 'eightshift-frontend-libs'),
 				value: '',
 			},
 			...termsList.map((item) => {
@@ -83,11 +85,12 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			}
 
 			{(taxonomyOptions[0] && taxonomy) ?
-				<SelectControl
-					label={__('Category Items', 'eightshift-frontend-libs')}
-					value={terms}
-					multiple
+				<CustomSelect
+					label={sprintf(__('Filter by %s', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
+					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
 					options={termsOptions}
+					value={terms}
+					multiple={true}
 					onChange={(value) => {
 						setAttributes({
 							query: {
@@ -103,7 +106,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.totalItems} />
+						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
