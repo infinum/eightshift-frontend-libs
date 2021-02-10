@@ -155,7 +155,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			{(postTypeOptions && taxonomyOptions) ?
 				<SelectControl
 					label={sprintf(__('Filter by %s available taxonomies', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
-					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered by any category.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					help={sprintf(__('If the `No Filter` value is selected, your %s posts will not be filtered by any taxonomy.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
 					value={taxonomy}
 					options={taxonomyOptions}
 					onChange={(value) => {
@@ -194,7 +194,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			{(postTypeOptions && !taxonomy) &&
 				<CustomSelect
 					label={sprintf(__('Filter by %s articles', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
-					help={sprintf(__('If `No Filter` value is selected your %s articles will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					help={sprintf(__('If the `No Filter` value is selected, your %s articles will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
 					options={postsOptions}
 					value={posts}
 					multiple={true}
