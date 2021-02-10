@@ -135,7 +135,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			{postTypeOptions ?
 				<SelectControl
 					label={__('Filter By Post Type', 'eightshift-frontend-libs')}
-					help={__('Select main section of content to filter from.', 'eightshift-frontend-libs')}
+					help={__('Select from what post type you want data to be provided.', 'eightshift-frontend-libs')}
 					value={postType}
 					options={postTypeOptions}
 					onChange={(value) => {
