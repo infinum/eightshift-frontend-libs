@@ -147,12 +147,10 @@ export const getIconOptions = (globalManifest, blockManifest) => {
 	// Use built-in icons if 'name' is provided and the
 	// icon exists in the library
 	if (icon.name !== undefined) {
-		if (blockIcons[icon.name] !== undefined) {
-			return {
-				background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-				foreground: (typeof icon.backround === 'undefined') ? foregroundGlobal : icon.foreground,
-				src:  reactHtmlParser(blockIcons[icon.name])[0],
-			}
+		return {
+			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+			foreground: (typeof icon.backround === 'undefined') ? foregroundGlobal : icon.foreground,
+			src: reactHtmlParser(blockIcons[icon.name] ?? blockIcons.example)[0],
 		}
 	}
 
