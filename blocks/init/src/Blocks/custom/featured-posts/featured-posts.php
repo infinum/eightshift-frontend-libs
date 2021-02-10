@@ -34,23 +34,20 @@ global $post;
 		];
 
 		if ($taxonomy) {
+                      $args['tax_query'][0] = [
+				'taxonomy' => $taxonomy,
+				'field' => 'id',
+			];
+							
 			if ($terms) {
-				$args['tax_query'][0] = [
-					'taxonomy' => $taxonomy,
-					'field' => 'id',
-					'terms' => array_map(
-						function ($item) {
-							return $item['value'];
-						},
-						$terms
-					),
-				];
+				$args['tax_query'][0]['terms'] = array_map(
+					function ($item) {
+						return $item['value'];
+					},
+					$terms
+				);
 			} else {
-				$args['tax_query'][0] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-					'taxonomy' => $taxonomy,
-					'field' => 'id',
-					'operator' => 'NOT IN'
-				];
+				$args['tax_query'][0]['operator'] = 'NOT IN'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			}
 		};
 
