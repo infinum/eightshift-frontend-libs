@@ -18,7 +18,8 @@
 				"terms": [],
 				"posts": []
 			},
-			"itemsPerLine": 4,
+			"itemsPerLineLarge": 4,
+			"itemsPerLineTablet": 1,
 			"showItems": 20,
 			"serverSideRender": true
 		}
@@ -36,9 +37,19 @@
 				"type": "object"
 			}
 		},
-		"itemsPerLine": {
+		"itemsPerLineLarge": {
 			"type": "integer",
 			"default": 4
+		},
+		"itemsPerLineDesktop": {
+			"type": "integer"
+		},
+		"itemsPerLineTablet": {
+			"type": "integer",
+			"default": 1
+		},
+		"itemsPerLineMobile": {
+			"type": "integer"
 		},
 		"showItems": {
 			"type": "integer"
