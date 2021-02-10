@@ -32,7 +32,7 @@ if (!$taxonomy) {
 		'taxonomy' => $taxonomy,
 		'orderby' => 'include',
 		'include' => array_map(
-			function($item) {
+			function ($item) {
 				return $item['value'];
 			},
 			$terms
@@ -42,7 +42,6 @@ if (!$taxonomy) {
 	$allTerms = \get_terms($args);
 
 	foreach ($allTerms as $term) {
-
 		$cardProps = [
 			'imageUse' => false,
 			'introUse' => false,

@@ -53,7 +53,7 @@ $labelClass = Components::classnames([
 	<label
 		class="<?php echo \esc_attr($labelClass); ?>"
 		for="<?php echo \esc_attr($searchBarId); ?>">
-		    <?php echo \esc_html($searchBarLabel); ?>
+		<?php echo \esc_html($searchBarLabel); ?>
 	</label>
 	<input
 		type="text"
