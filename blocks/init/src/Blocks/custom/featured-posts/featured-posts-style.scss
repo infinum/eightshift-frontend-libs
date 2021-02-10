@@ -9,45 +9,9 @@ $block-featured-posts: (
 	display: flex;
 	flex-wrap: wrap;
 
-	&[data-items-per-line='4'] {
-		> * {
-			@include flex-grid-width(12);
-
-			@include media(tablet) {
-				@include flex-grid-width(6);
-			}
-
-			@include media(desktop up) {
-				@include flex-grid-width(3);
-			}
-		}
-	}
-
-	&[data-items-per-line='3'] {
-		> * {
-			@include flex-grid-width(12);
-
-			@include media(tablet up) {
-				@include flex-grid-width(4);
-			}
-		}
-	}
-
-	&[data-items-per-line='2'] {
-		> * {
-			@include flex-grid-width(12);
-
-			@include media(tablet up) {
-				@include flex-grid-width(6);
-			}
-		}
-	}
-
-	&[data-items-per-line='1'] {
-		> * {
-			@include flex-grid-width(12);
-			padding-left: 0;
-			padding-right: 0;
+	&__items-per-line {
+		@include responsive-selectors {
+			@include flex-column-width-modifiers($wrapper: '> *');
 		}
 	}
 

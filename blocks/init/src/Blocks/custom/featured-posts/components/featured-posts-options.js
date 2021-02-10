@@ -4,9 +4,9 @@ import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
+import { CustomSelect, Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from '../manifest.json';
-import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 
 const { attributes: reset, options } = manifest;
 
@@ -20,9 +20,15 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			posts,
 		},
 		showItems,
-		itemsPerLine,
 		excludeCurrentPost,
 	} = attributes;
+
+	const itemsPerLine = [
+		attributes.itemsPerLineLarge,
+		attributes.itemsPerLineDesktop,
+		attributes.itemsPerLineTablet,
+		attributes.itemsPerLineMobile,
+	];
 
 	// Fetch all post types.
 	// Filter allowed post types defined in the block manifest.
@@ -212,22 +218,36 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<hr />
 
-			<RangeControl
+			<Responsive
 				label={
 					<Fragment>
 						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
-				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
-				allowReset={true}
-				value={itemsPerLine}
-				onChange={(value) => setAttributes({ itemsPerLine: value })}
-				min={options.itemsPerLine.min}
-				max={options.itemsPerLine.max}
-				step={options.itemsPerLine.step}
-				resetFallbackValue={reset.itemsPerLine.default}
-			/>
+			>
+				{itemsPerLine.map((item, index) => {
+
+					const point = ucfirst(options.breakpoints[index]);
+					const attr = `itemsPerLine${point}`;
+
+					return (
+						<Fragment key={index}>
+							<RangeControl
+								label={point}
+								help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
+								allowReset={true}
+								value={attributes[attr]}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								min={options.itemsPerLine.min}
+								max={options.itemsPerLine.max}
+								step={options.itemsPerLine.step}
+								resetFallbackValue={reset[attr].default}
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
 
 			<RangeControl
 				label={

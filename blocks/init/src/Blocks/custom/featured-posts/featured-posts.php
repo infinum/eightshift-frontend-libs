@@ -13,15 +13,25 @@ $manifest = Components::getManifest(__DIR__);
 $blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
 $query = Components::checkAttr('query', $attributes, $manifest);
 $excludeCurrentPost = Components::checkAttr('excludeCurrentPost', $attributes, $manifest);
-$itemsPerLine = Components::checkAttr('itemsPerLine', $attributes, $manifest);
 $showItems = Components::checkAttr('showItems', $attributes, $manifest);
 $serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);
+$itemsPerLine = [
+	'large' => Components::checkAttr('itemsPerLineLarge', $attributes, $manifest),
+	'desktop' => Components::checkAttr('itemsPerLineDesktop', $attributes, $manifest),
+	'tablet' => Components::checkAttr('itemsPerLineTablet', $attributes, $manifest),
+	'mobile' => Components::checkAttr('itemsPerLineMobile', $attributes, $manifest),
+];
 
 global $post;
 
+$featuredPostClass = Components::classnames([
+	$blockClass,
+	Components::responsiveSelectors($itemsPerLine, 'items-per-line', $blockClass),
+]);
+
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
+<div class="<?php echo esc_attr($featuredPostClass); ?>">
 	<?php
 		$postType = $query['postType'];
 		$taxonomy = $query['taxonomy'];
@@ -34,7 +44,7 @@ global $post;
 		];
 
 		if ($taxonomy) {
-                      $args['tax_query'][0] = [
+			$args['tax_query'][0] = [
 				'taxonomy' => $taxonomy,
 				'field' => 'id',
 			];
