@@ -106,7 +106,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.totalItems} />
+						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}

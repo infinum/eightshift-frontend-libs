@@ -216,7 +216,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.width} />
+						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
@@ -233,7 +233,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.width} />
+						<Icon icon={icons.totalItems} />
 						{__('Show items', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
