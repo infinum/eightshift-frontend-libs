@@ -39,7 +39,7 @@ const processTag = (inputText) => {
  *
  * @param {string} textFromClipboard Text retrieved from clipboard.
  */
-const handlePaste = async (textFromClipboard, attributes, setAttributes) => {
+const handlePaste = (textFromClipboard, attributes, setAttributes) => {
     const componentName = manifest.componentName;
 
     // Split by newLine, discard empty lines
@@ -81,7 +81,7 @@ const handlePaste = async (textFromClipboard, attributes, setAttributes) => {
         });
 
         const currentBlockClientId = wp.data.select('core/block-editor').getSelectedBlockClientId();
-        
+
         const blockIndex = wp.data.select('core/block-editor').getBlockIndex(currentBlockClientId);
 
         // Insert the block
@@ -102,7 +102,7 @@ const pasteInto = (event, attributes, setAttributes) => {
 
     // If HTML content is in clipboard, process that...
     if (copiedHtml) {
-        copiedHtml.getAsString(async (inputText) => {
+        copiedHtml.getAsString((inputText) => {
             // Get all tags from the text
             const allTags = [...inputText.matchAll(/<.+?>/g)];
 
@@ -117,11 +117,9 @@ const pasteInto = (event, attributes, setAttributes) => {
 
                 if (allowedTags.includes(filteredTagName)) {
                     inputText = inputText.replace(tag[0], parsedTag).replace(' >', '>');
-                }
-                else if ((filteredTagName === 'p' && !tag[0].includes('/')) || filteredTagName === 'br') {
+                } else if ((filteredTagName === 'p' && !tag[0].includes('/')) || filteredTagName === 'br') {
                     inputText = inputText.replace(tag[0], '\n');
-                }
-                else {
+                } else {
                     inputText = inputText.replace(tag[0], '');
                 }
             }
@@ -135,4 +133,4 @@ const pasteInto = (event, attributes, setAttributes) => {
     }
 };
 
-export {pasteInto};
+export { pasteInto };
