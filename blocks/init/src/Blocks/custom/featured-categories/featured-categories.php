@@ -59,11 +59,9 @@ if (!$taxonomy) {
 
 		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 			<?php
-				echo wp_kses_post(
-					Components::render(
-						'card',
-						$cardProps
-					)
+				echo Components::render( // phpcs:ignore
+					'card',
+					$cardProps
 				);
 			?>
 		</div>
