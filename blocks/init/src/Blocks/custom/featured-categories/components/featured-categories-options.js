@@ -85,27 +85,23 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			}
 
 			{(taxonomyOptions[0] && taxonomy) ?
-				<SelectControl
-					label={__('Category Items', 'eightshift-frontend-libs')}
+				<CustomSelect
+					label={sprintf(__('Filter by %s', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
+					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
+					options={termsOptions}
+					value={terms}
+					multiple={true}
+					onChange={(value) => {
+						setAttributes({
+							query: {
+								...queryProps,
+								terms: value[0] ? value : [],
+							},
+						});
+					}}
 				/> :
 				<Spinner />
 			}
-
-			<CustomSelect
-				label={sprintf(__('Filter by %s', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
-				help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
-				options={termsOptions}
-				value={terms}
-				multiple={true}
-				onChange={(value) => {
-					setAttributes({
-						query: {
-							...queryProps,
-							terms: value[0] ? value : [],
-						},
-					});
-				}}
-			/>
 
 			<RangeControl
 				label={
