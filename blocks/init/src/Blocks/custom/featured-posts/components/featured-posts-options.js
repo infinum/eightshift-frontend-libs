@@ -221,7 +221,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			<Responsive
 				label={
 					<Fragment>
-						<Icon icon={icons.width} />
+						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
