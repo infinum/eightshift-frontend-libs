@@ -30,14 +30,18 @@ if (!$taxonomy) {
 	$args = [
 		'hide_empty' => false,
 		'taxonomy' => $taxonomy,
+		'orderby' => 'include',
+		'include' => array_map(
+			function($item) {
+				return $item['value'];
+			},
+			$terms
+		),
 	];
 
 	$allTerms = \get_terms($args);
 
 	foreach ($allTerms as $term) {
-		if ($terms && !in_array((string) $term->term_id, $terms, true)) { // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-			continue;
-		}
 
 		$cardProps = [
 			'imageUse' => false,

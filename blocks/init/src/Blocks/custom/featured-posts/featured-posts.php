@@ -38,7 +38,12 @@ global $post;
 				$args['tax_query'][0] = [
 					'taxonomy' => $taxonomy,
 					'field' => 'id',
-					'terms' => $terms,
+					'terms' => array_map(
+						function ($item) {
+							return $item['value'];
+						},
+						$terms
+					),
 				];
 			} else {
 				$args['tax_query'][0] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
@@ -55,7 +60,7 @@ global $post;
 
 		if ($posts) {
 			$args['post__in'] = array_map(
-				function($item) {
+				function ($item) {
 					return $item['value'];
 				},
 				$posts
