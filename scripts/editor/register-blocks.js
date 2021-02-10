@@ -3,6 +3,7 @@ import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
+import { blockIcons } from './icons/icons';
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -141,6 +142,16 @@ export const getIconOptions = (globalManifest, blockManifest) => {
 
 	if (typeof icon === 'undefined') {
 		return {};
+	}
+
+	// Use built-in icons if 'name' is provided and the
+	// icon exists in the library
+	if (blockIcons[icon.name] !== undefined) {
+		return {
+			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
+			foreground: (typeof icon.backround === 'undefined') ? foregroundGlobal : icon.foreground,
+			src:  reactHtmlParser(blockIcons[icon.name])[0],
+		}
 	}
 
 	return {
