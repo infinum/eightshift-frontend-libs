@@ -86,8 +86,8 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 
 			{(taxonomyOptions[0] && taxonomy) ?
 				<CustomSelect
-					label={sprintf(__('Filter by %s', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
-					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
+					label={sprintf(__('Filter by %s', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
+					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
 					options={termsOptions}
 					value={terms}
 					multiple={true}
