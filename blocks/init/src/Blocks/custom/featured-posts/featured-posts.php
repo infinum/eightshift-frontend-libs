@@ -24,6 +24,8 @@ global $post;
 <div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
 	<?php
 		$postType = $query['postType'];
+		$taxonomy = $query['taxonomy'];
+		$terms = $query['terms'];
 		$posts = $query['posts'];
 
 		$args = [
@@ -31,12 +33,34 @@ global $post;
 			'posts_per_page' => $showItems,
 		];
 
+		if ($taxonomy) {
+			if ($terms) {
+				$args['tax_query'][0] = [
+					'taxonomy' => $taxonomy,
+					'field' => 'id',
+					'terms' => $terms,
+				];
+			} else {
+				$args['tax_query'][0] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+					'taxonomy' => $taxonomy,
+					'field' => 'id',
+					'operator' => 'NOT IN'
+				];
+			}
+		};
+
 		if ($excludeCurrentPost) {
 			$args['post__not_in'] = [ $post->ID ];
 		}
 
 		if ($posts) {
-			$args['post__in'] = $posts;
+			$args['post__in'] = array_map(
+				function($item) {
+					return $item['value'];
+				},
+				$posts
+			);
+			$args['orderby'] = 'post__in';
 		}
 
 		$theQuery = new \WP_Query($args);

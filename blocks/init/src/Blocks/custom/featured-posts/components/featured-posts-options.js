@@ -1,10 +1,12 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+import { __, sprintf } from '@wordpress/i18n';
+import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, SelectControl, Spinner, RangeControl, ToggleControl, Icon } from '@wordpress/components';
+import { Fragment } from '@wordpress/element';
+import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import manifest from './../manifest.json';
+import manifest from '../manifest.json';
+import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 
 const { attributes: reset, options } = manifest;
 
@@ -13,6 +15,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 		query: queryProps,
 		query: {
 			postType,
+			taxonomy,
+			terms,
 			posts,
 		},
 		showItems,
@@ -38,6 +42,68 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 		}) ?? [];
 	});
 
+	// Fetch all taxonomies based on the postType selected.
+	// Filter allowed taxonomies defined in the block manifest.
+	const taxonomyOptions = useSelect((select) => {
+		const { getTaxonomy } = select('core');
+
+		const availableTaxonomies = postTypeOptions.filter((element) => element.value === postType) ?? [];
+
+		const taxonomiesList = availableTaxonomies.length ? availableTaxonomies[0].taxonomies : [];
+
+		const allowedTaxonomies = taxonomiesList.filter((element) => {
+			return manifest.allowed.taxonomies.find((item) => {
+				return element === item;
+			});
+		}) ?? [];
+
+		const data = allowedTaxonomies.map((element) => getTaxonomy(element)) ?? [];
+
+		
+		if (!data.length) {
+			return [];
+		}
+
+		return [
+			{
+				label: __('No Filter used', 'eightshift-frontend-libs'),
+				value: '',
+			},
+			...data.map((item) => {
+				return {
+					label: item.labels.name,
+					value: item.slug,
+				};
+			}),
+		];
+	});
+
+	// Fetch all taxonomy terms based on the selected taxonomy and postType.
+	const termsOptions = useSelect((select) => {
+		const { getEntityRecords } = select('core');
+
+		const termsList = getEntityRecords(
+			'taxonomy',
+			taxonomy,
+			{
+				per_page: -1,
+			}
+		) ?? [];
+
+		return [
+			{
+				label: __('No Filter used', 'eightshift-frontend-libs'),
+				value: '',
+			},
+			...termsList.map((item) => {
+				return {
+					label: item.name,
+					value: item.id,
+				};
+			}),
+		];
+	});
+
 	// Fetch all posts based on the selected postType.
 	const postsOptions = useSelect((select) => {
 		const { getEntityRecords } = select('core');
@@ -52,7 +118,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 		return [
 			{
-				label: 'None',
+				label: __('No Filter used', 'eightshift-frontend-libs'),
 				value: '',
 			},
 			...termsList.map((item) => {
@@ -65,17 +131,20 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured Post', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured Posts', 'eightshift-frontend-libs')}>
 
-			{postTypeOptions[0] ?
+			{postTypeOptions ?
 				<SelectControl
-					label={__('Post Type', 'eightshift-frontend-libs')}
+					label={__('Filter By Post Type', 'eightshift-frontend-libs')}
+					help={__('Select main section of content to filter from.', 'eightshift-frontend-libs')}
 					value={postType}
 					options={postTypeOptions}
 					onChange={(value) => {
 						setAttributes({
 							query: {
 								postType: value,
+								taxonomy: '',
+								terms: [],
 								posts: [],
 							},
 						});
@@ -84,17 +153,19 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				<Spinner />
 			}
 
-			{(postTypeOptions[0] && posts) ?
+			{(postTypeOptions && taxonomyOptions) ?
 				<SelectControl
-					label={__('Posts Items', 'eightshift-frontend-libs')}
-					value={posts}
-					multiple
-					options={postsOptions}
+					label={sprintf(__('Filter by %s available taxonomies', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered by any category.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					value={taxonomy}
+					options={taxonomyOptions}
 					onChange={(value) => {
 						setAttributes({
 							query: {
 								...queryProps,
-								posts: value[0] ? value : [],
+								taxonomy: value,
+								terms: [],
+								posts: [],
 							},
 						});
 					}}
@@ -102,10 +173,50 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				<Spinner />
 			}
 
+			{(taxonomyOptions && taxonomy) &&
+				<CustomSelect
+					label={sprintf(__('Filter by %s taxonomy', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
+					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'Tvornica'), _.startCase(_.toLower(taxonomy)))}
+					options={termsOptions}
+					value={terms}
+					multiple={true}
+					onChange={(value) => {
+						setAttributes({
+							query: {
+								...queryProps,
+								terms: value[0] ? value : [],
+								posts: [],
+							},
+						});
+					}}
+				/>
+			}
+
+			{(postTypeOptions && !taxonomy) &&
+				<CustomSelect
+					label={sprintf(__('Filter by %s articles', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					help={sprintf(__('If `No Filter` value is selected your %s articles will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(postType)))}
+					options={postsOptions}
+					value={posts}
+					multiple={true}
+					onChange={(value) => {
+						setAttributes({
+							query: {
+								...queryProps,
+								terms: [],
+								posts: value,
+							},
+						});
+					}}
+				/>
+			}
+
+			<hr />
+
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.totalItems} />
+						<Icon icon={icons.width} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
@@ -122,7 +233,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			<RangeControl
 				label={
 					<Fragment>
-						<Icon icon={icons.itemsPerRow} />
+						<Icon icon={icons.width} />
 						{__('Show items', 'eightshift-frontend-libs')}
 					</Fragment>
 				}
