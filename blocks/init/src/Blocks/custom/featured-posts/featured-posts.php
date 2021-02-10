@@ -32,7 +32,7 @@ global $post;
 		];
 
 		if ($excludeCurrentPost) {
-			$args['post__not_in'] = $posts->ID;
+			$args['post__not_in'] = [ $post->ID ];
 		}
 
 		if ($posts) {
