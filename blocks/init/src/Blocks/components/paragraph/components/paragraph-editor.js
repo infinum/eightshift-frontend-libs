@@ -3,7 +3,8 @@ import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, pasteInto } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { pasteInto } from '@eightshift/frontend-libs/scripts/editor';
 
 import manifest from './../manifest.json';
 
