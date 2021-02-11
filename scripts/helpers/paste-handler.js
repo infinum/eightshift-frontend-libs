@@ -1,5 +1,4 @@
 import { createBlock } from '@wordpress/blocks';
-import manifest from './../manifest.json';
 
 /**
  * Returns string parsed as nodes, ready for inserting into RichText.
@@ -38,9 +37,11 @@ const processTag = (inputText) => {
  * Process content and paste in into blocks smartly.
  *
  * @param {string} textFromClipboard Text retrieved from clipboard.
+ * @param {Object} attributes Component attributes.
+ * @param {Function} setAttributes Component attribute setter.
  */
 const handlePaste = (textFromClipboard, attributes, setAttributes) => {
-    const componentName = manifest.componentName;
+    const componentName = attributes.componentName ?? attributes.blockName;
 
     // Split by newLine, discard empty lines
     let parsedParagraphs = textFromClipboard.split('\n').filter((line) => line.length > 0);
@@ -69,7 +70,7 @@ const handlePaste = (textFromClipboard, attributes, setAttributes) => {
     }
     // ...else append at the end
     else {
-        setAttributes({ [`${componentName}Content`]: `${attributes.paragraphContent}${parsedParagraphs[0]}` });
+        setAttributes({ [`${componentName}Content`]: `${attributes[`${componentName}Content`]}${parsedParagraphs[0]}` });
     }
 
     for (const paragraph of parsedParagraphs.slice(1)) {
@@ -95,8 +96,10 @@ const handlePaste = (textFromClipboard, attributes, setAttributes) => {
  * @param {Event} event Passed event parameters.
  * @param {Object} attributes Component attributes.
  * @param {Function} setAttributes Component attribute setter.
+ * @param {Array} allowedTags Tags allowed in the parsed output.
+ * @param {String} splitOnElement Element tag name that will cause a block to be split.
  */
-const pasteInto = (event, attributes, setAttributes) => {
+export const pasteInto = (event, attributes, setAttributes, allowedTags, splitOnElement = 'p') => {
     event.preventDefault();
     const [copiedData, copiedHtml] = event.clipboardData.items;
 
@@ -106,10 +109,8 @@ const pasteInto = (event, attributes, setAttributes) => {
             // Get all tags from the text
             const allTags = [...inputText.matchAll(/<.+?>/g)];
 
-            const allowedTags = manifest.pasteAllowTags ?? ['strong', 'b', 'i', 'em', 'span'];
-
             // Filter out attributes and disallowed tags,
-            // make <p> and <br> elements give newline
+            // make <splitOnElement> and <br> elements give newline
             for (const tag of allTags) {
                 const tagInnardsRegex = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g;
                 const parsedTag = tag[0].replace(tagInnardsRegex, '');
@@ -117,7 +118,7 @@ const pasteInto = (event, attributes, setAttributes) => {
 
                 if (allowedTags.includes(filteredTagName)) {
                     inputText = inputText.replace(tag[0], parsedTag).replace(' >', '>');
-                } else if ((filteredTagName === 'p' && !tag[0].includes('/')) || filteredTagName === 'br') {
+                } else if ((filteredTagName === splitOnElement && !tag[0].includes('/')) || filteredTagName === 'br') {
                     inputText = inputText.replace(tag[0], '\n');
                 } else {
                     inputText = inputText.replace(tag[0], '');
@@ -132,5 +133,3 @@ const pasteInto = (event, attributes, setAttributes) => {
         copiedData.getAsString((inputText) => handlePaste(inputText, attributes, setAttributes));
     }
 };
-
-export { pasteInto };
