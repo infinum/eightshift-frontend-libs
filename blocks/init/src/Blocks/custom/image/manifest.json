@@ -4,7 +4,7 @@
 	"description" : "Image block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"name": "image"
+		"src": "eightshift-image"
 	},
 	"keywords": [
 		"image",

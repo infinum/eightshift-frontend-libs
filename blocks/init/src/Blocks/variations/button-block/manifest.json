@@ -4,7 +4,7 @@
 	"title": "Button Full Width",
 	"description" : "Button Block Variation for full width style.",
 	"icon": {
-		"name": "buttonBlock"
+		"src": "eightshift-button-block"
 	},
 	"example": {
 		"attributes": {

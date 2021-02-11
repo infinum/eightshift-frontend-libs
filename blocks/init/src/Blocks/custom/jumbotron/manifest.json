@@ -4,7 +4,7 @@
 	"description" : "Jumbotron block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"name": "jumbotron"
+		"src": "eightshift-jumbotron"
 	},
 	"keywords": [
 		"jumbotron",

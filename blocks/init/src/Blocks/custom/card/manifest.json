@@ -4,7 +4,7 @@
 	"description" : "Card with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"name": "card"
+		"src": "eightshift-card"
 	},
 	"keywords": [
 		"Service",

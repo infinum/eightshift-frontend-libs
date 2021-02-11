@@ -4,7 +4,7 @@
 	"description" : "Group block used to grouping multiple blocks.",
 	"category": "eightshift",
 	"icon": {
-		"name": "group"
+		"src": "eightshift-group"
 	},
 	"keywords": [
 		"container",

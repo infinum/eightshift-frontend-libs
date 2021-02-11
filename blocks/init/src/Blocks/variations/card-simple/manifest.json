@@ -4,7 +4,7 @@
 	"title": "Card Simple",
 	"description" : "Card Block Variation for simple style.",
 	"icon": {
-		"name": "cardSimple"
+		"src": "eightshift-card-simple"
 	},
 	"example": {
 		"attributes": {

@@ -4,7 +4,7 @@
 	"description" : "Columns block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"name": "columns"
+		"src": "eightshift-columns"
 	},
 	"keywords": [
 		"columns"
