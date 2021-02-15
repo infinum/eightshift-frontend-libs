@@ -4,7 +4,7 @@
 	"description" : "Carousel block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "eightshift-carousel"
+		"src": "es-carousel"
 	},
 	"keywords": [
 		"carousel"

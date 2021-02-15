@@ -4,7 +4,7 @@
 	"description" : "Button block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "eightshift-button"
+		"src": "es-button"
 	},
 	"keywords": [
 		"button",
