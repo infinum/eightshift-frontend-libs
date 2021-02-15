@@ -4,7 +4,7 @@
 	"description" : "accordion block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "eightshift-accordion"
+		"src": "es-accordion"
 	},
 	"keywords": [
 		"accordion"

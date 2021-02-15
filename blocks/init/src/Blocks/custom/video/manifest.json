@@ -4,7 +4,7 @@
 	"description" : "video block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "eightshift-video"
+		"src": "es-video"
 	},
 	"keywords": [
 		"video",

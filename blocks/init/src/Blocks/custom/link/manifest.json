@@ -4,7 +4,7 @@
 	"description" : "Link block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "eightshift-link"
+		"src": "es-link"
 	},
 	"keywords": [
 		"link",
