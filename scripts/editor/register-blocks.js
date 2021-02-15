@@ -110,7 +110,68 @@ export const getSaveCallback = (blockManifest) => {
 };
 
 /**
- * Return edit function wrapped with Wrapper component.
+ * Return merge function based on existance of mergeableAttributes option of block.
+ *
+ * @param {object} blockManifest Block full manifest.
+ */
+export const getMergeCallback = (blockManifest) => {
+	const {
+		mergeableAttributes,
+	} = blockManifest;
+
+	if (mergeableAttributes) {
+		return (receiver, merger) => {
+			let outputObject = {};
+
+			for (const { attribute, mergeStrategy } of mergeableAttributes) {
+				switch (mergeStrategy) {
+					case "append": {
+						outputObject[attribute] = `${receiver[attribute] ?? ''}${merger[attribute] ?? ''}`;
+						break;
+					}
+					case "useDestinationAttribute": {
+						outputObject[attribute] = merger[attribute] ?? ''
+						break;
+					}
+					case "addNumericIntValue": {
+						outputObject[attribute] = parseInt(receiver[attribute] ?? '0') + parseInt(merger[attribute] ?? '0');
+						break;
+					}
+					case "addNumericFloatValue": {
+						outputObject[attribute] = parseFloat(receiver[attribute] ?? '0') + parseFloat(merger[attribute] ?? '0');
+						break;
+					}
+					/* eslint-disable no-case-declarations */
+					case "addNumericPixelValue": {
+						// Remove numbers
+						const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
+
+						// Remove value labels (= everything but numbers)
+						const receiverValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
+						const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
+						const calculatedValue = receiverValue + mergerValue;
+
+						outputObject[attribute] = `${calculatedValue}${receiverUnit}`
+						break;
+					}
+					/* eslint-enable no-case-declarations */
+					default: {
+						// "useSourceAttribute" is default
+						outputObject[attribute] = receiver[attribute] ?? ''
+						break;
+					}
+				}
+			}
+
+			return outputObject;
+		};
+	}
+
+	return () => null;
+};
+
+/**
+ * Return edit function wrapped with Wrapper compoent.
  *
  * @param {function} Component Children callback function.
  * @param {function} Wrapper Wrapper callback function.
@@ -395,6 +456,7 @@ export const registerBlock = (
 			blockName: fullBlockName,
 			edit: getEditCallback(blockComponent, wrapperComponent),
 			save: getSaveCallback(blockManifest),
+			merge: getMergeCallback(blockManifest),
 		},
 	};
 };

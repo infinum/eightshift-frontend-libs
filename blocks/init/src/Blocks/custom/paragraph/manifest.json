@@ -13,5 +13,11 @@
 	],
 	"components": {
 		"paragraph": "paragraph"
-	}
+	},
+	"mergeableAttributes": [
+		{
+			"attribute": "paragraphContent",
+			"mergeStrategy": "append"
+		}
+	]
 }
