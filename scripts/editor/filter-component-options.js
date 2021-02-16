@@ -47,13 +47,14 @@ export const filterComponentOptions = (attributes, componentName, options) => {
 
 	Object.keys(options).forEach(
 		(key) => {
-			const values = options[key];
 
 			const limitedValues = attributes[`${componentName}Options`][key];
 
 			if(!limitedValues) {
 				return;
 			}
+
+			const values = options[key];
 
 			options[key] = values.filter(entry => limitedValues.includes(entry.value ?? entry));
 
