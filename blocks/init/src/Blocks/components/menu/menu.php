@@ -19,20 +19,18 @@ $componentClass = $attributes['componentClass'] ?? 'menu';
 
 $name = $attributes['menu'] ?? 'header_main_nav';
 $modifier = $attributes['modifier'] ?? '';
+$linkClasses = $attributes['linkClasses'] ?? '';
+$jsModifier = $attributes['jsModifier'] ?? '';
 $variation = isset($attributes['variation']) ? "{$componentClass}-{$attributes['variation']}" : $componentClass;
-$jsClass = $attributes['jsClass'] ?? '';
 
-$parentClasses = Components::classnames([
-	$jsClass ? "js-{$jsClass}" : '',
-]);
-
-$menu = Menu::bemMenu(
+$menu = Menu::bemModifiedMenu(
 	$name,
 	$variation,
-	$parentClasses,
+	$linkClasses,
+	$jsModifier,
 	$modifier ? "{$variation}--{$modifier}" : ''
 );
 
 if (!empty($menu) && !$menu) {
-	echo \esc_html($menu);
+	echo $menu; // phpcs:ignore
 }

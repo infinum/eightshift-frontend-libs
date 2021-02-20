@@ -1,6 +1,15 @@
 $menu-vertical: (
-	link-padding: 10px 0,
-	link-modifiers: (
+	link-padding: 1em 0, // If font size is 10px, 1em = 10px
+	submenu-link-padding: 0.5em 2em 0.5em 0,
+	items: (
+		normal: (
+			color: global-settings(colors, black),
+		),
+		hover: (
+			color: global-settings(colors, primary),
+		),
+	),
+	submenu-items: (
 		normal: (
 			color: global-settings(colors, black),
 		),
@@ -12,13 +21,46 @@ $menu-vertical: (
 
 .menu-vertical {
 	@extend %list-reset;
+	$this: &;
+
+	&__item {
+		padding: map-get-strict($menu-vertical, link-padding);
+
+		&--has-children {
+			#{$this}__link {
+				color: map-get-deep($menu-vertical, items, normal, color);
+			}
+
+			#{$this}__link-text {
+				text-transform: uppercase;
+			}
+		}
+
+		&--current {
+			#{$this}__link-text {
+				color: map-get-deep($menu-vertical, items, hover, color);
+			}
+		}
+	}
 
 	&__link {
 		display: block;
-		text-decoration: none;
-		transition: 0.3s color ease-in-out;
-		padding: map-get-strict($menu-vertical, link-padding);
 
-		@include link($menu-vertical, link-modifiers);
+		@include link($menu-vertical, items);
+	}
+
+	&__sub-menu {
+		@extend %list-reset;
+
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__sub-menu-item {
+		padding: map-get-strict($menu-vertical, submenu-link-padding);
+	}
+
+	&__sub-menu-link {
+		@include link($menu-vertical, submenu-items);
 	}
 }

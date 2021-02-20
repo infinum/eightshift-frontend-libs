@@ -1,5 +1,5 @@
 $menu-horizontal: (
-	link-padding: 0 15px,
+	link-padding: 0 1.5em, // If font size is 10px, 1em = 10px
 	link-modifiers: (
 		normal: (
 			color: global-settings(colors, black),
@@ -8,24 +8,171 @@ $menu-horizontal: (
 			color: global-settings(colors, primary),
 		)
 	),
+	submenu-z-index: map-get-strict($zindex, submenu),
+	menu-item-z-index: map-get-strict($zindex, menu-item),
+	menu-background: global-settings(colors, light)
 );
 
 .menu-horizontal {
 	@extend %list-reset;
 	$this: &;
 	height: 100%;
+	width: 100%;
 	display: flex;
-	align-items: center;
+	justify-content: center;
+
+	&__item {
+		position: relative;
+		height: 100%;
+
+		&:hover,
+		&:focus,
+		&.is-focused {
+			> #{$this}__sub-menu {
+				clip: auto;
+				transition: clip 300ms cubic-bezier(0.64, 0.04, 0.21, 0.96);
+			}
+		}
+
+		&--current {
+			#{$this}__link-text {
+				color: map-get-deep($menu-horizontal, link-modifiers, hover, color);
+			}
+		}
+	}
 
 	&__link {
-		text-decoration: none;
+		position: relative;
 		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		white-space: nowrap;
 		padding: map-get-strict($menu-horizontal, link-padding);
-		transition: 0.3s color ease-in-out;
+		z-index: map-get-strict($menu-horizontal, menu-item-z-index);
 
 		@include link($menu-horizontal, link-modifiers);
+	}
+
+	&__link-text {
+		height: 100%;
+		display: flex;
+		align-items: center;
+
+		&::after {
+			bottom: 2em; // underline override.
+		}
+	}
+
+	&__sub-menu {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0;
+		text-align: left;
+		border-radius: 0.8em;
+		clip: rect(0.1em, 0.1em, 0.1em, 0.1em);
+		background-color: map-get-strict($menu-horizontal, menu-background);
+		z-index: map-get-strict($menu-horizontal, submenu-z-index);
+		transition: clip 300ms cubic-bezier(0.64, 0.04, 0.21, 0.96);
+
+		// First level submenu.
+		&--1 {
+			&::before {
+				top: -0.5em;
+				left: 50%;
+			}
+		}
+
+		// Second level submenu.
+		&--2 {
+			transform: translateX(110%);
+			top: -0.8em;
+
+			&::before {
+				top: 2em;
+				left: 0.2em;
+			}
+		}
+
+		#{$this}__item {
+			&--has-children {
+				&::after {
+					content: '';
+					position: absolute;
+					right: -2.5em;
+					top: 0;
+					bottom: 0;
+					width: 2.5em;
+				}
+			}
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: -1em;
+			height: 1em;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			z-index: -1;
+			margin-left: -0.7em;
+			box-sizing: border-box;
+			border: 0.8em solid map-get-strict($menu-horizontal, menu-background);
+			transform-origin: 0 0;
+			transform: rotate(-45deg) translateX(-50%);
+		}
+	}
+
+	&__sub-menu-item {
+		transition: background-color 0.3s ease-in-out;
+		background-color: map-get-strict($menu-horizontal, menu-background);
+		position: relative;
+
+		&:first-of-type {
+			border-top-left-radius: 0.8em;
+			border-top-right-radius: 0.8em;
+			padding-top: 0.8em;
+		}
+
+		&:last-of-type {
+			border-bottom-left-radius: 0.8em;
+			border-bottom-right-radius: 0.8em;
+			padding-bottom: 0.8em;
+		}
+
+		&:hover,
+		&:focus,
+		&.is-focused {
+			> #{$this}__sub-menu {
+				clip: auto;
+				transition: clip 300ms cubic-bezier(0.64, 0.04, 0.21, 0.96);
+			}
+		}
+	}
+
+	&__sub-menu-link {
+		min-width: 24em;
+		padding: 1em 2.5em;
+		height: 100%;
+		display: flex;
+
+		@include link($menu-horizontal, link-modifiers);
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: map-get-strict($menu-horizontal, menu-background);
+		}
 	}
 }
