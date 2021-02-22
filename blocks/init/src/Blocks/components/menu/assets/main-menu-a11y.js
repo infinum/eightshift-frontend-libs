@@ -25,10 +25,8 @@ export class AccessibleMenu {
 	tabCloseMenu() {
 		const navActive = this.mainMenu.querySelector(`.${this.IS_FOCUSED_CLASS}`);
 
-		for (let i = 0; i < navActive.length; i++) {
-			this.delClassName(navActive[i], this.IS_FOCUSED_CLASS);
-			navActive[i].querySelector(this.anchor).setAttribute('aria-expanded', 'false');
-		}
+		this.delClassName(navActive, this.IS_FOCUSED_CLASS);
+		navActive.querySelector(this.anchor).setAttribute('aria-expanded', 'false');
 	}
 
 	addAriaExpanded(element) {
