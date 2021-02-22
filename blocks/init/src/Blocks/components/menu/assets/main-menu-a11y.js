@@ -17,7 +17,7 @@ export class AccessibleMenu {
 	}
 
 	hasClassName(el, cls) {
-		return !!el.className.match(`(?:^|\\s)${cls}(?!\\S)`);
+		return el.classList.contains(cls);
 	}
 
 	delClassName(el, cls) {
