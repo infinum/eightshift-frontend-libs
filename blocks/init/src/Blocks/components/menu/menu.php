@@ -32,5 +32,5 @@ $menu = Menu::bemModifiedMenu(
 );
 
 if (!empty($menu) && !$menu) {
-	echo $menu; // phpcs:ignore
+	echo $menu; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
