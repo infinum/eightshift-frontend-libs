@@ -11,9 +11,7 @@ export class AccessibleMenu {
 	}
 
 	addClassName(el, cls) {
-		if (!el.className.match(`(?:^|\\s)${cls}(?!\\S)`)) {
-			el.className += ` ${cls}`;
-		}
+		el.classList.add(cls);
 	}
 
 	hasClassName(el, cls) {
@@ -21,11 +19,11 @@ export class AccessibleMenu {
 	}
 
 	delClassName(el, cls) {
-		el.className = el.className.replace(new RegExp(`(?:^|\\s)${cls}(?!\\S)`), '');
+		el.classList.remove(cls);
 	}
 
 	tabCloseMenu() {
-		const navActive = this.mainMenu.querySelectorAll(`.${this.IS_FOCUSED_CLASS}`);
+		const navActive = this.mainMenu.querySelector(`.${this.IS_FOCUSED_CLASS}`);
 
 		for (let i = 0; i < navActive.length; i++) {
 			this.delClassName(navActive[i], this.IS_FOCUSED_CLASS);
