@@ -3,6 +3,7 @@ export class AccessibleMenu {
 		this.menuSelector = options.menuSelector;
 		this.anchor = options.anchor;
 		this.subMenu = options.subMenu;
+		this.menuItem = options.menuItem;
 
 		this.mainMenu = document.querySelector(this.menuSelector);
 		this.links = this.mainMenu.querySelectorAll(this.anchor);
@@ -25,8 +26,10 @@ export class AccessibleMenu {
 	tabCloseMenu() {
 		const navActive = this.mainMenu.querySelector(`.${this.IS_FOCUSED_CLASS}`);
 
-		this.delClassName(navActive, this.IS_FOCUSED_CLASS);
-		navActive.querySelector(this.anchor).setAttribute('aria-expanded', 'false');
+		if (navActive) {
+			this.delClassName(navActive, this.IS_FOCUSED_CLASS);
+			navActive.querySelector(this.anchor).setAttribute('aria-expanded', 'false');
+		}
 	}
 
 	addAriaExpanded(element) {
@@ -35,7 +38,7 @@ export class AccessibleMenu {
 
 	toggleMenus(event) {
 		const currentElement = event.target;
-		const parentEl = currentElement.parentElement;
+		const parentEl = currentElement.closest(this.menuItem);
 		const insideSubMenu = currentElement.closest(this.subMenu);
 		const containsSubMenu = parentEl.querySelector(this.subMenu);
 
