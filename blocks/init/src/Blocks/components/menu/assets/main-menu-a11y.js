@@ -90,7 +90,7 @@ export class AccessibleMenu {
 
 	init() {
 		this.mainMenu.addEventListener('blur', () => this.tabCloseMenu());
-		this.mainMenu.addEventListener('mouseleave', setTimeout(() => this.tabCloseMenu(), 500));
+		this.mainMenu.addEventListener('mouseleave', () => setTimeout(() => this.tabCloseMenu(), 500));
 
 		this.links[this.links.length - 1].addEventListener('blur', () => this.tabCloseMenu());
 		this.links[0].addEventListener('blur', () => this.tabCloseMenu());
