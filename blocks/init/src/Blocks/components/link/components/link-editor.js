@@ -48,7 +48,7 @@ export const LinkEditor = (attributes) => {
 						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 						className={linkClass}
 						keepPlaceholderOnFocus
-						formattingControls={[]}
+						allowedFormats={['core/bold']}
 					/>
 				</div>
 			}

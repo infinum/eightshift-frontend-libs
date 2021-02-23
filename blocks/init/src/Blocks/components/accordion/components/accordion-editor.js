@@ -40,7 +40,7 @@ export const AccordionEditor = (attributes) => {
 							value={accordionTitle}
 							onChange={(value) => setAttributes({ [`${componentName}Title`]: value })}
 							keepPlaceholderOnFocus
-							formattingControls={[]}
+							allowedFormats={[]}
 						/>
 						<div className={`${componentClass}__icon`} dangerouslySetInnerHTML={{ __html: options.icon }}></div>
 					</button>
