@@ -48,7 +48,6 @@ $featuredPostClass = Components::classnames([
 				'taxonomy' => $taxonomy,
 				'field' => 'id',
 			];
-							
 			if ($terms) {
 				$args['tax_query'][0]['terms'] = array_map(
 					function ($item) {
