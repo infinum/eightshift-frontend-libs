@@ -43,7 +43,7 @@ export const ListsEditor = (attributes) => {
 					value={listsContent}
 					onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 					onTagNameChange={(value) => setAttributes({ [`${componentName}Ordered`]: value })}
-					formattingControls={[]}
+					allowedFormats={['core/bold', 'core/link']}
 				/>
 			}
 		</Fragment>

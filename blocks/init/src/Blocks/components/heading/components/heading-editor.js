@@ -39,7 +39,7 @@ export const HeadingEditor = (attributes) => {
 					placeholder={placeholder}
 					value={headingContent}
 					onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
-					formattingControls={[]}
+					allowedFormats={[]}
 				/>
 			}
 		</Fragment>
