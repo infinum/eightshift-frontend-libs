@@ -9,6 +9,7 @@ export const CardToolbar = (attributes) => {
 	const {
 		setAttributes,
 		options,
+		introUse,
 		introAlign,
 		introLevel,
 	} = attributes;
@@ -24,6 +25,7 @@ export const CardToolbar = (attributes) => {
 			<HeadingToolbar
 				{...attributes}
 				componentName={'intro'}
+				headingUse={introUse}
 				headingAlign={introAlign}
 				headingLevel={introLevel}
 				setAttributes={setAttributes}

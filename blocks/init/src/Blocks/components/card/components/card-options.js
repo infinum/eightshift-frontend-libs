@@ -9,6 +9,7 @@ export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
 		options,
+		introUse,
 		introColor,
 		introSize,
 	} = attributes;
@@ -27,6 +28,7 @@ export const CardOptions = (attributes) => {
 				{...attributes}
 				componentName={'intro'}
 				label={'Intro'}
+				headingUse={introUse}
 				headingColor={introColor}
 				headingSize={introSize}
 				setAttributes={setAttributes}

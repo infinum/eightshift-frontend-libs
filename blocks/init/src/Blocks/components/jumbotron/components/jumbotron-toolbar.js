@@ -33,7 +33,7 @@ export const JumbotronToolbar = (attributes) => {
 					{showJumbotronContentPosition &&
 						<BlockAlignmentMatrixToolbar
 							label={__('Content Position', 'eightshift-frontend-libs')}
-							value={ jumbotronContentPosition }
+							value={jumbotronContentPosition}
 							onChange={(value) => setAttributes({ [`${componentName}ContentPosition`]: value })}
 						/>
 					}
