@@ -15,6 +15,7 @@ $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
+$className = Components::checkAttr('className', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
@@ -129,6 +130,7 @@ $wrapperClass = Components::classnames([
 	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false),
 	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false),
 	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false),
+	$className,
 ]);
 
 $wrapperContainerClass = Components::classnames([

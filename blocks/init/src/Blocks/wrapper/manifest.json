@@ -54,6 +54,10 @@
 			"type": "string"
 		},
 
+		"className": {
+			"type": "string"
+		},
+
 		"wrapperId": {
 			"type": "string"
 		},

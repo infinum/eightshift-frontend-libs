@@ -4,6 +4,8 @@ import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-l
 import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
+	console.log(attributes);
+	
 	const {
 		wrapperUse = checkAttr('wrapperUse', attributes, manifest),
 		wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest),
@@ -11,6 +13,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperId = checkAttr('wrapperId', attributes, manifest),
 		wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest),
 		wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest),
+		className = checkAttr('className', attributes, manifest),
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -121,6 +124,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false),
 		responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false),
 		responsiveSelectors(wrapperHide, 'hide-editor', wrapperMainClass, false),
+		className,
 	]);
 
 	const wrapperContainerClass = classnames([
