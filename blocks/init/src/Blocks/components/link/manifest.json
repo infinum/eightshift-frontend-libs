@@ -34,10 +34,6 @@
 			"type": "string",
 			"default": "primary"
 		},
-		"linkWidth": {
-			"type": "string",
-			"default": "default"
-		},
 		"linkAlign": {
 			"type": "string",
 			"default": "left"
@@ -62,7 +58,7 @@
 		}
 	},
 	"options": {
-		"sizes": [
+		"linkSize": [
 			{
 				"label": "Default (22px)",
 				"value": "default"
@@ -72,12 +68,12 @@
 				"value": "small"
 			}
 		],
-		"aligns": [
+		"linkAlign": [
 			"left",
 			"center",
 			"right"
 		],
-		"colors": [
+		"linkColor": [
 			"primary",
 			"black"
 		]

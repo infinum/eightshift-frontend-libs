@@ -62,7 +62,7 @@
 		}
 	},
 	"options": {
-		"sizes": [
+		"buttonSize": [
 			{
 				"label": "Default",
 				"value": "default"
@@ -72,7 +72,7 @@
 				"value": "big"
 			}
 		],
-		"widths": [
+		"buttonWidth": [
 			{
 				"label": "Default",
 				"value": "default"
@@ -82,12 +82,12 @@
 				"value": "block"
 			}
 		],
-		"aligns": [
+		"buttonAlign": [
 			"left",
 			"center",
 			"right"
 		],
-		"colors": [
+		"buttonColor": [
 			"primary",
 			"black"
 		]

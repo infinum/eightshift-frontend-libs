@@ -4,17 +4,18 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { options, title } = manifest;
+const { title } = manifest;
 
 export const ButtonOptions = (attributes) => {
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
 		label = title,
+		options = options,
 		buttonShowControls = true,
 
 		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
@@ -81,7 +82,7 @@ export const ButtonOptions = (attributes) => {
 								</Fragment>
 							}
 							value={buttonColor}
-							colors={getOptionColors(options.colors)}
+							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
 							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
@@ -95,7 +96,7 @@ export const ButtonOptions = (attributes) => {
 								</Fragment>
 							}
 							value={buttonSize}
-							options={options.sizes}
+							options={getOptions(manifest, componentName, 'size', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
@@ -109,7 +110,7 @@ export const ButtonOptions = (attributes) => {
 								</Fragment>
 							}
 							value={buttonWidth}
-							options={options.widths}
+							options={getOptions(manifest, componentName, 'width', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
 						/>
 					}
