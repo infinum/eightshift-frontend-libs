@@ -6,9 +6,9 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { title } = manifest;
-
 export const ParagraphToolbar = (attributes) => {
+	const { title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,

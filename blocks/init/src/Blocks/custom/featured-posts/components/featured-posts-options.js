@@ -8,9 +8,9 @@ import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { CustomSelect, Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from '../manifest.json';
 
-const { attributes: reset, options } = manifest;
-
 export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+
 	const {
 		query: queryProps,
 		query: {

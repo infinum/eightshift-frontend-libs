@@ -6,9 +6,9 @@ import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-
 export const ColumnOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+
 	const width = [
 		attributes.widthLarge,
 		attributes.widthDesktop,

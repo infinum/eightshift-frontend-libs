@@ -7,9 +7,9 @@ import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { options, title } = manifest;
-
 export const ListsOptions = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,

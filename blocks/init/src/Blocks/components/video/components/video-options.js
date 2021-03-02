@@ -6,9 +6,9 @@ import { MediaPlaceholder } from '@wordpress/block-editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { options, title } = manifest;
-
 export const VideoOptions = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,

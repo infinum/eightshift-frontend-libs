@@ -6,9 +6,9 @@ import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { options } = manifest;
-
 export const AccordionEditor = (attributes) => {
+	const { options } = manifest;
+	
 	const {
 		setAttributes,
 		componentName = manifest.componentName,

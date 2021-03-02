@@ -7,10 +7,10 @@ import { icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scrip
 import globalSettings from '../../manifest.json';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-const { globalVariables: defaults } = globalSettings;
-
 export const WrapperOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+	const { globalVariables: defaults } = globalSettings;
+
 	const {
 		wrapperUse,
 		wrapperUseShowControl,
