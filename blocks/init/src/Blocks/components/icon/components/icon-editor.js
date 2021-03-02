@@ -4,9 +4,9 @@ import { Fragment } from '@wordpress/element';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { icons } = manifest;
-
 export const IconEditor = (attributes) => {
+	const { icons } = manifest;
+
 	const {
 		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,

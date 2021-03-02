@@ -7,9 +7,9 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { title } = manifest;
-
 export const ImageOptions = (attributes) => {
+	const { title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,

@@ -6,9 +6,9 @@ import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/compone
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-
 export const ColumnsOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+
 	const gutter = [
 		attributes.gutterLarge,
 		attributes.gutterDesktop,

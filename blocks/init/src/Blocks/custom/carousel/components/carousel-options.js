@@ -5,9 +5,9 @@ import { PanelBody, ToggleControl, RangeControl, Icon } from '@wordpress/compone
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-
 export const CarouselOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+
 	const {
 		isLoop,
 		showItems,

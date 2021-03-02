@@ -8,9 +8,9 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+
 	const {
 		query: queryProps,
 		query: {

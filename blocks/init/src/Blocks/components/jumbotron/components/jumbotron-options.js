@@ -9,9 +9,9 @@ import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import { ButtonOptions } from '../../button/components/button-options';
 import manifest from './../manifest.json';
 
-const { title } = manifest;
-
 export const JumbotronOptions = (attributes) => {
+	const { title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
