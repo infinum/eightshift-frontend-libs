@@ -8,14 +8,12 @@ $override-map: (
 	background-color: $base-background-color,
 );
 
-body {
-	.editor-styles-wrapper {
-		@include font-smoothing;
-		font-family: map-get-strict($override-map, font-family);
-		font-size: map-get-strict($override-map, font-size);
-		color: map-get-strict($override-map, color);
-		background-color: map-get-strict($override-map, background-color);
-	}
+body .editor-styles-wrapper {
+	@include font-smoothing;
+	font-family: map-get-strict($override-map, font-family);
+	font-size: map-get-strict($override-map, font-size);
+	color: map-get-strict($override-map, color);
+	background-color: map-get-strict($override-map, background-color);
 }
 
 // Sets base font size value only to editor part.
