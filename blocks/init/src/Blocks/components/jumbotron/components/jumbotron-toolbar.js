@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
 import { ImageToolbar } from '../../image/components/image-toolbar';
@@ -27,9 +26,9 @@ export const JumbotronToolbar = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{jumbotronUse &&
-				<Fragment>
+				<>
 					{showJumbotronContentPosition &&
 						<BlockAlignmentMatrixToolbar
 							label={__('Content Position', 'eightshift-frontend-libs')}
@@ -57,8 +56,8 @@ export const JumbotronToolbar = (attributes) => {
 						{...attributes}
 						setAttributes={setAttributes}
 					/>
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -24,7 +23,7 @@ export const AccordionOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -39,15 +38,14 @@ export const AccordionOptions = (attributes) => {
 			/>
 
 			{showAccordionIsOpen &&
-				<Fragment>
+				<>
 					<ToggleControl
 						label={__('Is Open', 'eightshift-frontend-libs')}
 						checked={accordionIsOpen}
 						onChange={(value) => setAttributes({ [`${componentName}IsOpen`]: value })}
 					/>
-				</Fragment>
+				</>
 			}
-
-		</Fragment>
+		</>
 	);
 };

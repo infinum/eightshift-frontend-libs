@@ -2,7 +2,6 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
-import { Fragment } from '@wordpress/element';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
@@ -105,10 +104,10 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 
 			<RangeControl
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
 				allowReset={true}

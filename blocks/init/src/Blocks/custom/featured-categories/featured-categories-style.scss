@@ -52,7 +52,7 @@ $block-featured-categories: (
 	}
 
 	> * {
-		padding: 45px map-get-strict($block-featured-categories, gutter);
+		padding: 2.25em map-get-strict($block-featured-categories, gutter);
 		transition: {
 			property: background-color, transform;
 			timing-function: ease-in;

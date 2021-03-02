@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -37,7 +36,7 @@ export const SearchBarEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{searchBarUse &&
 				<form
 					role="search"
@@ -65,6 +64,6 @@ export const SearchBarEditor = (attributes) => {
 					/>
 				</form>
 			}
-		</Fragment>
+		</>
 	);
 };

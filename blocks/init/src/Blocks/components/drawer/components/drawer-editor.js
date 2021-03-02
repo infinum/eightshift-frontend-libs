@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -27,7 +26,7 @@ export const DrawerEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{drawerUse &&
 				<div
 					className={drawerClass}
@@ -37,6 +36,6 @@ export const DrawerEditor = (attributes) => {
 					{drawerMenu}
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

@@ -4,11 +4,11 @@ $hamburger: (
 	colors: (
 		line: $base-text-color,
 	),
-	width: 24px,          // Width of lines / hamburger
-	line-height: 2px,     // Height of each line
-	padding: 8px,         // Padding around hamburger (more padding = easier to click)
-	line-spacing: 8px,    // Space between hamburger lines
-	wrapper-height: 16px, // Height the entire wrapper
+	width: 1.2em,          // Width of lines / hamburger
+	line-height: 0.1em,     // Height of each line
+	padding: 0.4em,         // Padding around hamburger (more padding = easier to click)
+	line-spacing: 0.4em,    // Space between hamburger lines
+	wrapper-height: 0.8em, // Height the entire wrapper
 );
 
 .hamburger {

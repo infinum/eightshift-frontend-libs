@@ -8,11 +8,11 @@ $social-links: (
 	display: inline-flex;
 	align-items: center;
 	overflow: hidden;
-	margin: 0 -10px -10px;
+	margin: 0 -0.5em -0.5em;
 	flex-wrap: wrap;
 
 	&__link {
-		padding: 0 10px 10px;
+		padding: 0 0.5em 0.5em;
 		display: block;
 	}
 

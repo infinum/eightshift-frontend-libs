@@ -41,11 +41,11 @@
 	"options": {
 		"headingSize": [
 			{
-				"label": "Default (30px)",
+				"label": "Default (1.5em)",
 				"value": "default"
 			},
 			{
-				"label": "Big (50px)",
+				"label": "Big (2.5em)",
 				"value": "big"
 			}
 		],

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -20,7 +19,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 
 	if (!wrapperUse || wrapperDisable) {
 		return (
-			<Fragment>
+			<>
 				{wrapperParentClass ?
 					<div className={`${wrapperParentClass}__item`}>
 						<div className={`${wrapperParentClass}__item-inner`}>
@@ -29,7 +28,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 					</div> :
 					children
 				}
-			</Fragment>
+			</>
 		);
 	}
 

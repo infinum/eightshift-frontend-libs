@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { PanelBody, ToggleControl, RangeControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
@@ -24,10 +23,10 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 
 			<RangeControl
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.width} />
 						{__('Items in one slide', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 				help={__('Set number of items to show on on slide.', 'eightshift-frontend-libs')}
 				allowReset={true}

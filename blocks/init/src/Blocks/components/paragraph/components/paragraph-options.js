@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
@@ -31,7 +30,7 @@ export const ParagraphOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -46,14 +45,14 @@ export const ParagraphOptions = (attributes) => {
 			/>
 
 			{paragraphUse &&
-				<Fragment>
+				<>
 					{showParagraphColor &&
 						<ColorPaletteCustom
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
 							value={paragraphColor}
@@ -64,19 +63,19 @@ export const ParagraphOptions = (attributes) => {
 					{showParagraphSize &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.textSize} />
 									{__('Text size', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={paragraphSize}
 							options={getOptions(manifest, componentName, 'size', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };
