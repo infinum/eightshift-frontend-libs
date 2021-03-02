@@ -4,8 +4,6 @@ import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-l
 import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
-	console.log(attributes);
-	
 	const {
 		wrapperUse = checkAttr('wrapperUse', attributes, manifest),
 		wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest),
