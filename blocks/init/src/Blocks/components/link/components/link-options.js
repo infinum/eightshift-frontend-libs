@@ -4,17 +4,18 @@ import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { options, title } = manifest;
+const { title } = manifest;
 
 export const LinkOptions = (attributes) => {
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
 		label = title,
+		options = options,
 		linkShowControls = true,
 
 		linkUse = checkAttr('linkUse', attributes, manifest, componentName),
@@ -22,14 +23,12 @@ export const LinkOptions = (attributes) => {
 		linkUrl = checkAttr('linkUrl', attributes, manifest, componentName),
 		linkColor = checkAttr('linkColor', attributes, manifest, componentName),
 		linkSize = checkAttr('linkSize', attributes, manifest, componentName),
-		linkWidth = checkAttr('linkWidth', attributes, manifest, componentName),
 		linkIsAnchor = checkAttr('linkIsAnchor', attributes, manifest, componentName),
 		linkId = checkAttr('linkId', attributes, manifest, componentName),
 
 		showLinkUrl = true,
 		showLinkColor = true,
 		showLinkSize = true,
-		showLinkWidth = true,
 		showLinkIsAnchor = true,
 		showLinkId = true,
 
@@ -80,7 +79,7 @@ export const LinkOptions = (attributes) => {
 								</Fragment>
 							}
 							value={linkColor}
-							colors={getOptionColors(options.colors)}
+							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
 							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
 					}
@@ -94,22 +93,8 @@ export const LinkOptions = (attributes) => {
 								</Fragment>
 							}
 							value={linkSize}
-							options={options.sizes}
+							options={getOptions(manifest, componentName, 'size', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
-						/>
-					}
-
-					{showLinkWidth &&
-						<SelectControl
-							label={
-								<Fragment>
-									<Icon icon={icons.width} />
-									{__('Width', 'eightshift-frontend-libs')}
-								</Fragment>
-							}
-							value={linkWidth}
-							options={options.widths}
-							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
 						/>
 					}
 

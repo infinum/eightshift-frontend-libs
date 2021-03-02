@@ -31,7 +31,7 @@ export const toolbar = () => (
 
 export const size = () => (
 	<Fragment>
-		{manifest.options.sizes.map((values, index) => (
+		{manifest.options.paragraphSize.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}
@@ -46,7 +46,7 @@ export const size = () => (
 
 export const align = () => (
 	<Fragment>
-		{manifest.options.aligns.map((values, index) => (
+		{manifest.options.paragraphAlign.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}
@@ -61,7 +61,7 @@ export const align = () => (
 
 export const color = () => (
 	<Fragment>
-		{manifest.options.colors.map((values, index) => (
+		{manifest.options.paragraphColor.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props}

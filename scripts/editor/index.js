@@ -6,3 +6,4 @@ export { icons } from './icons/icons';
 export { overrideInnerBlockAttributes, overrideInnerBlockSimpleWrapperAttributes } from './override-inner-block-attributes';
 export { getOptionColors } from './get-option-colors';
 export { pasteInto } from './paste-handler';
+export { getOptions } from './get-options';

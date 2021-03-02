@@ -34,7 +34,7 @@
 		}
 	},
 	"options": {
-		"sizes": [
+		"paragraphSize": [
 			{
 				"label": "Default (22px)",
 				"value": "default"
@@ -44,12 +44,12 @@
 				"value": "small"
 			}
 		],
-		"aligns": [
+		"paragraphAlign": [
 			"left",
 			"center",
 			"right"
 		],
-		"colors": [
+		"paragraphColor": [
 			"primary",
 			"black"
 		]

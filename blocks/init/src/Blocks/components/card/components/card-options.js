@@ -8,6 +8,7 @@ import { ButtonOptions } from '../../button/components/button-options';
 export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
+		options,
 		introColor,
 		introSize,
 	} = attributes;
@@ -29,6 +30,7 @@ export const CardOptions = (attributes) => {
 				headingColor={introColor}
 				headingSize={introSize}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<hr />
@@ -36,6 +38,7 @@ export const CardOptions = (attributes) => {
 			<HeadingOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 
@@ -44,6 +47,7 @@ export const CardOptions = (attributes) => {
 			<ParagraphOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<hr />
@@ -51,6 +55,7 @@ export const CardOptions = (attributes) => {
 			<ButtonOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 		</Fragment>

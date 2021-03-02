@@ -8,6 +8,7 @@ import { ButtonToolbar } from '../../button/components/button-toolbar';
 export const CardToolbar = (attributes) => {
 	const {
 		setAttributes,
+		options,
 		introAlign,
 		introLevel,
 	} = attributes;
@@ -26,21 +27,25 @@ export const CardToolbar = (attributes) => {
 				headingAlign={introAlign}
 				headingLevel={introLevel}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<HeadingToolbar
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<ParagraphToolbar
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<ButtonToolbar
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 		</Fragment>
 	);

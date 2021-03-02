@@ -3,15 +3,17 @@ import { __, sprintf } from '@wordpress/i18n';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
-const { options, title } = manifest;
+const { title } = manifest;
 
 export const ParagraphToolbar = (attributes) => {
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
 		label = title,
+		options = options,
 		paragraphShowControls = true,
 
 		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
@@ -32,7 +34,7 @@ export const ParagraphToolbar = (attributes) => {
 					{showParagraphAlign &&
 						<AlignmentToolbar
 							value={paragraphAlign}
-							options={options.aligns}
+							options={getOptions(manifest, componentName, 'align', options)}
 							label={sprintf(__('%s text align', 'eightshift-frontend-libs'), label)}
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
