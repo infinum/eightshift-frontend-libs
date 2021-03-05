@@ -26,8 +26,8 @@
 	}
 
 	&[data-align='top center'] {
-		align-items: flex-start;
-		justify-content: center;
+		align-items: center;
+		justify-content: flex-start;
 
 		.image--bg {
 			background-position: center top;
@@ -35,8 +35,8 @@
 	}
 
 	&[data-align='top right'] {
-		align-items: flex-start;
-		justify-content: flex-end;
+		align-items: flex-end;
+		justify-content: flex-start;
 
 		.image--bg {
 			background-position: right top;
@@ -44,8 +44,8 @@
 	}
 
 	&[data-align='center left'] {
-		align-items: center;
-		justify-content: flex-start;
+		align-items: flex-start;
+		justify-content: center;
 
 		.image--bg {
 			background-position: left center;
@@ -62,8 +62,8 @@
 	}
 
 	&[data-align='center right'] {
-		align-items: center;
-		justify-content: flex-end;
+		align-items: flex-end;
+		justify-content: center;
 
 		.image--bg {
 			background-position: right center;
@@ -71,8 +71,8 @@
 	}
 
 	&[data-align='bottom left'] {
-		align-items: flex-end;
-		justify-content: flex-start;
+		align-items: flex-start;
+		justify-content: flex-end;
 
 		.image--bg {
 			background-position: left bottom;
@@ -80,8 +80,8 @@
 	}
 
 	&[data-align='bottom center'] {
-		align-items: flex-end;
-		justify-content: center;
+		align-items: center;
+		justify-content: flex-end;
 
 		.image--bg {
 			background-position: center bottom;
