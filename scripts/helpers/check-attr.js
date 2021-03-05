@@ -28,8 +28,10 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : false;
 				break;
 			case 'array':
-			case 'object':
 				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : [];
+				break;
+			case 'object':
+				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : {};
 				break;
 			default:
 				defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : '';
