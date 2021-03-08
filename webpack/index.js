@@ -24,7 +24,8 @@ module.exports = (mode, optionsData = {}) => {
 		optionsData.config.blocksAssetsPath,
 		optionsData.config.outputPath,
 		optionsData.config.blocksManifestSettingsPath,
-		optionsData.config.useSsl
+		optionsData.config.useSsl,
+		optionsData.config.useCssVariables
 	);
 
 	options.config.mode = mode;

@@ -128,7 +128,7 @@ module.exports = (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
-						additionalData: convertJsonToSass(globalSettings),
+						additionalData: convertJsonToSass(globalSettings, options.config.useCssVariables),
 					},
 				},
 				{

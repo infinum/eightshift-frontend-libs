@@ -16,6 +16,7 @@ const path = require('path');
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  * @param {boolean} useSsl Change configuration if you have local ssl certificate, generally used only for BrowserSync.
+ * @param {boolean} useCssVariables Change manifest strings to css variables output.
  *
  */
 function getConfig(
@@ -26,7 +27,8 @@ function getConfig(
 		blocksAssetsPathConfig = 'src/Blocks/assets',
 		outputPathConfig = 'public',
 		blocksManifestSettingsPath = 'src/Blocks/manifest.json',
-		useSsl = false
+		useSsl = false,
+		useCssVariables = false,
 	) {
 
 	if (typeof projectDir === 'undefined') {
@@ -70,6 +72,7 @@ function getConfig(
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 
 		useSsl,
+		useCssVariables,
 	};
 }
 
@@ -126,12 +129,62 @@ function convertJsonToSassGeneral(data) {
 }
 
 /**
+ * Convert Recursive Json data to Css variables.
+ *
+ * @param {object} data Json data to convert.
+ */
+function convertJsonToSassVariables(data) {
+	let output = '';
+
+	for (const property in data) {
+		if (Object.prototype.hasOwnProperty.call(data, property)) {
+			switch (typeof data[property]) {
+				case 'object':
+						for (const inner in data[property]) {
+							if (Object.prototype.hasOwnProperty.call(data[property], inner)) {
+								switch (property) {
+									case 'colors':
+										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].color};\n`;
+										break;
+									case 'gradient':
+										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].gradient};\n`;
+										break;
+									case 'fontSizes':
+										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].slug};\n`;
+										break;
+									default:
+										output += `--${property}-${inner}: ${data[property][inner]};\n`;
+										break;
+								}
+							}
+						}
+					break;
+				default:
+					output += `--${property}: ${data[property]};\n`;
+					break;
+			}
+		}
+	}
+
+	return output;
+}
+
+/**
  * Convert Json to SASS valid output and prefix it with map key.
  *
  * @param {object} data Json Data object.
  */
-function convertJsonToSass(data = {}) {
-	return (data === '') ? '' : `$global-variables: (${convertJsonToSassGeneral(data.globalVariables)});`;
+function convertJsonToSass(data = {}, $useVariables = false) {
+
+	if (data === '') {
+		return '';
+	}
+
+	if ($useVariables) {
+		return convertJsonToSassVariables(data.globalVariables);
+	}
+	
+	return `$global-variables: (${convertJsonToSassGeneral(data.globalVariables)});`;
 }
 
 module.exports = {
