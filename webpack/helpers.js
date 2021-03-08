@@ -140,24 +140,24 @@ function convertJsonToSassVariables(data) {
 		if (Object.prototype.hasOwnProperty.call(data, property)) {
 			switch (typeof data[property]) {
 				case 'object':
-						for (const inner in data[property]) {
-							if (Object.prototype.hasOwnProperty.call(data[property], inner)) {
-								switch (property) {
-									case 'colors':
-										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].color};\n`;
-										break;
-									case 'gradient':
-										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].gradient};\n`;
-										break;
-									case 'fontSizes':
-										output += `--${property}-${data[property][inner].slug}: ${data[property][inner].slug};\n`;
-										break;
-									default:
-										output += `--${property}-${inner}: ${data[property][inner]};\n`;
-										break;
-								}
+					for (const inner in data[property]) {
+						if (Object.prototype.hasOwnProperty.call(data[property], inner)) {
+							switch (property) {
+								case 'colors':
+									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].color};\n`;
+									break;
+								case 'gradient':
+									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].gradient};\n`;
+									break;
+								case 'fontSizes':
+									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].slug};\n`;
+									break;
+								default:
+									output += `--${property}-${inner}: ${data[property][inner]};\n`;
+									break;
 							}
 						}
+					}
 					break;
 				default:
 					output += `--${property}: ${data[property]};\n`;
