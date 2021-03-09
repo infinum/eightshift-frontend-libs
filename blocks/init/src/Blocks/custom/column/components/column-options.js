@@ -57,10 +57,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.width} />
 						{__('Width', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{width.map((item, index) => {
@@ -87,10 +87,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.offset} />
 						{__('Offset', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{offset.map((item, index) => {
@@ -117,10 +117,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.order} />
 						{__('Order', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{order.map((item, index) => {
@@ -147,10 +147,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.verticalAlign} />
 						{__('Vertical align', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{align.map((item, index) => {
@@ -186,10 +186,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.hide} />
 						{__('Hide', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{hide.map((item, index) => {

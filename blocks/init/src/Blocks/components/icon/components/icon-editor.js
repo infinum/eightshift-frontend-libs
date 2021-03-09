@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
@@ -23,10 +22,10 @@ export const IconEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{iconUse &&
 				<i className={iconClass} dangerouslySetInnerHTML={{ __html: icons[iconName] }}></i>
 			}
-		</Fragment>
+		</>
 	);
 };

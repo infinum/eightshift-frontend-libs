@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { AlignmentToolbar } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
 import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
 import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -31,9 +30,9 @@ export const HeadingToolbar = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{headingUse &&
-				<Fragment>
+				<>
 					{showHeadingLevel &&
 						<HeadingLevel
 							selectedLevel={headingLevel}
@@ -49,8 +48,8 @@ export const HeadingToolbar = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

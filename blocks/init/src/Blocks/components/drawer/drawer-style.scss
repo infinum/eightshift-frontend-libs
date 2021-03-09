@@ -1,5 +1,5 @@
 $drawer: (
-	width: 250px,
+	width: 22.5em,
 	shadow: rgba(global-settings(colors, black), 0.2),
 	colors: (
 		background: global-settings(colors, white),
@@ -21,7 +21,7 @@ $drawer: (
 	width: map-get-strict($drawer, width);
 	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 	overflow-x: hidden;
-	box-shadow: 0 0 3px map-get-strict($drawer, shadow);
+	box-shadow: 0 0 0.15em map-get-strict($drawer, shadow);
 
 	&__position--left {
 		left: 0;

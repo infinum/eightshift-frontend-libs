@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -15,7 +14,7 @@ export const CardOptions = (attributes) => {
 	} = attributes;
 
 	return (
-		<Fragment>
+		<>
 
 			<ImageOptions
 				{...attributes}
@@ -60,6 +59,6 @@ export const CardOptions = (attributes) => {
 				options={options}
 			/>
 
-		</Fragment>
+		</>
 	);
 };

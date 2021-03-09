@@ -1,12 +1,12 @@
 .search-bar {
 	position: relative;
 	height: 100%;
-	padding: 10px 15px;
+	padding: 0.5em 0.75em;
 	display: flex;
 	align-items: center;
 
 	&__label {
-		margin-right: 15px;
+		margin-right: 0.75em;
 
 		&--hidden {
 			  @extend %visually-hidden;
@@ -14,10 +14,10 @@
 	}
 
 	&__input {
-		border-radius: 50px;
-		font-size: 14px;
+		border-radius: 2.5em;
+		font-size: 0.7em;
 		font-weight: 500;
-		padding: 5px 20px;
-		border-width: 1px;
+		padding: 0.25em 1em;
+		border-width: 0.05em;
 	}
 }

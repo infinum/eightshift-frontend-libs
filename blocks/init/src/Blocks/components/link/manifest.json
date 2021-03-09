@@ -60,11 +60,11 @@
 	"options": {
 		"linkSize": [
 			{
-				"label": "Default (22px)",
+				"label": "Default (1.1em)",
 				"value": "default"
 			},
 			{
-				"label": "Small (18px)",
+				"label": "Small (0.9em)",
 				"value": "small"
 			}
 		],

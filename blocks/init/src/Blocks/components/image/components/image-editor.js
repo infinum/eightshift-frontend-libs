@@ -1,7 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
 import { Placeholder } from '@wordpress/components';
 import { image } from '@wordpress/icons';
 import { MediaPlaceholder } from '@wordpress/block-editor';
@@ -39,21 +38,21 @@ export const ImageEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{imageUse &&
-				<Fragment>
+				<>
 					<div className={imageWrapClass} data-align={imageAlign}>
 						{(imageUrl !== '') &&
-							<Fragment>
+							<>
 								{imageBg ?
 									<div className={imageClass} style={{ backgroundImage: `url(${imageUrl})` }} /> :
 									<img className={imageClass} src={imageUrl} alt={imageAlt} />
 								}
-							</Fragment>
+							</>
 						}
 
 						{(imageUrl === '') &&
-							<Fragment>
+							<>
 								{(!imageUsePlaceholder) ?
 									<MediaPlaceholder
 										icon="format-image"
@@ -68,12 +67,12 @@ export const ImageEditor = (attributes) => {
 									/> :
 									<Placeholder icon={image} label={__('Please add image using sidebar options!', 'eightshift-frontend-libs')} />
 								}
-							</Fragment>
+							</>
 						}
 					</div>
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };
 

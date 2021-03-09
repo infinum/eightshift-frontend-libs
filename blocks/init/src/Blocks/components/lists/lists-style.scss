@@ -4,20 +4,20 @@ $lists: (
 	sizes: (
 		mobile: (
 			default: (
-				font-size: 18px,
+				font-size: 0.9em,
 				line-height: 1.56,
 			),
 			small: (
-				font-size: 14px,
+				font-size: 0.7em,
 				line-height: 1,
 			),
 		),
 		large: (
 			default: (
-				font-size: 22px,
+				font-size: 1.1em,
 			),
 			small: (
-				font-size: 18px,
+				font-size: 0.9em,
 			),
 		),
 	),
@@ -29,7 +29,7 @@ $lists: (
 	color: map-get-deep($lists, colors, primary);
 
 	li {
-		margin-left: 22px;
+		margin-left: 1.1em;
 	}
 
 	&__color {

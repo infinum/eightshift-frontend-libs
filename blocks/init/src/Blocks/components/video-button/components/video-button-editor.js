@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -25,9 +24,9 @@ export const VideoButtonEditor = (attributes) => {
 	);
 
 	return (
-		<Fragment>
+		<>
 			{videoButtonUse &&
-				<Fragment>
+				<>
 					{videoButtonModalId &&
 						<button
 							className={`${videoButtonClass}`}
@@ -35,8 +34,8 @@ export const VideoButtonEditor = (attributes) => {
 							aria-label={videoButtonLabel}
 						></button>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

@@ -16,7 +16,7 @@ $block-featured-posts: (
 	}
 
 	> * {
-		padding: 45px map-get-strict($block-featured-posts, gutter);
+		padding: 2.25em map-get-strict($block-featured-posts, gutter);
 		transition: {
 			property: background-color, transform;
 			timing-function: ease-in;

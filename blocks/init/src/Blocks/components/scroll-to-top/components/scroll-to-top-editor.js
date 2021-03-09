@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -23,12 +22,12 @@ export const ScrollToTopEditor = (attributes) => {
 	);
 
 	return (
-		<Fragment>
+		<>
 			{scrollToTopUse &&
 				<button className={scrollClass}>
 					{scrollToTopContent}
 				</button>
 			}
-		</Fragment>
+		</>
 	);
 };

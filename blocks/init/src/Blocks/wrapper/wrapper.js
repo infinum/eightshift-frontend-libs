@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { WrapperEditor } from './components/wrapper-editor';
 import { WrapperOptions } from './components/wrapper-options';
@@ -14,7 +13,7 @@ export const Wrapper = (props) => {
 	} = props;
 
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<WrapperOptions
 					attributes={attributes}
@@ -26,6 +25,6 @@ export const Wrapper = (props) => {
 				attributes={attributes}
 				children={children}
 			/>
-		</Fragment>
+		</>
 	);
 };

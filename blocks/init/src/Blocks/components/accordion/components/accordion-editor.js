@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -29,7 +28,7 @@ export const AccordionEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{accordionUse &&
 				<div
 					className={accordionClass}
@@ -51,6 +50,6 @@ export const AccordionEditor = (attributes) => {
 					</section>
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { LinkEditor } from './components/link-editor';
 import { LinkToolbar } from './components/link-toolbar';
@@ -7,7 +6,7 @@ import { LinkOptions } from './components/link-options';
 
 export const Link = (props) => {
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<LinkOptions {...props} />
 			</InspectorControls>
@@ -15,6 +14,6 @@ export const Link = (props) => {
 				<LinkToolbar {...props} />
 			</BlockControls>
 			<LinkEditor {...props} />
-		</Fragment>
+		</>
 	);
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
@@ -54,12 +53,12 @@ export const VideoEditor = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{videoUse &&
 				<div className={videoWrapClass}>
 
 					{(videoUrl !== '') &&
-						<Fragment>
+						<>
 							{(videoType === 'local') ?
 								<video className={videoClass} muted>
 									<source src={localUrl} type="video/mp4" />
@@ -73,11 +72,11 @@ export const VideoEditor = (attributes) => {
 									allowFullScreen
 								></iframe>
 							}
-						</Fragment>
+						</>
 					}
 
 					{(videoUrl === '') &&
-						<Fragment>
+						<>
 							{(videoUsePlaceholder || videoType !== 'local') &&
 								<Placeholder icon={video} label={__('Please add video using sidebar options!', 'eightshift-frontend-libs')} />
 							}
@@ -90,11 +89,11 @@ export const VideoEditor = (attributes) => {
 									allowedTypes={videoAllowedTypes}
 								/>
 							}
-						</Fragment>
+						</>
 					}
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 
 };

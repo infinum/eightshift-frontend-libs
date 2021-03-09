@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
@@ -20,10 +19,10 @@ export const PageOverlayEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{pageOverlayUse &&
 				<div className={overlayClass}></div>
 			}
-		</Fragment>
+		</>
 	);
 };

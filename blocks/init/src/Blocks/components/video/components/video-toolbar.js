@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 import { trash } from '@wordpress/icons';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -26,9 +25,9 @@ export const VideoToolbar = (attributes) => {
 	};
 
 	return (
-		<Fragment>
+		<>
 			{videoUse &&
-				<Fragment>
+				<>
 					{(videoUrl !== '') &&
 						<ToolbarGroup
 							controls={[
@@ -42,8 +41,8 @@ export const VideoToolbar = (attributes) => {
 						/>
 					}
 
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

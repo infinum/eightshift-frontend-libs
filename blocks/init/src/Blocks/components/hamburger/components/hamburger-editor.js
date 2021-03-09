@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -21,7 +20,7 @@ export const HamburgerEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{hamburgerUse &&
 				<button className={hamburgerClass}>
 					<span className={`${componentClass}__wrap`}>
@@ -31,6 +30,6 @@ export const HamburgerEditor = (attributes) => {
 					</span>
 				</button>
 			}
-		</Fragment>
+		</>
 	);
 };

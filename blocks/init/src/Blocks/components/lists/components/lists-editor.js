@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -33,7 +32,7 @@ export const ListsEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{listsUse &&
 				<RichText
 					tagName={listsOrdered}
@@ -46,6 +45,6 @@ export const ListsEditor = (attributes) => {
 					allowedFormats={['core/bold', 'core/link']}
 				/>
 			}
-		</Fragment>
+		</>
 	);
 };
