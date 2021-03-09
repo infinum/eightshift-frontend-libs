@@ -6,12 +6,8 @@ module.exports = (
 	{ config },
 	projectRoot,
 	blocksManifestSettingsPath,
-	isProject = true,
-	useCssVariables = false,
+	isProject = true
 ) => {
-
-	// Load global variables.
-	const globalSettings = require(path.resolve(projectRoot, blocksManifestSettingsPath));
 
 	/**
 	 * Generate css file from sass.
@@ -30,7 +26,7 @@ module.exports = (
 			{
 				loader: 'sass-loader',
 				options: {
-					additionalData: convertJsonToSass(globalSettings, useCssVariables),
+					additionalData: convertJsonToSass(path.resolve(projectRoot, blocksManifestSettingsPath)),
 				},
 			},
 			{

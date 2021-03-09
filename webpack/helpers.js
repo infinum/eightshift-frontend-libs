@@ -4,6 +4,7 @@
  */
 
 const path = require('path');
+const fs = require('fs');
 
 /**
  * Generate all paths required for Webpack build to work.
@@ -16,7 +17,6 @@ const path = require('path');
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  * @param {boolean} useSsl Change configuration if you have local ssl certificate, generally used only for BrowserSync.
- * @param {boolean} useCssVariables Change manifest strings to css variables output.
  *
  */
 function getConfig(
@@ -28,7 +28,6 @@ function getConfig(
 		outputPathConfig = 'public',
 		blocksManifestSettingsPath = 'src/Blocks/manifest.json',
 		useSsl = false,
-		useCssVariables = false,
 	) {
 
 	if (typeof projectDir === 'undefined') {
@@ -72,32 +71,7 @@ function getConfig(
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 
 		useSsl,
-		useCssVariables,
 	};
-}
-
-/**
- * Convert Recursive Json data only for colors to SASS valid output.
- *
- * @param {object} data Json data only for colors.
- */
-function convertJsonColorsToSass(data) {
-	let output = '';
-
-	for (const property in data) {
-		if (Object.prototype.hasOwnProperty.call(data, property)) {
-
-			if (typeof data[property] === 'string' && (property === 'color' || property === 'gradient')) {
-				output += data[property];
-			}
-
-			if (typeof data[property] === 'object') {
-				output += `${data[property].slug}: ${convertJsonColorsToSass(data[property])},`;
-			}
-		}
-	}
-
-	return output;
 }
 
 /**
@@ -105,23 +79,14 @@ function convertJsonColorsToSass(data) {
  *
  * @param {object} data Json data to convert.
  */
-function convertJsonToSassGeneral(data) {
+function convertJsonToSassMap(data) {
 	let output = '';
 
-	for (const property in data) {
-		if (Object.prototype.hasOwnProperty.call(data, property)) {
-			switch (typeof data[property]) {
-				case 'object':
-					if (property === 'colors' || property === 'gradient') {
-						output += `${property}: (${convertJsonColorsToSass(data[property])}),`;
-					} else {
-						output += `${property}: (${convertJsonToSassGeneral(data[property])}),`;
-					}
-					break;
-				default:
-					output += `${property}: ${data[property]},`;
-					break;
-			}
+	for (const [key, value] of Object.entries(data)) {
+		if (typeof value === 'object') {
+			output += `${key}: (${convertJsonToSassMapInner(value, key)}),`;
+		} else {
+			output += `${key}: ${value},`;
 		}
 	}
 
@@ -129,40 +94,28 @@ function convertJsonToSassGeneral(data) {
 }
 
 /**
- * Convert Recursive Json data to Css variables.
+ * Convert Recursive map object data to Sass map variables for inner objects.
  *
- * @param {object} data Json data to convert.
+ * @param {object} data Object data to convert.
+ * @param {string} key Parent string
  */
-function convertJsonToSassVariables(data) {
+function convertJsonToSassMapInner(data, key) {
 	let output = '';
 
-	for (const property in data) {
-		if (Object.prototype.hasOwnProperty.call(data, property)) {
-			switch (typeof data[property]) {
-				case 'object':
-					for (const inner in data[property]) {
-						if (Object.prototype.hasOwnProperty.call(data[property], inner)) {
-							switch (property) {
-								case 'colors':
-									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].color};\n`;
-									break;
-								case 'gradient':
-									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].gradient};\n`;
-									break;
-								case 'fontSizes':
-									output += `--${property}-${data[property][inner].slug}: ${data[property][inner].slug};\n`;
-									break;
-								default:
-									output += `--${property}-${inner}: ${data[property][inner]};\n`;
-									break;
-							}
-						}
-					}
-					break;
-				default:
-					output += `--${property}: ${data[property]};\n`;
-					break;
-			}
+	for (const [innerKey, innerValue] of Object.entries(data)) {
+		switch (key) {
+			case 'colors':
+				output += `${innerValue['slug']}: ${innerValue['color']},`;
+				break;
+			case 'gradients':
+				output += `${innerValue['slug']}: ${innerValue['gradient']},`;
+				break;
+			case 'fontSizes':
+				output += `${innerKey}: ${innerValue['slug']},`;
+				break;
+			default:
+				output += `${innerKey}: ${innerValue},`;
+				break;
 		}
 	}
 
@@ -174,17 +127,18 @@ function convertJsonToSassVariables(data) {
  *
  * @param {object} data Json Data object.
  */
-function convertJsonToSass(data = {}, $useVariables = false) {
+function convertJsonToSass(path) {
+	let data = {};
 
-	if (data === '') {
+	if (fs.existsSync(path)) {
+		data = require(path);
+	}
+
+	if (Object.getOwnPropertyNames(data).length === 0 || !Object.prototype.hasOwnProperty.call(data, 'globalVariables')) {
 		return '';
 	}
 
-	if ($useVariables) {
-		return convertJsonToSassVariables(data.globalVariables);
-	}
-	
-	return `$global-variables: (${convertJsonToSassGeneral(data.globalVariables)});`;
+	return `$global-variables: (${convertJsonToSassMap(data['globalVariables'])});`;
 }
 
 module.exports = {
