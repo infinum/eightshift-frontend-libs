@@ -4,7 +4,6 @@
  */
 
 const webpack = require('webpack');
-const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -104,13 +103,6 @@ module.exports = (options) => {
 
 	// Module for Scss.
 	if (!options.overrides.includes('scss')) {
-		const globalSettingsPath = options.config.blocksManifestSettingsPath;
-		let globalSettings = {};
-
-		if (fs.existsSync(globalSettingsPath)) {
-			globalSettings = require(globalSettingsPath);
-		}
-
 		module.rules.push({
 			test: /\.scss$/,
 			exclude: /node_modules/,
@@ -128,7 +120,7 @@ module.exports = (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
-						additionalData: convertJsonToSass(globalSettings),
+						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath),
 					},
 				},
 				{

@@ -2,10 +2,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { convertJsonToSass } = require('./helpers');
 
-module.exports = ({ config }, projectRoot, blocksManifestSettingsPath, isProject = true) => {
-
-	// Load global variables.
-	const globalSettings = require(path.resolve(projectRoot, blocksManifestSettingsPath));
+module.exports = (
+	{ config },
+	projectRoot,
+	blocksManifestSettingsPath,
+	isProject = true
+) => {
 
 	/**
 	 * Generate css file from sass.
@@ -24,7 +26,7 @@ module.exports = ({ config }, projectRoot, blocksManifestSettingsPath, isProject
 			{
 				loader: 'sass-loader',
 				options: {
-					additionalData: convertJsonToSass(globalSettings),
+					additionalData: convertJsonToSass(path.resolve(projectRoot, blocksManifestSettingsPath)),
 				},
 			},
 			{
