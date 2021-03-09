@@ -9,7 +9,7 @@
  * Usage: `WordPress admin editor`.
  */
 
-import { registerBlocks, registerVariations } from '@eightshift/frontend-libs/scripts/editor';
+import { registerBlocks, registerVariations, outputCssVariablesGlobal } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
 import globalSettings from '../../manifest.json';
@@ -33,3 +33,6 @@ registerVariations(
 
 // Run Wrapper hooks.
 hooks();
+
+// Output global css variables.
+outputCssVariablesGlobal(globalSettings);

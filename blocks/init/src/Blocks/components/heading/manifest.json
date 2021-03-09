@@ -23,15 +23,19 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "default"
+			"default": "default",
+			"variable": true
 		},
 		"headingColor": {
 			"type": "string",
-			"default": "black"
+			"default": "black",
+			"variable": true,
+			"color": true
 		},
 		"headingAlign": {
 			"type": "string",
-			"default": "left"
+			"default": "left",
+			"variable": true
 		},
 		"headingUse": {
 			"type": "boolean",

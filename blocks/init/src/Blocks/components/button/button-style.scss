@@ -2,20 +2,20 @@ $btn: (
 	colors: (
 		primary: (
 			normal: (
-				background-color: global-settings(colors, primary),
-				color: global-settings(colors, white),
+				background-color: var(--global-colors-primary),
+				color: var(--global-colors-white),
 			),
 			hover: (
-				background-color: global-settings(colors, black),
+				background-color: var(--global-colors-black),
 			),
 		),
 		black: (
 			normal: (
-				background-color: global-settings(colors, black),
-				color: global-settings(colors, white),
+				background-color: var(--global-colors-black),
+				color: var(--global-colors-white),
 			),
 			hover: (
-				background-color: global-settings(colors, primary),
+				background-color: var(--global-colors-primary),
 			),
 		),
 	),
