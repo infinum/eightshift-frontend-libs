@@ -31,7 +31,7 @@ export const toolbar = () => (
 
 export const size = () => (
 	<Fragment>
-		{manifest.options.sizes.map((values, index) => (
+		{manifest.options.linkSize.map((values, index) => (
 			<Fragment key={index}>
 				<LinkEditor
 					{...props}
@@ -46,7 +46,7 @@ export const size = () => (
 
 export const align = () => (
 	<Fragment>
-		{manifest.options.aligns.map((values, index) => (
+		{manifest.options.linkAlign.map((values, index) => (
 			<Fragment key={index}>
 				<LinkEditor
 					{...props}
@@ -61,7 +61,7 @@ export const align = () => (
 
 export const colors = () => (
 	<Fragment>
-		{manifest.options.colors.map((values, index) => (
+		{manifest.options.linkColor.map((values, index) => (
 			<Fragment key={index}>
 				<LinkEditor
 					{...props}

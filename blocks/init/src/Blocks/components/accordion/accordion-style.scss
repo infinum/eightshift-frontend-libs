@@ -1,12 +1,12 @@
 $accordion: (
 	border-color: global-settings(colors, light),
-	icon-size: 30px,
+	icon-size: 1.5em,
 );
 
 .accordion {
 	$this: &;
 	position: relative;
-	border-bottom: 1px solid map-get-strict($accordion, border-color);
+	border-bottom: 0.05em solid map-get-strict($accordion, border-color);
 
 	&[data-accordion-open='true'] {
 		> #{$this}__trigger {
@@ -16,7 +16,7 @@ $accordion: (
 		}
 
 		> #{$this}__panel {
-			max-height: 1500px;
+			max-height: 75em;
 		}
 	}
 
@@ -43,8 +43,8 @@ $accordion: (
 			timing-function: ease-in;
 			duration: 0.3s;
 		}
-		padding: 20px 25px;
-		font-size: 16px;
+		padding: 1em 1.25em;
+		font-size: 0.8em;
 		line-height: 1.4;
 
 		&:active {
@@ -59,7 +59,7 @@ $accordion: (
 		height: map-get-strict($accordion, icon-size);
 		width: map-get-strict($accordion, icon-size);
 		pointer-events: none;
-		right: 25px;
+		right: 1.25em;
 		transition: {
 			property: transform;
 			timing-function: ease-in;
@@ -73,6 +73,6 @@ $accordion: (
 	}
 
 	&__content {
-		padding: 25px;
+		padding: 1.25em;
 	}
 }

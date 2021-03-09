@@ -7,10 +7,10 @@ import { icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scrip
 import globalSettings from '../../manifest.json';
 import manifest from './../manifest.json';
 
-const { attributes: reset, options } = manifest;
-const { globalVariables: defaults } = globalSettings;
-
 export const WrapperOptions = ({ attributes, setAttributes }) => {
+	const { attributes: reset, options } = manifest;
+	const { globalVariables: defaults } = globalSettings;
+
 	const {
 		wrapperUse,
 		wrapperUseShowControl,
@@ -115,7 +115,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	];
 
 	return (
-		<Fragment>
+		<>
 			{!wrapperDisable &&
 				<PanelBody title={__('Block Layout', 'eightshift-frontend-libs')} initialOpen={false} className="custom-highlighted-panel">
 
@@ -140,16 +140,16 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					}
 
 					{wrapperUse &&
-						<Fragment>
+						<>
 							<div className="custom-divider"></div>
 
 							{showWrapperSpacingTop &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.spacingTop} />
 											{__('Spacing Top', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperSpacingTop.map((item, index) => {
@@ -178,10 +178,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperSpacingBottom &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.spacingBottom} />
 											{__('Spacing Bottom', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperSpacingBottom.map((item, index) => {
@@ -212,10 +212,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperSpacingTopIn &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.spacingTop} />
 											{__('Spacing Top In', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperSpacingTopIn.map((item, index) => {
@@ -244,10 +244,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperSpacingBottomIn &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.spacingBottom} />
 											{__('Spacing Bottom In', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperSpacingBottomIn.map((item, index) => {
@@ -278,10 +278,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperDividerTop &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.dividerTop} />
 											{__('Divider Top', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperDividerTop.map((item, index) => {
@@ -305,10 +305,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperDividerBottom &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.dividerBottom} />
 											{__('Divider Bottom', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperDividerBottom.map((item, index) => {
@@ -334,10 +334,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperHide &&
 								<Responsive
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.hide} />
 											{__('Hide', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 								>
 									{wrapperHide.map((item, index) => {
@@ -361,14 +361,14 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<div className="custom-divider"></div>
 
 							{!wrapperUseSimple &&
-								<Fragment>
+								<>
 									{showWrapperWidth &&
 										<Responsive
 											label={
-												<Fragment>
+												<>
 													<Icon icon={icons.width} />
 													{__('Width', 'eightshift-frontend-libs')}
-												</Fragment>
+												</>
 											}
 										>
 											{wrapperWidth.map((item, index) => {
@@ -397,10 +397,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									{showWrapperOffset &&
 										<Responsive
 											label={
-												<Fragment>
+												<>
 													<Icon icon={icons.offset} />
 													{__('Offset', 'eightshift-frontend-libs')}
-												</Fragment>
+												</>
 											}
 										>
 											{wrapperOffset.map((item, index) => {
@@ -429,10 +429,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									{showWrapperContainerWidth &&
 										<Responsive
 											label={
-												<Fragment>
+												<>
 													<Icon icon={icons.containerWidth} />
 													{__('ContainerWidth', 'eightshift-frontend-libs')}
-												</Fragment>
+												</>
 											}
 										>
 											{wrapperContainerWidth.map((item, index) => {
@@ -457,10 +457,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									{showWrapperGutter &&
 										<Responsive
 											label={
-												<Fragment>
+												<>
 													<Icon icon={icons.gutter} />
 													{__('Gutter', 'eightshift-frontend-libs')}
-												</Fragment>
+												</>
 											}
 										>
 											{wrapperGutter.map((item, index) => {
@@ -485,26 +485,26 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									{showWrapperBackgroundColor &&
 										<ColorPaletteCustom
 											label={
-												<Fragment>
+												<>
 													<Icon icon={icons.color} />
 													{__('Background Color', 'eightshift-frontend-libs')}
-												</Fragment>
+												</>
 											}
 											colors={getOptionColors(options.colors)}
 											value={wrapperBackgroundColor}
 											onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
 										/>
 									}
-								</Fragment>
+								</>
 							}
 
 							{showWrapperAnchorId &&
 								<TextControl
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.anchor} />
 											{__('Block Anchor ID', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 									value={wrapperAnchorId}
 									onChange={(value) => setAttributes({ wrapperAnchorId: value })}
@@ -514,20 +514,20 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							{showWrapperId &&
 								<TextControl
 									label={
-										<Fragment>
+										<>
 											<Icon icon={icons.id} />
 											{__('Block ID', 'eightshift-frontend-libs')}
-										</Fragment>
+										</>
 									}
 									value={wrapperId}
 									onChange={(value) => setAttributes({ wrapperId: value })}
 								/>
 							}
 
-						</Fragment>
+						</>
 					}
 				</PanelBody>
 			}
-		</Fragment>
+		</>
 	);
 };

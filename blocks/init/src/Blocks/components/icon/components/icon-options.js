@@ -1,13 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { SelectControl, ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { options, title } = manifest;
-
 export const IconOptions = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -22,7 +21,7 @@ export const IconOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{label && <h3 className={'options-label'}>{label}</h3>}
 
 			<ToggleControl
@@ -40,6 +39,6 @@ export const IconOptions = (attributes) => {
 				/>
 
 			)}
-		</Fragment>
+		</>
 	);
 };

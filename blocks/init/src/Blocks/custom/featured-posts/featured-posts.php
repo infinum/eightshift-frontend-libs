@@ -13,17 +13,29 @@ $manifest = Components::getManifest(__DIR__);
 $blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
 $query = Components::checkAttr('query', $attributes, $manifest);
 $excludeCurrentPost = Components::checkAttr('excludeCurrentPost', $attributes, $manifest);
-$itemsPerLine = Components::checkAttr('itemsPerLine', $attributes, $manifest);
 $showItems = Components::checkAttr('showItems', $attributes, $manifest);
 $serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);
+$itemsPerLine = [
+	'large' => Components::checkAttr('itemsPerLineLarge', $attributes, $manifest),
+	'desktop' => Components::checkAttr('itemsPerLineDesktop', $attributes, $manifest),
+	'tablet' => Components::checkAttr('itemsPerLineTablet', $attributes, $manifest),
+	'mobile' => Components::checkAttr('itemsPerLineMobile', $attributes, $manifest),
+];
 
 global $post;
 
+$featuredPostClass = Components::classnames([
+	$blockClass,
+	Components::responsiveSelectors($itemsPerLine, 'items-per-line', $blockClass),
+]);
+
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
+<div class="<?php echo esc_attr($featuredPostClass); ?>">
 	<?php
 		$postType = $query['postType'];
+		$taxonomy = $query['taxonomy'];
+		$terms = $query['terms'];
 		$posts = $query['posts'];
 
 		$args = [
@@ -31,12 +43,35 @@ global $post;
 			'posts_per_page' => $showItems,
 		];
 
+		if ($taxonomy) {
+			$args['tax_query'][0] = [
+				'taxonomy' => $taxonomy,
+				'field' => 'id',
+			];
+			if ($terms) {
+				$args['tax_query'][0]['terms'] = array_map(
+					function ($item) {
+						return $item['value'];
+					},
+					$terms
+				);
+			} else {
+				$args['tax_query'][0]['operator'] = 'NOT IN'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			}
+		};
+
 		if ($excludeCurrentPost) {
-			$args['post__not_in'] = $posts->ID;
+			$args['post__not_in'] = [ $post->ID ];
 		}
 
 		if ($posts) {
-			$args['post__in'] = $posts;
+			$args['post__in'] = array_map(
+				function ($item) {
+					return $item['value'];
+				},
+				$posts
+			);
+			$args['orderby'] = 'post__in';
 		}
 
 		$theQuery = new \WP_Query($args);
@@ -67,11 +102,9 @@ global $post;
 
 				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 					<?php
-					echo wp_kses_post(
-						Components::render(
-							'card',
-							$cardProps
-						)
+					echo Components::render( // phpcs:ignore
+						'card',
+						$cardProps
 					);
 					?>
 				</div>

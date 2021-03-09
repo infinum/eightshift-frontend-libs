@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl, Icon, TextareaControl } from '@wordpress/components';
 import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
@@ -7,9 +6,9 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { title } = manifest;
-
 export const ImageOptions = (attributes) => {
+	const { title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -37,7 +36,7 @@ export const ImageOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -52,7 +51,7 @@ export const ImageOptions = (attributes) => {
 			/>
 
 			{imageUse &&
-				<Fragment>
+				<>
 					{(showImageUrl && imageUsePlaceholder && imageUrl === '') &&
 						<MediaPlaceholder
 							icon="format-image"
@@ -88,10 +87,10 @@ export const ImageOptions = (attributes) => {
 					{showImageLink &&
 						<URLInput
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.link} />
 									{__('URL', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={imageLink}
 							autoFocus={false}
@@ -99,9 +98,9 @@ export const ImageOptions = (attributes) => {
 						/>
 					}
 
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };

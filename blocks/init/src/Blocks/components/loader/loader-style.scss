@@ -11,8 +11,8 @@ $loader: (
 	height: 100%;
 
 	&__load {
-		height: 50px;
-		width: 50px;
+		height: 2.5em;
+		width: 2.5em;
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -20,7 +20,7 @@ $loader: (
 	}
 
 	&__item {
-		border: solid 3px transparent;
+		border: solid 0.15em transparent;
 		border-radius: 50%;
 		content: '';
 		position: absolute;
@@ -30,33 +30,33 @@ $loader: (
 			border-right-color: map-get-strict($loader, item1);
 			border-top-color: map-get-strict($loader, item1);
 			animation: spin 3s infinite linear; // stylelint-disable-line no-unknown-animations
-			height: 40px;
-			width: 40px;
+			height: 2em;
+			width: 2em;
 			left: 50%;
 			top: 50%;
-			margin: -20px 0 0 -20px;
+			margin: -1em 0 0 -1em;
 		}
 
 		&--2 {
 			border-right-color: map-get-strict($loader, item2);
 			border-top-color: map-get-strict($loader, item2);
 			animation: spin 2s infinite linear; // stylelint-disable-line no-unknown-animations
-			height: 30px;
-			width: 30px;
+			height: 1.5em;
+			width: 1.5em;
 			left: 50%;
 			top: 50%;
-			margin: -15px 0 0 -15px;
+			margin: -0.75em 0 0 -0.75em;
 		}
 
 		&--3 {
 			border-right-color: map-get-strict($loader, item3);
 			border-top-color: map-get-strict($loader, item3);
 			animation: spin 1s infinite linear; // stylelint-disable-line no-unknown-animations
-			height: 20px;
-			width: 20px;
+			height: 1em;
+			width: 1em;
 			left: 50%;
 			top: 50%;
-			margin: -10px 0 0 -10px;
+			margin: -0.5em 0 0 -0.5em;
 		}
 	}
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts/editor';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -17,11 +16,11 @@ export const Accordion = (props) => {
 	});
 
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<AccordionOptions {...props} />
 			</InspectorControls>
 			<AccordionEditor {...props} />
-		</Fragment>
+		</>
 	);
 };

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { options } = manifest;
-
 export const SocialLinksEditor = (attributes) => {
+	const { options } = manifest;
+
 	const {
 		componentName = manifest.componentName,
 		componentClass = manifest.componentClass,
@@ -38,7 +37,7 @@ export const SocialLinksEditor = (attributes) => {
 	};
 
 	return (
-		<Fragment>
+		<>
 			{socialLinksUse &&
 				<ul className={socialLinksClass}>
 					{socialLinks.map((element, index) => {
@@ -48,6 +47,6 @@ export const SocialLinksEditor = (attributes) => {
 					})}
 				</ul>
 			}
-		</Fragment>
+		</>
 	);
 };

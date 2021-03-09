@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
@@ -39,7 +38,7 @@ export const LinkEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{linkUse &&
 				<div className={linkWrapClass}>
 					<RichText
@@ -48,10 +47,10 @@ export const LinkEditor = (attributes) => {
 						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 						className={linkClass}
 						keepPlaceholderOnFocus
-						formattingControls={[]}
+						allowedFormats={['core/bold']}
 					/>
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

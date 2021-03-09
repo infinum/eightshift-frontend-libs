@@ -4,7 +4,7 @@
 	"description" : "Card with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2761 -177)' fill='none' fill-rule='evenodd'><path fill='none' d='M2761 177h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2762' y='178' width='18' height='18' rx='1.5'/><path stroke='currentColor' stroke-width='1.5' stroke-linecap='square' d='M2762.5 187.5h17'/><path fill-opacity='.12' fill='currentColor' d='M2762 178h18v9h-18z'/><path stroke='currentColor' stroke-width='1.5' stroke-linecap='round' d='M2765.5 190.75h7M2765.5 193h3.5'/><g stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'><path d='M2777.5 187.376l-3.065-3.146-2.91 3.146M2772.643 185.854l-3.13-4.104-4.826 5.583'/></g><circle fill='currentColor' cx='2774.25' cy='181.25' r='1.25'/></g></svg>"
+		"src": "es-card"
 	},
 	"keywords": [
 		"Service",
@@ -13,5 +13,9 @@
 	],
 	"components": {
 		"card": "card"
+	},
+	"options": {
+		"introSize": ["default"],
+		"headingColor": ["black"]
 	}
 }

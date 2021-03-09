@@ -4,7 +4,7 @@
 	"description" : "video block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-2761 -632)' fill='none' fill-rule='evenodd'><path fill='none' d='M2761 632h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' x='2762' y='633' width='18' height='18' rx='1.5'/><path stroke='currentColor' stroke-width='1.5' fill-opacity='.12' fill='currentColor' stroke-linejoin='round' d='M2774.5 642.5l-6 3.5v-7z'/><g fill='currentColor' fill-opacity='.12'><path d='M2763 633h1v18h-1a1 1 0 01-1-1v-16a1 1 0 011-1zM2764 649h16v1a1 1 0 01-1 1h-15v-2z'/></g></g></svg>"
+		"src": "es-video"
 	},
 	"keywords": [
 		"video",

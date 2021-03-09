@@ -15,9 +15,10 @@ it('tests PACKAGE argument build method', async() => {
 it('tests NAMESPACE argument build method', async() => {
   const { namespace } = scriptArguments;
   expect(namespace.buildFrom.how('banana')).toBe('Banana');
-  expect(namespace.buildFrom.how('Test name 1')).toBe('Test_Name_1');
-  expect(namespace.buildFrom.how('TEST name 1')).toBe('Test_Name_1');
-  expect(namespace.buildFrom.how('TEST name ab')).toBe('Test_Name_Ab');
-  expect(namespace.buildFrom.how('baNana a')).toBe('Banana_A');
-  expect(namespace.buildFrom.how('#2a24 ?-.,b_ca#,')).toBe('2a24_B_Ca');
+  expect(namespace.buildFrom.how('Test name 1')).toBe('TestName1');
+  expect(namespace.buildFrom.how('TEST name 1')).toBe('TestName1');
+  expect(namespace.buildFrom.how('TEST name ab')).toBe('TestNameAb');
+  expect(namespace.buildFrom.how('TEST name Ab')).toBe('TestNameAb');
+  expect(namespace.buildFrom.how('baNana a')).toBe('BananaA');
+  expect(namespace.buildFrom.how('#2a24 ?-.,b_ca#,')).toBe('2a24BCa');
 });

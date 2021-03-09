@@ -15,3 +15,9 @@ body .editor-styles-wrapper {
 	color: map-get-strict($override-map, color);
 	background-color: map-get-strict($override-map, background-color);
 }
+
+// Sets base font size value only to editor part.
+body.sb-show-main,
+body .interface-interface-skeleton__content {
+	font-size: map-get-strict($override-map, font-size);
+}

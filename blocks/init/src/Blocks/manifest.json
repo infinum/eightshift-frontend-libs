@@ -1,6 +1,6 @@
 {
 	"namespace": "eightshift-boilerplate",
-	"background": "#FFFFFF",
+	"background": "#F6F8F8",
 	"foreground": "#0D3636",
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
@@ -12,12 +12,12 @@
 			"large": 1200
 		},
 		"containers": {
-			"default": "1330px"
+			"default": "66em"
 		},
 		"gutters": {
 			"none": "0",
-			"default": "25px",
-			"big": "50px"
+			"default": "1.25em",
+			"big": "2.5em"
 		},
 		"sectionSpacing": {
 			"min":  -300,

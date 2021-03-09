@@ -13,9 +13,13 @@
 	"example": {
 		"attributes": {
 			"query": {
-				"postType": "post"
+				"postType": "post",
+				"taxonomy": "",
+				"terms": [],
+				"posts": []
 			},
-			"itemsPerLine": 4,
+			"itemsPerLineLarge": 4,
+			"itemsPerLineTablet": 1,
 			"showItems": 20,
 			"serverSideRender": true
 		}
@@ -25,15 +29,27 @@
 			"type": "object",
 			"default": {
 				"postType": "post",
+				"taxonomy": "",
+				"terms": [],
 				"posts": []
 			},
 			"items": {
 				"type": "object"
 			}
 		},
-		"itemsPerLine": {
+		"itemsPerLineLarge": {
 			"type": "integer",
 			"default": 4
+		},
+		"itemsPerLineDesktop": {
+			"type": "integer"
+		},
+		"itemsPerLineTablet": {
+			"type": "integer",
+			"default": 1
+		},
+		"itemsPerLineMobile": {
+			"type": "integer"
 		},
 		"showItems": {
 			"type": "integer"
@@ -51,6 +67,9 @@
 		"postTypes": [
 			"post",
 			"page"
+		],
+		"taxonomies": [
+			"category"
 		]
 	},
 	"options": {
@@ -58,6 +77,12 @@
 			"min": 1,
 			"max": 4,
 			"step": 1
-		}
+		},
+		"breakpoints": [
+			"large",
+			"desktop",
+			"tablet",
+			"mobile"
+		]
 	}
 }

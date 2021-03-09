@@ -4,7 +4,7 @@
 	"description" : "Heading block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><g fill='currentColor' fill-opacity='.12'><path d='M2 1h1v18H2a1 1 0 01-1-1V2a1 1 0 011-1zM3 17h16v1a1 1 0 01-1 1H3v-2z'/></g><path d='M17.5.25h-15A2.25 2.25 0 00.25 2.5v15a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25v-15A2.25 2.25 0 0017.5.25zm-15 1.5h15a.75.75 0 01.75.75v15a.75.75 0 01-.75.75h-15a.75.75 0 01-.75-.75v-15a.75.75 0 01.75-.75z' fill='currentColor' fill-rule='nonzero'/><path d='M7.62 14.5l.673-2.209h3.383l.673 2.209h2.12l-3.288-9.318H8.775L5.5 14.5h2.12zm3.587-3.86H8.788c.66-2.136 1.06-3.476 1.2-4.017.034.152.09.36.168.622.078.262.428 1.394 1.05 3.396z' fill='currentColor' fill-rule='nonzero'/><path fill-opacity='.12' fill='currentColor' d='M10.059 5.933l-2.309 5.4h4.642z'/></g></svg>"
+		"src": "es-heading"
 	},
 	"keywords": [
 		"heading",

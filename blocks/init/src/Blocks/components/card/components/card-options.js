@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -8,12 +7,14 @@ import { ButtonOptions } from '../../button/components/button-options';
 export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
+		options,
+		introUse,
 		introColor,
 		introSize,
 	} = attributes;
 
 	return (
-		<Fragment>
+		<>
 
 			<ImageOptions
 				{...attributes}
@@ -26,9 +27,11 @@ export const CardOptions = (attributes) => {
 				{...attributes}
 				componentName={'intro'}
 				label={'Intro'}
+				headingUse={introUse}
 				headingColor={introColor}
 				headingSize={introSize}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<hr />
@@ -36,6 +39,7 @@ export const CardOptions = (attributes) => {
 			<HeadingOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 
@@ -44,6 +48,7 @@ export const CardOptions = (attributes) => {
 			<ParagraphOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
 			<hr />
@@ -51,8 +56,9 @@ export const CardOptions = (attributes) => {
 			<ButtonOptions
 				{...attributes}
 				setAttributes={setAttributes}
+				options={options}
 			/>
 
-		</Fragment>
+		</>
 	);
 };

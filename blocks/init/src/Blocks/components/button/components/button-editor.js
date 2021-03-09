@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
@@ -41,7 +40,7 @@ export const ButtonEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{buttonUse &&
 				<div className={buttonWrapClass}>
 					<RichText
@@ -50,10 +49,10 @@ export const ButtonEditor = (attributes) => {
 						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 						className={buttonClass}
 						keepPlaceholderOnFocus
-						formattingControls={[]}
+						allowedFormats={[]}
 					/>
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

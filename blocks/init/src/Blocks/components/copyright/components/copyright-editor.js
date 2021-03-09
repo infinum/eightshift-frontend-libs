@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -24,12 +23,12 @@ export const CopyrightEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{copyrightUse &&
 				<div className={copyrightClass}>
 					{'&copy'} {copyrightBy} {copyrightYear} - {copyrightContent}
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

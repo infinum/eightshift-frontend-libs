@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageOptions } from '../../image/components/image-options';
@@ -9,9 +8,9 @@ import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import { ButtonOptions } from '../../button/components/button-options';
 import manifest from './../manifest.json';
 
-const { title } = manifest;
-
 export const JumbotronOptions = (attributes) => {
+	const { title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -26,7 +25,7 @@ export const JumbotronOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -43,7 +42,7 @@ export const JumbotronOptions = (attributes) => {
 			<hr />
 
 			{jumbotronUse &&
-				<Fragment>
+				<>
 					<ImageOptions
 						{...attributes}
 						setAttributes={setAttributes}
@@ -74,9 +73,9 @@ export const JumbotronOptions = (attributes) => {
 						{...attributes}
 						setAttributes={setAttributes}
 					/>
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };

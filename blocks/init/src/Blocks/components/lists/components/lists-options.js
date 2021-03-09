@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
@@ -7,9 +6,9 @@ import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { options, title } = manifest;
-
 export const ListsOptions = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -30,7 +29,7 @@ export const ListsOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -45,14 +44,14 @@ export const ListsOptions = (attributes) => {
 			/>
 
 			{listsUse &&
-				<Fragment>
+				<>
 					{showListsColor &&
 						<ColorPaletteCustom
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							colors={getOptionColors(options.colors)}
 							value={listsColor}
@@ -63,19 +62,19 @@ export const ListsOptions = (attributes) => {
 					{showListsSize &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.textSize} />
 									{__('Text size', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={listsSize}
 							options={options.sizes}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };

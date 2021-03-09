@@ -1,13 +1,12 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { AlignmentToolbar } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
-const { options, title } = manifest;
-
 export const ListsToolbar = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -26,9 +25,9 @@ export const ListsToolbar = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{listsUse &&
-				<Fragment>
+				<>
 					{showlistsAlign &&
 						<AlignmentToolbar
 							value={listsAlign}
@@ -37,8 +36,8 @@ export const ListsToolbar = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

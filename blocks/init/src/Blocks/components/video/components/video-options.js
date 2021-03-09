@@ -1,14 +1,13 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
-const { options, title } = manifest;
-
 export const VideoOptions = (attributes) => {
+	const { options, title } = manifest;
+
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -34,7 +33,7 @@ export const VideoOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -49,11 +48,11 @@ export const VideoOptions = (attributes) => {
 			/>
 
 			{videoUse &&
-				<Fragment>
+				<>
 					{showVideoUrl &&
-						<Fragment>
+						<>
 							{(videoUsePlaceholder && videoUrl === '') ?
-								<Fragment>
+								<>
 									<MediaPlaceholder
 										icon="format-image"
 										onSelect={(value) => {
@@ -63,7 +62,7 @@ export const VideoOptions = (attributes) => {
 										allowedTypes={videoAllowedTypes}
 									/>
 									<br />
-								</Fragment> :
+								</> :
 								<TextControl
 									label={__('ID', 'eightshift-frontend-libs')}
 									value={videoUrl}
@@ -71,7 +70,7 @@ export const VideoOptions = (attributes) => {
 									help={__('Use only video ID not the full link. Example video link: https://music.youtube.com/watch?v=PsO6ZnUZI0g, ID is PsO6ZnUZI0g', 'eightshift-frontend-libs')}
 								/>
 							}
-						</Fragment>
+						</>
 					}
 
 					{showVideoType &&
@@ -92,8 +91,8 @@ export const VideoOptions = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}AspectRatio`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };
