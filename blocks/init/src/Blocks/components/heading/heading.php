@@ -17,7 +17,7 @@ if (!$headingUse) {
 }
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore
+echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;

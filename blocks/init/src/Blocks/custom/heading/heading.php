@@ -8,4 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo Components::render('heading', $attributes); // phpcs:ignore
+echo Components::render('heading', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

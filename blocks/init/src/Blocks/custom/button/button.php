@@ -8,4 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo Components::render('button', $attributes); // phpcs:ignore
+echo Components::render('button', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
