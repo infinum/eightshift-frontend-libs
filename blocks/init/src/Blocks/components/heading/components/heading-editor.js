@@ -3,9 +3,11 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 export const HeadingEditor = (attributes) => {
+	const unique = getUnique();
 	const {
 		setAttributes,
 		componentName = manifest.componentName,
@@ -17,21 +19,19 @@ export const HeadingEditor = (attributes) => {
 		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
 
 		headingContent = checkAttr('headingContent', attributes, manifest, componentName),
-		headingColor = checkAttr('headingColor', attributes, manifest, componentName),
 		headingSize = checkAttr('headingSize', attributes, manifest, componentName),
-		headingAlign = checkAttr('headingAlign', attributes, manifest, componentName),
 	} = attributes;
 
 	const headingClass = classnames([
 		componentClass,
-		selector(headingColor, componentClass, 'color', headingColor),
 		selector(headingSize, componentClass, 'size', headingSize),
-		selector(headingAlign, componentClass, 'align', headingAlign),
 		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
 		<>
+			{outputCssVariables(attributes, manifest, unique)}
+
 			{headingUse &&
 				<RichText
 					className={headingClass}
@@ -39,6 +39,7 @@ export const HeadingEditor = (attributes) => {
 					value={headingContent}
 					onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
 					allowedFormats={[]}
+					data-id={unique}
 				/>
 			}
 		</>

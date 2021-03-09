@@ -1,5 +1,4 @@
 $heading: (
-	colors: global-settings(colors),
 	sizes: (
 		mobile: (
 			default: (
@@ -27,17 +26,10 @@ $heading: (
 .heading {
 	@extend %heading-reset;
 	font-weight: bold;
-	color: map-get-deep($heading, colors, primary);
-
-	&__color {
-		@include modifiers-deep($heading, colors, color);
-	}
+	color: var(--heading-color);
+	text-align: var(--heading-align);
 
 	&__size {
 		@include responsive-modifiers($heading, sizes);
-	}
-
-	&__align {
-		@include text-align-modifiers;
 	}
 }

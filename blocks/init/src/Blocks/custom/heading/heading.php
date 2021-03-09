@@ -8,4 +8,4 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo \wp_kses_post(Components::render('heading', $attributes));
+echo Components::render('heading', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
