@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
@@ -39,7 +38,7 @@ export const LinkOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -54,15 +53,15 @@ export const LinkOptions = (attributes) => {
 			/>
 
 			{linkUse &&
-				<Fragment>
+				<>
 
 					{showLinkUrl &&
 						<URLInput
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.link} />
 									{__('URL', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={linkUrl}
 							autoFocus={false}
@@ -73,10 +72,10 @@ export const LinkOptions = (attributes) => {
 					{showLinkColor &&
 						<ColorPaletteCustom
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={linkColor}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
@@ -87,10 +86,10 @@ export const LinkOptions = (attributes) => {
 					{showLinkSize &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.textSize} />
 									{__('Text size', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={linkSize}
 							options={getOptions(manifest, componentName, 'size', options)}
@@ -110,18 +109,18 @@ export const LinkOptions = (attributes) => {
 					{showLinkId &&
 						<TextControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.id} />
 									{__('ID', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={linkId}
 							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };

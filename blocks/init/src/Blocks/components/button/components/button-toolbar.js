@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { AlignmentToolbar } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
@@ -27,9 +26,9 @@ export const ButtonToolbar = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{buttonUse &&
-				<Fragment>
+				<>
 					{showButtonAlign &&
 						<AlignmentToolbar
 							value={buttonAlign}
@@ -38,8 +37,8 @@ export const ButtonToolbar = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

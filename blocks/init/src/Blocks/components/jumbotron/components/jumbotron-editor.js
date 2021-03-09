@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../image/components/image-editor';
@@ -35,7 +34,7 @@ export const JumbotronEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{jumbotronUse &&
 				<div className={jumbotronClass}>
 
@@ -71,6 +70,6 @@ export const JumbotronEditor = (attributes) => {
 
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

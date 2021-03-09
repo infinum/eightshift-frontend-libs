@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -42,7 +41,7 @@ export const ParagraphEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{paragraphUse &&
 				<RichText
 					identifier={`${componentName}Content`}
@@ -61,6 +60,6 @@ export const ParagraphEditor = (attributes) => {
 					deleteEnter={true}
 				/>
 			}
-		</Fragment>
+		</>
 	);
 };

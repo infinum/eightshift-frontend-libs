@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { AlignmentToolbar } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
@@ -28,9 +27,9 @@ export const ParagraphToolbar = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 			{paragraphUse &&
-				<Fragment>
+				<>
 					{showParagraphAlign &&
 						<AlignmentToolbar
 							value={paragraphAlign}
@@ -39,8 +38,8 @@ export const ParagraphToolbar = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

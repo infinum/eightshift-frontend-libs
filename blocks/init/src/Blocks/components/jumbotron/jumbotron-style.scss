@@ -2,13 +2,13 @@ $jumbotron: (
 	site-container: global-settings(containers, default),
 	content: (
 		mobile: (
-			min-height: 400px,
-			padding: 15px global-settings(gutters, default),
+			min-height: 20em,
+			padding: 0.75em global-settings(gutters, default),
 		),
 		tablet: (
-			min-height: 700px,
-			padding-top: 30px,
-			padding-bottom: 30px,
+			min-height: 35em,
+			padding-top: 1.5em,
+			padding-bottom: 1.5em,
 		),
 	),
 );
@@ -89,10 +89,10 @@ $jumbotron: (
 	}
 
 	&__heading {
-		margin-bottom: 20px;
+		margin-bottom: 1em;
 	}
 
 	&__paragraph {
-		margin-bottom: 30px;
+		margin-bottom: 1.5em;
 	}
 }

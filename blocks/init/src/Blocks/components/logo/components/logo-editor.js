@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
@@ -29,7 +28,7 @@ export const LogoEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{logoUse &&
 				<a className={logoClass} href={logoHref}>
 					<img
@@ -40,6 +39,6 @@ export const LogoEditor = (attributes) => {
 					/>
 				</a>
 			}
-		</Fragment>
+		</>
 	);
 };

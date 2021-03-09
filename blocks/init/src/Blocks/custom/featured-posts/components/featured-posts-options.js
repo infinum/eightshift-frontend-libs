@@ -220,10 +220,10 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{itemsPerLine.map((item, index) => {
@@ -251,10 +251,10 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<RangeControl
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.totalItems} />
 						{__('Show items', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 				help={__('Option to change the number of items to show in total.', 'eightshift-frontend-libs')}
 				allowReset={true}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -12,6 +11,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		wrapperId = checkAttr('wrapperId', attributes, manifest),
 		wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest),
 		wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest),
+		className = checkAttr('className', attributes, manifest),
 	} = attributes;
 
 	if (!wrapperUse || wrapperDisable) {
@@ -20,7 +20,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 
 	if (!wrapperUse || wrapperDisable) {
 		return (
-			<Fragment>
+			<>
 				{wrapperParentClass ?
 					<div className={`${wrapperParentClass}__item`}>
 						<div className={`${wrapperParentClass}__item-inner`}>
@@ -29,7 +29,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 					</div> :
 					children
 				}
-			</Fragment>
+			</>
 		);
 	}
 
@@ -122,6 +122,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false),
 		responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false),
 		responsiveSelectors(wrapperHide, 'hide-editor', wrapperMainClass, false),
+		className,
 	]);
 
 	const wrapperContainerClass = classnames([

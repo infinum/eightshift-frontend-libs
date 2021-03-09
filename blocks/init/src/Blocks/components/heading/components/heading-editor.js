@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -32,7 +31,7 @@ export const HeadingEditor = (attributes) => {
 	]);
 
 	return (
-		<Fragment>
+		<>
 			{headingUse &&
 				<RichText
 					className={headingClass}
@@ -42,6 +41,6 @@ export const HeadingEditor = (attributes) => {
 					allowedFormats={[]}
 				/>
 			}
-		</Fragment>
+		</>
 	);
 };

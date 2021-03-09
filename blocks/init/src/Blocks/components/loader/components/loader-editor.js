@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
@@ -23,7 +22,7 @@ export const LoaderEditor = (attributes) => {
 	);
 
 	return (
-		<Fragment>
+		<>
 			{loaderUse &&
 				<div className={loaderClass}>
 					<div className={`${componentClass}__load`}>
@@ -33,6 +32,6 @@ export const LoaderEditor = (attributes) => {
 					</div>
 				</div>
 			}
-		</Fragment>
+		</>
 	);
 };

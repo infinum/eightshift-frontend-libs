@@ -36,10 +36,10 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.gutter} />
 						{__('Gutter', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{gutter.map((item, index) => {
@@ -66,10 +66,10 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 
 			<Responsive
 				label={
-					<Fragment>
+					<>
 						<Icon icon={icons.verticalSpacing} />
 						{__('Vertical Spacing', 'eightshift-frontend-libs')}
-					</Fragment>
+					</>
 				}
 			>
 				{verticalSpacing.map((item, index) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { ToolbarGroup } from '@wordpress/components';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
 import { trash } from '@wordpress/icons';
@@ -30,9 +29,9 @@ export const ImageToolbar = (attributes) => {
 	};
 
 	return (
-		<Fragment>
+		<>
 			{imageUse &&
-				<Fragment>
+				<>
 					{(imageUrl !== '') &&
 						<ToolbarGroup
 							controls={[
@@ -53,8 +52,8 @@ export const ImageToolbar = (attributes) => {
 							onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
 import { ImageToolbar } from '../../image/components/image-toolbar';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
@@ -15,7 +14,7 @@ export const CardToolbar = (attributes) => {
 	} = attributes;
 
 	return (
-		<Fragment>
+		<>
 
 			<ImageToolbar
 				{...attributes}
@@ -49,6 +48,6 @@ export const CardToolbar = (attributes) => {
 				setAttributes={setAttributes}
 				options={options}
 			/>
-		</Fragment>
+		</>
 	);
 };

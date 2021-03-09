@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
@@ -31,7 +30,7 @@ export const HeadingOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -46,14 +45,14 @@ export const HeadingOptions = (attributes) => {
 			/>
 
 			{headingUse &&
-				<Fragment>
+				<>
 					{showHeadingColor &&
 						<ColorPaletteCustom
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
 							value={headingColor}
@@ -64,19 +63,19 @@ export const HeadingOptions = (attributes) => {
 					{showHeadingSize &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.textSize} />
 									{__('Text size', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={headingSize}
 							options={getOptions(manifest, componentName, 'size', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };

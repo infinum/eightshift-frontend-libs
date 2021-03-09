@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
@@ -42,7 +41,7 @@ export const ButtonOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
+		<>
 
 			{label &&
 				<h3 className={'options-label'}>
@@ -57,15 +56,15 @@ export const ButtonOptions = (attributes) => {
 			/>
 
 			{buttonUse &&
-				<Fragment>
+				<>
 
 					{showButtonUrl &&
 						<URLInput
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.link} />
 									{__('URL', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={buttonUrl}
 							autoFocus={false}
@@ -76,10 +75,10 @@ export const ButtonOptions = (attributes) => {
 					{showButtonColor &&
 						<ColorPaletteCustom
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.color} />
 									{__('Color', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={buttonColor}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
@@ -90,10 +89,10 @@ export const ButtonOptions = (attributes) => {
 					{showButtonSize &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.size} />
 									{__('Size', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={buttonSize}
 							options={getOptions(manifest, componentName, 'size', options)}
@@ -104,10 +103,10 @@ export const ButtonOptions = (attributes) => {
 					{showButtonWidth &&
 						<SelectControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.width} />
 									{__('Width', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={buttonWidth}
 							options={getOptions(manifest, componentName, 'width', options)}
@@ -135,18 +134,18 @@ export const ButtonOptions = (attributes) => {
 					{showButtonId &&
 						<TextControl
 							label={
-								<Fragment>
+								<>
 									<Icon icon={icons.id} />
 									{__('ID', 'eightshift-frontend-libs')}
-								</Fragment>
+								</>
 							}
 							value={buttonId}
 							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
 						/>
 					}
-				</Fragment>
+				</>
 			}
 
-		</Fragment>
+		</>
 	);
 };
