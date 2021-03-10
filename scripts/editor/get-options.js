@@ -7,14 +7,14 @@ import _ from 'lodash';
  * @author: Kristijan Marić <kristijan.maric@infinum.co>
  *
  * @param {object} manifest Original manifest from the component.
- * @param {string} componentName Current componentName. This is changed deppending on the passed componentName.
- * @param {string} attribute Attribute name to check witout componentName prefix. Value is auto titleCased.
- * @param {object} options Options provide by the parend block/component.
+ * @param {string} componentName Current componentName. This is changed depending on the passed componentName.
+ * @param {string} attribute Attribute name to check without componentName prefix. Value is auto titleCased.
+ * @param {object} options Options provide by the parent block/component.
  */
 export const getOptions = (manifest = {}, componentName, attribute, options = {}) => {
 
-	let originalKey = `${manifest.componentName}${_.startCase(attribute)}`;
-	let customKey = `${componentName}${_.startCase(attribute)}`;
+	let originalKey = `${manifest.componentName}${_.startCase(attribute).replace(/\s/g,'')}`;
+	let customKey = `${componentName}${_.startCase(attribute).replace(/\s/g,'')}`;
 
 	// If you have custom name for component.
 	if (Object.prototype.hasOwnProperty.call(options, customKey)) {
