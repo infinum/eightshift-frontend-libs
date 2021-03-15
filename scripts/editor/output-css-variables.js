@@ -18,7 +18,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 	for (const [itemKey, itemValue] of Object.entries(globalManifest['globalVariables'])) {
 		const itemKeyInner = _.kebabCase(itemKey);
 
-		if (_.isArray(itemValue)) {
+		if (_.isObject(itemValue)) {
 			output += outputCssVariablesGlobalInner(itemValue, itemKeyInner);
 		} else {
 			output += `--global-${itemKeyInner}: ${itemValue};\n`;
