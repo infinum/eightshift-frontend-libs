@@ -21,10 +21,10 @@ export const getOptions = (manifest = {}, componentName, attribute, options = {}
 
 		if (typeof manifest.options[originalKey][0] === 'object') {
 			// Used for array of objects (selectControl options).
-			return _.differenceWith(manifest.options[originalKey], options[customKey], ({ value }, id) => value !== id);
+			return manifest.options[originalKey].filter((item) => options[customKey].includes((item.value)));
 		} else {
 			// Used for array values (colors, align, etc.).
-			return _.difference(manifest.options[originalKey], options[customKey], _.isEqual);
+			return manifest.options[originalKey].filter((item) => options[customKey].includes(item));
 		}
 	}
 
