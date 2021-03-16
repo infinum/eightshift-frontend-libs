@@ -88,7 +88,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		return output;
 	}
 
-	let name = manifest['componentClass'] ?? manifest['blockName'];
+	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
 	name = _.kebabCase(name);
 
