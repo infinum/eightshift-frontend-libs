@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Check if attribute exist in attributes list and add default value if not.
  *
@@ -14,13 +16,19 @@ export const checkAttr = (key, attributes, manifest, componentName = '', setType
 	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 		return attributes[key];
 	} else {
-		const manifestKey = manifest.attributes[key];
+		let manifestKey = manifest.attributes[key];
 
-		if (manifestKey === 'undefined' && ! setType) {
+		if (typeof manifestKey === 'undefined' && _.isEmpty(setType)) {
 			throw Error(`${key} key does not exist in the ${componentName} component. Please check your implementation.`);
 		}
 
-		const defaultType = manifestKey.type && setType;
+		if (! _.isEmpty(setType)) {
+			manifestKey = {
+				type: setType,
+			}
+		}
+
+		const defaultType = manifestKey.type;
 
 		let defaultValue;
 
