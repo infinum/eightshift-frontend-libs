@@ -120,6 +120,7 @@ module.exports = (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
+						implementation: require("sass"),
 						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath),
 					},
 				},
