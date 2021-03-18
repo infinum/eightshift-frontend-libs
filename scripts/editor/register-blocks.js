@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
@@ -110,7 +111,7 @@ export const getSaveCallback = (blockManifest) => {
 };
 
 /**
- * Return merge function based on existance of mergeableAttributes option of block.
+ * Return merge function based on existence of mergeableAttributes option of block.
  *
  * @param {object} blockManifest Block full manifest.
  */
@@ -171,7 +172,7 @@ export const getMergeCallback = (blockManifest) => {
 };
 
 /**
- * Return edit function wrapped with Wrapper compoent.
+ * Return edit function wrapped with Wrapper component.
  *
  * @param {function} Component Children callback function.
  * @param {function} Wrapper Wrapper callback function.
@@ -210,14 +211,14 @@ export const getIconOptions = (globalManifest, blockManifest) => {
 	if (icon.src !== undefined && blockIcons[icon.src] !== undefined) {
 		return {
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-			foreground: (typeof icon.backround === 'undefined') ? foregroundGlobal : icon.foreground,
+			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
 			src: reactHtmlParser(blockIcons[icon.src])[0],
 		}
 	}
 
 	return {
 		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
-		foreground: (typeof icon.background === 'undefined') ? foregroundGlobal : icon.foreground,
+		foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
 		src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
 	};
 };
@@ -399,7 +400,7 @@ export const registerVariation = (
 ) => {
 
 	// Append globalManifest data in to output.
-	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
+	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
 
 	// This is a full block name used in Block Editor.
 	const fullBlockName = getFullBlockNameVariation(globalManifest, blockManifest);
@@ -434,20 +435,20 @@ export const registerBlock = (
 ) => {
 
 	// Block Icon option.
-	blockManifest.icon = getIconOptions(globalManifest, blockManifest);
+	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
 
 	// This is a full block name used in Block Editor.
 	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
 
 	// Set full attributes list.
-	blockManifest.attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+	blockManifest['attributes'] = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
 
 	// Set full example list.
-	if (typeof blockManifest.example === 'undefined') {
-		blockManifest.example = {};
+	if (typeof blockManifest['example'] === 'undefined') {
+		blockManifest['example'] = {};
 	}
 
-	blockManifest.example.attributes = getExample(globalManifest, componentsManifest, blockManifest);
+	blockManifest['example'].attributes = getExample(globalManifest, componentsManifest, blockManifest);
 
 	return {
 		blockName: fullBlockName,
@@ -486,6 +487,10 @@ export const registerBlocks = (
 	transformsComponentPath = null,
 ) => {
 
+	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
+
+	const blocksManifests = [];
+
 	// Iterate blocks to register.
 	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
 
@@ -510,7 +515,7 @@ export const registerBlocks = (
 			}
 		}
 
-		const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
+		blocksManifests.push(blockManifest);
 
 		// Pass data to registerBlock helper to get final output for registerBlockType.
 		const blockDetails = registerBlock(
@@ -527,7 +532,89 @@ export const registerBlocks = (
 
 		return null;
 	});
+
+	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
+
 };
+
+/**
+ * Build global window object used for optimisations.
+ *
+ * @param {object} globalManifest Global setting manifest.
+ * @param {array} componentsManifest List of all components manifests.
+ * @param {array} blocksManifests  List of all blocks manifests.
+ * @param {object} wrapperManifest Wrapper manifest.
+ */
+export const buildWindowObject = (globalManifest, componentsManifest, blocksManifests, wrapperManifest) => {
+	window['eightshift'] = {
+		[globalManifest['namespace']]: {
+			dependency: {
+				components: buildDependencyComponentsTree(componentsManifest),
+				blocks: buildDependencyBlocksTree(blocksManifests, componentsManifest),
+			},
+			blocks: blocksManifests,
+			components: componentsManifest,
+			wrapper: wrapperManifest,
+			global: globalManifest,
+		},
+	};
+}
+
+/**
+ * Build components dependency tree for blocks.
+ *
+ * @param {object} blocks List of all blocks.
+ * @param {object} components List of all components
+ */
+export const buildDependencyBlocksTree = (blocks, components) => {
+	const output = {};
+
+	blocks.forEach((item) => {
+		output[item.blockName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
+	});
+
+	return output;
+}
+
+/**
+ * Build components dependency tree for components.
+ *
+ * @param {object} components List of all components
+ */
+export const buildDependencyComponentsTree = (components) => {
+	const output = {};
+
+	components.forEach((item) => {
+		output[item.componentName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
+	});
+
+	return output;
+}
+
+/**
+ * Build inner recursive dependency tree for components.
+ *
+ * @param {Object} componentsList List of components to check.
+ * @param {Object} components List of all components
+ */
+export const buildDependencyComponentsInnerTree = (componentsList, components) => {
+	let output = [];
+
+	if ( typeof componentsList === 'undefined' ) {
+		return output;
+	}
+
+	for (const [key, value] of Object.entries(componentsList)) {
+		const items = components.filter((item) => item.componentName === value)[0].components;
+		output.push(key);
+
+		if (typeof items !== 'undefined') {
+			output.push(buildDependencyComponentsInnerTree(components.filter((item) => item.componentName === value)[0].components, components));
+		}
+	}
+
+	return _.flattenDeep(output);
+}
 
 /**
  * Register all Variations Editor blocks using WP registerBlockVariation method.

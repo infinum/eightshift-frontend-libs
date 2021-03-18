@@ -16,3 +16,4 @@ export {
 	outputCssVariables,
 	getUnique
 } from './output-css-variables';
+export { props } from './props';
