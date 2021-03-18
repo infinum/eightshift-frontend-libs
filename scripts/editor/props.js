@@ -1,15 +1,15 @@
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
+ * @param {object} globalManifest Global manifest object to get the namespace value.
  * @param {object} attributes Object of attributes from block/component.
  * @param {string} realName Old key to use, generally this is the name of the block/component.
  * @param {string} newName New key to use to rename attributes.
  * @param {boolean} isBlock Check if helper is used on block or component.
- * @param {string} namespace Default namespace is used from the global manifest settings. If this helper is used on a different namespace it can be changed by this key.
  * 
  * @returns object
  */
-export const props = (attributes, realName, newName = '', isBlock = false, namespace = 'eightshift-boilerplate') => {
+export const props = (globalManifest, attributes, realName, newName = '', isBlock = false) => {
 
 	let newNameInternal = newName;
 
@@ -21,7 +21,7 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 	const output = {}
 
 	// Get global window data.
-	const globalData = window['eightshift'][namespace].dependency;
+	const globalData = window['eightshift'][globalManifest.namespace].dependency;
 
 	// If component use components dependency tree.
 	let dependency = globalData.components[realName];
