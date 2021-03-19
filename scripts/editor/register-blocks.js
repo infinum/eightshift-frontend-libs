@@ -555,7 +555,7 @@ export const buildWindowObject = (globalManifest, componentsManifest, blocksMani
 			blocks: blocksManifests,
 			components: componentsManifest,
 			wrapper: wrapperManifest,
-			global: globalManifest,
+			settings: globalManifest,
 		},
 	};
 }
@@ -565,6 +565,8 @@ export const buildWindowObject = (globalManifest, componentsManifest, blocksMani
  *
  * @param {object} blocks List of all blocks.
  * @param {object} components List of all components
+ *
+ * @returns {object}
  */
 export const buildDependencyBlocksTree = (blocks, components) => {
 	const output = {};
@@ -580,6 +582,8 @@ export const buildDependencyBlocksTree = (blocks, components) => {
  * Build components dependency tree for components.
  *
  * @param {object} components List of all components
+ *
+ * @returns {object}
  */
 export const buildDependencyComponentsTree = (components) => {
 	const output = {};
@@ -595,7 +599,9 @@ export const buildDependencyComponentsTree = (components) => {
  * Build inner recursive dependency tree for components.
  *
  * @param {Object} componentsList List of components to check.
- * @param {Object} components List of all components
+ * @param {Object} components List of all components,
+ *
+ * @returns {array}
  */
 export const buildDependencyComponentsInnerTree = (componentsList, components) => {
 	let output = [];
@@ -609,7 +615,7 @@ export const buildDependencyComponentsInnerTree = (componentsList, components) =
 		output.push(key);
 
 		if (typeof items !== 'undefined') {
-			output.push(buildDependencyComponentsInnerTree(components.filter((item) => item.componentName === value)[0].components, components));
+			output.push(buildDependencyComponentsInnerTree(items, components));
 		}
 	}
 

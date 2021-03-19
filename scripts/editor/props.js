@@ -1,15 +1,15 @@
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
- * @param {object} globalManifest Global manifest object to get the namespace value.
- * @param {object} attributes Object of attributes from block/component.
- * @param {string} realName Old key to use, generally this is the name of the block/component.
- * @param {string} newName New key to use to rename attributes.
+ * @param {object}  attributes Object of attributes from block/component.
+ * @param {string}  realName Old key to use, generally this is the name of the block/component.
+ * @param {string}  newName New key to use to rename attributes.
  * @param {boolean} isBlock Check if helper is used on block or component.
+ * @param {string}  globalManifestData If global manifest is not provided use the default path.
  * 
  * @returns object
  */
-export const props = (globalManifest, attributes, realName, newName = '', isBlock = false) => {
+export const props = (attributes, realName, newName = '', isBlock = false, globalManifestData = '') => {
 
 	let newNameInternal = newName;
 
@@ -18,10 +18,17 @@ export const props = (globalManifest, attributes, realName, newName = '', isBloc
 		newNameInternal = realName;
 	}
 
+	let globalManifest = globalManifestData;
+
+	// If global manifest is not provided use the default path.
+	if (globalManifestData === '') {
+		globalManifest = require('./../../../../../src/Blocks/manifest.json');
+	}
+
 	const output = {}
 
 	// Get global window data.
-	const globalData = window['eightshift'][globalManifest.namespace].dependency;
+	const globalData = window['eightshift'][globalManifest['namespace']].dependency;
 
 	// If component use components dependency tree.
 	let dependency = globalData.components[realName];
