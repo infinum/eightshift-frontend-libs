@@ -75,9 +75,9 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
 /**
  * Get component/block options and process them in css variables.
  *
- * @param array  $attributes Built attributes.
- * @param array  $manifest Component/block manifest data.
- * @param string $unique Unique key.
+ * @param array  attributes Built attributes.
+ * @param array  manifest Component/block manifest data.
+ * @param string unique Unique key.
  *
  * @return string
  */
