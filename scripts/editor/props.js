@@ -31,16 +31,15 @@ export const props = (attributes, realName, newName = '', isBlock = false, globa
 	const globalData = window['eightshift'][globalManifest['namespace']].dependency;
 
 	// If component use components dependency tree.
-	let dependency = globalData.components[realName];
+	// Add the current component name to the dependency array.
+	let dependency = [
+		...globalData.components[realName],
+		newNameInternal
+	];
 
 	// If block use blocks dependency tree.
 	if (isBlock) {
 		dependency = globalData.blocks[realName];
-	}
-
-	// If dependency is empty put the name in the array for the easier checks later on.
-	if (!dependency.length) {
-		dependency = [newNameInternal];
 	}
 
 	for (const [key, value] of Object.entries(attributes)) {
