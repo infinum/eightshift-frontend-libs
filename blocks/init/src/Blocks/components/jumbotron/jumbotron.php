@@ -6,6 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
@@ -39,37 +40,51 @@ $contentWrapClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($jumbotronClass); ?>">
 	<?php
-	echo \wp_kses_post(Components::render('image', array_merge(
-		$attributes,
-		[
-			'blockClass' => $componentClass,
-			'imageUsePlaceholder' => true,
-			'imageBg' => true,
-		]
-	)));
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'image',
+		array_merge(
+			Blocks::props($attributes, 'image'),
+			[
+				'blockClass' => $componentClass,
+				'imageUsePlaceholder' => true,
+				'imageBg' => true,
+			]
+		)
+	);
 	?>
 
 	<div class="<?php echo \esc_attr($contentClass); ?>" data-position="<?php echo \esc_attr($jumbotronContentPosition); ?>">
 		<div class="<?php echo \esc_attr($contentWrapClass); ?>">
 			<?php
-			echo \wp_kses_post(Components::render('heading', array_merge(
-				$attributes,
-				[
-					'blockClass' => $componentClass
-				]
-			)));
-			echo \wp_kses_post(Components::render('paragraph', array_merge(
-				$attributes,
-				[
-					'blockClass' => $componentClass
-				]
-			)));
-			echo \wp_kses_post(Components::render('button', array_merge(
-				$attributes,
-				[
-					'blockClass' => $componentClass
-				]
-			)));
+			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'heading',
+				array_merge(
+					Blocks::props($attributes, 'heading'),
+					[
+						'blockClass' => $componentClass
+					]
+				)
+			);
+
+			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'paragraph',
+				array_merge(
+					Blocks::props($attributes, 'paragraph'),
+					[
+						'blockClass' => $componentClass
+					]
+				)
+			);
+
+			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'button',
+				array_merge(
+					Blocks::props($attributes, 'button'),
+					[
+						'blockClass' => $componentClass
+					]
+				)
+			);
 			?>
 		</div>
 	</div>

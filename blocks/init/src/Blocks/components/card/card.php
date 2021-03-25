@@ -6,6 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
@@ -23,43 +24,55 @@ $cardClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($cardClass); ?>">
 	<?php
-	echo \wp_kses_post(Components::render('image', array_merge(
-		$attributes,
-		[
-			'blockClass' => $componentClass
-		]
-	)));
-	echo \wp_kses_post(Components::render('heading', array_merge(
-		$attributes,
-		[
-			'componentName' => 'intro',
-			'headingUse' => $attributes['introUse'],
-			'headingContent' => $attributes['introContent'] ?? '',
-			'headingLevel' => $attributes['introLevel'],
-			'headingColor' => $attributes['introColor'],
-			'headingSize' => $attributes['introSize'],
-			'headingAlign' => $attributes['introAlign'],
-			'selectorClass' => 'intro',
-			'blockClass' => $componentClass
-		]
-	)));
-	echo \wp_kses_post(Components::render('heading', array_merge(
-		$attributes,
-		[
-			'blockClass' => $componentClass
-		]
-	)));
-	echo \wp_kses_post(Components::render('paragraph', array_merge(
-		$attributes,
-		[
-			'blockClass' => $componentClass
-		]
-	)));
-	echo \wp_kses_post(Components::render('button', array_merge(
-		$attributes,
-		[
-			'blockClass' => $componentClass
-		]
-	)));
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'image',
+		array_merge(
+			Blocks::props($attributes, 'image'),
+			[
+				'blockClass' => $componentClass,
+			]
+		)
+	);
+
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'heading',
+		array_merge(
+			Blocks::props($attributes, 'heading', 'intro'),
+			[
+				'selectorClass' => 'intro',
+				'blockClass' => $componentClass
+			]
+		)
+	);
+
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'heading',
+		array_merge(
+			Blocks::props($attributes, 'heading'),
+			[
+				'blockClass' => $componentClass
+			]
+		)
+	);
+
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'paragraph',
+		array_merge(
+			Blocks::props($attributes, 'paragraph'),
+			[
+				'blockClass' => $componentClass
+			]
+		)
+	);
+
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		'button',
+		array_merge(
+			Blocks::props($attributes, 'button'),
+			[
+				'blockClass' => $componentClass
+			]
+		)
+	);
 	?>
 </div>
