@@ -1,4 +1,5 @@
 import React from 'react';
+import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -8,28 +9,21 @@ export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
 		options,
-		introUse,
-		introColor,
-		introSize,
 	} = attributes;
 
 	return (
 		<>
 
 			<ImageOptions
-				{...attributes}
+				{...props(attributes, 'image')}
 				setAttributes={setAttributes}
 			/>
 
 			<hr />
 
 			<HeadingOptions
-				{...attributes}
-				componentName={'intro'}
+				{...props(attributes, 'heading', 'intro')}
 				label={'Intro'}
-				headingUse={introUse}
-				headingColor={introColor}
-				headingSize={introSize}
 				setAttributes={setAttributes}
 				options={options}
 			/>
@@ -37,16 +31,15 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<HeadingOptions
-				{...attributes}
+				{...props(attributes, 'heading')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
-
 
 			<hr />
 
 			<ParagraphOptions
-				{...attributes}
+				{...props(attributes, 'paragraph')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
@@ -54,7 +47,7 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<ButtonOptions
-				{...attributes}
+				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
 				options={options}
 			/>

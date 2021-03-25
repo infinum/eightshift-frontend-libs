@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
@@ -39,7 +40,7 @@ export const JumbotronEditor = (attributes) => {
 				<div className={jumbotronClass}>
 
 					<ImageEditor
-						{...attributes}
+						{...props(attributes, 'image')}
 						setAttributes={setAttributes}
 						blockClass={componentClass}
 						imageUsePlaceholder={true}
@@ -49,19 +50,19 @@ export const JumbotronEditor = (attributes) => {
 					<div className={contentClass} data-position={jumbotronContentPosition}>
 						<div className={contentWrapClass}>
 							<HeadingEditor
-								{...attributes}
+								{...props(attributes, 'heading')}
 								setAttributes={setAttributes}
 								blockClass={componentClass}
 							/>
 
 							<ParagraphEditor
-								{...attributes}
+								{...props(attributes, 'paragraph')}
 								setAttributes={setAttributes}
 								blockClass={componentClass}
 							/>
 
 							<ButtonEditor
-								{...attributes}
+								{...props(attributes, 'button')}
 								setAttributes={setAttributes}
 								blockClass={componentClass}
 							/>

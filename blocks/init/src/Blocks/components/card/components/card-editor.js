@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
@@ -13,11 +14,6 @@ export const CardEditor = (attributes) => {
 		componentClass = manifest.componentClass,
 		selectorClass = componentClass,
 		blockClass,
-		introUse,
-		introContent,
-		introColor,
-		introSize,
-		introAlign,
 	} = attributes;
 
 	const cardClass = classnames([
@@ -29,38 +25,32 @@ export const CardEditor = (attributes) => {
 		<div className={cardClass}>
 
 			<ImageEditor
-				{...attributes}
+				{...props(attributes, 'image')}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
 
 			<HeadingEditor
-				{...attributes}
-				componentName={'intro'}
-				headingUse={introUse}
-				headingContent={introContent}
-				headingColor={introColor}
-				headingSize={introSize}
-				headingAlign={introAlign}
+				{...props(attributes, 'heading', 'intro')}
 				setAttributes={setAttributes}
 				selectorClass={'intro'}
 				blockClass={componentClass}
 			/>
 
 			<HeadingEditor
-				{...attributes}
+				{...props(attributes, 'heading')}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
-
 
 			<ParagraphEditor
-				{...attributes}
+				{...props(attributes, 'paragraph')}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
+
 			<ButtonEditor
-				{...attributes}
+				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>

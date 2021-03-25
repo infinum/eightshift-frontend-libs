@@ -6,16 +6,18 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo \wp_kses_post(
-	Components::render(
-		'accordion',
-		array_merge(
-			$attributes,
-			[
-				'accordionContent' => $innerBlockContent
-			]
-		)
+$manifest = Components::getManifest(__DIR__);
+$blockName = $attributes['blockName'] ?? $manifest['blockName'];
+
+echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	'accordion',
+	array_merge(
+		Blocks::props($attributes, $blockName, '', true),
+		[
+			'accordionContent' => $innerBlockContent
+		]
 	)
 );

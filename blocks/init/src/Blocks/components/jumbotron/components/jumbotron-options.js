@@ -1,6 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
+import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
@@ -9,7 +10,9 @@ import { ButtonOptions } from '../../button/components/button-options';
 import manifest from './../manifest.json';
 
 export const JumbotronOptions = (attributes) => {
-	const { title } = manifest;
+	const {
+		title,
+	} = manifest;
 
 	const {
 		setAttributes,
@@ -44,7 +47,7 @@ export const JumbotronOptions = (attributes) => {
 			{jumbotronUse &&
 				<>
 					<ImageOptions
-						{...attributes}
+						{...props(attributes, 'image')}
 						setAttributes={setAttributes}
 						showImageBg={false}
 						imageBg={true}
@@ -55,22 +58,21 @@ export const JumbotronOptions = (attributes) => {
 					<hr />
 
 					<HeadingOptions
-						{...attributes}
+						{...props(attributes, 'heading')}
 						setAttributes={setAttributes}
 					/>
-
 
 					<hr />
 
 					<ParagraphOptions
-						{...attributes}
+						{...props(attributes, 'paragraph')}
 						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<ButtonOptions
-						{...attributes}
+						{...props(attributes, 'button')}
 						setAttributes={setAttributes}
 					/>
 				</>

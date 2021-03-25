@@ -1,4 +1,5 @@
 import React from 'react';
+import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { ImageToolbar } from '../../image/components/image-toolbar';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
@@ -8,43 +9,36 @@ export const CardToolbar = (attributes) => {
 	const {
 		setAttributes,
 		options,
-		introUse,
-		introAlign,
-		introLevel,
 	} = attributes;
 
 	return (
 		<>
 
 			<ImageToolbar
-				{...attributes}
+				{...props(attributes, 'image')}
 				setAttributes={setAttributes}
 			/>
 
 			<HeadingToolbar
-				{...attributes}
-				componentName={'intro'}
-				headingUse={introUse}
-				headingAlign={introAlign}
-				headingLevel={introLevel}
+				{...props(attributes, 'heading', 'intro')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
 
 			<HeadingToolbar
-				{...attributes}
+				{...props(attributes, 'heading')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
 
 			<ParagraphToolbar
-				{...attributes}
+				{...props(attributes, 'paragraph')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
 
 			<ButtonToolbar
-				{...attributes}
+				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
