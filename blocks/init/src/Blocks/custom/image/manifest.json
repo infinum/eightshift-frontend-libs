@@ -11,6 +11,18 @@
 		"picture",
 		"img"
 	],
+	"example": {
+		"attributes": {
+			"imageAlign": "center center"
+		}
+	},
+	"attributes": {
+		"imageAlign": {
+			"type": "string",
+			"default": "center center",
+			"variable": true
+		}
+	},
 	"components": {
 		"image": "image"
 	}

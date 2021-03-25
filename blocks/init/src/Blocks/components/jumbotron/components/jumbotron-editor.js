@@ -43,8 +43,6 @@ export const JumbotronEditor = (attributes) => {
 						{...props(attributes, 'image')}
 						setAttributes={setAttributes}
 						blockClass={componentClass}
-						imageUsePlaceholder={true}
-						imageBg={true}
 					/>
 
 					<div className={contentClass} data-position={jumbotronContentPosition}>

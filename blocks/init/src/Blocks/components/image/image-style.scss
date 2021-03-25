@@ -1,99 +1,37 @@
 .image {
-	max-width: 100%;
-	width: auto;
-	height: auto;
-	display: block;
+	$this: &;
+	overflow: hidden;
 
-	&--bg {
-		@extend %bg-image;
-		height: 100%;
+	&__img {
+		max-width: 100%;
+		width: auto;
+		height: auto;
+		display: block;
+		transition: {
+			property: transform;
+			timing-function: var(--global-easing);
+			duration: 0.3s;
+		}
+	}
+
+	&--full {
 		width: 100%;
-		padding-bottom: 56%;
-	}
-}
 
-.image-wrap {
-	display: flex;
-	flex-direction: column;
-
-	&[data-align='top left'] {
-		align-items: flex-start;
-		justify-content: flex-start;
-
-		.image--bg {
-			background-position: left top;
+		#{$this}__img {
+			width: 100%;
+			max-width: none;
 		}
 	}
 
-	&[data-align='top center'] {
-		align-items: center;
-		justify-content: flex-start;
-
-		.image--bg {
-			background-position: center top;
+	&--zoom {
+		#{$this}__img {
+			transform: scale3d(1, 1, 1);
 		}
-	}
 
-	&[data-align='top right'] {
-		align-items: flex-end;
-		justify-content: flex-start;
-
-		.image--bg {
-			background-position: right top;
-		}
-	}
-
-	&[data-align='center left'] {
-		align-items: flex-start;
-		justify-content: center;
-
-		.image--bg {
-			background-position: left center;
-		}
-	}
-
-	&[data-align='center center'] {
-		align-items: center;
-		justify-content: center;
-
-		.image--bg {
-			background-position: center center;
-		}
-	}
-
-	&[data-align='center right'] {
-		align-items: flex-end;
-		justify-content: center;
-
-		.image--bg {
-			background-position: right center;
-		}
-	}
-
-	&[data-align='bottom left'] {
-		align-items: flex-start;
-		justify-content: flex-end;
-
-		.image--bg {
-			background-position: left bottom;
-		}
-	}
-
-	&[data-align='bottom center'] {
-		align-items: center;
-		justify-content: flex-end;
-
-		.image--bg {
-			background-position: center bottom;
-		}
-	}
-
-	&[data-align='bottom right'] {
-		align-items: flex-end;
-		justify-content: flex-end;
-
-		.image--bg {
-			background-position: right bottom;
+		&:hover {
+			#{$this}__img {
+				transform: scale3d(1.04, 1.04, 1);
+			}
 		}
 	}
 }
