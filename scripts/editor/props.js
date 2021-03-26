@@ -5,11 +5,11 @@
  * @param {string}  realName Old key to use, generally this is the name of the block/component.
  * @param {string}  newName New key to use to rename attributes.
  * @param {boolean} isBlock Check if helper is used on block or component.
- * @param {string}  globalManifestData If global manifest is not provided use the default path.
+ * @param {string}  namespace Use default namespace for getting the correct values from the global window.
  * 
  * @returns object
  */
-export const props = (attributes, realName, newName = '', isBlock = false, globalManifestData = '') => {
+export const props = (attributes, realName, newName = '', isBlock = false, namespace = 'eightshift-boilerplate') => {
 
 	let newNameInternal = newName;
 
@@ -18,17 +18,10 @@ export const props = (attributes, realName, newName = '', isBlock = false, globa
 		newNameInternal = realName;
 	}
 
-	let globalManifest = globalManifestData;
-
-	// If global manifest is not provided use the default path.
-	if (globalManifestData === '') {
-		globalManifest = require('./../../../../../src/Blocks/manifest.json');
-	}
-
 	const output = {}
 
 	// Get global window data.
-	const globalData = window['eightshift'][globalManifest['namespace']].dependency;
+	const globalData = window['eightshift'][namespace].dependency;
 
 	// If component use components dependency tree.
 	// Add the current component name to the dependency array.

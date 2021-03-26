@@ -6,6 +6,13 @@
  * @package EightshiftBoilerplate
  */
 
+use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-echo Components::render('button', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+$manifest = Components::getManifest(__DIR__);
+$blockName = $attributes['blockName'] ?? $manifest['blockName'];
+
+echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	'button',
+	Blocks::props($attributes, $blockName, '', true)
+);
