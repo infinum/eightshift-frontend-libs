@@ -10,7 +10,7 @@ import { isEqual, debounce } from 'lodash';
  */
 import { Component, RawHTML, Fragment } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import apiFetch from '@wordpress/apiFetch';
+import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { Placeholder, Spinner } from '@wordpress/components';
 
