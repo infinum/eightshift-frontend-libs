@@ -17,7 +17,7 @@ export const getOptions = (manifest = {}, componentName, attribute, options = {}
 	let customKey = `${componentName}${_.startCase(attribute).replace(/\s/g,'')}`;
 
 	// If you have custom name for component.
-	if (Object.prototype.hasOwnProperty.call(options, customKey)) {
+	if (Object.prototype.hasOwnProperty.call(options, customKey) && !_.isEqual(manifest.options[originalKey], options[customKey])) {
 
 		if (typeof manifest.options[originalKey][0] === 'object') {
 			// Used for array of objects (selectControl options).
