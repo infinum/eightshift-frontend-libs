@@ -99,15 +99,19 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		let innerValue = value;
 
+		// Output color variable from the global variables.
 		if (manifest['attributes'][key]['variable'] === 'color') {
 			innerValue = `var(--global-colors-${innerValue})`;
 		}
 
+		// Output select variable from the options array but dont use value key. It will use variable key.
 		if (manifest['attributes'][key]['variable'] === 'select-variable' && _.has(manifest['options'], key)) {
-			innerValue = manifest['options'][key].filter((item) => item.value === attributes[key])[0].variable;
+			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0].variable;
+			innerValue = typeof selectVariable === 'undefined' ? attributes[key] : selectVariable;
 		}
 
-		if (manifest['attributes'][key]['variable'] === 'boolean-variable' && _.has(manifest['options'], key) && _.has(manifest['options'][key], Number(attributes[key]))) {
+		// Output boolean variable from the options array key. First key is false value, second is true value.
+		if (manifest['attributes'][key]['variable'] === 'boolean-variable' && _.has(manifest['options'], key) && manifest['options'][key].length === 2) {
 			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
@@ -116,10 +120,13 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		output += `--${innerKey}: ${innerValue};\n`;
 	}
 
+	// Output manual output from the array ov variables.
+	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
+
 	return <style dangerouslySetInnerHTML={{__html: `
 		.${name}[data-id='${unique}'] {
 			${output}
-			${_.has(manifest, 'variables') ? manifest['variables'].join(";\n") : ''}
+			${manual}
 		}
 	`}}></style>;
 }

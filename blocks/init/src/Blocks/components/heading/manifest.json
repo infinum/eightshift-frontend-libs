@@ -24,7 +24,7 @@
 		"headingSize": {
 			"type": "string",
 			"default": "default",
-			"variable": "default"
+			"variable": "select-variable"
 		},
 		"headingColor": {
 			"type": "string",
@@ -38,18 +38,25 @@
 		},
 		"headingUse": {
 			"type": "boolean",
-			"default": true
+			"default": true,
+			"variable": "boolean-variable"
 		}
 	},
 	"options": {
+		"headingUse": [
+			"aaa",
+			"bbbb"
+		],
 		"headingSize": [
 			{
 				"label": "Default (1.5em)",
-				"value": "default"
+				"value": "default",
+				"variable": "aa"
 			},
 			{
 				"label": "Big (2.5em)",
-				"value": "big"
+				"value": "big",
+				"variable": "bbb"
 			}
 		],
 		"headingAlign": [
