@@ -99,8 +99,16 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		let innerValue = value;
 
-		if (_.has(manifest['attributes'][key], 'color')) {
+		if (manifest['attributes'][key]['variable'] === 'color') {
 			innerValue = `var(--global-colors-${innerValue})`;
+		}
+
+		if (manifest['attributes'][key]['variable'] === 'select-variable' && _.has(manifest['options'], key)) {
+			innerValue = manifest['options'][key].filter((item) => item.value === attributes[key])[0].variable;
+		}
+
+		if (manifest['attributes'][key]['variable'] === 'boolean-variable' && _.has(manifest['options'], key) && _.has(manifest['options'][key], Number(attributes[key]))) {
+			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
 		const innerKey = _.kebabCase(key);
@@ -111,6 +119,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 	return <style dangerouslySetInnerHTML={{__html: `
 		.${name}[data-id='${unique}'] {
 			${output}
+			${_.has(manifest, 'variables') ? manifest['variables'].join(";\n") : ''}
 		}
 	`}}></style>;
 }
