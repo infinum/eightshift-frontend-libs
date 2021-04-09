@@ -97,6 +97,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			continue;
 		}
 
+		// Used to reset value and skip variables that are unset.
 		if (value === undefined) {
 			continue;
 		}
@@ -109,14 +110,23 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		}
 
 		// Output select variable from the options array but dont use value key. It will use variable key.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'select-variable') {
-			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0].variable;
-			innerValue = typeof selectVariable === 'undefined' ? attributes[key] : selectVariable;
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'select') {
+			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
+			
+			if (typeof selectVariable !== 'undefined') {
+				const variableEditor = _.has(selectVariable, 'variableEditor') ? selectVariable['variableEditor'] : selectVariable['variable'];
+
+				innerValue = typeof variableEditor === 'undefined' ? attributes[key] : variableEditor;
+			}
 		}
 
 		// Output boolean variable from the options array key. First key is false value, second is true value.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean-variable' && manifest['options'][key].length === 2) {
-			innerValue = manifest['options'][key][Number(attributes[key])];
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length >= 2) {
+			if (manifest['options'][key].length === 4) {
+				innerValue = manifest['options'][key][Number(attributes[key]) + 2];
+			} else {
+				innerValue = manifest['options'][key][Number(attributes[key])];
+			}
 		}
 
 		const innerKey = _.kebabCase(key);
@@ -126,11 +136,13 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 	// Output manual output from the array of variables.
 	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
+	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(";\n") : '';
 
 	return <style dangerouslySetInnerHTML={{__html: `
 		.${name}[data-id='${unique}'] {
 			${output}
 			${manual}
+			${manualEditor}
 		}
 	`}}></style>;
 }
