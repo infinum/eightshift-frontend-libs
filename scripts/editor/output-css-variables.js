@@ -105,13 +105,13 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		}
 
 		// Output select variable from the options array but dont use value key. It will use variable key.
-		if (manifest['attributes'][key]['variable'] === 'select-variable' && _.has(manifest['options'], key)) {
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'select-variable') {
 			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0].variable;
 			innerValue = typeof selectVariable === 'undefined' ? attributes[key] : selectVariable;
 		}
 
 		// Output boolean variable from the options array key. First key is false value, second is true value.
-		if (manifest['attributes'][key]['variable'] === 'boolean-variable' && _.has(manifest['options'], key) && manifest['options'][key].length === 2) {
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean-variable' && manifest['options'][key].length === 2) {
 			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
@@ -120,7 +120,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		output += `--${innerKey}: ${innerValue};\n`;
 	}
 
-	// Output manual output from the array ov variables.
+	// Output manual output from the array of variables.
 	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
 
 	return <style dangerouslySetInnerHTML={{__html: `
