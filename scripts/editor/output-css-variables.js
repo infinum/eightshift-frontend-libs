@@ -97,6 +97,10 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			continue;
 		}
 
+		if (value === undefined) {
+			continue;
+		}
+
 		let innerValue = value;
 
 		// Output color variable from the global variables.
