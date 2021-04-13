@@ -45,8 +45,8 @@ class YoastSEOCustomData {
 
 			let newData = data;
 
-			newData += this.checkData(require.context(`./../../components`, true, /manifest.json$/), newData);
-			newData += this.checkData(require.context(`./../../custom`, true, /manifest.json$/), newData);
+			newData += this.checkData(require.context(`./../../../../../src/Blocks/components`, true, /manifest.json$/), newData);
+			newData += this.checkData(require.context(`./../../../../../src/Blocks/custom`, true, /manifest.json$/), newData);
 
 			return newData;
 	}
