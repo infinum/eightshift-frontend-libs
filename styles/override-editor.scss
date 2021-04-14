@@ -205,4 +205,10 @@ body {
 		text-align: center;
 		justify-content: center;
 	}
+
+	// Fix for disabled button icon foregrounds.
+	button[disabled] .block-editor-block-icon.has-colors {
+		background-color: transparent !important;
+		opacity: 1 !important;
+	}
 }
