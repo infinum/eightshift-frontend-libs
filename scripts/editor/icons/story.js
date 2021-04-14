@@ -41,9 +41,10 @@ const IconsOutput = (props) => {
 				{Object.entries(icons).map(([key, value], index) => (
 					<div
 						css={{
-							display: 'flex',
-							flexDirection: 'column',
+							display: 'grid',
+							gridTemplateRows: '1fr auto',
 							alignItems: 'center',
+							justifyItems: 'center',
 							padding: '0.75rem 1rem',
 						}}
 						key={index}>
