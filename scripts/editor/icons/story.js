@@ -23,7 +23,7 @@ const IconsOutput = (props) => {
 		<Fragment>
 			<div
 				css={{
-					fontSize: '30px',
+					fontSize: '1.5rem',
 					fontWeight: 'bold',
 					marginBottom: '1rem',
 				}}
