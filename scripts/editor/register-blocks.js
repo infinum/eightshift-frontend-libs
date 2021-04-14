@@ -206,14 +206,6 @@ export const getIconOptions = (globalManifest, blockManifest) => {
 		return {};
 	}
 
-	// Add icon foreground and background colors as CSS variables for later use.
-	try {
-		document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
-		document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
-	} catch (error) {
-		// Do nothing.
-	}
-
 	// Use built-in icons if 'src' is provided and the
 	// icon exists in the library
 	if (icon.src !== undefined && blockIcons[icon.src] !== undefined) {
@@ -543,6 +535,14 @@ export const registerBlocks = (
 
 	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
 
+	// Add icon foreground and background colors as CSS variables for later use.
+	const {
+		background: backgroundGlobal,
+		foreground: foregroundGlobal,
+	} = globalManifest;
+
+	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
+	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 };
 
 /**
@@ -614,7 +614,7 @@ export const buildDependencyComponentsTree = (components) => {
 export const buildDependencyComponentsInnerTree = (componentsList, components) => {
 	let output = [];
 
-	if ( typeof componentsList === 'undefined' ) {
+	if (typeof componentsList === 'undefined') {
 		return output;
 	}
 
