@@ -33,7 +33,7 @@ const IconsOutput = (props) => {
 			<div
 				css={{
 					display: 'grid',
-					gridTemplateColumns: 'repeat(12, 1fr)',
+					gridTemplateColumns: 'repeat(auto-fill, 8rem)',
 					gridAutoRows: 'auto',
 					gap: '0.5rem',
 				}}
