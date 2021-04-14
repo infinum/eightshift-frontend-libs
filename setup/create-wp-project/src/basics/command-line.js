@@ -13,6 +13,7 @@ const cloneRepoTo = async (repo, folderName, branch = '') => {
 const installNodeDependencies = async (projectPath) => exec(`cd "${projectPath}" && npm install`);
 const installNodePackage = async (projectPath, packageToInstall) => exec(`cd "${projectPath}" && npm install ${packageToInstall}`);
 const installComposerDependencies = async (projectPath) => exec(`cd "${projectPath}" && composer install --ignore-platform-reqs`);
+const installComposerPackage = async (projectPath, packageToInstall) => exec(`cd "${projectPath}" && composer require ${packageToInstall} --ignore-platform-reqs`);
 const wpCoreDownload = async (projectPath) => exec(`cd "${projectPath}" && wp core download`);
 
 module.exports = {
@@ -20,5 +21,6 @@ module.exports = {
   installNodeDependencies,
   installNodePackage,
   installComposerDependencies,
+  installComposerPackage,
   wpCoreDownload,
 };
