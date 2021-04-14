@@ -26,7 +26,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 	}
 
 	if (!output) {
-		return;
+		return '';
 	}
 
 	return document.head.insertAdjacentHTML('afterbegin', `
