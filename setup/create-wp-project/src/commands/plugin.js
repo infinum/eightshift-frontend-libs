@@ -38,7 +38,7 @@ exports.handler = async (argv) => {
 
   await installStep({
     describe: `${step}. Cloning repo`,
-    thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate-plugin', projectPath),
+    thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate-plugin', projectPath, argv.eightshiftBoilerplateBranch ? argv.eightshiftBoilerplateBranch : ''),
   });
   step++;
 
@@ -86,9 +86,9 @@ exports.handler = async (argv) => {
   log('Success!!!');
   log('');
   log('Please do the following steps manually to complete the setup:');
-  log(`1. In ${variable('wp-config.php')} - Make sure to require ${variable('wp-config-project.php')} (at the end of the file)`);
-  log('2. Activate your new theme');
-  log('3. Run wp boilerplate --help');
+  log(`1. Activate your new plugin by running ${variable(`wp plugin activate ${variable(promptedInfo.package)}`)}`);
+  log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
+  log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate setup_plugin')} inside your new theme folder.`);
   log('');
   log(`Please read the documentation ${variable('https://infinum.github.io/eightshift-docs/')} if you run into any issues or if you have any questions.`);
   log('');
