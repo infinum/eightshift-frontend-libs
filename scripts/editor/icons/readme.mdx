@@ -1,16 +1,34 @@
 # Editor icons
+We createad a bunch of custom icons to make everything look better and to enhance the editing experience.
+These icons are designed to be used in different places inside the Block Editor.
 
-We are using a bunch of custom made icon to make everything look better and have a better UX.
-These icons are designed to be used inside Block Editor and in different places.
+## Block icons
+These icons are used to easily identify a block. They can be seen in the block picker, in the block toolbar and in the options panel.
 
-## Components Icons
+To use them, find the `icon` key in the block manifest, and to its `src` key assign a value that represents the icon's name.
+For example:
+```json
+{
+	"blockName": "my-block",
+	...
+	"icon": {
+		"src": "es-example"
+	},
+}
+```
 
-Icons are used in the sidebar by the native core components. Generally, they are used in combination with the component label.
+## UI icons
+These icons are used inside the user interface of the editor, mostly besides labels in the Options panel.
 
-## Illustration Icons
+To use them, import them from eighshift-frontend-libs:
+```js
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
+```
 
-Icons used in the modal helper component to provide a better understanding of what each custom functionality does like wrapper, columns, etc.
+Then you can use them, for example in an `Icon` component from WP core:
+```jsx
+<Icon icon={icons.color} />
+```
 
-## BlockIcons
-
-Icons are used as a block icon to provide a visual reference for the editors.
+## Helper illustrations
+These icons are used in the modal helper component to provide a better understanding of what each custom functionality does, for example in the Wrapper, Columns, etc.
