@@ -21,7 +21,7 @@ export const LinkToolbarButton = ({
 	};
 
 	const urlAttribute = `${componentName}Url`;
-	const opensInNewTabAttribute = `${componentName}OpensInNewTab`;
+	const opensInNewTabAttribute = `${componentName}IsNewTab`;
 
 	const unlinkButton = () => {
 		setAttributes({
