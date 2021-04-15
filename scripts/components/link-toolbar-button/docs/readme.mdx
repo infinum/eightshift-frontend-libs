@@ -5,7 +5,7 @@ A toolbar button that allows link selection, just like stock Gutenberg controls.
 ## Usage
 
 To use it:
-1. Import the component
+1. Import the component from Frontend Libs
 2. Import `useRef` and create a reference
 3. Add the `LinkToolbarButton` into the toolbar
 
@@ -32,6 +32,7 @@ export const ButtonToolbar = (attributes) =>  {
 				setAttributes={setAttributes}
 				anchorRef={ref}
 				title={label}
+				textDomain={'eightshift-frontend-libs'}
 			/>
 	)
 }
