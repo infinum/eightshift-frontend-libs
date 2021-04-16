@@ -4,7 +4,7 @@
 	"componentClass": "btn",
 	"example": {
 		"attributes": {
-			"buttonContent": "This is button",
+			"buttonContent": "This is a button",
 			"buttonUrl": "https://infinum.github.io/eightshift-docs/",
 			"buttonId": "custom ID",
 			"buttonSize": "default",
