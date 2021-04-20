@@ -19,13 +19,15 @@ export const component = () => {
 		newTab: false,
 	});
 
-	return (<LinkToolbarButton
-		componentName={'dummy-component'}
-		url={objData.url}
-		opensInNewTab={objData.newTab}
-		setAttributes={setObjData}
-		anchorRef={ref}
-		title={'Dummy component'}
-		textDomain={'TestDomain'}
-	/>);
+	return (
+		<LinkToolbarButton
+			componentName={'dummy-component'}
+			url={objData.url}
+			opensInNewTab={objData.newTab}
+			setAttributes={setObjData}
+			anchorRef={ref}
+			title={'Dummy component'}
+			textDomain={'TestDomain'}
+		/>
+	);
 }

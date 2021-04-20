@@ -1,3 +1,4 @@
+import React from 'react';
 import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 import { link, linkOff } from '@wordpress/icons';
 import { Popover, Button, ToolbarButton } from '@wordpress/components';
@@ -81,5 +82,3 @@ export const LinkToolbarButton = ({
 		</>
 	);
 }
-
-export default LinkToolbarButton;

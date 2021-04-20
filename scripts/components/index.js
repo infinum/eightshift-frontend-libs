@@ -5,3 +5,4 @@ export { HelpModal } from './help-modal/help-modal';
 export { CustomSelect } from './custom-select/custom-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
+export { OptionPicker } from './option-picker/option-picker';
