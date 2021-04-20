@@ -81,5 +81,3 @@ export const LinkToolbarButton = ({
 		</>
 	);
 }
-
-export default LinkToolbarButton;
