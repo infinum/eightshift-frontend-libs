@@ -59,22 +59,7 @@ $linkClass = Components::classnames([
 ?>
 
 <div class="<?php echo \esc_attr($linkWrapClass); ?>">
-	<?php if (! $linkUrl) { ?>
-		<link
-			class="<?php echo \esc_attr($linkClass); ?>"
-			id="<?php echo \esc_attr($linkId); ?>"
-			title="<?php echo \esc_attr($linkContent); ?>"
-			aria-label="<?php echo \esc_attr($linkAriaLabel); ?>"
-			<?php
-			foreach ($linkAttrs as $key => $value) {
-				echo \wp_kses_post("{$key}=" . $value . " ");
-			}
-			?>
-		>
-			<?php echo \esc_html($linkContent); ?>
-		</link>
-
-	<?php } else { ?>
+	<?php if ($linkUrl && $linkContent) { ?>
 		<a
 			href="<?php echo \esc_url($linkUrl); ?>"
 			class="<?php echo \esc_attr($linkClass); ?>"
