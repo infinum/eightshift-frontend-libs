@@ -9,16 +9,14 @@ import manifest from './../manifest.json';
 
 const { icons } = manifest;
 
-const IconPickerOption = props => {
-	return (
-		<components.Option {...props}>
-			<div className={'icon-option-row'}>
-				<i dangerouslySetInnerHTML={{ __html: icons[props.value] }}></i>
-				<span>{props.label}</span>
-			</div>
-		</components.Option>
-	);
-};
+const IconPickerOption = props => (
+	<components.Option {...props}>
+		<div className={'icon-option-row'}>
+			<i dangerouslySetInnerHTML={{ __html: icons[props.value] }}></i>
+			<span>{props.label}</span>
+		</div>
+	</components.Option>
+);
 
 const IconPickerValueDisplay = ({ children, ...props }) => (
 	<components.SingleValue {...props}>
