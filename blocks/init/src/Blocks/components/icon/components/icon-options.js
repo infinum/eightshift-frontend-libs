@@ -1,8 +1,33 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
-import { SelectControl, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
+import { components } from 'react-select';
+
 import manifest from './../manifest.json';
+
+const { icons } = manifest;
+
+const IconPickerOption = props => {
+	return (
+		<components.Option {...props}>
+			<div className={'icon-option-row'}>
+				<i dangerouslySetInnerHTML={{ __html: icons[props.value] }}></i>
+				<span>{props.label}</span>
+			</div>
+		</components.Option>
+	);
+};
+
+const IconPickerValueDisplay = ({ children, ...props }) => (
+	<components.SingleValue {...props}>
+		<div className={'icon-option-row'}>
+			<i dangerouslySetInnerHTML={{ __html: icons[props.data.value] }}></i>
+			<span>{children}</span>
+		</div>
+	</components.SingleValue>
+);
 
 export const IconOptions = (attributes) => {
 	const { options, title } = manifest;
@@ -12,7 +37,7 @@ export const IconOptions = (attributes) => {
 		componentName = manifest.componentName,
 		label = title,
 		iconUse = checkAttr('iconUse', attributes, manifest, componentName),
-		iconName = checkAttr('iconName', attributes, manifest, componentName),
+		iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest, componentName),
 		showIconOptions = true,
 	} = attributes;
 
@@ -31,13 +56,24 @@ export const IconOptions = (attributes) => {
 			/>
 
 			{iconUse && (
-				<SelectControl
+				<CustomSelect
 					label={__('Icon', 'eightshift-frontend-libs')}
-					value={iconName}
+					value={iconSelectedIcon}
 					options={options.icons}
-					onChange={(value) => setAttributes({ [`${componentName}Name`]: value })}
+					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
+					customOptionComponent={IconPickerOption}
+					customSingleValueDisplayComponent={IconPickerValueDisplay}
+					onChange={(value) => (
+						// Because react-select needs an object instead
+						// of a label for storing data, this approach was
+						// taken to prevent breaking everything that
+						// currently uses an icon
+						setAttributes({
+							[`${componentName}SelectedIcon`]: value,
+							[`${componentName}Name`]: value?.value,
+						})
+					)}
 				/>
-
 			)}
 		</>
 	);
