@@ -1,6 +1,7 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { CustomSelect } from '../custom-select';
+import { components } from 'react-select';
 
 export default {
 	title: 'Options/Custom Select',
@@ -65,6 +66,24 @@ const getSearchableData = (inputValue) => {
 	})
 };
 
+const CustomPickerOption = props => (
+	<components.Option {...props}>
+		<div>
+			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
+			<span>{props.label}</span>
+		</div>
+	</components.Option>
+);
+
+const CustomValueDisplay = ({ children, ...props }) => (
+	<components.SingleValue {...props}>
+		<div>
+			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
+			<span>{children}</span>
+		</div>
+	</components.SingleValue>
+);
+
 export const SelectSingle = () => {
 	return (
 		<CustomSelect
@@ -119,5 +138,49 @@ export const AsyncSelectMultipleWithRefetch = () => {
 			loadOptions={getSearchableData}
 			reFetchOnSearch={true}
 		/>
+	)
+};
+
+export const CustomRendering = () => {
+	return (
+		<>
+			<p>Custom dropdown items</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={false}
+				label={'My cool single select menu'}
+				customOptionComponent={CustomPickerOption}
+				options={data}
+			/>
+
+			<p>Custom value label</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={false}
+				label={'My cool single select menu'}
+				customSingleValueDisplayComponent={CustomValueDisplay}
+				options={data}
+			/>
+
+			<p>Custom dropdown items and value label</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={false}
+				label={'My cool single select menu'}
+				customOptionComponent={CustomPickerOption}
+				customSingleValueDisplayComponent={CustomValueDisplay}
+				options={data}
+			/>
+
+
+			<p>Custom dropdown items on multi-select menu</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={true}
+				label={'My cool multiple select menu'}
+				customOptionComponent={CustomPickerOption}
+				options={data}
+			/>
+		</>
 	)
 };
