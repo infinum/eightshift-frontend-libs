@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $icon = $attributes['icon'] ?? '';
 $charset = $attributes['charset'] ?? \get_bloginfo('charset');

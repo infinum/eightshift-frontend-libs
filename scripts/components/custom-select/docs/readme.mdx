@@ -1,3 +1,136 @@
 # Custom Select
 
 We are using [react-select](https://react-select.com/home) component to provide select advanced features on the select component like sorting.
+
+## Properties
+
+This control can be used as a synchronous (options passed to component) or an asynchronous (options loaded via callback) component,
+there are some properties common to both and some that differ between sync/async versions.
+
+### Common properties
+
+| Property | Description |
+|---|---|
+| `label` | Label shown above the select menu |
+| `help` | _(optional)_ Help text shown below the select menu |
+| `multiple` | _(optional)_ If `true`, multiple items can be selected. Default: `false`. |
+| `value` | Current value |
+| `onChange` | Callback that gets called when the selection is changed (or items are reordered if multiple items are present). |
+| `isClearable` | _(optional)_ If `true`, when items are selected a clear button shows up that clears all the selected items. Default is `true`. |
+| `isSearchable` | _(optional)_ If `true` allows searching through the results. Default: `true`. |
+| `placeholder` | _(optional)_ When no items are selected, the placeholder text is shown if set. |
+| `sortAxis` | _(optional)_ If multiple items are selected, this option sets the allowed sorting axis. Default is `y`. Allowed options: `x`, `y`, `xy`. |
+| `customOptionComponent` | _(optional)_ Component that renders a dropdown option. |
+| `customSingleValueDisplayComponent` | _(optional)_ Component that renders the label of the currently selected item. Doesn't apply to multi-value selects. |
+
+### When used as a synchronous select
+| Property | Description |
+|---|---|
+| `options` | Options that are presented to the user. Must be in `{ label: "", value: "" }` format! |
+
+### When used as an asynchronous select
+
+| Property | Description |
+|---|---|
+| `loadOptions` | Callback for fetching the options displayed to the user. Items must be in `{ label: "", value: "" }` format! Additionally, an argument is passed to the function that contains the search/filter text currently typed, which can be used to narrow down the search results. |
+| `cacheOptions` | If `true`, the options are cached internally. Default: `true`. |
+| `reFetchOnSearch` | If `true`, the items are re-fetched whenever the user is searching (typing into the field), otherwise it filters through already loaded results. Default: `false`. |
+
+## Usage
+
+### Async single item
+```jsx
+<CustomSelect
+	loadOptions={getData}
+	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
+	value={myValue}
+	onChange={(value) => setAttributes({ myValue: value })}
+	multiple={false}
+	label={__('My label', 'eigthshift-frontend-libs')}
+/>
+```
+
+### Synchronous single item
+```jsx
+<CustomSelect
+	options={things}
+	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
+	value={myValue}
+	onChange={(value) => setAttributes({ myValue: value })}
+	multiple={false}
+	label={__('My label', 'eigthshift-frontend-libs')}
+/>
+```
+
+### Async multiple items
+```jsx
+<CustomSelect
+	loadOptions={getData}
+	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
+	value={myValue}
+	onChange={(value) => setAttributes({ myValue: value })}
+	multiple={true}
+	label={__('My label', 'eigthshift-frontend-libs')}
+/>
+```
+
+### Synchronous multiple items
+```jsx
+<CustomSelect
+	options={things}
+	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
+	value={myValue}
+	onChange={(value) => setAttributes({ myValue: value })}
+	multiple={true}
+	label={__('My label', 'eigthshift-frontend-libs')}
+/>
+```
+
+## Implementing a custom dropdown/value display
+
+It's easy as 1-2-3!
+
+### 1) Import `react-select` components
+```jsx
+import { components } from 'react-select';
+```
+
+### 2) Create your custom component
+
+#### Dropdown option
+
+```jsx
+const CustomPickerOption = props => {
+	return (
+		<components.Option {...props}>
+			<span>👉 {props.label}</span>
+		</components.Option>
+	);
+};
+```
+
+Use `props.label` to get the current item's label and `props.value` for the value.
+
+
+#### Value display
+
+```jsx
+const CustomValueDisplay = ({ children, ...props }) => (
+	<components.SingleValue {...props}>
+		<span>👉 {children}</span>
+	</components.SingleValue>
+);
+```
+
+Use `props.data.label` or `children` to get the current item's label and `props.data.value` for the value.
+
+### 3) Pass it to your `CustomSelect`
+
+```jsx
+<CustomSelect
+	// ...
+	customOptionComponent={IconPickerOption}
+	customSingleValueDisplayComponent={IconPickerValueDisplay}
+	// ...
+/>
+```

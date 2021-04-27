@@ -2,20 +2,30 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import Select, { components } from 'react-select';
 import { useState } from '@wordpress/element';
 import { BaseControl } from '@wordpress/components';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement, sortableHandle } from 'react-sortable-hoc';
+import AsyncSelect from "react-select/async";
 
 export const CustomSelect = (props) => {
 	const {
 		label,
 		help,
 		multiple = false,
-		options = [],
+		options,
 		value,
 		onChange,
 		isClearable = true,
 		isSearchable = true,
 		closeMenuOnSelect = false,
+		cacheOptions = true,
+		reFetchOnSearch = false,
+		loadOptions,
+		placeholder,
+		sortAxis = 'y',
+		customOptionComponent,
+		customSingleValueDisplayComponent,
 	} = props;
+
+	const isSynchronous = !loadOptions;
 
 	function arrayMove(array, from, to) {
 		// eslint-disable-next-line no-param-reassign
@@ -23,6 +33,14 @@ export const CustomSelect = (props) => {
 		array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 		return array;
 	}
+
+	const Option = (props) => {
+		return <components.Option {...props} />;
+	};
+
+	const SingleValue = (props) => {
+		return <components.SingleValue {...props} />;
+	};
 
 	const SortableMultiValue = SortableElement((propsSortable) => {
 
@@ -38,18 +56,50 @@ export const CustomSelect = (props) => {
 		return <components.MultiValue {...propsSortable} innerProps={innerProps} />;
 	}, []);
 
-	const SortableSelect = SortableContainer(Select);
+	const SortableMultiValueLabel = sortableHandle((props) => (
+		<components.MultiValueLabel {...props} />
+	));
+
+	const SortableSelect = SortableContainer(isSynchronous ? Select : AsyncSelect);
 
 	const [selected, setSelected] = useState(value);
+	const [defaultOptions, setDefaultOptions] = useState(true);
+
+	const filterOptions = (inputValue, label) => label.toLowerCase().includes(inputValue.toLowerCase());
+
+	const customLoadOptions = async (inputValue) => {
+		if (!Array.isArray(defaultOptions)) {
+			const options = await loadOptions(inputValue);
+			setDefaultOptions(options);
+		}
+
+		if (reFetchOnSearch && inputValue.length) {
+			const options = await loadOptions(inputValue);
+			return new Promise((resolve) => resolve(options));
+		}
+
+		return new Promise((resolve) => {
+			if (!inputValue.length) {
+				resolve(defaultOptions);
+			} else {
+				resolve([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label)));
+			}
+		});
+	}
 
 	const onChangeInternal = (selectedOptions) => {
+		if (!isSynchronous) {
+			setSelected(selectedOptions);
+			onChange(selectedOptions);
+			return;
+		}
 
 		let output;
 
 		// Compare curent selected posts with the API and sync them. 
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
-		if(multiple) {
+		if (multiple) {
 			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
 		} else {
 			output = selectedOptions;
@@ -71,12 +121,16 @@ export const CustomSelect = (props) => {
 			help={help}
 		>
 			<SortableSelect
-				axis="y"
+				useDragHandle
+				axis={sortAxis}
 				onSortEnd={onSortEnd}
 				distance={4}
 				getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-				name="select-two"
 				value={selected}
+				loadOptions={customLoadOptions}
+				cacheOptions={cacheOptions}
+				placeholder={placeholder}
+				defaultOptions={defaultOptions}
 				onChange={onChangeInternal}
 				options={options}
 				isMulti={multiple}
@@ -84,8 +138,22 @@ export const CustomSelect = (props) => {
 				isClearable={isClearable}
 				components={{
 					MultiValue: SortableMultiValue,
+					MultiValueLabel: SortableMultiValueLabel,
+					Option: customOptionComponent ?? Option,
+					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
 				}}
 				closeMenuOnSelect={closeMenuOnSelect}
+				theme={(theme) => ({
+					...theme,
+					borderRadius: 3,
+					colors: {
+						...theme.colors,
+						primary25: 'hsla(0, 0%, 90%, 1)',
+						primary50: 'hsla(0, 0%, 80%, 1)',
+						primary75: 'hsla(0, 0%, 70%, 1)',
+						primary: 'hsla(0, 0%, 0%, 1)'
+					},
+				})}
 			/>
 		</BaseControl>
 	);

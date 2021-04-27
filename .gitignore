@@ -8,3 +8,6 @@ package-lock.json
 /temp
 /temp-plugin
 /temp-theme
+
+# Local env settings
+.vscode/settings.json

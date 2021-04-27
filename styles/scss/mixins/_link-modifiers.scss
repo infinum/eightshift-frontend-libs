@@ -56,7 +56,7 @@
 
 @mixin link-modifiers($map, $keys...) { // stylelint-disable max-nesting-depth
 	@each $modifier, $modifierMap in map-get-deep($map, $keys...) {
-		&--#{$modifier} {
+		&--#{"" + $modifier} {
 			@if (type-of($modifierMap) == 'map') {
 				@each $state, $stateMap in $modifierMap {
 					@if $state == 'normal' {

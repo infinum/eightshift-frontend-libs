@@ -19,7 +19,7 @@ const {
 const { searchReplace } = require('../search-replace');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
-const { installModifiedNodeDependencies } = require('../dependencies');
+const { installModifiedNodeDependencies, installModifiedComposerDependencies } = require('../dependencies');
 
 exports.command = ['*', 'theme'];
 exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
@@ -59,10 +59,18 @@ exports.handler = async (argv) => {
   });
   step++;
 
-  await installStep({
-    describe: `${step}. Installing Composer dependencies`,
-    thisHappens: installComposerDependencies(projectPath),
-  });
+  // Install all composer packages as is or overwrite libs
+  if (argv.eightshiftLibsBranch) {
+    await installStep({
+      describe: `${step}. Installing modified Composer dependencies`,
+      thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch),
+    });
+  } else {
+    await installStep({
+      describe: `${step}. Installing Composer dependencies`,
+      thisHappens: installComposerDependencies(projectPath),
+    });
+  }
   step++;
 
   await installStep({

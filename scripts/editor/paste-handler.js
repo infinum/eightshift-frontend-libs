@@ -5,11 +5,9 @@ import { createBlock } from '@wordpress/blocks';
  *
  * @param {string} inputText HTML string for parsing.
  */
-const processTag = (inputText) => {
+const processTag = (inputTextParam) => {
     // If it's only text wrap it in span for processing
-    if (!inputText.startsWith('<')) {
-        inputText = `<span>${inputText}</span>`;
-    }
+    const inputText = !inputTextParam.startsWith('<') ? `<span>${inputTextParam}</span>` : inputTextParam;
 
     let output = [];
 
@@ -105,7 +103,9 @@ export const pasteInto = (event, attributes, setAttributes, allowedTags, splitOn
 
     // If HTML content is in clipboard, process that...
     if (copiedHtml) {
-        copiedHtml.getAsString((inputText) => {
+        copiedHtml.getAsString((inputTextParam) => {
+            let inputText = inputTextParam;
+
             // Get all tags from the text
             const allTags = [...inputText.matchAll(/<.+?>/g)];
 

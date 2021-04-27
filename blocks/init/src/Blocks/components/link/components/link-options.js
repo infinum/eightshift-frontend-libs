@@ -1,6 +1,5 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { URLInput } from '@wordpress/block-editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
@@ -19,13 +18,11 @@ export const LinkOptions = (attributes) => {
 
 		linkUse = checkAttr('linkUse', attributes, manifest, componentName),
 
-		linkUrl = checkAttr('linkUrl', attributes, manifest, componentName),
 		linkColor = checkAttr('linkColor', attributes, manifest, componentName),
 		linkSize = checkAttr('linkSize', attributes, manifest, componentName),
 		linkIsAnchor = checkAttr('linkIsAnchor', attributes, manifest, componentName),
 		linkId = checkAttr('linkId', attributes, manifest, componentName),
 
-		showLinkUrl = true,
 		showLinkColor = true,
 		showLinkSize = true,
 		showLinkIsAnchor = true,
@@ -54,21 +51,6 @@ export const LinkOptions = (attributes) => {
 
 			{linkUse &&
 				<>
-
-					{showLinkUrl &&
-						<URLInput
-							label={
-								<>
-									<Icon icon={icons.link} />
-									{__('URL', 'eightshift-frontend-libs')}
-								</>
-							}
-							value={linkUrl}
-							autoFocus={false}
-							onChange={(value) => setAttributes({ [`${componentName}Url`]: value })}
-						/>
-					}
-
 					{showLinkColor &&
 						<ColorPaletteCustom
 							label={

@@ -1,0 +1,39 @@
+# LinkToolbarButton
+
+A toolbar button that allows link selection, just like stock Gutenberg controls.
+
+## Usage
+
+To use it:
+1. Import the component from Frontend Libs
+2. Import `useRef` and create a reference
+3. Add the `LinkToolbarButton` into the toolbar
+
+```jsx
+import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components';
+import { useRef } from '@wordpress/element';
+
+// ...
+
+export const ButtonToolbar = (attributes) =>  {
+	// ...
+
+	const ref = useRef();
+
+	// ...
+
+	return (
+			// ...
+
+			<LinkToolbarButton
+				componentName={componentName}
+				url={buttonUrl}
+				opensInNewTab={buttonOpensInNewTab}
+				setAttributes={setAttributes}
+				anchorRef={ref}
+				title={label}
+				textDomain={'eightshift-frontend-libs'}
+			/>
+	)
+}
+```
