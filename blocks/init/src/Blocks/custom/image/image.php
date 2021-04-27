@@ -21,7 +21,7 @@ echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:i
 
 <div class="<?php echo \esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'image',
 		Blocks::props($attributes, $blockName, '', true)
 	);

@@ -12,7 +12,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $blockName = $attributes['blockName'] ?? $manifest['blockName'];
 
-echo Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+echo Components::render(
 	'heading',
 	Blocks::props($attributes, $blockName, '', true)
 );
