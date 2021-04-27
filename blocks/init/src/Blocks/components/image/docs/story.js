@@ -39,14 +39,3 @@ export const fullScreen = () => (
 	imageFull={true}
 	/>
 );
-
-export const zoom = () => (
-	<ImageEditor
-	{...props}
-	imageUrl={{
-		id: "0",
-		url: "https://loremflickr.com/300/200"
-	}}
-	imageZoom={true}
-	/>
-);
