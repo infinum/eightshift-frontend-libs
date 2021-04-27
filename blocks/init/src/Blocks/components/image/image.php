@@ -63,7 +63,7 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item['url']) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />';
+			echo '<source srcset="' . \esc_url($item['url']) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 

@@ -61,7 +61,7 @@ $featuredPostClass = Components::classnames([
 		};
 
 		if ($excludeCurrentPost) {
-			$args['post__not_in'] = [ $post->ID ];
+			$args['post__not_in'] = [$post->ID];
 		}
 
 		if ($posts) {
