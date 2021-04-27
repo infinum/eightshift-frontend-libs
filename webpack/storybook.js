@@ -26,6 +26,7 @@ module.exports = (
 			{
 				loader: 'sass-loader',
 				options: {
+					implementation: require("sass"),
 					additionalData: convertJsonToSass(path.resolve(projectRoot, blocksManifestSettingsPath)),
 				},
 			},
