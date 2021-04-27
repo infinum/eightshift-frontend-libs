@@ -23,7 +23,6 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest, $componentName);
 $imageFull = Components::checkAttr('imageFull', $attributes, $manifest, $componentName);
-$imageZoom = Components::checkAttr('imageZoom', $attributes, $manifest, $componentName);
 
 $imageUrl = [
 	'default' => Components::checkAttr('imageUrl', $attributes, $manifest),
@@ -35,7 +34,6 @@ $imageUrl = [
 $pictureClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($imageFull, $componentClass, '', 'full'),
-	Components::selector($imageZoom, $componentClass, '', 'zoom'),
 	Components::selector($blockClass, $blockClass, "{$selectorClass}-picture"),
 ]);
 

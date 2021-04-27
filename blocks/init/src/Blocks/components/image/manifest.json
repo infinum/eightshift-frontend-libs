@@ -6,7 +6,7 @@
 		"attributes": {
 			"imageUrl": {
 				"id": "1",
-				"url": "https://loremflickr.com/1440/800"
+				"url": "https://loremflickr.com/300/300"
 			},
 			"imageUrlDesktop": {
 				"id": "1",
@@ -24,7 +24,6 @@
 			"imageAllowedTypes": ["image"],
 			"imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			"imageFull": false,
-			"imageZoom": false,
 			"imageUse": true
 		}
 	},
@@ -65,10 +64,6 @@
 			"type": "string"
 		},
 		"imageFull": {
-			"type": "boolean",
-			"default": false
-		},
-		"imageZoom": {
 			"type": "boolean",
 			"default": false
 		},

@@ -15,7 +15,7 @@ export const ImageToolbar = ({ attributes, setAttributes }) => {
 
 	return (
 		<BlockAlignmentMatrixToolbar
-			label={__('Image Position', 'Redesign')}
+			label={__('Image Position', 'eightshift-frontend-libs')}
 			value={imageAlign}
 			onChange={(value) => setAttributes({ [`${blockName}Align`]: value })}
 		/>

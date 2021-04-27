@@ -7,9 +7,14 @@ import manifest from './../manifest.json';
 
 export const ImageEditor = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
@@ -19,13 +24,11 @@ export const ImageEditor = (attributes) => {
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
 		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
 		imageFull = checkAttr('imageFull', attributes, manifest, componentName),
-		imageZoom = checkAttr('imageZoom', attributes, manifest, componentName),
 	} = attributes;
 
 	const pictureClass = classnames([
 		selector(componentClass, componentClass),
 		selector(imageFull, componentClass, '', 'full'),
-		selector(imageZoom, componentClass, '', 'zoom'),
 		selector(blockClass, blockClass, `${selectorClass}-picture`),
 	]);
 

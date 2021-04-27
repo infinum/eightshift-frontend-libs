@@ -14,12 +14,11 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 		blockClass,
 	} = attributes;
 
-
 	return (
 		<>
 			{outputCssVariables(attributes, manifest, unique)}
 
-			<div className={blockClass}>
+			<div className={blockClass} data-id={unique}>
 				<ImageEditorComponent
 					{...props(attributes, blockName, '', true)}
 					setAttributes={setAttributes}

@@ -9,12 +9,16 @@ import { Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
-	const { title, breakpoints } = manifest;
+	const {
+		title: manifestTitle,
+		breakpoints: manifestBreakpoints,
+		componentName: manifestComponentName,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
 		imageShowControls = true,
 
 		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
@@ -23,12 +27,11 @@ export const ImageOptions = (attributes) => {
 		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
 		imageFull = checkAttr('imageFull', attributes, manifest, componentName),
-		imageZoom = checkAttr('imageZoom', attributes, manifest, componentName),
 
+		showImageUse = true,
 		showImageUrl = true,
 		showImageAlt = true,
 		showImageFull = true,
-		showImageZoom = true,
 	} = attributes;
 
 	const imageUrl = {
@@ -50,11 +53,13 @@ export const ImageOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'Redesign'), label)}
-				checked={imageUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showImageUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={imageUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{imageUse &&
 				<>
@@ -63,13 +68,13 @@ export const ImageOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.link} />
-									{__('Image Url', 'Redesign')}
+									{__('Image Url', 'eightshift-frontend-libs')}
 								</>
 							}
 						>
 							{Object.keys(imageUrl).map(function(keyName) {
 
-								let point = ucfirst(breakpoints.filter((item) => item === keyName)[0]);
+								let point = ucfirst(manifestBreakpoints.filter((item) => item === keyName)[0]);
 								let pointLabel = point;
 								if (point==='Default') {
 									point = '';
@@ -81,7 +86,7 @@ export const ImageOptions = (attributes) => {
 								return (
 									<BaseControl
 										key={keyName}
-										label={sprintf(__('Image %s screen size', 'Redesign'), pointLabel)}
+										label={sprintf(__('Image %s screen size', 'eightshift-frontend-libs'), pointLabel)}
 									>
 										{!_.isEmpty(attributes[attr]) ?
 											<>
@@ -92,7 +97,7 @@ export const ImageOptions = (attributes) => {
 													className={'custom-full-width-btn'}
 													onClick={() => setAttributes({ [attr]: {} })}
 												>
-													{sprintf(__('Remove %s screen size image', 'Redesign'), pointLabel)}
+													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
 												</Button>
 											</> :
 											<MediaPlaceholder
@@ -117,7 +122,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageAlt &&
 						<TextareaControl
-							label={__('Alt tag', 'Redesign')}
+							label={__('Alt tag', 'eightshift-frontend-libs')}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
 						/>
@@ -125,19 +130,10 @@ export const ImageOptions = (attributes) => {
 
 					{showImageFull &&
 						<ToggleControl
-							label={__('Show full image', 'Redesign')}
-							help={__('If checked the image will always stretch the full width of the container and ignore it\'s max width.', 'Redesign')}
+							label={__('Show full image', 'eightshift-frontend-libs')}
+							help={__('If checked the image will always stretch the full width of the container and ignore it\'s max width.', 'eightshift-frontend-libs')}
 							checked={imageFull}
 							onChange={(value) => setAttributes({ [`${componentName}Full`]: value })}
-						/>
-					}
-
-					{showImageZoom &&
-						<ToggleControl
-							label={__('Use zoom image', 'Redesign')}
-							help={__('If checked the image will zoom on hover.', 'Redesign')}
-							checked={imageZoom}
-							onChange={(value) => setAttributes({ [`${componentName}Zoom`]: value })}
 						/>
 					}
 

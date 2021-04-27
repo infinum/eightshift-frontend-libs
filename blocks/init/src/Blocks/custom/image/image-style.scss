@@ -1,0 +1,7 @@
+.block-image {
+	display: flex;
+	flex-direction: column;
+
+	align-items: var(--image-align-horizontal, 'center');
+	justify-content: var(--image-align-vertical, 'center');
+}
