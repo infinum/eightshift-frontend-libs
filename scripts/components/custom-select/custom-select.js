@@ -21,6 +21,8 @@ export const CustomSelect = (props) => {
 		loadOptions,
 		placeholder,
 		sortAxis = 'y',
+		customOptionComponent,
+		customSingleValueDisplayComponent,
 	} = props;
 
 	const isSynchronous = !loadOptions;
@@ -31,6 +33,14 @@ export const CustomSelect = (props) => {
 		array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 		return array;
 	}
+
+	const Option = (props) => {
+		return <components.Option {...props} />;
+	};
+
+	const SingleValue = (props) => {
+		return <components.SingleValue {...props} />;
+	};
 
 	const SortableMultiValue = SortableElement((propsSortable) => {
 
@@ -128,7 +138,9 @@ export const CustomSelect = (props) => {
 				isClearable={isClearable}
 				components={{
 					MultiValue: SortableMultiValue,
-					MultiValueLabel: SortableMultiValueLabel
+					MultiValueLabel: SortableMultiValueLabel,
+					Option: customOptionComponent ?? Option,
+					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
 				}}
 				closeMenuOnSelect={closeMenuOnSelect}
 				theme={(theme) => ({

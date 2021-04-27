@@ -20,6 +20,8 @@ there are some properties common to both and some that differ between sync/async
 | `isSearchable` | _(optional)_ If `true` allows searching through the results. Default: `true`. |
 | `placeholder` | _(optional)_ When no items are selected, the placeholder text is shown if set. |
 | `sortAxis` | _(optional)_ If multiple items are selected, this option sets the allowed sorting axis. Default is `y`. Allowed options: `x`, `y`, `xy`. |
+| `customOptionComponent` | _(optional)_ Component that renders a dropdown option. |
+| `customSingleValueDisplayComponent` | _(optional)_ Component that renders the label of the currently selected item. Doesn't apply to multi-value selects. |
 
 ### When used as a synchronous select
 | Property | Description |
@@ -81,5 +83,54 @@ there are some properties common to both and some that differ between sync/async
 	onChange={(value) => setAttributes({ myValue: value })}
 	multiple={true}
 	label={__('My label', 'eigthshift-frontend-libs')}
+/>
+```
+
+## Implementing a custom dropdown/value display
+
+It's easy as 1-2-3!
+
+### 1) Import `react-select` components
+```jsx
+import { components } from 'react-select';
+```
+
+### 2) Create your custom component
+
+#### Dropdown option
+
+```jsx
+const CustomPickerOption = props => {
+	return (
+		<components.Option {...props}>
+			<span>👉 {props.label}</span>
+		</components.Option>
+	);
+};
+```
+
+Use `props.label` to get the current item's label and `props.value` for the value.
+
+
+#### Value display
+
+```jsx
+const CustomValueDisplay = ({ children, ...props }) => (
+	<components.SingleValue {...props}>
+		<span>👉 {children}</span>
+	</components.SingleValue>
+);
+```
+
+Use `props.data.label` or `children` to get the current item's label and `props.data.value` for the value.
+
+### 3) Pass it to your `CustomSelect`
+
+```jsx
+<CustomSelect
+	// ...
+	customOptionComponent={IconPickerOption}
+	customSingleValueDisplayComponent={IconPickerValueDisplay}
+	// ...
 />
 ```
