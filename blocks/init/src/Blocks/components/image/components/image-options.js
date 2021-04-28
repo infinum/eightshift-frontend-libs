@@ -76,7 +76,7 @@ export const ImageOptions = (attributes) => {
 
 								let point = ucfirst(manifestBreakpoints.filter((item) => item === keyName)[0]);
 								let pointLabel = point;
-								if (point==='Default') {
+								if (point === 'Default') {
 									point = '';
 									pointLabel = 'All';
 								}
@@ -122,7 +122,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageAlt &&
 						<TextareaControl
-							label={__('Alt tag', 'eightshift-frontend-libs')}
+							label={__('Alt text', 'eightshift-frontend-libs')}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
 						/>
@@ -130,8 +130,8 @@ export const ImageOptions = (attributes) => {
 
 					{showImageFull &&
 						<ToggleControl
-							label={__('Show full image', 'eightshift-frontend-libs')}
-							help={__('If checked the image will always stretch the full width of the container and ignore it\'s max width.', 'eightshift-frontend-libs')}
+							label={__('Fill container', 'eightshift-frontend-libs')}
+							help={__('If checked, the image will always stretch the full width of the container and ignore its maximum width.', 'eightshift-frontend-libs')}
 							checked={imageFull}
 							onChange={(value) => setAttributes({ [`${componentName}Full`]: value })}
 						/>
