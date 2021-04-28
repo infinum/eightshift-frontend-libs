@@ -68,7 +68,7 @@ export const ImageOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.link} />
-									{__('Image Url', 'eightshift-frontend-libs')}
+									{__('Image', 'eightshift-frontend-libs')}
 								</>
 							}
 						>
