@@ -22,16 +22,4 @@
 			max-width: none;
 		}
 	}
-
-	&--zoom {
-		#{$this}__img {
-			transform: scale3d(1, 1, 1);
-		}
-
-		&:hover {
-			#{$this}__img {
-				transform: scale3d(1.04, 1.04, 1);
-			}
-		}
-	}
 }
