@@ -24,7 +24,7 @@ $cardClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($cardClass); ?>">
 	<?php
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'image',
 		array_merge(
 			Blocks::props($attributes, 'image'),
@@ -34,7 +34,7 @@ $cardClass = Components::classnames([
 		)
 	);
 
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'heading',
 		array_merge(
 			Blocks::props($attributes, 'heading', 'intro'),
@@ -45,7 +45,7 @@ $cardClass = Components::classnames([
 		)
 	);
 
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'heading',
 		array_merge(
 			Blocks::props($attributes, 'heading'),
@@ -55,7 +55,7 @@ $cardClass = Components::classnames([
 		)
 	);
 
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'paragraph',
 		array_merge(
 			Blocks::props($attributes, 'paragraph'),
@@ -65,7 +65,7 @@ $cardClass = Components::classnames([
 		)
 	);
 
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'button',
 		array_merge(
 			Blocks::props($attributes, 'button'),

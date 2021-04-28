@@ -36,7 +36,7 @@ $accordionClass = Components::classnames([
 
 <div
 	class="<?php echo \esc_attr("{$accordionClass}"); ?>"
-	data-accordion-open="<?php echo $accordionIsOpen ? 'true' : 'false'; ?>"
+	data-accordion-open="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
 >
 	<button
 		class="<?php echo \esc_attr("{$componentClass}__trigger {$componentJsClass}-trigger"); ?>"
@@ -58,7 +58,7 @@ $accordionClass = Components::classnames([
 	</button>
 	<section
 		class="<?php echo \esc_attr("{$componentClass}__panel {$componentJsClass}-panel"); ?>"
-		aria-hidden="<?php echo $accordionIsOpen ? 'false' : 'true'; ?>"
+		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
 	>
 		<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 			<?php echo \wp_kses_post($accordionContent); ?>

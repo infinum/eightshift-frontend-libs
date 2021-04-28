@@ -8,6 +8,7 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
@@ -20,40 +21,50 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$imageUrl = Components::checkAttr('imageUrl', $attributes, $manifest, $componentName);
-$imageLink = Components::checkAttr('imageLink', $attributes, $manifest, $componentName);
-$imageBg = Components::checkAttr('imageBg', $attributes, $manifest, $componentName);
-$imageAlign = Components::checkAttr('imageAlign', $attributes, $manifest, $componentName);
 $imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest, $componentName);
+$imageFull = Components::checkAttr('imageFull', $attributes, $manifest, $componentName);
 
-$imageWrapClass = Components::classnames([
-	Components::selector($componentClass, "{$componentClass}-wrap"),
-	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
-	Components::selector($imageLink, $imageLink, $componentClass, 'is-link'),
+$imageUrl = [
+	'default' => Components::checkAttr('imageUrl', $attributes, $manifest),
+	'desktop' => Components::checkAttr('imageUrlDesktop', $attributes, $manifest),
+	'tablet' => Components::checkAttr('imageUrlTablet', $attributes, $manifest),
+	'mobile' => Components::checkAttr('imageUrlMobile', $attributes, $manifest),
+];
+
+$pictureClass = Components::classnames([
+	Components::selector($componentClass, $componentClass),
+	Components::selector($imageFull, $componentClass, '', 'full'),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}-picture"),
 ]);
 
-$imageClass = Components::classnames([
-	$componentClass,
-	Components::selector($imageBg, $componentClass, '', 'bg'),
-	Components::selector($blockClass, $blockClass, $selectorClass),
+$imgClass = Components::classnames([
+	Components::selector($componentClass, $componentClass, 'img'),
+	Components::selector($blockClass, $blockClass, "{$selectorClass}-img"),
 ]);
 
 ?>
 
-<?php if ($imageLink) { ?>
-	<a href="<?php echo \esc_url($imageLink); ?>" class="<?php echo \esc_attr($imageWrapClass); ?>">
-<?php } else { ?>
-	<div class="<?php echo \esc_attr($imageWrapClass); ?>" data-align="<?php echo \esc_attr($imageAlign); ?>">
-<?php } ?>
+<?php if (isset($imageUrl['default']) && $imageUrl['default']) { ?>
+	<picture class="<?php echo \esc_attr($pictureClass); ?>">
+		<?php foreach (array_reverse($imageUrl) as $brakepoint => $item) { ?>
+			<?php
+			if ($brakepoint === 'default') {
+				continue;
+			}
+			if (!$item) {
+				continue;
+			}
 
-	<?php if ($imageBg) { ?>
-		<div style="background-image:url(<?php echo \esc_url($imageUrl); ?>)" class="<?php echo \esc_attr($imageClass); ?>" ></div>
-	<?php } else { ?>
-		<img src="<?php echo \esc_url($imageUrl); ?>" class="<?php echo \esc_attr($imageClass); ?>" alt="<?php echo \esc_attr($imageAlt); ?>"/>
-	<?php } ?>
+			$brakepointValue = $globalManifest['globalVariables']['breakpoints'][$brakepoint] ?? '';
 
-<?php if ($imageLink) { ?>
-	</a>
-<?php } else { ?>
-	</div>
+			if (!$brakepointValue) {
+				continue;
+			}
+
+			echo '<source srcset="' . \esc_url($item['url']) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+			?>
+		<?php } ?>
+
+		<img src="<?php echo \esc_url($imageUrl['default']['url']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+	</picture>
 <?php } ?>

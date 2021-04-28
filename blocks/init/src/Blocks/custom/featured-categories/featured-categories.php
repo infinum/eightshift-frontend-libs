@@ -59,7 +59,7 @@ if (!$taxonomy) {
 
 		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 			<?php
-				echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo Components::render(
 					'card',
 					$cardProps
 				);

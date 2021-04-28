@@ -1,35 +1,45 @@
 import React from 'react';
+import _ from 'lodash';
 import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl, Icon, TextareaControl } from '@wordpress/components';
-import { MediaPlaceholder, URLInput } from '@wordpress/block-editor';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { MediaPlaceholder } from '@wordpress/block-editor';
+import { ToggleControl, Icon, TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
-	const { title } = manifest;
+	const {
+		title: manifestTitle,
+		breakpoints: manifestBreakpoints,
+		componentName: manifestComponentName,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
 		imageShowControls = true,
 
 		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
 
-		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
 		imageAlt = checkAttr('imageAlt', attributes, manifest, componentName),
-		imageLink = checkAttr('imageLink', attributes, manifest, componentName),
 		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
-		imageBg = checkAttr('imageBg', attributes, manifest, componentName),
-		imageUsePlaceholder = checkAttr('imageUsePlaceholder', attributes, manifest, componentName),
+		imageFull = checkAttr('imageFull', attributes, manifest, componentName),
 
+		showImageUse = true,
 		showImageUrl = true,
 		showImageAlt = true,
-		showImageLink = true,
-		showImageBg = true,
+		showImageFull = true,
 	} = attributes;
+
+	const imageUrl = {
+		default: checkAttr('imageUrl', attributes, manifest, componentName),
+		desktop: checkAttr('imageUrlDesktop', attributes, manifest, componentName),
+		tablet: checkAttr('imageUrlTablet', attributes, manifest, componentName),
+		mobile: checkAttr('imageUrlMobile', attributes, manifest, componentName),
+	};
 
 	if (!imageShowControls) {
 		return null;
@@ -37,64 +47,93 @@ export const ImageOptions = (attributes) => {
 
 	return (
 		<>
-
 			{label &&
 				<h3 className={'options-label'}>
 					{label}
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={imageUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showImageUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={imageUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{imageUse &&
 				<>
-					{(showImageUrl && imageUsePlaceholder && imageUrl === '') &&
-						<MediaPlaceholder
-							icon="format-image"
-							onSelect={(value) => {
-								setAttributes({
-									[`${componentName}Url`]: value.url,
-									[`${componentName}Alt`]: value.alt
-								});
-							}}
-							accept={imageAccept}
-							allowedTypes={imageAllowedTypes}
-						/>
+					{showImageUrl &&
+						<Responsive
+							label={
+								<>
+									<Icon icon={icons.link} />
+									{__('Image Url', 'eightshift-frontend-libs')}
+								</>
+							}
+						>
+							{Object.keys(imageUrl).map(function(keyName) {
+
+								let point = ucfirst(manifestBreakpoints.filter((item) => item === keyName)[0]);
+								let pointLabel = point;
+								if (point === 'Default') {
+									point = '';
+									pointLabel = 'All';
+								}
+
+								const attr = `${componentName}Url${point}`;
+
+								return (
+									<BaseControl
+										key={keyName}
+										label={sprintf(__('Image %s screen size', 'eightshift-frontend-libs'), pointLabel)}
+									>
+										{!_.isEmpty(attributes[attr]) ?
+											<>
+												<img src={attributes[attr].url} alt='' />
+												<Button
+													isSecondary
+													isSmall
+													className={'custom-full-width-btn'}
+													onClick={() => setAttributes({ [attr]: {} })}
+												>
+													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
+												</Button>
+											</> :
+											<MediaPlaceholder
+												icon="format-image"
+												onSelect={(value) => setAttributes({
+													[attr]: {
+														id: value.id,
+														url: value.url,
+													}
+												})}
+												accept={imageAccept}
+												allowedTypes={imageAllowedTypes}
+											/>
+										}
+									</BaseControl>
+								);
+							})}
+						</Responsive>
 					}
 
 					<br />
 
 					{showImageAlt &&
 						<TextareaControl
-							label={__('Image alt tag', 'eightshift-frontend-libs')}
+							label={__('Alt text', 'eightshift-frontend-libs')}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
 						/>
 					}
 
-					{showImageBg &&
+					{showImageFull &&
 						<ToggleControl
-							label={__('Use as a background image', 'eightshift-frontend-libs')}
-							checked={imageBg}
-							onChange={(value) => setAttributes({ [`${componentName}Bg`]: value })}
-						/>
-					}
-
-					{showImageLink &&
-						<URLInput
-							label={
-								<>
-									<Icon icon={icons.link} />
-									{__('URL', 'eightshift-frontend-libs')}
-								</>
-							}
-							value={imageLink}
-							autoFocus={false}
-							onChange={(value) => setAttributes({ [`${componentName}Link`]: value })}
+							label={__('Fill container', 'eightshift-frontend-libs')}
+							help={__('If checked, the image will always stretch the full width of the container and ignore its maximum width.', 'eightshift-frontend-libs')}
+							checked={imageFull}
+							onChange={(value) => setAttributes({ [`${componentName}Full`]: value })}
 						/>
 					}
 

@@ -103,6 +103,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		}
 
 		let innerValue = value;
+		let customOutput = '';
 
 		// Output color variable from the global variables.
 		if (manifest['attributes'][key]['variable'] === 'color') {
@@ -129,9 +130,16 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			}
 		}
 
+		// Output custom variable/s from options object.
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
+			for (const [customKey, customValue] of Object.entries(manifest['options'][key][attributes[key]])) {
+				customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
+			}
+		}
+
 		const innerKey = _.kebabCase(key);
 
-		output += `--${innerKey}: ${innerValue};\n`;
+		output += `--${innerKey}: ${innerValue}; \n${customOutput}\n`;
 	}
 
 	// Output manual output from the array of variables.

@@ -4,23 +4,53 @@
 	"componentClass": "image",
 	"example": {
 		"attributes": {
-			"imageUrl": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/logo.svg?raw=true&sanitize=true",
-			"imageAlign": "center center",
-			"imageLink": "https://infinum.github.io/eightshift-docs/",
-			"imageAlt": "Some image description",
+			"imageUrl": {
+				"id": "1",
+				"url": "https://loremflickr.com/1000/800"
+			},
+			"imageUrlDesktop": {
+				"id": "1",
+				"url": "https://loremflickr.com/800/600"
+			},
+			"imageUrlTablet": {
+				"id": "1",
+				"url": "https://loremflickr.com/600/400"
+			},
+			"imageUrlMobile": {
+				"id": "1",
+				"url": "https://loremflickr.com/300/200"
+			},
+			"imageAccept": "image/*",
+			"imageAllowedTypes": ["image"],
+			"imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"imageFull": false,
 			"imageUse": true
 		}
 	},
 	"attributes": {
 		"imageUrl": {
-			"type": "string"
+			"type": "object",
+			"items": {
+				"type": "object"
+			}
 		},
-		"imageAlign": {
-			"type": "string",
-			"default": "center center"
+		"imageUrlDesktop": {
+			"type": "object",
+			"items": {
+				"type": "object"
+			}
 		},
-		"imageLink": {
-			"type": "string"
+		"imageUrlTablet": {
+			"type": "object",
+			"items": {
+				"type": "object"
+			}
+		},
+		"imageUrlMobile": {
+			"type": "object",
+			"items": {
+				"type": "object"
+			}
 		},
 		"imageAccept": {
 			"type": "string",
@@ -30,20 +60,22 @@
 			"type": "array",
 			"default": ["image"]
 		},
-		"imageBg": {
-			"type": "boolean",
-			"default": false
-		},
-		"imageUsePlaceholder": {
-			"type": "boolean",
-			"default": false
-		},
 		"imageAlt": {
 			"type": "string"
+		},
+		"imageFull": {
+			"type": "boolean",
+			"default": false
 		},
 		"imageUse": {
 			"type": "boolean",
 			"default": true
 		}
-	}
+	},
+	"breakpoints": [
+		"default",
+		"desktop",
+		"tablet",
+		"mobile"
+	]
 }

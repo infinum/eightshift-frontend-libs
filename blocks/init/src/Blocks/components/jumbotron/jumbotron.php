@@ -40,7 +40,7 @@ $contentWrapClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($jumbotronClass); ?>">
 	<?php
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'image',
 		array_merge(
 			Blocks::props($attributes, 'image'),
@@ -56,7 +56,7 @@ $contentWrapClass = Components::classnames([
 	<div class="<?php echo \esc_attr($contentClass); ?>" data-position="<?php echo \esc_attr($jumbotronContentPosition); ?>">
 		<div class="<?php echo \esc_attr($contentWrapClass); ?>">
 			<?php
-			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo Components::render(
 				'heading',
 				array_merge(
 					Blocks::props($attributes, 'heading'),
@@ -66,7 +66,7 @@ $contentWrapClass = Components::classnames([
 				)
 			);
 
-			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo Components::render(
 				'paragraph',
 				array_merge(
 					Blocks::props($attributes, 'paragraph'),
@@ -76,7 +76,7 @@ $contentWrapClass = Components::classnames([
 				)
 			);
 
-			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo Components::render(
 				'button',
 				array_merge(
 					Blocks::props($attributes, 'button'),

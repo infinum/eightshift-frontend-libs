@@ -26,13 +26,13 @@
 	"require": {
 		"php": ">=7.2",
 		"ext-json": "*",
-		"php-di/php-di": "^6.2.2"
+		"php-di/php-di": "^6.3.2"
 	},
 	"require-dev": {
-		"infinum/coding-standards-wp": "^1.1",
+		"infinum/eightshift-coding-standards": "^1.2",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"szepeviktor/phpstan-wordpress": "^0.7",
-		"php-stubs/wordpress-stubs": "^5.5"
+		"php-stubs/wordpress-stubs": "^5.7"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,

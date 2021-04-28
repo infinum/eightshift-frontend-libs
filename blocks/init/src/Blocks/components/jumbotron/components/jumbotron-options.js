@@ -49,10 +49,6 @@ export const JumbotronOptions = (attributes) => {
 					<ImageOptions
 						{...props(attributes, 'image')}
 						setAttributes={setAttributes}
-						showImageBg={false}
-						imageBg={true}
-						imageUsePlaceholder={true}
-						showImageLink={false}
 					/>
 
 					<hr />

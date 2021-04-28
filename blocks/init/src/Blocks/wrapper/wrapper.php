@@ -19,8 +19,10 @@ $className = Components::checkAttr('className', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
-		echo '<div class="' , \esc_attr($wrapperParentClass . '__item') , '">
-			<div class="' , \esc_attr($wrapperParentClass . '__item-inner') , '">';
+		?>
+			<div class="<?php echo \esc_attr($wrapperParentClass . '__item'); ?>">
+				<div class="<?php echo \esc_attr($wrapperParentClass . '__item-inner'); ?>">
+		<?php
 	}
 
 	$this->renderWrapperView(
@@ -30,8 +32,10 @@ if (! $wrapperUse || $wrapperDisable) {
 	);
 
 	if ($wrapperParentClass) {
-			echo '</div>
-		</div>';
+		?>
+			</div>
+		</div>
+		<?php
 	}
 
 	return;
