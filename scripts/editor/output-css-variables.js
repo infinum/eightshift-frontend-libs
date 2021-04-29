@@ -115,30 +115,19 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
 			
 			if (typeof selectVariable !== 'undefined') {
-				const variableEditor = _.has(selectVariable, 'variableEditor') ? selectVariable['variableEditor'] : selectVariable['variable'];
-
-				innerValue = typeof variableEditor === 'undefined' ? attributes[key] : variableEditor;
+				innerValue = _.has(selectVariable, 'variable') ? selectVariable['variable'] : attributes[key];
 			}
 		}
 
 		// Output boolean variable from the options array key. First key is false value, second is true value.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length >= 2) {
-			if (manifest['options'][key].length === 4) {
-				innerValue = manifest['options'][key][Number(attributes[key]) + 2];
-			} else {
-				innerValue = manifest['options'][key][Number(attributes[key])];
-			}
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length === 2) {
+			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
 		// Output custom variable/s from options object.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom') {
-			const customCheckKey = _.has(manifest['options'][key]['variableEditor'], attributes[key]) ? manifest['options'][key]['variableEditor'][attributes[key]] : manifest['options'][key]['variable'][attributes[key]]
-			console.log(customCheckKey);
-			
-			if(typeof customCheckKey !== 'undefined') {
-				for (const [customKey, customValue] of Object.entries(customCheckKey)) {
-					customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
-				}
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
+			for (const [customKey, customValue] of Object.entries(manifest['options'][key][attributes[key]])) {
+				customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
 			}
 		}
 
