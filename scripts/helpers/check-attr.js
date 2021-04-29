@@ -41,3 +41,23 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 		return defaultValue;
 	}
 };
+
+/**
+ * Map and check attributes for responsive.
+ *
+ * @param {object} items Mapped object of responsive.
+ * @param {array}  attributes Array of attributes.
+ * @param {object} manifest Array of default attributes from manifest.json.
+ * @param {string} componentName The real component name.
+ *
+ * @returns mixed
+ */
+ export const checkAttrResponsive = (items, attributes, manifest, componentName = '') => {
+	const output = {};
+
+	for (const [key, value] of Object.entries(items)) {
+		output[key] = checkAttr(value, attributes, manifest, componentName);
+	}
+	
+	return output;
+}
