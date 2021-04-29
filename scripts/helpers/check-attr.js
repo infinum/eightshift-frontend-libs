@@ -45,7 +45,7 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 };
 
 /**
- * Map and check attributes for responsive.
+ * Map and check attributes for responsive object.
  *
  * @param {string} keyName Key name to find in responsiveAttributes object.
  * @param {array}  attributes Array of attributes.
