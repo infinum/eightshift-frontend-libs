@@ -131,9 +131,14 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		}
 
 		// Output custom variable/s from options object.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
-			for (const [customKey, customValue] of Object.entries(manifest['options'][key][attributes[key]])) {
-				customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom') {
+			const customCheckKey = _.has(manifest['options'][key]['variableEditor'], attributes[key]) ? manifest['options'][key]['variableEditor'][attributes[key]] : manifest['options'][key]['variable'][attributes[key]]
+			console.log(customCheckKey);
+			
+			if(typeof customCheckKey !== 'undefined') {
+				for (const [customKey, customValue] of Object.entries(customCheckKey)) {
+					customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
+				}
 			}
 		}
 
