@@ -25,43 +25,41 @@
 	},
 	"options": {
 		"imageAlign": {
-			"variable": {
-				"top left": {
-					"horizontal": "flex-start",
-					"vertical": "flex-start"
-				},
-				"top center": {
-					"horizontal": "center",
-					"vertical": "flex-start"
-				},
-				"top right": {
-					"horizontal": "flex-end",
-					"vertical": "flex-start"
-				},
-				"center left": {
-					"horizontal": "flex-start",
-					"vertical": "center"
-				},
-				"center center": {
-					"horizontal": "center",
-					"vertical": "center"
-				},
-				"center right": {
-					"horizontal": "flex-end",
-					"vertical": "center"
-				},
-				"bottom left": {
-					"horizontal": "flex-start",
-					"vertical": "flex-end"
-				},
-				"bottom center": {
-					"horizontal": "center",
-					"vertical": "flex-end"
-				},
-				"bottom right": {
-					"horizontal": "flex-end",
-					"vertical": "flex-end"
-				}
+			"top left": {
+				"horizontal": "flex-start",
+				"vertical": "flex-start"
+			},
+			"top center": {
+				"horizontal": "center",
+				"vertical": "flex-start"
+			},
+			"top right": {
+				"horizontal": "flex-end",
+				"vertical": "flex-start"
+			},
+			"center left": {
+				"horizontal": "flex-start",
+				"vertical": "center"
+			},
+			"center center": {
+				"horizontal": "center",
+				"vertical": "center"
+			},
+			"center right": {
+				"horizontal": "flex-end",
+				"vertical": "center"
+			},
+			"bottom left": {
+				"horizontal": "flex-start",
+				"vertical": "flex-end"
+			},
+			"bottom center": {
+				"horizontal": "center",
+				"vertical": "flex-end"
+			},
+			"bottom right": {
+				"horizontal": "flex-end",
+				"vertical": "flex-end"
 			}
 		}
 	},
