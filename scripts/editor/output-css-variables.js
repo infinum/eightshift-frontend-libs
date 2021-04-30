@@ -197,6 +197,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
 	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(";\n") : '';
 
+	// Prepare final output.
 	const finalOutput = `
 		${output}
 		${manual}
