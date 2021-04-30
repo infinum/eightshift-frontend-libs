@@ -114,72 +114,88 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		let innerValue = value;
 
-		// Output color variable from the global variables.
-		if (variableType === 'color') {
-			innerValue = `var(--global-colors-${innerValue})`;
-		}
+		switch (variableType) {
+			case 'color': {
+				// Output color variable from the global variables.
+				innerValue = `var(--global-colors-${innerValue})`;
 
-		// Each type requires options key.
-		if (!_.has(manifest['options'], key)) {
-			continue;
-		}
-
-		// Output select variable.
-		if (variableType === 'select' || variableType === 'select-responsive') {
-
-			// Find select item from the attribute set in the db.
-			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
-			
-			// Bailout if option is missing.
-			if (typeof selectVariable === 'undefined') {
-				continue;
+				break;
 			}
+			case 'select':
+			case 'select-responsive': {
+				// Output select variable.
 
-			// Output select variable from the options array but don't use value key. It will use variable key.
-			if (variableType === 'select') {
-
-				// If custom variable is missing fallback to default.
-				innerValue = _.has(selectVariable, 'variable') ? selectVariable['variable'] : attributes[key];
-
-				// Bailout if slug or variable key is missing.
-				if (innerValue === "") {
+				// Each type requires options key.
+				if (!_.has(manifest['options'], key)) {
 					continue;
 				}
 
+				// Find select item from the attribute set in the db.
+				const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
+				
+				// Bailout if option is missing.
+				if (typeof selectVariable === 'undefined') {
+					continue;
+				}
+
+				// Output select variable from the options array but don't use value key. It will use variable key.
+				if (variableType === 'select') {
+
+					// If custom variable is missing fallback to default.
+					innerValue = _.has(selectVariable, 'variable') ? selectVariable['variable'] : attributes[key];
+
+					// Bailout if slug or variable key is missing.
+					if (innerValue === "") {
+						continue;
+					}
+
+					// Output custom variables if variables key is object.
+					customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
+				}
+
+				// Output select-responsive variable from the options array.
+				if (variableType === 'select-responsive') {
+
+					// Bailout if variable key is missing because there is no fallback here.
+					if (!_.has(selectVariable, 'variable')) {
+						continue;
+					}
+
+					// Output custom variables if variables key is array of objects.
+					customResponsiveOutput = outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique);
+				}
+
+				break;
+			}
+			case 'boolean': {
+				// Output boolean variable from the options array key. First key is false value, second is true value.
+
+				// Each type requires options key.
+				if (!_.has(manifest['options'], key)) {
+					break;
+				}
+
+				// Bailout if missing boolean options in array.
+				if (manifest['options'][key].length !== 2) {
+					break;
+				}
+
+				// Output variables depending on the boolean. First key is false.
+				innerValue = manifest['options'][key][Number(attributes[key])];
+
+				break;
+			}
+			case 'custom': {
 				// Output custom variables if variables key is object.
-				customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
-			}
 
-			// Output select-responsive variable from the options array.
-			if (variableType === 'select-responsive') {
-
-				// Bailout if variable key is missing because there is no fallback here.
-				if (!_.has(selectVariable, 'variable')) {
+				// Each type requires options key.
+				if (!_.has(manifest['options'], key)) {
 					continue;
 				}
 
-				// Output custom variables if variables key is array of objects.
-				customResponsiveOutput = outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique);
+				customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
+				break;
 			}
-		}
-
-		// Output boolean variable from the options array key. First key is false value, second is true value.
-		if (variableType === 'boolean' && manifest['options'][key].length === 2) {
-
-			// Bailout if missing boolean options in array.
-			if (manifest['options'][key].length !== 2) {
-				continue;
-			}
-
-			// Output variables depending on the boolean. First key is false.
-			innerValue = manifest['options'][key][Number(attributes[key])];
-		}
-
-		// Output custom variable/s from options object.
-		if (variableType === 'custom') {
-
-			// Output custom variables if variables key is object.
-			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 		}
 
 		// Convert key to correct case.
