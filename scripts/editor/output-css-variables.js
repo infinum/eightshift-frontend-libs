@@ -267,6 +267,7 @@ export const outputCssVariablesResponsive = (list, attributeKey, originalAttribu
 
 	// Iterate each attribute and make corrections.
 	Object.values(list).forEach((item) => {
+
 		const {
 			breakpoint,
 			inverse = false,
