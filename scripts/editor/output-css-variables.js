@@ -83,6 +83,7 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
  */
 export const outputCssVariables = (attributes, manifest, unique) => {
 	let output = '';
+	let customOutput = '';
 	let customResponsiveOutput = '';
 
 	if (!attributes || !manifest) {
@@ -104,7 +105,6 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		}
 
 		let innerValue = value;
-		let customOutput = '';
 
 		// Output color variable from the global variables.
 		if (manifest['attributes'][key]['variable'] === 'color') {
