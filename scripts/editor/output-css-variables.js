@@ -221,22 +221,22 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 /**
  * Internal helper to loop CSS Variables from object.
  *
- * @param object objectList Object list of CSS variables.
+ * @param object list Object list of CSS variables.
  * @param string attributeKey Attribute key to append to output variable name.
  * @param mixed  originalAttribute Original attribute value used in magic variable.
  *
  * @returns sting
  */
-export const outputCssVariablesCustom = (objectList, attributeKey, originalAttribute) => {
+export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) => {
 	let output = '';
 
-	// Bailout if provided objectList is not an object.
-	if (!_.isPlainObject(objectList)) {
+	// Bailout if provided list is not an object.
+	if (!_.isPlainObject(list)) {
 		return output;
 	}
 
 	// Iterate each attribute and make corrections.
-	for (const [customKey, customValue] of Object.entries(objectList)) {
+	for (const [customKey, customValue] of Object.entries(list)) {
 		let value = customValue;
 
 		// If value contains magic variable swap that variable with original attribute value.
