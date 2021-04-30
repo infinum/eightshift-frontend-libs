@@ -187,7 +187,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
  *
  * @param object objectList Object list of css variables.
  * @param string attributeKey Attribute key to append to output variable name.
- * @param string originalAttribute Original attribute value used in magic variable.
+ * @param mixed  originalAttribute Original attribute value used in magic variable.
  *
  * @returns sting
  */
