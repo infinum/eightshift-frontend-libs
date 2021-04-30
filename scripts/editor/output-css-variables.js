@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 /**
- * Get Global Manifest.json and return globalVariables as css variables.
+ * Get Global Manifest.json and return globalVariables as CSS variables.
  *
  * @param array globalManifest Array of global variables data.
  *
@@ -39,7 +39,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 }
 
 /**
- * Process and return global css variables based on the type.
+ * Process and return global CSS variables based on the type.
  *
  * @param array  itemValues Values of data to check.
  * @param string itemKey    Item key to check.
@@ -73,7 +73,7 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
 }
 
 /**
- * Get component/block options and process them in css variables.
+ * Get component/block options and process them in CSS variables.
  *
  * @param array  attributes Built attributes.
  * @param array  manifest Component/block manifest data.
@@ -104,7 +104,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			continue;
 		}
 
-		// Check tpe of variable.
+		// Check type of variable.
 		const variableType = manifest['attributes'][key]['variable'];
 
 		// Used to reset value and skip variables that are unset.
@@ -220,7 +220,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 /**
  * Internal helper to loop CSS Variables from object.
  *
- * @param object objectList Object list of css variables.
+ * @param object objectList Object list of CSS variables.
  * @param string attributeKey Attribute key to append to output variable name.
  * @param mixed  originalAttribute Original attribute value used in magic variable.
  *
@@ -253,7 +253,7 @@ export const outputCssVariablesCustom = (objectList, attributeKey, originalAttri
 /**
  * Internal helper to loop CSS Variables from array of objects in an responsive manner.
  *
- * @param object arrayList Object list of css variables.
+ * @param object arrayList Object list of CSS variables.
  * @param string attributeKey Attribute key to append to output variable name.
  * @param mixed originalAttribute Original attribute value used in magic variable.
  * @param string name Block/component name used for selector.
