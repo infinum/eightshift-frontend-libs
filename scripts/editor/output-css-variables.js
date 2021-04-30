@@ -83,6 +83,7 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
  */
 export const outputCssVariables = (attributes, manifest, unique) => {
 	let output = '';
+	let customResponsiveOutput = '';
 
 	if (!attributes || !manifest) {
 		return output;
@@ -129,13 +130,24 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			}
 		}
 
+		// Output select-responsive variable from the options array.
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'select-responsive') {
+			const selectResponsiveVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
+			
+			if (typeof selectResponsiveVariable === 'undefined' || !_.has(selectResponsiveVariable, 'variable')) {
+				continue;
+			}
+
+			customResponsiveOutput = outputCssVariablesResponsive(selectResponsiveVariable['variable'], key, attributes[key], name, unique);
+		}
+
 		// Output boolean variable from the options array key. First key is false value, second is true value.
 		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length === 2) {
 			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
 		// Output custom variable/s from options object.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom') {
 			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 		}
 
@@ -152,12 +164,21 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
 	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(";\n") : '';
 
+	const finalOutput = `
+		${output}
+		${manual}
+		${manualEditor}
+	`;
+
+	if (_.isEmpty(finalOutput.replace(/^\s+|\s+$/g, ''))) {
+		return;
+	}
+
 	return <style dangerouslySetInnerHTML={{__html: `
 		.${name}[data-id='${unique}'] {
-			${output}
-			${manual}
-			${manualEditor}
+			${finalOutput}
 		}
+		${customResponsiveOutput}
 	`}}></style>;
 }
 
@@ -166,12 +187,16 @@ export const outputCssVariables = (attributes, manifest, unique) => {
  *
  * @param object objectList Object list of css variables.
  * @param string attributeKey Attribute key to append to output variable name.
- * @param mixed  originalAttribute Original attribute value used in magic variable.
+ * @param string originalAttribute Original attribute value used in magic variable.
  *
  * @returns sting
  */
- export const outputCssVariablesCustom = (objectList, attributeKey, originalAttribute) => {
+export const outputCssVariablesCustom = (objectList, attributeKey, originalAttribute) => {
 	let output = '';
+
+	if (!_.isPlainObject(objectList)) {
+		return output;
+	}
 
 	for (const [customKey, customValue] of Object.entries(objectList)) {
 		let value = customValue;
@@ -183,6 +208,51 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${value};\n`;
 	}
+
+	return output;
+}
+
+/**
+ * Internal helper to loop Css Variables from object in responsive manner.
+ *
+ * @param object arrayList Object list of css variables.
+ * @param string attributeKey Attribute key to append to output variable name.
+ * @param string originalAttribute Original attribute value used in magic variable.
+ * @param string name Block/component name used for selector.
+ * @param string unique Unique ID used for selector.
+ *
+ * @returns sting
+ */
+export const outputCssVariablesResponsive = (arrayList, attributeKey, originalAttribute, name, unique) => {
+	let output = '';
+
+	Object.values(arrayList).forEach((item) => {
+		const {
+			breakpoint,
+			inverse = false,
+			variable,
+		} = item;
+
+		const innerValue = outputCssVariablesCustom(variable, attributeKey, originalAttribute);
+
+		const orderBreakpint = inverse ? 'max-width' : 'min-width';
+
+		if (typeof breakpoint === 'undefined') {
+			output += `
+				.${name}[data-id='${unique}'] {
+					${innerValue}
+				}
+			`;
+		} else {
+			output += `
+				@media (${orderBreakpint}: var(--global-breakpoints-${breakpoint})) {
+					.${name}[data-id='${unique}'] {
+						${innerValue}
+					}
+				}
+			`;
+		}
+	});
 
 	return output;
 }
