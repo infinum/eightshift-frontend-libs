@@ -125,7 +125,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			}
 
 			if (typeof innerValue === 'object') {
-				customOutput = outputCssVariablesCustom(selectVariable['variable'], key);
+				customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
 			}
 		}
 
@@ -136,7 +136,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		// Output custom variable/s from options object.
 		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
-			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key);
+			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 		}
 
 		const innerKey = _.kebabCase(key);
