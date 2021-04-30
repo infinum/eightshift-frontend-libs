@@ -256,7 +256,7 @@ export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) 
  *
  * @param object list Object list of CSS variables.
  * @param string attributeKey Attribute key to append to output variable name.
- * @param mixed originalAttribute Original attribute value used in magic variable.
+ * @param mixed  originalAttribute Original attribute value used in magic variable.
  * @param string name Block/component name used for selector.
  * @param string unique Unique ID used for selector.
  *
