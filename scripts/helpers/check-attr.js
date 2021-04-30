@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Check if attribute exist in attributes list and add default value if not.
  *
@@ -41,3 +43,31 @@ export const checkAttr = (key, attributes, manifest, componentName = '') => {
 		return defaultValue;
 	}
 };
+
+/**
+ * Map and check attributes for responsive object.
+ *
+ * @param {string} keyName Key name to find in responsiveAttributes object.
+ * @param {array}  attributes Array of attributes.
+ * @param {object} manifest Array of default attributes from manifest.json.
+ * @param {string} componentName The real component name.
+ *
+ * @returns mixed
+ */
+export const checkAttrResponsive = (keyName, attributes, manifest, componentName = '') => {
+	const output = {};
+
+	if (! _.has(manifest, 'responsiveAttributes')) {
+		throw Error(`It looks like you are missing responsiveAttributes key in your ${componentName} manifest.`);
+	}
+
+	if (!_.has(manifest.responsiveAttributes, keyName)) {
+		throw Error(`It looks like you are missing ${keyName} key in your manifest responsiveAttributes object.`);
+	}
+
+	for (const [key, value] of Object.entries(manifest.responsiveAttributes[keyName])) {
+		output[key] = checkAttr(value, attributes, manifest, componentName);
+	}
+	
+	return output;
+}

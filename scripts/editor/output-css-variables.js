@@ -114,32 +114,38 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'select') {
 			const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
 			
-			if (typeof selectVariable !== 'undefined') {
-				const variableEditor = _.has(selectVariable, 'variableEditor') ? selectVariable['variableEditor'] : selectVariable['variable'];
+			if (typeof selectVariable === 'undefined') {
+				continue;
+			}
 
-				innerValue = typeof variableEditor === 'undefined' ? attributes[key] : variableEditor;
+			innerValue = _.has(selectVariable, 'variable') ? selectVariable['variable'] : attributes[key];
+
+			if (innerValue === "") {
+				continue;
+			}
+
+			if (typeof innerValue === 'object') {
+				customOutput = outputCssVariablesCustom(selectVariable['variable'], key);
 			}
 		}
 
 		// Output boolean variable from the options array key. First key is false value, second is true value.
-		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length >= 2) {
-			if (manifest['options'][key].length === 4) {
-				innerValue = manifest['options'][key][Number(attributes[key]) + 2];
-			} else {
-				innerValue = manifest['options'][key][Number(attributes[key])];
-			}
+		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'boolean' && manifest['options'][key].length === 2) {
+			innerValue = manifest['options'][key][Number(attributes[key])];
 		}
 
 		// Output custom variable/s from options object.
 		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
-			for (const [customKey, customValue] of Object.entries(manifest['options'][key][attributes[key]])) {
-				customOutput += `--${_.kebabCase(key)}-${_.kebabCase(customKey)}: ${customValue};\n`;
-			}
+			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key);
 		}
 
 		const innerKey = _.kebabCase(key);
 
-		output += `--${innerKey}: ${innerValue}; \n${customOutput}\n`;
+		if (customOutput !== '') {
+			output += `${customOutput}\n`;
+		} else {
+			output += `--${innerKey}: ${innerValue}; \n`;
+		}
 	}
 
 	// Output manual output from the array of variables.
@@ -155,6 +161,23 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 	`}}></style>;
 }
 
+/**
+ * Internal helper to loop Css Variables from object.
+ *
+ * @param object objectList Object list of css variables.
+ * @param string attributeKey Attribute key to append to output variable name.
+ *
+ * @returns sting
+ */
+export const outputCssVariablesCustom = (objectList, attributeKey) => {
+	let output = '';
+
+	for (const [customKey, customValue] of Object.entries(objectList)) {
+		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${customValue};\n`;
+	}
+
+	return output;
+}
 
 /**
  * Return unique ID for block processing.
