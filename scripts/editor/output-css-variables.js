@@ -177,8 +177,8 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 		let value = customValue;
 
 		// If value contains magic variable swap that variable with original attribute value.
-		if (customValue === '%value%') {
-			value = originalAttribute;
+		if (customValue.includes('%value%')) {
+			value = customValue.replace('%value%', originalAttribute);
 		}
 
 		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${value};\n`;
