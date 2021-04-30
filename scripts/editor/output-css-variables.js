@@ -125,7 +125,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 			}
 
 			if (typeof innerValue === 'object') {
-				customOutput = outputCssVariablesCustom(selectVariable['variable'], key);
+				customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
 			}
 		}
 
@@ -136,7 +136,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 		// Output custom variable/s from options object.
 		if (_.has(manifest['options'], key) && manifest['attributes'][key]['variable'] === 'custom' && _.isPlainObject(manifest['options'][key][attributes[key]])) {
-			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key);
+			customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 		}
 
 		const innerKey = _.kebabCase(key);
@@ -166,14 +166,22 @@ export const outputCssVariables = (attributes, manifest, unique) => {
  *
  * @param object objectList Object list of css variables.
  * @param string attributeKey Attribute key to append to output variable name.
+ * @param mixed  originalAttribute Original attribute value used in magic variable.
  *
  * @returns sting
  */
-export const outputCssVariablesCustom = (objectList, attributeKey) => {
+ export const outputCssVariablesCustom = (objectList, attributeKey, originalAttribute) => {
 	let output = '';
 
 	for (const [customKey, customValue] of Object.entries(objectList)) {
-		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${customValue};\n`;
+		let value = customValue;
+
+		// If value contains magic variable swap that variable with original attribute value.
+		if (customValue.includes('%value%')) {
+			value = customValue.replace('%value%', originalAttribute);
+		}
+
+		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${value};\n`;
 	}
 
 	return output;
