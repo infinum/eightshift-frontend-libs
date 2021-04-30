@@ -254,7 +254,7 @@ export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) 
 /**
  * Internal helper to loop CSS Variables from array of objects in an responsive manner.
  *
- * @param object arrayList Object list of CSS variables.
+ * @param object list Object list of CSS variables.
  * @param string attributeKey Attribute key to append to output variable name.
  * @param mixed originalAttribute Original attribute value used in magic variable.
  * @param string name Block/component name used for selector.
@@ -262,11 +262,11 @@ export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) 
  *
  * @returns sting
  */
-export const outputCssVariablesResponsive = (arrayList, attributeKey, originalAttribute, name, unique) => {
+export const outputCssVariablesResponsive = (list, attributeKey, originalAttribute, name, unique) => {
 	let output = '';
 
 	// Iterate each attribute and make corrections.
-	Object.values(arrayList).forEach((item) => {
+	Object.values(list).forEach((item) => {
 		const {
 			breakpoint,
 			inverse = false,
