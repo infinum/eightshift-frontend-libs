@@ -241,11 +241,13 @@ export const outputCssVariablesResponsive = (breakpoints, attributeValue, global
 
 			data['default'] = data['default'].concat(innerValue);
 		} else {
-			if (!_.has(data, `${orderBreakpoint}: ${breakpointValue}px`)) {
-				data[`${orderBreakpoint}: ${breakpointValue}px`] = [];
+			const customKey = `${orderBreakpoint}: ${breakpointValue}px`;
+
+			if (!_.has(data, customKey)) {
+				data[customKey] = [];
 			}
 
-			data[`${orderBreakpoint}: ${breakpointValue}px`] = data[`${orderBreakpoint}: ${breakpointValue}px`].concat(innerValue);
+			data[customKey] = data[customKey].concat(innerValue);
 		}
 	});
 
