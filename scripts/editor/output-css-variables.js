@@ -151,7 +151,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 					}
 
 					// Output custom variables if variables key is object.
-					customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
+					customOutput += outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
 				}
 
 				// Output select-responsive variable from the options array.
@@ -163,7 +163,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 					}
 
 					// Output custom variables if variables key is array of objects.
-					customResponsiveOutput = outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique, globalManifest);
+					customResponsiveOutput += outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique, globalManifest);
 				}
 
 				break;
@@ -195,12 +195,12 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 
 				// Output custom variables if variables key is object.
 				if (variableType === 'custom') {
-					customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
+					customOutput += outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 				}
 
 				// Output custom variables if variables key is array.
 				if (variableType === 'custom-responsive') {
-					customResponsiveOutput = outputCssVariablesResponsive(manifest['options'][key][attributes[key]], key, attributes[key], name, unique, globalManifest);
+					customResponsiveOutput += outputCssVariablesResponsive(manifest['options'][key][attributes[key]], key, attributes[key], name, unique, globalManifest);
 				}
 				break;
 			}
