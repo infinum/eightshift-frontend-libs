@@ -5,6 +5,7 @@ import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const HeadingEditor = (attributes) => {
 	const unique = getUnique();
@@ -30,7 +31,7 @@ export const HeadingEditor = (attributes) => {
 
 	return (
 		<>
-			{outputCssVariables(attributes, manifest, unique)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			{headingUse &&
 				<RichText
