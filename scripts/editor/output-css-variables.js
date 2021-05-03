@@ -235,17 +235,17 @@ export const outputCssVariablesResponsive = (breakpoints, attributeValue, global
 		// Output normal selector if breakpoint is not defined (used for top level element like mobile).
 		// Else wrap it in media query condition.
 		if (typeof breakpointValue === 'undefined') {
-			if (_.has(data, 'default')) {
-				data['default'] = data['default'].concat(innerValue);
-			} else {
-				data['default'] = innerValue;
+			if (!_.has(data, 'default')) {
+				data.default = [];
 			}
+
+			data['default'] = data['default'].concat(innerValue);
 		} else {
-			if (_.has(data, `${orderBreakpoint}: ${breakpointValue}px`)) {
-				data[`${orderBreakpoint}: ${breakpointValue}px`] = data[`${orderBreakpoint}: ${breakpointValue}px`].concat(innerValue);
-			} else {
-				data[`${orderBreakpoint}: ${breakpointValue}px`] = innerValue;
+			if (!_.has(data, `${orderBreakpoint}: ${breakpointValue}px`)) {
+				data[`${orderBreakpoint}: ${breakpointValue}px`] = [];
 			}
+
+			data[`${orderBreakpoint}: ${breakpointValue}px`] = data[`${orderBreakpoint}: ${breakpointValue}px`].concat(innerValue);
 		}
 	});
 
