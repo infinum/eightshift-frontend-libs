@@ -78,10 +78,11 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
  * @param array  attributes Built attributes.
  * @param array  manifest Component/block manifest data.
  * @param string unique Unique key.
+ * @param object globalManifest Global manifest json.
  *
  * @return string
  */
-export const outputCssVariables = (attributes, manifest, unique) => {
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}) => {
 	let output = '';
 	let customOutput = '';
 	let customResponsiveOutput = '';
@@ -150,7 +151,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 					}
 
 					// Output custom variables if variables key is object.
-					customOutput = outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
+					customOutput += outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
 				}
 
 				// Output select-responsive variable from the options array.
@@ -162,7 +163,7 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 					}
 
 					// Output custom variables if variables key is array of objects.
-					customResponsiveOutput = outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique);
+					customResponsiveOutput += outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique, globalManifest);
 				}
 
 				break;
@@ -185,15 +186,22 @@ export const outputCssVariables = (attributes, manifest, unique) => {
 
 				break;
 			}
-			case 'custom': {
-				// Output custom variables if variables key is object.
-
+			case 'custom':
+			case 'custom-responsive': {
 				// Each type requires options key.
 				if (!_.has(manifest['options'], key)) {
 					continue;
 				}
 
-				customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
+				// Output custom variables if variables key is object.
+				if (variableType === 'custom') {
+					customOutput += outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
+				}
+
+				// Output custom variables if variables key is array.
+				if (variableType === 'custom-responsive') {
+					customResponsiveOutput += outputCssVariablesResponsive(manifest['options'][key][attributes[key]], key, attributes[key], name, unique, globalManifest);
+				}
 				break;
 			}
 		}
@@ -275,11 +283,17 @@ export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) 
  * @param mixed  originalAttribute Original attribute value used in magic variable.
  * @param string name Block/component name used for selector.
  * @param string unique Unique ID used for selector.
+ * @param object globalManifest Global manifest json.
  *
  * @returns sting
  */
-export const outputCssVariablesResponsive = (list, attributeKey, originalAttribute, name, unique) => {
+export const outputCssVariablesResponsive = (list, attributeKey, originalAttribute, name, unique, globalManifest) => {
 	let output = '';
+
+	// Bailout if globalVariables or breakpoints is missing.
+	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
+		return output;
+	}
 
 	// Iterate each attribute and make corrections.
 	Object.values(list).forEach((item) => {
@@ -290,6 +304,9 @@ export const outputCssVariablesResponsive = (list, attributeKey, originalAttribu
 			variable,
 		} = item;
 
+		// Find the actual value of the breakpoint.
+		const breakpointValue = globalManifest.globalVariables.breakpoints[breakpoint];
+
 		// Output CSS variables from the variables object.
 		const innerValue = outputCssVariablesCustom(variable, attributeKey, originalAttribute);
 
@@ -298,7 +315,7 @@ export const outputCssVariablesResponsive = (list, attributeKey, originalAttribu
 
 		// Output normal selector if breakpoint is not defined (used for top level element like mobile).
 		// Else wrap it in media query condition.
-		if (typeof breakpoint === 'undefined') {
+		if (typeof breakpointValue === 'undefined') {
 			output += `
 				.${name}[data-id='${unique}'] {
 					${innerValue}
@@ -306,7 +323,7 @@ export const outputCssVariablesResponsive = (list, attributeKey, originalAttribu
 			`;
 		} else {
 			output += `
-				@media (${orderBreakpoint}: var(--global-breakpoints-${breakpoint})) {
+				@media (${orderBreakpoint}: ${breakpointValue}px) {
 					.${name}[data-id='${unique}'] {
 						${innerValue}
 					}
