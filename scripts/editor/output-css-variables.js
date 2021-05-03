@@ -188,8 +188,6 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 			}
 			case 'custom':
 			case 'custom-responsive': {
-				// Output custom variables if variables key is object.
-
 				// Each type requires options key.
 				if (!_.has(manifest['options'], key)) {
 					continue;
@@ -200,6 +198,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 					customOutput = outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
 				}
 
+				// Output custom variables if variables key is array.
 				if (variableType === 'custom-responsive') {
 					customResponsiveOutput = outputCssVariablesResponsive(manifest['options'][key][attributes[key]], key, attributes[key], name, unique, globalManifest);
 				}
