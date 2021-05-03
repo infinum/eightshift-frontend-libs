@@ -104,7 +104,6 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		if (! _.has(manifest, 'variables') || !_.has(manifest['variables'], attributeName)) {
 			continue;
 		}
-		
 
 		// Check type of variable.
 		const variableType = manifest['attributes'][attributeName]['variable'];
@@ -120,7 +119,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 				data = outputCssVariablesResponsive(variables[attributeValue], attributeValue, globalManifest, data);
 				break;
-		
+
 			default:
 				data = outputCssVariablesResponsive(variables, attributeValue, globalManifest, data);
 				break;
@@ -130,7 +129,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Loop data and provide correct selectors from data object.
 	if (!_.isEmpty(data)) {
 		for (const [breakpoint, breakpointData] of Object.entries(data)) {
-	
+
 			// If this is default dont wrap the media query around it.
 			if (breakpoint === 'default') {
 				output += `.${name}[data-id='${unique}'] {
