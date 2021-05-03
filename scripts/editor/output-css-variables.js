@@ -82,10 +82,9 @@ export const outputCssVariablesGlobalInner = (itemValues, itemKey) => {
  *
  * @return string
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}) => {
+export const outputCssVariables = (attributes, manifest, unique, globalManifest) => {
+	let data = {};
 	let output = '';
-	let customOutput = '';
-	let customResponsiveOutput = '';
 
 	if (!attributes || !manifest) {
 		return output;
@@ -94,131 +93,63 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
-	// Convert name to correct case.
-	name = _.kebabCase(name);
-
 	// Iterate each attribute and make corrections.
-	for (const [key, value] of Object.entries(attributes)) {
+	for (const [attributeName, attributeValue] of Object.entries(attributes)) {
 
 		// Bailout if attribute is not using variables.
-		if (! _.has(manifest['attributes'], key) || !_.has(manifest['attributes'][key], 'variable')) {
+		if (! _.has(manifest['attributes'], attributeName) || !_.has(manifest['attributes'][attributeName], 'variable')) {
 			continue;
 		}
+		// Bailout if variables key is not existing or attribute key is non existing in variables object.
+		if (! _.has(manifest, 'variables') || !_.has(manifest['variables'], attributeName)) {
+			continue;
+		}
+		
 
 		// Check type of variable.
-		const variableType = manifest['attributes'][key]['variable'];
-
-		// Used to reset value and skip variables that are unset.
-		if (value === undefined) {
-			continue;
-		}
-
-		let innerValue = value;
+		const variableType = manifest['attributes'][attributeName]['variable'];
+		const variables = manifest['variables'][attributeName];
 
 		switch (variableType) {
-			case 'color': {
-				// Output color variable from the global variables.
-				innerValue = `var(--global-colors-${innerValue})`;
+			case 'value':
 
-				break;
-			}
-			case 'select':
-			case 'select-responsive': {
-				// Output select variable.
-
-				// Each type requires options key.
-				if (!_.has(manifest['options'], key)) {
-					continue;
-				}
-
-				// Find select item from the attribute set in the db.
-				const selectVariable = manifest['options'][key].filter((item) => item.value === attributes[key])[0];
-				
-				// Bailout if option is missing.
-				if (typeof selectVariable === 'undefined') {
-					continue;
-				}
-
-				// Output select variable from the options array but don't use value key. It will use variable key.
-				if (variableType === 'select') {
-
-					// If custom variable is missing fallback to default.
-					innerValue = _.has(selectVariable, 'variable') ? selectVariable['variable'] : attributes[key];
-
-					// Bailout if slug or variable key is missing.
-					if (innerValue === "") {
-						continue;
-					}
-
-					// Output custom variables if variables key is object.
-					customOutput += outputCssVariablesCustom(selectVariable['variable'], key, attributes[key]);
-				}
-
-				// Output select-responsive variable from the options array.
-				if (variableType === 'select-responsive') {
-
-					// Bailout if variable key is missing because there is no fallback here.
-					if (!_.has(selectVariable, 'variable')) {
-						continue;
-					}
-
-					// Output custom variables if variables key is array of objects.
-					customResponsiveOutput += outputCssVariablesResponsive(selectVariable['variable'], key, attributes[key], name, unique, globalManifest);
-				}
-
-				break;
-			}
-			case 'boolean': {
-				// Output boolean variable from the options array key. First key is false value, second is true value.
-
-				// Each type requires options key.
-				if (!_.has(manifest['options'], key)) {
+				// Bailout if attribute value doesn't exist in variables.
+				if (! _.has(variables, attributeValue)) {
 					break;
 				}
 
-				// Bailout if missing boolean options in array.
-				if (manifest['options'][key].length !== 2) {
-					break;
-				}
-
-				// Output variables depending on the boolean. First key is false.
-				innerValue = manifest['options'][key][Number(attributes[key])];
-
+				data = outputCssVariablesResponsive(variables[attributeValue], attributeValue, globalManifest, data);
 				break;
-			}
-			case 'custom':
-			case 'custom-responsive': {
-				// Each type requires options key.
-				if (!_.has(manifest['options'], key)) {
-					continue;
-				}
-
-				// Output custom variables if variables key is object.
-				if (variableType === 'custom') {
-					customOutput += outputCssVariablesCustom(manifest['options'][key][attributes[key]], key, attributes[key]);
-				}
-
-				// Output custom variables if variables key is array.
-				if (variableType === 'custom-responsive') {
-					customResponsiveOutput += outputCssVariablesResponsive(manifest['options'][key][attributes[key]], key, attributes[key], name, unique, globalManifest);
-				}
+		
+			default:
+				data = outputCssVariablesResponsive(variables, attributeValue, globalManifest, data);
 				break;
-			}
 		}
+	}
 
-		// Convert key to correct case.
-		const innerKey = _.kebabCase(key);
-
-		// If custom output is empty use normal key value pair.
-		if (customOutput !== '') {
-			output += `${customOutput}\n`;
-		} else {
-			output += `--${innerKey}: ${innerValue}; \n`;
+	// Loop data and provide correct selectors from data object.
+	if (!_.isEmpty(data)) {
+		for (const [breakpoint, breakpointData] of Object.entries(data)) {
+	
+			// If this is default dont wrap the media query around it.
+			if (breakpoint === 'default') {
+				output += `.${name}[data-id='${unique}'] {
+						${breakpointData.join("\n")}
+					}
+				`;
+			} else {
+				output += `@media (${breakpoint}) {
+						.${name}[data-id='${unique}'] {
+							${breakpointData.join("\n")}
+						}
+					}
+				`;
+			}
 		}
 	}
 
 	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variables') ? manifest['variables'].join(";\n") : '';
+	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(";\n") : '';
 	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(";\n") : '';
 
 	// Prepare final output.
@@ -228,48 +159,42 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 		${manualEditor}
 	`;
 
-	// Check if final output is empty and and remove if it is.
+		// Check if final output is empty and remove if it is.
 	if (_.isEmpty(finalOutput.replace(/^\s+|\s+$/g, ''))) {
 		return;
 	}
 
 	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `
-		.${name}[data-id='${unique}'] {
-			${finalOutput}
-		}
-		${customResponsiveOutput}
-	`}}></style>;
+	return <style dangerouslySetInnerHTML={{__html: `${finalOutput}`}}></style>;
 }
 
 /**
- * Internal helper to loop CSS Variables from object.
+ * Internal helper to loop CSS Variables from array.
  *
- * @param object list Object list of CSS variables.
- * @param string attributeKey Attribute key to append to output variable name.
- * @param mixed  originalAttribute Original attribute value used in magic variable.
+ * @param array variables Array of variables of CSS variables.
+ * @param mixed attributeValue Original attribute value used in magic variable.
  *
- * @returns sting
+ * @returns array
  */
-export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) => {
-	let output = '';
+export const outputCssVariablesInner = (variables, attributeValue) => {
+	let output = [];
 
-	// Bailout if provided list is not an object.
-	if (!_.isPlainObject(list)) {
+	// Bailout if provided variables is not an object.
+	if (!_.isPlainObject(variables)) {
 		return output;
 	}
 
 	// Iterate each attribute and make corrections.
-	for (const [customKey, customValue] of Object.entries(list)) {
-		let value = customValue;
+	for (const [variableKey, variableValue] of Object.entries(variables)) {
+		let value = variableValue;
 
 		// If value contains magic variable swap that variable with original attribute value.
-		if (customValue.includes('%value%')) {
-			value = customValue.replace('%value%', originalAttribute);
+		if (variableValue.includes('%value%')) {
+			value = variableValue.replace('%value%', attributeValue);
 		}
 
 		// Output the custom CSS variable by adding the attribute key + custom object key.
-		output += `--${_.kebabCase(attributeKey)}-${_.kebabCase(customKey)}: ${value};\n`;
+		output.push(`--${_.kebabCase(variableKey)}: ${value};`);
 	}
 
 	return output;
@@ -278,37 +203,32 @@ export const outputCssVariablesCustom = (list, attributeKey, originalAttribute) 
 /**
  * Internal helper to loop CSS Variables from array of objects in an responsive manner.
  *
- * @param object list Object list of CSS variables.
- * @param string attributeKey Attribute key to append to output variable name.
- * @param mixed  originalAttribute Original attribute value used in magic variable.
- * @param string name Block/component name used for selector.
- * @param string unique Unique ID used for selector.
+ * @param array  breakpoints Breakpoints array list of CSS variables.
+ * @param mixed  attributeValue Original attribute value used in magic variable.
  * @param object globalManifest Global manifest json.
+ * @param object data Data object from parent.
  *
- * @returns sting
+ * @returns object
  */
-export const outputCssVariablesResponsive = (list, attributeKey, originalAttribute, name, unique, globalManifest) => {
-	let output = '';
+export const outputCssVariablesResponsive = (breakpoints, attributeValue, globalManifest, data) => {
 
-	// Bailout if globalVariables or breakpoints is missing.
+	// Bailout if globalVariables or breakpoints are missing.
 	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
-		return output;
+		return data;
 	}
 
 	// Iterate each attribute and make corrections.
-	Object.values(list).forEach((item) => {
+	Object.values(breakpoints).forEach((item) => {
 
-		const {
-			breakpoint,
-			inverse = false,
-			variable,
-		} = item;
+		const breakpoint = item['breakpoint'];
+		const inverse = item['inverse'];
+		const variable = item['variable'];
 
 		// Find the actual value of the breakpoint.
 		const breakpointValue = globalManifest.globalVariables.breakpoints[breakpoint];
 
 		// Output CSS variables from the variables object.
-		const innerValue = outputCssVariablesCustom(variable, attributeKey, originalAttribute);
+		const innerValue = outputCssVariablesInner(variable, attributeValue);
 
 		// Check if we are using mobile or desktop first. Mobile first is the default.
 		const orderBreakpoint = inverse ? 'max-width' : 'min-width';
@@ -316,23 +236,21 @@ export const outputCssVariablesResponsive = (list, attributeKey, originalAttribu
 		// Output normal selector if breakpoint is not defined (used for top level element like mobile).
 		// Else wrap it in media query condition.
 		if (typeof breakpointValue === 'undefined') {
-			output += `
-				.${name}[data-id='${unique}'] {
-					${innerValue}
-				}
-			`;
+			if (_.has(data, 'default')) {
+				data['default'] = data['default'].concat(innerValue);
+			} else {
+				data['default'] = innerValue;
+			}
 		} else {
-			output += `
-				@media (${orderBreakpoint}: ${breakpointValue}px) {
-					.${name}[data-id='${unique}'] {
-						${innerValue}
-					}
-				}
-			`;
+			if (_.has(data, `${orderBreakpoint}: ${breakpointValue}px`)) {
+				data[`${orderBreakpoint}: ${breakpointValue}px`] = data[`${orderBreakpoint}: ${breakpointValue}px`].concat(innerValue);
+			} else {
+				data[`${orderBreakpoint}: ${breakpointValue}px`] = innerValue;
+			}
 		}
 	});
 
-	return output;
+	return data;
 }
 
 /**
