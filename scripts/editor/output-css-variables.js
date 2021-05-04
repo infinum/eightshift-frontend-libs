@@ -176,7 +176,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		if (value === 0) {
 			if (!_.isEmpty(variable)) {
 				output += `.${name}[data-id='${unique}'] {
-					${variable.join("\n")}
+					${variable.join('\n')}
 					}
 				`;
 			}
@@ -184,7 +184,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 			if (!_.isEmpty(variable)) {
 				output += `@media (${type}-width: ${value}px) {
 						.${name}[data-id='${unique}'] {
-							${variable.join("\n")}
+							${variable.join('\n')}
 						}
 					}
 				`;
@@ -193,8 +193,8 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	});
 
 	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(";\n") : '';
-	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(";\n") : '';
+	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
+	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(';\n') : '';
 
 	// Prepare final output.
 	const finalOutput = `
@@ -237,13 +237,13 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 		// Inner object for min values.
 		const itemObjectMin = {
-			type: "min",
+			type: 'min',
 			...itemObject,
 		}
 
 		// Inner object for max values.
 		const itemObjectMax = {
-			type: "max",
+			type: 'max',
 			...itemObject,
 		}
 
@@ -254,8 +254,8 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 	// Add default object to the top of the array.
 	min.unshift({
-		type: "min",
-		name: "default",
+		type: 'min',
+		name: 'default',
 		value: 0,
 		variable: [],
 	});
@@ -265,8 +265,8 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 	// Add default object to the top of the array.
 	max.unshift({
-		type: "max",
-		name: "default",
+		type: 'max',
+		name: 'default',
 		value: 0,
 		variable: [],
 	});
@@ -318,5 +318,5 @@ export const prepareVariableData = (globalBreakpoints) => {
  * @return string
  */
 export const getUnique = () => {
-	return require("crypto").randomBytes(16).toString('hex');
+	return require('crypto').randomBytes(16).toString('hex');
 }
