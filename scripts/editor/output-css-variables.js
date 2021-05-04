@@ -192,6 +192,11 @@ export const outputCssVariablesInner = (variables, attributeValue) => {
 			value = variableValue.replace('%value%', attributeValue);
 		}
 
+		// Bailout if attribute value is empty or undefined, used to unset/reset value.
+		if (value === 'undefined' || _.isEmpty(value)) {
+			continue;
+		}
+
 		// Output the custom CSS variable by adding the attribute key + custom object key.
 		output.push(`--${_.kebabCase(variableKey)}: ${value};`);
 	}
