@@ -9,13 +9,14 @@
 use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $blockName = $attributes['blockName'] ?? $manifest['blockName'];
 
 $blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
 
 ?>
 

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
 import { ImageEditor as ImageEditorComponent } from '../../../components/image/components/image-editor';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const ImageEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
@@ -16,7 +17,7 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 
 	return (
 		<>
-			{outputCssVariables(attributes, manifest, unique)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<div className={blockClass} data-id={unique}>
 				<ImageEditorComponent
