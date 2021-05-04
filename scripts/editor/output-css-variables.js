@@ -216,7 +216,8 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
  * Create initial array of data to be able to populate later.
  *
  * @param object globalBreakpoints Global breakpoints from global manifest to set the correct output.
- * @returns array
+ *
+ * @return array
  */
 export const prepareVariableData = (globalBreakpoints) => {
 
