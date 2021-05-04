@@ -91,7 +91,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		return;
 	}
 
-	// Bailout if attributes or manifest i missing.
+	// Bailout if attributes or manifest is missing.
 	if (!attributes || !manifest) {
 		return;
 	}
