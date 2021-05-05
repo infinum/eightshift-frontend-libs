@@ -12,7 +12,6 @@ export { pasteInto } from './paste-handler';
 export { getOptions } from './get-options';
 export {
 	outputCssVariablesGlobal,
-	outputCssVariablesGlobalInner,
 	outputCssVariables,
 	getUnique
 } from './output-css-variables';
