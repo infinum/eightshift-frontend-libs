@@ -7,14 +7,14 @@ import manifest from './../manifest.json';
 
 export const HeadingOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Heading Details', 'eightshift-frontend-libs')}>
 
 			<HeadingOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
 
