@@ -2,13 +2,11 @@
 	--h-font-size: var(--heading-font-size);
 	--h-line-height: var(--heading-line-height);
 	--h-color: var(--heading-color);
-	--h-align: var(--heading-align);
 
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
 	color: var(--h-color);
-	text-align: var(--h-align);
 	font-size: var(--h-font-size);
 	line-height: var(--h-line-height);
 }

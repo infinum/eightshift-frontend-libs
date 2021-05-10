@@ -8,7 +8,6 @@
 			"headingLevel": 2,
 			"headingSize": "default",
 			"headingColor": "black",
-			"headingAlign": "left",
 			"headingUse": true
 		}
 	},
@@ -29,10 +28,6 @@
 			"type": "string",
 			"default": "black"
 		},
-		"headingAlign": {
-			"type": "string",
-			"default": "left"
-		},
 		"headingUse": {
 			"type": "boolean",
 			"default": true
@@ -48,11 +43,6 @@
 				"label": "Big (2.5em)",
 				"value": "big"
 			}
-		],
-		"headingAlign": [
-			"left",
-			"center",
-			"right"
 		],
 		"headingColor": [
 			"primary",
@@ -94,13 +84,6 @@
 			{
 				"variable": {
 					"heading-color": "var(--global-colors-%value%)"
-				}
-			}
-		],
-		"headingAlign": [
-			{
-				"variable": {
-					"heading-align": "%value%"
 				}
 			}
 		]

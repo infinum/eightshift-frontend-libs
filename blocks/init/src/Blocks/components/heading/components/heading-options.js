@@ -45,7 +45,7 @@ export const HeadingOptions = (attributes) => {
 
 			{showHeadingUse &&
 				<ToggleControl
-					label={sprintf(__('Use %s', 'project'), label)}
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={headingUse}
 					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
 				/>
@@ -58,7 +58,7 @@ export const HeadingOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.color} />
-									{__('Color', 'project')}
+									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
@@ -72,7 +72,7 @@ export const HeadingOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.textSize} />
-									{__('Text size', 'project')}
+									{__('Text size', 'eightshift-frontend-libs')}
 								</>
 							}
 							value={headingSize}
