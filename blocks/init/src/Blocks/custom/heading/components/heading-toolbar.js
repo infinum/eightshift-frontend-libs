@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 
 export const HeadingToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName: manifestBlockName,
+		blockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -21,7 +21,7 @@ export const HeadingToolbar = ({ attributes, setAttributes }) => {
 		<>
 			<HeadingToolbarComponent
 				setAttributes={setAttributes}
-				{...props(attributes, manifestBlockName, '', true)}
+				{...props(attributes, blockName, '', true)}
 			/>
 
 			<AlignmentToolbar

@@ -10,8 +10,12 @@ import manifest from './../manifest.json';
 
 export const JumbotronToolbar = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
+		componentName = manifestComponentName,
 		jumbotronShowControls = true,
 
 		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),

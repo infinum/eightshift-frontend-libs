@@ -1,92 +1,66 @@
-$btn: (
-	colors: (
-		primary: (
-			normal: (
-				background-color: var(--global-colors-primary),
-				color: var(--global-colors-white),
-			),
-			hover: (
-				background-color: var(--global-colors-black),
-			),
-		),
-		black: (
-			normal: (
-				background-color: var(--global-colors-black),
-				color: var(--global-colors-white),
-			),
-			hover: (
-				background-color: var(--global-colors-primary),
-			),
-		),
-	),
-	sizes: (
-		mobile: (
-			default: (
-				font-size: 0.8em,
-				line-height: 1.4,
-			),
-			big: (
-				font-size: 0.9em,
-				line-height: 1.4,
-			),
-		),
-		tablet: (
-			default: (
-				font-size: 0.9em,
-				line-height: 1.4,
-			),
-			big: (
-				font-size: 1em,
-				line-height: 1.4,
-			)
-		)
-	)
-);
-
 .btn {
-	@extend %button-reset;
+	--btn-color: var(--button-color);
+	--btn-color-as-link: var(--button-color-as-link);
+	--btn-color-hover: var(--button-color-hover);
+	--btn-color-as-link-hover: var(--button-color-as-link-hover);
+	--btn-background-color: var(--button-background-color);
+	--btn-background-color-hover: var(--button-background-color-hover);
+	--btn-font-size: var(--button-font-size);
+	--btn-line-height: var(--button-line-height);
+	--btn-display: var(--button-display);
+	--btn-width: var(--button-width);
+	--btn-cursor: pointer;
+	--btn-opacity: var(--button-opacity, 1);
+	--btn-border-radius: 2.5em;
+	--btn-padding-vertical: 2.5em;
+	--btn-padding-horizontal: 0.6em;
+
+	padding: 0;
+	border: 0;
+	appearance: none;
 	position: relative;
-	display: inline-flex;
+	display: var(--btn-display);
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	padding: 0.6em 2.5em;
+	padding: var(--btn-padding-horizontal) var(--btn-padding-vertical);
 	font-weight: bold;
 	text-align: center;
-	cursor: pointer;
-	border-radius: 2.5em;
+	cursor: var(--btn-cursor);
+	border-radius: var(--btn-border-radius);
+	opacity: var(--btn-opacity);
 	transition: {
 		property: background-color, color, border-color;
 		timing-function: ease-in;
 		duration: 0.3s;
 	}
+	color: var(--btn-color);
+	background-color: var(--btn-background-color);
+	width: var(--btn-width);
+	font-size: var(--btn-font-size);
+	line-height: var(--btn-line-height);
 
-	@include link(map-get-strict($btn, colors), primary);
+	&:hover {
+		color: var(--btn-color-hover);
+		background-color: var(--btn-background-color-hover);
+	}
 
 	&:disabled {
-		cursor: not-allowed;
+		--btn-cursor: not-allowed;
 	}
 
-	&__size-width {
-		&--block {
-			display: flex;
-			width: 100%;
+	&__as-link {
+		--btn-border-radius: 0;
+		--btn-background-color: transparent;
+		--btn-padding-vertical: 0;
+		--btn-padding-horizontal: 0;
+		--btn-color: var(--btn-color-as-link);
+		--btn-width: auto;
+		--btn-display: inline-block;
+
+		&:hover {
+			--btn-color-hover: var(--btn-color-as-link-hover);
+			--btn-background-color-hover: transparent;
 		}
-	}
-
-	&__color {
-		@include link-modifiers($btn, colors);
-	}
-
-	&__size {
-		@include responsive-modifiers($btn, sizes);
-	}
-}
-
-.btn-wrap {
-	display: flex;
-
-	&__align {
-		@include flex-horizontal-align-modifiers;
 	}
 }

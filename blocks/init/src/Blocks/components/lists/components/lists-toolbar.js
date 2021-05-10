@@ -5,19 +5,24 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const ListsToolbar = (attributes) => {
-	const { options, title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		title: manifestTitle,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		listsShowControls = true,
 
 		listsUse = checkAttr('listsUse', attributes, manifest, componentName),
 
 		listsAlign = checkAttr('listsAlign', attributes, manifest, componentName),
 
-		showlistsAlign = true,
+		showListsAlign = true,
 	} = attributes;
 
 	if (!listsShowControls) {
@@ -28,7 +33,7 @@ export const ListsToolbar = (attributes) => {
 		<>
 			{listsUse &&
 				<>
-					{showlistsAlign &&
+					{showListsAlign &&
 						<AlignmentToolbar
 							value={listsAlign}
 							options={options.aligns}

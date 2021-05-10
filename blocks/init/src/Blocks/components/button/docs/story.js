@@ -59,21 +59,6 @@ export const width = () => (
 	</Fragment>
 );
 
-export const align = () => (
-	<Fragment>
-		{manifest.options.buttonAlign.map((values, index) => (
-			<Fragment key={index}>
-				<ButtonEditor
-					{...props}
-					buttonContent={values}
-					buttonAlign={values}
-				/>
-				<br />
-			</Fragment>
-		))}
-	</Fragment>
-);
-
 export const colors = () => (
 	<Fragment>
 		{manifest.options.buttonColor.map((values, index) => (

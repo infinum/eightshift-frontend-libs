@@ -6,12 +6,17 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const VideoOptions = (attributes) => {
-	const { options, title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		title: manifestTitle,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		videoShowControls = true,
 
 		videoUse = checkAttr('videoUse', attributes, manifest, componentName),

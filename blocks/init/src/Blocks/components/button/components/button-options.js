@@ -7,13 +7,17 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
-	const { title } = manifest;
+	const {
+		title: manifestTitle,
+		componentName: manifestComponentName,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
-		options = options,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		buttonShowControls = true,
 
 		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
@@ -23,12 +27,15 @@ export const ButtonOptions = (attributes) => {
 		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
 		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest, componentName),
 		buttonId = checkAttr('buttonId', attributes, manifest, componentName),
+		buttonAsLink = checkAttr('buttonAsLink', attributes, manifest, componentName),
 
+		showButtonUse = true,
 		showButtonColor = true,
 		showButtonSize = true,
 		showButtonWidth = true,
 		showButtonIsAnchor = true,
 		showButtonId = true,
+		showButtonAsLink = true,
 	} = attributes;
 
 	if (!buttonShowControls) {
@@ -44,11 +51,13 @@ export const ButtonOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={buttonUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showButtonUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={buttonUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{buttonUse &&
 				<>
@@ -66,6 +75,15 @@ export const ButtonOptions = (attributes) => {
 						/>
 					}
 
+					{showButtonAsLink &&
+						<ToggleControl
+							label={__('Show button as link', 'eightshift-frontend-libs')}
+							checked={buttonAsLink}
+							onChange={(value) => setAttributes({ [`${componentName}AsLink`]: value })}
+							help={__('When checked button will be converted to link style.', 'eightshift-frontend-libs')}
+						/>
+					}
+
 					{showButtonSize &&
 						<SelectControl
 							label={
@@ -80,7 +98,7 @@ export const ButtonOptions = (attributes) => {
 						/>
 					}
 
-					{showButtonWidth &&
+					{(showButtonWidth && !buttonAsLink) &&
 						<SelectControl
 							label={
 								<>

@@ -9,9 +9,16 @@ import manifest from './../manifest.json';
 
 export const ParagraphEditor = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+		options: manifestOptions,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
+		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 
@@ -29,8 +36,6 @@ export const ParagraphEditor = (attributes) => {
 		paragraphSize = checkAttr('paragraphSize', attributes, manifest, componentName),
 		paragraphAlign = checkAttr('paragraphAlign', attributes, manifest, componentName),
 	} = attributes;
-
-	const allowedTags = manifest.pasteAllowTags ?? ['strong', 'b', 'i', 'em', 'span'];
 
 	const paragraphClass = classnames([
 		componentClass,
@@ -56,7 +61,7 @@ export const ParagraphEditor = (attributes) => {
 					onMerge={mergeBlocks}
 					onReplace={onReplace}
 					onRemove={onRemove}
-					onPaste={(event) => pasteInto(event, attributes, setAttributes, allowedTags, 'p')}
+					onPaste={(event) => pasteInto(event, attributes, setAttributes, options.pasteAllowTags, 'p')}
 					deleteEnter={true}
 				/>
 			}

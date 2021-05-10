@@ -6,13 +6,17 @@ import { getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 export const ParagraphToolbar = (attributes) => {
-	const { title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		title: manifestTitle,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
-		options = options,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		paragraphShowControls = true,
 
 		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),

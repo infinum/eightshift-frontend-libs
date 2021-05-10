@@ -52,13 +52,13 @@
 		"paragraphColor": [
 			"primary",
 			"black"
+		],
+		"pasteAllowTags": [
+			"strong",
+			"b",
+			"i",
+			"em",
+			"span"
 		]
-	},
-	"pasteAllowTags": [
-		"strong",
-		"em",
-		"b",
-		"i",
-		"span"
-	]
+	}
 }

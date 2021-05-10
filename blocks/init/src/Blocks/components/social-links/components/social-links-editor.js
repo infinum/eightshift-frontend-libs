@@ -4,11 +4,16 @@ import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const SocialLinksEditor = (attributes) => {
-	const { options } = manifest;
+	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
+		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 
