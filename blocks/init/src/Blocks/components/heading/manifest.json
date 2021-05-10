@@ -23,18 +23,15 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "default",
-			"variable": "default"
+			"default": "default"
 		},
 		"headingColor": {
 			"type": "string",
-			"default": "black",
-			"variable": "color"
+			"default": "black"
 		},
 		"headingAlign": {
 			"type": "string",
-			"default": "left",
-			"variable": "default"
+			"default": "left"
 		},
 		"headingUse": {
 			"type": "boolean",
@@ -60,6 +57,52 @@
 		"headingColor": [
 			"primary",
 			"black"
+		]
+	},
+	"variables": {
+		"headingSize": {
+			"default": [
+				{
+					"variable": {
+						"heading-font-size": "1em",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "1.5em"
+					}
+				}
+			],
+			"big": [
+				{
+					"variable": {
+						"heading-font-size": "1.5em",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "2.5em"
+					}
+				}
+			]
+		},
+		"headingColor": [
+			{
+				"variable": {
+					"heading-color": "var(--global-colors-%value%)"
+				}
+			}
+		],
+		"headingAlign": [
+			{
+				"variable": {
+					"heading-align": "%value%"
+				}
+			}
 		]
 	}
 }

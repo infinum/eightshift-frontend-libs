@@ -7,13 +7,17 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
-	const { title } = manifest;
+	const {
+		title: manifestTitle,
+		componentName: manifestComponentName,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
-		options = options,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		headingShowControls = true,
 
 		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
@@ -21,6 +25,7 @@ export const HeadingOptions = (attributes) => {
 		headingColor = checkAttr('headingColor', attributes, manifest, componentName),
 		headingSize = checkAttr('headingSize', attributes, manifest, componentName),
 
+		showHeadingUse = true,
 		showHeadingColor = true,
 		showHeadingSize = true,
 	} = attributes;
@@ -38,11 +43,13 @@ export const HeadingOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={headingUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showHeadingUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'project'), label)}
+					checked={headingUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{headingUse &&
 				<>
@@ -51,7 +58,7 @@ export const HeadingOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-frontend-libs')}
+									{__('Color', 'project')}
 								</>
 							}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
@@ -65,7 +72,7 @@ export const HeadingOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.textSize} />
-									{__('Text size', 'eightshift-frontend-libs')}
+									{__('Text size', 'project')}
 								</>
 							}
 							value={headingSize}

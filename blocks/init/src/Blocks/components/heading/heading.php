@@ -3,10 +3,10 @@
 /**
  * Template for the Heading Component.
  *
- * @package EightshiftBoilerplate
+ * @package Project
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use ProjectVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
@@ -26,11 +26,9 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $headingContent = Components::checkAttr('headingContent', $attributes, $manifest, $componentName);
 $headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest, $componentName);
-$headingSize = Components::checkAttr('headingSize', $attributes, $manifest, $componentName);
 
 $headingClass = Components::classnames([
 	$componentClass,
-	Components::selector($headingSize, $componentClass, 'size', $headingSize),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 

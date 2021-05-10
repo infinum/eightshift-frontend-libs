@@ -59,21 +59,6 @@ export const level = () => (
 	</Fragment>
 );
 
-export const align = () => (
-	<Fragment>
-		{manifest.options.headingAlign.map((values, index) => (
-			<Fragment key={index}>
-				<HeadingEditor
-					{...props}
-					headingContent={values}
-					headingAlign={values}
-				/>
-				<br />
-			</Fragment>
-		))}
-	</Fragment>
-);
-
 export const color = () => (
 	<Fragment>
 		{manifest.options.headingColor.map((values, index) => (
