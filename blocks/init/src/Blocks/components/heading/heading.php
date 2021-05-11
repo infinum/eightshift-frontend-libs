@@ -3,7 +3,7 @@
 /**
  * Template for the Heading Component.
  *
- * @package Project
+ * @package EightshiftBoilerplate
  */
 
 use ProjectVendor\EightshiftLibs\Helpers\Components;
