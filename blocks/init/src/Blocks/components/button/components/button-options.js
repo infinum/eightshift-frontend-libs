@@ -27,7 +27,7 @@ export const ButtonOptions = (attributes) => {
 		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
 		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest, componentName),
 		buttonId = checkAttr('buttonId', attributes, manifest, componentName),
-		buttonAsLink = checkAttr('buttonAsLink', attributes, manifest, componentName),
+		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
 
 		showButtonUse = true,
 		showButtonColor = true,
@@ -35,7 +35,7 @@ export const ButtonOptions = (attributes) => {
 		showButtonWidth = true,
 		showButtonIsAnchor = true,
 		showButtonId = true,
-		showButtonAsLink = true,
+		showButtonIsLink = true,
 	} = attributes;
 
 	if (!buttonShowControls) {
@@ -75,11 +75,11 @@ export const ButtonOptions = (attributes) => {
 						/>
 					}
 
-					{showButtonAsLink &&
+					{showButtonIsLink &&
 						<ToggleControl
 							label={__('Show button as link', 'eightshift-frontend-libs')}
-							checked={buttonAsLink}
-							onChange={(value) => setAttributes({ [`${componentName}AsLink`]: value })}
+							checked={buttonIsLink}
+							onChange={(value) => setAttributes({ [`${componentName}IsLink`]: value })}
 							help={__('When checked button will be converted to link style.', 'eightshift-frontend-libs')}
 						/>
 					}
@@ -98,7 +98,7 @@ export const ButtonOptions = (attributes) => {
 						/>
 					}
 
-					{(showButtonWidth && !buttonAsLink) &&
+					{(showButtonWidth && !buttonIsLink) &&
 						<SelectControl
 							label={
 								<>

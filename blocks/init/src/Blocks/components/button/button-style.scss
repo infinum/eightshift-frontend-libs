@@ -1,8 +1,8 @@
 .btn {
 	--btn-color: var(--button-color);
-	--btn-color-as-link: var(--button-color-as-link);
+	--btn-color-is-link: var(--button-color-is-link);
 	--btn-color-hover: var(--button-color-hover);
-	--btn-color-as-link-hover: var(--button-color-as-link-hover);
+	--btn-color-is-link-hover: var(--button-color-is-link-hover);
 	--btn-background-color: var(--button-background-color);
 	--btn-background-color-hover: var(--button-background-color-hover);
 	--btn-font-size: var(--button-font-size);
@@ -49,17 +49,17 @@
 		--btn-cursor: not-allowed;
 	}
 
-	&__as-link {
+	&__is-link {
 		--btn-border-radius: 0;
 		--btn-background-color: transparent;
 		--btn-padding-vertical: 0;
 		--btn-padding-horizontal: 0;
-		--btn-color: var(--btn-color-as-link);
+		--btn-color: var(--btn-color-is-link);
 		--btn-width: auto;
 		--btn-display: inline-block;
 
 		&:hover {
-			--btn-color-hover: var(--btn-color-as-link-hover);
+			--btn-color-hover: var(--btn-color-is-link-hover);
 			--btn-background-color-hover: transparent;
 		}
 	}

@@ -27,12 +27,12 @@ export const ButtonEditor = (attributes) => {
 
 		buttonContent = checkAttr('buttonContent', attributes, manifest, componentName),
 		buttonUrl = checkAttr('buttonUrl', attributes, manifest, componentName),
-		buttonAsLink = checkAttr('buttonAsLink', attributes, manifest, componentName),
+		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
 	} = attributes;
 
 	const buttonClass = classnames([
 		componentClass,
-		selector(buttonAsLink, componentClass, 'as-link'),
+		selector(buttonIsLink, componentClass, 'is-link'),
 		selector(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
 		selector(blockClass, blockClass, selectorClass),
 	]);

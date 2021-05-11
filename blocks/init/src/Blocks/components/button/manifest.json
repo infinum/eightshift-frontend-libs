@@ -11,7 +11,7 @@
 			"buttonColor": "primary",
 			"buttonWidth": "default",
 			"buttonIsAnchor": false,
-			"buttonAsLink": false,
+			"buttonIsLink": false,
 			"buttonUse": true
 		}
 	},
@@ -52,7 +52,7 @@
 		"buttonAriaLabel": {
 			"type": "string"
 		},
-		"buttonAsLink": {
+		"buttonIsLink": {
 			"type": "boolean",
 			"default": false
 		},
@@ -93,9 +93,9 @@
 				{
 					"variable": {
 						"button-color": "var(--global-colors-white)",
-						"button-color-as-link": "var(--global-colors-primary)",
+						"button-color-is-link": "var(--global-colors-primary)",
 						"button-color-hover": "var(--global-colors-white)",
-						"button-color-as-link-hover": "var(--global-colors-black)",
+						"button-color-is-link-hover": "var(--global-colors-black)",
 						"button-background-color": "var(--global-colors-primary)",
 						"button-background-color-hover": "var(--global-colors-black)"
 					}
@@ -105,9 +105,9 @@
 				{
 					"variable": {
 						"button-color": "var(--global-colors-white)",
-						"button-color-as-link": "var(--global-colors-black)",
+						"button-color-is-link": "var(--global-colors-black)",
 						"button-color-hover": "var(--global-colors-white)",
-						"button-color-as-link-hover": "var(--global-colors-primary)",
+						"button-color-is-link-hover": "var(--global-colors-primary)",
 						"button-background-color": "var(--global-colors-black)",
 						"button-background-color-hover": "var(--global-colors-primary)"
 					}

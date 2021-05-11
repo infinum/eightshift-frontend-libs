@@ -31,7 +31,7 @@ $buttonId = Components::checkAttr('buttonId', $attributes, $manifest, $component
 $buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest, $componentName);
 $buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest, $componentName);
 $buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest, $componentName);
-$buttonAsLink = Components::checkAttr('buttonAsLink', $attributes, $manifest, $componentName);
+$buttonIsLink = Components::checkAttr('buttonIsLink', $attributes, $manifest, $componentName);
 
 if ($buttonIsNewTab) {
 	$buttonAttrs = array_merge(
@@ -45,7 +45,7 @@ if ($buttonIsNewTab) {
 
 $buttonClass = Components::classnames([
 	$componentClass,
-	Components::selector($buttonAsLink, $componentClass, 'as-link'),
+	Components::selector($buttonIsLink, $componentClass, 'is-link'),
 	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
