@@ -9,10 +9,16 @@ import globalManifest from './../../../manifest.json';
 
 export const HeadingEditor = (attributes) => {
 	const unique = getUnique();
+
+	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
@@ -20,28 +26,27 @@ export const HeadingEditor = (attributes) => {
 		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
 
 		headingContent = checkAttr('headingContent', attributes, manifest, componentName),
-		headingSize = checkAttr('headingSize', attributes, manifest, componentName),
 	} = attributes;
 
 	const headingClass = classnames([
 		componentClass,
-		selector(headingSize, componentClass, 'size', headingSize),
 		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	return (
 		<>
-			{outputCssVariables(attributes, manifest, unique, globalManifest)}
-
 			{headingUse &&
-				<RichText
-					className={headingClass}
-					placeholder={placeholder}
-					value={headingContent}
-					onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
-					allowedFormats={[]}
-					data-id={unique}
-				/>
+				<>
+					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+					<RichText
+						className={headingClass}
+						placeholder={placeholder}
+						value={headingContent}
+						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
+						allowedFormats={[]}
+						data-id={unique}
+					/>
+				</>
 			}
 		</>
 	);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
-import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 
 export const CardToolbar = (attributes) => {
@@ -21,12 +20,6 @@ export const CardToolbar = (attributes) => {
 
 			<HeadingToolbar
 				{...props(attributes, 'heading')}
-				setAttributes={setAttributes}
-				options={options}
-			/>
-
-			<ParagraphToolbar
-				{...props(attributes, 'paragraph')}
 				setAttributes={setAttributes}
 				options={options}
 			/>

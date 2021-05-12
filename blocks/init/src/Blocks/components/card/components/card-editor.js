@@ -10,8 +10,12 @@ import manifest from './../manifest.json';
 
 export const CardEditor = (attributes) => {
 	const {
+		componentClass: manifestComponentClass,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentClass = manifest.componentClass,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 	} = attributes;

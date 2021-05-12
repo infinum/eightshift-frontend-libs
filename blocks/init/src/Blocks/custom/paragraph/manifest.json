@@ -11,6 +11,24 @@
 		"text",
 		"content"
 	],
+	"example": {
+		"attributes": {
+			"paragraphAlign": "left"
+		}
+	},
+	"attributes": {
+		"paragraphAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"options": {
+		"paragraphAlign": [
+			"left",
+			"center",
+			"right"
+		]
+	},
 	"components": {
 		"paragraph": "paragraph"
 	},
@@ -19,5 +37,14 @@
 			"attribute": "paragraphContent",
 			"mergeStrategy": "append"
 		}
-	]
+	],
+	"variables": {
+		"paragraphAlign": [
+			{
+				"variable": {
+					"paragraph-align": "%value%"
+				}
+			}
+		]
+	}
 }

@@ -6,12 +6,17 @@ import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const AccordionEditor = (attributes) => {
-	const { options } = manifest;
+	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+		options: manifestOptions,
+	} = manifest;
 	
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
+		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),

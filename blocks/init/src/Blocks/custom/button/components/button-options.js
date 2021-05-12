@@ -12,10 +12,12 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 
 	return (
 		<PanelBody title={__('Button Details', 'eightshift-frontend-libs')}>
+
 			<ButtonOptionsComponent
 				{...props(attributes, blockName, '', true)}
 				setAttributes={setAttributes}
 			/>
+
 		</PanelBody>
 	);
 };

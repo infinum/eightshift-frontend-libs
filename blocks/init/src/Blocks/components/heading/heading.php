@@ -26,11 +26,9 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $headingContent = Components::checkAttr('headingContent', $attributes, $manifest, $componentName);
 $headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest, $componentName);
-$headingSize = Components::checkAttr('headingSize', $attributes, $manifest, $componentName);
 
 $headingClass = Components::classnames([
 	$componentClass,
-	Components::selector($headingSize, $componentClass, 'size', $headingSize),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 

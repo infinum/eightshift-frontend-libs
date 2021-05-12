@@ -11,7 +11,34 @@
 		"title",
 		"label"
 	],
+	"example": {
+		"attributes": {
+			"headingAlign": "left"
+		}
+	},
+	"attributes": {
+		"headingAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
 	"components": {
 		"heading": "heading"
+	},
+	"options": {
+		"headingAlign": [
+			"left",
+			"center",
+			"right"
+		]
+	},
+	"variables": {
+		"headingAlign": [
+			{
+				"variable": {
+					"heading-align": "%value%"
+				}
+			}
+		]
 	}
 }

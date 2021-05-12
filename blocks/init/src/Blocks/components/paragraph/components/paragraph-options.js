@@ -7,13 +7,17 @@ import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/sc
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
-	const { title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		title: manifestTitle,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
-		options = options,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		paragraphShowControls = true,
 
 		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
@@ -21,6 +25,7 @@ export const ParagraphOptions = (attributes) => {
 		paragraphColor = checkAttr('paragraphColor', attributes, manifest, componentName),
 		paragraphSize = checkAttr('paragraphSize', attributes, manifest, componentName),
 
+		showParagraphUse = true,
 		showParagraphColor = true,
 		showParagraphSize = true,
 	} = attributes;
@@ -38,11 +43,13 @@ export const ParagraphOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={paragraphUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showParagraphUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={paragraphUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{paragraphUse &&
 				<>

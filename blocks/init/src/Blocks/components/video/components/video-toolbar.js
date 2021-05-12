@@ -7,8 +7,12 @@ import manifest from './../manifest.json';
 
 export const VideoToolbar = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
+		componentName = manifestComponentName,
 		videoShowControls = true,
 
 		videoUse = checkAttr('videoUse', attributes, manifest, componentName),

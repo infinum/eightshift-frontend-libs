@@ -7,9 +7,14 @@ import manifest from './../manifest.json';
 
 export const ListsEditor = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),

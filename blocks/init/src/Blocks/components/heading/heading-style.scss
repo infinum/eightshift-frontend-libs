@@ -1,35 +1,12 @@
-$heading: (
-	sizes: (
-		mobile: (
-			default: (
-				font-size: 1em,
-				line-height: 1,
-			),
-			big: (
-				font-size: 1.6em,
-				line-height: 1,
-			),
-		),
-		tablet: (
-			default: (
-				font-size: 1.5em,
-				line-height: 1,
-			),
-			big: (
-				font-size: 2.5em,
-				line-height: 1,
-			),
-		),
-	)
-);
-
 .heading {
-	@extend %heading-reset;
-	font-weight: bold;
-	color: var(--heading-color);
-	text-align: var(--heading-align);
+	--h-font-size: var(--heading-font-size);
+	--h-line-height: var(--heading-line-height);
+	--h-color: var(--heading-color);
 
-	&__size {
-		@include responsive-modifiers($heading, sizes);
-	}
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: var(--h-color);
+	font-size: var(--h-font-size);
+	line-height: var(--h-line-height);
 }

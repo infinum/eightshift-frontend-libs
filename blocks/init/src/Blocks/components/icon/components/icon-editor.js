@@ -4,11 +4,15 @@ import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const IconEditor = (attributes) => {
-	const { icons } = manifest;
+	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+		icons: manifestIcons,
+	} = manifest;
 
 	const {
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
@@ -24,7 +28,7 @@ export const IconEditor = (attributes) => {
 	return (
 		<>
 			{iconUse &&
-				<i className={iconClass} dangerouslySetInnerHTML={{ __html: icons[iconName] }}></i>
+				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
 			}
 		</>
 	);

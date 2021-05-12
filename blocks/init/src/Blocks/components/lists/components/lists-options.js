@@ -7,12 +7,17 @@ import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
-	const { options, title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		title: manifestTitle,
+		options: manifestOptions,
+	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		listsShowControls = true,
 
 		listsUse = checkAttr('listsUse', attributes, manifest, componentName),

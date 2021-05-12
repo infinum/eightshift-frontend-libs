@@ -10,8 +10,8 @@
 			"buttonSize": "default",
 			"buttonColor": "primary",
 			"buttonWidth": "default",
-			"buttonAlign": "left",
 			"buttonIsAnchor": false,
+			"buttonIsLink": false,
 			"buttonUse": true
 		}
 	},
@@ -38,10 +38,6 @@
 			"type": "string",
 			"default": "default"
 		},
-		"buttonAlign": {
-			"type": "string",
-			"default": "left"
-		},
 		"buttonIsAnchor": {
 			"type": "boolean",
 			"default": false
@@ -55,6 +51,10 @@
 		},
 		"buttonAriaLabel": {
 			"type": "string"
+		},
+		"buttonIsLink": {
+			"type": "boolean",
+			"default": false
 		},
 		"buttonUse": {
 			"type": "boolean",
@@ -82,14 +82,85 @@
 				"value": "block"
 			}
 		],
-		"buttonAlign": [
-			"left",
-			"center",
-			"right"
-		],
 		"buttonColor": [
 			"primary",
 			"black"
 		]
+	},
+	"variables": {
+		"buttonColor": {
+			"primary": [
+				{
+					"variable": {
+						"button-color": "var(--global-colors-white)",
+						"button-color-is-link": "var(--global-colors-primary)",
+						"button-color-hover": "var(--global-colors-white)",
+						"button-color-is-link-hover": "var(--global-colors-black)",
+						"button-background-color": "var(--global-colors-primary)",
+						"button-background-color-hover": "var(--global-colors-black)"
+					}
+				}
+			],
+			"black": [
+				{
+					"variable": {
+						"button-color": "var(--global-colors-white)",
+						"button-color-is-link": "var(--global-colors-black)",
+						"button-color-hover": "var(--global-colors-white)",
+						"button-color-is-link-hover": "var(--global-colors-primary)",
+						"button-background-color": "var(--global-colors-black)",
+						"button-background-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			]
+		},
+		"buttonSize": {
+			"default": [
+				{
+					"variable": {
+						"button-font-size": "0.8em",
+						"button-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"button-font-size": "1em"
+					}
+				}
+			],
+			"big": [
+				{
+					"variable": {
+						"button-font-size": "1em",
+						"button-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"button-font-size": "1.2em"
+					}
+				}
+			]
+		},
+		"buttonWidth": {
+			"default": [
+				{
+					"variable": {
+						"button-display": "inline-flex",
+						"button-width": "auto"
+					}
+				}
+			],
+			"block": [
+				{
+					"variable": {
+						"button-display": "flex",
+						"button-width": "100%"
+					}
+				}
+			]
+		}
 	}
 }

@@ -7,12 +7,14 @@ import { components } from 'react-select';
 
 import manifest from './../manifest.json';
 
-const { icons } = manifest;
+const {
+	icons: manifestIcons,
+} = manifest;
 
 const IconPickerOption = props => (
 	<components.Option {...props}>
 		<div className={'icon-option-row'}>
-			<i dangerouslySetInnerHTML={{ __html: icons[props.value] }}></i>
+			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.value] }}></i>
 			<span>{props.label}</span>
 		</div>
 	</components.Option>
@@ -21,19 +23,25 @@ const IconPickerOption = props => (
 const IconPickerValueDisplay = ({ children, ...props }) => (
 	<components.SingleValue {...props}>
 		<div className={'icon-option-row'}>
-			<i dangerouslySetInnerHTML={{ __html: icons[props.data.value] }}></i>
+			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.data.value] }}></i>
 			<span>{children}</span>
 		</div>
 	</components.SingleValue>
 );
 
 export const IconOptions = (attributes) => {
-	const { options, title } = manifest;
+	const {
+		componentName: manifestComponentName,
+		options: manifestOptions,
+		title: manifestTitle,
+	} = manifest;
+
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
+		options = manifestOptions,
 		iconUse = checkAttr('iconUse', attributes, manifest, componentName),
 		iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest, componentName),
 		showIconOptions = true,

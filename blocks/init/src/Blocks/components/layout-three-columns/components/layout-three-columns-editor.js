@@ -5,8 +5,13 @@ import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
+	const {
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 

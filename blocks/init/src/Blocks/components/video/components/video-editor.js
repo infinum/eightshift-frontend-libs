@@ -9,9 +9,14 @@ import manifest from './../manifest.json';
 
 export const VideoEditor = (attributes) => {
 	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 

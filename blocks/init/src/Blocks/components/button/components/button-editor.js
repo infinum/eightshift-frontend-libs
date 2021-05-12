@@ -2,14 +2,23 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
+import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const ButtonEditor = (attributes) => {
+	const unique = getUnique();
+
+	const {
+		componentName: manifestComponentName,
+		componentClass: manifestComponentClass,
+	} = manifest;
+
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		componentClass = manifest.componentClass,
+		componentName = manifestComponentName,
+		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
@@ -18,23 +27,12 @@ export const ButtonEditor = (attributes) => {
 
 		buttonContent = checkAttr('buttonContent', attributes, manifest, componentName),
 		buttonUrl = checkAttr('buttonUrl', attributes, manifest, componentName),
-		buttonAlign = checkAttr('buttonAlign', attributes, manifest, componentName),
-		buttonSize = checkAttr('buttonSize', attributes, manifest, componentName),
-		buttonColor = checkAttr('buttonColor', attributes, manifest, componentName),
-		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
+		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
 	} = attributes;
-
-	const buttonWrapClass = classnames([
-		selector(componentClass, `${componentClass}-wrap`),
-		selector(buttonAlign, `${componentClass}-wrap`, 'align', buttonAlign),
-		selector(blockClass, blockClass, `${selectorClass}-wrap`),
-	]);
 
 	const buttonClass = classnames([
 		componentClass,
-		selector(buttonSize, componentClass, 'size', buttonSize),
-		selector(buttonColor, componentClass, 'color', buttonColor),
-		selector(buttonWidth, componentClass, 'size-width', buttonWidth),
+		selector(buttonIsLink, componentClass, 'is-link'),
 		selector(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
 		selector(blockClass, blockClass, selectorClass),
 	]);
@@ -42,7 +40,9 @@ export const ButtonEditor = (attributes) => {
 	return (
 		<>
 			{buttonUse &&
-				<div className={buttonWrapClass}>
+				<>
+					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
 					<RichText
 						placeholder={placeholder}
 						value={buttonContent}
@@ -50,8 +50,9 @@ export const ButtonEditor = (attributes) => {
 						className={buttonClass}
 						keepPlaceholderOnFocus
 						allowedFormats={[]}
+						data-id={unique}
 					/>
-				</div>
+				</>
 			}
 		</>
 	);

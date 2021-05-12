@@ -11,13 +11,15 @@ import manifest from './../manifest.json';
 
 export const JumbotronOptions = (attributes) => {
 	const {
-		title,
+		componentName: manifestComponentName,
+		title: manifestTitle,
 	} = manifest;
+
 
 	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		componentName = manifestComponentName,
+		label = manifestTitle,
 		jumbotronShowControls = true,
 
 		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),
