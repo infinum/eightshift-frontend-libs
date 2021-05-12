@@ -203,7 +203,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		${manualEditor}
 	`;
 
-		// Check if final output is empty and remove if it is.
+	// Check if final output is empty and remove if it is.
 	if (_.isEmpty(fullOutput.trim())) {
 		return;
 	}
