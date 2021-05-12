@@ -196,20 +196,26 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
 	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(';\n') : '';
 
-	// Prepare final output.
-	const finalOutput = `
+	// Prepare final output for testing.
+	const fullOutput = `
 		${output}
 		${manual}
 		${manualEditor}
 	`;
 
-		// Check if final output is empty and remove if it is.
-	if (_.isEmpty(finalOutput.trim())) {
+	// Check if final output is empty and remove if it is.
+	if (_.isEmpty(fullOutput.trim())) {
 		return;
 	}
 
+	// Prepare output for manual variables.
+	const finalManualOutput = `.${name}[data-id='${unique}'] {
+		${manual}
+		${manualEditor}
+	}`;
+
 	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${finalOutput}`}}></style>;
+	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
 }
 
 /**
@@ -297,6 +303,12 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 		// If value contains magic variable swap that variable with original attribute value.
 		if (variableValue.includes('%value%')) {
+
+			// Bailout if magic variable is empty or undefined.
+			if (typeof attributeValue === 'undefined' || _.isEmpty(attributeValue) ) {
+				continue;
+			}
+
 			value = variableValue.replace('%value%', attributeValue);
 		}
 
