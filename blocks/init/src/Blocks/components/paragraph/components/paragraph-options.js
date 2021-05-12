@@ -25,6 +25,7 @@ export const ParagraphOptions = (attributes) => {
 		paragraphColor = checkAttr('paragraphColor', attributes, manifest, componentName),
 		paragraphSize = checkAttr('paragraphSize', attributes, manifest, componentName),
 
+		showParagraphUse = true,
 		showParagraphColor = true,
 		showParagraphSize = true,
 	} = attributes;
@@ -42,11 +43,13 @@ export const ParagraphOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={paragraphUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showParagraphUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={paragraphUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{paragraphUse &&
 				<>

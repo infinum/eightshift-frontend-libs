@@ -4,7 +4,6 @@ import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
-import { ParagraphToolbar } from '../../paragraph/components/paragraph-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 import manifest from './../manifest.json';
 
@@ -43,11 +42,6 @@ export const JumbotronToolbar = (attributes) => {
 
 				<HeadingToolbar
 					{...props(attributes, 'heading')}
-					setAttributes={setAttributes}
-				/>
-
-				<ParagraphToolbar
-					{...props(attributes, 'paragraph')}
 					setAttributes={setAttributes}
 				/>
 

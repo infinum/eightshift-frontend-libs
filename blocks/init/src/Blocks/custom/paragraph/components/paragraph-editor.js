@@ -1,18 +1,24 @@
-import React from 'react';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import React, { useMemo } from 'react';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
 import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 import { createBlock } from '@wordpress/blocks';
-import globalSettings from '../../../manifest.json';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlocks }) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		blockName,
 	} = manifest;
 
 	const {
 		namespace,
-	} = globalSettings;
+	} = globalManifest;
+
+	const {
+		blockClass,
+	} = attributes;
 
 	const propsObject = props(attributes, blockName, '', true);
 
@@ -34,13 +40,19 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	};
 
 	return (
-		<ParagraphEditorComponent
-			{...propsObject}
-			setAttributes={setAttributes}
-			onSplit={splitBlocks}
-			mergeBlocks={mergeBlocks}
-			onReplace={onReplace}
-			onRemove={onReplace ? () => onReplace([]) : undefined}
-		/>
+		<>
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
+			<div className={blockClass} data-id={unique}>
+				<ParagraphEditorComponent
+					{...propsObject}
+					setAttributes={setAttributes}
+					onSplit={splitBlocks}
+					mergeBlocks={mergeBlocks}
+					onReplace={onReplace}
+					onRemove={onReplace ? () => onReplace([]) : undefined}
+				/>
+			</div>
+		</>
 	);
 };
