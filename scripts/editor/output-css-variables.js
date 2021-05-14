@@ -209,10 +209,10 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	}
 
 	// Prepare output for manual variables.
-	const finalManualOutput = `.${name}[data-id='${unique}'] {
+	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}'] {
 		${manual}
 		${manualEditor}
-	}`;
+	}` : '';
 
 	// Output the style for CSS variables.
 	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
@@ -305,7 +305,7 @@ export const prepareVariableData = (globalBreakpoints) => {
 		if (variableValue.includes('%value%')) {
 
 			// Bailout if magic variable is empty or undefined.
-			if (typeof attributeValue === 'undefined' || _.isEmpty(attributeValue) ) {
+			if (typeof attributeValue === 'undefined' || attributeValue === '') {
 				continue;
 			}
 
