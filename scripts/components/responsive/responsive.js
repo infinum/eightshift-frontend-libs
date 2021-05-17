@@ -1,8 +1,10 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
-import { BaseControl, Button, Tooltip } from '@wordpress/components';
-import { aspectRatio } from '@wordpress/icons';
+import {
+	BaseControl, Button
+} from '@wordpress/components';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const Responsive = (props) => {
 	const {
@@ -11,21 +13,30 @@ export const Responsive = (props) => {
 		children = [],
 	} = props;
 
-	const [isOpen, setActive] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+
+	const responsiveClass = [
+		'es-responsive',
+		isOpen ? 'is-open' : '',
+	]
 
 	return (
 		<BaseControl
+			className={responsiveClass.join(' ')}
 			label={
-				<Fragment>
+				<>
 					{label}
-					<Tooltip text={tooltip}>
-						<Button isDefault isSmall icon={aspectRatio} onClick={() => setActive(!isOpen)}></Button>
-					</Tooltip>
-				</Fragment>
+					<Button
+						isSecondary
+						isLarge
+						label={tooltip}
+						isPressed={isOpen}
+						icon={icons.responsiveOverrides}
+						onClick={() => setIsOpen(!isOpen)}
+					/>
+				</>
 			}
-			className={'custom-responsive'}
 		>
-			<br />
 			{children.map((item, index) => {
 				return (
 					<Fragment key={index}>
