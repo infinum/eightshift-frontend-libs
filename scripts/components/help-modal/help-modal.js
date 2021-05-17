@@ -3,6 +3,7 @@ import { Fragment, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Modal } from '@wordpress/components';
 import { helperMessages } from './data';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const HelpModal = (props) => {
 	const {
@@ -12,7 +13,7 @@ export const HelpModal = (props) => {
 		type = 'wrapper',
 	} = props;
 
-	const [isOpen, activeModal] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	
 	const Item = (item) => {
@@ -41,13 +42,18 @@ export const HelpModal = (props) => {
 
 	return (
 		<Fragment>
-			<Button className={'custom-full-width-button'} isDefault isSmall onClick={() => activeModal(true)}>
-				{buttonLabel}
-			</Button>
+			<Button
+				icon={icons.help}
+				text={buttonLabel}
+				label={buttonLabel}
+				className={'es-help-button'}
+				isTertiary
+				onClick={() => setIsOpen(true)} 
+			/>
 			{isOpen && (
 				<Modal
 					title={modalLabel}
-					onRequestClose={() => activeModal(false)}
+					onRequestClose={() => setIsOpen(false)}
 				>
 					<Fragment>
 						{helperMessages[type] && helperMessages[type].map((item, index) => {
