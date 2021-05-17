@@ -1,9 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
-import {
-	BaseControl, Button
-} from '@wordpress/components';
+import { BaseControl, Button } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
 export const Responsive = (props) => {
