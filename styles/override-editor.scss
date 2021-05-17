@@ -515,20 +515,10 @@ body {
 			.components-placeholder__fieldset {
 				width: 100%;
 			}
-			
-			.es-placeholder-input-flex {
-				display: flex;
-				flex-wrap: nowrap;
-				gap: 0.5rem;
-				width: 100%;
-
-				.components-input-control {
-					max-width: 19rem;
-				}
-			}
 		}
 
-		&.is-medium {
+		&.is-medium,
+		&.is-small {
 			padding: 1rem;
 			box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.08) inset;
 			min-height: 0 !important;
@@ -550,6 +540,17 @@ body {
 
 			.block-editor-media-placeholder__upload-button {
 				margin-bottom: 0 !important;
+			}
+		}
+
+		.es-placeholder-input-flex {
+			display: flex;
+			flex-wrap: nowrap;
+			gap: 0.5rem;
+			width: 100%;
+
+			.components-input-control {
+				max-width: 19rem;
 			}
 		}
 	}
