@@ -13,7 +13,9 @@ export const OptionPicker
 		isInToolbar: isToolbar,
 		isToolbarButton = true,
 		popoverPosition = 'bottom right',
+		isToggleButtonActive = false,
 		buttonIcon,
+		showToggleButtonLabel = false,
 	}) => {
 		/**
 		 * Gets the onChange callback with will (un)set a value
@@ -52,7 +54,13 @@ export const OptionPicker
 			<UIComponent
 				icon={getIcon()}
 				label={controlLabel}
-				toggleProps={{ describedBy }}
+				text={showToggleButtonLabel ? controlLabel : null}
+				toggleProps={{ 
+					describedBy: describedBy,
+					label: controlLabel,
+					showTooltip: true,
+					isPressed: isToggleButtonActive,
+				}}
 				popoverProps={{
 					position: popoverPosition,
 					isAlternate: true,
