@@ -9,6 +9,7 @@
 use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
@@ -21,24 +22,17 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$jumbotronContentPosition = Components::checkAttr('jumbotronContentPosition', $attributes, $manifest, $componentName);
+$unique = Components::getUnique();
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
 
 $jumbotronClass = Components::classnames([
 	$componentClass,
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
-$contentClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'content'),
-]);
-
-$contentWrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'content-wrap'),
-]);
-
 ?>
 
-<div class="<?php echo \esc_attr($jumbotronClass); ?>">
+<div class="<?php echo \esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
 	echo Components::render(
 		'image',
@@ -53,8 +47,8 @@ $contentWrapClass = Components::classnames([
 	);
 	?>
 
-	<div class="<?php echo \esc_attr($contentClass); ?>" data-position="<?php echo \esc_attr($jumbotronContentPosition); ?>">
-		<div class="<?php echo \esc_attr($contentWrapClass); ?>">
+	<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
+		<div class="<?php echo \esc_attr("{$componentClass}__content-wrap"); ?>">
 			<?php
 			echo Components::render(
 				'heading',

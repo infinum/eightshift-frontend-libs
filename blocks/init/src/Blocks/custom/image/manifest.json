@@ -19,51 +19,86 @@
 	"attributes": {
 		"imageAlign": {
 			"type": "string",
-			"default": "center center",
-			"variable": "custom"
-		}
-	},
-	"options": {
-		"imageAlign": {
-			"top left": {
-				"horizontal": "flex-start",
-				"vertical": "flex-start"
-			},
-			"top center": {
-				"horizontal": "center",
-				"vertical": "flex-start"
-			},
-			"top right": {
-				"horizontal": "flex-end",
-				"vertical": "flex-start"
-			},
-			"center left": {
-				"horizontal": "flex-start",
-				"vertical": "center"
-			},
-			"center center": {
-				"horizontal": "center",
-				"vertical": "center"
-			},
-			"center right": {
-				"horizontal": "flex-end",
-				"vertical": "center"
-			},
-			"bottom left": {
-				"horizontal": "flex-start",
-				"vertical": "flex-end"
-			},
-			"bottom center": {
-				"horizontal": "center",
-				"vertical": "flex-end"
-			},
-			"bottom right": {
-				"horizontal": "flex-end",
-				"vertical": "flex-end"
-			}
+			"default": "center center"
 		}
 	},
 	"components": {
 		"image": "image"
+	},
+	"variables": {
+		"imageAlign": {
+			"top left": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-start",
+						"image-align-vertical": "flex-start"
+					}
+				}
+			],
+			"top center": [
+				{
+					"variable": {
+						"image-align-horizontal": "center",
+						"image-align-vertical": "flex-start"
+					}
+				}
+			],
+			"top right": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-end",
+						"image-align-vertical": "flex-start"
+					}
+				}
+			],
+			"center left": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-start",
+						"image-align-vertical": "center"
+					}
+				}
+			],
+			"center center": [
+				{
+					"variable": {
+						"image-align-horizontal": "center",
+						"image-align-vertical": "center"
+					}
+				}
+			],
+			"center right": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-end",
+						"image-align-vertical": "center"
+					}
+				}
+			],
+			"bottom left": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-start",
+						"image-align-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom center": [
+				{
+					"variable": {
+						"image-align-horizontal": "center",
+						"image-align-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom right": [
+				{
+					"variable": {
+						"image-align-horizontal": "flex-end",
+						"image-align-vertical": "flex-end"
+					}
+				}
+			]
+		}
 	}
 }

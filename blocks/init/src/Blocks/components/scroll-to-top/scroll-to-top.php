@@ -18,6 +18,7 @@ if (!$scrollToTopUse) {
 
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
@@ -25,7 +26,7 @@ $scrollToTopContent = Components::checkAttr('scrollToTopContent', $attributes, $
 
 $scrollClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, "js-{$componentClass}"),
+	$componentJsClass,
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 

@@ -38,7 +38,7 @@ export const size = () => (
 					buttonContent={values.label}
 					buttonSize={values.value}
 				/>
-				<br />
+				<br /><br />
 			</Fragment>
 		))}
 	</Fragment>
@@ -53,7 +53,7 @@ export const width = () => (
 					buttonContent={values.label}
 					buttonWidth={values.value}
 				/>
-				<br />
+				<br /><br />
 			</Fragment>
 		))}
 	</Fragment>
@@ -68,7 +68,14 @@ export const colors = () => (
 					buttonContent={values}
 					buttonColor={values}
 				/>
-				<br />
+				<br /><br />
+				<ButtonEditor
+					{...props}
+					buttonContent={`Button As Link - ${values}`}
+					buttonColor={values}
+					buttonIsLink={true}
+				/>
+				<br /><br />
 			</Fragment>
 		))}
 	</Fragment>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ParagraphEditor = (attributes) => {
-	const unique = getUnique();
+	const unique = useMemo(() => getUnique(), []);
 
 	const {
 		componentName: manifestComponentName,
@@ -45,6 +45,7 @@ export const ParagraphEditor = (attributes) => {
 			{paragraphUse &&
 				<>
 					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
 					<RichText
 						identifier={`${componentName}Content`}
 						className={paragraphClass}

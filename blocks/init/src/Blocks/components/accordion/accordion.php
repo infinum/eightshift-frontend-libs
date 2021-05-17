@@ -17,14 +17,13 @@ if (!$accordionUse) {
 }
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
 $accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest, $componentName);
 $accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest, $componentName);
 $accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest, $componentName);
-
-$componentJsClass = Components::selector($componentClass, "js-{$componentClass}");
 
 $accordionClass = Components::classnames([
 	$componentClass,

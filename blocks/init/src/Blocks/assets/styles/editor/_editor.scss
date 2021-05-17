@@ -1,23 +1,16 @@
 // Override default editor styles.
 @import '@eightshift/frontend-libs/styles/override-editor.scss';
 
-$override-map: (
-	font-family: $base-font-family,
-	font-size: $base-font-size,
-	color: $base-text-color,
-	background-color: $base-background-color,
-);
-
 body .editor-styles-wrapper {
 	@include font-smoothing;
-	font-family: map-get-strict($override-map, font-family);
-	font-size: map-get-strict($override-map, font-size);
-	color: map-get-strict($override-map, color);
-	background-color: map-get-strict($override-map, background-color);
+	font-family: var(--global-font-family);
+	font-size: var(--base-font-size);
+	color: var(--global-colors-black);
+	background-color: var(--global-colors-white);
 }
 
 // Sets base font size value only to editor part.
 body.sb-show-main,
 body .interface-interface-skeleton__content {
-	font-size: map-get-strict($override-map, font-size);
+	font-size: var(--base-font-size);
 }

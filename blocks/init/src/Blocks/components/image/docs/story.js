@@ -31,11 +31,11 @@ export const options = () => (
 
 export const fullScreen = () => (
 	<ImageEditor
-	{...props}
-	imageUrl={{
-		id: "0",
-		url: "https://loremflickr.com/300/200"
-	}}
-	imageFull={true}
+		{...props}
+		imageUrl={{
+			id: "0",
+			url: "https://loremflickr.com/300/200"
+		}}
+		imageFull={true}
 	/>
 );

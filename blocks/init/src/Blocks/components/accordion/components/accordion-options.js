@@ -19,6 +19,7 @@ export const AccordionOptions = (attributes) => {
 
 		accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest, componentName),
 
+		showAccordionUse = true,
 		showAccordionIsOpen = true,
 	} = attributes;
 
@@ -35,11 +36,13 @@ export const AccordionOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={accordionUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showAccordionUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={accordionUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{showAccordionIsOpen &&
 				<>

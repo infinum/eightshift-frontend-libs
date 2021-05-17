@@ -2,6 +2,7 @@
 	"componentName": "page-overlay",
 	"title": "Page Overlay",
 	"componentClass": "page-overlay",
+	"componentJsClass": "js-page-overlay",
 	"example": {
 		"attributes": {
 			"pageOverlayUse": true

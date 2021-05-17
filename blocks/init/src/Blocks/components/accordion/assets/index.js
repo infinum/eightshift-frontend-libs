@@ -1,7 +1,8 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from './../manifest.json';
 
 domReady(() => {
-	const accordionSelector = '.js-accordion';
+	const accordionSelector = `.${manifest.componentJsClass}`;
 	const accordionElements = document.querySelectorAll(accordionSelector);
 
 	if (accordionElements.length) {
@@ -10,6 +11,8 @@ domReady(() => {
 				const accordion = new Accordion({
 					accordion: item,
 					accordionSelector,
+					triggerSelector: `${accordionSelector}-trigger`,
+					panelSelector: `${accordionSelector}-panel`,
 				});
 
 				accordion.init();

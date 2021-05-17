@@ -2,7 +2,7 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
@@ -25,6 +25,7 @@ export const ListsOptions = (attributes) => {
 		listsColor = checkAttr('listsColor', attributes, manifest, componentName),
 		listsSize = checkAttr('listsSize', attributes, manifest, componentName),
 
+		showListsUse = true,
 		showListsColor = true,
 		showListsSize = true,
 	} = attributes;
@@ -42,11 +43,13 @@ export const ListsOptions = (attributes) => {
 				</h3>
 			}
 
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-				checked={listsUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-			/>
+			{showListsUse &&
+				<ToggleControl
+					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+					checked={listsUse}
+					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				/>
+			}
 
 			{listsUse &&
 				<>
@@ -58,7 +61,7 @@ export const ListsOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOptionColors(options.colors)}
+							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
 							value={listsColor}
 							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
 						/>
@@ -73,7 +76,7 @@ export const ListsOptions = (attributes) => {
 								</>
 							}
 							value={listsSize}
-							options={options.sizes}
+							options={getOptions(manifest, componentName, 'size', options)}
 							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
 						/>
 					}

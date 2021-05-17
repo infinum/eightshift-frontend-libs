@@ -4,14 +4,13 @@ import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Icon, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
 import { Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		breakpoints: manifestBreakpoints,
 		componentName: manifestComponentName,
 	} = manifest;
 
@@ -33,13 +32,6 @@ export const ImageOptions = (attributes) => {
 		showImageAlt = true,
 		showImageFull = true,
 	} = attributes;
-
-	const imageUrl = {
-		default: checkAttr('imageUrl', attributes, manifest, componentName),
-		desktop: checkAttr('imageUrlDesktop', attributes, manifest, componentName),
-		tablet: checkAttr('imageUrlTablet', attributes, manifest, componentName),
-		mobile: checkAttr('imageUrlMobile', attributes, manifest, componentName),
-	};
 
 	if (!imageShowControls) {
 		return null;
@@ -68,15 +60,15 @@ export const ImageOptions = (attributes) => {
 							label={
 								<>
 									<Icon icon={icons.link} />
-									{__('Image', 'eightshift-frontend-libs')}
+									{__('Image Url', 'Redesign')}
 								</>
 							}
 						>
-							{Object.keys(imageUrl).map(function(keyName) {
+							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest, componentName)).map(function(keyName) {
 
-								let point = ucfirst(manifestBreakpoints.filter((item) => item === keyName)[0]);
+								let point = ucfirst(keyName);
 								let pointLabel = point;
-								if (point === 'Default') {
+								if (point === 'Large') {
 									point = '';
 									pointLabel = 'All';
 								}
@@ -86,7 +78,7 @@ export const ImageOptions = (attributes) => {
 								return (
 									<BaseControl
 										key={keyName}
-										label={sprintf(__('Image %s screen size', 'eightshift-frontend-libs'), pointLabel)}
+										label={sprintf(__('Image %s screen size', 'Redesign'), pointLabel)}
 									>
 										{!_.isEmpty(attributes[attr]) ?
 											<>
@@ -97,7 +89,7 @@ export const ImageOptions = (attributes) => {
 													className={'custom-full-width-btn'}
 													onClick={() => setAttributes({ [attr]: {} })}
 												>
-													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
+													{sprintf(__('Remove %s screen size image', 'Redesign'), pointLabel)}
 												</Button>
 											</> :
 											<MediaPlaceholder

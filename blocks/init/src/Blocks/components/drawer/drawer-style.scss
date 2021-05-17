@@ -1,27 +1,17 @@
-$drawer: (
-	width: 22.5em,
-	shadow: rgba(global-settings(colors, black), 0.2),
-	colors: (
-		background: global-settings(colors, white),
-	),
-	padding: global-settings(gutters, default),
-	z-index: map-get-strict($zindex, drawer),
-);
-
 .drawer {
 	$menu: &;
 	position: fixed;
 	top: auto;
 	height: 100%;
-	z-index: map-get-strict($drawer, z-index);
+	z-index: var(--global-z-index-drawer);
 	margin: auto;
-	padding: map-get-strict($drawer, padding);
+	padding: var(--global-gutters-default);
 	display: block;
-	background: map-get-deep($drawer, colors, background);
-	width: map-get-strict($drawer, width);
+	background: var(--global-colors-white);
+	width: var(--drawer-scoped-width, 22.5em);
 	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 	overflow-x: hidden;
-	box-shadow: 0 0 0.15em map-get-strict($drawer, shadow);
+	box-shadow: 0 0 0.15em rgba(var(--global-colors-black), 0.2);
 
 	&__position--left {
 		left: 0;
@@ -34,12 +24,12 @@ $drawer: (
 	}
 
 	&__position--top {
-		width: 100%;
+		--drawer-scoped-width: 100%;
 		transform: translate3d(0, -100%, 0);
 	}
 
 	&__position--behind {
-		width: 100%;
+		--drawer-scoped-width: 100%;
 		transform: translate3d(0, 0, 0);
 		opacity: 0;
 	}

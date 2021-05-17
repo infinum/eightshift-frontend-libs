@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ButtonEditor = (attributes) => {
-	const unique = getUnique();
+	const unique = useMemo(() => getUnique(), []);
 
 	const {
 		componentName: manifestComponentName,
@@ -27,12 +27,10 @@ export const ButtonEditor = (attributes) => {
 
 		buttonContent = checkAttr('buttonContent', attributes, manifest, componentName),
 		buttonUrl = checkAttr('buttonUrl', attributes, manifest, componentName),
-		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
 	} = attributes;
 
 	const buttonClass = classnames([
 		componentClass,
-		selector(buttonIsLink, componentClass, 'is-link'),
 		selector(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
 		selector(blockClass, blockClass, selectorClass),
 	]);

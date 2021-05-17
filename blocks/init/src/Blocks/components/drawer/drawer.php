@@ -17,6 +17,7 @@ if (!$drawerUse) {
 }
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
@@ -27,7 +28,7 @@ $drawerPosition = Components::checkAttr('drawerPosition', $attributes, $manifest
 
 $drawerClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, "js-{$componentClass}"),
+	$componentJsClass,
 	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);

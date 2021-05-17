@@ -17,24 +17,20 @@ if (!$imageUse) {
 	return;
 }
 
+$unique = Components::getUnique();
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
 $imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest, $componentName);
-$imageFull = Components::checkAttr('imageFull', $attributes, $manifest, $componentName);
 
-$imageUrl = [
-	'default' => Components::checkAttr('imageUrl', $attributes, $manifest),
-	'desktop' => Components::checkAttr('imageUrlDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('imageUrlTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('imageUrlMobile', $attributes, $manifest),
-];
+$imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest, $componentName);
 
 $pictureClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
-	Components::selector($imageFull, $componentClass, '', 'full'),
-	Components::selector($blockClass, $blockClass, "{$selectorClass}-picture"),
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 $imgClass = Components::classnames([
@@ -44,11 +40,11 @@ $imgClass = Components::classnames([
 
 ?>
 
-<?php if (isset($imageUrl['default']) && $imageUrl['default']) { ?>
-	<picture class="<?php echo \esc_attr($pictureClass); ?>">
+<?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
+	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 		<?php foreach (array_reverse($imageUrl) as $brakepoint => $item) { ?>
 			<?php
-			if ($brakepoint === 'default') {
+			if ($brakepoint === 'large') {
 				continue;
 			}
 			if (!$item) {
@@ -65,6 +61,6 @@ $imgClass = Components::classnames([
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['default']['url']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl['large']['url']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
 	</picture>
 <?php } ?>

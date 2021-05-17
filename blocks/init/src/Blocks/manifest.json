@@ -5,6 +5,12 @@
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,
+		"baseFont": "'Open Sans'",
+		"zIndex": {
+			"header": 100,
+			"drawer": 99,
+			"overlay": 98
+		},
 		"breakpoints": {
 			"mobile": 767,
 			"tablet": 991,
