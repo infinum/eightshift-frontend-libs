@@ -117,7 +117,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			{!wrapperDisable &&
-				<PanelBody title={__('Block Layout', 'eightshift-frontend-libs')} initialOpen={false} className="custom-highlighted-panel">
+				<PanelBody title={<span>{__('Block Layout', 'eightshift-frontend-libs')}</span>} initialOpen={false} icon={icons.wrapper} className={'es-panel-title'}>
 
 					<HelpModal />
 

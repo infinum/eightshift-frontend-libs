@@ -141,6 +141,7 @@ export const CustomSelect = (props) => {
 					MultiValueLabel: SortableMultiValueLabel,
 					Option: customOptionComponent ?? Option,
 					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
+					IndicatorSeparator: null,
 				}}
 				closeMenuOnSelect={closeMenuOnSelect}
 				theme={(theme) => ({
