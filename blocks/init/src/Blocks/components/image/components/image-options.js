@@ -89,7 +89,7 @@ export const ImageOptions = (attributes) => {
 													className={'custom-full-width-btn'}
 													onClick={() => setAttributes({ [attr]: {} })}
 												>
-													{sprintf(__('Remove %s screen size image', 'Redesign'), pointLabel)}
+													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
 												</Button>
 											</> :
 											<MediaPlaceholder
