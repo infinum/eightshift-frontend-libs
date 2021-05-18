@@ -78,7 +78,7 @@ export const ImageOptions = (attributes) => {
 								return (
 									<BaseControl
 										key={keyName}
-										label={sprintf(__('Image %s screen size', 'Redesign'), pointLabel)}
+										label={sprintf(__('Image %s screen size', 'eightshift-frontend-libs'), pointLabel)}
 									>
 										{!_.isEmpty(attributes[attr]) ?
 											<>
