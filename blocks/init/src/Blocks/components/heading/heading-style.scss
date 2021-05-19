@@ -1,12 +1,7 @@
 .heading {
-	--h-font-size: var(--heading-font-size);
-	--h-line-height: var(--heading-line-height);
-	--h-color: var(--heading-color);
-
-	margin: 0;
 	padding: 0;
 	font-weight: bold;
-	color: var(--h-color);
-	font-size: var(--h-font-size);
-	line-height: var(--h-line-height);
+	color: var(--heading-color);
+	font-size: var(--heading-font-size);
+	line-height: var(--heading-line-height);
 }

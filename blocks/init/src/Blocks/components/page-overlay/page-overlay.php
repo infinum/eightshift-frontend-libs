@@ -17,13 +17,14 @@ if (!$pageOverlayUse) {
 }
 
 $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
+$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
 $overlayClass = Components::classnames([
 	$componentClass,
-	Components::selector($blockClass, "js-{$blockClass}"),
-	$blockClass ? "{$blockClass}__{$componentClass}" : '',
+	$componentJsClass,
+	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
 ?>

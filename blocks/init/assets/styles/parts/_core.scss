@@ -1,12 +1,5 @@
 /* stylelint-disable-line selector-no-type */
 
-$core-map: (
-	font-family: $base-font-family,
-	color: $base-text-color,
-	background-color: $base-background-color,
-	font-size: $base-font-size,
-);
-
 *,
 *::after,
 *::before {
@@ -14,14 +7,14 @@ $core-map: (
 }
 
 html {
-	font-size: map-get-strict($core-map, font-size);
+	font-size: var(--base-font-size);
 }
 
 body {
 	@include font-smoothing;
-	font-family: map-get-strict($core-map, font-family);
-	color: map-get-strict($core-map, color);
-	background-color: map-get-strict($core-map, background-color);
+	font-family: var(--global-font-family);
+	color: var(--global-colors-black);
+	background-color: var(--global-colors-white);
 	position: relative;
 	overflow-x: hidden;
 }

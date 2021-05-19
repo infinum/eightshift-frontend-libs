@@ -11,7 +11,34 @@
 		"btn",
 		"lists"
 	],
+	"example": {
+		"attributes": {
+			"listsAlign": "left"
+		}
+	},
+	"attributes": {
+		"listsAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"options": {
+		"listsAlign": [
+			"left",
+			"center",
+			"right"
+		]
+	},
 	"components": {
 		"lists": "lists"
+	},
+	"variables": {
+		"listsAlign": [
+			{
+				"variable": {
+					"lists-align": "%value%"
+				}
+			}
+		]
 	}
 }

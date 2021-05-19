@@ -2,6 +2,7 @@
 	"componentName": "accordion",
 	"title": "Accordion",
 	"componentClass": "accordion",
+	"componentJsClass": "js-accordion",
 	"example": {
 		"attributes": {
 			"accordionTitle": "This is accordion Title",

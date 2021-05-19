@@ -1,66 +1,36 @@
 .btn {
-	--btn-color: var(--button-color);
-	--btn-color-is-link: var(--button-color-is-link);
-	--btn-color-hover: var(--button-color-hover);
-	--btn-color-is-link-hover: var(--button-color-is-link-hover);
-	--btn-background-color: var(--button-background-color);
-	--btn-background-color-hover: var(--button-background-color-hover);
-	--btn-font-size: var(--button-font-size);
-	--btn-line-height: var(--button-line-height);
-	--btn-display: var(--button-display);
-	--btn-width: var(--button-width);
-	--btn-cursor: pointer;
-	--btn-opacity: var(--button-opacity, 1);
-	--btn-border-radius: 2.5em;
-	--btn-padding-vertical: 2.5em;
-	--btn-padding-horizontal: 0.6em;
-
 	padding: 0;
 	border: 0;
 	appearance: none;
 	position: relative;
-	display: var(--btn-display);
+	display: var(--button-display);
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	padding: var(--btn-padding-horizontal) var(--btn-padding-vertical);
+	padding: var(--button-padding-vertical, 0.6em) var(--button-padding-horizontal, 2.5em);
 	font-weight: bold;
 	text-align: center;
-	cursor: var(--btn-cursor);
-	border-radius: var(--btn-border-radius);
-	opacity: var(--btn-opacity);
+	cursor: var(--button-cursor, pointer);
+	border-radius: var(--button-border-radius, 5rem);
+	opacity: var(--button-opacity);
 	transition: {
 		property: background-color, color, border-color;
 		timing-function: ease-in;
 		duration: 0.3s;
 	}
-	color: var(--btn-color);
-	background-color: var(--btn-background-color);
-	width: var(--btn-width);
-	font-size: var(--btn-font-size);
-	line-height: var(--btn-line-height);
+	color: var(--button-scoped-color, var(--button-color));
+	background-color: var(--button-scoped-background-color, var(--button-background-color));
+	width: var(--button-width);
+	font-size: var(--button-font-size);
+	line-height: var(--button-line-height);
 
 	&:hover {
-		color: var(--btn-color-hover);
-		background-color: var(--btn-background-color-hover);
+		--button-scoped-color: var(--button-color-hover);
+		--button-scoped-background-color: var(--button-background-color-hover);
 	}
 
 	&:disabled {
-		--btn-cursor: not-allowed;
-	}
-
-	&__is-link {
-		--btn-border-radius: 0;
-		--btn-background-color: transparent;
-		--btn-padding-vertical: 0;
-		--btn-padding-horizontal: 0;
-		--btn-color: var(--btn-color-is-link);
-		--btn-width: auto;
-		--btn-display: inline-block;
-
-		&:hover {
-			--btn-color-hover: var(--btn-color-is-link-hover);
-			--btn-background-color-hover: transparent;
-		}
+		--button-scoped-background-color: var(--global-colors-light);
+		--button-cursor: not-allowed;
 	}
 }

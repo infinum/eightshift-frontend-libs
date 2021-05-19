@@ -8,4 +8,12 @@ https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_co
 
 $base-col-number: global-settings(maxCols);
 
-$base-font-size: 20px;
+:root {
+	--base-font-size: 0.625;
+
+	@include media(large up) {
+		--base-font-size: 0.85;
+	}
+
+	--global-font-family: var(--global-base-font), Arial, sans-serif;
+}

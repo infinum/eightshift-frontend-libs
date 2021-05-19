@@ -2,6 +2,7 @@
 	"componentName": "scroll-to-top",
 	"title": "Scroll To Top",
 	"componentClass": "scroll-to-top",
+	"componentJsClass": "js-scroll-to-top",
 	"example": {
 		"attributes": {
 			"scrollToTopContent": "To Top",

@@ -93,11 +93,11 @@
 				{
 					"variable": {
 						"button-color": "var(--global-colors-white)",
-						"button-color-is-link": "var(--global-colors-primary)",
 						"button-color-hover": "var(--global-colors-white)",
-						"button-color-is-link-hover": "var(--global-colors-black)",
 						"button-background-color": "var(--global-colors-primary)",
-						"button-background-color-hover": "var(--global-colors-black)"
+						"button-background-color-hover": "var(--global-colors-black)",
+						"button-color-is-link": "var(--global-colors-primary)",
+						"button-color-is-link-hover": "var(--global-colors-black)"
 					}
 				}
 			],
@@ -105,11 +105,11 @@
 				{
 					"variable": {
 						"button-color": "var(--global-colors-white)",
-						"button-color-is-link": "var(--global-colors-black)",
 						"button-color-hover": "var(--global-colors-white)",
-						"button-color-is-link-hover": "var(--global-colors-primary)",
 						"button-background-color": "var(--global-colors-black)",
-						"button-background-color-hover": "var(--global-colors-primary)"
+						"button-background-color-hover": "var(--global-colors-primary)",
+						"button-color-is-link": "var(--global-colors-black)",
+						"button-color-is-link-hover": "var(--global-colors-primary)"
 					}
 				}
 			]
@@ -158,6 +158,21 @@
 					"variable": {
 						"button-display": "flex",
 						"button-width": "100%"
+					}
+				}
+			]
+		},
+		"buttonIsLink": {
+			"true": [
+				{
+					"variable": {
+						"button-border-radius": "0",
+						"button-background-color": "transparent",
+						"button-background-color-hover": "transparent",
+						"button-padding-horizontal": "0",
+						"button-padding-vertical": "0",
+						"button-color": "var(--button-color-is-link)",
+						"button-color-hover": "var(--button-color-is-link-hover)"
 					}
 				}
 			]

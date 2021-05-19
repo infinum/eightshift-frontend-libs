@@ -64,17 +64,3 @@ export const contentAlign = () => (
 		))}
 	</div>
 );
-
-export const mediaAlign = () => (
-	<div>
-		{aligns.map((values, index) => (
-			<Fragment key={index}>
-				<JumbotronEditor
-					{...props}
-					imageAlign={values}
-				/>
-				<br />
-			</Fragment>
-		))}
-	</div>
-);

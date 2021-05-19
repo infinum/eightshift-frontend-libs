@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const ImageEditor = (attributes) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
@@ -23,13 +27,11 @@ export const ImageEditor = (attributes) => {
 		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
 		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
 		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
-		imageFull = checkAttr('imageFull', attributes, manifest, componentName),
 	} = attributes;
 
 	const pictureClass = classnames([
 		selector(componentClass, componentClass),
-		selector(imageFull, componentClass, '', 'full'),
-		selector(blockClass, blockClass, `${selectorClass}-picture`),
+		selector(blockClass, blockClass, selectorClass),
 	]);
 
 	const imgClass = classnames([
@@ -41,6 +43,8 @@ export const ImageEditor = (attributes) => {
 		<>
 			{imageUse &&
 				<>
+					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
 					{_.isEmpty(imageUrl) ?
 						<MediaPlaceholder
 							icon="format-image"
@@ -53,7 +57,7 @@ export const ImageEditor = (attributes) => {
 							accept={imageAccept}
 							allowedTypes={imageAllowedTypes}
 						/> :
-						<picture className={pictureClass}>
+						<picture className={pictureClass} data-id={unique}>
 							<img className={imgClass} src={imageUrl.url} alt={imageAlt} />
 						</picture>
 					}

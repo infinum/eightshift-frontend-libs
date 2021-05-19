@@ -26,5 +26,81 @@
 		"heading": "heading",
 		"paragraph": "paragraph",
 		"button": "button"
+	},
+	"variables": {
+		"jumbotronContentPosition": {
+			"top left": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-start",
+						"jumbotron-content-position-vertical": "flex-start"
+					}
+				}
+			],
+			"top center": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "center",
+						"jumbotron-content-position-vertical": "flex-start"
+					}
+				}
+			],
+			"top right": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-end",
+						"jumbotron-content-position-vertical": "flex-start"
+					}
+				}
+			],
+			"center left": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-start",
+						"jumbotron-content-position-vertical": "center"
+					}
+				}
+			],
+			"center center": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "center",
+						"jumbotron-content-position-vertical": "center"
+					}
+				}
+			],
+			"center right": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-end",
+						"jumbotron-content-position-vertical": "center"
+					}
+				}
+			],
+			"bottom left": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-start",
+						"jumbotron-content-position-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom center": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "center",
+						"jumbotron-content-position-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom right": [
+				{
+					"variable": {
+						"jumbotron-content-position-horizontal": "flex-end",
+						"jumbotron-content-position-vertical": "flex-end"
+					}
+				}
+			]
+		}
 	}
 }
