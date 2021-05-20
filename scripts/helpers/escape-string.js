@@ -3,7 +3,7 @@
  *
  * Removes 'unsafe' characters from a string.
  *
- * @param {string} string String to escape.
+ * @param {string} string - String to escape.
  *
  * @return Escaped string.
  */

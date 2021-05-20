@@ -5,6 +5,14 @@ import { Button, Modal } from '@wordpress/components';
 import { helperMessages } from './data';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
+/**
+ * A modal dialog for displaying help about component's options.
+ * 
+ * @param {object} props                - HelpModal options.
+ * @param {string} props.buttonLabel    - Text to display on the button that opens the dialog.
+ * @param {string} props.modalLabel     - Title of the modal.
+ * @param {string} [props.type=wrapper] - Determines if the type and content of the modal.
+ */
 export const HelpModal = (props) => {
 	const {
 		buttonLabel = __('How to use wrapper?', 'eightshift-frontend-libs'),

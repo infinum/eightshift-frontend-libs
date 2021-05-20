@@ -1,11 +1,11 @@
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
- * @param {object}  attributes Object of attributes from block/component.
- * @param {string}  realName Old key to use, generally this is the name of the block/component.
- * @param {string}  newName New key to use to rename attributes.
- * @param {boolean} isBlock Check if helper is used on block or component.
- * @param {string}  namespace Use default namespace for getting the correct values from the global window.
+ * @param {object}  attributes                         - Attributes from the block/component.
+ * @param {string}  realName                           - *Old* key to use, usually the name of the block/component.
+ * @param {string}  newName                            - *New* key to use to rename attributes.
+ * @param {boolean} [isBlock=false]                    - Determines if the helper is used on a block or a component.
+ * @param {string}  [namespace=eightshift-boilerplate] - Use default namespace for getting the correct values from the global window.
  * 
  * @returns object
  */

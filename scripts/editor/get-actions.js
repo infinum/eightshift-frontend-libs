@@ -5,6 +5,7 @@ import { ucfirst } from './ucfirst';
  * This function generates callback for each of the values from attribute. Generate callback with name onChange${attribute_name}${property_name}
  *
  * Example:
+ * ```json
  * "attributes": {
  *    "heading": {
  *       "type": "object",
@@ -18,15 +19,16 @@ import { ucfirst } from './ucfirst';
  *       }
  *     }
  * }
+ * ```
  * Inside actions there will be `onChangeHeadingColor` where attribute name is `heading` and object property is `color`
  *
- * @param {function} setAttributes Method for saving attribute.
- * @param {object} attributes All attribute from manifest.json
- * @param {string} key Came of the property in manifest.
- * @param {object} propsAttributes Current attribute when this function executes.
+ * @param {function} setAttributes - Method for saving attribute.
+ * @param {object} attributes      - All attribute from manifest.json
+ * @param {string} key             - Key from the manifest.
+ * @param {object} propsAttributes - Current attribute when this function executes.
  *
+ * @returns {object}
  */
-
 const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) => {
 	const output = {};
 
@@ -62,11 +64,11 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  * This method is used to set attributes with single property.
  * This function generates callback for that property value.
  *
- * @param {function} setAttributes Method for saving attributes.
- * @param {string} key Came of the property in manifest.
+ * @param {function} setAttributes - Method for saving attributes.
+ * @param {string} key             - Came of the property in manifest.
  *
+ * @returns {object}
  */
-
 const singlePropsAction = (setAttributes, key) => {
 	const output = {};
 
@@ -86,6 +88,7 @@ const singlePropsAction = (setAttributes, key) => {
  * This function generates callback that saves `id`, `url` of attribute.
  *
  * Example:
+ * ```json
  * "attributes": {
  *   "media": {
  *     "type": "object",
@@ -96,14 +99,15 @@ const singlePropsAction = (setAttributes, key) => {
  *     "mediaAction": true
  *   }
  * }
+ * ```
  *
  * Inside actions there will be `onChangeMedia` function that will update `id` and `url` expect that a given object have those properties
  *
- * @param {function} setAttributes Method for saving attributes.
- * @param {string} key Came of the property in manifest.
+ * @param {function} setAttributes - Method for saving attributes.
+ * @param {string} key             - Key from the manifest.
  *
+ * @returns {object}
  */
-
 const mediaPropsAction = (setAttributes, key) => {
 	const output = {};
 
@@ -130,9 +134,10 @@ const mediaPropsAction = (setAttributes, key) => {
  * Example `onChangeContent`.
  * Depending on prop
  *
- * @param {object} props Block props so we can get `setAttributes` method.
- * @param {object} manifest Block manifest.json so we can get all attributes.
+ * @param {object} props    - Block props so we can get `setAttributes` method.
+ * @param {object} manifest - Block manifest.json so we can get all attributes.
  *
+ * @returns {object}
  */
 export const getActions = (props, manifest) => {
 

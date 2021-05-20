@@ -22,6 +22,13 @@ export function rendererPath(block, attributes = null, urlQueryArgs = {}) {
 	});
 }
 
+/**
+ * An update of the built-in ServerSideRender that keeps the current state when loading the new one.
+ * 
+ * @param {object} props           - ServerSideRender options.
+ * @param {string} props.block     - Name of the block to render (should include the namespace!).
+ * @param {array} props.attributes - Attributes to pass to the rendered item.
+ */
 export class ServerSideRender extends Component {
 	constructor(props) {
 		super(props);

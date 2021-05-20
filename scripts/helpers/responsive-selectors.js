@@ -4,15 +4,19 @@ import classnames from 'classnames';
  * Create responsive selectors used for responsive attributes.
  *
  * Example:
- * Components::responsiveSelectors($attributes['width'], 'width', $blockClass);
+ * ```js
+ * responsiveSelectors(attributes.width, 'width', blockClass);
+ * ```
  *
  * Output:
+ * ```
  * block-column__width-large--4
+ * ```
  *
- * @param {array}   items        Array of breakpoints.
- * @param {string}  selector     Selector for this breakpoint.
- * @param {string}  parent       Parent block selector.
- * @param {boolean} useModifier  If false you can use this selector for visibility.
+ * @param {array}   items              - Array of breakpoints.
+ * @param {string}  selector           - Selector for this breakpoint.
+ * @param {string}  parent             - Parent block selector.
+ * @param {boolean} [useModifier=true] - If false you can use this selector for visibility.
  *
  * @return string
  */

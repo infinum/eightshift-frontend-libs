@@ -3,7 +3,9 @@ import { createBlock } from '@wordpress/blocks';
 /**
  * Returns string parsed as nodes, ready for inserting into RichText.
  *
- * @param {string} inputText HTML string for parsing.
+ * @param {string} inputText - HTML string for parsing.
+ * 
+ * @returns {array} Items to insert into RichText.
  */
 const processTag = (inputTextParam) => {
     // If it's only text wrap it in span for processing
@@ -34,9 +36,11 @@ const processTag = (inputTextParam) => {
 /**
  * Process content and paste in into blocks smartly.
  *
- * @param {string} textFromClipboard Text retrieved from clipboard.
- * @param {Object} attributes Component attributes.
- * @param {Function} setAttributes Component attribute setter.
+ * @param {string} textFromClipboard - Text retrieved from clipboard.
+ * @param {object} attributes        - Component attributes.
+ * @param {function} setAttributes   - Component attribute setter.
+ * 
+ * @returns {void}
  */
 const handlePaste = (textFromClipboard, attributes, setAttributes) => {
     const componentName = attributes.componentName ?? attributes.blockName;
@@ -91,11 +95,13 @@ const handlePaste = (textFromClipboard, attributes, setAttributes) => {
 /**
  * Paste event handler.
  *
- * @param {Event} event Passed event parameters.
- * @param {Object} attributes Component attributes.
- * @param {Function} setAttributes Component attribute setter.
- * @param {Array} allowedTags Tags allowed in the parsed output.
- * @param {String} splitOnElement Element tag name that will cause a block to be split.
+ * @param {Event} event               - Passed event parameters.
+ * @param {object} attributes         - Component attributes.
+ * @param {function} setAttributes    - Component attribute setter.
+ * @param {array} allowedTags         - Tags allowed in the parsed output.
+ * @param {string} [splitOnElement=p] - Element tag name that will cause a block to be split.
+ * 
+ * @returns {void}
  */
 export const pasteInto = (event, attributes, setAttributes, allowedTags, splitOnElement = 'p') => {
     event.preventDefault();

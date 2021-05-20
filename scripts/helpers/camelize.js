@@ -1,9 +1,9 @@
 /**
- * Returns a camel-cased string.
+ * Returns a *camelCase*-formatted string.
  *
- * @param {string} string Add string to convert.
+ * @param {string} string - String to convert.
  *
- * @return Camel cased string.
+ * @return {string} *camelCase*-formatted string.
  */
 export const camelize = (stringParam) => {
 	const string = stringParam.toLowerCase().replace(/(?:(^.)|([-_\s]+.))/g, function(match) {

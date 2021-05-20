@@ -6,10 +6,10 @@ export const cookies = {
 	/**
 	 * Set a cookie value
 	 *
-	 * @param {string} key Unique cookie key.
-	 * @param {string} value Cookie value.
-	 * @param {number} time Number denoting the expiration of the cookie.
-	 * @param {string} path URL path that must exist in the requested URL in order to send the Cookie header.
+	 * @param {string} key   - Unique cookie key.
+	 * @param {string} value - Cookie value.
+	 * @param {number} time  - Number denoting the expiration of the cookie.
+	 * @param {string} path  - URL path that must exist in the requested URL in order to send the Cookie header.
 	 */
 	setCookie(key, value, time, path) {
 		const expires = new Date();

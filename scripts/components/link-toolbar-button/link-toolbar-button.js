@@ -5,6 +5,18 @@ import { Popover, Button, ToolbarButton } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
+/**
+ * A toolbar button that allows picking an URL in a clean and simple way.
+ * 
+ * @param {object} props                                        - LinkToolbarButton options.
+ * @param {string} props.componentName                          - Component name used in generating attribute names: `<componentName>Url` and `<componentName>IsNewTab`
+ * @param {string?} props.url                                   - Currently selected URL.
+ * @param {boolean} props.opensInNewTab                         - Currently selected option for opening the link in a new tab.
+ * @param {function} props.setAttributes                        - The `setAttributes` callback from component/block attributes.
+ * @param {object} props.anchorRef                              - A reference from the `useRef` React hook.
+ * @param {string} props.title                                  - Name of the component/block displayed in the tooltip (*Use <title>*).
+ * @param {string?} [props.textDomain=eightshift-frontend-libs] - Text domain to use for i18n.
+ */
 export const LinkToolbarButton = ({
 	componentName,
 	url,
@@ -12,7 +24,7 @@ export const LinkToolbarButton = ({
 	setAttributes,
 	anchorRef,
 	title,
-	textDomain = ''
+	textDomain = 'eightshift-frontend-libs'
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

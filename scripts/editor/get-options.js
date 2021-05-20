@@ -6,10 +6,12 @@ import _ from 'lodash';
  *
  * @author: Kristijan Marić <kristijan.maric@infinum.co>
  *
- * @param {object} manifest Original manifest from the component.
- * @param {string} componentName Current componentName. This is changed depending on the passed componentName.
- * @param {string} attribute Attribute name to check without componentName prefix. Value is auto titleCased.
- * @param {object} options Options provide by the parent block/component.
+ * @param {object} manifest      - *Original* component manifest.
+ * @param {string} componentName - Current `componentName`. This changes depending on the passed `componentName`.
+ * @param {string} attribute     - Attribute name to check without `componentName` prefix. Value is automatically *camelCased*.
+ * @param {object} options       - Options provided by the parent block/component.
+ * 
+ * @returns {object}
  */
 export const getOptions = (manifest = {}, componentName, attribute, options = {}) => {
 
