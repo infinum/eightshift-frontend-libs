@@ -17,7 +17,6 @@ export const ButtonOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		options = manifestOptions,
 		buttonShowControls = true,
 
 		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
@@ -37,6 +36,8 @@ export const ButtonOptions = (attributes) => {
 		showButtonId = true,
 		showButtonIsLink = true,
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	if (!buttonShowControls) {
 		return null;

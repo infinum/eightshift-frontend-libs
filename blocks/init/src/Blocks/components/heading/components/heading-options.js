@@ -17,7 +17,6 @@ export const HeadingOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		options = manifestOptions,
 		headingShowControls = true,
 
 		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
@@ -29,6 +28,8 @@ export const HeadingOptions = (attributes) => {
 		showHeadingColor = true,
 		showHeadingSize = true,
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	if (!headingShowControls) {
 		return null;

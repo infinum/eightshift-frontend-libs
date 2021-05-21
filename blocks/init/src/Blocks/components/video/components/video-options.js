@@ -16,7 +16,6 @@ export const VideoOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		options = manifestOptions,
 		videoShowControls = true,
 
 		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
@@ -32,6 +31,8 @@ export const VideoOptions = (attributes) => {
 		showVideoAspectRatio = true,
 		showVideoType = true,
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	if (!videoShowControls) {
 		return null;

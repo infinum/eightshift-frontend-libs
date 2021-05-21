@@ -13,7 +13,6 @@ export const VideoButtonEditor = (attributes) => {
 	const {
 		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
-		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 
@@ -22,6 +21,8 @@ export const VideoButtonEditor = (attributes) => {
 		videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest, componentName),
 		videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest, componentName),
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	const videoButtonClass = classnames(
 		componentClass,
