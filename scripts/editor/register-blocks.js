@@ -268,21 +268,25 @@ export const prepareComponentAttribute = (component, realComponentName, newCompo
 
 	let componentAttributes = {};
 
+	// Define different data point for attributes.
 	if (key === 'attributes') {
 		componentAttributes = component.attributes;
 	}
 
+	// Define different data point for example.
 	if (key === 'example') {
 		componentAttributes = component.example.attributes;
 	}
 
+	// Check if realComponentName and newComponentName are not the same. If so do the replace of the attribute names.
 	if (realComponentName !== newComponentName) {
-		for (const componentAttribute in componentAttributes) {
-			if (Object.prototype.hasOwnProperty.call(componentAttributes, componentAttribute)) {
-				const newName = componentAttribute.replace(realComponentName, newComponentName);
 
-				output[newName] = componentAttributes[componentAttribute];
-			}
+		// Loop attributes that need replacing.
+		for (const [componentAttribute] of Object.entries(componentAttributes)) {
+			const newName = componentAttribute.replace(realComponentName, newComponentName);
+
+			// Output attributes with the new name.
+			output[newName] = componentAttributes[componentAttribute];
 		}
 	} else {
 		output = componentAttributes;
@@ -299,8 +303,9 @@ export const prepareComponentAttribute = (component, realComponentName, newCompo
  * @param {object} blockManifest Object of blocks manifests to iterate.
  * @param {string} blockName Full block name.
  * @param {string} key Change output, can be: "attributes" or "example".
+ * @param {string} parentAttributeName Use parent attribute name to determine if the name has changed in the parent component.
  */
-export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes') => {
+export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes', parentAttributeName = undefined) => {
 	let output = {};
 
 	const {
@@ -309,31 +314,38 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 		example = {},
 	} = blockManifest;
 
-	for (const newComponentName in components) {
-		if (Object.prototype.hasOwnProperty.call(components, newComponentName)) {
+	// Loop component.
+	for (let [newComponentName, realComponentName] of Object.entries(components)) {
 
-			const realComponentName = components[newComponentName];
+		// Filter components real name.
+		const [component] = componentsManifest.filter((item) => item.componentName === realComponentName);
 
-			const [component] = componentsManifest.filter((item) => item.componentName === realComponentName);
-
-			if (!component) {
-				throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
-			}
-
-			let outputAttributes = {};
-
-			if (Object.prototype.hasOwnProperty.call(component, 'components')) {
-				outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key);
-			} else {
-				outputAttributes = prepareComponentAttribute(component, realComponentName, newComponentName, key);
-			}
-
-			output = {
-				...output,
-				...outputAttributes,
-				...(key === 'attributes' ? attributes : example.attributes),
-			};
+		// Bailout if component doesn't exist.
+		if (!component) {
+			throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 		}
+
+		let outputAttributes = {};
+
+		// If component has more components do recursive loop.
+		if (Object.prototype.hasOwnProperty.call(component, 'components')) {
+			outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key, newComponentName);
+		} else {
+
+			// Use parent attribute name to determine if the name has changed in the parent component.
+			if (parentAttributeName !== newComponentName && realComponentName !== newComponentName) {
+				newComponentName = parentAttributeName;
+			}
+
+			// Output the component attributes.
+			outputAttributes = prepareComponentAttribute(component, realComponentName, newComponentName, key);
+		}
+
+		output = {
+			...output,
+			...outputAttributes,
+			...(key === 'attributes' ? attributes : example.attributes),
+		};
 	}
 
 	return output;
@@ -447,8 +459,6 @@ export const registerBlock = (
 	if (typeof blockManifest['example'] === 'undefined') {
 		blockManifest['example'] = {};
 	}
-
-	blockManifest['example'].attributes = getExample(globalManifest, componentsManifest, blockManifest);
 
 	return {
 		blockName: fullBlockName,
