@@ -4,7 +4,7 @@ import _ from 'lodash';
  * Provides ability to override component options from the parent block/component
  * The components must have the same options name as attribute standard with componentName prefix.
  *
- * @author: Kristijan Marić <kristijan.maric@infinum.co>
+ * @author: Kristijan Marić
  *
  * @param {object} manifest      - *Original* component manifest.
  * @param {string} componentName - Current `componentName`. This changes depending on the passed `componentName`.
