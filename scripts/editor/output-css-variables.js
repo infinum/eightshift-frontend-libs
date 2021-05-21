@@ -114,9 +114,6 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Get the initial data array.
 	const data = prepareVariableData(breakpoints);
 
-	console.log(data);
-	
-
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
