@@ -4,9 +4,9 @@ import { ToolbarGroup, Path, SVG } from '@wordpress/components';
 import { range } from 'lodash';
 
 /**
- * A heading level selector option.
+ * A heading level selector icon.
  * 
- * @param {object} props                    - CustomSelect options.
+ * @param {object} props                    - Heading level selector icon options.
  * @param {number} [props.level]            - Level to display
  * @param {boolean} [props.isPressed=false] - Determines if the option is currently selected.
  */
@@ -56,7 +56,7 @@ const createLevelControl = (targetLevel, selectedLevel, onChange) => {
 /**
  * A heading level selector.
  * 
- * @param {object} props                     - Heading level picker options.
+ * @param {object} props                     - Heading level selector options.
  * @param {boolean} [props.isCollapsed=true] - If `true`, the control is shown as a button that opens a dropdown menu, otherwise all options are shown inline. 
  * @param {number} [props.minLevel=1]        - Lowest allowed level.
  * @param {number} [props.maxLevel=1]        - Highest allowed level.
