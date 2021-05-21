@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 /**
- * Get Global Manifest.json and return globalVariables as CSS variables.
+ * Get Global manifest.json and return global variables as CSS variables.
  *
  * @param {array} globalManifest -Global variable data.
  *
