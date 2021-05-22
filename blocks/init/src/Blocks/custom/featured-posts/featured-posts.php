@@ -102,7 +102,7 @@ $featuredPostClass = Components::classnames([
 
 				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 					<?php
-					echo Components::render(
+					echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'card',
 						$cardProps
 					);
