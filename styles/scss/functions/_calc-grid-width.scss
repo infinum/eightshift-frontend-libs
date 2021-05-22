@@ -15,7 +15,8 @@
 /// .test {
 ///   width: calc-grid-width(10);
 /// }
+@use 'sass:math';
 
 @function calc-grid-width($cols: $base-col-number) {
-	@return percentage($cols/$base-col-number);
+	@return percentage(math.div($cols, $base-col-number));
 }

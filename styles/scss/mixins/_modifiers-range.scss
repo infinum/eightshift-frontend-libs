@@ -32,13 +32,14 @@
 ///   padding-top: 30px;
 /// }
 /// ```
+@use 'sass:math';
 
 @mixin modifiers-range($map, $key, $selector) {
 	$min: map-get-deep($map, $key, min);
 	$max: map-get-deep($map, $key, max);
 	$step: map-get-deep($map, $key, step);
 
-	$final-range: ($max+$step)/$step;
+	$final-range: math.div($max+$step, $step);
 
 	@for $i from $min to $final-range {
 		$i: #{$i * $step};
