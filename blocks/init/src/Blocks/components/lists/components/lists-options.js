@@ -17,7 +17,6 @@ export const ListsOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		options = manifestOptions,
 		listsShowControls = true,
 
 		listsUse = checkAttr('listsUse', attributes, manifest, componentName),
@@ -29,6 +28,8 @@ export const ListsOptions = (attributes) => {
 		showListsColor = true,
 		showListsSize = true,
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	if (!listsShowControls) {
 		return null;

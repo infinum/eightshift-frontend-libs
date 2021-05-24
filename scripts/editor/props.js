@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
@@ -35,6 +37,23 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 		dependency = globalData.blocks[realName];
 	}
 
+	// If you have multiple components just use one.
+	dependency = _.uniq(dependency);
+
+	// Populate componentName for usage in setAttributes.
+	output['componentName'] = newNameInternal;
+
+	// Replace stuff if there is any changing of the attribute names.
+	if (attributes?.parent !== newNameInternal && realName !== newNameInternal) {
+
+		// Remove real component name from the dependency tree.
+		dependency = dependency.filter((item) => item !== realName);
+
+		// Swap componentName with the parent on if attribute name has changed in the parent.
+		output['componentName'] = attributes?.parent;
+	}
+
+	// Loop attributes.
 	for (const [key, value] of Object.entries(attributes)) {
 
 		// Check if attributes key exists in the dependency by comparing the keys partial string.
@@ -46,12 +65,13 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 				newKey = realName + key.slice(newNameInternal.length);
 			}
 
+			// Populate output with new values.
 			output[newKey] = value;
 		}
 	}
 
-	// Append componentName for usage.
-	output['componentName'] = newNameInternal;
+	// Append parent for usage in checking if attribute name has changed in the parent.
+	output['parent'] = newNameInternal;
 
 	return output;
 }
