@@ -23,7 +23,7 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 $jumbotronClass = Components::classnames([
 	$componentClass,
@@ -34,7 +34,7 @@ $jumbotronClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::render(
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
 		array_merge(
 			Blocks::props($attributes, 'image'),
@@ -50,7 +50,7 @@ $jumbotronClass = Components::classnames([
 	<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 		<div class="<?php echo \esc_attr("{$componentClass}__content-wrap"); ?>">
 			<?php
-			echo Components::render(
+			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'heading',
 				array_merge(
 					Blocks::props($attributes, 'heading'),
@@ -58,9 +58,9 @@ $jumbotronClass = Components::classnames([
 						'blockClass' => $componentClass
 					]
 				)
-			);
+			),
 
-			echo Components::render(
+			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'paragraph',
 				array_merge(
 					Blocks::props($attributes, 'paragraph'),
@@ -68,9 +68,9 @@ $jumbotronClass = Components::classnames([
 						'blockClass' => $componentClass
 					]
 				)
-			);
+			),
 
-			echo Components::render(
+			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'button',
 				array_merge(
 					Blocks::props($attributes, 'button'),
@@ -82,5 +82,4 @@ $jumbotronClass = Components::classnames([
 			?>
 		</div>
 	</div>
-
 </div>

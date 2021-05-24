@@ -88,17 +88,17 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Bailout if global breakpoints are missing.
 	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
-		return;
+		return '';
 	}
 
 	// Bailout if attributes or manifest is missing.
 	if (!attributes || !manifest) {
-		return;
+		return '';
 	}
 
 	// Bailout if manifest is missing variables key.
 	if (!_.has(manifest, 'variables')) {
-		return;
+		return '';
 	}
 
 	// Define variables from globalManifest.
@@ -205,7 +205,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Check if final output is empty and remove if it is.
 	if (_.isEmpty(fullOutput.trim())) {
-		return;
+		return '';
 	}
 
 	// Prepare output for manual variables.

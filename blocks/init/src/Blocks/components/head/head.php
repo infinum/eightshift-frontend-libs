@@ -46,4 +46,4 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 <link rel="shortcut icon" href="<?php echo \esc_url($icon); ?>" />
 
 <?php
-echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
