@@ -497,7 +497,7 @@ export const registerBlock = (
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
- * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
+ * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
  *
  * @param {object} globalManifest               - Must provide global blocks setting manifest.json.
  * @param {function?} [wrapperComponent]        - Callback function that returns a `Wrapper`.

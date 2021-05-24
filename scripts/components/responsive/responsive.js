@@ -5,7 +5,7 @@ import { BaseControl, Button } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
 /**
- * A component that displays options adjustable across screen sizes beautiful.
+ * A component that displays options adjustable across screen sizes beautifully.
  * 
  * @param {object} props                                - Heading level picker options.
  * @param {string?} [props.label]                       - Label displayed above the picker.
