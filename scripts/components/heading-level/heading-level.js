@@ -59,7 +59,7 @@ const createLevelControl = (targetLevel, selectedLevel, onChange) => {
  * @param {object} props                     - Heading level selector options.
  * @param {boolean} [props.isCollapsed=true] - If `true`, the control is shown as a button that opens a dropdown menu, otherwise all options are shown inline. 
  * @param {number} [props.minLevel=1]        - Lowest allowed level.
- * @param {number} [props.maxLevel=1]        - Highest allowed level.
+ * @param {number} [props.maxLevel=6]        - Highest allowed level.
  * @param {number?} props.selectedLevel      - Currently selected heading level.
  * @param {function} props.onChange          - Function called when the selection is changed.
  */
