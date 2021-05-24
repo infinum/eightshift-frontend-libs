@@ -460,6 +460,9 @@ export const registerBlock = (
 		blockManifest['example'] = {};
 	}
 
+	// Set full examples list.
+	blockManifest['example'].attributes = getExample(globalManifest, componentsManifest, blockManifest);
+
 	return {
 		blockName: fullBlockName,
 		options: {
