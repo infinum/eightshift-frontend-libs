@@ -17,7 +17,6 @@ export const ParagraphOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		options = manifestOptions,
 		paragraphShowControls = true,
 
 		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
@@ -29,6 +28,8 @@ export const ParagraphOptions = (attributes) => {
 		showParagraphColor = true,
 		showParagraphSize = true,
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	if (!paragraphShowControls) {
 		return null;

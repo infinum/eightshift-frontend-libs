@@ -20,7 +20,6 @@ export const ParagraphEditor = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
-		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
@@ -34,6 +33,8 @@ export const ParagraphEditor = (attributes) => {
 
 		paragraphContent = checkAttr('paragraphContent', attributes, manifest, componentName),
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	const paragraphClass = classnames([
 		componentClass,

@@ -13,7 +13,6 @@ export const SocialLinksEditor = (attributes) => {
 	const {
 		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
-		options = manifestOptions,
 		selectorClass = componentClass,
 		blockClass,
 
@@ -21,6 +20,8 @@ export const SocialLinksEditor = (attributes) => {
 
 		socialLinks = checkAttr('socialLinks', attributes, manifest, componentName),
 	} = attributes;
+
+	const options = {...manifestOptions, ...attributes.options};
 
 	const socialLinksClass = classnames([
 		componentClass,

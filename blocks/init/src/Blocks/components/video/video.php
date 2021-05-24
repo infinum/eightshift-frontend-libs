@@ -12,6 +12,7 @@ $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
 $videoUse = Components::checkAttr('videoUse', $attributes, $manifest, $componentName);
+
 if (!$videoUse) {
 	return;
 }

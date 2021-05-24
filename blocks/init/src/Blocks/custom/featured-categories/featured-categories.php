@@ -10,10 +10,10 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass =  Components::checkAttr('blockClass', $attributes, $manifest);
-$query =  Components::checkAttr('query', $attributes, $manifest);
-$itemsPerLine =  Components::checkAttr('itemsPerLine', $attributes, $manifest);
-$serverSideRender =  Components::checkAttr('serverSideRender', $attributes, $manifest);
+$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
+$query = Components::checkAttr('query', $attributes, $manifest);
+$itemsPerLine = Components::checkAttr('itemsPerLine', $attributes, $manifest);
+$serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);
 
 $taxonomy = $query['taxonomy'] ?? '';
 
@@ -59,7 +59,7 @@ if (!$taxonomy) {
 
 		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 			<?php
-				echo Components::render(
+				echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					'card',
 					$cardProps
 				);
