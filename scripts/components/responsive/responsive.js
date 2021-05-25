@@ -4,6 +4,14 @@ import { Fragment, useState } from '@wordpress/element';
 import { BaseControl, Button } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 
+/**
+ * A component that displays options adjustable across screen sizes beautifully.
+ * 
+ * @param {object} props                                - Heading level picker options.
+ * @param {string?} [props.label]                       - Label displayed above the picker.
+ * @param {string} [props.tooltip=Responsive overrides] - Tooltip of the toggle button.
+ * @param {array} props.children                        - Items to show. First item is always visible, the rest are visible when the button is toggled.
+ */
 export const Responsive = (props) => {
 	const {
 		label,

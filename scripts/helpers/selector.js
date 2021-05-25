@@ -1,10 +1,10 @@
 /**
  * Returns BEM selector for html class and check if Condition part is set.
  *
- * @param {boolean} condition Check condition.
- * @param {string}  block BEM Block selector.
- * @param {string}  element BEM Element selector.
- * @param {string}  modifier BEM Modifier selector.
+ * @param {boolean} condition - Check condition.
+ * @param {string} block      - BEM Block selector.
+ * @param {string} [element]  - BEM Element selector.
+ * @param {string} [modifier] - BEM Modifier selector.
  *
  * @return string
  */
@@ -22,4 +22,3 @@ export const selector = (condition, block, element = '', modifier = '') => {
 
 	return condition ? `${block}${fullElement}${fullModifier}` : '';
 };
-

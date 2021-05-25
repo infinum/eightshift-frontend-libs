@@ -3,13 +3,13 @@ import _ from 'lodash';
 /**
  * Check if attribute exist in attributes list and add default value if not.
  *
- * @param {string} key Key to check.
- * @param {array}  attributes Array of attributes.
- * @param {object}  manifest Array of default attributes from manifest.json.
- * @param {string} componentName The real component name.
- * @param {boolean} undefinedAllowed Allowed detection of undefined values.
+ * @param {string} key                       - Key to check.
+ * @param {array} attributes                 - Array of attributes.
+ * @param {object} manifest                  - Default attributes from manifest.json.
+ * @param {string} [componentName]           - The real component name.
+ * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
- * @return mixed
+ * @return {mixed}
  */
 export const checkAttr = (key, attributes, manifest, componentName = '', undefinedAllowed = false) => {
 
@@ -52,13 +52,13 @@ export const checkAttr = (key, attributes, manifest, componentName = '', undefin
 /**
  * Map and check attributes for responsive object.
  *
- * @param {string} keyName Key name to find in responsiveAttributes object.
- * @param {array}  attributes Array of attributes.
- * @param {object} manifest Array of default attributes from manifest.json.
- * @param {string} componentName The real component name.
- * @param {boolean} undefinedAllowed Allowed detection of undefined values.
+ * @param {string} keyName                   - Key name to find in responsiveAttributes object.
+ * @param {array} attributes                 - Array of attributes.
+ * @param {object} manifest                  - Array of default attributes from manifest.json.
+ * @param {string} [componentName]           - The real component name.
+ * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
- * @returns mixed
+ * @returns {mixed}
  */
 export const checkAttrResponsive = (keyName, attributes, manifest, componentName = '', undefinedAllowed = false) => {
 	const output = {};

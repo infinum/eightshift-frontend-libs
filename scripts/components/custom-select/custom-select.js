@@ -5,6 +5,27 @@ import { BaseControl } from '@wordpress/components';
 import { SortableContainer, SortableElement, sortableHandle } from 'react-sortable-hoc';
 import AsyncSelect from "react-select/async";
 
+/**
+ * A modern, flexible and customizable select menu.
+ * 
+ * @param {object} props                                               - CustomSelect options.
+ * @param {string?} [props.label]                                      - Label displayed above the control.
+ * @param {string?} [props.help]                                       - Help text displayed below the control.
+ * @param {boolean} [props.multiple=false]                             - If `true`, allows multiple items to be selected.
+ * @param {array?} props.options                                       - Options to choose. Option should be in `{label: '', value: ''}` format.
+ * @param {object} props.value                                         - Current value
+ * @param {function} props.onChange                                    - Function called when the selection is changed.
+ * @param {boolean} [props.isClearable=true]                           - If `true`, the currently selected item can be cleared. `null` is set as the value.
+ * @param {boolean} [props.isSearchable=true]                          - If `true`, the options can be searched through.
+ * @param {boolean} [props.closeMenuOnSelect=false]                    - If single-select mode is active, after a selection is made the dropdown is closed.
+ * @param {boolean} [props.cacheOptions=true]                          - If in async mode (`loadOptions` is set) and set to `true`, the options are cached internally.
+ * @param {boolean} [props.reFetchOnSearch=false]                      - If in async mode (`loadOptions` is set) and set to `true`, after a character is typed the `loadOptions` callback runs again with the provided search text as an argument.
+ * @param {function?} props.loadOptions                                - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
+ * @param {string?} [props.placeholder]                                - Placeholder text when no item is selected.
+ * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
+ * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
+ * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
+ */
 export const CustomSelect = (props) => {
 	const {
 		label,

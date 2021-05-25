@@ -4,6 +4,18 @@ import { getColorObjectByColorValue } from '@wordpress/block-editor';
 import { ColorPalette } from '@wordpress/components';
 import { withSelect } from '@wordpress/data';
 
+/**
+ * Modified version of WordPress's `ColorPalette` which saves values as color names/slugs instead of hex codes.
+ * 
+ * @param {object} props                             - ColorPaletteCustom options.
+ * @param {array} props.colors                       - Colors to display.
+ * @param {object} props.value                       - Current value.
+ * @param {function} props.onChange                  - Function called when the value is modified.
+ * @param {boolean} [props.disableCustomColors=true] - If `true`, custom color selection will be disabled.
+ * @param {boolean} [props.clearable=false]          - If `true`, the color palette will have a *Clear* button.
+ * @param {string?} [props.label]                    - Label displayed above the picker.
+ * @param {string?} [props.help]                     - Help text displayed below the picker.
+ */
 export const ColorPaletteCustom = withSelect((select, ownProps) => {
 	const { colors } = select('core/block-editor').getSettings();
 

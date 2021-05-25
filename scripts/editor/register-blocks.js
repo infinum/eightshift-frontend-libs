@@ -9,9 +9,9 @@ import { blockIcons } from './icons/icons';
 /**
  * Filter array of JS paths and get the correct edit components.
  *
- * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all JavaScript files in a block got from require.context.
- * @param {string} fileName Block partial name.
+ * @param {string} blockName - Provided block name to find corresponding edit component.
+ * @param {function} paths   - Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName  - Block partial name.
  *
  */
 export const getBlockEditComponent = (blockName, paths, fileName) => {
@@ -41,9 +41,9 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
 /**
  * Filter array of JS paths and get the correct transforms, hooks, etc components.
  *
- * @param {string} blockName Provided block name to find corresponding edit component.
- * @param {function} paths Function of all JavaScript files in a block got from require.context.
- * @param {string} fileName Block partial name.
+ * @param {string} blockName - Provided block name to find corresponding edit component.
+ * @param {function} paths   - Function of all JavaScript files in a block got from require.context.
+ * @param {string} fileName  - Block partial name.
  *
  */
 export const getBlockGenericComponent = (blockName, paths, fileName) => {
@@ -66,8 +66,10 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
 /**
  * Check if namespace is defined in block or in global manifest settings and return namespace.
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
+ * 
+ * @returns {string?}
  */
 export const getNamespace = (globalManifest, blockManifest) => {
 	return (typeof blockManifest.namespace === 'undefined') ? globalManifest.namespace : blockManifest.namespace;
@@ -76,8 +78,10 @@ export const getNamespace = (globalManifest, blockManifest) => {
 /**
  * Return full block name used in Block Editor with correct namespace.
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
+ * 
+ * @returns {string}
  */
 export const getFullBlockName = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
@@ -86,8 +90,10 @@ export const getFullBlockName = (globalManifest, blockManifest) => {
 /**
  * Return full block name used in Block Editor with correct namespace.
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
+ * 
+ * @returns {string}
  */
 export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.parentName}`;
@@ -96,7 +102,9 @@ export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
 /**
  * Return save function based on hasInnerBlocks option of block.
  *
- * @param {object} blockManifest Block full manifest.
+ * @param {object} blockManifest - Block manifest.
+ * 
+ * @returns {function} Save callback.
  */
 export const getSaveCallback = (blockManifest) => {
 	const {
@@ -111,9 +119,9 @@ export const getSaveCallback = (blockManifest) => {
 };
 
 /**
- * Return merge function based on existence of mergeableAttributes option of block.
+ * Return merge function based on existence of `mergeableAttributes` option of block.
  *
- * @param {object} blockManifest Block full manifest.
+ * @param {object} blockManifest - Block manifest.
  */
 export const getMergeCallback = (blockManifest) => {
 	const {
@@ -174,9 +182,10 @@ export const getMergeCallback = (blockManifest) => {
 /**
  * Return edit function wrapped with Wrapper component.
  *
- * @param {function} Component Children callback function.
- * @param {function} Wrapper Wrapper callback function.
+ * @param {React.Component} Component - Component to render inside the wrapper.
+ * @param {React.Component} Wrapper   - Wrapper component.
  *
+ * @returns {React.Component}
  */
 export const getEditCallback = (Component, Wrapper) => (props) => {
 	return (
@@ -189,8 +198,10 @@ export const getEditCallback = (Component, Wrapper) => (props) => {
 /**
  * Set icon object with icon, background and foreground.
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
+ * 
+ * @returns {object}
  */
 export const getIconOptions = (globalManifest, blockManifest) => {
 	const {
@@ -226,8 +237,10 @@ export const getIconOptions = (globalManifest, blockManifest) => {
 /**
  * Return shared attributes.
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
+ * 
+ * @returns {object}
  */
 export const getSharedAttributes = (globalManifest, blockManifest) => {
 	const {
@@ -258,10 +271,12 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
  * Iterate over component object in block manifest and search and replace the component attributes with new one.
  * Search and replace the component attributes with new one.
  *
- * @param {object} component Object of component manifests to iterate.
- * @param {string} realComponentName React component name defined in the component manifest.
- * @param {string} newComponentName New component name to search and replace the original.
- * @param {string} key Change output, can be: "attributes" or "example".
+ * @param {object} component         - Object of component manifests to iterate.
+ * @param {string} realComponentName - React component name defined in the component manifest.
+ * @param {string} newComponentName  - New component name to search and replace the original.
+ * @param {string} [key=attributes]  - Type of output, can be: `attributes` or `example`.
+ * 
+ * @returns {object}
  */
 export const prepareComponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
 	let output = {};
@@ -299,11 +314,13 @@ export const prepareComponentAttribute = (component, realComponentName, newCompo
  * Iterate over component object in block manifest and check if the component exists in the project.
  * If components contains more component this function will run recursively.
  *
- * @param {object} componentsManifest Object of component manifests to iterate.
- * @param {object} blockManifest Object of blocks manifests to iterate.
- * @param {string} blockName Full block name.
- * @param {string} key Change output, can be: "attributes" or "example".
- * @param {string} parentAttributeName Use parent attribute name to determine if the name has changed in the parent component.
+ * @param {object} componentsManifest              - Object of component manifests to iterate.
+ * @param {object} blockManifest                   - Object of blocks manifests to iterate.
+ * @param {string} blockName                       - Full block name.
+ * @param {string} [key=attributes]                - Type of output, can be: `attributes` or `example`.
+ * @param {string} [parentAttributeName=undefined] - Parent component attribute from which to determine if the name has changed in the parent component.
+ * 
+ * @returns {object}
  */
 export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes', parentAttributeName = undefined) => {
 	let output = {};
@@ -354,10 +371,12 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 /**
  * Get Block attributes combined in one: "shared, global, wrapper, components, block".
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} wrapperManifest Wrapper full manifest.
- * @param {object} componentsManifest Object of component manifests to iterate.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest     - Global manifest.
+ * @param {object} wrapperManifest    - `Wrapper` manifest.
+ * @param {object} componentsManifest - Component manifest to iterate through.
+ * @param {object} blockManifest      - Block manifest.
+ * 
+ * @returns {object}
  */
 export const getAttributes = (globalManifest, wrapperManifest, componentsManifest, blockManifest) => {
 	const {
@@ -384,9 +403,11 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
 /**
  * Get Block example attributes combined in one: "components and block".
  *
- * @param {object} globalManifest Blocks global shared manifest.
- * @param {object} componentsManifest Object of component manifests to iterate.
- * @param {object} blockManifest Block full manifest.
+ * @param {object} globalManifest     - Global manifest.
+ * @param {object} componentsManifest - Component manifest to iterate through.
+ * @param {object} blockManifest      - Block manifest.
+ * 
+ * @returns {object}
  */
 export const getExample = (globalManifest, componentsManifest, blockManifest) => {
 	const {
@@ -402,9 +423,10 @@ export const getExample = (globalManifest, componentsManifest, blockManifest) =>
 /**
  * Map and prepare all options from block manifest.json file for usage in registerBlockVariation method.
  *
- * @param {object} globalManifest Global blocks manifest.json object with namespace.
- * @param {object} blockManifest Block manifest.json object with data.
+ * @param {object} globalManifest - Global manifest.
+ * @param {object} blockManifest  - Block manifest.
  *
+ * @returns {object}
  */
 export const registerVariation = (
 	globalManifest = {},
@@ -429,13 +451,14 @@ export const registerVariation = (
 /**
  * Map and prepare all options from block manifest.json file for usage in registerBlockType method.
  *
- * @param {object} globalManifest Global blocks manifest.json object.
- * @param {object} wrapperManifest Wrapper manifest.json object.
- * @param {object} componentsManifest All components manifest.json objects in an single object.
- * @param {object} blockManifest Block manifest.json object with data.
- * @param {function} wrapperComponent Wrapper callback function.
- * @param {function} blockComponent Edit callback function.
+ * @param {object} globalManifest     - Global manifest.
+ * @param {object} wrapperManifest    - `Wrapper` manifest.
+ * @param {object} componentsManifest - Manifest of all components in a single object.
+ * @param {object} blockManifest      - Block manifest.
+ * @param {function} wrapperComponent - Callback function that returns a `Wrapper`.
+ * @param {function} blockComponent   - Edit callback function.
  *
+ * @returns {object}
  */
 export const registerBlock = (
 	globalManifest = {},
@@ -476,18 +499,19 @@ export const registerBlock = (
 };
 
 /**
- * Register all Block Editor blocks using WP registerBlockType method.
- * Due to restrictions in dynamic import using dynamic names all block are register using require.context.
+ * Register all Block Editor blocks using WP `registerBlockType` method.
+ * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
  *
- * @param {object} globalManifest Must provide global blocks setting manifest.json.
- * @param {function} wrapperComponent Wrapper callback function.
- * @param {object} wrapperManifest Wrapper manifest function.
- * @param {function} componentsManifestPath Must provide require.context for all components manifest.json-s.
- * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
- * @param {function} blocksEditComponentPath Must provide require.context for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).
- * @param {function} hooksComponentPath Function of hooks JavaScript files in a block got from require.context.
- * @param {function} transformsComponentPath Function of transforms JavaScript files in a block got from require.context.
+ * @param {object} globalManifest               - Must provide global blocks setting manifest.json.
+ * @param {function?} [wrapperComponent]        - Callback function that returns a `Wrapper`.
+ * @param {object} wrapperManifest              - `Wrapper` manifest.
+ * @param {function} componentsManifestPath     - **Must provide `require.context` for all components `manifest.json`s.**
+ * @param {function} blocksManifestPath         - **Must provide `require.context` for all blocks manifest.json-s.**
+ * @param {function} blocksEditComponentPath    - **Must provide `require.context` for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).**
+ * @param {function?} [hooksComponentPath]      - Function of hooks JavaScript files in a block from `require.context`.
+ * @param {function?} [transformsComponentPath] - Function of transforms JavaScript files in a block from `require.context`.
  *
+ * @returns {mixed}
  */
 export const registerBlocks = (
 	globalManifest = {},
@@ -559,12 +583,12 @@ export const registerBlocks = (
 };
 
 /**
- * Build global window object used for optimisations.
+ * Build global window object used for optimization.
  *
- * @param {object} globalManifest Global setting manifest.
- * @param {array} componentsManifest List of all components manifests.
- * @param {array} blocksManifests  List of all blocks manifests.
- * @param {object} wrapperManifest Wrapper manifest.
+ * @param {object} globalManifest    - Global setting manifest.
+ * @param {array} componentsManifest - List of all component manifests.
+ * @param {array} blocksManifests    - List of all block manifests.
+ * @param {object} wrapperManifest   - `Wrapper` manifest.
  */
 export const buildWindowObject = (globalManifest, componentsManifest, blocksManifests, wrapperManifest) => {
 	window['eightshift'] = {
@@ -584,8 +608,8 @@ export const buildWindowObject = (globalManifest, componentsManifest, blocksMani
 /**
  * Build components dependency tree for blocks.
  *
- * @param {object} blocks List of all blocks.
- * @param {object} components List of all components
+ * @param {object} blocks     - List of all blocks.
+ * @param {object} components - List of all components
  *
  * @returns {object}
  */
@@ -602,7 +626,7 @@ export const buildDependencyBlocksTree = (blocks, components) => {
 /**
  * Build components dependency tree for components.
  *
- * @param {object} components List of all components
+ * @param {object} components - List of all components
  *
  * @returns {object}
  */
@@ -619,8 +643,8 @@ export const buildDependencyComponentsTree = (components) => {
 /**
  * Build inner recursive dependency tree for components.
  *
- * @param {Object} componentsList List of components to check.
- * @param {Object} components List of all components,
+ * @param {Object} componentsList - List of components to check.
+ * @param {Object} components     - List of all components,
  *
  * @returns {array}
  */
@@ -644,12 +668,13 @@ export const buildDependencyComponentsInnerTree = (componentsList, components) =
 }
 
 /**
- * Register all Variations Editor blocks using WP registerBlockVariation method.
- * Due to restrictions in dynamic import using dynamic names all block are register using require.context.
+ * Register all Variations Editor blocks using WP `registerBlockVariation` method.
+ * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
  *
- * @param {object} globalManifest Must provide global blocks setting manifest.json.
- * @param {function} blocksManifestPath Must provide require.context for all blocks manifest.json-s.
+ * @param {object} globalManifest       - **Must provide global blocks setting `manifest.json`.**
+ * @param {function} blocksManifestPath - **Must provide require.context for all block `manifest.json`s.**
  *
+ * @returns {null}
  */
 export const registerVariations = (
 	globalManifest = {},

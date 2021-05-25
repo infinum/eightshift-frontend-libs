@@ -3,6 +3,13 @@ import { __, sprintf } from '@wordpress/i18n';
 import { ToolbarGroup, Path, SVG } from '@wordpress/components';
 import { range } from 'lodash';
 
+/**
+ * A heading level selector icon.
+ * 
+ * @param {object} props                    - Heading level selector icon options.
+ * @param {number} [props.level]            - Level to display
+ * @param {boolean} [props.isPressed=false] - Determines if the option is currently selected.
+ */
 const HeadingLevelIcon = ({ level, isPressed = false }) => {
 	const levelToPath = {
 		1: 'M9 5h2v10H9v-4H5v4H3V5h2v4h4V5zm6.6 0c-.6.9-1.5 1.7-2.6 2v1h2v7h2V5h-1.4z',
@@ -46,6 +53,16 @@ const createLevelControl = (targetLevel, selectedLevel, onChange) => {
 	};
 };
 
+/**
+ * A heading level selector.
+ * 
+ * @param {object} props                     - Heading level selector options.
+ * @param {boolean} [props.isCollapsed=true] - If `true`, the control is shown as a button that opens a dropdown menu, otherwise all options are shown inline. 
+ * @param {number} [props.minLevel=1]        - Lowest allowed level.
+ * @param {number} [props.maxLevel=6]        - Highest allowed level.
+ * @param {number?} props.selectedLevel      - Currently selected heading level.
+ * @param {function} props.onChange          - Function called when the selection is changed.
+ */
 export const HeadingLevel = (props) => {
 	const {
 		isCollapsed = true,

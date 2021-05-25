@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
 /**
- * Get Global Manifest.json and return globalVariables as CSS variables.
+ * Get Global manifest.json and return global variables as CSS variables.
  *
- * @param array globalManifest Array of global variables data.
+ * @param {array} globalManifest - Global variable data.
  *
- * @return string
+ * @return {string|void}
  */
 export const outputCssVariablesGlobal = (globalManifest) => {
 
@@ -41,10 +41,10 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 /**
  * Process and return global CSS variables based on the type.
  *
- * @param array  itemValues Values of data to check.
- * @param string itemKey    Item key to check.
+ * @param {array} itemValues - Values to check.
+ * @param {string} itemKey   - Item key to check.
  *
- * @return string
+ * @return {string}
  */
 export const globalInner = (itemValues, itemKey) => {
 	let output = '';
@@ -75,12 +75,12 @@ export const globalInner = (itemValues, itemKey) => {
 /**
  * Get component/block options and process them in CSS variables.
  *
- * @param array  attributes Built attributes.
- * @param array  manifest Component/block manifest data.
- * @param string unique Unique key.
- * @param object globalManifest Global manifest json.
+ * @param {array} attributes      - Built attributes.
+ * @param {array} manifest        - Component/block manifest data.
+ * @param {string} unique         - Unique key.
+ * @param {object} globalManifest - Global manifest json.
  *
- * @return string
+ * @return {string}
  */
 export const outputCssVariables = (attributes, manifest, unique, globalManifest) => {
 
@@ -221,9 +221,9 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 /**
  * Create initial array of data to be able to populate later.
  *
- * @param object globalBreakpoints Global breakpoints from global manifest to set the correct output.
+ * @param {object} globalBreakpoints - Global breakpoints from global manifest to set the correct output.
  *
- * @return array
+ * @return {array}
  */
 export const prepareVariableData = (globalBreakpoints) => {
 
@@ -284,10 +284,10 @@ export const prepareVariableData = (globalBreakpoints) => {
 /**
  * Internal helper to loop CSS Variables from array.
  *
- * @param array variables Array of variables of CSS variables.
- * @param mixed attributeValue Original attribute value used in magic variable.
+ * @param {array} variables      - Array of variables of CSS variables.
+ * @param {mixed} attributeValue - Original attribute value used in magic variable.
  *
- * @returns array
+ * @returns {array}
  */
  export const variablesInner = (variables, attributeValue) => {
 	let output = [];
@@ -325,9 +325,9 @@ export const prepareVariableData = (globalBreakpoints) => {
 }
 
 /**
- * Return unique ID for block processing.
+ * Returns a unique ID.
  *
- * @return string
+ * @return {string}
  */
 export const getUnique = () => {
 	return require('crypto').randomBytes(16).toString('hex');
