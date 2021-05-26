@@ -14,3 +14,32 @@ body.sb-show-main,
 body .interface-interface-skeleton__content {
 	font-size: var(--base-font-size);
 }
+
+/* stylelint-disable-next-line selector-max-specificity */
+.wp-block:not(.block-list-appender):not(.block-editor-default-block-appender):not(.editor-post-title):hover::before,
+.wp-block-group:hover::before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	border: 1px dashed var(--global-colors-light);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* stylelint-disable-next-line selector-max-specificity */
+.wp-block:not(.block-list-appender):not(.block-editor-default-block-appender):not(.editor-post-title):hover::after,
+.wp-block-group:hover::after {
+	content: attr(data-title);
+	position: absolute;
+	top: -20px;
+	left: unset;
+	right: 0;
+	padding: 5px 10px;
+	font-size: 12px;
+	background: var(--global-colors-light);
+	color: var(--global-colors-black);
+	display: inline-block;
+	height: 20px;
+}
