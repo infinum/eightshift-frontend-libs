@@ -561,4 +561,57 @@ body {
 		font-size: 0.85rem;
 		font-weight: 500;
 	}
+
+	// Styles for making empty placeholders visible and usable (especially in Columns).
+	.block-editor-block-list__layout {
+		height: 100%;
+	
+		// If it's empty.
+		&:empty {
+			height: 100%;
+			min-height: 4rem;
+			border-radius: 8px;
+			border: 1px dashed hsl(0, 0%, 90%);
+		}
+	
+		// If it has one child, expand the expander to fill everything.
+		// (aka when empty InnerBlocks is clicked and only has the appender)
+		.block-list-appender.wp-block:only-child {
+			height: 100%;
+	
+			.components-dropdown.block-editor-inserter {
+				border-radius: 8px;
+				border: 1px dashed hsl(0, 0%, 90%);
+				height: 100%;
+	
+				.block-list-appender__toggle.block-editor-button-block-appender {
+					min-height: 4rem;
+					width: 100%;
+					height: 100%;
+					border-radius: 8px;
+				}
+			}
+		}
+	
+		// Resize the appender when it's not the only child
+		// to make it easier to hit.
+		.block-list-appender.wp-block:not(:only-child) {
+			.block-list-appender__toggle.block-editor-button-block-appender {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	
+	// Resize InnerBlocks container to fit.
+	.block-editor-inner-blocks {
+		height: 100%;
+	}
+	
+	// Center the default [+] inserter.
+	.block-editor-inserter {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+	}
 }
