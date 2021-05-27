@@ -1,16 +1,14 @@
 import React from 'react';
-import ServerSideRender from '@wordpress/server-side-render';
-import globalSettings from '../../../manifest.json';
-import manifest from '../manifest.json';
+import { ServerSideRender } from '@eightshift/frontend-libs/scripts/components';
 
 export const FeaturedCategoriesEditor = ({ attributes }) => {
 	const {
-		blockName: manifestBlockName,
-	} = manifest;
+		blockFullName,
+	} = attributes;
 
 	return (
 		<ServerSideRender
-			block={`${globalSettings.namespace}/${manifestBlockName}`}
+			block={blockFullName}
 			attributes={
 				{
 					...attributes,
