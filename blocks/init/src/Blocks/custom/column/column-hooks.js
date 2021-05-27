@@ -11,6 +11,12 @@ const blockName = `${globalManifest.namespace}/${manifest.blockName}`;
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
+	const {
+		globalVariables: {
+			customBlocksName: globalManifestCustomBlocksName,
+		},
+	} = globalManifest;
+
 	return (innerProps) => {
 		const {
 			name,
@@ -33,7 +39,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 
 			const componentClass = classnames([
 				blockClass,
-				globalManifest.globalVariables.customBlocksName,
+				globalManifestCustomBlocksName,
 				responsiveSelectors(columnWidth, 'width', blockClass),
 				responsiveSelectors(columnOffset, 'offset', blockClass),
 				responsiveSelectors(columnOrder, 'order', blockClass),
