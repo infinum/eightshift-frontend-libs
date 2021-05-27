@@ -12,36 +12,29 @@ $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$query = Components::checkAttr('query', $attributes, $manifest);
-$excludeCurrentPost = Components::checkAttr('excludeCurrentPost', $attributes, $manifest);
-$showItems = Components::checkAttr('showItems', $attributes, $manifest);
-$serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);
-$itemsPerLine = [
-	'large' => Components::checkAttr('itemsPerLineLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('itemsPerLineDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('itemsPerLineTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('itemsPerLineMobile', $attributes, $manifest),
-];
+$featuredPostsQuery = Components::checkAttr('featuredPostsQuery', $attributes, $manifest);
+$featuredPostsItemsPerLine = Components::checkAttr('featuredPostsItemsPerLine', $attributes, $manifest);
+$featuredPostsShowItems = Components::checkAttr('featuredPostsShowItems', $attributes, $manifest);
+$featuredPostsExcludeCurrentPost = Components::checkAttr('featuredPostsExcludeCurrentPost', $attributes, $manifest);
+$featuredPostsServerSideRender = Components::checkAttr('featuredPostsServerSideRender', $attributes, $manifest);
 
 global $post;
 
-$featuredPostClass = Components::classnames([
-	$blockClass,
-	Components::responsiveSelectors($itemsPerLine, 'items-per-line', $blockClass),
-]);
-
 ?>
 
-<div class="<?php echo esc_attr($featuredPostClass); ?>">
+<div
+	class="<?php echo esc_attr($blockClass); ?>"
+	data-items-per-line=<?php echo \esc_attr($featuredPostsItemsPerLine); ?>
+>
 	<?php
-		$postType = $query['postType'];
-		$taxonomy = $query['taxonomy'];
-		$terms = $query['terms'];
-		$posts = $query['posts'];
+		$postType = $featuredPostsQuery['postType'] ?? '';
+		$taxonomy = $featuredPostsQuery['taxonomy'] ?? '';
+		$terms = $featuredPostsQuery['terms'] ?? [];
+		$posts = $featuredPostsQuery['posts'] ?? [];
 
 		$args = [
 			'post_type' => $postType,
-			'posts_per_page' => $showItems,
+			'posts_per_page' => $featuredPostsShowItems,
 		];
 
 		if ($taxonomy) {
@@ -61,7 +54,7 @@ $featuredPostClass = Components::classnames([
 			}
 		};
 
-		if ($excludeCurrentPost) {
+		if ($featuredPostsExcludeCurrentPost) {
 			$args['post__not_in'] = [$post->ID];
 		}
 
@@ -86,7 +79,10 @@ $featuredPostClass = Components::classnames([
 				$image = \get_the_post_thumbnail_url($postId, 'large');
 
 				$cardProps = [
-					'imageUrl' => $image,
+					'imageUrl' => [
+						'id' => $postId,
+						'url' => $image,
+					],
 					'imageUse' => $image ?? true,
 					'introUse' => false,
 					'headingContent' => \get_the_title($postId),
@@ -95,7 +91,7 @@ $featuredPostClass = Components::classnames([
 					'buttonUrl' => \get_the_permalink($postId),
 				];
 
-				if ($serverSideRender) {
+				if ($featuredPostsServerSideRender) {
 					$cardProps['headingTag'] = 'div';
 					$cardProps['paragraphTag'] = 'div';
 				}

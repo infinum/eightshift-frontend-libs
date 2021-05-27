@@ -13,7 +13,7 @@ export const FeaturedCategoriesEditor = ({ attributes }) => {
 				{
 					...attributes,
 					wrapperUse: false,
-					serverSideRender: true,
+					featuredCategoriesServerSideRender: true,
 				}
 			}
 		/>

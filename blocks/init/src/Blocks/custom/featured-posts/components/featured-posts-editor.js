@@ -13,7 +13,7 @@ export const FeaturedPostsEditor = ({ attributes }) => {
 				{
 					...attributes,
 					wrapperUse: false,
-					serverSideRender: true,
+					featuredPostsServerSideRender: true,
 				}
 			}
 		/>

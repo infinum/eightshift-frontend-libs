@@ -2,33 +2,30 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
-import { Fragment } from '@wordpress/element';
 import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import { CustomSelect, Responsive } from '@eightshift/frontend-libs/scripts/components';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from '../manifest.json';
 
 export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
-	const { attributes: reset, options } = manifest;
+	const {
+		blockName: manifestBlockName,
+		attributes: manifestAttributes,
+		options: manifestOptions
+	} = manifest;
 
 	const {
-		query: queryProps,
-		query: {
+		featuredPostsQuery,
+		featuredPostsQuery: {
 			postType,
 			taxonomy,
 			terms,
 			posts,
 		},
-		showItems,
-		excludeCurrentPost,
+		featuredPostsItemsPerLine,
+		featuredPostsShowItems,
+		featuredPostsExcludeCurrentPost,
 	} = attributes;
-
-	const itemsPerLine = [
-		attributes.itemsPerLineLarge,
-		attributes.itemsPerLineDesktop,
-		attributes.itemsPerLineTablet,
-		attributes.itemsPerLineMobile,
-	];
 
 	// Fetch all post types.
 	// Filter allowed post types defined in the block manifest.
@@ -146,7 +143,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 					options={postTypeOptions}
 					onChange={(value) => {
 						setAttributes({
-							query: {
+							featuredPostsQuery: {
 								postType: value,
 								taxonomy: '',
 								terms: [],
@@ -166,8 +163,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 					options={taxonomyOptions}
 					onChange={(value) => {
 						setAttributes({
-							query: {
-								...queryProps,
+							featuredPostsQuery: {
+								...featuredPostsQuery,
 								taxonomy: value,
 								terms: [],
 								posts: [],
@@ -187,8 +184,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 					multiple={true}
 					onChange={(value) => {
 						setAttributes({
-							query: {
-								...queryProps,
+							featuredPostsQuery: {
+								...featuredPostsQuery,
 								terms: value[0] ? value : [],
 								posts: [],
 							},
@@ -206,8 +203,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 					multiple={true}
 					onChange={(value) => {
 						setAttributes({
-							query: {
-								...queryProps,
+							featuredPostsQuery: {
+								...featuredPostsQuery,
 								terms: [],
 								posts: value,
 							},
@@ -218,36 +215,22 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<hr />
 
-			<Responsive
+			<RangeControl
 				label={
 					<>
 						<Icon icon={icons.itemsPerRow} />
 						{__('Items per one row', 'eightshift-frontend-libs')}
 					</>
 				}
-			>
-				{itemsPerLine.map((item, index) => {
-
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `itemsPerLine${point}`;
-
-					return (
-						<Fragment key={index}>
-							<RangeControl
-								label={point}
-								help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
-								allowReset={true}
-								value={attributes[attr]}
-								onChange={(value) => setAttributes({ [attr]: value })}
-								min={options.itemsPerLine.min}
-								max={options.itemsPerLine.max}
-								step={options.itemsPerLine.step}
-								resetFallbackValue={reset[attr].default}
-							/>
-						</Fragment>
-					);
-				})}
-			</Responsive>
+				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
+				allowReset={true}
+				value={featuredPostsItemsPerLine}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}ItemsPerLine`]: value })}
+				min={manifestOptions.featuredPostsItemsPerLine.min}
+				max={manifestOptions.featuredPostsItemsPerLine.max}
+				step={manifestOptions.featuredPostsItemsPerLine.step}
+				resetFallbackValue={manifestAttributes.featuredPostsItemsPerLine.default}
+			/>
 
 			<RangeControl
 				label={
@@ -258,16 +241,17 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				}
 				help={__('Option to change the number of items to show in total.', 'eightshift-frontend-libs')}
 				allowReset={true}
-				value={showItems}
-				onChange={(value) => setAttributes({ showItems: value })}
+				value={featuredPostsShowItems}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}ShowItems`]: value })}
+				min={1}
 				step={1}
 			/>
 
 			<ToggleControl
 				label={__('Exclude current post', 'eightshift-frontend-libs')}
-				checked={excludeCurrentPost}
+				checked={featuredPostsExcludeCurrentPost}
 				help={__('This options can only be used in post single pages.', 'eightshift-frontend-libs')}
-				onChange={(value) => setAttributes({ excludeCurrentPost: value })}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}ExcludeCurrentPost`]: value })}
 			/>
 
 		</PanelBody>

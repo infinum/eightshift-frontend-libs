@@ -4,19 +4,24 @@ import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
-	const { attributes: reset, options } = manifest;
+	const {
+		blockName: manifestBlockName,
+		attributes: manifestAttributes,
+		options: manifestOptions
+	} = manifest;
 
 	const {
-		query: queryProps,
-		query: {
+		featuredCategoriesQuery,
+		featuredCategoriesQuery: {
 			taxonomy,
 			terms,
 		},
-		itemsPerLine,
+		featuredCategoriesItemsPerLine = checkAttr('featuredCategoriesItemsPerLine', attributes, manifest),
 	} = attributes;
 
 	// Fetch all taxonomies.
@@ -73,7 +78,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 					onChange={(value) => {
 						setAttributes({
 							query: {
-								...queryProps,
+								...featuredCategoriesQuery,
 								taxonomy: value,
 								terms: [],
 							},
@@ -93,7 +98,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 					onChange={(value) => {
 						setAttributes({
 							query: {
-								...queryProps,
+								...featuredCategoriesQuery,
 								terms: value[0] ? value : [],
 							},
 						});
@@ -111,12 +116,12 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 				}
 				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
 				allowReset={true}
-				value={itemsPerLine}
-				onChange={(value) => setAttributes({ itemsPerLine: value })}
-				min={options.itemsPerLine.min}
-				max={options.itemsPerLine.max}
-				step={options.itemsPerLine.step}
-				resetFallbackValue={reset.itemsPerLine.default}
+				value={featuredCategoriesItemsPerLine}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}ItemsPerLine`]: value })}
+				min={manifestOptions.featuredCategoriesItemsPerLine.min}
+				max={manifestOptions.featuredCategoriesItemsPerLine.max}
+				step={manifestOptions.featuredCategoriesItemsPerLine.step}
+				resetFallbackValue={manifestAttributes.featuredCategoriesItemsPerLine.default}
 			/>
 
 		</PanelBody>
