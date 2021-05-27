@@ -12,10 +12,8 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest),
-		carouselShowItems = checkAttr('carouselShowItems', attributes, manifest),
-	} = attributes;
+	const carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest);
+	const carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
 
 	return (
 		<PanelBody title={__('Carousel Details', 'eightshift-frontend-libs')}>

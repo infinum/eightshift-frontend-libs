@@ -21,8 +21,9 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			taxonomy,
 			terms,
 		},
-		featuredCategoriesItemsPerLine = checkAttr('featuredCategoriesItemsPerLine', attributes, manifest),
 	} = attributes;
+
+	const featuredCategoriesItemsPerLine = checkAttr('featuredCategoriesItemsPerLine', attributes, manifest);
 
 	// Fetch all taxonomies.
 	// Filter allowed taxonomies defined in the block manifest.

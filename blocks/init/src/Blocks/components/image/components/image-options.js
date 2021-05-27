@@ -20,13 +20,6 @@ export const ImageOptions = (attributes) => {
 		label = manifestTitle,
 		imageShowControls = true,
 
-		imageUse = checkAttr('imageUse', attributes, manifest),
-
-		imageAlt = checkAttr('imageAlt', attributes, manifest),
-		imageAccept = checkAttr('imageAccept', attributes, manifest),
-		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
-		imageFull = checkAttr('imageFull', attributes, manifest),
-
 		showImageUse = true,
 		showImageUrl = true,
 		showImageAlt = true,
@@ -36,6 +29,12 @@ export const ImageOptions = (attributes) => {
 	if (!imageShowControls) {
 		return null;
 	}
+
+	const imageUse = checkAttr('imageUse', attributes, manifest);
+	const imageAlt = checkAttr('imageAlt', attributes, manifest);
+	const imageAccept = checkAttr('imageAccept', attributes, manifest);
+	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
+	const imageFull = checkAttr('imageFull', attributes, manifest);
 
 	return (
 		<>

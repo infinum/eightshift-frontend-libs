@@ -19,17 +19,16 @@ export const VideoEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		videoUse = checkAttr('videoUse', attributes, manifest),
-
-		videoUrl = checkAttr('videoUrl', attributes, manifest),
-		videoType = checkAttr('videoType', attributes, manifest),
-		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
-		videoAllow = checkAttr('videoAllow', attributes, manifest),
-		videoAccept = checkAttr('videoAccept', attributes, manifest),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
-		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
 	} = attributes;
+
+	const videoUse = checkAttr('videoUse', attributes, manifest);
+	const videoUrl = checkAttr('videoUrl', attributes, manifest);
+	const videoType = checkAttr('videoType', attributes, manifest);
+	const videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest);
+	const videoAllow = checkAttr('videoAllow', attributes, manifest);
+	const videoAccept = checkAttr('videoAccept', attributes, manifest);
+	const videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest);
+	const videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest);
 
 	const videoWrapClass = classnames([
 		selector(componentClass, componentClass, 'wrap'),

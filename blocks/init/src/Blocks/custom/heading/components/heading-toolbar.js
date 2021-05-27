@@ -13,9 +13,7 @@ export const HeadingToolbar = ({ attributes, setAttributes }) => {
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		headingAlign = checkAttr('headingAlign', attributes, manifest),
-	} = attributes;
+	const headingAlign = checkAttr('headingAlign', attributes, manifest);
 
 	return (
 		<>

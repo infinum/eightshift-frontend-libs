@@ -13,9 +13,9 @@ export const HamburgerEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		hamburgerUse = checkAttr('hamburgerUse', attributes, manifest),
 	} = attributes;
+
+	const hamburgerUse = checkAttr('hamburgerUse', attributes, manifest);
 
 	const hamburgerClass = classnames([
 		componentClass,

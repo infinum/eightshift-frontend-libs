@@ -12,13 +12,12 @@ export const CopyrightEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		copyrightUse = checkAttr('copyrightUse', attributes, manifest),
-
-		copyrightBy = checkAttr('copyrightBy', attributes, manifest),
-		copyrightYear = checkAttr('copyrightYear', attributes, manifest),
-		copyrightContent = checkAttr('copyrightContent', attributes, manifest),
 	} = attributes;
+
+	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
+	const copyrightBy = checkAttr('copyrightBy', attributes, manifest);
+	const copyrightYear = checkAttr('copyrightYear', attributes, manifest);
+	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 
 	const copyrightClass = classnames([
 		componentClass,

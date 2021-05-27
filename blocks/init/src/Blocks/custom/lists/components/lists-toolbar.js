@@ -11,9 +11,7 @@ export const ListsToolbar = ({ attributes, setAttributes }) => {
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		listsAlign = checkAttr('listsAlign', attributes, manifest),
-	} = attributes;
+	const listsAlign = checkAttr('listsAlign', attributes, manifest);
 
 	return (
 		<AlignmentToolbar

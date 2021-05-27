@@ -12,11 +12,10 @@ export const LoaderEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		loaderUse = checkAttr('loaderUse', attributes, manifest),
-
-		loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest),
 	} = attributes;
+
+	const loaderUse = checkAttr('loaderUse', attributes, manifest);
+	const loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest);
 
 	const loaderClass = classnames(
 		componentClass,

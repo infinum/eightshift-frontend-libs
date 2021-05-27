@@ -11,9 +11,9 @@ export const ExampleEditor = ({ attributes, setAttributes }) => {
 
 	const {
 		blockClass,
-
-		exampleContent = checkAttr('exampleContent', attributes, manifest),
 	} = attributes;
+
+	const exampleContent = checkAttr('exampleContent', attributes, manifest);
 
 	return (
 		<RichText

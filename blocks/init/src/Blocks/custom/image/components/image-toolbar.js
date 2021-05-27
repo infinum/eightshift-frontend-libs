@@ -9,9 +9,7 @@ export const ImageToolbar = ({ attributes, setAttributes }) => {
 		blockName: manifestBlockName,
 	} = manifest;
 
-	const {
-		imageAlign = checkAttr('imageAlign', attributes, manifest),
-	} = attributes;
+	const imageAlign = checkAttr('imageAlign', attributes, manifest);
 
 	return (
 		<BlockAlignmentMatrixToolbar

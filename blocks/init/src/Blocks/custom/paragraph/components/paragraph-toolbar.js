@@ -11,9 +11,7 @@ export const ParagraphToolbar = ({ attributes, setAttributes }) => {
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		paragraphAlign = checkAttr('paragraphAlign', attributes, manifest),
-	} = attributes;
+	const paragraphAlign = checkAttr('paragraphAlign', attributes, manifest);
 
 	return (
 		<AlignmentToolbar

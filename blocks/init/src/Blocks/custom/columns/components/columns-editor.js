@@ -14,11 +14,11 @@ export const ColumnsEditor = ({ attributes }) => {
 
 	const {
 		blockClass,
-
-		columnsAllowedBlocks = checkAttr('columnsAllowedBlocks', attributes, manifest),
-		columnsGutter = checkAttrResponsive('columnsGutter', attributes, manifest),
-		columnsVerticalSpacing = checkAttrResponsive('columnsVerticalSpacing', attributes, manifest),
 	} = attributes;
+
+	const columnsAllowedBlocks = checkAttr('columnsAllowedBlocks', attributes, manifest);
+	const columnsGutter = checkAttrResponsive('columnsGutter', attributes, manifest);
+	const columnsVerticalSpacing = checkAttrResponsive('columnsVerticalSpacing', attributes, manifest);
 
 	const componentClass = classnames([
 		blockClass,

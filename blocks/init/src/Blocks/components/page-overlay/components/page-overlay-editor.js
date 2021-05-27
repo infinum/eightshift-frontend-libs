@@ -12,9 +12,9 @@ export const PageOverlayEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest),
 	} = attributes;
+
+	const pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest);
 
 	const overlayClass = classnames([
 		componentClass,

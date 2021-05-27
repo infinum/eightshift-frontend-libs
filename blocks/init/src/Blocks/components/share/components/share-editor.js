@@ -12,9 +12,9 @@ export const ShareEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		shareUse = checkAttr('shareUse', attributes, manifest),
 	} = attributes;
+
+	const shareUse = checkAttr('shareUse', attributes, manifest);
 
 	const shareClass = classnames(
 		componentClass,

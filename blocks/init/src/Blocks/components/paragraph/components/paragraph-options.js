@@ -19,11 +19,6 @@ export const ParagraphOptions = (attributes) => {
 		label = manifestTitle,
 		paragraphShowControls = true,
 
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
-
-		paragraphColor = checkAttr('paragraphColor', attributes, manifest),
-		paragraphSize = checkAttr('paragraphSize', attributes, manifest),
-
 		showParagraphUse = true,
 		showParagraphColor = true,
 		showParagraphSize = true,
@@ -34,6 +29,10 @@ export const ParagraphOptions = (attributes) => {
 	if (!paragraphShowControls) {
 		return null;
 	}
+	
+	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
+	const paragraphColor = checkAttr('paragraphColor', attributes, manifest);
+	const paragraphSize = checkAttr('paragraphSize', attributes, manifest);
 
 	return (
 		<>

@@ -13,9 +13,7 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		buttonAlign = checkAttr('buttonAlign', attributes, manifest),
-	} = attributes;
+	const buttonAlign = checkAttr('buttonAlign', attributes, manifest);
 
 	return (
 		<>

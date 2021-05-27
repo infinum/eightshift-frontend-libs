@@ -18,15 +18,6 @@ export const VideoOptions = (attributes) => {
 		label = manifestTitle,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest),
-
-		videoUrl = checkAttr('videoUrl', attributes, manifest),
-		videoType = checkAttr('videoType', attributes, manifest),
-		videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest),
-		videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest),
-		videoAccept = checkAttr('videoAccept', attributes, manifest),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
-
 		showVideoUrl = true,
 		showVideoAspectRatio = true,
 		showVideoType = true,
@@ -37,6 +28,14 @@ export const VideoOptions = (attributes) => {
 	if (!videoShowControls) {
 		return null;
 	}
+
+	const videoUse = checkAttr('videoUse', attributes, manifest);
+	const videoUrl = checkAttr('videoUrl', attributes, manifest);
+	const videoType = checkAttr('videoType', attributes, manifest);
+	const videoAspectRatio = checkAttr('videoAspectRatio', attributes, manifest);
+	const videoUsePlaceholder = checkAttr('videoUsePlaceholder', attributes, manifest);
+	const videoAccept = checkAttr('videoAccept', attributes, manifest);
+	const videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest);
 
 	return (
 		<>

@@ -22,12 +22,11 @@ export const ListsEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
-
-		listsUse = checkAttr('listsUse', attributes, manifest),
-
-		listsContent = checkAttr('listsContent', attributes, manifest),
-		listsOrdered = checkAttr('listsOrdered', attributes, manifest),
 	} = attributes;
+
+	const listsUse = checkAttr('listsUse', attributes, manifest);
+	const listsContent = checkAttr('listsContent', attributes, manifest);
+	const listsOrdered = checkAttr('listsOrdered', attributes, manifest);
 
 	const listsClass = classnames([
 		componentClass,

@@ -12,14 +12,13 @@ export const DrawerEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		drawerUse = checkAttr('drawerUse', attributes, manifest),
-
-		drawerMenu = checkAttr('drawerMenu', attributes, manifest),
-		drawerTrigger = checkAttr('drawerTrigger', attributes, manifest),
-		drawerOverlay = checkAttr('drawerOverlay', attributes, manifest),
-		drawerPosition = checkAttr('drawerPosition', attributes, manifest),
 	} = attributes;
+
+	const drawerUse = checkAttr('drawerUse', attributes, manifest);
+	const drawerMenu = checkAttr('drawerMenu', attributes, manifest);
+	const drawerTrigger = checkAttr('drawerTrigger', attributes, manifest);
+	const drawerOverlay = checkAttr('drawerOverlay', attributes, manifest);
+	const drawerPosition = checkAttr('drawerPosition', attributes, manifest);
 
 	const drawerClass = classnames([
 		componentClass,

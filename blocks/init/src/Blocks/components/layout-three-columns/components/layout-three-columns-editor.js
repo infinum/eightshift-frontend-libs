@@ -12,13 +12,12 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		layoutUse = checkAttr('layoutUse', attributes, manifest),
-
-		layoutLeft = checkAttr('layoutLeft', attributes, manifest),
-		layoutCenter = checkAttr('layoutCenter', attributes, manifest),
-		layoutRight = checkAttr('layoutRight', attributes, manifest),
 	} = attributes;
+
+	const layoutUse = checkAttr('layoutUse', attributes, manifest);
+	const layoutLeft = checkAttr('layoutLeft', attributes, manifest);
+	const layoutCenter = checkAttr('layoutCenter', attributes, manifest);
+	const layoutRight = checkAttr('layoutRight', attributes, manifest);
 
 	const layoutClass = classnames([
 		componentClass,

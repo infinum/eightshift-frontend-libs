@@ -12,12 +12,10 @@ export const ScrollToTopEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest),
-
-		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest),
-
 	} = attributes;
+
+	const scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest);
+	const scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest);
 
 	const scrollClass = classnames(
 		componentClass,

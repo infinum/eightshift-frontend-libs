@@ -16,16 +16,16 @@ export const ButtonToolbar = (attributes) => {
 		label = manifestTitle,
 		buttonShowControls = true,
 
-		buttonUse = checkAttr('buttonUse', attributes, manifest),
-		buttonUrl = checkAttr('buttonUrl', attributes, manifest),
-		buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest),
-
 		showButtonUrl = true,
 	} = attributes;
 
 	if (!buttonShowControls) {
 		return null;
 	}
+
+	const buttonUse = checkAttr('buttonUse', attributes, manifest);
+	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
+	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
 
 	const ref = useRef();
 

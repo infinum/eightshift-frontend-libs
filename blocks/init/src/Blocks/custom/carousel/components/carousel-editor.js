@@ -8,11 +8,11 @@ export const CarouselEditor = ({ attributes }) => {
 	const {
 		blockClass,
 		blockJsClass,
-
-		carouselAllowedBlocks = checkAttr('carouselAllowedBlocks', attributes, manifest),
-		carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest),
-		carouselShowItems = checkAttr('carouselShowItems', attributes, manifest),
 	} = attributes;
+
+	const carouselAllowedBlocks = checkAttr('carouselAllowedBlocks', attributes, manifest);
+	const carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest);
+	const  carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
 
 	const carouselClass = classnames([
 		blockClass,

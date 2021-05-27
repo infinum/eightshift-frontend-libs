@@ -13,13 +13,12 @@ export const SocialLinksEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		socialLinksUse = checkAttr('socialLinksUse', attributes, manifest),
-
-		socialLinks = checkAttr('socialLinks', attributes, manifest),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
+
+	const socialLinksUse = checkAttr('socialLinksUse', attributes, manifest);
+	const socialLinks = checkAttr('socialLinks', attributes, manifest);
 
 	const socialLinksClass = classnames([
 		componentClass,

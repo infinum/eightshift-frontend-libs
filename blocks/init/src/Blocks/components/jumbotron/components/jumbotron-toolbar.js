@@ -17,16 +17,15 @@ export const JumbotronToolbar = (attributes) => {
 		componentName = manifestComponentName,
 		jumbotronShowControls = true,
 
-		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest),
-
-		jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest),
-
 		showJumbotronContentPosition = true,
 	} = attributes;
 
 	if (!jumbotronShowControls) {
 		return null;
 	}
+
+	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
+	const jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest);
 
 	return (
 		<>

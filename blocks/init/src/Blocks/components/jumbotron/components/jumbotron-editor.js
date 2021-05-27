@@ -20,9 +20,9 @@ export const JumbotronEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest),
 	} = attributes;
+
+	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 
 	const jumbotronClass = classnames([
 		componentClass,

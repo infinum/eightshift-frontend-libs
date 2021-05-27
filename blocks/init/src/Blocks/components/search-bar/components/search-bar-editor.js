@@ -12,17 +12,16 @@ export const SearchBarEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		searchBarUse = checkAttr('searchBarUse', attributes, manifest),
-
-		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest),
-		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest),
-		searchBarAction = checkAttr('searchBarAction', attributes, manifest),
-		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest),
-		searchBarId = checkAttr('searchBarId', attributes, manifest),
-		searchBarLabel = checkAttr('searchBarLabel', attributes, manifest),
-		searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest),
 	} = attributes;
+
+	const searchBarUse = checkAttr('searchBarUse', attributes, manifest);
+	const searchBarMethod = checkAttr('searchBarMethod', attributes, manifest);
+	const searchBarPostType = checkAttr('searchBarPostType', attributes, manifest);
+	const searchBarAction = checkAttr('searchBarAction', attributes, manifest);
+	const searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest);
+	const searchBarId = checkAttr('searchBarId', attributes, manifest);
+	const searchBarLabel = checkAttr('searchBarLabel', attributes, manifest);
+	const searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest);
 
 	const searchClass = classnames(
 		componentClass,

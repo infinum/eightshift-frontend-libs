@@ -21,13 +21,13 @@ export const JumbotronOptions = (attributes) => {
 		componentName = manifestComponentName,
 		label = manifestTitle,
 		jumbotronShowControls = true,
-
-		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest),
 	} = attributes;
 
 	if (!jumbotronShowControls) {
 		return null;
 	}
+
+	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 
 	return (
 		<>
