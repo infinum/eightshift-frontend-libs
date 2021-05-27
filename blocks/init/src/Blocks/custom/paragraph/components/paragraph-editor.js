@@ -13,11 +13,8 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	} = manifest;
 
 	const {
-		namespace,
-	} = globalManifest;
-
-	const {
 		blockClass,
+		blockFullName,
 	} = attributes;
 
 	const propsObject = props(attributes, manifestBlockName, '', true);
@@ -30,10 +27,10 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	 */
 	const splitBlocks = (value) => {
 		if (!value) {
-			return createBlock(`${namespace}/${manifestBlockName}`);
+			return createBlock(blockFullName);
 		}
 
-		return createBlock(`${namespace}/${manifestBlockName}`, {
+		return createBlock(blockFullName, {
 			...propsObject,
 			[`${manifestBlockName}Content`]: value,
 		});

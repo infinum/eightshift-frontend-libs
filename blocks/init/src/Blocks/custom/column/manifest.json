@@ -15,13 +15,16 @@
 	"example": {
 		"attributes": {
 			"wrapperDisable": true,
-			"widthLarge": 4
+			"columnWidthLarge": 4
 		},
 		"innerBlocks": [
 			{
 				"name": "eightshift-boilerplate/card",
 				"attributes": {
-					"imageUrl": "https://picsum.photos/400/400",
+					"imageUrl": {
+						"id": "1",
+						"url": "https://loremflickr.com/800/800"
+					},
 					"introContent": "Intro",
 					"introSize": "small",
 					"introColor": "light",
@@ -38,99 +41,122 @@
 			"type": "boolean",
 			"default": true
 		},
-		"widthLarge": {
+
+		"columnWidthLarge": {
 			"type": "integer",
 			"default": 4
 		},
-		"widthDesktop": {
+		"columnWidthDesktop": {
 			"type": "integer"
 		},
-		"widthTablet": {
+		"columnWidthTablet": {
 			"type": "integer"
 		},
-		"widthMobile": {
-			"type": "integer"
-		},
-
-		"offsetLarge": {
-			"type": "integer"
-		},
-		"offsetDesktop": {
-			"type": "integer"
-		},
-		"offsetTablet": {
-			"type": "integer"
-		},
-		"offsetMobile": {
+		"columnWidthMobile": {
 			"type": "integer"
 		},
 
-		"hideLarge": {
-			"type": "boolean"
-		},
-		"hideDesktop": {
-			"type": "boolean"
-		},
-		"hideTablet": {
-			"type": "boolean"
-		},
-		"hideMobile": {
-			"type": "boolean"
-		},
-
-		"orderLarge": {
+		"columnOffsetLarge": {
 			"type": "integer"
 		},
-		"orderDesktop": {
+		"columnOffsetDesktop": {
 			"type": "integer"
 		},
-		"orderTablet": {
+		"columnOffsetTablet": {
 			"type": "integer"
 		},
-		"orderMobile": {
+		"columnOffsetMobile": {
 			"type": "integer"
 		},
 
-		"alignLarge": {
+		"columnHideLarge": {
+			"type": "boolean"
+		},
+		"columnHideDesktop": {
+			"type": "boolean"
+		},
+		"columnHideTablet": {
+			"type": "boolean"
+		},
+		"columnHideMobile": {
+			"type": "boolean"
+		},
+
+		"columnOrderLarge": {
+			"type": "integer"
+		},
+		"columnOrderDesktop": {
+			"type": "integer"
+		},
+		"columnOrderTablet": {
+			"type": "integer"
+		},
+		"columnOrderMobile": {
+			"type": "integer"
+		},
+
+		"columnAlignLarge": {
 			"type": "string"
 		},
-		"alignDesktop": {
+		"columnAlignDesktop": {
 			"type": "string"
 		},
-		"alignTablet": {
+		"columnAlignTablet": {
 			"type": "string"
 		},
-		"alignMobile": {
+		"columnAlignMobile": {
 			"type": "string"
 		}
 	},
+	"responsiveAttributes": {
+		"columnWidth": {
+			"large": "columnWidthLarge",
+			"desktop": "columnWidthDesktop",
+			"tablet": "columnWidthTablet",
+			"mobile": "columnWidthMobile"
+		},
+		"columnOffset": {
+			"large": "columnOffsetLarge",
+			"desktop": "columnOffsetDesktop",
+			"tablet": "columnOffsetTablet",
+			"mobile": "columnOffsetMobile"
+		},
+		"columnHide": {
+			"large": "columnHideLarge",
+			"desktop": "columnHideDesktop",
+			"tablet": "columnHideTablet",
+			"mobile": "columnHideMobile"
+		},
+		"columnOrder": {
+			"large": "columnOrderLarge",
+			"desktop": "columnOrderDesktop",
+			"tablet": "columnOrderTablet",
+			"mobile": "columnOrderMobile"
+		},
+		"columnAlign": {
+			"large": "columnAlignLarge",
+			"desktop": "columnAlignDesktop",
+			"tablet": "columnAlignTablet",
+			"mobile": "columnAlignMobile"
+		}
+	},
 	"options": {
-		"breakpoints": [
-			"large",
-			"desktop",
-			"tablet",
-			"mobile"
-		],
-		"widths": {
+		"columnWidth": {
 			"min":  1,
 			"max":  12,
 			"step": 1
 		},
-		"offsets": {
+		"columnOffset": {
 			"min": 0,
 			"max": 12,
 			"step": 1
 		},
-		"orders": {
+		"columnOrder": {
 			"min":  1,
 			"max":  20,
 			"step": 1
 		},
-		"aligns": [
-			{
-				"label": "Stretch",
-				"value": "stretch"
-			},
+		"columnAlign": [
 			{
 				"label": "Top",
 				"value": "top"

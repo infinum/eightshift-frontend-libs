@@ -18,7 +18,7 @@
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{
@@ -38,7 +38,7 @@
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{
@@ -58,7 +58,7 @@
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{

@@ -19,10 +19,12 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 	const manifestKey = manifest.attributes[key];
 
 	if (typeof manifestKey === 'undefined') {
-		if (typeof manifest['blockName'] === 'undefined') {
-			throw Error(`${key} key does not exist in the ${manifest['blockName']} block. Please check your implementation.`);
+		console.log(manifestKey);
+		
+		if (typeof manifest.blockName === 'undefined') {
+			throw Error(`${key} key does not exist in the ${manifest.blockName} block. Please check your implementation.`);
 		} else {
-			throw Error(`${key} key does not exist in the ${manifest['componentName']} component. Please check your implementation.`);
+			throw Error(`${key} key does not exist in the ${manifest.componentName} component. Please check your implementation.`);
 		}
 	}
 
