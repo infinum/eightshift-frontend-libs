@@ -29,9 +29,9 @@ export const ParagraphEditor = (attributes) => {
 		onReplace,
 		onRemove,
 
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
+		paragraphUse = checkAttr('paragraphUse', attributes, manifest),
 
-		paragraphContent = checkAttr('paragraphContent', attributes, manifest, componentName),
+		paragraphContent = checkAttr('paragraphContent', attributes, manifest),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};

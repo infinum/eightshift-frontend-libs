@@ -6,12 +6,12 @@ import manifest from './../manifest.json';
 
 export const AccordionEditor = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<AccordionEditorComponent
-			{...props(attributes, blockName, '', true)}
+			{...props(attributes, manifestBlockName, '', true)}
 			accordionContent={<InnerBlocks />}
 			setAttributes={setAttributes}
 		/>

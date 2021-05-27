@@ -5,22 +5,20 @@ import manifest from './../manifest.json';
 
 export const LogoEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		logoUse = checkAttr('logoUse', attributes, manifest, componentName),
+		logoUse = checkAttr('logoUse', attributes, manifest),
 
-		logoSrc = checkAttr('logoSrc', attributes, manifest, componentName),
-		logoAlt = checkAttr('logoAlt', attributes, manifest, componentName),
-		logoTitle = checkAttr('logoTitle', attributes, manifest, componentName),
-		logoHref = checkAttr('logoHref', attributes, manifest, componentName),
+		logoSrc = checkAttr('logoSrc', attributes, manifest),
+		logoAlt = checkAttr('logoAlt', attributes, manifest),
+		logoTitle = checkAttr('logoTitle', attributes, manifest),
+		logoHref = checkAttr('logoHref', attributes, manifest),
 	} = attributes;
 
 	const logoClass = classnames([

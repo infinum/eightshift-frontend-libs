@@ -6,12 +6,11 @@ import _ from 'lodash';
  * @param {string} key                       - Key to check.
  * @param {array} attributes                 - Array of attributes.
  * @param {object} manifest                  - Default attributes from manifest.json.
- * @param {string} [componentName]           - The real component name.
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @return {mixed}
  */
-export const checkAttr = (key, attributes, manifest, componentName = '', undefinedAllowed = false) => {
+export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) => {
 
 	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 		return attributes[key];
@@ -20,7 +19,11 @@ export const checkAttr = (key, attributes, manifest, componentName = '', undefin
 	const manifestKey = manifest.attributes[key];
 
 	if (typeof manifestKey === 'undefined') {
-		throw Error(`${key} key does not exist in the ${componentName} component. Please check your implementation.`);
+		if (typeof manifest['blockName'] === 'undefined') {
+			throw Error(`${key} key does not exist in the ${manifest['blockName']} block. Please check your implementation.`);
+		} else {
+			throw Error(`${key} key does not exist in the ${manifest['componentName']} component. Please check your implementation.`);
+		}
 	}
 
 	if (!Object.prototype.hasOwnProperty.call(manifestKey, 'default') && undefinedAllowed) {
@@ -55,16 +58,19 @@ export const checkAttr = (key, attributes, manifest, componentName = '', undefin
  * @param {string} keyName                   - Key name to find in responsiveAttributes object.
  * @param {array} attributes                 - Array of attributes.
  * @param {object} manifest                  - Array of default attributes from manifest.json.
- * @param {string} [componentName]           - The real component name.
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @returns {mixed}
  */
-export const checkAttrResponsive = (keyName, attributes, manifest, componentName = '', undefinedAllowed = false) => {
+export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllowed = false) => {
 	const output = {};
 
 	if (! _.has(manifest, 'responsiveAttributes')) {
-		throw Error(`It looks like you are missing responsiveAttributes key in your ${componentName} manifest.`);
+		if (typeof manifest['blockName'] === 'undefined') {
+			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`);
+		} else {
+			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`);
+		}
 	}
 
 	if (!_.has(manifest.responsiveAttributes, keyName)) {
@@ -72,7 +78,7 @@ export const checkAttrResponsive = (keyName, attributes, manifest, componentName
 	}
 
 	for (const [key, value] of Object.entries(manifest.responsiveAttributes[keyName])) {
-		output[key] = checkAttr(value, attributes, manifest, componentName, undefinedAllowed);
+		output[key] = checkAttr(value, attributes, manifest, undefinedAllowed);
 	}
 	
 	return output;

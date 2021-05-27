@@ -17,9 +17,9 @@ export const JumbotronToolbar = (attributes) => {
 		componentName = manifestComponentName,
 		jumbotronShowControls = true,
 
-		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),
+		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest),
 
-		jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest, componentName),
+		jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest),
 
 		showJumbotronContentPosition = true,
 	} = attributes;

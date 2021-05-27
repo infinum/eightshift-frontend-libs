@@ -13,9 +13,9 @@ export const HeadingToolbar = (attributes) => {
 		componentName = manifestComponentName,
 		headingShowControls = true,
 
-		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
+		headingUse = checkAttr('headingUse', attributes, manifest),
 
-		headingLevel = checkAttr('headingLevel', attributes, manifest, componentName),
+		headingLevel = checkAttr('headingLevel', attributes, manifest),
 
 		showHeadingLevel = true,
 	} = attributes;

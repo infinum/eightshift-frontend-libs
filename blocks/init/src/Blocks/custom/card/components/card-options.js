@@ -7,16 +7,16 @@ import manifest from './../manifest.json';
 
 export const CardOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
-		options,
+		blockName: manifestBlockName,
+		options: manifestOptions,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Card Details', 'eightshift-frontend-libs')}>
 			<CardOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
-				options={options}
+				options={manifestOptions}
 			/>
 		</PanelBody>
 	);

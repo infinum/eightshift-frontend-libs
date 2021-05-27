@@ -12,7 +12,7 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$imageUse = Components::checkAttr('imageUse', $attributes, $manifest, $componentName);
+$imageUse = Components::checkAttr('imageUse', $attributes, $manifest);
 if (!$imageUse) {
 	return;
 }
@@ -24,9 +24,9 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest, $componentName);
+$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest);
 
-$imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest, $componentName);
+$imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
 
 $pictureClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),

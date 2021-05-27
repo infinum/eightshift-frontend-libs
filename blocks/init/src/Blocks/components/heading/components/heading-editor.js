@@ -23,9 +23,9 @@ export const HeadingEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
-		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
+		headingUse = checkAttr('headingUse', attributes, manifest),
 
-		headingContent = checkAttr('headingContent', attributes, manifest, componentName),
+		headingContent = checkAttr('headingContent', attributes, manifest),
 	} = attributes;
 
 	const headingClass = classnames([

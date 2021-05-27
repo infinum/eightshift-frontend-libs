@@ -6,8 +6,9 @@ export const CarouselEditor = ({ attributes }) => {
 	const {
 		blockClass,
 		blockJsClass,
-		allowedBlocks,
-		showItems,
+		carouselAllowedBlocks,
+		carouselIsLoop,
+		carouselShowItems,
 	} = attributes;
 
 	const carouselClass = classnames([
@@ -16,9 +17,13 @@ export const CarouselEditor = ({ attributes }) => {
 	]);
 
 	return (
-		<div className={carouselClass} data-show-items={showItems}>
+		<div
+			className={carouselClass}
+			data-show-items={carouselShowItems}
+			data-is-loop={carouselIsLoop}
+		>
 			<InnerBlocks
-				allowedBlocks={allowedBlocks}
+				allowedBlocks={carouselAllowedBlocks}
 			/>
 		</div>
 	);

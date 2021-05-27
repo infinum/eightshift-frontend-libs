@@ -5,21 +5,19 @@ import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		copyrightUse = checkAttr('copyrightUse', attributes, manifest, componentName),
+		copyrightUse = checkAttr('copyrightUse', attributes, manifest),
 
-		copyrightBy = checkAttr('copyrightBy', attributes, manifest, componentName),
-		copyrightYear = checkAttr('copyrightYear', attributes, manifest, componentName),
-		copyrightContent = checkAttr('copyrightContent', attributes, manifest, componentName),
+		copyrightBy = checkAttr('copyrightBy', attributes, manifest),
+		copyrightYear = checkAttr('copyrightYear', attributes, manifest),
+		copyrightContent = checkAttr('copyrightContent', attributes, manifest),
 	} = attributes;
 
 	const copyrightClass = classnames([

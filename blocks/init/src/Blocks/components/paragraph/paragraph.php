@@ -12,7 +12,7 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest, $componentName);
+$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest);
 if (!$paragraphUse) {
 	return;
 }
@@ -24,7 +24,7 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest, $componentName);
+$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
 
 $paragraphClass = Components::classnames([
 	$componentClass,

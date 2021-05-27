@@ -5,25 +5,23 @@ import manifest from './../manifest.json';
 
 export const SearchBarEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		searchBarUse = checkAttr('searchBarUse', attributes, manifest, componentName),
+		searchBarUse = checkAttr('searchBarUse', attributes, manifest),
 
-		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest, componentName),
-		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest, componentName),
-		searchBarAction = checkAttr('searchBarAction', attributes, manifest, componentName),
-		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest, componentName),
-		searchBarId = checkAttr('searchBarId', attributes, manifest, componentName),
-		searchBarLabel = checkAttr('searchBarLabel', attributes, manifest, componentName),
-		searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest, componentName),
+		searchBarMethod = checkAttr('searchBarMethod', attributes, manifest),
+		searchBarPostType = checkAttr('searchBarPostType', attributes, manifest),
+		searchBarAction = checkAttr('searchBarAction', attributes, manifest),
+		searchBarPlaceholder = checkAttr('searchBarPlaceholder', attributes, manifest),
+		searchBarId = checkAttr('searchBarId', attributes, manifest),
+		searchBarLabel = checkAttr('searchBarLabel', attributes, manifest),
+		searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest),
 	} = attributes;
 
 	const searchClass = classnames(

@@ -7,13 +7,13 @@ import manifest from './../manifest.json';
 
 export const AccordionOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Accordion Details', 'eightshift-frontend-libs')}>
 			<AccordionOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
 		</PanelBody>

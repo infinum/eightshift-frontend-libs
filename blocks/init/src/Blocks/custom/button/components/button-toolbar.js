@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 
 export const ButtonToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -21,7 +21,7 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 		<>
 			<ButtonToolbarComponent
 				setAttributes={setAttributes}
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 			/>
 
 			<AlignmentToolbar

@@ -15,9 +15,9 @@ export const AccordionOptions = (attributes) => {
 		label = __('Accordion', 'eightshift-frontend-libs'),
 		accordionShowControls = true,
 
-		accordionUse = checkAttr('accordionUse', attributes, manifest, componentName),
+		accordionUse = checkAttr('accordionUse', attributes, manifest),
 
-		accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest, componentName),
+		accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest),
 
 		showAccordionUse = true,
 		showAccordionIsOpen = true,

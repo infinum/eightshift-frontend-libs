@@ -19,14 +19,14 @@ export const ButtonOptions = (attributes) => {
 		label = manifestTitle,
 		buttonShowControls = true,
 
-		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
+		buttonUse = checkAttr('buttonUse', attributes, manifest),
 
-		buttonColor = checkAttr('buttonColor', attributes, manifest, componentName),
-		buttonSize = checkAttr('buttonSize', attributes, manifest, componentName),
-		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
-		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest, componentName),
-		buttonId = checkAttr('buttonId', attributes, manifest, componentName),
-		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
+		buttonColor = checkAttr('buttonColor', attributes, manifest),
+		buttonSize = checkAttr('buttonSize', attributes, manifest),
+		buttonWidth = checkAttr('buttonWidth', attributes, manifest),
+		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest),
+		buttonId = checkAttr('buttonId', attributes, manifest),
+		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest),
 
 		showButtonUse = true,
 		showButtonColor = true,

@@ -12,18 +12,16 @@ import globalManifest from './../../../manifest.json';
 export const JumbotronEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest, componentName),
+		jumbotronUse = checkAttr('jumbotronUse', attributes, manifest),
 	} = attributes;
 
 	const jumbotronClass = classnames([

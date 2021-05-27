@@ -7,14 +7,14 @@ import manifest from './../manifest.json';
 
 export const ButtonOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Button Details', 'eightshift-frontend-libs')}>
 
 			<ButtonOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
 

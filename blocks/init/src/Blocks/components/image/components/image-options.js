@@ -20,12 +20,12 @@ export const ImageOptions = (attributes) => {
 		label = manifestTitle,
 		imageShowControls = true,
 
-		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
+		imageUse = checkAttr('imageUse', attributes, manifest),
 
-		imageAlt = checkAttr('imageAlt', attributes, manifest, componentName),
-		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
-		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
-		imageFull = checkAttr('imageFull', attributes, manifest, componentName),
+		imageAlt = checkAttr('imageAlt', attributes, manifest),
+		imageAccept = checkAttr('imageAccept', attributes, manifest),
+		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest),
+		imageFull = checkAttr('imageFull', attributes, manifest),
 
 		showImageUse = true,
 		showImageUrl = true,
@@ -64,7 +64,7 @@ export const ImageOptions = (attributes) => {
 								</>
 							}
 						>
-							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest, componentName)).map(function(keyName) {
+							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest)).map(function(keyName) {
 
 								let point = ucfirst(keyName);
 								let pointLabel = point;

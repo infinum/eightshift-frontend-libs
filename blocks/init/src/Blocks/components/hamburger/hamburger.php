@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest, $componentName);
+$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest);
 if (!$hamburgerUse) {
 	return;
 }

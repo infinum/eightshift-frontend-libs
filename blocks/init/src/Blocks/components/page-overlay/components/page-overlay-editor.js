@@ -5,17 +5,15 @@ import manifest from './../manifest.json';
 
 export const PageOverlayEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest, componentName),
+		pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest),
 	} = attributes;
 
 	const overlayClass = classnames([

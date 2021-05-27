@@ -15,9 +15,9 @@ export const VideoToolbar = (attributes) => {
 		componentName = manifestComponentName,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
+		videoUse = checkAttr('videoUse', attributes, manifest),
 
-		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
+		videoUrl = checkAttr('videoUrl', attributes, manifest),
 	} = attributes;
 
 	if (!videoShowControls) {

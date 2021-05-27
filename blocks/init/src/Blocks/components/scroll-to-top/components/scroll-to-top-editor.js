@@ -5,19 +5,17 @@ import manifest from './../manifest.json';
 
 export const ScrollToTopEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
 
-		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest, componentName),
+		scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest),
 
-		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest, componentName),
+		scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest),
 
 	} = attributes;
 

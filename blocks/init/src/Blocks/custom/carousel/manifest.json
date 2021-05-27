@@ -11,11 +11,11 @@
 	],
 	"example": {
 		"attributes": {
-			"allowedBlocks": [
+			"carouselAllowedBlocks": [
 				"eightshift-boilerplate/image"
 			],
-			"isFreeMode": false,
-			"isLoop": true
+			"carouselIsLoop": true,
+			"carouselShowItems": 1
 		},
 		"innerBlocks": [
 			{
@@ -43,7 +43,7 @@
 	},
 	"hasInnerBlocks": true,
 	"attributes": {
-		"allowedBlocks": {
+		"carouselAllowedBlocks": {
 			"type": "array",
 			"items": {
 				"type": "string"
@@ -52,17 +52,17 @@
 				"eightshift-boilerplate/image"
 			]
 		},
-		"isLoop": {
+		"carouselIsLoop": {
 			"type": "boolean",
 			"default": true
 		},
-		"showItems": {
+		"carouselShowItems": {
 			"type": "number",
 			"default": 1
 		}
 	},
 	"options": {
-		"itemsToShow": {
+		"carouselItemsToShow": {
 			"min": 1,
 			"max": 2,
 			"step": 1

@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$scrollToTopUse = Components::checkAttr('scrollToTopUse', $attributes, $manifest, $componentName);
+$scrollToTopUse = Components::checkAttr('scrollToTopUse', $attributes, $manifest);
 if (!$scrollToTopUse) {
 	return;
 }
@@ -22,7 +22,7 @@ $componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsCla
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$scrollToTopContent = Components::checkAttr('scrollToTopContent', $attributes, $manifest, $componentName);
+$scrollToTopContent = Components::checkAttr('scrollToTopContent', $attributes, $manifest);
 
 $scrollClass = Components::classnames([
 	$componentClass,
