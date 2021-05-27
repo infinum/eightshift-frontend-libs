@@ -13,11 +13,13 @@ export const CardOptions = ({ attributes, setAttributes }) => {
 
 	return (
 		<PanelBody title={__('Card Details', 'eightshift-frontend-libs')}>
+
 			<CardOptionsComponent
 				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 				options={manifestOptions}
 			/>
+
 		</PanelBody>
 	);
 };

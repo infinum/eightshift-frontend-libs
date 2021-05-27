@@ -6,6 +6,7 @@ import manifest from './../manifest.json';
 
 export const ListsToolbar = ({ attributes, setAttributes }) => {
 	const {
+		blockName: manifestBlockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -19,7 +20,7 @@ export const ListsToolbar = ({ attributes, setAttributes }) => {
 			value={listsAlign}
 			options={manifestOptions.listsAlign}
 			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
-			onChange={(value) => setAttributes({ 'listsAlign': value })}
+			onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 		/>
 	);
 };

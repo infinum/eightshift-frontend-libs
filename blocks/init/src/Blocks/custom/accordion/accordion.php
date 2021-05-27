@@ -10,12 +10,12 @@ use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$blockNameManifest = $manifest['blockName'];
+$manifestBlockName = $manifest['blockName'];
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'accordion',
 	array_merge(
-		Blocks::props($attributes, $blockNameManifest, '', true),
+		Blocks::props($attributes, $manifestBlockName, '', true),
 		[
 			'accordionContent' => $innerBlockContent
 		]

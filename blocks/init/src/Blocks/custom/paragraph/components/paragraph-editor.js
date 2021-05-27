@@ -9,7 +9,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	const {
@@ -20,7 +20,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 		blockClass,
 	} = attributes;
 
-	const propsObject = props(attributes, blockName, '', true);
+	const propsObject = props(attributes, manifestBlockName, '', true);
 
 	/**
 	 * Block-splitting logic. If content is available, creates
@@ -30,29 +30,27 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	 */
 	const splitBlocks = (value) => {
 		if (!value) {
-			return createBlock(`${namespace}/${blockName}`);
+			return createBlock(`${namespace}/${manifestBlockName}`);
 		}
 
-		return createBlock(`${namespace}/${blockName}`, {
+		return createBlock(`${namespace}/${manifestBlockName}`, {
 			...propsObject,
-			[`${blockName}Content`]: value,
+			[`${manifestBlockName}Content`]: value,
 		});
 	};
 
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			<div className={blockClass} data-id={unique}>
-				<ParagraphEditorComponent
-					{...propsObject}
-					setAttributes={setAttributes}
-					onSplit={splitBlocks}
-					mergeBlocks={mergeBlocks}
-					onReplace={onReplace}
-					onRemove={onReplace ? () => onReplace([]) : undefined}
-				/>
-			</div>
-		</>
+			<ParagraphEditorComponent
+				{...propsObject}
+				setAttributes={setAttributes}
+				onSplit={splitBlocks}
+				mergeBlocks={mergeBlocks}
+				onReplace={onReplace}
+				onRemove={onReplace ? () => onReplace([]) : undefined}
+			/>
+		</div>
 	);
 };

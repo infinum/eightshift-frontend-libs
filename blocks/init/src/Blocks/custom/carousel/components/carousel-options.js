@@ -2,6 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const CarouselOptions = ({ attributes, setAttributes }) => {
@@ -12,8 +13,8 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 	} = manifest;
 
 	const {
-		carouselIsLoop,
-		carouselShowItems,
+		carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest),
+		carouselShowItems = checkAttr('carouselShowItems', attributes, manifest),
 	} = attributes;
 
 	return (

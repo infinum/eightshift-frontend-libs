@@ -7,14 +7,14 @@ import manifest from './../manifest.json';
 
 export const ParagraphOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Paragraph Details', 'eightshift-frontend-libs')}>
 
 			<ParagraphOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
 

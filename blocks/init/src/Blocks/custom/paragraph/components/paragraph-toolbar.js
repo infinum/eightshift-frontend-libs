@@ -6,6 +6,7 @@ import manifest from './../manifest.json';
 
 export const ParagraphToolbar = ({ attributes, setAttributes }) => {
 	const {
+		blockName: manifestBlockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -19,7 +20,7 @@ export const ParagraphToolbar = ({ attributes, setAttributes }) => {
 			value={paragraphAlign}
 			options={manifestOptions.paragraphAlign}
 			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
-			onChange={(value) => setAttributes({ 'paragraphAlign': value })}
+			onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 		/>
 	);
 };

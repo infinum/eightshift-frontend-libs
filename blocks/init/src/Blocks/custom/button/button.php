@@ -11,9 +11,9 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$blockNameManifest = $manifest['blockName'];
+$manifestBlockName = $manifest['blockName'];
 
-$blockClass =  Components::checkAttr('blockClass', $attributes, $manifest);
+$blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
 
@@ -25,7 +25,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
-		Blocks::props($attributes, $blockNameManifest, '', true)
+		Blocks::props($attributes, $manifestBlockName, '', true)
 	);
 	?>
 </div>

@@ -28,7 +28,7 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 				value={buttonAlign}
 				options={manifestOptions.buttonAlign}
 				label={sprintf(__('%s button align', 'eightshift-frontend-libs'), manifestTitle)}
-				onChange={(value) => setAttributes({ 'buttonAlign': value })}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 			/>
 
 		</>

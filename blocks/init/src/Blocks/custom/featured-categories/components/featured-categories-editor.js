@@ -5,12 +5,12 @@ import manifest from '../manifest.json';
 
 export const FeaturedCategoriesEditor = ({ attributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<ServerSideRender
-			block={`${globalSettings.namespace}/${blockName}`}
+			block={`${globalSettings.namespace}/${manifestBlockName}`}
 			attributes={
 				{
 					...attributes,

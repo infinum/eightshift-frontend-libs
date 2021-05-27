@@ -10,7 +10,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
+$blockClass = $attributes['blockClass'] ?? '';
+
 $query = Components::checkAttr('query', $attributes, $manifest);
 $itemsPerLine = Components::checkAttr('itemsPerLine', $attributes, $manifest);
 $serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);

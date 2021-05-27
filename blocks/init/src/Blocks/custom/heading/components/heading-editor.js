@@ -8,7 +8,7 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	const {
@@ -16,15 +16,14 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
+
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			<div className={blockClass} data-id={unique}>
-				<HeadingEditorComponent
-					setAttributes={setAttributes}
-					{...props(attributes, blockName, '', true)}
-				/>
-			</div>
-		</>
+			<HeadingEditorComponent
+				{...props(attributes, manifestBlockName, '', true)}
+				setAttributes={setAttributes}
+			/>
+		</div>
 	);
 };

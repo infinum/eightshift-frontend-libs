@@ -10,7 +10,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
+$blockClass = $attributes['blockClass'] ?? '';
+
 $query = Components::checkAttr('query', $attributes, $manifest);
 $excludeCurrentPost = Components::checkAttr('excludeCurrentPost', $attributes, $manifest);
 $showItems = Components::checkAttr('showItems', $attributes, $manifest);

@@ -10,10 +10,11 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
-$blockJsClass = Components::checkAttr('blockJsClass', $attributes, $manifest);
-$isLoop = Components::checkAttr('isLoop', $attributes, $manifest);
-$showItems = Components::checkAttr('showItems', $attributes, $manifest);
+$blockClass = $attributes['blockClass'] ?? '';
+$blockJsClass = $attributes['blockJsClass'] ?? '';
+
+$carouselIsLoop = Components::checkAttr('carouselIsLoop', $attributes, $manifest);
+$carouselShowItems = Components::checkAttr('carouselShowItems', $attributes, $manifest);
 
 $carouselClass = Components::classnames([
 	$blockClass,
@@ -25,8 +26,8 @@ $carouselClass = Components::classnames([
 
 <div
 	class="<?php echo esc_attr($carouselClass); ?>"
-	data-swiper-loop="<?php echo esc_attr($isLoop); ?>"
-	data-show-items="<?php echo esc_attr($showItems); ?>"
+	data-swiper-loop="<?php echo esc_attr($carouselIsLoop); ?>"
+	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
 
 	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">

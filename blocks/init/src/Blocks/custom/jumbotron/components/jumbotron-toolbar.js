@@ -5,12 +5,12 @@ import manifest from './../manifest.json';
 
 export const JumbotronToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<JumbotronToolbarComponent
-			{...props(attributes, blockName, '', true)}
+			{...props(attributes, manifestBlockName, '', true)}
 			setAttributes={setAttributes}
 		/>
 	);

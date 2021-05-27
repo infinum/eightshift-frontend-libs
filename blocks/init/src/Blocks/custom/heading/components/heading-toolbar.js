@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 
 export const HeadingToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -20,15 +20,15 @@ export const HeadingToolbar = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			<HeadingToolbarComponent
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
-				{...props(attributes, blockName, '', true)}
 			/>
 
 			<AlignmentToolbar
 				value={headingAlign}
 				options={manifestOptions.headingAlign}
 				label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
-				onChange={(value) => setAttributes({ 'headingAlign': value })}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 			/>
 
 		</>
