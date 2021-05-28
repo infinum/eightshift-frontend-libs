@@ -11,6 +11,8 @@
 /// @param {string} $vertical - Vertical alignment of the items. Uses values for align-items property.
 /// @param {string} $order - List of item order overrides.
 
+@use 'sass:math';
+
 @mixin flex-container(
 	$layout: (),
 	$gutter: $base-gutter-size,
@@ -40,16 +42,16 @@
 				// Child element selector for current index.
 				& > :nth-child( #{$index} ) {
 					// Setting the width of the column as a relation between max column number and width of the column.
-					flex: 0 0 #{100% / ( $col-count / $item )};
-					max-width: #{100% /  ( $col-count / $item )};
+					flex: 0 0 #{math.div(100%, (math.div($col-count, $item)))};
+					max-width: #{math.div(100%,  (math.div($col-count, $item)))};
 				}
 			}
 		}
 		// Setting the width of all columns as a relation between max column number and width of the columns.
 		@if type-of($layout) == number {
 			& > * {
-				flex: 0 0 #{100% / ( $col-count / $layout )};
-				max-width: #{100% /  ( $col-count / $layout )};
+				flex: 0 0 #{math.div(100%, (math.div($col-count, $layout)))};
+				max-width: #{math.div(100%,  (math.div($col-count, $layout)))};
 			}
 		}
 	}

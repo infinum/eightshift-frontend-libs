@@ -35,9 +35,10 @@
 ///   }
 /// }
 ///
+@use 'sass:math';
 
 $browser-context: $base-font-size;
 
 @function em($pixels, $context: $browser-context) {
-	@return #{strip-unit($pixels)/strip-unit($context)}em;
+	@return #{math.div(strip-unit($pixels), strip-unit($context))}em;
 }
