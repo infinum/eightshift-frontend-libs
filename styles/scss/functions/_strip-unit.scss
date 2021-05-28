@@ -11,9 +11,11 @@
 /// @param {Number} $number The number to remove unit from.
 ///
 
+@use 'sass:math';
+
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return math.div($number, ($number * 0 + 1));
   }
 
   @return $number;
