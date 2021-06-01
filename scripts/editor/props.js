@@ -27,7 +27,7 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 
 	let dependency = [];
 
-	// If block use blocks dependency tree, if component use components dependency tree.
+	// If isBlock use block's dependency tree, if component use component's dependency tree.
 	if (isBlock) {
 		dependency = globalData.blocks[realName];
 	} else {
