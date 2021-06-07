@@ -11,7 +11,6 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 
 $videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
-
 if (!$videoUse) {
 	return;
 }

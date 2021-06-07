@@ -10,7 +10,6 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
 $buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest);
 if (!$buttonUse) {

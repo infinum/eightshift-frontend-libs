@@ -9,7 +9,6 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
 $accordionUse = Components::checkAttr('accordionUse', $attributes, $manifest);
 if (!$accordionUse) {
