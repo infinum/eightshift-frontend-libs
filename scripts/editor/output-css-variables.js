@@ -162,6 +162,8 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 						// Exit.
 						return true;
 					}
+
+					return false;
 				});
 			});
 		}
@@ -259,7 +261,7 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
 		return {
 			...attributeVariablesObject,
 			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
-		};;
+		};
 	})
 }
 
