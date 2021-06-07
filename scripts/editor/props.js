@@ -3,15 +3,14 @@ import _ from 'lodash';
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
- * @param {object}  attributes                         - Attributes from the block/component.
- * @param {string}  realName                           - *Old* key to use, usually the name of the block/component.
- * @param {string}  newName                            - *New* key to use to rename attributes.
- * @param {boolean} [isBlock=false]                    - Determines if the helper is used on a block or a component.
- * @param {string}  [namespace=eightshift-boilerplate] - Use default namespace for getting the correct values from the global window.
+ * @param {object}  attributes      - Attributes from the block/component.
+ * @param {string}  realName        - *Old* key to use, usually the name of the block/component.
+ * @param {string}  newName         - *New* key to use to rename attributes.
+ * @param {boolean} [isBlock=false] - Determines if the helper is used on a block or a component.
  * 
  * @returns object
  */
-export const props = (attributes, realName, newName = '', isBlock = false, namespace = 'eightshift-boilerplate') => {
+export const props = (attributes, realName, newName = '', isBlock = false) => {
 
 	let newNameInternal = newName;
 
@@ -20,18 +19,18 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 		newNameInternal = realName;
 	}
 
-	const output = {}
+	const output = {};
 
 	// Get global window data.
-	const globalData = window['eightshift'][namespace].dependency;
+	const globalData = window['eightshift'][process.env.VERSION].dependency;
 
 	let dependency = [];
 
 	// If it's a block, use the block's dependency tree. If it's a component, use the component's dependency tree.
 	if (isBlock) {
-		dependency = globalData.blocks[realName];
+		dependency.push(...globalData.blocks[realName]);
 	} else {
-		dependency = globalData.components[realName];
+		dependency.push(...globalData.components[realName]);
 	}
 
 	// Add the current component name to the dependency array.
@@ -44,7 +43,11 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 	output['componentName'] = newNameInternal;
 
 	// Replace stuff if there is any changing of the attribute names.
-	if (attributes?.parent !== newNameInternal && realName !== newNameInternal) {
+	if (
+		attributes?.parent !== newNameInternal &&
+		realName !== newNameInternal &&
+		Object.prototype.hasOwnProperty.call(globalData.components, newNameInternal)
+	) {
 
 		// Remove real component name from the dependency tree.
 		dependency = dependency.filter((item) => item !== realName);

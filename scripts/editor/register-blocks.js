@@ -331,6 +331,9 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 		example = {},
 	} = blockManifest;
 
+	// Get global window data.
+	const globalData = window['eightshift'][process.env.VERSION].dependency;
+
 	// Loop component.
 	for (let [newComponentName, realComponentName] of Object.entries(components)) {
 
@@ -350,7 +353,10 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
 		} else {
 
 			// Use parent attribute name to determine if the name has changed in the parent component.
-			if (parentAttributeName !== newComponentName && realComponentName !== newComponentName) {
+			if (parentAttributeName !== newComponentName &&
+				realComponentName !== newComponentName &&
+				Object.prototype.hasOwnProperty.call(globalData.components, newComponentName)
+			) {
 				newComponentName = parentAttributeName;
 			}
 
@@ -525,11 +531,13 @@ export const registerBlocks = (
 ) => {
 
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
+	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
-	const blocksManifests = [];
+	// Build window object for dependency tree.
+	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
 
 	// Iterate blocks to register.
-	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
+	blocksManifests.map((blockManifest) => {
 
 		// Get Block edit component from block name and blocksEditComponentPath.
 		const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
@@ -552,8 +560,6 @@ export const registerBlocks = (
 			}
 		}
 
-		blocksManifests.push(blockManifest);
-
 		// Pass data to registerBlock helper to get final output for registerBlockType.
 		const blockDetails = registerBlock(
 			globalManifest,
@@ -569,8 +575,6 @@ export const registerBlocks = (
 
 		return null;
 	});
-
-	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
 
 	// Add icon foreground and background colors as CSS variables for later use.
 	const {
@@ -592,7 +596,7 @@ export const registerBlocks = (
  */
 export const buildWindowObject = (globalManifest, componentsManifest, blocksManifests, wrapperManifest) => {
 	window['eightshift'] = {
-		[globalManifest['namespace']]: {
+		[process.env.VERSION]: {
 			dependency: {
 				components: buildDependencyComponentsTree(componentsManifest),
 				blocks: buildDependencyBlocksTree(blocksManifests, componentsManifest),
