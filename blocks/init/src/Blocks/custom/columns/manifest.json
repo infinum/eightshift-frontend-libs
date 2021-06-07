@@ -11,14 +11,14 @@
 	],
 	"example": {
 		"attributes": {
-			"gutterLarge": 30,
-			"verticalSpacingLarge": 30
+			"columnsGutterLarge": 30,
+			"columnsVerticalSpacingLarge": 30
 		},
 		"innerBlocks": [
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{
@@ -38,7 +38,7 @@
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{
@@ -58,7 +58,7 @@
 			{
 				"name": "eightshift-boilerplate/column",
 				"attributes": {
-					"widthLarge": 4
+					"columnWidthLarge": 4
 				},
 				"innerBlocks": [
 					{
@@ -79,7 +79,7 @@
 	},
 	"hasInnerBlocks": true,
 	"attributes": {
-		"allowedBlocks": {
+		"columnsAllowedBlocks": {
 			"type": "array",
 			"items": {
 				"type": "string"
@@ -89,45 +89,58 @@
 			]
 		},
 
-		"gutterLarge": {
+		"columnsGutterLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"gutterDesktop": {
+		"columnsGutterDesktop": {
 			"type": "integer"
 		},
-		"gutterTablet": {
+		"columnsGutterTablet": {
 			"type": "integer"
 		},
-		"gutterMobile": {
+		"columnsGutterMobile": {
 			"type": "integer"
 		},
 
-		"verticalSpacingLarge": {
+		"columnsVerticalSpacingLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"verticalSpacingDesktop": {
+		"columnsVerticalSpacingDesktop": {
 			"type": "integer"
 		},
-		"verticalSpacingTablet": {
+		"columnsVerticalSpacingTablet": {
 			"type": "integer"
 		},
-		"verticalSpacingMobile": {
+		"columnsVerticalSpacingMobile": {
 			"type": "integer"
 		}
 	},
+	"responsiveAttributes": {
+		"columnsGutter": {
+			"large": "columnsGutterLarge",
+			"desktop": "columnsGutterDesktop",
+			"tablet": "columnsGutterTablet",
+			"mobile": "columnsGutterMobile"
+		},
+		"columnsVerticalSpacing": {
+			"large": "columnsVerticalSpacingLarge",
+			"desktop": "columnsVerticalSpacingDesktop",
+			"tablet": "columnsVerticalSpacingTablet",
+			"mobile": "columnsVerticalSpacingMobile"
+		}
+	},
 	"options": {
-		"gutters": {
+		"columnsGutter": {
 			"min": 0,
 			"max": 100,
 			"step": 10
 		},
-		"breakpoints": [
-			"large",
-			"desktop",
-			"tablet",
-			"mobile"
-		]
+		"columnsVerticalSpacing": {
+			"min": 0,
+			"max": 100,
+			"step": 10
+		}
 	}
 }

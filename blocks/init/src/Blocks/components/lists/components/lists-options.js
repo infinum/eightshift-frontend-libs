@@ -19,11 +19,6 @@ export const ListsOptions = (attributes) => {
 		label = manifestTitle,
 		listsShowControls = true,
 
-		listsUse = checkAttr('listsUse', attributes, manifest, componentName),
-
-		listsColor = checkAttr('listsColor', attributes, manifest, componentName),
-		listsSize = checkAttr('listsSize', attributes, manifest, componentName),
-
 		showListsUse = true,
 		showListsColor = true,
 		showListsSize = true,
@@ -34,6 +29,11 @@ export const ListsOptions = (attributes) => {
 	if (!listsShowControls) {
 		return null;
 	}
+
+
+	const listsUse = checkAttr('listsUse', attributes, manifest);
+	const listsColor = checkAttr('listsColor', attributes, manifest);
+	const listsSize = checkAttr('listsSize', attributes, manifest);
 
 	return (
 		<>

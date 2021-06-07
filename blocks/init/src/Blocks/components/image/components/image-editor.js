@@ -21,13 +21,13 @@ export const ImageEditor = (attributes) => {
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		imageUse = checkAttr('imageUse', attributes, manifest, componentName),
-		imageAlt = checkAttr('imageAlt', attributes, manifest, componentName),
-		imageAccept = checkAttr('imageAccept', attributes, manifest, componentName),
-		imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest, componentName),
-		imageUrl = checkAttr('imageUrl', attributes, manifest, componentName),
 	} = attributes;
+
+	const imageUse = checkAttr('imageUse', attributes, manifest);
+	const imageAlt = checkAttr('imageAlt', attributes, manifest);
+	const imageAccept = checkAttr('imageAccept', attributes, manifest);
+	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
+	const imageUrl = checkAttr('imageUrl', attributes, manifest);
 
 	const pictureClass = classnames([
 		selector(componentClass, componentClass),

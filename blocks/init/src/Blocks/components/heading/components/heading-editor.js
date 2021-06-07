@@ -22,11 +22,10 @@ export const HeadingEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
-
-		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
-
-		headingContent = checkAttr('headingContent', attributes, manifest, componentName),
 	} = attributes;
+
+	const headingUse = checkAttr('headingUse', attributes, manifest);
+	const headingContent = checkAttr('headingContent', attributes, manifest);
 
 	const headingClass = classnames([
 		componentClass,

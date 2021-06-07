@@ -5,24 +5,21 @@ import manifest from './../manifest.json';
 
 export const VideoButtonEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 		options: manifestOptions,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		videoButtonUse = checkAttr('videoButtonUse', attributes, manifest, componentName),
-
-		videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest, componentName),
-		videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest, componentName),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
+
+	const videoButtonUse = checkAttr('videoButtonUse', attributes, manifest);
+	const videoButtonModalId = checkAttr('videoButtonModalId', attributes, manifest);
+	const videoButtonLabel = checkAttr('videoButtonLabel', attributes, manifest);
 
 	const videoButtonClass = classnames(
 		componentClass,

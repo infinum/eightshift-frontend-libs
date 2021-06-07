@@ -5,20 +5,17 @@ import manifest from './../manifest.json';
 
 export const LoaderEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		loaderUse = checkAttr('loaderUse', attributes, manifest, componentName),
-
-		loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest, componentName),
 	} = attributes;
+
+	const loaderUse = checkAttr('loaderUse', attributes, manifest);
+	const loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest);
 
 	const loaderClass = classnames(
 		componentClass,

@@ -7,15 +7,17 @@ import manifest from './../manifest.json';
 
 export const JumbotronOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Jumbotron Details', 'eightshift-frontend-libs')}>
+
 			<JumbotronOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
+
 		</PanelBody>
 	);
 };

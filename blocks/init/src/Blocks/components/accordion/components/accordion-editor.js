@@ -19,14 +19,14 @@ export const AccordionEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
-
-		accordionUse = checkAttr('accordionUse', attributes, manifest, componentName),
-
-		accordionTitle = checkAttr('accordionTitle', attributes, manifest, componentName),
-		accordionContent = checkAttr('accordionContent', attributes, manifest, componentName),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
+
+
+	const accordionUse = checkAttr('accordionUse', attributes, manifest);
+	const accordionTitle = checkAttr('accordionTitle', attributes, manifest);
+	const accordionContent = checkAttr('accordionContent', attributes, manifest);
 
 	const accordionClass = classnames([
 		componentClass,

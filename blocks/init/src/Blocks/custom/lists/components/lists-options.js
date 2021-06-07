@@ -7,15 +7,17 @@ import manifest from './../manifest.json';
 
 export const ListsOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Lists Details', 'eightshift-frontend-libs')}>
+
 			<ListsOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
+
 		</PanelBody>
 	);
 };

@@ -19,11 +19,6 @@ export const HeadingOptions = (attributes) => {
 		label = manifestTitle,
 		headingShowControls = true,
 
-		headingUse = checkAttr('headingUse', attributes, manifest, componentName),
-
-		headingColor = checkAttr('headingColor', attributes, manifest, componentName),
-		headingSize = checkAttr('headingSize', attributes, manifest, componentName),
-
 		showHeadingUse = true,
 		showHeadingColor = true,
 		showHeadingSize = true,
@@ -34,6 +29,10 @@ export const HeadingOptions = (attributes) => {
 	if (!headingShowControls) {
 		return null;
 	}
+
+	const headingUse = checkAttr('headingUse', attributes, manifest);
+	const headingColor = checkAttr('headingColor', attributes, manifest);
+	const headingSize = checkAttr('headingSize', attributes, manifest);
 
 	return (
 		<>

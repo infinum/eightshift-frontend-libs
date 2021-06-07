@@ -30,72 +30,72 @@
 			"top left": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-start",
-						"image-align-vertical": "flex-start"
+						"block-image-align-horizontal": "flex-start",
+						"block-image-align-vertical": "flex-start"
 					}
 				}
 			],
 			"top center": [
 				{
 					"variable": {
-						"image-align-horizontal": "center",
-						"image-align-vertical": "flex-start"
+						"block-image-align-horizontal": "center",
+						"block-image-align-vertical": "flex-start"
 					}
 				}
 			],
 			"top right": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-end",
-						"image-align-vertical": "flex-start"
+						"block-image-align-horizontal": "flex-end",
+						"block-image-align-vertical": "flex-start"
 					}
 				}
 			],
 			"center left": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-start",
-						"image-align-vertical": "center"
+						"block-image-align-horizontal": "flex-start",
+						"block-image-align-vertical": "center"
 					}
 				}
 			],
 			"center center": [
 				{
 					"variable": {
-						"image-align-horizontal": "center",
-						"image-align-vertical": "center"
+						"block-image-align-horizontal": "center",
+						"block-image-align-vertical": "center"
 					}
 				}
 			],
 			"center right": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-end",
-						"image-align-vertical": "center"
+						"block-image-align-horizontal": "flex-end",
+						"block-image-align-vertical": "center"
 					}
 				}
 			],
 			"bottom left": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-start",
-						"image-align-vertical": "flex-end"
+						"block-image-align-horizontal": "flex-start",
+						"block-image-align-vertical": "flex-end"
 					}
 				}
 			],
 			"bottom center": [
 				{
 					"variable": {
-						"image-align-horizontal": "center",
-						"image-align-vertical": "flex-end"
+						"block-image-align-horizontal": "center",
+						"block-image-align-vertical": "flex-end"
 					}
 				}
 			],
 			"bottom right": [
 				{
 					"variable": {
-						"image-align-horizontal": "flex-end",
-						"image-align-vertical": "flex-end"
+						"block-image-align-horizontal": "flex-end",
+						"block-image-align-vertical": "flex-end"
 					}
 				}
 			]

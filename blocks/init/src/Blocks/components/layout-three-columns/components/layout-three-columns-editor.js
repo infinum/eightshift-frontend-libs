@@ -5,22 +5,19 @@ import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		layoutUse = checkAttr('layoutUse', attributes, manifest, componentName),
-
-		layoutLeft = checkAttr('layoutLeft', attributes, manifest, componentName),
-		layoutCenter = checkAttr('layoutCenter', attributes, manifest, componentName),
-		layoutRight = checkAttr('layoutRight', attributes, manifest, componentName),
 	} = attributes;
+
+	const layoutUse = checkAttr('layoutUse', attributes, manifest);
+	const layoutLeft = checkAttr('layoutLeft', attributes, manifest);
+	const layoutCenter = checkAttr('layoutCenter', attributes, manifest);
+	const layoutRight = checkAttr('layoutRight', attributes, manifest);
 
 	const layoutClass = classnames([
 		componentClass,

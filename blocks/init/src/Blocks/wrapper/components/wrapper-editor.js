@@ -4,15 +4,14 @@ import { responsiveSelectors, selector, checkAttr } from '@eightshift/frontend-l
 import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
-	const {
-		wrapperUse = checkAttr('wrapperUse', attributes, manifest),
-		wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest),
-		wrapperDisable = checkAttr('wrapperDisable', attributes, manifest),
-		wrapperId = checkAttr('wrapperId', attributes, manifest),
-		wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest),
-		wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest),
-		className = checkAttr('className', attributes, manifest),
-	} = attributes;
+
+	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
+	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
+	const wrapperId = checkAttr('wrapperId', attributes, manifest);
+	const wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest);
+	const wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest);
+	const className = checkAttr('className', attributes, manifest);
 
 	if (!wrapperUse || wrapperDisable) {
 		return children;

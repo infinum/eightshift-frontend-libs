@@ -12,7 +12,7 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$headingUse = Components::checkAttr('headingUse', $attributes, $manifest, $componentName);
+$headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
 if (!$headingUse) {
 	return;
 }
@@ -24,8 +24,8 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$headingContent = Components::checkAttr('headingContent', $attributes, $manifest, $componentName);
-$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest, $componentName);
+$headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
+$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
 
 $headingClass = Components::classnames([
 	$componentClass,

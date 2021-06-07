@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$socialLinksUse = Components::checkAttr('socialLinksUse', $attributes, $manifest, $componentName);
+$socialLinksUse = Components::checkAttr('socialLinksUse', $attributes, $manifest);
 if (!$socialLinksUse) {
 	return;
 }
@@ -20,7 +20,7 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$socialLinks = Components::checkAttr('socialLinks', $attributes, $manifest, $componentName);
+$socialLinks = Components::checkAttr('socialLinks', $attributes, $manifest);
 $icons = $manifest['options']['icons'] ?? [];
 
 $socialLinksClass = Components::classnames([

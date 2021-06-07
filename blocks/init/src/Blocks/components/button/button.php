@@ -12,7 +12,7 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest, $componentName);
+$buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest);
 if (!$buttonUse) {
 	return;
 }
@@ -24,13 +24,13 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest, $componentName);
-$buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest, $componentName);
-$buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest, $componentName);
-$buttonId = Components::checkAttr('buttonId', $attributes, $manifest, $componentName);
-$buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest, $componentName);
-$buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest, $componentName);
-$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest, $componentName);
+$buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest);
+$buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest);
+$buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest);
+$buttonId = Components::checkAttr('buttonId', $attributes, $manifest);
+$buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest);
+$buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest);
+$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest);
 
 if ($buttonIsNewTab) {
 	$buttonAttrs = array_merge(

@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest, $componentName);
+$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest);
 if (!$layoutUse) {
 	return;
 }
@@ -20,10 +20,10 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest, $componentName);
-$layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest, $componentName);
-$layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest, $componentName);
-$tag = Components::checkAttr('tag', $attributes, $manifest, $componentName);
+$layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest);
+$layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest);
+$layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest);
+$tag = Components::checkAttr('tag', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
 	$componentClass,

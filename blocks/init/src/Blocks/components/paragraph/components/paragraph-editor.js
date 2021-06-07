@@ -28,13 +28,12 @@ export const ParagraphEditor = (attributes) => {
 		mergeBlocks,
 		onReplace,
 		onRemove,
-
-		paragraphUse = checkAttr('paragraphUse', attributes, manifest, componentName),
-
-		paragraphContent = checkAttr('paragraphContent', attributes, manifest, componentName),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
+
+	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
+	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);
 
 	const paragraphClass = classnames([
 		componentClass,

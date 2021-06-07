@@ -22,12 +22,11 @@ export const ButtonEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
-
-		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
-
-		buttonContent = checkAttr('buttonContent', attributes, manifest, componentName),
-		buttonUrl = checkAttr('buttonUrl', attributes, manifest, componentName),
 	} = attributes;
+
+	const buttonContent = checkAttr('buttonContent', attributes, manifest);
+	const buttonUse = checkAttr('buttonUse', attributes, manifest);
+	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 
 	const buttonClass = classnames([
 		componentClass,

@@ -5,12 +5,12 @@ import manifest from './../manifest.json';
 
 export const VideoToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<VideoToolbarComponent
-			{...props(attributes, blockName, '', true)}
+			{...props(attributes, manifestBlockName, '', true)}
 			setAttributes={setAttributes}
 		/>
 	);

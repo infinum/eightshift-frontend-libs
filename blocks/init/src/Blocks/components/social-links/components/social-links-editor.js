@@ -5,23 +5,20 @@ import manifest from '../manifest.json';
 
 export const SocialLinksEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 		options: manifestOptions,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		socialLinksUse = checkAttr('socialLinksUse', attributes, manifest, componentName),
-
-		socialLinks = checkAttr('socialLinks', attributes, manifest, componentName),
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
+
+	const socialLinksUse = checkAttr('socialLinksUse', attributes, manifest);
+	const socialLinks = checkAttr('socialLinks', attributes, manifest);
 
 	const socialLinksClass = classnames([
 		componentClass,

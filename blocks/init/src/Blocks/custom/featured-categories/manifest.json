@@ -14,15 +14,16 @@
 	],
 	"example": {
 		"attributes": {
-			"query": {
+			"featuredCategoriesQuery": {
 				"taxonomy": "category",
 				"terms": []
 			},
-			"itemsPerLine": 4
+			"featuredCategoriesItemsPerLine": 4,
+			"featuredCategoriesServerSideRender": false
 		}
 	},
 	"attributes": {
-		"query": {
+		"featuredCategoriesQuery": {
 			"type": "object",
 			"default": {
 				"taxonomy": "category",
@@ -32,11 +33,11 @@
 				"type": "object"
 			}
 		},
-		"itemsPerLine": {
+		"featuredCategoriesItemsPerLine": {
 			"type": "integer",
 			"default": 4
 		},
-		"serverSideRender": {
+		"featuredCategoriesServerSideRender": {
 			"type": "boolean",
 			"default": false
 		}
@@ -47,7 +48,7 @@
 		]
 	},
 	"options": {
-		"itemsPerLine": {
+		"featuredCategoriesItemsPerLine": {
 			"min": 1,
 			"max": 4,
 			"step": 1
