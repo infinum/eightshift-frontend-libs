@@ -62,7 +62,7 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 
 			// Change the name of the key if they are different.
 			if (realName !== newNameInternal) {
-				newKey = realName + key.slice(newNameInternal.length);
+				newKey = key.replace(newNameInternal, realName);
 			}
 
 			// Populate output with new values.
