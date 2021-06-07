@@ -25,17 +25,17 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 	// Get global window data.
 	const globalData = window['eightshift'][namespace].dependency;
 
-	// If component use components dependency tree.
-	// Add the current component name to the dependency array.
-	let dependency = [
-		...globalData.components[realName],
-		newNameInternal
-	];
+	let dependency = [];
 
-	// If block use blocks dependency tree.
+	// If it's a block, use the block's dependency tree. If it's a component, use the component's dependency tree.
 	if (isBlock) {
 		dependency = globalData.blocks[realName];
+	} else {
+		dependency = globalData.components[realName];
 	}
+
+	// Add the current component name to the dependency array.
+	dependency.push(newNameInternal);
 
 	// If you have multiple components just use one.
 	dependency = _.uniq(dependency);
@@ -62,7 +62,7 @@ export const props = (attributes, realName, newName = '', isBlock = false, names
 
 			// Change the name of the key if they are different.
 			if (realName !== newNameInternal) {
-				newKey = realName + key.slice(newNameInternal.length);
+				newKey = key.replace(newNameInternal, realName);
 			}
 
 			// Populate output with new values.

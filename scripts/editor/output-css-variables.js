@@ -109,6 +109,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Define variables from manifest.
 	const {
 		variables,
+		variablesEditor,
 	} = manifest;
 
 	// Get the initial data array.
@@ -117,49 +118,61 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
-	// Iterate each variable.
-	for (const [variableName, variableValue] of Object.entries(variables)) {
 
-		// Constant for attributes set value (in db or default).
-		const attributeValue = attributes[variableName];
+	// Setting defined variables to each breakpoint.
+	const setVariablesToBreakpoints = (variables) => {
+		// Iterate each variable.
+		for (const [variableName, variableValue] of Object.entries(variables)) {
 
-		// Set internal breakpoints variable.
-		let internalBreakpoints = [];
+			// Constant for attributes set value (in db or default).
+			const attributeValue = attributes[variableName];
 
-		// If type default or value.
-		if (!Array.isArray(variableValue)) {
-			internalBreakpoints = variableValue[attributeValue] ?? [];
-		} else {
-			internalBreakpoints = variableValue;
-		}
+			// Set internal breakpoints variable.
+			let internalBreakpoints = [];
 
-		// Iterate variable array to check breakpoints.
-		internalBreakpoints.forEach((breakpointItem) => {
+			// If type default or value.
+			if (!Array.isArray(variableValue)) {
+				internalBreakpoints = variableValue[attributeValue] ?? [];
+			} else {
+				internalBreakpoints = variableValue;
+			}
 
-			// Define variables from breakpointItem.
-			const {
-				breakpoint = 'default', // If breakpoint is not set use default name
-				inverse = false, // If inverse is not set use mobile first.
-				variable = [],
-			} = breakpointItem;
+			// Iterate variable array to check breakpoints.
+			internalBreakpoints.forEach((breakpointItem) => {
 
-			// Check if we are using mobile or desktop first. Mobile first is the default.
-			const type = inverse ? 'max' : 'min';
+				// Define variables from breakpointItem.
+				const {
+					breakpoint = 'default', // If breakpoint is not set use default name
+					inverse = false, // If inverse is not set use mobile first.
+					variable = [],
+				} = breakpointItem;
 
-			// Iterate each data array to find the correct breakpoint.
-			data.some((item, index) => {
+				// Check if we are using mobile or desktop first. Mobile first is the default.
+				const type = inverse ? 'max' : 'min';
 
-				// Check if breakpoint and type match.
-				if (item.name === breakpoint && item.type === type) {
+				// Iterate each data array to find the correct breakpoint.
+				data.some((item, index) => {
 
-					// Merge data variables with the new variables array.
-					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
+					// Check if breakpoint and type match.
+					if (item.name === breakpoint && item.type === type) {
 
-					// Exit.
-					return true;
-				}
+						// Merge data variables with the new variables array.
+						data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
+
+						// Exit.
+						return true;
+					}
+				});
 			});
-		});
+		}
+	}
+
+	// Iterate each variable from variables field.
+	setVariablesToBreakpoints(variables);
+
+	if (variablesEditor) {
+		// Iterate each variable from variablesEditor field.
+		setVariablesToBreakpoints(variablesEditor);
 	}
 
 	// Loop data and provide correct selectors from data array.
@@ -194,7 +207,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Output manual output from the array of variables.
 	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
-	const manualEditor = _.has(manifest, 'variablesEditor') ? manifest['variablesEditor'].join(';\n') : '';
+	const manualEditor = _.has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
 
 	// Prepare final output for testing.
 	const fullOutput = `
