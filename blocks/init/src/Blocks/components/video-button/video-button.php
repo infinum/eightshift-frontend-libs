@@ -9,7 +9,6 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
 $videoButtonUse = Components::checkAttr('videoButtonUse', $attributes, $manifest);
 if (!$videoButtonUse) {

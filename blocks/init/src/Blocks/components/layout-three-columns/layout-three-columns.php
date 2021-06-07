@@ -9,7 +9,6 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
 $layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest);
 if (!$layoutUse) {
