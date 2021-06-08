@@ -106,47 +106,56 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
  */
 const setupResponsiveVariables = (responsiveAttributes, variables) => {
 	// Iterate through responsive attributes.
-	return Object.entries(responsiveAttributes).reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
+	return Object.entries(responsiveAttributes)
+		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
 
-		// If responsive attribute doesn't exist in variables object, skip it
-		if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
-			return responsiveAttributesVariables;
-		}
-
-		// Used for determination of default breakpoint.
-		const numberOfBreakpoints = Object.entries(responsiveAttributeObject).length;
-
-		// Iterate each responsive attribute object as breakpoint name is the key of the object, and value represents the name of the responsive variable.
-		const responsiveAttributeVariables = Object.entries(responsiveAttributeObject).reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
-			let breakpointVariables = {};
-
-			// Array represents direct value(default or value).
-			if (Array.isArray(variables[responsiveAttributeName])) {
-				breakpointVariables = setBreakpointResponsiveVariables(variables[responsiveAttributeName], breakpointName, breakpointIndex, numberOfBreakpoints);
-
-			// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
-			} else {
-
-				// Iterate options/multiple choices/boolean...
-				breakpointVariables = Object.entries(variables[responsiveAttributeName])
-				.reduce((acc, [attributeValue, attributeObject]) => {
-					return {
-						...acc,
-						[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
-					}
-				}, {});
+			// If responsive attribute doesn't exist in variables object, skip it.
+			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
+				return responsiveAttributesVariables;
 			}
 
-			// Collect all the values from one responsive attribute to one object.
-			return {
-				...responsiveAttribute,
-				[breakpointVariableName]: breakpointVariables,
-			};
-		}, {});
+			// Used for determination of default breakpoint.
+			const numberOfBreakpoints = Object.entries(responsiveAttributeObject).length;
 
-		// Merge multiple responsive attributes to one object.
-		return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
-	}, {});
+			// Iterate each responsive attribute object as breakpoint name is the key of the object,
+			// and value represents the name of the responsive variable.
+			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject)
+				.reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
+					let breakpointVariables = {};
+
+					if (Array.isArray(variables[responsiveAttributeName])) { // Array represents direct value(default or value).
+						breakpointVariables = setBreakpointResponsiveVariables(
+							variables[responsiveAttributeName],
+							breakpointName,
+							breakpointIndex,
+							numberOfBreakpoints
+						);
+						return {
+							...responsiveAttribute,
+							[breakpointVariableName]: breakpointVariables,
+						};
+					}
+
+					// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
+					// Iterate options/multiple choices/boolean...
+					breakpointVariables = Object.entries(variables[responsiveAttributeName])
+						.reduce((acc, [attributeValue, attributeObject]) => {
+							return {
+								...acc,
+								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
+							}
+						}, {});
+
+					// Collect all the values from one responsive attribute to one object.
+					return {
+						...responsiveAttribute,
+						[breakpointVariableName]: breakpointVariables,
+					};
+				}, {});
+
+			// Merge multiple responsive attributes to one object.
+			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
+		}, {});
 }
 
 /**
@@ -166,21 +175,14 @@ const setVariablesToBreakpoints = (attributes, variables, data) => {
 		const attributeValue = attributes[variableName];
 
 		// Set internal breakpoints variable.
-		let internalBreakpoints = [];
-
-		// If type default or value.
-		if (!Array.isArray(variableValue)) {
-			internalBreakpoints = variableValue[attributeValue] ?? [];
-		} else {
-			internalBreakpoints = variableValue;
-		}
+		const internalBreakpoints = Array.isArray(variableValue) ? variableValue : (variableValue[attributeValue] ?? []);
 
 		// Iterate variable array to check breakpoints.
 		internalBreakpoints.forEach((breakpointItem) => {
 
 			// Define variables from breakpointItem.
 			const {
-				breakpoint = 'default', // If breakpoint is not set use default name
+				breakpoint = 'default', // If breakpoint is not set use default name.
 				inverse = false, // If inverse is not set use mobile first.
 				variable = [],
 			} = breakpointItem;
