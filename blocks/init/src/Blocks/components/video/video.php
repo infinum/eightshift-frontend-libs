@@ -9,10 +9,8 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoUse = Components::checkAttr('videoUse', $attributes, $manifest, $componentName);
-
+$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
 if (!$videoUse) {
 	return;
 }
@@ -21,13 +19,13 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest, $componentName);
-$videoType = Components::checkAttr('videoType', $attributes, $manifest, $componentName);
-$videoAspectRatio = Components::checkAttr('videoAspectRatio', $attributes, $manifest, $componentName);
-$videoAllow = Components::checkAttr('videoAllow', $attributes, $manifest, $componentName);
-$videoAccept = Components::checkAttr('videoAccept', $attributes, $manifest, $componentName);
-$videoAllowedTypes = Components::checkAttr('videoAllowedTypes', $attributes, $manifest, $componentName);
-$videoUsePlaceholder = Components::checkAttr('videoUsePlaceholder', $attributes, $manifest, $componentName);
+$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest);
+$videoType = Components::checkAttr('videoType', $attributes, $manifest);
+$videoAspectRatio = Components::checkAttr('videoAspectRatio', $attributes, $manifest);
+$videoAllow = Components::checkAttr('videoAllow', $attributes, $manifest);
+$videoAccept = Components::checkAttr('videoAccept', $attributes, $manifest);
+$videoAllowedTypes = Components::checkAttr('videoAllowedTypes', $attributes, $manifest);
+$videoUsePlaceholder = Components::checkAttr('videoUsePlaceholder', $attributes, $manifest);
 
 $videoWrapClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'wrap'),

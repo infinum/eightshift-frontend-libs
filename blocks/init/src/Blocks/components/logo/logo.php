@@ -9,9 +9,8 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$logoUse = Components::checkAttr('logoUse', $attributes, $manifest, $componentName);
+$logoUse = Components::checkAttr('logoUse', $attributes, $manifest);
 if (!$logoUse) {
 	return;
 }
@@ -20,10 +19,10 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$logoSrc = Components::checkAttr('logoSrc', $attributes, $manifest, $componentName);
-$logoAlt = Components::checkAttr('logoAlt', $attributes, $manifest, $componentName);
-$logoTitle = Components::checkAttr('logoTitle', $attributes, $manifest, $componentName);
-$logoHref = Components::checkAttr('logoHref', $attributes, $manifest, $componentName);
+$logoSrc = Components::checkAttr('logoSrc', $attributes, $manifest);
+$logoAlt = Components::checkAttr('logoAlt', $attributes, $manifest);
+$logoTitle = Components::checkAttr('logoTitle', $attributes, $manifest);
+$logoHref = Components::checkAttr('logoHref', $attributes, $manifest);
 
 $logoClass = Components::classnames([
 	$componentClass,

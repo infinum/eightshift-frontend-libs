@@ -8,27 +8,25 @@ import manifest from './../manifest.json';
 
 export const ButtonToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
 
-	const {
-		buttonAlign = checkAttr('buttonAlign', attributes, manifest),
-	} = attributes;
+	const buttonAlign = checkAttr('buttonAlign', attributes, manifest);
 
 	return (
 		<>
 			<ButtonToolbarComponent
 				setAttributes={setAttributes}
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 			/>
 
 			<AlignmentToolbar
 				value={buttonAlign}
 				options={manifestOptions.buttonAlign}
 				label={sprintf(__('%s button align', 'eightshift-frontend-libs'), manifestTitle)}
-				onChange={(value) => setAttributes({ 'buttonAlign': value })}
+				onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 			/>
 
 		</>

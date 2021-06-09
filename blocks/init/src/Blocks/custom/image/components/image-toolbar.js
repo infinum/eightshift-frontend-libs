@@ -6,18 +6,16 @@ import manifest from './../manifest.json';
 
 export const ImageToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
-	const {
-		imageAlign = checkAttr('imageAlign', attributes, manifest),
-	} = attributes;
+	const imageAlign = checkAttr('imageAlign', attributes, manifest);
 
 	return (
 		<BlockAlignmentMatrixToolbar
 			label={__('Image Position', 'eightshift-frontend-libs')}
 			value={imageAlign}
-			onChange={(value) => setAttributes({ [`${blockName}Align`]: value })}
+			onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 		/>
 	);
 };

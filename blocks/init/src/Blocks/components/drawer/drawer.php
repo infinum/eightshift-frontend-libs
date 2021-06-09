@@ -9,9 +9,8 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$drawerUse = Components::checkAttr('drawerUse', $attributes, $manifest, $componentName);
+$drawerUse = Components::checkAttr('drawerUse', $attributes, $manifest);
 if (!$drawerUse) {
 	return;
 }
@@ -21,10 +20,10 @@ $componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsCla
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$drawerMenu = Components::checkAttr('drawerMenu', $attributes, $manifest, $componentName);
-$drawerTrigger = Components::checkAttr('drawerTrigger', $attributes, $manifest, $componentName);
-$drawerOverlay = Components::checkAttr('drawerOverlay', $attributes, $manifest, $componentName);
-$drawerPosition = Components::checkAttr('drawerPosition', $attributes, $manifest, $componentName);
+$drawerMenu = Components::checkAttr('drawerMenu', $attributes, $manifest);
+$drawerTrigger = Components::checkAttr('drawerTrigger', $attributes, $manifest);
+$drawerOverlay = Components::checkAttr('drawerOverlay', $attributes, $manifest);
+$drawerPosition = Components::checkAttr('drawerPosition', $attributes, $manifest);
 
 $drawerClass = Components::classnames([
 	$componentClass,

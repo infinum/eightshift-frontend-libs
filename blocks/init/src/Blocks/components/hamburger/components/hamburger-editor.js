@@ -5,19 +5,17 @@ import manifest from './../manifest.json';
 
 export const HamburgerEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		hamburgerUse = checkAttr('hamburgerUse', attributes, manifest, componentName),
 	} = attributes;
+
+	const hamburgerUse = checkAttr('hamburgerUse', attributes, manifest);
 
 	const hamburgerClass = classnames([
 		componentClass,

@@ -6,18 +6,21 @@ import manifest from './../manifest.json';
 
 export const ExampleEditor = ({ attributes, setAttributes }) => {
 	const {
-		blockClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		blockName: manifestBlockName,
+	} = manifest;
 
-		content = checkAttr('content', attributes, manifest),
+	const {
+		blockClass,
 	} = attributes;
+
+	const exampleContent = checkAttr('exampleContent', attributes, manifest);
 
 	return (
 		<RichText
-			placeholder={placeholder}
+			placeholder={__('Add Content', 'eightshift-frontend-libs')}
 			className={blockClass}
-			onChange={(value) => setAttributes({ content: value })}
-			value={content}
+			onChange={(value) => setAttributes({ [`${manifestBlockName}Content`]: value })}
+			value={exampleContent}
 			allowedFormats={['core/bold', 'core/link']}
 		/>
 	);

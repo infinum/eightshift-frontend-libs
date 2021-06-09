@@ -10,22 +10,26 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
-$query = Components::checkAttr('query', $attributes, $manifest);
-$itemsPerLine = Components::checkAttr('itemsPerLine', $attributes, $manifest);
-$serverSideRender = Components::checkAttr('serverSideRender', $attributes, $manifest);
+$blockClass = $attributes['blockClass'] ?? '';
 
-$taxonomy = $query['taxonomy'] ?? '';
+$featuredCategoriesQuery = Components::checkAttr('featuredCategoriesQuery', $attributes, $manifest);
+$featuredCategoriesItemsPerLine = Components::checkAttr('featuredCategoriesItemsPerLine', $attributes, $manifest);
+$featuredCategoriesServerSideRender = Components::checkAttr('featuredCategoriesServerSideRender', $attributes, $manifest);
+
+$taxonomy = $featuredCategoriesQuery['taxonomy'] ?? '';
 
 if (!$taxonomy) {
 	return;
 }
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>" data-items-per-line=<?php echo \esc_attr($itemsPerLine); ?>>
+<div
+	class="<?php echo esc_attr($blockClass); ?>"
+	data-items-per-line=<?php echo \esc_attr($featuredCategoriesItemsPerLine); ?>
+>
 	<?php
 
-	$terms = $query['terms'] ?? '';
+	$terms = $featuredCategoriesQuery['terms'] ?? [];
 
 	$args = [
 		'hide_empty' => false,
@@ -51,7 +55,7 @@ if (!$taxonomy) {
 			'buttonUrl' => \get_term_link($term),
 		];
 
-		if ($serverSideRender) {
+		if ($featuredCategoriesServerSideRender) {
 			$cardProps['headingTag'] = 'div';
 			$cardProps['paragraphTag'] = 'div';
 		}

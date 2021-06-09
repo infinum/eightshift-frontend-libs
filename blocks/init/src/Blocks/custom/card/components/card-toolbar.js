@@ -5,15 +5,15 @@ import manifest from './../manifest.json';
 
 export const CardToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
-		options,
+		blockName: manifestBlockName,
+		options: manifestOptions,
 	} = manifest;
 
 	return (
 		<CardToolbarComponent
-			{...props(attributes, blockName, '', true)}
+			{...props(attributes, manifestBlockName, '', true)}
 			setAttributes={setAttributes}
-			options={options}
+			options={manifestOptions}
 		/>
 	);
 };

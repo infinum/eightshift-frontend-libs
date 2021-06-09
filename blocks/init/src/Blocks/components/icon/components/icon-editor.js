@@ -5,20 +5,18 @@ import manifest from './../manifest.json';
 
 export const IconEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 		icons: manifestIcons,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		iconUse = checkAttr('iconUse', attributes, manifest, componentName),
-		iconName = checkAttr('iconName', attributes, manifest, componentName),
 	} = attributes;
+
+	const iconUse = checkAttr('iconUse', attributes, manifest);
+	const iconName = checkAttr('iconName', attributes, manifest);
 
 	const iconClass = classnames([
 		componentClass,

@@ -1,41 +1,36 @@
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { responsiveSelectors, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ColumnsEditor = ({ attributes }) => {
 	const {
-		allowedBlocks,
+		globalVariables: {
+			customBlocksName: globalManifestCustomBlocksName,
+		},
+	} = globalManifest;
+
+	const {
 		blockClass,
 	} = attributes;
 
-	const gutter = {
-		large: checkAttr('gutterLarge', attributes, manifest),
-		desktop: checkAttr('gutterDesktop', attributes, manifest),
-		tablet: checkAttr('gutterTablet', attributes, manifest),
-		mobile: checkAttr('gutterMobile', attributes, manifest),
-	};
-
-	const verticalSpacing = {
-		large: checkAttr('verticalSpacingLarge', attributes, manifest),
-		desktop: checkAttr('verticalSpacingDesktop', attributes, manifest),
-		tablet: checkAttr('verticalSpacingTablet', attributes, manifest),
-		mobile: checkAttr('verticalSpacingMobile', attributes, manifest),
-	};
+	const columnsAllowedBlocks = checkAttr('columnsAllowedBlocks', attributes, manifest);
+	const columnsGutter = checkAttrResponsive('columnsGutter', attributes, manifest);
+	const columnsVerticalSpacing = checkAttrResponsive('columnsVerticalSpacing', attributes, manifest);
 
 	const componentClass = classnames([
 		blockClass,
-		globalManifest.globalVariables.customBlocksName,
-		responsiveSelectors(gutter, 'gutter', blockClass),
-		responsiveSelectors(verticalSpacing, 'vertical-spacing', blockClass),
+		globalManifestCustomBlocksName,
+		responsiveSelectors(columnsGutter, 'gutter', blockClass),
+		responsiveSelectors(columnsVerticalSpacing, 'vertical-spacing', blockClass),
 	]);
 
 	return (
 		<div className={componentClass}>
 			<InnerBlocks
-				allowedBlocks={(typeof allowedBlocks === 'undefined') || allowedBlocks}
+				allowedBlocks={(typeof columnsAllowedBlocks === 'undefined') || columnsAllowedBlocks}
 			/>
 		</div>
 	);

@@ -14,18 +14,17 @@ export const VideoToolbar = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		videoShowControls = true,
-
-		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
-
-		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
 	} = attributes;
 
 	if (!videoShowControls) {
 		return null;
 	}
 
+	const videoUse = checkAttr('videoUse', attributes, manifest);
+	const videoUrl = checkAttr('videoUrl', attributes, manifest);
+
 	const removeMedia = () => {
-		setAttributes({ [`${componentName}Url`]: '' });
+		setAttributes({ [`${componentName}Url`]: undefined });
 	};
 
 	return (

@@ -5,23 +5,20 @@ import manifest from './../manifest.json';
 
 export const DrawerEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-
-		drawerUse = checkAttr('drawerUse', attributes, manifest, componentName),
-
-		drawerMenu = checkAttr('drawerMenu', attributes, manifest, componentName),
-		drawerTrigger = checkAttr('drawerTrigger', attributes, manifest, componentName),
-		drawerOverlay = checkAttr('drawerOverlay', attributes, manifest, componentName),
-		drawerPosition = checkAttr('drawerPosition', attributes, manifest, componentName),
 	} = attributes;
+
+	const drawerUse = checkAttr('drawerUse', attributes, manifest);
+	const drawerMenu = checkAttr('drawerMenu', attributes, manifest);
+	const drawerTrigger = checkAttr('drawerTrigger', attributes, manifest);
+	const drawerOverlay = checkAttr('drawerOverlay', attributes, manifest);
+	const drawerPosition = checkAttr('drawerPosition', attributes, manifest);
 
 	const drawerClass = classnames([
 		componentClass,

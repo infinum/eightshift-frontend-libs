@@ -9,8 +9,7 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
-$iconUse = Components::checkAttr('iconUse', $attributes, $manifest, $componentName);
+$iconUse = Components::checkAttr('iconUse', $attributes, $manifest);
 
 if (!$iconUse) {
 	return;
@@ -20,7 +19,7 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$iconName = Components::checkAttr('iconName', $attributes, $manifest, $componentName);
+$iconName = Components::checkAttr('iconName', $attributes, $manifest);
 $icon = $manifest['icons'][$iconName];
 
 $iconClasses = Components::classnames(

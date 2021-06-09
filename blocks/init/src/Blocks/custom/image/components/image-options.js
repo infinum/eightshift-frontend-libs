@@ -7,15 +7,17 @@ import manifest from './../manifest.json';
 
 export const ImageOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Image Details', 'eightshift-frontend-libs')}>
+
 			<ImageOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
+
 		</PanelBody>
 	);
 };

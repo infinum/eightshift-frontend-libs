@@ -10,9 +10,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$listsUse = Components::checkAttr('listsUse', $attributes, $manifest, $componentName);
+$listsUse = Components::checkAttr('listsUse', $attributes, $manifest);
 if (!$listsUse) {
 	return;
 }
@@ -24,8 +23,8 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$listsContent = Components::checkAttr('listsContent', $attributes, $manifest, $componentName);
-$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest, $componentName);
+$listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
+$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
 $listsClass = Components::classnames([
 	$componentClass,

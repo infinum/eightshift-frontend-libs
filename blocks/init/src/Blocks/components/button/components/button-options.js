@@ -19,15 +19,6 @@ export const ButtonOptions = (attributes) => {
 		label = manifestTitle,
 		buttonShowControls = true,
 
-		buttonUse = checkAttr('buttonUse', attributes, manifest, componentName),
-
-		buttonColor = checkAttr('buttonColor', attributes, manifest, componentName),
-		buttonSize = checkAttr('buttonSize', attributes, manifest, componentName),
-		buttonWidth = checkAttr('buttonWidth', attributes, manifest, componentName),
-		buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest, componentName),
-		buttonId = checkAttr('buttonId', attributes, manifest, componentName),
-		buttonIsLink = checkAttr('buttonIsLink', attributes, manifest, componentName),
-
 		showButtonUse = true,
 		showButtonColor = true,
 		showButtonSize = true,
@@ -42,6 +33,14 @@ export const ButtonOptions = (attributes) => {
 	if (!buttonShowControls) {
 		return null;
 	}
+
+	const buttonUse = checkAttr('buttonUse', attributes, manifest);
+	const buttonColor = checkAttr('buttonColor', attributes, manifest);
+	const buttonSize = checkAttr('buttonSize', attributes, manifest);
+	const buttonWidth = checkAttr('buttonWidth', attributes, manifest);
+	const buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest);
+	const buttonId = checkAttr('buttonId', attributes, manifest);
+	const buttonIsLink = checkAttr('buttonIsLink', attributes, manifest);
 
 	return (
 		<>

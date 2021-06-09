@@ -6,8 +6,9 @@ import globalManifest from './../../../manifest.json';
 
 export const ButtonEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
+
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	const {
@@ -15,15 +16,14 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
+
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			<div className={blockClass} data-id={unique}>
-				<ButtonEditorComponent
-					setAttributes={setAttributes}
-					{...props(attributes, blockName, '', true)}
-				/>
-			</div>
-		</>
+			<ButtonEditorComponent
+				{...props(attributes, manifestBlockName, '', true)}
+				setAttributes={setAttributes}
+			/>
+		</div>
 	);
 };

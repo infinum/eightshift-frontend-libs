@@ -8,7 +8,7 @@ export const ListsEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	const {
@@ -16,15 +16,13 @@ export const ListsEditor = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			<div className={blockClass} data-id={unique}>
-				<ListsEditorComponent
-					{...props(attributes, blockName, '', true)}
-					setAttributes={setAttributes}
-				/>
-			</div>
-		</>
+			<ListsEditorComponent
+				{...props(attributes, manifestBlockName, '', true)}
+				setAttributes={setAttributes}
+			/>
+		</div>
 	);
 };

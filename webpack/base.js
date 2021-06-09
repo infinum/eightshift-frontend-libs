@@ -10,7 +10,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { convertJsonToSass } = require('./helpers');
 const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
-
 module.exports = (options) => {
 
 	// All Plugins used in production and development build.
@@ -28,6 +27,13 @@ module.exports = (options) => {
 		plugins.push(new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
+		}));
+	}
+
+	// Provide variables to code build.
+	if (!options.overrides.includes('definePlugin')) {
+		plugins.push(new webpack.DefinePlugin({
+			'process.env.VERSION': JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)),
 		}));
 	}
 

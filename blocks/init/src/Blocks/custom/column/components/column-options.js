@@ -2,47 +2,17 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, Icon, RangeControl, ToggleControl, ButtonGroup, Button } from '@wordpress/components';
+import { checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
 import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
-	const { attributes: reset, options } = manifest;
-
-	const width = [
-		attributes.widthLarge,
-		attributes.widthDesktop,
-		attributes.widthTablet,
-		attributes.widthMobile,
-	];
-
-	const offset = [
-		attributes.offsetLarge,
-		attributes.offsetDesktop,
-		attributes.offsetTablet,
-		attributes.offsetMobile,
-	];
-
-	const order = [
-		attributes.orderLarge,
-		attributes.orderDesktop,
-		attributes.orderTablet,
-		attributes.orderMobile,
-	];
-
-	const align = [
-		attributes.alignLarge,
-		attributes.alignDesktop,
-		attributes.alignTablet,
-		attributes.alignMobile,
-	];
-
-	const hide = [
-		attributes.hideLarge,
-		attributes.hideDesktop,
-		attributes.hideTablet,
-		attributes.hideMobile,
-	];
+	const {
+		blockName: manifestBlockName,
+		attributes: manifestAttributes,
+		options: manifestOptions,
+	} = manifest;
 
 	return (
 		<PanelBody title={__('Column Details', 'eightshift-frontend-libs')}>
@@ -63,22 +33,23 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					</>
 				}
 			>
-				{width.map((item, index) => {
+				{Object.keys(checkAttrResponsive('columnWidth', attributes, manifest)).map(function(keyName) {
 
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `width${point}`;
+					const point = ucfirst(keyName);
+					const attrOption = `${manifestBlockName}Width`;
+					const attr = `${attrOption}${point}`;
 
 					return (
-						<Fragment key={index}>
+						<Fragment key={keyName}>
 							<RangeControl
 								label={point}
 								allowReset={true}
 								value={attributes[attr]}
 								onChange={(value) => setAttributes({ [attr]: value })}
-								min={options.widths.min}
-								max={options.widths.max}
-								step={options.widths.step}
-								resetFallbackValue={reset[attr].default}
+								min={manifestOptions[attrOption].min}
+								max={manifestOptions[attrOption].max}
+								step={manifestOptions[attrOption].step}
+								resetFallbackValue={manifestAttributes[attr].default}
 							/>
 						</Fragment>
 					);
@@ -93,22 +64,23 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					</>
 				}
 			>
-				{offset.map((item, index) => {
+				{Object.keys(checkAttrResponsive('columnOffset', attributes, manifest)).map(function(keyName) {
 
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `offset${point}`;
+					const point = ucfirst(keyName);
+					const attrOption = `${manifestBlockName}Offset`;
+					const attr = `${attrOption}${point}`;
 
 					return (
-						<Fragment key={index}>
+						<Fragment key={keyName}>
 							<RangeControl
 								label={point}
 								allowReset={true}
 								value={attributes[attr]}
 								onChange={(value) => setAttributes({ [attr]: value })}
-								min={options.offsets.min}
-								max={options.offsets.max}
-								step={options.offsets.step}
-								resetFallbackValue={reset[attr].default}
+								min={manifestOptions[attrOption].min}
+								max={manifestOptions[attrOption].max}
+								step={manifestOptions[attrOption].step}
+								resetFallbackValue={manifestAttributes[attr].default}
 							/>
 						</Fragment>
 					);
@@ -123,22 +95,23 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					</>
 				}
 			>
-				{order.map((item, index) => {
+				{Object.keys(checkAttrResponsive('columnOrder', attributes, manifest)).map(function(keyName) {
 
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `order${point}`;
+					const point = ucfirst(keyName);
+					const attrOption = `${manifestBlockName}Order`;
+					const attr = `${attrOption}${point}`;
 
 					return (
-						<Fragment key={index}>
+						<Fragment key={keyName}>
 							<RangeControl
 								label={point}
 								allowReset={true}
 								value={attributes[attr]}
 								onChange={(value) => setAttributes({ [attr]: value })}
-								min={options.orders.min}
-								max={options.orders.max}
-								step={options.orders.step}
-								resetFallbackValue={reset[attr].default}
+								min={manifestOptions[attrOption].min}
+								max={manifestOptions[attrOption].max}
+								step={manifestOptions[attrOption].step}
+								resetFallbackValue={manifestAttributes[attr].default}
 							/>
 						</Fragment>
 					);
@@ -153,26 +126,25 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					</>
 				}
 			>
-				{align.map((item, index) => {
+				{Object.keys(checkAttrResponsive('columnAlign', attributes, manifest)).map(function(keyName, index) {
 
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `align${point}`;
+					const point = ucfirst(keyName);
+					const attrOption = `${manifestBlockName}Align`;
+					const attr = `${attrOption}${point}`;
 
 					return (
 						<Fragment key={index}>
 							<span className="button-group__label">{point}</span>
 							<ButtonGroup>
-								{options.aligns.map((alignment, alignIndex) => {
-									// The default (stretch) doesn't need to be set in the frontend to avoid unnecessary classnames
-									const isPressed = (align[index] ?? options.aligns[0].value) == alignment.value;
-									const outValue = alignment.value == options.aligns[0].value ? undefined : alignment.value;
+								{manifestOptions.columnAlign.map((alignment, alignIndex) => {
+									const onClick = attributes[attr] === alignment.value ? undefined : alignment.value;
 
 									return (
 										<Button
 											key={alignIndex}
-											isPressed={isPressed}
+											isPressed={attributes[attr] === alignment.value}
 											label={alignment.label}
-											onClick={() => setAttributes({ [attr]: outValue })}
+											onClick={() => setAttributes({ [attr]: onClick })}
 											icon={icons[`verticalAlign${ucfirst(alignment.value)}24`]}
 										/>
 									);
@@ -192,13 +164,14 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					</>
 				}
 			>
-				{hide.map((item, index) => {
+				{Object.keys(checkAttrResponsive('columnHide', attributes, manifest)).map(function(keyName) {
 
-					const point = ucfirst(options.breakpoints[index]);
-					const attr = `hide${point}`;
+					const point = ucfirst(keyName);
+					const attrOption = `${manifestBlockName}Hide`;
+					const attr = `${attrOption}${point}`;
 
 					return (
-						<Fragment key={index}>
+						<Fragment key={keyName}>
 							<ToggleControl
 								label={point}
 								checked={attributes[attr]}
@@ -208,6 +181,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 					);
 				})}
 			</Responsive>
+
 		</PanelBody>
 	);
 };

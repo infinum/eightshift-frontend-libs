@@ -7,15 +7,17 @@ import manifest from './../manifest.json';
 
 export const VideoOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName,
+		blockName: manifestBlockName,
 	} = manifest;
 
 	return (
 		<PanelBody title={__('Video Details', 'eightshift-frontend-libs')}>
+
 			<VideoOptionsComponent
-				{...props(attributes, blockName, '', true)}
+				{...props(attributes, manifestBlockName, '', true)}
 				setAttributes={setAttributes}
 			/>
+
 		</PanelBody>
 	);
 };

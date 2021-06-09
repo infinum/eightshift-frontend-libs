@@ -12,27 +12,16 @@ $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$gutter = [
-	'large' => Components::checkAttr('gutterLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('gutterDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('gutterTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('gutterMobile', $attributes, $manifest),
-];
+$columnGutter = Components::checkAttrResponsive('columnGutter', $attributes, $manifest);
+$columnVerticalSpacing = Components::checkAttrResponsive('columnVerticalSpacing', $attributes, $manifest);
 
-$verticalSpacing = [
-	'large' => Components::checkAttr('verticalSpacingLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('verticalSpacingDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('verticalSpacingTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('verticalSpacingMobile', $attributes, $manifest),
-];
-
-$componentClass = Components::classnames([
+$columnsClass = Components::classnames([
 	$blockClass,
-	Components::responsiveSelectors($gutter, 'gutter', $blockClass),
-	Components::responsiveSelectors($verticalSpacing, 'vertical-spacing', $blockClass),
+	Components::responsiveSelectors($columnGutter, 'gutter', $blockClass),
+	Components::responsiveSelectors($columnVerticalSpacing, 'vertical-spacing', $blockClass),
 ]);
 ?>
 
-<div class="<?php echo \esc_attr($componentClass); ?>">
+<div class="<?php echo \esc_attr($columnsClass); ?>">
 	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>

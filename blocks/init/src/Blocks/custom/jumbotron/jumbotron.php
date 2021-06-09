@@ -10,9 +10,9 @@ use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
-$blockName = $attributes['blockName'] ?? $manifest['blockName'];
+$manifestBlockName = $manifest['blockName'];
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'jumbotron',
-	Blocks::props($attributes, $blockName, '', true)
+	Blocks::props($attributes, $manifestBlockName, '', true)
 );

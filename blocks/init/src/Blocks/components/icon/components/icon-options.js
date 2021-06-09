@@ -41,8 +41,6 @@ export const IconOptions = (attributes) => {
 		setAttributes,
 		componentName = manifestComponentName,
 		label = manifestTitle,
-		iconUse = checkAttr('iconUse', attributes, manifest, componentName),
-		iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest, componentName),
 		showIconOptions = true,
 	} = attributes;
 
@@ -51,6 +49,9 @@ export const IconOptions = (attributes) => {
 	if (!showIconOptions) {
 		return null;
 	}
+
+	const iconUse = checkAttr('iconUse', attributes, manifest);
+	const iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest);
 
 	return (
 		<>

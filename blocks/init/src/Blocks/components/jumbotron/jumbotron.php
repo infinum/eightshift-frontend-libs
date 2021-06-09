@@ -11,9 +11,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$jumbotronUse = Components::checkAttr('jumbotronUse', $attributes, $manifest, $componentName);
+$jumbotronUse = Components::checkAttr('jumbotronUse', $attributes, $manifest);
 if (!$jumbotronUse) {
 	return;
 }
