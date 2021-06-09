@@ -73,6 +73,144 @@ export const globalInner = (itemValues, itemKey) => {
 }
 
 /**
+ * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
+ *
+ * @param {array}  attributeVariables  - Array of attribute variables object.
+ * @param {string} breakpointName    	 - Breakpoint name from responsiveAttribute's breakpoint in block's/component's manifest.
+ * @param {number} breakpointIndex   	 - Index of responsiveAttribute's breakpoint in manifest.
+ * @param {number} numberOfBreakpoints - Number of responsiveAttribute breakpoints in block's/component's manifest.
+ *
+ * @return {array}
+ */
+const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
+	return attributeVariables.map((attributeVariablesObject) => {
+
+		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
+		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : (numberOfBreakpoints - 1);
+
+		// Expanding an object with an additional breakpoint property.
+		return {
+			...attributeVariablesObject,
+			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
+		};
+	})
+}
+
+/**
+ * Iterating through variables matching the keys from responsiveAttributes and translating it to responsive attributes names.
+ *
+ * @param {object} responsiveAttributes - Responsive attributes that are read from component's/block's manifest.
+ * @param {object} variables            - Object containing objects with component's/block's attribute variables that are read from manifest.
+ *
+ * @return {object} Object prepared for setting all the variables to its breakpoints.
+ */
+const setupResponsiveVariables = (responsiveAttributes, variables) => {
+	// Iterate through responsive attributes.
+	return Object.entries(responsiveAttributes)
+		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
+
+			// If responsive attribute doesn't exist in variables object, skip it.
+			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
+				return responsiveAttributesVariables;
+			}
+
+			// Used for determination of default breakpoint.
+			const numberOfBreakpoints = Object.entries(responsiveAttributeObject).length;
+
+			// Iterate each responsive attribute object as breakpoint name is the key of the object,
+			// and value represents the name of the responsive variable.
+			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject)
+				.reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
+					let breakpointVariables = {};
+
+					if (Array.isArray(variables[responsiveAttributeName])) { // Array represents direct value(default or value).
+						breakpointVariables = setBreakpointResponsiveVariables(
+							variables[responsiveAttributeName],
+							breakpointName,
+							breakpointIndex,
+							numberOfBreakpoints
+						);
+						return {
+							...responsiveAttribute,
+							[breakpointVariableName]: breakpointVariables,
+						};
+					}
+
+					// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
+					// Iterate options/multiple choices/boolean...
+					breakpointVariables = Object.entries(variables[responsiveAttributeName])
+						.reduce((acc, [attributeValue, attributeObject]) => {
+							return {
+								...acc,
+								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
+							}
+						}, {});
+
+					// Collect all the values from one responsive attribute to one object.
+					return {
+						...responsiveAttribute,
+						[breakpointVariableName]: breakpointVariables,
+					};
+				}, {});
+
+			// Merge multiple responsive attributes to one object.
+			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
+		}, {});
+}
+
+/**
+ * Setting defined variables to each breakpoint.
+ *
+ * @param {object} attributes - Attributes fetched from manifest.
+ * @param {object} variables  - Variables fetched from manifest.
+ * @param {object} data       - Preset objects separated in breakpoints.
+ *
+ * @return {object} Filled object with variables data separated in breakpoints.
+ */
+const setVariablesToBreakpoints = (attributes, variables, data) => {
+	// Iterate each variable.
+	for (const [variableName, variableValue] of Object.entries(variables)) {
+
+		// Constant for attributes set value (in db or default).
+		const attributeValue = attributes[variableName];
+
+		// Set internal breakpoints variable.
+		const internalBreakpoints = Array.isArray(variableValue) ? variableValue : (variableValue[attributeValue] ?? []);
+
+		// Iterate variable array to check breakpoints.
+		internalBreakpoints.forEach((breakpointItem) => {
+
+			// Define variables from breakpointItem.
+			const {
+				breakpoint = 'default', // If breakpoint is not set use default name.
+				inverse = false, // If inverse is not set use mobile first.
+				variable = [],
+			} = breakpointItem;
+
+			// Check if we are using mobile or desktop first. Mobile first is the default.
+			const type = inverse ? 'max' : 'min';
+
+			// Iterate each data array to find the correct breakpoint.
+			data.some((item, index) => {
+
+				// Check if breakpoint and type match.
+				if (item.name === breakpoint && item.type === type) {
+
+					// Merge data variables with the new variables array.
+					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
+
+					// Exit.
+					return true;
+				}
+
+				return false;
+			});
+		});
+	}
+	return data;
+}
+
+/**
  * Get component/block options and process them in CSS variables.
  *
  * @param {array} attributes      - Built attributes.
@@ -110,6 +248,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	const {
 		variables,
 		variablesEditor,
+		responsiveAttributes,
 	} = manifest;
 
 	// Get the initial data array.
@@ -118,61 +257,22 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
-
-	// Setting defined variables to each breakpoint.
-	const setVariablesToBreakpoints = (variables) => {
-		// Iterate each variable.
-		for (const [variableName, variableValue] of Object.entries(variables)) {
-
-			// Constant for attributes set value (in db or default).
-			const attributeValue = attributes[variableName];
-
-			// Set internal breakpoints variable.
-			let internalBreakpoints = [];
-
-			// If type default or value.
-			if (!Array.isArray(variableValue)) {
-				internalBreakpoints = variableValue[attributeValue] ?? [];
-			} else {
-				internalBreakpoints = variableValue;
-			}
-
-			// Iterate variable array to check breakpoints.
-			internalBreakpoints.forEach((breakpointItem) => {
-
-				// Define variables from breakpointItem.
-				const {
-					breakpoint = 'default', // If breakpoint is not set use default name
-					inverse = false, // If inverse is not set use mobile first.
-					variable = [],
-				} = breakpointItem;
-
-				// Check if we are using mobile or desktop first. Mobile first is the default.
-				const type = inverse ? 'max' : 'min';
-
-				// Iterate each data array to find the correct breakpoint.
-				data.some((item, index) => {
-
-					// Check if breakpoint and type match.
-					if (item.name === breakpoint && item.type === type) {
-
-						// Merge data variables with the new variables array.
-						data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
-
-						// Exit.
-						return true;
-					}
-				});
-			});
-		}
+	// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
+	if (responsiveAttributes) {
+		setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data);
 	}
 
 	// Iterate each variable from variables field.
-	setVariablesToBreakpoints(variables);
+	setVariablesToBreakpoints(attributes, variables, data);
 
+	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (variablesEditor) {
+		if (responsiveAttributes) {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data);
+		}
+
 		// Iterate each variable from variablesEditor field.
-		setVariablesToBreakpoints(variablesEditor);
+		setVariablesToBreakpoints(attributes, variablesEditor, data);
 	}
 
 	// Loop data and provide correct selectors from data array.
