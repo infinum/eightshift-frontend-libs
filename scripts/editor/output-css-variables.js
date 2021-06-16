@@ -416,12 +416,6 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 		// If value contains magic variable swap that variable with original attribute value.
 		if (variableValue.includes('%value%')) {
-
-			// Bailout if magic variable is empty or undefined.
-			if (typeof attributeValue === 'undefined' || attributeValue === '') {
-				continue;
-			}
-
 			value = variableValue.replace('%value%', attributeValue);
 		}
 
