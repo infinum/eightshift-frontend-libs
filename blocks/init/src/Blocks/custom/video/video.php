@@ -3,11 +3,11 @@
 /**
  * Template for the Video Block view.
  *
- * @package Project
+ * @package EightshiftBoilerplate
  */
 
-use Project\Blocks\Blocks;
-use ProjectVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplate\Blocks\Blocks;
+use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);

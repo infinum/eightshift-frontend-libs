@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use ProjectVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
