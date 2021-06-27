@@ -80,15 +80,17 @@
 			"mobile": "imageUrlMobile"
 		}
 	},
-	"imageFull": {
-		"true": [
-			{
-				"variable": {
-					"image-width": "100%",
-					"image-img-width": "100%",
-					"image-img-max-width": "none"
+	"variables": {
+		"imageFull": {
+			"true": [
+				{
+					"variable": {
+						"image-width": "100%",
+						"image-img-width": "100%",
+						"image-img-max-width": "none"
+					}
 				}
-			}
-		]
+			]
+		}
 	}
 }

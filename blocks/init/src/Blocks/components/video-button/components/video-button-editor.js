@@ -33,7 +33,7 @@ export const VideoButtonEditor = (attributes) => {
 					{videoButtonModalId &&
 						<button
 							className={`${videoButtonClass}`}
-							dangerouslySetInnerHTML={{ __html: options.icons }}
+							dangerouslySetInnerHTML={{ __html: options.icon }}
 							aria-label={videoButtonLabel}
 						></button>
 					}
