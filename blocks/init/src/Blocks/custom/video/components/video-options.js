@@ -11,7 +11,7 @@ export const VideoOptions = ({ attributes, setAttributes }) => {
 	} = manifest;
 
 	return (
-		<PanelBody title={__('Video Details', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Video Details', 'project')}>
 
 			<VideoOptionsComponent
 				{...props(attributes, manifestBlockName, '', true)}

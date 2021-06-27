@@ -11,5 +11,5 @@ $blockClass = $attributes['blockClass'] ?? '';
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>">
-	<?php echo wp_kses_post($innerBlockContent); ?>
+	<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped ?>
 </div>

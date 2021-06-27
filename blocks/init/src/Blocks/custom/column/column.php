@@ -29,5 +29,5 @@ $columnClass = Components::classnames([
 ?>
 
 <div class="<?php echo \esc_attr($columnClass); ?>">
-	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped ?>
 </div>

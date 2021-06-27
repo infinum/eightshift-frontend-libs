@@ -13,5 +13,92 @@
 	],
 	"components": {
 		"video": "video"
+	},
+	"example": {
+		"attributes": {
+			"videoAlign": "center center"
+		}
+	},
+	"attributes": {
+		"videoAlign": {
+			"type": "string",
+			"default": "center center"
+		}
+	},
+	"variables": {
+		"videoAlign": {
+			"top left": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-start",
+						"block-video-align-vertical": "flex-start"
+					}
+				}
+			],
+			"top center": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "center",
+						"block-video-align-vertical": "flex-start"
+					}
+				}
+			],
+			"top right": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-end",
+						"block-video-align-vertical": "flex-start"
+					}
+				}
+			],
+			"center left": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-start",
+						"block-video-align-vertical": "center"
+					}
+				}
+			],
+			"center center": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "center",
+						"block-video-align-vertical": "center"
+					}
+				}
+			],
+			"center right": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-end",
+						"block-video-align-vertical": "center"
+					}
+				}
+			],
+			"bottom left": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-start",
+						"block-video-align-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom center": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "center",
+						"block-video-align-vertical": "flex-end"
+					}
+				}
+			],
+			"bottom right": [
+				{
+					"variable": {
+						"block-video-align-horizontal": "flex-end",
+						"block-video-align-vertical": "flex-end"
+					}
+				}
+			]
+		}
 	}
 }

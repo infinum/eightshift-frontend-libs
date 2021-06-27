@@ -2,6 +2,7 @@
 	$this: &;
 	overflow: hidden;
 	width: var(--image-width, auto);
+	display: block;
 
 	&__img {
 		max-width: var(--image-img-max-width, 100%);

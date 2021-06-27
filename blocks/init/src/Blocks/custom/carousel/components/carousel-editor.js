@@ -26,6 +26,7 @@ export const CarouselEditor = ({ attributes }) => {
 			data-is-loop={carouselIsLoop}
 		>
 			<InnerBlocks
+				orientation={'horizontal'}
 				allowedBlocks={carouselAllowedBlocks}
 			/>
 		</div>

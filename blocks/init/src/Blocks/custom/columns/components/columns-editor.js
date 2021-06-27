@@ -20,7 +20,7 @@ export const ColumnsEditor = ({ attributes }) => {
 	const columnsGutter = checkAttrResponsive('columnsGutter', attributes, manifest);
 	const columnsVerticalSpacing = checkAttrResponsive('columnsVerticalSpacing', attributes, manifest);
 
-	const componentClass = classnames([
+	const columnsClass = classnames([
 		blockClass,
 		globalManifestCustomBlocksName,
 		responsiveSelectors(columnsGutter, 'gutter', blockClass),
@@ -28,7 +28,7 @@ export const ColumnsEditor = ({ attributes }) => {
 	]);
 
 	return (
-		<div className={componentClass}>
+		<div className={columnsClass}>
 			<InnerBlocks
 				allowedBlocks={(typeof columnsAllowedBlocks === 'undefined') || columnsAllowedBlocks}
 			/>

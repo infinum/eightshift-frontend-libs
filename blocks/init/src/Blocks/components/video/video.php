@@ -6,11 +6,12 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use ProjectVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
+$videoUse = Components::checkAttr('videoUse', $attributes, $manifest, $componentName);
 if (!$videoUse) {
 	return;
 }
@@ -19,53 +20,47 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest);
-$videoType = Components::checkAttr('videoType', $attributes, $manifest);
-$videoAspectRatio = Components::checkAttr('videoAspectRatio', $attributes, $manifest);
-$videoAllow = Components::checkAttr('videoAllow', $attributes, $manifest);
-$videoAccept = Components::checkAttr('videoAccept', $attributes, $manifest);
-$videoAllowedTypes = Components::checkAttr('videoAllowedTypes', $attributes, $manifest);
-$videoUsePlaceholder = Components::checkAttr('videoUsePlaceholder', $attributes, $manifest);
-
-$videoWrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($videoAspectRatio, $componentClass, 'ratio', $videoAspectRatio),
-	Components::selector($videoType, $componentClass, 'ratio', $videoType),
-	Components::selector($blockClass, $blockClass, "{$selectorClass}-wrap"),
-]);
+$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest, $componentName);
+$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest, $componentName);
+$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest, $componentName);
+$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest, $componentName);
+$videoControls = Components::checkAttr('videoControls', $attributes, $manifest, $componentName);
+$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest, $componentName);
+$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest, $componentName);
 
 $videoClass = Components::classnames([
 	$componentClass,
 	Components::selector($blockClass, $blockClass, $selectorClass),
 ]);
 
-$localUrl = '';
+$additionalAttributes = Components::classnames([
+	$videoLoop ? 'loop' : '',
+	$videoAutoplay ? 'autoplay playsinline' : '',
+	$videoControls ? 'controls' : '',
+	$videoMuted ? 'muted' : '',
+]);
 
-switch ($videoType) {
-	case 'vimeo':
-		$localUrl = "https://player.vimeo.com/video/{$videoUrl}";
-		break;
-	case 'youtube':
-		$localUrl = "https://www.youtube-nocookie.com/embed/{$videoUrl}";
-		break;
-	default:
-		$localUrl = $videoUrl;
-		break;
+if (!$videoUrl) {
+	return;
 }
 
 ?>
 
-<div class="<?php echo \esc_attr($videoWrapClass); ?>">
-	<?php if ($videoType === 'local') { ?>
-		<video class="<?php echo \esc_attr($videoClass); ?>" muted>
-			<source src="<?php echo \esc_url($localUrl); ?>" type="video/mp4" />
-		</video>
-	<?php } else { ?>
-		<iframe
-		class="<?php echo \esc_attr($videoClass); ?>"
-		src="<?php echo \esc_url($localUrl); ?>"
-		allow="<?php echo \esc_attr($videoAllow); ?>"
-		allowFullScreen
-		></iframe>
+<video
+	class="<?php echo \esc_attr($videoClass); ?>"
+	<?php echo \esc_attr($additionalAttributes); ?>
+	preload="<?php echo \esc_attr($videoPreload); ?>"
+	poster="<?php echo \esc_attr($videoPoster); ?>"
+>
+	<?php foreach ($videoUrl as $item) { ?>
+		<?php
+		$url = $item['url'] ?? '';
+		$mime = $item['mime'] ?? '';
+
+		if (!$url) {
+			continue;
+		}
+		?>
+		<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
 	<?php } ?>
-</div>
+</video>

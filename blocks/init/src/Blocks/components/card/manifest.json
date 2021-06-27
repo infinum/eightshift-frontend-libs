@@ -6,8 +6,22 @@
 		"attributes": {
 			"introContent": "This is intro",
 			"introSize": "small",
-			"introColor": "light"
+			"introColor": "light",
+			"cardAlign": "left"
 		}
+	},
+	"attributes": {
+		"cardAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"options": {
+		"cardAlign": [
+			"left",
+			"center",
+			"right"
+		]
 	},
 	"components": {
 		"image": "image",
@@ -15,5 +29,14 @@
 		"heading": "heading",
 		"paragraph": "paragraph",
 		"button": "button"
+	},
+	"variables": {
+		"cardAlign": [
+			{
+				"variable": {
+					"block-card-align": "%value%"
+				}
+			}
+		]
 	}
 }

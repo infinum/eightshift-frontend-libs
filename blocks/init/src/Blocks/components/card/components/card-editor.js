@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
 import { selector } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import { ButtonEditor } from '../../button/components/button-editor';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const CardEditor = (attributes) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		componentClass: manifestComponentClass,
 	} = manifest;
@@ -26,7 +29,9 @@ export const CardEditor = (attributes) => {
 	]);
 
 	return (
-		<div className={cardClass}>
+		<div className={cardClass} data-id={unique}>
+
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditor
 				{...props(attributes, 'image')}
