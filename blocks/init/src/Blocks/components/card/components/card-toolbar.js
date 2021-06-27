@@ -45,7 +45,7 @@ export const CardToolbar = (attributes) => {
 			<AlignmentToolbar
 				value={cardAlign}
 				options={manifestOptions.cardAlign}
-				label={sprintf(__('%s text align', 'project'), manifestTitle)}
+				label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
 				onChange={(value) => setAttributes({ [`${manifestComponentName}Align`]: value })}
 			/>
 		</>

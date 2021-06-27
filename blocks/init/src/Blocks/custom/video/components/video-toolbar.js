@@ -13,7 +13,7 @@ export const VideoToolbar = ({ attributes, setAttributes }) => {
 
 	return (
 		<BlockAlignmentMatrixToolbar
-			label={__('Video Position', 'project')}
+			label={__('Video Position', 'eightshift-frontend-libs')}
 			value={videoAlign}
 			onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
 		/>
