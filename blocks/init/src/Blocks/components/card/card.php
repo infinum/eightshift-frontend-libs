@@ -27,9 +27,9 @@ $cardClass = Components::classnames([
 
 <div class="<?php echo \esc_attr($cardClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-	echo Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
 		array_merge(
 			Blocks::props($attributes, 'image'),
@@ -39,7 +39,7 @@ $cardClass = Components::classnames([
 		)
 	),
 
-	Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
 			Blocks::props($attributes, 'heading', 'intro'),
@@ -50,7 +50,7 @@ $cardClass = Components::classnames([
 		)
 	),
 
-	Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
 			Blocks::props($attributes, 'heading'),
@@ -60,7 +60,7 @@ $cardClass = Components::classnames([
 		)
 	),
 
-	Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'paragraph',
 		array_merge(
 			Blocks::props($attributes, 'paragraph'),
@@ -70,7 +70,7 @@ $cardClass = Components::classnames([
 		)
 	),
 
-	Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
 		array_merge(
 			Blocks::props($attributes, 'button'),

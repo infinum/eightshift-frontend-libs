@@ -43,7 +43,7 @@ $accordionClass = Components::classnames([
 	>
 		<?php echo \esc_html($accordionTitle); ?>
 		<div class="<?php echo \esc_attr("{$componentClass}__icon"); ?>" aria-hidden="true" >
-			<?php echo $manifest['options']['icon']; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped ?>
+			<?php echo $manifest['options']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 	</button>
 	<section

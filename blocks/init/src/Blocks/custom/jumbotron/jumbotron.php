@@ -12,7 +12,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 $manifestBlockName = $manifest['blockName'];
 
-echo Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'jumbotron',
 	Blocks::props($attributes, $manifestBlockName, '', true)
 );
