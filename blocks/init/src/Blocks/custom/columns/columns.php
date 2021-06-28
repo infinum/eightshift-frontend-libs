@@ -12,16 +12,16 @@ $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$columnGutter = Components::checkAttrResponsive('columnGutter', $attributes, $manifest);
-$columnVerticalSpacing = Components::checkAttrResponsive('columnVerticalSpacing', $attributes, $manifest);
+$columnsGutter = Components::checkAttrResponsive('columnsGutter', $attributes, $manifest);
+$columnsVerticalSpacing = Components::checkAttrResponsive('columnsVerticalSpacing', $attributes, $manifest);
 
 $columnsClass = Components::classnames([
 	$blockClass,
-	Components::responsiveSelectors($columnGutter, 'gutter', $blockClass),
-	Components::responsiveSelectors($columnVerticalSpacing, 'vertical-spacing', $blockClass),
+	Components::responsiveSelectors($columnsGutter, 'gutter', $blockClass),
+	Components::responsiveSelectors($columnsVerticalSpacing, 'vertical-spacing', $blockClass),
 ]);
 ?>
 
 <div class="<?php echo \esc_attr($columnsClass); ?>">
-	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped ?>
 </div>

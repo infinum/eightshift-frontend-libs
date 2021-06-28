@@ -7,12 +7,25 @@
  */
 
 use EightshiftBoilerplate\Blocks\Blocks;
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 $manifestBlockName = $manifest['blockName'];
 
-echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	'video',
-	Blocks::props($attributes, $manifestBlockName, '', true)
-);
+$blockClass = $attributes['blockClass'] ?? '';
+
+$unique = Components::getUnique();
+
+?>
+
+<div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
+	<?php
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+
+	echo Components::render( // phpcs:ignore Eightshift.Security.CustomEscapeOutput.OutputNotEscaped
+		'video',
+		Blocks::props($attributes, $manifestBlockName, '', true)
+	);
+	?>
+</div>

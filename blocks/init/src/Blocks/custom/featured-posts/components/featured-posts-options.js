@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { camelize } from '@eightshift/frontend-libs/scripts/helpers';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from '../manifest.json';
 
@@ -225,7 +226,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
 				allowReset={true}
 				value={featuredPostsItemsPerLine}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}ItemsPerLine`]: value })}
+				onChange={(value) => setAttributes({ [`${camelize(manifestBlockName)}ItemsPerLine`]: value })}
 				min={manifestOptions.featuredPostsItemsPerLine.min}
 				max={manifestOptions.featuredPostsItemsPerLine.max}
 				step={manifestOptions.featuredPostsItemsPerLine.step}
@@ -242,7 +243,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				help={__('Option to change the number of items to show in total.', 'eightshift-frontend-libs')}
 				allowReset={true}
 				value={featuredPostsShowItems}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}ShowItems`]: value })}
+				onChange={(value) => setAttributes({ [`${camelize(manifestBlockName)}ShowItems`]: value })}
 				min={1}
 				step={1}
 			/>
@@ -251,7 +252,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 				label={__('Exclude current post', 'eightshift-frontend-libs')}
 				checked={featuredPostsExcludeCurrentPost}
 				help={__('This options can only be used in post single pages.', 'eightshift-frontend-libs')}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}ExcludeCurrentPost`]: value })}
+				onChange={(value) => setAttributes({ [`${camelize(manifestBlockName)}ExcludeCurrentPost`]: value })}
 			/>
 
 		</PanelBody>

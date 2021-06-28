@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, camelize } from '@eightshift/frontend-libs/scripts/helpers';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
@@ -78,7 +78,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 					options={taxonomyOptions}
 					onChange={(value) => {
 						setAttributes({
-							query: {
+							featuredCategoriesQuery: {
 								...featuredCategoriesQuery,
 								taxonomy: value,
 								terms: [],
@@ -98,7 +98,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 					multiple={true}
 					onChange={(value) => {
 						setAttributes({
-							query: {
+							featuredCategoriesQuery: {
 								...featuredCategoriesQuery,
 								terms: value[0] ? value : [],
 							},
@@ -118,7 +118,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
 				allowReset={true}
 				value={featuredCategoriesItemsPerLine}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}ItemsPerLine`]: value })}
+				onChange={(value) => setAttributes({ [`${camelize(manifestBlockName)}ItemsPerLine`]: value })}
 				min={manifestOptions.featuredCategoriesItemsPerLine.min}
 				max={manifestOptions.featuredCategoriesItemsPerLine.max}
 				step={manifestOptions.featuredCategoriesItemsPerLine.step}

@@ -16,13 +16,7 @@ export default {
 const props = manifest.example.attributes;
 
 export const editor = () => (
-	<ImageEditor
-		{...props}
-		imageUrl={{
-			id: "0",
-			url: "image.jpg"
-		}}
-	/>
+	<ImageEditor {...props} />
 );
 
 export const options = () => (
