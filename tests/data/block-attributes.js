@@ -12,4 +12,12 @@ export const blockAttributes = {
 			'headingContent',
 		]
 	},
+	'mock-blockquote': {
+		expected:[
+			'headingContent',
+		],
+		notExpected: [
+			'headingaaaContent',
+		]
+	},
 };
