@@ -203,7 +203,11 @@ export const getEditCallback = (Component, Wrapper) => (props) => {
  * 
  * @returns {object}
  */
-export const getIconOptions = (globalManifest, blockManifest) => {
+export const getIconOptions = (
+	globalManifest,
+	blockManifest
+) => {
+
 	const {
 		background: backgroundGlobal,
 		foreground: foregroundGlobal,
@@ -242,7 +246,11 @@ export const getIconOptions = (globalManifest, blockManifest) => {
  * 
  * @returns {object}
  */
-export const getSharedAttributes = (globalManifest, blockManifest) => {
+export const getSharedAttributes = (
+	globalManifest,
+	blockManifest
+) => {
+
 	const {
 		blockName,
 	} = blockManifest;
@@ -268,43 +276,36 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
 };
 
 /**
- * Iterate over component object in block manifest and search and replace the component attributes with new one.
- * Search and replace the component attributes with new one.
+ * Iterate over attributes or example attributes object in block/component manifest and append the parent prefixes.
  *
- * @param {object} component         - Object of component manifests to iterate.
- * @param {string} realComponentName - React component name defined in the component manifest.
- * @param {string} newComponentName  - New component name to search and replace the original.
- * @param {string} [key=attributes]  - Type of output, can be: `attributes` or `example`.
+ * @param {object} manifest           - Object of component/block manifest to get data from.
+ * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be use, if true attributes will be used.
+ * @param {string} [parent='']        - Parent component key from with stacked component names for the final output.
  * 
  * @returns {object}
  */
-export const prepareComponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
-	let output = {};
+export const prepareComponentAttribute = (manifest, isExample = false, parent = '') => {
+	const output = {};
 
-	let componentAttributes = {};
+	// Define different data point for attributes or example.
+	const componentAttributes = isExample ? manifest?.example?.attributes : manifest?.attributes;
 
-	// Define different data point for attributes.
-	if (key === 'attributes') {
-		componentAttributes = component.attributes;
+	// It can occurs that attributes or example key is missing in manifest so bailout.
+	if (typeof componentAttributes === 'undefined') {
+		return output;
 	}
 
-	// Define different data point for example.
-	if (key === 'example') {
-		componentAttributes = component.example.attributes;
-	}
+	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
+	const name = _.upperFirst(_.camelCase(Object.prototype.hasOwnProperty.call(manifest, 'blockName') ? manifest.blockName : manifest.componentName));
 
-	// Check if realComponentName and newComponentName are not the same. If so do the replace of the attribute names.
-	if (realComponentName !== newComponentName) {
+	// Iterate each attribute and attach parent prefixes.
+	for (const [componentAttribute] of Object.entries(componentAttributes)) {
 
-		// Loop attributes that need replacing.
-		for (const [componentAttribute] of Object.entries(componentAttributes)) {
-			const newName = componentAttribute.replace(realComponentName, newComponentName);
+		// Determine if parent is empty and if parent name is the same as component/block name.
+		const attributeName = (parent === '' || parent === name) ? componentAttribute : `${_.lowerFirst(parent)}${_.upperFirst(componentAttribute)}`;
 
-			// Output attributes with the new name.
-			output[newName] = componentAttributes[componentAttribute];
-		}
-	} else {
-		output = componentAttributes;
+		// Output new attribute names.
+		output[attributeName] = componentAttributes[componentAttribute];
 	}
 
 	return output;
@@ -314,62 +315,61 @@ export const prepareComponentAttribute = (component, realComponentName, newCompo
  * Iterate over component object in block manifest and check if the component exists in the project.
  * If components contains more component this function will run recursively.
  *
- * @param {object} componentsManifest              - Object of component manifests to iterate.
- * @param {object} blockManifest                   - Object of blocks manifests to iterate.
- * @param {string} blockName                       - Full block name.
- * @param {string} [key=attributes]                - Type of output, can be: `attributes` or `example`.
- * @param {string} [parentAttributeName=undefined] - Parent component attribute from which to determine if the name has changed in the parent component.
+ * @param {object} componentsManifest - Object of component manifests to iterate.
+ * @param {object} manifest           - Object of component/block manifest to get data from.
+ * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be use, if true attributes will be used.
+ * @param {string} [parent='']        - Parent component key from with stacked component names for the final output.
  * 
  * @returns {object}
  */
-export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes', parentAttributeName = undefined) => {
-	let output = {};
+export const prepareComponentAttributes = (
+	componentsManifest,
+	manifest,
+	isExample = false,
+	parent = ''
+) => {
+	const output = {};
 
 	const {
 		components = {},
-		attributes = {},
-		example = {},
-	} = blockManifest;
+	} = manifest;
 
-	// Get global window data.
-	const globalData = window['eightshift'][process.env.VERSION].dependency;
+	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
+	const name = Object.prototype.hasOwnProperty.call(manifest, 'blockName') ? manifest.blockName : manifest.componentName;
 
-	// Loop component.
+	// Iterate over components key in manifest recursively and check component names.
 	for (let [newComponentName, realComponentName] of Object.entries(components)) {
 
 		// Filter components real name.
-		const [component] = componentsManifest.filter((item) => item.componentName === realComponentName);
+		const [component] = componentsManifest.filter((item) => item.componentName === _.kebabCase(realComponentName));
 
 		// Bailout if component doesn't exist.
 		if (!component) {
-			throw Error(`Component specified in "${blockName}" blocks manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
+			throw Error(`Component specified in "${name}" manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 		}
 
 		let outputAttributes = {};
 
 		// If component has more components do recursive loop.
 		if (Object.prototype.hasOwnProperty.call(component, 'components')) {
-			outputAttributes = prepareComponentAttributes(componentsManifest, component, blockName, key, newComponentName);
+			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${parent}${_.upperFirst(newComponentName)}`);
 		} else {
-
-			// Use parent attribute name to determine if the name has changed in the parent component.
-			if (parentAttributeName !== newComponentName &&
-				realComponentName !== newComponentName &&
-				Object.prototype.hasOwnProperty.call(globalData.components, newComponentName)
-			) {
-				newComponentName = parentAttributeName;
-			}
-
-			// Output the component attributes.
-			outputAttributes = prepareComponentAttribute(component, realComponentName, newComponentName, key);
+			// Output the component attributes if there are no nesting left and append the parent prefixes.
+			outputAttributes = prepareComponentAttribute(component, isExample, parent);
 		}
 
-		output = {
-			...output,
-			...outputAttributes,
-			...(key === 'attributes' ? attributes : example.attributes),
-		};
+		// Populate the output recursively.
+		Object.assign(
+			output,
+			{
+				...output,
+				...outputAttributes,
+			}
+		);
 	}
+
+	// Add the current block/component attributes to the output.
+	Object.assign(output, prepareComponentAttribute(manifest, isExample, parent));
 
 	return output;
 };
@@ -384,7 +384,12 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
  * 
  * @returns {object}
  */
-export const getAttributes = (globalManifest, wrapperManifest, componentsManifest, blockManifest) => {
+export const getAttributes = (
+	globalManifest,
+	wrapperManifest,
+	componentsManifest,
+	blockManifest
+) => {
 	const {
 		attributes: attributesGlobal,
 	} = globalManifest;
@@ -393,37 +398,29 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
 		attributes: attributesWrapper,
 	} = wrapperManifest;
 
-	const {
-		attributes = {},
-	} = blockManifest;
-
-	return {
+	const output = {
 		...getSharedAttributes(globalManifest, blockManifest),
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-		...prepareComponentAttributes(componentsManifest, blockManifest, getFullBlockName(globalManifest, blockManifest)),
-		...attributes,
+		...prepareComponentAttributes(componentsManifest, blockManifest),
 	};
+
+	return output;
 };
 
 /**
  * Get Block example attributes combined in one: "components and block".
  *
- * @param {object} globalManifest     - Global manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
- * @param {object} blockManifest      - Block manifest.
+ * @param {object} manifest           - Block/component manifest.
  * 
  * @returns {object}
  */
-export const getExample = (globalManifest, componentsManifest, blockManifest) => {
-	const {
-		example = {},
-	} = blockManifest;
-
-	return {
-		...prepareComponentAttributes(componentsManifest, blockManifest, getFullBlockName(globalManifest, blockManifest), 'example'),
-		...example.attributes,
-	};
+export const getExample = (
+	componentsManifest = {},
+	manifest = {}
+) => {
+	return prepareComponentAttributes(componentsManifest, manifest, true);
 };
 
 /**
@@ -484,13 +481,16 @@ export const registerBlock = (
 	// Set full attributes list.
 	blockManifest['attributes'] = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
 
+	console.log(blockManifest['attributes']);
+	console.log('----------------------------------------');
+
 	// Set full example list.
 	if (typeof blockManifest['example'] === 'undefined') {
 		blockManifest['example'] = {};
 	}
 
 	// Set full examples list.
-	blockManifest['example'].attributes = getExample(globalManifest, componentsManifest, blockManifest);
+	blockManifest['example'].attributes = getExample(componentsManifest, blockManifest);
 
 	return {
 		blockName: fullBlockName,
@@ -532,9 +532,6 @@ export const registerBlocks = (
 
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
-
-	// Build window object for dependency tree.
-	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {
@@ -585,91 +582,6 @@ export const registerBlocks = (
 	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 };
-
-/**
- * Build global window object used for optimization.
- *
- * @param {object} globalManifest    - Global setting manifest.
- * @param {array} componentsManifest - List of all component manifests.
- * @param {array} blocksManifests    - List of all block manifests.
- * @param {object} wrapperManifest   - `Wrapper` manifest.
- */
-export const buildWindowObject = (globalManifest, componentsManifest, blocksManifests, wrapperManifest) => {
-	window['eightshift'] = {
-		[process.env.VERSION]: {
-			dependency: {
-				components: buildDependencyComponentsTree(componentsManifest),
-				blocks: buildDependencyBlocksTree(blocksManifests, componentsManifest),
-			},
-			blocks: blocksManifests,
-			components: componentsManifest,
-			wrapper: wrapperManifest,
-			settings: globalManifest,
-		},
-	};
-}
-
-/**
- * Build components dependency tree for blocks.
- *
- * @param {object} blocks     - List of all blocks.
- * @param {object} components - List of all components
- *
- * @returns {object}
- */
-export const buildDependencyBlocksTree = (blocks, components) => {
-	const output = {};
-
-	blocks.forEach((item) => {
-		output[item.blockName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
-	});
-
-	return output;
-}
-
-/**
- * Build components dependency tree for components.
- *
- * @param {object} components - List of all components
- *
- * @returns {object}
- */
-export const buildDependencyComponentsTree = (components) => {
-	const output = {};
-
-	components.forEach((item) => {
-		output[item.componentName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
-	});
-
-	return output;
-}
-
-/**
- * Build inner recursive dependency tree for components.
- *
- * @param {Object} componentsList - List of components to check.
- * @param {Object} components     - List of all components,
- *
- * @returns {array}
- */
-export const buildDependencyComponentsInnerTree = (componentsList, components) => {
-	let output = [];
-
-	if (typeof componentsList === 'undefined') {
-		return output;
-	}
-
-	for (const [key, value] of Object.entries(componentsList)) {
-		const items = components.filter((item) => item.componentName === value)[0].components;
-		output.push(key);
-
-		if (typeof items !== 'undefined') {
-			output.push(buildDependencyComponentsInnerTree(items, components));
-		}
-	}
-
-	return _.flattenDeep(output);
-}
 
 /**
  * Register all Variations Editor blocks using WP `registerBlockVariation` method.
