@@ -50,3 +50,49 @@ export const getAllBlockManifests = () => {
 }
 
 /**
+ * Returns an object composed of all component dependencies (if they exist) if the following format:
+ * {
+ * 	 newName: realName
+ * }
+ *
+ * @param {array<object>} componentManifests Array of all component manifests
+ * @param {string} componentName Component name for which we want to get dependency components
+ * @return {object}
+ */
+export const getComponentDependencies = (componentManifests, componentName) => {
+	let components = {};
+
+	for(const componentManifest of componentManifests) {
+		if (componentManifest.componentName === componentName && componentManifest.components) {
+			components = componentManifest.components;
+			break;
+		}
+	}
+
+	return components;
+}
+
+/**
+ * Recursively builds props for a block and all it's sub dependencies.
+ */
+export const recursiveBuildProps = (attributes, componentManifests, realName, newName, isBlock = false) => {
+
+	// Output props for all components.
+	let propsArray = [];
+	const isNameDifferent = realName !== newName;
+	const newComponentAttributes = props(attributes, realName, isNameDifferent ? newName : '', isBlock);
+	propsArray = [...propsArray, {
+		realName,
+		newName,
+		attributes: newComponentAttributes,
+	}];
+
+	// Check if this component has any sub-components and recursively call this function.
+	const components = getComponentDependencies(componentManifests, realName);
+	for (const subNewName of Object.keys(components)) {
+		const subRealName = components[subNewName];
+		propsArray = [...propsArray, ...recursiveBuildProps(newComponentAttributes, componentManifests, subRealName, subNewName)];
+	}
+
+	return propsArray;
+}

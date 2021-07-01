@@ -45,3 +45,43 @@ it('tests block registration properly inherits all component attributes', () => 
 		}
 	}
 });
+
+it('tests that props helper builds the prefix correctly', () => {
+	const componentManifests = getAllComponentManifests();
+	const blockManifests = getAllBlockManifests();
+
+	// Build an array of expected attributes in each block.
+	buildWindowObject(globalManifest, componentManifests, blockManifests, wrapperManifest);
+
+	// Test all block manifests.
+	// for (const blockManifest of blockManifests) {
+	// 	const blockName = blockManifest.blockName;
+	// 	const attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, blockManifest);
+
+	// 	new componentAttributes = {...props(attributes, camelize(blockName), '', true)};
+	// }
+
+	// TEMP
+	let testManifest = {};
+	for (const blockManifest of blockManifests) {
+		const blockName = blockManifest.blockName;
+
+		if (blockName === 'mock-blockquote') {
+			testManifest = blockManifest;
+			break;
+		}
+	}
+
+	const attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, testManifest);
+
+	// Build props for the current component.
+	// const props = recursiveBuildProps(attributes, componentManifests, testManifest.blockName);
+	let props = [];
+	const components = getComponentDependencies(componentManifests, testManifest.blockName);
+	for (const newName of Object.keys(components)) {
+		const realName = components[newName];
+		props = [...props, ...recursiveBuildProps(attributes, componentManifests, realName, newName, true)]
+	}
+
+	console.log(props);
+});
