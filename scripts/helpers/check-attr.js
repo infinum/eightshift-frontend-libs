@@ -6,7 +6,7 @@ import _ from 'lodash';
  *
  * @param {string} key                       - Key to check.
  * @param {array} attributes                 - Array of attributes.
- * @param {object} manifest                  - Default attributes from manifest.json.
+ * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @return {mixed}
@@ -71,7 +71,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
  *
  * @param {string} keyName                   - Key name to find in responsiveAttributes object.
  * @param {array} attributes                 - Array of attributes.
- * @param {object} manifest                  - Array of default attributes from manifest.json.
+ * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @returns {mixed}
@@ -96,4 +96,25 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	}
 
 	return output;
+}
+
+/**
+ * Check if attributes key has prefix and outputs the correct attribute name.
+ *
+ * @param {string} key       - Key to check.
+ * @param {array} attributes - Array of attributes.
+ * @param {object} manifest  - Components/blocks manifest.json
+ *
+ * @return {mixed}
+ */
+export const getAttrKey = (key, attributes, manifest) => {
+	const prefix = attributes?.prefix;
+
+	if (typeof prefix === 'undefined') {
+		return key;
+	}
+
+	// No need to test if this is block or component because on top level block there is no prefix.
+	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
+	return key.replace(manifest.componentName, prefix);
 }
