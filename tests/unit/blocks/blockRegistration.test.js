@@ -167,9 +167,7 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 			const blockExpectedProps = propsOutput[blockProps.realName];
 
-			expect(blockExpectedProps).toHaveProperty('components') // true
-
-			for (let subComponentKey of Object.keys(blockExpectedProps.components)) {
+			for (let subComponentKey of Object.keys(blockExpectedProps.components || [])) {
 				recursiveAssertProps(blockExpectedProps.components[subComponentKey], blockProps);
 			}
 		}
