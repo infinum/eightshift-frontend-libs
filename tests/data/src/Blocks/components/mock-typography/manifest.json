@@ -1,0 +1,49 @@
+{
+	"componentName": "mock-typography",
+	"title": "Mock Typography",
+	"componentClass": "mock-typography",
+	"example": {
+		"attributes": {
+			"typographyContent": "This is typography",
+			"typographyLevel": 2,
+			"typographyTag": "p",
+			"typographySize": "16-regular",
+			"typographyColor": "black",
+			"typographyUppercase": false,
+			"typographyUse": true
+		}
+	},
+	"attributes": {
+		"typographyContent": {
+			"type": "string",
+			"seo": true
+		},
+		"typographyTag": {
+			"type": "string",
+			"default": "p"
+		},
+		"typographyLevel": {
+			"type": "integer",
+			"default": 2
+		},
+		"typographySize": {
+			"type": "string",
+			"default": "16-regular"
+		},
+		"typographyColor": {
+			"type": "string"
+		},
+		"typographyUppercase": {
+			"type": "boolean",
+			"default": false
+		},
+		"typographyUse": {
+			"type": "boolean",
+			"default": true
+		},
+		"typographyHighlightColor": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}

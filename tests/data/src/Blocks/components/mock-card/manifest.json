@@ -1,0 +1,90 @@
+{
+	"componentName": "mock-card",
+	"title": "Mock Card",
+	"componentClass": "mock-card",
+	"example": {
+		"attributes": {
+			"introContent": "This is intro",
+			"introSize": "small",
+			"introColor": "light"
+		}
+	},
+	"attributes": {
+		"cardContentAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"cardMediaAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"cardMediaInset": {
+			"type": "integer",
+			"default": 0
+		},
+		"cardContentInset": {
+			"type": "integer",
+			"default": 0
+		},
+		"cardSyncInsets": {
+			"type": "boolean",
+			"default": true
+		},
+		"cardIntroBelow": {
+			"type": "boolean",
+			"default": false
+		},
+		"cardShowBorder": {
+			"type": "boolean",
+			"default": false
+		},
+		"introUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"buttonUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"chevronUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"imageUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "6"
+		},
+		"introUppercase": {
+			"type": "boolean",
+			"default": true
+		},
+		"headingSize": {
+			"type": "string",
+			"default": "36-bold"
+		},
+		"introSize": {
+			"type": "string",
+			"default": "14-regular"
+		},
+		"paragraphSize": {
+			"type": "string",
+			"default": "16-regular"
+		}
+	},
+	"components": {
+		"image": "image",
+		"heading": "heading",
+		"intro": "mock-paragraph",
+		"paragraph": "mock-paragraph",
+		"icon": "icon",
+		"button": "button"
+	}
+}

@@ -3,6 +3,6 @@
 	"title": "mock blockquote",
 	"componentClass": "blockquote",
 	"components": {
-		"blockquote": "card"
+		"blockquote": "mock-card"
 	}
 }

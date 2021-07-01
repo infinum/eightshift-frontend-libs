@@ -81,18 +81,20 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 	let propsArray = [];
 	const isNameDifferent = realName !== newName;
 	const newComponentAttributes = props(attributes, realName, isNameDifferent ? newName : '', isBlock);
-	propsArray = [...propsArray, {
+	const componentOutput = {
 		realName,
 		newName,
 		attributes: newComponentAttributes,
-	}];
-
+		subComponents: [],
+	};
+	
 	// Check if this component has any sub-components and recursively call this function.
-	const components = getComponentDependencies(componentManifests, realName);
+	const components = getComponentDependencies(componentManifests, realName, newName);
 	for (const subNewName of Object.keys(components)) {
 		const subRealName = components[subNewName];
-		propsArray = [...propsArray, ...recursiveBuildProps(newComponentAttributes, componentManifests, subRealName, subNewName)];
+		componentOutput.subComponents = [...componentOutput.subComponents, ...recursiveBuildProps(newComponentAttributes, componentManifests, subRealName, subNewName)]
 	}
-
+	
+	propsArray = [...propsArray, componentOutput];
 	return propsArray;
 }
