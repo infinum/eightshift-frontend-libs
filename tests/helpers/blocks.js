@@ -14,8 +14,8 @@ const pathToMockBlocks = Path.resolve(pathToMockBlocksFolder, 'custom');
  * Returns all manifests from directories inside `dir`.
  *
  * @param {string} dir Full path to dir in which we're looking for other 
- * 										 dirs (components / blocks) which have manifest.json inside.
- * 										 Example: 'blocks/init/src/Blocks/components'
+ *                     dirs (components / blocks) which have manifest.json inside.
+ *                     Example: 'blocks/init/src/Blocks/components'
  * @returns {array<object>} Array of manifest.json contents
  */
 const getAllManifestsFromDir = (dir) => {
@@ -62,7 +62,7 @@ export const getAllBlockManifests = () => {
 export const getComponentDependencies = (componentManifests, componentName) => {
 	let components = {};
 
-	for(const componentManifest of componentManifests) {
+	for (const componentManifest of componentManifests) {
 		if (componentManifest.componentName === componentName && componentManifest.components) {
 			components = componentManifest.components;
 			break;
@@ -87,14 +87,17 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 		attributes: newComponentAttributes,
 		subComponents: [],
 	};
-	
+
 	// Check if this component has any sub-components and recursively call this function.
 	const components = getComponentDependencies(componentManifests, realName, newName);
 	for (const subNewName of Object.keys(components)) {
 		const subRealName = components[subNewName];
-		componentOutput.subComponents = [...componentOutput.subComponents, ...recursiveBuildProps(newComponentAttributes, componentManifests, subRealName, subNewName)]
+		componentOutput.subComponents = [
+			...componentOutput.subComponents,
+			...recursiveBuildProps(newComponentAttributes, componentManifests, subRealName, subNewName)
+		];
 	}
-	
+
 	propsArray = [...propsArray, componentOutput];
 	return propsArray;
 }

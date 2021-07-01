@@ -538,7 +538,7 @@ export const registerBlocks = (
 	buildWindowObject(globalManifest, componentsManifest, blocksManifests, wrapperManifest);
 
 	// Iterate blocks to register.
-	const registeredBlocks = blocksManifests.map((blockManifest) => {
+	blocksManifests.map((blockManifest) => {
 
 		// Get Block edit component from block name and blocksEditComponentPath.
 		const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
@@ -572,13 +572,7 @@ export const registerBlocks = (
 		);
 
 		// Native WP method for block registration.
-		if (NODE_ENV && NODE_ENV === 'test') {
-			return {
-				name: blockDetails.blockName
-			};
-		} else {
-			registerBlockType(blockDetails.blockName, blockDetails.options);
-		}
+		registerBlockType(blockDetails.blockName, blockDetails.options);
 
 		return null;
 	});
@@ -591,8 +585,6 @@ export const registerBlocks = (
 
 	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
-
-	return registeredBlocks;
 };
 
 /**

@@ -67,12 +67,9 @@ export const propsOutput = {
 			card: {
 				expected: [
 					'cardAlign',
-					// 'cardHeadingContent',
-					// 'cardImageUrl',
-					// 'cardButtonContent',
-					'headingContent',
-					'imageUrl',
-					'buttonContent',
+					'cardHeadingContent',
+					'cardImageUrl',
+					'cardButtonContent',
 				],
 				notExpected: [
 					'blockquoteCardImageUrl',
