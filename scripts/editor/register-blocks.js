@@ -290,7 +290,7 @@ export const prepareComponentAttribute = (manifest, isExample = false, parent = 
 	// Define different data point for attributes or example.
 	const componentAttributes = isExample ? manifest?.example?.attributes : manifest?.attributes;
 
-	// It can occurs that attributes or example key is missing in manifest so bailout.
+	// It can occur that attributes or example key is missing in manifest so bailout.
 	if (typeof componentAttributes === 'undefined') {
 		return output;
 	}
