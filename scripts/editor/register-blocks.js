@@ -315,9 +315,9 @@ export const prepareComponentAttribute = (manifest, isExample = false, parent = 
  * Iterate over component object in block manifest and check if the component exists in the project.
  * If components contains more component this function will run recursively.
  *
- * @param {object} componentsManifest - Object of component manifests to iterate.
- * @param {object} manifest           - Object of component/block manifest to get data from.
- * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be use, if true attributes will be used.
+ * @param {object} componentsManifest - Object of components manifest to iterate.
+ * @param {object} manifest           - Object of component/block manifest to get the data from.
+ * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be used, if false attributes will be used.
  * @param {string} [parent='']        - Parent component key from with stacked component names for the final output.
  * 
  * @returns {object}
@@ -354,7 +354,7 @@ export const prepareComponentAttributes = (
 		if (Object.prototype.hasOwnProperty.call(component, 'components')) {
 			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${parent}${_.upperFirst(newComponentName)}`);
 		} else {
-			// Output the component attributes if there are no nesting left and append the parent prefixes.
+			// Output the component attributes if there is no nesting left, and append the parent prefixes.
 			outputAttributes = prepareComponentAttribute(component, isExample, parent);
 		}
 
