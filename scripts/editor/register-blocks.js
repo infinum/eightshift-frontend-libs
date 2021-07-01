@@ -280,7 +280,7 @@ export const getSharedAttributes = (
  *
  * @param {object} manifest           - Object of component/block manifest to get data from.
  * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be use, if true attributes will be used.
- * @param {string} [parent='']        - Parent component key from with stacked component names for the final output.
+ * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
  * 
  * @returns {object}
  */
@@ -318,7 +318,7 @@ export const prepareComponentAttribute = (manifest, isExample = false, parent = 
  * @param {object} componentsManifest - Object of components manifest to iterate.
  * @param {object} manifest           - Object of component/block manifest to get the data from.
  * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be used, if false attributes will be used.
- * @param {string} [parent='']        - Parent component key from with stacked component names for the final output.
+ * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
  * 
  * @returns {object}
  */
@@ -480,9 +480,6 @@ export const registerBlock = (
 
 	// Set full attributes list.
 	blockManifest['attributes'] = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
-
-	console.log(blockManifest['attributes']);
-	console.log('----------------------------------------');
 
 	// Set full example list.
 	if (typeof blockManifest['example'] === 'undefined') {
