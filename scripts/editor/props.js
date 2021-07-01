@@ -10,11 +10,10 @@ import _ from 'lodash';
  */
 export const props = (attributes, newName) => {
 
-	const output = {};
+	let output = {};
 
 	// Check what attributes we need to includes.
 	const includes = [
-		'prefix',
 		'blockName',
 		'blockFullName',
 		'blockClass',
@@ -23,9 +22,9 @@ export const props = (attributes, newName) => {
 	
 	// Populate prefix key for recursive checks of attribute names.
 	if (typeof attributes.prefix === 'undefined') {
-		attributes['prefix'] = _.camelCase(newName);
+		output['prefix'] = _.camelCase(newName);
 	} else {
-		attributes['prefix'] = `${attributes.prefix}${_.upperFirst(_.camelCase(newName))}`;
+		output['prefix'] = `${attributes['prefix']}${_.upperFirst(_.camelCase(newName))}`;
 	}
 
 	// Iterate over attributes.
@@ -37,7 +36,7 @@ export const props = (attributes, newName) => {
 		}
 
 		// If attribute starts with the prefix key leave it in the object if not remove it.
-		if (key.startsWith(attributes['prefix'])) {
+		if (key.startsWith(output['prefix'])) {
 			Object.assign(output, {[key]: value});
 		}
 	}
