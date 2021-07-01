@@ -86,7 +86,6 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 	}
 }
 
-
 /**
  * Unit tests for get-option-colors.js helper
  *
