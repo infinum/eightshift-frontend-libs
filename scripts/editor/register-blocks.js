@@ -279,12 +279,14 @@ export const getSharedAttributes = (
  * Iterate over attributes or example attributes object in block/component manifest and append the parent prefixes.
  *
  * @param {object} manifest           - Object of component/block manifest to get data from.
- * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be use, if true attributes will be used.
+ * @param {string} newName            - New renamed component name.
+ * @param {string} realName           - Original real component name.
+ * @param {boolean} [isExample=false] - Type of items to iterate, if false example key will be use, if true attributes will be used.
  * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
  * 
  * @returns {object}
  */
-export const prepareComponentAttribute = (manifest, isExample = false, parent = '') => {
+export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '') => {
 	const output = {};
 
 	// Define different data point for attributes or example.
@@ -295,14 +297,18 @@ export const prepareComponentAttribute = (manifest, isExample = false, parent = 
 		return output;
 	}
 
-	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
-	const name = _.upperFirst(_.camelCase(Object.prototype.hasOwnProperty.call(manifest, 'blockName') ? manifest.blockName : manifest.componentName));
-
 	// Iterate each attribute and attach parent prefixes.
 	for (const [componentAttribute] of Object.entries(componentAttributes)) {
 
+		let attribute = componentAttribute;
+
+		// If there is a attribute name switch use the new one.
+		if (newName !== realName) {
+			attribute = _.camelCase(componentAttribute.replace(realName, newName));
+		}
+
 		// Determine if parent is empty and if parent name is the same as component/block name.
-		const attributeName = (parent === '' || parent === name) ? componentAttribute : `${_.lowerFirst(parent)}${_.upperFirst(componentAttribute)}`;
+		const attributeName = (parent === '' || parent === newName) ? attribute : `${_.lowerFirst(parent)}${_.upperFirst(attribute)}`;
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
@@ -355,7 +361,7 @@ export const prepareComponentAttributes = (
 			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${parent}${_.upperFirst(newComponentName)}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.
-			outputAttributes = prepareComponentAttribute(component, isExample, parent);
+			outputAttributes = prepareComponentAttribute(component, newComponentName, realComponentName, isExample, parent);
 		}
 
 		// Populate the output recursively.
@@ -368,8 +374,13 @@ export const prepareComponentAttributes = (
 		);
 	}
 
-	// Add the current block/component attributes to the output.
-	Object.assign(output, prepareComponentAttribute(manifest, isExample, parent));
+	// Add the current block attributes to the output.
+	if (Object.prototype.hasOwnProperty.call(manifest, 'blockName')) {
+		Object.assign(output, prepareComponentAttribute(manifest, '', '', isExample));
+	} else {
+		// Add the current component attributes to the output.
+		Object.assign(output, prepareComponentAttribute(manifest, '', name, isExample, parent));
+	}
 
 	return output;
 };
