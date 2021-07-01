@@ -10,7 +10,7 @@ import _ from 'lodash';
  */
 export const props = (attributes, newName) => {
 
-	let output = {};
+	const output = {};
 
 	// Check what attributes we need to includes.
 	const includes = [
