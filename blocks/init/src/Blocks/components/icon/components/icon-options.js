@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import { components } from 'react-select';
 
@@ -31,7 +31,6 @@ const IconPickerValueDisplay = ({ children, ...props }) => (
 
 export const IconOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		options: manifestOptions,
 		title: manifestTitle,
 	} = manifest;
@@ -39,7 +38,6 @@ export const IconOptions = (attributes) => {
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		showIconOptions = true,
 	} = attributes;
@@ -60,7 +58,7 @@ export const IconOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={iconUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('iconUse', attributes, manifest)]: value })}
 			/>
 
 			{iconUse && (
@@ -71,16 +69,7 @@ export const IconOptions = (attributes) => {
 					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
 					customOptionComponent={IconPickerOption}
 					customSingleValueDisplayComponent={IconPickerValueDisplay}
-					onChange={(value) => (
-						// Because react-select needs an object instead
-						// of a label for storing data, this approach was
-						// taken to prevent breaking everything that
-						// currently uses an icon
-						setAttributes({
-							[`${componentName}SelectedIcon`]: value,
-							[`${componentName}Name`]: value?.value,
-						})
-					)}
+					onChange={(value) => setAttributes({[getAttrKey('iconSelectedIcon', attributes, manifest)]: value?.value})}
 				/>
 			)}
 		</>

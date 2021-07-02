@@ -22,7 +22,7 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<HeadingOptions
-				{...props(attributes, 'heading', 'intro')}
+				{...props(attributes, 'intro')}
 				label={'Intro'}
 				setAttributes={setAttributes}
 				options={options}

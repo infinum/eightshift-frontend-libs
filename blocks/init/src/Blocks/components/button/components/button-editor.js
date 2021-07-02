@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey, selector } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -11,13 +11,11 @@ export const ButtonEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
@@ -43,7 +41,7 @@ export const ButtonEditor = (attributes) => {
 					<RichText
 						placeholder={placeholder}
 						value={buttonContent}
-						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
+						onChange={(value) => setAttributes({ [getAttrKey('buttonContent', attributes, manifest)]: value })}
 						className={buttonClass}
 						keepPlaceholderOnFocus
 						allowedFormats={[]}

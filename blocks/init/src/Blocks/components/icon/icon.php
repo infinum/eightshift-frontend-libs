@@ -19,14 +19,14 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$iconName = Components::checkAttr('iconName', $attributes, $manifest);
-$icon = $manifest['icons'][$iconName];
+$iconSelectedIcon = Components::checkAttr('iconSelectedIcon', $attributes, $manifest);
+$icon = $manifest['icons'][$iconSelectedIcon];
 
 $iconClasses = Components::classnames(
 	[
 		$componentClass,
 		$selectorClass,
-		Components::selector($iconName, $componentClass, $iconName),
+		Components::selector($iconSelectedIcon, $componentClass, $iconSelectedIcon),
 		Components::selector($blockClass, $blockClass, $componentClass),
 	]
 );

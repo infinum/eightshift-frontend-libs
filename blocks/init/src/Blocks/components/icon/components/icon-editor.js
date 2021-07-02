@@ -16,7 +16,7 @@ export const IconEditor = (attributes) => {
 	} = attributes;
 
 	const iconUse = checkAttr('iconUse', attributes, manifest);
-	const iconName = checkAttr('iconName', attributes, manifest);
+	const iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest);
 
 	const iconClass = classnames([
 		componentClass,
@@ -26,7 +26,7 @@ export const IconEditor = (attributes) => {
 	return (
 		<>
 			{iconUse &&
-				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
+				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconSelectedIcon] }}></i>
 			}
 		</>
 	);

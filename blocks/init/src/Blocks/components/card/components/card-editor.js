@@ -40,7 +40,7 @@ export const CardEditor = (attributes) => {
 			/>
 
 			<HeadingEditor
-				{...props(attributes, 'heading', 'intro')}
+				{...props(attributes, 'intro')}
 				setAttributes={setAttributes}
 				selectorClass={'intro'}
 				blockClass={componentClass}
