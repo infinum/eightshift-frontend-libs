@@ -14,7 +14,6 @@ export const ButtonOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = manifestTitle,
-		options,
 		buttonShowControls = true,
 
 		showButtonUse = true,
@@ -66,7 +65,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonColor}
-							colors={getOption('buttonColor', attributes, manifest, options, true)}
+							colors={getOption('buttonColor', attributes, manifest, true)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 						/>
 					}
@@ -89,7 +88,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonSize}
-							options={getOption('buttonSize', attributes, manifest, options)}
+							options={getOption('buttonSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonSize', attributes, manifest)]: value })}
 						/>
 					}
@@ -103,7 +102,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonWidth}
-							options={getOption('buttonWidth', attributes, manifest, options)}
+							options={getOption('buttonWidth', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value })}
 						/>
 					}

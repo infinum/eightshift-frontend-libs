@@ -14,7 +14,6 @@ export const HeadingOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = manifestTitle,
-		options,
 		headingShowControls = true,
 
 		showHeadingUse = true,
@@ -57,7 +56,7 @@ export const HeadingOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOption('headingColor', attributes, manifest, options, true)}
+							colors={getOption('headingColor', attributes, manifest, true)}
 							value={headingColor}
 							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 						/>
@@ -72,7 +71,7 @@ export const HeadingOptions = (attributes) => {
 								</>
 							}
 							value={headingSize}
-							options={getOption('headingSize', attributes, manifest, options)}
+							options={getOption('headingSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: value })}
 						/>
 					}

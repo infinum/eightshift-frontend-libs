@@ -14,7 +14,6 @@ export const ListsOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = manifestTitle,
-		options,
 		listsShowControls = true,
 
 		showListsUse = true,
@@ -57,7 +56,7 @@ export const ListsOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOption('listsColor', attributes, manifest, options, true)}
+							colors={getOption('listsColor', attributes, manifest, true)}
 							value={listsColor}
 							onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
 						/>
@@ -72,7 +71,7 @@ export const ListsOptions = (attributes) => {
 								</>
 							}
 							value={listsSize}
-							options={getOption('listsSize', attributes, manifest, options)}
+							options={getOption('listsSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: value })}
 						/>
 					}

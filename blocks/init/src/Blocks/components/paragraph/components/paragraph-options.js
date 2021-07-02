@@ -14,7 +14,6 @@ export const ParagraphOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = manifestTitle,
-		options,
 		paragraphShowControls = true,
 
 		showParagraphUse = true,
@@ -57,7 +56,7 @@ export const ParagraphOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOption('paragraphColor', attributes, manifest, options, true)}
+							colors={getOption('paragraphColor', attributes, manifest, true)}
 							value={paragraphColor}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
 						/>
@@ -72,7 +71,7 @@ export const ParagraphOptions = (attributes) => {
 								</>
 							}
 							value={paragraphSize}
-							options={getOption('paragraphSize', attributes, manifest, options)}
+							options={getOption('paragraphSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: value })}
 						/>
 					}
