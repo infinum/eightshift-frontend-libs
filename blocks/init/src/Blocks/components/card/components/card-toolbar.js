@@ -1,7 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
@@ -15,7 +15,6 @@ export const CardToolbar = (attributes) => {
 
 	const {
 		setAttributes,
-		options,
 	} = attributes;
 
 	const cardAlign = checkAttr('cardAlign', attributes, manifest);
@@ -26,19 +25,19 @@ export const CardToolbar = (attributes) => {
 			<HeadingToolbar
 				{...props(attributes, 'intro')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<HeadingToolbar
 				{...props(attributes, 'heading')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<ButtonToolbar
 				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<AlignmentToolbar

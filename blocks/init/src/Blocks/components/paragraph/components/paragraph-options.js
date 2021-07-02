@@ -3,28 +3,24 @@ import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
+		options,
 		paragraphShowControls = true,
 
 		showParagraphUse = true,
 		showParagraphColor = true,
 		showParagraphSize = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!paragraphShowControls) {
 		return null;
@@ -61,7 +57,7 @@ export const ParagraphOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							colors={getOption('paragraphColor', attributes, manifest, options, true)}
 							value={paragraphColor}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
 						/>
@@ -76,7 +72,7 @@ export const ParagraphOptions = (attributes) => {
 								</>
 							}
 							value={paragraphSize}
-							options={getOptions(manifest, componentName, 'size', options)}
+							options={getOption('paragraphSize', attributes, manifest, options)}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: value })}
 						/>
 					}
