@@ -2,7 +2,7 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
 import { props } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -11,14 +11,12 @@ import manifest from './../manifest.json';
 
 export const JumbotronOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
 	} = manifest;
 
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		jumbotronShowControls = true,
 	} = attributes;
@@ -41,7 +39,7 @@ export const JumbotronOptions = (attributes) => {
 			<ToggleControl
 				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 				checked={jumbotronUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('jumbotronUse', attributes, manifest)]: value })}
 			/>
 
 			<hr />

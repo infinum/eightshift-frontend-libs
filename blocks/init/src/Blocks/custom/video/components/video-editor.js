@@ -8,10 +8,6 @@ export const VideoEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
-	const {
 		blockClass,
 	} = attributes;
 	return (
@@ -20,7 +16,7 @@ export const VideoEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<VideoEditorComponent
-				{...props(attributes, manifestBlockName, '', true)}
+				{...props(attributes, 'video')}
 				setAttributes={setAttributes}
 			/>
 		</div>

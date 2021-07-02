@@ -79,10 +79,7 @@ global $post;
 				$image = \get_the_post_thumbnail_url($postId, 'large');
 
 				$cardProps = [
-					'imageUrl' => [
-						'id' => $postId,
-						'url' => $image,
-					],
+					'imageUrl' => $image,
 					'imageUse' => $image ?? true,
 					'introUse' => false,
 					'headingContent' => \get_the_title($postId),

@@ -1,6 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
@@ -9,7 +9,6 @@ import manifest from './../manifest.json';
 
 export const CardToolbar = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
 		options: manifestOptions,
 	} = manifest;
@@ -25,7 +24,7 @@ export const CardToolbar = (attributes) => {
 		<>
 
 			<HeadingToolbar
-				{...props(attributes, 'heading', 'intro')}
+				{...props(attributes, 'intro')}
 				setAttributes={setAttributes}
 				options={options}
 			/>
@@ -46,7 +45,7 @@ export const CardToolbar = (attributes) => {
 				value={cardAlign}
 				options={manifestOptions.cardAlign}
 				label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
-				onChange={(value) => setAttributes({ [`${manifestComponentName}Align`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('cardAlign', attributes, manifest)]: value })}
 			/>
 		</>
 	);

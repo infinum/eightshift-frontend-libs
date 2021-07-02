@@ -2,19 +2,17 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const AccordionEditor = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 		options: manifestOptions,
 	} = manifest;
 	
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
@@ -22,7 +20,6 @@ export const AccordionEditor = (attributes) => {
 	} = attributes;
 
 	const options = {...manifestOptions, ...attributes.options};
-
 
 	const accordionUse = checkAttr('accordionUse', attributes, manifest);
 	const accordionTitle = checkAttr('accordionTitle', attributes, manifest);
@@ -43,7 +40,7 @@ export const AccordionEditor = (attributes) => {
 						<RichText
 							placeholder={placeholder}
 							value={accordionTitle}
-							onChange={(value) => setAttributes({ [`${componentName}Title`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('accordionTitle', attributes, manifest)]: value })}
 							keepPlaceholderOnFocus
 							allowedFormats={[]}
 						/>

@@ -8,10 +8,6 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
-	const {
 		blockClass,
 	} = attributes;
 
@@ -20,7 +16,7 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditorComponent
-				{...props(attributes, manifestBlockName, '', true)}
+				{...props(attributes, 'image')}
 				setAttributes={setAttributes}
 			/>
 		</div>

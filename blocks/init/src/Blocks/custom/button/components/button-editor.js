@@ -8,10 +8,6 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
-	const {
 		blockClass,
 	} = attributes;
 
@@ -21,7 +17,7 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ButtonEditorComponent
-				{...props(attributes, manifestBlockName, '', true)}
+				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
 			/>
 		</div>

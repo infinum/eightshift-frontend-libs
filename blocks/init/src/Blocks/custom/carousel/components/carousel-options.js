@@ -2,12 +2,11 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl, Icon } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const CarouselOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName: manifestBlockName,
 		attributes: manifestAttributes,
 		options: manifestOptions,
 	} = manifest;
@@ -21,7 +20,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 			<ToggleControl
 				label={__('Looped Mode', 'eightshift-frontend-libs')}
 				checked={carouselIsLoop}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}IsLoop`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('carouselIsLoop', attributes, manifest)]: value })}
 			/>
 
 			<RangeControl
@@ -34,7 +33,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 				help={__('Set number of items to show on on slide.', 'eightshift-frontend-libs')}
 				allowReset={true}
 				value={carouselShowItems}
-				onChange={(value) => setAttributes({ [`${manifestBlockName}ShowItems`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: value })}
 				min={manifestOptions.carouselItemsToShow.min}
 				max={manifestOptions.carouselItemsToShow.max}
 				step={manifestOptions.carouselItemsToShow.step}

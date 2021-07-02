@@ -1,17 +1,12 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const AccordionOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
-	} = manifest;
-
-	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = __('Accordion', 'eightshift-frontend-libs'),
 		accordionShowControls = true,
 
@@ -39,7 +34,7 @@ export const AccordionOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={accordionUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -48,7 +43,7 @@ export const AccordionOptions = (attributes) => {
 					<ToggleControl
 						label={__('Is Open', 'eightshift-frontend-libs')}
 						checked={accordionIsOpen}
-						onChange={(value) => setAttributes({ [`${componentName}IsOpen`]: value })}
+						onChange={(value) => setAttributes({ [getAttrKey('accordionIsOpen', attributes, manifest)]: value })}
 					/>
 				</>
 			}

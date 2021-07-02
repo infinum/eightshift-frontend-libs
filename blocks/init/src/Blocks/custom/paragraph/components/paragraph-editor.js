@@ -17,7 +17,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 		blockFullName,
 	} = attributes;
 
-	const propsObject = props(attributes, manifestBlockName, '', true);
+	const propsObject = props(attributes, 'paragraph');
 
 	/**
 	 * Block-splitting logic. If content is available, creates

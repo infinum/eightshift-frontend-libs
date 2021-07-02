@@ -4,13 +4,12 @@ import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, camelize } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 	const {
-		blockName: manifestBlockName,
 		attributes: manifestAttributes,
 		options: manifestOptions
 	} = manifest;
@@ -118,7 +117,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
 				allowReset={true}
 				value={featuredCategoriesItemsPerLine}
-				onChange={(value) => setAttributes({ [`${camelize(manifestBlockName)}ItemsPerLine`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('featuredCategoriesItemsPerLine', attributes, manifest)]: value })}
 				min={manifestOptions.featuredCategoriesItemsPerLine.min}
 				max={manifestOptions.featuredCategoriesItemsPerLine.max}
 				step={manifestOptions.featuredCategoriesItemsPerLine.step}

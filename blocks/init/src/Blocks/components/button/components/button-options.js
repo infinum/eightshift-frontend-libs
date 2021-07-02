@@ -3,7 +3,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
 import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
@@ -55,7 +55,7 @@ export const ButtonOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={buttonUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -71,7 +71,7 @@ export const ButtonOptions = (attributes) => {
 							}
 							value={buttonColor}
 							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
-							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -79,7 +79,7 @@ export const ButtonOptions = (attributes) => {
 						<ToggleControl
 							label={__('Show button as link', 'eightshift-frontend-libs')}
 							checked={buttonIsLink}
-							onChange={(value) => setAttributes({ [`${componentName}IsLink`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonIsLink', attributes, manifest)]: value })}
 							help={__('When checked button will be converted to link style.', 'eightshift-frontend-libs')}
 						/>
 					}
@@ -94,7 +94,7 @@ export const ButtonOptions = (attributes) => {
 							}
 							value={buttonSize}
 							options={getOptions(manifest, componentName, 'size', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonSize', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -108,7 +108,7 @@ export const ButtonOptions = (attributes) => {
 							}
 							value={buttonWidth}
 							options={getOptions(manifest, componentName, 'width', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -116,7 +116,7 @@ export const ButtonOptions = (attributes) => {
 						<ToggleControl
 							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={buttonIsAnchor}
-							onChange={(value) => setAttributes({ [`${componentName}IsAnchor`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonIsAnchor', attributes, manifest)]: value })}
 							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-frontend-libs')}
 						/>
 					}
@@ -130,7 +130,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonId}
-							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
 						/>
 					}
 				</>

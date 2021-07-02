@@ -56,10 +56,10 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item['url']) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['large']['url']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl['large']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
 	</picture>
 <?php } ?>
