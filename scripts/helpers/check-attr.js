@@ -2,18 +2,32 @@ import _ from 'lodash';
 
 /**
  * Check if attribute exist in attributes list and add default value if not.
+ * This is used because Block editor will not output attributes that don't have default value.
  *
  * @param {string} key                       - Key to check.
  * @param {array} attributes                 - Array of attributes.
- * @param {object} manifest                  - Default attributes from manifest.json.
+ * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @return {mixed}
  */
 export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) => {
 
-	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
-		return attributes[key];
+	// Check if there is prefix in the attributes object.
+	const prefix = attributes?.prefix;
+	let newKey = key;
+
+	// If there is no prefix return the key as it was.
+	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
+	if (typeof prefix !== 'undefined') {
+
+		// No need to test if this is block or component because on top level block there is no prefix.
+		newKey = key.replace(manifest.componentName, prefix);
+	}
+
+	// If key exists in the attributes object, just return that key value.
+	if (Object.prototype.hasOwnProperty.call(attributes, newKey)) {
+		return attributes[newKey];
 	} 
 
 	const manifestKey = manifest.attributes[key];
@@ -57,7 +71,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
  *
  * @param {string} keyName                   - Key name to find in responsiveAttributes object.
  * @param {array} attributes                 - Array of attributes.
- * @param {object} manifest                  - Array of default attributes from manifest.json.
+ * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @returns {mixed}
@@ -80,6 +94,27 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	for (const [key, value] of Object.entries(manifest.responsiveAttributes[keyName])) {
 		output[key] = checkAttr(value, attributes, manifest, undefinedAllowed);
 	}
-	
+
 	return output;
+}
+
+/**
+ * Check if attributes key has prefix and outputs the correct attribute name.
+ *
+ * @param {string} key       - Key to check.
+ * @param {array} attributes - Array of attributes.
+ * @param {object} manifest  - Components/blocks manifest.json
+ *
+ * @return {mixed}
+ */
+export const getAttrKey = (key, attributes, manifest) => {
+	const prefix = attributes?.prefix;
+
+	if (typeof prefix === 'undefined') {
+		return key;
+	}
+
+	// No need to test if this is block or component because on top level block there is no prefix.
+	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
+	return key.replace(manifest.componentName, prefix);
 }

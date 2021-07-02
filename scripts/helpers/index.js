@@ -8,7 +8,8 @@ export { responsiveSelectors } from './responsive-selectors';
 export { selector } from './selector';
 export {
 	checkAttr,
-	checkAttrResponsive
+	checkAttrResponsive,
+	getAttrKey
 } from './check-attr';
 export { elementChildrenHeight } from './element-children-height';
 export { camelize } from './camelize';
