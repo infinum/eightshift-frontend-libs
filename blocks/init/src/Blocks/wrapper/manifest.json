@@ -253,7 +253,8 @@
 		],
 		"colors": [
 			"primary",
-			"black"
+			"black",
+			"white"
 		],
 		"widths": {
 			"min": 0,

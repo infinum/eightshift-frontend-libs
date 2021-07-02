@@ -1,3 +1,4 @@
+import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
 
 /**
@@ -164,15 +165,16 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
  * @param {object} attributes - Attributes fetched from manifest.
  * @param {object} variables  - Variables fetched from manifest.
  * @param {object} data       - Preset objects separated in breakpoints.
+ * @param {array} manifest    - Component/block manifest data.
  *
  * @return {object} Filled object with variables data separated in breakpoints.
  */
-const setVariablesToBreakpoints = (attributes, variables, data) => {
+const setVariablesToBreakpoints = (attributes, variables, data, manifest) => {
 	// Iterate each variable.
 	for (const [variableName, variableValue] of Object.entries(variables)) {
 
 		// Constant for attributes set value (in db or default).
-		const attributeValue = attributes[variableName];
+		const attributeValue = attributes[getAttrKey(variableName, attributes, manifest)];
 
 		// Set internal breakpoints variable.
 		const internalBreakpoints = Array.isArray(variableValue) ? variableValue : (variableValue[attributeValue] ?? []);
@@ -259,20 +261,20 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
 	if (responsiveAttributes) {
-		setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data);
+		setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest);
 	}
 
 	// Iterate each variable from variables field.
-	setVariablesToBreakpoints(attributes, variables, data);
+	setVariablesToBreakpoints(attributes, variables, data, manifest);
 
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (variablesEditor) {
 		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data);
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest);
 		}
 
 		// Iterate each variable from variablesEditor field.
-		setVariablesToBreakpoints(attributes, variablesEditor, data);
+		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest);
 	}
 
 	// Loop data and provide correct selectors from data array.
