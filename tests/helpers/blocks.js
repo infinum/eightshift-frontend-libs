@@ -22,8 +22,7 @@ const getAllManifestsFromDir = (dir) => {
 	const manifestDirs = readdirSync(dir);
 	return manifestDirs.map((manifestDir) => {
 		const manifestPath = Path.resolve(dir, manifestDir, 'manifest.json');
-		const manifest = JSON.parse(readFileSync(manifestPath));
-		return manifest;
+		return JSON.parse(readFileSync(manifestPath));
 	});
 }
 
@@ -105,13 +104,6 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 	const isNameDifferent = realName !== newName;
 	const newComponentAttributes = props(attributes, isNameDifferent ? newName : realName);
 
-	// console.log(newComponentAttributes);
-	// console.log('newComponentAttributes', {
-	// 	newName,
-	// 	realName,
-	// 	isNameDifferent
-	// });
-
 	const componentOutput = {
 		realName,
 		newName,
@@ -129,6 +121,5 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 		];
 	}
 
-	propsArray = [...propsArray, componentOutput];
-	return propsArray;
+	return [...propsArray, componentOutput];
 }

@@ -53,6 +53,7 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 			builtProps.attributes,
 			`Missing "prefix" key in built props for ${debugName(builtProps)}`
 		).toHaveProperty('prefix');
+
 		expect(
 			builtProps.attributes.prefix,
 			`Prefix key not correct when sending props to ${debugName(builtProps)}`
@@ -68,6 +69,7 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 				builtProps,
 				`Missing "subComponents" key in built props for ${debugName(builtProps)}. Expecting one because this has subComponents defined in props-output.js`
 			).toHaveProperty('subComponents');
+
 			expect(
 				builtProps.subComponents,
 				`"subComponents" key in built props empty for ${debugName(builtProps)}.`
@@ -154,8 +156,6 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 		};
 
 		const components = getBlockDependencies(blockManifests, blockManifest.blockName);
-		console.log('Running for block: ', blockManifest.blockName);
-		console.log(components);
 		for (const newName of Object.keys(components)) {
 			console.log('running for ', newName);
 			const realName = components[newName];
