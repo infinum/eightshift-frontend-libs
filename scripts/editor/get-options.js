@@ -4,8 +4,6 @@ import { getPaletteColors } from "./get-palette-colors";
  * Provides ability to override component options from the parent block/component
  * The components must have the same options name as attribute standard with componentName prefix.
  *
- * @author: Kristijan Marić
- *
  * @param {string} key              - Key to check.
  * @param {array} attributes        - Array of attributes.
  * @param {object} manifest         - Components/blocks manifest.json
