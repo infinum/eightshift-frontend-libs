@@ -3,6 +3,19 @@
  * dependencies.
  */
 export const propsOutput = {
+	accordion: {
+		components: {
+			accordion: {
+				expected: [
+					'accordionContent',
+					'accordionTitle',
+				],
+				notExpected: [
+					'accordionAccordionContent',
+				]
+			}
+		}
+	},
 	'mock-blockquote': {
 		components: {
 			blockquote: {
@@ -74,7 +87,6 @@ export const propsOutput = {
 				notExpected: [
 					'blockquoteCardImageUrl',
 				],
-				prefix: 'card',
 				components: {
 					image: {
 						expected: [
