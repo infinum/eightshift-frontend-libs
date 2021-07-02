@@ -77,8 +77,6 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 
 			// Find the correct subComponent
 			const subComponent = builtProps.subComponents.filter((subComponent) => subComponent.newName === componentKey);
-			console.log('Looking for', componentKey);
-			console.log(builtProps);
 
 			// Expect to find exactly 1 sub component
 			expect(
@@ -157,7 +155,6 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 		const components = getBlockDependencies(blockManifests, blockManifest.blockName);
 		for (const newName of Object.keys(components)) {
-			console.log('running for ', newName);
 			const realName = components[newName];
 			blockOutput.subComponents = [...blockOutput.subComponents, ...recursiveBuildProps(attributes, componentManifests, realName, newName, true)];
 		}
