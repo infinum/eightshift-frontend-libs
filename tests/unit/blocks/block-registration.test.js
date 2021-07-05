@@ -196,14 +196,14 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 /**
  * Unit tests for attribute overriding in parent blocks. Each block / component should be able
- * to override it's child attributes.
+ * to override its child attributes.
  *
  * @group unit
  */
 it('tests block / component attribute generation and overriding attributes in parent component / blocks', () => {
 	const componentManifests = getAllComponentManifests();
 
-	// Test bottom lvl, mock paragraph extending mock typography
+	// Test bottom level, mock paragraph extending mock typography
 	const lvl2Manifest = getMockComponentManifest('mock-paragraph');
 	const lvl2Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl2Manifest);
 
@@ -211,7 +211,7 @@ it('tests block / component attribute generation and overriding attributes in pa
 	expect(lvl2Attributes.mockTypographyContent).toHaveProperty('default');
 	expect(lvl2Attributes.mockTypographyContent.default).toBe('This is lvl 2 override');
 
-	// Test lvl 3, component overriding attributes 1 lvl below it.
+	// Test level 3: component overriding attributes 1 level below it.
 	const lvl3Manifest = getMockComponentManifest('mock-attribute-override');
 	const lvl3Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl3Manifest);
 
@@ -219,7 +219,7 @@ it('tests block / component attribute generation and overriding attributes in pa
 	expect(lvl3Attributes.mockParagraphMockTypographyContent).toHaveProperty('default');
 	expect(lvl3Attributes.mockParagraphMockTypographyContent.default).toBe('This is lvl 3 override');
 
-	// Test lvl 4, component overriding attributes 1 lvl below it where attribute has already been overriden.
+	// Test level 4: component overriding attributes 1 level below it where attribute has already been overridden.
 	const lvl4Manifest = getMockBlockManifest('mock-attribute-override');
 	const lvl4Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl4Manifest);
 	expect(lvl4Attributes).toHaveProperty('mockAttributeOverrideMockParagraphMockTypographyContent');
@@ -230,7 +230,7 @@ it('tests block / component attribute generation and overriding attributes in pa
 it('tests block / component attribute overriding when overriding happens on top and bottom lvl, but not in the middle component', () => {
 	const componentManifests = getAllComponentManifests();
 
-	// Test bottom lvl, mock paragraph extending mock typography
+	// Test bottom level, mock paragraph extending mock typography
 	const lvl2Manifest = getMockComponentManifest('mock-paragraph');
 	const lvl2Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl2Manifest);
 
@@ -238,7 +238,7 @@ it('tests block / component attribute overriding when overriding happens on top 
 	expect(lvl2Attributes.mockTypographyContent).toHaveProperty('default');
 	expect(lvl2Attributes.mockTypographyContent.default).toBe('This is lvl 2 override');
 
-	// Test lvl 4, component overriding attributes 1 lvl below it where attribute has already been overriden.
+	// Test level 4: component overriding attributes 1 level below it where attribute has already been overridden.
 	const lvl4Manifest = getMockBlockManifest('mock-attribute-override-skip');
 	const lvl4Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl4Manifest);
 	expect(lvl4Attributes).toHaveProperty('mockNoOverrideMockParagraphMockTypographyContent');
