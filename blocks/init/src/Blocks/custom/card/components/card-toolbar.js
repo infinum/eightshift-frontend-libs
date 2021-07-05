@@ -5,13 +5,12 @@ import manifest from './../manifest.json';
 
 export const CardToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName: manifestBlockName,
 		options: manifestOptions,
 	} = manifest;
 
 	return (
 		<CardToolbarComponent
-			{...props(attributes, manifestBlockName, '', true)}
+			{...props(attributes, 'card')}
 			setAttributes={setAttributes}
 			options={manifestOptions}
 		/>

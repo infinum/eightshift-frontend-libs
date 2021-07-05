@@ -2,20 +2,17 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		paragraphShowControls = true,
 
@@ -23,8 +20,6 @@ export const ParagraphOptions = (attributes) => {
 		showParagraphColor = true,
 		showParagraphSize = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!paragraphShowControls) {
 		return null;
@@ -47,7 +42,7 @@ export const ParagraphOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={paragraphUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('paragraphUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -61,9 +56,9 @@ export const ParagraphOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							colors={getOption('paragraphColor', attributes, manifest, true)}
 							value={paragraphColor}
-							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -76,8 +71,8 @@ export const ParagraphOptions = (attributes) => {
 								</>
 							}
 							value={paragraphSize}
-							options={getOptions(manifest, componentName, 'size', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
+							options={getOption('paragraphSize', attributes, manifest)}
+							onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: value })}
 						/>
 					}
 				</>

@@ -20,13 +20,13 @@ $componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $blockClass = $attributes['blockClass'] ?? '';
 
-$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest, $componentName);
-$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest, $componentName);
-$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest, $componentName);
-$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest, $componentName);
-$videoControls = Components::checkAttr('videoControls', $attributes, $manifest, $componentName);
-$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest, $componentName);
-$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest, $componentName);
+$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest);
+$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest);
+$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest);
+$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest);
+$videoControls = Components::checkAttr('videoControls', $attributes, $manifest);
+$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest);
+$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest);
 
 $videoClass = Components::classnames([
 	$componentClass,

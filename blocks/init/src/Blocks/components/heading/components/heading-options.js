@@ -1,21 +1,18 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		headingShowControls = true,
 
@@ -23,8 +20,6 @@ export const HeadingOptions = (attributes) => {
 		showHeadingColor = true,
 		showHeadingSize = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!headingShowControls) {
 		return null;
@@ -47,7 +42,7 @@ export const HeadingOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={headingUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('headingUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -61,9 +56,9 @@ export const HeadingOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							colors={getOption('headingColor', attributes, manifest, true)}
 							value={headingColor}
-							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -76,8 +71,8 @@ export const HeadingOptions = (attributes) => {
 								</>
 							}
 							value={headingSize}
-							options={getOptions(manifest, componentName, 'size', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
+							options={getOption('headingSize', attributes, manifest)}
+							onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: value })}
 						/>
 					}
 				</>

@@ -4,7 +4,7 @@
 	"componentClass": "icon",
 	"example": {
 		"attributes": {
-			"iconName": "play",
+			"iconSelectedIcon": "play",
 			"iconUse": true
 		}
 	},
@@ -14,8 +14,7 @@
 			"default": "play"
 		},
 		"iconSelectedIcon": {
-			"type": "object",
-			"default": null
+			"type": "string"
 		},
 		"iconUse": {
 			"type": "boolean",

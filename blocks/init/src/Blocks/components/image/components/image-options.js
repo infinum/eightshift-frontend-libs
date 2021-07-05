@@ -4,19 +4,17 @@ import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Icon, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, checkAttrResponsive, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { Responsive } from '@eightshift/frontend-libs/scripts/components';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		imageShowControls = true,
 
@@ -48,7 +46,7 @@ export const ImageOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={imageUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('imageUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -72,7 +70,7 @@ export const ImageOptions = (attributes) => {
 									pointLabel = 'All';
 								}
 
-								const attr = `${componentName}Url${point}`;
+								const attr = getAttrKey(`imageUrl${point}`, attributes, manifest);
 
 								return (
 									<BaseControl
@@ -81,24 +79,19 @@ export const ImageOptions = (attributes) => {
 									>
 										{!_.isEmpty(attributes[attr]) ?
 											<>
-												<img src={attributes[attr].url} alt='' />
+												<img src={attributes[attr]} alt='' />
 												<Button
 													isSecondary
 													isSmall
 													className={'custom-full-width-btn'}
-													onClick={() => setAttributes({ [attr]: {} })}
+													onClick={() => setAttributes({ [attr]: undefined })}
 												>
 													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
 												</Button>
 											</> :
 											<MediaPlaceholder
 												icon="format-image"
-												onSelect={(value) => setAttributes({
-													[attr]: {
-														id: value.id,
-														url: value.url,
-													}
-												})}
+												onSelect={(value) => setAttributes({[attr]: value.url})}
 												accept={imageAccept}
 												allowedTypes={imageAllowedTypes}
 											/>
@@ -115,7 +108,7 @@ export const ImageOptions = (attributes) => {
 						<TextareaControl
 							label={__('Alt text', 'eightshift-frontend-libs')}
 							value={imageAlt}
-							onChange={(value) => setAttributes({ [`${componentName}Alt`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
 						/>
 					}
 
@@ -124,7 +117,7 @@ export const ImageOptions = (attributes) => {
 							label={__('Fill container', 'eightshift-frontend-libs')}
 							help={__('If checked, the image will always stretch the full width of the container and ignore its maximum width.', 'eightshift-frontend-libs')}
 							checked={imageFull}
-							onChange={(value) => setAttributes({ [`${componentName}Full`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
 						/>
 					}
 

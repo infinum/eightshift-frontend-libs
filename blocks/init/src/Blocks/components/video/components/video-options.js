@@ -4,33 +4,31 @@ import { __, sprintf } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Button, SelectControl, BaseControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
 	const {
 		title: manifestTitle,
 		options: manifestOptions,
-		componentName: manifestComponentName,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
+		videoUse = checkAttr('videoUse', attributes, manifest),
 
-		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
-		videoPoster = checkAttr('videoPoster', attributes, manifest, componentName),
-		videoAccept = checkAttr('videoAccept', attributes, manifest, componentName),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest, componentName),
-		videoLoop = checkAttr('videoLoop', attributes, manifest, componentName),
-		videoAutoplay = checkAttr('videoAutoplay', attributes, manifest, componentName),
-		videoControls = checkAttr('videoControls', attributes, manifest, componentName),
-		videoMuted = checkAttr('videoMuted', attributes, manifest, componentName),
-		videoPreload = checkAttr('videoPreload', attributes, manifest, componentName),
+		videoUrl = checkAttr('videoUrl', attributes, manifest),
+		videoPoster = checkAttr('videoPoster', attributes, manifest),
+		videoAccept = checkAttr('videoAccept', attributes, manifest),
+		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest),
+		videoLoop = checkAttr('videoLoop', attributes, manifest),
+		videoAutoplay = checkAttr('videoAutoplay', attributes, manifest),
+		videoControls = checkAttr('videoControls', attributes, manifest),
+		videoMuted = checkAttr('videoMuted', attributes, manifest),
+		videoPreload = checkAttr('videoPreload', attributes, manifest),
 
 		showVideoUse = true,
 		showVideoUrl = true,
@@ -63,7 +61,7 @@ export const VideoOptions = (attributes) => {
 				<ToggleControl
 					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
 					checked={videoUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+					onChange={(value) => setAttributes({ [getAttrKey('videoUse', attributes, manifest)]: value })}
 				/>
 			}
 
@@ -78,14 +76,14 @@ export const VideoOptions = (attributes) => {
 									isSecondary
 									isSmall
 									className={'custom-full-width-btn'}
-									onClick={() => setAttributes({ [`${componentName}Url`]: [] })}
+									onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 								>
 									{__('Remove video', 'eightshift-frontend-libs')}
 								</Button> :
 								<MediaPlaceholder
 									icon="format-video"
 									onSelect={(value) => setAttributes({
-											[`${componentName}Url`]: value.map((item) => {
+											[getAttrKey('videoUrl', attributes, manifest)]: value.map((item) => {
 												return {
 													url: item.url,
 													mime: typeof(item.mime) === 'undefined' ? item.mime_type : item.mime,
@@ -112,14 +110,14 @@ export const VideoOptions = (attributes) => {
 										isSecondary
 										isSmall
 										className={'custom-full-width-btn'}
-										onClick={() => setAttributes({ [`${componentName}Poster`]: {} })}
+										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
 									>
 										{__('Remove video poster', 'eightshift-frontend-libs')}
 									</Button>
 								</> :
 								<MediaPlaceholder
 									icon="format-video"
-									onSelect={(value) => setAttributes({[`${componentName}Poster`]: value.url})}
+									onSelect={(value) => setAttributes({[getAttrKey('videoPoster', attributes, manifest)]: value.url})}
 									accept={'image/*'}
 									allowedTypes={["image"]}
 								/>
@@ -143,7 +141,7 @@ export const VideoOptions = (attributes) => {
 								<ToggleControl
 									label={__('Play in loop', 'eightshift-frontend-libs')}
 									checked={videoLoop}
-									onChange={(value) => setAttributes({ [`${componentName}Loop`]: value })}
+									onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
 								/>
 							}
 
@@ -151,7 +149,7 @@ export const VideoOptions = (attributes) => {
 								<ToggleControl
 									label={__('Autoplay', 'eightshift-frontend-libs')}
 									checked={videoAutoplay}
-									onChange={(value) => setAttributes({ [`${componentName}Autoplay`]: value })}
+									onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
 								/>
 							}
 
@@ -159,7 +157,7 @@ export const VideoOptions = (attributes) => {
 								<ToggleControl
 									label={__('Show controls', 'eightshift-frontend-libs')}
 									checked={videoControls}
-									onChange={(value) => setAttributes({ [`${componentName}Controls`]: value })}
+									onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
 								/>
 							}
 
@@ -167,7 +165,7 @@ export const VideoOptions = (attributes) => {
 								<ToggleControl
 									label={__('Play muted', 'eightshift-frontend-libs')}
 									checked={videoMuted}
-									onChange={(value) => setAttributes({ [`${componentName}Muted`]: value })}
+									onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
 								/>
 							}
 
@@ -176,7 +174,7 @@ export const VideoOptions = (attributes) => {
 									label={__('Preload type', 'eightshift-frontend-libs')}
 									value={videoPreload}
 									options={options.videoPreload}
-									onChange={(value) => setAttributes({ [`${componentName}Preload`]: value })}
+									onChange={(value) => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value })}
 								/>
 							}
 						</>

@@ -6,7 +6,6 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
@@ -32,7 +31,7 @@ $cardClass = Components::classnames([
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
 		array_merge(
-			Blocks::props($attributes, 'image'),
+			Components::props($attributes, 'image'),
 			[
 				'blockClass' => $componentClass,
 			]
@@ -42,7 +41,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
-			Blocks::props($attributes, 'heading', 'intro'),
+			Components::props($attributes, 'intro'),
 			[
 				'selectorClass' => 'intro',
 				'blockClass' => $componentClass
@@ -53,7 +52,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
-			Blocks::props($attributes, 'heading'),
+			Components::props($attributes, 'heading'),
 			[
 				'blockClass' => $componentClass
 			]
@@ -63,7 +62,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'paragraph',
 		array_merge(
-			Blocks::props($attributes, 'paragraph'),
+			Components::props($attributes, 'paragraph'),
 			[
 				'blockClass' => $componentClass
 			]
@@ -73,7 +72,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
 		array_merge(
-			Blocks::props($attributes, 'button'),
+			Components::props($attributes, 'button'),
 			[
 				'blockClass' => $componentClass
 			]

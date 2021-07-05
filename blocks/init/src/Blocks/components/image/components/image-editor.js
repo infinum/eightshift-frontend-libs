@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
@@ -11,13 +11,11 @@ export const ImageEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentName: manifestComponentName,
 		componentClass: manifestComponentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
@@ -48,17 +46,12 @@ export const ImageEditor = (attributes) => {
 					{_.isEmpty(imageUrl) ?
 						<MediaPlaceholder
 							icon="format-image"
-							onSelect={(value) => setAttributes({
-								[`${componentName}Url`]: {
-									id: value.id,
-									url: value.url,
-								}
-							})}
+							onSelect={(value) => setAttributes({[getAttrKey('imageUrl', attributes, manifest)]: value.url})}
 							accept={imageAccept}
 							allowedTypes={imageAllowedTypes}
 						/> :
 						<picture className={pictureClass} data-id={unique}>
-							<img className={imgClass} src={imageUrl.url} alt={imageAlt} />
+							<img className={imgClass} src={imageUrl} alt={imageAlt} />
 						</picture>
 					}
 				</>
