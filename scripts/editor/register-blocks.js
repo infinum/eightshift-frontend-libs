@@ -239,43 +239,6 @@ export const getIconOptions = (
 };
 
 /**
- * Return shared attributes.
- *
- * @param {object} globalManifest - Global manifest.
- * @param {object} blockManifest  - Block manifest.
- * 
- * @returns {object}
- */
-export const getSharedAttributes = (
-	globalManifest,
-	blockManifest
-) => {
-
-	const {
-		blockName,
-	} = blockManifest;
-
-	return {
-		blockName: {
-			type: 'string',
-			default: blockName,
-		},
-		blockFullName: {
-			type: 'string',
-			default: getFullBlockName(globalManifest, blockManifest),
-		},
-		blockClass: {
-			type: 'string',
-			default: `block-${blockName}`,
-		},
-		blockJsClass: {
-			type: 'string',
-			default: `js-block-${blockName}`,
-		},
-	};
-};
-
-/**
  * Iterate over attributes or example attributes object in block/component manifest and append the parent prefixes.
  *
  * @param {object} manifest           - Object of component/block manifest to get data from.
@@ -402,6 +365,10 @@ export const getAttributes = (
 	blockManifest
 ) => {
 	const {
+		blockName,
+	} = blockManifest;
+
+	const {
 		attributes: attributesGlobal,
 	} = globalManifest;
 
@@ -410,7 +377,22 @@ export const getAttributes = (
 	} = wrapperManifest;
 
 	const output = {
-		...getSharedAttributes(globalManifest, blockManifest),
+		blockName: {
+			type: 'string',
+			default: blockName,
+		},
+		blockFullName: {
+			type: 'string',
+			default: getFullBlockName(globalManifest, blockManifest),
+		},
+		blockClass: {
+			type: 'string',
+			default: `block-${blockName}`,
+		},
+		blockJsClass: {
+			type: 'string',
+			default: `js-block-${blockName}`,
+		},
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
 		...prepareComponentAttributes(componentsManifest, blockManifest),
