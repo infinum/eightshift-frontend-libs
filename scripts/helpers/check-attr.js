@@ -105,7 +105,7 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
  * @param {array} attributes - Array of attributes.
  * @param {object} manifest  - Components/blocks manifest.json
  *
- * @return {mixed}
+ * @return string
  */
 export const getAttrKey = (key, attributes, manifest) => {
 	const prefix = attributes?.prefix;
