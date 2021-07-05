@@ -6,7 +6,6 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
@@ -25,7 +24,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'video',
-		Blocks::props($attributes, $manifestBlockName, '', true)
+		Blocks::props($attributes, 'video')
 	);
 	?>
 </div>
