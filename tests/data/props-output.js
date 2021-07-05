@@ -66,7 +66,7 @@ export const propsOutput = {
 							},
 							intro: {
 								expected: [
-									'blockquoteBlockquoteIntroTypographyContent',
+									'blockquoteBlockquoteIntroMockTypographyContent',
 								],
 								notExpected: [
 									'blockquoteBlockquoteImageUrl',

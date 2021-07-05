@@ -7,7 +7,7 @@ import wrapperManifest from '../../../blocks/init/src/Blocks/wrapper/manifest.js
 import globalManifest from '../../../blocks/init/src/Blocks/manifest.json';
 import { blockAttributes } from '../../data/block-attributes';
 import { expect } from '@jest/globals';
-import { getAllComponentManifests, getAllBlockManifests, getComponentDependencies, recursiveBuildProps, getBlockDependencies } from '../../helpers/blocks';
+import { getAllComponentManifests, getAllBlockManifests, getComponentDependencies, recursiveBuildProps, getBlockDependencies, getComponentManifest, getBlockManifest, getMockComponentManifest, getMockBlockManifest } from '../../helpers/blocks';
 import { propsOutput } from '../../data/props-output';
 
 /**
@@ -107,7 +107,9 @@ const recursiveAssertProps = (expectedProps, builtProps, isBlock = false) => {
 }
 
 /**
- * Unit tests for get-option-colors.js helper
+ * Unit tests for block registration. All of the tests below are built so they run through the entire block / component tree
+ * defined in blocks/init/src/Blocks (blocks / components available in boilerplate)
+ * as well as tests/data/src/Blocks (blocks / components used for testing)
  *
  * @group unit
  */
@@ -146,6 +148,13 @@ it('tests block registration properly inherits all component attributes', () => 
 	}
 });
 
+/**
+ * Unit tests for prop passing. All of the tests below are built so they run through the entire block / component tree
+ * defined in blocks/init/src/Blocks (blocks / components available in boilerplate)
+ * as well as tests/data/src/Blocks (blocks / components used for testing)
+ *
+ * @group unit
+ */
 it('tests that props helper builds the attributes / prefix correctly for all blocks', () => {
 	const componentManifests = getAllComponentManifests();
 	const blockManifests = getAllBlockManifests();
@@ -194,4 +203,37 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 			recursiveAssertProps(blockExpectedProps, blockProps, true);
 		}
 	}
+});
+
+/**
+ * Unit tests for attribute overriding in parent blocks. Each block / component should be able
+ * to override it's child attributes.
+ *
+ * @group unit
+ */
+it('tests block registration and overriding attributes in parent component / blocks', () => {
+	const componentManifests = getAllComponentManifests();
+
+	// Test bottom lvl, mock paragraph extending mock typography
+	const lvl2Manifest = getMockComponentManifest('mock-paragraph');
+	const lvl2Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl2Manifest);
+
+	expect(lvl2Attributes).toHaveProperty('mockTypographyContent');
+	expect(lvl2Attributes.mockTypographyContent).toHaveProperty('default');
+	expect(lvl2Attributes.mockTypographyContent.default).toBe('This is lvl 2 override');
+
+	// Test lvl 3, component overriding attributes 1 lvl below it.
+	const lvl3Manifest = getMockComponentManifest('mock-attribute-override');
+	const lvl3Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl3Manifest);
+
+	expect(lvl3Attributes).toHaveProperty('mockParagraphMockTypographyContent');
+	expect(lvl3Attributes.mockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl3Attributes.mockParagraphMockTypographyContent.default).toBe('This is lvl 3 override');
+
+	// Test lvl 4, component overriding attributes 1 lvl below it where attribute has already been overriden.
+	const lvl4Manifest = getMockBlockManifest('mock-attribute-override');
+	const lvl4Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl4Manifest);
+	expect(lvl4Attributes).toHaveProperty('mockAttributeOverrideMockParagraphMockTypographyContent');
+	expect(lvl4Attributes.mockAttributeOverrideMockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl4Attributes.mockAttributeOverrideMockParagraphMockTypographyContent.default).toBe('This is lvl 4 override');
 });

@@ -31,11 +31,10 @@ const getAllManifestsFromDir = (dir) => {
  * 
  * @return {array}
  */
-export const getAllComponentManifests = () => {
-	const componentManifests = getAllManifestsFromDir(pathToComponents);
-	const mockComponentManifests = getAllManifestsFromDir(pathToMockComponents);
-	return [...componentManifests, ...mockComponentManifests];
-}
+export const getAllComponentManifests = () => [
+	...getAllManifestsFromDir(pathToComponents),
+	...getAllManifestsFromDir(pathToMockComponents)
+];
 
 /**
  * Get all components, both the mock ones specifically for tests and the actual libs blocks.
@@ -46,6 +45,16 @@ export const getAllBlockManifests = () => [
 	...getAllManifestsFromDir(pathToBlocks),
 	...getAllManifestsFromDir(pathToMockBlocks)
 ];
+
+const getManifest = (path, name) => {
+	const manifestPath = Path.resolve(path, name, 'manifest.json');
+	return JSON.parse(readFileSync(manifestPath));
+}
+
+export const getComponentManifest = (componentName) => getManifest(pathToComponents, componentName);
+export const getBlockManifest = (blockName) => getManifest(pathToBlocks, blockName);
+export const getMockComponentManifest = (componentName) => getManifest(pathToMockComponents, componentName);
+export const getMockBlockManifest = (blockName) => getManifest(pathToMockBlocks, blockName);
 
 /**
  * Returns an object composed of all component dependencies (if they exist) if the following format:
