@@ -180,17 +180,6 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 		props = [...props, blockOutput];
 
-		// Props seem to be correctly built
-		// for(const prop of props) {
-
-		// 	if (prop.realName !== 'card') {
-		// 		continue;
-		// 	}
-
-		// 	console.log(prop.subComponents);
-		// 	console.log(prop.subComponents[0].subComponents);
-		// }
-
 		for (let blockProps of props) {
 
 			// Only run on on blocks we manually defined props output for.
