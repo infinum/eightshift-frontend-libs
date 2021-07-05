@@ -14,6 +14,7 @@ import { propsOutput } from '../../data/props-output';
  * Returns the name of the component from builtProps.
  *
  * @param {object} builtProps Built props for a component
+ *
  * @returns {string}
  */
 const debugName = (builtProps) => {
@@ -113,7 +114,7 @@ it('tests block registration properly inherits all component attributes', () => 
 			continue;
 		}
 
-		// Make sure the block contains all expected attributes
+		// Make sure the block contains all expected attributes.
 		if (blockAttributes[blockName].expected) {
 			expect(
 				attributeNames,
@@ -121,7 +122,7 @@ it('tests block registration properly inherits all component attributes', () => 
 			).toEqual(expect.arrayContaining(blockAttributes[blockName].expected));
 		}
 
-		// Make sure the block does not contain nonExpected attributes
+		// Make sure the block does not contain nonExpected attributes.
 		if (blockAttributes[blockName].notExpected) {
 			for (const notExpected of blockAttributes[blockName].notExpected) {
 				expect(
