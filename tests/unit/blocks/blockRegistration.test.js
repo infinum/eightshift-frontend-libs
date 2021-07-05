@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import 'jest-expect-message'
-import { buildWindowObject, getAttributes } from '../../../scripts/editor/register-blocks';
+import { getAttributes } from '../../../scripts/editor/register-blocks';
 import wrapperManifest from '../../../blocks/init/src/Blocks/wrapper/manifest.json';
 import globalManifest from '../../../blocks/init/src/Blocks/manifest.json';
 import { blockAttributes } from '../../data/block-attributes';
@@ -101,9 +101,6 @@ it('tests block registration properly inherits all component attributes', () => 
 	const componentManifests = getAllComponentManifests();
 	const blockManifests = getAllBlockManifests();
 
-	// Build an array of expected attributes in each block.
-	buildWindowObject(globalManifest, componentManifests, blockManifests, wrapperManifest);
-
 	// Test all block manifests.
 	for (const blockManifest of blockManifests) {
 		const blockName = blockManifest.blockName;
@@ -137,9 +134,6 @@ it('tests block registration properly inherits all component attributes', () => 
 it('tests that props helper builds the attributes / prefix correctly for all blocks', () => {
 	const componentManifests = getAllComponentManifests();
 	const blockManifests = getAllBlockManifests();
-
-	// Build an array of expected attributes in each block.
-	buildWindowObject(globalManifest, componentManifests, blockManifests, wrapperManifest);
 
 	// Test all block manifests.
 	for (const blockManifest of blockManifests) {
