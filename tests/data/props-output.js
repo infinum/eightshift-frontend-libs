@@ -1,8 +1,12 @@
 /**
  * Define what props should or should not return on each lvl of a dependency tree, using the newName to identify 
  * dependencies.
+ *
+ * Ideally all blocks from the project should have a top lvl entry here with
+ * their dependency tree and expected / notExpected attributes + prefix defined.
  */
 export const propsOutput = {
+	// Accordion block
 	accordion: {
 		components: {
 			accordion: {
@@ -17,6 +21,7 @@ export const propsOutput = {
 			}
 		}
 	},
+	// Mock blockquote block
 	'mock-blockquote': {
 		components: {
 			blockquote: {
@@ -76,6 +81,7 @@ export const propsOutput = {
 			}
 		}
 	},
+	// Card block.
 	card: {
 		components: {
 			card: {
