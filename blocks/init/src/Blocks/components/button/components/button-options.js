@@ -2,20 +2,17 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		buttonShowControls = true,
 
@@ -27,8 +24,6 @@ export const ButtonOptions = (attributes) => {
 		showButtonId = true,
 		showButtonIsLink = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!buttonShowControls) {
 		return null;
@@ -70,7 +65,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonColor}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							colors={getOption('buttonColor', attributes, manifest, true)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 						/>
 					}
@@ -93,7 +88,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonSize}
-							options={getOptions(manifest, componentName, 'size', options)}
+							options={getOption('buttonSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonSize', attributes, manifest)]: value })}
 						/>
 					}
@@ -107,7 +102,7 @@ export const ButtonOptions = (attributes) => {
 								</>
 							}
 							value={buttonWidth}
-							options={getOptions(manifest, componentName, 'width', options)}
+							options={getOption('buttonWidth', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value })}
 						/>
 					}

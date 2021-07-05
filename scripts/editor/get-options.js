@@ -7,15 +7,15 @@ import { getPaletteColors } from "./get-palette-colors";
  * @param {string} key              - Key to check.
  * @param {array} attributes        - Array of attributes.
  * @param {object} manifest         - Components/blocks manifest.json
- * @param {object} [options={}]     - Options provided by the parent block/component.
  * @param {boolean} [isColor=false] - If option is color return colors.
  * 
  * @returns {object}
  */
-export const getOption = (key, attributes, manifest, options = {}, isColor = false) => {
+export const getOption = (key, attributes, manifest, isColor = false) => {
 
 	// Check if there is prefix in the attributes object.
 	const prefix = attributes?.prefix;
+	const options = attributes?.['options'] || {};
 	let newKey = key;
 
 	// If there is no prefix return the key as it was.

@@ -2,20 +2,17 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		listsShowControls = true,
 
@@ -23,8 +20,6 @@ export const ListsOptions = (attributes) => {
 		showListsColor = true,
 		showListsSize = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!listsShowControls) {
 		return null;
@@ -61,7 +56,7 @@ export const ListsOptions = (attributes) => {
 									{__('Color', 'eightshift-frontend-libs')}
 								</>
 							}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							colors={getOption('listsColor', attributes, manifest, true)}
 							value={listsColor}
 							onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
 						/>
@@ -76,7 +71,7 @@ export const ListsOptions = (attributes) => {
 								</>
 							}
 							value={listsSize}
-							options={getOptions(manifest, componentName, 'size', options)}
+							options={getOption('listsSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: value })}
 						/>
 					}

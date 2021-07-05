@@ -1,14 +1,14 @@
 import React from 'react';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import { ButtonOptions } from '../../button/components/button-options';
+import manifest from './../manifest.json';
 
 export const CardOptions = (attributes) => {
 	const {
 		setAttributes,
-		options,
 	} = attributes;
 
 	return (
@@ -25,7 +25,7 @@ export const CardOptions = (attributes) => {
 				{...props(attributes, 'intro')}
 				label={'Intro'}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<hr />
@@ -33,7 +33,7 @@ export const CardOptions = (attributes) => {
 			<HeadingOptions
 				{...props(attributes, 'heading')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<hr />
@@ -41,7 +41,7 @@ export const CardOptions = (attributes) => {
 			<ParagraphOptions
 				{...props(attributes, 'paragraph')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 			<hr />
@@ -49,7 +49,7 @@ export const CardOptions = (attributes) => {
 			<ButtonOptions
 				{...props(attributes, 'button')}
 				setAttributes={setAttributes}
-				options={options}
+				options={getOptions(attributes, manifest)}
 			/>
 
 		</>
