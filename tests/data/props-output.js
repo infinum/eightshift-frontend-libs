@@ -12,7 +12,8 @@ export const propsOutput = {
 				],
 				notExpected: [
 					'accordionAccordionContent',
-				]
+				],
+				prefix: "accordion"
 			}
 		}
 	},
@@ -85,8 +86,9 @@ export const propsOutput = {
 					'cardButtonContent',
 				],
 				notExpected: [
-					'blockquoteCardImageUrl',
+					'blockquoteCardImageUrl'
 				],
+				prefix: "card",
 				components: {
 					image: {
 						expected: [

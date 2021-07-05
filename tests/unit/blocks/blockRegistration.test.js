@@ -27,7 +27,7 @@ const debugName = (builtProps) => {
  * @param {object} expectedProps propsOutput object for specific component
  * @param {object} builtProps Props built for this object.
  */
-const recursiveAssertProps = (expectedProps, builtProps) => {
+const recursiveAssertProps = (expectedProps, builtProps, isBlock = false) => {
 
 	// Some sanity check
 	expect(
@@ -35,21 +35,33 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 		`Missing attributes key in built props for: ${debugName(builtProps)}`
 	).toHaveProperty('attributes');
 
+	expect(
+		typeof builtProps.attributes,
+		`Attributes key found but is not an array in built props for: ${debugName(builtProps)}`
+	).toBe('object');
+
 	// Check expected
-	for (const expected of expectedProps.expected) {
-		expect(
-			builtProps.attributes,
-			`Missing expected property in built props for: ${debugName(builtProps)}`
-		).toHaveProperty(expected);
+	if (!isBlock || expectedProps.expected) {
+		for (const expected of expectedProps.expected) {
+			expect(
+				builtProps.attributes,
+				`Missing expected property in built props for: ${debugName(builtProps)}`
+			).toHaveProperty(expected);
+		}
 	}
 
 	// Check not expected
-	for (const notExpected of expectedProps.notExpected) {
-		expect(builtProps.attributes).not.toHaveProperty(notExpected);
+	if (!isBlock || expectedProps.notExpected) {
+		for (const notExpected of expectedProps.notExpected) {
+			expect(
+				builtProps.attributes,
+				`Found not-expected property in built props for: ${debugName(builtProps)}`
+			).not.toHaveProperty(notExpected);
+		}
 	}
 
 	// Check prefix (but only if expected)
-	if (expectedProps.prefix) {
+	if (!isBlock || expectedProps.prefix) {
 		expect(
 			builtProps.attributes,
 			`Missing "prefix" key in built props for ${debugName(builtProps)}`
@@ -77,7 +89,10 @@ const recursiveAssertProps = (expectedProps, builtProps) => {
 			).not.toEqual([]);
 
 			// Find the correct subComponent
-			const subComponent = builtProps.subComponents.filter((subComponent) => subComponent.newName === componentKey);
+			const subComponent = builtProps.subComponents.filter((subComponent) => {
+				const relevantName = subComponent.newName ? subComponent.newName : subComponent.realName;
+				return relevantName === componentKey
+			});
 
 			// Expect to find exactly 1 sub component
 			expect(
@@ -156,6 +171,17 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 		props = [...props, blockOutput];
 
+		// Props seem to be correctly built
+		// for(const prop of props) {
+
+		// 	if (prop.realName !== 'card') {
+		// 		continue;
+		// 	}
+
+		// 	console.log(prop.subComponents);
+		// 	console.log(prop.subComponents[0].subComponents);
+		// }
+
 		for (let blockProps of props) {
 
 			// Only run on on blocks we manually defined props output for.
@@ -165,9 +191,7 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 
 			const blockExpectedProps = propsOutput[blockProps.realName];
 
-			for (let subComponentKey of Object.keys(blockExpectedProps.components || [])) {
-				recursiveAssertProps(blockExpectedProps.components[subComponentKey], blockProps);
-			}
+			recursiveAssertProps(blockExpectedProps, blockProps, true);
 		}
 	}
 });
