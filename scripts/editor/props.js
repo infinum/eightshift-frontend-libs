@@ -18,6 +18,9 @@ export const props = (attributes, newName) => {
 		'blockFullName',
 		'blockClass',
 		'blockJsClass',
+		'selectorClass',
+		'componentClass',
+		'additionalClass',
 	]
 	
 	// Populate prefix key for recursive checks of attribute names.

@@ -1,4 +1,3 @@
-/* global NODE_ENV */
 import React from 'react';
 import _ from 'lodash';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
