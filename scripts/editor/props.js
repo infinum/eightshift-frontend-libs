@@ -20,7 +20,8 @@ export const props = (attributes, newName) => {
 		'blockJsClass',
 		'selectorClass',
 		'additionalClass',
-		'setAttributes'
+		'setAttributes',
+		'uniqueWrapperId',
 	]
 	
 	// Populate prefix key for recursive checks of attribute names.
