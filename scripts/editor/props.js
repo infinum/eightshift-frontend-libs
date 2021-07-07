@@ -21,6 +21,7 @@ export const props = (attributes, newName) => {
 		'selectorClass',
 		'componentClass',
 		'additionalClass',
+		'setAttributes'
 	]
 	
 	// Populate prefix key for recursive checks of attribute names.
