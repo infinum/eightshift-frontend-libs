@@ -3,12 +3,12 @@ import _ from 'lodash';
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
- * @param {object}  attributes - Attributes from the block/component.
  * @param {string}  newName    - *New* key to use to rename attributes.
+ * @param {object}  attributes - Attributes from the block/component.
  * 
  * @returns object
  */
-export const props = (attributes, newName) => {
+export const props = (newName, attributes) => {
 
 	const output = {};
 
