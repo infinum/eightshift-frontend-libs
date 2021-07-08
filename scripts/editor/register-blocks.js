@@ -414,16 +414,15 @@ export const getAttributes = (
 /**
  * Get Block example attributes combined in one: "components and block".
  *
- * @param {object} componentsManifest - Component manifest to iterate through.
- * @param {object} manifest           - Block/component manifest.
+ * @param {object} manifest - Block/component manifest.
  * 
  * @returns {object}
  */
-export const getExample = (
-	componentsManifest = {},
+ export const getExample = (
 	manifest = {}
 ) => {
-	return prepareComponentAttributes(componentsManifest, manifest, true);
+
+	return prepareComponentAttributes(getComponentsManifest(), manifest, true);
 };
 
 /**
@@ -490,7 +489,7 @@ export const registerBlock = (
 	}
 
 	// Set full examples list.
-	blockManifest['example'].attributes = getExample(componentsManifest, blockManifest);
+	blockManifest['example'].attributes = getExample(blockManifest);
 
 	return {
 		blockName: fullBlockName,
@@ -532,6 +531,11 @@ export const registerBlocks = (
 
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+
+	// Set componentsManifest to global window for usage in storybook.
+	if (typeof window?.['eightshift'] === 'undefined') {
+		window['eightshift'] = componentsManifest;
+	}
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {
@@ -582,6 +586,15 @@ export const registerBlocks = (
 	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 };
+
+/**
+ * Get component manifest got from window object.
+ *
+ * @returns {object}
+ */
+export const getComponentsManifest = () => {
+	return window?.['eightshift'];
+}
 
 /**
  * Register all Variations Editor blocks using WP `registerBlockVariation` method.
