@@ -414,15 +414,17 @@ export const getAttributes = (
 /**
  * Get Block example attributes combined in one: "components and block".
  *
- * @param {object} manifest - Block/component manifest.
+ * @param {object} manifest    - Block/component manifest.
+ * @param {string} [parent=''] - Parent component key with stacked parent component names for the final output.
  * 
  * @returns {object}
  */
  export const getExample = (
-	manifest = {}
+	manifest = {},
+	parent = ''
 ) => {
 
-	return prepareComponentAttributes(getComponentsManifest(), manifest, true);
+	return prepareComponentAttributes(getComponentsManifest(), manifest, true, parent);
 };
 
 /**
