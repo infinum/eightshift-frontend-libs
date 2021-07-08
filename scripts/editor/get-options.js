@@ -1,4 +1,5 @@
 import { getPaletteColors } from "./get-palette-colors";
+import _ from 'lodash';
 
 /**
  * Provides ability to override component options from the parent block/component
@@ -22,7 +23,7 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
 	if (typeof prefix !== 'undefined') {
 		// No need to test if this is block or component because on top level block there is no prefix.
-		newKey = key.replace(manifest.componentName, prefix);
+		newKey = key.replace(_.camelCase(manifest.componentName), prefix);
 	}
 
 	// Determine if manifest options key exists.

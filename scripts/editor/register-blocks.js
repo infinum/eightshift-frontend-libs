@@ -241,15 +241,16 @@ export const getIconOptions = (
 /**
  * Iterate over attributes or example attributes object in block/component manifest and append the parent prefixes.
  *
- * @param {object} manifest           - Object of component/block manifest to get data from.
- * @param {string} newName            - New renamed component name.
- * @param {string} realName           - Original real component name.
- * @param {boolean} [isExample=false] - Type of items to iterate, if false example key will be use, if true attributes will be used.
- * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
+ * @param {object} manifest                   - Object of component/block manifest to get data from.
+ * @param {string} newName                    - New renamed component name.
+ * @param {string} realName                   - Original real component name.
+ * @param {boolean} [isExample=false]         - Type of items to iterate, if false example key will be use, if true attributes will be used.
+ * @param {string} [parent='']                - Parent component key with stacked parent component names for the final output.
+ * @param {boolean} [currentAttributes=false] - Check if current attribute is a part of the current component.
  * 
  * @returns {object}
  */
-export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '') => {
+export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
 	const output = {};
 
 	// Define different data point for attributes or example.
@@ -274,7 +275,13 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 		}
 
 		// Determine if parent is empty and if parent name is the same as component/block name.
-		const attributeName = (newParent === '' || newParent === newName) ? attribute : `${_.lowerFirst(newParent)}${_.upperFirst(attribute)}`;
+		let attributeName = (newParent === '' || newParent === newName) ? attribute : `${_.lowerFirst(newParent)}${_.upperFirst(attribute)}`;
+
+		// Check if you we have duplicate attributes names and remove them.
+		const duplicateAttributesCheck = `${_.upperFirst(_.camelCase(realName))}${_.upperFirst(_.camelCase(realName))}`;
+		if (currentAttributes && attributeName.includes(duplicateAttributesCheck)) {
+			attributeName = attributeName.replace(duplicateAttributesCheck, `${_.upperFirst(_.camelCase(realName))}`);
+		}
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
@@ -345,7 +352,7 @@ export const prepareComponentAttributes = (
 		Object.assign(output, prepareComponentAttribute(manifest, '', '', isExample));
 	} else {
 		// Add the current component attributes to the output.
-		Object.assign(output, prepareComponentAttribute(manifest, '', name, isExample, parent));
+		Object.assign(output, prepareComponentAttribute(manifest, '', name, isExample, parent, true));
 	}
 
 	return output;
