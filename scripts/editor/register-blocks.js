@@ -260,6 +260,9 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 		return output;
 	}
 
+	// Make sure the case is always correct for parent.
+	const newParent = _.camelCase(parent);
+
 	// Iterate each attribute and attach parent prefixes.
 	for (const [componentAttribute] of Object.entries(componentAttributes)) {
 
@@ -271,7 +274,7 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 		}
 
 		// Determine if parent is empty and if parent name is the same as component/block name.
-		const attributeName = (parent === '' || parent === newName) ? attribute : `${_.lowerFirst(parent)}${_.upperFirst(attribute)}`;
+		const attributeName = (newParent === '' || newParent === newName) ? attribute : `${_.lowerFirst(newParent)}${_.upperFirst(attribute)}`;
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
