@@ -407,8 +407,8 @@ export const prepareVariableData = (globalBreakpoints) => {
  export const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
-	// Bailout if provided variables is not an object.
-	if (!_.isPlainObject(variables)) {
+	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
+	if (typeof attributeValue === 'undefined' || !_.isPlainObject(variables)) {
 		return output;
 	}
 
@@ -421,7 +421,7 @@ export const prepareVariableData = (globalBreakpoints) => {
 			value = variableValue.replace('%value%', attributeValue);
 		}
 
-		// Bailout if attribute value is empty or undefined, used to unset/reset value.
+		// Bailout if value is empty or undefined.
 		if (value === 'undefined' || _.isEmpty(value)) {
 			continue;
 		}
