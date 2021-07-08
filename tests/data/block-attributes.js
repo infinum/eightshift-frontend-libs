@@ -14,10 +14,13 @@ export const blockAttributes = {
 	},
 	'mock-blockquote': {
 		expected:[
-			'headingContent',
+			'blockquoteBlockquoteHeadingContent',
+			'blockquoteBlockquoteIntroMockTypographyUse',
+			'blockquoteBlockquoteParagraphMockTypographyContent'
 		],
 		notExpected: [
-			'headingaaaContent',
+			'headingContent',
+			'cardHeadingContent',
 		]
 	},
 };

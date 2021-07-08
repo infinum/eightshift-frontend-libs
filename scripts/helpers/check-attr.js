@@ -22,7 +22,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 	if (typeof prefix !== 'undefined') {
 
 		// No need to test if this is block or component because on top level block there is no prefix.
-		newKey = key.replace(manifest.componentName, prefix);
+		newKey = key.replace(_.camelCase(manifest.componentName), prefix);
 	}
 
 	// If key exists in the attributes object, just return that key value.
@@ -116,5 +116,5 @@ export const getAttrKey = (key, attributes, manifest) => {
 
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
-	return key.replace(manifest.componentName, prefix);
+	return key.replace(_.camelCase(manifest.componentName), prefix);
 }

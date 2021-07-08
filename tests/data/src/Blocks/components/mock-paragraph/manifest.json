@@ -4,13 +4,19 @@
 	"componentClass": "mock-paragraph",
 	"example": {
 		"attributes": {
-			"paragraphContent": "This is paragraph",
-			"paragraphLevel": 2,
-			"paragraphTag": "p",
-			"paragraphSize": "16-regular",
-			"paragraphColor": "black",
-			"paragraphUppercase": false,
-			"paragraphUse": true
+			"mockTypographyContent": "This is paragraph",
+			"mockParagraphTypographyLevel": 2,
+			"mockParagraphTypographyTag": "p",
+			"mockParagraphTypographySize": "16-regular",
+			"mockParagraphTypographyColor": "black",
+			"mockParagraphTypographyUppercase": false,
+			"mockParagraphTypographyUse": true
+		}
+	},
+	"attributes": {
+		"mockTypographyContent": {
+			"type": "string",
+			"default": "This is lvl 2 override"
 		}
 	},
 	"components": {
