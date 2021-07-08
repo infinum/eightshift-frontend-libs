@@ -108,7 +108,9 @@
 	},
 	"sideEffects": false,
 	"jest": {
-		"setupFilesAfterEnv": ["jest-expect-message"],
+		"setupFilesAfterEnv": [
+			"jest-expect-message"
+		],
 		"verbose": true,
 		"transform": {
 			"\\.js$": [

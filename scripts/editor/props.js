@@ -48,6 +48,7 @@ export const props = (newName, attributes, manual = {}) => {
 
 	// Check if you have manual object and prepare the attribute keys and merge them with the original attributes for output.
 	if (!_.isEmpty(manual)) {
+		// Iterate manual attributes.
 		for (let [key, value] of Object.entries(manual)) {
 
 			// Remove the current component name from the attribute name.
