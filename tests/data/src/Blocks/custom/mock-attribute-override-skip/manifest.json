@@ -1,0 +1,18 @@
+{
+	"blockName": "mock-attribute-override-skip",
+	"title": "Mock attribute override skip",
+	"description" : "Block used for testing overriding component attributes when override doesnt happen in the adjacent lvl.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-card-review"
+	},
+	"attributes": {
+		"mockNoOverrideMockParagraphMockTypographyContent": {
+			"type": "string",
+			"default": "This is lvl 4 override"
+		}
+	},
+	"components": {
+		"mockNoOverride": "mock-no-override"
+	}
+}

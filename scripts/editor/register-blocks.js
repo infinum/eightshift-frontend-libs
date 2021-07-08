@@ -364,7 +364,7 @@ export const prepareComponentAttributes = (
  * @param {object} globalManifest     - Global manifest.
  * @param {object} wrapperManifest    - `Wrapper` manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
- * @param {object} blockManifest      - Block manifest.
+ * @param {object} parentManifest     - Block or component (parent) manifest.
  * 
  * @returns {object}
  */
@@ -372,11 +372,11 @@ export const getAttributes = (
 	globalManifest,
 	wrapperManifest,
 	componentsManifest,
-	blockManifest
+	parentManifest
 ) => {
 	const {
 		blockName,
-	} = blockManifest;
+	} = parentManifest;
 
 	const {
 		attributes: attributesGlobal,
@@ -393,7 +393,7 @@ export const getAttributes = (
 		},
 		blockFullName: {
 			type: 'string',
-			default: getFullBlockName(globalManifest, blockManifest),
+			default: getFullBlockName(globalManifest, parentManifest),
 		},
 		blockClass: {
 			type: 'string',
@@ -405,7 +405,7 @@ export const getAttributes = (
 		},
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
-		...prepareComponentAttributes(componentsManifest, blockManifest),
+		...prepareComponentAttributes(componentsManifest, parentManifest),
 	};
 
 	return output;

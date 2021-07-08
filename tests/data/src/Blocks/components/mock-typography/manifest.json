@@ -14,34 +14,34 @@
 		}
 	},
 	"attributes": {
-		"typographyContent": {
+		"mockTypographyContent": {
 			"type": "string",
 			"seo": true
 		},
-		"typographyTag": {
+		"mockTypographyTag": {
 			"type": "string",
 			"default": "p"
 		},
-		"typographyLevel": {
+		"mockTypographyLevel": {
 			"type": "integer",
 			"default": 2
 		},
-		"typographySize": {
+		"mockTypographySize": {
 			"type": "string",
 			"default": "16-regular"
 		},
-		"typographyColor": {
+		"mockTypographyColor": {
 			"type": "string"
 		},
-		"typographyUppercase": {
+		"mockTypographyUppercase": {
 			"type": "boolean",
 			"default": false
 		},
-		"typographyUse": {
+		"mockTypographyUse": {
 			"type": "boolean",
 			"default": true
 		},
-		"typographyHighlightColor": {
+		"mockTypographyHighlightColor": {
 			"type": "string",
 			"default": ""
 		}

@@ -1,0 +1,18 @@
+{
+	"blockName": "mock-attribute-override",
+	"title": "Mock attribute override",
+	"description" : "Block used for testing overriding component attributes.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-card-review"
+	},
+	"attributes": {
+		"mockAttributeOverrideMockParagraphMockTypographyContent": {
+			"type": "string",
+			"default": "This is lvl 4 override"
+		}
+	},
+	"components": {
+		"mockAttributeOverride": "mock-attribute-override"
+	}
+}

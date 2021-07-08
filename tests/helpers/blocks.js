@@ -31,31 +31,41 @@ const getAllManifestsFromDir = (dir) => {
  * 
  * @return {array}
  */
-export const getAllComponentManifests = () => {
-	const componentManifests = getAllManifestsFromDir(pathToComponents);
-	const mockComponentManifests = getAllManifestsFromDir(pathToMockComponents);
-	return [...componentManifests, ...mockComponentManifests];
-}
+export const getAllComponentManifests = () => [
+	...getAllManifestsFromDir(pathToComponents),
+	...getAllManifestsFromDir(pathToMockComponents)
+];
 
 /**
  * Get all components, both the mock ones specifically for tests and the actual libs blocks.
  *
  * @return {array}
  */
-export const getAllBlockManifests = () => {
-	const blockManifests = getAllManifestsFromDir(pathToBlocks);
-	const mockBlockManifests = getAllManifestsFromDir(pathToMockBlocks);
-	return [...blockManifests, ...mockBlockManifests];
+export const getAllBlockManifests = () => [
+	...getAllManifestsFromDir(pathToBlocks),
+	...getAllManifestsFromDir(pathToMockBlocks)
+];
+
+const getManifest = (path, name) => {
+	const manifestPath = Path.resolve(path, name, 'manifest.json');
+	return JSON.parse(readFileSync(manifestPath));
 }
+
+export const getComponentManifest = (componentName) => getManifest(pathToComponents, componentName);
+export const getBlockManifest = (blockName) => getManifest(pathToBlocks, blockName);
+export const getMockComponentManifest = (componentName) => getManifest(pathToMockComponents, componentName);
+export const getMockBlockManifest = (blockName) => getManifest(pathToMockBlocks, blockName);
 
 /**
  * Returns an object composed of all component dependencies (if they exist) if the following format:
  * {
- * 	 newName: realName
+ * 	 newName: realName,
+ *   ...
  * }
  *
  * @param {array<object>} componentManifests Array of all component manifests
  * @param {string} componentName Component name for which we want to get dependency components
+ *
  * @return {object}
  */
 export const getComponentDependencies = (componentManifests, componentName) => {
@@ -75,10 +85,12 @@ export const getComponentDependencies = (componentManifests, componentName) => {
  * Returns an object composed of all component dependencies (if they exist) if the following format:
  * {
  * 	 newName: realName
+ *   ...
  * }
  *
  * @param {array<object>} blockManifests Array of all block manifests
  * @param {string} blockName Block name for which we want to get dependency components
+ *
  * @return {object}
  */
 export const getBlockDependencies = (blockManifests, blockName) => {
@@ -96,6 +108,8 @@ export const getBlockDependencies = (blockManifests, blockName) => {
 
 /**
  * Recursively builds props for a block and all it's sub dependencies.
+ * 
+ * @return {array}
  */
 export const recursiveBuildProps = (attributes, componentManifests, realName, newName) => {
 
