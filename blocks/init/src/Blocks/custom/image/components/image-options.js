@@ -9,7 +9,7 @@ export const ImageOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Image Details', 'eightshift-frontend-libs')}>
 
 			<ImageOptionsComponent
-				{...props(attributes, 'image')}
+				{...props('image', attributes)}
 				setAttributes={setAttributes}
 			/>
 

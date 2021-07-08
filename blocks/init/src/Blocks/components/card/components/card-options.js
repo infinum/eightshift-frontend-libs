@@ -15,14 +15,14 @@ export const CardOptions = (attributes) => {
 		<>
 
 			<ImageOptions
-				{...props(attributes, 'image')}
+				{...props('image', attributes)}
 				setAttributes={setAttributes}
 			/>
 
 			<hr />
 
 			<HeadingOptions
-				{...props(attributes, 'intro')}
+				{...props('intro', attributes)}
 				label={'Intro'}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
@@ -31,7 +31,7 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<HeadingOptions
-				{...props(attributes, 'heading')}
+				{...props('heading', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>
@@ -39,7 +39,7 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<ParagraphOptions
-				{...props(attributes, 'paragraph')}
+				{...props('paragraph', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>
@@ -47,7 +47,7 @@ export const CardOptions = (attributes) => {
 			<hr />
 
 			<ButtonOptions
-				{...props(attributes, 'button')}
+				{...props('button', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>

@@ -116,7 +116,7 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 	// Output props for all components.
 	let propsArray = [];
 	const isNameDifferent = realName !== newName;
-	const newComponentAttributes = props(attributes, isNameDifferent ? newName : realName);
+	const newComponentAttributes = props(isNameDifferent ? newName : realName, attributes);
 
 	const componentOutput = {
 		realName,

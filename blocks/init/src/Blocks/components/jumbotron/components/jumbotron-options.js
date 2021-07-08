@@ -47,28 +47,28 @@ export const JumbotronOptions = (attributes) => {
 			{jumbotronUse &&
 				<>
 					<ImageOptions
-						{...props(attributes, 'image')}
+						{...props('image', attributes)}
 						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<HeadingOptions
-						{...props(attributes, 'heading')}
+						{...props('heading', attributes)}
 						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<ParagraphOptions
-						{...props(attributes, 'paragraph')}
+						{...props('paragraph', attributes)}
 						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<ButtonOptions
-						{...props(attributes, 'button')}
+						{...props('button', attributes)}
 						setAttributes={setAttributes}
 					/>
 				</>

@@ -24,7 +24,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
-		Components::props($attributes, 'button')
+		Components::prop('button', $attributes)
 	);
 	?>
 </div>

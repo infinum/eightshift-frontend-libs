@@ -24,7 +24,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
-		Components::props($attributes, 'heading')
+		Components::prop('heading', $attributes)
 	);
 	?>
 </div>

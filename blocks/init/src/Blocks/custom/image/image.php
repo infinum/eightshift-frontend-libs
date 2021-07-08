@@ -24,7 +24,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
-		Components::props($attributes, 'image')
+		Components::prop('image', $attributes)
 	);
 	?>
 </div>

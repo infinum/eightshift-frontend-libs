@@ -16,7 +16,7 @@ export const VideoEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<VideoEditorComponent
-				{...props(attributes, 'video')}
+				{...props('video', attributes)}
 				setAttributes={setAttributes}
 			/>
 		</div>

@@ -34,32 +34,32 @@ export const CardEditor = (attributes) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditor
-				{...props(attributes, 'image')}
+				{...props('image', attributes)}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
 
 			<HeadingEditor
-				{...props(attributes, 'intro')}
+				{...props('intro', attributes)}
 				setAttributes={setAttributes}
 				selectorClass={'intro'}
 				blockClass={componentClass}
 			/>
 
 			<HeadingEditor
-				{...props(attributes, 'heading')}
+				{...props('heading', attributes)}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
 
 			<ParagraphEditor
-				{...props(attributes, 'paragraph')}
+				{...props('paragraph', attributes)}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>
 
 			<ButtonEditor
-				{...props(attributes, 'button')}
+				{...props('button', attributes)}
 				setAttributes={setAttributes}
 				blockClass={componentClass}
 			/>

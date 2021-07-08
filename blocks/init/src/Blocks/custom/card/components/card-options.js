@@ -14,7 +14,7 @@ export const CardOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Card Details', 'eightshift-frontend-libs')}>
 
 			<CardOptionsComponent
-				{...props(attributes, 'card')}
+				{...props('card', attributes)}
 				setAttributes={setAttributes}
 				options={manifestOptions}
 			/>

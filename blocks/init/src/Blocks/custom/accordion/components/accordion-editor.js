@@ -6,7 +6,7 @@ import { AccordionEditor as AccordionEditorComponent } from '../../../components
 export const AccordionEditor = ({ attributes, setAttributes }) => {
 	return (
 		<AccordionEditorComponent
-			{...props(attributes, 'accordion')}
+			{...props('accordion', attributes)}
 			accordionContent={<InnerBlocks />}
 			setAttributes={setAttributes}
 		/>

@@ -23,19 +23,19 @@ export const CardToolbar = (attributes) => {
 		<>
 
 			<HeadingToolbar
-				{...props(attributes, 'intro')}
+				{...props('intro', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>
 
 			<HeadingToolbar
-				{...props(attributes, 'heading')}
+				{...props('heading', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>
 
 			<ButtonToolbar
-				{...props(attributes, 'button')}
+				{...props('button', attributes)}
 				setAttributes={setAttributes}
 				options={getOptions(attributes, manifest)}
 			/>

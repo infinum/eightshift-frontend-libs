@@ -13,5 +13,5 @@ $manifestBlockName = $manifest['blockName'];
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'card',
-	Components::props($attributes, 'card')
+	Components::prop('card', $attributes)
 );

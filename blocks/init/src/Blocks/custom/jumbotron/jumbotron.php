@@ -13,5 +13,5 @@ $manifestBlockName = $manifest['blockName'];
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'jumbotron',
-	Components::props($attributes, 'jumbotron')
+	Components::prop('jumbotron', $attributes)
 );

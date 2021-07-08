@@ -10,7 +10,7 @@ export const CardToolbar = ({ attributes, setAttributes }) => {
 
 	return (
 		<CardToolbarComponent
-			{...props(attributes, 'card')}
+			{...props('card', attributes)}
 			setAttributes={setAttributes}
 			options={manifestOptions}
 		/>

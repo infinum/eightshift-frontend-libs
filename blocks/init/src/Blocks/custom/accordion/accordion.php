@@ -14,7 +14,7 @@ $manifestBlockName = $manifest['blockName'];
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'accordion',
 	array_merge(
-		Components::props($attributes, 'accordion'),
+		Components::prop('accordion', $attributes),
 		[
 			'accordionContent' => $innerBlockContent
 		]

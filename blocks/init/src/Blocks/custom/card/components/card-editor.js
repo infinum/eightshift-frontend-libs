@@ -5,7 +5,7 @@ import { CardEditor as CardEditorComponent } from '../../../components/card/comp
 export const CardEditor = ({ attributes, setAttributes }) => {
 	return (
 		<CardEditorComponent
-			{...props(attributes, 'card')}
+			{...props('card', attributes)}
 			setAttributes={setAttributes}
 		/>
 	);

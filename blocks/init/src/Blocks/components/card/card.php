@@ -31,7 +31,7 @@ $cardClass = Components::classnames([
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
 		array_merge(
-			Components::props($attributes, 'image'),
+			Components::prop('image', $attributes),
 			[
 				'blockClass' => $componentClass,
 			]
@@ -41,7 +41,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
-			Components::props($attributes, 'intro'),
+			Components::prop('intro', $attributes),
 			[
 				'selectorClass' => 'intro',
 				'blockClass' => $componentClass
@@ -52,7 +52,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		array_merge(
-			Components::props($attributes, 'heading'),
+			Components::prop('heading', $attributes),
 			[
 				'blockClass' => $componentClass
 			]
@@ -62,7 +62,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'paragraph',
 		array_merge(
-			Components::props($attributes, 'paragraph'),
+			Components::prop('paragraph', $attributes),
 			[
 				'blockClass' => $componentClass
 			]
@@ -72,7 +72,7 @@ $cardClass = Components::classnames([
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
 		array_merge(
-			Components::props($attributes, 'button'),
+			Components::prop('button', $attributes),
 			[
 				'blockClass' => $componentClass
 			]

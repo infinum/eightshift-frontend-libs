@@ -46,7 +46,7 @@ export const JumbotronEditor = (attributes) => {
 					<div className={jumbotronClass} data-id={unique}>
 
 						<ImageEditor
-							{...props(attributes, 'image')}
+							{...props('image', attributes)}
 							setAttributes={setAttributes}
 							blockClass={componentClass}
 						/>
@@ -54,19 +54,19 @@ export const JumbotronEditor = (attributes) => {
 						<div className={contentClass}>
 							<div className={contentWrapClass}>
 								<HeadingEditor
-									{...props(attributes, 'heading')}
+									{...props('heading', attributes)}
 									setAttributes={setAttributes}
 									blockClass={componentClass}
 								/>
 
 								<ParagraphEditor
-									{...props(attributes, 'paragraph')}
+									{...props('paragraph', attributes)}
 									setAttributes={setAttributes}
 									blockClass={componentClass}
 								/>
 
 								<ButtonEditor
-									{...props(attributes, 'button')}
+									{...props('button', attributes)}
 									setAttributes={setAttributes}
 									blockClass={componentClass}
 								/>

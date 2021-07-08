@@ -5,7 +5,7 @@ import { JumbotronEditor as JumbotronEditorComponent } from '../../../components
 export const JumbotronEditor = ({ attributes, setAttributes }) => {
 	return (
 		<JumbotronEditorComponent
-			{...props(attributes, 'jumbotron')}
+			{...props('jumbotron', attributes)}
 			setAttributes={setAttributes}
 		/>
 	);
