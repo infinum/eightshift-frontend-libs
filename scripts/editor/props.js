@@ -24,13 +24,15 @@ export const props = (newName, attributes, manual = {}) => {
 		'setAttributes',
 		'uniqueWrapperId',
 	]
-	
+
 	// Populate prefix key for recursive checks of attribute names.
 	if (typeof attributes.prefix === 'undefined') {
-		output['prefix'] = _.camelCase(newName);
+		output['prefix'] = attributes.blockName;
 	} else {
-		output['prefix'] = `${attributes['prefix']}${_.upperFirst(_.camelCase(newName))}`;
+		output['prefix'] = newName === attributes['prefix'] ? newName : `${attributes['prefix']}${_.upperFirst(_.camelCase(newName))}`;
 	}
+
+	output['prefix'] = _.camelCase(output['prefix']);
 
 	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
