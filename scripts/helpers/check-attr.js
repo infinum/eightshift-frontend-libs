@@ -124,7 +124,7 @@ export const getAttrKey = (key, attributes, manifest) => {
 
 	prefix = _.camelCase(prefix);
 
-	// If prefix from attributes is the same as block name just apprend prefix to the attribute name.
+	// If prefix from attributes is the same as block name just append prefix to the attribute name.
 	if (attributes.prefix === attributes.blockName) {
 		return `${prefix}${_.upperFirst(key)}`;
 	}
