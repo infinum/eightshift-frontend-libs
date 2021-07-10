@@ -114,19 +114,17 @@ export const getAttrKey = (key, attributes, manifest) => {
 		return key;
 	}
 
+	// Skip if using this helper in block.
+	if (Object.prototype.hasOwnProperty.call(manifest, 'blockName')) {
+		return key;
+	}
+
 	// Populate prefix key for recursive checks of attribute names.
 	// If prefix is empty use blockName as prefix.
 	if (typeof attributes.prefix === 'undefined') {
 		prefix = manifest.blockName;
 	} else {
 		prefix = attributes.prefix;
-	}
-
-	prefix = _.camelCase(prefix);
-
-	// If prefix from attributes is the same as block name just append prefix to the attribute name.
-	if (attributes.prefix === attributes.blockName) {
-		return `${prefix}${_.upperFirst(key)}`;
 	}
 
 	// No need to test if this is block or component because on top level block there is no prefix.

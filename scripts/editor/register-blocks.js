@@ -261,7 +261,8 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 		return output;
 	}
 
-	let newParent = _.camelCase(parent);
+	// Prepare parent case.
+	const newParent = _.camelCase(parent);
 
 	// Iterate each attribute and attach parent prefixes.
 	for (const [componentAttribute] of Object.entries(componentAttributes)) {
@@ -269,19 +270,17 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 		let attribute = componentAttribute;
 
 		// If there is a attribute name switch use the new one.
-		
-		if (newName !== realName && newName !== '') {
-			// attribute = componentAttribute.replace(realName, newName);
+		if (newName !== realName) {
+			attribute = componentAttribute.replace(realName, newName);
 		}
 
+		// Check if current attribute is used strip component prefix from attribute and replace it with parent prefix.
 		if (currentAttributes) {
 			attribute = componentAttribute.replace(`${_.lowerFirst(_.camelCase(realName))}`, '');
 		}
 
 		// Determine if parent is empty and if parent name is the same as component/block name.
-		let attributeName = (newParent === '') ? attribute : `${newParent}${_.upperFirst(attribute)}`;
-
-		console.log(attributeName, (newParent === ''), newParent, attribute);
+		let attributeName = `${newParent}${_.upperFirst(attribute)}`;
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
@@ -316,7 +315,7 @@ export const prepareComponentAttributes = (
 	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
 	const name = Object.prototype.hasOwnProperty.call(manifest, 'blockName') ? manifest.blockName : manifest.componentName;
 
-	const newParent = _.camelCase(parent === '' ? name : parent);
+	const newParent = (parent === '') ? name : parent;
 
 	// Iterate over components key in manifest recursively and check component names.
 	for (let [newComponentName, realComponentName] of Object.entries(components)) {
@@ -333,9 +332,7 @@ export const prepareComponentAttributes = (
 
 		// If component has more components do recursive loop.
 		if (Object.prototype.hasOwnProperty.call(component, 'components')) {
-			const recursiveParent = (newComponentName === newParent) ? newComponentName : `${newParent}${_.upperFirst(_.camelCase(newComponentName))}`;
-
-			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, recursiveParent);
+			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${_.upperFirst(_.camelCase(newComponentName))}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.
 			outputAttributes = prepareComponentAttribute(component, newComponentName, realComponentName, isExample, newParent);

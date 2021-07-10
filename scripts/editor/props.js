@@ -23,16 +23,13 @@ export const props = (newName, attributes, manual = {}) => {
 		'additionalClass',
 		'setAttributes',
 		'uniqueWrapperId',
-	]
+	];
 
 	// Populate prefix key for recursive checks of attribute names.
-	if (typeof attributes.prefix === 'undefined') {
-		output['prefix'] = attributes.blockName;
-	} else {
-		output['prefix'] = newName === attributes['prefix'] ? newName : `${attributes['prefix']}${_.upperFirst(_.camelCase(newName))}`;
-	}
+	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(attributes.blockName) : attributes['prefix'];
 
-	output['prefix'] = _.camelCase(output['prefix']);
+	// Set component prefix.
+	output['prefix'] = `${prefix}${_.upperFirst(_.camelCase(newName))}`;
 
 	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
@@ -59,7 +56,7 @@ export const props = (newName, attributes, manual = {}) => {
 			// Remove the old key.
 			delete manual[key];
 
-			// Add new key to the output with prepared attribute name.
+			// // Add new key to the output with prepared attribute name.
 			Object.assign(manual, {[`${output['prefix']}${newKey}`]: value})
 		}
 
