@@ -37,6 +37,7 @@ export const props = (newName, attributes, manual = {}) => {
 		// Includes attributes from iteration.
 		if (includes.includes(key)) {
 			Object.assign(output, {[key]: value});
+			continue;
 		}
 
 		// If attribute starts with the prefix key leave it in the object if not remove it.
@@ -49,6 +50,12 @@ export const props = (newName, attributes, manual = {}) => {
 	if (!_.isEmpty(manual)) {
 		// Iterate manual attributes.
 		for (let [key, value] of Object.entries(manual)) {
+
+			// Includes attributes from iteration.
+			if (includes.includes(key)) {
+				Object.assign(output, {[key]: value});
+				continue;
+			}
 
 			// Remove the current component name from the attribute name.
 			const newKey = key.replace(`${_.lowerFirst(_.camelCase(newName))}`, '');
