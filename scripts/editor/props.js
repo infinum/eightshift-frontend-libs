@@ -19,6 +19,7 @@ export const props = (newName, attributes, manual = {}) => {
 		'blockFullName',
 		'blockClass',
 		'blockJsClass',
+		'componentJsClass',
 		'selectorClass',
 		'additionalClass',
 		'setAttributes',
