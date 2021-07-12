@@ -1,4 +1,5 @@
 import { getPaletteColors } from "./get-palette-colors";
+import { getAttrKey } from './../helpers/check-attr';
 import _ from 'lodash';
 
 /**
@@ -15,16 +16,10 @@ import _ from 'lodash';
 export const getOption = (key, attributes, manifest, isColor = false) => {
 
 	// Check if there is prefix in the attributes object.
-	const prefix = attributes?.prefix;
 	const options = attributes?.['options'] || {};
-	let newKey = key;
 
-	// If there is no prefix return the key as it was.
-	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
-	if (typeof prefix !== 'undefined') {
-		// No need to test if this is block or component because on top level block there is no prefix.
-		newKey = key.replace(_.camelCase(manifest.componentName), prefix);
-	}
+	// Get the correct key for the check in the attributes object.
+	const newKey = getAttrKey(key, attributes, manifest);
 
 	// Determine if manifest options key exists.
 	const componentOptions = manifest?.options;
@@ -96,8 +91,18 @@ export const getOptionColors = (colors) => {
  * @returns {object}
  */
 export const getOptions = (attributes = {}, manifest = {}) => {
-	const optionsManifest = manifest?.['options'] || {};
-	const optionsAttributes = attributes?.['options'] || {};
+	const optionsManifest = manifest?.['options'] ?? {};
+	const optionsAttributes = attributes?.['options'] ?? {};
+	const componentName = manifest['componentName'];
+	
+	const output = {};
+	const prefix = (typeof attributes['prefix'] === 'undefined') ? '' : attributes['prefix'];
 
-	return Object.assign(optionsManifest, optionsAttributes);
+	for (const [key, value] of Object.entries(optionsManifest)) {
+		const newKey = key.replace(`${_.lowerFirst(_.camelCase(componentName))}`, '');
+
+		output[`${prefix}${newKey}`] = value;
+	}
+
+	return Object.assign(output, optionsAttributes);
 }

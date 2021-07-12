@@ -24,6 +24,7 @@ export const props = (newName, attributes, manual = {}) => {
 		'additionalClass',
 		'setAttributes',
 		'uniqueWrapperId',
+		'options',
 	];
 
 	// Populate prefix key for recursive checks of attribute names.
