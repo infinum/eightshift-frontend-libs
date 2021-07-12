@@ -32,8 +32,8 @@ exports.handler = async (argv) => {
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const projectPath = path.join(fullPath, promptedInfo.package);
-  const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git'
-  const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ? argv.eightshiftBoilerplateBranch : ''
+  const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
+  const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 
   await installStep({
     describe: `${step}. Cloning repo`,
