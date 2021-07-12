@@ -31,7 +31,11 @@ export const props = (newName, attributes, manual = {}) => {
 	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(attributes.blockName) : attributes['prefix'];
 
 	// Set component prefix.
-	output['prefix'] = `${prefix}${_.upperFirst(_.camelCase(newName))}`;
+	if ( prefix === '' ) {
+		output['prefix'] = _.camelCase(newName);
+	} else {
+		output['prefix'] = `${prefix}${_.upperFirst(_.camelCase(newName))}`;
+	}
 
 	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
