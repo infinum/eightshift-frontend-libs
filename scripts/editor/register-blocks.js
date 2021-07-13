@@ -532,7 +532,8 @@ export const registerBlocks = (
 
 	// Set componentsManifest to global window for usage in storybook.
 	if (typeof window?.['eightshift'] === 'undefined') {
-		window['eightshift'] = componentsManifest;
+		window['eightshift'] = {}
+		window['eightshift'][process.env.VERSION] = componentsManifest;
 	}
 
 	// Iterate blocks to register.
@@ -591,7 +592,7 @@ export const registerBlocks = (
  * @returns {object}
  */
 export const getComponentsManifest = () => {
-	return window?.['eightshift'];
+	return window?.['eightshift']?.[process.env.VERSION] ?? {};
 }
 
 /**
