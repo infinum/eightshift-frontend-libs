@@ -43,6 +43,12 @@ const scriptArguments = {
     type: 'boolean',
     skipPrompt: true,
   },
+  eightshiftBoilerplateRepo: {
+    name: 'eightshiftBoilerplateRepo',
+    describe: 'Use this to override which eightshift-boilerplate repository is used.',
+    type: 'text',
+    skipPrompt: true,
+  },
   eightshiftBoilerplateBranch: {
     name: 'eightshiftBoilerplateBranch',
     describe: 'Use this to override which infinum/eightshift-boilerplate version is loaded (mainly used for testing).',
