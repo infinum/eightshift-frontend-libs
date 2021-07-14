@@ -416,8 +416,8 @@ export const getAttributes = (
  * @returns {object}
  */
  export const getExample = (
-	manifest = {},
-	parent = ''
+	parent = '',
+	manifest = {}
 ) => {
 
 	return prepareComponentAttributes(getComponentsManifest(), manifest, true, parent);
@@ -487,7 +487,7 @@ export const registerBlock = (
 	}
 
 	// Set full examples list.
-	blockManifest['example'].attributes = getExample(blockManifest);
+	blockManifest['example'].attributes = getExample('', blockManifest);
 
 	return {
 		blockName: fullBlockName,
