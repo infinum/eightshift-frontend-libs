@@ -279,8 +279,11 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 			attribute = componentAttribute.replace(`${_.lowerFirst(_.camelCase(realName))}`, '');
 		}
 
+		// Wrapper attributes that should not be modified.
+		const isWrapperAttribute = attribute.startsWith('wrapper') || attribute.startsWith('showWrapper');
+
 		// Determine if parent is empty and if parent name is the same as component/block name and skip wrapper attributes.
-		let attributeName = !attribute.startsWith('wrapper') ? `${newParent}${_.upperFirst(attribute)}` : attribute;
+		let attributeName = isWrapperAttribute ? attribute : `${newParent}${_.upperFirst(attribute)}`;
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
