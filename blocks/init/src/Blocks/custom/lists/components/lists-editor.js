@@ -16,8 +16,9 @@ export const ListsEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ListsEditorComponent
-				{...props('lists', attributes)}
-				setAttributes={setAttributes}
+				{...props('lists', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 		</div>
 	);

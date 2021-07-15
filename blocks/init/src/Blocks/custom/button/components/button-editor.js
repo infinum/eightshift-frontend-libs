@@ -17,8 +17,9 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ButtonEditorComponent
-				{...props('button', attributes)}
-				setAttributes={setAttributes}
+				{...props('button', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 		</div>
 	);

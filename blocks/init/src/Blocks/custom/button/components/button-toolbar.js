@@ -17,8 +17,9 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			<ButtonToolbarComponent
-				setAttributes={setAttributes}
-				{...props('button', attributes)}
+				{...props('button', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 
 			<AlignmentToolbar

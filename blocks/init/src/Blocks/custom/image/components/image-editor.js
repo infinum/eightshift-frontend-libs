@@ -16,8 +16,9 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditorComponent
-				{...props('image', attributes)}
-				setAttributes={setAttributes}
+				{...props('image', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 		</div>
 	);

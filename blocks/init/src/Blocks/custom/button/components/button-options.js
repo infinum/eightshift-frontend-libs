@@ -9,8 +9,9 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Button Details', 'eightshift-frontend-libs')}>
 
 			<ButtonOptionsComponent
-				{...props('button', attributes)}
-				setAttributes={setAttributes}
+				{...props('button', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 
 		</PanelBody>

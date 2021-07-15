@@ -9,8 +9,9 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Heading Details', 'eightshift-frontend-libs')}>
 
 			<HeadingOptionsComponent
-				{...props('heading', attributes)}
-				setAttributes={setAttributes}
+				{...props('heading', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 
 		</PanelBody>
