@@ -14,9 +14,9 @@ export const blockAttributes = {
 	},
 	'mock-blockquote': {
 		expected:[
-			'blockquoteBlockquoteHeadingContent',
-			'blockquoteBlockquoteIntroMockTypographyUse',
-			'blockquoteBlockquoteParagraphMockTypographyContent'
+			'mockBlockquoteBlockquoteBlockquoteHeadingContent',
+			'mockBlockquoteBlockquoteBlockquoteIntroMockTypographyUse',
+			'mockBlockquoteBlockquoteBlockquoteParagraphMockTypographyContent'
 		],
 		notExpected: [
 			'headingContent',
