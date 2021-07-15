@@ -9,15 +9,11 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
-	const {
 		blockClass,
 		blockFullName,
 	} = attributes;
 
-	const propsObject = props(attributes, 'paragraph');
+	const propsObject = props('paragraph', attributes);
 
 	/**
 	 * Block-splitting logic. If content is available, creates
@@ -32,7 +28,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 
 		return createBlock(blockFullName, {
 			...propsObject,
-			[`${manifestBlockName}Content`]: value,
+			[`paragraphParagraphContent`]: value,
 		});
 	};
 
