@@ -107,8 +107,6 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
  * @return string
  */
 export const getAttrKey = (key, attributes, manifest) => {
-	let prefix = '';
-
 	// Just skip if attribute is wrapper.
 	if (key.includes('wrapper')) {
 		return key;
@@ -119,15 +117,17 @@ export const getAttrKey = (key, attributes, manifest) => {
 		return key;
 	}
 
+	if (!Object.prototype.hasOwnProperty.call(attributes, 'prefix') || attributes.prefix === '') {
+		return key;
+	}
+
 	// Populate prefix key for recursive checks of attribute names.
 	// If prefix is empty use blockName as prefix.
-	if (typeof attributes.prefix === 'undefined') {
-		prefix = manifest.blockName;
-	} else {
-		prefix = attributes.prefix;
-	}
+	// if (prefix === '') {
+	// 	prefix = manifest.blockName;
+	// }
 
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
-	return key.replace(_.camelCase(manifest.componentName), prefix);
+	return key.replace(_.camelCase(manifest.componentName), attributes.prefix);
 }
