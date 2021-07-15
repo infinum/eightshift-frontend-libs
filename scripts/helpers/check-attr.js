@@ -117,15 +117,10 @@ export const getAttrKey = (key, attributes, manifest) => {
 		return key;
 	}
 
+	// If missing prefix or prefix is empty return key.
 	if (!Object.prototype.hasOwnProperty.call(attributes, 'prefix') || attributes.prefix === '') {
 		return key;
 	}
-
-	// Populate prefix key for recursive checks of attribute names.
-	// If prefix is empty use blockName as prefix.
-	// if (prefix === '') {
-	// 	prefix = manifest.blockName;
-	// }
 
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
