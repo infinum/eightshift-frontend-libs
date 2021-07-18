@@ -22,7 +22,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest);
 $layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest);
 $layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest);
-$tag = Components::checkAttr('tag', $attributes, $manifest);
+$htmlTag = Components::checkAttr('tag', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
 	$componentClass,
@@ -55,7 +55,7 @@ $columnRightClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($tag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
+<<?php echo esc_attr($htmlTag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
 	<div class="<?php echo \esc_attr($wrapClass); ?>">
 
 		<?php if ($layoutLeft) { ?>
@@ -77,4 +77,4 @@ $columnRightClass = Components::classnames([
 		<?php } ?>
 
 	</div>
-</<?php echo esc_attr($tag); ?>>
+</<?php echo esc_attr($htmlTag); ?>>
