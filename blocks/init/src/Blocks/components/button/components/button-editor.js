@@ -11,25 +11,24 @@ export const ButtonEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
+		additionalClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);
 	const buttonUse = checkAttr('buttonUse', attributes, manifest);
-	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 
 	const buttonClass = classnames([
-		componentClass,
-		selector(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (

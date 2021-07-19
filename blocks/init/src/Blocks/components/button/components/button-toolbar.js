@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components';
 import { useRef } from '@wordpress/element';
 import manifest from './../manifest.json';
@@ -42,6 +42,8 @@ export const ButtonToolbar = (attributes) => {
 							anchorRef={ref}
 							title={label}
 							textDomain={'eightshift-frontend-libs'}
+							onChangeUrl={getAttrKey('buttonUrl', attributes, manifest)}
+							onChangeIsNewTab={getAttrKey('buttonIsNewTab', attributes, manifest)}
 						/>
 					}
 				</>
