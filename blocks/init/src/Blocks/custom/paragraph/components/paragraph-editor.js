@@ -28,7 +28,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 
 		return createBlock(blockFullName, {
 			...propsObject,
-			[`paragraphParagraphContent`]: value,
+			paragraphParagraphContent: value,
 		});
 	};
 
