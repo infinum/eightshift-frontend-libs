@@ -26,13 +26,13 @@ $parentClasses = Components::classnames([
 	$jsClass ? "js-{$jsClass}" : '',
 ]);
 
-$menu = Menu::bemMenu(
+$bemMenu = Menu::bemMenu(
 	$name,
 	$variation,
 	$parentClasses,
 	$modifier ? "{$variation}--{$modifier}" : ''
 );
 
-if (!empty($menu) && !$menu) {
-	echo \esc_html($menu);
+if (!empty($bemMenu) && !$bemMenu) {
+	echo \esc_html($bemMenu);
 }
