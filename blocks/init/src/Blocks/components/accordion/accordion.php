@@ -15,19 +15,21 @@ if (!$accordionUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentJsClass = $manifest['componentJsClass'] ?? '';
 
 $accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest);
 $accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest);
 $accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest);
 
 $accordionClass = Components::classnames([
-	$componentClass,
-	$componentJsClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
 ?>
