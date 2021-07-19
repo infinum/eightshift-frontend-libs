@@ -18,13 +18,14 @@ import { __, sprintf } from '@wordpress/i18n';
  * @param {string?} [props.textDomain=eightshift-frontend-libs] - Text domain to use for i18n.
  */
 export const LinkToolbarButton = ({
-	componentName,
 	url,
 	opensInNewTab,
 	setAttributes,
 	anchorRef,
 	title,
-	textDomain = 'eightshift-frontend-libs'
+	textDomain = 'eightshift-frontend-libs',
+	onChangeUrl,
+	onChangeIsNewTab,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -33,13 +34,10 @@ export const LinkToolbarButton = ({
 		return false; // Prevents default behaviour for event.
 	};
 
-	const urlAttribute = `${componentName}Url`;
-	const opensInNewTabAttribute = `${componentName}IsNewTab`;
-
 	const unlinkButton = () => {
 		setAttributes({
-			[urlAttribute]: undefined,
-			[opensInNewTabAttribute]: undefined,
+			[`${onChangeUrl}`]: undefined,
+			[`${onChangeIsNewTab}`]: undefined,
 		});
 		setIsDropdownOpen(false);
 	};
@@ -65,8 +63,8 @@ export const LinkToolbarButton = ({
 					opensInNewTab: newTab,
 				}) => {
 					setAttributes({
-						[urlAttribute]: newUrl,
-						[opensInNewTabAttribute]: newTab
+						[`${onChangeUrl}`]: newUrl,
+						[`${onChangeIsNewTab}`]: newTab
 					});
 				}}
 			/>
