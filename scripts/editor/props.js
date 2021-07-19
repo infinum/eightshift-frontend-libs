@@ -27,8 +27,11 @@ export const props = (newName, attributes, manual = {}) => {
 		'options',
 	];
 
+	// Check if in test mode and use different setting.
+	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
+
 	// Populate prefix key for recursive checks of attribute names.
-	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(attributes.blockName) : attributes['prefix'];
+	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(blockName) : attributes['prefix'];
 
 	// Set component prefix.
 	if ( prefix === '' ) {

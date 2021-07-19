@@ -11,11 +11,11 @@ export const propsOutput = {
 		components: {
 			accordion: {
 				expected: [
-					'accordionContent',
-					'accordionTitle',
+					'accordionAccordionContent',
+					'accordionAccordionTitle',
 				],
 				notExpected: [
-					'accordionAccordionContent',
+					'accordionContent',
 				],
 				prefix: "accordion"
 			}
@@ -26,8 +26,8 @@ export const propsOutput = {
 		components: {
 			blockquote: {
 				expected: [
-					'blockquoteBlockquoteImageUrl',
-					'blockquoteBlockquoteHeadingContent',
+					'mockBlockquoteBlockquoteBlockquoteImageUrl',
+					'mockBlockquoteBlockquoteBlockquoteHeadingContent',
 				],
 				notExpected: [
 					'blockquoteCardImageUrl',
@@ -36,8 +36,8 @@ export const propsOutput = {
 				components: {
 					blockquote: {
 						expected: [
-							'blockquoteBlockquoteImageUrl',
-							'blockquoteBlockquoteHeadingContent',
+							'mockBlockquoteBlockquoteBlockquoteImageUrl',
+							'mockBlockquoteBlockquoteBlockquoteHeadingContent',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
@@ -46,7 +46,7 @@ export const propsOutput = {
 						components: {
 							image: {
 								expected: [
-									'blockquoteBlockquoteImageUrl',
+									'mockBlockquoteBlockquoteBlockquoteImageUrl',
 								],
 								notExpected: [
 									'blockquoteBlockquoteHeadingContent',
@@ -56,7 +56,7 @@ export const propsOutput = {
 							},
 							heading: {
 								expected: [
-									'blockquoteBlockquoteHeadingContent',
+									'mockBlockquoteBlockquoteBlockquoteHeadingContent',
 								],
 								notExpected: [
 									'blockquoteBlockquoteImageUrl',
@@ -66,7 +66,7 @@ export const propsOutput = {
 							},
 							intro: {
 								expected: [
-									'blockquoteBlockquoteIntroMockTypographyContent',
+									'mockBlockquoteBlockquoteBlockquoteIntroMockTypographyContent',
 								],
 								notExpected: [
 									'blockquoteBlockquoteImageUrl',

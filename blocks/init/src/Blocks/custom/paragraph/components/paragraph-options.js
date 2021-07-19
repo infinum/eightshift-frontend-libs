@@ -9,8 +9,9 @@ export const ParagraphOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Paragraph Details', 'eightshift-frontend-libs')}>
 
 			<ParagraphOptionsComponent
-				{...props('paragraph', attributes)}
-				setAttributes={setAttributes}
+				{...props('paragraph', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 
 		</PanelBody>

@@ -15,7 +15,11 @@
 		"card": "card"
 	},
 	"options": {
-		"introSize": ["default"],
-		"headingColor": ["black"]
+		"cardCardIntroSize": [
+			"default"
+		],
+		"cardCardHeadingColor": [
+			"black"
+		]
 	}
 }

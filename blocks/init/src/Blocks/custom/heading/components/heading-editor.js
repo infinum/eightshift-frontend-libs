@@ -17,8 +17,9 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<HeadingEditorComponent
-				{...props('heading', attributes)}
-				setAttributes={setAttributes}
+				{...props('heading', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 		</div>
 	);

@@ -10,7 +10,6 @@ use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$manifestBlockName = $manifest['blockName'];
 
 $blockClass = $attributes['blockClass'] ?? '';
 
@@ -24,7 +23,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'video',
-		Blocks::props($attributes, 'video')
+		Components::props('video', $attributes)
 	);
 	?>
 </div>

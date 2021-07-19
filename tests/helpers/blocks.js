@@ -19,7 +19,8 @@ const pathToMockBlocks = Path.resolve(pathToMockBlocksFolder, 'custom');
  * @returns {array<object>} Array of manifest.json contents
  */
 const getAllManifestsFromDir = (dir) => {
-	const manifestDirs = readdirSync(dir);
+	const manifestDirs = readdirSync(dir).filter((item) => !item.startsWith('.'));
+
 	return manifestDirs.map((manifestDir) => {
 		const manifestPath = Path.resolve(dir, manifestDir, 'manifest.json');
 		return JSON.parse(readFileSync(manifestPath));
@@ -115,8 +116,7 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 
 	// Output props for all components.
 	let propsArray = [];
-	const isNameDifferent = realName !== newName;
-	const newComponentAttributes = props(isNameDifferent ? newName : realName, attributes);
+	const newComponentAttributes = props(newName, attributes);
 
 	const componentOutput = {
 		realName,
@@ -126,7 +126,7 @@ export const recursiveBuildProps = (attributes, componentManifests, realName, ne
 	};
 
 	// Check if this component has any sub-components and recursively call this function.
-	const components = getComponentDependencies(componentManifests, realName, newName);
+	const components = getComponentDependencies(componentManifests, newName);
 	for (const subNewName of Object.keys(components)) {
 		const subRealName = components[subNewName];
 		componentOutput.subComponents = [

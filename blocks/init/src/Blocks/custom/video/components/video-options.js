@@ -9,8 +9,9 @@ export const VideoOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Video Details', 'eightshift-frontend-libs')}>
 
 			<VideoOptionsComponent
-				{...props('video', attributes)}
-				setAttributes={setAttributes}
+				{...props('video', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 
 		</PanelBody>

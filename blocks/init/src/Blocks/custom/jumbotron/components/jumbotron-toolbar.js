@@ -5,8 +5,9 @@ import { JumbotronToolbar as JumbotronToolbarComponent } from '../../../componen
 export const JumbotronToolbar = ({ attributes, setAttributes }) => {
 	return (
 		<JumbotronToolbarComponent
-			{...props('jumbotron', attributes)}
-			setAttributes={setAttributes}
+			{...props('jumbotron', attributes, {
+				setAttributes: setAttributes,
+			})}
 		/>
 	);
 };

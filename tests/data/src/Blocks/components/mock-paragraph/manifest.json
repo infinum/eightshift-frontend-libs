@@ -14,7 +14,7 @@
 		}
 	},
 	"attributes": {
-		"mockTypographyContent": {
+		"mockParagraphMockTypographyContent": {
 			"type": "string",
 			"default": "This is lvl 2 override"
 		}

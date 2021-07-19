@@ -175,7 +175,7 @@ it('tests that props helper builds the attributes / prefix correctly for all blo
 		const components = getBlockDependencies(blockManifests, blockManifest.blockName);
 		for (const newName of Object.keys(components)) {
 			const realName = components[newName];
-			blockOutput.subComponents = [...blockOutput.subComponents, ...recursiveBuildProps(attributes, componentManifests, realName, newName, true)];
+			blockOutput.subComponents = [...blockOutput.subComponents, ...recursiveBuildProps(attributes, componentManifests, realName, newName)];
 		}
 
 		props = [...props, blockOutput];
@@ -207,17 +207,17 @@ it('tests block / component attribute generation and overriding attributes in pa
 	const lvl2Manifest = getMockComponentManifest('mock-paragraph');
 	const lvl2Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl2Manifest);
 
-	expect(lvl2Attributes).toHaveProperty('mockTypographyContent');
-	expect(lvl2Attributes.mockTypographyContent).toHaveProperty('default');
-	expect(lvl2Attributes.mockTypographyContent.default).toBe('This is lvl 2 override');
+	expect(lvl2Attributes).toHaveProperty('mockParagraphMockTypographyContent');
+	expect(lvl2Attributes.mockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl2Attributes.mockParagraphMockTypographyContent.default).toBe('This is lvl 2 override');
 
 	// Test level 3: component overriding attributes 1 level below it.
 	const lvl3Manifest = getMockComponentManifest('mock-attribute-override');
 	const lvl3Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl3Manifest);
 
-	expect(lvl3Attributes).toHaveProperty('mockParagraphMockTypographyContent');
-	expect(lvl3Attributes.mockParagraphMockTypographyContent).toHaveProperty('default');
-	expect(lvl3Attributes.mockParagraphMockTypographyContent.default).toBe('This is lvl 3 override');
+	expect(lvl3Attributes).toHaveProperty('mockAttributeOverrideMockParagraphMockTypographyContent');
+	expect(lvl3Attributes.mockAttributeOverrideMockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl3Attributes.mockAttributeOverrideMockParagraphMockTypographyContent.default).toBe('This is lvl 3 override');
 
 	// Test level 4: component overriding attributes 1 level below it where attribute has already been overridden.
 	const lvl4Manifest = getMockBlockManifest('mock-attribute-override');
@@ -234,14 +234,14 @@ it('tests block / component attribute overriding when overriding happens on top 
 	const lvl2Manifest = getMockComponentManifest('mock-paragraph');
 	const lvl2Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl2Manifest);
 
-	expect(lvl2Attributes).toHaveProperty('mockTypographyContent');
-	expect(lvl2Attributes.mockTypographyContent).toHaveProperty('default');
-	expect(lvl2Attributes.mockTypographyContent.default).toBe('This is lvl 2 override');
+	expect(lvl2Attributes).toHaveProperty('mockParagraphMockTypographyContent');
+	expect(lvl2Attributes.mockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl2Attributes.mockParagraphMockTypographyContent.default).toBe('This is lvl 2 override');
 
 	// Test level 4: component overriding attributes 1 level below it where attribute has already been overridden.
 	const lvl4Manifest = getMockBlockManifest('mock-attribute-override-skip');
 	const lvl4Attributes = getAttributes(globalManifest, wrapperManifest, componentManifests, lvl4Manifest);
-	expect(lvl4Attributes).toHaveProperty('mockNoOverrideMockParagraphMockTypographyContent');
-	expect(lvl4Attributes.mockNoOverrideMockParagraphMockTypographyContent).toHaveProperty('default');
-	expect(lvl4Attributes.mockNoOverrideMockParagraphMockTypographyContent.default).toBe('This is lvl 4 override');
+	expect(lvl4Attributes).toHaveProperty('mockAttributeOverrideSkipMockNoOverrideMockParagraphMockTypographyContent');
+	expect(lvl4Attributes.mockAttributeOverrideSkipMockNoOverrideMockParagraphMockTypographyContent).toHaveProperty('default');
+	expect(lvl4Attributes.mockAttributeOverrideSkipMockNoOverrideMockParagraphMockTypographyContent.default).toBe('This is lvl 4 override');
 });
