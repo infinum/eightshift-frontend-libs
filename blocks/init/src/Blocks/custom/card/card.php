@@ -10,5 +10,5 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'card',
-	Components::prop('card', $attributes)
+	Components::props('card', $attributes)
 );

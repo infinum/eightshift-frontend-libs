@@ -23,7 +23,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'lists',
-		Components::prop('lists', $attributes)
+		Components::props('lists', $attributes)
 	);
 	?>
 </div>

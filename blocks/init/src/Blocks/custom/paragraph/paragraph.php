@@ -23,7 +23,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'paragraph',
-		Components::prop('paragraph', $attributes)
+		Components::props('paragraph', $attributes)
 	);
 	?>
 </div>

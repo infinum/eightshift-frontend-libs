@@ -12,7 +12,7 @@ $manifest = Components::getManifest(__DIR__);
 
 echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	'accordion',
-	Components::prop('accordion', $attributes, [
+	Components::props('accordion', $attributes, [
 		'accordionAccordionContent' => $innerBlockContent
 	])
 );
