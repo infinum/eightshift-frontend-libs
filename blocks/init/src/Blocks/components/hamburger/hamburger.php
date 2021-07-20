@@ -15,15 +15,17 @@ if (!$hamburgerUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentJsClass = $manifest['componentJsClass'] ?? '';
 
 $hamburgerClass = Components::classnames([
-	$componentClass,
-	$componentJsClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($componentJsClass, $componentJsClass),
 ]);
 ?>
 
