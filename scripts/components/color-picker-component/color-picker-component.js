@@ -6,7 +6,7 @@ import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 
 /**
- * Options panel component that allows picking an URL in a clean and simple way.
+ * Component that allows simple inline color picking while taking up not much space.
  * 
  * @param {object} props                                        - ColorPickerComponent options.
  * @param {array?} props.colors                                 - List of options to display. If not set, all global manifest colors are used.

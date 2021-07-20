@@ -9,7 +9,7 @@ export const InlineNotificationType = {
 }
 
 /**
- * Modified version of WordPress's `ColorPalette` which saves values as color names/slugs instead of hex codes.
+ * A simple inline notification to be used inside the Editor or Options.
  * 
  * @param {object} props                                                       - InlineNotification options.
  * @param {string} props.text                                                  - Notification text.
