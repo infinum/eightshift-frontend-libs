@@ -17,19 +17,19 @@ if (!$imageUse) {
 }
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest);
-
 $imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
 
 $pictureClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $imgClass = Components::classnames([
@@ -41,6 +41,9 @@ $imgClass = Components::classnames([
 
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
 	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+
+		<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+
 		<?php foreach (array_reverse($imageUrl) as $brakepoint => $item) { ?>
 			<?php
 			if ($brakepoint === 'large') {
