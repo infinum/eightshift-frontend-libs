@@ -5,13 +5,13 @@ import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
@@ -20,8 +20,9 @@ export const CopyrightEditor = (attributes) => {
 	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 
 	const copyrightClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
