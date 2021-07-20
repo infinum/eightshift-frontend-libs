@@ -342,36 +342,49 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
  */
 export const prepareVariableData = (globalBreakpoints) => {
 
+	const sortedGlobalBreakpoints = Object.entries(globalBreakpoints)
+		.sort((a, b) => {
+			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+		});
+
 	// Define the min and max arrays.
 	const min = [];
 	const max = [];
+	let minBreakpointValue = 0;
 
 	// Loop the global breakpoints and populate the data.
-	Object.values(globalBreakpoints).forEach((item) => {
+	Object.values(sortedGlobalBreakpoints).forEach(([item, value]) => {
 
 		// Initial inner object.
 		const itemObject = {
-			name: Object.keys(globalBreakpoints).find((key) => globalBreakpoints[key] === item),
-			value: item,
+			name: item,
+			value: value,
 			variable: [],
 		};
 
 		// Inner object for min values.
 		const itemObjectMin = {
-			type: 'min',
 			...itemObject,
+			type: 'min',
+			value: minBreakpointValue,
 		}
 
 		// Inner object for max values.
 		const itemObjectMax = {
-			type: 'max',
 			...itemObject,
+			type: 'max',
 		}
+
+		// Transfer value to a larger breakpoint.
+		minBreakpointValue = value;
 
 		// Push both min and max to the defined arrays.
 		min.push(itemObjectMin);
 		max.push(itemObjectMax);
 	})
+
+	// Pop largest breakpoint out of min array.
+	min.shift();
 
 	// Add default object to the top of the array.
 	min.unshift({
@@ -383,6 +396,9 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 	// Reverse order of max array.
 	max.reverse();
+
+	// Throwout the largest.
+	max.shift();
 
 	// Add default object to the top of the array.
 	max.unshift({
