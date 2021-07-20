@@ -236,8 +236,13 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		return '';
 	}
 
-	// Bailout if manifest is missing variables key.
-	if (!_.has(manifest, 'variables')) {
+	// Bailout if manifest is missing any of variables key.
+	if (
+		!_.has(manifest, 'variables') &&
+		!_.has(manifest, 'variablesEditor') &&
+		!_.has(manifest, 'variablesCustom') &&
+		!_.has(manifest, 'variablesCustomEditor')
+	) {
 		return '';
 	}
 
@@ -259,13 +264,16 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
 
-	// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
-	if (responsiveAttributes) {
-		setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest);
-	}
+	if (variables) {
 
-	// Iterate each variable from variables field.
-	setVariablesToBreakpoints(attributes, variables, data, manifest);
+		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
+		if (responsiveAttributes) {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest);
+		}
+
+		// Iterate each variable from variables field.
+		setVariablesToBreakpoints(attributes, variables, data, manifest);
+	}
 
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (variablesEditor) {
