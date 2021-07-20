@@ -12,9 +12,9 @@ export default {
 	},
 };
 
-export const component = () => {
+export const basicComponent = () => {
 	const [objData, setObjData] = useState({
-		url: undefined,
+		url: '',
 		newTab: false,
 	});
 
@@ -23,10 +23,27 @@ export const component = () => {
 			url={objData.url}
 			opensInNewTab={objData.newTab}
 			setAttributes={setObjData}
-			title='Dummy component'
-			textDomain='TestDomain'
+			title={'Dummy component'}
+			textDomain={'TestDomain'}
 			urlAttrName='url'
 			isNewTabAttrName='newTab'
+		/>
+	);
+}
+
+export const withoutNewTabOption = () => {
+	const [objData, setObjData] = useState({
+		url: '',
+	});
+
+	return (
+		<LinkEditComponent
+			url={objData.url}
+			setAttributes={setObjData}
+			title={'Dummy component'}
+			textDomain={'TestDomain'}
+			urlAttrName='url'
+			showNewTabOption={false}
 		/>
 	);
 }
