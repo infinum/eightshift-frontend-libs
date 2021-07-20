@@ -1,16 +1,15 @@
-# LinkEditComponent
+# ColorPickerComponent
 
-A inline URL editor that looks nice and fits into the other Gutenberg and Eightshift controls.
+A component that allows simple inline color picking while taking up not much space.
 
 ## Usage
 
 To use it:
 1. Import the component from Frontend Libs
-2. Add the `LinkEditComponent` into the toolbar
+2. Add the `ColorPickerComponent` into your options
 
 ```jsx
-import { LinkEditComponent } from '@eightshift/frontend-libs/scripts/components';
-import { getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { ColorPickerComponent } from '@eightshift/frontend-libs/scripts/components';
 
 // ...
 
@@ -18,15 +17,16 @@ export const ButtonOptions = (attributes) =>  {
 	return (
 			// ...
 
-			<LinkEditComponent
-				url={buttonUrl}
-				opensInNewTab={buttonOpensInNewTab}
-				setAttributes={setAttributes}
-				anchorRef={ref}
-				title={label}
-				textDomain={'eightshift-frontend-libs'}
-				urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
-				isNewTabAttrName={getAttrKey('buttonOpensInNewTab', attributes, manifest)}
+			<ColorPickerComponent
+				label={
+					<>
+						{icons.color}
+						__('Button color', 'eightshift-frontend-libs')
+					</>
+				}
+				colors={getOption('buttonColor', attributes, manifest, true)}
+				value={buttonColor}
+				onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 			/>
 	)
 }
