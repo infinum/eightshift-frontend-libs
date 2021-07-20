@@ -1,5 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { HeadingEditor } from '../components/heading-editor';
@@ -15,18 +16,22 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('heading', manifest);
 
 export const editor = () => (
-	<HeadingEditor {...props} />
+	<HeadingEditor {...props('heading', attributes)} />
 );
 
 export const options = () => (
-	<HeadingOptions {...props} />
+	<HeadingOptions
+		{...props('heading', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );
 
 export const toolbar = () => (
-	<HeadingToolbar {...props} />
+	<HeadingToolbar {...props('heading', attributes)} />
 );
 
 export const size = () => (
@@ -34,9 +39,10 @@ export const size = () => (
 		{manifest.options.headingSize.map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...props}
-					headingContent={values.label}
-					headingSize={values.value}
+					{...props('heading', attributes, {
+						headingContent: values.label,
+						headingSize: values.value,
+					})}
 				/>
 				<br />
 			</Fragment>
@@ -49,9 +55,10 @@ export const level = () => (
 		{Array.from({ length: 6 }, (x, i) => i + 1).map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...props}
-					headingContent={`H - ${values.toString()}`}
-					headingLevel={values}
+					{...props('heading', attributes, {
+						headingContent: `H - ${values.toString()}`,
+						headingLevel: values,
+					})}
 				/>
 				<br />
 			</Fragment>
@@ -64,9 +71,10 @@ export const color = () => (
 		{manifest.options.headingColor.map((values, index) => (
 			<Fragment key={index}>
 				<HeadingEditor
-					{...props}
-					headingContent={values}
-					headingColor={values}
+					{...props('heading', attributes, {
+						headingContent: values,
+						headingColor: values,
+					})}
 				/>
 				<br />
 			</Fragment>
