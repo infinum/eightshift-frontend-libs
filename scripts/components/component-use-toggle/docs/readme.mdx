@@ -1,0 +1,15 @@
+# ComponentUseToggle
+
+A simple component to show inline editor notifications (most often for very simple messages and validation).
+
+## Usage
+
+```jsx
+<ComponentUseToggle
+	label={__('Button', 'eightshift-frontend-libs')}
+	checked={buttonUse}
+	onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
+	showUseToggle={false}
+	showLabel={true}
+/>
+```

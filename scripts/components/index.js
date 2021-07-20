@@ -9,3 +9,4 @@ export { LinkEditComponent } from './link-edit-component/link-edit-component';
 export { OptionPicker } from './option-picker/option-picker';
 export { ColorPickerComponent } from './color-picker-component/color-picker-component';
 export { InlineNotification } from './inline-notification/inline-notification';
+export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
