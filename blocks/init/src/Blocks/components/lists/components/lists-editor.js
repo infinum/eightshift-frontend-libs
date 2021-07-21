@@ -11,14 +11,14 @@ export const ListsEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 	} = attributes;
 
@@ -27,8 +27,9 @@ export const ListsEditor = (attributes) => {
 	const listsOrdered = checkAttr('listsOrdered', attributes, manifest);
 
 	const listsClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
