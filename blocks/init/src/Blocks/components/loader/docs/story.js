@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LoaderEditor } from '../components/loader-editor';
@@ -12,8 +13,8 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('loader', manifest);
 
 export const editor = () => (
-	<LoaderEditor {...props} />
+	<LoaderEditor {...props('loader', attributes)} />
 );
