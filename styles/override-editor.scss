@@ -698,12 +698,25 @@ body {
 		}
 	}
 
+	// IconToggle with help passed.
+	.es-icon-toggle.es-icon-toggle--reverse.has-help {
+		align-items: flex-start;
+
+		svg {
+			transform: translateY(-0.2rem) !important;
+		}
+	}
+
 	// ES Simple vertical select styles.
 	.es-simple-v-single-select {
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
 	
+		.components-button {
+			justify-content: flex-start !important;
+		}
+
 		.components-button:not(.is-pressed) {
 			border: 1px solid #F2F2F2;
 		}

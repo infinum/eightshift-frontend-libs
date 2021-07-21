@@ -19,7 +19,7 @@ export const IconToggle = ({
 	help,
 }) => {
 	return (
-		<div className='es-icon-toggle es-icon-toggle--reverse'>
+		<div className={`es-icon-toggle es-icon-toggle--reverse ${icon && help ? 'has-help' : ''}`}>
 			{icon}
 			<ToggleControl
 				label={label}
