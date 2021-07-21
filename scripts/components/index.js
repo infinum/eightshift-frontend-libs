@@ -11,3 +11,4 @@ export { ColorPickerComponent } from './color-picker-component/color-picker-comp
 export { InlineNotification } from './inline-notification/inline-notification';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
 export { IconToggle } from './icon-toggle/icon-toggle';
+export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';
