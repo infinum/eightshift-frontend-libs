@@ -1,0 +1,33 @@
+# ColorPickerComponent
+
+A component that allows simple inline color picking while taking up not much space.
+
+## Usage
+
+To use it:
+1. Import the component from Frontend Libs
+2. Add the `ColorPickerComponent` into your options
+
+```jsx
+import { ColorPickerComponent } from '@eightshift/frontend-libs/scripts/components';
+
+// ...
+
+export const ButtonOptions = (attributes) =>  {
+	return (
+			// ...
+
+			<ColorPickerComponent
+				label={
+					<>
+						{icons.color}
+						__('Button color', 'eightshift-frontend-libs')
+					</>
+				}
+				colors={getOption('buttonColor', attributes, manifest, true)}
+				value={buttonColor}
+				onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+			/>
+	)
+}
+```

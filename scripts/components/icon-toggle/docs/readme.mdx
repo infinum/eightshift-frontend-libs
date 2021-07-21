@@ -1,0 +1,15 @@
+# IconToggle
+
+A toggle control which has an icon to align it more with other controls.
+Make sure that the "help" is not too long, it will wrap.
+
+## Usage
+
+```jsx
+<IconToggle
+	icon={icons.width}
+	label={__('Wide button', 'eightshift-frontend-libs')}
+	checked={buttonFullWidth}
+	onChange={(value) => setAttributes({ [getAttrKey('buttonFullWidth', attributes, manifest)]: value })}
+/>
+```

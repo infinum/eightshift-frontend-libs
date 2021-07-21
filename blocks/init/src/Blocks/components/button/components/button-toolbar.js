@@ -1,7 +1,6 @@
 import React from 'react';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components';
-import { useRef } from '@wordpress/element';
 import manifest from './../manifest.json';
 
 export const ButtonToolbar = (attributes) => {
@@ -27,8 +26,6 @@ export const ButtonToolbar = (attributes) => {
 	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
 
-	const ref = useRef();
-
 	return (
 		<>
 			{buttonUse &&
@@ -39,11 +36,10 @@ export const ButtonToolbar = (attributes) => {
 							url={buttonUrl}
 							opensInNewTab={buttonIsNewTab}
 							setAttributes={setAttributes}
-							anchorRef={ref}
 							title={label}
 							textDomain={'eightshift-frontend-libs'}
-							onChangeUrl={getAttrKey('buttonUrl', attributes, manifest)}
-							onChangeIsNewTab={getAttrKey('buttonIsNewTab', attributes, manifest)}
+							urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
+							isNewTabAttrName={getAttrKey('buttonIsNewTab', attributes, manifest)}
 						/>
 					}
 				</>

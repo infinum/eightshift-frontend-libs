@@ -1,10 +1,10 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
-import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components/link-toolbar-button/link-toolbar-button';
+import { LinkEditComponent } from '@eightshift/frontend-libs/scripts/components/link-edit-component/link-edit-component';
 
 export default {
-	title: 'Options/LinkToolbarButton',
+	title: 'Options/LinkEditComponent',
 	parameters: {
 		docs: {
 			page: readme
@@ -19,7 +19,7 @@ export const basicComponent = () => {
 	});
 
 	return (
-		<LinkToolbarButton
+		<LinkEditComponent
 			url={objData.url}
 			opensInNewTab={objData.newTab}
 			setAttributes={setObjData}
@@ -36,7 +36,7 @@ export const withoutNewTabOption = () => {
 	});
 
 	return (
-		<LinkToolbarButton
+		<LinkEditComponent
 			url={objData.url}
 			setAttributes={setObjData}
 			title={'Dummy component'}

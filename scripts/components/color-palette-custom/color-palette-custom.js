@@ -48,7 +48,9 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
 	return (
 		<div className={baseClass}>
-			<div className={`${baseClass}__label`}>{label}</div>
+			{label &&
+				<div className={`${baseClass}__label`}>{label}</div>
+			}
 			<ColorPalette
 				clearable={clearable}
 				colors={colors}
@@ -73,7 +75,10 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 					onChange(newColorValues);
 				}}
 			/>
-			<p className={`${baseClass}__help`}>{help}</p>
+
+			{help &&
+				<p className={`${baseClass}__help`}>{help}</p>
+			}
 		</div>
 	);
 });
