@@ -11,14 +11,14 @@ export const ImageEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const imageUse = checkAttr('imageUse', attributes, manifest);
@@ -30,6 +30,7 @@ export const ImageEditor = (attributes) => {
 	const pictureClass = classnames([
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const imgClass = classnames([

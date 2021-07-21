@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ImageEditor } from '../components/image-editor';
@@ -13,20 +14,25 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('image', manifest);
 
 export const editor = () => (
-	<ImageEditor {...props} />
+	<ImageEditor {...props('image', attributes)} />
 );
 
 export const options = () => (
-	<ImageOptions {...props} />
+	<ImageOptions
+		{...props('image', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );
 
 export const fullScreen = () => (
 	<ImageEditor
-		{...props}
-		imageUrl={"https://loremflickr.com/300/200"}
-		imageFull={true}
+		{...props('image', attributes, {
+			imageUrl: 'https://loremflickr.com/300/200',
+			imageFull: true,
+		})}
 	/>
 );

@@ -2,6 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { getOption } from '@eightshift/frontend-libs/scripts/editor';
 import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
 import { components } from 'react-select';
 
@@ -31,7 +32,6 @@ const IconPickerValueDisplay = ({ children, ...props }) => (
 
 export const IconOptions = (attributes) => {
 	const {
-		options: manifestOptions,
 		title: manifestTitle,
 	} = manifest;
 
@@ -42,14 +42,12 @@ export const IconOptions = (attributes) => {
 		showIconOptions = true,
 	} = attributes;
 
-	const options = {...manifestOptions, ...attributes.options};
-
 	if (!showIconOptions) {
 		return null;
 	}
 
 	const iconUse = checkAttr('iconUse', attributes, manifest);
-	const iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest);
+	const iconName = checkAttr('iconName', attributes, manifest);
 
 	return (
 		<>
@@ -64,12 +62,12 @@ export const IconOptions = (attributes) => {
 			{iconUse && (
 				<CustomSelect
 					label={__('Icon', 'eightshift-frontend-libs')}
-					value={iconSelectedIcon}
-					options={options.icons}
+					value={iconName}
+					options={getOption('iconName', attributes, manifest)}
 					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
 					customOptionComponent={IconPickerOption}
 					customSingleValueDisplayComponent={IconPickerValueDisplay}
-					onChange={(value) => setAttributes({[getAttrKey('iconSelectedIcon', attributes, manifest)]: value?.value})}
+					onChange={(value) => setAttributes({[getAttrKey('iconName', attributes, manifest)]: value?.value})}
 				/>
 			)}
 		</>

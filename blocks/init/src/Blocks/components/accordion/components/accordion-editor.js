@@ -7,27 +7,26 @@ import manifest from './../manifest.json';
 
 export const AccordionEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 		options: manifestOptions,
 	} = manifest;
 	
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
+		additionalClass,
 		blockClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	const accordionUse = checkAttr('accordionUse', attributes, manifest);
 	const accordionTitle = checkAttr('accordionTitle', attributes, manifest);
 	const accordionContent = checkAttr('accordionContent', attributes, manifest);
 
 	const accordionClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
@@ -44,7 +43,7 @@ export const AccordionEditor = (attributes) => {
 							keepPlaceholderOnFocus
 							allowedFormats={[]}
 						/>
-						<div className={`${componentClass}__icon`} dangerouslySetInnerHTML={{ __html: options.icon }}></div>
+						<div className={`${componentClass}__icon`} dangerouslySetInnerHTML={{ __html: manifestOptions.icon }}></div>
 					</button>
 					<section className={`${componentClass}__panel`}>
 						<div className={`${componentClass}__content`}>

@@ -1,10 +1,7 @@
 import React from 'react';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
-import imageManifest from './../../image/manifest.json';
-import headingManifest from './../../heading/manifest.json';
-import paragraphManifest from './../../paragraph/manifest.json';
-import buttonManifest from './../../button/manifest.json';
 import { CardEditor } from '../components/card-editor';
 import { CardOptions } from '../components/card-options';
 import { CardToolbar } from '../components/card-toolbar';
@@ -18,22 +15,24 @@ export default {
 	},
 };
 
-const props = {
-	...imageManifest.example.attributes,
-	...headingManifest.example.attributes,
-	...paragraphManifest.example.attributes,
-	...buttonManifest.example.attributes,
-	...manifest.example.attributes,
-};
+const attributes = getExample('card', manifest);
 
 export const editor = () => (
-	<CardEditor {...props} />
+	<CardEditor {...props('card', attributes)} />
 );
 
 export const options = () => (
-	<CardOptions {...props} />
+	<CardOptions
+		{...props('card', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );
 
 export const toolbar = () => (
-	<CardToolbar {...props} />
+	<CardToolbar
+		{...props('card', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );

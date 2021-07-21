@@ -5,28 +5,29 @@ import manifest from './../manifest.json';
 
 export const IconEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 		icons: manifestIcons,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const iconUse = checkAttr('iconUse', attributes, manifest);
-	const iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest);
+	const iconName = checkAttr('iconName', attributes, manifest);
 
 	const iconClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
 		<>
 			{iconUse &&
-				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconSelectedIcon] }}></i>
+				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
 			}
 		</>
 	);

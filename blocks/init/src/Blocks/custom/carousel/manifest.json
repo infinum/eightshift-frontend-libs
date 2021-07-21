@@ -22,21 +22,21 @@
 				"name": "eightshift-boilerplate/image",
 				"attributes": {
 					"wrapperDisable": true,
-					"imageUrl": "https://loremflickr.com/400/400"
+					"imageImageUrl": "https://loremflickr.com/400/400"
 				}
 			},
 			{
 				"name": "eightshift-boilerplate/image",
 				"attributes": {
 					"wrapperDisable": true,
-					"imageUrl": "https://loremflickr.com/400/400"
+					"imageImageUrl": "https://loremflickr.com/400/400"
 				}
 			},
 			{
 				"name": "eightshift-boilerplate/image",
 				"attributes": {
 					"wrapperDisable": true,
-					"imageUrl": "https://loremflickr.com/400/400"
+					"imageImageUrl": "https://loremflickr.com/400/400"
 				}
 			}
 		]

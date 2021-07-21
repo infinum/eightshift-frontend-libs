@@ -8,14 +8,16 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$icon = $attributes['icon'] ?? '';
-$charset = $attributes['charset'] ?? \get_bloginfo('charset');
-$name = $attributes['name'] ?? \get_bloginfo('name');
-
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
+$manifest = Components::getManifest(__DIR__);
+
+$headFavicon = Components::checkAttr('headFavicon', $attributes, $manifest);
+$headCharset = Components::checkAttr('headCharset', $attributes, $manifest);
+$headName = Components::checkAttr('headName', $attributes, $manifest);
+
 ?>
 
-<meta charset="<?php echo \esc_attr($charset); ?>" />
+<meta charset="<?php echo \esc_attr($headCharset); ?>" />
 
 <!-- Responsive -->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -35,15 +37,15 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
 <!-- Win phone Meta -->
-<meta name="application-name" content="<?php echo \esc_attr($name); ?>"/>
+<meta name="application-name" content="<?php echo \esc_attr($headName); ?>"/>
 
 <!-- Apple -->
-<meta name="apple-mobile-web-app-title" content="<?php echo \esc_attr($name); ?>">
+<meta name="apple-mobile-web-app-title" content="<?php echo \esc_attr($headName); ?>">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="apple-touch-startup-image" href="<?php echo \esc_url($icon); ?>">
+<link rel="apple-touch-startup-image" href="<?php echo \esc_url($headFavicon); ?>">
 
 <!-- General -->
-<link rel="shortcut icon" href="<?php echo \esc_url($icon); ?>" />
+<link rel="shortcut icon" href="<?php echo \esc_url($headFavicon); ?>" />
 
 <?php
 echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

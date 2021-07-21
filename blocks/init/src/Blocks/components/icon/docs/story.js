@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { IconEditor } from '../components/icon-editor';
@@ -13,12 +14,16 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('icon', manifest);
 
 export const editor = () => (
-	<IconEditor {...props} />
+	<IconEditor {...props('icon', attributes)} />
 );
 
 export const options = () => (
-	<IconOptions {...props} />
+	<IconOptions
+		{...props('icon', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );

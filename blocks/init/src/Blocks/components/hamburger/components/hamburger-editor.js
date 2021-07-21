@@ -5,22 +5,23 @@ import manifest from './../manifest.json';
 
 export const HamburgerEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
+		componentJsClass,
 	} = manifest;
 
-
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const hamburgerUse = checkAttr('hamburgerUse', attributes, manifest);
 
 	const hamburgerClass = classnames([
-		componentClass,
-		selector(componentClass, `js-${componentClass}`),
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
+		selector(componentJsClass, componentJsClass),
 	]);
 
 	return (

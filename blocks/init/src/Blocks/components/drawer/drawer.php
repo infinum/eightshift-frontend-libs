@@ -26,10 +26,11 @@ $drawerOverlay = Components::checkAttr('drawerOverlay', $attributes, $manifest);
 $drawerPosition = Components::checkAttr('drawerPosition', $attributes, $manifest);
 
 $drawerClass = Components::classnames([
-	$componentClass,
-	$componentJsClass,
-	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($componentJsClass, $componentJsClass),
+	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
 ]);
 
 ?>

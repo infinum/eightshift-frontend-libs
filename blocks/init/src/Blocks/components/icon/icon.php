@@ -15,21 +15,20 @@ if (!$iconUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$iconSelectedIcon = Components::checkAttr('iconSelectedIcon', $attributes, $manifest);
-$icon = $manifest['icons'][$iconSelectedIcon];
+$iconName = Components::checkAttr('iconName', $attributes, $manifest);
+$icon = $manifest['icons'][$iconName];
 
-$iconClasses = Components::classnames(
-	[
-		$componentClass,
-		$selectorClass,
-		Components::selector($iconSelectedIcon, $componentClass, $iconSelectedIcon),
-		Components::selector($blockClass, $blockClass, $componentClass),
-	]
-);
+$iconClasses = Components::classnames([
+	Components::selector($componentClass, $componentClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($iconName, $componentClass, $iconName),
+]);
 
 ?>
 <i class="<?php echo esc_attr($iconClasses); ?>">

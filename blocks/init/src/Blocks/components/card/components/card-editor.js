@@ -13,19 +13,19 @@ export const CardEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const cardClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
@@ -34,34 +34,34 @@ export const CardEditor = (attributes) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditor
-				{...props('image', attributes)}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('image', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<HeadingEditor
-				{...props('intro', attributes)}
-				setAttributes={setAttributes}
-				selectorClass={'intro'}
-				blockClass={componentClass}
+				{...props('intro', attributes, {
+					selectorClass: 'intro',
+					blockClass: componentClass,
+				})}
 			/>
 
 			<HeadingEditor
-				{...props('heading', attributes)}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('heading', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<ParagraphEditor
-				{...props('paragraph', attributes)}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('paragraph', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<ButtonEditor
-				{...props('button', attributes)}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('button', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 		</div>

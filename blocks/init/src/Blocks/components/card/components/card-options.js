@@ -7,49 +7,44 @@ import { ButtonOptions } from '../../button/components/button-options';
 import manifest from './../manifest.json';
 
 export const CardOptions = (attributes) => {
-	const {
-		setAttributes,
-	} = attributes;
-
 	return (
 		<>
 
 			<ImageOptions
 				{...props('image', attributes)}
-				setAttributes={setAttributes}
 			/>
 
 			<hr />
 
 			<HeadingOptions
-				{...props('intro', attributes)}
+				{...props('intro', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
 				label={'Intro'}
-				setAttributes={setAttributes}
-				options={getOptions(attributes, manifest)}
 			/>
 
 			<hr />
 
 			<HeadingOptions
-				{...props('heading', attributes)}
-				setAttributes={setAttributes}
-				options={getOptions(attributes, manifest)}
+				{...props('heading', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
 			/>
 
 			<hr />
 
 			<ParagraphOptions
-				{...props('paragraph', attributes)}
-				setAttributes={setAttributes}
-				options={getOptions(attributes, manifest)}
+				{...props('paragraph', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
 			/>
 
 			<hr />
 
 			<ButtonOptions
-				{...props('button', attributes)}
-				setAttributes={setAttributes}
-				options={getOptions(attributes, manifest)}
+				{...props('button', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
 			/>
 
 		</>

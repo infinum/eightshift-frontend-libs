@@ -21,13 +21,13 @@
 			{
 				"name": "eightshift-boilerplate/card",
 				"attributes": {
-					"imageUrl": "https://loremflickr.com/800/800",
-					"introContent": "Intro",
-					"introSize": "small",
-					"introColor": "light",
-					"headingContent": "Heading",
-					"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
-					"buttonUse": false
+					"cardCardImageUrl": "https://loremflickr.com/800/800",
+					"cardCardIntroContent": "Intro",
+					"cardCardIntroSize": "small",
+					"cardCardIntroColor": "light",
+					"cardCardHeadingContent": "Heading",
+					"cardCardParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+					"cardCardButtonUse": false
 				}
 			}
 		]

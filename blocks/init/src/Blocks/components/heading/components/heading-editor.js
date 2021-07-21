@@ -11,14 +11,14 @@ export const HeadingEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 	} = attributes;
 
@@ -26,8 +26,9 @@ export const HeadingEditor = (attributes) => {
 	const headingContent = checkAttr('headingContent', attributes, manifest);
 
 	const headingClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (

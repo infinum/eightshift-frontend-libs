@@ -4,7 +4,7 @@
 	"componentClass": "icon",
 	"example": {
 		"attributes": {
-			"iconSelectedIcon": "play",
+			"iconName": "play",
 			"iconUse": true
 		}
 	},
@@ -13,16 +13,13 @@
 			"type": "string",
 			"default": "play"
 		},
-		"iconSelectedIcon": {
-			"type": "string"
-		},
 		"iconUse": {
 			"type": "boolean",
 			"default": true
 		}
 	},
 	"options": {
-		"icons": [
+		"iconName": [
 			{
 				"label": "Map pin",
 				"value": "map-pin"
