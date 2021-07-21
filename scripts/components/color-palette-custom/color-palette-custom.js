@@ -48,7 +48,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 
 	return (
 		<div className={baseClass}>
-			{label?.length > 0 &&
+			{label &&
 				<div className={`${baseClass}__label`}>{label}</div>
 			}
 			<ColorPalette
@@ -76,7 +76,7 @@ export const ColorPaletteCustom = withSelect((select, ownProps) => {
 				}}
 			/>
 
-			{help?.length > 0 &&
+			{help &&
 				<p className={`${baseClass}__help`}>{help}</p>
 			}
 		</div>
