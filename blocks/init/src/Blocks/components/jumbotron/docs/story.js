@@ -1,11 +1,8 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
-import imageManifest from './../../image/manifest.json';
-import headingManifest from './../../heading/manifest.json';
-import paragraphManifest from './../../paragraph/manifest.json';
-import buttonManifest from './../../button/manifest.json';
 import { JumbotronEditor } from '../components/jumbotron-editor';
 import { JumbotronOptions } from '../components/jumbotron-options';
 import { JumbotronToolbar } from '../components/jumbotron-toolbar';
@@ -19,24 +16,22 @@ export default {
 	},
 };
 
-const props = {
-	...imageManifest.example.attributes,
-	...headingManifest.example.attributes,
-	...paragraphManifest.example.attributes,
-	...buttonManifest.example.attributes,
-	...manifest.example.attributes,
-};
+const attributes = getExample('jumbotron', manifest);
 
 export const editor = () => (
-	<JumbotronEditor {...props} />
+	<JumbotronEditor {...props('jumbotron', attributes)} />
 );
 
 export const options = () => (
-	<JumbotronOptions {...props} />
+	<JumbotronOptions
+		{...props('jumbotron', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );
 
 export const toolbar = () => (
-	<JumbotronToolbar {...props} />
+	<JumbotronToolbar	{...props('jumbotron', attributes)} />
 );
 
 const aligns = [
@@ -56,8 +51,9 @@ export const contentAlign = () => (
 		{aligns.map((values, index) => (
 			<Fragment key={index}>
 				<JumbotronEditor
-					{...props}
-					jumbotronContentPosition={values}
+					{...props('jumbotron', attributes, {
+						jumbotronContentPosition: values,
+					})}
 				/>
 				<br />
 			</Fragment>

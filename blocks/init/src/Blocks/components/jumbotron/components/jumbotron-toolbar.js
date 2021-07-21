@@ -36,12 +36,10 @@ export const JumbotronToolbar = (attributes) => {
 
 				<HeadingToolbar
 					{...props('heading', attributes)}
-					setAttributes={setAttributes}
 				/>
 
 				<ButtonToolbar
 					{...props('button', attributes)}
-					setAttributes={setAttributes}
 				/>
 				</>
 			}

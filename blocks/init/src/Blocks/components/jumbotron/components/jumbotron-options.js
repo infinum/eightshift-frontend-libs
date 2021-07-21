@@ -14,7 +14,6 @@ export const JumbotronOptions = (attributes) => {
 		title: manifestTitle,
 	} = manifest;
 
-
 	const {
 		setAttributes,
 		label = manifestTitle,
@@ -48,28 +47,24 @@ export const JumbotronOptions = (attributes) => {
 				<>
 					<ImageOptions
 						{...props('image', attributes)}
-						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<HeadingOptions
 						{...props('heading', attributes)}
-						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<ParagraphOptions
 						{...props('paragraph', attributes)}
-						setAttributes={setAttributes}
 					/>
 
 					<hr />
 
 					<ButtonOptions
 						{...props('button', attributes)}
-						setAttributes={setAttributes}
 					/>
 				</>
 			}

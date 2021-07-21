@@ -12,21 +12,21 @@ import globalManifest from './../../../manifest.json';
 export const JumbotronEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 
 	const jumbotronClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const contentClass = classnames([
@@ -46,29 +46,29 @@ export const JumbotronEditor = (attributes) => {
 					<div className={jumbotronClass} data-id={unique}>
 
 						<ImageEditor
-							{...props('image', attributes)}
-							setAttributes={setAttributes}
-							blockClass={componentClass}
+							{...props('image', attributes, {
+								blockClass: componentClass,
+							})}
 						/>
 
 						<div className={contentClass}>
 							<div className={contentWrapClass}>
 								<HeadingEditor
-									{...props('heading', attributes)}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
+									{...props('heading', attributes, {
+										blockClass: componentClass,
+									})}
 								/>
 
 								<ParagraphEditor
-									{...props('paragraph', attributes)}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
+									{...props('paragraph', attributes, {
+										blockClass: componentClass,
+									})}
 								/>
 
 								<ButtonEditor
-									{...props('button', attributes)}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
+									{...props('button', attributes, {
+										blockClass: componentClass,
+									})}
 								/>
 							</div>
 						</div>
