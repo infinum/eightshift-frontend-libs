@@ -5,13 +5,13 @@ import manifest from './../manifest.json';
 
 export const SearchBarEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const searchBarUse = checkAttr('searchBarUse', attributes, manifest);
@@ -24,8 +24,9 @@ export const SearchBarEditor = (attributes) => {
 	const searchBarLabelShow = checkAttr('searchBarLabelShow', attributes, manifest);
 
 	const searchClass = classnames(
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	);
 
 	const inputClass = classnames([

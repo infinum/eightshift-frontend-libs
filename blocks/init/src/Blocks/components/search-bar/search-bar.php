@@ -15,9 +15,10 @@ if (!$searchBarUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $searchBarMethod = Components::checkAttr('searchBarMethod', $attributes, $manifest);
 $searchBarPostType = Components::checkAttr('searchBarPostType', $attributes, $manifest);
@@ -28,8 +29,9 @@ $searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest
 $searchBarLabelShow = Components::checkAttr('searchBarLabelShow', $attributes, $manifest);
 
 $searchClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $inputClass = Components::classnames([
