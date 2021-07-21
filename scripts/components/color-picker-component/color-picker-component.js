@@ -8,21 +8,27 @@ import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components
 /**
  * Component that allows simple inline color picking while taking up not much space.
  * 
- * @param {object} props                                        - ColorPickerComponent options.
- * @param {array?} props.colors                                 - List of options to display. If not set, all global manifest colors are used.
- * @param {string} props.value                                  - Current value (color slug).
- * @param {function} props.onChange                             - Callback that applies the changes.
- * @param {React.Component?} props.label                        - Label to represent the control
- * @param {string?} [props.textDomain=eightshift-frontend-libs] - Text domain to use for i18n.
- * @param {boolean} [props.canReset=true]                       - If `true`, a clear/reset button is shown.
+ * @param {object} props                    - ColorPickerComponent options.
+ * @param {array?} props.colors             - List of options to display. If not set, all global manifest colors are used.
+ * @param {string} props.value              - Current value (color slug).
+ * @param {function} props.onChange         - Callback that applies the changes.
+ * @param {React.Component?} props.label    - Label to represent the control
+ * @param {boolean} [props.canReset=true]   - If `true`, a clear/reset button is shown.
+ * @param {string} [props.pickerPopupTitle] - Color picker popup title.
+ * @param {string} [props.editColorLabel]   - 'Change color' button label (when color is set).
+ * @param {string} [props.addColorLabel]    - 'Pick a color' button label (when color is not set).
+ * @param {string} [props.resetTootlip]     - 'Reset' button tooltip.
  */
 export const ColorPickerComponent = ({
 	colors,
 	value,
 	onChange,
 	label,
-	textDomain = 'eightshift-frontend-libs',
 	canReset = true,
+	pickerPopupTitle = __('Pick a color'),
+	editColorLabel = __('Change color'),
+	addColorLabel = __('Pick a color'),
+	resetTootlip = __('Reset'),
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -46,7 +52,7 @@ export const ColorPickerComponent = ({
 		>
 			<div className='es-color-picker-component__inner-container'>
 				<ColorPaletteCustom
-					label={__('Pick a color', textDomain)}
+					label={pickerPopupTitle}
 					colors={colors}
 					value={value}
 					onChange={(value) => {
@@ -75,7 +81,7 @@ export const ColorPickerComponent = ({
 					isSecondary
 					onClick={openPicker}
 					icon={buttonIcon}
-					text={value ? __('Change color', textDomain) : __('Pick a color', textDomain)}
+					text={value ? editColorLabel : addColorLabel}
 				>
 				</Button>
 
@@ -85,7 +91,7 @@ export const ColorPickerComponent = ({
 						isDestructive={true}
 						icon={icons.trash}
 						iconSize={24}
-						label={__('Reset', textDomain)}
+						label={resetTootlip}
 					/>
 				}
 			</div>

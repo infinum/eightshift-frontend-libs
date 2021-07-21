@@ -24,7 +24,6 @@ export const basicComponent = () => {
 			opensInNewTab={objData.newTab}
 			setAttributes={setObjData}
 			title={'Dummy component'}
-			textDomain={'TestDomain'}
 			urlAttrName='url'
 			isNewTabAttrName='newTab'
 		/>
@@ -41,7 +40,6 @@ export const withoutNewTabOption = () => {
 			url={objData.url}
 			setAttributes={setObjData}
 			title={'Dummy component'}
-			textDomain={'TestDomain'}
 			urlAttrName='url'
 			showNewTabOption={false}
 		/>

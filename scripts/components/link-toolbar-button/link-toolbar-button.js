@@ -8,15 +8,16 @@ import { __, sprintf } from '@wordpress/i18n';
 /**
  * A toolbar button that allows picking an URL in a clean and simple way.
  * 
- * @param {object} props                                        - LinkToolbarButton options.
- * @param {string?} props.url                                   - Currently selected URL.
- * @param {boolean} props.opensInNewTab                         - Currently selected option for opening the link in a new tab.
- * @param {function} props.setAttributes                        - The `setAttributes` callback from component/block attributes.
- * @param {string} props.title                                  - Name of the component/block displayed in the tooltip (*Use <title>*).
- * @param {string} props.urlAttrName                            - Name of the `url` attribute (use `getAttrKey`)
- * @param {string} props.isNewTabAttrName                       - Name of the `isNewTab` attribute (use `getAttrKey`)
- * @param {string?} [props.textDomain=eightshift-frontend-libs] - Text domain to use for i18n.
- * @param {boolean} [props.showNewTabOption=true]               - If `true`, displays the 'Open in new tab' toggle.
+ * @param {object} props                          - LinkToolbarButton options.
+ * @param {string?} props.url                     - Currently selected URL.
+ * @param {boolean} props.opensInNewTab           - Currently selected option for opening the link in a new tab.
+ * @param {function} props.setAttributes          - The `setAttributes` callback from component/block attributes.
+ * @param {string} props.title                    - Name of the component/block displayed in the tooltip (*Use <title>*).
+ * @param {string} props.urlAttrName              - Name of the `url` attribute (use `getAttrKey`)
+ * @param {string} props.isNewTabAttrName         - Name of the `isNewTab` attribute (use `getAttrKey`)
+ * @param {boolean} [props.showNewTabOption=true] - If `true`, displays the 'Open in new tab' toggle.
+ * @param {string} [props.newTabOptionName]       - Name of the 'Opens in new tab' option shown in the interface.
+ * @param {string} [props.removeLinkLabel]        - Label on the 'Remove link' button.
  */
 export const LinkToolbarButton = ({
 	url,
@@ -25,8 +26,9 @@ export const LinkToolbarButton = ({
 	urlAttrName,
 	isNewTabAttrName,
 	title,
-	textDomain = 'eightshift-frontend-libs',
 	showNewTabOption = true,
+	newTabOptionName = __('Open in new tab'),
+	removeLinkLabel = __('Remove link'),
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -50,7 +52,6 @@ export const LinkToolbarButton = ({
 		}
 
 		setAttributes(newValues);
-
 		setIsDropdownOpen(false);
 	};
 
@@ -59,7 +60,7 @@ export const LinkToolbarButton = ({
 	if (showNewTabOption) {
 		urlSettings = [...urlSettings, {
 			id: 'opensInNewTab',
-			title: __('Open in new tab', textDomain),
+			title: newTabOptionName,
 		}
 		];
 	}
@@ -108,9 +109,8 @@ export const LinkToolbarButton = ({
 					isDestructive={true}
 					icon={linkOff}
 					iconSize={24}
-				>
-					{__('Remove link', textDomain)}
-				</Button>
+					text={removeLinkLabel}
+				/>
 			</div>
 		</Popover>
 	);
@@ -119,7 +119,7 @@ export const LinkToolbarButton = ({
 			<ToolbarButton
 				name="link"
 				icon={link}
-				title={sprintf(__('%s URL', textDomain), title)}
+				title={sprintf(__('%s URL'), title)}
 				onClick={openLinkControl}
 				isActive={url?.length}
 			/>

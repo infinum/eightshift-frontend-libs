@@ -9,15 +9,18 @@ import { truncateMiddle } from '@eightshift/frontend-libs/scripts/helpers';
 /**
  * Options panel component that allows picking an URL in a clean and simple way.
  * 
- * @param {object} props                                        - LinkEditComponent options.
- * @param {string?} props.url                                   - Currently selected URL.
- * @param {boolean} props.opensInNewTab                         - Currently selected option for opening the link in a new tab.
- * @param {function} props.setAttributes                        - The `setAttributes` callback from component/block attributes.
- * @param {string} props.title                                  - Name of the component/block displayed in the tooltip (*Use <title>*).
- * @param {string} props.urlAttrName                            - Name of the `url` attribute (use `getAttrKey`)
- * @param {string} props.isNewTabAttrName                       - Name of the `isNewTab` attribute (use `getAttrKey`)
- * @param {string?} [props.textDomain=eightshift-frontend-libs] - Text domain to use for i18n.
- * @param {boolean} [props.showNewTabOption=true]               - If `true`, displays the 'Open in new tab' toggle.
+ * @param {object} props                          - LinkEditComponent options.
+ * @param {string?} props.url                     - Currently selected URL.
+ * @param {boolean} props.opensInNewTab           - Currently selected option for opening the link in a new tab.
+ * @param {function} props.setAttributes          - The `setAttributes` callback from component/block attributes.
+ * @param {string} props.title                    - Name of the component/block displayed in the tooltip (*Use <title>*).
+ * @param {string} props.urlAttrName              - Name of the `url` attribute (use `getAttrKey`)
+ * @param {string} props.isNewTabAttrName         - Name of the `isNewTab` attribute (use `getAttrKey`)
+ * @param {boolean} [props.showNewTabOption=true] - If `true`, displays the 'Open in new tab' toggle.
+ * @param {string} [props.newTabOptionName]       - Name of the 'Opens in new tab' option shown in the interface.
+ * @param {string} [props.removeLinkTooltip]      - 'Remove link' button tooltip.
+ * @param {string} [props.editUrlLabel]           - 'Edit URL' button label (when URL is set).
+ * @param {string} [props.addUrlLabel]            - 'Add URL' button label (when URL is not set).
  */
 export const LinkEditComponent = ({
 	url,
@@ -26,8 +29,11 @@ export const LinkEditComponent = ({
 	urlAttrName,
 	isNewTabAttrName,
 	title,
-	textDomain = 'eightshift-frontend-libs',
 	showNewTabOption = true,
+	newTabOptionName = __('Open in new tab'),
+	removeLinkTooltip = __('Remove link'),
+	editUrlLabel = __('Edit URL'),
+	addUrlLabel = __('Add URL'),
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -60,7 +66,7 @@ export const LinkEditComponent = ({
 	if (showNewTabOption) {
 		urlSettings = [...urlSettings, {
 			id: 'opensInNewTab',
-			title: __('Open in new tab', textDomain),
+			title: newTabOptionName,
 		}
 		];
 	}
@@ -115,7 +121,7 @@ export const LinkEditComponent = ({
 			label={
 				<>
 					{icons.link}
-					{sprintf(__('%s URL', textDomain), title)}
+					{sprintf(__('%s URL'), title)}
 				</>
 			}
 		>
@@ -124,7 +130,7 @@ export const LinkEditComponent = ({
 					isSecondary
 					onClick={openLinkControl}
 					icon={url?.length ? icons.editOptions : icons.add}
-					text={url?.length ? __('Edit URL', textDomain) : __('Add URL', textDomain)}
+					text={url?.length ? editUrlLabel : addUrlLabel}
 				/>
 
 				{url?.length > 0 &&
@@ -133,7 +139,7 @@ export const LinkEditComponent = ({
 						isDestructive={true}
 						icon={icons.trash}
 						iconSize={24}
-						label={__('Remove URL', textDomain)}
+						label={removeLinkTooltip}
 					/>
 				}
 			</div>
