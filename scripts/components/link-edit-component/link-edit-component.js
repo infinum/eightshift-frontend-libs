@@ -66,13 +66,13 @@ export const LinkEditComponent = ({
 	}
 
 	let currentValue = {
-		url: url
+		url
 	};
 
 	if (showNewTabOption) {
 		currentValue = {
 			...currentValue,
-			opensInNewTab: opensInNewTab,
+			opensInNewTab,
 		}
 	}
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import readme from './readme.mdx';
+import { __ } from '@wordpress/i18n';
 import { InlineNotification, InlineNotificationType } from '../inline-notification';
 
 export default {
@@ -18,35 +19,35 @@ export const regular = () => {
 			gap: '1rem',
 		}}>
 			<InlineNotification
-				text='This is a warning!'
-				type={InlineNotificationType.warning}
+				text={__('This is a warning!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.WARNING}
 			/>
 
 			<InlineNotification
-				text='This is an error!'
-				type={InlineNotificationType.error}
+				text={__('This is an error!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.ERROR}
 			/>
 
 			<InlineNotification
-				text='This is informational!'
-				type={InlineNotificationType.info}
+				text={__('This is informational!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.INFO}
 			/>
 			
 			<InlineNotification
-				text='This is a warning!'
-				type={InlineNotificationType.warning}
+				text={__('This is a warning!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.WARNING}
 				showContrastOutline
 			/>
 
 			<InlineNotification
-				text='This is an error!'
-				type={InlineNotificationType.error}
+				text={__('This is an error!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.ERROR}
 				showContrastOutline
 			/>
 
 			<InlineNotification
-				text='This is informational!'
-				type={InlineNotificationType.info}
+				text={__('This is informational!', 'eightshift-frontend-libs')}
+				type={InlineNotificationType.INFO}
 				showContrastOutline
 			/>
 		</div>

@@ -623,18 +623,18 @@ body {
 		margin-bottom: 0.5rem;
 	}
 
-	// Decorative/unselectable text
+	// Decorative/unselectable text.
 	.es-decorative-text {
 		opacity: 0.6;
 		user-select: none;
 	}
 
-	// ColorPickerComponent inner color picker container
+	// ColorPickerComponent inner color picker container.
 	.es-color-picker-component__inner-container {
 		padding: 0.5rem 1rem;
 	}
 
-	// ColorPickerComponent current color button icon
+	// ColorPickerComponent current color button icon.
 	.es-color-picker-component__current-swatch {
 		pointer-events: none;
 		height: 1.15rem;
@@ -654,8 +654,8 @@ body {
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-		padding: 0.5rem;
-		padding-right: 0.65rem;
+		padding: 0.25rem 0.3rem;
+		padding-right: 0.45rem;
 		font-size: 0.85rem;
 		letter-spacing: 0.1px;
 		border-radius: 0.6rem;

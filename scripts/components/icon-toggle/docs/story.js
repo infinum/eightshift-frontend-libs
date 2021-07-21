@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IconToggle } from '../icon-toggle';
 import { icons } from '../../../editor/icons/icons';
+import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
 
 export default {
@@ -28,10 +29,10 @@ export const component = () => {
 
 			<IconToggle
 				icon={icons.width}
-				label='Full width'
+				label={__('Full width', 'eightshift-frontend-libs')}
 				checked={current}
 				onChange={(value) => setCurrent(value)}
-				help='Help text here.'
+				help={__('Help text here.', 'eightshift-frontend-libs')}
 			/>
 		</div>
 	);

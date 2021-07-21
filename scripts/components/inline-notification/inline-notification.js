@@ -2,10 +2,17 @@ import React from 'react';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import classnames from 'classnames';
 
+/**
+ * Type of the inline notification
+ *
+ * @param {string} WARNING - An important, but not critical message.
+ * @param {string} ERROR   - An urgent and important message.
+ * @param {string} INFO    - A message to inform the user.
+ */
 export const InlineNotificationType = {
-	warning: 'warning',
-	error: 'error',
-	info: 'info'
+	WARNING: 'warning',
+	ERROR: 'error',
+	INFO: 'info'
 }
 
 /**
@@ -13,21 +20,21 @@ export const InlineNotificationType = {
  * 
  * @param {object} props                                                       - InlineNotification options.
  * @param {string} props.text                                                  - Notification text.
- * @param {InlineNotificationType} [props.type=InlineNotificationType.warning] - Help text displayed below the picker.
+ * @param {InlineNotificationType} [props.type=InlineNotificationType.WARNING] - Help text displayed below the picker.
  * @param {boolean} [props.showContrastOutline=false]                          - If `true`, a high-visibility outline is shown around the notification.
  */
 export const InlineNotification = ({
 	text,
-	type = InlineNotificationType.warning,
+	type = InlineNotificationType.WARNING,
 	showContrastOutline = false,
 }) => {
-	let icon = icons.infoCircle;
+	let icon;
 
 	switch (type) {
-		case InlineNotificationType.error:
+		case InlineNotificationType.ERROR:
 			icon = icons.errorCircle;
 			break;
-		case InlineNotificationType.warning:
+		case InlineNotificationType.WARNING:
 			icon = icons.warning;
 			break;
 		default:

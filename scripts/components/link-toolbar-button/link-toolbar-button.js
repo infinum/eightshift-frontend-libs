@@ -65,13 +65,13 @@ export const LinkToolbarButton = ({
 	}
 
 	let currentValue = {
-		url: url
+		url
 	};
 
 	if (showNewTabOption) {
 		currentValue = {
 			...currentValue,
-			opensInNewTab: opensInNewTab,
+			opensInNewTab,
 		}
 	}
 
