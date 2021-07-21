@@ -13,3 +13,4 @@ export {
 } from './check-attr';
 export { elementChildrenHeight } from './element-children-height';
 export { camelize } from './camelize';
+export { truncateMiddle } from './text-helpers';

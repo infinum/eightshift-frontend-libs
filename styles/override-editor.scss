@@ -417,6 +417,7 @@ body {
 			height: 1.5rem;
 			width: 1.5rem;
 			color: var(--wp-admin-theme-color, #007cba);
+			flex-shrink: 0;
 		}
 
 		.components-base-control.components-toggle-control {
@@ -614,4 +615,98 @@ body {
 		align-items: center;
 		justify-content: center;
 	}
+
+	// Simple button row/toolbar.
+	.es-simple-editor-button-row {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	// Decorative/unselectable text.
+	.es-decorative-text {
+		opacity: 0.6;
+		user-select: none;
+	}
+
+	// ColorPickerComponent inner color picker container.
+	.es-color-picker-component__inner-container {
+		padding: 0.5rem 1rem;
+	}
+
+	// ColorPickerComponent current color button icon.
+	.es-color-picker-component__current-swatch {
+		pointer-events: none;
+		height: 1.15rem;
+		width: 1.15rem;
+		border-radius: 1.5rem;
+		box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #888888;
+	}
+
+	// If added, a high-contrast outline appears which is visible on any background.
+	// Note: could override any current drop shadows!
+	.es-hi-vis-outline {
+		box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #111111;
+	}
+
+	// Inline notification styles.
+	.es-inline-notification {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.25rem 0.3rem;
+		padding-right: 0.45rem;
+		font-size: 0.85rem;
+		letter-spacing: 0.1px;
+		border-radius: 0.6rem;
+		font-weight: 600;
+		width: max-content;
+
+		&__icon {
+			width: 1.5rem;
+			height: 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			svg {
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+		}
+
+		&--error {
+			color: #FFFFFF;
+			background-color: #FF6666;
+		}
+
+		&--warning {
+			color: #111111;
+			background-color: #FFC837;
+		}
+
+		&--info {
+			color: #00172C;
+			background-color: #E0F6FF;
+		}
+	}
+
+	// Fix fancy use toggle spacing.
+	.es-panel-text-divider.es-icon-toggle.es-icon-toggle--reverse {
+		& > .components-base-control__field {
+			margin-bottom: 0.2rem;
+		}
+	}
+
+	// ES Simple vertical select styles.
+	.es-simple-v-single-select {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	
+		.components-button:not(.is-pressed) {
+			border: 1px solid #F2F2F2;
+		}
+	}
+
 }

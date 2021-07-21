@@ -1,14 +1,15 @@
 import React, { useRef } from 'react';
 import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
-import { link, linkOff } from '@wordpress/icons';
-import { Popover, Button, ToolbarButton } from '@wordpress/components';
+import { Popover, Button, BaseControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
+import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { truncateMiddle } from '@eightshift/frontend-libs/scripts/helpers';
 
 /**
- * A toolbar button that allows picking an URL in a clean and simple way.
+ * Options panel component that allows picking an URL in a clean and simple way.
  * 
- * @param {object} props                          - LinkToolbarButton options.
+ * @param {object} props                          - LinkEditComponent options.
  * @param {string?} props.url                     - Currently selected URL.
  * @param {boolean} props.opensInNewTab           - Currently selected option for opening the link in a new tab.
  * @param {function} props.setAttributes          - The `setAttributes` callback from component/block attributes.
@@ -17,9 +18,11 @@ import { __, sprintf } from '@wordpress/i18n';
  * @param {string} props.isNewTabAttrName         - Name of the `isNewTab` attribute (use `getAttrKey`)
  * @param {boolean} [props.showNewTabOption=true] - If `true`, displays the 'Open in new tab' toggle.
  * @param {string} [props.newTabOptionName]       - Name of the 'Opens in new tab' option shown in the interface.
- * @param {string} [props.removeLinkLabel]        - Label on the 'Remove link' button.
+ * @param {string} [props.removeLinkTooltip]      - 'Remove link' button tooltip.
+ * @param {string} [props.editUrlLabel]           - 'Edit URL' button label (when URL is set).
+ * @param {string} [props.addUrlLabel]            - 'Add URL' button label (when URL is not set).
  */
-export const LinkToolbarButton = ({
+export const LinkEditComponent = ({
 	url,
 	opensInNewTab,
 	setAttributes,
@@ -28,7 +31,9 @@ export const LinkToolbarButton = ({
 	title,
 	showNewTabOption = true,
 	newTabOptionName = __('Open in new tab'),
-	removeLinkLabel = __('Remove link'),
+	removeLinkTooltip = __('Remove link'),
+	editUrlLabel = __('Edit URL'),
+	addUrlLabel = __('Add URL'),
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -52,6 +57,7 @@ export const LinkToolbarButton = ({
 		}
 
 		setAttributes(newValues);
+
 		setIsDropdownOpen(false);
 	};
 
@@ -92,38 +98,57 @@ export const LinkToolbarButton = ({
 					let newValues = {
 						[urlAttrName]: newUrl,
 					};
-			
+
 					if (showNewTabOption) {
 						newValues = {
 							...newValues,
 							[isNewTabAttrName]: newTab,
 						};
 					}
-			
+
 					setAttributes(newValues);
+					
+					if (newUrl !== url) {
+						setIsDropdownOpen(false);
+					}
 				}}
 			/>
-			<div style={{ padding: '1rem' }}>
-				<Button
-					onClick={unlinkButton}
-					isDestructive={true}
-					icon={linkOff}
-					iconSize={24}
-					text={removeLinkLabel}
-				/>
-			</div>
 		</Popover>
 	);
+
 	return (
-		<>
-			<ToolbarButton
-				name="link"
-				icon={link}
-				title={sprintf(__('%s URL'), title)}
-				onClick={openLinkControl}
-				isActive={url?.length}
-			/>
+		<BaseControl
+			label={
+				<>
+					{icons.link}
+					{sprintf(__('%s URL'), title)}
+				</>
+			}
+		>
+			<div className='es-simple-editor-button-row'>
+				<Button
+					isSecondary
+					onClick={openLinkControl}
+					icon={url?.length ? icons.editOptions : icons.add}
+					text={url?.length ? editUrlLabel : addUrlLabel}
+				/>
+
+				{url?.length > 0 &&
+					<Button
+						onClick={unlinkButton}
+						isDestructive={true}
+						icon={icons.trash}
+						iconSize={24}
+						label={removeLinkTooltip}
+					/>
+				}
+			</div>
+
+			{url?.length > 0 &&
+				<span className='es-decorative-text'>{truncateMiddle(url, 40)}</span>
+			}
+
 			{linkControl}
-		</>
+		</BaseControl>
 	);
 }
