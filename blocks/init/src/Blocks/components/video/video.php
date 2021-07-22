@@ -16,9 +16,10 @@ if (!$videoUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest);
 $videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest);
@@ -29,8 +30,9 @@ $videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest);
 $videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest);
 
 $videoClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $additionalAttributes = Components::classnames([

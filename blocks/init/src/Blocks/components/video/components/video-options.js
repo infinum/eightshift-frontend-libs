@@ -5,12 +5,12 @@ import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Button, SelectControl, BaseControl } from '@wordpress/components';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { getOption } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
@@ -40,8 +40,6 @@ export const VideoOptions = (attributes) => {
 		showVideoMuted = true,
 		showVideoPreload = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!videoShowControls) {
 		return null;
@@ -173,7 +171,7 @@ export const VideoOptions = (attributes) => {
 								<SelectControl
 									label={__('Preload type', 'eightshift-frontend-libs')}
 									value={videoPreload}
-									options={options.videoPreload}
+									options={getOption('videoPreload', attributes, manifest)}
 									onChange={(value) => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value })}
 								/>
 							}

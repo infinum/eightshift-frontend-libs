@@ -6,7 +6,6 @@ import manifest from '../manifest.json';
 export const SocialLinksEditor = (attributes) => {
 	const {
 		componentClass,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
@@ -16,7 +15,7 @@ export const SocialLinksEditor = (attributes) => {
 	} = attributes;
 
 	const socialLinksUse = checkAttr('socialLinksUse', attributes, manifest);
-	const socialLinks = checkAttr('socialLinks', attributes, manifest);
+	const socialLinksItems = checkAttr('socialLinksItems', attributes, manifest);
 
 	const socialLinksClass = classnames([
 		selector(componentClass, componentClass),
@@ -33,7 +32,7 @@ export const SocialLinksEditor = (attributes) => {
 
 		return (
 			<li className={`${componentClass}__item`}>
-				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: manifestOptions.icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
+				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: manifest.icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
 			</li>
 		);
 	};
@@ -42,7 +41,7 @@ export const SocialLinksEditor = (attributes) => {
 		<>
 			{socialLinksUse &&
 				<ul className={socialLinksClass}>
-					{socialLinks.map((element, index) => {
+					{socialLinksItems.map((element, index) => {
 						return (
 							<SocialItem {...element} key={index} />
 						);

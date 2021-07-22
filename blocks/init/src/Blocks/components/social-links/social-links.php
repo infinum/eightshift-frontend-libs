@@ -20,7 +20,7 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$socialLinks = Components::checkAttr('socialLinks', $attributes, $manifest);
+$socialLinksItems = Components::checkAttr('socialLinksItems', $attributes, $manifest);
 
 $socialLinksClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
@@ -29,7 +29,7 @@ $socialLinksClass = Components::classnames([
 ]);
 ?>
 <ul class="<?php echo \esc_html($socialLinksClass); ?>">
-	<?php foreach ($socialLinks as $socialLink) { ?>
+	<?php foreach ($socialLinksItems as $socialLink) { ?>
 		<?php
 		$href = $socialLink['href'] ?? '';
 		$icon = $socialLink['icon'] ?? '';
