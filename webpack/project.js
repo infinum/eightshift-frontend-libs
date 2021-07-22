@@ -15,7 +15,7 @@ module.exports = (options) => {
 		// theme + Eightshift Forms) where we would sometimes get the following error:
 		//
 		// applicationBlocks.js?ver=1.0.0:64 Uncaught (in promise) TypeError: Cannot read property 'call' of undefined
-    // at __webpack_require__
+		// at __webpack_require__
 		//
 		// Fix source: https://github.com/webpack/webpack/issues/959#issuecomment-546506221
 		library: '[name]',
