@@ -25,6 +25,7 @@ import AsyncSelect from "react-select/async";
  * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
  * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
  * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
+ * @param {boolean} [props.simpleValue=false]                          - If in synchronous (`options` is set), single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -44,6 +45,7 @@ export const CustomSelect = (props) => {
 		sortAxis = 'y',
 		customOptionComponent,
 		customSingleValueDisplayComponent,
+		simpleValue = false,
 	} = props;
 
 	const isSynchronous = !loadOptions;
@@ -117,13 +119,13 @@ export const CustomSelect = (props) => {
 
 		let output;
 
-		// Compare curent selected posts with the API and sync them. 
+		// Compare current selected posts with the API and sync them. 
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
 		if (multiple) {
 			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
 		} else {
-			output = selectedOptions;
+			output = simpleValue ? selectedOptions.value : selectedOptions;
 		}
 
 		setSelected(output);
@@ -136,47 +138,52 @@ export const CustomSelect = (props) => {
 		onChange(newValue);
 	};
 
+	const selectControl = (
+		<SortableSelect
+			useDragHandle
+			axis={sortAxis}
+			onSortEnd={onSortEnd}
+			distance={4}
+			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
+			value={(!multiple && simpleValue) ? options.filter(({ value }) => value === selected) : selected}
+			loadOptions={customLoadOptions}
+			cacheOptions={cacheOptions}
+			placeholder={placeholder}
+			defaultOptions={defaultOptions}
+			onChange={onChangeInternal}
+			options={options}
+			isMulti={multiple}
+			isSearchable={isSearchable}
+			isClearable={isClearable}
+			components={{
+				MultiValue: SortableMultiValue,
+				MultiValueLabel: SortableMultiValueLabel,
+				Option: customOptionComponent ?? Option,
+				SingleValue: customSingleValueDisplayComponent ?? SingleValue,
+				IndicatorSeparator: null,
+			}}
+			closeMenuOnSelect={closeMenuOnSelect}
+			theme={(theme) => ({
+				...theme,
+				borderRadius: 3,
+				colors: {
+					...theme.colors,
+					primary25: 'hsla(0, 0%, 90%, 1)',
+					primary50: 'hsla(0, 0%, 80%, 1)',
+					primary75: 'hsla(0, 0%, 70%, 1)',
+					primary: 'hsla(0, 0%, 0%, 1)'
+				},
+			})}
+		/>
+	);
+
+	if (!label) {
+		return selectControl;
+	}
+
 	return (
-		<BaseControl
-			label={label}
-			help={help}
-		>
-			<SortableSelect
-				useDragHandle
-				axis={sortAxis}
-				onSortEnd={onSortEnd}
-				distance={4}
-				getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-				value={selected}
-				loadOptions={customLoadOptions}
-				cacheOptions={cacheOptions}
-				placeholder={placeholder}
-				defaultOptions={defaultOptions}
-				onChange={onChangeInternal}
-				options={options}
-				isMulti={multiple}
-				isSearchable={isSearchable}
-				isClearable={isClearable}
-				components={{
-					MultiValue: SortableMultiValue,
-					MultiValueLabel: SortableMultiValueLabel,
-					Option: customOptionComponent ?? Option,
-					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
-					IndicatorSeparator: null,
-				}}
-				closeMenuOnSelect={closeMenuOnSelect}
-				theme={(theme) => ({
-					...theme,
-					borderRadius: 3,
-					colors: {
-						...theme.colors,
-						primary25: 'hsla(0, 0%, 90%, 1)',
-						primary50: 'hsla(0, 0%, 80%, 1)',
-						primary75: 'hsla(0, 0%, 70%, 1)',
-						primary: 'hsla(0, 0%, 0%, 1)'
-					},
-				})}
-			/>
+		<BaseControl label={label} help={help}>
+			{selectControl}
 		</BaseControl>
 	);
 };
