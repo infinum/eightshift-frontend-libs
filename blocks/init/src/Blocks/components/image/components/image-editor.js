@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

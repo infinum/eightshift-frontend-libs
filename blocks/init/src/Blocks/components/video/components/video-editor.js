@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { video } from '@wordpress/icons';
 import { Placeholder } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoEditor = (attributes) => {

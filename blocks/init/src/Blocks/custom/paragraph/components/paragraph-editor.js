@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
-import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 import { createBlock } from '@wordpress/blocks';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts';
+import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

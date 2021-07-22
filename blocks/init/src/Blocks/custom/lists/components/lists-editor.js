@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts';
 import { ListsEditor as ListsEditorComponent } from '../../../components/lists/components/lists-editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';

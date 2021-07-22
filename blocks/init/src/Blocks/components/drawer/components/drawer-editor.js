@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const DrawerEditor = (attributes) => {

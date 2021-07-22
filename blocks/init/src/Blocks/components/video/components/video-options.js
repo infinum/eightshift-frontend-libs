@@ -4,8 +4,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Button, SelectControl, BaseControl } from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOption } from '@eightshift/frontend-libs/scripts/editor';
+import { getOption, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {

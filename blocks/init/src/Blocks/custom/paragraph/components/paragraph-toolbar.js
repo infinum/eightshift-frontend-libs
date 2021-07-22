@@ -1,8 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOption } from '@eightshift/frontend-libs/scripts/editor';
 import { AlignmentToolbar } from '@wordpress/block-editor';
+import { checkAttr, getAttrKey, getOption } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ParagraphToolbar = ({ attributes, setAttributes }) => {

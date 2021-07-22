@@ -3,9 +3,7 @@ import _ from 'lodash';
 import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { ToggleControl, Icon, TextareaControl, BaseControl, Button } from '@wordpress/components';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, checkAttrResponsive, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { Responsive } from '@eightshift/frontend-libs/scripts/components';
+import { Responsive, icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {

@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

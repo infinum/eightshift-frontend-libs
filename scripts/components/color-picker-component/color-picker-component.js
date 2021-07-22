@@ -2,8 +2,7 @@ import React, { useRef } from 'react';
 import { Popover, Button, BaseControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
+import { ColorPaletteCustom, icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Component that allows simple inline color picking while taking up not much space.

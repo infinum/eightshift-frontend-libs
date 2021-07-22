@@ -3,8 +3,7 @@ import { __experimentalLinkControl as LinkControl } from '@wordpress/block-edito
 import { Popover, Button, BaseControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { truncateMiddle } from '@eightshift/frontend-libs/scripts/helpers';
+import { icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Options panel component that allows picking an URL in a clean and simple way.

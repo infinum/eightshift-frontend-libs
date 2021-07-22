@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServerSideRender } from '@eightshift/frontend-libs/scripts/components';
+import { ServerSideRender } from '@eightshift/frontend-libs/scripts';
 
 export const FeaturedCategoriesEditor = ({ attributes }) => {
 	const {

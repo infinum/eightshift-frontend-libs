@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { responsiveSelectors, checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
 import { BaseControl, Button } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A component that displays options adjustable across screen sizes beautifully.

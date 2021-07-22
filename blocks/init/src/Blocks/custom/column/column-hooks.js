@@ -3,7 +3,7 @@ import { createElement } from '@wordpress/element';
 import { addFilter } from '@wordpress/hooks';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { responsiveSelectors, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
+import { responsiveSelectors, checkAttrResponsive } from '@eightshift/frontend-libs/scripts';
 import manifest from './manifest.json';
 import globalManifest from '../../manifest.json';
 

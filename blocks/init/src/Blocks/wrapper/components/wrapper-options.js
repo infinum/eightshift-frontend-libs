@@ -2,8 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
-import { ColorPaletteCustom, Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
-import { icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scripts/editor';
+import { ColorPaletteCustom, Responsive, HelpModal, icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scripts';
 import globalSettings from '../../manifest.json';
 import manifest from './../manifest.json';
 

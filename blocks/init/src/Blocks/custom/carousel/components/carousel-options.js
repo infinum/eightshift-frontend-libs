@@ -1,8 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl, Icon } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const CarouselOptions = ({ attributes, setAttributes }) => {
