@@ -17,7 +17,6 @@ if (!$listsUse) {
 }
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
@@ -36,5 +35,9 @@ $listsClass = Components::classnames([
 ?>
 
 <<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php echo wp_kses_post($listsContent); ?>
+	<?php 
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+		echo wp_kses_post($listsContent);
+	?>
 </<?php echo esc_attr($listsOrdered); ?>>

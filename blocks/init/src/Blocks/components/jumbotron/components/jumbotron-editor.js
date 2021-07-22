@@ -40,9 +40,9 @@ export const JumbotronEditor = (attributes) => {
 		<>
 			{jumbotronUse &&
 				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
-
 					<div className={jumbotronClass} data-id={unique}>
+
+						{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 						<ImageEditor
 							{...props('image', attributes, {

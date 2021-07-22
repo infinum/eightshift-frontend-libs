@@ -35,6 +35,7 @@ export const HeadingEditor = (attributes) => {
 			{headingUse &&
 				<>
 					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
 					<RichText
 						className={headingClass}
 						placeholder={placeholder}
