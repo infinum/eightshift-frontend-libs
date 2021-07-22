@@ -1,5 +1,5 @@
 import React from 'react';
-import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { Fragment } from '@wordpress/element';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';

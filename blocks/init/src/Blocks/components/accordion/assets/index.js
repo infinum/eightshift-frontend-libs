@@ -1,8 +1,8 @@
 import domReady from '@wordpress/dom-ready';
-import manifest from './../manifest.json';
+import { componentJsClass } from './../manifest.json';
 
 domReady(() => {
-	const accordionSelector = `.${manifest.componentJsClass}`;
+	const accordionSelector = `.${componentJsClass}`;
 	const accordionElements = document.querySelectorAll(accordionSelector);
 
 	if (accordionElements.length) {

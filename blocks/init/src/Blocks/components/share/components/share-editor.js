@@ -12,7 +12,6 @@ export const ShareEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-
 	} = attributes;
 
 	const shareUse = checkAttr('shareUse', attributes, manifest);

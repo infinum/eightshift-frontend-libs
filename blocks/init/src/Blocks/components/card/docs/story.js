@@ -1,5 +1,5 @@
 import React from 'react';
-import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { CardEditor } from '../components/card-editor';

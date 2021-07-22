@@ -1,8 +1,8 @@
 import domReady from '@wordpress/dom-ready';
-import manifest from './../manifest.json';
+import { componentJsClass } from './../manifest.json';
 
 domReady(() => {
-	const drawerSelector = `.${manifest.componentJsClass}`;
+	const drawerSelector = `.${componentJsClass}`;
 	const drawerElements = document.querySelector(drawerSelector);
 
 	if (drawerElements) {

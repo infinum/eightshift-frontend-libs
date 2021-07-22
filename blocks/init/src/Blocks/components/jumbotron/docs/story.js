@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { JumbotronEditor } from '../components/jumbotron-editor';
@@ -31,7 +31,7 @@ export const options = () => (
 );
 
 export const toolbar = () => (
-	<JumbotronToolbar	{...props('jumbotron', attributes)} />
+	<JumbotronToolbar {...props('jumbotron', attributes)} />
 );
 
 const aligns = [
