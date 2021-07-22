@@ -15,17 +15,18 @@ if (!$videoButtonUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $videoButtonModalId = Components::checkAttr('videoButtonModalId', $attributes, $manifest);
 $videoButtonLabel = Components::checkAttr('videoButtonLabel', $attributes, $manifest);
-$icon = $manifest['options']['icon'] ?? '';
 
 $videoButtonClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 ?>
@@ -37,5 +38,5 @@ $videoButtonClass = Components::classnames([
 	data-micromodal-trigger="<?php echo \esc_attr($videoButtonModalId); ?>"
 	aria-label="<?php echo \esc_html($videoButtonLabel); ?>"
 >
-	<?php echo \wp_kses_post($icon); ?>
+	<?php echo $manifest['icon']; ?>
 </button>
