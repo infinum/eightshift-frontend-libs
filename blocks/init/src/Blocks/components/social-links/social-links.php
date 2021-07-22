@@ -15,16 +15,17 @@ if (!$socialLinksUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $socialLinks = Components::checkAttr('socialLinks', $attributes, $manifest);
-$icons = $manifest['options']['icons'] ?? [];
 
 $socialLinksClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 ?>
 <ul class="<?php echo \esc_html($socialLinksClass); ?>">
@@ -40,7 +41,7 @@ $socialLinksClass = Components::classnames([
 		?>
 		<li class="<?php echo \esc_html("{$componentClass}__item"); ?>">
 			<a class="<?php echo \esc_html("{$componentClass}__link"); ?>" href="<?php echo esc_url($href); ?>" title="<?php echo esc_attr($title); ?>" target="_blank" rel="nofollow noopener">
-				<?php echo \wp_kses_post($icons[$icon]); ?>
+				<?php echo \wp_kses_post($manifest['icons'][$icon]); ?>
 			</a>
 		</li>
 	<?php } ?>

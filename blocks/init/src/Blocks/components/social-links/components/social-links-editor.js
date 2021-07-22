@@ -5,24 +5,23 @@ import manifest from '../manifest.json';
 
 export const SocialLinksEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 		options: manifestOptions,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	const socialLinksUse = checkAttr('socialLinksUse', attributes, manifest);
 	const socialLinks = checkAttr('socialLinks', attributes, manifest);
 
 	const socialLinksClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const SocialItem = (props) => {
@@ -34,7 +33,7 @@ export const SocialLinksEditor = (attributes) => {
 
 		return (
 			<li className={`${componentClass}__item`}>
-				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: options.icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
+				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: manifestOptions.icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
 			</li>
 		);
 	};
