@@ -19,9 +19,10 @@ if (!$buttonUse) {
 $unique = Components::getUnique();
 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $buttonUrl = Components::checkAttr('buttonUrl', $attributes, $manifest);
 $buttonContent = Components::checkAttr('buttonContent', $attributes, $manifest);
@@ -42,9 +43,10 @@ if ($buttonIsNewTab) {
 }
 
 $buttonClass = Components::classnames([
-	$componentClass,
-	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
 ]);
 
 ?>
