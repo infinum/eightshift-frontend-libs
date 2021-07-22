@@ -1,7 +1,8 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from './../manifest.json';
 
 domReady(() => {
-	const shareLinkSelector = '.js-share-link';
+	const shareLinkSelector = `.${manifest.componentJsClass}`;
 	const shareLinks = document.querySelectorAll(shareLinkSelector);
 
 	if (shareLinks) {

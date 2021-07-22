@@ -5,20 +5,22 @@ import manifest from './../manifest.json';
 
 export const ShareEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
+
 	} = attributes;
 
 	const shareUse = checkAttr('shareUse', attributes, manifest);
 
 	const shareClass = classnames(
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	);
 
 	const shareItemClass = classnames(

@@ -21,19 +21,23 @@ $socialNetworks = [
 	'pinterest' => "https://pinterest.com/pin/create/button/?url={$postUrl}&media={$postImageUrl}&description={$postTitle}",
 ];
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentJsClass = $manifest['componentJsClass'] ?? '';
+
 
 $shareClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $shareItemClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'item'),
 	Components::selector($blockClass, $blockClass, 'item'),
-	Components::selector($componentClass, "js-{$componentClass}-link"),
+	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
 ?>
