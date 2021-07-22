@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import Select, { components } from 'react-select';
 import { useState } from '@wordpress/element';
 import { BaseControl } from '@wordpress/components';

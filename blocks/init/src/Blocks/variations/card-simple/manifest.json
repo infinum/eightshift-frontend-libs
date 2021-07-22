@@ -8,15 +8,17 @@
 	},
 	"example": {
 		"attributes": {
-			"headingContent": "Test Heading",
-			"introContent": "Test Intro",
-			"buttonContent": "Button Link Test"
+			"cardCardHeadingContent": "Test Heading",
+			"cardCardIntroContent": "Test Intro",
+			"cardCardParagraphUse": false,
+			"cardCardButtonContent": "Button Link Test"
 		}
 	},
 	"attributes": {
-		"headingContent": "Test Heading",
-		"introContent": "Test Intro",
-		"buttonContent": "Button Link Test"
+		"cardCardHeadingContent": "Test Heading",
+		"cardCardIntroContent": "Test Intro",
+		"cardCardParagraphUse": false,
+		"cardCardButtonContent": "Button Link Test"
 	},
 	"scope": [
 		"inserter"
