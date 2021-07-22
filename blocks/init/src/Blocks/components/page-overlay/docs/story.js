@@ -1,5 +1,5 @@
 import React from 'react';
-import { getExample, props } from '@eightshift/frontend-libs/scripts/editor';
+import { getExample, props } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { PageOverlayEditor } from '../components/page-overlay-editor';

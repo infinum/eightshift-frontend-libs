@@ -61,19 +61,19 @@ $columnRightClass = Components::classnames([
 
 		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo \esc_attr($columnLeftClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutThreeColumnsLeft)); ?>
+				<?php echo Components::ensureString($layoutThreeColumnsLeft); ?>
 			</div>
 		<?php } ?>
 
 		<?php if ($layoutThreeColumnsCenter) { ?>
 			<div class="<?php echo \esc_attr($columnCenterClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutThreeColumnsCenter)); ?>
+				<?php echo Components::ensureString($layoutThreeColumnsCenter); ?>
 			</div>
 		<?php } ?>
 
 		<?php if ($layoutThreeColumnsRight) { ?>
 			<div class="<?php echo \esc_attr($columnRightClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutThreeColumnsRight)); ?>
+				<?php echo Components::ensureString($layoutThreeColumnsRight); ?>
 			</div>
 		<?php } ?>
 

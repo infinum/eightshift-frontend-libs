@@ -6,6 +6,7 @@ import manifest from '../manifest.json';
 export const SocialLinksEditor = (attributes) => {
 	const {
 		componentClass,
+		icons,
 	} = manifest;
 
 	const {
@@ -32,7 +33,7 @@ export const SocialLinksEditor = (attributes) => {
 
 		return (
 			<li className={`${componentClass}__item`}>
-				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: manifest.icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
+				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
 			</li>
 		);
 	};
