@@ -2,6 +2,7 @@
 	"componentName": "share",
 	"title": "Share",
 	"componentClass": "share",
+	"componentJsClass": "js-share",
 	"example": {
 		"attributes": {
 			"shareUse": true

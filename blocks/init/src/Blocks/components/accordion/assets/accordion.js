@@ -1,5 +1,4 @@
 import { elementChildrenHeight } from '@eightshift/frontend-libs/scripts/helpers';
-
 export class Accordion {
 	constructor(options) {
 		this.accordion = options.accordion;

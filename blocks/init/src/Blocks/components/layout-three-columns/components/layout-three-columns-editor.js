@@ -1,27 +1,28 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
-	const layoutUse = checkAttr('layoutUse', attributes, manifest);
-	const layoutLeft = checkAttr('layoutLeft', attributes, manifest);
-	const layoutCenter = checkAttr('layoutCenter', attributes, manifest);
-	const layoutRight = checkAttr('layoutRight', attributes, manifest);
+	const layoutThreeColumnsUse = checkAttr('layoutThreeColumnsUse', attributes, manifest);
+	const layoutThreeColumnsLeft = checkAttr('layoutThreeColumnsLeft', attributes, manifest);
+	const layoutThreeColumnsCenter = checkAttr('layoutThreeColumnsCenter', attributes, manifest);
+	const layoutThreeColumnsRight = checkAttr('layoutThreeColumnsRight', attributes, manifest);
 
 	const layoutClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const wrapClass = classnames([
@@ -52,24 +53,24 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 
 	return (
 		<>
-			{layoutUse &&
+			{layoutThreeColumnsUse &&
 				<div className={layoutClass}>
 					<div className={wrapClass}>
-						{layoutLeft &&
+						{layoutThreeColumnsLeft &&
 							<div className={columnLeftClass}>
-								{layoutLeft}
+								{layoutThreeColumnsLeft}
 							</div>
 						}
 
-						{layoutCenter &&
+						{layoutThreeColumnsCenter &&
 							<div className={columnCenterClass}>
-								{layoutCenter}
+								{layoutThreeColumnsCenter}
 							</div>
 						}
 
-						{layoutRight &&
+						{layoutThreeColumnsRight &&
 							<div className={columnRightClass}>
-								{layoutRight}
+								{layoutThreeColumnsRight}
 							</div>
 						}
 					</div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const AccordionOptions = (attributes) => {

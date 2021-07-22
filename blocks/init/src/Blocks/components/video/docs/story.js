@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { VideoEditor } from '../components/video-editor';
@@ -13,11 +14,15 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('video', manifest);
 
 export const editor = () => (
-	<VideoEditor {...props} />
+	<VideoEditor {...props('video', attributes)} />
 );
 export const options = () => (
-	<VideoOptions {...props} />
+	<VideoOptions
+		{...props('video', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );

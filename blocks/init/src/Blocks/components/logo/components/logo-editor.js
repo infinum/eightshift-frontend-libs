@@ -1,17 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const LogoEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const logoUse = checkAttr('logoUse', attributes, manifest);
@@ -21,8 +21,9 @@ export const LogoEditor = (attributes) => {
 	const logoHref = checkAttr('logoHref', attributes, manifest);
 
 	const logoClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const imgClass = classnames([

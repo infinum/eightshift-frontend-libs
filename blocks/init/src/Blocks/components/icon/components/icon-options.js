@@ -1,11 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { __, sprintf } from '@wordpress/i18n';
 import { ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOption } from '@eightshift/frontend-libs/scripts/editor';
-import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
+import { checkAttr, getAttrKey, getOption, CustomSelect } from '@eightshift/frontend-libs/scripts';
 import { components } from 'react-select';
-
 import manifest from './../manifest.json';
 
 const {

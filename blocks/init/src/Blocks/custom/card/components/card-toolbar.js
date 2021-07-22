@@ -1,5 +1,5 @@
 import React from 'react';
-import { props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { CardToolbar as CardToolbarComponent } from '../../../components/card/components/card-toolbar';
 import manifest from './../manifest.json';
 

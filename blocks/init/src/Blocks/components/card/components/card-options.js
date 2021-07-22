@@ -1,5 +1,5 @@
 import React from 'react';
-import { props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
+import { props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';

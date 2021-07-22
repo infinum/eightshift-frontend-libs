@@ -1,9 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {

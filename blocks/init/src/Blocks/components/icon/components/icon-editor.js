@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const IconEditor = (attributes) => {

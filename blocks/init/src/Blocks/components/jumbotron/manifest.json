@@ -5,9 +5,6 @@
 	"example": {
 		"attributes": {
 			"jumbotronContentPosition": "center center",
-			"headingAlign": "center",
-			"paragraphAlign": "center",
-			"buttonAlign": "center",
 			"jumbotronUse": true
 		}
 	},

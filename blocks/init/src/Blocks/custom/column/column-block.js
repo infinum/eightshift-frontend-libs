@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelect } from '@wordpress/data';
-import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts/editor';
+import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ColumnEditor } from './components/column-editor';
 import { ColumnOptions } from './components/column-options';

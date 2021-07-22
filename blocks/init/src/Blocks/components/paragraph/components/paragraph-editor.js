@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { pasteInto, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { selector, checkAttr, getAttrKey, pasteInto, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -11,15 +10,15 @@ export const ParagraphEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 		placeholder = __('Add Content', 'eightshift-frontend-libs'),
 
 		onSplit,
@@ -28,14 +27,13 @@ export const ParagraphEditor = (attributes) => {
 		onRemove,
 	} = attributes;
 
-	const options = {...manifestOptions, ...attributes.options};
-
 	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);
 
 	const paragraphClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
@@ -57,7 +55,7 @@ export const ParagraphEditor = (attributes) => {
 						onMerge={mergeBlocks}
 						onReplace={onReplace}
 						onRemove={onRemove}
-						onPaste={(event) => pasteInto(event, attributes, setAttributes, options.pasteAllowTags, 'p')}
+						onPaste={(event) => pasteInto(event, attributes, setAttributes, manifestOptions.pasteAllowTags, 'p')}
 						deleteEnter={true}
 						data-id={unique}
 					/>

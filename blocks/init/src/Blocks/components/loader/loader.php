@@ -15,16 +15,18 @@ if (!$loaderUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $loaderUseOverlay = Components::checkAttr('loaderUseOverlay', $attributes, $manifest);
 
 $loaderClass = Components::classnames([
-	$componentClass,
-	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
 ]);
 ?>
 

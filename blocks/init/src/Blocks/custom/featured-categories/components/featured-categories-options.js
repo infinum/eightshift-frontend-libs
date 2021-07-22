@@ -3,9 +3,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
+import { CustomSelect, icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {

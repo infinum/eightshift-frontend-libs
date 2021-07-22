@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { getOption } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr, getAttrKey, getOption } from '@eightshift/frontend-libs/scripts';
 import { AlignmentToolbar } from '@wordpress/block-editor';
 import manifest from './../manifest.json';
 

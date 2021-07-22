@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const CarouselEditor = ({ attributes }) => {

@@ -1,6 +1,5 @@
 import React from 'react';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
-import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components';
+import { LinkToolbarButton, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ButtonToolbar = (attributes) => {

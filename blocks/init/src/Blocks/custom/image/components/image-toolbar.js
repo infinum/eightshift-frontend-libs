@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
 import manifest from './../manifest.json';
 

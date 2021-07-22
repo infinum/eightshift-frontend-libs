@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelect } from '@wordpress/data';
-import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts/editor';
+import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts';
 import { GroupEditor } from './components/group-editor';
 
 export const Group = (props) => {

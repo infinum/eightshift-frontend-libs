@@ -3,9 +3,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, SelectControl, RangeControl, ToggleControl, Icon, Spinner } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { camelize } from '@eightshift/frontend-libs/scripts/helpers';
-import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
+import { CustomSelect, icons, camelize } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {

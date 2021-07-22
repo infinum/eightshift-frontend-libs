@@ -1,7 +1,7 @@
 import React from 'react';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props } from '@eightshift/frontend-libs/scripts';
 import { VideoOptions as VideoOptionsComponent } from '../../../components/video/components/video-options';
 
 export const VideoOptions = ({ attributes, setAttributes }) => {

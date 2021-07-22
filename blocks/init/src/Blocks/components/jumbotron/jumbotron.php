@@ -16,32 +16,32 @@ if (!$jumbotronUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 $jumbotronClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 ?>
 
 <div class="<?php echo \esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',
-		array_merge(
-			Components::props('image', $attributes),
-			[
-				'blockClass' => $componentClass,
-				'imageUsePlaceholder' => true,
-				'imageBg' => true,
-			]
-		)
+		Components::props('image', $attributes, [
+			'blockClass' => $componentClass,
+			'imageUsePlaceholder' => true,
+			'imageBg' => true,
+		])
 	);
 	?>
 
@@ -50,32 +50,23 @@ $jumbotronClass = Components::classnames([
 			<?php
 			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'heading',
-				array_merge(
-					Components::props('heading', $attributes),
-					[
-						'blockClass' => $componentClass
-					]
-				)
+				Components::props('heading', $attributes, [
+					'blockClass' => $componentClass
+				])
 			),
 
 			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'paragraph',
-				array_merge(
-					Components::props('paragraph', $attributes),
-					[
-						'blockClass' => $componentClass
-					]
-				)
+				Components::props('paragraph', $attributes, [
+					'blockClass' => $componentClass
+				])
 			),
 
 			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'button',
-				array_merge(
-					Components::props('button', $attributes),
-					[
-						'blockClass' => $componentClass
-					]
-				)
+				Components::props('button', $attributes, [
+					'blockClass' => $componentClass
+				])
 			);
 			?>
 		</div>

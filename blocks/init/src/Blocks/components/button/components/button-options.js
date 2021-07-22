@@ -1,9 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
 import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOption } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {

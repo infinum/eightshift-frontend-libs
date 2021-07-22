@@ -1,5 +1,5 @@
 import React from 'react';
-import { getExample, getOptions, props } from '@eightshift/frontend-libs/scripts/editor';
+import { getExample, getOptions, props } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { AccordionEditor } from '../components/accordion-editor';

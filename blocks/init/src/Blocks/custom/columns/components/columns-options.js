@@ -2,9 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, Icon, RangeControl } from '@wordpress/components';
-import { Responsive, HelpModal } from '@eightshift/frontend-libs/scripts/components';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
+import { Responsive, HelpModal, icons, ucfirst, checkAttrResponsive } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ColumnsOptions = ({ attributes, setAttributes }) => {

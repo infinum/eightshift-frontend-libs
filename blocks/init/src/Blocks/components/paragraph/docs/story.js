@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { Fragment } from '@wordpress/element';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
@@ -14,14 +15,18 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('paragraph', manifest);
 
 export const editor = () => (
-	<ParagraphEditor {...props} />
+	<ParagraphEditor {...props('paragraph', attributes)} />
 );
 
 export const options = () => (
-	<ParagraphOptions {...props} />
+	<ParagraphOptions
+		{...props('paragraph', attributes, {
+			options: getOptions(attributes, manifest),
+		})}
+	/>
 );
 
 export const size = () => (
@@ -29,9 +34,10 @@ export const size = () => (
 		{manifest.options.paragraphSize.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
-					{...props}
-					paragraphContent={values.label}
-					paragraphSize={values.value}
+					{...props('paragraph', attributes, {
+						paragraphContent: values.label, 
+						paragraphSize: values.value, 
+					})}
 				/>
 				<br />
 			</Fragment>
@@ -44,9 +50,10 @@ export const color = () => (
 		{manifest.options.paragraphColor.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
-					{...props}
-					paragraphContent={values}
-					paragraphColor={values}
+					{...props('paragraph', attributes, {
+						paragraphContent: values,
+						paragraphColor: values,
+					})}
 				/>
 				<br />
 			</Fragment>
@@ -58,9 +65,10 @@ export const colorWithLink = () => (
 		{manifest.options.paragraphColor.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
-					{...props}
-					paragraphContent={`${values} - Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipiscing elit.`}
-					paragraphColor={values}
+					{...props('paragraph', attributes, {
+						paragraphContent: `${values} - Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipiscing elit.`,
+						paragraphColor: values,
+					})}
 				/>
 				<br />
 			</Fragment>

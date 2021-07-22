@@ -1,8 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
 import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 import manifest from './../manifest.json';
@@ -36,12 +35,10 @@ export const JumbotronToolbar = (attributes) => {
 
 				<HeadingToolbar
 					{...props('heading', attributes)}
-					setAttributes={setAttributes}
 				/>
 
 				<ButtonToolbar
 					{...props('button', attributes)}
-					setAttributes={setAttributes}
 				/>
 				</>
 			}

@@ -1,6 +1,5 @@
 import React from 'react';
-import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { HeadingLevel, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingToolbar = (attributes) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
