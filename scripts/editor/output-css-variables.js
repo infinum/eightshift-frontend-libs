@@ -178,11 +178,11 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 /**
  * Setting defined variables to each breakpoint.
  *
- * @param {object} attributes					- Attributes fetched from manifest.
- * @param {object} variables					- Variables fetched from manifest.
- * @param {object} data								- Preset objects separated in breakpoints.
- * @param {array} manifest						- Component/block manifest data.
- * @param {object} defaultBreakpoints	- Default breakpoints for mobile/desktop first.
+ * @param {object} attributes         - Attributes fetched from manifest.
+ * @param {object} variables          - Variables fetched from manifest.
+ * @param {object} data               - Preset objects separated in breakpoints.
+ * @param {array} manifest            - Component/block manifest data.
+ * @param {object} defaultBreakpoints - Default breakpoints for mobile/desktop first.
  *
  * @return {object} Filled object with variables data separated in breakpoints.
  */
