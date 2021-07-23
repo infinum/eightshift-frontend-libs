@@ -12,15 +12,15 @@ export default {
 	},
 };
 
-const open = () => document.body.classList.add('menu-is-open');
-const close = () => document.body.classList.remove('menu-is-open');
+const open = () => document.body.classList.add('is-menu-open');
+const close = () => document.body.classList.remove('is-menu-open');
 
 export const editor = () => {
 	close();
 
 	return (
 		<div>
-			<div>This element is seen only on mobile screen.</div>
+			<div>This element is visible only on a small screen.</div>
 			<br /><br />
 			<HamburgerEditor />
 		</div>
@@ -32,7 +32,7 @@ export const isOpen = () => {
 
 	return (
 		<div>
-			<div>This element is seen only on mobile screen.</div>
+			<div>This element is visible only on a small screen.</div>
 			<br /><br />
 			<HamburgerEditor />
 		</div>
