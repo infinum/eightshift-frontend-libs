@@ -89,7 +89,7 @@ export const ColorPickerComponent = ({
 
 	const getButtonIcon = () => {
 		if (!value) {
-			return icons.color;
+			return icons.colorSelect;
 		}
 
 		switch (type) {
