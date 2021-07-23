@@ -31,11 +31,6 @@ $layoutClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
-$wrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($selectorClass, $selectorClass, 'wrap'),
-]);
-
 $columnLeftClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'column'),
 	Components::selector($selectorClass, $selectorClass, 'column'),
@@ -57,25 +52,21 @@ $columnRightClass = Components::classnames([
 ?>
 
 <<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
-	<div class="<?php echo \esc_attr($wrapClass); ?>">
+	<?php if ($layoutThreeColumnsLeft) { ?>
+		<div class="<?php echo \esc_attr($columnLeftClass); ?>">
+			<?php echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</div>
+	<?php } ?>
 
-		<?php if ($layoutThreeColumnsLeft) { ?>
-			<div class="<?php echo \esc_attr($columnLeftClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</div>
-		<?php } ?>
+	<?php if ($layoutThreeColumnsCenter) { ?>
+		<div class="<?php echo \esc_attr($columnCenterClass); ?>">
+			<?php echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</div>
+	<?php } ?>
 
-		<?php if ($layoutThreeColumnsCenter) { ?>
-			<div class="<?php echo \esc_attr($columnCenterClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</div>
-		<?php } ?>
-
-		<?php if ($layoutThreeColumnsRight) { ?>
-			<div class="<?php echo \esc_attr($columnRightClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</div>
-		<?php } ?>
-
-	</div>
+	<?php if ($layoutThreeColumnsRight) { ?>
+		<div class="<?php echo \esc_attr($columnRightClass); ?>">
+			<?php echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</div>
+	<?php } ?>
 </<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?>>
