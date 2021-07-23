@@ -53,13 +53,13 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			$brakepointValue = $globalManifest['globalVariables']['breakpoints'][$brakepoint] ?? '';
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$brakepoint] ?? '';
 
-			if (!$brakepointValue) {
+			if (!$breakpointValue) {
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 
