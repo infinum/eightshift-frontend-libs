@@ -1,5 +1,5 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
 
@@ -26,6 +26,7 @@ export const AlignmentToolbarType = {
  * @param {function} props.onChange                       - Callback that applies the changes.
  * @param {string} props.value                            - Current value.
  * @param {React.Component?} props.label                  - Tooltip of the picker button (if not shown inline).
+ * @param {string} props.title                            - Component/block name.
  * @param {boolean} [props.showInline=false]              - If `true`, the controls are displayed inline instead of a dropdown button.
  */
 export const AlignmentToolbar = (props) => {
@@ -35,6 +36,7 @@ export const AlignmentToolbar = (props) => {
 		onChange,
 		value,
 		label,
+		title = type === AlignmentToolbarType.TEXT ? __('text') : __('items'),
 		showInline = false,
 	} = props;
 
@@ -47,22 +49,22 @@ export const AlignmentToolbar = (props) => {
 	const textAligns = {
 		left: showAlignStart ? {
 			icon: icons.textAlignLeft,
-			title: __('Align text left'),
+			title: sprintf(__('Align %s left'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.textAlignCenter,
-			title: __('Align text center'),
+			title: sprintf(__('Align %s center'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
-			icon: icons.textAlignCenter,
-			title: __('Align text right'),
+			icon: icons.textAlignRight,
+			title: sprintf(__('Align %s right'), title),
 			value: 'right',
 		} : null,
 		justify: showAlignJustify ? {
 			icon: icons.textAlignJustify,
-			title: __('Justify text'),
+			title: sprintf(__('Justify %s'), title),
 			value: 'justify',
 		} : null
 	}
@@ -70,22 +72,22 @@ export const AlignmentToolbar = (props) => {
 	const horizontalAligns = {
 		left: showAlignStart ? {
 			icon: icons.horizontalAlignLeft,
-			title: __('Align left'),
+			title: sprintf(__('Align %s left'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.horizontalAlignCenter,
-			title: __('Align center'),
+			title: sprintf(__('Align %s center'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
 			icon: icons.horizontalAlignRight,
-			title: __('Align right'),
+			title: sprintf(__('Align %s right'), title),
 			value: 'right',
 		} : null,
 		stretch: showAlignStretch ? {
 			icon: icons.horizontalAlignStretch,
-			title: __('Stretch'),
+			title: sprintf(__('Stretch %s'), title),
 			value: 'stretch',
 		} : null
 	}
@@ -93,22 +95,22 @@ export const AlignmentToolbar = (props) => {
 	const verticalAligns = {
 		left: showAlignStart ? {
 			icon: icons.verticalAlignLeft,
-			title: __('Align left'),
+			title: sprintf(__('Align %s top'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.verticalAlignCenter,
-			title: __('Align center'),
+			title: sprintf(__('Align %s middle'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
 			icon: icons.verticalAlignRight,
-			title: __('Align right'),
+			title: sprintf(__('Align %s bottom'), title),
 			value: 'right',
 		} : null,
 		stretch: showAlignStretch ? {
 			icon: icons.verticalAlignStretch,
-			value: __('Stretch'),
+			value: sprintf(__('Stretch %s'), title),
 			align: 'stretch',
 		} : null
 	}
