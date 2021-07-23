@@ -74,6 +74,22 @@ export const globalInner = (itemValues, itemKey) => {
 }
 
 /**
+ * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
+ * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
+ * If there are no breakpoints, min and max will be empty strings.
+ * 
+ * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
+ * 
+ * @return {object} Object with min and max keys.
+ */
+const getDefaultBreakpoints = (breakpoints) => {
+	return {
+		min: breakpoints?.[0]?.[0] || '',
+		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
+	};
+}
+
+/**
  * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
  *
  * @param {array}  attributeVariables  - Array of attribute variables object.
@@ -162,14 +178,15 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 /**
  * Setting defined variables to each breakpoint.
  *
- * @param {object} attributes - Attributes fetched from manifest.
- * @param {object} variables  - Variables fetched from manifest.
- * @param {object} data       - Preset objects separated in breakpoints.
- * @param {array} manifest    - Component/block manifest data.
+ * @param {object} attributes					- Attributes fetched from manifest.
+ * @param {object} variables					- Variables fetched from manifest.
+ * @param {object} data								- Preset objects separated in breakpoints.
+ * @param {array} manifest						- Component/block manifest data.
+ * @param {object} defaultBreakpoints	- Default breakpoints for mobile/desktop first.
  *
  * @return {object} Filled object with variables data separated in breakpoints.
  */
-const setVariablesToBreakpoints = (attributes, variables, data, manifest) => {
+const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
 	// Iterate each variable.
 	for (const [variableName, variableValue] of Object.entries(variables)) {
 
@@ -184,13 +201,16 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest) => {
 
 			// Define variables from breakpointItem.
 			const {
-				breakpoint = 'default', // If breakpoint is not set use default name.
+				breakpoint: itemBreakpoint, // Put in temporary variable before checking the type of breakpointItem.
 				inverse = false, // If inverse is not set use mobile first.
 				variable = [],
 			} = breakpointItem;
 
 			// Check if we are using mobile or desktop first. Mobile first is the default.
 			const type = inverse ? 'max' : 'min';
+
+			// If breakpoint is not set or has default breakpoint value use default name.
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
@@ -248,7 +268,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Define variables from globalManifest.
 	const {
-		breakpoints,
+		breakpoints: globalBreakpoints,
 	} = globalManifest.globalVariables;
 
 	// Define variables from manifest.
@@ -258,8 +278,15 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 		responsiveAttributes,
 	} = manifest;
 
+	const sortedBreakpoints = Object.entries(globalBreakpoints)
+		.sort((a, b) => {
+			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+		});
+
+	const defaultBreakpoints = getDefaultBreakpoints(sortedBreakpoints);
+
 	// Get the initial data array.
-	const data = prepareVariableData(breakpoints);
+	const data = prepareVariableData(sortedBreakpoints);
 
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
@@ -268,21 +295,21 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
 		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest);
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
 		}
 
 		// Iterate each variable from variables field.
-		setVariablesToBreakpoints(attributes, variables, data, manifest);
+		setVariablesToBreakpoints(attributes, variables, data, manifest, defaultBreakpoints);
 	}
 
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (variablesEditor) {
 		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest);
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
 		}
 
 		// Iterate each variable from variablesEditor field.
-		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest);
+		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
 	}
 
 	// Loop data and provide correct selectors from data array.
@@ -350,18 +377,13 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
  */
 export const prepareVariableData = (globalBreakpoints) => {
 
-	const sortedGlobalBreakpoints = Object.entries(globalBreakpoints)
-		.sort((a, b) => {
-			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
-		});
-
 	// Define the min and max arrays.
 	const min = [];
 	const max = [];
 	let minBreakpointValue = 0;
 
 	// Loop the global breakpoints and populate the data.
-	Object.values(sortedGlobalBreakpoints).forEach(([item, value]) => {
+	Object.values(globalBreakpoints).forEach(([item, value]) => {
 
 		// Initial inner object.
 		const itemObject = {
