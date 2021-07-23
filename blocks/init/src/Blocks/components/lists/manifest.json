@@ -28,6 +28,10 @@
 			"type": "string",
 			"default": "primary"
 		},
+		"listsColorOnlyMarker": {
+			"type": "boolean",
+			"default": false
+		},
 		"listsUse": {
 			"type": "boolean",
 			"default": true
@@ -36,16 +40,22 @@
 	"options": {
 		"listsSize": [
 			{
-				"label": "Default (1em)",
+				"label": "Default (1rem)",
 				"value": "default"
 			},
 			{
-				"label": "Small (0.8em)",
+				"label": "Small (0.8rem)",
 				"value": "small"
 			}
 		],
 		"listsColor": [
 			"primary",
+			"green",
+			"ocean",
+			"yellow",
+			"blue",
+			"red",
+			"cream",
 			"black"
 		]
 	},
@@ -54,28 +64,28 @@
 			"default": [
 				{
 					"variable": {
-						"lists-font-size": "0.8em",
+						"lists-font-size": "0.8rem",
 						"lists-line-height": "1.5"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"lists-font-size": "1em"
+						"lists-font-size": "1rem"
 					}
 				}
 			],
 			"small": [
 				{
 					"variable": {
-						"lists-font-size": "0.6em",
+						"lists-font-size": "0.6rem",
 						"lists-line-height": "1.3"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"lists-font-size": "0.8em"
+						"lists-font-size": "0.8rem"
 					}
 				}
 			]
@@ -86,7 +96,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-primary)",
 						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-light)"
+						"lists-link-color-hover": "var(--global-colors-yellow)"
 					}
 				}
 			],
@@ -95,7 +105,80 @@
 					"variable": {
 						"lists-color": "var(--global-colors-black)",
 						"lists-link-color": "var(--global-colors-primary)",
-						"lists-link-color-hover": "var(--global-colors-light)"
+						"lists-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"green": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-green)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"ocean": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-ocean)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-red)"
+					}
+				}
+			],
+			"yellow": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-yellow)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"blue": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-blue)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"red": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-red)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"cream": [
+				{
+					"variable": {
+						"lists-color": "var(--global-colors-cream)",
+						"lists-link-color": "var(--global-colors-black)",
+						"lists-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			]
+		},
+		"listsColorOnlyMarker": {
+			"false": [
+				{
+					"variable": {
+						"lists-marker-color": "var(--lists-color)",
+						"lists-text-color": "var(--lists-color)"
+					}
+				}
+			],
+			"true": [
+				{
+					"variable": {
+						"lists-marker-color": "var(--lists-color)",
+						"lists-text-color": "currentColor",
+						"lists-link-color": "var(--lists-color)"
 					}
 				}
 			]

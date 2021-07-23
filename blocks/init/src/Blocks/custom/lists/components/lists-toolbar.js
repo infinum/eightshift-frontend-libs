@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, getOption } from '@eightshift/frontend-libs/scripts';
-import { AlignmentToolbar } from '@wordpress/block-editor';
+import { checkAttr, getAttrKey, getOption, AlignmentToolbar } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ListsToolbar = ({ attributes, setAttributes }) => {
@@ -15,7 +14,8 @@ export const ListsToolbar = ({ attributes, setAttributes }) => {
 		<AlignmentToolbar
 			value={listsAlign}
 			options={getOption('listsAlign', attributes, manifest)}
-			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
+			label={sprintf(__('%s text align', 'newboilerplate'), manifestTitle)}
+			title={manifestTitle}
 			onChange={(value) => setAttributes({ [getAttrKey('listsAlign', attributes, manifest)]: value })}
 		/>
 	);

@@ -1,7 +1,6 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect, IconToggle, BlockIcon } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
@@ -14,9 +13,11 @@ export const ListsOptions = (attributes) => {
 		label = manifestTitle,
 		listsShowControls = true,
 
-		showListsUse = true,
+		showListsUse = false,
+		showLabel = false,
 		showListsColor = true,
 		showListsSize = true,
+		showListsColorOnlyMarker = true,
 	} = attributes;
 
 	if (!listsShowControls) {
@@ -26,34 +27,23 @@ export const ListsOptions = (attributes) => {
 	const listsUse = checkAttr('listsUse', attributes, manifest);
 	const listsColor = checkAttr('listsColor', attributes, manifest);
 	const listsSize = checkAttr('listsSize', attributes, manifest);
+	const listsColorOnlyMarker = checkAttr('listsColorOnlyMarker', attributes, manifest);
 
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showListsUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={listsUse}
-					onChange={(value) => setAttributes({ [getAttrKey('listsUse', attributes, manifest)]: value })}
-				/>
-			}
+			<ComponentUseToggle
+				label={label}
+				checked={listsUse}
+				onChange={(value) => setAttributes({ [getAttrKey('listsUse', attributes, manifest)]: value })}
+				showUseToggle={showListsUse}
+				showLabel={showLabel}
+			/>
 
 			{listsUse &&
 				<>
 					{showListsColor &&
 						<ColorPaletteCustom
-							label={
-								<>
-									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-frontend-libs')}
-								</>
-							}
+							label={<IconLabel icon={icons.color} label={__('Color', 'newboilerplate')} />}
 							colors={getOption('listsColor', attributes, manifest, true)}
 							value={listsColor}
 							onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
@@ -61,16 +51,23 @@ export const ListsOptions = (attributes) => {
 					}
 
 					{showListsSize &&
-						<SelectControl
-							label={
-								<>
-									<Icon icon={icons.textSize} />
-									{__('Text size', 'eightshift-frontend-libs')}
-								</>
-							}
+						<CustomSelect
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'newboilerplate')} />}
 							value={listsSize}
 							options={getOption('listsSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: value })}
+							isClearable={false}
+							isSearchable={false}
+							simpleValue
+						/>
+					}
+
+					{showListsColorOnlyMarker &&
+						<IconToggle
+							icon={<BlockIcon iconName='es-list-item' />}
+							label={__('Show color only on list markers', 'newboilerplate')}
+							checked={listsColorOnlyMarker}
+							onChange={(value) => setAttributes({ [getAttrKey('listsColorOnlyMarker', attributes, manifest)]: value })}
 						/>
 					}
 				</>

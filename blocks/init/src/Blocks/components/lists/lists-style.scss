@@ -1,12 +1,16 @@
 .lists {
 	margin: 0;
 	padding-left: 0;
-	color: var(--lists-color);
+	color: var(--lists-text-color, var(--lists-text-color, currentColor));
 	font-size: var(--lists-font-size);
 	line-height: var(--lists-line-height);
 
 	li {
-		margin-left: 1.1em;
+		margin-left: 1.1rem;
+
+		&::marker {
+			color: var(--lists-marker-color, currentColor);
+		}
 	}
 
 	a {

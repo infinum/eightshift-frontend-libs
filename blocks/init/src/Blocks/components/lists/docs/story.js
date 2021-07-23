@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts/editor';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ListsEditor } from '../components/lists-editor';
@@ -53,6 +53,23 @@ export const color = () => (
 					{...props('lists', attributes, {
 						listsContent: `<li>List Item ${values} 1</li><li>List Item ${values} 2</li>`,
 						listsColor: values,
+					})}
+				/>
+				<br /><br />
+			</Fragment>
+		))}
+	</Fragment>
+);
+
+export const colorOnlyMarkers = () => (
+	<Fragment>
+		{manifest.options.listsColor.map((values, index) => (
+			<Fragment key={index}>
+				<ListsEditor
+					{...props('lists', attributes, {
+						listsContent: `<li>List Item ${values} 1</li><li>List Item ${values} 2</li>`,
+						listsColor: values,
+						listsColorOnlyMarker: true,
 					})}
 				/>
 				<br /><br />
