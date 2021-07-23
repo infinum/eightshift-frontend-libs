@@ -56,7 +56,7 @@ export const level = () => (
 			<Fragment key={index}>
 				<HeadingEditor
 					{...props('heading', attributes, {
-						headingContent: `H - ${values.toString()}`,
+						headingContent: `H${values.toString()}`,
 						headingLevel: values,
 					})}
 				/>

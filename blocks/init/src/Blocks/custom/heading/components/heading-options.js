@@ -6,14 +6,12 @@ import { HeadingOptions as HeadingOptionsComponent } from '../../../components/h
 
 export const HeadingOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Heading Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Heading', 'eightshift-frontend-libs')}>
 			<HeadingOptionsComponent
 				{...props('heading', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>
-
 		</PanelBody>
 	);
 };

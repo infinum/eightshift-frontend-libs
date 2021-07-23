@@ -17,17 +17,17 @@ export const HeadingToolbar = (attributes) => {
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingLevel = checkAttr('headingLevel', attributes, manifest);
 
+	if (!headingUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{headingUse &&
-				<>
-					{showHeadingLevel &&
-						<HeadingLevel
-							selectedLevel={headingLevel}
-							onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
-						/>
-					}
-				</>
+			{showHeadingLevel &&
+				<HeadingLevel
+					selectedLevel={headingLevel}
+					onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
+				/>
 			}
 		</>
 	);
