@@ -1,0 +1,17 @@
+# AlignmentToolbar Options Component
+
+Component that allows flexible text or object alignment options display.
+
+## Implementation
+
+```js
+import { AlignmentToolbar } from '../../alignment-toolbar/alignment-toolbar';
+
+<AlignmentToolbar
+	value={blockquoteContentAlign}
+	options={getOptions(manifest, componentName, 'contentAlign', options)}
+	label={__('Content align', 'productive')}
+	onChange={(value) => setAttributes({ [`${componentName}ContentAlign`]: value })}
+/>
+
+```
