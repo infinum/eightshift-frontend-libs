@@ -3,15 +3,14 @@ import manifest from './../manifest.json';
 
 domReady(async () => {
 	const drawerSelector = `.${manifest.componentJsClass}`;
-	const drawerElements = document.querySelector(drawerSelector);
+	const drawerElement = document.querySelector(drawerSelector);
 
-	if (!drawerElements) {
+	if (!drawerElement) {
 		return;
 	}
 
 	const { Drawer } = await import('./drawer');
-	const drawer = new Drawer({
-		drawerSelector
-	});
+
+	const drawer = new Drawer({ drawerElement });
 	drawer.init();
 });
