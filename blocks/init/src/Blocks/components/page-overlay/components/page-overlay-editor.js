@@ -22,11 +22,9 @@ export const PageOverlayEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
-	return (
-		<>
-			{pageOverlayUse &&
-				<div className={overlayClass}></div>
-			}
-		</>
-	);
+	if (!pageOverlayUse) {
+		return null;
+	}
+
+	return (<div className={overlayClass}></div>);
 };
