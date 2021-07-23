@@ -65,21 +65,25 @@
 		"buttonSize": [
 			{
 				"label": "Default",
-				"value": "default"
+				"value": "default",
+				"icon": "checkCircle"
 			},
 			{
 				"label": "Big",
-				"value": "big"
+				"value": "big",
+				"icon": "arrowsRightDiagonal"
 			}
 		],
 		"buttonWidth": [
 			{
 				"label": "Default",
-				"value": "default"
+				"value": "default",
+				"icon": "checkCircle"
 			},
 			{
 				"label": "Block",
-				"value": "block"
+				"value": "block",
+				"icon": "arrowsHorizontal"
 			}
 		],
 		"buttonColor": [

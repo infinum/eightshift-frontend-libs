@@ -18,7 +18,7 @@ export const ButtonEditor = (attributes) => {
 		selectorClass = componentClass,
 		additionalClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);
@@ -30,23 +30,23 @@ export const ButtonEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	if (!buttonUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{buttonUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<RichText
-						placeholder={placeholder}
-						value={buttonContent}
-						onChange={(value) => setAttributes({ [getAttrKey('buttonContent', attributes, manifest)]: value })}
-						className={buttonClass}
-						keepPlaceholderOnFocus
-						allowedFormats={[]}
-						data-id={unique}
-					/>
-				</>
-			}
+			<RichText
+				placeholder={placeholder}
+				value={buttonContent}
+				onChange={(value) => setAttributes({ [getAttrKey('buttonContent', attributes, manifest)]: value })}
+				className={buttonClass}
+				keepPlaceholderOnFocus
+				allowedFormats={[]}
+				data-id={unique}
+			/>
 		</>
 	);
 };
