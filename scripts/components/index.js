@@ -11,6 +11,7 @@ export { IconToggle } from './icon-toggle/icon-toggle';
 export { InlineNotification, InlineNotificationType } from './inline-notification/inline-notification';
 export { LinkEditComponent } from './link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
+export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
 export { OptionPicker } from './option-picker/option-picker';
 export { Responsive } from './responsive/responsive';
 export { ServerSideRender } from './server-side-render/server-side-render';
