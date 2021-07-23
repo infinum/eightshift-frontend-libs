@@ -38,5 +38,5 @@ $videoButtonClass = Components::classnames([
 	data-micromodal-trigger="<?php echo \esc_attr($videoButtonModalId); ?>"
 	aria-label="<?php echo \esc_html($videoButtonLabel); ?>"
 >
-	<?php echo $manifest['icon']; ?>
+	<?php echo $manifest['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </button>

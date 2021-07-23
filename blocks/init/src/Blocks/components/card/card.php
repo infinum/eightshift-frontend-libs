@@ -34,7 +34,7 @@ $cardClass = Components::classnames([
 		'image',
 		Components::props('image', $attributes, [
 			'blockClass' => $componentClass,
-		]),
+		])
 	),
 
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -42,28 +42,28 @@ $cardClass = Components::classnames([
 		Components::props('intro', $attributes, [
 			'selectorClass' => 'intro',
 			'blockClass' => $componentClass
-		]),
+		])
 	),
 
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'heading',
 		Components::props('heading', $attributes, [
 			'blockClass' => $componentClass
-		]),
+		])
 	),
 
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'paragraph',
 		Components::props('paragraph', $attributes, [
 			'blockClass' => $componentClass
-		]),
+		])
 	),
 
 	Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'button',
 		Components::props('button', $attributes, [
 			'blockClass' => $componentClass
-		]),
+		])
 	);
 	?>
 </div>

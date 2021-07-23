@@ -17,12 +17,12 @@ export default {
 export const editor = () => (
 	<LayoutThreeColumnsEditor
 		selectorClass={'header'}
-		layoutLeft={[
+		layoutThreeColumnsLeft={[
 			<LogoEditor key={'logo'} />,
 		]}
-		layoutCenter={[
+		layoutThreeColumnsCenter={[
 		]}
-		layoutRight={[
+		layoutThreeColumnsRight={[
 			<HamburgerEditor key={'hamburger'} />,
 		]}
 	/>

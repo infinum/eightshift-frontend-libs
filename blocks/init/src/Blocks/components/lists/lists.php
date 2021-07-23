@@ -35,7 +35,7 @@ $listsClass = Components::classnames([
 ?>
 
 <<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php 
+	<?php
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo wp_kses_post($listsContent);
