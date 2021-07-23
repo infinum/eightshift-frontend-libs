@@ -1,22 +1,36 @@
 import React, { useRef } from 'react';
-import { Popover, Button, BaseControl } from '@wordpress/components';
+import { Popover, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { ColorPaletteCustom, icons } from '@eightshift/frontend-libs/scripts';
 
 /**
+ * Determines the color picker type.
+ * 
+ * - `TEXT_COLOR` - displays an icon suitable for text color selection.
+ * - `TEXT_HIGHLIGHT_COLOR` - displays an icon suitable for text highlight color selection.
+ * - `BACKGROUND_COLOR` - displays an icon suitable for background color selection.
+ * - `GENERIC` - displays an generic color selection icon.
+ */
+export const ColorPickerType = {
+	TEXT_COLOR: 'textColor',
+	TEXT_HIGHLIGHT_COLOR: 'textHighlight',
+	BACKGROUND_COLOR: 'bgColor',
+	GENERIC: 'generic',
+}
+
+/**
  * Component that allows simple inline color picking while taking up not much space.
  * 
- * @param {object} props                    - ColorPickerComponent options.
- * @param {array?} props.colors             - List of options to display. If not set, all global manifest colors are used.
- * @param {string} props.value              - Current value (color slug).
- * @param {function} props.onChange         - Callback that applies the changes.
- * @param {React.Component?} props.label    - Label to represent the control
- * @param {boolean} [props.canReset=true]   - If `true`, a clear/reset button is shown.
- * @param {string} [props.pickerPopupTitle] - Color picker popup title.
- * @param {string} [props.editColorLabel]   - 'Change color' button label (when color is set).
- * @param {string} [props.addColorLabel]    - 'Pick a color' button label (when color is not set).
- * @param {string} [props.resetTootlip]     - 'Reset' button tooltip.
+ * @param {object} props                                - ColorPickerComponent options.
+ * @param {array?} props.colors                         - List of options to display. If not set, all global manifest colors are used.
+ * @param {string} props.value                          - Current value (color slug).
+ * @param {function} props.onChange                     - Callback that applies the changes.
+ * @param {React.Component?} props.label                - Label to represent the control
+ * @param {boolean} [props.canReset=true]               - If `true`, a clear/reset button is shown.
+ * @param {string} [props.pickerPopupTitle]             - Color picker popup title.
+ * @param {string} [props.resetLabel]                 - 'Reset' button tooltip.
+ * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
  */
 export const ColorPickerComponent = ({
 	colors,
@@ -25,9 +39,8 @@ export const ColorPickerComponent = ({
 	label,
 	canReset = true,
 	pickerPopupTitle = __('Pick a color'),
-	editColorLabel = __('Change color'),
-	addColorLabel = __('Pick a color'),
-	resetTootlip = __('Reset'),
+	resetLabel = __('Reset'),
+	type = ColorPickerType.GENERIC,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -60,42 +73,69 @@ export const ColorPickerComponent = ({
 					}}
 					clearable={false}
 				/>
-			</div>
-		</Popover>
-	);
-
-	const buttonIcon = value ? (
-		<div
-			className='es-color-picker-component__current-swatch'
-			style={{ backgroundColor: `var(--global-colors-${value})` }}
-		></div>
-	) : icons.color;
-
-	return (
-		<BaseControl
-			label={label}
-		>
-			<div className='es-simple-editor-button-row'>
-				<Button
-					isSecondary
-					onClick={openPicker}
-					icon={buttonIcon}
-					text={value ? editColorLabel : addColorLabel}
-				>
-				</Button>
 
 				{canReset && value &&
 					<Button
 						onClick={resetValue}
 						isDestructive={true}
-						icon={icons.trash}
+						icon={icons.none}
 						iconSize={24}
-						label={resetTootlip}
+						text={resetLabel}
 					/>
 				}
 			</div>
+		</Popover>
+	);
+
+	const getButtonIcon = () => {
+		if (!value) {
+			return icons.color;
+		}
+
+		switch (type) {
+			case ColorPickerType.TEXT_COLOR:
+				return (
+					<div style={{ '--selected-color': `var(--global-colors-${value})` }}>
+						{icons.textColorSwatch}
+					</div>
+				);
+			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+				return (
+					<div style={{ '--selected-color': `var(--global-colors-${value})` }}>
+						{icons.textHighlightColorSwatch}
+					</div>
+				);
+			case ColorPickerType.BACKGROUND_COLOR:
+				return (
+					<div style={{ '--selected-color': `var(--global-colors-${value})` }}>
+						{icons.backgroundColorSwatch}
+					</div>
+				);
+			default:
+				return (
+					<div
+						className='es-color-picker-component__current-swatch'
+						style={{ backgroundColor: `var(--global-colors-${value})` }}>
+					</div>
+				);
+		}
+	}
+
+	return (
+		<>
+			<div className='es-flex-between'>
+				<div className='es-label-flex'>{label}</div>
+
+				<Button
+					isSecondary
+					onClick={openPicker}
+					icon={getButtonIcon()}
+					iconSize={24}
+					ref={ref}
+				/>
+			</div>
 
 			{colorPicker}
-		</BaseControl>
+		</>
 	);
 }

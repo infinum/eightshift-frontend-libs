@@ -722,4 +722,30 @@ body {
 		}
 	}
 
+	// ES display flex with space-between.
+	.es-flex-between {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.25rem 0;
+	}
+
+	// Style for labels which are not contained inside BaseControl.
+	.es-label-flex {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		svg {
+			height: 1.5rem !important;
+			width: 1.5rem !important;
+			margin: 0 !important;
+
+			&:not(button svg) {
+				color: var(--wp-admin-theme-color, #111111);
+			}
+		}
+	}
 }
