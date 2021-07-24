@@ -11,6 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 
 $accordionUse = Components::checkAttr('accordionUse', $attributes, $manifest);
+
 if (!$accordionUse) {
 	return;
 }
@@ -53,7 +54,10 @@ $accordionClass = Components::classnames([
 		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
 	>
 		<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
-			<?php echo \wp_kses_post($accordionContent); ?>
+			<?php
+				// @phpstan-ignore-next-line
+				echo $accordionContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
 		</div>
 	</section>
 </div>
