@@ -31,24 +31,18 @@
 	"options": {
 		"paragraphSize": [
 			{
-				"label": "Default (1em)",
+				"label": "Default (1rem)",
 				"value": "default"
 			},
 			{
-				"label": "Small (0.8em)",
+				"label": "Small (0.8rem)",
 				"value": "small"
 			}
 		],
 		"paragraphColor": [
 			"black",
+			"white",
 			"primary"
-		],
-		"pasteAllowTags": [
-			"strong",
-			"b",
-			"i",
-			"em",
-			"span"
 		]
 	},
 	"variables": {
@@ -56,28 +50,28 @@
 			"default": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.8em",
+						"paragraph-font-size": "0.8rem",
 						"paragraph-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "1em"
+						"paragraph-font-size": "1rem"
 					}
 				}
 			],
 			"small": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.6em",
+						"paragraph-font-size": "0.6rem",
 						"paragraph-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "0.8em"
+						"paragraph-font-size": "0.8rem"
 					}
 				}
 			]
@@ -87,8 +81,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-primary)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-light)"
+						"paragraph-link-color": "var(--global-colors-red)",
+						"paragraph-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -97,7 +91,16 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-black)",
 						"paragraph-link-color": "var(--global-colors-primary)",
-						"paragraph-link-color-hover": "var(--global-colors-light)"
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"white": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-white)",
+						"paragraph-link-color": "var(--global-colors-yellow)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
 					}
 				}
 			]

@@ -5,8 +5,10 @@ import { ParagraphEditor as ParagraphEditorComponent } from '../../../components
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
-export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlocks }) => {
+export const ParagraphEditor = (mainProps) => {
 	const unique = useMemo(() => getUnique(), []);
+
+	const { attributes, setAttributes, onReplace, mergeBlocks } = mainProps;
 
 	const {
 		blockClass,

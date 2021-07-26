@@ -14,7 +14,6 @@ $manifest = Components::getManifest(__DIR__);
 $blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
-
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
