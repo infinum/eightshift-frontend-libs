@@ -14,10 +14,13 @@ $manifest = Components::getManifest(__DIR__);
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
-$wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperDisable) {
+	$wrapperParentClass = is_string(Components::checkAttr('wrapperParentClass', $attributes, $manifest)) ?
+		Components::checkAttr('wrapperParentClass', $attributes, $manifest) :
+		'';
+
 	if ($wrapperParentClass) {
 		?>
 			<div class="<?php echo \esc_attr($wrapperParentClass . '__item'); ?>">
@@ -150,7 +153,7 @@ $wrapperInnerClass = Components::classnames([
 ]);
 
 ?>
-<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr(($wrapperId) ? 'id=" ' . $wrapperId . '"' : ''); ?>>
+<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr($wrapperId ? 'id=" ' . $wrapperId . '"' : ''); ?>>
 
 	<?php if ($wrapperAnchorId) { ?>
 		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>

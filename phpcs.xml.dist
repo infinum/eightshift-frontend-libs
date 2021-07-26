@@ -7,7 +7,6 @@
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/src/commands/templates/*</exclude-pattern>
 
 	<!-- Additional arguments. -->
 	<arg value="sp"/>
@@ -16,42 +15,12 @@
 	<arg name="cache"/>
 	<arg name="extensions" value="php"/>
 
-	<file>.</file>
-
-	<exclude-pattern>/src/CompiledContainer\.php</exclude-pattern>
-
-	<rule ref="WordPress.PHP.DiscouragedPHPFunctions.system_calls_system">
-		<exclude-pattern>*/src/**/*Cli</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents">
-		<exclude-pattern>*/src/**/*Cli</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.PHP.DiscouragedPHPFunctions.system_calls_shell_exec">
-		<exclude-pattern>*/src/Db/*</exclude-pattern>
-		<exclude-pattern>*/src/Build/*</exclude-pattern>
-		<exclude-pattern>*/cliOutput/bin/Build.php</exclude-pattern>
-		<exclude-pattern>*/src/LintPhp/LintPhpCli.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fopen">
-		<exclude-pattern>*/src/Cli/*</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fwrite">
-		<exclude-pattern>*/src/Cli/*</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fclose">
-		<exclude-pattern>*/src/Cli/*</exclude-pattern>
-	</rule>
+	<file>blocks/init/src</file>
 
 	<rule ref="Generic.Files.LineLength">
-		<exclude name="Generic.Files.LineLength.TooLong"/>
-	</rule>
-
-	<rule ref="WordPress.WP.GlobalVariablesOverride">
-		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+		<properties>
+			<property name="lineLimit" value="180" />
+			<property name="ignoreComments" value="true" />
+		</properties>
 	</rule>
 </ruleset>

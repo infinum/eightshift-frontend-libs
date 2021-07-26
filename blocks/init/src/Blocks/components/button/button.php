@@ -30,7 +30,7 @@ $buttonIsAnchor = Components::checkAttr('buttonIsAnchor', $attributes, $manifest
 $buttonId = Components::checkAttr('buttonId', $attributes, $manifest);
 $buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest);
 $buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest);
-$buttonAttrs = Components::checkAttr('buttonAttrs', $attributes, $manifest);
+$buttonAttrs = (array)Components::checkAttr('buttonAttrs', $attributes, $manifest);
 
 if ($buttonIsNewTab) {
 	$buttonAttrs = array_merge(
