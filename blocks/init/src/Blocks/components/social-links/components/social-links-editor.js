@@ -6,7 +6,6 @@ import manifest from '../manifest.json';
 export const SocialLinksEditor = (attributes) => {
 	const {
 		componentClass,
-		icons,
 	} = manifest;
 
 	const {
@@ -24,31 +23,26 @@ export const SocialLinksEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
-	const SocialItem = (props) => {
-		const {
-			href,
-			icon,
-			title,
-		} = props;
+	const socialLinksItemClass = selector(componentClass, componentClass, 'item');
+	const socialLinksLinkClass = selector(componentClass, componentClass, 'link');
 
-		return (
-			<li className={`${componentClass}__item`}>
-				<a className={`${componentClass}__link`} href={href} title={title} dangerouslySetInnerHTML={{ __html: icons[icon] }} target="_blank" rel="nofollow noreferrer noopener"></a>
-			</li>
-		);
-	};
+	if (!socialLinksUse) {
+		return null;
+	}
 
 	return (
-		<>
-			{socialLinksUse &&
-				<ul className={socialLinksClass}>
-					{socialLinksItems.map((element, index) => {
-						return (
-							<SocialItem {...element} key={index} />
-						);
-					})}
-				</ul>
-			}
-		</>
+		<ul className={socialLinksClass}>
+			{socialLinksItems.map(({ href, icon, title }, index) => (
+				<li className={socialLinksItemClass} key={index}>
+					<a
+						className={socialLinksLinkClass}
+						href={href}
+						title={title}
+						dangerouslySetInnerHTML={{ __html: manifest.icons[icon] }}
+						target="_blank" rel="nofollow noreferrer noopener"
+					></a>
+				</li>
+			))}
+		</ul>
 	);
 };
