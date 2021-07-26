@@ -6,12 +6,13 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoUse = Components::checkAttr('videoUse', $attributes, $manifest, $componentName);
+$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
+
 if (!$videoUse) {
 	return;
 }
@@ -54,7 +55,12 @@ if (!$videoUrl) {
 	preload="<?php echo \esc_attr($videoPreload); ?>"
 	poster="<?php echo \esc_attr($videoPoster); ?>"
 >
-	<?php foreach ($videoUrl as $item) { ?>
+	<?php
+	if (!is_iterable($videoUrl)) {
+		return;
+	}
+
+	foreach ($videoUrl as $item) { ?>
 		<?php
 		$url = $item['url'] ?? '';
 		$mime = $item['mime'] ?? '';

@@ -16,15 +16,15 @@ $featuredCategoriesQuery = Components::checkAttr('featuredCategoriesQuery', $att
 $featuredCategoriesItemsPerLine = Components::checkAttr('featuredCategoriesItemsPerLine', $attributes, $manifest);
 $featuredCategoriesServerSideRender = Components::checkAttr('featuredCategoriesServerSideRender', $attributes, $manifest);
 
-$taxonomy = $featuredCategoriesQuery['taxonomy'] ?? '';
+$taxonomyName = $featuredCategoriesQuery['taxonomy'] ?? '';
 
-if (!$taxonomy) {
+if (!$taxonomyName) {
 	return;
 }
 ?>
 
 <div
-	class="<?php echo esc_attr($blockClass); ?>"
+	class="<?php echo \esc_attr($blockClass); ?>"
 	data-items-per-line=<?php echo \esc_attr($featuredCategoriesItemsPerLine); ?>
 >
 	<?php
@@ -33,26 +33,30 @@ if (!$taxonomy) {
 
 	$args = [
 		'hide_empty' => false,
-		'taxonomy' => $taxonomy,
+		'taxonomy' => $taxonomyName,
 		'orderby' => 'include',
 		'include' => array_map(
 			function ($item) {
-				return $item['value'];
+				return $item['value']; // @phpstan-ignore-line
 			},
-			$terms
+			(array)$terms
 		),
 	];
 
 	$allTerms = \get_terms($args);
 
-	foreach ($allTerms as $term) {
+	if (!is_iterable($allTerms)) {
+		return;
+	}
+
+	foreach ($allTerms as $termObject) {
 		$cardProps = [
 			'imageUse' => false,
 			'introUse' => false,
-			'headingContent' => $term->name,
-			'paragraphContent' => $term->description,
+			'headingContent' => is_object($termObject) ? $termObject->name : '',
+			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
 			'buttonContent' => __('Show More', 'eightshift-frontend-libs'),
-			'buttonUrl' => \get_term_link($term),
+			'buttonUrl' => \get_term_link($termObject),
 		];
 
 		if ($featuredCategoriesServerSideRender) {
