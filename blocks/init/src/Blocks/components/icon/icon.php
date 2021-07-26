@@ -21,16 +21,14 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $iconName = Components::checkAttr('iconName', $attributes, $manifest);
-$icon = $manifest['icons'][$iconName];
 
-$iconClasses = Components::classnames([
+$iconClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
-	Components::selector($iconName, $componentClass, $iconName),
 ]);
 
 ?>
-<i class="<?php echo esc_attr($iconClasses); ?>">
-	<?php echo \wp_kses_post($icon); ?>
+<i class="<?php echo esc_attr($iconClass); ?>">
+	<?php echo $manifest['icons'][$iconName]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </i>

@@ -24,11 +24,11 @@ export const IconEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	if (!iconUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{iconUse &&
-				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
-			}
-		</>
+		<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
 	);
 };
