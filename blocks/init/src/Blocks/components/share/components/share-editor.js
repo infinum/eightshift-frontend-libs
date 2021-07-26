@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { __ } from '@wordpress/i18n';
 import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
@@ -12,6 +13,7 @@ export const ShareEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
+
 	} = attributes;
 
 	const shareUse = checkAttr('shareUse', attributes, manifest);
@@ -27,17 +29,16 @@ export const ShareEditor = (attributes) => {
 		selector(blockClass, blockClass, 'item'),
 	);
 
+	if (!shareUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{shareUse &&
-				<div className={shareClass}>
-					{manifest.socialOptions.map((socialOption, key) => {
-						return (
-							<div key={key} className={shareItemClass}>{socialOption.label}</div>
-						);
-					})}
-				</div>
-			}
-		</>
+		<div className={shareClass}>
+			{__('Share on', 'newboilerplate')}
+			{manifest.socialOptions.map(({ label }, key) => (
+				<div key={key} className={shareItemClass}>{label}</div>
+			))}
+		</div>
 	);
 };

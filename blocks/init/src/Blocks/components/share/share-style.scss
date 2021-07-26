@@ -1,18 +1,34 @@
-$share: (
-	color: global-settings(colors, primary),
-	size: 1em,
-	spacing: 0.6em,
-);
 
 .share {
 	display: flex;
-	margin: 0 -#{map-get-strict($share, spacing)};
+	align-items: center;
+	padding: 1rem;
+	border-top: 1px solid var(--global-colors-light);
 
 	&__item {
-		text-decoration: none;
-		font-size: map-get-strict($share, size);
-		display: block;
-		padding: map-get-strict($share, spacing);
-		color: map-get-strict($share, color);
+		@extend %link-reset;
+
+		background-color: var(--global-colors-white);
+		color: var(--global-colors-ocean);
+
+		padding: 0.2rem 0.3rem;
+		border-radius: 0.3rem;
+
+		font-size: 1rem;
+
+		transition: {
+			property: background-color, color;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&:hover {
+			color: var(--global-colors-blue);
+			background-color: var(--global-colors-mist);
+		}
+	}
+
+	& > *:not(:last-child) {
+		margin-right: 1rem;
 	}
 }
