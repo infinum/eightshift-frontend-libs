@@ -7,7 +7,7 @@
 			"searchBarMethod": "get",
 			"searchBarPostType": "any",
 			"searchBarAction": "#",
-			"searchBarPlaceholder": "Type in search",
+			"searchBarPlaceholder": "Search...",
 			"searchBarId": "search",
 			"searchBarLabel": "Search",
 			"searchBarLabelShow": true,
@@ -29,7 +29,7 @@
 		},
 		"searchBarPlaceholder": {
 			"type": "string",
-			"default": "Type in search"
+			"default": "Search..."
 		},
 		"searchBarLabel": {
 			"type": "string",
@@ -41,7 +41,7 @@
 		},
 		"searchBarLabelShow": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"searchBarUse": {
 			"type": "boolean",

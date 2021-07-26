@@ -1,23 +1,44 @@
 .search-bar {
-	position: relative;
-	height: 100%;
-	padding: 0.5em 0.75em;
 	display: flex;
 	align-items: center;
 
+	padding: 1rem;
+
 	&__label {
-		margin-right: 0.75em;
+		margin-right: 0.6rem;
+		font-size: 0.9rem;
 
 		&--hidden {
-			  @extend %visually-hidden;
+			@extend %visually-hidden;
 		}
 	}
 
 	&__input {
-		border-radius: 2.5em;
-		font-size: 0.7em;
-		font-weight: 500;
-		padding: 0.25em 1em;
-		border-width: 0.05em;
+		padding: 0.6rem 0.8rem;
+		min-width: 20rem;
+
+		background-color: inherit;
+		color: var(--global-colors-black);
+
+		border: 1px solid var(--global-colors-black);
+		border-radius: 8px;
+
+		font-size: 0.95rem;
+
+		transition: {
+			property: box-shadow, border;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&:hover {
+			border-color: var(--global-colors-primary);
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--global-colors-primary);
+			box-shadow: 0 0 0 2px var(--global-colors-primary);
+		}
 	}
 }
