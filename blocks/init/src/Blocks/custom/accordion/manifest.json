@@ -1,7 +1,7 @@
 {
 	"blockName": "accordion",
 	"title": "Accordion",
-	"description" : "accordion block with custom settings.",
+	"description" : "Accordion block with custom settings.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-accordion"
@@ -14,13 +14,13 @@
 			{
 				"name": "eightshift-boilerplate/heading",
 				"attributes": {
-					"headingContent": "Lorem ipsum dolor sit amet"
+					"headingHeadingContent": "Lorem ipsum dolor sit amet"
 				}
 			},
 			{
 				"name": "eightshift-boilerplate/paragraph",
 				"attributes": {
-					"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. "
+					"paragraphParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. "
 				}
 			}
 		]

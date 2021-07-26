@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
@@ -10,18 +10,22 @@ export const AccordionEditor = (attributes) => {
 		componentClass,
 		options: manifestOptions,
 	} = manifest;
-	
+
 	const {
 		setAttributes,
 		selectorClass = componentClass,
 		additionalClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'newboilerplate'),
 	} = attributes;
 
 	const accordionUse = checkAttr('accordionUse', attributes, manifest);
 	const accordionTitle = checkAttr('accordionTitle', attributes, manifest);
 	const accordionContent = checkAttr('accordionContent', attributes, manifest);
+
+	if (!accordionUse) {
+		return null;
+	}
 
 	const accordionClass = classnames([
 		selector(componentClass, componentClass),
@@ -29,29 +33,34 @@ export const AccordionEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	const accordionTriggerClass = selector(componentClass, componentClass, 'trigger');
+	const accordionIconClass = selector(componentClass, componentClass, 'icon');
+	const accordionPanelClass = selector(componentClass, componentClass, 'panel');
+	const accordionContentClass = selector(componentClass, componentClass, 'content');
+
+	const [open, setOpen] = useState(accordionTitle?.length ? false : true);
+
 	return (
-		<>
-			{accordionUse &&
-				<div
-					className={accordionClass}
-					data-accordion-open={true}>
-					<button className={`${componentClass}__trigger`}>
-						<RichText
-							placeholder={placeholder}
-							value={accordionTitle}
-							onChange={(value) => setAttributes({ [getAttrKey('accordionTitle', attributes, manifest)]: value })}
-							keepPlaceholderOnFocus
-							allowedFormats={[]}
-						/>
-						<div className={`${componentClass}__icon`} dangerouslySetInnerHTML={{ __html: manifestOptions.icon }}></div>
-					</button>
-					<section className={`${componentClass}__panel`}>
-						<div className={`${componentClass}__content`}>
-							{accordionContent}
-						</div>
-					</section>
+		<div className={accordionClass} data-accordion-open={open}>
+			<button className={accordionTriggerClass} onClick={() => setOpen(!open)}>
+				<RichText
+					placeholder={placeholder}
+					value={accordionTitle}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionTitle', attributes, manifest)]: value })}
+					keepPlaceholderOnFocus
+					allowedFormats={[]}
+				/>
+				<i
+					className={accordionIconClass}
+					dangerouslySetInnerHTML={{ __html: manifestOptions.icon }}
+				></i>
+			</button>
+
+			<section className={accordionPanelClass}>
+				<div className={accordionContentClass}>
+					{accordionContent}
 				</div>
-			}
-		</>
+			</section>
+		</div>
 	);
 };

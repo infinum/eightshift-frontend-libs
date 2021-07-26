@@ -1,16 +1,16 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { checkAttr, ComponentUseToggle, getAttrKey, icons, IconToggle } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const AccordionOptions = (attributes) => {
 	const {
 		setAttributes,
-		label = __('Accordion', 'eightshift-frontend-libs'),
+		label = __('Accordion', 'newboilerplate'),
 		accordionShowControls = true,
 
-		showAccordionUse = true,
+		showAccordionUse = false,
+		showLabel = false,
 		showAccordionIsOpen = true,
 	} = attributes;
 
@@ -20,32 +20,35 @@ export const AccordionOptions = (attributes) => {
 
 	const accordionUse = checkAttr('accordionUse', attributes, manifest);
 	const accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest);
+	const accordionCloseOthers = checkAttr('accordionCloseOthers', attributes, manifest);
 
 	return (
 		<>
+			<ComponentUseToggle
+				label={label}
+				checked={accordionUse}
+				onChange={(value) => setAttributes({ [getAttrKey('accordionUse', attributes, manifest)]: value })}
+				showUseToggle={showAccordionUse}
+				showLabel={showLabel}
+			/>
 
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showAccordionUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={accordionUse}
-					onChange={(value) => setAttributes({ [getAttrKey('accordionUse', attributes, manifest)]: value })}
+			{showAccordionIsOpen &&
+				<IconToggle
+					icon={icons.play}
+					label={__('Start open', 'newboilerplate')}
+					checked={accordionIsOpen}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionIsOpen', attributes, manifest)]: value })}
 				/>
 			}
 
 			{showAccordionIsOpen &&
-				<>
-					<ToggleControl
-						label={__('Is Open', 'eightshift-frontend-libs')}
-						checked={accordionIsOpen}
-						onChange={(value) => setAttributes({ [getAttrKey('accordionIsOpen', attributes, manifest)]: value })}
-					/>
-				</>
+				<IconToggle
+					icon={icons.errorCircle}
+					label={__('Close adjacent', 'newboilerplate')}
+					help={__('Close adjacent accordions when opening this one.', 'newboilerplate')}
+					checked={accordionCloseOthers}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionCloseOthers', attributes, manifest)]: value })}
+				/>
 			}
 		</>
 	);
