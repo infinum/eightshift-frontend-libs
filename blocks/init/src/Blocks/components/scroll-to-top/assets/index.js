@@ -4,6 +4,10 @@ domReady(() => {
 	const selector = '.js-scroll-to-top';
 	const elements = document.querySelectorAll(selector);
 
+	if (!elements.length) {
+		return;
+	}
+
 	[...elements].forEach((element) => {
 		element.addEventListener('click', (event) => {
 			event.preventDefault();

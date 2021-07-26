@@ -6,6 +6,7 @@ import manifest from './../manifest.json';
 export const ScrollToTopEditor = (attributes) => {
 	const {
 		componentClass,
+		resources: manifestResources,
 	} = manifest;
 
 	const {
@@ -15,7 +16,6 @@ export const ScrollToTopEditor = (attributes) => {
 	} = attributes;
 
 	const scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest);
-	const scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest);
 
 	const scrollClass = classnames(
 		selector(componentClass, componentClass),
@@ -23,13 +23,13 @@ export const ScrollToTopEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	);
 
+	if (!scrollToTopUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{scrollToTopUse &&
-				<button className={scrollClass}>
-					{scrollToTopContent}
-				</button>
-			}
-		</>
+		<button className={scrollClass}>
+			<i dangerouslySetInnerHTML={{ __html: manifestResources.icon }}></i>
+		</button>
 	);
 };
