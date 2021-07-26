@@ -1,0 +1,90 @@
+{
+	"blockName": "tabs",
+	"title": "Tabs",
+	"description" : "Simple tabs block",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-example"
+	},
+	"keywords": [
+		"tabs"
+	],
+	"example": {
+		"attributes": {
+			"tabsCurrentlyActiveTabId": "exampleTab1"
+		},
+		"innerBlocks": [
+			{
+				"name": "eightshift-boilerplate/tab",
+				"attributes": {
+					"tabTitle": "Example tab 1",
+					"tabId": "exampleTab1"
+				},
+				"innerBlocks": [
+					{
+						"name": "eightshift-boilerplate/card",
+						"attributes": {
+							"imageUrl": "https://picsum.photos/400/400",
+							"introContent": "Intro",
+							"introSize": "small",
+							"introColor": "light",
+							"headingContent": "Heading",
+							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+							"buttonUse": false
+						}
+					}
+				]
+			},
+			{
+				"name": "eightshift-boilerplate/tab",
+				"attributes": {
+					"tabTitle": "Example tab 2",
+					"tabId": "exampleTab2"
+				},
+				"innerBlocks": [
+					{
+						"name": "eightshift-boilerplate/card",
+						"attributes": {
+							"imageUrl": "https://picsum.photos/400/400",
+							"introContent": "Intro",
+							"introSize": "small",
+							"introColor": "light",
+							"headingContent": "Heading",
+							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+							"buttonUse": false
+						}
+					}
+				]
+			}
+		]
+	},
+	"hasInnerBlocks": true,
+	"attributes": {
+		"tabsAllowedBlocks": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"eightshift-boilerplate/tab"
+			]
+		},
+		"tabsCurrentlyActiveTabId": {
+			"type": "string"
+		}
+	},
+	"providesContext":{
+		"eightshift-boilerplate/tabsCurrentlyActiveTabId": "tabsCurrentlyActiveTabId"
+	},
+	"blockClass": "block-tabs",
+	"blockJsClass": "js-tabs",
+	"tabJsClass": "js-tab",
+	"tabPanelElement": "panel",
+	"tabPanelItemElement": "panelitem",
+	"tabPanelItemButtonElement": "panelitembutton",
+	"tabPanelJsClass": "js-tabspanel",
+	"tabVisibleClass": "block-tab--visible",
+	"tabPanelItemButtonJsClass": "js-tab-button",
+	"tabPanelItemActiveClass": "block-tabs__panelitem--active",
+	"tabPanelItemTemplateId": "tabpanel-itemtemplate"
+}

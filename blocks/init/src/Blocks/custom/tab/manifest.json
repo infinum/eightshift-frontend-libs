@@ -1,0 +1,48 @@
+{
+	"blockName": "tab",
+	"title": "Tab",
+	"description" : "Tab block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-column"
+	},
+	"keywords": [
+		"tab"
+	],
+	"parent": [
+		"eightshift-boilerplate/tabs"
+	],
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "eightshift-boilerplate/card",
+				"attributes": {
+					"imageUrl": "https://loremflickr.com/800/800",
+					"introContent": "Intro",
+					"introSize": "small",
+					"introColor": "light",
+					"headingContent": "Heading",
+					"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+					"buttonUse": false
+				}
+			}
+		]
+	},
+	"hasInnerBlocks": true,
+	"attributes":{
+		"tabTitle": {
+			"type": "string",
+			"default": "New tab"
+		},
+		"tabId":{
+			"type": "string",
+			"default": "newTab"
+		},
+		"wrapperDisable": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"usesContext": ["eightshift-boilerplate/tabsCurrentlyActiveTabId"],
+	"blockJsClass": "js-tab"
+}

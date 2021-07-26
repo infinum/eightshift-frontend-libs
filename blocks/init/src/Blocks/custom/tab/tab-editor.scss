@@ -1,0 +1,14 @@
+.block-tab {
+	&--visible {
+		display: block;
+		margin-bottom: 40px;
+	}
+
+	&--hidden {
+		display: none;
+	}
+}
+
+ul.block-tabpanel {
+	padding: 0;
+}

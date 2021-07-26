@@ -1,0 +1,23 @@
+.block-tabs {
+	&__panelitem {
+		padding: 0.5em;
+		list-style: none;
+		display: inline-block;
+		cursor: pointer;
+		border-bottom: solid 0.1em global-settings(colors, primary);
+
+		&--active {
+			font-weight: bold;
+			border-bottom: solid 0.3rem global-settings(colors, primary);
+		}
+	}
+
+	&__panel {
+		margin: 0;
+	}
+
+	&__panelitembutton {
+		@extend %button-reset;
+		background: none;
+	}
+}
