@@ -9,9 +9,10 @@ import manifest from './../manifest.json';
 export const CardOptions = (attributes) => {
 	return (
 		<>
-
 			<ImageOptions
 				{...props('image', attributes)}
+				showImageUse
+				showLabel
 			/>
 
 			<hr />
@@ -20,7 +21,9 @@ export const CardOptions = (attributes) => {
 				{...props('intro', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
-				label={'Intro'}
+				label='Intro'
+				showHeadingUse
+				showLabel
 			/>
 
 			<hr />
@@ -29,6 +32,8 @@ export const CardOptions = (attributes) => {
 				{...props('heading', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
+				showHeadingUse
+				showLabel
 			/>
 
 			<hr />
@@ -37,6 +42,8 @@ export const CardOptions = (attributes) => {
 				{...props('paragraph', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
+				showParagraphUse
+				showLabel
 			/>
 
 			<hr />
@@ -45,8 +52,9 @@ export const CardOptions = (attributes) => {
 				{...props('button', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
+				showButtonUse
+				showLabel
 			/>
-
 		</>
 	);
 };

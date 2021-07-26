@@ -1,10 +1,10 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { checkAttr, getAttrKey, props, getOptions, getOption } from '@eightshift/frontend-libs/scripts';
-import { AlignmentToolbar } from '@wordpress/block-editor';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 import manifest from './../manifest.json';
+import { AlignmentToolbar, AlignmentToolbarType } from '@eightshift/frontend-libs/scripts/components/alignment-toolbar/alignment-toolbar';
 
 export const CardToolbar = (attributes) => {
 	const {
@@ -19,7 +19,6 @@ export const CardToolbar = (attributes) => {
 
 	return (
 		<>
-
 			<HeadingToolbar
 				{...props('intro', attributes, {
 					options: getOptions(attributes, manifest),
@@ -41,8 +40,9 @@ export const CardToolbar = (attributes) => {
 			<AlignmentToolbar
 				value={cardAlign}
 				options={getOption('cardAlign', attributes, manifest)}
-				label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
+				label={sprintf(__('%s text align', 'newboilerplate'), manifestTitle)}
 				onChange={(value) => setAttributes({ [getAttrKey('cardAlign', attributes, manifest)]: value })}
+				type={AlignmentToolbarType.HORIZONTAL}
 			/>
 		</>
 	);
