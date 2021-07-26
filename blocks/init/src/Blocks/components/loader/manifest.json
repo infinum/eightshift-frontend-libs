@@ -4,14 +4,14 @@
 	"componentClass": "loader",
 	"example": {
 		"attributes": {
-			"loaderOverlay": true,
+			"loaderOverlay": false,
 			"loaderUse": true
 		}
 	},
 	"attributes": {
 		"loaderUseOverlay": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"loaderUse": {
 			"type": "boolean",
