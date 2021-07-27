@@ -860,4 +860,19 @@ body {
 			stroke: #0D3636;
 		}
 	}
+
+	// Sets the toolbar/button icon size if the default 'iconSize' prop doesn't work.
+	.es-toolbar-icon-24 {
+		& > button > svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+
+	.es-button-icon-24 {
+		& > svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
 }
