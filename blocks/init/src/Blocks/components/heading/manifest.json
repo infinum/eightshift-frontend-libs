@@ -46,7 +46,17 @@
 		],
 		"headingColor": [
 			"primary",
-			"black"
+			"black",
+			"white",
+			"green",
+			"ocean",
+			"yellow",
+			"blue",
+			"red",
+			"cream",
+			"mist",
+			"dew",
+			"eightshift"
 		]
 	},
 	"variables": {

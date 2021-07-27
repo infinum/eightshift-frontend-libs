@@ -40,9 +40,18 @@
 			}
 		],
 		"paragraphColor": [
+			"primary",
 			"black",
 			"white",
-			"primary"
+			"green",
+			"ocean",
+			"yellow",
+			"blue",
+			"red",
+			"cream",
+			"mist",
+			"dew",
+			"eightshift"
 		]
 	},
 	"variables": {
@@ -81,8 +90,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-primary)",
-						"paragraph-link-color": "var(--global-colors-red)",
-						"paragraph-link-color-hover": "var(--global-colors-ocean)"
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
 					}
 				}
 			],
@@ -91,7 +100,61 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-black)",
 						"paragraph-link-color": "var(--global-colors-primary)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"green": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-green)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"ocean": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-ocean)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-red)"
+					}
+				}
+			],
+			"yellow": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-yellow)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"blue": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-blue)",
+						"paragraph-link-color": "var(--global-colors-black)",
 						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"red": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-red)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"cream": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-cream)",
+						"paragraph-link-color": "var(--global-colors-yellow)",
+						"paragraph-link-color-hover": "var(--global-red)"
 					}
 				}
 			],
@@ -101,6 +164,33 @@
 						"paragraph-color": "var(--global-colors-white)",
 						"paragraph-link-color": "var(--global-colors-yellow)",
 						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"eightshift": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-eightshift)",
+						"paragraph-link-color": "var(--global-colors-green)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"dew": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-dew)",
+						"paragraph-link-color": "var(--global-colors-primary)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"mist": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-mist)",
+						"paragraph-link-color": "var(--global-colors-blue)",
+						"paragraph-link-color-hover": "var(--global-colors-green)"
 					}
 				}
 			]
