@@ -52,7 +52,6 @@ $columnRightClass = Components::classnames([
 ?>
 
 <<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
-	<div class="<?php echo \esc_attr($wrapClass); ?>">
 
 		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo \esc_attr($columnLeftClass); ?>">
@@ -81,5 +80,4 @@ $columnRightClass = Components::classnames([
 			</div>
 		<?php } ?>
 
-	</div>
 </<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?>>
