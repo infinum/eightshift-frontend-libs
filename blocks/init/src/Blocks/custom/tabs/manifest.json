@@ -10,7 +10,7 @@
 	"tabPanelJsClass": "js-tabspanel",
 	"tabVisibleClass": "block-tab--visible",
 	"tabPanelItemButtonJsClass": "js-tab-button",
-	"tabPanelItemActiveClass": "block-tabs__panelitem--active",
+	"tabPanelItemActiveClass": "block-tabs__panel-item--active",
 	"tabPanelItemTemplateId": "tabpanel-itemtemplate",
 	"description" : "Simple tabs block",
 	"category": "eightshift",
