@@ -5,7 +5,6 @@
 	"example": {
 		"attributes": {
 			"wrapperId": "This a custom ID",
-			"wrapperBackgroundColor": "white",
 			"wrapperUse": true,
 			"wrapperUseShowControl": true,
 			"wrapperUseSimple": false,
@@ -65,8 +64,7 @@
 			"type": "string"
 		},
 		"wrapperBackgroundColor": {
-			"type": "string",
-			"default": "white"
+			"type": "string"
 		},
 
 		"wrapperWidthLarge": {
@@ -216,10 +214,78 @@
 			"type": "boolean"
 		}
 	},
+	"responsiveAttributes": {
+		"wrapperWidth": {
+			"large": "wrapperWidthLarge",
+			"desktop": "wrapperWidthDesktop",
+			"tablet": "wrapperWidthTablet",
+			"mobile": "wrapperWidthMobile"
+		},
+		"wrapperOffset": {
+			"large": "wrapperOffsetLarge",
+			"desktop": "wrapperOffsetDesktop",
+			"tablet": "wrapperOffsetTablet",
+			"mobile": "wrapperOffsetMobile"
+		},
+		"wrapperContainerWidth": {
+			"large": "wrapperContainerWidthLarge",
+			"desktop": "wrapperContainerWidthDesktop",
+			"tablet": "wrapperContainerWidthTablet",
+			"mobile": "wrapperContainerWidthMobile"
+		},
+		"wrapperGutter": {
+			"large": "wrapperGutterLarge",
+			"desktop": "wrapperGutterDesktop",
+			"tablet": "wrapperGutterTablet",
+			"mobile": "wrapperGutterMobile"
+		},
+		"wrapperSpacingTop": {
+			"large": "wrapperSpacingTopLarge",
+			"desktop": "wrapperSpacingTopDesktop",
+			"tablet": "wrapperSpacingTopTablet",
+			"mobile": "wrapperSpacingTopMobile"
+		},
+		"wrapperSpacingBottom": {
+			"large": "wrapperSpacingBottomLarge",
+			"desktop": "wrapperSpacingBottomDesktop",
+			"tablet": "wrapperSpacingBottomTablet",
+			"mobile": "wrapperSpacingBottomMobile"
+		},
+		"wrapperSpacingTopIn": {
+			"large": "wrapperSpacingTopInLarge",
+			"desktop": "wrapperSpacingTopInDesktop",
+			"tablet": "wrapperSpacingTopInTablet",
+			"mobile": "wrapperSpacingTopInMobile"
+		},
+		"wrapperSpacingBottomIn": {
+			"large": "wrapperSpacingBottomInLarge",
+			"desktop": "wrapperSpacingBottomInDesktop",
+			"tablet": "wrapperSpacingBottomInTablet",
+			"mobile": "wrapperSpacingBottomInMobile"
+		},
+		"wrapperDividerTop": {
+			"large": "wrapperDividerTopLarge",
+			"desktop": "wrapperDividerTopDesktop",
+			"tablet": "wrapperDividerTopTablet",
+			"mobile": "wrapperDividerTopMobile"
+		},
+		"wrapperDividerBottom": {
+			"large": "wrapperDividerBottomLarge",
+			"desktop": "wrapperDividerBottomDesktop",
+			"tablet": "wrapperDividerBottomTablet",
+			"mobile": "wrapperDividerBottomMobile"
+		},
+		"wrapperHide": {
+			"large": "wrapperHideLarge",
+			"desktop": "wrapperHideDesktop",
+			"tablet": "wrapperHideTablet",
+			"mobile": "wrapperHideMobile"
+		}
+	},
 	"options": {
-		"offsets": [
+		"wrapperOffset": [
 			{
-				"label": "Not Set",
+				"label": "Not set",
 				"value": ""
 			},
 			{
@@ -227,9 +293,9 @@
 				"value": "center"
 			}
 		],
-		"containerWidths": [
+		"wrapperContainerWidth": [
 			{
-				"label": "Not Set",
+				"label": "Not set",
 				"value": ""
 			},
 			{
@@ -237,9 +303,9 @@
 				"value": "default"
 			}
 		],
-		"gutters": [
+		"wrapperGutter": [
 			{
-				"label": "Not Set",
+				"label": "Not set",
 				"value": ""
 			},
 			{
@@ -247,16 +313,16 @@
 				"value": "default"
 			},
 			{
-				"label": "No Spacing",
+				"label": "No spacing",
 				"value": "none"
 			}
 		],
-		"colors": [
+		"wrapperBackgroundColor": [
 			"primary",
 			"black",
 			"white"
 		],
-		"widths": {
+		"wrapperWidth": {
 			"min": 0,
 			"max": 12,
 			"step": 1
