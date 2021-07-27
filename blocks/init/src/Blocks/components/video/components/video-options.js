@@ -158,7 +158,7 @@ export const VideoOptions = (attributes) => {
 							}
 						</>
 					}
-					help={__('Visible before the video is played.', 'newboilerplate')}
+					help={__('Visible before the video is played. Make sure to enable the video controls so the video can be started!', 'newboilerplate')}
 				>
 					{!hasPoster &&
 						<MediaPlaceholder
@@ -216,7 +216,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoControls &&
 						<IconToggle
 							icon={icons.videoControls}
-							label={__('Show video controls', 'newboilerplate')}
+							label={__('Video controls', 'newboilerplate')}
 							checked={videoControls}
 							onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
 						/>
@@ -225,7 +225,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoMuted &&
 						<IconToggle
 							icon={icons.muteCentered}
-							label={__('Mute on start', 'newboilerplate')}
+							label={__('No sound', 'newboilerplate')}
 							checked={videoMuted}
 							onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
 						/>

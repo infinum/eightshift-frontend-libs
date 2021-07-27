@@ -49,7 +49,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 			/>
 			<IconToggle
 				label={__('Automatic', 'newboilerplate')}
-				help={__('Fit as many as possible.', 'newboilerplate')}
+				help={__('Fit as many as possible. Works best when items are all same size.', 'newboilerplate')}
 				checked={carouselShowItems === -1}
 				onChange={(value) => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: value ? -1 : 1 })}
 			/>
@@ -64,8 +64,6 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 					step={manifestOptions.carouselItemsToShow.step}
 				/>
 			}
-
-
 		</PanelBody>
 	);
 };
