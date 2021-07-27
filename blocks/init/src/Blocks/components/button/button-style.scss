@@ -1,32 +1,36 @@
 .btn {
-	padding: 0;
-	border: 0;
-	appearance: none;
-	position: relative;
-	display: var(--button-display);
+	display: var(--button-display, inline-flex);
 	align-items: center;
 	justify-content: center;
-	text-decoration: none;
-	padding: var(--button-padding-vertical, 0.6em) var(--button-padding-horizontal, 2.5em);
-	font-weight: bold;
-	text-align: center;
-	cursor: var(--button-cursor, pointer);
+
+	width: var(--button-width);
+
+	padding: var(--button-padding-vertical, 0.6rem) var(--button-padding-horizontal, 1.5rem);
+
+	border: none;
 	border-radius: var(--button-border-radius, 5rem);
-	opacity: var(--button-opacity);
+
+	opacity: var(--button-opacity, 1);
+	color: var(--button-scoped-color, var(--button-color, var(--global-colors-white)));
+	background-color: var(--button-scoped-background-color, var(--button-background-color, var(--global-colors-primary)));
+
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: var(--button-font-size);
+	line-height: var(--button-line-height, 1);
+
+	cursor: var(--button-cursor, pointer);
+
 	transition: {
 		property: background-color, color, border-color;
-		timing-function: ease-in;
+		timing-function: ease-out;
 		duration: 0.3s;
 	}
-	color: var(--button-scoped-color, var(--button-color));
-	background-color: var(--button-scoped-background-color, var(--button-background-color));
-	width: var(--button-width);
-	font-size: var(--button-font-size);
-	line-height: var(--button-line-height);
 
 	&:hover {
-		--button-scoped-color: var(--button-color-hover);
-		--button-scoped-background-color: var(--button-background-color-hover);
+		--button-scoped-color: var(--button-color-hover, var(--global-colors-white));
+		--button-scoped-background-color: var(--button-background-color-hover, var(--global-colors-black));
 	}
 
 	&:disabled {
