@@ -31,11 +31,11 @@
 	"options": {
 		"paragraphSize": [
 			{
-				"label": "Default (1rem)",
+				"label": "Default (16)",
 				"value": "default"
 			},
 			{
-				"label": "Small (0.8rem)",
+				"label": "Small (13)",
 				"value": "small"
 			}
 		],

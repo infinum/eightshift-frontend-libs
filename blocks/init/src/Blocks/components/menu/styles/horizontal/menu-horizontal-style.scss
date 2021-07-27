@@ -22,7 +22,7 @@ $menu-horizontal: (
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0 0.75em;
+		padding: 0 0.75rem;
 		transition: 0.3s color ease-in-out;
 
 		@include link($menu-horizontal, link-modifiers);

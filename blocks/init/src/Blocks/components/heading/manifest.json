@@ -36,11 +36,15 @@
 	"options": {
 		"headingSize": [
 			{
-				"label": "Default (1.5em)",
+				"label": "Default (24)",
 				"value": "default"
 			},
 			{
-				"label": "Big (2.5em)",
+				"label": "Big (40)",
+				"value": "big"
+			},
+			{
+				"label": "Huge (68)",
 				"value": "big"
 			}
 		],
@@ -64,28 +68,42 @@
 			"default": [
 				{
 					"variable": {
-						"heading-font-size": "1em",
+						"heading-font-size": "1rem",
 						"heading-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "1.5em"
+						"heading-font-size": "1.5rem"
 					}
 				}
 			],
 			"big": [
 				{
 					"variable": {
-						"heading-font-size": "1.5em",
+						"heading-font-size": "1.5rem",
 						"heading-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "2.5em"
+						"heading-font-size": "2.5rem"
+					}
+				}
+			],
+			"huge": [
+				{
+					"variable": {
+						"heading-font-size": "1.5rem",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "4.25rem"
 					}
 				}
 			]

@@ -40,12 +40,16 @@
 	"options": {
 		"listsSize": [
 			{
-				"label": "Default (1rem)",
+				"label": "Default (16)",
 				"value": "default"
 			},
 			{
-				"label": "Small (0.8rem)",
+				"label": "Small (13)",
 				"value": "small"
+			},
+			{
+				"label": "Big (32)",
+				"value": "big"
 			}
 		],
 		"listsColor": [
@@ -90,6 +94,20 @@
 					"breakpoint": "tablet",
 					"variable": {
 						"lists-font-size": "0.8rem"
+					}
+				}
+			],
+			"big": [
+				{
+					"variable": {
+						"lists-font-size": "1.6rem",
+						"lists-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-font-size": "2rem"
 					}
 				}
 			]
