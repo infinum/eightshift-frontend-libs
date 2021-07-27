@@ -38,6 +38,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"wrapperUse": {
+			"type": "boolean",
+			"default": false
+		},
 
 		"columnWidthLarge": {
 			"type": "integer",
@@ -67,16 +71,20 @@
 		},
 
 		"columnHideLarge": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 		"columnHideDesktop": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 		"columnHideTablet": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 		"columnHideMobile": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 
 		"columnOrderLarge": {
@@ -92,16 +100,17 @@
 			"type": "integer"
 		},
 
-		"columnAlignLarge": {
+		"columnVerticalAlignLarge": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"columnVerticalAlignDesktop": {
 			"type": "string"
 		},
-		"columnAlignDesktop": {
+		"columnVerticalAlignTablet": {
 			"type": "string"
 		},
-		"columnAlignTablet": {
-			"type": "string"
-		},
-		"columnAlignMobile": {
+		"columnVerticalAlignMobile": {
 			"type": "string"
 		}
 	},
@@ -130,11 +139,11 @@
 			"tablet": "columnOrderTablet",
 			"mobile": "columnOrderMobile"
 		},
-		"columnAlign": {
-			"large": "columnAlignLarge",
-			"desktop": "columnAlignDesktop",
-			"tablet": "columnAlignTablet",
-			"mobile": "columnAlignMobile"
+		"columnVerticalAlign": {
+			"large": "columnVerticalAlignLarge",
+			"desktop": "columnVerticalAlignDesktop",
+			"tablet": "columnVerticalAlignTablet",
+			"mobile": "columnVerticalAlignMobile"
 		}
 	},
 	"options": {
@@ -153,7 +162,11 @@
 			"max":  20,
 			"step": 1
 		},
-		"columnAlign": [
+		"columnVerticalAlign": [
+			{
+				"label": "Stretch",
+				"value": "stretch"
+			},
 			{
 				"label": "Top",
 				"value": "top"
@@ -167,5 +180,106 @@
 				"value": "bottom"
 			}
 		]
+	},
+	"variables": {
+		"columnWidth": [
+			{
+				"inverse": true,
+				"variable": {
+					"column-width": "%value%"
+				}
+			}
+		],
+		"columnOffset": [
+			{
+				"inverse": true,
+				"variable": {
+					"column-offset": "%value%"
+				}
+			}
+		],
+		"columnHide": {
+			"false": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-display": "flex"
+					}
+				}
+			],
+			"true": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-display": "none"
+					}
+				}
+			]
+		},
+		"columnOrder": [
+			{
+				"inverse": true,
+				"variable": {
+					"column-order": "%value%"
+				}
+			}
+		],
+		"columnVerticalAlign": {
+			"stretch": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-vertical-align": "%value%",
+						"column-item-height": "100%"
+					}
+				}
+			],
+			"top": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-vertical-align": "flex-start"
+					}
+				}
+			],
+			"center": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-vertical-align": "%value%"
+					}
+				}
+			],
+			"bottom": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-vertical-align": "flex-end"
+					}
+				}
+			]
+		}
+	},
+	"variablesEditor": {
+		"columnHide": {
+			"true": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-display": "flex",
+						"column-opacity": "0.4",
+						"column-transform": "translateY(0.15rem) scale(0.98)"
+					}
+				}
+			],
+			"false": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-opacity": "1"
+					}
+				}
+			]
+		}
 	}
 }
