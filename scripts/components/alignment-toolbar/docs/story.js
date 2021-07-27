@@ -1,10 +1,9 @@
 import React from 'react';
 import readme from './readme.mdx';
-import manifest from '../manifest.json';
 import { AlignmentToolbar, AlignmentToolbarType } from '../alignment-toolbar';
 
 export default {
-	title: `Components/${manifest.title}`,
+	title: `Options/AlignmentToolbar`,
 	parameters: {
 		docs: {
 			page: readme
@@ -14,9 +13,13 @@ export default {
 
 export const text = () => (
 	<>
+		<span>All options</span>
 		<AlignmentToolbar
 			value='center'
 		/>
+		<br />
+		<br />
+		<span>Limited options</span>
 		<AlignmentToolbar
 			value='center'
 			options={['center', 'right']}
@@ -26,10 +29,14 @@ export const text = () => (
 
 export const horizontal = () => (
 	<>
+		<span>All options</span>
 		<AlignmentToolbar
 			value='center'
 			type={AlignmentToolbarType.HORIZONTAL}
 		/>
+		<br />
+		<br />
+		<span>Limited options</span>
 		<AlignmentToolbar
 			value='center'
 			options={['center', 'right']}
@@ -40,11 +47,14 @@ export const horizontal = () => (
 
 export const vertical = () => (
 	<>
+		<span>All options</span>
 		<AlignmentToolbar
 			value='center'
 			type={AlignmentToolbarType.VERTICAL}
 		/>
-
+		<br />
+		<br />
+		<span>Limited options</span>
 		<AlignmentToolbar
 			value='center'
 			type={AlignmentToolbarType.VERTICAL}

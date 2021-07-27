@@ -18,6 +18,7 @@ export const component = () => {
 		<IconLabel
 			icon={icons.color}
 			label={__('Color', 'eightshift-frontend-libs')}
+			standalone
 		/>
 	);
 }

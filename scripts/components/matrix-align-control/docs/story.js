@@ -14,9 +14,11 @@ export default {
 export const component = () => {
 	const [align, setAlign] = useState('center center');
 
-	<MatrixAlignControl
+	return (
+		<MatrixAlignControl
 		label='Alignment position'
 		value={align}
 		onChange={(value) => setAlign(value)}
 	/>
+	);
 }
