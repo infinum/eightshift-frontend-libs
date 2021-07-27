@@ -1,7 +1,8 @@
 {
 	"blockName": "tab",
 	"title": "Tab",
-	"blockJsClass": "js-tab",
+	"blockJsClass": "js-block-tab",
+	"blockClass": "block-tab",
 	"description" : "Tab block with custom settings.",
 	"category": "eightshift",
 	"icon": {

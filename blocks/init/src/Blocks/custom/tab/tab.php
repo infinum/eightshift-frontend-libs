@@ -10,10 +10,10 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$blockClass = $attributes['blockClass'] ?? '';
-$blockJsClass = $manifest['blockJsClass'] ?? '';
-$tabId = $attributes['tabId'] ?? '';
-$tabTitle = $attributes['tabTitle'] ?? '';
+$blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
+$blockJsClass = Components::checkAttr('blockJsClass', $attributes, $manifest);
+$tabId = Components::checkAttr('tabId', $attributes, $manifest);
+$tabTitle = Components::checkAttr('tabTitle', $attributes, $manifest);
 
 $tabClass = Components::classnames([
 	$blockClass,
