@@ -28,34 +28,21 @@ $tabsClass = Components::classnames([
 
 $tabPanelClass = Components::classnames([
 	$tabPanelJsClass,
-	Components::selector(
-		$tabPanelElement && $blockClass,
-		$blockClass,
-		$tabPanelElement
-	)
+	Components::selector($tabPanelElement && $blockClass, $blockClass, $tabPanelElement)
 ]);
 
 $tabPanelItemClass = Components::classnames([
-	Components::selector(
-		$tabPanelItemElement && $blockClass,
-		$blockClass,
-		$tabPanelItemElement
-	)
+	Components::selector($tabPanelItemElement && $blockClass, $blockClass, $tabPanelItemElement)
 ]);
 
 $tabPanelItemButtonClass = Components::classnames([
 	$tabPanelItemButtonJsClass,
-	Components::selector(
-		$tabPanelItemButtonElement && $blockClass,
-		$blockClass,
-		$tabPanelItemButtonElement
-	)
+	Components::selector($tabPanelItemButtonElement && $blockClass, $blockClass, $tabPanelItemButtonElement)
 ]);
 ?>
 			
 <div class="<?php echo \esc_attr($tabsClass); ?>">
-	<div class="<?php echo \esc_attr($tabPanelClass); ?>">
-	</div>
+	<div class="<?php echo \esc_attr($tabPanelClass); ?>"></div>
 	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>
 
