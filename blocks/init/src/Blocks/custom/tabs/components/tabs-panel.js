@@ -4,12 +4,17 @@ import manifest from './../manifest.json';
 
 export const TabsPanel = (props) => {
 
-  
-	const { childBlocks, activeTab, setAttributes } = props;
+	const {
+		childBlocks,
+		activeTab,
+		setAttributes
+	} = props;
+
 	const tabItems = childBlocks.map((block) => 
 		{
 			let classes = selector(manifest.tabPanelItemElement, manifest.blockClass, manifest.tabPanelItemElement);
 			if(activeTab === block.tabId) classes += ` ${manifest.tabPanelItemActiveClass}`;
+			
 			return (
 				<li
 					key={block.tabId}
@@ -25,11 +30,11 @@ export const TabsPanel = (props) => {
 					>
 						{block.tabTitle}
 					</button>
-					
 				</li>
 			);
 		}
 	);
+
 	return (
 		<>
 			<ul className="block-tabpanel">
