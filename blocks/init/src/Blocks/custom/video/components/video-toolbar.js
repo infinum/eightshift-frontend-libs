@@ -8,7 +8,7 @@ export const VideoToolbar = ({ attributes, setAttributes }) => {
 
 	return (
 		<MatrixAlignControl
-			label={__('Video position', 'newboilerplate')}
+			label={__('Video position', 'eightshift-frontend-libs')}
 			value={videoAlign}
 			onChange={(value) => setAttributes({ [getAttrKey('videoAlign', attributes, manifest)]: value })}
 		/>

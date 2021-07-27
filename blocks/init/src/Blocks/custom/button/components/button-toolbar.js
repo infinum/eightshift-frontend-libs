@@ -22,7 +22,7 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 			<AlignmentToolbar
 				value={buttonAlign}
 				options={getOption('buttonAlign', attributes, manifest)}
-				label={sprintf(__('%s align', 'newboilerplate'), manifestTitle)}
+				label={sprintf(__('%s align', 'eightshift-frontend-libs'), manifestTitle)}
 				onChange={(value) => setAttributes({ [getAttrKey('buttonAlign', attributes, manifest)]: value })}
 				type={AlignmentToolbarType.HORIZONTAL}
 			/>

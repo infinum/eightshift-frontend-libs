@@ -43,7 +43,7 @@ $shareItemClass = Components::classnames([
 $networkNames = array_column($manifest['socialOptions'], 'label', 'value');
 ?>
 <div class="<?php echo \esc_attr($shareClass); ?>">
-	<span><?php echo esc_html__('Share on', 'newboilerplate'); ?></span>
+	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>
 
 	<?php
 	foreach ($socialNetworks as $name => $url) {

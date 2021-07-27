@@ -35,7 +35,7 @@ export const ShareEditor = (attributes) => {
 
 	return (
 		<div className={shareClass}>
-			{__('Share on', 'newboilerplate')}
+			{__('Share on', 'eightshift-frontend-libs')}
 			{manifest.socialOptions.map(({ label }, key) => (
 				<div key={key} className={shareItemClass}>{label}</div>
 			))}

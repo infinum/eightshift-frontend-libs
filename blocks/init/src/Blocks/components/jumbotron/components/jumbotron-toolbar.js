@@ -30,7 +30,7 @@ export const JumbotronToolbar = (attributes) => {
 			{showJumbotronContentPosition &&
 				<ToolbarGroup>
 					<MatrixAlignControl
-						label={__('Content position', 'newboilerplate')}
+						label={__('Content position', 'eightshift-frontend-libs')}
 						value={jumbotronContentPosition}
 						onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
 					/>

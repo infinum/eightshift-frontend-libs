@@ -41,7 +41,7 @@ export const HeadingOptions = (attributes) => {
 				<>
 					{showHeadingColor &&
 						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'newboilerplate')} />}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 							colors={getOption('headingColor', attributes, manifest, true)}
 							value={headingColor}
 							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
@@ -50,7 +50,7 @@ export const HeadingOptions = (attributes) => {
 
 					{showHeadingSize &&
 						<CustomSelect
-							label={<IconLabel icon={icons.textSize} label={__('Font size', 'newboilerplate')} />}
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
 							value={headingSize}
 							options={getOption('headingSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: value })}

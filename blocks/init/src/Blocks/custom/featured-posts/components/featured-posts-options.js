@@ -66,7 +66,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 		return [
 			{
-				label: __('All taxonomies', 'newboilerplate'),
+				label: __('All taxonomies', 'eightshift-frontend-libs'),
 				value: null
 			},
 			...data.map(({ slug }) => {
@@ -119,10 +119,10 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured posts', 'newboilerplate')}>
+		<PanelBody title={__('Featured posts', 'eightshift-frontend-libs')}>
 			{postTypeOptions &&
 				<CustomSelect
-					label={<IconLabel icon={icons.file} label={__('Post type', 'newboilerplate')} />}
+					label={<IconLabel icon={icons.file} label={__('Post type', 'eightshift-frontend-libs')} />}
 					value={postType}
 					options={postTypeOptions}
 					onChange={(value) => {
@@ -142,7 +142,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			{postTypeOptions && taxonomyOptions && taxonomyOptions?.length > 0 &&
 				<CustomSelect
-					label={<IconLabel icon={icons.editOptions} label={__('Filter by taxonomy', 'newboilerplate')} />}
+					label={<IconLabel icon={icons.editOptions} label={__('Filter by taxonomy', 'eightshift-frontend-libs')} />}
 					value={taxonomy}
 					options={taxonomyOptions}
 					onChange={(value) => {
@@ -162,7 +162,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			{taxonomyOptions && taxonomy && termsOptions?.length > 0 &&
 				<CustomSelect
-					label={<IconLabel icon={icons.clipboard} label={sprintf(__('Show items from this %s', 'newboilerplate'), taxonomy.toLowerCase())} />}
+					label={<IconLabel icon={icons.clipboard} label={sprintf(__('Show items from this %s', 'eightshift-frontend-libs'), taxonomy.toLowerCase())} />}
 					options={termsOptions}
 					value={terms}
 					multiple={true}
@@ -180,8 +180,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			{postTypeOptions && !taxonomy &&
 				<CustomSelect
-					label={<IconLabel icon={<BlockIcon iconName='esf-select' />}  label={sprintf(__('Show only these %ss', 'newboilerplate'), _.toLower(postType))} />}
-					help={__('If blank, all are shown', 'newboilerplate')}
+					label={<IconLabel icon={<BlockIcon iconName='esf-select' />}  label={sprintf(__('Show only these %ss', 'eightshift-frontend-libs'), _.toLower(postType))} />}
+					help={__('If blank, all are shown', 'eightshift-frontend-libs')}
 					options={postsOptions}
 					value={posts}
 					multiple={true}
@@ -200,7 +200,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			<hr />
 
 			<RangeControl
-				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'newboilerplate')} />}
+				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'eightshift-frontend-libs')} />}
 				value={featuredPostsItemsPerLine}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredPostsItemsPerLine', attributes, manifest)]: value })}
 				min={manifestOptions.featuredPostsItemsPerLine.min}
@@ -209,7 +209,7 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			/>
 
 			<RangeControl
-				label={<IconLabel icon={icons.totalItems} label={__('Maximum items', 'newboilerplate')} />}
+				label={<IconLabel icon={icons.totalItems} label={__('Maximum items', 'eightshift-frontend-libs')} />}
 				value={featuredPostsShowItems}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredPostsShowItems', attributes, manifest)]: value })}
 				min={1}
@@ -221,9 +221,9 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<IconToggle
 				icon={icons.none}
-				label={__('Exclude current post', 'newboilerplate')}
+				label={__('Exclude current post', 'eightshift-frontend-libs')}
 				checked={featuredPostsExcludeCurrentPost}
-				help={__('This options can only be used in post single pages.', 'newboilerplate')}
+				help={__('This options can only be used in post single pages.', 'eightshift-frontend-libs')}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredPostsExcludeCurrentPost', attributes, manifest)]: value })}
 			/>
 		</PanelBody>

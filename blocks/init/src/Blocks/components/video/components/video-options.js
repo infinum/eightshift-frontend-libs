@@ -73,7 +73,7 @@ export const VideoOptions = (attributes) => {
 						isDestructive
 						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 						icon={icons.trash}
-						text={__('Remove video', 'newboilerplate')}
+						text={__('Remove video', 'eightshift-frontend-libs')}
 					/>
 					<hr />
 				</>
@@ -82,9 +82,9 @@ export const VideoOptions = (attributes) => {
 			{!showVideoUrl && !hasVideo &&
 				<Placeholder
 					icon={icons.help}
-					label={__('No video... yet', 'newboilerplate')}
+					label={__('No video... yet', 'eightshift-frontend-libs')}
 				>
-					{__('Add one in the Block editor', 'newboilerplate')}
+					{__('Add one in the Block editor', 'eightshift-frontend-libs')}
 				</Placeholder>
 			}
 
@@ -92,7 +92,7 @@ export const VideoOptions = (attributes) => {
 				<BaseControl
 					label={
 						<>
-							<IconLabel icon={icons.video} label={__('Video', 'newboilerplate')} />
+							<IconLabel icon={icons.video} label={__('Video', 'eightshift-frontend-libs')} />
 
 							{hasVideo &&
 								<Button
@@ -102,7 +102,7 @@ export const VideoOptions = (attributes) => {
 									className='es-small-square-icon-button'
 									onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 									icon={icons.trash}
-									label={__('Remove video', 'newboilerplate')}
+									label={__('Remove video', 'eightshift-frontend-libs')}
 								/>
 							}
 						</>
@@ -120,7 +120,7 @@ export const VideoOptions = (attributes) => {
 								})
 							})
 							}
-							labels={{ title: __('Add a video', 'newboilerplate') }}
+							labels={{ title: __('Add a video', 'eightshift-frontend-libs') }}
 							accept={videoAccept}
 							allowedTypes={videoAllowedTypes}
 							multiple
@@ -130,9 +130,9 @@ export const VideoOptions = (attributes) => {
 					{hasVideo &&
 						<Placeholder
 							icon={icons.checkCircle}
-							label={__('Video added', 'newboilerplate')}
+							label={__('Video added', 'eightshift-frontend-libs')}
 						>
-							{__('Check the Block editor', 'newboilerplate')}
+							{__('Check the Block editor', 'eightshift-frontend-libs')}
 						</Placeholder>
 					}
 
@@ -143,7 +143,7 @@ export const VideoOptions = (attributes) => {
 				<BaseControl
 					label={
 						<>
-							<IconLabel icon={icons.videoPosterImage} label={__('Poster image', 'newboilerplate')} />
+							<IconLabel icon={icons.videoPosterImage} label={__('Poster image', 'eightshift-frontend-libs')} />
 
 							{hasPoster &&
 								<Button
@@ -153,16 +153,16 @@ export const VideoOptions = (attributes) => {
 									className='es-small-square-icon-button'
 									onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
 									icon={icons.trash}
-									label={__('Remove video poster image', 'newboilerplate')}
+									label={__('Remove video poster image', 'eightshift-frontend-libs')}
 								/>
 							}
 						</>
 					}
-					help={__('Visible before the video is played. Make sure to enable the video controls so the video can be started!', 'newboilerplate')}
+					help={__('Visible before the video is played. Make sure to enable the video controls so the video can be started!', 'eightshift-frontend-libs')}
 				>
 					{!hasPoster &&
 						<MediaPlaceholder
-							labels={{ title: __('Add an image', 'newboilerplate') }}
+							labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
 							icon={icons.imageFile}
 							onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
 							accept={'image/*'}
@@ -180,10 +180,10 @@ export const VideoOptions = (attributes) => {
 
 			{showVideoAdvanced && hasVideo &&
 				<div className='es-flex-between'>
-					<IconLabel icon={icons.options} label={__('Advanced settings', 'newboilerplate')} standalone />
+					<IconLabel icon={icons.options} label={__('Advanced settings', 'eightshift-frontend-libs')} standalone />
 					<Button
 						onClick={() => setShowAdvanced(!showAdvanced)}
-						label={showAdvanced ? __('Hide', 'newboilerplate') : __('Show', 'newboilerplate')}
+						label={showAdvanced ? __('Hide', 'eightshift-frontend-libs') : __('Show', 'eightshift-frontend-libs')}
 						icon={showAdvanced ? icons.chevronUp : icons.chevronDown}
 						iconSize={24}
 						isSecondary
@@ -198,7 +198,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoLoop &&
 						<IconToggle
 							icon={icons.loopMode}
-							label={__('Loop', 'newboilerplate')}
+							label={__('Loop', 'eightshift-frontend-libs')}
 							checked={videoLoop}
 							onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
 						/>
@@ -207,7 +207,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoAutoplay &&
 						<IconToggle
 							icon={icons.autoplay}
-							label={__('Autoplay', 'newboilerplate')}
+							label={__('Autoplay', 'eightshift-frontend-libs')}
 							checked={videoAutoplay}
 							onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
 						/>
@@ -216,7 +216,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoControls &&
 						<IconToggle
 							icon={icons.videoControls}
-							label={__('Video controls', 'newboilerplate')}
+							label={__('Video controls', 'eightshift-frontend-libs')}
 							checked={videoControls}
 							onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
 						/>
@@ -225,7 +225,7 @@ export const VideoOptions = (attributes) => {
 					{showVideoMuted &&
 						<IconToggle
 							icon={icons.muteCentered}
-							label={__('No sound', 'newboilerplate')}
+							label={__('No sound', 'eightshift-frontend-libs')}
 							checked={videoMuted}
 							onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
 						/>
@@ -235,7 +235,7 @@ export const VideoOptions = (attributes) => {
 
 					{showVideoPreload &&
 						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.play} label={__('Preload type', 'newboilerplate')} />}
+							label={<IconLabel icon={icons.play} label={__('Preload type', 'eightshift-frontend-libs')} />}
 							options={getOption('videoPreload', attributes, manifest).map(({ label, value, icon: iconName }) => {
 								return {
 									onClick: () => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value }),

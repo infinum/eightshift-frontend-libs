@@ -14,16 +14,16 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 	const breakpoints = Object.keys(globalManifest.globalVariables.breakpoints).reverse();
 
 	return (
-		<PanelBody title={__('Columns', 'newboilerplate')}>
+		<PanelBody title={__('Columns', 'eightshift-frontend-libs')}>
 			<HelpModal
 				type="columns"
-				buttonLabel={__('How to use Columns?', 'newboilerplate')}
-				modalLabel={__('Columns', 'newboilerplate')}
+				buttonLabel={__('How to use Columns?', 'eightshift-frontend-libs')}
+				modalLabel={__('Columns', 'eightshift-frontend-libs')}
 			/>
 
 			<br /><br />
 
-			<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnsGutter', attributes, manifest)}${point}`;
@@ -46,7 +46,7 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.verticalSpacing} label={__('Vertical spacing', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.verticalSpacing} label={__('Vertical spacing', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnsVerticalSpacing', attributes, manifest)}${point}`;

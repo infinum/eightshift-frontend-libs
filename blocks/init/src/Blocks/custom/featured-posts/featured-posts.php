@@ -92,7 +92,7 @@ global $post;
 					'headingContent' => \get_the_title($postId),
 					'paragraphContent' => $excerpt,
 					'paragraphUse' => !empty($excerpt),
-					'buttonContent' => __('Read', 'newboilerplate'),
+					'buttonContent' => __('Read', 'eightshift-frontend-libs'),
 					'buttonUrl' => \get_the_permalink($postId),
 					'buttonColor' => 'primary',
 					'headingSize' => 'big',

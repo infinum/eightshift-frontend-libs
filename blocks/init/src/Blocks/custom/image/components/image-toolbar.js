@@ -8,7 +8,7 @@ export const ImageToolbar = ({ attributes, setAttributes }) => {
 
 	return (
 		<MatrixAlignControl
-			label={__('Image position', 'newboilerplate')}
+			label={__('Image position', 'eightshift-frontend-libs')}
 			value={imageAlign}
 			onChange={(value) => setAttributes({ [getAttrKey('imageAlign', attributes, manifest)]: value })}
 		/>

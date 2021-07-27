@@ -61,7 +61,7 @@ export const IconOptions = (attributes) => {
 				<CustomSelect
 					value={iconName}
 					options={getOption('iconName', attributes, manifest)}
-					placeholder={__('Select an icon', 'newboilerplate')}
+					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
 					customOptionComponent={IconPickerOption}
 					customSingleValueDisplayComponent={IconPickerValueDisplay}
 					onChange={(value) => setAttributes({[getAttrKey('iconName', attributes, manifest)]: value?.value})}

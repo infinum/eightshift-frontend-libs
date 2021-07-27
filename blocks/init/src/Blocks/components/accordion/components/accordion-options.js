@@ -6,7 +6,7 @@ import manifest from './../manifest.json';
 export const AccordionOptions = (attributes) => {
 	const {
 		setAttributes,
-		label = __('Accordion', 'newboilerplate'),
+		label = __('Accordion', 'eightshift-frontend-libs'),
 		accordionShowControls = true,
 
 		showAccordionUse = false,
@@ -35,7 +35,7 @@ export const AccordionOptions = (attributes) => {
 			{showAccordionIsOpen &&
 				<IconToggle
 					icon={icons.play}
-					label={__('Start open', 'newboilerplate')}
+					label={__('Start open', 'eightshift-frontend-libs')}
 					checked={accordionIsOpen}
 					onChange={(value) => setAttributes({ [getAttrKey('accordionIsOpen', attributes, manifest)]: value })}
 				/>
@@ -44,8 +44,8 @@ export const AccordionOptions = (attributes) => {
 			{showAccordionIsOpen &&
 				<IconToggle
 					icon={icons.errorCircle}
-					label={__('Close adjacent', 'newboilerplate')}
-					help={__('Close adjacent accordions when opening this one.', 'newboilerplate')}
+					label={__('Close adjacent', 'eightshift-frontend-libs')}
+					help={__('Close adjacent accordions when opening this one.', 'eightshift-frontend-libs')}
 					checked={accordionCloseOthers}
 					onChange={(value) => setAttributes({ [getAttrKey('accordionCloseOthers', attributes, manifest)]: value })}
 				/>

@@ -60,11 +60,11 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured categories', 'newboilerplate')}>
+		<PanelBody title={__('Featured categories', 'eightshift-frontend-libs')}>
 
 			{taxonomyOptions[0] &&
 				<CustomSelect
-					label={<IconLabel icon={<BlockIcon iconName='es-lists' />} label={__('Taxonomy type', 'newboilerplate')} />}
+					label={<IconLabel icon={<BlockIcon iconName='es-lists' />} label={__('Taxonomy type', 'eightshift-frontend-libs')} />}
 					value={taxonomy}
 					options={taxonomyOptions}
 					onChange={(value) => {
@@ -84,8 +84,8 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 
 			{taxonomyOptions[0] && taxonomy &&
 				<CustomSelect
-					label={<IconLabel icon={icons.visible} label={sprintf(__('Show only these %s', 'newboilerplate'), taxonomy.toLowerCase().replace('category', 'categories'))} />}
-					help={__('If blank, all are shown', 'newboilerplate')}
+					label={<IconLabel icon={icons.visible} label={sprintf(__('Show only these %s', 'eightshift-frontend-libs'), taxonomy.toLowerCase().replace('category', 'categories'))} />}
+					help={__('If blank, all are shown', 'eightshift-frontend-libs')}
 					options={termsOptions}
 					value={terms}
 					multiple={true}
@@ -103,7 +103,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			<hr />
 
 			<RangeControl
-				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'newboilerplate')} />}
+				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'eightshift-frontend-libs')} />}
 				value={featuredCategoriesItemsPerLine}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredCategoriesItemsPerLine', attributes, manifest)]: value })}
 				min={manifestOptions.featuredCategoriesItemsPerLine.min}

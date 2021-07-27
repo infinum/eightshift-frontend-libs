@@ -53,8 +53,8 @@ export const VideoEditor = (attributes) => {
 					})
 					}
 					labels={{
-						title: __('Video', 'newboilerplate'),
-						instructions: __('Upload a video file or pick one from your media library. You can select multiple video files to have fallbacks with different video formats.', 'newboilerplate'),
+						title: __('Video', 'eightshift-frontend-libs'),
+						instructions: __('Upload a video file or pick one from your media library. You can select multiple video files to have fallbacks with different video formats.', 'eightshift-frontend-libs'),
 					}}
 					multiple
 					accept={videoAccept}
@@ -63,8 +63,8 @@ export const VideoEditor = (attributes) => {
 			}
 
 			{!hasVideo && !showVideoUrl && showPlaceholder &&
-				<Placeholder icon={icons.video} label={__('Add a video', 'newboilerplate')}>
-					{__('Check the block options in the sidebar', 'newboilerplate')}
+				<Placeholder icon={icons.video} label={__('Add a video', 'eightshift-frontend-libs')}>
+					{__('Check the block options in the sidebar', 'eightshift-frontend-libs')}
 				</Placeholder>
 			}
 

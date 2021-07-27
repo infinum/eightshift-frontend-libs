@@ -18,7 +18,7 @@ export const ParagraphEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'newboilerplate'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 
 		onSplit,
 		mergeBlocks,

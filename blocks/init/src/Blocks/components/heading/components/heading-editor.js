@@ -18,7 +18,7 @@ export const HeadingEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'newboilerplate'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);

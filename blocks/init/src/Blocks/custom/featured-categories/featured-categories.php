@@ -60,7 +60,7 @@ if (!$taxonomyName) {
 			'headingContent' => is_object($termObject) ? $termObject->name : '',
 			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
 			'paragraphUse' => is_object($termObject),
-			'buttonContent' => __('See posts', 'newboilerplate'),
+			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
 			'buttonUrl' => \get_term_link($termObject),
 			'buttonColor' => 'primary',
 			'headingSize' => 'big',

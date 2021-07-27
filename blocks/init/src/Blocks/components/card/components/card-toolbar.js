@@ -40,7 +40,7 @@ export const CardToolbar = (attributes) => {
 			<AlignmentToolbar
 				value={cardAlign}
 				options={getOption('cardAlign', attributes, manifest)}
-				label={sprintf(__('%s content align', 'newboilerplate'), manifestTitle)}
+				label={sprintf(__('%s content align', 'eightshift-frontend-libs'), manifestTitle)}
 				onChange={(value) => setAttributes({ [getAttrKey('cardAlign', attributes, manifest)]: value })}
 				type={AlignmentToolbarType.HORIZONTAL}
 			/>

@@ -14,17 +14,17 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 	const breakpoints = Object.keys(globalManifest.globalVariables.breakpoints).reverse();
 
 	return (
-		<PanelBody title={__('Column', 'newboilerplate')}>
+		<PanelBody title={__('Column', 'eightshift-frontend-libs')}>
 
 			<HelpModal
 				type='column'
-				buttonLabel={__('How to use a Column?', 'newboilerplate')}
-				modalLabel={__('Column', 'newboilerplate')}
+				buttonLabel={__('How to use a Column?', 'eightshift-frontend-libs')}
+				modalLabel={__('Column', 'eightshift-frontend-libs')}
 			/>
 
 			<br /><br />
 
-			<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnWidth', attributes, manifest)}${point}`;
@@ -47,7 +47,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map(function (keyName) {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnOffset', attributes, manifest)}${point}`;
@@ -70,7 +70,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.order} label={__('Order', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.order} label={__('Order', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName, index) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnOrder', attributes, manifest)}${point}`;
@@ -89,14 +89,14 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 								allowReset
 							/>
 							{index === 0 &&
-								<p className='es-decorative-text'>{__('Needs to be set on all columns!', 'newboilerplate')}</p>
+								<p className='es-decorative-text'>{__('Needs to be set on all columns!', 'eightshift-frontend-libs')}</p>
 							}
 						</Fragment>
 					);
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.verticalAlign} label={__('Vertical align', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.verticalAlign} label={__('Vertical align', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName, index) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnVerticalAlign', attributes, manifest)}${point}`;
@@ -125,7 +125,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'newboilerplate')} />}>
+			<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
 					const attr = `${getAttrKey('columnHide', attributes, manifest)}${point}`;
