@@ -66,7 +66,7 @@ $tabPanelItemButtonClass = Components::classnames([
 		<button
 			role="tab"
 			class="<?php echo \esc_attr($tabPanelItemButtonClass); ?>"
-			data-triggerstabid="newTab"
+			data-triggers-tab-id="newTab"
 		>
 		</button>
 	</li>
