@@ -1,12 +1,10 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl} from '@wordpress/components';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const TabOptions = ({ attributes, setAttributes }) => {
-
 	const tabTitle = checkAttr('tabTitle', attributes, manifest);
 
 	return (

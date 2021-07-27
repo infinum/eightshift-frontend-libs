@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabsEditor } from './components/tabs-editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './manifest.json';
 
 export const Tabs = (props) => {

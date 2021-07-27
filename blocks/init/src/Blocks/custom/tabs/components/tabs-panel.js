@@ -1,9 +1,8 @@
-import { selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector } from '@eightshift/frontend-libs/scripts';
 import React from 'react';
 import manifest from './../manifest.json';
 
 export const TabsPanel = (props) => {
-
 	const {
 		childBlocks,
 		activeTab,

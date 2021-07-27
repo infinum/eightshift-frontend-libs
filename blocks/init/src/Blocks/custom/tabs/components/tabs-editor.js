@@ -1,8 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { checkAttr, getUnique } from '@eightshift/frontend-libs/scripts';
 import { TabsPanel } from './tabs-panel.js';
 import manifest from './../manifest.json';
 
