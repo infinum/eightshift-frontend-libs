@@ -11,8 +11,7 @@ export const Tab = (props) => {
 	const {
 		attributes,
 		clientId,
-		setAttributes,
-		context
+		setAttributes
 	} = props;
 
 	useSelect((select) => {
@@ -26,7 +25,9 @@ export const Tab = (props) => {
 		setAttributes({ [getAttrKey('tabId', attributes, manifest)]: tabId })
 	}
 
-	if(context['eightshift-boilerplate/tabsCurrentlyActiveTabId'] === tabId){
+	const parentClientId = wp.data.select('core/block-editor').getBlockParentsByBlockName(clientId, ['eightshift-boilerplate/tabs'])[0];
+	const activeTab = wp.data.select('core/block-editor').getBlockAttributes(parentClientId).tabsCurrentlyActiveTabId;
+	if(activeTab === tabId){
 		props.active = true;
 	}
 

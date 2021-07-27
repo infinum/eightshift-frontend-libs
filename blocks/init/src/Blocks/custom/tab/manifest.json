@@ -43,6 +43,5 @@
 			"type": "boolean",
 			"default": true
 		}
-	},
-	"usesContext": ["eightshift-boilerplate/tabsCurrentlyActiveTabId"]
+	}
 }

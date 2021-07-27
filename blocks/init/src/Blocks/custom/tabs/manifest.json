@@ -83,8 +83,5 @@
 		"tabsCurrentlyActiveTabId": {
 			"type": "string"
 		}
-	},
-	"providesContext":{
-		"eightshift-boilerplate/tabsCurrentlyActiveTabId": "tabsCurrentlyActiveTabId"
 	}
 }
