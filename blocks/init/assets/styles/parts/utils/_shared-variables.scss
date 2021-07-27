@@ -15,5 +15,6 @@ $base-col-number: global-settings(maxCols);
 		--base-font-size: 0.85;
 	}
 
-	--global-font-family: var(--global-base-font), Arial, sans-serif;
+	--global-font-family: var(--global-base-font), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }

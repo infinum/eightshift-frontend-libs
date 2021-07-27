@@ -5,7 +5,7 @@
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,
-		"baseFont": "Inter, sans-serif",
+		"baseFont": "Inter",
 		"zIndex": {
 			"header": 100,
 			"drawer": 99,
@@ -26,13 +26,13 @@
 			"big": "2.5rem"
 		},
 		"sectionSpacing": {
-			"min": -300,
-			"max": 300,
+			"min":  -300,
+			"max":  300,
 			"step": 10
 		},
 		"sectionInSpacing": {
-			"min": 0,
-			"max": 300,
+			"min":  0,
+			"max":  300,
 			"step": 10
 		},
 		"colors": [
