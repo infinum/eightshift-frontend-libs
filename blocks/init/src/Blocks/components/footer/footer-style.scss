@@ -5,7 +5,7 @@
 	align-items: center;
 
 	margin: 0 auto;
-	padding: var(--global-gutters-default);
+	padding: calc(var(--global-gutters-big) * 2) var(--global-gutters-default);
 
 	width: 100%;
 	max-width: var(--global-containers-default);
