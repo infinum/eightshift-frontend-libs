@@ -254,7 +254,9 @@
 						"button-padding-horizontal": "0",
 						"button-padding-vertical": "0",
 						"button-color": "var(--button-color-is-link)",
-						"button-color-hover": "var(--button-color-is-link-hover)"
+						"button-color-hover": "var(--button-color-is-link-hover)",
+						"button-display": "inline-flex",
+						"button-width": "auto"
 					}
 				}
 			]

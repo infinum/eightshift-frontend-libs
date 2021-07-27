@@ -87,14 +87,14 @@ export const ButtonOptions = (attributes) => {
 						/>
 					}
 
-					{showButtonSize &&
+					{showButtonSize && !buttonIsLink &&
 						<SimpleVerticalSingleSelect
 							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-frontend-libs')} />}
 							options={sizeOptions}
 						/>
 					}
 
-					{(showButtonWidth && !buttonIsLink) &&
+					{showButtonWidth && !buttonIsLink &&
 						<SimpleVerticalSingleSelect
 							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}
 							options={widthOptions}

@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: center;
 
-	width: var(--button-width);
+	width: var(--button-width, auto);
 
 	padding: var(--button-padding-vertical, 0.6rem) var(--button-padding-horizontal, 1.5rem);
 
