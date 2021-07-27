@@ -1,34 +1,21 @@
 import React from 'react';
-import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { responsiveSelectors, checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts';
+import { getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts/editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ColumnsEditor = ({ attributes }) => {
 	const {
-		globalVariables: {
-			customBlocksName: globalManifestCustomBlocksName,
-		},
-	} = globalManifest;
-
-	const {
+		columnsAllowedBlocks,
 		blockClass,
 	} = attributes;
-
-	const columnsAllowedBlocks = checkAttr('columnsAllowedBlocks', attributes, manifest);
-	const columnsGutter = checkAttrResponsive('columnsGutter', attributes, manifest);
-	const columnsVerticalSpacing = checkAttrResponsive('columnsVerticalSpacing', attributes, manifest);
-
-	const columnsClass = classnames([
-		blockClass,
-		globalManifestCustomBlocksName,
-		responsiveSelectors(columnsGutter, 'gutter', blockClass),
-		responsiveSelectors(columnsVerticalSpacing, 'vertical-spacing', blockClass),
-	]);
+	
+	const unique = getUnique();
 
 	return (
-		<div className={columnsClass}>
+		<div className={blockClass} data-id={unique}>
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
 			<InnerBlocks
 				allowedBlocks={(typeof columnsAllowedBlocks === 'undefined') || columnsAllowedBlocks}
 			/>

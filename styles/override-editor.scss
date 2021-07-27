@@ -150,7 +150,8 @@ body {
 			border: 1px solid transparent;
 
 			& > .components-base-control,
-			& > .es-icon-toggle {
+			& > .es-icon-toggle,
+			& > .es-responsive-inset {
 				margin-bottom: 0 !important;
 
 				&:first-of-type {
@@ -182,7 +183,8 @@ body {
 				}
 
 				> .components-base-control:first-of-type:not(.components-base-control__label),
-				> .es-icon-toggle:first-of-type {
+				> .es-icon-toggle:first-of-type,
+				> .es-responsive-inset:first-of-type {
 					margin-left: 0;
 					padding-left: 0;
 					border-left-width: 0;
@@ -776,5 +778,15 @@ body {
 				color: var(--wp-admin-theme-color, #007CBA);
 			}
 		}
+	}
+
+	// Add this class to any custom Responsive sub-element that should be inset when not expanded.
+	.es-responsive-inset {}
+
+	// A vertical flex container with a gap.
+	.es-v-spaced {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 }

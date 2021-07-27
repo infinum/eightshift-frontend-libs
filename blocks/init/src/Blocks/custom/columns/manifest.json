@@ -142,5 +142,23 @@
 			"max": 100,
 			"step": 10
 		}
+	},
+	"variables": {
+		"columnsVerticalSpacing": [
+			{
+				"inverse": true,
+				"variable": {
+					"columns-vertical-spacing": "calc((%value% / 16) * 1rem)"
+				}
+			}
+		],
+		"columnsGutter": [
+			{
+				"inverse": true,
+				"variable": {
+					"columns-gutter": "calc((%value% / 16) * 1rem)"
+				}
+			}
+		]
 	}
 }
