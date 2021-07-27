@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { checkAttr, getAttrKey, getOption, CustomSelect, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
 import { components } from 'react-select';
