@@ -8,9 +8,9 @@ export class Tabber {
     tabPanelClickHandler(e){
         this.tabsElement.querySelector(`.${this.options.tabVisibleClass}`).classList.remove(this.options.tabVisibleClass);
         this.tabPanel.querySelector(`.${this.options.tabPanelItemActiveClass}`).classList.remove(this.options.tabPanelItemActiveClass);
-        const triggeredTab = e.target.dataset.triggerstabid;
-        this.tabsElement.querySelector(`[data-tabid="${triggeredTab}"]`).classList.add(this.options.tabVisibleClass);
-        this.tabPanel.querySelector(`[data-triggerstabid="${triggeredTab}"]`).parentNode.classList.add(this.options.tabPanelItemActiveClass);
+        const triggeredTab = e.target.dataset.triggersTabId;
+        this.tabsElement.querySelector(`[data-tab-id="${triggeredTab}"]`).classList.add(this.options.tabVisibleClass);
+        this.tabPanel.querySelector(`[data-triggers-tab-id="${triggeredTab}"]`).parentNode.classList.add(this.options.tabPanelItemActiveClass);
         e.target.classList.add(this.tabPanelItemActiveClass);
     }
     init() {
@@ -18,8 +18,8 @@ export class Tabber {
         [...tabs].forEach((tab) => {
             const template = document.querySelector(`#${this.options.tabPanelItemTemplateId}`);
             let tabPanelItem = template.content.firstElementChild.cloneNode(true);
-            tabPanelItem.querySelector(`.${this.options.tabPanelItemButtonJsClass}`).dataset.triggerstabid = tab.dataset.tabid;
-            tabPanelItem.querySelector(`.${this.options.tabPanelItemButtonJsClass}`).textContent = tab.dataset.tabtitle;
+            tabPanelItem.querySelector(`.${this.options.tabPanelItemButtonJsClass}`).dataset.triggersTabId = tab.dataset.tabId;
+            tabPanelItem.querySelector(`.${this.options.tabPanelItemButtonJsClass}`).textContent = tab.dataset.tabTitle;
             tabPanelItem.querySelector(`.${this.options.tabPanelItemButtonJsClass}`).addEventListener("click", (e) => {
                 this.tabPanelClickHandler(e);
             });

@@ -23,8 +23,8 @@ $tabClass = Components::classnames([
 
 <div 
 	class="<?php echo \esc_attr($tabClass); ?>"
-	data-tabid="<?php echo \esc_attr($tabId); ?>"
-	data-tabtitle="<?php echo \esc_attr($tabTitle); ?>"
+	data-tab-id="<?php echo \esc_attr($tabId); ?>"
+	data-tab-title="<?php echo \esc_attr($tabTitle); ?>"
 >
 	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>
