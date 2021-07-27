@@ -14,7 +14,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 	const breakpoints = Object.keys(globalManifest.globalVariables.breakpoints).reverse();
 
 	return (
-		<PanelBody title={__('Column Details', 'newboilerplate')}>
+		<PanelBody title={__('Column', 'newboilerplate')}>
 
 			<HelpModal
 				type='column'
