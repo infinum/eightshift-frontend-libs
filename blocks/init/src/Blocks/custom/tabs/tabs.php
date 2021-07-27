@@ -25,6 +25,7 @@ $tabsClass = Components::classnames([
 	$blockClass,
 	$blockJsClass
 ]);
+
 $tabPanelClass = Components::classnames([
 	$tabPanelJsClass,
 	Components::selector(
@@ -33,6 +34,7 @@ $tabPanelClass = Components::classnames([
 		$tabPanelElement
 	)
 ]);
+
 $tabPanelItemClass = Components::classnames([
 	Components::selector(
 		$tabPanelItemElement && $blockClass,
@@ -40,6 +42,7 @@ $tabPanelItemClass = Components::classnames([
 		$tabPanelItemElement
 	)
 ]);
+
 $tabPanelItemButtonClass = Components::classnames([
 	$tabPanelItemButtonJsClass,
 	Components::selector(
@@ -58,13 +61,13 @@ $tabPanelItemButtonClass = Components::classnames([
 
 <template id="<?php echo \esc_attr($tabPanelItemTemplateId); ?>">
 	<li
-	class="<?php echo \esc_attr($tabPanelItemClass); ?>"
+		class="<?php echo \esc_attr($tabPanelItemClass); ?>"
 	>
-		<button role="tab"
-		class="<?php echo \esc_attr($tabPanelItemButtonClass); ?>"
-		data-triggerstabid="newTab"
+		<button
+			role="tab"
+			class="<?php echo \esc_attr($tabPanelItemButtonClass); ?>"
+			data-triggerstabid="newTab"
 		>
-			Tab name
 		</button>
 	</li>
 </template>

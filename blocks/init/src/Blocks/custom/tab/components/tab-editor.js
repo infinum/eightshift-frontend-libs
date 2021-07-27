@@ -10,7 +10,7 @@ export const TabEditor = ({attributes, active}) => {
 	const tabClassnames = `block-tab js-tab-${tabId} ${visibilityClass}`;
 	return (
 		<div className={tabClassnames}>
-		<InnerBlocks />
+			<InnerBlocks />
 		</div>
 	);
 };

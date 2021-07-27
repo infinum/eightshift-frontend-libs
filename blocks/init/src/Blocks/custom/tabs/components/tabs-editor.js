@@ -15,7 +15,7 @@ export const TabsEditor = (props) => {
 	}]];
 	
 	return (
-		<div>
+		<>
 			<TabsPanel
 				childBlocks = {inner}
 				activeTab = {checkAttr('tabsCurrentlyActiveTabId', attributes, manifest, true)}
@@ -27,6 +27,6 @@ export const TabsEditor = (props) => {
 				orientation="horizontal"
 				template={newTabTemplate}
 			/>
-		</div>
+		</>
 	);
 }

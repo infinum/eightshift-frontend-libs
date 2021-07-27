@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for the Column Block.
+ * Template for the Tab Block.
  *
  * @package EightshiftBoilerplate
  */
@@ -14,6 +14,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $manifest['blockJsClass'] ?? '';
 $tabId = $attributes['tabId'] ?? '';
 $tabTitle = $attributes['tabTitle'] ?? '';
+
 $tabClass = Components::classnames([
 	$blockClass,
 	$blockJsClass,

@@ -1,6 +1,7 @@
 {
 	"blockName": "tab",
 	"title": "Tab",
+	"blockJsClass": "js-tab",
 	"description" : "Tab block with custom settings.",
 	"category": "eightshift",
 	"icon": {
@@ -43,6 +44,5 @@
 			"default": true
 		}
 	},
-	"usesContext": ["eightshift-boilerplate/tabsCurrentlyActiveTabId"],
-	"blockJsClass": "js-tab"
+	"usesContext": ["eightshift-boilerplate/tabsCurrentlyActiveTabId"]
 }

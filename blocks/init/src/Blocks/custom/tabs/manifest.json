@@ -1,6 +1,17 @@
 {
 	"blockName": "tabs",
 	"title": "Tabs",
+	"blockClass": "block-tabs",
+	"blockJsClass": "js-tabs",
+	"tabJsClass": "js-tab",
+	"tabPanelElement": "panel",
+	"tabPanelItemElement": "panel-item",
+	"tabPanelItemButtonElement": "panel-item-button",
+	"tabPanelJsClass": "js-tabspanel",
+	"tabVisibleClass": "block-tab--visible",
+	"tabPanelItemButtonJsClass": "js-tab-button",
+	"tabPanelItemActiveClass": "block-tabs__panelitem--active",
+	"tabPanelItemTemplateId": "tabpanel-itemtemplate",
 	"description" : "Simple tabs block",
 	"category": "eightshift",
 	"icon": {
@@ -75,16 +86,5 @@
 	},
 	"providesContext":{
 		"eightshift-boilerplate/tabsCurrentlyActiveTabId": "tabsCurrentlyActiveTabId"
-	},
-	"blockClass": "block-tabs",
-	"blockJsClass": "js-tabs",
-	"tabJsClass": "js-tab",
-	"tabPanelElement": "panel",
-	"tabPanelItemElement": "panelitem",
-	"tabPanelItemButtonElement": "panelitembutton",
-	"tabPanelJsClass": "js-tabspanel",
-	"tabVisibleClass": "block-tab--visible",
-	"tabPanelItemButtonJsClass": "js-tab-button",
-	"tabPanelItemActiveClass": "block-tabs__panelitem--active",
-	"tabPanelItemTemplateId": "tabpanel-itemtemplate"
+	}
 }

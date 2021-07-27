@@ -1,5 +1,5 @@
 .block-tabs {
-	&__panelitem {
+	&__panel-item {
 		padding: 0.5em;
 		list-style: none;
 		display: inline-block;
@@ -16,7 +16,7 @@
 		margin: 0;
 	}
 
-	&__panelitembutton {
+	&__panel-item-button {
 		@extend %button-reset;
 		background: none;
 	}
