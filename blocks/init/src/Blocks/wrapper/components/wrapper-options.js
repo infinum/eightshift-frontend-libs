@@ -2,13 +2,11 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, TextControl, RangeControl } from '@wordpress/components';
-import { ColorPaletteCustom, Responsive, HelpModal, icons, ucfirst, getOptionColors, IconToggle, checkAttr, IconLabel, CustomSelect } from '@eightshift/frontend-libs/scripts';
-import globalSettings from '../../manifest.json';
+import { ColorPaletteCustom, Responsive, HelpModal, icons, ucfirst, getOptionColors, IconToggle, checkAttr, IconLabel, CustomSelect, getOption } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const { attributes: reset, options } = manifest;
-	const { globalVariables: defaults } = globalSettings;
 
 	const {
 		showWrapperId = true,
@@ -39,7 +37,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			{!wrapperDisable &&
-				<PanelBody title={<span>{__('Layout', 'eightshift-frontend-libs')}</span>} initialOpen={false} icon={icons.wrapper} className='es-panel-title'>
+				<PanelBody title={<span>{__('Layout', 'newboilerplate')}</span>} initialOpen={false} icon={icons.wrapper} className='es-panel-title'>
 
 					<HelpModal />
 
@@ -48,7 +46,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					{wrapperUseShowControl &&
 						<IconToggle
 							icon={icons.wrapper}
-							label={__('Wrapper', 'eightshift-frontend-libs')}
+							label={__('Wrapper', 'newboilerplate')}
 							checked={wrapperUse}
 							onChange={(value) => setAttributes({ wrapperUse: value })}
 						/>
@@ -57,10 +55,10 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					{(wrapperUse && wrapperUseSimpleShowControl) &&
 						<IconToggle
 							icon={icons.wrapperSimple}
-							label={__('Simple wrapper', 'eightshift-frontend-libs')}
+							label={__('Simple wrapper', 'newboilerplate')}
 							checked={wrapperUseSimple}
 							onChange={(value) => setAttributes({ wrapperUseSimple: value })}
-							help={__('Provides only basic spacing and background options.', 'eightshift-frontend-libs')}
+							help={__('Provides only basic spacing and background options.', 'newboilerplate')}
 						/>
 					}
 
@@ -69,10 +67,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<hr />
 
 							{showWrapperSpacingTop &&
-								<Responsive label={<IconLabel icon={icons.spacingTop} label={__('Top spacing', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.spacingTop} label={__('Top spacing', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperSpacingTop${point}`;
+										const { min, max, step } = getOption('wrapperSpacing', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
@@ -81,9 +80,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults?.sectionSpacing?.min}
-													max={defaults?.sectionSpacing?.max}
-													step={defaults?.sectionSpacing?.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -93,10 +92,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperSpacingBottom &&
-								<Responsive label={<IconLabel icon={icons.spacingBottom} label={__('Bottom spacing', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.spacingBottom} label={__('Bottom spacing', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperSpacingBottom${point}`;
+										const { min, max, step } = getOption('wrapperSpacing', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
@@ -105,9 +105,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults?.sectionSpacing?.min}
-													max={defaults?.sectionSpacing?.max}
-													step={defaults?.sectionSpacing?.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -119,10 +119,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<hr />
 
 							{showWrapperSpacingTopIn &&
-								<Responsive label={<IconLabel icon={icons.spacingTopIn} label={__('Top inner spacing', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.spacingTopIn} label={__('Top inner spacing', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperSpacingTopIn${point}`;
+										const { min, max, step } = getOption('wrapperSpacingInner', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
@@ -131,9 +132,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults?.sectionSpacing?.min}
-													max={defaults?.sectionSpacing?.max}
-													step={defaults?.sectionSpacing?.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -143,10 +144,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperSpacingBottomIn &&
-								<Responsive label={<IconLabel icon={icons.spacingBottomIn} label={__('Bottom inner spacing', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.spacingBottomIn} label={__('Bottom inner spacing', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperSpacingBottomIn${point}`;
+										const { min, max, step } = getOption('wrapperSpacingInner', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
@@ -155,9 +157,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults?.sectionSpacing?.min}
-													max={defaults?.sectionSpacing?.max}
-													step={defaults?.sectionSpacing?.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -169,7 +171,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<hr />
 
 							{showWrapperDividerTop &&
-								<Responsive label={<IconLabel icon={icons.dividerTop} label={__('Top divider', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.dividerTop} label={__('Top divider', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperDividerTop${point}`;
@@ -189,7 +191,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperDividerBottom &&
-								<Responsive label={<IconLabel icon={icons.dividerBottom} label={__('Bottom divider', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.dividerBottom} label={__('Bottom divider', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperDividerBottom${point}`;
@@ -211,7 +213,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<hr />
 
 							{showWrapperHide &&
-								<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'eightshift-frontend-libs')} />}>
+								<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'newboilerplate')} />}>
 									{options.breakpoints.map((item, index) => {
 										const point = ucfirst(item);
 										const attr = `wrapperHide${point}`;
@@ -232,10 +234,19 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 							<hr />
 
+							{showWrapperBackgroundColor &&
+								<ColorPaletteCustom
+									label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Background color', 'newboilerplate')} />}
+									colors={getOptionColors(options.colors)}
+									value={wrapperBackgroundColor}
+									onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
+								/>
+							}
+
 							{!wrapperUseSimple &&
 								<>
 									{showWrapperWidth &&
-										<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}>
+										<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'newboilerplate')} />}>
 											{options.breakpoints.map((item, index) => {
 
 												const point = ucfirst(item);
@@ -260,7 +271,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperOffset &&
-										<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'eightshift-frontend-libs')} />}>
+										<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'newboilerplate')} />}>
 											{options.breakpoints.map((item, index) => {
 
 												const point = ucfirst(item);
@@ -285,7 +296,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperContainerWidth &&
-										<Responsive label={<IconLabel icon={icons.containerWidth} label={__('Container width', 'eightshift-frontend-libs')} />}>
+										<Responsive label={<IconLabel icon={icons.containerWidth} label={__('Container width', 'newboilerplate')} />}>
 											{options.breakpoints.map((item, index) => {
 												const point = ucfirst(item);
 												const attr = `wrapperContainerWidth${point}`;
@@ -308,7 +319,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperGutter &&
-										<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'eightshift-frontend-libs')} />}>
+										<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'newboilerplate')} />}>
 											{options.breakpoints.map((item, index) => {
 
 												const point = ucfirst(item);
@@ -330,21 +341,12 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											})}
 										</Responsive>
 									}
-
-									{showWrapperBackgroundColor &&
-										<ColorPaletteCustom
-											label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Background color', 'eightshift-frontend-libs')} />}
-											colors={getOptionColors(options.colors)}
-											value={wrapperBackgroundColor}
-											onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
-										/>
-									}
 								</>
 							}
 
 							{showWrapperAnchorId &&
 								<TextControl
-									label={<IconLabel icon={icons.anchor} label={__('Block anchor ID', 'eightshift-frontend-libs')} />}
+									label={<IconLabel icon={icons.anchor} label={__('Block anchor ID', 'newboilerplate')} />}
 									value={wrapperAnchorId}
 									onChange={(value) => setAttributes({ wrapperAnchorId: value })}
 								/>
@@ -352,7 +354,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 							{showWrapperId &&
 								<TextControl
-									label={<IconLabel icon={icons.id} label={__('Block unique identifier', 'eightshift-frontend-libs')} />}
+									label={<IconLabel icon={icons.id} label={__('Block unique identifier', 'newboilerplate')} />}
 									value={wrapperId}
 									onChange={(value) => setAttributes({ wrapperId: value })}
 								/>

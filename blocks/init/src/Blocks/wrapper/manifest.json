@@ -327,6 +327,16 @@
 			"max": 12,
 			"step": 1
 		},
+		"wrapperSpacing": {
+			"min": -300,
+			"max": 300,
+			"step": 10
+		},
+		"wrapperSpacingInner": {
+			"min": 0,
+			"max": 300,
+			"step": 10
+		},
 		"breakpoints": [
 			"large",
 			"desktop",
