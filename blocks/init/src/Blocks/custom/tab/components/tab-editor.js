@@ -1,13 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 import manifest from './../manifest.json';
 import tabsManifest from './../../tabs/manifest.json';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
 
-export const TabEditor = ({attributes, active}) => {
-	const tabId = checkAttr('tabId', attributes, manifest, true);
-	const visibilityClass = active ? tabsManifest.tabVisibleClass : '';
-	const tabClassnames = `block-tab js-tab-${tabId} ${visibilityClass}`;
+export const TabEditor = ({active}) => {
+	const tabClassnames = classnames([
+		manifest.blockJsClass,
+		manifest.blockClass,
+		active ? tabsManifest.tabVisibleClass : ''
+	]);
 	return (
 		<div className={tabClassnames}>
 			<InnerBlocks />
