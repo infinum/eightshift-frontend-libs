@@ -6,7 +6,7 @@
 		"attributes": {
 			"headingContent": "This is heading",
 			"headingLevel": 2,
-			"headingSize": "default",
+			"headingSize": "regular",
 			"headingColor": "black",
 			"headingUse": true
 		}
@@ -22,7 +22,7 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "default"
+			"default": "regular"
 		},
 		"headingColor": {
 			"type": "string",
@@ -36,8 +36,16 @@
 	"options": {
 		"headingSize": [
 			{
-				"label": "Default (24)",
-				"value": "default"
+				"label": "Tiny (14)",
+				"value": "tiny"
+			},
+			{
+				"label": "Small (18)",
+				"value": "small"
+			},
+			{
+				"label": "Regular (24)",
+				"value": "regular"
 			},
 			{
 				"label": "Big (40)",
@@ -65,7 +73,29 @@
 	},
 	"variables": {
 		"headingSize": {
-			"default": [
+			"tiny": [
+				{
+					"variable": {
+						"heading-font-size": "0.875rem",
+						"heading-line-height": "1"
+					}
+				}
+			],
+			"small": [
+				{
+					"variable": {
+						"heading-font-size": "1.1rem",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "1.125rem"
+					}
+				}
+			],
+			"regular": [
 				{
 					"variable": {
 						"heading-font-size": "1rem",

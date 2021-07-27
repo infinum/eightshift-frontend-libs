@@ -1,4 +1,5 @@
 import React from 'react';
+import { __ } from '@wordpress/i18n';
 import { props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
@@ -15,18 +16,14 @@ export const CardOptions = (attributes) => {
 				showLabel
 			/>
 
-			<hr />
-
 			<HeadingOptions
 				{...props('intro', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
-				label='Intro'
+				label={__('Intro', 'newboilerplate')}
 				showHeadingUse
 				showLabel
 			/>
-
-			<hr />
 
 			<HeadingOptions
 				{...props('heading', attributes, {
@@ -36,8 +33,6 @@ export const CardOptions = (attributes) => {
 				showLabel
 			/>
 
-			<hr />
-
 			<ParagraphOptions
 				{...props('paragraph', attributes, {
 					options: getOptions(attributes, manifest),
@@ -45,8 +40,6 @@ export const CardOptions = (attributes) => {
 				showParagraphUse
 				showLabel
 			/>
-
-			<hr />
 
 			<ButtonOptions
 				{...props('button', attributes, {

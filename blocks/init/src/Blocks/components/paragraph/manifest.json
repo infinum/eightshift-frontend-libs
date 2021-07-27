@@ -5,7 +5,7 @@
 	"example": {
 		"attributes": {
 			"paragraphContent": "This is paragraph",
-			"paragraphSize": "default",
+			"paragraphSize": "regular",
 			"paragraphColor": "black",
 			"paragraphUse": true
 		}
@@ -17,7 +17,7 @@
 		},
 		"paragraphSize": {
 			"type": "string",
-			"default": "default"
+			"default": "regular"
 		},
 		"paragraphColor": {
 			"type": "string",
@@ -31,8 +31,8 @@
 	"options": {
 		"paragraphSize": [
 			{
-				"label": "Default (16)",
-				"value": "default"
+				"label": "Regular (16)",
+				"value": "regular"
 			},
 			{
 				"label": "Small (13)",
@@ -56,7 +56,7 @@
 	},
 	"variables": {
 		"paragraphSize": {
-			"default": [
+			"regular": [
 				{
 					"variable": {
 						"paragraph-font-size": "0.8rem",
