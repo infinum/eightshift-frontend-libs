@@ -35,8 +35,26 @@ const CustomValueDisplay = ({ ...props }) => {
 	);
 };
 
+/**
+ * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
+ * 
+ * @param {object} props                    - AdvancedColorPicker options.
+ * @param {string?} props.colorProject      - Currently selected project color.
+ * @param {string?} props.colorSolid        - Currently selected solid color.
+ * @param {string?} props.colorGradient     - Currently selected gradient.
+ * @param {string?} props.type              - Currently selected color type.
+ * @param {function} props.onChangeProject  - Function called when the project color is changed.
+ * @param {function} props.onChangeSolid    - Function called when the solid color is changed.
+ * @param {function} props.onChangeGradient - Function called when the gradient is changed.
+ * @param {function} props.onChangeType     - Function called when the color type is changed.
+ * @param {object} props.globalManifest     - Project's `globalManifest`.
+ * @param {Array} [props.types]             - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
+ * @param {string?} [props.label]           - Label displayed above the control.
+ * @param {string?} [props.help]            - Help text displayed below the control.
+ */
 export const AdvancedColorPicker = (props) => {
 	const {
+		type = '',
 		colorProject,
 		colorSolid,
 		colorGradient,
@@ -49,13 +67,8 @@ export const AdvancedColorPicker = (props) => {
 		onChangeGradient,
 		onChangeType,
 
-		id,
 		label = <IconLabel icon={icons.backgroundType} label={__('Background', 'eightshift-frontend-libs')} />,
-		type = 'none',
-
-		showProjectColor = true,
-		showSolidColor = true,
-		showSolidGradient = true,
+		help,
 
 		types = [
 			{
@@ -86,10 +99,13 @@ export const AdvancedColorPicker = (props) => {
 		},
 	} = globalManifest;
 
+	const showProjectColor = types.find(({value}) => value === 'project') !== undefined;
+	const showSolidColor = types.find(({value}) => value === 'solid') !== undefined;
+	const showGradient = types.find(({value}) => value === 'gradient') !== undefined;
+
 	return (
-		<BaseControl id={id}>
+		<BaseControl label={label} help={help}>
 			<CustomSelect
-				label={label}
 				value={types.find(({ value }) => value === type)}
 				options={types}
 				onChange={(({ value }) => onChangeType(value))}
@@ -98,6 +114,8 @@ export const AdvancedColorPicker = (props) => {
 				isClearable={false}
 				isSearchable={false}
 			/>
+
+			<br />
 
 			{type === 'project' && showProjectColor &&
 				<ColorPaletteCustom
@@ -115,7 +133,7 @@ export const AdvancedColorPicker = (props) => {
 				/>
 			}
 
-			{type === 'gradient' && showSolidGradient &&
+			{type === 'gradient' && showGradient &&
 				<GradientPicker
 					value={colorGradient}
 					onChange={onChangeGradient}
