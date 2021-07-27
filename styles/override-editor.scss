@@ -744,10 +744,15 @@ body {
 	
 		.components-button {
 			justify-content: flex-start !important;
+			gap: 0.4rem;
 		}
 
 		.components-button:not(.is-pressed) {
 			border: 1px solid #F2F2F2;
+
+			&:hover {
+				border-color: var(--wp-admin-theme-color, #111111);
+			}
 		}
 	}
 
