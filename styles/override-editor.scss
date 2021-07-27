@@ -13,6 +13,29 @@ $override-map: (
 	hover: $base-black-color,
 );
 
+@keyframes es-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes es-dash {
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
+
 /* stylelint-disable */
 // Overrides default styles from inline editor.
 body {
@@ -795,5 +818,41 @@ body {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	// Spinner animations for ServerSideRender.
+	.es-ssr-spinner-overlay {
+		position: absolute;
+		inset: 0;
+
+		width: 100%;
+		height: 100%;
+		min-height: 4rem;
+		min-width: 4rem;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&__spinner {
+			animation: es-rotate 2s linear infinite;
+			z-index: 2;
+			width: 3rem;
+			height: 3rem;
+		}
+
+		&__spinner-path,
+		&__spinner-path-2 {
+			stroke-linecap: round;
+			animation: es-dash 1.5s ease-in-out infinite;
+		}
+
+		&__spinner-path {
+			stroke: #F8FFFF;
+		}
+
+		&__spinner-path-2 {
+			stroke: #0D3636;
+		}
 	}
 }
