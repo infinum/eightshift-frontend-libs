@@ -89,11 +89,11 @@ global $post;
 					'imageUrl' => $image,
 					'imageUse' => $image ?? true,
 					'introUse' => false,
-					'headingContent' => \get_the_title($postId),
+					'headingContent' => \get_the_title($postId), // @phpstan-ignore-line
 					'paragraphContent' => $excerpt,
 					'paragraphUse' => !empty($excerpt),
 					'buttonContent' => __('Read', 'eightshift-frontend-libs'),
-					'buttonUrl' => \get_the_permalink($postId),
+					'buttonUrl' => \get_the_permalink($postId), // @phpstan-ignore-line
 					'buttonColor' => 'primary',
 					'headingSize' => 'big',
 				];

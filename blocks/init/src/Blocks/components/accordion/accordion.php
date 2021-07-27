@@ -71,7 +71,10 @@ $accordionContentClass = Components::selector(true, $componentClass, 'content');
 		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
 	>
 		<div class="<?php echo \esc_attr($accordionContentClass); ?>">
-			<?php echo $accordionContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $accordionContent; // @phpstan-ignore-line
+			?>
 		</div>
 	</section>
 </div>

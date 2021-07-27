@@ -46,7 +46,7 @@ $buttonClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
-	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
+	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'), // @phpstan-ignore-line
 ]);
 
 ?>

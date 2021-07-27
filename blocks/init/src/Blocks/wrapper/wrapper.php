@@ -20,8 +20,8 @@ $className = Components::checkAttr('className', $attributes, $manifest);
 if (! $wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
 		?>
-			<div class="<?php echo \esc_attr($wrapperParentClass . '__item'); ?>">
-				<div class="<?php echo \esc_attr($wrapperParentClass . '__item-inner'); ?>">
+			<div class="<?php echo \esc_attr("{$wrapperParentClass}__item"); ?>">
+				<div class="<?php echo \esc_attr("{$wrapperParentClass}__item-inner"); ?>">
 		<?php
 	}
 
@@ -59,33 +59,40 @@ $wrapperOffset = Components::checkAttrResponsive('wrapperOffset', $attributes, $
 
 $wrapperMainClass = 'wrapper';
 
-$wrapperClass = Components::classnames([
+$wrapperClass = Components::classnames([ // @phpstan-ignore-line
 	$wrapperMainClass,
-	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor),
-	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false),
-	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false),
-	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false),
+	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false), // @phpstan-ignore-line
 	$className,
 ]);
 
 $wrapperContainerClass = Components::classnames([
 	"{$wrapperMainClass}__container",
-	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass), // @phpstan-ignore-line
 ]);
 
 $wrapperInnerClass = Components::classnames([
 	"{$wrapperMainClass}__inner",
-	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
+	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass), // @phpstan-ignore-line
 ]);
 
+$idOutput = '';
+
+if ($wrapperId) {
+	$escapedId = \esc_attr($wrapperId);
+	$idOutput = "id='{$escapedId}'";
+}
+
 ?>
-<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr(($wrapperId) ? 'id=" ' . $wrapperId . '"' : ''); ?>>
+<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo $idOutput; ?>>
 
 	<?php if ($wrapperAnchorId) { ?>
 		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>

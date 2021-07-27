@@ -65,10 +65,10 @@ if (!$videoUrl) {
 		$url = $item['url'] ?? '';
 		$mime = $item['mime'] ?? '';
 
-		if (!$url) {
+		if (!$url) { // @phpstan-ignore-line
 			continue;
 		}
 		?>
-		<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
+		<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" /> <?php // @phpstan-ignore-line ?>
 	<?php } ?>
 </video>
