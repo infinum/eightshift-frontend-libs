@@ -12,7 +12,7 @@ export const CarouselEditor = ({ attributes }) => {
 
 	const carouselAllowedBlocks = checkAttr('carouselAllowedBlocks', attributes, manifest);
 	const carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest);
-	const  carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
+	const carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
 
 	const carouselClass = classnames([
 		blockClass,
@@ -26,7 +26,7 @@ export const CarouselEditor = ({ attributes }) => {
 			data-is-loop={carouselIsLoop}
 		>
 			<InnerBlocks
-				orientation={'horizontal'}
+				orientation='horizontal'
 				allowedBlocks={carouselAllowedBlocks}
 			/>
 		</div>

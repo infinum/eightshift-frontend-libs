@@ -15,6 +15,8 @@ $blockJsClass = $attributes['blockJsClass'] ?? '';
 
 $carouselIsLoop = Components::checkAttr('carouselIsLoop', $attributes, $manifest);
 $carouselShowItems = Components::checkAttr('carouselShowItems', $attributes, $manifest);
+$carouselShowPrevNext = Components::checkAttr('carouselShowPrevNext', $attributes, $manifest);
+$carouselShowPagination = Components::checkAttr('carouselShowPagination', $attributes, $manifest);
 
 $carouselClass = Components::classnames([
 	$blockClass,
@@ -22,15 +24,44 @@ $carouselClass = Components::classnames([
 	'swiper-container',
 ]);
 
+$prevButtonClass = Components::classnames([
+	Components::selector($blockClass, $blockClass, 'button'),
+	Components::selector($blockClass, $blockClass, 'button', 'previous'),
+	"{$blockJsClass}-prev-arrow",
+]);
+
+$nextButtonClass = Components::classnames([
+	Components::selector($blockClass, $blockClass, 'button'),
+	Components::selector($blockClass, $blockClass, 'button', 'next'),
+	"{$blockJsClass}-next-arrow",
+]);
+
+$paginationClass = Components::classnames([
+	Components::selector($blockClass, $blockClass, 'pagination'),
+	"{$blockJsClass}-pagination",
+]);
+
 ?>
 
 <div
 	class="<?php echo esc_attr($carouselClass); ?>"
-	data-swiper-loop="<?php echo esc_attr($carouselIsLoop); ?>"
+	data-swiper-loop="<?php echo esc_attr($carouselIsLoop ? 'true' : 'false'); ?>"
 	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
-
 	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">
-		<?php echo wp_kses_post($innerBlockContent); ?>
+		<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
+
+	<?php if ($carouselShowPrevNext) { ?>
+		<button class="<?php echo \esc_attr($prevButtonClass); ?>">
+			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+		<button class="<?php echo \esc_attr($nextButtonClass); ?>">
+			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+	<?php } ?>
+
+	<?php if ($carouselShowPagination) { ?>
+		<div class="<?php echo \esc_attr($paginationClass); ?>"></div>
+	<?php } ?>
 </div>
