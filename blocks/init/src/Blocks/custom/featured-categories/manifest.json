@@ -53,5 +53,15 @@
 			"max": 4,
 			"step": 1
 		}
+	},
+	"variables": {
+		"featuredCategoriesItemsPerLine": [
+			{
+				"inverse": true,
+				"variable": {
+					"featured-categories-columns": "repeat(%value%, 1fr)"
+				}
+			}
+		]
 	}
 }

@@ -1,14 +1,12 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, RangeControl, Icon, SelectControl, Spinner } from '@wordpress/components';
-import { CustomSelect, icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { PanelBody, RangeControl } from '@wordpress/components';
+import { CustomSelect, icons, checkAttr, getAttrKey, IconLabel, BlockIcon } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 	const {
-		attributes: manifestAttributes,
 		options: manifestOptions
 	} = manifest;
 
@@ -52,10 +50,6 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 		) ?? [];
 
 		return [
-			{
-				label: __('No Filter used', 'eightshift-frontend-libs'),
-				value: '',
-			},
 			...termsList.map((item) => {
 				return {
 					label: item.name,
@@ -66,11 +60,11 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 	});
 
 	return (
-		<PanelBody title={__('Featured Categories', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured categories', 'newboilerplate')}>
 
-			{taxonomyOptions[0] ?
-				<SelectControl
-					label={__('Categories', 'eightshift-frontend-libs')}
+			{taxonomyOptions[0] &&
+				<CustomSelect
+					label={<IconLabel icon={<BlockIcon iconName='es-lists' />} label={__('Taxonomy type', 'newboilerplate')} />}
 					value={taxonomy}
 					options={taxonomyOptions}
 					onChange={(value) => {
@@ -82,14 +76,16 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 							},
 						});
 					}}
-				/> :
-				<Spinner />
+					isClearable={false}
+					isSearchable={false}
+					simpleValue
+				/>
 			}
 
-			{(taxonomyOptions[0] && taxonomy) ?
+			{taxonomyOptions[0] && taxonomy &&
 				<CustomSelect
-					label={sprintf(__('Filter by %s', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
-					help={sprintf(__('If `No Filter` value is selected your %s posts will not be filtered.', 'eightshift-frontend-libs'), _.startCase(_.toLower(taxonomy)))}
+					label={<IconLabel icon={icons.visible} label={sprintf(__('Show only these %s', 'newboilerplate'), taxonomy.toLowerCase().replace('category', 'categories'))} />}
+					help={__('If blank, all are shown', 'newboilerplate')}
 					options={termsOptions}
 					value={terms}
 					multiple={true}
@@ -101,27 +97,19 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 							},
 						});
 					}}
-				/> :
-				<Spinner />
+				/>
 			}
 
+			<hr />
+
 			<RangeControl
-				label={
-					<>
-						<Icon icon={icons.itemsPerRow} />
-						{__('Items per one row', 'eightshift-frontend-libs')}
-					</>
-				}
-				help={__('Option to change the number of items showed in one row.', 'eightshift-frontend-libs')}
-				allowReset={true}
+				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'newboilerplate')} />}
 				value={featuredCategoriesItemsPerLine}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredCategoriesItemsPerLine', attributes, manifest)]: value })}
 				min={manifestOptions.featuredCategoriesItemsPerLine.min}
 				max={manifestOptions.featuredCategoriesItemsPerLine.max}
 				step={manifestOptions.featuredCategoriesItemsPerLine.step}
-				resetFallbackValue={manifestAttributes.featuredCategoriesItemsPerLine.default}
 			/>
-
 		</PanelBody>
 	);
 };
