@@ -10,7 +10,7 @@ export const TabsEditor = (props) => {
 	const {attributes, clientId, inner} = props;
 	const tabsAllowedBlocks = checkAttr('tabsAllowedBlocks', attributes, manifest);
 	const newTabTemplate = [['eightshift-boilerplate/tab', {
-		'tabTitle': __('New tab', 'testing-theme'),
+		'tabTitle': __('New tab', 'eightshift-frontend-libs'),
 		'tabId': getUnique(),
 	}]];
 	

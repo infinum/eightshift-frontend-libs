@@ -10,10 +10,10 @@ export const TabOptions = ({ attributes, setAttributes }) => {
 	const tabTitle = checkAttr('tabTitle', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Tab Settings', 'testing-theme')}>
+		<PanelBody title={__('Tab Settings', 'eightshift-frontend-libs')}>
 			<>
 				<TextControl
-					label={__('Tab Title', 'testing-theme')}
+					label={__('Tab Title', 'eightshift-frontend-libs')}
 					value={tabTitle}
 					onChange={(value) => setAttributes({ [getAttrKey('tabTitle', attributes, manifest)]: value })}
 				/>
