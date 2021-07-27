@@ -13,9 +13,9 @@
 		},
 		"breakpoints": {
 			"mobile": 480,
-			"tablet": 760,
-			"desktop": 1600,
-			"large": 1920
+			"tablet": 960,
+			"desktop": 1920,
+			"large": 1921
 		},
 		"containers": {
 			"default": "66rem"
