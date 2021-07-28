@@ -36,58 +36,58 @@ export const AlignmentToolbar = (props) => {
 		onChange,
 		value,
 		label,
-		title = type === AlignmentToolbarType.TEXT ? __('text') : __('items'),
+		title = type === AlignmentToolbarType.TEXT ? __('text', 'eightshift-frontend-libs') : __('items', 'eightshift-frontend-libs'),
 		showInline = false,
 	} = props;
 
 	const showAlignStart = options.includes('left');
 	const showAlignCenter = options.includes('center');
 	const showAlignEnd = options.includes('right');
-	const showAlignJustify =  options.includes('justify');
-	const showAlignStretch =  options.includes('stretch');
+	const showAlignJustify = options.includes('justify');
+	const showAlignStretch = options.includes('stretch');
 
 	const textAligns = {
 		left: showAlignStart ? {
 			icon: icons.textAlignLeft,
-			title: sprintf(__('Align %s left'), title),
+			title: sprintf(__('Align %s left', 'eightshift-frontend-libs'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.textAlignCenter,
-			title: sprintf(__('Align %s center'), title),
+			title: sprintf(__('Align %s center', 'eightshift-frontend-libs'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
 			icon: icons.textAlignRight,
-			title: sprintf(__('Align %s right'), title),
+			title: sprintf(__('Align %s right', 'eightshift-frontend-libs'), title),
 			value: 'right',
 		} : null,
 		justify: showAlignJustify ? {
 			icon: icons.textAlignJustify,
-			title: sprintf(__('Justify %s'), title),
+			title: sprintf(__('Justify %s', 'eightshift-frontend-libs'), title),
 			value: 'justify',
 		} : null
 	}
-	
+
 	const horizontalAligns = {
 		left: showAlignStart ? {
 			icon: icons.horizontalAlignLeft,
-			title: sprintf(__('Align %s left'), title),
+			title: sprintf(__('Align %s left', 'eightshift-frontend-libs'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.horizontalAlignCenter,
-			title: sprintf(__('Align %s center'), title),
+			title: sprintf(__('Align %s center', 'eightshift-frontend-libs'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
 			icon: icons.horizontalAlignRight,
-			title: sprintf(__('Align %s right'), title),
+			title: sprintf(__('Align %s right', 'eightshift-frontend-libs'), title),
 			value: 'right',
 		} : null,
 		stretch: showAlignStretch ? {
 			icon: icons.horizontalAlignStretch,
-			title: sprintf(__('Stretch %s'), title),
+			title: sprintf(__('Stretch %s', 'eightshift-frontend-libs'), title),
 			value: 'stretch',
 		} : null
 	}
@@ -95,26 +95,26 @@ export const AlignmentToolbar = (props) => {
 	const verticalAligns = {
 		left: showAlignStart ? {
 			icon: icons.verticalAlignLeft,
-			title: sprintf(__('Align %s top'), title),
+			title: sprintf(__('Align %s top', 'eightshift-frontend-libs'), title),
 			value: 'left',
 		} : null,
 		center: showAlignCenter ? {
 			icon: icons.verticalAlignCenter,
-			title: sprintf(__('Align %s middle'), title),
+			title: sprintf(__('Align %s middle', 'eightshift-frontend-libs'), title),
 			value: 'center',
 		} : null,
 		right: showAlignEnd ? {
 			icon: icons.verticalAlignRight,
-			title: sprintf(__('Align %s bottom'), title),
+			title: sprintf(__('Align %s bottom', 'eightshift-frontend-libs'), title),
 			value: 'right',
 		} : null,
 		stretch: showAlignStretch ? {
 			icon: icons.verticalAlignStretch,
-			value: sprintf(__('Stretch %s'), title),
+			value: sprintf(__('Stretch %s', 'eightshift-frontend-libs'), title),
 			align: 'stretch',
 		} : null
 	}
-	
+
 	const getControls = () => {
 		switch (type) {
 			case AlignmentToolbarType.VERTICAL:

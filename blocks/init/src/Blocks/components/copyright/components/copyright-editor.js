@@ -16,7 +16,7 @@ export const CopyrightEditor = (attributes) => {
 
 	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
 	const copyrightBy = checkAttr('copyrightBy', attributes, manifest);
-	const copyrightYear = checkAttr('copyrightYear', attributes, manifest);
+	const copyrightYear = checkAttr('copyrightYear', attributes, manifest) ?? new Date().getFullYear();
 	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 
 	const copyrightClass = classnames([
@@ -25,13 +25,13 @@ export const CopyrightEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	if (!copyrightUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{copyrightUse &&
-				<div className={copyrightClass}>
-					{'&copy'} {copyrightBy} {copyrightYear} - {copyrightContent}
-				</div>
-			}
-		</>
+		<div className={copyrightClass}>
+			&copy; {copyrightBy} {copyrightYear} - {copyrightContent}
+		</div>
 	);
 };

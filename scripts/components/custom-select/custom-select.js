@@ -25,6 +25,7 @@ import AsyncSelect from "react-select/async";
  * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
  * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
  * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
+ * @param {React.Component?} [props.customIndicatorSeparator] 		   - If provided, adds a separator between the select content and the dropdown arrow on the right.
  * @param {boolean} [props.simpleValue=false]                          - If in synchronous (`options` is set), single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
  */
 export const CustomSelect = (props) => {
@@ -45,8 +46,11 @@ export const CustomSelect = (props) => {
 		sortAxis = 'y',
 		customOptionComponent,
 		customSingleValueDisplayComponent,
+		customIndicatorSeparator,
 		simpleValue = false,
 	} = props;
+
+	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
 
 	const isSynchronous = !loadOptions;
 
@@ -56,14 +60,6 @@ export const CustomSelect = (props) => {
 		array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 		return array;
 	}
-
-	const Option = (props) => {
-		return <components.Option {...props} />;
-	};
-
-	const SingleValue = (props) => {
-		return <components.SingleValue {...props} />;
-	};
 
 	const SortableMultiValue = SortableElement((propsSortable) => {
 
@@ -76,11 +72,11 @@ export const CustomSelect = (props) => {
 			e.stopPropagation();
 		};
 		const innerProps = { onMouseDown };
-		return <components.MultiValue {...propsSortable} innerProps={innerProps} />;
+		return <MultiValue {...propsSortable} innerProps={innerProps} />;
 	}, []);
 
 	const SortableMultiValueLabel = sortableHandle((props) => (
-		<components.MultiValueLabel {...props} />
+		<MultiValueLabel {...props} />
 	));
 
 	const SortableSelect = SortableContainer(isSynchronous ? Select : AsyncSelect);
@@ -160,7 +156,7 @@ export const CustomSelect = (props) => {
 				MultiValueLabel: SortableMultiValueLabel,
 				Option: customOptionComponent ?? Option,
 				SingleValue: customSingleValueDisplayComponent ?? SingleValue,
-				IndicatorSeparator: null,
+				IndicatorSeparator: customIndicatorSeparator ?? null,
 			}}
 			closeMenuOnSelect={closeMenuOnSelect}
 			theme={(theme) => ({

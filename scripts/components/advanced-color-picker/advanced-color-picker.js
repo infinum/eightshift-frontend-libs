@@ -19,18 +19,20 @@ const getIcon = (value) => {
 	}
 }
 
-const CustomPickerOption = props => {
+const CustomPickerOption = (props) => {
+	const { label, value } = props;
 	return (
 		<components.Option {...props}>
-			<span className='es-custom-select-flex'>{getIcon(props.value)} {props.label}</span>
+			<span className='es-custom-select-flex'>{getIcon(value)} {label}</span>
 		</components.Option>
 	);
 };
 
-const CustomValueDisplay = ({ ...props }) => {
+const CustomValueDisplay = (props) => {
+	const { data: { value, label } } = props;
 	return (
 		<components.SingleValue {...props}>
-			<span className='es-custom-select-flex'>{getIcon(props.data.value)} {props.data.label}</span>
+			<span className='es-custom-select-flex'>{getIcon(value)} {label}</span>
 		</components.SingleValue>
 	);
 };
@@ -72,20 +74,20 @@ export const AdvancedColorPicker = (props) => {
 
 		types = [
 			{
-				"label": "No background",
-				"value": ""
+				label: __('No background', 'eightshift-frontend-libs'),
+				value: ''
 			},
 			{
-				"label": "Project color",
-				"value": "project"
+				label: __('Project color', 'eightshift-frontend-libs'),
+				value: 'project'
 			},
 			{
-				"label": "Solid color",
-				"value": "solid"
+				label: __('Solid color', 'eightshift-frontend-libs'),
+				value: 'solid'
 			},
 			{
-				"label": "Gradient",
-				"value": "gradient"
+				label: __('Gradient', 'eightshift-frontend-libs'),
+				value: 'gradient'
 			}
 		],
 
@@ -99,9 +101,9 @@ export const AdvancedColorPicker = (props) => {
 		},
 	} = globalManifest;
 
-	const showProjectColor = types.find(({value}) => value === 'project') !== undefined;
-	const showSolidColor = types.find(({value}) => value === 'solid') !== undefined;
-	const showGradient = types.find(({value}) => value === 'gradient') !== undefined;
+	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
+	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
+	const showGradient = types.find(({ value }) => value === 'gradient') !== undefined;
 
 	return (
 		<BaseControl label={label} help={help}>

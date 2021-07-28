@@ -29,7 +29,7 @@ export const ColorPickerType = {
  * @param {React.Component?} props.label                - Label to represent the control
  * @param {boolean} [props.canReset=true]               - If `true`, a clear/reset button is shown.
  * @param {string} [props.pickerPopupTitle]             - Color picker popup title.
- * @param {string} [props.resetLabel]                 - 'Reset' button tooltip.
+ * @param {string} [props.resetLabel]                   - 'Reset' button tooltip.
  * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
  */
 export const ColorPickerComponent = ({
@@ -38,8 +38,8 @@ export const ColorPickerComponent = ({
 	onChange,
 	label,
 	canReset = true,
-	pickerPopupTitle = __('Pick a color'),
-	resetLabel = __('Reset'),
+	pickerPopupTitle = __('Pick a color', 'eightshift-frontend-libs'),
+	resetLabel = __('Reset', 'eightshift-frontend-libs'),
 	type = ColorPickerType.GENERIC,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);

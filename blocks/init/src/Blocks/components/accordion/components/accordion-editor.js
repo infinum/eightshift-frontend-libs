@@ -8,7 +8,7 @@ import manifest from './../manifest.json';
 export const AccordionEditor = (attributes) => {
 	const {
 		componentClass,
-		options: manifestOptions,
+		resources: { icon },
 	} = manifest;
 
 	const {
@@ -52,7 +52,7 @@ export const AccordionEditor = (attributes) => {
 				/>
 				<i
 					className={accordionIconClass}
-					dangerouslySetInnerHTML={{ __html: manifestOptions.icon }}
+					dangerouslySetInnerHTML={{ __html: icon }}
 				></i>
 			</button>
 
