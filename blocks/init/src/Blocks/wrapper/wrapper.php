@@ -10,6 +10,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
+$componentClass = $manifest['componentClass'] ?? 'wrapper';
+
 // Used to add or remove wrapper.
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
@@ -17,11 +19,14 @@ $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
-if (! $wrapperUse || $wrapperDisable) {
+$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item');
+$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner');
+
+if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
 		?>
-			<div class="<?php echo \esc_attr("{$wrapperParentClass}__item"); ?>">
-				<div class="<?php echo \esc_attr("{$wrapperParentClass}__item-inner"); ?>">
+			<div class="<?php echo \esc_attr($wrapperParentClassItemClass); ?>">
+				<div class="<?php echo \esc_attr($wrapperParentClassItemInnerClass); ?>">
 		<?php
 	}
 
@@ -57,33 +62,33 @@ $wrapperGutter = Components::checkAttrResponsive('wrapperGutter', $attributes, $
 $wrapperWidth = Components::checkAttrResponsive('wrapperWidth', $attributes, $manifest);
 $wrapperOffset = Components::checkAttrResponsive('wrapperOffset', $attributes, $manifest);
 
-$wrapperMainClass = 'wrapper';
-
 // @phpstan-ignore-next-line
 $wrapperClass = Components::classnames([
-	$wrapperMainClass,
-	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false), // @phpstan-ignore-line
+	$componentClass,
+	Components::selector($componentClass, $componentClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $componentClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $componentClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperHide, 'hide', $componentClass, false), // @phpstan-ignore-line
 	$className,
 ]);
 
 $wrapperContainerClass = Components::classnames([
-	"{$wrapperMainClass}__container",
-	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
+	Components::selector($componentClass, $componentClass, 'container'),
+	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperGutter, 'gutter', $componentClass),
 ]);
 
 $wrapperInnerClass = Components::classnames([
-	"{$wrapperMainClass}__inner",
-	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
+	Components::selector($componentClass, $componentClass, 'inner'),
+	Components::responsiveSelectors($wrapperWidth, 'width', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperOffset, 'offset', $componentClass),
 ]);
+
+$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor');
 
 $idOutput = '';
 
@@ -98,7 +103,7 @@ if ($wrapperId) {
 	<?php echo $idOutput; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 >
 	<?php if ($wrapperAnchorId) { ?>
-		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
+		<div class="<?php echo \esc_attr($wrapperMainAnchorClass); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
 	<?php } ?>
 
 	<?php if ($wrapperUseSimple) { ?>

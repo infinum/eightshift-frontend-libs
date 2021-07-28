@@ -1,10 +1,9 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, props, getOptions, getOption } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, props, getOptions, getOption, AlignmentToolbar, AlignmentToolbarType } from '@eightshift/frontend-libs/scripts';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 import manifest from './../manifest.json';
-import { AlignmentToolbar, AlignmentToolbarType } from '@eightshift/frontend-libs/scripts/components/alignment-toolbar/alignment-toolbar';
 
 export const CardToolbar = (attributes) => {
 	const {

@@ -1,7 +1,8 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from '../manifest.json';
 
 domReady(() => {
-	const selector = '.js-scroll-to-top';
+	const selector = `.${manifest.componentJsClass}`;
 	const elements = document.querySelectorAll(selector);
 
 	if (!elements.length) {

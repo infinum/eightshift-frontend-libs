@@ -35,22 +35,22 @@ $accordionClass = Components::classnames([
 ]);
 
 $accordionTriggerClass = Components::classnames([
-	Components::selector(true, $componentClass, 'trigger'),
+	Components::selector($componentClass, $componentClass, 'trigger'),
 	"{$componentJsClass}-trigger",
 ]);
 
-$accordionIconClass = Components::selector(true, $componentClass, 'icon');
+$accordionIconClass = Components::selector($componentClass, $componentClass, 'icon');
 
 $accordionPanelClass = Components::classnames([
-	Components::selector(true, $componentClass, 'panel'),
+	Components::selector($componentClass, $componentClass, 'panel'),
 	"{$componentJsClass}-panel",
 ]);
 
-$accordionContentClass = Components::selector(true, $componentClass, 'content');
+$accordionContentClass = Components::selector($componentClass, $componentClass, 'content');
 ?>
 
 <div
-	class="<?php echo \esc_attr("{$accordionClass}"); ?>"
+	class="<?php echo \esc_attr($accordionClass); ?>"
 	data-accordion-open="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
 	data-close-others="<?php echo \esc_attr($accordionCloseOthers ? 'true' : 'false'); ?>"
 	aria-expanded="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
@@ -62,7 +62,7 @@ $accordionContentClass = Components::selector(true, $componentClass, 'content');
 	>
 		<?php echo \esc_html($accordionTitle); ?>
 		<div class="<?php echo \esc_attr($accordionIconClass); ?>" aria-hidden="true" >
-			<?php echo $manifest['options']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 	</button>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts/editor';
+import { getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

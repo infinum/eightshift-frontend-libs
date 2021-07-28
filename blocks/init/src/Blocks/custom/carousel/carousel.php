@@ -27,18 +27,18 @@ $carouselClass = Components::classnames([
 $prevButtonClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, 'button'),
 	Components::selector($blockClass, $blockClass, 'button', 'previous'),
-	"{$blockJsClass}-prev-arrow",
+	Components::selector($blockJsClass, "{$blockJsClass}-prev-arrow"),
 ]);
 
 $nextButtonClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, 'button'),
 	Components::selector($blockClass, $blockClass, 'button', 'next'),
-	"{$blockJsClass}-next-arrow",
+	Components::selector($blockJsClass, "{$blockJsClass}-next-arrow"),
 ]);
 
 $paginationClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, 'pagination'),
-	"{$blockJsClass}-pagination",
+	Components::selector($blockJsClass, "{$blockJsClass}-pagination"),
 ]);
 
 ?>
