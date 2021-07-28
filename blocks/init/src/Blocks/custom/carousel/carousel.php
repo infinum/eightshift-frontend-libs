@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
-$blockJsClass = $attributes['blockJsClass'] ?? '';
+$blockJsClass = $manifest['blockJsClass'] ?? $attributes['blockJsClass'] ?? '';
 
 $carouselIsLoop = Components::checkAttr('carouselIsLoop', $attributes, $manifest);
 $carouselShowItems = Components::checkAttr('carouselShowItems', $attributes, $manifest);
@@ -40,13 +40,12 @@ $paginationClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, 'pagination'),
 	Components::selector($blockJsClass, "{$blockJsClass}-pagination"),
 ]);
-
 ?>
 
 <div
 	class="<?php echo esc_attr($carouselClass); ?>"
 	data-swiper-loop="<?php echo esc_attr($carouselIsLoop ? 'true' : 'false'); ?>"
-	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
+	data-show-items="<?php echo esc_attr($carouselShowItems); // @phpstan-ignore-line ?>"
 >
 	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">
 		<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
