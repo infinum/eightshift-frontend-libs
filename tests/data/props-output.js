@@ -17,7 +17,7 @@ export const propsOutput = {
 				notExpected: [
 					'accordionContent',
 				],
-				prefix: "accordion"
+				prefix: "accordionAccordion"
 			}
 		}
 	},
