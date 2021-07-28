@@ -23,7 +23,7 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 
 $accordionTitle = Components::checkAttr('accordionTitle', $attributes, $manifest);
-$accordionContent = Components::checkAttr('accordionContent', $attributes, $manifest);
+$accordionContent = Components::checkAttr('accordionAccordionContent', $attributes, $manifest);
 $accordionIsOpen = Components::checkAttr('accordionIsOpen', $attributes, $manifest);
 $accordionCloseOthers = Components::checkAttr('accordionCloseOthers', $attributes, $manifest);
 
@@ -36,14 +36,14 @@ $accordionClass = Components::classnames([
 
 $accordionTriggerClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'trigger'),
-	"{$componentJsClass}-trigger",
+	Components::selector($componentJsClass, "{$componentJsClass}-trigger"),
 ]);
 
 $accordionIconClass = Components::selector($componentClass, $componentClass, 'icon');
 
 $accordionPanelClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'panel'),
-	"{$componentJsClass}-panel",
+	Components::selector($componentJsClass, "{$componentJsClass}-panel"),
 ]);
 
 $accordionContentClass = Components::selector($componentClass, $componentClass, 'content');
