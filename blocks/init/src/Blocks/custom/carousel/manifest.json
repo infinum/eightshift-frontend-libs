@@ -1,5 +1,6 @@
 {
 	"blockName": "carousel",
+	"blockJsClass": "js-carousel",
 	"title": "Carousel",
 	"description" : "Carousel block with custom settings.",
 	"category": "eightshift",
