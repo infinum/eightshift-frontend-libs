@@ -77,19 +77,20 @@ $wrapperClass = Components::classnames([
 ]);
 
 $wrapperContainerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'container'),
+	Components::selector($componentClass, $componentClass, 'container'), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $componentClass), // @phpstan-ignore-line
 	// @phpstan-ignore-next-line
 	Components::responsiveSelectors($wrapperGutter, 'gutter', $componentClass),
 ]);
 
 $wrapperInnerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'inner'),
+	Components::selector($componentClass, $componentClass, 'inner'), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperWidth, 'width', $componentClass), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
 	Components::responsiveSelectors($wrapperOffset, 'offset', $componentClass),
 ]);
 
-$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor');
+$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor'); // @phpstan-ignore-line
 
 $idOutput = '';
 
