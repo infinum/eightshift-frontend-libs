@@ -67,6 +67,6 @@ if (!$videoUrl) {
 
 		if ($url && $mime) {?>
 			<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
-		<?php }	?>
+		<?php } ?>
 	<?php } ?>
 </video>
