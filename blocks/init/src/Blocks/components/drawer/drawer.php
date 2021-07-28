@@ -31,7 +31,8 @@ $drawerClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 	Components::selector($componentJsClass, $componentJsClass),
-	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
+	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
 ]);
 
 ?>

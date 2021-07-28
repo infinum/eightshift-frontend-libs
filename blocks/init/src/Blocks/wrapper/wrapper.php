@@ -10,8 +10,6 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$componentClass = $manifest['componentClass'] ?? 'wrapper';
-
 // Used to add or remove wrapper.
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
@@ -19,8 +17,8 @@ $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
-$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item');
-$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner');
+$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item'); // @phpstan-ignore-line
+$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner'); // @phpstan-ignore-line
 
 if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
@@ -62,6 +60,8 @@ $wrapperGutter = Components::checkAttrResponsive('wrapperGutter', $attributes, $
 $wrapperWidth = Components::checkAttrResponsive('wrapperWidth', $attributes, $manifest);
 $wrapperOffset = Components::checkAttrResponsive('wrapperOffset', $attributes, $manifest);
 
+$componentClass = 'wrapper';
+
 // @phpstan-ignore-next-line
 $wrapperClass = Components::classnames([
 	$componentClass,
@@ -79,6 +79,7 @@ $wrapperClass = Components::classnames([
 $wrapperContainerClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'container'),
 	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $componentClass), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
 	Components::responsiveSelectors($wrapperGutter, 'gutter', $componentClass),
 ]);
 

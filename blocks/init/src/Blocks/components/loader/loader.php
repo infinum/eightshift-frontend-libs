@@ -26,7 +26,8 @@ $loaderClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
-	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
+	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'), Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
 ]);
 ?>
 
