@@ -32,8 +32,8 @@ export const propsOutput = {
 				notExpected: [
 					'blockquoteCardImageUrl',
 				],
-				prefix: 'blockquote',
-				components: {
+				prefix: 'mockBlockquoteBlockquote',
+				subComponents: {
 					blockquote: {
 						expected: [
 							'mockBlockquoteBlockquoteBlockquoteImageUrl',
@@ -86,75 +86,75 @@ export const propsOutput = {
 		components: {
 			card: {
 				expected: [
-					'cardAlign',
-					'cardHeadingContent',
-					'cardImageUrl',
-					'cardButtonContent',
+					'cardCardAlign',
+					'cardCardHeadingContent',
+					'cardCardImageUrl',
+					'cardCardButtonContent',
 				],
 				notExpected: [
 					'blockquoteCardImageUrl'
 				],
-				prefix: "card",
+				prefix: "cardCard",
 				components: {
 					image: {
 						expected: [
-							'cardImageUrl',
+							'cardCardImageUrl',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
-							'cardAlign',
+							'cardCardAlign',
 							'cardHeadingContent',
 							'cardButtonContent',
 						],
-						prefix: 'cardImage',
+						prefix: 'cardCardImage',
 					},
 					intro: {
 						expected: [
-							'cardIntroContent',
+							'cardCardIntroContent',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
-							'cardAlign',
+							'cardCardAlign',
 							'cardHeadingContent',
 							'cardButtonContent',
 						],
-						prefix: 'cardIntro',
+						prefix: 'cardCardIntro',
 					},
 					heading: {
 						expected: [
-							'cardHeadingContent',
+							'cardCardHeadingContent',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
-							'cardAlign',
+							'cardCardAlign',
 							'cardIntroContent',
 							'cardButtonContent',
 						],
-						prefix: 'cardHeading',
+						prefix: 'cardCardHeading',
 					},
 					paragraph: {
 						expected: [
-							'cardParagraphContent',
+							'cardCardParagraphContent',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
-							'cardAlign',
+							'cardCardAlign',
 							'cardIntroContent',
 							'cardButtonContent',
 						],
-						prefix: 'cardParagraph',
+						prefix: 'cardCardParagraph',
 					},
 					button: {
 						expected: [
-							'cardButtonContent',
+							'cardCardButtonContent',
 						],
 						notExpected: [
 							'blockquoteCardImageUrl',
-							'cardAlign',
+							'cardCardAlign',
 							'cardIntroContent',
 							'cardParagraphContent',
 						],
-						prefix: 'cardButton',
+						prefix: 'cardCardButton',
 					}
 				}
 			}
