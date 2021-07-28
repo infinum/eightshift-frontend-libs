@@ -42,18 +42,21 @@ $imgClass = Components::classnames([
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
 	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
-		<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+		?>
 
-		<?php foreach (array_reverse($imageUrl) as $brakepoint => $item) { ?>
+		<?php foreach (array_reverse($imageUrl) as $breakpoint => $item) { ?>
 			<?php
-			if ($brakepoint === 'large') {
+			if ($breakpoint === 'large') {
 				continue;
 			}
 			if (!$item) {
 				continue;
 			}
 
-			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$brakepoint] ?? '';
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? '';
 
 			if (!$breakpointValue) {
 				continue;

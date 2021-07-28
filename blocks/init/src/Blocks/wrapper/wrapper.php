@@ -59,7 +59,8 @@ $wrapperOffset = Components::checkAttrResponsive('wrapperOffset', $attributes, $
 
 $wrapperMainClass = 'wrapper';
 
-$wrapperClass = Components::classnames([ // @phpstan-ignore-line
+// @phpstan-ignore-next-line
+$wrapperClass = Components::classnames([
 	$wrapperMainClass,
 	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass), // @phpstan-ignore-line
@@ -75,13 +76,13 @@ $wrapperClass = Components::classnames([ // @phpstan-ignore-line
 $wrapperContainerClass = Components::classnames([
 	"{$wrapperMainClass}__container",
 	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
 ]);
 
 $wrapperInnerClass = Components::classnames([
 	"{$wrapperMainClass}__inner",
 	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass), // @phpstan-ignore-line
-	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
 ]);
 
 $idOutput = '';
@@ -92,8 +93,10 @@ if ($wrapperId) {
 }
 
 ?>
-<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo $idOutput; ?>>
-
+<div
+	class="<?php echo \esc_attr($wrapperClass); ?>"
+	<?php echo $idOutput; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+>
 	<?php if ($wrapperAnchorId) { ?>
 		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
 	<?php } ?>
