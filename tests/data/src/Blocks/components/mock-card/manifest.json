@@ -10,11 +10,7 @@
 		}
 	},
 	"attributes": {
-		"cardContentAlign": {
-			"type": "string",
-			"default": "left"
-		},
-		"cardMediaAlign": {
+		"cardAlign": {
 			"type": "string",
 			"default": "left"
 		},
