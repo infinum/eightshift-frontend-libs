@@ -39,7 +39,7 @@ export const SocialLinksEditor = (attributes) => {
 						href={href}
 						title={title}
 						dangerouslySetInnerHTML={{ __html: manifest.icons[icon] }}
-						target="_blank" rel="nofollow noreferrer noopener"
+						target="_blank" rel="noreferrer noopener"
 					></a>
 				</li>
 			))}

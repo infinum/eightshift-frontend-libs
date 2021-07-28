@@ -52,7 +52,7 @@ $socialLinksClass = Components::classnames([
 				href="<?php echo esc_url($href); ?>"
 				title="<?php echo esc_attr($linkTitle); ?>"
 				target="_blank"
-				rel="nofollow noopener"
+				rel="noreferrer noopener"
 			>
 				<?php echo $manifest['icons'][$icon]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</a>
