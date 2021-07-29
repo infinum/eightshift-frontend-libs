@@ -128,9 +128,11 @@ export const LinkEditComponent = ({
 				<Button
 					isSecondary
 					onClick={openLinkControl}
-					icon={url?.length ? icons.editOptions : icons.add}
-					text={url?.length ? editUrlLabel : addUrlLabel}
-				/>
+					icon={url?.length > 0 ? icons.editOptions : icons.add}
+					iconSize={24}
+				>
+					{url?.length > 0 ? editUrlLabel : addUrlLabel}
+				</Button>
 
 				{url?.length > 0 &&
 					<Button

@@ -234,8 +234,8 @@ body {
 	}
 
 	.components-panel__body-toggle.components-button .components-panel__arrow {
-		width: 24px;
-		height: 24px;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 
 	// Adding space between ColorSwatches and label
@@ -744,7 +744,11 @@ body {
 	
 		.components-button {
 			justify-content: flex-start !important;
-			gap: 0.4rem;
+
+			> svg {
+				height: 1.5rem;
+				width: 1.5rem;
+			}
 		}
 
 		.components-button:not(.is-pressed) {

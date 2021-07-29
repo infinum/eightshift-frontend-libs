@@ -73,8 +73,9 @@ export const VideoOptions = (attributes) => {
 						isDestructive
 						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 						icon={icons.trash}
-						text={__('Remove video', 'eightshift-frontend-libs')}
-					/>
+					>
+						{__('Remove video', 'eightshift-frontend-libs')}
+					</Button>
 					<hr />
 				</>
 			}

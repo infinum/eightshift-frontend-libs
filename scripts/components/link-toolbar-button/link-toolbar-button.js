@@ -110,8 +110,9 @@ export const LinkToolbarButton = ({
 						isDestructive={true}
 						icon={linkOff}
 						iconSize={24}
-						text={removeLinkLabel}
-					/>
+					>
+						{removeLinkLabel}
+					</Button>
 				</div>
 			}
 		</Popover>

@@ -80,8 +80,9 @@ export const ColorPickerComponent = ({
 						isDestructive={true}
 						icon={icons.none}
 						iconSize={24}
-						text={resetLabel}
-					/>
+					>
+						{resetLabel}
+					</Button>
 				}
 			</div>
 		</Popover>
