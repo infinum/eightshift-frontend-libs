@@ -61,19 +61,28 @@ $columnRightClass = Components::classnames([
 
 		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo \esc_attr($columnLeftClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 
 		<?php if ($layoutThreeColumnsCenter) { ?>
 			<div class="<?php echo \esc_attr($columnCenterClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 
 		<?php if ($layoutThreeColumnsRight) { ?>
 			<div class="<?php echo \esc_attr($columnRightClass); ?>">
-				<?php echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 

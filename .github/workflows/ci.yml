@@ -1,76 +1,114 @@
 name: Continuous integration checks
 
 on:
-    pull_request:
-        branches: [master, develop]
-    push:
-        branches: [master]
+  # Run on PRs and pushes, only on significant changes.
+  push:
+    branches:
+      - develop
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
-    lint:
-        name: File linting on Node v${{ matrix.node }}
-        runs-on: ubuntu-latest
+  lint:
+    name: File linting on Node v${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [ 14, 15.x ]
 
-        strategy:
-            fail-fast: false
-            matrix:
-                node: [12, 14, 15.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+      - name: Set Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-            - name: Set Node.js version
-              uses: actions/setup-node@v1
-              with:
-                node-version: ${{ matrix.node }}
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
-            - name: Cache node modules
-              uses: actions/cache@v1
-              with:
-                path: node_modules
-                key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.OS }}-build-${{ env.cache-name }}-
-                  ${{ runner.OS }}-build-
-                  ${{ runner.OS }}-
+      - name: Install node packages
+        run: npm install
 
-            - name: Install node packages
-              run: npm install
+      - name: Run linters
+        run: npm run lint
 
-            - name: Run linters
-              run: npm run lint
+  phpcs:
+    name: PHPCS check on PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.3', '7.4' ]
 
-    tests:
-        name: Jest - Unit tests
-        runs-on: ubuntu-latest
-        
-        strategy:
-            fail-fast: false
-            matrix:
-                node: [12, 14, 15.x]
+    steps:
+      # Checkout repository
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+      # Setup PHP versions, run checks
+      - name: PHP setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: cs2pr
 
-            - name: Set Node.js version
-              uses: actions/setup-node@v1
-              with:
-                node-version: ${{ matrix.node }}
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: highest
 
-            - name: Cache node modules
-              uses: actions/cache@v1
-              with:
-                path: node_modules
-                key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.OS }}-build-${{ env.cache-name }}-
-                  ${{ runner.OS }}-build-
-                  ${{ runner.OS }}-
+      - name: Check coding standards using PHPCS
+        continue-on-error: true
+        run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}- --report-full --report-checkstyle=./phpcs-report.xml
 
-            - name: Install node packages
-              run: npm install
+      - name: Show PHPCS results in PR
+        run: cs2pr ./phpcs-report.xml
 
-            - name: Run unit tests
-              run: npm run test:unit
+  phpstan:
+    name: PHPStan check
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.allowed_failure }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4' ]
+        allowed_failure: [ true ]
+
+    steps:
+      # Checkout repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup PHP versions, run checks
+      - name: PHP setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: highest
+
+      - name: Check code consistency using PHPStan
+        run: composer analyze
