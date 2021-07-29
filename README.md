@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="Eightshift Frontend Libs" src="https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/package/intro.png"/>
+	<img alt="Eightshift Frontend Libs" src="https://repository-images.githubusercontent.com/180566063/ee251631-8ec0-42e2-984e-1cb7802cefc7"/>
 </p>
 
 [![GitHub tag](https://img.shields.io/github/tag/infinum/eightshift-frontend-libs.svg?style=for-the-badge)](https://github.com/infinum/eightshift-frontend-libs)
