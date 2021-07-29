@@ -13,6 +13,7 @@ export const HamburgerEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
+		onClick,
 	} = attributes;
 
 	const hamburgerUse = checkAttr('hamburgerUse', attributes, manifest);
@@ -35,7 +36,7 @@ export const HamburgerEditor = (attributes) => {
 	}
 
 	return (
-		<button className={hamburgerClass}>
+		<button className={hamburgerClass} onClick={onClick}>
 			<svg className={iconClass} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<rect className={iconBorderClass} opacity="0.1" x="1.23071" y="1.23077" width="29.5385" height="29.5385" rx="1.5" stroke="black" />
 				<path className={iconTopClass} d="M7.38464 9.84616H24.6154" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

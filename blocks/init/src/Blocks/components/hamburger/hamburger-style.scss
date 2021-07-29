@@ -3,8 +3,10 @@
 	$this: &;
 	@extend %button-reset;
 
-	@include media(desktop up) {
-		display: none;
+	&:not(.is-always-visible) {
+		@include media(desktop up) {
+			display: none;
+		}
 	}
 
 	display: flex;

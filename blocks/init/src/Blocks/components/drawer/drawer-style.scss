@@ -14,6 +14,8 @@
 	box-shadow: 0 0 0.15rem rgba(var(--global-colors-black), 0.2);
 
 	&__position {
+		pointer-events: none;
+
 		&--left {
 			left: 0;
 			transform: translate3d(-100%, 0, 0);
@@ -35,6 +37,12 @@
 			opacity: 0;
 		}
 	}
+
+	&.is-open {
+		transform: translate3d(0, 0, 0);
+		opacity: 1;
+		pointer-events: auto;
+	}
 }
 
 body.is-menu-open {
@@ -43,5 +51,6 @@ body.is-menu-open {
 	.drawer {
 		transform: translate3d(0, 0, 0);
 		opacity: 1;
+		pointer-events: auto;
 	}
 }

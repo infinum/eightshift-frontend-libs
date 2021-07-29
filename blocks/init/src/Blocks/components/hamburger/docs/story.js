@@ -1,40 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
+import { getExample, props } from '@eightshift/frontend-libs/scripts';
 import { HamburgerEditor } from '../components/hamburger-editor';
 
 export default {
 	title: `Components/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
 };
 
-const open = () => document.body.classList.add('is-menu-open');
-const close = () => document.body.classList.remove('is-menu-open');
+const attributes = getExample('hamburger', manifest);
 
 export const editor = () => {
-	close();
+	const [open, setOpen] = useState(false);
 
 	return (
-		<div>
-			<div>This element is visible only on a small screen.</div>
-			<br /><br />
-			<HamburgerEditor />
-		</div>
-	);
-};
-
-export const isOpen = () => {
-	open();
-
-	return (
-		<div>
-			<div>This element is visible only on a small screen.</div>
-			<br /><br />
-			<HamburgerEditor />
-		</div>
+		<HamburgerEditor
+			{...props('hamburger', attributes, {
+				additionalClass: ['is-always-visible', open ? 'is-menu-open' : ''].join(' '),
+			})}
+			onClick={() => setOpen(!open)} />
 	);
 };
