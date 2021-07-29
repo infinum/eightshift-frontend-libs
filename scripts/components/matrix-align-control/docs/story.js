@@ -5,7 +5,7 @@ import { MatrixAlignControl } from '../matrix-align-control';
 export default {
 	title: 'Options/MatrixAlignControl',
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
@@ -16,9 +16,9 @@ export const component = () => {
 
 	return (
 		<MatrixAlignControl
-		label='Alignment position'
-		value={align}
-		onChange={(value) => setAlign(value)}
-	/>
+			label='Alignment position'
+			value={align}
+			onChange={(value) => setAlign(value)}
+		/>
 	);
 }

@@ -25,7 +25,7 @@ import AsyncSelect from "react-select/async";
  * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
  * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
  * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
- * @param {React.Component?} [props.customIndicatorSeparator] 		   - If provided, adds a separator between the select content and the dropdown arrow on the right.
+ * @param {React.Component?} [props.customIndicatorSeparator]          - If provided, adds a separator between the select content and the dropdown arrow on the right.
  * @param {boolean} [props.simpleValue=false]                          - If in synchronous (`options` is set), single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
  */
 export const CustomSelect = (props) => {

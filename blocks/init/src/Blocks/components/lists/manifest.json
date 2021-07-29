@@ -181,7 +181,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-cream)",
 						"lists-link-color": "var(--global-colors-yellow)",
-						"lists-link-color-hover": "var(--global-red)"
+						"lists-link-color-hover": "var(--global-colors-red)"
 					}
 				}
 			],

@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, checkAttr, getAttrKey, icons, getOption, ComponentUseToggle, IconLabel, CustomSelect } from '@eightshift/frontend-libs/scripts';
+import { ColorPaletteCustom, ComponentUseToggle, IconLabel, CustomSelect, checkAttr, getAttrKey, icons, getOption } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
