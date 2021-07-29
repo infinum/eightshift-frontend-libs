@@ -1,6 +1,6 @@
 .block-columns {
 	display: grid;
 	grid-template-columns: repeat(var(--global-max-cols), 1fr);
-	column-gap: var(--columns-gutter, var(--global-gutters-default, 0));
-	row-gap: var(--columns-vertical-spacing, 0);
+	column-gap: var(--columns-column-gap, var(--global-gutters-default, 0));
+	row-gap: var(--columns-row-gap, 0);
 }

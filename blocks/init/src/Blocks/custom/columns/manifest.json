@@ -11,8 +11,8 @@
 	],
 	"example": {
 		"attributes": {
-			"columnsGutterLarge": 30,
-			"columnsVerticalSpacingLarge": 30
+			"columnsColumnGapLarge": 30,
+			"columnsRowGapLarge": 30
 		},
 		"innerBlocks": [
 			{
@@ -89,74 +89,74 @@
 			]
 		},
 
-		"columnsGutterLarge": {
+		"columnsColumnGapLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"columnsGutterDesktop": {
+		"columnsColumnGapDesktop": {
 			"type": "integer"
 		},
-		"columnsGutterTablet": {
+		"columnsColumnGapTablet": {
 			"type": "integer"
 		},
-		"columnsGutterMobile": {
+		"columnsColumnGapMobile": {
 			"type": "integer"
 		},
 
-		"columnsVerticalSpacingLarge": {
+		"columnsRowGapLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"columnsVerticalSpacingDesktop": {
+		"columnsRowGapDesktop": {
 			"type": "integer"
 		},
-		"columnsVerticalSpacingTablet": {
+		"columnsRowGapTablet": {
 			"type": "integer"
 		},
-		"columnsVerticalSpacingMobile": {
+		"columnsRowGapMobile": {
 			"type": "integer"
 		}
 	},
 	"responsiveAttributes": {
-		"columnsGutter": {
-			"large": "columnsGutterLarge",
-			"desktop": "columnsGutterDesktop",
-			"tablet": "columnsGutterTablet",
-			"mobile": "columnsGutterMobile"
+		"columnsColumnGap": {
+			"large": "columnsColumnGapLarge",
+			"desktop": "columnsColumnGapDesktop",
+			"tablet": "columnsColumnGapTablet",
+			"mobile": "columnsColumnGapMobile"
 		},
-		"columnsVerticalSpacing": {
-			"large": "columnsVerticalSpacingLarge",
-			"desktop": "columnsVerticalSpacingDesktop",
-			"tablet": "columnsVerticalSpacingTablet",
-			"mobile": "columnsVerticalSpacingMobile"
+		"columnsRowGap": {
+			"large": "columnsRowGapLarge",
+			"desktop": "columnsRowGapDesktop",
+			"tablet": "columnsRowGapTablet",
+			"mobile": "columnsRowGapMobile"
 		}
 	},
 	"options": {
-		"columnsGutter": {
+		"columnsColumnGap": {
 			"min": 0,
 			"max": 100,
 			"step": 10
 		},
-		"columnsVerticalSpacing": {
+		"columnsRowGap": {
 			"min": 0,
 			"max": 100,
 			"step": 10
 		}
 	},
 	"variables": {
-		"columnsVerticalSpacing": [
+		"columnsRowGap": [
 			{
 				"inverse": true,
 				"variable": {
-					"columns-vertical-spacing": "calc((%value% / 16) * 1rem)"
+					"columns-row-gap": "calc((%value% / 16) * 1rem)"
 				}
 			}
 		],
-		"columnsGutter": [
+		"columnsColumnGap": [
 			{
 				"inverse": true,
 				"variable": {
-					"columns-gutter": "calc((%value% / 16) * 1rem)"
+					"columns-column-gap": "calc((%value% / 16) * 1rem)"
 				}
 			}
 		]

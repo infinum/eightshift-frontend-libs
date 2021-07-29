@@ -23,11 +23,11 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 
 			<br /><br />
 
-			<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'eightshift-frontend-libs')} />}>
+			<Responsive label={<IconLabel icon={icons.gutter} label={__('Column spacing', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnsGutter', attributes, manifest)}${point}`;
-					const { min, max, step } = getOption('columnsGutter', attributes, manifest);
+					const attr = `${getAttrKey('columnsColumnGap', attributes, manifest)}${point}`;
+					const { min, max, step } = getOption('columnsColumnGap', attributes, manifest);
 
 					return (
 						<Fragment key={keyName}>
@@ -46,11 +46,11 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
-			<Responsive label={<IconLabel icon={icons.verticalSpacing} label={__('Vertical spacing', 'eightshift-frontend-libs')} />}>
+			<Responsive label={<IconLabel icon={icons.verticalSpacing} label={__('Row spacing', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnsVerticalSpacing', attributes, manifest)}${point}`;
-					const { min, max, step } = getOption('columnsVerticalSpacing', attributes, manifest);
+					const attr = `${getAttrKey('columnsRowGap', attributes, manifest)}${point}`;
+					const { min, max, step } = getOption('columnsRowGap', attributes, manifest);
 
 					return (
 						<Fragment key={keyName}>
