@@ -9,5 +9,7 @@
 
 	& > * {
 		height: var(--column-item-height, auto);
+		width: var(--column-item-width, auto);
+		align-self: var(--column-horizontal-align);
 	}
 }

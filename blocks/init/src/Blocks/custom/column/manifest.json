@@ -112,6 +112,20 @@
 		},
 		"columnVerticalAlignMobile": {
 			"type": "string"
+		},
+
+		"columnHorizontalAlignLarge": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"columnHorizontalAlignDesktop": {
+			"type": "string"
+		},
+		"columnHorizontalAlignTablet": {
+			"type": "string"
+		},
+		"columnHorizontalAlignMobile": {
+			"type": "string"
 		}
 	},
 	"responsiveAttributes": {
@@ -144,6 +158,12 @@
 			"desktop": "columnVerticalAlignDesktop",
 			"tablet": "columnVerticalAlignTablet",
 			"mobile": "columnVerticalAlignMobile"
+		},
+		"columnHorizontalAlign": {
+			"large": "columnHorizontalAlignLarge",
+			"desktop": "columnHorizontalAlignDesktop",
+			"tablet": "columnHorizontalAlignTablet",
+			"mobile": "columnHorizontalAlignMobile"
 		}
 	},
 	"options": {
@@ -178,6 +198,24 @@
 			{
 				"label": "Bottom",
 				"value": "bottom"
+			}
+		],
+		"columnHorizontalAlign": [
+			{
+				"label": "Stretch",
+				"value": "stretch"
+			},
+			{
+				"label": "Left",
+				"value": "left"
+			},
+			{
+				"label": "Center",
+				"value": "center"
+			},
+			{
+				"label": "Right",
+				"value": "right"
 			}
 		]
 	},
@@ -255,6 +293,41 @@
 					"inverse": true,
 					"variable": {
 						"column-vertical-align": "flex-end"
+					}
+				}
+			]
+		},
+		"columnHorizontalAlign": {
+			"stretch": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-horizontal-align": "%value%",
+						"column-item-width": "100%"
+					}
+				}
+			],
+			"left": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-horizontal-align": "flex-start"
+					}
+				}
+			],
+			"center": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-horizontal-align": "%value%"
+					}
+				}
+			],
+			"right": [
+				{
+					"inverse": true,
+					"variable": {
+						"column-horizontal-align": "flex-end"
 					}
 				}
 			]

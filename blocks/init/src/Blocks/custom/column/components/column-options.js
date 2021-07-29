@@ -125,6 +125,35 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				})}
 			</Responsive>
 
+			<Responsive label={<IconLabel icon={icons.horizontalAlign} label={__('Horizontal align', 'eightshift-frontend-libs')} />}>
+				{breakpoints.map((keyName, index) => {
+					const point = ucfirst(keyName);
+					const attr = `${getAttrKey('columnHorizontalAlign', attributes, manifest)}${point}`;
+					const options = getOption('columnHorizontalAlign', attributes, manifest);
+
+					return (
+						<div className='es-responsive-inset es-v-spaced' key={index}>
+							<IconLabel icon={icons[`screen${point}`]} label={point} standalone />
+							<ButtonGroup>
+								{options.map(({ label, value }, index) => {
+									return (
+										<Button
+											key={index}
+											label={label}
+											isPressed={attributes[attr] === value}
+											onClick={() => setAttributes({ [attr]: value })}
+											icon={icons[`horizontalAlign${ucfirst(value)}`]}
+											iconSize={24}
+										/>
+									);
+								}
+								)}
+							</ButtonGroup>
+						</div>
+					);
+				})}
+			</Responsive>
+
 			<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'eightshift-frontend-libs')} />}>
 				{breakpoints.map((keyName) => {
 					const point = ucfirst(keyName);
