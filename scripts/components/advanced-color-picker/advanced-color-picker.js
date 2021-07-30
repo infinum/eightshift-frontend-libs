@@ -56,6 +56,13 @@ const CustomValueDisplay = (props) => {
  */
 export const AdvancedColorPicker = (props) => {
 	const {
+		globalVariables: {
+			colors: globalColors,
+			gradients: globalGradients,
+		},
+	} = props.globalManifest;
+
+	const {
 		type = '',
 		colorProject,
 		colorSolid,
@@ -90,16 +97,7 @@ export const AdvancedColorPicker = (props) => {
 				value: 'gradient'
 			}
 		],
-
-		globalManifest,
 	} = props;
-
-	const {
-		globalVariables: {
-			colors: globalColors,
-			gradients: globalGradients,
-		},
-	} = globalManifest;
 
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
 	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
