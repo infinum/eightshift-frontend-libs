@@ -115,6 +115,17 @@ class YoastSEOCustomData {
 	}
 }
 
+/**
+ * This helper will search all blocks and components manifests and find attributes that have "seo": "true" key.
+ * This key will be added in to the content and proceed by the YoastSeo Analysis plugin.
+ *
+ * Usage:
+ * ```js
+ * import { yoastSeo } from '@eightshift/frontend-libs/scripts/editor';
+ *
+ * yoastSeo();
+ * ```
+ */
 export const yoastSeo = () => {
 	domReady(() => {
 

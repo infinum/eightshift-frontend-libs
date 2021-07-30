@@ -2,6 +2,11 @@
  * Device check helper
  *
  * Detect a certain device, so specific functionality can be implemented for it.
+ *
+ * Usage:
+ * ```js
+ * device.iPhone();
+ * ```
  */
 export const device = {
 	iPhone() {

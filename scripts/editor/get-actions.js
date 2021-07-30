@@ -128,6 +128,7 @@ const mediaPropsAction = (setAttributes, key) => {
 
 /**
  * Create attributes actions from blocks manifest.json.
+ * This helper is deprecated and should not be used anymore.
  *
  * Actions are passed in child components in order to update props on event.
  * Default function output is `onChange` + attribute name.

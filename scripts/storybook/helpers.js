@@ -21,8 +21,8 @@ import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-
 /**
  * Create Inner Blocks.
  *
- * @param {array} innerBlocks Array of inner blocks.
- * @param {boolean} isVariation Check if block is variation type.
+ * @param {array} [innerBlocks=[]]      - Array of inner blocks.
+ * @param {boolean} [isVariation=false] - Check if block is variation type.
  */
 const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 	return innerBlocks.map((blockItem) => {
@@ -51,9 +51,16 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 /**
  * Combine block details in one object.
  *
- * @param {object} blockManifest Block Manifest data.
- * @param {object} globalManifest Global Blocks Manifest data.
- * @param {boolean} isVariation Check if block is variation type. Default: false.
+ * @param {object} blockManifest        - Block Manifest data.
+ * @param {object} globalManifest       - Global Blocks Manifest data.
+ * @param {boolean} [isVariation=false] - Check if block is variation type. Default: false.
+ *
+ * @returns {object}
+ *
+ * Usage:
+ * ```js
+ * <Gutenberg props={blockDetails(manifest, globalManifest)} />
+ * ```
  */
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
 	const blockName = getFullBlockName(globalManifest, blockManifest);
@@ -102,7 +109,12 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 /**
  * Load actual Block Editor and all the magic.
  *
- * @param {object} props All Props for blocks.
+ * @param {object} props - All Props for blocks.
+ *
+ * Usage:
+ * ```js
+ * <Gutenberg props={blockDetails(manifest, globalManifest)} />
+ * ```
  */
 export const Gutenberg = ({ props }) => {
 	const {

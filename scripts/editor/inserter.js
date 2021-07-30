@@ -4,24 +4,19 @@ import { createBlock } from '@wordpress/blocks';
 
 /**
  * Development inserter made to insert one or multiple blocks in the dom using console.
- * 
- * Usage:
- * 
- * 1. Add this code in `application-blocks-editor.js` file:
- * `
- * import { inserter } from '@eightshift/frontend-libs/scripts/editor';
  *
+ * Usage:
+ * 1. Add this code in `application-blocks-editor.js` file:
+ * ```js
  * inserter();
- * `
+ * ```
  *
  * 2. Open block editor and run the following commands in the console:
- *
  * Run all: `window.eightshiftInserter.runAll();`.
  * - namespace prop {string} -  Namespace of blocks to insert.
  * - save prop {bool} [save=false] -  Save dom if true.
  * - reset prop {bool} [reset=false] - Reset all in dom if true.
- * 
- * 
+ *
  * Run run one: `window.eightshiftInserter.runOne('full-block-name');`.
  * - name prop {string} - Full block name with namespace.
  * - save prop {bool} [save=false] - Save dom if true.
@@ -30,7 +25,6 @@ import { createBlock } from '@wordpress/blocks';
  * Run reset: `window.eightshiftInserter.runReset();`.
  *
  * Run save all: `window.eightshiftInserter.runSave();`.
- *
  */
 export const inserter = () => {
 	window['eightshiftInserter'] = {

@@ -3,7 +3,14 @@ import classnames from 'classnames';
 /**
  * Create responsive selectors used for responsive attributes.
  *
- * Example:
+ * @param {array}   items              - Array of breakpoints.
+ * @param {string}  selector           - Selector for this breakpoint.
+ * @param {string}  parent             - Parent block selector.
+ * @param {boolean} [useModifier=true] - If false you can use this selector for visibility.
+ *
+ * @return string
+ *
+ * Usage:
  * ```js
  * responsiveSelectors(attributes.width, 'width', blockClass);
  * ```
@@ -12,13 +19,6 @@ import classnames from 'classnames';
  * ```
  * block-column__width-large--4
  * ```
- *
- * @param {array}   items              - Array of breakpoints.
- * @param {string}  selector           - Selector for this breakpoint.
- * @param {string}  parent             - Parent block selector.
- * @param {boolean} [useModifier=true] - If false you can use this selector for visibility.
- *
- * @return string
  */
 export const responsiveSelectors = (items, selector, parent, useModifier = true) => {
 	const output = [];

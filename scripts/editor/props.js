@@ -7,7 +7,36 @@ import _ from 'lodash';
  * @param {object} attributes  - Attributes from the block/component.
  * @param {object} [manual={}] - Object of attributes to change key and merge to the original output.
  * 
- * @returns object
+ * @returns {object}
+ *
+ * Manifest:
+ * ```js
+ * const attributes = {
+ *   buttonColor: 'red',
+ *   buttonSize: 'big',
+ *   buttonIcon: 'blue',
+ *   blockName: 'button',
+ *   wrapperSize: 'big',
+ *   wrapperType: 'normal',
+ * };
+ * ```
+ *
+ * Usage:
+ * ```js
+ * {...props('button', attributes)}
+ * ```
+ *
+ * Output:
+ * ```js
+ * {
+ *   buttonColor: 'red',
+ *   buttonSize: 'big',
+ *   buttonIcon: 'blue',
+ *   blockName: 'button',
+ * };
+ * ```
+ *
+ * Additional keys that are passed are defined in the includes array.
  */
 export const props = (newName, attributes, manual = {}) => {
 
