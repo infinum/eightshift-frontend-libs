@@ -145,7 +145,7 @@ export const componentRange = () => (
 						min={defaults.sectionSpacing.min}
 						max={defaults.sectionSpacing.max}
 						step={defaults.sectionSpacing.step}
-						resetFallbackValue={reset[attr].default}
+						resetFallbackValue={reset[attr]?.default}
 					/>
 				</Fragment>
 			);
