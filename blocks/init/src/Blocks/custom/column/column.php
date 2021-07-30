@@ -8,26 +8,17 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$columnWidth = Components::checkAttrResponsive('columnWidth', $attributes, $manifest);
-$columnOffset = Components::checkAttrResponsive('columnOffset', $attributes, $manifest);
-$columnHide = Components::checkAttrResponsive('columnHide', $attributes, $manifest);
-$columnOrder = Components::checkAttrResponsive('columnOrder', $attributes, $manifest);
-$columnAlign = Components::checkAttrResponsive('columnAlign', $attributes, $manifest);
-
-$columnClass = Components::classnames([
-	$blockClass,
-	Components::responsiveSelectors($columnWidth, 'width', $blockClass),
-	Components::responsiveSelectors($columnOffset, 'offset', $blockClass),
-	Components::responsiveSelectors($columnOrder, 'order', $blockClass),
-	Components::responsiveSelectors($columnAlign, 'align', $blockClass),
-	Components::responsiveSelectors($columnHide, 'hide', $blockClass, false),
-]);
+$unique = Components::getUnique();
 ?>
 
-<div class="<?php echo \esc_attr($columnClass); ?>">
-	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<div class="<?php echo \esc_attr($blockClass); ?>" data-id="<?php echo \esc_attr($unique) ?>">
+	<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $innerBlockContent;
+	?>
 </div>

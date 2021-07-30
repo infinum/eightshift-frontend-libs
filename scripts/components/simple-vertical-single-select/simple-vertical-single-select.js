@@ -26,8 +26,9 @@ export const SimpleVerticalSingleSelect = ({
 						icon={icon}
 						iconSize={24}
 						isPressed={isActive}
-						text={label}
-					/>	
+					>
+						{label}
+					</Button>
 				))}
 			</div>
 		</BaseControl>

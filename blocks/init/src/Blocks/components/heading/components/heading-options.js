@@ -1,7 +1,6 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
-import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
@@ -14,7 +13,8 @@ export const HeadingOptions = (attributes) => {
 		label = manifestTitle,
 		headingShowControls = true,
 
-		showHeadingUse = true,
+		showHeadingUse = false,
+		showLabel = false,
 		showHeadingColor = true,
 		showHeadingSize = true,
 	} = attributes;
@@ -29,31 +29,19 @@ export const HeadingOptions = (attributes) => {
 
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showHeadingUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={headingUse}
-					onChange={(value) => setAttributes({ [getAttrKey('headingUse', attributes, manifest)]: value })}
-				/>
-			}
+			<ComponentUseToggle
+				label={label}
+				checked={headingUse}
+				onChange={(value) => setAttributes({ [getAttrKey('headingUse', attributes, manifest)]: value })}
+				showUseToggle={showHeadingUse}
+				showLabel={showLabel}
+			/>
 
 			{headingUse &&
 				<>
 					{showHeadingColor &&
 						<ColorPaletteCustom
-							label={
-								<>
-									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-frontend-libs')}
-								</>
-							}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 							colors={getOption('headingColor', attributes, manifest, true)}
 							value={headingColor}
 							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
@@ -61,16 +49,14 @@ export const HeadingOptions = (attributes) => {
 					}
 
 					{showHeadingSize &&
-						<SelectControl
-							label={
-								<>
-									<Icon icon={icons.textSize} />
-									{__('Text size', 'eightshift-frontend-libs')}
-								</>
-							}
+						<CustomSelect
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
 							value={headingSize}
 							options={getOption('headingSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: value })}
+							simpleValue
+							isClearable={false}
+							isSearchable={false}
 						/>
 					}
 				</>

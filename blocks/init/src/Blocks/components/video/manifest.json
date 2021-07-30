@@ -60,15 +60,18 @@
 		"videoPreload": [
 			{
 				"label": "Auto",
-				"value": "auto"
+				"value": "auto",
+				"icon": "checkCircle"
 			},
 			{
 				"label": "Metadata",
-				"value": "metadata"
+				"value": "metadata",
+				"icon": "file"
 			},
 			{
 				"label": "None",
-				"value": "none"
+				"value": "none",
+				"icon": "none"
 			}
 		]
 	}

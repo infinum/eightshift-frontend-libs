@@ -8,9 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
+
+$unique = Components::getUnique();
 
 $featuredPostsQuery = Components::checkAttr('featuredPostsQuery', $attributes, $manifest);
 $featuredPostsItemsPerLine = Components::checkAttr('featuredPostsItemsPerLine', $attributes, $manifest);
@@ -25,8 +28,11 @@ global $post;
 <div
 	class="<?php echo esc_attr($blockClass); ?>"
 	data-items-per-line=<?php echo \esc_attr($featuredPostsItemsPerLine); ?>
+	data-id="<?php echo \esc_attr($unique); ?>"
 >
 	<?php
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 		$postType = $featuredPostsQuery['postType'] ?? ''; // @phpstan-ignore-line
 		$selectedTaxonomy = $featuredPostsQuery['taxonomy'] ?? '';
 		$termList = $featuredPostsQuery['terms'] ?? [];
@@ -76,17 +82,20 @@ global $post;
 				$mainQuery->the_post();
 
 				$postId = \get_the_ID();
-
 				$image = \get_the_post_thumbnail_url($postId, 'large');
+				$excerpt = \get_the_excerpt($postId);
 
 				$cardProps = [
 					'imageUrl' => $image,
 					'imageUse' => $image ?? true,
 					'introUse' => false,
-					'headingContent' => \get_the_title($postId),
-					'paragraphContent' => \get_the_excerpt($postId),
-					'buttonContent' => __('Show More', 'eightshift-frontend-libs'),
-					'buttonUrl' => \get_the_permalink($postId),
+					'headingContent' => \get_the_title($postId), // @phpstan-ignore-line
+					'paragraphContent' => $excerpt,
+					'paragraphUse' => !empty($excerpt),
+					'buttonContent' => __('Read', 'eightshift-frontend-libs'),
+					'buttonUrl' => \get_the_permalink($postId), // @phpstan-ignore-line
+					'buttonColor' => 'primary',
+					'headingSize' => 'big',
 				];
 
 				if ($featuredPostsServerSideRender) {
@@ -96,12 +105,7 @@ global $post;
 				?>
 
 				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
-					<?php
-					echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						'card',
-						$cardProps
-					);
-					?>
+					<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 				<?php
 			}

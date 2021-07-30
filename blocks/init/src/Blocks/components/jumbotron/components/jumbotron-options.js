@@ -1,7 +1,5 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, ComponentUseToggle, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -17,6 +15,8 @@ export const JumbotronOptions = (attributes) => {
 		setAttributes,
 		label = manifestTitle,
 		jumbotronShowControls = true,
+		showJumbotronUse = false,
+		showLabel = false,
 	} = attributes;
 
 	if (!jumbotronShowControls) {
@@ -27,43 +27,38 @@ export const JumbotronOptions = (attributes) => {
 
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+			<ComponentUseToggle
+				label={label}
 				checked={jumbotronUse}
 				onChange={(value) => setAttributes({ [getAttrKey('jumbotronUse', attributes, manifest)]: value })}
+				showUseToggle={showJumbotronUse}
+				showLabel={showLabel}
 			/>
-
-			<hr />
 
 			{jumbotronUse &&
 				<>
 					<ImageOptions
 						{...props('image', attributes)}
+						showImageUse
+						showLabel
 					/>
-
-					<hr />
 
 					<HeadingOptions
 						{...props('heading', attributes)}
+						showHeadingUse
+						showLabel
 					/>
-
-					<hr />
 
 					<ParagraphOptions
 						{...props('paragraph', attributes)}
+						showParagraphUse
+						showLabel
 					/>
-
-					<hr />
 
 					<ButtonOptions
 						{...props('button', attributes)}
+						showButtonUse
+						showLabel
 					/>
 				</>
 			}

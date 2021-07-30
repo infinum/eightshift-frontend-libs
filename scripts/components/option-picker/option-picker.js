@@ -18,6 +18,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {boolean} [props.isToggleButtonActive=false]  - If `true`, the button that opens a dropdown option picker is highlighted.
  * @param {React.Component?} [props.buttonIcon]         - If set, the button that opens a dropdown option picker displays the set (JSX SVG) icon. Otherwise, the icon of the currently selected option (or first option if nothing selected) is used.
  * @param {boolean} [props.showToggleButtonLabel=false] - If `true`, the text label is shown next to the icon of the button that opens a dropdown option picker.
+ * @param {boolean} [props.unsetOnClick=false] 			- If `true`, and you click a option that is currently selected, the value will be unset (set to `undefined`).
  */
 export const OptionPicker
 	= ({
@@ -33,6 +34,7 @@ export const OptionPicker
 		isToggleButtonActive = false,
 		buttonIcon,
 		showToggleButtonLabel = false,
+		unsetOnClick = false,
 	}) => {
 		/**
 		 * Gets the onChange callback with will (un)set a value
@@ -41,7 +43,11 @@ export const OptionPicker
 		 * @returns onChange callback
 		 */
 		function applyOrUnset(value) {
-			return () => onChange(currentValue === value ? undefined : value);
+			if (unsetOnClick && currentValue === value) {
+				return () => onChange(undefined);
+			}
+
+			return () => onChange(value);
 		}
 
 		/**
@@ -96,6 +102,8 @@ export const OptionPicker
 						};
 					})
 				}
+				iconSize={24}
+				className='es-toolbar-icon-24'
 				{...extraProps}
 			/>
 		);

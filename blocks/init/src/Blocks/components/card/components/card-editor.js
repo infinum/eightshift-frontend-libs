@@ -29,7 +29,6 @@ export const CardEditor = (attributes) => {
 
 	return (
 		<div className={cardClass} data-id={unique}>
-
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditor
@@ -62,7 +61,6 @@ export const CardEditor = (attributes) => {
 					blockClass: componentClass,
 				})}
 			/>
-
 		</div>
 	);
 };

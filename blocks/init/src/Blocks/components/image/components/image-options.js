@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { ToggleControl, Icon, TextareaControl, BaseControl, Button } from '@wordpress/components';
-import { Responsive, icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { Responsive, icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, ComponentUseToggle, IconLabel, BlockIcon, IconToggle } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
@@ -16,7 +16,8 @@ export const ImageOptions = (attributes) => {
 		label = manifestTitle,
 		imageShowControls = true,
 
-		showImageUse = true,
+		showImageUse = false,
+		showLabel = false,
 		showImageUrl = true,
 		showImageAlt = true,
 		showImageFull = true,
@@ -34,65 +35,66 @@ export const ImageOptions = (attributes) => {
 
 	return (
 		<>
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showImageUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={imageUse}
-					onChange={(value) => setAttributes({ [getAttrKey('imageUse', attributes, manifest)]: value })}
-				/>
-			}
+			<ComponentUseToggle
+				label={label}
+				checked={imageUse}
+				onChange={(value) => setAttributes({ [getAttrKey('imageUse', attributes, manifest)]: value })}
+				showUseToggle={showImageUse}
+				showLabel={showLabel}
+			/>
 
 			{imageUse &&
 				<>
 					{showImageUrl &&
-						<Responsive
-							label={
-								<>
-									<Icon icon={icons.link} />
-									{__('Image Url', 'eightshift-frontend-libs')}
-								</>
-							}
-						>
-							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest)).map(function(keyName) {
+						<Responsive label={<IconLabel icon={icons.image} label={__('Image source', 'eightshift-frontend-libs')} />}>
+							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest)).map(function (keyName) {
 
 								let point = ucfirst(keyName);
 								let pointLabel = point;
 								if (point === 'Large') {
 									point = '';
-									pointLabel = 'All';
+									pointLabel = __('Default (all screens)', 'eightshift-frontend-libs');
 								}
 
 								const attr = getAttrKey(`imageUrl${point}`, attributes, manifest);
 
+								const removeImageButton = (
+									<>
+										{attributes[attr]?.length > 0 &&
+											<Button
+												isSecondary
+												isSmall
+												isDestructive
+												className='es-small-square-icon-button'
+												onClick={() => setAttributes({ [attr]: {} })}
+												icon={icons.trash}
+											/>
+										}
+									</>
+								);
+
+								const showPlaceholder = _.isEmpty(attributes[attr]);
+
 								return (
 									<BaseControl
 										key={keyName}
-										label={sprintf(__('Image %s screen size', 'eightshift-frontend-libs'), pointLabel)}
-									>
-										{!_.isEmpty(attributes[attr]) ?
+										label={
 											<>
-												<img src={attributes[attr]} alt='' />
-												<Button
-													isSecondary
-													isSmall
-													className={'custom-full-width-btn'}
-													onClick={() => setAttributes({ [attr]: undefined })}
-												>
-													{sprintf(__('Remove %s screen size image', 'eightshift-frontend-libs'), pointLabel)}
-												</Button>
-											</> :
+												<IconLabel icon={icons[`screen${point.length ? point : 'Large'}`]} label={pointLabel} />
+												{removeImageButton}
+											</>
+										}
+									>
+										{showPlaceholder &&
 											<MediaPlaceholder
-												icon="format-image"
-												onSelect={(value) => setAttributes({[attr]: value.url})}
+												icon={<BlockIcon iconName='es-image' />}
+												onSelect={(value) => setAttributes({ [attr]: value.url })}
 												accept={imageAccept}
 												allowedTypes={imageAllowedTypes}
 											/>
+										}
+										{!showPlaceholder &&
+											<img src={attributes[attr]} alt='' />
 										}
 									</BaseControl>
 								);
@@ -100,25 +102,23 @@ export const ImageOptions = (attributes) => {
 						</Responsive>
 					}
 
-					<br />
-
 					{showImageAlt &&
 						<TextareaControl
-							label={__('Alt text', 'eightshift-frontend-libs')}
+							label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
 						/>
 					}
 
 					{showImageFull &&
-						<ToggleControl
+						<IconToggle
+							icon={icons.size}
 							label={__('Fill container', 'eightshift-frontend-libs')}
-							help={__('If checked, the image will always stretch the full width of the container and ignore its maximum width.', 'eightshift-frontend-libs')}
+							help={__('Span the full width of the container and ignore its maximum width', 'eightshift-frontend-libs')}
 							checked={imageFull}
 							onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
 						/>
 					}
-
 				</>
 			}
 

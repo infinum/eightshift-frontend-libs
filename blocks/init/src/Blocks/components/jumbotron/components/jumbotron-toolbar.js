@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
-import { checkAttr, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
+import { ToolbarGroup } from '@wordpress/components';
+import { checkAttr, getAttrKey, MatrixAlignControl, props } from '@eightshift/frontend-libs/scripts';
 import { HeadingToolbar } from '../../heading/components/heading-toolbar';
 import { ButtonToolbar } from '../../button/components/button-toolbar';
 import manifest from './../manifest.json';
@@ -18,30 +18,36 @@ export const JumbotronToolbar = (attributes) => {
 		return null;
 	}
 
-	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
+	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest)
 	const jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest);
+
+	if (!jumbotronUse) {
+		return null;
+	}
 
 	return (
 		<>
-			{jumbotronUse &&
-				<>
-					{showJumbotronContentPosition &&
-						<BlockAlignmentMatrixToolbar
-							label={__('Content Position', 'eightshift-frontend-libs')}
-							value={jumbotronContentPosition}
-							onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
-						/>
-					}
+			{showJumbotronContentPosition &&
+				<ToolbarGroup>
+					<MatrixAlignControl
+						label={__('Content position', 'eightshift-frontend-libs')}
+						value={jumbotronContentPosition}
+						onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
+					/>
+				</ToolbarGroup>
+			}
 
+			<ToolbarGroup>
 				<HeadingToolbar
 					{...props('heading', attributes)}
 				/>
+			</ToolbarGroup>
 
+			<ToolbarGroup>
 				<ButtonToolbar
 					{...props('button', attributes)}
 				/>
-				</>
-			}
+			</ToolbarGroup>
 		</>
 	);
 };

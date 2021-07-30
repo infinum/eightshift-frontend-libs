@@ -103,15 +103,18 @@ export const LinkToolbarButton = ({
 					setAttributes(newValues);
 				}}
 			/>
-			<div style={{ padding: '1rem' }}>
-				<Button
-					onClick={unlinkButton}
-					isDestructive={true}
-					icon={linkOff}
-					iconSize={24}
-					text={removeLinkLabel}
-				/>
-			</div>
+			{url &&
+				<div style={{ padding: '1rem' }}>
+					<Button
+						onClick={unlinkButton}
+						isDestructive={true}
+						icon={linkOff}
+						iconSize={24}
+					>
+						{removeLinkLabel}
+					</Button>
+				</div>
+			}
 		</Popover>
 	);
 	return (

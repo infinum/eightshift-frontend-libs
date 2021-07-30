@@ -30,7 +30,6 @@ $paragraphClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);
-
 ?>
 
 <p class="<?php echo \esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">

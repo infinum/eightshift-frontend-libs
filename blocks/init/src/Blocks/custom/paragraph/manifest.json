@@ -34,7 +34,7 @@
 	},
 	"mergeableAttributes": [
 		{
-			"attribute": "paragraphContent",
+			"attribute": "paragraphParagraphContent",
 			"mergeStrategy": "append"
 		}
 	],

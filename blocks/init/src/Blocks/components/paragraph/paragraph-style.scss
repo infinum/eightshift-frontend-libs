@@ -1,13 +1,15 @@
 .paragraph {
 	margin: 0;
-	color: var(--paragraph-color);
-	font-size: var(--paragraph-font-size);
-	line-height: var(--paragraph-line-height);
+	color: var(--paragraph-color, var(--global-colors-black, currentColor));
+	font-size: var(--paragraph-font-size, 1rem);
+	line-height: var(--paragraph-line-height, 1.5);
 
 	a {
 		cursor: pointer;
 		text-decoration: underline;
-		color: var(--paragraph-link-color);
+		color: var(--paragraph-link-color, var(--global-colors-primary, #5555CE));
+		text-decoration-color: var(--paragraph-link-color, var(--global-colors-primary, #5555CE));
+
 		transition: {
 			property: color;
 			timing-function: ease-in;
@@ -15,7 +17,7 @@
 		}
 
 		&:hover {
-			color: var(--paragraph-link-color-hover);
+			color: var(--paragraph-link-color-hover, var(--global-colors-yellow, #FFDD48));
 		}
 	}
 }

@@ -13,7 +13,6 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 
 	return (
 		<div className={blockClass} data-id={unique}>
-
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<HeadingEditorComponent

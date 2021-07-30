@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, icons } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -37,26 +37,29 @@ export const ImageEditor = (attributes) => {
 		selector(blockClass, blockClass, `${selectorClass}-img`),
 	]);
 
+	if (!imageUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{imageUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					{_.isEmpty(imageUrl) ?
-						<MediaPlaceholder
-							icon="format-image"
-							onSelect={(value) => setAttributes({[getAttrKey('imageUrl', attributes, manifest)]: value.url})}
-							accept={imageAccept}
-							allowedTypes={imageAllowedTypes}
-						/> :
-						<picture className={pictureClass} data-id={unique}>
-							<img className={imgClass} src={imageUrl} alt={imageAlt} />
-						</picture>
-					}
-				</>
+			{_.isEmpty(imageUrl) &&
+				<MediaPlaceholder
+					icon={icons.image}
+					onSelect={(value) => setAttributes({ [getAttrKey('imageUrl', attributes, manifest)]: value.url })}
+					accept={imageAccept}
+					allowedTypes={imageAllowedTypes}
+				/>
 			}
+
+			{!_.isEmpty(imageUrl) &&
+				<picture className={pictureClass} data-id={unique}>
+					<img className={imgClass} src={imageUrl} alt={imageAlt} />
+				</picture>
+			}
+
 		</>
 	);
 };
-

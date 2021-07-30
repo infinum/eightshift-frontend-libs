@@ -6,14 +6,12 @@ import { AccordionOptions as AccordionOptionsComponent } from '../../../componen
 
 export const AccordionOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Accordion Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Accordion', 'eightshift-frontend-libs')}>
 			<AccordionOptionsComponent
 				{...props('accordion', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>
-
 		</PanelBody>
 	);
 };

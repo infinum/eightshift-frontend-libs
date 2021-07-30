@@ -6,14 +6,12 @@ import { JumbotronOptions as JumbotronOptionsComponent } from '../../../componen
 
 export const JumbotronOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Jumbotron Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Jumbotron', 'eightshift-frontend-libs')}>
 			<JumbotronOptionsComponent
 				{...props('jumbotron', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>
-
 		</PanelBody>
 	);
 };

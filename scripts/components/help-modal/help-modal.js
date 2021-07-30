@@ -52,12 +52,15 @@ export const HelpModal = (props) => {
 		<Fragment>
 			<Button
 				icon={icons.help}
-				text={buttonLabel}
 				label={buttonLabel}
-				className={'es-help-button'}
-				isTertiary
+				className='es-help-button'
 				onClick={() => setIsOpen(true)} 
-			/>
+				isTertiary
+				iconSize={24}
+			>
+				{buttonLabel}
+			</Button>
+
 			{isOpen && (
 				<Modal
 					title={modalLabel}

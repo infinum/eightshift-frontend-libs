@@ -18,7 +18,7 @@ export const HeadingEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);
@@ -30,22 +30,22 @@ export const HeadingEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	if (!headingUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{headingUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<RichText
-						className={headingClass}
-						placeholder={placeholder}
-						value={headingContent}
-						onChange={(value) => setAttributes({ [getAttrKey('headingContent', attributes, manifest)]: value })}
-						allowedFormats={[]}
-						data-id={unique}
-					/>
-				</>
-			}
+			<RichText
+				className={headingClass}
+				placeholder={placeholder}
+				value={headingContent}
+				onChange={(value) => setAttributes({ [getAttrKey('headingContent', attributes, manifest)]: value })}
+				allowedFormats={[]}
+				data-id={unique}
+			/>
 		</>
 	);
 };

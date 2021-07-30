@@ -6,14 +6,12 @@ import { VideoOptions as VideoOptionsComponent } from '../../../components/video
 
 export const VideoOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Video Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Video', 'eightshift-frontend-libs')}>
 			<VideoOptionsComponent
 				{...props('video', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>
-
 		</PanelBody>
 	);
 };

@@ -1,31 +1,34 @@
 .header {
 	$this: &;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin: 0 auto;
 	padding: var(--global-gutters-default);
-	top: 0;
-	background: var(--global-colors-white);
-	height: var(--header-scoped-height, 5em);
+
 	width: 100%;
+	max-width: var(--global-containers-default);
+	height: var(--header-scoped-height, 5rem);
+
+	background: var(--header-scoped-background, var(--global-colors-white));
+
 	position: relative;
 	z-index: var(--global-z-index-header);
 
 	&--fixed {
 		position: fixed;
+		top: 0;
 	}
 
-	&__wrap {
-		max-width: var(--global-containers-default);
-		margin: 0 auto;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+	&--sticky {
+		position: sticky;
+		top: 0;
 	}
 
 	&__column {
 		display: flex;
-		flex: 1 0 0.05em;
-		position: relative;
+		flex: 1 0 0.05rem;
 
 		&--left {
 			justify-content: left;
@@ -43,10 +46,13 @@
 	}
 
 	&__logo {
-		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		height: 100%;
+		width: 100%;
+		max-width: 12.5rem;
 
 		@include media(desktop up) {
 			justify-content: flex-start;
@@ -54,8 +60,8 @@
 	}
 
 	&__menu {
-		height: 100%;
 		display: none;
+		height: 100%;
 
 		@include media(desktop up) {
 			display: flex;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
-import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
+import { getExample, props, getOptions, ucfirst } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
@@ -65,25 +65,28 @@ export const width = () => (
 );
 
 export const colors = () => (
-	<Fragment>
+	<>
 		{manifest.options.buttonColor.map((values, index) => (
-			<Fragment key={index}>
+			<div key={index} style={{
+				display: 'flex',
+				alignItem: 'center',
+				marginBottom: '1rem',
+				gap: '1rem',
+			}}>
 				<ButtonEditor
 					{...props('button', attributes, {
-						buttonContent: values,
+						buttonContent: `${ucfirst(values)} button`,
 						buttonColor: values,
 					})}
 				/>
-				<br /><br />
 				<ButtonEditor
 					{...props('button', attributes, {
-						buttonContent: `Button As Link - ${values}`,
+						buttonContent: `${ucfirst(values)} link button`,
 						buttonColor: values,
 						buttonIsLink: true,
 					})}
 				/>
-				<br /><br />
-			</Fragment>
+			</div>
 		))}
-	</Fragment>
+	</>
 );

@@ -36,45 +36,41 @@ export const JumbotronEditor = (attributes) => {
 		selector(componentClass, componentClass, 'content-wrap'),
 	]);
 
+	if (!jumbotronUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{jumbotronUse &&
-				<>
-					<div className={jumbotronClass} data-id={unique}>
+		<div className={jumbotronClass} data-id={unique}>
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-						{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			<ImageEditor
+				{...props('image', attributes, {
+					blockClass: componentClass,
+				})}
+			/>
 
-						<ImageEditor
-							{...props('image', attributes, {
-								blockClass: componentClass,
-							})}
-						/>
+			<div className={contentClass}>
+				<div className={contentWrapClass}>
+					<HeadingEditor
+						{...props('heading', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
 
-						<div className={contentClass}>
-							<div className={contentWrapClass}>
-								<HeadingEditor
-									{...props('heading', attributes, {
-										blockClass: componentClass,
-									})}
-								/>
+					<ParagraphEditor
+						{...props('paragraph', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
 
-								<ParagraphEditor
-									{...props('paragraph', attributes, {
-										blockClass: componentClass,
-									})}
-								/>
-
-								<ButtonEditor
-									{...props('button', attributes, {
-										blockClass: componentClass,
-									})}
-								/>
-							</div>
-						</div>
-
-					</div>
-				</>
-			}
-		</>
+					<ButtonEditor
+						{...props('button', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 };

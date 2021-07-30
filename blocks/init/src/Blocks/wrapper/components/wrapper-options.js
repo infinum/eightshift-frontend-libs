@@ -1,25 +1,14 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { PanelBody, TextControl, Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
-import { ColorPaletteCustom, Responsive, HelpModal, icons, ucfirst, getOptionColors } from '@eightshift/frontend-libs/scripts';
-import globalSettings from '../../manifest.json';
+import { PanelBody, TextControl, RangeControl } from '@wordpress/components';
+import { ColorPaletteCustom, Responsive, HelpModal, icons, ucfirst, getOptionColors, IconToggle, checkAttr, IconLabel, CustomSelect, getOption } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const { attributes: reset, options } = manifest;
-	const { globalVariables: defaults } = globalSettings;
 
 	const {
-		wrapperUse,
-		wrapperUseShowControl,
-		wrapperUseSimple,
-		wrapperUseSimpleShowControl,
-		wrapperDisable,
-		wrapperId,
-		wrapperAnchorId,
-		wrapperBackgroundColor,
-
 		showWrapperId = true,
 		showWrapperAnchorId = true,
 		showWrapperBackgroundColor = true,
@@ -36,136 +25,64 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		showWrapperHide = true,
 	} = attributes;
 
-	const wrapperSpacingTop = [
-		attributes.wrapperSpacingTopLarge,
-		attributes.wrapperSpacingTopDesktop,
-		attributes.wrapperSpacingTopTablet,
-		attributes.wrapperSpacingTopMobile,
-	];
-
-	const wrapperSpacingBottom = [
-		attributes.wrapperSpacingBottomLarge,
-		attributes.wrapperSpacingBottomDesktop,
-		attributes.wrapperSpacingBottomTablet,
-		attributes.wrapperSpacingBottomMobile,
-	];
-
-	const wrapperSpacingTopIn = [
-		attributes.wrapperSpacingTopInLarge,
-		attributes.wrapperSpacingTopInDesktop,
-		attributes.wrapperSpacingTopInTablet,
-		attributes.wrapperSpacingTopInMobile,
-	];
-
-	const wrapperSpacingBottomIn = [
-		attributes.wrapperSpacingBottomInLarge,
-		attributes.wrapperSpacingBottomInDesktop,
-		attributes.wrapperSpacingBottomInTablet,
-		attributes.wrapperSpacingBottomInMobile,
-	];
-
-	const wrapperDividerTop = [
-		attributes.wrapperDividerTopLarge,
-		attributes.wrapperDividerTopDesktop,
-		attributes.wrapperDividerTopTablet,
-		attributes.wrapperDividerTopMobile,
-	];
-
-	const wrapperDividerBottom = [
-		attributes.wrapperDividerBottomLarge,
-		attributes.wrapperDividerBottomDesktop,
-		attributes.wrapperDividerBottomTablet,
-		attributes.wrapperDividerBottomMobile,
-	];
-
-	const wrapperHide = [
-		attributes.wrapperHideLarge,
-		attributes.wrapperHideDesktop,
-		attributes.wrapperHideTablet,
-		attributes.wrapperHideMobile,
-	];
-
-	const wrapperWidth = [
-		attributes.wrapperWidthLarge,
-		attributes.wrapperWidthDesktop,
-		attributes.wrapperWidthTablet,
-		attributes.wrapperWidthMobile,
-	];
-
-	const wrapperOffset = [
-		attributes.wrapperOffsetLarge,
-		attributes.wrapperOffsetDesktop,
-		attributes.wrapperOffsetTablet,
-		attributes.wrapperOffsetMobile,
-	];
-
-	const wrapperContainerWidth = [
-		attributes.wrapperContainerWidthLarge,
-		attributes.wrapperContainerWidthDesktop,
-		attributes.wrapperContainerWidthTablet,
-		attributes.wrapperContainerWidthMobile,
-	];
-
-	const wrapperGutter = [
-		attributes.wrapperGutterLarge,
-		attributes.wrapperGutterDesktop,
-		attributes.wrapperGutterTablet,
-		attributes.wrapperGutterMobile,
-	];
+	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
+	const wrapperUseShowControl = checkAttr('wrapperUseShowControl', attributes, manifest);
+	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperUseSimpleShowControl = checkAttr('wrapperUseSimpleShowControl', attributes, manifest);
+	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
+	const wrapperId = checkAttr('wrapperId', attributes, manifest);
+	const wrapperAnchorId = checkAttr('wrapperAnchorId', attributes, manifest);
+	const wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest);
 
 	return (
 		<>
 			{!wrapperDisable &&
-				<PanelBody title={<span>{__('Block Layout', 'eightshift-frontend-libs')}</span>} initialOpen={false} icon={icons.wrapper} className={'es-panel-title'}>
+				<PanelBody title={<span>{__('Layout', 'eightshift-frontend-libs')}</span>} initialOpen={false} icon={icons.wrapper} className='es-panel-title'>
 
 					<HelpModal />
 
 					<br /><br />
 
 					{wrapperUseShowControl &&
-						<ToggleControl
-							label={wrapperUse ? __('Wrapper Enabled', 'eightshift-frontend-libs') : __('Wrapper Disabled', 'eightshift-frontend-libs')}
+						<IconToggle
+							icon={icons.wrapper}
+							label={__('Wrapper', 'eightshift-frontend-libs')}
 							checked={wrapperUse}
 							onChange={(value) => setAttributes({ wrapperUse: value })}
 						/>
 					}
 
 					{(wrapperUse && wrapperUseSimpleShowControl) &&
-						<ToggleControl
-							label={wrapperUseSimple ? __('Wrapper Simple Enabled', 'eightshift-frontend-libs') : __('Wrapper Simple Disabled', 'eightshift-frontend-libs')}
+						<IconToggle
+							icon={icons.wrapperSimple}
+							label={__('Simple wrapper', 'eightshift-frontend-libs')}
 							checked={wrapperUseSimple}
 							onChange={(value) => setAttributes({ wrapperUseSimple: value })}
+							help={__('Provides only basic spacing and background options.', 'eightshift-frontend-libs')}
 						/>
 					}
 
 					{wrapperUse &&
 						<>
-							<div className="custom-divider"></div>
+							<hr />
 
 							{showWrapperSpacingTop &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.spacingTop} />
-											{__('Spacing Top', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperSpacingTop.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.spacingTop} label={__('Top spacing', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperSpacingTop${point}`;
+										const { min, max, step } = getOption('wrapperSpacing', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
 												<RangeControl
-													label={point}
+													label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults.sectionSpacing.min}
-													max={defaults.sectionSpacing.max}
-													step={defaults.sectionSpacing.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -175,29 +92,22 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperSpacingBottom &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.spacingBottom} />
-											{__('Spacing Bottom', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperSpacingBottom.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.spacingBottom} label={__('Bottom spacing', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperSpacingBottom${point}`;
+										const { min, max, step } = getOption('wrapperSpacing', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
 												<RangeControl
-													label={point}
+													label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults.sectionSpacing.min}
-													max={defaults.sectionSpacing.max}
-													step={defaults.sectionSpacing.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -206,32 +116,25 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								</Responsive>
 							}
 
-							<div className="custom-divider"></div>
+							<hr />
 
 							{showWrapperSpacingTopIn &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.spacingTop} />
-											{__('Spacing Top In', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperSpacingTopIn.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.spacingTopIn} label={__('Top inner spacing', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperSpacingTopIn${point}`;
+										const { min, max, step } = getOption('wrapperSpacingInner', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
 												<RangeControl
-													label={point}
+													label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults.sectionInSpacing.min}
-													max={defaults.sectionInSpacing.max}
-													step={defaults.sectionInSpacing.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -241,29 +144,22 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperSpacingBottomIn &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.spacingBottom} />
-											{__('Spacing Bottom In', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperSpacingBottomIn.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.spacingBottomIn} label={__('Bottom inner spacing', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperSpacingBottomIn${point}`;
+										const { min, max, step } = getOption('wrapperSpacingInner', attributes, manifest);
 
 										return (
 											<Fragment key={index}>
 												<RangeControl
-													label={point}
+													label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 													allowReset={true}
 													value={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
-													min={defaults.sectionInSpacing.min}
-													max={defaults.sectionInSpacing.max}
-													step={defaults.sectionInSpacing.step}
+													min={min}
+													max={max}
+													step={step}
 													resetFallbackValue={reset[attr].default}
 												/>
 											</Fragment>
@@ -272,25 +168,18 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								</Responsive>
 							}
 
-							<div className="custom-divider"></div>
+							<hr />
 
 							{showWrapperDividerTop &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.dividerTop} />
-											{__('Divider Top', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperDividerTop.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.dividerTop} label={__('Top divider', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperDividerTop${point}`;
 
 										return (
 											<Fragment key={index}>
-												<ToggleControl
+												<IconToggle
+													icon={icons[`screen${point}`]}
 													label={point}
 													checked={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
@@ -302,22 +191,15 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							}
 
 							{showWrapperDividerBottom &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.dividerBottom} />
-											{__('Divider Bottom', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperDividerBottom.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.dividerBottom} label={__('Bottom divider', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperDividerBottom${point}`;
 
 										return (
 											<Fragment key={index}>
-												<ToggleControl
+												<IconToggle
+													icon={icons[`screen${point}`]}
 													label={point}
 													checked={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
@@ -328,25 +210,18 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								</Responsive>
 							}
 
-							<div className="custom-divider"></div>
+							<hr />
 
 							{showWrapperHide &&
-								<Responsive
-									label={
-										<>
-											<Icon icon={icons.hide} />
-											{__('Hide', 'eightshift-frontend-libs')}
-										</>
-									}
-								>
-									{wrapperHide.map((item, index) => {
-
-										const point = ucfirst(options.breakpoints[index]);
+								<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'eightshift-frontend-libs')} />}>
+									{options.breakpoints.map((item, index) => {
+										const point = ucfirst(item);
 										const attr = `wrapperHide${point}`;
 
 										return (
 											<Fragment key={index}>
-												<ToggleControl
+												<IconToggle
+													icon={icons[`screen${point}`]}
 													label={point}
 													checked={attributes[attr]}
 													onChange={(value) => setAttributes({ [attr]: value })}
@@ -357,34 +232,36 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								</Responsive>
 							}
 
-							<div className="custom-divider"></div>
+							<hr />
+
+							{showWrapperBackgroundColor &&
+								<ColorPaletteCustom
+									label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Background color', 'eightshift-frontend-libs')} />}
+									colors={getOptionColors(options.colors)}
+									value={wrapperBackgroundColor}
+									onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
+								/>
+							}
 
 							{!wrapperUseSimple &&
 								<>
 									{showWrapperWidth &&
-										<Responsive
-											label={
-												<>
-													<Icon icon={icons.width} />
-													{__('Width', 'eightshift-frontend-libs')}
-												</>
-											}
-										>
-											{wrapperWidth.map((item, index) => {
+										<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}>
+											{options.breakpoints.map((item, index) => {
 
-												const point = ucfirst(options.breakpoints[index]);
+												const point = ucfirst(item);
 												const attr = `wrapperWidth${point}`;
 
 												return (
 													<Fragment key={index}>
 														<RangeControl
-															label={point}
+															label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 															allowReset={true}
 															value={attributes[attr]}
 															onChange={(value) => setAttributes({ [attr]: value })}
-															min={options.widths.min}
-															max={options.widths.max}
-															step={options.widths.step}
+															min={options.wrapperWidth.min}
+															max={options.wrapperWidth.max}
+															step={options.wrapperWidth.step}
 															resetFallbackValue={reset[attr].default}
 														/>
 													</Fragment>
@@ -394,29 +271,22 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperOffset &&
-										<Responsive
-											label={
-												<>
-													<Icon icon={icons.offset} />
-													{__('Offset', 'eightshift-frontend-libs')}
-												</>
-											}
-										>
-											{wrapperOffset.map((item, index) => {
+										<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'eightshift-frontend-libs')} />}>
+											{options.breakpoints.map((item, index) => {
 
-												const point = ucfirst(options.breakpoints[index]);
+												const point = ucfirst(item);
 												const attr = `wrapperOffset${point}`;
 
 												return (
 													<Fragment key={index}>
 														<RangeControl
-															label={point}
+															label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
 															allowReset={true}
 															value={attributes[attr]}
 															onChange={(value) => setAttributes({ [attr]: value })}
-															min={options.widths.min}
-															max={options.widths.max}
-															step={options.widths.step}
+															min={options.wrapperWidth.min}
+															max={options.wrapperWidth.max}
+															step={options.wrapperWidth.step}
 															resetFallbackValue={reset[attr].default}
 														/>
 													</Fragment>
@@ -426,26 +296,21 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperContainerWidth &&
-										<Responsive
-											label={
-												<>
-													<Icon icon={icons.containerWidth} />
-													{__('ContainerWidth', 'eightshift-frontend-libs')}
-												</>
-											}
-										>
-											{wrapperContainerWidth.map((item, index) => {
-
-												const point = ucfirst(options.breakpoints[index]);
+										<Responsive label={<IconLabel icon={icons.containerWidth} label={__('Container width', 'eightshift-frontend-libs')} />}>
+											{options.breakpoints.map((item, index) => {
+												const point = ucfirst(item);
 												const attr = `wrapperContainerWidth${point}`;
 
 												return (
 													<Fragment key={index}>
-														<SelectControl
-															label={point}
-															options={options.containerWidths}
+														<CustomSelect
+															label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
+															options={options.wrapperContainerWidth}
 															value={attributes[attr]}
 															onChange={(value) => setAttributes({ [attr]: value })}
+															isSearchable={false}
+															isClearable={false}
+															simpleValue
 														/>
 													</Fragment>
 												);
@@ -454,57 +319,34 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 
 									{showWrapperGutter &&
-										<Responsive
-											label={
-												<>
-													<Icon icon={icons.gutter} />
-													{__('Gutter', 'eightshift-frontend-libs')}
-												</>
-											}
-										>
-											{wrapperGutter.map((item, index) => {
+										<Responsive label={<IconLabel icon={icons.gutter} label={__('Gutter', 'eightshift-frontend-libs')} />}>
+											{options.breakpoints.map((item, index) => {
 
-												const point = ucfirst(options.breakpoints[index]);
+												const point = ucfirst(item);
 												const attr = `wrapperGutter${point}`;
 
 												return (
 													<Fragment key={index}>
-														<SelectControl
-															label={point}
-															options={options.gutters}
+														<CustomSelect
+															label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
+															options={options.wrapperGutter}
 															value={attributes[attr]}
 															onChange={(value) => setAttributes({ [attr]: value })}
+															isSearchable={false}
+															isClearable={false}
+															simpleValue
 														/>
 													</Fragment>
 												);
 											})}
 										</Responsive>
 									}
-
-									{showWrapperBackgroundColor &&
-										<ColorPaletteCustom
-											label={
-												<>
-													<Icon icon={icons.color} />
-													{__('Background Color', 'eightshift-frontend-libs')}
-												</>
-											}
-											colors={getOptionColors(options.colors)}
-											value={wrapperBackgroundColor}
-											onChange={(value) => setAttributes({ wrapperBackgroundColor: value })}
-										/>
-									}
 								</>
 							}
 
 							{showWrapperAnchorId &&
 								<TextControl
-									label={
-										<>
-											<Icon icon={icons.anchor} />
-											{__('Block Anchor ID', 'eightshift-frontend-libs')}
-										</>
-									}
+									label={<IconLabel icon={icons.anchor} label={__('Block anchor ID', 'eightshift-frontend-libs')} />}
 									value={wrapperAnchorId}
 									onChange={(value) => setAttributes({ wrapperAnchorId: value })}
 								/>
@@ -512,12 +354,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 							{showWrapperId &&
 								<TextControl
-									label={
-										<>
-											<Icon icon={icons.id} />
-											{__('Block ID', 'eightshift-frontend-libs')}
-										</>
-									}
+									label={<IconLabel icon={icons.id} label={__('Block unique identifier', 'eightshift-frontend-libs')} />}
 									value={wrapperId}
 									onChange={(value) => setAttributes({ wrapperId: value })}
 								/>

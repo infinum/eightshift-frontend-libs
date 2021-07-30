@@ -18,7 +18,7 @@ export const ListsEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const listsUse = checkAttr('listsUse', attributes, manifest);
@@ -31,25 +31,26 @@ export const ListsEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	if (!listsUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{listsUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<RichText
-						tagName={listsOrdered}
-						multiline="li"
-						className={listsClass}
-						placeholder={placeholder}
-						value={listsContent}
-						onChange={(value) => setAttributes({ [getAttrKey('listsContent', attributes, manifest)]: value })}
-						onTagNameChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
-						allowedFormats={['core/bold', 'core/link']}
-						data-id={unique}
-					/>
-				</>
-			}
+			<RichText
+				tagName={listsOrdered}
+				multiline='li'
+				className={listsClass}
+				placeholder={placeholder}
+				value={listsContent}
+				onChange={(value) => setAttributes({ [getAttrKey('listsContent', attributes, manifest)]: value })}
+				onTagNameChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
+				allowedFormats={['core/bold', 'core/link']}
+				data-id={unique}
+			/>
 		</>
+
 	);
 };

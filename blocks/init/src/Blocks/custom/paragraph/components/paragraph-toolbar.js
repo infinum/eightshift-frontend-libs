@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { AlignmentToolbar } from '@wordpress/block-editor';
-import { checkAttr, getAttrKey, getOption } from '@eightshift/frontend-libs/scripts';
+import { AlignmentToolbar, checkAttr, getAttrKey, getOption } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ParagraphToolbar = ({ attributes, setAttributes }) => {
@@ -16,6 +15,7 @@ export const ParagraphToolbar = ({ attributes, setAttributes }) => {
 			value={paragraphAlign}
 			options={getOption('paragraphAlign', attributes, manifest)}
 			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
+			title={manifestTitle}
 			onChange={(value) => setAttributes({ [getAttrKey('paragraphAlign', attributes, manifest)]: value })}
 		/>
 	);

@@ -1,17 +1,16 @@
 import domReady from '@wordpress/dom-ready';
-import { componentJsClass } from './../manifest.json';
+import manifest from './../manifest.json';
 
-domReady(() => {
-	const drawerSelector = `.${componentJsClass}`;
-	const drawerElements = document.querySelector(drawerSelector);
+domReady(async () => {
+	const drawerSelector = `.${manifest.componentJsClass}`;
+	const drawerElement = document.querySelector(drawerSelector);
 
-	if (drawerElements) {
-		import('./drawer').then(({ Drawer }) => {
-			const drawer = new Drawer({
-				drawerSelector
-			});
-
-			drawer.init();
-		});
+	if (!drawerElement) {
+		return;
 	}
+
+	const { Drawer } = await import('./drawer');
+
+	const drawer = new Drawer({ drawerElement });
+	drawer.init();
 });

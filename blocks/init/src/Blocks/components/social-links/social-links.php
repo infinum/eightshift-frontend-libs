@@ -27,6 +27,7 @@ $socialLinksClass = Components::classnames([
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);
+
 ?>
 <ul class="<?php echo \esc_html($socialLinksClass); ?>">
 	<?php
@@ -40,9 +41,10 @@ $socialLinksClass = Components::classnames([
 		$icon = $socialLink['icon'] ?? '';
 		$linkTitle = $socialLink['title'] ?? '';
 
-		if (empty($href) || empty($icon) || ! isset($icons[$icon])) {
+		if (empty($href) || empty($icon) || !isset($manifest['icons'][$icon])) {
 			continue;
 		}
+
 		?>
 		<li class="<?php echo \esc_html("{$componentClass}__item"); ?>">
 			<a
@@ -50,7 +52,7 @@ $socialLinksClass = Components::classnames([
 				href="<?php echo esc_url($href); ?>"
 				title="<?php echo esc_attr($linkTitle); ?>"
 				target="_blank"
-				rel="nofollow noopener"
+				rel="noreferrer noopener"
 			>
 				<?php echo $manifest['icons'][$icon]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</a>

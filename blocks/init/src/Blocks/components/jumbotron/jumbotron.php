@@ -29,6 +29,9 @@ $jumbotronClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
+$jumbotronContentClass = Components::selector($componentClass, $componentClass, 'content');
+$jumbotronContentWrapClass = Components::selector($componentClass, $componentClass, 'content-wrap');
+
 ?>
 
 <div class="<?php echo \esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
@@ -45,8 +48,8 @@ $jumbotronClass = Components::classnames([
 	);
 	?>
 
-	<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
-		<div class="<?php echo \esc_attr("{$componentClass}__content-wrap"); ?>">
+	<div class="<?php echo \esc_attr($jumbotronContentClass); ?>">
+		<div class="<?php echo \esc_attr($jumbotronContentWrapClass); ?>">
 			<?php
 			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'heading',

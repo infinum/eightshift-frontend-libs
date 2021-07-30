@@ -1,5 +1,15 @@
-@import './styles/shared';
-
 .block-column {
-	@include column;
+	grid-column: var(--column-offset, auto)/ span var(--column-width, 5);
+	grid-row: var(--column-row-offset, auto);
+	order: var(--column-order);
+	align-self: var(--column-vertical-align);
+
+	display: var(--column-display, flex);
+	flex-direction: column;
+
+	& > * {
+		height: var(--column-item-height, auto);
+		width: var(--column-item-width, auto);
+		align-self: var(--column-horizontal-align);
+	}
 }
