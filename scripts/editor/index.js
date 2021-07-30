@@ -19,6 +19,7 @@ export {
 export { pasteInto } from './paste-handler';
 export { props } from './props';
 export {
+	getAttributes,
 	getExample,
 	registerBlocks,
 	registerVariations,

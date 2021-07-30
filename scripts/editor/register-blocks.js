@@ -365,9 +365,14 @@ const prepareComponentAttributes = (
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} parentManifest     - Block or component (parent) manifest.
  * 
- * @returns {object}
+ * @returns {object} Object of all attributes register for the specific block.
+ *
+ * Usage:
+ * ```js
+ * getAttributes(globalManifest, wrapperManifest, componentManifests, manifest)
+ * ```
  */
-const getAttributes = (
+export const getAttributes = (
 	globalManifest,
 	wrapperManifest,
 	componentsManifest,
