@@ -52,6 +52,7 @@ $tabPanelItemButtonClass = Components::classnames([
 <template id="<?php echo \esc_attr($tabPanelItemTemplateId); ?>">
 	<li
 		class="<?php echo \esc_attr($tabPanelItemClass); ?>"
+		role="tab"
 	>
 		<button
 			role="tab"
