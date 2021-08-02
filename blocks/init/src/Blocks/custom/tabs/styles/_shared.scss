@@ -1,0 +1,18 @@
+.block-tabs {
+	&__panel-item {
+		padding: 0.5rem;
+		list-style: none;
+		display: inline-block;
+		cursor: pointer;
+		border-bottom: solid 1px global-settings(colors, primary);
+	}
+
+	.is-active {
+		font-weight: bold;
+		border-bottom: solid 3px global-settings(colors, primary);
+	}
+
+	&__panel {
+		margin: 0;
+	}
+}

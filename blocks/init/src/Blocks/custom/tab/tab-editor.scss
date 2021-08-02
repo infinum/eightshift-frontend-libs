@@ -1,13 +1,1 @@
-.block-tab {
-	&--visible {
-		display: block;
-	}
-
-	&--hidden {
-		display: none;
-	}
-}
-
-ul.block-tabpanel {
-	padding: 0;
-}
+@import './styles/shared';
