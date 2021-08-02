@@ -7,6 +7,13 @@ export const Tabs = (props) => {
 	} = props;
 
 	const tabsBlock = wp.data.select('core/block-editor').getBlock(clientId);
+
+	// return blank if a tabs block can't be found. intermediary fix for example modal
+	if (!tabsBlock) {
+		return (
+			<></>
+		);
+	}
 	
 	const inner = tabsBlock.innerBlocks.map((tab) => {
 		tab.attributes.clientId = tab.clientId;
@@ -34,4 +41,4 @@ export const Tabs = (props) => {
 	return (
 			<TabsEditor {...props} />
 	);
-};
+};};
