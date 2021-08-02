@@ -41,4 +41,4 @@ export const Tabs = (props) => {
 	return (
 			<TabsEditor {...props} />
 	);
-};};
+};
