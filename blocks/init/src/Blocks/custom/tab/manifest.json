@@ -1,12 +1,10 @@
 {
 	"blockName": "tab",
 	"title": "Tab",
-	"blockJsClass": "js-block-tab",
-	"blockClass": "block-tab",
 	"description" : "Tab block with custom settings.",
 	"category": "eightshift",
 	"icon": {
-		"src": "es-column"
+		"src": "es-tab"
 	},
 	"keywords": [
 		"tab"
@@ -33,12 +31,10 @@
 	"hasInnerBlocks": true,
 	"attributes":{
 		"tabTitle": {
-			"type": "string",
-			"default": "New tab"
+			"type": "string"
 		},
 		"tabId":{
-			"type": "string",
-			"default": "newTab"
+			"type": "string"
 		},
 		"wrapperDisable": {
 			"type": "boolean",
