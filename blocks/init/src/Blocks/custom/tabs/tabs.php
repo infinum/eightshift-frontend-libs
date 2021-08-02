@@ -12,14 +12,16 @@ $manifest = Components::getManifest(__DIR__);
 
 $blockClass = Components::checkAttr('blockClass', $attributes, $manifest);
 $blockJsClass = Components::checkAttr('blockJsClass', $attributes, $manifest);
-$tabJsClass = $manifest['tabJsClass'] ?? '';
-$tabPanelJsClass = $manifest['tabPanelJsClass'] ?? '';
-$tabPanelItemButtonJsClass = $manifest['tabPanelItemButtonJsClass'] ?? '';
-$tabPanelItemActiveClass = $manifest['tabPanelItemActiveClass'] ?? '';
-$tabPanelItemTemplateId = $manifest['tabPanelItemTemplateId'] ?? '';
-$tabPanelElement = $manifest['tabPanelElement'] ?? '';
-$tabPanelItemElement = $manifest['tabPanelItemElement'] ?? '';
-$tabPanelItemButtonElement = $manifest['tabPanelItemButtonElement'] ?? '';
+$tabClass = $manifest['tabClass'] ?? '';
+
+$tabJsClass = "js-$tabClass";
+$tabPanelJsClass = "$blockJsClass-panel";
+$tabPanelItemJsClass = "$tabPanelJsClass-item";
+$tabPanelItemButtonJsClass = "$tabPanelJsClass-button";
+$tabPanelItemTemplateId = "$tabPanelJsClass-template";
+$tabPanelElement = 'panel';
+$tabPanelItemElement = 'panel-item';
+$tabPanelItemButtonElement = 'panel-item-button';
 
 $tabsClass = Components::classnames([
 	$blockClass,
@@ -32,6 +34,7 @@ $tabPanelClass = Components::classnames([
 ]);
 
 $tabPanelItemClass = Components::classnames([
+	$tabPanelItemJsClass,
 	Components::selector($tabPanelItemElement && $blockClass, $blockClass, $tabPanelItemElement)
 ]);
 
