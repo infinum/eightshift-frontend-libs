@@ -83,7 +83,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													min={min}
 													max={max}
 													step={step}
-													resetFallbackValue={reset[attr].default}
+													resetFallbackValue={reset[attr]?.default}
 												/>
 											</Fragment>
 										);
@@ -108,7 +108,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													min={min}
 													max={max}
 													step={step}
-													resetFallbackValue={reset[attr].default}
+													resetFallbackValue={reset[attr]?.default}
 												/>
 											</Fragment>
 										);
@@ -135,7 +135,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													min={min}
 													max={max}
 													step={step}
-													resetFallbackValue={reset[attr].default}
+													resetFallbackValue={reset[attr]?.default}
 												/>
 											</Fragment>
 										);
@@ -160,7 +160,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 													min={min}
 													max={max}
 													step={step}
-													resetFallbackValue={reset[attr].default}
+													resetFallbackValue={reset[attr]?.default}
 												/>
 											</Fragment>
 										);
@@ -262,7 +262,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 															min={options.wrapperWidth.min}
 															max={options.wrapperWidth.max}
 															step={options.wrapperWidth.step}
-															resetFallbackValue={reset[attr].default}
+															resetFallbackValue={reset[attr]?.default}
 														/>
 													</Fragment>
 												);
@@ -287,7 +287,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 															min={options.wrapperWidth.min}
 															max={options.wrapperWidth.max}
 															step={options.wrapperWidth.step}
-															resetFallbackValue={reset[attr].default}
+															resetFallbackValue={reset[attr]?.default}
 														/>
 													</Fragment>
 												);
