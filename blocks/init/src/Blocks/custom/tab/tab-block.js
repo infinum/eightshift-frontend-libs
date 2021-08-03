@@ -33,7 +33,7 @@ export const Tab = (props) => {
 
 	let tabId = checkAttr('tabId', attributes, manifest, true);
 
-	if (tabId === undefined) {
+	if (typeof(tabId) === 'undefined') {
 		tabId = getUnique();
 		setAttributes({ [getAttrKey('tabId', attributes, manifest)]: tabId });
 		setActiveTab(tabId);
