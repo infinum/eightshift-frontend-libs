@@ -1,7 +1,7 @@
 .block-tab {
 	display: none;
-}
-
-.is-visible-tab {
-	display: block;
+	
+	&--is-visible {
+		display: block;
+	}
 }

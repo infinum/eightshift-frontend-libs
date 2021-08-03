@@ -10,7 +10,7 @@ domReady(() => {
 		import('./tabber').then(({ Tabber }) => {
 			const tabber = new Tabber({
 				blockJsClass,
-				innerBlockJsClass: `js-${tabClass}`,
+				innerBlockClass: tabClass,
 				tabsBlockSelector
 			});
 

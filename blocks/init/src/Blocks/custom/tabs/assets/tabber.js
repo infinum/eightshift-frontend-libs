@@ -4,10 +4,11 @@ export class Tabber {
         this.tabsBlockSelector = options.tabsBlockSelector;
         this.tabsBlocks = document.querySelectorAll(this.tabsBlockSelector);
         this.blockClass = options.blockClass;
-        this.blockJsClass = options.blockJsClass
-        this.tabJsClass = options.innerBlockJsClass;
+        this.blockJsClass = options.blockJsClass;
+        this.tabClass = options.innerBlockClass;
+        this.tabJsClass = `js-${this.tabClass}`;
 
-        this.IS_VISIBLE_CLASS = 'is-visible-tab';
+        this.IS_VISIBLE_CLASS = `${this.tabClass}--is-visible`;
         this.TAB_PANEL_CLASS = `${this.blockJsClass}-panel`;
         this.TAB_PANEL_ITEM_CLASS = `${this.TAB_PANEL_CLASS}-item`;
         this.TAB_PANEL_BUTTON_CLASS = `${this.TAB_PANEL_CLASS}-button`;
