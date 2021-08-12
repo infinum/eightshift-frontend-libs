@@ -116,7 +116,7 @@ class YoastSEOCustomData {
 }
 
 /**
- * This helper will search all blocks and component manifests and find attributes that have "seo": "true" key.
+ * Searches all blocks and component manifests and returns attributes that have `"seo": "true"` set.
  * This key will be added in to the content and proceed by the YoastSeo Analysis plugin.
  *
  * Usage:

@@ -567,7 +567,7 @@ const variablesInner = (variables, attributeValue) => {
 }
 
 /**
- * Returns a unique ID generally used for css variables.
+ * Returns a unique ID, generally used with CSS variable generation.
  *
  * @return {string}
  *
