@@ -1,15 +1,22 @@
 /**
- * Truncates a string to a certain length, separating it in the middle.
+ * Slices the string in the middle and inputs the provided separator so that the string is maxLength characters long.
  *
- * Example: _I'm a tr...d string_.
- *
- * @param {string} input             - Input string.
- * @param {Number} maxLength         - Maximum allowed length of the string.
- * @param {string} [separator='...'] - Separator to use.
+ * @param {string} input             - String to slice.
+ * @param {number} maxLength         - Maximum allowed string length. Should be at least 8.
+ * @param {string} [separator='...'] - Separator to insert. Should be exactly three characters long.
  *
  * @returns {string} Truncated string.
+ *
+ * Usage:
+ * ```js
+ * truncateMiddle('https://eightshift.com/contact/', 22);
+ * ```
+ *
+ * Output:
+ * ```js
+ * "https://eig...contact/"
  */
- export const truncateMiddle = (input, maxLength, separator = '...') => {
+export const truncateMiddle = (input, maxLength, separator = '...') => {
 	if (input?.length <= maxLength) {
 		return input;
 	}
@@ -18,11 +25,20 @@
 }
 
 /**
- * Unescapes HTML entities.
+ * Un-escapes HTML entities.
  *
  * @param {string} input - Input string.
  *
  * @returns {string} String with HTML entities unescaped.
+ *
+ * Usage:
+ * ```js
+ * unescapeHTML('Test&#38;Up');
+ * ```
+ *
+ * Output:
+ * ```js
+ * Test&Up
  */
 export const unescapeHTML = (input) =>
 	input.replace(

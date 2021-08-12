@@ -1,26 +1,27 @@
+export { icons } from './icons/icons';
 export { getActions } from './get-actions';
-export { getPaletteColors } from './get-palette-colors';
-export {
-	registerBlocks,
-	registerVariations,
-	getExample
-} from './register-blocks';
-export { ucfirst } from './ucfirst';
-export { icons, BlockIcon } from './icons/icons';
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './override-inner-block-attributes';
-export { pasteInto } from './paste-handler';
 export {
 	getOption,
-	getOptions,
-	getOptionColors
+	getOptionColors,
+	getOptions
 } from './get-options';
+export { getPaletteColors } from './get-palette-colors';
+export { inserter } from './inserter';
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	getUnique
 } from './output-css-variables';
+export {
+	overrideInnerBlockAttributes,
+	overrideInnerBlockSimpleWrapperAttributes
+} from './override-inner-block-attributes';
+export { pasteInto } from './paste-handler';
 export { props } from './props';
-export { inserter } from './inserter';
+export {
+	getAttributes,
+	getExample,
+	registerBlocks,
+	registerVariations,
+} from './register-blocks';
+export { ucfirst } from './ucfirst';

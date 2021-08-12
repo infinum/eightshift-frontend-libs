@@ -14,7 +14,7 @@ import { blockIcons } from './icons/icons';
  * @param {string} fileName  - Block partial name.
  *
  */
-export const getBlockEditComponent = (blockName, paths, fileName) => {
+const getBlockEditComponent = (blockName, paths, fileName) => {
 
 	// Create an array of all blocks file paths.
 	const pathsKeys = paths.keys();
@@ -46,7 +46,7 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
  * @param {string} fileName  - Block partial name.
  *
  */
-export const getBlockGenericComponent = (blockName, paths, fileName) => {
+const getBlockGenericComponent = (blockName, paths, fileName) => {
 
 	// Create an array of all blocks file paths.
 	const pathsKeys = paths.keys();
@@ -71,7 +71,7 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  * 
  * @returns {string?}
  */
-export const getNamespace = (globalManifest, blockManifest) => {
+const getNamespace = (globalManifest, blockManifest) => {
 	return (typeof blockManifest.namespace === 'undefined') ? globalManifest.namespace : blockManifest.namespace;
 };
 
@@ -83,7 +83,7 @@ export const getNamespace = (globalManifest, blockManifest) => {
  * 
  * @returns {string}
  */
-export const getFullBlockName = (globalManifest, blockManifest) => {
+const getFullBlockName = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
 };
 
@@ -95,7 +95,7 @@ export const getFullBlockName = (globalManifest, blockManifest) => {
  * 
  * @returns {string}
  */
-export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
+const getFullBlockNameVariation = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.parentName}`;
 };
 
@@ -106,7 +106,7 @@ export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
  * 
  * @returns {function} Save callback.
  */
-export const getSaveCallback = (blockManifest) => {
+const getSaveCallback = (blockManifest) => {
 	const {
 		hasInnerBlocks,
 	} = blockManifest;
@@ -123,7 +123,7 @@ export const getSaveCallback = (blockManifest) => {
  *
  * @param {object} blockManifest - Block manifest.
  */
-export const getMergeCallback = (blockManifest) => {
+const getMergeCallback = (blockManifest) => {
 	const {
 		mergeableAttributes,
 	} = blockManifest;
@@ -187,7 +187,7 @@ export const getMergeCallback = (blockManifest) => {
  *
  * @returns {React.Component}
  */
-export const getEditCallback = (Component, Wrapper) => (props) => {
+const getEditCallback = (Component, Wrapper) => (props) => {
 	return (
 		<Wrapper props={props}>
 			<Component {...props} />
@@ -203,7 +203,7 @@ export const getEditCallback = (Component, Wrapper) => (props) => {
  * 
  * @returns {object}
  */
-export const getIconOptions = (
+const getIconOptions = (
 	globalManifest,
 	blockManifest
 ) => {
@@ -250,7 +250,7 @@ export const getIconOptions = (
  * 
  * @returns {object}
  */
-export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
+const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
 	const output = {};
 
 	// Define different data point for attributes or example.
@@ -303,7 +303,7 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
  * 
  * @returns {object}
  */
-export const prepareComponentAttributes = (
+const prepareComponentAttributes = (
 	componentsManifest,
 	manifest,
 	isExample = false,
@@ -365,7 +365,12 @@ export const prepareComponentAttributes = (
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} parentManifest     - Block or component (parent) manifest.
  * 
- * @returns {object}
+ * @returns {object} Object of all attributes registered for a specific block.
+ *
+ * Usage:
+ * ```js
+ * getAttributes(globalManifest, wrapperManifest, componentManifests, manifest)
+ * ```
  */
 export const getAttributes = (
 	globalManifest,
@@ -417,8 +422,41 @@ export const getAttributes = (
  * @param {string} [parent=''] - Parent component key with stacked parent component names for the final output.
  * 
  * @returns {object}
+ *
+ * Manifest:
+ * ```js
+ * {
+ *   attributes: {
+ *     buttonUse: {
+ *       type: "string",
+ *       default: true
+ *     },
+ *     buttonSize: {
+ *       type: "string",
+ *       default: "big"
+ *     },
+ *     buttonContent: {
+ *       type: "string"
+ *     },
+ *   }
+ * }
+ * ```
+ *
+ * Usage:
+ * ```js
+ * getExample('button', manifest);
+ * ```
+ *
+ * Output:
+ * ```js
+ * {
+ *   "buttonUse": true,
+ *   "buttonSize": "big",
+ *   "buttonContent": "",
+ * }
+ * ```
  */
- export const getExample = (
+export const getExample = (
 	parent = '',
 	manifest = {}
 ) => {
@@ -434,7 +472,7 @@ export const getAttributes = (
  *
  * @returns {object}
  */
-export const registerVariation = (
+const registerVariation = (
 	globalManifest = {},
 	blockManifest = {},
 ) => {
@@ -466,7 +504,7 @@ export const registerVariation = (
  *
  * @returns {object}
  */
-export const registerBlock = (
+const registerBlock = (
 	globalManifest = {},
 	wrapperManifest = {},
 	componentsManifest = {},
@@ -518,6 +556,20 @@ export const registerBlock = (
  * @param {function?} [transformsComponentPath] - Function of transforms JavaScript files in a block from `require.context`.
  *
  * @returns {mixed}
+ *
+ * Usage:
+ * ```js
+ * registerBlocks(
+ *   globalSettings,
+ *   Wrapper,
+ *   WrapperManifest,
+ *   require.context('./../../components', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /-block.js$/),
+ *   require.context('./../../custom', true, /-hooks.js$/),
+ *   require.context('./../../custom', true, /-transforms.js$/),
+ * );
+ * ```
  */
 export const registerBlocks = (
 	globalManifest = {},
@@ -595,7 +647,7 @@ export const registerBlocks = (
  *
  * @returns {object}
  */
-export const getComponentsManifest = () => {
+const getComponentsManifest = () => {
 	return window?.['eightshift']?.[process.env.VERSION] ?? {};
 }
 
@@ -607,6 +659,14 @@ export const getComponentsManifest = () => {
  * @param {function} blocksManifestPath - **Must provide require.context for all block `manifest.json`s.**
  *
  * @returns {null}
+ *
+ * Usage:
+ * ```js
+ * registerVariations(
+ *   globalSettings,
+ *   require.context('./../../variations', true, /manifest.json$/),
+ * );
+ * ```
  */
 export const registerVariations = (
 	globalManifest = {},

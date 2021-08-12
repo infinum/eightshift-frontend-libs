@@ -115,6 +115,18 @@ class YoastSEOCustomData {
 	}
 }
 
+/**
+ * Searches all blocks and component manifests and returns attributes that have `"seo": "true"` set.
+ * Attributes with this key will be passed as custom data to YoastSEO's analysis. 
+ * See https://developer.yoast.com/customization/yoast-seo/adding-custom-data-analysis for more info.
+ *
+ * Usage:
+ * ```js
+ * import { yoastSeo } from '@eightshift/frontend-libs/scripts/editor';
+ *
+ * yoastSeo();
+ * ```
+ */
 export const yoastSeo = () => {
 	domReady(() => {
 

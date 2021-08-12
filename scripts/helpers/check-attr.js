@@ -9,7 +9,38 @@ import _ from 'lodash';
  * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
- * @return {mixed}
+ * @return {mixed} Based on the attribute type.
+ *                 Boolean - false
+ *                 String - ''
+ *                 Object - {}
+ *                 Array - []
+ *
+ * Manifest:
+ * ```js
+ * {
+ *  "attributes": {
+ *    "buttonUse": {
+ *       "type": "boolean"
+ *     },
+ *   },
+*    "buttonContent": {
+ *       "type": "string"
+ *     },
+ *   }
+ * }
+ * ```
+ *
+ * Usage:
+ * ```js
+ * checkAttr('buttonUse', attributes, manifest);
+ * checkAttr('buttonContent', attributes, manifest);
+ * ```
+ *
+ * Output:
+ * ```js
+ * false
+ * ''
+ * ```
  */
 export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) => {
 
@@ -63,7 +94,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 };
 
 /**
- * Map and check attributes for responsive object.
+ * Maps and check attributes for a responsive object using the checkAttr helper.
  *
  * @param {string} keyName                   - Key name to find in responsiveAttributes object.
  * @param {array} attributes                 - Array of attributes.
@@ -71,6 +102,53 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
  * @returns {mixed}
+ *
+* Manifest:
+ * ```js
+ * {
+ *   "attributes": {
+ *     "headingContentSpacingLarge": {
+ *       "type": "integer",
+ *       "default": 10,
+ *     },
+ *     "headingContentSpacingDesktop": {
+ *       "type": "integer",
+ *       "default": 5,
+ *     },
+ *     "headingContentSpacingTablet": {
+ *       "type": "integer",
+ *       "default": 3,
+ *     },
+ *     "headingContentSpacingMobile": {
+ *       "type": "integer",
+ *       "default": 1,
+ *     }
+ *   },
+ *   "responsiveAttributes": {
+ *     "headingContentSpacing": {
+ *       "large": "headingContentSpacingLarge",
+ *       "desktop": "headingContentSpacingDesktop",
+ *       "tablet": "headingContentSpacingTablet",
+ *       "mobile": "headingContentSpacingMobile"
+ *     }
+ *   }
+ * }
+ * ```
+ *
+ * Usage:
+ * ```js
+ * checkAttrResponsive('headingContentSpacing', attributes, manifest);
+ * ```
+ *
+ * Output:
+ * ```js
+ * [
+ *   large: 10,
+ *   desktop: 5,
+ *   tablet: 3,
+ *   mobile: 1,
+ * ]
+ * ```
  */
 export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllowed = false) => {
 	const output = {};

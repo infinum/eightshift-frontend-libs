@@ -7,6 +7,84 @@ import _ from 'lodash';
  * @param {array} globalManifest - Global variable data.
  *
  * @return {string|void}
+ *
+ * Global Manifest:
+ * ```js
+ * const manifestGlobal = {
+ *   "globalVariables": {
+ *     "maxCols": 12,
+ *     "breakpoints": {
+ *       "mobile": 479,
+ *       "tablet": 1279,
+ *       "desktop": 1919,
+ *       "large": 1920
+ *     },
+ *     "containers": {
+ *       "default": "1330px"
+ *     },
+ *     "gutters": {
+ *       "none": "0",
+ *       "default": "25px",
+ *       "big": "50px"
+ *     },
+ *     "sectionSpacing": {
+ *       "min":  -300,
+ *       "max":  300,
+ *       "step": 10
+ *     },
+ *     "sectionInSpacing": {
+ *       "min":  0,
+ *       "max":  300,
+ *       "step": 10
+ *     },
+ *     "colors": [
+ *       {
+ *         "name": "Infinum",
+ *         "slug": "infinum",
+ *         "color": "#D8262C"
+ *       },
+ *       {
+ *         "name": "Black",
+ *         "slug": "black",
+ *         "color": "#111111"
+ *       }
+ *     ]
+ *   }
+ * };
+ * ```
+ *
+ * Usage:
+ * ```js
+ * import globalSettings from './../../manifest.json';
+ *
+ * outputCssVariablesGlobal(globalSettings);
+ * ```
+ *
+ * Output:
+ * ```js
+ * <style>
+ *   :root {
+ *     --global-max-cols: 12;
+ *     --global-breakpoints-mobile: 479;
+ *     --global-breakpoints-tablet: 1279;
+ *     --global-breakpoints-desktop: 1919;
+ *     --global-breakpoints-large: 1920;
+ *     --global-containers-default: 1330px;
+ *     --global-gutters-none: 0;
+ *     --global-gutters-default: 25px;
+ *     --global-gutters-big: 50px;
+ *     --global-section-spacing-min: -300;
+ *     --global-section-spacing-max: 300;
+ *     --global-section-spacing-step: 10;
+ *     --global-section-in-spacing-min: 0;
+ *     --global-section-in-spacing-max: 300;
+ *     --global-section-in-spacing-step: 10;
+ *     --global-colors-infinum: #D8262C;
+ *     --global-colors-black: #111111;
+ *     --global-colors-white: #FFFFFF;
+ *   }
+ * </style>
+ * ```
  */
 export const outputCssVariablesGlobal = (globalManifest) => {
 
@@ -47,7 +125,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
  *
  * @return {string}
  */
-export const globalInner = (itemValues, itemKey) => {
+const globalInner = (itemValues, itemKey) => {
 	let output = '';
 
 	for (const [key, value] of Object.entries(itemValues)) {
@@ -241,6 +319,15 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
  * @param {object} globalManifest - Global manifest json.
  *
  * @return {string}
+ *
+ * Usage:
+ * ```js
+ * import React, { useMemo } from 'react';
+ *
+ * const unique = useMemo(() => getUnique(), []);
+ *
+ * outputCssVariables(attributes, manifest, unique, globalManifest);
+ * ```
  */
 export const outputCssVariables = (attributes, manifest, unique, globalManifest) => {
 
@@ -375,7 +462,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
  *
  * @return {array}
  */
-export const prepareVariableData = (globalBreakpoints) => {
+const prepareVariableData = (globalBreakpoints) => {
 
 	// Define the min and max arrays.
 	const min = [];
@@ -450,7 +537,7 @@ export const prepareVariableData = (globalBreakpoints) => {
  *
  * @returns {array}
  */
- export const variablesInner = (variables, attributeValue) => {
+const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -480,9 +567,19 @@ export const prepareVariableData = (globalBreakpoints) => {
 }
 
 /**
- * Returns a unique ID.
+ * Returns a unique ID, generally used with CSS variable generation.
  *
  * @return {string}
+ *
+ * Usage:
+ * ```js
+ * getUnique();
+ * ```
+ *
+ * Output:
+ * ```js
+ * 891273981374b98127419287
+ * ```
  */
 export const getUnique = () => {
 	return require('crypto').randomBytes(16).toString('hex');

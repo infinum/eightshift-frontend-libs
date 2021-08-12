@@ -3,7 +3,7 @@ import { getAttrKey } from './../helpers/check-attr';
 import _ from 'lodash';
 
 /**
- * Provides ability to override component options from the parent block/component
+ * Provides the ability to override component options from the parent block/component.
  * The components must have the same options name as attribute standard with componentName prefix.
  *
  * @param {string} key              - Key to check.
@@ -12,6 +12,26 @@ import _ from 'lodash';
  * @param {boolean} [isColor=false] - If option is color return colors.
  * 
  * @returns {object}
+ *
+ * Usage:
+ * ```js
+ * // General.
+ * <SelectControl
+ *   label={__('Type', 'eightshift-frontend-libs')}
+ *   value={buttonType}
+ *   options={getOption('buttonType', attributes, manifest)}
+ *   onChange={(value) => setAttributes({ [getAttrKey('buttonType', attributes, manifest)]: value })}
+ * />
+ * ```
+ *
+ * // Color palette.
+ * <ColorPaletteCustom
+ *   label={__('Color', 'eightshift-frontend-libs')}
+ *   value={buttonColor}
+ *   options={getOption('buttonColor', attributes, manifest, true)}
+ *   onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+ * />
+ * ```
  */
 export const getOption = (key, attributes, manifest, isColor = false) => {
 
@@ -64,13 +84,26 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 }
 
 /**
- * Use this hook to filter the global colors out of the component or block manifest
+ * Use this hook to filter the global colors out of the component or block manifest.
+ * _This function is deprecated._
+ *
+ * @deprecated Use `getOption` instead.
  *
  * Requires WP => 5.3
  *
  * @param {array} colors Array of colors to filter.
  *
- * @return object
+ * @return {object}
+ *
+ * Usage:
+ * ```js
+ * <ColorPaletteCustom
+ *   label={__('Color', 'eightshift-frontend-libs')}
+ *   value={buttonColor}
+ *   options={getOptionColors(options.colors)}
+ *   onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+ * />
+ * ```
  */
 export const getOptionColors = (colors) => {
 	const coreColors = getPaletteColors();
@@ -89,6 +122,11 @@ export const getOptionColors = (colors) => {
  * @param {object} [manifest={}]  - Components/blocks manifest.json
  *
  * @returns {object}
+ *
+ * Usage:
+ * ```js
+ * getOptions(attributes, manifest)
+ * ```
  */
 export const getOptions = (attributes = {}, manifest = {}) => {
 	const optionsManifest = manifest?.['options'] ?? {};
