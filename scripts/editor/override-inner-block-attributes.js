@@ -1,5 +1,5 @@
 /**
- * Used to set attributes on all innerBlocks. This value will be stored in the block editor store and set to a block.
+ * Sets attributes on all `innerBlocks`. This value will be stored in the Block editor store and set to a block.
  *
  * @param {function} select State function.
  * @param {string} clientId Unique block ID from block editor.
