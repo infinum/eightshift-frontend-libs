@@ -138,6 +138,8 @@ const mediaPropsAction = (setAttributes, key) => {
  * @param {object} props    - Block props so we can get `setAttributes` method.
  * @param {object} manifest - Block manifest.json so we can get all attributes.
  *
+ * @deprecated We stopped using getActions helper and covered to the native way of writing setAttributes
+ *
  * @returns {object}
  */
 export const getActions = (props, manifest) => {
