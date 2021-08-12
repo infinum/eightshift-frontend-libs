@@ -9,7 +9,7 @@ import { select, dispatch } from '@wordpress/data';
  * @returns {array} Items to insert into RichText.
  */
 const processTag = (inputTextParam) => {
-	// If it's only text wrap it in span for processing
+	// If it's only text, wrap it in span for processing
 	const inputText = !inputTextParam.startsWith('<') ? `<span>${inputTextParam}</span>` : inputTextParam;
 
 	let output = [];

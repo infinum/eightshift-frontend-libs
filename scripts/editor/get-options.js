@@ -3,7 +3,7 @@ import { getAttrKey } from './../helpers/check-attr';
 import _ from 'lodash';
 
 /**
- * Provides ability to override component options from the parent block/component.
+ * Provides the ability to override component options from the parent block/component.
  * The components must have the same options name as attribute standard with componentName prefix.
  *
  * @param {string} key              - Key to check.

@@ -94,7 +94,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 };
 
 /**
- * Map and check attributes for responsive object and uses checkAttr helper.
+ * Maps and check attributes for a responsive object using the checkAttr helper.
  *
  * @param {string} keyName                   - Key name to find in responsiveAttributes object.
  * @param {array} attributes                 - Array of attributes.

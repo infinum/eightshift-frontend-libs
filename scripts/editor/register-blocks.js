@@ -365,7 +365,7 @@ const prepareComponentAttributes = (
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} parentManifest     - Block or component (parent) manifest.
  * 
- * @returns {object} Object of all attributes register for the specific block.
+ * @returns {object} Object of all attributes registered for a specific block.
  *
  * Usage:
  * ```js

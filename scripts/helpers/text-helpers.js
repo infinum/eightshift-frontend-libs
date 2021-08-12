@@ -1,11 +1,11 @@
 /**
- * Slices the string and inputs the provided separator after the specified characters.
+ * Slices the string in the middle and inputs the provided separator so that the string is maxLength characters long.
  *
  * @param {string} input             - String to slice.
- * @param {number} maxLength         - Number to characters to slice.
- * @param {string} [separator='...'] - Separator to insert.
+ * @param {number} maxLength         - Maximum allowed string length. Should be at least 8.
+ * @param {string} [separator='...'] - Separator to insert. Should be exactly three characters long.
  *
- * @returns {string}
+ * @returns {string} Truncated string.
  *
  * Usage:
  * ```js
@@ -14,7 +14,7 @@
  *
  * Output:
  * ```js
- * https://eightshift.com...
+ * "https://eig...contact/"
  */
 export const truncateMiddle = (input, maxLength, separator = '...') => {
 	if (input?.length <= maxLength) {
