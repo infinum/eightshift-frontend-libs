@@ -14,3 +14,4 @@ export {
 export { elementChildrenHeight } from './element-children-height';
 export { camelize } from './camelize';
 export { truncateMiddle, unescapeHTML } from './text-helpers';
+export { cleanObject } from './clean-object';
