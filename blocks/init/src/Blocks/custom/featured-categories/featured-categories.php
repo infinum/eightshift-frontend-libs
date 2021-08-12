@@ -8,9 +8,12 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
+
+$unique = Components::getUnique();
 
 $featuredCategoriesQuery = Components::checkAttr('featuredCategoriesQuery', $attributes, $manifest);
 $featuredCategoriesItemsPerLine = Components::checkAttr('featuredCategoriesItemsPerLine', $attributes, $manifest);
@@ -25,9 +28,10 @@ if (!$taxonomyName) {
 
 <div
 	class="<?php echo \esc_attr($blockClass); ?>"
-	data-items-per-line=<?php echo \esc_attr($featuredCategoriesItemsPerLine); ?>
+	data-id="<?php echo \esc_attr($unique); ?>"
 >
 	<?php
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	$terms = $featuredCategoriesQuery['terms'] ?? [];
 
@@ -55,8 +59,11 @@ if (!$taxonomyName) {
 			'introUse' => false,
 			'headingContent' => is_object($termObject) ? $termObject->name : '',
 			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
-			'buttonContent' => __('Show More', 'eightshift-frontend-libs'),
+			'paragraphUse' => is_object($termObject),
+			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
 			'buttonUrl' => \get_term_link($termObject),
+			'buttonColor' => 'primary',
+			'headingSize' => 'big',
 		];
 
 		if ($featuredCategoriesServerSideRender) {
@@ -66,12 +73,7 @@ if (!$taxonomyName) {
 		?>
 
 		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
-			<?php
-				echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'card',
-					$cardProps
-				);
-			?>
+			<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 	<?php } ?>
 </div>

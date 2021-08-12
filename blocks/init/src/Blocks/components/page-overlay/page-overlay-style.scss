@@ -13,7 +13,11 @@
 
 body.page-overlay-shown {
 	.page-overlay {
-		opacity: 0.5;
+		opacity: 0.6;
 		pointer-events: auto;
+
+		@supports (mix-blend-mode: multiply) {
+			mix-blend-mode: multiply;
+		}
 	}
 }

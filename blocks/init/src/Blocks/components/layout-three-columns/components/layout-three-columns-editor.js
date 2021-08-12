@@ -25,11 +25,6 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
-	const wrapClass = classnames([
-		selector(componentClass, componentClass, 'wrap'),
-		selector(selectorClass, selectorClass, 'wrap'),
-	]);
-
 	const columnLeftClass = classnames([
 		selector(componentClass, componentClass, 'column'),
 		selector(componentClass, componentClass, 'column'),
@@ -51,31 +46,29 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		selector(selectorClass, selectorClass, 'column', 'right'),
 	]);
 
+	if (!layoutThreeColumnsUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{layoutThreeColumnsUse &&
-				<div className={layoutClass}>
-					<div className={wrapClass}>
-						{layoutThreeColumnsLeft &&
-							<div className={columnLeftClass}>
-								{layoutThreeColumnsLeft}
-							</div>
-						}
-
-						{layoutThreeColumnsCenter &&
-							<div className={columnCenterClass}>
-								{layoutThreeColumnsCenter}
-							</div>
-						}
-
-						{layoutThreeColumnsRight &&
-							<div className={columnRightClass}>
-								{layoutThreeColumnsRight}
-							</div>
-						}
-					</div>
+		<div className={layoutClass}>
+			{layoutThreeColumnsLeft &&
+				<div className={columnLeftClass}>
+					{layoutThreeColumnsLeft}
 				</div>
 			}
-		</>
+
+			{layoutThreeColumnsCenter &&
+				<div className={columnCenterClass}>
+					{layoutThreeColumnsCenter}
+				</div>
+			}
+
+			{layoutThreeColumnsRight &&
+				<div className={columnRightClass}>
+					{layoutThreeColumnsRight}
+				</div>
+			}
+		</div>
 	);
 };

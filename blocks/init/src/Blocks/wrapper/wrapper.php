@@ -14,17 +14,17 @@ $manifest = Components::getManifest(__DIR__);
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
 $wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
+$wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
-if (! $wrapperUse || $wrapperDisable) {
-	$wrapperParentClass = is_string(Components::checkAttr('wrapperParentClass', $attributes, $manifest)) ?
-		Components::checkAttr('wrapperParentClass', $attributes, $manifest) :
-		'';
+$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item'); // @phpstan-ignore-line
+$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner'); // @phpstan-ignore-line
 
+if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
 		?>
-			<div class="<?php echo \esc_attr($wrapperParentClass . '__item'); ?>">
-				<div class="<?php echo \esc_attr($wrapperParentClass . '__item-inner'); ?>">
+			<div class="<?php echo \esc_attr($wrapperParentClassItemClass); ?>">
+				<div class="<?php echo \esc_attr($wrapperParentClassItemInnerClass); ?>">
 		<?php
 	}
 
@@ -48,115 +48,64 @@ $wrapperId = Components::checkAttr('wrapperId', $attributes, $manifest);
 $wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manifest);
 $wrapperBackgroundColor = Components::checkAttr('wrapperBackgroundColor', $attributes, $manifest);
 
-$wrapperHide = [
-	'large' => Components::checkAttr('wrapperHideLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperHideDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperHideTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperHideMobile', $attributes, $manifest),
-];
+$wrapperHide = Components::checkAttrResponsive('wrapperHide', $attributes, $manifest);
+$wrapperSpacingTop = Components::checkAttrResponsive('wrapperSpacingTop', $attributes, $manifest);
+$wrapperSpacingBottom = Components::checkAttrResponsive('wrapperSpacingBottom', $attributes, $manifest);
+$wrapperSpacingTopIn = Components::checkAttrResponsive('wrapperSpacingTopIn', $attributes, $manifest);
+$wrapperSpacingBottomIn = Components::checkAttrResponsive('wrapperSpacingBottomIn', $attributes, $manifest);
+$wrapperDividerTop = Components::checkAttrResponsive('wrapperDividerTop', $attributes, $manifest);
+$wrapperDividerBottom = Components::checkAttrResponsive('wrapperDividerBottom', $attributes, $manifest);
+$wrapperContainerWidth = Components::checkAttrResponsive('wrapperContainerWidth', $attributes, $manifest);
+$wrapperGutter = Components::checkAttrResponsive('wrapperGutter', $attributes, $manifest);
+$wrapperWidth = Components::checkAttrResponsive('wrapperWidth', $attributes, $manifest);
+$wrapperOffset = Components::checkAttrResponsive('wrapperOffset', $attributes, $manifest);
 
-$wrapperSpacingTop = [
-	'large' => Components::checkAttr('wrapperSpacingTopLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperSpacingTopDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperSpacingTopTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperSpacingTopMobile', $attributes, $manifest),
-];
+$componentClass = 'wrapper';
 
-$wrapperSpacingBottom = [
-	'large' => Components::checkAttr('wrapperSpacingBottomLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperSpacingBottomDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperSpacingBottomTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperSpacingBottomMobile', $attributes, $manifest),
-];
-
-$wrapperSpacingTopIn = [
-	'large' => Components::checkAttr('wrapperSpacingTopInLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperSpacingTopInDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperSpacingTopInTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperSpacingTopInMobile', $attributes, $manifest),
-];
-
-$wrapperSpacingBottomIn = [
-	'large' => Components::checkAttr('wrapperSpacingBottomInLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperSpacingBottomInDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperSpacingBottomInTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperSpacingBottomInMobile', $attributes, $manifest),
-];
-
-$wrapperDividerTop = [
-	'large' => Components::checkAttr('wrapperDividerTopLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperDividerTopDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperDividerTopTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperDividerTopMobile', $attributes, $manifest),
-];
-
-$wrapperDividerBottom = [
-	'large' => Components::checkAttr('wrapperDividerBottomLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperDividerBottomDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperDividerBottomTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperDividerBottomMobile', $attributes, $manifest),
-];
-
-$wrapperContainerWidth = [
-	'large' => Components::checkAttr('wrapperContainerWidthLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperContainerWidthDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperContainerWidthTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperContainerWidthMobile', $attributes, $manifest),
-];
-
-$wrapperGutter = [
-	'large' => Components::checkAttr('wrapperGutterLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperGutterDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperGutterTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperGutterMobile', $attributes, $manifest),
-];
-
-$wrapperWidth = [
-	'large' => Components::checkAttr('wrapperWidthLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperWidthDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperWidthTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperWidthMobile', $attributes, $manifest),
-];
-
-$wrapperOffset = [
-	'large' => Components::checkAttr('wrapperOffsetLarge', $attributes, $manifest),
-	'desktop' => Components::checkAttr('wrapperOffsetDesktop', $attributes, $manifest),
-	'tablet' => Components::checkAttr('wrapperOffsetTablet', $attributes, $manifest),
-	'mobile' => Components::checkAttr('wrapperOffsetMobile', $attributes, $manifest),
-];
-
-$wrapperMainClass = 'wrapper';
-
+// @phpstan-ignore-next-line
 $wrapperClass = Components::classnames([
-	$wrapperMainClass,
-	Components::selector($wrapperMainClass, $wrapperMainClass, 'bg-color', $wrapperBackgroundColor),
-	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $wrapperMainClass, false),
-	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $wrapperMainClass, false),
-	Components::responsiveSelectors($wrapperHide, 'hide', $wrapperMainClass, false),
+	$componentClass,
+	Components::selector($componentClass, $componentClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperSpacingBottomIn, 'spacing-bottom-in', $componentClass), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerTop, 'divider-top', $componentClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperDividerBottom, 'divider-bottom', $componentClass, false), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperHide, 'hide', $componentClass, false), // @phpstan-ignore-line
 	$className,
 ]);
 
 $wrapperContainerClass = Components::classnames([
-	"{$wrapperMainClass}__container",
-	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperGutter, 'gutter', $wrapperMainClass),
+	Components::selector($componentClass, $componentClass, 'container'), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $componentClass), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
+	Components::responsiveSelectors($wrapperGutter, 'gutter', $componentClass),
 ]);
 
 $wrapperInnerClass = Components::classnames([
-	"{$wrapperMainClass}__inner",
-	Components::responsiveSelectors($wrapperWidth, 'width', $wrapperMainClass),
-	Components::responsiveSelectors($wrapperOffset, 'offset', $wrapperMainClass),
+	Components::selector($componentClass, $componentClass, 'inner'), // @phpstan-ignore-line
+	Components::responsiveSelectors($wrapperWidth, 'width', $componentClass), // @phpstan-ignore-line
+	// @phpstan-ignore-next-line
+	Components::responsiveSelectors($wrapperOffset, 'offset', $componentClass),
 ]);
 
-?>
-<div class="<?php echo \esc_attr($wrapperClass); ?>" <?php echo \esc_attr($wrapperId ? 'id=" ' . $wrapperId . '"' : ''); ?>>
+$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor'); // @phpstan-ignore-line
 
+$idOutput = '';
+
+if ($wrapperId) {
+	$escapedId = \esc_attr($wrapperId);
+	$idOutput = "id='{$escapedId}'";
+}
+
+?>
+<div
+	class="<?php echo \esc_attr($wrapperClass); ?>"
+	<?php echo $idOutput; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+>
 	<?php if ($wrapperAnchorId) { ?>
-		<div class="<?php echo \esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
+		<div class="<?php echo \esc_attr($wrapperMainAnchorClass); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
 	<?php } ?>
 
 	<?php if ($wrapperUseSimple) { ?>

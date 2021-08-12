@@ -1,48 +1,50 @@
 .accordion {
-	--accordion-scoped-icon-size: 1.5em;
-
 	$this: &;
-	position: relative;
-	border-bottom: 0.05em solid var(--global-colors-light);
 
-	&[data-accordion-open='true'] {
-		> #{$this}__trigger {
-			#{$this}__icon {
-				transform: translateY(-50%) rotate(180deg);
-			}
-		}
-
-		> #{$this}__panel {
-			max-height: 75em;
-		}
-	}
+	--accordion-scoped-icon-size: 1.5rem;
 
 	&__panel {
 		display: block;
 		max-height: 0;
 		overflow: hidden;
+		background-color: inherit;
+
+		border-bottom: 1px solid var(--global-colors-ocean);
 
 		transition: {
-			property: max-height, background-color;
-			timing-function: ease-in;
+			property: max-height;
+			timing-function: ease-out;
 			duration: 0.3s;
 		}
 	}
 
 	&__trigger {
 		@extend %button-reset;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
 		width: 100%;
-		position: relative;
+		padding: 1rem 1.2rem;
+
+		background-color: var(--global-colors-mist);
+
+		font-size: 0.9rem;
+		line-height: 1;
 		text-align: left;
+
 		cursor: pointer;
+
 		transition: {
-			property: background-color;
-			timing-function: ease-in;
+			property: background-color, color;
+			timing-function: ease-out;
 			duration: 0.3s;
 		}
-		padding: 1em 1.25em;
-		font-size: 0.8em;
-		line-height: 1.4;
+
+		&:hover {
+			color: var(--global-colors-white);
+			background-color: var(--global-colors-ocean);
+		}
 
 		&:active {
 			color: inherit;
@@ -50,13 +52,10 @@
 	}
 
 	&__icon {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
 		height: var(--accordion-scoped-icon-size);
 		width: var(--accordion-scoped-icon-size);
 		pointer-events: none;
-		right: 1.25em;
+
 		transition: {
 			property: transform;
 			timing-function: ease-in;
@@ -70,6 +69,21 @@
 	}
 
 	&__content {
-		padding: 1.25em;
+		padding: 1.2rem;
+	}
+
+	&[data-accordion-open='true'] {
+		> #{$this}__trigger {
+			color: var(--global-colors-white);
+			background-color: var(--global-colors-blue);
+
+			#{$this}__icon {
+				transform: rotate(180deg);
+			}
+		}
+
+		> #{$this}__panel {
+			max-height: var(--max-height, 100%);
+		}
 	}
 }

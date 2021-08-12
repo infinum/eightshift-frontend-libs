@@ -6,14 +6,12 @@ import { ButtonOptions as ButtonOptionsComponent } from '../../../components/but
 
 export const ButtonOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Button Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Button', 'eightshift-frontend-libs')}>
 			<ButtonOptionsComponent
 				{...props('button', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>
-
 		</PanelBody>
 	);
 };

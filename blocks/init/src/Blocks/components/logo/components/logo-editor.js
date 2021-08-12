@@ -30,18 +30,18 @@ export const LogoEditor = (attributes) => {
 		selector(componentClass, componentClass, 'img'),
 	]);
 
+	if (!logoUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{logoUse &&
-				<a className={logoClass} href={logoHref}>
-					<img
-						src={logoSrc}
-						alt={logoAlt}
-						title={logoTitle}
-						className={imgClass}
-					/>
-				</a>
-			}
-		</>
+		<a className={logoClass} href={logoHref}>
+			<img
+				src={logoSrc}
+				alt={logoAlt}
+				title={logoTitle}
+				className={imgClass}
+			/>
+		</a>
 	);
 };

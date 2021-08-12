@@ -1,0 +1,7 @@
+.paragraph {
+	transition: {
+		property: color, font-size;
+		timing-function: ease-out;
+		duration: 0.2s;
+	}
+}

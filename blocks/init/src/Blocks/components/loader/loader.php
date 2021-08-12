@@ -26,14 +26,11 @@ $loaderClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
+	// @phpstan-ignore-next-line
 	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
 ]);
 ?>
 
 <div class="<?php echo esc_attr($loaderClass); ?>">
-	<div class="<?php echo esc_attr("{$componentClass}__load"); ?>">
-		<div class="<?php echo esc_attr("{$componentClass}__item {$componentClass}__item--1"); ?>"></div>
-		<div class="<?php echo esc_attr("{$componentClass}__item {$componentClass}__item--2"); ?>"></div>
-		<div class="<?php echo esc_attr("{$componentClass}__item {$componentClass}__item--3"); ?>"></div>
-	</div>
+	<?php echo $manifest['resources']['loader']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>

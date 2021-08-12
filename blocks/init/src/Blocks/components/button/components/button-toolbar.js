@@ -5,12 +5,10 @@ import manifest from './../manifest.json';
 export const ButtonToolbar = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		buttonShowControls = true,
 
@@ -25,23 +23,21 @@ export const ButtonToolbar = (attributes) => {
 	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
 
+	if (!buttonUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{buttonUse &&
-				<>
-					{showButtonUrl &&
-						<LinkToolbarButton
-							componentName={componentName}
-							url={buttonUrl}
-							opensInNewTab={buttonIsNewTab}
-							setAttributes={setAttributes}
-							title={label}
-							textDomain={'eightshift-frontend-libs'}
-							urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
-							isNewTabAttrName={getAttrKey('buttonIsNewTab', attributes, manifest)}
-						/>
-					}
-				</>
+			{showButtonUrl &&
+				<LinkToolbarButton
+					url={buttonUrl}
+					opensInNewTab={buttonIsNewTab}
+					setAttributes={setAttributes}
+					urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
+					isNewTabAttrName={getAttrKey('buttonIsNewTab', attributes, manifest)}
+					title={label}
+				/>
 			}
 		</>
 	);

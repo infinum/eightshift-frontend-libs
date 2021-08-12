@@ -1,7 +1,40 @@
+// stylelint-disable number-max-precision
+
 .scroll-to-top {
 	@extend %button-reset;
+
 	position: fixed;
-	right: 0.75em;
-	bottom: 0.75em;
-	display: block;
+	right: 4rem;
+	bottom: 4rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 3rem;
+	height: 3rem;
+	border-radius: 4rem;
+
+	background: var(--global-colors-white);
+	color: var(--global-colors-light);
+
+	box-shadow: 0 0.7px 1px rgba(0, 0, 0, 0.081),
+		0 2.2px 3.4px rgba(0, 0, 0, 0.119),
+		0 6px 11px rgba(0, 0, 0, 0.2);
+
+	transition: {
+		property: color, box-shadow;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+
+	cursor: pointer;
+
+	&:hover {
+		color: var(--global-colors-black);
+
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.081),
+			0 6.7px 6.7px rgba(0, 0, 0, 0.119),
+			0 14px 20px rgba(0, 0, 0, 0.2);
+	}
 }

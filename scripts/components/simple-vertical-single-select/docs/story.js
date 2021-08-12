@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { icons } from '../../../editor/icons/icons';
-import { SimpleVerticalSingleSelect } from '../simple-vertical-single-select';
+import { SimpleVerticalSingleSelect, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 
 export default {
@@ -52,15 +51,13 @@ export const component = () => {
 
 	return (
 		<div style={{ width: 'max-content' }}>
-			<h2>With icons</h2>
 			<SimpleVerticalSingleSelect
-				label='abc'
+				label={<IconLabel icon={icons.checkCircle} label='With icons' />}
 				options={options}
 			/>
 
-			<h2>Without icons</h2>
 			<SimpleVerticalSingleSelect
-				label='def'
+				label={<IconLabel icon={icons.none} label='Without icons' />}
 				options={options2}
 			/>
 		</div>

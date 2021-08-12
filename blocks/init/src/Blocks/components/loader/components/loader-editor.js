@@ -24,17 +24,11 @@ export const LoaderEditor = (attributes) => {
 		selector(loaderUseOverlay, componentClass, '', 'use-overlay'),
 	);
 
+	if (!loaderUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{loaderUse &&
-				<div className={loaderClass}>
-					<div className={`${componentClass}__load`}>
-						<div className={`${componentClass}__item ${componentClass}__item--1`}></div>
-						<div className={`${componentClass}__item ${componentClass}__item--2`}></div>
-						<div className={`${componentClass}__item ${componentClass}__item--3`}></div>
-					</div>
-				</div>
-			}
-		</>
+		<div className={loaderClass} dangerouslySetInnerHTML={{ __html: manifest.resources.loader }}></div>
 	);
 };

@@ -1,7 +1,6 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { checkAttr, getAttrKey, getOption, CustomSelect } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { checkAttr, getAttrKey, getOption, CustomSelect, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
 import { components } from 'react-select';
 import manifest from './../manifest.json';
 
@@ -11,7 +10,7 @@ const {
 
 const IconPickerOption = props => (
 	<components.Option {...props}>
-		<div className={'icon-option-row'}>
+		<div className='icon-option-row'>
 			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.value] }}></i>
 			<span>{props.label}</span>
 		</div>
@@ -20,7 +19,7 @@ const IconPickerOption = props => (
 
 const IconPickerValueDisplay = ({ children, ...props }) => (
 	<components.SingleValue {...props}>
-		<div className={'icon-option-row'}>
+		<div className='icon-option-row icon-option-row--color'>
 			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.data.value] }}></i>
 			<span>{children}</span>
 		</div>
@@ -37,6 +36,8 @@ export const IconOptions = (attributes) => {
 		setAttributes,
 		label = manifestTitle,
 		showIconOptions = true,
+		showIconUse = true,
+		showLabel = true,
 	} = attributes;
 
 	if (!showIconOptions) {
@@ -48,17 +49,16 @@ export const IconOptions = (attributes) => {
 
 	return (
 		<>
-			{label && <h3 className={'options-label'}>{label}</h3>}
-
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+			<ComponentUseToggle
+				label={label}
 				checked={iconUse}
 				onChange={(value) => setAttributes({ [getAttrKey('iconUse', attributes, manifest)]: value })}
+				showUseToggle={showIconUse}
+				showLabel={showLabel}
 			/>
 
 			{iconUse && (
 				<CustomSelect
-					label={__('Icon', 'eightshift-frontend-libs')}
 					value={iconName}
 					options={getOption('iconName', attributes, manifest)}
 					placeholder={__('Select an icon', 'eightshift-frontend-libs')}

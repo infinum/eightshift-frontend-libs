@@ -1,22 +1,24 @@
 import domReady from '@wordpress/dom-ready';
-import { componentJsClass } from './../manifest.json';
+import manifest from './../manifest.json';
 
-domReady(() => {
-	const accordionSelector = `.${componentJsClass}`;
+domReady(async () => {
+	const accordionSelector = `.${manifest.componentJsClass}`;
 	const accordionElements = document.querySelectorAll(accordionSelector);
 
-	if (accordionElements.length) {
-		import('./accordion').then(({ Accordion }) => {
-			[...accordionElements].forEach((item) => {
-				const accordion = new Accordion({
-					accordion: item,
-					accordionSelector,
-					triggerSelector: `${accordionSelector}-trigger`,
-					panelSelector: `${accordionSelector}-panel`,
-				});
-
-				accordion.init();
-			});
-		});
+	if (!accordionElements.length) {
+		return;
 	}
+
+	const { Accordion } = await import('./accordion');
+
+	[...accordionElements].forEach((item) => {
+		const accordion = new Accordion({
+			accordion: item,
+			accordionSelector,
+			triggerSelector: `${accordionSelector}-trigger`,
+			panelSelector: `${accordionSelector}-panel`,
+		});
+
+		accordion.init();
+	});
 });

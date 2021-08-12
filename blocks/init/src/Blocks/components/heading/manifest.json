@@ -6,7 +6,7 @@
 		"attributes": {
 			"headingContent": "This is heading",
 			"headingLevel": 2,
-			"headingSize": "default",
+			"headingSize": "regular",
 			"headingColor": "black",
 			"headingUse": true
 		}
@@ -22,7 +22,7 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "default"
+			"default": "regular"
 		},
 		"headingColor": {
 			"type": "string",
@@ -36,46 +36,104 @@
 	"options": {
 		"headingSize": [
 			{
-				"label": "Default (1.5em)",
-				"value": "default"
+				"label": "Tiny (14)",
+				"value": "tiny"
 			},
 			{
-				"label": "Big (2.5em)",
+				"label": "Small (18)",
+				"value": "small"
+			},
+			{
+				"label": "Regular (24)",
+				"value": "regular"
+			},
+			{
+				"label": "Big (40)",
 				"value": "big"
+			},
+			{
+				"label": "Huge (68)",
+				"value": "huge"
 			}
 		],
 		"headingColor": [
 			"primary",
-			"black"
+			"black",
+			"white",
+			"green",
+			"ocean",
+			"yellow",
+			"blue",
+			"red",
+			"cream",
+			"mist",
+			"dew",
+			"eightshift"
 		]
 	},
 	"variables": {
 		"headingSize": {
-			"default": [
+			"tiny": [
 				{
 					"variable": {
-						"heading-font-size": "1em",
+						"heading-font-size": "0.875rem",
+						"heading-line-height": "1"
+					}
+				}
+			],
+			"small": [
+				{
+					"variable": {
+						"heading-font-size": "1.1rem",
 						"heading-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "1.5em"
+						"heading-font-size": "1.125rem"
+					}
+				}
+			],
+			"regular": [
+				{
+					"variable": {
+						"heading-font-size": "1rem",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "1.5rem"
 					}
 				}
 			],
 			"big": [
 				{
 					"variable": {
-						"heading-font-size": "1.5em",
+						"heading-font-size": "1.5rem",
 						"heading-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "2.5em"
+						"heading-font-size": "2.5rem"
+					}
+				}
+			],
+			"huge": [
+				{
+					"variable": {
+						"heading-font-size": "1.5rem",
+						"heading-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "4.25rem"
 					}
 				}
 			]

@@ -1,15 +1,14 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
-import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar } from '@wordpress/block-editor';
+import { checkAttr, getAttrKey, MatrixAlignControl } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageToolbar = ({ attributes, setAttributes }) => {
 	const imageAlign = checkAttr('imageAlign', attributes, manifest);
 
 	return (
-		<BlockAlignmentMatrixToolbar
-			label={__('Image Position', 'eightshift-frontend-libs')}
+		<MatrixAlignControl
+			label={__('Image position', 'eightshift-frontend-libs')}
 			value={imageAlign}
 			onChange={(value) => setAttributes({ [getAttrKey('imageAlign', attributes, manifest)]: value })}
 		/>

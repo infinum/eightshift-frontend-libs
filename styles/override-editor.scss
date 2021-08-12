@@ -13,6 +13,29 @@ $override-map: (
 	hover: $base-black-color,
 );
 
+@keyframes es-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes es-dash {
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
+
 /* stylelint-disable */
 // Overrides default styles from inline editor.
 body {
@@ -149,7 +172,9 @@ body {
 			border-radius: 3px;
 			border: 1px solid transparent;
 
-			& > .components-base-control {
+			& > .components-base-control,
+			& > .es-icon-toggle,
+			& > .es-responsive-inset {
 				margin-bottom: 0 !important;
 
 				&:first-of-type {
@@ -180,7 +205,9 @@ body {
 					z-index: 1;
 				}
 
-				> .components-base-control:first-of-type:not(.components-base-control__label) {
+				> .components-base-control:first-of-type:not(.components-base-control__label),
+				> .es-icon-toggle:first-of-type,
+				> .es-responsive-inset:first-of-type {
 					margin-left: 0;
 					padding-left: 0;
 					border-left-width: 0;
@@ -207,8 +234,8 @@ body {
 	}
 
 	.components-panel__body-toggle.components-button .components-panel__arrow {
-		width: 24px;
-		height: 24px;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 
 	// Adding space between ColorSwatches and label
@@ -270,23 +297,29 @@ body {
 
 	// Enlarge the icons in the Options panel a bit.
 	.block-editor-block-card .block-editor-block-icon {
-		height: 2.1rem !important;
-		width: 2.25rem !important;
+		height: 2.5rem !important;
+		min-height: 2.5rem !important;
+		max-height: 2.5rem !important;
+		width: 2.5rem !important;
+		min-width: 2.5rem !important;
+		max-width: 2.5rem !important;
 		border-radius: 4px;
+		flex-shrink: 0;
+		flex-grow: 1;
 
 		svg {
-			transform: scale(1.15);
+			transform: scale(1.25);
 		}
 	}
 
 	// Enlarge the icons in the toolbar a bit.
 	button[disabled] .block-editor-block-icon.has-colors,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
-		.block-editor-block-icon,
+	.block-editor-block-icon,
 	.block-editor-block-toolbar__block-controls
-		.block-editor-block-switcher
-		.components-dropdown-menu__toggle
-		.block-editor-block-icon {
+	.block-editor-block-switcher
+	.components-dropdown-menu__toggle
+	.block-editor-block-icon {
 		height: 1.75rem !important;
 		width: 1.75rem !important;
 		border-radius: 4px;
@@ -446,11 +479,6 @@ body {
 		}
 	}
 
-	// Add gap between label and icon in toolbar buttons with labels.
-	button.components-button.has-icon {
-		gap: 0.45rem;
-	}
-
 	// Add panel text divider style.
 	.es-panel-text-divider {
 		display: block;
@@ -487,9 +515,9 @@ body {
 		align-items: center;
 
 		svg {
-			height: 1.5rem;
-			width: 1.5rem;
-			margin-right: 0.25rem;
+			height: 1.25rem;
+			width: 1.25rem;
+			margin-right: 0.4rem;
 			color: currentColor;
 		}
 	}
@@ -503,8 +531,9 @@ body {
 		}
 
 		&.is-large {
-			box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.08) inset;
+			box-shadow: inset 0 0 0 1px #E0E0E0;
 			border-radius: 4px;
+			min-height: 0;
 
 			.components-placeholder__label {
 				svg {
@@ -521,7 +550,7 @@ body {
 		&.is-medium,
 		&.is-small {
 			padding: 1rem;
-			box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.08) inset;
+			box-shadow: inset 0 0 0 1px #E0E0E0;
 			min-height: 0 !important;
 			border-radius: 4px;
 
@@ -563,7 +592,7 @@ body {
 		font-weight: 500;
 	}
 
-	// Styles for making empty placeholders visible and usable (especially in Columns).
+	// Styles for making empty block placeholders visible and usable (especially in Columns).
 	.block-editor-block-list__layout {
 		height: 100%;
 	
@@ -715,11 +744,139 @@ body {
 	
 		.components-button {
 			justify-content: flex-start !important;
+
+			> svg {
+				height: 1.5rem;
+				width: 1.5rem;
+			}
 		}
 
 		.components-button:not(.is-pressed) {
 			border: 1px solid #F2F2F2;
+
+			&:hover {
+				border-color: var(--wp-admin-theme-color, #111111);
+			}
 		}
 	}
 
+	// ES display flex with space-between.
+	.es-flex-between {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.25rem 0;
+	}
+
+	// Style for labels which are not contained inside BaseControl.
+	.es-label-flex {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		svg {
+			height: 1.5rem !important;
+			width: 1.5rem !important;
+			margin: 0 !important;
+
+			&:not(button svg) {
+				color: var(--wp-admin-theme-color, #111111);
+			}
+		}
+	}
+
+	// Icon-text CustomSelect option row.
+	.icon-option-row {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 0.6rem 1fr;
+		grid-gap: 1rem;
+	
+		i {
+			margin: 0;
+			padding: 0;
+	
+			svg {
+				width: 1.2rem;
+				height: 1.2rem;
+				transform: translateY(2px);
+			}
+		}
+
+		&--color {
+			i {
+				color: var(--wp-admin-theme-color, #007CBA);
+			}
+		}
+	}
+
+	// Add this class to any custom Responsive sub-element that should be inset when not expanded.
+	.es-responsive-inset {}
+
+	// A vertical flex container with a gap.
+	.es-v-spaced {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	// A horizontal flex container with a gap.
+	.es-h-spaced {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	// Spinner animations for ServerSideRender.
+	.es-ssr-spinner-overlay {
+		position: absolute;
+		inset: 0;
+
+		width: 100%;
+		height: 100%;
+		min-height: 4rem;
+		min-width: 4rem;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&__spinner {
+			animation: es-rotate 2s linear infinite;
+			z-index: 2;
+			width: 3rem;
+			height: 3rem;
+		}
+
+		&__spinner-path,
+		&__spinner-path-2 {
+			stroke-linecap: round;
+			animation: es-dash 1.5s ease-in-out infinite;
+		}
+
+		&__spinner-path {
+			stroke: #F8FFFF;
+		}
+
+		&__spinner-path-2 {
+			stroke: #0D3636;
+		}
+	}
+
+	// Sets the toolbar/button icon size if the default 'iconSize' prop doesn't work.
+	.es-toolbar-icon-24 {
+		& > button > svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+
+	.es-button-icon-24 {
+		& > svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
 }

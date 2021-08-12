@@ -1,5 +1,6 @@
 {
 	"blockName": "carousel",
+	"blockJsClass": "js-carousel",
 	"title": "Carousel",
 	"description" : "Carousel block with custom settings.",
 	"category": "eightshift",
@@ -54,18 +55,30 @@
 		},
 		"carouselIsLoop": {
 			"type": "boolean",
-			"default": true
+			"default": false
+		},
+		"carouselShowPrevNext": {
+			"type": "boolean",
+			"default": false
+		},
+		"carouselShowPagination": {
+			"type": "boolean",
+			"default": false
 		},
 		"carouselShowItems": {
 			"type": "number",
-			"default": 1
+			"default": 4
 		}
 	},
 	"options": {
 		"carouselItemsToShow": {
 			"min": 1,
-			"max": 2,
+			"max": 4,
 			"step": 1
 		}
+	},
+	"resources": {
+		"prevIcon": "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='m10 22 9.23-9M10 22l9.23 9M10 22h24' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
+		"nextIcon": "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='m34 22-8.859-9M34 22l-8.859 9M34 22H10' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>"
 	}
 }

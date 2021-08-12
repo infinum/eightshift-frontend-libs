@@ -1,7 +1,7 @@
 {
 	"blockName": "video",
 	"title": "Video",
-	"description" : "video block with custom settings.",
+	"description" : "Video block with custom settings.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-video"

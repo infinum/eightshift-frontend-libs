@@ -14,6 +14,14 @@
 		"cardAlign": {
 			"type": "string",
 			"default": "left"
+		},
+		"cardIntroSize": {
+			"type": "string",
+			"default": "tiny"
+		},
+		"cardHeadingSize": {
+			"type": "string",
+			"default": "big"
 		}
 	},
 	"options": {

@@ -42,24 +42,27 @@ $imgClass = Components::classnames([
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
 	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
-		<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+		?>
 
-		<?php foreach (array_reverse($imageUrl) as $brakepoint => $item) { ?>
+		<?php foreach (array_reverse($imageUrl) as $breakpoint => $item) { ?>
 			<?php
-			if ($brakepoint === 'large') {
+			if ($breakpoint === 'large') {
 				continue;
 			}
 			if (!$item) {
 				continue;
 			}
 
-			$brakepointValue = $globalManifest['globalVariables']['breakpoints'][$brakepoint] ?? '';
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? '';
 
-			if (!$brakepointValue) {
+			if (!$breakpointValue) {
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($brakepointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 

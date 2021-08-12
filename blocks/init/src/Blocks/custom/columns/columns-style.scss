@@ -1,6 +1,6 @@
-@import './styles/shared';
-
 .block-columns {
-	@include columns-parent;
-	@include columns;
+	display: grid;
+	grid-template-columns: repeat(var(--global-max-cols), 1fr);
+	column-gap: var(--columns-column-gap, var(--global-gutters-default, 0));
+	row-gap: var(--columns-row-gap, 0);
 }
