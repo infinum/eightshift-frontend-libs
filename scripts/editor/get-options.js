@@ -85,7 +85,9 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 
 /**
  * Use this hook to filter the global colors out of the component or block manifest.
- * This function is deprecated and getOption should be used.
+ * _This function is deprecated._
+ *
+ * @deprecated Use `getOption` instead.
  *
  * Requires WP => 5.3
  *
