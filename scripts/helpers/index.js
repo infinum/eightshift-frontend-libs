@@ -1,3 +1,5 @@
+// All exports are sorted in alphabetical order.
+
 export { camelize } from './camelize';
 export {
 	checkAttr,
