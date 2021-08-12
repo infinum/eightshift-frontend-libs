@@ -1,9 +1,9 @@
 /**
- * Helper that cleans the object from null/undefined/empty array or objects.
+ * Removes `null`, `undefined` and empty entries from a given object.
  *
- * @param {object} object - Object with potential values of null, undefined, empty object or empty array.
+ * @param {object} object - Object which may contain `null`, `undefined` or empty values.
  *
- * @returns {object} Object without null/undefined/empty values.
+ * @returns {object} Object without `null`, `undefined` and empty values.
  */
  export function cleanObject(object) {
   return Object.entries(object).reduce((cleanedObject, [key, value]) => {
