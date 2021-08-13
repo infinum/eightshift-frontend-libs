@@ -273,3 +273,37 @@ export const blockIcons = {
 	"esf-submit": "<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-273 -304)' fill='none' fill-rule='evenodd'><path fill='none' d='M273 304h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' fill-opacity='.12' fill='currentColor' x='274' y='310' width='18' height='8' rx='1.5'/><path d='M285.946 311.897l.084.073 1.5 1.5a.75.75 0 01.073.976l-.073.084-1.5 1.5a.75.75 0 01-1.133-.976l.073-.084.218-.22H279.5a.75.75 0 01-.102-1.493l.102-.007h5.689l-.22-.22a.75.75 0 01-.072-.976l.073-.084a.75.75 0 01.976-.073z' fill='currentColor' fill-rule='nonzero'/></g></svg>",
 	"esf-textarea": "<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><path d='M10.5 4.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 4.25h6.5zM12.5 7.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 7.25h8.5zM9.5 10.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 10.25h5.5z' fill='currentColor' fill-rule='nonzero'/><path d='M2.75 18h-1V2h1v14.25h16v1h-16V18z' fill-opacity='.12' fill='currentColor'/><path d='M17.5 1.25h-15A2.25 2.25 0 00.25 3.5v13a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25v-13a2.25 2.25 0 00-2.25-2.25zm-15 1.5h15a.75.75 0 01.75.75v13a.75.75 0 01-.75.75h-15a.75.75 0 01-.75-.75v-13a.75.75 0 01.75-.75z' fill='currentColor' fill-rule='nonzero'/></g></svg>",
 }
+
+/**
+ * A component that displays a block icon.
+ * 
+ * _Usage:_
+ * 
+ * ```jsx
+ * import { BlockIcon } from '@eightshift/frontend-libs/scripts';
+ * 
+ * <BlockIcon iconName='es-button' />
+ * ```
+ * 
+ * _Output:_
+ *
+ * Selected block icon displayed inline.
+ * ```html
+ * <i><svg ...> ... </svg></i>
+ * ```
+ * 
+ * @param {object} props          - BlockIcon options.
+ * @param {string} props.iconName - Name of the block icon to display.
+ *
+ */
+ export const BlockIcon = (props) => {
+	const { iconName } = props;
+
+	return (
+		<i
+			dangerouslySetInnerHTML={{ __html: blockIcons[iconName] }}
+			style={{ lineHeight: 0 }}
+		>
+		</i>
+	);
+}
