@@ -1,6 +1,9 @@
 // All exports are sorted in alphabetical order.
 
-export { icons, BlockIcon } from './icons/icons';
+export { 
+	icons,
+	BlockIcon
+} from './icons/icons';
 export { getActions } from './get-actions';
 export {
 	getOption,

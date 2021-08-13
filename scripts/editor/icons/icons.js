@@ -277,8 +277,24 @@ export const blockIcons = {
 /**
  * A component that displays a block icon.
  * 
+ * _Usage:_
+ * 
+ * ```jsx
+ * import { BlockIcon } from '@eightshift/frontend-libs/scripts';
+ * 
+ * <BlockIcon iconName='es-button' />
+ * ```
+ * 
+ * _Output:_
+ *
+ * Selected block icon displayed inline.
+ * ```html
+ * <i><svg ...> ... </svg></i>
+ * ```
+ * 
  * @param {object} props          - BlockIcon options.
  * @param {string} props.iconName - Name of the block icon to display.
+ *
  */
  export const BlockIcon = (props) => {
 	const { iconName } = props;
