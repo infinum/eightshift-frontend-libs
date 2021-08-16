@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- New babel config to silence warnings for plugin-proposal-private-property-in-object.
+
 ## [5.0.0] - 2021-08-16
 - Major braking changes do to updates on css variables, and helpers.
 
