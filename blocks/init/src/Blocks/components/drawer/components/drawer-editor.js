@@ -1,17 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
-import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const DrawerEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
+		componentJsClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const drawerUse = checkAttr('drawerUse', attributes, manifest);
@@ -21,10 +22,11 @@ export const DrawerEditor = (attributes) => {
 	const drawerPosition = checkAttr('drawerPosition', attributes, manifest);
 
 	const drawerClass = classnames([
-		componentClass,
-		selector(componentClass, `js-${componentClass}`),
-		selector(drawerPosition, componentClass, 'position', drawerPosition),
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
+		selector(componentJsClass, componentJsClass),
+		selector(drawerPosition, componentClass, 'position', drawerPosition),
 	]);
 
 	return (

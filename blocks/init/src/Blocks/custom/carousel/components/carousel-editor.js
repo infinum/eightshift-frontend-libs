@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const CarouselEditor = ({ attributes }) => {
@@ -12,7 +12,7 @@ export const CarouselEditor = ({ attributes }) => {
 
 	const carouselAllowedBlocks = checkAttr('carouselAllowedBlocks', attributes, manifest);
 	const carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest);
-	const  carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
+	const carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
 
 	const carouselClass = classnames([
 		blockClass,
@@ -26,7 +26,7 @@ export const CarouselEditor = ({ attributes }) => {
 			data-is-loop={carouselIsLoop}
 		>
 			<InnerBlocks
-				orientation={'horizontal'}
+				orientation='horizontal'
 				allowedBlocks={carouselAllowedBlocks}
 			/>
 		</div>

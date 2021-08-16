@@ -3,78 +3,112 @@ import _ from 'lodash';
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
- * @param {object}  attributes      - Attributes from the block/component.
- * @param {string}  realName        - *Old* key to use, usually the name of the block/component.
- * @param {string}  newName         - *New* key to use to rename attributes.
- * @param {boolean} [isBlock=false] - Determines if the helper is used on a block or a component.
+ * @param {string} newName     - *New* key to use to rename attributes.
+ * @param {object} attributes  - Attributes from the block/component.
+ * @param {object} [manual={}] - Object of attributes to change key and merge to the original output.
  * 
- * @returns object
+ * @returns {object}
+ *
+ * Manifest:
+ * ```js
+ * const attributes = {
+ *   buttonColor: 'red',
+ *   buttonSize: 'big',
+ *   buttonIcon: 'blue',
+ *   blockName: 'button',
+ *   wrapperSize: 'big',
+ *   wrapperType: 'normal',
+ * };
+ * ```
+ *
+ * Usage:
+ * ```js
+ * {...props('button', attributes)}
+ * ```
+ *
+ * Output:
+ * ```js
+ * {
+ *   buttonColor: 'red',
+ *   buttonSize: 'big',
+ *   buttonIcon: 'blue',
+ *   blockName: 'button',
+ * };
+ * ```
+ *
+ * Additional keys that are passed are defined in the includes array.
  */
-export const props = (attributes, realName, newName = '', isBlock = false) => {
-
-	let newNameInternal = newName;
-
-	// Check if newName key is passed if not use the default one from block/component name.
-	if (newName === '') {
-		newNameInternal = realName;
-	}
+export const props = (newName, attributes, manual = {}) => {
 
 	const output = {};
 
-	// Get global window data.
-	const globalData = window['eightshift'][process.env.VERSION].dependency;
+	// Check what attributes we need to includes.
+	const includes = [
+		'blockName',
+		'blockFullName',
+		'blockClass',
+		'blockJsClass',
+		'componentJsClass',
+		'selectorClass',
+		'additionalClass',
+		'setAttributes',
+		'uniqueWrapperId',
+		'options',
+	];
 
-	let dependency = [];
+	// Check if in test mode and use different setting.
+	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
 
-	// If it's a block, use the block's dependency tree. If it's a component, use the component's dependency tree.
-	if (isBlock) {
-		dependency.push(...globalData.blocks[realName]);
+	// Populate prefix key for recursive checks of attribute names.
+	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(blockName) : attributes['prefix'];
+
+	// Set component prefix.
+	if ( prefix === '' ) {
+		output['prefix'] = _.camelCase(newName);
 	} else {
-		dependency.push(...globalData.components[realName]);
+		output['prefix'] = `${prefix}${_.upperFirst(_.camelCase(newName))}`;
 	}
 
-	// Add the current component name to the dependency array.
-	dependency.push(newNameInternal);
-
-	// If you have multiple components just use one.
-	dependency = _.uniq(dependency);
-
-	// Populate componentName for usage in setAttributes.
-	output['componentName'] = newNameInternal;
-
-	// Replace stuff if there is any changing of the attribute names.
-	if (
-		attributes?.parent !== newNameInternal &&
-		realName !== newNameInternal &&
-		Object.prototype.hasOwnProperty.call(globalData.components, newNameInternal)
-	) {
-
-		// Remove real component name from the dependency tree.
-		dependency = dependency.filter((item) => item !== realName);
-
-		// Swap componentName with the parent on if attribute name has changed in the parent.
-		output['componentName'] = attributes?.parent;
-	}
-
-	// Loop attributes.
+	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
 
-		// Check if attributes key exists in the dependency by comparing the keys partial string.
-		if (dependency.some((element) => element === key.slice(0, element.length))) {
-			let newKey = key;
+		// Includes attributes from iteration.
+		if (includes.includes(key)) {
+			Object.assign(output, {[key]: value});
+			continue;
+		}
 
-			// Change the name of the key if they are different.
-			if (realName !== newNameInternal) {
-				newKey = key.replace(newNameInternal, realName);
-			}
-
-			// Populate output with new values.
-			output[newKey] = value;
+		// If attribute starts with the prefix key leave it in the object if not remove it.
+		if (key.startsWith(output['prefix'])) {
+			Object.assign(output, {[key]: value});
 		}
 	}
 
-	// Append parent for usage in checking if attribute name has changed in the parent.
-	output['parent'] = newNameInternal;
+	// Check if you have manual object and prepare the attribute keys and merge them with the original attributes for output.
+	if (!_.isEmpty(manual)) {
+		// Iterate manual attributes.
+		for (let [key, value] of Object.entries(manual)) {
 
+			// Includes attributes from iteration.
+			if (includes.includes(key)) {
+				Object.assign(output, {[key]: value});
+				continue;
+			}
+
+			// Remove the current component name from the attribute name.
+			const newKey = key.replace(`${_.lowerFirst(_.camelCase(newName))}`, '');
+
+			// Remove the old key.
+			delete manual[key];
+
+			// // Add new key to the output with prepared attribute name.
+			Object.assign(manual, {[`${output['prefix']}${newKey}`]: value})
+		}
+
+		// Merge manual and output objects to one.
+		Object.assign(output, manual);
+	}
+
+	// Return the original attribute for optimization purposes.
 	return output;
 }

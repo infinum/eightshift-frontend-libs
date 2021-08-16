@@ -1,23 +1,17 @@
 import React from 'react';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props } from '@eightshift/frontend-libs/scripts';
 import { VideoOptions as VideoOptionsComponent } from '../../../components/video/components/video-options';
-import manifest from './../manifest.json';
 
 export const VideoOptions = ({ attributes, setAttributes }) => {
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
 	return (
-		<PanelBody title={__('Video Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Video', 'eightshift-frontend-libs')}>
 			<VideoOptionsComponent
-				{...props(attributes, manifestBlockName, '', true)}
-				setAttributes={setAttributes}
+				{...props('video', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
-
 		</PanelBody>
 	);
 };

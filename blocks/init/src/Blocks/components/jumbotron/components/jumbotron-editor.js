@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { outputCssVariables, getUnique, props, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
@@ -12,21 +11,21 @@ import globalManifest from './../../../manifest.json';
 export const JumbotronEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 
 	const jumbotronClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const contentClass = classnames([
@@ -37,45 +36,41 @@ export const JumbotronEditor = (attributes) => {
 		selector(componentClass, componentClass, 'content-wrap'),
 	]);
 
+	if (!jumbotronUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{jumbotronUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+		<div className={jumbotronClass} data-id={unique}>
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<div className={jumbotronClass} data-id={unique}>
+			<ImageEditor
+				{...props('image', attributes, {
+					blockClass: componentClass,
+				})}
+			/>
 
-						<ImageEditor
-							{...props(attributes, 'image')}
-							setAttributes={setAttributes}
-							blockClass={componentClass}
-						/>
+			<div className={contentClass}>
+				<div className={contentWrapClass}>
+					<HeadingEditor
+						{...props('heading', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
 
-						<div className={contentClass}>
-							<div className={contentWrapClass}>
-								<HeadingEditor
-									{...props(attributes, 'heading')}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
-								/>
+					<ParagraphEditor
+						{...props('paragraph', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
 
-								<ParagraphEditor
-									{...props(attributes, 'paragraph')}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
-								/>
-
-								<ButtonEditor
-									{...props(attributes, 'button')}
-									setAttributes={setAttributes}
-									blockClass={componentClass}
-								/>
-							</div>
-						</div>
-
-					</div>
-				</>
-			}
-		</>
+					<ButtonEditor
+						{...props('button', attributes, {
+							blockClass: componentClass,
+						})}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 };

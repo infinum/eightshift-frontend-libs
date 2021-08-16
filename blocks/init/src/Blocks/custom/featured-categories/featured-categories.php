@@ -8,51 +8,62 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
+
+$unique = Components::getUnique();
 
 $featuredCategoriesQuery = Components::checkAttr('featuredCategoriesQuery', $attributes, $manifest);
 $featuredCategoriesItemsPerLine = Components::checkAttr('featuredCategoriesItemsPerLine', $attributes, $manifest);
 $featuredCategoriesServerSideRender = Components::checkAttr('featuredCategoriesServerSideRender', $attributes, $manifest);
 
-$taxonomy = $featuredCategoriesQuery['taxonomy'] ?? '';
+$taxonomyName = $featuredCategoriesQuery['taxonomy'] ?? '';
 
-if (!$taxonomy) {
+if (!$taxonomyName) {
 	return;
 }
 ?>
 
 <div
-	class="<?php echo esc_attr($blockClass); ?>"
-	data-items-per-line=<?php echo \esc_attr($featuredCategoriesItemsPerLine); ?>
+	class="<?php echo \esc_attr($blockClass); ?>"
+	data-id="<?php echo \esc_attr($unique); ?>"
 >
 	<?php
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	$terms = $featuredCategoriesQuery['terms'] ?? [];
 
 	$args = [
 		'hide_empty' => false,
-		'taxonomy' => $taxonomy,
+		'taxonomy' => $taxonomyName,
 		'orderby' => 'include',
 		'include' => array_map(
 			function ($item) {
-				return $item['value'];
+				return $item['value']; // @phpstan-ignore-line
 			},
-			$terms
+			(array)$terms
 		),
 	];
 
 	$allTerms = \get_terms($args);
 
-	foreach ($allTerms as $term) {
+	if (!is_iterable($allTerms)) {
+		return;
+	}
+
+	foreach ($allTerms as $termObject) {
 		$cardProps = [
 			'imageUse' => false,
 			'introUse' => false,
-			'headingContent' => $term->name,
-			'paragraphContent' => $term->description,
-			'buttonContent' => __('Show More', 'eightshift-frontend-libs'),
-			'buttonUrl' => \get_term_link($term),
+			'headingContent' => is_object($termObject) ? $termObject->name : '',
+			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
+			'paragraphUse' => is_object($termObject),
+			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
+			'buttonUrl' => \get_term_link($termObject),
+			'buttonColor' => 'primary',
+			'headingSize' => 'big',
 		];
 
 		if ($featuredCategoriesServerSideRender) {
@@ -62,12 +73,7 @@ if (!$taxonomy) {
 		?>
 
 		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
-			<?php
-				echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'card',
-					$cardProps
-				);
-			?>
+			<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 	<?php } ?>
 </div>

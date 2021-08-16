@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LayoutThreeColumnsEditor } from '../components/layout-three-columns-editor';
@@ -12,8 +13,8 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('layoutThreeColumns', manifest);
 
 export const editor = () => (
-	<LayoutThreeColumnsEditor {...props} />
+	<LayoutThreeColumnsEditor {...props('layoutThreeColumns', attributes)} />
 );

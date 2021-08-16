@@ -1,17 +1,13 @@
 import React from 'react';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props } from '@eightshift/frontend-libs/scripts';
 import { CardEditor as CardEditorComponent } from '../../../components/card/components/card-editor';
-import manifest from './../manifest.json';
 
 export const CardEditor = ({ attributes, setAttributes }) => {
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
 	return (
 		<CardEditorComponent
-			{...props(attributes, manifestBlockName, '', true)}
-			setAttributes={setAttributes}
+			{...props('card', attributes, {
+				setAttributes: setAttributes,
+			})}
 		/>
 	);
 };

@@ -1,23 +1,17 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props } from '@eightshift/frontend-libs/scripts';
 import { ParagraphOptions as ParagraphOptionsComponent } from '../../../components/paragraph/components/paragraph-options';
-import manifest from './../manifest.json';
 
 export const ParagraphOptions = ({ attributes, setAttributes }) => {
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
 	return (
-		<PanelBody title={__('Paragraph Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Paragraph', 'eightshift-frontend-libs')}>
 			<ParagraphOptionsComponent
-				{...props(attributes, manifestBlockName, '', true)}
-				setAttributes={setAttributes}
+				{...props('paragraph', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
-
 		</PanelBody>
 	);
 };

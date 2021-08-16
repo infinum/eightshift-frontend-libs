@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { outputCssVariables, getUnique, selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -11,17 +10,15 @@ export const ListsEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentName: manifestComponentName,
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		additionalClass,
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const listsUse = checkAttr('listsUse', attributes, manifest);
@@ -29,29 +26,31 @@ export const ListsEditor = (attributes) => {
 	const listsOrdered = checkAttr('listsOrdered', attributes, manifest);
 
 	const listsClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
+
+	if (!listsUse) {
+		return null;
+	}
 
 	return (
 		<>
-			{listsUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<RichText
-						tagName={listsOrdered}
-						multiline="li"
-						className={listsClass}
-						placeholder={placeholder}
-						value={listsContent}
-						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
-						onTagNameChange={(value) => setAttributes({ [`${componentName}Ordered`]: value })}
-						allowedFormats={['core/bold', 'core/link']}
-						data-id={unique}
-					/>
-				</>
-			}
+			<RichText
+				tagName={listsOrdered}
+				multiline='li'
+				className={listsClass}
+				placeholder={placeholder}
+				value={listsContent}
+				onChange={(value) => setAttributes({ [getAttrKey('listsContent', attributes, manifest)]: value })}
+				onTagNameChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
+				allowedFormats={['core/bold', 'core/link']}
+				data-id={unique}
+			/>
 		</>
+
 	);
 };

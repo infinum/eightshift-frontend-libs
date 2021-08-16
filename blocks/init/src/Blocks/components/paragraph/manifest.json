@@ -5,7 +5,7 @@
 	"example": {
 		"attributes": {
 			"paragraphContent": "This is paragraph",
-			"paragraphSize": "default",
+			"paragraphSize": "regular",
 			"paragraphColor": "black",
 			"paragraphUse": true
 		}
@@ -17,7 +17,7 @@
 		},
 		"paragraphSize": {
 			"type": "string",
-			"default": "default"
+			"default": "regular"
 		},
 		"paragraphColor": {
 			"type": "string",
@@ -31,53 +31,56 @@
 	"options": {
 		"paragraphSize": [
 			{
-				"label": "Default (1em)",
-				"value": "default"
+				"label": "Regular (16)",
+				"value": "regular"
 			},
 			{
-				"label": "Small (0.8em)",
+				"label": "Small (13)",
 				"value": "small"
 			}
 		],
 		"paragraphColor": [
+			"primary",
 			"black",
-			"primary"
-		],
-		"pasteAllowTags": [
-			"strong",
-			"b",
-			"i",
-			"em",
-			"span"
+			"white",
+			"green",
+			"ocean",
+			"yellow",
+			"blue",
+			"red",
+			"cream",
+			"mist",
+			"dew",
+			"eightshift"
 		]
 	},
 	"variables": {
 		"paragraphSize": {
-			"default": [
+			"regular": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.8em",
+						"paragraph-font-size": "0.8rem",
 						"paragraph-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "1em"
+						"paragraph-font-size": "1rem"
 					}
 				}
 			],
 			"small": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.6em",
+						"paragraph-font-size": "0.6rem",
 						"paragraph-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "0.8em"
+						"paragraph-font-size": "0.8rem"
 					}
 				}
 			]
@@ -88,7 +91,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-primary)",
 						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-light)"
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
 					}
 				}
 			],
@@ -97,7 +100,97 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-black)",
 						"paragraph-link-color": "var(--global-colors-primary)",
-						"paragraph-link-color-hover": "var(--global-colors-light)"
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"green": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-green)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"ocean": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-ocean)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-red)"
+					}
+				}
+			],
+			"yellow": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-yellow)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"blue": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-blue)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"red": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-red)",
+						"paragraph-link-color": "var(--global-colors-black)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"cream": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-cream)",
+						"paragraph-link-color": "var(--global-colors-yellow)",
+						"paragraph-link-color-hover": "var(--global-red)"
+					}
+				}
+			],
+			"white": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-white)",
+						"paragraph-link-color": "var(--global-colors-yellow)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
+					}
+				}
+			],
+			"eightshift": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-eightshift)",
+						"paragraph-link-color": "var(--global-colors-green)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"dew": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-dew)",
+						"paragraph-link-color": "var(--global-colors-primary)",
+						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+					}
+				}
+			],
+			"mist": [
+				{
+					"variable": {
+						"paragraph-color": "var(--global-colors-mist)",
+						"paragraph-link-color": "var(--global-colors-blue)",
+						"paragraph-link-color-hover": "var(--global-colors-green)"
 					}
 				}
 			]

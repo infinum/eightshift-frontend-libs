@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts/editor';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import { Responsive } from '../responsive';
 
@@ -145,7 +145,7 @@ export const componentRange = () => (
 						min={defaults.sectionSpacing.min}
 						max={defaults.sectionSpacing.max}
 						step={defaults.sectionSpacing.step}
-						resetFallbackValue={reset[attr].default}
+						resetFallbackValue={reset[attr]?.default}
 					/>
 				</Fragment>
 			);

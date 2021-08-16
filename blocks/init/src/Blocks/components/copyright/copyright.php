@@ -15,20 +15,22 @@ if (!$copyrightUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
 $copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
 $copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
 
 $copyrightClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 ?>
 <div class="<?php echo \esc_attr($copyrightClass); ?>">
-	<?php echo \esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
+	<?php echo \esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); // @phpstan-ignore-line Known bug. ?>
 </div>

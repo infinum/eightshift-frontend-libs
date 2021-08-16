@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, icons } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -11,16 +10,14 @@ export const ImageEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentName: manifestComponentName,
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const imageUse = checkAttr('imageUse', attributes, manifest);
@@ -32,6 +29,7 @@ export const ImageEditor = (attributes) => {
 	const pictureClass = classnames([
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const imgClass = classnames([
@@ -39,31 +37,29 @@ export const ImageEditor = (attributes) => {
 		selector(blockClass, blockClass, `${selectorClass}-img`),
 	]);
 
+	if (!imageUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{imageUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					{_.isEmpty(imageUrl) ?
-						<MediaPlaceholder
-							icon="format-image"
-							onSelect={(value) => setAttributes({
-								[`${componentName}Url`]: {
-									id: value.id,
-									url: value.url,
-								}
-							})}
-							accept={imageAccept}
-							allowedTypes={imageAllowedTypes}
-						/> :
-						<picture className={pictureClass} data-id={unique}>
-							<img className={imgClass} src={imageUrl.url} alt={imageAlt} />
-						</picture>
-					}
-				</>
+			{_.isEmpty(imageUrl) &&
+				<MediaPlaceholder
+					icon={icons.image}
+					onSelect={(value) => setAttributes({ [getAttrKey('imageUrl', attributes, manifest)]: value.url })}
+					accept={imageAccept}
+					allowedTypes={imageAllowedTypes}
+				/>
 			}
+
+			{!_.isEmpty(imageUrl) &&
+				<picture className={pictureClass} data-id={unique}>
+					<img className={imgClass} src={imageUrl} alt={imageAlt} />
+				</picture>
+			}
+
 		</>
 	);
 };
-

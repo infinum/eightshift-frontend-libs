@@ -1,34 +1,35 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ScrollToTopEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
+		resources: manifestResources,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest);
-	const scrollToTopContent = checkAttr('scrollToTopContent', attributes, manifest);
 
 	const scrollClass = classnames(
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	);
 
+	if (!scrollToTopUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{scrollToTopUse &&
-				<button className={scrollClass}>
-					{scrollToTopContent}
-				</button>
-			}
-		</>
+		<button className={scrollClass}>
+			<i dangerouslySetInnerHTML={{ __html: manifestResources.icon }}></i>
+		</button>
 	);
 };

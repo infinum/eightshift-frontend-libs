@@ -8,12 +8,12 @@
 	},
 	"example": {
 		"attributes": {
-			"buttonWidth": "block",
-			"buttonContent": "Button variation"
+			"buttonButtonWidth": "block",
+			"buttonButtonContent": "Button variation"
 		}
 	},
 	"attributes": {
-		"buttonWidth": "block"
+		"buttonButtonWidth": "block"
 	},
 	"scope": [
 		"inserter"

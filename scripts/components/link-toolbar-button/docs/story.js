@@ -1,6 +1,6 @@
 import React from 'react';
 import readme from './readme.mdx';
-import { useRef, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components/link-toolbar-button/link-toolbar-button';
 
 export default {
@@ -12,8 +12,7 @@ export default {
 	},
 };
 
-export const component = () => {
-	const ref = useRef();
+export const basicComponent = () => {
 	const [objData, setObjData] = useState({
 		url: '',
 		newTab: false,
@@ -21,13 +20,28 @@ export const component = () => {
 
 	return (
 		<LinkToolbarButton
-			componentName={'dummy-component'}
 			url={objData.url}
 			opensInNewTab={objData.newTab}
 			setAttributes={setObjData}
-			anchorRef={ref}
 			title={'Dummy component'}
-			textDomain={'TestDomain'}
+			urlAttrName='url'
+			isNewTabAttrName='newTab'
+		/>
+	);
+}
+
+export const withoutNewTabOption = () => {
+	const [objData, setObjData] = useState({
+		url: '',
+	});
+
+	return (
+		<LinkToolbarButton
+			url={objData.url}
+			setAttributes={setObjData}
+			title={'Dummy component'}
+			urlAttrName='url'
+			showNewTabOption={false}
 		/>
 	);
 }

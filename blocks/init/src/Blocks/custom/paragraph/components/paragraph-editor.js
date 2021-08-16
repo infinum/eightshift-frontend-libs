@@ -1,23 +1,21 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
-import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 import { createBlock } from '@wordpress/blocks';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts';
+import { ParagraphEditor as ParagraphEditorComponent } from '../../../components/paragraph/components/paragraph-editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
-export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlocks }) => {
+export const ParagraphEditor = (keyProps) => {
 	const unique = useMemo(() => getUnique(), []);
 
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
+	const { attributes, setAttributes, onReplace, mergeBlocks } = keyProps;
 
 	const {
 		blockClass,
 		blockFullName,
 	} = attributes;
 
-	const propsObject = props(attributes, manifestBlockName, '', true);
+	const propsObject = props('paragraph', attributes);
 
 	/**
 	 * Block-splitting logic. If content is available, creates
@@ -32,7 +30,7 @@ export const ParagraphEditor = ({ attributes, setAttributes, onReplace, mergeBlo
 
 		return createBlock(blockFullName, {
 			...propsObject,
-			[`${manifestBlockName}Content`]: value,
+			paragraphParagraphContent: value,
 		});
 	};
 

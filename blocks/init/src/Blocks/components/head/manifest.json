@@ -2,13 +2,13 @@
 	"componentName": "head",
 	"title": "Head",
 	"attributes": {
-		"favicon": {
+		"headFavicon": {
 			"type": "string"
 		},
-		"charset": {
+		"headCharset": {
 			"type": "string"
 		},
-		"name": {
+		"headName": {
 			"type": "string"
 		}
 	}

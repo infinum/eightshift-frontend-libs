@@ -1,3 +1,25 @@
+/**
+ * Sets attributes on all `innerBlocks`. This value will be stored in the Block editor store and set to a block.
+ *
+ * @param {function} select State function.
+ * @param {string} clientId Unique block ID from block editor.
+ * @param {object} attributesObject Object of attributes to apply.
+ *
+ * Usage:
+ * ```js
+ * import { useSelect } from '@wordpress/data';
+ *
+ * useSelect((select) => {
+ *   overrideInnerBlockAttributes(
+ *     select,
+ *     props.clientId,
+ *     {
+ *       wrapperDisable: true,
+ *     }
+ *   );
+ * });
+ * ```
+ */
 export const overrideInnerBlockAttributes = (select, clientId, attributesObject = {}) => {
 	const { getBlock } = select('core/block-editor');
 
@@ -18,6 +40,24 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
 	});
 };
 
+/**
+ * Sets attributes on all `innerBlocks`, with Simple wrapper options preset. This value will be stored in the Block editor store and set to a block.
+ *
+ * @param {function} select State function.
+ * @param {string} clientId Unique block ID from block editor.
+ *
+ * Usage:
+ * ```js
+ * import { useSelect } from '@wordpress/data';
+ *
+ * useSelect((select) => {
+ *   overrideInnerBlockSimpleWrapperAttributes(
+ *     select,
+ *     props.clientId
+ *   );
+ * });
+ * ```
+ */
 export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId) => {
 	overrideInnerBlockAttributes(
 		select,

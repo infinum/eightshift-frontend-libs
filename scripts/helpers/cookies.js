@@ -1,5 +1,5 @@
 /**
- * Cookies helper
+ * Helper to set and unset cookies.
  */
 export const cookies = {
 
@@ -10,6 +10,11 @@ export const cookies = {
 	 * @param {string} value - Cookie value.
 	 * @param {number} time  - Number denoting the expiration of the cookie.
 	 * @param {string} path  - URL path that must exist in the requested URL in order to send the Cookie header.
+	 *
+	 * Usage:
+	 * ```js
+	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/');
+	 * ```
 	 */
 	setCookie(key, value, time, path) {
 		const expires = new Date();
@@ -29,6 +34,11 @@ export const cookies = {
 	 * @param {string} key Unique cookie key.
 	 *
 	 * @return Cookie value or null if the cookie doesn't exist.
+	 *
+	 * Usage:
+	 * ```js
+	 * cookies.getCookie('gdpr');
+	 * ```
 	 */
 	getCookie(key) {
 		const keyValue = document.cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);

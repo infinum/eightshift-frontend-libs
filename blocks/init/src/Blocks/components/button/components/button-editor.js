@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr, selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { outputCssVariables, getUnique, checkAttr, getAttrKey, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -11,46 +10,43 @@ export const ButtonEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentName: manifestComponentName,
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
+		additionalClass,
 		blockClass,
-		placeholder = __('Add Content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);
 	const buttonUse = checkAttr('buttonUse', attributes, manifest);
-	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 
 	const buttonClass = classnames([
-		componentClass,
-		selector(!(buttonContent && buttonUrl), `${componentClass}-placeholder`),
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
+
+	if (!buttonUse) {
+		return null;
+	}
 
 	return (
 		<>
-			{buttonUse &&
-				<>
-					{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-					<RichText
-						placeholder={placeholder}
-						value={buttonContent}
-						onChange={(value) => setAttributes({ [`${componentName}Content`]: value })}
-						className={buttonClass}
-						keepPlaceholderOnFocus
-						allowedFormats={[]}
-						data-id={unique}
-					/>
-				</>
-			}
+			<RichText
+				placeholder={placeholder}
+				value={buttonContent}
+				onChange={(value) => setAttributes({ [getAttrKey('buttonContent', attributes, manifest)]: value })}
+				className={buttonClass}
+				keepPlaceholderOnFocus
+				allowedFormats={[]}
+				data-id={unique}
+			/>
 		</>
 	);
 };

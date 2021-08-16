@@ -1,22 +1,27 @@
-$social-links: (
-	icon-hover-color: global-settings(colors, black),
-);
-
 .social-links {
-	@extend %list-reset;
 	$this: &;
-	display: inline-flex;
+
+	@extend %list-reset;
+
+	display: flex;
 	align-items: center;
-	overflow: hidden;
-	margin: 0 -0.5em -0.5em;
-	flex-wrap: wrap;
 
 	&__link {
-		padding: 0 0.5em 0.5em;
-		display: block;
+		@extend %link-reset;
+		color: var(--global-colors-black);
+
+		transition: {
+			property: color;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&:hover {
+			color: var(--global-colors-primary);
+		}
 	}
 
-	svg {
-		display: block;
+	& > *:not(:last-of-type) {
+		margin-right: 1rem;
 	}
 }

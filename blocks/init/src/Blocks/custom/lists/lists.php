@@ -6,12 +6,10 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Blocks\Blocks;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
-$manifestBlockName = $manifest['blockName'];
 
 $blockClass = $attributes['blockClass'] ?? '';
 
@@ -25,7 +23,7 @@ $unique = Components::getUnique();
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'lists',
-		Blocks::props($attributes, $manifestBlockName, '', true)
+		Components::props('lists', $attributes)
 	);
 	?>
 </div>

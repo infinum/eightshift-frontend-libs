@@ -15,10 +15,11 @@ if (!$drawerUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$componentJsClass = $attributes['componentJsClass'] ?? $manifest['componentJsClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentJsClass = $manifest['componentJsClass'] ?? '';
 
 $drawerMenu = Components::checkAttr('drawerMenu', $attributes, $manifest);
 $drawerTrigger = Components::checkAttr('drawerTrigger', $attributes, $manifest);
@@ -26,10 +27,12 @@ $drawerOverlay = Components::checkAttr('drawerOverlay', $attributes, $manifest);
 $drawerPosition = Components::checkAttr('drawerPosition', $attributes, $manifest);
 
 $drawerClass = Components::classnames([
-	$componentClass,
-	$componentJsClass,
-	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+	Components::selector($componentJsClass, $componentJsClass),
+	// @phpstan-ignore-next-line
+	Components::selector($drawerPosition, $componentClass, 'position', $drawerPosition),
 ]);
 
 ?>

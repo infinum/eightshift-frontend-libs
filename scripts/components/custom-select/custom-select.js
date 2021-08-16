@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import Select, { components } from 'react-select';
 import { useState } from '@wordpress/element';
 import { BaseControl } from '@wordpress/components';
@@ -25,6 +25,8 @@ import AsyncSelect from "react-select/async";
  * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
  * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
  * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
+ * @param {React.Component?} [props.customIndicatorSeparator]          - If provided, adds a separator between the select content and the dropdown arrow on the right.
+ * @param {boolean} [props.simpleValue=false]                          - If in synchronous (`options` is set), single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -44,7 +46,11 @@ export const CustomSelect = (props) => {
 		sortAxis = 'y',
 		customOptionComponent,
 		customSingleValueDisplayComponent,
+		customIndicatorSeparator,
+		simpleValue = false,
 	} = props;
+
+	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
 
 	const isSynchronous = !loadOptions;
 
@@ -54,14 +60,6 @@ export const CustomSelect = (props) => {
 		array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 		return array;
 	}
-
-	const Option = (props) => {
-		return <components.Option {...props} />;
-	};
-
-	const SingleValue = (props) => {
-		return <components.SingleValue {...props} />;
-	};
 
 	const SortableMultiValue = SortableElement((propsSortable) => {
 
@@ -74,11 +72,11 @@ export const CustomSelect = (props) => {
 			e.stopPropagation();
 		};
 		const innerProps = { onMouseDown };
-		return <components.MultiValue {...propsSortable} innerProps={innerProps} />;
+		return <MultiValue {...propsSortable} innerProps={innerProps} />;
 	}, []);
 
 	const SortableMultiValueLabel = sortableHandle((props) => (
-		<components.MultiValueLabel {...props} />
+		<MultiValueLabel {...props} />
 	));
 
 	const SortableSelect = SortableContainer(isSynchronous ? Select : AsyncSelect);
@@ -117,13 +115,13 @@ export const CustomSelect = (props) => {
 
 		let output;
 
-		// Compare curent selected posts with the API and sync them. 
+		// Compare current selected posts with the API and sync them. 
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
 		if (multiple) {
 			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
 		} else {
-			output = selectedOptions;
+			output = simpleValue ? selectedOptions.value : selectedOptions;
 		}
 
 		setSelected(output);
@@ -136,47 +134,52 @@ export const CustomSelect = (props) => {
 		onChange(newValue);
 	};
 
+	const selectControl = (
+		<SortableSelect
+			useDragHandle
+			axis={sortAxis}
+			onSortEnd={onSortEnd}
+			distance={4}
+			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
+			value={(!multiple && simpleValue) ? options.filter(({ value }) => value === selected) : selected}
+			loadOptions={customLoadOptions}
+			cacheOptions={cacheOptions}
+			placeholder={placeholder}
+			defaultOptions={defaultOptions}
+			onChange={onChangeInternal}
+			options={options}
+			isMulti={multiple}
+			isSearchable={isSearchable}
+			isClearable={isClearable}
+			components={{
+				MultiValue: SortableMultiValue,
+				MultiValueLabel: SortableMultiValueLabel,
+				Option: customOptionComponent ?? Option,
+				SingleValue: customSingleValueDisplayComponent ?? SingleValue,
+				IndicatorSeparator: customIndicatorSeparator ?? null,
+			}}
+			closeMenuOnSelect={closeMenuOnSelect}
+			theme={(theme) => ({
+				...theme,
+				borderRadius: 3,
+				colors: {
+					...theme.colors,
+					primary25: 'hsla(0, 0%, 90%, 1)',
+					primary50: 'hsla(0, 0%, 80%, 1)',
+					primary75: 'hsla(0, 0%, 70%, 1)',
+					primary: 'hsla(0, 0%, 0%, 1)'
+				},
+			})}
+		/>
+	);
+
+	if (!label) {
+		return selectControl;
+	}
+
 	return (
-		<BaseControl
-			label={label}
-			help={help}
-		>
-			<SortableSelect
-				useDragHandle
-				axis={sortAxis}
-				onSortEnd={onSortEnd}
-				distance={4}
-				getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-				value={selected}
-				loadOptions={customLoadOptions}
-				cacheOptions={cacheOptions}
-				placeholder={placeholder}
-				defaultOptions={defaultOptions}
-				onChange={onChangeInternal}
-				options={options}
-				isMulti={multiple}
-				isSearchable={isSearchable}
-				isClearable={isClearable}
-				components={{
-					MultiValue: SortableMultiValue,
-					MultiValueLabel: SortableMultiValueLabel,
-					Option: customOptionComponent ?? Option,
-					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
-					IndicatorSeparator: null,
-				}}
-				closeMenuOnSelect={closeMenuOnSelect}
-				theme={(theme) => ({
-					...theme,
-					borderRadius: 3,
-					colors: {
-						...theme.colors,
-						primary25: 'hsla(0, 0%, 90%, 1)',
-						primary50: 'hsla(0, 0%, 80%, 1)',
-						primary75: 'hsla(0, 0%, 70%, 1)',
-						primary: 'hsla(0, 0%, 0%, 1)'
-					},
-				})}
-			/>
+		<BaseControl label={label} help={help}>
+			{selectControl}
 		</BaseControl>
 	);
 };

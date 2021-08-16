@@ -1,4 +1,5 @@
 import React from 'react';
+import { getExample, props } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ScrollToTopEditor } from '../components/scroll-to-top-editor';
@@ -12,8 +13,8 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('scrollToTop', manifest);
 
 export const editor = () => (
-	<ScrollToTopEditor {...props} />
+	<ScrollToTopEditor {...props('scrollToTop', attributes)} />
 );

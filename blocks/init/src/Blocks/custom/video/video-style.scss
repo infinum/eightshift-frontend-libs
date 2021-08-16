@@ -2,6 +2,6 @@
 	display: flex;
 	flex-direction: column;
 
-	align-items: var(--block-video-align-horizontal, 'center');
-	justify-content: var(--block-video-align-vertical, 'center');
+	align-items: var(--block-video-align-vertical, center);
+	justify-content: var(--block-video-align-horizontal, center);
 }

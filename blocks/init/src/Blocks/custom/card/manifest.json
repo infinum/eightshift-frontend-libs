@@ -15,7 +15,24 @@
 		"card": "card"
 	},
 	"options": {
-		"introSize": ["default"],
-		"headingColor": ["black"]
+		"cardCardIntroSize": [
+			"tiny",
+			"small",
+			"regular"
+		],
+		"cardCardHeadingSize": [
+			"regular",
+			"big",
+			"huge"
+		],
+		"cardCardHeadingColor": [
+			"black",
+			"primary",
+			"white",
+			"blue",
+			"yellow",
+			"red",
+			"green"
+		]
 	}
 }

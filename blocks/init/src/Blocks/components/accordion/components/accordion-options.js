@@ -1,21 +1,16 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { __ } from '@wordpress/i18n';
+import { checkAttr, ComponentUseToggle, getAttrKey, icons, IconToggle } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const AccordionOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
-	} = manifest;
-
-	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = __('Accordion', 'eightshift-frontend-libs'),
 		accordionShowControls = true,
 
-		showAccordionUse = true,
+		showAccordionUse = false,
+		showLabel = false,
 		showAccordionIsOpen = true,
 	} = attributes;
 
@@ -25,32 +20,35 @@ export const AccordionOptions = (attributes) => {
 
 	const accordionUse = checkAttr('accordionUse', attributes, manifest);
 	const accordionIsOpen = checkAttr('accordionIsOpen', attributes, manifest);
+	const accordionCloseOthers = checkAttr('accordionCloseOthers', attributes, manifest);
 
 	return (
 		<>
+			<ComponentUseToggle
+				label={label}
+				checked={accordionUse}
+				onChange={(value) => setAttributes({ [getAttrKey('accordionUse', attributes, manifest)]: value })}
+				showUseToggle={showAccordionUse}
+				showLabel={showLabel}
+			/>
 
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showAccordionUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={accordionUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+			{showAccordionIsOpen &&
+				<IconToggle
+					icon={icons.play}
+					label={__('Start open', 'eightshift-frontend-libs')}
+					checked={accordionIsOpen}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionIsOpen', attributes, manifest)]: value })}
 				/>
 			}
 
 			{showAccordionIsOpen &&
-				<>
-					<ToggleControl
-						label={__('Is Open', 'eightshift-frontend-libs')}
-						checked={accordionIsOpen}
-						onChange={(value) => setAttributes({ [`${componentName}IsOpen`]: value })}
-					/>
-				</>
+				<IconToggle
+					icon={icons.errorCircle}
+					label={__('Close adjacent', 'eightshift-frontend-libs')}
+					help={__('Close adjacent accordions when opening this one.', 'eightshift-frontend-libs')}
+					checked={accordionCloseOthers}
+					onChange={(value) => setAttributes({ [getAttrKey('accordionCloseOthers', attributes, manifest)]: value })}
+				/>
 			}
 		</>
 	);

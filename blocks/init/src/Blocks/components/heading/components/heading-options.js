@@ -1,30 +1,23 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
-import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { __ } from '@wordpress/i18n';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		headingShowControls = true,
 
-		showHeadingUse = true,
+		showHeadingUse = false,
+		showLabel = false,
 		showHeadingColor = true,
 		showHeadingSize = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!headingShowControls) {
 		return null;
@@ -36,48 +29,34 @@ export const HeadingOptions = (attributes) => {
 
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showHeadingUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={headingUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-				/>
-			}
+			<ComponentUseToggle
+				label={label}
+				checked={headingUse}
+				onChange={(value) => setAttributes({ [getAttrKey('headingUse', attributes, manifest)]: value })}
+				showUseToggle={showHeadingUse}
+				showLabel={showLabel}
+			/>
 
 			{headingUse &&
 				<>
 					{showHeadingColor &&
 						<ColorPaletteCustom
-							label={
-								<>
-									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-frontend-libs')}
-								</>
-							}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
+							colors={getOption('headingColor', attributes, manifest, true)}
 							value={headingColor}
-							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 						/>
 					}
 
 					{showHeadingSize &&
-						<SelectControl
-							label={
-								<>
-									<Icon icon={icons.textSize} />
-									{__('Text size', 'eightshift-frontend-libs')}
-								</>
-							}
+						<CustomSelect
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
 							value={headingSize}
-							options={getOptions(manifest, componentName, 'size', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
+							options={getOption('headingSize', attributes, manifest)}
+							onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: value })}
+							simpleValue
+							isClearable={false}
+							isSearchable={false}
 						/>
 					}
 				</>

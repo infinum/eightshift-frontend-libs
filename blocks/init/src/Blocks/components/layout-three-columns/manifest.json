@@ -4,27 +4,27 @@
 	"componentClass": "layout-three-columns",
 	"example": {
 		"attributes": {
-			"layoutLeft": "Left",
-			"layoutCenter": "Center",
-			"layoutRight": "Right",
-			"layoutUse": true
+			"layoutThreeColumnsLeft": "Left",
+			"layoutThreeColumnsCenter": "Center",
+			"layoutThreeColumnsRight": "Right",
+			"layoutThreeColumnsUse": true
 		}
 	},
 	"attributes": {
-		"layoutLeft": {
+		"layoutThreeColumnsLeft": {
 			"type": "string"
 		},
-		"layoutCenter": {
+		"layoutThreeColumnsCenter": {
 			"type": "string"
 		},
-		"layoutRight": {
+		"layoutThreeColumnsRight": {
 			"type": "string"
 		},
-		"tag": {
+		"layoutThreeColumnsHtmlTag": {
 			"type": "string",
 			"default": "div"
 		},
-		"layoutUse": {
+		"layoutThreeColumnsUse": {
 			"type": "boolean",
 			"default": true
 		}

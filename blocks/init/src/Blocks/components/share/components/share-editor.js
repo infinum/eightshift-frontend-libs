@@ -1,24 +1,27 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { __ } from '@wordpress/i18n';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ShareEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
+
 	} = attributes;
 
 	const shareUse = checkAttr('shareUse', attributes, manifest);
 
 	const shareClass = classnames(
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	);
 
 	const shareItemClass = classnames(
@@ -26,17 +29,16 @@ export const ShareEditor = (attributes) => {
 		selector(blockClass, blockClass, 'item'),
 	);
 
+	if (!shareUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{shareUse &&
-				<div className={shareClass}>
-					{manifest.socialOptions.map((socialOption, key) => {
-						return (
-							<div key={key} className={shareItemClass}>{socialOption.label}</div>
-						);
-					})}
-				</div>
-			}
-		</>
+		<div className={shareClass}>
+			{__('Share on', 'eightshift-frontend-libs')}
+			{manifest.socialOptions.map(({ label }, key) => (
+				<div key={key} className={shareItemClass}>{label}</div>
+			))}
+		</div>
 	);
 };

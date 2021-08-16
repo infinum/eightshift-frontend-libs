@@ -1,13 +1,23 @@
 .image {
 	$this: &;
 	overflow: hidden;
-	width: var(--image-width, auto);
 	display: block;
 
+	width: var(--image-img-width, auto);
+	height: var(--image-img-height, auto);
+
+	max-width: var(--image-img-max-width, 100%);
+	max-height: var(--image-img-max-height, 100%);
+
 	&__img {
-		max-width: var(--image-img-max-width, 100%);
-		width: var(--image-img-width, auto);
-		height: auto;
 		display: block;
+
+		width: var(--image-img-width, auto);
+		height: var(--image-img-height, auto);
+
+		max-width: var(--image-img-max-width, 100%);
+		max-height: var(--image-img-max-height, 100%);
+
+		object-fit: cover;
 	}
 }

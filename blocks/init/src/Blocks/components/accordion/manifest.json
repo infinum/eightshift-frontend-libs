@@ -22,12 +22,16 @@
 			"type": "boolean",
 			"default": false
 		},
+		"accordionCloseOthers": {
+			"type": "boolean",
+			"default": true
+		},
 		"accordionUse": {
 			"type": "boolean",
 			"default": true
 		}
 	},
-	"options": {
-		"icon": "<svg xmlns='http://www.w3.org/2000/svg' width='199.404' height='199.404' viewBox='0 0 200 200'><path d='M199.404 63.993L171.12 35.709l-71.418 71.418-71.418-71.418L0 63.993l99.702 99.702z' /></svg>"
+	"resources": {
+		"icon": "<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='m2.5 7.5 7.188 5.75a.5.5 0 0 0 .624 0L17.5 7.5' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>"
 	}
 }

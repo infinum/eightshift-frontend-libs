@@ -1,16 +1,10 @@
 import React from 'react';
-import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { HeadingLevel, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingToolbar = (attributes) => {
 	const {
-		componentName: manifestComponentName,
-	} = manifest;
-
-	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		headingShowControls = true,
 
 		showHeadingLevel = true,
@@ -23,17 +17,17 @@ export const HeadingToolbar = (attributes) => {
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingLevel = checkAttr('headingLevel', attributes, manifest);
 
+	if (!headingUse) {
+		return null;
+	}
+
 	return (
 		<>
-			{headingUse &&
-				<>
-					{showHeadingLevel &&
-						<HeadingLevel
-							selectedLevel={headingLevel}
-							onChange={(value) => setAttributes({ [`${componentName}Level`]: value })}
-						/>
-					}
-				</>
+			{showHeadingLevel &&
+				<HeadingLevel
+					selectedLevel={headingLevel}
+					onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
+				/>
 			}
 		</>
 	);

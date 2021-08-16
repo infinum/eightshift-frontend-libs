@@ -1,15 +1,11 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
+import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts';
 import { ListsEditor as ListsEditorComponent } from '../../../components/lists/components/lists-editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ListsEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
-
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
 
 	const {
 		blockClass,
@@ -20,8 +16,9 @@ export const ListsEditor = ({ attributes, setAttributes }) => {
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ListsEditorComponent
-				{...props(attributes, manifestBlockName, '', true)}
-				setAttributes={setAttributes}
+				{...props('lists', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
 		</div>
 	);

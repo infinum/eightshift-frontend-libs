@@ -1,57 +1,53 @@
 import React from 'react';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { __ } from '@wordpress/i18n';
+import { props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import { ButtonOptions } from '../../button/components/button-options';
+import manifest from './../manifest.json';
 
 export const CardOptions = (attributes) => {
-	const {
-		setAttributes,
-		options,
-	} = attributes;
-
 	return (
 		<>
-
 			<ImageOptions
-				{...props(attributes, 'image')}
-				setAttributes={setAttributes}
+				{...props('image', attributes)}
+				showImageUse
+				showLabel
 			/>
-
-			<hr />
 
 			<HeadingOptions
-				{...props(attributes, 'heading', 'intro')}
-				label={'Intro'}
-				setAttributes={setAttributes}
-				options={options}
+				{...props('intro', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				label={__('Intro', 'eightshift-frontend-libs')}
+				showHeadingUse
+				showLabel
 			/>
-
-			<hr />
 
 			<HeadingOptions
-				{...props(attributes, 'heading')}
-				setAttributes={setAttributes}
-				options={options}
+				{...props('heading', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				showHeadingUse
+				showLabel
 			/>
-
-			<hr />
 
 			<ParagraphOptions
-				{...props(attributes, 'paragraph')}
-				setAttributes={setAttributes}
-				options={options}
+				{...props('paragraph', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				showParagraphUse
+				showLabel
 			/>
-
-			<hr />
 
 			<ButtonOptions
-				{...props(attributes, 'button')}
-				setAttributes={setAttributes}
-				options={options}
+				{...props('button', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				showButtonUse
+				showLabel
 			/>
-
 		</>
 	);
 };

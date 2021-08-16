@@ -1,0 +1,25 @@
+{
+	"componentName": "mock-paragraph",
+	"title": "Mock Paragraph",
+	"componentClass": "mock-paragraph",
+	"example": {
+		"attributes": {
+			"mockTypographyContent": "This is paragraph",
+			"mockParagraphTypographyLevel": 2,
+			"mockParagraphTypographyTag": "p",
+			"mockParagraphTypographySize": "16-regular",
+			"mockParagraphTypographyColor": "black",
+			"mockParagraphTypographyUppercase": false,
+			"mockParagraphTypographyUse": true
+		}
+	},
+	"attributes": {
+		"mockParagraphMockTypographyContent": {
+			"type": "string",
+			"default": "This is lvl 2 override"
+		}
+	},
+	"components": {
+		"mockParagraph": "mock-typography"
+	}
+}

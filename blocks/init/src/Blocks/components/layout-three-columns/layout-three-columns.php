@@ -10,29 +10,25 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest);
-if (!$layoutUse) {
+$layoutThreeColumnsUse = Components::checkAttr('layoutThreeColumnsUse', $attributes, $manifest);
+if (!$layoutThreeColumnsUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$layoutLeft = Components::checkAttr('layoutLeft', $attributes, $manifest);
-$layoutCenter = Components::checkAttr('layoutCenter', $attributes, $manifest);
-$layoutRight = Components::checkAttr('layoutRight', $attributes, $manifest);
-$tag = Components::checkAttr('tag', $attributes, $manifest);
+$layoutThreeColumnsLeft = Components::checkAttr('layoutThreeColumnsLeft', $attributes, $manifest);
+$layoutThreeColumnsCenter = Components::checkAttr('layoutThreeColumnsCenter', $attributes, $manifest);
+$layoutThreeColumnsRight = Components::checkAttr('layoutThreeColumnsRight', $attributes, $manifest);
+$layoutThreeColumnsHtmlTag = Components::checkAttr('layoutThreeColumnsHtmlTag', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
-	$componentClass,
-	Components::selector($selectorClass, $selectorClass),
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
-]);
-
-$wrapClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'wrap'),
-	Components::selector($selectorClass, $selectorClass, 'wrap'),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $columnLeftClass = Components::classnames([
@@ -55,26 +51,33 @@ $columnRightClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($tag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
-	<div class="<?php echo \esc_attr($wrapClass); ?>">
+<<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
 
-		<?php if ($layoutLeft) { ?>
+		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo \esc_attr($columnLeftClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutLeft)); ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 
-		<?php if ($layoutCenter) { ?>
+		<?php if ($layoutThreeColumnsCenter) { ?>
 			<div class="<?php echo \esc_attr($columnCenterClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutCenter)); ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 
-		<?php if ($layoutRight) { ?>
+		<?php if ($layoutThreeColumnsRight) { ?>
 			<div class="<?php echo \esc_attr($columnRightClass); ?>">
-				<?php echo wp_kses_post(Components::ensureString($layoutRight)); ?>
+				<?php
+					// @phpstan-ignore-next-line
+					echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		<?php } ?>
 
-	</div>
-</<?php echo esc_attr($tag); ?>>
+</<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?>>

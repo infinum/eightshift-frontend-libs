@@ -15,23 +15,20 @@ if (!$iconUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $iconName = Components::checkAttr('iconName', $attributes, $manifest);
-$icon = $manifest['icons'][$iconName];
 
-$iconClasses = Components::classnames(
-	[
-		$componentClass,
-		$selectorClass,
-		Components::selector($iconName, $componentClass, $iconName),
-		Components::selector($blockClass, $blockClass, $componentClass),
-	]
-);
+$iconClass = Components::classnames([
+	Components::selector($componentClass, $componentClass),
+	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
+]);
 
 ?>
-<i class="<?php echo esc_attr($iconClasses); ?>">
-	<?php echo \wp_kses_post($icon); ?>
+<i class="<?php echo esc_attr($iconClass); ?>">
+	<?php echo $manifest['icons'][$iconName]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </i>

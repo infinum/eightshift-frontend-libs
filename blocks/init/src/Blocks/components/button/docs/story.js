@@ -1,5 +1,6 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
+import { getExample, props, getOptions, ucfirst } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
@@ -15,18 +16,20 @@ export default {
 	},
 };
 
-const props = manifest.example.attributes;
+const attributes = getExample('button', manifest);
 
 export const editor = () => (
-	<ButtonEditor {...props} />
+	<ButtonEditor {...props('button', attributes)} />
 );
 
 export const options = () => (
-	<ButtonOptions {...props} />
+	<ButtonOptions {...props('button', attributes, {
+		options: getOptions(attributes, manifest),
+	})} />
 );
 
 export const toolbar = () => (
-	<ButtonToolbar {...props} />
+	<ButtonToolbar {...props('button', attributes)} />
 );
 
 export const size = () => (
@@ -34,9 +37,10 @@ export const size = () => (
 		{manifest.options.buttonSize.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
-					{...props}
-					buttonContent={values.label}
-					buttonSize={values.value}
+					{...props('button', attributes, {
+						buttonContent: values.label,
+						buttonSize: values.value,
+					})}
 				/>
 				<br /><br />
 			</Fragment>
@@ -49,9 +53,10 @@ export const width = () => (
 		{manifest.options.buttonWidth.map((values, index) => (
 			<Fragment key={index}>
 				<ButtonEditor
-					{...props}
-					buttonContent={values.label}
-					buttonWidth={values.value}
+					{...props('button', attributes, {
+						buttonContent: values.label,
+						buttonWidth: values.value,
+					})}
 				/>
 				<br /><br />
 			</Fragment>
@@ -60,23 +65,28 @@ export const width = () => (
 );
 
 export const colors = () => (
-	<Fragment>
+	<>
 		{manifest.options.buttonColor.map((values, index) => (
-			<Fragment key={index}>
+			<div key={index} style={{
+				display: 'flex',
+				alignItem: 'center',
+				marginBottom: '1rem',
+				gap: '1rem',
+			}}>
 				<ButtonEditor
-					{...props}
-					buttonContent={values}
-					buttonColor={values}
+					{...props('button', attributes, {
+						buttonContent: `${ucfirst(values)} button`,
+						buttonColor: values,
+					})}
 				/>
-				<br /><br />
 				<ButtonEditor
-					{...props}
-					buttonContent={`Button As Link - ${values}`}
-					buttonColor={values}
-					buttonIsLink={true}
+					{...props('button', attributes, {
+						buttonContent: `${ucfirst(values)} link button`,
+						buttonColor: values,
+						buttonIsLink: true,
+					})}
 				/>
-				<br /><br />
-			</Fragment>
+			</div>
 		))}
-	</Fragment>
+	</>
 );

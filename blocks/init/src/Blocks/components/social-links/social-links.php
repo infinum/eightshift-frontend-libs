@@ -15,32 +15,46 @@ if (!$socialLinksUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$socialLinks = Components::checkAttr('socialLinks', $attributes, $manifest);
-$icons = $manifest['options']['icons'] ?? [];
+$socialLinksItems = Components::checkAttr('socialLinksItems', $attributes, $manifest);
 
 $socialLinksClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
+
 ?>
 <ul class="<?php echo \esc_html($socialLinksClass); ?>">
-	<?php foreach ($socialLinks as $socialLink) { ?>
+	<?php
+	if (!is_iterable($socialLinksItems)) {
+		return;
+	}
+
+	foreach ($socialLinksItems as $socialLink) { ?>
 		<?php
 		$href = $socialLink['href'] ?? '';
 		$icon = $socialLink['icon'] ?? '';
-		$title = $socialLink['title'] ?? '';
+		$linkTitle = $socialLink['title'] ?? '';
 
-		if (empty($href) || empty($icon) || ! isset($icons[$icon])) {
+		if (empty($href) || empty($icon) || !isset($manifest['icons'][$icon])) {
 			continue;
 		}
+
 		?>
 		<li class="<?php echo \esc_html("{$componentClass}__item"); ?>">
-			<a class="<?php echo \esc_html("{$componentClass}__link"); ?>" href="<?php echo esc_url($href); ?>" title="<?php echo esc_attr($title); ?>" target="_blank" rel="nofollow noopener">
-				<?php echo \wp_kses_post($icons[$icon]); ?>
+			<a
+				class="<?php echo \esc_html("{$componentClass}__link"); ?>"
+				href="<?php echo esc_url($href); ?>"
+				title="<?php echo esc_attr($linkTitle); ?>"
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				<?php echo $manifest['icons'][$icon]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</a>
 		</li>
 	<?php } ?>

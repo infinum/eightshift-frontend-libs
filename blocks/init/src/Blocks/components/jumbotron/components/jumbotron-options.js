@@ -1,8 +1,5 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, ComponentUseToggle, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -11,16 +8,15 @@ import manifest from './../manifest.json';
 
 export const JumbotronOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
 		title: manifestTitle,
 	} = manifest;
 
-
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		jumbotronShowControls = true,
+		showJumbotronUse = false,
+		showLabel = false,
 	} = attributes;
 
 	if (!jumbotronShowControls) {
@@ -31,47 +27,38 @@ export const JumbotronOptions = (attributes) => {
 
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+			<ComponentUseToggle
+				label={label}
 				checked={jumbotronUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('jumbotronUse', attributes, manifest)]: value })}
+				showUseToggle={showJumbotronUse}
+				showLabel={showLabel}
 			/>
-
-			<hr />
 
 			{jumbotronUse &&
 				<>
 					<ImageOptions
-						{...props(attributes, 'image')}
-						setAttributes={setAttributes}
+						{...props('image', attributes)}
+						showImageUse
+						showLabel
 					/>
-
-					<hr />
 
 					<HeadingOptions
-						{...props(attributes, 'heading')}
-						setAttributes={setAttributes}
+						{...props('heading', attributes)}
+						showHeadingUse
+						showLabel
 					/>
-
-					<hr />
 
 					<ParagraphOptions
-						{...props(attributes, 'paragraph')}
-						setAttributes={setAttributes}
+						{...props('paragraph', attributes)}
+						showParagraphUse
+						showLabel
 					/>
 
-					<hr />
-
 					<ButtonOptions
-						{...props(attributes, 'button')}
-						setAttributes={setAttributes}
+						{...props('button', attributes)}
+						showButtonUse
+						showLabel
 					/>
 				</>
 			}

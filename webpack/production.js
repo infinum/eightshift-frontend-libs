@@ -30,7 +30,7 @@ module.exports = (options) => {
 		}));
 	}
 
-	if (!options.overrides.includes('CssMinimizerPlugin')) {
+	if (!options.overrides.includes('cssMinimizerPlugin')) {
 		optimization.minimizer.push(new CssMinimizerPlugin({
 			minimizerOptions: {
 				preset: [

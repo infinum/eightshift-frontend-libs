@@ -1,24 +1,29 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from '../manifest.json';
 
-domReady(() => {
-	const selector = '.js-block-carousel';
+domReady(async () => {
+	const { blockJsClass, blockName } = manifest;
+
+	const selector = `.${blockJsClass}`;
 	const elements = document.querySelectorAll(selector);
 
-	if (elements.length) {
-		const eventName = new CustomEvent('carouselInit');
-
-		import('./carousel-slider').then(({ CarouselSlider }) => {
-			[...elements].forEach((element) => {
-				const carouselSlider = new CarouselSlider({
-					element,
-					blockClass: 'block-carousel',
-					nextElement: `${selector}-next-arrow`,
-					prevElement: `${selector}-prev-arrow`,
-					paginationElement: `${selector}-pagination`,
-					eventName,
-				});
-				carouselSlider.init();
-			});
-		});
+	if (!elements.length) {
+		return;
 	}
+
+	const eventName = new CustomEvent('carouselInit');
+
+	const { CarouselSlider } = await import('./carousel-slider');
+
+	[...elements].forEach((element) => {
+		const carouselSlider = new CarouselSlider({
+			element,
+			blockClass: `block-${blockName}`,
+			nextElement: `${selector}-next-arrow`,
+			prevElement: `${selector}-prev-arrow`,
+			paginationElement: `${selector}-pagination`,
+			eventName,
+		});
+		carouselSlider.init();
+	});
 });

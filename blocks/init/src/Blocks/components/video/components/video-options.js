@@ -1,38 +1,23 @@
 import React from 'react';
-import _ from 'lodash';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { ToggleControl, Button, SelectControl, BaseControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { Button, BaseControl, Placeholder } from '@wordpress/components';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		options: manifestOptions,
-		componentName: manifestComponentName,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		videoShowControls = true,
 
-		videoUse = checkAttr('videoUse', attributes, manifest, componentName),
-
-		videoUrl = checkAttr('videoUrl', attributes, manifest, componentName),
-		videoPoster = checkAttr('videoPoster', attributes, manifest, componentName),
-		videoAccept = checkAttr('videoAccept', attributes, manifest, componentName),
-		videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest, componentName),
-		videoLoop = checkAttr('videoLoop', attributes, manifest, componentName),
-		videoAutoplay = checkAttr('videoAutoplay', attributes, manifest, componentName),
-		videoControls = checkAttr('videoControls', attributes, manifest, componentName),
-		videoMuted = checkAttr('videoMuted', attributes, manifest, componentName),
-		videoPreload = checkAttr('videoPreload', attributes, manifest, componentName),
-
-		showVideoUse = true,
+		showVideoUse = false,
+		showLabel = false,
 		showVideoUrl = true,
 		showVideoPoster = true,
 		showVideoLoop = true,
@@ -43,148 +28,227 @@ export const VideoOptions = (attributes) => {
 		showVideoPreload = true,
 	} = attributes;
 
-	const options = {...manifestOptions, ...attributes.options};
+	const videoUse = checkAttr('videoUse', attributes, manifest);
+	const videoUrl = checkAttr('videoUrl', attributes, manifest);
+	const videoPoster = checkAttr('videoPoster', attributes, manifest);
+	const videoAccept = checkAttr('videoAccept', attributes, manifest);
+	const videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest);
+	const videoLoop = checkAttr('videoLoop', attributes, manifest);
+	const videoAutoplay = checkAttr('videoAutoplay', attributes, manifest);
+	const videoControls = checkAttr('videoControls', attributes, manifest);
+	const videoMuted = checkAttr('videoMuted', attributes, manifest);
+	const videoPreload = checkAttr('videoPreload', attributes, manifest);
 
 	if (!videoShowControls) {
 		return null;
 	}
 
+	const hasVideo = videoUrl?.length > 0;
+	const hasPoster = videoPoster?.length > 0;
+
 	const [showAdvanced, setShowAdvanced] = useState(false);
+
+	const useToggle = (
+		<ComponentUseToggle
+			label={label}
+			checked={videoUse}
+			onChange={(value) => setAttributes({ [getAttrKey('videoUse', attributes, manifest)]: value })}
+			showUseToggle={showVideoUse}
+			showLabel={showLabel}
+		/>
+	);
+
+	if (!videoUse) {
+		return useToggle;
+	}
 
 	return (
 		<>
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
+			{useToggle}
 
-			{showVideoUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={videoUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-				/>
-			}
-
-			{videoUse &&
+			{!showVideoUrl && hasVideo &&
 				<>
-					{showVideoUrl &&
-						<BaseControl
-							label={__('Video', 'eightshift-frontend-libs')}
-						>
-							{!_.isEmpty(videoUrl) ?
+					<Button
+						isSecondary
+						isDestructive
+						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
+						icon={icons.trash}
+					>
+						{__('Remove video', 'eightshift-frontend-libs')}
+					</Button>
+					<hr />
+				</>
+			}
+
+			{!showVideoUrl && !hasVideo &&
+				<Placeholder
+					icon={icons.help}
+					label={__('No video... yet', 'eightshift-frontend-libs')}
+				>
+					{__('Add one in the Block editor', 'eightshift-frontend-libs')}
+				</Placeholder>
+			}
+
+			{showVideoUrl &&
+				<BaseControl
+					label={
+						<>
+							<IconLabel icon={icons.video} label={__('Video', 'eightshift-frontend-libs')} />
+
+							{hasVideo &&
 								<Button
 									isSecondary
 									isSmall
-									className={'custom-full-width-btn'}
-									onClick={() => setAttributes({ [`${componentName}Url`]: [] })}
-								>
-									{__('Remove video', 'eightshift-frontend-libs')}
-								</Button> :
-								<MediaPlaceholder
-									icon="format-video"
-									onSelect={(value) => setAttributes({
-											[`${componentName}Url`]: value.map((item) => {
-												return {
-													url: item.url,
-													mime: typeof(item.mime) === 'undefined' ? item.mime_type : item.mime,
-												}
-											})
-										})
-									}
-									accept={videoAccept}
-									multiple={true}
-									allowedTypes={videoAllowedTypes}
-								/>
-							}
-						</BaseControl>
-					}
-
-					{showVideoPoster &&
-						<BaseControl
-							label={__('Video Poster', 'eightshift-frontend-libs')}
-						>
-							{!_.isEmpty(videoPoster) ?
-								<>
-									<img src={videoPoster} alt='' />
-									<Button
-										isSecondary
-										isSmall
-										className={'custom-full-width-btn'}
-										onClick={() => setAttributes({ [`${componentName}Poster`]: {} })}
-									>
-										{__('Remove video poster', 'eightshift-frontend-libs')}
-									</Button>
-								</> :
-								<MediaPlaceholder
-									icon="format-video"
-									onSelect={(value) => setAttributes({[`${componentName}Poster`]: value.url})}
-									accept={'image/*'}
-									allowedTypes={["image"]}
-								/>
-							}
-						</BaseControl>
-					}
-
-					<br />
-
-					{showVideoAdvanced &&
-						<ToggleControl
-							label={__('Show advanced options', 'eightshift-frontend-libs')}
-							checked={showAdvanced}
-							onChange={() => setShowAdvanced(!showAdvanced)}
-						/>
-					}
-
-					{showAdvanced &&
-						<>
-							{showVideoLoop &&
-								<ToggleControl
-									label={__('Play in loop', 'eightshift-frontend-libs')}
-									checked={videoLoop}
-									onChange={(value) => setAttributes({ [`${componentName}Loop`]: value })}
-								/>
-							}
-
-							{showVideoAutoplay &&
-								<ToggleControl
-									label={__('Autoplay', 'eightshift-frontend-libs')}
-									checked={videoAutoplay}
-									onChange={(value) => setAttributes({ [`${componentName}Autoplay`]: value })}
-								/>
-							}
-
-							{showVideoControls &&
-								<ToggleControl
-									label={__('Show controls', 'eightshift-frontend-libs')}
-									checked={videoControls}
-									onChange={(value) => setAttributes({ [`${componentName}Controls`]: value })}
-								/>
-							}
-
-							{showVideoMuted &&
-								<ToggleControl
-									label={__('Play muted', 'eightshift-frontend-libs')}
-									checked={videoMuted}
-									onChange={(value) => setAttributes({ [`${componentName}Muted`]: value })}
-								/>
-							}
-
-							{showVideoPreload &&
-								<SelectControl
-									label={__('Preload type', 'eightshift-frontend-libs')}
-									value={videoPreload}
-									options={options.videoPreload}
-									onChange={(value) => setAttributes({ [`${componentName}Preload`]: value })}
+									isDestructive
+									className='es-small-square-icon-button'
+									onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
+									icon={icons.trash}
+									label={__('Remove video', 'eightshift-frontend-libs')}
 								/>
 							}
 						</>
 					}
+				>
+					{!hasVideo &&
+						<MediaPlaceholder
+							icon={icons.videoFile}
+							onSelect={(value) => setAttributes({
+								[getAttrKey('videoUrl', attributes, manifest)]: value.map(({ url, mime, mime_type }) => {
+									return {
+										url,
+										mime: typeof (mime) === 'undefined' ? mime_type : mime,
+									}
+								})
+							})
+							}
+							labels={{ title: __('Add a video', 'eightshift-frontend-libs') }}
+							accept={videoAccept}
+							allowedTypes={videoAllowedTypes}
+							multiple
+						/>
+					}
 
-				</>
+					{hasVideo &&
+						<Placeholder
+							icon={icons.checkCircle}
+							label={__('Video added', 'eightshift-frontend-libs')}
+						>
+							{__('Check the Block editor', 'eightshift-frontend-libs')}
+						</Placeholder>
+					}
+
+				</BaseControl>
 			}
 
+			{showVideoPoster && hasVideo &&
+				<BaseControl
+					label={
+						<>
+							<IconLabel icon={icons.videoPosterImage} label={__('Poster image', 'eightshift-frontend-libs')} />
+
+							{hasPoster &&
+								<Button
+									isSecondary
+									isSmall
+									isDestructive
+									className='es-small-square-icon-button'
+									onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
+									icon={icons.trash}
+									label={__('Remove video poster image', 'eightshift-frontend-libs')}
+								/>
+							}
+						</>
+					}
+					help={__('Visible before the video is played. Make sure to enable the video controls so the video can be started!', 'eightshift-frontend-libs')}
+				>
+					{!hasPoster &&
+						<MediaPlaceholder
+							labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
+							icon={icons.imageFile}
+							onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
+							accept={'image/*'}
+							allowedTypes={['image']}
+						/>
+					}
+
+					{hasPoster &&
+						<img src={videoPoster} alt='Video poster' className='es-ratio-sixteen-nine es-rounded-4' />
+					}
+				</BaseControl>
+			}
+
+			<br />
+
+			{showVideoAdvanced && hasVideo &&
+				<div className='es-flex-between'>
+					<IconLabel icon={icons.options} label={__('Advanced settings', 'eightshift-frontend-libs')} standalone />
+					<Button
+						onClick={() => setShowAdvanced(!showAdvanced)}
+						label={showAdvanced ? __('Hide', 'eightshift-frontend-libs') : __('Show', 'eightshift-frontend-libs')}
+						icon={showAdvanced ? icons.chevronUp : icons.chevronDown}
+						iconSize={24}
+						isSecondary
+					/>
+				</div>
+			}
+
+			{showAdvanced && hasVideo &&
+				<>
+					<br />
+
+					{showVideoLoop &&
+						<IconToggle
+							icon={icons.loopMode}
+							label={__('Loop', 'eightshift-frontend-libs')}
+							checked={videoLoop}
+							onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
+						/>
+					}
+
+					{showVideoAutoplay &&
+						<IconToggle
+							icon={icons.autoplay}
+							label={__('Autoplay', 'eightshift-frontend-libs')}
+							checked={videoAutoplay}
+							onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
+						/>
+					}
+
+					{showVideoControls &&
+						<IconToggle
+							icon={icons.videoControls}
+							label={__('Video controls', 'eightshift-frontend-libs')}
+							checked={videoControls}
+							onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
+						/>
+					}
+
+					{showVideoMuted &&
+						<IconToggle
+							icon={icons.muteCentered}
+							label={__('No sound', 'eightshift-frontend-libs')}
+							checked={videoMuted}
+							onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
+						/>
+					}
+
+					{showVideoPreload && <br />}
+
+					{showVideoPreload &&
+						<SimpleVerticalSingleSelect
+							label={<IconLabel icon={icons.play} label={__('Preload type', 'eightshift-frontend-libs')} />}
+							options={getOption('videoPreload', attributes, manifest).map(({ label, value, icon: iconName }) => {
+								return {
+									onClick: () => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value }),
+									label,
+									isActive: videoPreload === value,
+									icon: icons[iconName],
+								}
+							})}
+						/>
+					}
+				</>
+			}
 		</>
 	);
 };

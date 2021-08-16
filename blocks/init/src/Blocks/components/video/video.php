@@ -6,31 +6,34 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoUse = Components::checkAttr('videoUse', $attributes, $manifest, $componentName);
+$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
+
 if (!$videoUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$videoUrl = Components::checkAttr('videoUrl', $attributes, $manifest, $componentName);
-$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest, $componentName);
-$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest, $componentName);
-$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest, $componentName);
-$videoControls = Components::checkAttr('videoControls', $attributes, $manifest, $componentName);
-$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest, $componentName);
-$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest, $componentName);
+$videoUrl = (array)Components::checkAttr('videoUrl', $attributes, $manifest) ?? [];
+$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest);
+$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest);
+$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest);
+$videoControls = Components::checkAttr('videoControls', $attributes, $manifest);
+$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest);
+$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest);
 
 $videoClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $additionalAttributes = Components::classnames([
@@ -52,15 +55,18 @@ if (!$videoUrl) {
 	preload="<?php echo \esc_attr($videoPreload); ?>"
 	poster="<?php echo \esc_attr($videoPoster); ?>"
 >
-	<?php foreach ($videoUrl as $item) { ?>
+	<?php
+	if (!is_iterable($videoUrl)) {
+		return;
+	}
+
+	foreach ($videoUrl as $item) { ?>
 		<?php
 		$url = $item['url'] ?? '';
 		$mime = $item['mime'] ?? '';
 
-		if (!$url) {
-			continue;
-		}
-		?>
-		<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
+		if ($url && $mime) { // @phpstan-ignore-line ?>
+			<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
+		<?php } ?>
 	<?php } ?>
 </video>

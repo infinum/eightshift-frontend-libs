@@ -12,7 +12,7 @@ $manifest = Components::getManifest(__DIR__);
 
 $postUrl = $attributes['postUrl'] ?? \get_the_permalink();
 $postTitle = $attributes['postTitle'] ?? \get_the_title();
-$postImageUrl = $attributes['postImageUrl'] ?? \get_the_post_thumbnail_url(\get_the_ID(), 'large');
+$postImageUrl = $attributes['postImageUrl'] ?? \get_the_post_thumbnail_url(\get_the_ID(), 'large') ?? '';
 
 $socialNetworks = [
 	'twitter' => "https://twitter.com/intent/tweet?url={$postUrl}&text={$postTitle}",
@@ -21,23 +21,30 @@ $socialNetworks = [
 	'pinterest' => "https://pinterest.com/pin/create/button/?url={$postUrl}&media={$postImageUrl}&description={$postTitle}",
 ];
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentJsClass = $manifest['componentJsClass'] ?? '';
+
 
 $shareClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $shareItemClass = Components::classnames([
 	Components::selector($componentClass, $componentClass, 'item'),
 	Components::selector($blockClass, $blockClass, 'item'),
-	Components::selector($componentClass, "js-{$componentClass}-link"),
+	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
+$networkNames = array_column($manifest['socialOptions'], 'label', 'value');
 ?>
 <div class="<?php echo \esc_attr($shareClass); ?>">
+	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>
+
 	<?php
 	foreach ($socialNetworks as $name => $url) {
 		?>
@@ -47,7 +54,7 @@ $shareItemClass = Components::classnames([
 			data-share-title="<?php echo esc_attr($postTitle);?>"
 			class="<?php echo esc_attr($shareItemClass); ?>"
 		>
-			<?php echo esc_html($name); ?>"
+			<?php echo esc_html($networkNames[$name]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</a>
 		<?php
 	}

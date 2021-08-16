@@ -1,15 +1,16 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from './../manifest.json';
 
-domReady(() => {
-	const shareLinkSelector = '.js-share-link';
+domReady(async () => {
+	const shareLinkSelector = `.${manifest.componentJsClass}`;
 	const shareLinks = document.querySelectorAll(shareLinkSelector);
 
-	if (shareLinks) {
-		import('./share').then(({ Share }) => {
-			const share = new Share({
-				shareLinks,
-			});
-			share.init();
-		});
+	if (!shareLinks) {
+		return;
 	}
+
+	const { Share } = await import('./share');
+
+	const share = new Share({ shareLinks });
+	share.init();
 });

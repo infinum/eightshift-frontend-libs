@@ -1,33 +1,34 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const IconEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 		icons: manifestIcons,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const iconUse = checkAttr('iconUse', attributes, manifest);
 	const iconName = checkAttr('iconName', attributes, manifest);
 
 	const iconClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
+	if (!iconUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{iconUse &&
-				<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
-			}
-		</>
+		<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
 	);
 };

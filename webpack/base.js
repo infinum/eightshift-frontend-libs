@@ -45,12 +45,12 @@ module.exports = (options) => {
 	}
 
 	// Create manifest.json file.
-	if (!options.overrides.includes('WebpackManifestPlugin')) {
+	if (!options.overrides.includes('webpackManifestPlugin')) {
 		plugins.push(new WebpackManifestPlugin());
 	}
 
 	// Enable export for all WordPress related packages
-	if (!options.overrides.includes('DependencyExtractionWebpackPlugin')) {
+	if (!options.overrides.includes('dependencyExtractionWebpackPlugin')) {
 		plugins.push(new DependencyExtractionWebpackPlugin({
 			outputFormat: 'json',
 			requestToExternal: function ( request ) { // eslint-disable-line consistent-return

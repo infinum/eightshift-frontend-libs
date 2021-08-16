@@ -1,25 +1,21 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components';
-import { SelectControl, TextControl, Icon, ToggleControl } from '@wordpress/components';
-import { icons, getOptionColors, getOptions } from '@eightshift/frontend-libs/scripts/editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { __ } from '@wordpress/i18n';
+import { TextControl } from '@wordpress/components';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, IconToggle, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		componentName: manifestComponentName,
-		options: manifestOptions,
 	} = manifest;
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		buttonShowControls = true,
 
-		showButtonUse = true,
+		showButtonUse = false,
+		showLabel = false,
 		showButtonColor = true,
 		showButtonSize = true,
 		showButtonWidth = true,
@@ -27,8 +23,6 @@ export const ButtonOptions = (attributes) => {
 		showButtonId = true,
 		showButtonIsLink = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!buttonShowControls) {
 		return null;
@@ -42,95 +36,86 @@ export const ButtonOptions = (attributes) => {
 	const buttonId = checkAttr('buttonId', attributes, manifest);
 	const buttonIsLink = checkAttr('buttonIsLink', attributes, manifest);
 
+	const sizeOptions = getOption('buttonSize', attributes, manifest).map(({ label, value, icon: iconName }) => {
+		return {
+			onClick: () => setAttributes({
+				[getAttrKey('buttonSize', attributes, manifest)]: value,
+				[getAttrKey('buttonIsLink', attributes, manifest)]: false
+			}),
+			label: label,
+			isActive: buttonSize === value,
+			icon: icons[iconName],
+		};
+	});
+
+	const widthOptions = getOption('buttonWidth', attributes, manifest).map(({ label, value, icon: iconName }) => {
+		return {
+			onClick: () => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value }),
+			label: label,
+			isActive: buttonWidth === value,
+			icon: icons[iconName],
+		};
+	});
+
 	return (
 		<>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			{showButtonUse &&
-				<ToggleControl
-					label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
-					checked={buttonUse}
-					onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
-				/>
-			}
+			<ComponentUseToggle
+				label={label}
+				checked={buttonUse}
+				onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
+				showUseToggle={showButtonUse}
+				showLabel={showLabel}
+			/>
 
 			{buttonUse &&
 				<>
 					{showButtonColor &&
 						<ColorPaletteCustom
-							label={
-								<>
-									<Icon icon={icons.color} />
-									{__('Color', 'eightshift-frontend-libs')}
-								</>
-							}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 							value={buttonColor}
-							colors={getOptionColors(getOptions(manifest, componentName, 'color', options))}
-							onChange={(value) => setAttributes({ [`${componentName}Color`]: value })}
+							colors={getOption('buttonColor', attributes, manifest, true)}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 						/>
 					}
 
 					{showButtonIsLink &&
-						<ToggleControl
-							label={__('Show button as link', 'eightshift-frontend-libs')}
+						<IconToggle
+							icon={icons.link}
+							label={__('Display as link', 'eightshift-frontend-libs')}
 							checked={buttonIsLink}
-							onChange={(value) => setAttributes({ [`${componentName}IsLink`]: value })}
-							help={__('When checked button will be converted to link style.', 'eightshift-frontend-libs')}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonIsLink', attributes, manifest)]: value })}
 						/>
 					}
 
-					{showButtonSize &&
-						<SelectControl
-							label={
-								<>
-									<Icon icon={icons.size} />
-									{__('Size', 'eightshift-frontend-libs')}
-								</>
-							}
-							value={buttonSize}
-							options={getOptions(manifest, componentName, 'size', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Size`]: value })}
+					{showButtonSize && !buttonIsLink &&
+						<SimpleVerticalSingleSelect
+							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-frontend-libs')} />}
+							options={sizeOptions}
 						/>
 					}
 
-					{(showButtonWidth && !buttonIsLink) &&
-						<SelectControl
-							label={
-								<>
-									<Icon icon={icons.width} />
-									{__('Width', 'eightshift-frontend-libs')}
-								</>
-							}
-							value={buttonWidth}
-							options={getOptions(manifest, componentName, 'width', options)}
-							onChange={(value) => setAttributes({ [`${componentName}Width`]: value })}
+					{showButtonWidth && !buttonIsLink &&
+						<SimpleVerticalSingleSelect
+							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}
+							options={widthOptions}
 						/>
 					}
 
 					{showButtonIsAnchor &&
-						<ToggleControl
+						<IconToggle
+							icon={icons.anchor}
 							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={buttonIsAnchor}
-							onChange={(value) => setAttributes({ [`${componentName}IsAnchor`]: value })}
-							help={__('Using anchor option will add JavaScript selector to the button. You must provide anchor destination inside Button Url field. Example: #super-block.', 'eightshift-frontend-libs')}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonIsAnchor', attributes, manifest)]: value })}
+							help={__('Make sure to set the URL as an ID of the element you want to target, e.g. #my-block.', 'eightshift-frontend-libs')}
 						/>
 					}
 
 					{showButtonId &&
 						<TextControl
-							label={
-								<>
-									<Icon icon={icons.id} />
-									{__('ID', 'eightshift-frontend-libs')}
-								</>
-							}
+							label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
 							value={buttonId}
-							onChange={(value) => setAttributes({ [`${componentName}Id`]: value })}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
 						/>
 					}
 				</>

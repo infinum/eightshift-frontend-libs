@@ -4,22 +4,10 @@
 	"componentClass": "image",
 	"example": {
 		"attributes": {
-			"imageUrl": {
-				"id": "1",
-				"url": "https://loremflickr.com/1000/800"
-			},
-			"imageUrlDesktop": {
-				"id": "1",
-				"url": "https://loremflickr.com/800/600"
-			},
-			"imageUrlTablet": {
-				"id": "1",
-				"url": "https://loremflickr.com/600/400"
-			},
-			"imageUrlMobile": {
-				"id": "1",
-				"url": "https://loremflickr.com/300/200"
-			},
+			"imageUrl": "https://loremflickr.com/1000/800",
+			"imageUrlDesktop": "https://loremflickr.com/800/600",
+			"imageUrlTablet": "https://loremflickr.com/600/400",
+			"imageUrlMobile": "https://loremflickr.com/300/200",
 			"imageAccept": "image/*",
 			"imageAllowedTypes": ["image"],
 			"imageAlt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -29,28 +17,16 @@
 	},
 	"attributes": {
 		"imageUrl": {
-			"type": "object",
-			"items": {
-				"type": "object"
-			}
+			"type": "string"
 		},
 		"imageUrlDesktop": {
-			"type": "object",
-			"items": {
-				"type": "object"
-			}
+			"type": "string"
 		},
 		"imageUrlTablet": {
-			"type": "object",
-			"items": {
-				"type": "object"
-			}
+			"type": "string"
 		},
 		"imageUrlMobile": {
-			"type": "object",
-			"items": {
-				"type": "object"
-			}
+			"type": "string"
 		},
 		"imageAccept": {
 			"type": "string",

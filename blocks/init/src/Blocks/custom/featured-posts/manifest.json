@@ -68,5 +68,15 @@
 			"max": 4,
 			"step": 1
 		}
+	},
+	"variables": {
+		"featuredPostsItemsPerLine": [
+			{
+				"inverse": true,
+				"variable": {
+					"featured-posts-columns": "repeat(%value%, 1fr)"
+				}
+			}
+		]
 	}
 }

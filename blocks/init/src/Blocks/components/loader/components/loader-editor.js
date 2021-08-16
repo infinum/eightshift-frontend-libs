@@ -1,39 +1,34 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const LoaderEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const loaderUse = checkAttr('loaderUse', attributes, manifest);
 	const loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest);
 
 	const loaderClass = classnames(
-		componentClass,
-		selector(loaderUseOverlay, componentClass, '', 'use-overlay'),
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
+		selector(loaderUseOverlay, componentClass, '', 'use-overlay'),
 	);
 
+	if (!loaderUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{loaderUse &&
-				<div className={loaderClass}>
-					<div className={`${componentClass}__load`}>
-						<div className={`${componentClass}__item ${componentClass}__item--1`}></div>
-						<div className={`${componentClass}__item ${componentClass}__item--2`}></div>
-						<div className={`${componentClass}__item ${componentClass}__item--3`}></div>
-					</div>
-				</div>
-			}
-		</>
+		<div className={loaderClass} dangerouslySetInnerHTML={{ __html: manifest.resources.loader }}></div>
 	);
 };

@@ -11,8 +11,8 @@
 	],
 	"example": {
 		"attributes": {
-			"columnsGutterLarge": 30,
-			"columnsVerticalSpacingLarge": 30
+			"columnsColumnGapLarge": 30,
+			"columnsRowGapLarge": 30
 		},
 		"innerBlocks": [
 			{
@@ -24,13 +24,13 @@
 					{
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
-							"imageUrl": "https://picsum.photos/400/400",
-							"introContent": "Intro",
-							"introSize": "small",
-							"introColor": "light",
-							"headingContent": "Heading",
-							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
-							"buttonUse": false
+							"cardCardImageUrl": "https://picsum.photos/400/400",
+							"cardCardIntroContent": "Intro",
+							"cardCardIntroSize": "small",
+							"cardCardIntroColor": "light",
+							"cardCardHeadingContent": "Heading",
+							"cardCardParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+							"cardCardButtonUse": false
 						}
 					}
 				]
@@ -44,13 +44,13 @@
 					{
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
-							"imageUrl": "https://picsum.photos/400/400",
-							"introContent": "Intro",
-							"introSize": "small",
-							"introColor": "light",
-							"headingContent": "Heading",
-							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
-							"buttonUse": false
+							"cardCardImageUrl": "https://picsum.photos/400/400",
+							"cardCardIntroContent": "Intro",
+							"cardCardIntroSize": "small",
+							"cardCardIntroColor": "light",
+							"cardCardHeadingContent": "Heading",
+							"cardCardParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+							"cardCardButtonUse": false
 						}
 					}
 				]
@@ -64,13 +64,13 @@
 					{
 						"name": "eightshift-boilerplate/card",
 						"attributes": {
-							"imageUrl": "https://picsum.photos/400/400",
-							"introContent": "Intro",
-							"introSize": "small",
-							"introColor": "light",
-							"headingContent": "Heading",
-							"paragraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
-							"buttonUse": false
+							"cardCardImageUrl": "https://picsum.photos/400/400",
+							"cardCardIntroContent": "Intro",
+							"cardCardIntroSize": "small",
+							"cardCardIntroColor": "light",
+							"cardCardHeadingContent": "Heading",
+							"cardCardParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet.",
+							"cardCardButtonUse": false
 						}
 					}
 				]
@@ -89,58 +89,76 @@
 			]
 		},
 
-		"columnsGutterLarge": {
+		"columnsColumnGapLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"columnsGutterDesktop": {
+		"columnsColumnGapDesktop": {
 			"type": "integer"
 		},
-		"columnsGutterTablet": {
+		"columnsColumnGapTablet": {
 			"type": "integer"
 		},
-		"columnsGutterMobile": {
+		"columnsColumnGapMobile": {
 			"type": "integer"
 		},
 
-		"columnsVerticalSpacingLarge": {
+		"columnsRowGapLarge": {
 			"type": "integer",
 			"default": 30
 		},
-		"columnsVerticalSpacingDesktop": {
+		"columnsRowGapDesktop": {
 			"type": "integer"
 		},
-		"columnsVerticalSpacingTablet": {
+		"columnsRowGapTablet": {
 			"type": "integer"
 		},
-		"columnsVerticalSpacingMobile": {
+		"columnsRowGapMobile": {
 			"type": "integer"
 		}
 	},
 	"responsiveAttributes": {
-		"columnsGutter": {
-			"large": "columnsGutterLarge",
-			"desktop": "columnsGutterDesktop",
-			"tablet": "columnsGutterTablet",
-			"mobile": "columnsGutterMobile"
+		"columnsColumnGap": {
+			"large": "columnsColumnGapLarge",
+			"desktop": "columnsColumnGapDesktop",
+			"tablet": "columnsColumnGapTablet",
+			"mobile": "columnsColumnGapMobile"
 		},
-		"columnsVerticalSpacing": {
-			"large": "columnsVerticalSpacingLarge",
-			"desktop": "columnsVerticalSpacingDesktop",
-			"tablet": "columnsVerticalSpacingTablet",
-			"mobile": "columnsVerticalSpacingMobile"
+		"columnsRowGap": {
+			"large": "columnsRowGapLarge",
+			"desktop": "columnsRowGapDesktop",
+			"tablet": "columnsRowGapTablet",
+			"mobile": "columnsRowGapMobile"
 		}
 	},
 	"options": {
-		"columnsGutter": {
+		"columnsColumnGap": {
 			"min": 0,
 			"max": 100,
 			"step": 10
 		},
-		"columnsVerticalSpacing": {
+		"columnsRowGap": {
 			"min": 0,
 			"max": 100,
 			"step": 10
 		}
+	},
+	"variables": {
+		"columnsRowGap": [
+			{
+				"inverse": true,
+				"variable": {
+					"columns-row-gap": "calc((%value% / 16) * 1rem)"
+				}
+			}
+		],
+		"columnsColumnGap": [
+			{
+				"inverse": true,
+				"variable": {
+					"columns-column-gap": "calc((%value% / 16) * 1rem)"
+				}
+			}
+		]
 	}
 }

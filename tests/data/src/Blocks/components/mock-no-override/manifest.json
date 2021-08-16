@@ -1,0 +1,12 @@
+{
+	"componentName": "mock-no-override",
+	"title": "Mock no override",
+	"description" : "Component used in the overriding attributes test. This one doesn't override any lvl but the block extending this component does.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-card-review"
+	},
+	"components": {
+		"mockParagraph": "mock-paragraph"
+	}
+}

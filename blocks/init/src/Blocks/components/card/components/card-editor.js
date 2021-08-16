@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts/editor';
-import { selector } from '@eightshift/frontend-libs/scripts/helpers';
+import { outputCssVariables, getUnique, props, selector } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
@@ -13,57 +12,55 @@ export const CardEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		setAttributes,
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
 	const cardClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
+		selector(additionalClass, additionalClass),
 	]);
 
 	return (
 		<div className={cardClass} data-id={unique}>
-
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ImageEditor
-				{...props(attributes, 'image')}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('image', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<HeadingEditor
-				{...props(attributes, 'heading', 'intro')}
-				setAttributes={setAttributes}
-				selectorClass={'intro'}
-				blockClass={componentClass}
+				{...props('intro', attributes, {
+					selectorClass: 'intro',
+					blockClass: componentClass,
+				})}
 			/>
 
 			<HeadingEditor
-				{...props(attributes, 'heading')}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('heading', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<ParagraphEditor
-				{...props(attributes, 'paragraph')}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('paragraph', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
 
 			<ButtonEditor
-				{...props(attributes, 'button')}
-				setAttributes={setAttributes}
-				blockClass={componentClass}
+				{...props('button', attributes, {
+					blockClass: componentClass,
+				})}
 			/>
-
 		</div>
 	);
 };

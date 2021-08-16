@@ -15,9 +15,10 @@ if (!$logoUse) {
 	return;
 }
 
-$componentClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$selectorClass = $attributes['selectorClass'] ?? $componentClass;
+$componentClass = $manifest['componentClass'] ?? '';
+$additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
+$selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $logoSrc = Components::checkAttr('logoSrc', $attributes, $manifest);
 $logoAlt = Components::checkAttr('logoAlt', $attributes, $manifest);
@@ -25,8 +26,9 @@ $logoTitle = Components::checkAttr('logoTitle', $attributes, $manifest);
 $logoHref = Components::checkAttr('logoHref', $attributes, $manifest);
 
 $logoClass = Components::classnames([
-	$componentClass,
+	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
+	Components::selector($additionalClass, $additionalClass),
 ]);
 
 $imgClass = Components::classnames([

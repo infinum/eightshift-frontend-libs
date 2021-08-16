@@ -1,26 +1,26 @@
 import { assign } from 'lodash';
-import { createElement } from '@wordpress/element';
-import { addFilter } from '@wordpress/hooks';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { responsiveSelectors, checkAttrResponsive } from '@eightshift/frontend-libs/scripts/helpers';
-import manifest from './manifest.json';
+import { addFilter } from "@wordpress/hooks"
 import globalManifest from '../../manifest.json';
+import manifest from './manifest.json';
 
-const blockName = `${globalManifest.namespace}/${manifest.blockName}`;
+const {
+	namespace,
+	globalVariables: {
+		customBlocksName,
+	},
+} = globalManifest;
+
+const { blockName } = manifest;
+const fullBlockName = `${namespace}/${blockName}`;
 
 // Add options to the Gutenberg markup.
 const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
-	const {
-		globalVariables: {
-			customBlocksName: globalManifestCustomBlocksName,
-		},
-	} = globalManifest;
-
 	return (innerProps) => {
 		const {
 			name,
-			attributes,
+			clientId,
 			attributes: {
 				blockClass,
 			},
@@ -28,41 +28,29 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 
 		let updatedProps = innerProps;
 
-		// Move selectors to the parent div in DOM.
-		if (name === blockName) {
-			const columnWidth = checkAttrResponsive('columnWidth', attributes, manifest);
-			const columnOffset = checkAttrResponsive('columnOffset', attributes, manifest);
-			const columnHide = checkAttrResponsive('columnHide', attributes, manifest);
-			const columnOrder = checkAttrResponsive('columnOrder', attributes, manifest);
-			const columnAlign = checkAttrResponsive('columnAlign', attributes, manifest);
-
-
+		if (name === fullBlockName) {
 			const componentClass = classnames([
 				blockClass,
-				globalManifestCustomBlocksName,
-				responsiveSelectors(columnWidth, 'width', blockClass),
-				responsiveSelectors(columnOffset, 'offset', blockClass),
-				responsiveSelectors(columnOrder, 'order', blockClass),
-				responsiveSelectors(columnAlign, 'align', blockClass),
-				responsiveSelectors(columnHide, 'hide-editor', blockClass, false),
+				customBlocksName,
 			]);
-
 			updatedProps = assign(
 				{},
 				innerProps,
 				{
 					className: componentClass,
-				}
+				},
 			);
 		}
 
-		return createElement(
-			BlockListBlock,
-			updatedProps
+		const dataProps = { 'data-id': clientId };
+
+		return (
+			// columnProps are for WP <= 5.7, wrapperProps are for WP >= 5.8
+			<BlockListBlock {...updatedProps} columnProps={dataProps} wrapperProps={dataProps} />
 		);
 	};
 }, 'parentComponentBlock');
 
 export const hooks = () => {
-	addFilter('editor.BlockListBlock', blockName, parentComponentBlock);
+	addFilter('editor.BlockListBlock', fullBlockName, parentComponentBlock);
 };

@@ -1,32 +1,28 @@
 import React from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
 	const {
-		componentClass: manifestComponentClass,
+		componentClass,
 	} = manifest;
 
 	const {
-		componentClass = manifestComponentClass,
 		selectorClass = componentClass,
 		blockClass,
+		additionalClass,
 	} = attributes;
 
-	const layoutUse = checkAttr('layoutUse', attributes, manifest);
-	const layoutLeft = checkAttr('layoutLeft', attributes, manifest);
-	const layoutCenter = checkAttr('layoutCenter', attributes, manifest);
-	const layoutRight = checkAttr('layoutRight', attributes, manifest);
+	const layoutThreeColumnsUse = checkAttr('layoutThreeColumnsUse', attributes, manifest);
+	const layoutThreeColumnsLeft = checkAttr('layoutThreeColumnsLeft', attributes, manifest);
+	const layoutThreeColumnsCenter = checkAttr('layoutThreeColumnsCenter', attributes, manifest);
+	const layoutThreeColumnsRight = checkAttr('layoutThreeColumnsRight', attributes, manifest);
 
 	const layoutClass = classnames([
-		componentClass,
+		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
-	]);
-
-	const wrapClass = classnames([
-		selector(componentClass, componentClass, 'wrap'),
-		selector(selectorClass, selectorClass, 'wrap'),
+		selector(additionalClass, additionalClass),
 	]);
 
 	const columnLeftClass = classnames([
@@ -50,31 +46,29 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 		selector(selectorClass, selectorClass, 'column', 'right'),
 	]);
 
+	if (!layoutThreeColumnsUse) {
+		return null;
+	}
+
 	return (
-		<>
-			{layoutUse &&
-				<div className={layoutClass}>
-					<div className={wrapClass}>
-						{layoutLeft &&
-							<div className={columnLeftClass}>
-								{layoutLeft}
-							</div>
-						}
-
-						{layoutCenter &&
-							<div className={columnCenterClass}>
-								{layoutCenter}
-							</div>
-						}
-
-						{layoutRight &&
-							<div className={columnRightClass}>
-								{layoutRight}
-							</div>
-						}
-					</div>
+		<div className={layoutClass}>
+			{layoutThreeColumnsLeft &&
+				<div className={columnLeftClass}>
+					{layoutThreeColumnsLeft}
 				</div>
 			}
-		</>
+
+			{layoutThreeColumnsCenter &&
+				<div className={columnCenterClass}>
+					{layoutThreeColumnsCenter}
+				</div>
+			}
+
+			{layoutThreeColumnsRight &&
+				<div className={columnRightClass}>
+					{layoutThreeColumnsRight}
+				</div>
+			}
+		</div>
 	);
 };

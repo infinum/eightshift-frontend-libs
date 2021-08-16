@@ -16,12 +16,12 @@ export default {
 export const editor = () => (
 	<LayoutThreeColumnsEditor
 		selectorClass={manifest.componentClass}
-		layoutLeft={[
+		layoutThreeColumnsLeft={[
 			<CopyrightEditor key={'copyright'} />,
 		]}
-		layoutCenter={[
+		layoutThreeColumnsCenter={[
 		]}
-		layoutRight={[
+		layoutThreeColumnsRight={[
 		]}
 	/>
 );

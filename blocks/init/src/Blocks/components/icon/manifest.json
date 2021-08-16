@@ -13,17 +13,13 @@
 			"type": "string",
 			"default": "play"
 		},
-		"iconSelectedIcon": {
-			"type": "object",
-			"default": null
-		},
 		"iconUse": {
 			"type": "boolean",
 			"default": true
 		}
 	},
 	"options": {
-		"icons": [
+		"iconName": [
 			{
 				"label": "Map pin",
 				"value": "map-pin"

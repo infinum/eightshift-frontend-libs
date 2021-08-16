@@ -1,23 +1,17 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { props } from '@eightshift/frontend-libs/scripts/editor';
+import { props } from '@eightshift/frontend-libs/scripts';
 import { ListsOptions as ListsOptionsComponent } from '../../../components/lists/components/lists-options';
-import manifest from './../manifest.json';
 
 export const ListsOptions = ({ attributes, setAttributes }) => {
-	const {
-		blockName: manifestBlockName,
-	} = manifest;
-
 	return (
-		<PanelBody title={__('Lists Details', 'eightshift-frontend-libs')}>
-
+		<PanelBody title={__('Lists', 'eightshift-frontend-libs')}>
 			<ListsOptionsComponent
-				{...props(attributes, manifestBlockName, '', true)}
-				setAttributes={setAttributes}
+				{...props('lists', attributes, {
+					setAttributes: setAttributes,
+				})}
 			/>
-
 		</PanelBody>
 	);
 };

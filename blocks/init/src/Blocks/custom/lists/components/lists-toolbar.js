@@ -1,14 +1,11 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { AlignmentToolbar } from '@wordpress/block-editor';
+import { checkAttr, getAttrKey, getOption, AlignmentToolbar } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ListsToolbar = ({ attributes, setAttributes }) => {
 	const {
-		blockName: manifestBlockName,
 		title: manifestTitle,
-		options: manifestOptions,
 	} = manifest;
 
 	const listsAlign = checkAttr('listsAlign', attributes, manifest);
@@ -16,9 +13,10 @@ export const ListsToolbar = ({ attributes, setAttributes }) => {
 	return (
 		<AlignmentToolbar
 			value={listsAlign}
-			options={manifestOptions.listsAlign}
+			options={getOption('listsAlign', attributes, manifest)}
 			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
-			onChange={(value) => setAttributes({ [`${manifestBlockName}Align`]: value })}
+			title={manifestTitle}
+			onChange={(value) => setAttributes({ [getAttrKey('listsAlign', attributes, manifest)]: value })}
 		/>
 	);
 };

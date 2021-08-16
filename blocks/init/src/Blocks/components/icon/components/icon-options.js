@@ -1,10 +1,7 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { __, sprintf } from '@wordpress/i18n';
-import { ToggleControl } from '@wordpress/components';
-import { checkAttr } from '@eightshift/frontend-libs/scripts/helpers';
-import { CustomSelect } from '@eightshift/frontend-libs/scripts/components';
+import React from 'react';
+import { __ } from '@wordpress/i18n';
+import { checkAttr, getAttrKey, getOption, CustomSelect, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
 import { components } from 'react-select';
-
 import manifest from './../manifest.json';
 
 const {
@@ -13,7 +10,7 @@ const {
 
 const IconPickerOption = props => (
 	<components.Option {...props}>
-		<div className={'icon-option-row'}>
+		<div className='icon-option-row'>
 			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.value] }}></i>
 			<span>{props.label}</span>
 		</div>
@@ -22,7 +19,7 @@ const IconPickerOption = props => (
 
 const IconPickerValueDisplay = ({ children, ...props }) => (
 	<components.SingleValue {...props}>
-		<div className={'icon-option-row'}>
+		<div className='icon-option-row icon-option-row--color'>
 			<i dangerouslySetInnerHTML={{ __html: manifestIcons[props.data.value] }}></i>
 			<span>{children}</span>
 		</div>
@@ -31,56 +28,43 @@ const IconPickerValueDisplay = ({ children, ...props }) => (
 
 export const IconOptions = (attributes) => {
 	const {
-		componentName: manifestComponentName,
-		options: manifestOptions,
 		title: manifestTitle,
 	} = manifest;
 
 
 	const {
 		setAttributes,
-		componentName = manifestComponentName,
 		label = manifestTitle,
 		showIconOptions = true,
+		showIconUse = true,
+		showLabel = true,
 	} = attributes;
-
-	const options = {...manifestOptions, ...attributes.options};
 
 	if (!showIconOptions) {
 		return null;
 	}
 
 	const iconUse = checkAttr('iconUse', attributes, manifest);
-	const iconSelectedIcon = checkAttr('iconSelectedIcon', attributes, manifest);
+	const iconName = checkAttr('iconName', attributes, manifest);
 
 	return (
 		<>
-			{label && <h3 className={'options-label'}>{label}</h3>}
-
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-frontend-libs'), label)}
+			<ComponentUseToggle
+				label={label}
 				checked={iconUse}
-				onChange={(value) => setAttributes({ [`${componentName}Use`]: value })}
+				onChange={(value) => setAttributes({ [getAttrKey('iconUse', attributes, manifest)]: value })}
+				showUseToggle={showIconUse}
+				showLabel={showLabel}
 			/>
 
 			{iconUse && (
 				<CustomSelect
-					label={__('Icon', 'eightshift-frontend-libs')}
-					value={iconSelectedIcon}
-					options={options.icons}
+					value={iconName}
+					options={getOption('iconName', attributes, manifest)}
 					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
 					customOptionComponent={IconPickerOption}
 					customSingleValueDisplayComponent={IconPickerValueDisplay}
-					onChange={(value) => (
-						// Because react-select needs an object instead
-						// of a label for storing data, this approach was
-						// taken to prevent breaking everything that
-						// currently uses an icon
-						setAttributes({
-							[`${componentName}SelectedIcon`]: value,
-							[`${componentName}Name`]: value?.value,
-						})
-					)}
+					onChange={(value) => setAttributes({[getAttrKey('iconName', attributes, manifest)]: value?.value})}
 				/>
 			)}
 		</>
