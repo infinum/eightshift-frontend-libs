@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [5.0.0] - 2021-08-16
+- Major braking changes do to updates on css variables, and helpers.
+
 ## [4.0.7] - 2021-07-22
 
 ### Changed
@@ -428,6 +431,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[5.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.7...v5.0.0
 [4.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.6...v4.0.7
 [4.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.5...v4.0.6
 [4.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.4...v4.0.5
