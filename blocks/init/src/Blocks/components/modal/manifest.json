@@ -1,0 +1,17 @@
+{
+	"componentName": "modal",
+	"title": "Modal",
+	"componentClass": "modal",
+	"componentJsClass": "js-modal",
+	"example": {
+		"attributes": {
+			"modalUse": true
+		}
+	},
+	"attributes": {
+		"modalUse": {
+			"type": "boolen",
+			"default": true
+		}
+	}
+}
