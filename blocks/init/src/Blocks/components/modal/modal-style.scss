@@ -1,0 +1,37 @@
+.modal {
+
+	display: none;
+
+	&.is-open {
+		display: block;
+	}
+
+	&__overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		background-color: rgba(0, 0, 0, 0.5);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__dialog {
+		min-width: 360px;
+		max-width: calc(100% - 1.25rem);
+		max-height: 90%;
+		overflow: auto;
+		position: relative;
+		padding: 1.25rem;
+	}
+
+	&__content {
+	}
+
+	&__close-button {
+	}
+
+}
