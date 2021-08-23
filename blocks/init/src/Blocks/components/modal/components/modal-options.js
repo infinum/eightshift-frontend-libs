@@ -1,5 +1,6 @@
 import React from 'react';
-import { ComponentUseToggle, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { IconToggle, ComponentUseToggle, checkAttr, getAttrKey, icons } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ModalOptions = (attributes) => {
@@ -13,9 +14,11 @@ export const ModalOptions = (attributes) => {
 
 		showModalUse = false,
 		showLabel = false,
+		showModalExitButton = true,
 	} = attributes;
 
 	const modalUse = checkAttr('modalUse', attributes, manifest);
+	const modalExitButton = checkAttr('modalExitButton', attributes, manifest);
 
 	return (
 		<>
@@ -30,9 +33,18 @@ export const ModalOptions = (attributes) => {
 
 			{modalUse &&
 				<>
+					{showModalExitButton &&
+						<IconToggle
+							icon={icons.hide}
+							label={__('Display exit button', 'modal-dialog')}
+							checked={modalExitButton}
+							onChange={(value) => setAttributes({ [getAttrKey('modalExitButton', attributes, manifest)]: value })}
+						/>
+					}
 				</>
 			}
 
 		</>
 	);
 };
+
