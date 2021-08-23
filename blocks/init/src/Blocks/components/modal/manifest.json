@@ -5,13 +5,26 @@
 	"componentJsClass": "js-modal",
 	"example": {
 		"attributes": {
-			"modalUse": true
+			"modalUse": true,
+			"modalExitButton": true,
+			"modalContent": "This is modal",
+			"modalId": "modal-id"
 		}
 	},
 	"attributes": {
 		"modalUse": {
 			"type": "boolen",
 			"default": true
+		},
+		"modalExitButton": {
+			"type": "boolen",
+			"default": true
+		},
+		"modalContent": {
+			"type": "string"
+		},
+		"modalId": {
+			"type": "string"
 		}
 	}
 }
