@@ -6,10 +6,12 @@ domReady(() => {
 	const elements = document.querySelectorAll(selector);
 	const body = document.getElementsByTagName('body')[0];
 
+	// Append all modals at the bottom of body.
 	[...elements].forEach((element) => {
 		body.append(element);
 	});
 
+	// Initialize MicroModal.
 	MicroModal.init({
 		openTrigger: 'data-micromodal-trigger',
 		closeTrigger: 'data-micromodal-close',
