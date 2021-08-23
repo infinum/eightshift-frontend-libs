@@ -40,27 +40,25 @@ export const ModalEditor = (attributes) => {
 	const modalExitButtonClass = selector(componentClass, componentClass, 'close-button');
 
 	return (
-		<>
-			<div className={modalClass} data-id={unique} id={modalId} aria-hidden="false">
-				{outputCssVariables(attributes, manifest, unique, globalManifest)}
+		<div className={modalClass} data-id={unique} id={modalId} aria-hidden="false">
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-				<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
-					<div className={modalDialogClass} role="dialog" aria-modal="true">
-						{modalExitButton &&
-							<button
-								className={modalExitButtonClass}
-								aria-label={__('Close modal', 'modal-component')}
-								data-micromodal-close
-								dangerouslySetInnerHTML={{ __html: icon }}
-							>
-							</button>
-						}
-						<div className={modalContentClass}>
-							{modalContent}
-						</div>
+			<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
+				<div className={modalDialogClass} role="dialog" aria-modal="true">
+					{modalExitButton &&
+						<button
+							className={modalExitButtonClass}
+							aria-label={__('Close modal', 'modal-component')}
+							data-micromodal-close
+							dangerouslySetInnerHTML={{ __html: icon }}
+						>
+						</button>
+					}
+					<div className={modalContentClass}>
+						{modalContent}
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
