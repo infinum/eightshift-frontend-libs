@@ -69,7 +69,9 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 					class="<?php echo \esc_attr($modalExitButtonClass); ?>"
 					aria-label="Close modal"
 					data-micromodal-close
-				>X</button>
+				>
+					<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</button>
 			<?php } ?>
 
 			<div class="<?php echo \esc_attr($modalContentClass); ?>">

@@ -1,6 +1,8 @@
 .modal {
 	$this: &;
 
+	--modal-scoped-icon-size: 1.5rem;
+
 	display: none;
 
 	&.is-open {
@@ -29,10 +31,19 @@
 		position: relative;
 		padding: 1.25rem;
 		will-change: transform;
+		background-color: var(--global-colors-white);
 	}
 
 	&__close-button {
 		@extend %button-reset;
+		height: var(--modal-scoped-icon-size);
+		width: var(--modal-scoped-icon-size);
+
+		svg {
+			height: var(--modal-scoped-icon-size);
+			width: var(--modal-scoped-icon-size);
+			pointer-events: none;
+		}
 	}
 
 	&[aria-hidden='false'] {
