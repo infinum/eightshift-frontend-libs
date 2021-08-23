@@ -1,4 +1,5 @@
 import domReady from '@wordpress/dom-ready';
+import MicroModal from 'micromodal';
 
 domReady(() => {
 	const selector = '.js-modal';
@@ -9,4 +10,12 @@ domReady(() => {
 		body.append(element);
 	});
 
+	MicroModal.init({
+		openTrigger: 'data-micromodal-trigger',
+		closeTrigger: 'data-micromodal-close',
+		openClass: 'is-open',
+		disableScroll: true,
+		awaitOpenAnimation: true,
+		awaitCloseAnimation: true
+	});
 });
