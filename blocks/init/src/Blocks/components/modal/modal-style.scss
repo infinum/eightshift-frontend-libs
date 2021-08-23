@@ -1,4 +1,5 @@
 .modal {
+	$this: &;
 
 	display: none;
 
@@ -17,6 +18,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		will-change: transform;
 	}
 
 	&__dialog {
@@ -26,12 +28,51 @@
 		overflow: auto;
 		position: relative;
 		padding: 1.25rem;
-	}
-
-	&__content {
+		will-change: transform;
 	}
 
 	&__close-button {
+		@extend %button-reset;
+	}
+
+	&[aria-hidden='false'] {
+		#{$this}__overlay {
+			animation: modalFadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	
+		#{$this}__dialog {
+			animation: modalSlideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	&[aria-hidden='true'] {
+		#{$this}__overlay {
+			animation: modalFadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	
+		#{$this}__dialog {
+			animation: modalSlideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	@keyframes modalFadeIn {
+		from { opacity: 0; }
+		  to { opacity: 1; }
+	}
+
+	@keyframes modalFadeOut {
+		from { opacity: 1; }
+		  to { opacity: 0; }
+	}
+
+	@keyframes modalSlideIn {
+	  from { transform: translateY(15%); }
+		to { transform: translateY(0); }
+	}
+
+	@keyframes modalSlideOut {
+		from { transform: translateY(0); }
+		  to { transform: translateY(-10%); }
 	}
 
 }
