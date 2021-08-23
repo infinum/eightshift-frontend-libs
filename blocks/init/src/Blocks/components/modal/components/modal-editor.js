@@ -1,5 +1,8 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
+import { Button } from '@wordpress/components';
+import { close } from '@wordpress/icons';
+import { __ } from '@wordpress/i18n';
 import { outputCssVariables, getUnique, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
@@ -18,6 +21,9 @@ export const ModalEditor = (attributes) => {
 	} = attributes;
 
 	const modalUse = checkAttr('modalUse', attributes, manifest);
+	const modalExitButton = checkAttr('modalExitButton', attributes, manifest);
+	const modalContent = checkAttr('modalContent', attributes, manifest);
+	const modalId = checkAttr('modalId', attributes, manifest);
 
 	if (!modalUse) {
 		return null;
@@ -29,10 +35,31 @@ export const ModalEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
+	const modalOverlayClass = selector(componentClass, componentClass, 'overlay');
+	const modalDialogClass = selector(componentClass, componentClass, 'dialog');
+	const modalContentClass = selector(componentClass, componentClass, 'content');
+	const modalExitButtonClass = selector(componentClass, componentClass, 'close-button');
+
 	return (
 		<>
-			<div className={modalClass} data-id={unique}>
+			<div className={modalClass} data-id={unique} id={modalId} aria-hidden="false">
 				{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
+				<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
+					<div className={modalDialogClass} role="dialog" aria-modal="true">
+						{modalExitButton &&
+							<Button
+								className={modalExitButtonClass}
+								icon={close}
+								aria-label={__('Close modal', 'modal-dialog')}
+								data-micromodal-close
+							/>
+						}
+						<div className={modalContentClass}>
+							{modalContent}
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	);
