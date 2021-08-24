@@ -11,11 +11,16 @@ export const ModalOptions = (attributes) => {
 	const {
 		setAttributes,
 		label = manifestTitle,
+		modalShowControls = true,
 
 		showModalUse = false,
 		showLabel = false,
 		showModalExitButton = true,
 	} = attributes;
+
+	if (!modalShowControls) {
+		return null;
+	}
 
 	const modalUse = checkAttr('modalUse', attributes, manifest);
 	const modalExitButton = checkAttr('modalExitButton', attributes, manifest);
@@ -30,17 +35,13 @@ export const ModalOptions = (attributes) => {
 				showLabel={showLabel}
 			/>
 
-			{modalUse &&
-				<>
-					{showModalExitButton &&
-						<IconToggle
-							icon={icons.hide}
-							label={__('Display exit button', 'eightshift-frontend-libs')}
-							checked={modalExitButton}
-							onChange={(value) => setAttributes({ [getAttrKey('modalExitButton', attributes, manifest)]: value })}
-						/>
-					}
-				</>
+			{showModalExitButton &&
+				<IconToggle
+					icon={icons.hide}
+					label={__('Display exit button', 'eightshift-frontend-libs')}
+					checked={modalExitButton}
+					onChange={(value) => setAttributes({ [getAttrKey('modalExitButton', attributes, manifest)]: value })}
+				/>
 			}
 		</>
 	);
