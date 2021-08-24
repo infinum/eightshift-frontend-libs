@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { outputCssVariables, getUnique, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
+import { getUnique, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
-import globalManifest from './../../../manifest.json';
 
 export const ModalEditor = (attributes) => {
 	const unique = useMemo(() => getUnique(), []);
@@ -41,8 +40,6 @@ export const ModalEditor = (attributes) => {
 
 	return (
 		<div className={modalClass} data-id={unique} id={modalId} aria-hidden="false">
-			{outputCssVariables(attributes, manifest, unique, globalManifest)}
-
 			<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
 				<div className={modalDialogClass} role="dialog" aria-modal="true">
 					{modalExitButton &&

@@ -49,10 +49,6 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 	id="<?php echo \esc_attr($modalId); ?>"
 	aria-hidden="true"
 >
-	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	?>
-
 	<div
 		class="<?php echo \esc_attr($modalOverlayClass); ?>"
 		tabIndex="-1"
