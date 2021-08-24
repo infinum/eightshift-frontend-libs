@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
+import { Button } from '@wordpress/components';
+import { close } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { getUnique, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
@@ -9,7 +11,6 @@ export const ModalEditor = (attributes) => {
 
 	const {
 		componentClass,
-		resources: { icon },
 	} = manifest;
 
 	const {
@@ -43,13 +44,12 @@ export const ModalEditor = (attributes) => {
 			<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
 				<div className={modalDialogClass} role="dialog" aria-modal="true">
 					{modalExitButton &&
-						<button
+						<Button
 							className={modalExitButtonClass}
 							aria-label={__('Close modal', 'eightshift-frontend-libs')}
 							data-micromodal-close
-							dangerouslySetInnerHTML={{ __html: icon }}
-						>
-						</button>
+							icon={close}
+						/>
 					}
 					<div className={modalContentClass}>
 						{modalContent}
