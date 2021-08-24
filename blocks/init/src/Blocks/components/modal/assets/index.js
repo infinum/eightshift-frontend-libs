@@ -1,24 +1,28 @@
 import domReady from '@wordpress/dom-ready';
 import manifest from './../manifest.json';
-import MicroModal from 'micromodal';
 
-domReady(() => {
-	const selector = `.${manifest.componentJsClass}`;
-	const elements = document.querySelectorAll(selector);
-	const body = document.getElementsByTagName('body')[0];
+domReady(async () => {
+	const body = document.querySelector('body');
+	const modalSelector = `.${manifest.componentJsClass}`;
+	const modalElements = document.querySelectorAll(modalSelector);
+
+	if (!modalElements.length) {
+		return;
+	}
 
 	// Append all modals at the bottom of body.
-	[...elements].forEach((element) => {
+	[...modalElements].forEach((element) => {
 		body.append(element);
 	});
 
-	// Initialize MicroModal.
-	MicroModal.init({
+	// Instantiate and initialize Modal.
+	const { Modal } = await import('./modal');
+
+	const modal = new Modal({
 		openTrigger: 'data-micromodal-trigger',
 		closeTrigger: 'data-micromodal-close',
 		openClass: 'is-open',
-		disableScroll: true,
-		awaitOpenAnimation: true,
-		awaitCloseAnimation: true
 	});
+
+	modal.init();
 });
