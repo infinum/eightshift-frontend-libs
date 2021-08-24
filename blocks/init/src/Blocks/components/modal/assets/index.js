@@ -1,8 +1,9 @@
 import domReady from '@wordpress/dom-ready';
+import manifest from './../manifest.json';
 import MicroModal from 'micromodal';
 
 domReady(() => {
-	const selector = '.js-modal';
+	const selector = `.${manifest.componentJsClass}`;
 	const elements = document.querySelectorAll(selector);
 	const body = document.getElementsByTagName('body')[0];
 
