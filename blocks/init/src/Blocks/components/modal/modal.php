@@ -50,8 +50,7 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 	aria-hidden="true"
 >
 	<?php
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
 
 	<div
@@ -76,8 +75,7 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 
 			<div class="<?php echo \esc_attr($modalContentClass); ?>">
 				<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $modalContent; // @phpstan-ignore-line
+					echo $modalContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</div>
 		</div>
