@@ -22,7 +22,6 @@ export const ModalOptions = (attributes) => {
 
 	return (
 		<>
-
 			<ComponentUseToggle
 				label={label}
 				checked={modalUse}
@@ -43,7 +42,6 @@ export const ModalOptions = (attributes) => {
 					}
 				</>
 			}
-
 		</>
 	);
 };
