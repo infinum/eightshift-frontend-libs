@@ -48,7 +48,7 @@ export const ModalEditor = (attributes) => {
 					{modalExitButton &&
 						<button
 							className={modalExitButtonClass}
-							aria-label={__('Close modal', 'modal-component')}
+							aria-label={__('Close modal', 'eightshift-frontend-libs')}
 							data-micromodal-close
 							dangerouslySetInnerHTML={{ __html: icon }}
 						>
