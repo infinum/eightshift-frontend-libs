@@ -46,26 +46,6 @@
 		}
 	}
 
-	&[aria-hidden='false'] {
-		#{$this}__overlay {
-			animation: modalFadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	
-		#{$this}__dialog {
-			animation: modalSlideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	}
-
-	&[aria-hidden='true'] {
-		#{$this}__overlay {
-			animation: modalFadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	
-		#{$this}__dialog {
-			animation: modalSlideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	}
-
 	@keyframes modalFadeIn {
 		from { opacity: 0; }
 		  to { opacity: 1; }
@@ -86,4 +66,23 @@
 		  to { transform: translateY(-10%); }
 	}
 
+	&[aria-hidden='false'] {
+		#{$this}__overlay {
+			animation: modalFadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	
+		#{$this}__dialog {
+			animation: modalSlideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	&[aria-hidden='true'] {
+		#{$this}__overlay {
+			animation: modalFadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	
+		#{$this}__dialog {
+			animation: modalSlideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
 }
