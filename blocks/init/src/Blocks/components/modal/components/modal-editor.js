@@ -1,11 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { getUnique, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ModalEditor = (attributes) => {
-	const unique = useMemo(() => getUnique(), []);
 
 	const {
 		componentClass,
@@ -38,7 +37,7 @@ export const ModalEditor = (attributes) => {
 	const modalExitButtonClass = selector(componentClass, componentClass, 'close-button');
 
 	return (
-		<div className={modalClass} data-id={unique} id={modalId} aria-hidden="false">
+		<div className={modalClass} id={modalId} aria-hidden="false">
 			<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
 				<div className={modalDialogClass} role="dialog" aria-modal="true">
 					{modalExitButton &&

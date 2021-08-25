@@ -17,8 +17,6 @@ if (!$modalUse) {
 	return;
 }
 
-$unique = Components::getUnique();
-
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
@@ -46,7 +44,6 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 
 <div
 	class="<?php echo \esc_attr($modalClass); ?>"
-	data-id="<?php echo \esc_attr($unique); ?>"
 	id="<?php echo \esc_attr($modalId); ?>"
 	aria-hidden="true"
 >
