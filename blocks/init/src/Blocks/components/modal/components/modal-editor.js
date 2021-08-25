@@ -8,6 +8,7 @@ export const ModalEditor = (attributes) => {
 
 	const {
 		componentClass,
+		resources: { icon },
 	} = manifest;
 
 	const {
