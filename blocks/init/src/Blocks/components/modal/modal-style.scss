@@ -20,7 +20,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		will-change: transform;
 	}
 
 	&__dialog {
@@ -30,7 +29,6 @@
 		overflow: auto;
 		position: relative;
 		padding: 1.25rem;
-		will-change: transform;
 		background-color: var(--global-colors-white);
 	}
 
@@ -57,8 +55,8 @@
 	}
 
 	@keyframes modalSlideIn {
-	  from { transform: translateY(15%); }
-		to { transform: translateY(0); }
+		from { transform: translateY(15%); }
+		  to { transform: translateY(0); }
 	}
 
 	@keyframes modalSlideOut {
