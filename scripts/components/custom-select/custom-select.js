@@ -121,7 +121,7 @@ export const CustomSelect = (props) => {
 		if (multiple) {
 			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
 		} else {
-			output = simpleValue ? selectedOptions.value : selectedOptions;
+			output = simpleValue ? selectedOptions?.value : selectedOptions;
 		}
 
 		setSelected(output);
