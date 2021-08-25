@@ -26,6 +26,7 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 
 $modalExitButton = Components::checkAttr('modalExitButton', $attributes, $manifest);
+$modalCloseAttr = Components::checkAttr('modalCloseAttr', $attributes, $manifest);
 $modalContent = Components::checkAttr('modalContent', $attributes, $manifest);
 $modalId = Components::checkAttr('modalId', $attributes, $manifest);
 
@@ -50,9 +51,9 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 	aria-hidden="true"
 >
 	<div
+		<?php echo \esc_attr($modalCloseAttr); ?>
 		class="<?php echo \esc_attr($modalOverlayClass); ?>"
 		tabIndex="-1"
-		data-micromodal-close
 	>
 		<div
 			class="<?php echo \esc_attr($modalDialogClass); ?>"
@@ -61,9 +62,9 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 		>
 			<?php if ($modalExitButton) { ?>
 				<button
+					<?php echo \esc_attr($modalCloseAttr); ?>
 					class="<?php echo \esc_attr($modalExitButtonClass); ?>"
 					aria-label="Close modal"
-					data-micromodal-close
 				>
 					<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>

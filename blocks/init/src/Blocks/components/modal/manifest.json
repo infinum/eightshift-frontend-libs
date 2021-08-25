@@ -20,6 +20,14 @@
 			"type": "boolen",
 			"default": true
 		},
+		"modalOpenAttr": {
+			"type": "string",
+			"default": "data-micromodal-open"
+		},
+		"modalCloseAttr": {
+			"type": "string",
+			"default": "data-micromodal-close"
+		},
 		"modalContent": {
 			"type": "string"
 		},

@@ -2,8 +2,10 @@ import domReady from '@wordpress/dom-ready';
 import manifest from './../manifest.json';
 
 domReady(async () => {
+	const { componentJsClass, attributes } = manifest;
+
 	const body = document.querySelector('body');
-	const modalSelector = `.${manifest.componentJsClass}`;
+	const modalSelector = `.${componentJsClass}`;
 	const modalElements = document.querySelectorAll(modalSelector);
 
 	if (!modalElements.length) {
@@ -19,8 +21,8 @@ domReady(async () => {
 	const { Modal } = await import('./modal');
 
 	const modal = new Modal({
-		openTrigger: 'data-micromodal-trigger',
-		closeTrigger: 'data-micromodal-close',
+		openTrigger: `${attributes.modalOpenAttr.default}`,
+		closeTrigger: `${attributes.modalCloseAttr.default}`,
 		openClass: 'is-open',
 	});
 
