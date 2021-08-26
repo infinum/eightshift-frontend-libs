@@ -4,16 +4,16 @@ import apiFetch from '@wordpress/api-fetch';
 /**
  * Returns the fetch callback function for getting data from WP API.
  *
- * @param {string} endpoint Endpoint to fetch from (usually post type or taxonomy).
+ * @param {string} endpoint     Endpoint to fetch from (usually post type or taxonomy).
  * @param {object} [options={}] Additional options for fine tunning.
  * 
- * @param {function} processId Function that allows custom id processing.
- * @param {function} processLabel Function that allows custom select option label processing.
- * @param {integer} [perPage=30] Define max perPage items to fetch.
- * @param {string} [routePrefix='wp/v2'] Define if using custom or native WP routes.
- * @param {object} [additionalParam={}] Define additional query params to fetch.
- * @param {string} [cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
- * @param {fields} [fields='id,title'] Fields to return for optimised response.
+ * @param {function} processId              Function that allows custom id processing.
+ * @param {function} processLabel           Function that allows custom select option label processing.
+ * @param {integer}  [perPage=30]           Define max perPage items to fetch.
+ * @param {string}   [routePrefix='wp/v2']  Define if using custom or native WP routes.
+ * @param {object}   [additionalParam={}]   Define additional query params to fetch.
+ * @param {string}   [cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
+ * @param {fields}   [fields='id,title']    Fields to return for optimised response.
  *
  * @returns Callback function that can be passed to CustomSelect loadOptions
  *
@@ -82,7 +82,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		let cachedItem = JSON.parse(window.localStorage.getItem(`es-cache-${endpoint}`));
 
 		// If the item doesn't exist in cache, is older than 1 day (86400000 = one day) or doesn't have any data, do a fresh fetch
-		if (!cachedItem || cachedItem?.time < (Date.now() - cacheTime) || !cachedItem?.data?.length) {
+		if (!cachedItem || cachedItem?.time < (Date.now() - parseInt(cacheTime)) || !cachedItem?.data?.length) {
 			const newData = await apiFetch({ path: getRoute(endpoint, params, routePrefix) });
 
 			cachedItem = {
