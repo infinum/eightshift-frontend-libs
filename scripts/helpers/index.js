@@ -12,6 +12,7 @@ export { device } from './devices';
 export { dynamicImport } from './dynamic-import';
 export { elementChildrenHeight } from './element-children-height';
 export { escapeString } from './escape-string';
+export { getFetchWpApi } from './fetch-wp-api';
 export { getNavigatorVibrate } from './navigator';
 export { responsiveSelectors } from './responsive-selectors';
 export { selector } from './selector';
