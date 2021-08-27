@@ -32,11 +32,17 @@
 		background-color: global-settings(colors, white);
 	}
 
+	&__close {
+		text-align: right;
+	}
+
 	&__close-button {
 		@extend %button-reset;
 		height: var(--modal-scoped-icon-size);
 		width: var(--modal-scoped-icon-size);
-
+		background-color: transparent;
+		cursor: pointer;
+		
 		svg {
 			height: var(--modal-scoped-icon-size);
 			width: var(--modal-scoped-icon-size);

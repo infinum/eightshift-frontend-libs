@@ -52,13 +52,15 @@ $modalClass = Components::classnames([
 			aria-modal="true"
 		>
 			<?php if ($modalExitButton) { ?>
-				<button
-					<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
-					class="<?php echo \esc_attr("{$componentClass}__close-button"); ?>"
-					aria-label="Close modal"
-				>
-					<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</button>
+				<div class="<?php echo \esc_attr("{$componentClass}__close"); ?>">
+					<button
+						<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
+						class="<?php echo \esc_attr("{$componentClass}__close-button"); ?>"
+						aria-label="Close modal"
+					>
+						<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</button>
+				</div>
 			<?php } ?>
 
 			<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
