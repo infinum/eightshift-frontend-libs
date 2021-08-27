@@ -1,4 +1,4 @@
-import { unescapeHTML } from './text-helpers';
+import { unescapeHTML } from '../helpers/text-helpers';
 import apiFetch from '@wordpress/api-fetch';
 
 /**

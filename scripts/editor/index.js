@@ -4,6 +4,7 @@ export {
 	icons,
 	BlockIcon
 } from './icons/icons';
+export { getFetchWpApi } from './fetch-wp-api';
 export { getActions } from './get-actions';
 export {
 	getOption,
