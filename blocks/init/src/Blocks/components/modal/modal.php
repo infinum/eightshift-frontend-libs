@@ -22,9 +22,9 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
+$componentJsToggleClass = $manifest['componentJsToggleClass'] ?? '';
 
 $modalExitButton = Components::checkAttr('modalExitButton', $attributes, $manifest);
-$modalCloseAttr = Components::checkAttr('modalCloseAttr', $attributes, $manifest);
 $modalContent = Components::checkAttr('modalContent', $attributes, $manifest);
 $modalId = Components::checkAttr('modalId', $attributes, $manifest);
 
@@ -48,7 +48,6 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 	aria-hidden="true"
 >
 	<div
-		<?php echo \esc_attr($modalCloseAttr); ?>
 		class="<?php echo \esc_attr($modalOverlayClass); ?>"
 		tabIndex="-1"
 	>
@@ -59,7 +58,7 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 		>
 			<?php if ($modalExitButton) { ?>
 				<button
-					<?php echo \esc_attr($modalCloseAttr); ?>
+					<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
 					class="<?php echo \esc_attr($modalExitButtonClass); ?>"
 					aria-label="Close modal"
 				>

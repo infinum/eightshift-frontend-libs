@@ -1,9 +1,7 @@
 import domReady from '@wordpress/dom-ready';
-import manifest from './../manifest.json';
+import { componentJsClass, componentJsToggleClass } from './../manifest.json';
 
 domReady(async () => {
-	const { componentJsClass, attributes } = manifest;
-
 	const body = document.querySelector('body');
 	const modalSelector = `.${componentJsClass}`;
 	const modalElements = document.querySelectorAll(modalSelector);
@@ -21,9 +19,8 @@ domReady(async () => {
 	const { Modal } = await import('./modal');
 
 	const modal = new Modal({
-		openTrigger: `${attributes.modalOpenAttr.default}`,
-		closeTrigger: `${attributes.modalCloseAttr.default}`,
 		openClass: 'is-open',
+		jsClass: componentJsToggleClass,
 	});
 
 	modal.init();
