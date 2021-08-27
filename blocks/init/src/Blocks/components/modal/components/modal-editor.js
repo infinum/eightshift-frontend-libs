@@ -6,25 +6,29 @@ import manifest from './../manifest.json';
 
 export const ModalEditor = (attributes) => {
 
+	const modalUse = checkAttr('modalUse', attributes, manifest);
+
+	if (!modalUse) {
+		return null;
+	}
+
 	const {
 		componentClass,
-		resources: { icon },
+		resources: {
+			icon
+		},
 	} = manifest;
 
 	const {
 		selectorClass = componentClass,
 		additionalClass,
 		blockClass,
+		onClick,
 	} = attributes;
 
-	const modalUse = checkAttr('modalUse', attributes, manifest);
 	const modalExitButton = checkAttr('modalExitButton', attributes, manifest);
 	const modalContent = checkAttr('modalContent', attributes, manifest);
 	const modalId = checkAttr('modalId', attributes, manifest);
-
-	if (!modalUse) {
-		return null;
-	}
 
 	const modalClass = classnames([
 		selector(componentClass, componentClass),
@@ -35,20 +39,23 @@ export const ModalEditor = (attributes) => {
 	const modalOverlayClass = selector(componentClass, componentClass, 'overlay');
 	const modalDialogClass = selector(componentClass, componentClass, 'dialog');
 	const modalContentClass = selector(componentClass, componentClass, 'content');
-	const modalExitButtonClass = selector(componentClass, componentClass, 'close-button');
+	const modalCloseClass = selector(componentClass, componentClass, 'close');
+	const modalCloseButtonClass = selector(componentClass, componentClass, 'close-button');
 
 	return (
 		<div className={modalClass} id={modalId} aria-hidden="false">
-			<div className={modalOverlayClass} tabIndex="-1" data-micromodal-close>
+			<div className={modalOverlayClass} tabIndex="-1">
 				<div className={modalDialogClass} role="dialog" aria-modal="true">
 					{modalExitButton &&
-						<button
-							className={modalExitButtonClass}
-							aria-label={__('Close modal', 'eightshift-frontend-libs')}
-							data-micromodal-close
-							dangerouslySetInnerHTML={{ __html: icon }}
-						>
-						</button>
+						<div className={modalCloseClass}>
+							<button
+								className={modalCloseButtonClass}
+								aria-label={__('Close modal', 'eightshift-frontend-libs')}
+								dangerouslySetInnerHTML={{ __html: icon }}
+								onClick={onClick}
+							>
+							</button>
+						</div>
 					}
 					<div className={modalContentClass}>
 						{modalContent}
