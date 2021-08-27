@@ -35,11 +35,6 @@ $modalClass = Components::classnames([
 	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
-$modalOverlayClass = Components::selector($componentClass, $componentClass, 'overlay');
-$modalDialogClass = Components::selector($componentClass, $componentClass, 'dialog');
-$modalContentClass = Components::selector($componentClass, $componentClass, 'content');
-$modalExitButtonClass = Components::selector($componentClass, $componentClass, 'close-button');
-
 ?>
 
 <div
@@ -48,25 +43,25 @@ $modalExitButtonClass = Components::selector($componentClass, $componentClass, '
 	aria-hidden="true"
 >
 	<div
-		class="<?php echo \esc_attr($modalOverlayClass); ?>"
+		class="<?php echo \esc_attr("{$componentClass}__overlay"); ?>"
 		tabIndex="-1"
 	>
 		<div
-			class="<?php echo \esc_attr($modalDialogClass); ?>"
+			class="<?php echo \esc_attr("{$componentClass}__dialog"); ?>"
 			role="dialog"
 			aria-modal="true"
 		>
 			<?php if ($modalExitButton) { ?>
 				<button
 					<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
-					class="<?php echo \esc_attr($modalExitButtonClass); ?>"
+					class="<?php echo \esc_attr("{$componentClass}__close-button"); ?>"
 					aria-label="Close modal"
 				>
 					<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>
 			<?php } ?>
 
-			<div class="<?php echo \esc_attr($modalContentClass); ?>">
+			<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 				<?php
 					echo $modalContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
