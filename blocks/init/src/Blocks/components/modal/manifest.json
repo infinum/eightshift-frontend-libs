@@ -3,6 +3,7 @@
 	"title": "Modal",
 	"componentClass": "modal",
 	"componentJsClass": "js-modal",
+	"componentJsToggleClass": "js-modal-toggle",
 	"example": {
 		"attributes": {
 			"modalUse": true,
@@ -19,14 +20,6 @@
 		"modalExitButton": {
 			"type": "boolen",
 			"default": true
-		},
-		"modalOpenAttr": {
-			"type": "string",
-			"default": "data-micromodal-open"
-		},
-		"modalCloseAttr": {
-			"type": "string",
-			"default": "data-micromodal-close"
 		},
 		"modalContent": {
 			"type": "string"
