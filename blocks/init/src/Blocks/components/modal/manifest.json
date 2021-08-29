@@ -14,11 +14,11 @@
 	},
 	"attributes": {
 		"modalUse": {
-			"type": "boolen",
+			"type": "boolean",
 			"default": true
 		},
 		"modalExitButton": {
-			"type": "boolen",
+			"type": "boolean",
 			"default": true
 		},
 		"modalContent": {
