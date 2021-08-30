@@ -3,23 +3,30 @@
 
 	--modal-scoped-icon-size: 1.5rem;
 
-	display: none;
-
 	&.is-open {
-		display: block;
+		#{$this}__overlay {
+			bottom: 0;
+			opacity: 1;
+		}
+
+		#{$this}__dialog {
+			transform: translateY(0);
+		}
 	}
 
 	&__overlay {
 		position: fixed;
-		top: 0;
 		left: 0;
-		right: 0;
-		bottom: 0;
+		bottom: -100%;
+		height: 100%;
+		width: 100%;
 		z-index: 999;
 		background-color: rgba(global-settings(colors, black), 0.5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		opacity: 0;
+		transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
 	}
 
 	&__dialog {
@@ -30,6 +37,8 @@
 		position: relative;
 		padding: 1.25rem;
 		background-color: global-settings(colors, white);
+		transform: translateY(15%);
+		transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
 	}
 
 	&__close {
@@ -47,46 +56,6 @@
 			height: var(--modal-scoped-icon-size);
 			width: var(--modal-scoped-icon-size);
 			pointer-events: none;
-		}
-	}
-
-	@keyframes modalFadeIn {
-		from { opacity: 0; }
-		  to { opacity: 1; }
-	}
-
-	@keyframes modalFadeOut {
-		from { opacity: 1; }
-		  to { opacity: 0; }
-	}
-
-	@keyframes modalSlideIn {
-		from { transform: translateY(15%); }
-		  to { transform: translateY(0); }
-	}
-
-	@keyframes modalSlideOut {
-		from { transform: translateY(0); }
-		  to { transform: translateY(-10%); }
-	}
-
-	&[aria-hidden='false'] {
-		#{$this}__overlay {
-			animation: modalFadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	
-		#{$this}__dialog {
-			animation: modalSlideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	}
-
-	&[aria-hidden='true'] {
-		#{$this}__overlay {
-			animation: modalFadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-		}
-	
-		#{$this}__dialog {
-			animation: modalSlideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
 		}
 	}
 }
