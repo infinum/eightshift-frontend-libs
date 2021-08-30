@@ -45,7 +45,7 @@ $paginationClass = Components::classnames([
 <div
 	class="<?php echo esc_attr($carouselClass); ?>"
 	data-swiper-loop="<?php echo esc_attr($carouselIsLoop ? 'true' : 'false'); ?>"
-	data-show-items="<?php echo esc_attr($carouselShowItems); // @phpstan-ignore-line ?>"
+	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
 	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">
 		<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

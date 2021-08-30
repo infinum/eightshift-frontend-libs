@@ -30,7 +30,7 @@ $headingClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
-$headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2'; // @phpstan-ignore-line Known bug.
+$headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 
 $unique = Components::getUnique();
 ?>

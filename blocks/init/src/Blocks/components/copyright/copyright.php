@@ -32,5 +32,5 @@ $copyrightClass = Components::classnames([
 
 ?>
 <div class="<?php echo \esc_attr($copyrightClass); ?>">
-	<?php echo \esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); // @phpstan-ignore-line Known bug. ?>
+	<?php echo \esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
 </div>

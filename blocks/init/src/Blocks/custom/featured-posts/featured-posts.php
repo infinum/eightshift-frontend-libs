@@ -33,7 +33,7 @@ global $post;
 	<?php
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-		$postType = $featuredPostsQuery['postType'] ?? ''; // @phpstan-ignore-line
+		$postType = $featuredPostsQuery['postType'] ?? '';
 		$selectedTaxonomy = $featuredPostsQuery['taxonomy'] ?? '';
 		$termList = $featuredPostsQuery['terms'] ?? [];
 		$postList = $featuredPostsQuery['posts'] ?? [];
@@ -52,7 +52,7 @@ global $post;
 			if ($termList) {
 				$args['tax_query'][0]['terms'] = array_map(
 					function ($item) {
-						return $item['value']; // @phpstan-ignore-line
+						return $item['value'];
 					},
 					(array)$termList
 				);
@@ -68,7 +68,7 @@ global $post;
 		if ($postList) {
 			$args['post__in'] = array_map(
 				function ($item) {
-					return $item['value']; // @phpstan-ignore-line
+					return $item['value'];
 				},
 				(array)$postList
 			);
