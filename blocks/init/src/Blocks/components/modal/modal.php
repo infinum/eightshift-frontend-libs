@@ -43,6 +43,7 @@ $modalClass = Components::classnames([
 	aria-hidden="true"
 >
 	<div
+		<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
 		class="<?php echo \esc_attr("{$componentClass}__overlay"); ?>"
 		tabIndex="-1"
 	>
