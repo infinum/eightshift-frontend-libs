@@ -66,7 +66,6 @@ $modalClass = Components::classnames([
 
 			<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 				<?php
-					// @phpstan-ignore-line
 					echo $modalContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</div>
