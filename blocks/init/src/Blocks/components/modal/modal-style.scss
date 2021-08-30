@@ -1,0 +1,61 @@
+.modal {
+	$this: &;
+
+	--modal-scoped-icon-size: 1.5rem;
+
+	&.is-open {
+		#{$this}__overlay {
+			bottom: 0;
+			opacity: 1;
+		}
+
+		#{$this}__dialog {
+			transform: translateY(0);
+		}
+	}
+
+	&__overlay {
+		position: fixed;
+		left: 0;
+		bottom: -100%;
+		height: 100%;
+		width: 100%;
+		z-index: 999;
+		background-color: rgba(global-settings(colors, black), 0.5);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		opacity: 0;
+		transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+	}
+
+	&__dialog {
+		min-width: 360px;
+		max-width: calc(100% - 1.25rem);
+		max-height: 90%;
+		overflow: auto;
+		position: relative;
+		padding: 1.25rem;
+		background-color: global-settings(colors, white);
+		transform: translateY(15%);
+		transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+	}
+
+	&__close {
+		text-align: right;
+	}
+
+	&__close-button {
+		@extend %button-reset;
+		height: var(--modal-scoped-icon-size);
+		width: var(--modal-scoped-icon-size);
+		background-color: transparent;
+		cursor: pointer;
+		
+		svg {
+			height: var(--modal-scoped-icon-size);
+			width: var(--modal-scoped-icon-size);
+			pointer-events: none;
+		}
+	}
+}
