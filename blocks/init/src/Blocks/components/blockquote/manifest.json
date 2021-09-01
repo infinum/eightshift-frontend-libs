@@ -13,7 +13,8 @@
 	},
 	"attributes": {
 		"blockquoteContent": {
-			"type": "string"
+			"type": "string",
+			"seo": true
 		},
 		"blockquoteCaption": {
 			"type": "string"
