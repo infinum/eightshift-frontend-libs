@@ -11,12 +11,33 @@
 		"quote"
 	],
 	"example": {
-		"attributes": {}
+		"attributes": {
+			"blockquoteAlign": "left"
+		}
 	},
-	"attributes": {},
-	"options": {},
+	"attributes": {
+		"blockquoteAlign": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"options": {
+		"blockquoteAlign": [
+			"left",
+			"center",
+			"right"
+		]
+	},
 	"components": {
 		"blockquote": "blockquote"
 	},
-	"variables": {}
+	"variables": {
+		"blockquoteAlign": [
+			{
+				"variable": {
+					"block-blockquote-align": "%value%"
+				}
+			}
+		]
+	}
 }
