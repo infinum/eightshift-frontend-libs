@@ -1,5 +1,6 @@
 import React from 'react';
-import { checkAttr, getAttrKey, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const BlockquoteOptions = (attributes) => {
@@ -14,6 +15,8 @@ export const BlockquoteOptions = (attributes) => {
 
 		showBlockquoteUse = false,
 		showLabel = false,
+		showBlockquoteColor = true,
+		showBlockquoteSize = true,
 	} = attributes;
 
 	if (!blockquoteShowControls) {
@@ -21,6 +24,8 @@ export const BlockquoteOptions = (attributes) => {
 	}
 
 	const blockquoteUse = checkAttr('blockquoteUse', attributes, manifest);
+	const blockquoteColor = checkAttr('blockquoteColor', attributes, manifest);
+	const blockquoteSize = checkAttr('blockquoteSize', attributes, manifest);
 
 	return (
 		<>
@@ -34,6 +39,26 @@ export const BlockquoteOptions = (attributes) => {
 
 			{blockquoteUse &&
 				<>
+					{showBlockquoteColor &&
+						<ColorPaletteCustom
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
+							colors={getOption('blockquoteColor', attributes, manifest, true)}
+							value={blockquoteColor}
+							onChange={(value) => setAttributes({ [getAttrKey('blockquoteColor', attributes, manifest)]: value })}
+						/>
+					}
+
+					{showBlockquoteSize &&
+						<CustomSelect
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
+							value={blockquoteSize}
+							options={getOption('blockquoteSize', attributes, manifest)}
+							onChange={(value) => setAttributes({ [getAttrKey('blockquoteSize', attributes, manifest)]: value })}
+							simpleValue
+							isClearable={false}
+							isSearchable={false}
+						/>
+					}
 				</>
 			}
 		</>
