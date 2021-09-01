@@ -1,7 +1,7 @@
 {
 	"blockName": "blockquote",
 	"title": "Blockquote",
-	"description": "Blockquote block with custom settings.",
+	"description": "Quote block with custom settings.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-card-review"
