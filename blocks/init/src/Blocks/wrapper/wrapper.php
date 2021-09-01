@@ -17,8 +17,8 @@ $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
-$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item'); // @phpstan-ignore-line
-$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner'); // @phpstan-ignore-line
+$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item');
+$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner');
 
 if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
