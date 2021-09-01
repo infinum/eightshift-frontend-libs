@@ -1,0 +1,22 @@
+{
+	"blockName": "blockquote",
+	"title": "Blockquote",
+	"description": "Blockquote block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-card-review"
+	},
+	"keywords": [
+		"blockquote",
+		"quote"
+	],
+	"example": {
+		"attributes": {}
+	},
+	"attributes": {},
+	"options": {},
+	"components": {
+		"blockquote": "blockquote"
+	},
+	"variables": {}
+}
