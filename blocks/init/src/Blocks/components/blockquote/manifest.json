@@ -4,10 +4,14 @@
 	"componentClass": "blockquote",
 	"example": {
 		"attributes": {
+			"blockquoteContent": "This is quote.",
 			"blockquoteUse": true
 		}
 	},
 	"attributes": {
+		"blockquoteContent": {
+			"type": "string"
+		},
 		"blockquoteUse": {
 			"type": "boolean",
 			"default": true
