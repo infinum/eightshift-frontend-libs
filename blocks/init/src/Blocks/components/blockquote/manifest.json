@@ -1,0 +1,18 @@
+{
+	"componentName": "blockquote",
+	"title": "Blockquote",
+	"componentClass": "blockquote",
+	"example": {
+		"attributes": {
+			"blockquoteUse": true
+		}
+	},
+	"attributes": {
+		"blockquoteUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"options": {},
+	"variables": {}
+}
