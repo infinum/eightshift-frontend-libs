@@ -23,6 +23,9 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
+$blockquoteContent = Components::checkAttr('blockquoteContent', $attributes, $manifest);
+$blockquoteCaption = Components::checkAttr('blockquoteCaption', $attributes, $manifest);
+
 $blockquoteClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
@@ -39,4 +42,14 @@ $blockquoteClass = Components::classnames([
 	<i class="<?php echo \esc_attr("{$componentClass}__icon"); ?>">
 		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</i>
+
+	<div class="<?php echo \esc_attr("{$componentClass}__quote"); ?>">
+		<?php echo \wp_kses_post($blockquoteContent); ?>
+	</div>
+
+	<div class="<?php echo \esc_attr("{$componentClass}__caption-wrapper"); ?>">
+		<div class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
+			<?php echo \wp_kses_post($blockquoteCaption); ?>
+		</div>
+	</div>
 </blockquote>
