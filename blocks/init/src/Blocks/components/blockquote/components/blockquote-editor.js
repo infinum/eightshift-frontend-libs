@@ -39,13 +39,13 @@ export const BlockquoteEditor = (attributes) => {
 	]);
 
 	const blockquoteIconClass = selector(componentClass, componentClass, 'icon');
-	const blockquoteQuoteClass = selector(componentClass, componentClass, 'quote');
-	const blockquoteCaptionWrapperClass = selector(componentClass, componentClass, 'caption-wrapper');
+	const blockquoteContentClass = selector(componentClass, componentClass, 'content');
+	const blockquoteSeparator = selector(componentClass, componentClass, 'separator');
 	const blockquoteCaptionClass = selector(componentClass, componentClass, 'caption');
 
 	return (
 		<>
-			<blockquote className={blockquoteClass} data-id={unique}>
+			<figure className={blockquoteClass} data-id={unique}>
 				{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 				<i
@@ -53,7 +53,7 @@ export const BlockquoteEditor = (attributes) => {
 					dangerouslySetInnerHTML={{ __html: icon }}
 				></i>
 
-				<div className={blockquoteQuoteClass}>
+				<blockquote className={blockquoteContentClass}>
 					<RichText
 						identifier={getAttrKey('blockquoteContent', attributes, manifest)}
 						placeholder={__('Add content', 'eightshift-frontend-libs')}
@@ -64,23 +64,23 @@ export const BlockquoteEditor = (attributes) => {
 						allowedFormats={['core/bold', 'core/link', 'core/italic']}
 						deleteEnter={true}
 					/>
-				</div>
+				</blockquote>
 
-				<div className={blockquoteCaptionWrapperClass}>
-					<div className={blockquoteCaptionClass}>
-						<RichText
-							identifier={getAttrKey('blockquoteCaption', attributes, manifest)}
-							placeholder={__('Add caption', 'eightshift-frontend-libs')}
-							value={blockquoteCaption}
-							onChange={(value) => {
-								setAttributes({ [getAttrKey('blockquoteCaption', attributes, manifest)]: value })
-							}}
-							allowedFormats={['core/bold', 'core/link', 'core/italic']}
-							deleteEnter={true}
-						/>
-					</div>
-				</div>
-			</blockquote>
+				<div className={blockquoteSeparator}></div>
+
+				<figcaption className={blockquoteCaptionClass}>
+					<RichText
+						identifier={getAttrKey('blockquoteCaption', attributes, manifest)}
+						placeholder={__('Add caption', 'eightshift-frontend-libs')}
+						value={blockquoteCaption}
+						onChange={(value) => {
+							setAttributes({ [getAttrKey('blockquoteCaption', attributes, manifest)]: value })
+						}}
+						allowedFormats={['core/bold', 'core/link', 'core/italic']}
+						deleteEnter={true}
+					/>
+				</figcaption>
+			</figure>
 		</>
 	);
 };

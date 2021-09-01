@@ -34,22 +34,22 @@ $blockquoteClass = Components::classnames([
 
 ?>
 
-<blockquote class="<?php echo \esc_attr($blockquoteClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
+<figure class="<?php echo \esc_attr($blockquoteClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
 
 	<i class="<?php echo \esc_attr("{$componentClass}__icon"); ?>">
 		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</i>
 
-	<div class="<?php echo \esc_attr("{$componentClass}__quote"); ?>">
+	<blockquote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 		<?php echo \wp_kses_post($blockquoteContent); ?>
-	</div>
+	</blockquote>
 
-	<div class="<?php echo \esc_attr("{$componentClass}__caption-wrapper"); ?>">
-		<div class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
-			<?php echo \wp_kses_post($blockquoteCaption); ?>
-		</div>
-	</div>
-</blockquote>
+	<div class="<?php echo \esc_attr("{$componentClass}__separator"); ?>"></div>
+
+	<figcaption class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
+		<?php echo \wp_kses_post($blockquoteCaption); ?>
+	</figcaption>
+</figure>
