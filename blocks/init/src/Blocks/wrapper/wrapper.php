@@ -17,8 +17,8 @@ $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $className = Components::checkAttr('className', $attributes, $manifest);
 
-$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item');
-$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner');
+$wrapperParentClassItemClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item'); // @phpstan-ignore-line
+$wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $wrapperParentClass, 'item-inner'); // @phpstan-ignore-line
 
 if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
@@ -64,7 +64,7 @@ $componentClass = 'wrapper';
 
 $wrapperClass = Components::classnames([
 	$componentClass,
-	Components::selector($componentClass, $componentClass, 'bg-color', $wrapperBackgroundColor),
+	Components::selector($componentClass, $componentClass, 'bg-color', $wrapperBackgroundColor), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperSpacingTop, 'spacing-top', $componentClass),
 	Components::responsiveSelectors($wrapperSpacingBottom, 'spacing-bottom', $componentClass),
 	Components::responsiveSelectors($wrapperSpacingTopIn, 'spacing-top-in', $componentClass),
@@ -76,18 +76,18 @@ $wrapperClass = Components::classnames([
 ]);
 
 $wrapperContainerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'container'),
+	Components::selector($componentClass, $componentClass, 'container'), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperContainerWidth, 'container-width', $componentClass),
 	Components::responsiveSelectors($wrapperGutter, 'gutter', $componentClass),
 ]);
 
 $wrapperInnerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'inner'),
+	Components::selector($componentClass, $componentClass, 'inner'), // @phpstan-ignore-line
 	Components::responsiveSelectors($wrapperWidth, 'width', $componentClass),
 	Components::responsiveSelectors($wrapperOffset, 'offset', $componentClass),
 ]);
 
-$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor');
+$wrapperMainAnchorClass = Components::selector($componentClass, $componentClass, 'anchor'); // @phpstan-ignore-line
 
 $idOutput = '';
 
