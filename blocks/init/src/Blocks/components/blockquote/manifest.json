@@ -5,11 +5,15 @@
 	"example": {
 		"attributes": {
 			"blockquoteContent": "This is quote.",
+			"blockquoteCaption": "Author / position",
 			"blockquoteUse": true
 		}
 	},
 	"attributes": {
 		"blockquoteContent": {
+			"type": "string"
+		},
+		"blockquoteCaption": {
 			"type": "string"
 		},
 		"blockquoteUse": {

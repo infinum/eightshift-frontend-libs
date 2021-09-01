@@ -30,6 +30,7 @@ export const BlockquoteEditor = (attributes) => {
 	} = attributes;
 
 	const blockquoteContent = checkAttr('blockquoteContent', attributes, manifest);
+	const blockquoteCaption = checkAttr('blockquoteCaption', attributes, manifest);
 
 	const blockquoteClass = classnames([
 		selector(componentClass, componentClass),
@@ -39,6 +40,8 @@ export const BlockquoteEditor = (attributes) => {
 
 	const blockquoteIconClass = selector(componentClass, componentClass, 'icon');
 	const blockquoteQuoteClass = selector(componentClass, componentClass, 'quote');
+	const blockquoteCaptionWrapperClass = selector(componentClass, componentClass, 'caption-wrapper');
+	const blockquoteCaptionClass = selector(componentClass, componentClass, 'caption');
 
 	return (
 		<>
@@ -61,6 +64,21 @@ export const BlockquoteEditor = (attributes) => {
 						allowedFormats={['core/bold', 'core/link', 'core/italic']}
 						deleteEnter={true}
 					/>
+				</div>
+
+				<div className={blockquoteCaptionWrapperClass}>
+					<div className={blockquoteCaptionClass}>
+						<RichText
+							identifier={getAttrKey('blockquoteCaption', attributes, manifest)}
+							placeholder={__('Add caption', 'eightshift-frontend-libs')}
+							value={blockquoteCaption}
+							onChange={(value) => {
+								setAttributes({ [getAttrKey('blockquoteCaption', attributes, manifest)]: value })
+							}}
+							allowedFormats={['core/bold', 'core/link', 'core/italic']}
+							deleteEnter={true}
+						/>
+					</div>
 				</div>
 			</blockquote>
 		</>
