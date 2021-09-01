@@ -3,5 +3,24 @@
 
 	&__icon {
 		display: block;
+		margin-bottom: calc(var(--blockquote-font-size) * 1);
+	}
+
+	&__quote {
+		font-size: var(--blockquote-font-size, 1.5rem);
+		line-height: var(--blockquote-line-height, 1.25);
+		color: var(--blockquote-color, var(--global-colors-black, currentColor));
+	}
+
+	&__caption-wrapper {
+		&::before {
+			content: "";
+			margin-bottom: calc(var(--blockquote-font-size) * 1);
+			margin-top: calc(var(--blockquote-font-size) * 1);
+			width: 7rem;
+			background-color: var(--global-colors-black);
+			height: calc(var(--blockquote-font-size) * 0.05);
+			display: inline-block;
+		}
 	}
 }
