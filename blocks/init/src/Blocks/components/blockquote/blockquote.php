@@ -35,4 +35,8 @@ $blockquoteClass = Components::classnames([
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
+
+	<i class="<?php echo \esc_attr("{$componentClass}__icon"); ?>">
+		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	</i>
 </blockquote>
