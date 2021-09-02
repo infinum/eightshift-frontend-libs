@@ -41,7 +41,7 @@ if (!$taxonomyName) {
 		'orderby' => 'include',
 		'include' => array_map(
 			function ($item) {
-				return $item['value']; // @phpstan-ignore-line
+				return $item['value'];
 			},
 			(array)$terms
 		),

@@ -73,7 +73,7 @@ $accordionContentClass = Components::selector($componentClass, $componentClass, 
 		<div class="<?php echo \esc_attr($accordionContentClass); ?>">
 			<?php
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $accordionContent; // @phpstan-ignore-line
+				echo $accordionContent;
 			?>
 		</div>
 	</section>
