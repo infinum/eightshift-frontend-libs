@@ -3,23 +3,20 @@
 
 	&__icon {
 		display: block;
-		margin-bottom: calc(var(--quote-font-size) * 1);
+		margin-bottom: 1rem;
 	}
 
 	&__content {
 		margin: 0;
-		font-size: var(--quote-font-size, 1.5rem);
-		line-height: var(--quote-line-height, 1.25);
-		color: var(--quote-color, var(--global-colors-black, currentColor));
 	}
 
 	&__separator::before {
 		content: "";
-		margin-bottom: calc(var(--quote-font-size) * 1);
-		margin-top: calc(var(--quote-font-size) * 1);
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 		width: 7rem;
 		background-color: var(--global-colors-black);
-		height: calc(var(--quote-font-size) * 0.05);
+		height: 0.05rem;
 		display: inline-block;
 	}
 }
