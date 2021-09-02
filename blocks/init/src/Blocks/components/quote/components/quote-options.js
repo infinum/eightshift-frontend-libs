@@ -1,6 +1,7 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
+import { props, getOptions, checkAttr, getAttrKey, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
+import { HeadingOptions } from '../../heading/components/heading-options';
+import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import manifest from './../manifest.json';
 
 export const QuoteOptions = (attributes) => {
@@ -35,6 +36,21 @@ export const QuoteOptions = (attributes) => {
 
 			{quoteUse &&
 				<>
+					<HeadingOptions
+						{...props('heading', attributes, {
+							options: getOptions(attributes, manifest),
+						})}
+						showHeadingUse
+						showLabel
+					/>
+
+					<ParagraphOptions
+						{...props('paragraph', attributes, {
+							options: getOptions(attributes, manifest),
+						})}
+						showParagraphUse
+						showLabel
+					/>
 				</>
 			}
 		</>
