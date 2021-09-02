@@ -1,11 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { outputCssVariables, getUnique, checkAttr, props, selector } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, props, selector } from '@eightshift/frontend-libs/scripts';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import manifest from './../manifest.json';
-import globalManifest from './../../../manifest.json';
 
 export const QuoteEditor = (attributes) => {
 
@@ -14,8 +12,6 @@ export const QuoteEditor = (attributes) => {
 	if (!quoteUse) {
 		return null;
 	}
-
-	const unique = useMemo(() => getUnique(), []);
 
 	const {
 		componentClass,
@@ -43,9 +39,7 @@ export const QuoteEditor = (attributes) => {
 
 	return (
 		<>
-			<figure className={quoteClass} data-id={unique}>
-				{outputCssVariables(attributes, manifest, unique, globalManifest)}
-
+			<figure className={quoteClass}>
 				<i
 					className={quoteIconClass}
 					dangerouslySetInnerHTML={{ __html: icon }}

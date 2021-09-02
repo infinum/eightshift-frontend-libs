@@ -16,8 +16,6 @@ if (!$quoteUse) {
 	return;
 }
 
-$unique = Components::getUnique();
-
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
@@ -31,11 +29,7 @@ $quoteClass = Components::classnames([
 
 ?>
 
-<figure class="<?php echo \esc_attr($quoteClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
-	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	?>
-
+<figure class="<?php echo \esc_attr($quoteClass); ?>">
 	<i class="<?php echo \esc_attr("{$componentClass}__icon"); ?>">
 		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</i>
