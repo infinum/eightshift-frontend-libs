@@ -23,9 +23,6 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$quoteContent = Components::checkAttr('quoteContent', $attributes, $manifest);
-$quoteCaption = Components::checkAttr('quoteCaption', $attributes, $manifest);
-
 $quoteClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
@@ -43,13 +40,27 @@ $quoteClass = Components::classnames([
 		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</i>
 
-	<quote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
-		<?php echo \wp_kses_post($quoteContent); ?>
-	</quote>
+	<blockquote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
+		<?php
+		echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'heading',
+			Components::props('heading', $attributes, [
+				'blockClass' => $componentClass
+			])
+		);
+		?>
+	</blockquote>
 
 	<div class="<?php echo \esc_attr("{$componentClass}__separator"); ?>"></div>
 
 	<figcaption class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
-		<?php echo \wp_kses_post($quoteCaption); ?>
+		<?php
+		echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'paragraph',
+			Components::props('paragraph', $attributes, [
+				'blockClass' => $componentClass
+			])
+		);
+		?>
 	</figcaption>
 </figure>
