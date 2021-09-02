@@ -6,11 +6,11 @@ import { outputCssVariables, getUnique, checkAttr, selector, getAttrKey } from '
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
-export const BlockquoteEditor = (attributes) => {
+export const QuoteEditor = (attributes) => {
 
-	const blockquoteUse = checkAttr('blockquoteUse', attributes, manifest);
+	const quoteUse = checkAttr('quoteUse', attributes, manifest);
 
-	if (!blockquoteUse) {
+	if (!quoteUse) {
 		return null;
 	}
 
@@ -30,52 +30,52 @@ export const BlockquoteEditor = (attributes) => {
 		additionalClass,
 	} = attributes;
 
-	const blockquoteContent = checkAttr('blockquoteContent', attributes, manifest);
-	const blockquoteCaption = checkAttr('blockquoteCaption', attributes, manifest);
+	const quoteContent = checkAttr('quoteContent', attributes, manifest);
+	const quoteCaption = checkAttr('quoteCaption', attributes, manifest);
 
-	const blockquoteClass = classnames([
+	const quoteClass = classnames([
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
 	]);
 
-	const blockquoteIconClass = selector(componentClass, componentClass, 'icon');
-	const blockquoteContentClass = selector(componentClass, componentClass, 'content');
-	const blockquoteSeparator = selector(componentClass, componentClass, 'separator');
-	const blockquoteCaptionClass = selector(componentClass, componentClass, 'caption');
+	const quoteIconClass = selector(componentClass, componentClass, 'icon');
+	const quoteContentClass = selector(componentClass, componentClass, 'content');
+	const quoteSeparator = selector(componentClass, componentClass, 'separator');
+	const quoteCaptionClass = selector(componentClass, componentClass, 'caption');
 
 	return (
 		<>
-			<figure className={blockquoteClass} data-id={unique}>
+			<figure className={quoteClass} data-id={unique}>
 				{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 				<i
-					className={blockquoteIconClass}
+					className={quoteIconClass}
 					dangerouslySetInnerHTML={{ __html: icon }}
 				></i>
 
-				<blockquote className={blockquoteContentClass}>
+				<quote className={quoteContentClass}>
 					<RichText
-						identifier={getAttrKey('blockquoteContent', attributes, manifest)}
+						identifier={getAttrKey('quoteContent', attributes, manifest)}
 						placeholder={__('Add content', 'eightshift-frontend-libs')}
-						value={blockquoteContent}
+						value={quoteContent}
 						onChange={(value) => {
-							setAttributes({ [getAttrKey('blockquoteContent', attributes, manifest)]: value })
+							setAttributes({ [getAttrKey('quoteContent', attributes, manifest)]: value })
 						}}
 						allowedFormats={['core/bold', 'core/link', 'core/italic']}
 						deleteEnter={true}
 					/>
-				</blockquote>
+				</quote>
 
-				<div className={blockquoteSeparator}></div>
+				<div className={quoteSeparator}></div>
 
-				<figcaption className={blockquoteCaptionClass}>
+				<figcaption className={quoteCaptionClass}>
 					<RichText
-						identifier={getAttrKey('blockquoteCaption', attributes, manifest)}
+						identifier={getAttrKey('quoteCaption', attributes, manifest)}
 						placeholder={__('Add caption', 'eightshift-frontend-libs')}
-						value={blockquoteCaption}
+						value={quoteCaption}
 						onChange={(value) => {
-							setAttributes({ [getAttrKey('blockquoteCaption', attributes, manifest)]: value })
+							setAttributes({ [getAttrKey('quoteCaption', attributes, manifest)]: value })
 						}}
 						allowedFormats={['core/bold', 'core/link', 'core/italic']}
 						deleteEnter={true}

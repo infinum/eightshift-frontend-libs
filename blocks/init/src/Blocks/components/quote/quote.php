@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for the Blockquote Component.
+ * Template for the Quote Component.
  *
  * @package EightshiftBoilerplate
  */
@@ -11,8 +11,8 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
-$blockquoteUse = Components::checkAttr('blockquoteUse', $attributes, $manifest);
-if (!$blockquoteUse) {
+$quoteUse = Components::checkAttr('quoteUse', $attributes, $manifest);
+if (!$quoteUse) {
 	return;
 }
 
@@ -23,10 +23,10 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$blockquoteContent = Components::checkAttr('blockquoteContent', $attributes, $manifest);
-$blockquoteCaption = Components::checkAttr('blockquoteCaption', $attributes, $manifest);
+$quoteContent = Components::checkAttr('quoteContent', $attributes, $manifest);
+$quoteCaption = Components::checkAttr('quoteCaption', $attributes, $manifest);
 
-$blockquoteClass = Components::classnames([
+$quoteClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
@@ -34,7 +34,7 @@ $blockquoteClass = Components::classnames([
 
 ?>
 
-<figure class="<?php echo \esc_attr($blockquoteClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
+<figure class="<?php echo \esc_attr($quoteClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
 	<?php
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
@@ -43,13 +43,13 @@ $blockquoteClass = Components::classnames([
 		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</i>
 
-	<blockquote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
-		<?php echo \wp_kses_post($blockquoteContent); ?>
-	</blockquote>
+	<quote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
+		<?php echo \wp_kses_post($quoteContent); ?>
+	</quote>
 
 	<div class="<?php echo \esc_attr("{$componentClass}__separator"); ?>"></div>
 
 	<figcaption class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
-		<?php echo \wp_kses_post($blockquoteCaption); ?>
+		<?php echo \wp_kses_post($quoteCaption); ?>
 	</figcaption>
 </figure>

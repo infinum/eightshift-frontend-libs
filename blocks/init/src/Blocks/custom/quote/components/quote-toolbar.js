@@ -3,19 +3,19 @@ import { __, sprintf } from '@wordpress/i18n';
 import { checkAttr, getAttrKey, getOption, AlignmentToolbar, AlignmentToolbarType } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
-export const BlockquoteToolbar = ({ attributes, setAttributes }) => {
+export const QuoteToolbar = ({ attributes, setAttributes }) => {
 	const {
 		title: manifestTitle,
 	} = manifest;
 
-	const blockquoteAlign = checkAttr('blockquoteAlign', attributes, manifest);
+	const quoteAlign = checkAttr('quoteAlign', attributes, manifest);
 
 	return (
 		<AlignmentToolbar
-			value={blockquoteAlign}
-			options={getOption('blockquoteAlign', attributes, manifest)}
+			value={quoteAlign}
+			options={getOption('quoteAlign', attributes, manifest)}
 			label={sprintf(__('%s align', 'eightshift-frontend-libs'), manifestTitle)}
-			onChange={(value) => setAttributes({ [getAttrKey('blockquoteAlign', attributes, manifest)]: value })}
+			onChange={(value) => setAttributes({ [getAttrKey('quoteAlign', attributes, manifest)]: value })}
 			type={AlignmentToolbarType.HORIZONTAL}
 		/>
 	);

@@ -1,41 +1,41 @@
 {
-	"blockName": "blockquote",
-	"title": "Blockquote",
+	"blockName": "quote",
+	"title": "Quote",
 	"description": "Quote block with custom settings.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-card-review"
 	},
 	"keywords": [
-		"blockquote",
+		"quote",
 		"quote"
 	],
 	"example": {
 		"attributes": {
-			"blockquoteAlign": "left"
+			"quoteAlign": "left"
 		}
 	},
 	"attributes": {
-		"blockquoteAlign": {
+		"quoteAlign": {
 			"type": "string",
 			"default": "left"
 		}
 	},
 	"options": {
-		"blockquoteAlign": [
+		"quoteAlign": [
 			"left",
 			"center",
 			"right"
 		]
 	},
 	"components": {
-		"blockquote": "blockquote"
+		"quote": "quote"
 	},
 	"variables": {
-		"blockquoteAlign": [
+		"quoteAlign": [
 			{
 				"variable": {
-					"block-blockquote-align": "%value%"
+					"block-quote-align": "%value%"
 				}
 			}
 		]

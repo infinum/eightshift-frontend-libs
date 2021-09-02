@@ -3,8 +3,8 @@ import { Fragment } from '@wordpress/element';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
-import { BlockquoteEditor } from '../components/blockquote-editor';
-import { BlockquoteOptions } from '../components/blockquote-options';
+import { QuoteEditor } from '../components/quote-editor';
+import { QuoteOptions } from '../components/quote-options';
 
 export default {
 	title: `Components/${manifest.title}`,
@@ -15,15 +15,15 @@ export default {
 	},
 };
 
-const attributes = getExample('blockquote', manifest);
+const attributes = getExample('quote', manifest);
 
 export const editor = () => (
-	<BlockquoteEditor {...props('blockquote', attributes)} />
+	<QuoteEditor {...props('quote', attributes)} />
 );
 
 export const options = () => (
-	<BlockquoteOptions
-		{...props('blockquote', attributes, {
+	<QuoteOptions
+		{...props('quote', attributes, {
 			options: getOptions(attributes, manifest),
 		})}
 	/>
@@ -31,12 +31,12 @@ export const options = () => (
 
 export const size = () => (
 	<Fragment>
-		{manifest.options.blockquoteSize.map((values, index) => (
+		{manifest.options.quoteSize.map((values, index) => (
 			<Fragment key={index}>
-				<BlockquoteEditor
-					{...props('blockquote', attributes, {
-						blockquoteContent: values.label,
-						blockquoteSize: values.value,
+				<QuoteEditor
+					{...props('quote', attributes, {
+						quoteContent: values.label,
+						quoteSize: values.value,
 					})}
 				/>
 				<br /><br />
@@ -47,12 +47,12 @@ export const size = () => (
 
 export const color = () => (
 	<Fragment>
-		{manifest.options.blockquoteColor.map((values, index) => (
+		{manifest.options.quoteColor.map((values, index) => (
 			<Fragment key={index}>
-				<BlockquoteEditor
-					{...props('blockquote', attributes, {
-						blockquoteContent: values,
-						blockquoteColor: values,
+				<QuoteEditor
+					{...props('quote', attributes, {
+						quoteContent: values,
+						quoteColor: values,
 					})}
 				/>
 				<br /><br />

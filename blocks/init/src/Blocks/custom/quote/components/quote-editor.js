@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { outputCssVariables, getUnique, props } from '@eightshift/frontend-libs/scripts';
-import { BlockquoteEditor as BlockquoteEditorComponent } from '../../../components/blockquote/components/blockquote-editor';
+import { QuoteEditor as QuoteEditorComponent } from '../../../components/quote/components/quote-editor';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
-export const BlockquoteEditor = ({ attributes, setAttributes }) => {
+export const QuoteEditor = ({ attributes, setAttributes }) => {
 	const unique = useMemo(() => getUnique(), []);
 
 	const {
@@ -15,8 +15,8 @@ export const BlockquoteEditor = ({ attributes, setAttributes }) => {
 		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			<BlockquoteEditorComponent
-				{...props('blockquote', attributes, {
+			<QuoteEditorComponent
+				{...props('quote', attributes, {
 					setAttributes: setAttributes,
 				})}
 			/>

@@ -1,39 +1,39 @@
 {
-	"componentName": "blockquote",
-	"title": "Blockquote",
-	"componentClass": "blockquote",
+	"componentName": "quote",
+	"title": "Quote",
+	"componentClass": "quote",
 	"example": {
 		"attributes": {
-			"blockquoteContent": "This is quote.",
-			"blockquoteCaption": "Author / position",
-			"blockquoteSize": "regular",
-			"blockquoteColor": "black",
-			"blockquoteUse": true
+			"quoteContent": "This is quote.",
+			"quoteCaption": "Author / position",
+			"quoteSize": "regular",
+			"quoteColor": "black",
+			"quoteUse": true
 		}
 	},
 	"attributes": {
-		"blockquoteContent": {
+		"quoteContent": {
 			"type": "string",
 			"seo": true
 		},
-		"blockquoteCaption": {
+		"quoteCaption": {
 			"type": "string"
 		},
-		"blockquoteSize": {
+		"quoteSize": {
 			"type": "string",
 			"default": "regular"
 		},
-		"blockquoteColor": {
+		"quoteColor": {
 			"type": "string",
 			"default": "black"
 		},
-		"blockquoteUse": {
+		"quoteUse": {
 			"type": "boolean",
 			"default": true
 		}
 	},
 	"options": {
-		"blockquoteSize": [
+		"quoteSize": [
 			{
 				"label": "Tiny (14)",
 				"value": "tiny"
@@ -55,7 +55,7 @@
 				"value": "huge"
 			}
 		],
-		"blockquoteColor": [
+		"quoteColor": [
 			"primary",
 			"black",
 			"white",
@@ -71,76 +71,76 @@
 		]
 	},
 	"variables": {
-		"blockquoteSize": {
+		"quoteSize": {
 			"tiny": [
 				{
 					"variable": {
-						"blockquote-font-size": "0.875rem",
-						"blockquote-line-height": "1"
+						"quote-font-size": "0.875rem",
+						"quote-line-height": "1"
 					}
 				}
 			],
 			"small": [
 				{
 					"variable": {
-						"blockquote-font-size": "1.1rem",
-						"blockquote-line-height": "1"
+						"quote-font-size": "1.1rem",
+						"quote-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"blockquote-font-size": "1.125rem"
+						"quote-font-size": "1.125rem"
 					}
 				}
 			],
 			"regular": [
 				{
 					"variable": {
-						"blockquote-font-size": "1rem",
-						"blockquote-line-height": "1"
+						"quote-font-size": "1rem",
+						"quote-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"blockquote-font-size": "1.5rem"
+						"quote-font-size": "1.5rem"
 					}
 				}
 			],
 			"big": [
 				{
 					"variable": {
-						"blockquote-font-size": "1.5rem",
-						"blockquote-line-height": "1"
+						"quote-font-size": "1.5rem",
+						"quote-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"blockquote-font-size": "2.5rem"
+						"quote-font-size": "2.5rem"
 					}
 				}
 			],
 			"huge": [
 				{
 					"variable": {
-						"blockquote-font-size": "1.5rem",
-						"blockquote-line-height": "1"
+						"quote-font-size": "1.5rem",
+						"quote-line-height": "1"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"blockquote-font-size": "4.25rem"
+						"quote-font-size": "4.25rem"
 					}
 				}
 			]
 		},
-		"blockquoteColor": [
+		"quoteColor": [
 			{
 				"variable": {
-					"blockquote-color": "var(--global-colors-%value%)"
+					"quote-color": "var(--global-colors-%value%)"
 				}
 			}
 		]

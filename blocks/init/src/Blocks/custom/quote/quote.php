@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for the Blockquote Block.
+ * Template for the Quote Block.
  *
  * @package EightshiftBoilerplate
  */
@@ -22,8 +22,8 @@ $unique = Components::getUnique();
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		'blockquote',
-		Components::props('blockquote', $attributes)
+		'quote',
+		Components::props('quote', $attributes)
 	);
 	?>
 </div>
