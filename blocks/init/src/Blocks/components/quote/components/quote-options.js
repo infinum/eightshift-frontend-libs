@@ -40,16 +40,12 @@ export const QuoteOptions = (attributes) => {
 						{...props('heading', attributes, {
 							options: getOptions(attributes, manifest),
 						})}
-						showHeadingUse
-						showLabel
 					/>
 
 					<ParagraphOptions
 						{...props('paragraph', attributes, {
 							options: getOptions(attributes, manifest),
 						})}
-						showParagraphUse
-						showLabel
 					/>
 				</>
 			}
