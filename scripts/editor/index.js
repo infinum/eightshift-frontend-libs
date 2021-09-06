@@ -1,6 +1,6 @@
 // All exports are sorted in alphabetical order.
 
-export { 
+export {
 	icons,
 	BlockIcon
 } from './icons/icons';
@@ -27,6 +27,8 @@ export { props } from './props';
 export {
 	getAttributes,
 	getExample,
+	getFullBlockName,
+	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
 } from './register-blocks';

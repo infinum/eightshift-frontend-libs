@@ -83,7 +83,7 @@ const getNamespace = (globalManifest, blockManifest) => {
  * 
  * @returns {string}
  */
-const getFullBlockName = (globalManifest, blockManifest) => {
+export const getFullBlockName = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
 };
 
@@ -95,7 +95,7 @@ const getFullBlockName = (globalManifest, blockManifest) => {
  * 
  * @returns {string}
  */
-const getFullBlockNameVariation = (globalManifest, blockManifest) => {
+export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
 	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.parentName}`;
 };
 
