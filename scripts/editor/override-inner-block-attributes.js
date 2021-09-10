@@ -4,6 +4,7 @@
  * @param {function} select State function.
  * @param {string} clientId Unique block ID from block editor.
  * @param {object} attributesObject Object of attributes to apply.
+ * @param {array} exclude Array of block names to exclude.
  *
  * Usage:
  * ```js
@@ -20,18 +21,24 @@
  * });
  * ```
  */
-export const overrideInnerBlockAttributes = (select, clientId, attributesObject = {}) => {
+ export const overrideInnerBlockAttributes = (select, clientId, attributesObject = {}, exclude = []) => {
 	const { getBlock } = select('core/block-editor');
 
 	const block = getBlock(clientId);
 
 	block.innerBlocks.map((item) => {
-		const { attributes } = item;
+		const {
+			attributes,
+			name,
+		} = item;
 
-		for (const attribute in attributesObject) {
-			if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
-				if (attribute !== attributes[attribute]) {
-					attributes[attribute] = attributesObject[attribute];
+		if (!exclude.includes(name)) {
+			for (const attribute in attributesObject) {
+				if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
+					if (attribute !== attributes[attribute]) {
+						console.log(attributes, attributesObject[attribute]);
+						attributes[attribute] = attributesObject[attribute];
+					}
 				}
 			}
 		}
@@ -45,6 +52,7 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
  *
  * @param {function} select State function.
  * @param {string} clientId Unique block ID from block editor.
+ * @param {array} exclude Array of block names to exclude.
  *
  * Usage:
  * ```js
@@ -58,7 +66,7 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
  * });
  * ```
  */
-export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId) => {
+export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId, exclude = []) => {
 	overrideInnerBlockAttributes(
 		select,
 		clientId,
@@ -66,6 +74,7 @@ export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId) => {
 			wrapperUseSimple: true,
 			wrapperUseSimpleShowControl: false,
 			wrapperUseShowControl: false,
-		}
+		},
+		exclude
 	);
 };
