@@ -33,7 +33,7 @@ export const component = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={false}
 			isInToolbar={false}
 			options={demoOptions}
@@ -46,7 +46,7 @@ export const toolbarGroup = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={true}
 			isInToolbar={true}
 			options={demoOptions}
@@ -59,7 +59,7 @@ export const toolbarGroupInline = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={true}
 			isInToolbar={true}
 			isInline

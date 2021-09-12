@@ -36,7 +36,6 @@
 			for (const attribute in attributesObject) {
 				if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
 					if (attribute !== attributes[attribute]) {
-						console.log(attributes, attributesObject[attribute]);
 						attributes[attribute] = attributesObject[attribute];
 					}
 				}
