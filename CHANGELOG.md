@@ -7,7 +7,6 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## Unreleased
 
 ## [5.0.1] - 2021-09-13
-- Major braking changes do to updates on css variables, and helpers.
 
 ### Added
 - New babel config to silence warnings for plugin-proposal-private-property-in-object.
