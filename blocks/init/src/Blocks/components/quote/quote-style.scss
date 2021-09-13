@@ -1,0 +1,22 @@
+.quote {
+	margin: 0;
+
+	&__icon {
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	&__content {
+		margin: 0;
+	}
+
+	&__separator::before {
+		content: "";
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		width: 7rem;
+		background-color: var(--global-colors-black);
+		height: 0.05rem;
+		display: inline-block;
+	}
+}
