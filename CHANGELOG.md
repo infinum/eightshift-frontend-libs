@@ -6,8 +6,20 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## Unreleased
 
+## [5.0.1] - 2021-09-13
+- Major braking changes do to updates on css variables, and helpers.
+
 ### Added
 - New babel config to silence warnings for plugin-proposal-private-property-in-object.
+- New modal component.
+- New blockquote block.
+
+### Changed
+- OverrideInnerBlockAttributes helper now supports exclude prop.
+
+## Fixed
+- Phpstan issues.
+- Blocks not rendering in the storybook.
 
 ## [5.0.0] - 2021-08-16
 - Major braking changes do to updates on css variables, and helpers.
@@ -436,15 +448,16 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
-[5.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.7...v5.0.0
-[4.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.6...v4.0.7
-[4.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.5...v4.0.6
-[4.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.4...v4.0.5
-[4.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.3...v4.0.4
-[4.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.2...v4.0.3
-[4.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.1...v4.0.2
-[4.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/v4.0.0...v4.0.1
-[4.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.5.0...v4.0.0
+[5.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.0...5.0.1
+[5.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.7...5.0.0
+[4.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.6...4.0.7
+[4.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.5...4.0.6
+[4.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.4...4.0.5
+[4.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.3...4.0.4
+[4.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.2...4.0.3
+[4.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.1...4.0.2
+[4.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.0...4.0.1
+[4.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.5.0...4.0.0
 [3.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/v3.2.2...v3.3.0
