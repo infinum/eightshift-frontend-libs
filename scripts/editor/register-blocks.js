@@ -384,6 +384,7 @@ export const getAttributes = (
 
 	const {
 		attributes: attributesGlobal,
+		blockClassPrefix = 'block',
 	} = globalManifest;
 
 	const {
@@ -401,11 +402,11 @@ export const getAttributes = (
 		},
 		blockClass: {
 			type: 'string',
-			default: `block-${blockName}`,
+			default: `${blockClassPrefix}-${blockName}`,
 		},
 		blockJsClass: {
 			type: 'string',
-			default: `js-block-${blockName}`,
+			default: `js-${blockClassPrefix}-${blockName}`,
 		},
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
