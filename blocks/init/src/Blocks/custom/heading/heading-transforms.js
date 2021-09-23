@@ -8,9 +8,18 @@ export const transforms = {
 		{
 			type: 'block',
 			blocks: [`${manifest.namespace}/${manifestParagraph.blockName}`],
-			transform: ({ paragraph }) => (
-				createBlock(`${manifest.namespace}/${manifestHeading.blockName}`, { heading: paragraph })
-			),
+			transform: (attributes) => {
+				let headingAttributes = {};
+				for (const attribute in attributes) {
+					if (attribute.startsWith('block')) {
+						continue;
+					}
+					const attrKey = attribute.replace('paragraph', 'heading').replace('Paragraph', 'Heading');
+					headingAttributes[attrKey] = attributes[attribute];
+				}
+
+				return createBlock(`${manifest.namespace}/${manifestHeading.blockName}`, headingAttributes);
+			},
 		},
 	],
 };
