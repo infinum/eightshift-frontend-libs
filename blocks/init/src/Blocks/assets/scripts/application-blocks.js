@@ -10,7 +10,7 @@
 import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 
 if (!window?._babelPolyfill) {
-	import('@babel/polyfill');
+	require('@babel/polyfill');
 }
 
 // Find all blocks and require assets index.js inside it.
