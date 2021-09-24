@@ -30,7 +30,7 @@ export const ParagraphEditor = (keyProps) => {
 
 		return createBlock(blockFullName, {
 			...propsObject,
-			paragraphParagraphContent: value,
+			[`${propsObject.prefix}Content`]: value,
 		});
 	};
 
