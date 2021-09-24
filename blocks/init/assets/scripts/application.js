@@ -4,4 +4,6 @@
  * Usage: `WordPress frontend screen`.
  */
 
-import '@babel/polyfill';
+if (!window?._babelPolyfill) {
+	require('@babel/polyfill');
+}
