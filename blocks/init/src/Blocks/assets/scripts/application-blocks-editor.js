@@ -9,6 +9,8 @@
  * Usage: `WordPress admin editor`.
  */
 
+import domReady from '@wordpress/dom-ready';
+import { setDefaultBlockName } from '@wordpress/blocks';
 import { registerBlocks, registerVariations, outputCssVariablesGlobal } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
@@ -36,3 +38,9 @@ hooks();
 
 // Output global css variables.
 outputCssVariablesGlobal(globalSettings);
+
+// Change the default block to the custom paragraph.
+// If changing this block update the blocks filter method in Blocks.php.
+domReady(() => {
+	setDefaultBlockName(`${globalSettings.namespace}/paragraph`);
+});
