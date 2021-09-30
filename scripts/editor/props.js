@@ -54,6 +54,7 @@ export const props = (newName, attributes, manual = {}) => {
 		'setAttributes',
 		'uniqueWrapperId',
 		'options',
+		'clientId',
 	];
 
 	// Check if in test mode and use different setting.
