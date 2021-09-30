@@ -317,6 +317,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
  * @param {array} manifest        - Component/block manifest data.
  * @param {string} unique         - Unique key.
  * @param {object} globalManifest - Global manifest json.
+ * @param {string} customSelector - Output custom selector to use as a style prefix.
  *
  * @return {string}
  *
@@ -329,7 +330,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
  * outputCssVariables(attributes, manifest, unique, globalManifest);
  * ```
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest) => {
+export const outputCssVariables = (attributes, manifest, unique, globalManifest, customSelector = '') => {
 
 	let output = '';
 
@@ -377,6 +378,10 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Check if component or block.
 	let name = manifest['componentClass'] ?? attributes['blockClass'];
+
+	if (customSelector !== '') {
+		name = customSelector;
+	}
 
 	if (variables) {
 
