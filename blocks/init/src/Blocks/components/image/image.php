@@ -23,7 +23,7 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest);
+$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest) ?? '';
 $imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
 
 $pictureClass = Components::classnames([
@@ -66,6 +66,6 @@ $imgClass = Components::classnames([
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['large']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl['large']); ?>" alt="<?php echo \esc_attr($imageAlt); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
 	</picture>
 <?php } ?>
