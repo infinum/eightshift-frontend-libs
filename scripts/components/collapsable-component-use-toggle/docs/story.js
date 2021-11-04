@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CollapsibleComponentUseToggle } from '../collapsible-component-use-toggle';
+import { CollapsableComponentUseToggle } from '../collapsable-component-use-toggle';
 import readme from './readme.mdx';
 
 export default {
-	title: 'Options/CollapsibleComponentUseToggle',
+	title: 'Options/CollapsableComponentUseToggle',
 	parameters: {
 		docs: {
 			page: readme
@@ -17,7 +17,7 @@ export const component = () => {
 	return (
 		<div>
 			<h2>Default toggle</h2>
-			<CollapsibleComponentUseToggle
+			<CollapsableComponentUseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -25,10 +25,10 @@ export const component = () => {
 				showLabel
 			>
 				<p>Content goes here</p>
-			</CollapsibleComponentUseToggle>
+			</CollapsableComponentUseToggle>
 			
 			<h2>Expanded by default</h2>
-			<CollapsibleComponentUseToggle
+			<CollapsableComponentUseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -37,7 +37,7 @@ export const component = () => {
 				startOpen
 			>
 				<p>Content goes here</p>
-			</CollapsibleComponentUseToggle>
+			</CollapsableComponentUseToggle>
 		</div>
 	);
 }

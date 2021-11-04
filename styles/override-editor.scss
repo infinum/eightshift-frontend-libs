@@ -880,8 +880,8 @@ body {
 		}
 	}
 
-	// Styles for CollapsibleComponentUseToggle.
-	.es-collapsible-component-use-toggle {
+	// Styles for CollapsableComponentUseToggle.
+	.es-collapsable-component-use-toggle {
 		border-radius: 0.5rem;
 		box-shadow: 0 0 0 0 transparent;
 	
@@ -945,7 +945,7 @@ body {
 			margin-left: -0.5rem;
 			margin-right: -0.5rem;
 	
-			.es-collapsible-component-use-toggle__trigger {
+			.es-collapsable-component-use-toggle__trigger {
 				color: var(--wp-admin-theme-color, #194BD4);
 				border-bottom-color: hsl(0 0 96%);
 				padding-bottom: 0.5rem;
@@ -956,7 +956,7 @@ body {
 				opacity: 1;
 			}
 	
-			.es-collapsible-component-use-toggle__trigger {
+			.es-collapsable-component-use-toggle__trigger {
 				margin-bottom: 0.5rem;
 			}
 		}

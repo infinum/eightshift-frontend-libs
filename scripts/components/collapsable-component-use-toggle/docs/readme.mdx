@@ -1,12 +1,12 @@
-# ComponentUseToggle
+# CollapsableComponentUseToggle
 
-An extension to the regular `ComponentUseToggle` which allows grouping the child elements into a collapsible area.
+An extension to the regular `ComponentUseToggle` which allows grouping the child elements into a collapsable area.
 Perfect for base components which can usually clutter up big components.
 
 ## Usage
 
 ```jsx
-<CollapsibleComponentUseToggle
+<CollapsableComponentUseToggle
 	label={__('Button', 'eightshift-frontend-libs')}
 	checked={buttonUse}
 	onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
@@ -14,5 +14,5 @@ Perfect for base components which can usually clutter up big components.
 	showLabel={true}
 >
 	// Block options go here
-</CollapsibleComponentUseToggle/>
+</CollapsableComponentUseToggle/>
 ```

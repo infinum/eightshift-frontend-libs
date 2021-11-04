@@ -4,7 +4,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
- * A ComponentUseToggle with collapsible content.
+ * A ComponentUseToggle with collapsable content.
  * 
  * @param {object} props                       - ComponentUseToggle options.
  * @param {string} props.label                 - Usually component name.
@@ -16,7 +16,7 @@ import classnames from 'classnames';
  * @param {boolean} [props.showLabel=true]     - If `true` and the toggle is not visible, the label will be shown.
  * @param {boolean} [props.startOpen=false]    - If `true`, the options are initially expanded.
  */
-export const CollapsibleComponentUseToggle = ({
+export const CollapsableComponentUseToggle = ({
 	label,
 	checked,
 	onChange,
@@ -31,31 +31,31 @@ export const CollapsibleComponentUseToggle = ({
 	const areChildrenExpanded = ((showUseToggle && checked && isOpen) || (!showUseToggle && isOpen));
 
 	const componentClasses = classnames([
-		'es-collapsible-component-use-toggle',
+		'es-collapsable-component-use-toggle',
 		areChildrenExpanded ? 'is-open' : '',
 	]);
 
 	return (
 		<BaseControl className={componentClasses}>
-			<div className='es-collapsible-component-use-toggle__trigger'>
+			<div className='es-collapsable-component-use-toggle__trigger'>
 				{showUseToggle &&
 					<ToggleControl
 						label={label}
 						checked={checked}
 						onChange={onChange}
-						className='es-icon-toggle es-icon-toggle--reverse es-collapsible-component-use-toggle__toggle'
+						className='es-icon-toggle es-icon-toggle--reverse es-collapsable-component-use-toggle__toggle'
 						disabled={disabled}
 					/>
 				}
 
-				{!showUseToggle && showLabel && label && <span className='es-collapsible-component-use-toggle__label'>
+				{!showUseToggle && showLabel && label && <span className='es-collapsable-component-use-toggle__label'>
 					{label}
 				</span>}
 
 				<Button
 					isTertiary
 					onClick={() => setIsOpen(!isOpen)}
-					className='es-collapsible-component-use-toggle__expander'
+					className='es-collapsable-component-use-toggle__expander'
 					icon={!checked ? icons.chevronDown : (isOpen ? icons.chevronUp : icons.chevronDown)}
 					disabled={disabled || (showUseToggle && !checked)}
 				/>
