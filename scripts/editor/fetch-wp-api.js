@@ -61,7 +61,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 			params = {
 				...params,
 				...additionalParam
-			}
+			};
 		}
 
 		// Fetch fresh if you are searching something.
@@ -100,7 +100,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		}
 
 		return await new Promise((resolve) => resolve(cachedItem.data));
-	}
+	};
 
 	return fetchItems;
 }
@@ -122,4 +122,4 @@ const getRoute = (endpoint, params = {}, routePrefix) => {
 	}
 
 	return `${url.pathname}${url.search}`;
-}
+};

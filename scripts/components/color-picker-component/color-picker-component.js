@@ -17,7 +17,7 @@ export const ColorPickerType = {
 	TEXT_HIGHLIGHT_COLOR: 'textHighlight',
 	BACKGROUND_COLOR: 'bgColor',
 	GENERIC: 'generic',
-}
+};
 
 /**
  * Component that allows simple inline color picking while taking up not much space.
@@ -120,7 +120,7 @@ export const ColorPickerComponent = ({
 					</div>
 				);
 		}
-	}
+	};
 
 	return (
 		<>
@@ -139,4 +139,4 @@ export const ColorPickerComponent = ({
 			{colorPicker}
 		</>
 	);
-}
+};

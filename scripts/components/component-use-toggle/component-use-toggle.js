@@ -32,4 +32,4 @@ export const ComponentUseToggle = ({
 			{!showUseToggle && showLabel && label && <span className='es-panel-text-divider'>{label}</span>}
 		</>
 	);
-}
+};

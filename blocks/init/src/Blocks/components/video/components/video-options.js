@@ -117,7 +117,7 @@ export const VideoOptions = (attributes) => {
 									return {
 										url,
 										mime: typeof (mime) === 'undefined' ? mime_type : mime,
-									}
+									};
 								})
 							})
 							}
@@ -243,7 +243,7 @@ export const VideoOptions = (attributes) => {
 									label,
 									isActive: videoPreload === value,
 									icon: icons[iconName],
-								}
+								};
 							})}
 						/>
 					}
