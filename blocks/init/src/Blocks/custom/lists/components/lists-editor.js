@@ -17,7 +17,7 @@ export const ListsEditor = ({ attributes, setAttributes }) => {
 
 			<ListsEditorComponent
 				{...props('lists', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

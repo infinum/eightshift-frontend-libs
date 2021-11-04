@@ -10,7 +10,7 @@ export const CardOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Card', 'eightshift-frontend-libs')}>
 			<CardOptionsComponent
 				{...props('card', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 					options: getOptions(attributes, manifest),
 				})}
 			/>
