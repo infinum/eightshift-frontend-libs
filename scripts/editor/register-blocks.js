@@ -483,7 +483,14 @@ const registerVariation = (
 ) => {
 
 	// Append globalManifest data in to output.
-	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
+	if (blockManifest['icon']) {
+		blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
+	} else {
+		// There is no icon passed to variation, use it's parent icon instead
+		import(`./../../blocks/init/src/Blocks/custom/${blockManifest.parentName}/manifest.json`).then((parentManifest) => {
+			blockManifest['icon'] = getIconOptions(globalManifest, parentManifest);
+		});
+	}
 
 	// This is a full block name used in Block Editor.
 	const fullBlockName = getFullBlockNameVariation(globalManifest, blockManifest);
