@@ -14,6 +14,11 @@ export {
 export { getPaletteColors } from './get-palette-colors';
 export { inserter } from './inserter';
 export {
+	lockIfUndefined,
+	lockPostEditing,
+	unlockPostEditing
+} from './lock-editing';
+export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	getUnique

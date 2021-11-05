@@ -19,8 +19,3 @@ export {
 	truncateMiddle,
 	unescapeHTML
 } from './text-helpers';
-export {
-	lockPostEditing,
-	unlockPostEditing,
-	lockIfUndefined
-} from './lock-editing';
