@@ -104,7 +104,7 @@ export const CustomSelect = (props) => {
 				resolve([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label)));
 			}
 		});
-	}
+	};
 
 	const onChangeInternal = (selectedOptions) => {
 		if (!isSynchronous) {

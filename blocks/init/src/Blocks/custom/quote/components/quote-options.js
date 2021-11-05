@@ -9,7 +9,7 @@ export const QuoteOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Quote', 'eightshift-frontend-libs')}>
 			<QuoteOptionsComponent
 				{...props('quote', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</PanelBody>

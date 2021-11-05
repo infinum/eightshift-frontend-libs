@@ -22,7 +22,7 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
 	}
 
 	return `${input.slice(0, maxLength / 2)}${separator}${input.slice(-1 * (maxLength / 2 - 3))}`;
-}
+};
 
 /**
  * Un-escapes HTML entities.

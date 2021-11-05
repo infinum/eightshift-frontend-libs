@@ -6,7 +6,7 @@ export const JumbotronToolbar = ({ attributes, setAttributes }) => {
 	return (
 		<JumbotronToolbarComponent
 			{...props('jumbotron', attributes, {
-				setAttributes: setAttributes,
+				setAttributes,
 			})}
 		/>
 	);

@@ -7,10 +7,10 @@
  */
 export const createElement = () => {
 	return 'createElement';
-}
+};
 
 export const Fragment = (props) => {
 	return (
 		<div>{props.children}</div>
 	);
-}
+};

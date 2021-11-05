@@ -272,7 +272,7 @@ export const blockIcons = {
 	"esf-select-option": "<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><path d='M17.5.25a2.25 2.25 0 012.25 2.25v15a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 01.25 17.5v-15A2.25 2.25 0 012.5.25zM18.25 15H1.75v2.5c0 .38.282.693.648.743l.102.007h15a.75.75 0 00.75-.75V15zm-5.75-2.25H4l-.102.007a.75.75 0 000 1.486L4 14.25h8.5l.102-.007a.75.75 0 00-.102-1.493zm5.75-4.25H1.75V12h16.5V8.5zm-.75-6.75h-15a.75.75 0 00-.75.75V7h16.5V2.5a.75.75 0 00-.648-.743L17.5 1.75z' fill='currentColor' opacity='.99'/><path d='M15.467 3.223a.75.75 0 011.138.97l-.072.084-1.483 1.5a.75.75 0 01-.976.078l-.085-.072-1.516-1.5a.75.75 0 01.97-1.138l.084.072.983.972.957-.966z' fill='currentColor' fill-rule='nonzero'/><path d='M8.5 3.75a.75.75 0 01.102 1.493L8.5 5.25H4a.75.75 0 01-.102-1.493L4 3.75h4.5zM10.5 9.5a.75.75 0 01.102 1.493L10.5 11H4a.75.75 0 01-.102-1.493L4 9.5h6.5zM9.5 15.75a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 15.75h5.5z' fill-opacity='.12' fill='currentColor' fill-rule='nonzero'/></g></svg>",
 	"esf-submit": "<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-273 -304)' fill='none' fill-rule='evenodd'><path fill='none' d='M273 304h20v20h-20z'/><rect stroke='currentColor' stroke-width='1.5' fill-opacity='.12' fill='currentColor' x='274' y='310' width='18' height='8' rx='1.5'/><path d='M285.946 311.897l.084.073 1.5 1.5a.75.75 0 01.073.976l-.073.084-1.5 1.5a.75.75 0 01-1.133-.976l.073-.084.218-.22H279.5a.75.75 0 01-.102-1.493l.102-.007h5.689l-.22-.22a.75.75 0 01-.072-.976l.073-.084a.75.75 0 01.976-.073z' fill='currentColor' fill-rule='nonzero'/></g></svg>",
 	"esf-textarea": "<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><path fill='none' d='M0 0h20v20H0z'/><path d='M10.5 4.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 4.25h6.5zM12.5 7.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 7.25h8.5zM9.5 10.25a.75.75 0 01.102 1.493l-.102.007H4a.75.75 0 01-.102-1.493L4 10.25h5.5z' fill='currentColor' fill-rule='nonzero'/><path d='M2.75 18h-1V2h1v14.25h16v1h-16V18z' fill-opacity='.12' fill='currentColor'/><path d='M17.5 1.25h-15A2.25 2.25 0 00.25 3.5v13a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25v-13a2.25 2.25 0 00-2.25-2.25zm-15 1.5h15a.75.75 0 01.75.75v13a.75.75 0 01-.75.75h-15a.75.75 0 01-.75-.75v-13a.75.75 0 01.75-.75z' fill='currentColor' fill-rule='nonzero'/></g></svg>",
-}
+};
 
 /**
  * A component that displays a block icon.
@@ -306,4 +306,4 @@ export const blockIcons = {
 		>
 		</i>
 	);
-}
+};

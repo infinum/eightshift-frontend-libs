@@ -9,10 +9,10 @@ import { __experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolba
  */
  export const MatrixAlignControl = (props) => {
 	if (BlockAlignmentMatrixControl) {
-		return <BlockAlignmentMatrixControl {...props} />
+		return (<BlockAlignmentMatrixControl {...props} />);
 	}
 	if (BlockAlignmentMatrixToolbar) {
-		return <BlockAlignmentMatrixToolbar {...props} />
+		return (<BlockAlignmentMatrixToolbar {...props} />);
 	}
 	return null;
-}
+};

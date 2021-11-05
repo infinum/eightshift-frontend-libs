@@ -6,7 +6,7 @@ export const JumbotronEditor = ({ attributes, setAttributes }) => {
 	return (
 		<JumbotronEditorComponent
 			{...props('jumbotron', attributes, {
-				setAttributes: setAttributes,
+				setAttributes,
 			})}
 		/>
 	);

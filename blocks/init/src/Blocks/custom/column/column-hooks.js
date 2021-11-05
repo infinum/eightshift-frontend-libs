@@ -1,7 +1,7 @@
 import { assign } from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from "@wordpress/hooks"
+import { addFilter } from "@wordpress/hooks";
 import globalManifest from '../../manifest.json';
 import manifest from './manifest.json';
 

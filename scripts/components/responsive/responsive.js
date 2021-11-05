@@ -24,7 +24,7 @@ export const Responsive = (props) => {
 	const responsiveClass = [
 		'es-responsive',
 		isOpen ? 'is-open' : '',
-	]
+	];
 
 	return (
 		<BaseControl
