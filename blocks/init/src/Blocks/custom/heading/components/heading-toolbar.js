@@ -15,7 +15,7 @@ export const HeadingToolbar = ({ attributes, setAttributes }) => {
 		<>
 			<HeadingToolbarComponent
 				{...props('heading', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 

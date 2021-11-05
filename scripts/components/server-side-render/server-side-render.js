@@ -32,7 +32,7 @@ const Loader = () => {
 			</svg>
 		</div>
 	);
-}
+};
 
 /**
  * An update of the built-in ServerSideRender that keeps the current state when loading the new one.

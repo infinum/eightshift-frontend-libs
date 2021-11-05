@@ -45,7 +45,7 @@ export const inserter = () => {
 
 			// If reset is used remove all block from dom.
 			if (reset) {
-				dispatch('core/block-editor').resetBlocks([])
+				dispatch('core/block-editor').resetBlocks([]);
 			}
 
 			// Iterate all blocks by namespace.
@@ -71,7 +71,7 @@ export const inserter = () => {
 
 			// If reset is used remove all block from dom.
 			if (reset) {
-				dispatch('core/block-editor').resetBlocks([])
+				dispatch('core/block-editor').resetBlocks([]);
 			}
 
 			// Iterate all blocks by full block name.
@@ -84,14 +84,14 @@ export const inserter = () => {
 		},
 		runReset: function() {
 			// Remove all block from dom.
-			dispatch('core/block-editor').resetBlocks([])
+			dispatch('core/block-editor').resetBlocks([]);
 		},
 		runSave: function() {
 			// Save after insertion in dom.
 			dispatch('core/editor').savePost();
 		}
-	}
-}
+	};
+};
 
 /**
  * Iterate all blocks by full block name.
@@ -113,7 +113,7 @@ export const iterateBlocksByName = (blocks, blockFullName) => {
 		// Insert in dom.
 		insertOneBlock(value);
 	}
-}
+};
 
 /**
  * Iterate all blocks by namespace.
@@ -138,7 +138,7 @@ export const iterateBlocksByNamespace = (blocks, namespace) => {
 		// Insert in dom.
 		insertOneBlock(value);
 	}
-}
+};
 
 /**
  * Insert one block in to dom.
@@ -164,7 +164,7 @@ export const insertOneBlock = (block) => {
 
 	// Insert block in the dom.
 	dispatch('core/block-editor').insertBlocks(newBlock);
-}
+};
 
 /**
  * Build inner blocks by recursion.
@@ -193,4 +193,4 @@ export const buildBlocks = (blocks) => {
 	});
 
 	return output;
-}
+};

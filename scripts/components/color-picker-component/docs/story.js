@@ -15,7 +15,7 @@ export default {
 
 const maxWidthStyle = {
 	maxWidth: '15rem',
-}
+};
 
 export const component = () => {
 	const [objData, setObjData] = useState({ color: undefined });
@@ -31,7 +31,7 @@ export const component = () => {
 
 		</div>
 	);
-}
+};
 
 export const textColor = () => {
 	const [objData, setObjData] = useState({ color: undefined });
@@ -48,7 +48,7 @@ export const textColor = () => {
 
 		</div>
 	);
-}
+};
 
 export const textHighlightColor = () => {
 	const [objData, setObjData] = useState({ color: undefined });
@@ -65,7 +65,7 @@ export const textHighlightColor = () => {
 
 		</div>
 	);
-}
+};
 
 export const backgroundColor = () => {
 	const [objData, setObjData] = useState({ color: undefined });
@@ -81,4 +81,4 @@ export const backgroundColor = () => {
 			/>
 		</div>
 	);
-}
+};

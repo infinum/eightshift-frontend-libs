@@ -30,7 +30,7 @@ export const HeadingLevel = (props) => {
 			icon: icons[`h${level}`] ?? <BlockIcon iconName='es-heading' />,
 			title: sprintf(__('Heading %d', 'eightshift-frontend-libs'), level),
 			value: level
-		}
+		};
 	});
 
 	return (

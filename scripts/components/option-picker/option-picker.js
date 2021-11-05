@@ -107,4 +107,4 @@ export const OptionPicker
 				{...extraProps}
 			/>
 		);
-	}
+	};

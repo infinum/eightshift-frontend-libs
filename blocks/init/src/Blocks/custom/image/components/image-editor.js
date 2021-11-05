@@ -17,7 +17,7 @@ export const ImageEditor = ({ attributes, setAttributes }) => {
 
 			<ImageEditorComponent
 				{...props('image', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

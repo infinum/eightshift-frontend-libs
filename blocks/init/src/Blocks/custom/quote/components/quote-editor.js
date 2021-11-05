@@ -17,7 +17,7 @@ export const QuoteEditor = ({ attributes, setAttributes }) => {
 
 			<QuoteEditorComponent
 				{...props('quote', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

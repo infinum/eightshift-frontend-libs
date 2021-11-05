@@ -173,7 +173,7 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	}
 
 	return output;
-}
+};
 
 /**
  * Check if attributes key has prefix and outputs the correct attribute name.
@@ -203,4 +203,4 @@ export const getAttrKey = (key, attributes, manifest) => {
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
 	return key.replace(_.camelCase(manifest.componentName), attributes.prefix);
-}
+};

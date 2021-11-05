@@ -40,7 +40,7 @@ export const component = () => {
 			label={'Option label'}
 		/>
 	);
-}
+};
 
 export const toolbarGroup = () => {
 	return (
@@ -53,7 +53,7 @@ export const toolbarGroup = () => {
 			label={'Option label'}
 		/>
 	);
-}
+};
 
 export const toolbarGroupInline = () => {
 	return (
@@ -67,4 +67,4 @@ export const toolbarGroupInline = () => {
 			label={'Option label'}
 		/>
 	);
-}
+};

@@ -21,4 +21,4 @@ export const camelize = (stringParam) => {
 	});
 
 	return string.charAt(0).toLowerCase() + string.substring(1);
-}
+};
