@@ -6,7 +6,7 @@ export const CardEditor = ({ attributes, setAttributes }) => {
 	return (
 		<CardEditorComponent
 			{...props('card', attributes, {
-				setAttributes: setAttributes,
+				setAttributes,
 			})}
 		/>
 	);

@@ -36,4 +36,4 @@ export const component = () => {
 			/>
 		</div>
 	);
-}
+};

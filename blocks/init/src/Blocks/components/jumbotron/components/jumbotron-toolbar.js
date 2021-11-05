@@ -18,7 +18,7 @@ export const JumbotronToolbar = (attributes) => {
 		return null;
 	}
 
-	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest)
+	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 	const jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest);
 
 	if (!jumbotronUse) {

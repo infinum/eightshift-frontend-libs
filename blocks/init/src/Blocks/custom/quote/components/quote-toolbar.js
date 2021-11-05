@@ -15,7 +15,7 @@ export const QuoteToolbar = ({ attributes, setAttributes }) => {
 		<>
 			<QuoteToolbarComponent
 				{...props('quote', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 					options: getOptions(attributes, manifest),
 				})}
 			/>

@@ -33,4 +33,4 @@ export const SimpleVerticalSingleSelect = ({
 			</div>
 		</BaseControl>
 	);
-}
+};

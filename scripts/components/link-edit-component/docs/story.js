@@ -28,7 +28,7 @@ export const basicComponent = () => {
 			isNewTabAttrName='newTab'
 		/>
 	);
-}
+};
 
 export const withoutNewTabOption = () => {
 	const [objData, setObjData] = useState({
@@ -44,4 +44,4 @@ export const withoutNewTabOption = () => {
 			showNewTabOption={false}
 		/>
 	);
-}
+};

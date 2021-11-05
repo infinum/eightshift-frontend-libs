@@ -17,7 +17,7 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 
 			<HeadingEditorComponent
 				{...props('heading', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

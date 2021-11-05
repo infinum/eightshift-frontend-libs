@@ -15,7 +15,7 @@ export const AlignmentToolbarType = {
 	TEXT: 'text',
 	VERTICAL: 'vertical',
 	HORIZONTAL: 'horizontal'
-}
+};
 
 /**
  * Component that allows flexible text or object alignment options display.
@@ -67,7 +67,7 @@ export const AlignmentToolbar = (props) => {
 			title: sprintf(__('Justify %s', 'eightshift-frontend-libs'), title),
 			value: 'justify',
 		} : null
-	}
+	};
 
 	const horizontalAligns = {
 		left: showAlignStart ? {
@@ -90,7 +90,7 @@ export const AlignmentToolbar = (props) => {
 			title: sprintf(__('Stretch %s', 'eightshift-frontend-libs'), title),
 			value: 'stretch',
 		} : null
-	}
+	};
 
 	const verticalAligns = {
 		left: showAlignStart ? {
@@ -113,7 +113,7 @@ export const AlignmentToolbar = (props) => {
 			value: sprintf(__('Stretch %s', 'eightshift-frontend-libs'), title),
 			align: 'stretch',
 		} : null
-	}
+	};
 
 	const getControls = () => {
 		switch (type) {
@@ -124,7 +124,7 @@ export const AlignmentToolbar = (props) => {
 			default:
 				return textAligns;
 		}
-	}
+	};
 
 	const filteredControls = Object.values(getControls()).filter((control) => control !== null);
 
@@ -138,5 +138,5 @@ export const AlignmentToolbar = (props) => {
 			isToolbarButton
 			isInToolbar
 		/>
-	)
-}
+	);
+};

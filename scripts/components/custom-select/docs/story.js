@@ -43,14 +43,14 @@ const data = [
 		'label': 'Item 6',
 		'value': 6,
 	},
-]
+];
 
 const getData = () => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(data);
 		}, 3000);
-	})
+	});
 };
 
 const getSearchableData = (inputValue) => {
@@ -63,7 +63,7 @@ const getSearchableData = (inputValue) => {
 
 			resolve(data.filter(filterData));
 		}, 3000);
-	})
+	});
 };
 
 const CustomPickerOption = props => (
@@ -91,7 +91,7 @@ export const SelectSingle = () => {
 			label={'Single synchrounous select'}
 			options={data}
 		/>
-	)
+	);
 };
 
 export const SelectMultiple = () => {
@@ -103,7 +103,7 @@ export const SelectMultiple = () => {
 			placeholder={'Select an item'}
 			options={data}
 		/>
-	)
+	);
 };
 
 export const AsyncSelectSingle = () => {
@@ -114,7 +114,7 @@ export const AsyncSelectSingle = () => {
 			options={data}
 			loadOptions={getData}
 		/>
-	)
+	);
 };
 
 export const AsyncSelectMultiple = () => {
@@ -125,7 +125,7 @@ export const AsyncSelectMultiple = () => {
 			label={'Multiple async select'}
 			loadOptions={getData}
 		/>
-	)
+	);
 };
 
 export const AsyncSelectMultipleWithRefetch = () => {
@@ -138,7 +138,7 @@ export const AsyncSelectMultipleWithRefetch = () => {
 			loadOptions={getSearchableData}
 			reFetchOnSearch={true}
 		/>
-	)
+	);
 };
 
 export const CustomRendering = () => {
@@ -182,5 +182,5 @@ export const CustomRendering = () => {
 				options={data}
 			/>
 		</>
-	)
+	);
 };

@@ -17,7 +17,7 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 
 			<ButtonEditorComponent
 				{...props('button', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

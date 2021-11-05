@@ -9,7 +9,7 @@ export const ListsOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Lists', 'eightshift-frontend-libs')}>
 			<ListsOptionsComponent
 				{...props('lists', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</PanelBody>

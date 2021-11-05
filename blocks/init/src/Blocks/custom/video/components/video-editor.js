@@ -16,7 +16,7 @@ export const VideoEditor = ({ attributes, setAttributes }) => {
 
 			<VideoEditorComponent
 				{...props('video', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</div>

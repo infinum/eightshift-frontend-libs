@@ -91,7 +91,7 @@ class YoastSEOCustomData {
 	// Find all strings using regex in the provided data set of dynamic attributes.
 	findStrings(key, data) {
 
-		const regex = new RegExp(`"${key}":".*?"`, 'gm')
+		const regex = new RegExp(`"${key}":".*?"`, 'gm');
 		const output = [];
 		let iterator;
 
@@ -141,4 +141,4 @@ export const yoastSeo = () => {
 			});
 		}
 	});
-}
+};

@@ -9,10 +9,10 @@ export const InnerBlocks = () => {
 	return (
 		<div>InnerBlocks</div>
 	);
-}
+};
 
 export const InspectorControls = (props) => {
 	return (
 		<div>{props.children}</div>
 	);
-}
+};
