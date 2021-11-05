@@ -64,4 +64,4 @@ export const CollapsableComponentUseToggle = ({
 			{areChildrenExpanded && children}
 		</BaseControl>
 	);
-}
+};

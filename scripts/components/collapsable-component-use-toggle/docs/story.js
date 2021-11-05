@@ -40,4 +40,4 @@ export const component = () => {
 			</CollapsableComponentUseToggle>
 		</div>
 	);
-}
+};
