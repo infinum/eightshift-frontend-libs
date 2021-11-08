@@ -31,6 +31,7 @@ registerBlocks(
 registerVariations(
 	globalSettings,
 	require.context('./../../variations', true, /manifest.json$/),
+	require.context('./../../custom', true, /manifest.json$/)
 );
 
 // Run Wrapper hooks.
