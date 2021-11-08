@@ -6,14 +6,6 @@
 	"icon": {
 		"src": "es-card-simple"
 	},
-	"example": {
-		"attributes": {
-			"cardCardHeadingContent": "Test Heading",
-			"cardCardIntroContent": "Test Intro",
-			"cardCardParagraphUse": false,
-			"cardCardButtonContent": "Button Link Test"
-		}
-	},
 	"attributes": {
 		"cardCardHeadingContent": "Test Heading",
 		"cardCardIntroContent": "Test Intro",

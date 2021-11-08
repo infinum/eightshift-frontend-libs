@@ -83,8 +83,8 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 
 		output = {
 			blockName: getFullBlockNameVariation(globalManifest, blockManifest),
-			attributes: variation.example.attributes,
-			innerBlocks: getInnerBlocks(variation.example.innerBlocks),
+			attributes: variation.example?.attributes ?? variation.attributes,
+			innerBlocks: getInnerBlocks(variation.example?.innerBlocks ?? variation.innerBlocks),
 			isVariation,
 		};
 	} else {
