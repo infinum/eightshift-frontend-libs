@@ -5,7 +5,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 
 export const WrapperToolbar = ({attributes, setAttributes}) => {
 
-    const copyAttributes = () => {
+    const copyAttributes = (closeMenu) => {
         localStorage.removeItem('esCopiedWrapperAttributes');
 
         const copiedWrapperAttributes = Object.keys(attributes).filter((key) => key.includes('wrapper'))
@@ -14,11 +14,13 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
         }, {});
 
         localStorage.setItem('esCopiedWrapperAttributes', JSON.stringify(copiedWrapperAttributes));
+        closeMenu();
     };
 
-    const pasteAttributes = () => {
+    const pasteAttributes = (closeMenu) => {
         const wrapperAttributesToBePasted = JSON.parse(localStorage.getItem('esCopiedWrapperAttributes'));
         setAttributes(wrapperAttributesToBePasted);
+        closeMenu();
     };
 
 	return (
@@ -31,12 +33,12 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
                 { ( { onClose } ) => (
                     <>
                         <MenuGroup>
-                            <MenuItem onClick={ () => {copyAttributes(); onClose();} } icon={icons.copy}>
+                            <MenuItem onClick={ () => {copyAttributes(onClose);} } icon={icons.copy}>
                                 <button className="components-button components-dropdown-menu__toggle has-icon">
                                     {__('Copy Wrapper Attributes', 'eighsfhit-frontend-libs')}
                                 </button>
                             </MenuItem>
-                            <MenuItem onClick={ () => {pasteAttributes(); onClose();} } icon={icons.paste}>
+                            <MenuItem onClick={ () => {pasteAttributes(onClose);} } icon={icons.paste}>
                                 <button className="components-button components-dropdown-menu__toggle has-icon">
                                     {__('Paste Wrapper Attributes', 'eighsfhit-frontend-libs')}
                                 </button>
