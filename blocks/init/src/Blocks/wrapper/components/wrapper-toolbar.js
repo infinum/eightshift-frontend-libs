@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 
 export const WrapperToolbar = ({attributes, setAttributes}) => {
@@ -37,7 +36,7 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
                 className="components-toolbar es-toolbar-icon-24"
             >
                 { ( { onClose } ) => (
-                    <Fragment>
+                    <>
                         <MenuGroup>
                             <MenuItem onClick={ () => {copyAttributes(); onClose();} } icon={iconCopy()}>
                                 <button className="components-button components-dropdown-menu__toggle has-icon">
@@ -52,7 +51,7 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
                                 </button>
                             </MenuItem>
                         </MenuGroup>
-                    </Fragment>
+                    </>
                 ) }
             </DropdownMenu>
         </>
