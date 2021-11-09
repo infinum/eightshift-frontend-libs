@@ -14,18 +14,18 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
     };
 
     const copyAttributes = () => {
-        localStorage.removeItem('copiedWrapperAttributes');
+        localStorage.removeItem('esCopiedWrapperAttributes');
 
         const copiedWrapperAttributes = Object.keys(attributes).filter((key) => key.includes('wrapper'))
         .reduce((cur, key) => { 
             return Object.assign(cur, { [key]: attributes[key] });
         }, {});
 
-        localStorage.setItem('copiedWrapperAttributes', JSON.stringify(copiedWrapperAttributes));
+        localStorage.setItem('esCopiedWrapperAttributes', JSON.stringify(copiedWrapperAttributes));
     };
 
     const pasteAttributes = () => {
-        const wrapperAttributesToBePasted = JSON.parse(localStorage.getItem('copiedWrapperAttributes'));
+        const wrapperAttributesToBePasted = JSON.parse(localStorage.getItem('esCopiedWrapperAttributes'));
         setAttributes(wrapperAttributesToBePasted);
     };
 
