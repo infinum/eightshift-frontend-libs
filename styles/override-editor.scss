@@ -509,6 +509,11 @@ body {
 		}
 	}
 
+	// Style for CustomSelect component.
+	.components-custom-select {
+		z-index: 4;
+	}
+
 	// Style for CustomSelect item with icon on the left.
 	.es-custom-select-flex {
 		display: flex;
@@ -595,7 +600,7 @@ body {
 	// Styles for making empty block placeholders visible and usable (especially in Columns).
 	.block-editor-block-list__layout {
 		height: 100%;
-	
+
 		// If it's empty.
 		&:empty {
 			height: 100%;
@@ -603,17 +608,17 @@ body {
 			border-radius: 8px;
 			border: 1px dashed hsl(0, 0%, 90%);
 		}
-	
+
 		// If it has one child, expand the expander to fill everything.
 		// (aka when empty InnerBlocks is clicked and only has the appender)
 		.block-list-appender.wp-block:only-child {
 			height: 100%;
-	
+
 			.components-dropdown.block-editor-inserter {
 				border-radius: 8px;
 				border: 1px dashed hsl(0, 0%, 90%);
 				height: 100%;
-	
+
 				.block-list-appender__toggle.block-editor-button-block-appender {
 					min-height: 4rem;
 					width: 100%;
@@ -622,7 +627,7 @@ body {
 				}
 			}
 		}
-	
+
 		// Resize the appender when it's not the only child
 		// to make it easier to hit.
 		.block-list-appender.wp-block:not(:only-child) {
@@ -632,12 +637,12 @@ body {
 			}
 		}
 	}
-	
+
 	// Resize InnerBlocks container to fit.
 	.block-editor-inner-blocks {
 		height: 100%;
 	}
-	
+
 	// Center the default [+] inserter.
 	.block-editor-inserter {
 		display: flex !important;
@@ -741,7 +746,7 @@ body {
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
-	
+
 		.components-button {
 			justify-content: flex-start !important;
 
@@ -793,11 +798,11 @@ body {
 		align-items: center;
 		grid-template-columns: 0.6rem 1fr;
 		grid-gap: 1rem;
-	
+
 		i {
 			margin: 0;
 			padding: 0;
-	
+
 			svg {
 				width: 1.2rem;
 				height: 1.2rem;
