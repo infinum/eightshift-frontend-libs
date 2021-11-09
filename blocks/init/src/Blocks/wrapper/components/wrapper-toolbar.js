@@ -43,8 +43,6 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
                                     {__('Copy Wrapper Attributes', 'eighsfhit-frontend-libs')}
                                 </button>
                             </MenuItem>
-                        </MenuGroup>
-                        <MenuGroup>
                             <MenuItem onClick={ () => {pasteAttributes(); onClose();} } icon={iconPaste()}>
                                 <button className="components-button components-dropdown-menu__toggle has-icon">
                                     {__('Paste Wrapper Attributes', 'eighsfhit-frontend-libs')}
