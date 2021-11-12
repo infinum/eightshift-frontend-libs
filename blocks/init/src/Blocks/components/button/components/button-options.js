@@ -105,7 +105,7 @@ export const ButtonOptions = (attributes) => {
 				
 					{showButtonAriaLabel &&
 						<TextControl
-					label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
 							value={buttonAriaLabel}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
 						/>
