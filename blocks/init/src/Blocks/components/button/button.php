@@ -56,7 +56,9 @@ $buttonClass = Components::classnames([
 		class="<?php echo \esc_attr($buttonClass); ?>"
 		id="<?php echo \esc_attr($buttonId); ?>"
 		title="<?php echo \esc_attr($buttonContent); ?>"
-		aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		<?php if (!empty($buttonAriaLabel)) { ?>
+			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {
@@ -73,7 +75,9 @@ $buttonClass = Components::classnames([
 		class="<?php echo \esc_attr($buttonClass); ?>"
 		id="<?php echo \esc_attr($buttonId); ?>"
 		title="<?php echo \esc_attr($buttonContent); ?>"
-		aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		<?php if (!empty($buttonAriaLabel)) { ?>
+			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {

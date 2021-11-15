@@ -16,6 +16,7 @@ export const ButtonOptions = (attributes) => {
 
 		showButtonUse = false,
 		showLabel = false,
+		showButtonAriaLabel = true,
 		showButtonColor = true,
 		showButtonSize = true,
 		showButtonWidth = true,
@@ -35,6 +36,7 @@ export const ButtonOptions = (attributes) => {
 	const buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest);
 	const buttonId = checkAttr('buttonId', attributes, manifest);
 	const buttonIsLink = checkAttr('buttonIsLink', attributes, manifest);
+	const buttonAriaLabel = checkAttr('buttonAriaLabel', attributes, manifest);
 
 	const sizeOptions = getOption('buttonSize', attributes, manifest).map(({ label, value, icon: iconName }) => {
 		return {
@@ -100,7 +102,15 @@ export const ButtonOptions = (attributes) => {
 							options={widthOptions}
 						/>
 					}
-
+				
+					{showButtonAriaLabel &&
+						<TextControl
+							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
+							value={buttonAriaLabel}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
+						/>
+					}
+				
 					{showButtonIsAnchor &&
 						<IconToggle
 							icon={icons.anchor}
