@@ -1,5 +1,6 @@
 import React from 'react';
 import Select, { components } from 'react-select';
+import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { BaseControl } from '@wordpress/components';
 import { SortableContainer, SortableElement, sortableHandle } from 'react-sortable-hoc';
@@ -26,7 +27,13 @@ import AsyncSelect from "react-select/async";
  * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
  * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
  * @param {React.Component?} [props.customIndicatorSeparator]          - If provided, adds a separator between the select content and the dropdown arrow on the right.
- * @param {boolean} [props.simpleValue=false]                          - If in synchronous (`options` is set), single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
+ * @param {boolean} [props.simpleValue=false]                          - If in single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
+ * @param {boolean} [props.disabled=false]                             - If set to `true`, renders the component as disabled.
+ * @param {boolean} [props.loading=false]                              - If set to `true`, renders the component in a loading state.
+ * @param {boolean} [props.blurInputOnSelect=false]                    - If set to `true`, focus is removed from the input once an option is selected.
+ * @param {boolean} [props.hideSelected=false]                         - If set to `true`, the selected option is hidden from the menu.
+ * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
+ * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -48,22 +55,27 @@ export const CustomSelect = (props) => {
 		customSingleValueDisplayComponent,
 		customIndicatorSeparator,
 		simpleValue = false,
+		disabled = false,
+		loading = false,
+		blurInputOnSelect = false,
+		hideSelected = false,
+		loadingMessage = __('Loading', 'eightshift-frontend-libs'),
+		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
 	} = props;
 
 	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
 
 	const isSynchronous = !loadOptions;
 
-	function arrayMove(array, from, to) {
+	const arrayMove = (array, from, to) => {
 		// eslint-disable-next-line no-param-reassign
 		array = array.slice();
 		array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 		return array;
-	}
+	};
 
 	const SortableMultiValue = SortableElement((propsSortable) => {
-
-		// this prevents the menu from being opened/closed when the user clicks
+		// This prevents the menu from being opened/closed when the user clicks
 		// on a value to begin dragging it. ideally, detecting a click (instead of
 		// a drag) would still focus the control and toggle the menu, but that
 		// requires some magic with refs that are out of scope for this example
@@ -87,6 +99,9 @@ export const CustomSelect = (props) => {
 	const filterOptions = (inputValue, label) => label.toLowerCase().includes(inputValue.toLowerCase());
 
 	const customLoadOptions = async (inputValue) => {
+		// Reload the selected item.
+		setSelected(selected);
+
 		if (!Array.isArray(defaultOptions)) {
 			const options = await loadOptions(inputValue);
 			setDefaultOptions(options);
@@ -107,12 +122,6 @@ export const CustomSelect = (props) => {
 	};
 
 	const onChangeInternal = (selectedOptions) => {
-		if (!isSynchronous) {
-			setSelected(selectedOptions);
-			onChange(selectedOptions);
-			return;
-		}
-
 		let output;
 
 		// Compare current selected posts with the API and sync them.
@@ -134,6 +143,18 @@ export const CustomSelect = (props) => {
 		onChange(newValue);
 	};
 
+	const getValue = () => {
+		if (multiple || !simpleValue || !Array.isArray(defaultOptions)) {
+			return selected;
+		}
+
+		if (options) {
+			return options.filter(({ value }) => value === selected);
+		}
+
+		return defaultOptions.filter(({ value }) => value === selected)[0];
+	};
+
 	const customSelectClass = 'components-custom-select';
 
 	const selectControl = (
@@ -143,7 +164,7 @@ export const CustomSelect = (props) => {
 			onSortEnd={onSortEnd}
 			distance={4}
 			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-			value={(!multiple && simpleValue) ? options.filter(({ value }) => value === selected) : selected}
+			value={getValue()}
 			loadOptions={customLoadOptions}
 			cacheOptions={cacheOptions}
 			className={customSelectClass}
@@ -154,6 +175,12 @@ export const CustomSelect = (props) => {
 			isMulti={multiple}
 			isSearchable={isSearchable}
 			isClearable={isClearable}
+			isDisabled={disabled}
+			isLoading={loading}
+			blurInputOnSelect={blurInputOnSelect}
+			hideSelectedOptions={hideSelected}
+			loadingMessage={loadingMessage}
+			noOptionsMessage={noOptionsMessage}
 			components={{
 				MultiValue: SortableMultiValue,
 				MultiValueLabel: SortableMultiValueLabel,
