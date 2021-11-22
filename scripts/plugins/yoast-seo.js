@@ -11,10 +11,10 @@ class YoastSEOCustomData {
 		}
 
 		// Register custom class.
-			YoastSEO.app.registerPlugin( 'YoastSEOCustomData', { status: 'ready' } );
+		YoastSEO.app.registerPlugin( 'YoastSEOCustomData', { status: 'ready' } );
 
-			// Custom implementation.
-			this.registerModifications();
+		// Custom implementation.
+		this.registerModifications();
 	}
 
 	/**
@@ -48,12 +48,17 @@ class YoastSEOCustomData {
 			newData += this.checkData(require.context(`./../../../../../src/Blocks/components`, true, /manifest.json$/), newData);
 			newData += this.checkData(require.context(`./../../../../../src/Blocks/custom`, true, /manifest.json$/), newData);
 
+			// Replace unicode characters so that Yoast can parse them.
+			newData = newData.replace(/\\u0022/g, '"');
+			newData = newData.replace(/\\u0026/g, '&');
+			newData = newData.replace(/\\u003c/g, '<');
+			newData = newData.replace(/\\u003e/g, '>');
+
 			return newData;
 	}
 
 	// Check for the manifest data and append.
 	checkData(dataType, data) {
-
 		let output = '';
 
 		this.findManifests(dataType).forEach((element) => {
@@ -67,16 +72,15 @@ class YoastSEOCustomData {
 
 	// Find all manifests in the provided require.context.
 	findManifests(items) {
-
 		const output = [];
 
 		// Find all attributes in that contains.
 		items.keys().map(items).forEach((item) => {
 
-			// Be sure tha that attributes key exists because it is not necesery to be present.
+			// Be sure tha that attributes key exists.
 			if (Object.prototype.hasOwnProperty.call(item, 'attributes')) {
 
-				// Loop attributes and find seo key.
+				// Loop attributes and find 'seo' key.
 				for (const property in item.attributes) {
 					if (Object.prototype.hasOwnProperty.call(item.attributes[property], 'seo')) {
 						output.push(property);
@@ -90,8 +94,7 @@ class YoastSEOCustomData {
 
 	// Find all strings using regex in the provided data set of dynamic attributes.
 	findStrings(key, data) {
-
-		const regex = new RegExp(`"${key}":".*?"`, 'gm');
+		const regex = new RegExp(`"${key}":"(.*?)"`, 'gm');
 		const output = [];
 		let iterator;
 
@@ -103,12 +106,13 @@ class YoastSEOCustomData {
 					regex.lastIndex++;
 			}
 
-			// The result can be accessed through the `iterator`-variable.
-			iterator.forEach((match) => {
+			// Find all the images. They are in blocks so the attribute imageUrl will have a prefix.
+			if (/ImageUrl$/.test(key)) {
+				output.push(`<img src="${iterator[1]}"/>`);
+			}
 
-				// Split string, remove key, remove first and last quote.
-				output.push((match.split(':').pop().substring(1).slice(0,-1)));
-			});
+			// Get the matched content only.
+			output.push(iterator[1]);
 		}
 
 		return output;
@@ -117,7 +121,7 @@ class YoastSEOCustomData {
 
 /**
  * Searches all blocks and component manifests and returns attributes that have `"seo": "true"` set.
- * Attributes with this key will be passed as custom data to YoastSEO's analysis. 
+ * Attributes with this key will be passed as custom data to YoastSEO's analysis.
  * See https://developer.yoast.com/customization/yoast-seo/adding-custom-data-analysis for more info.
  *
  * Usage:
