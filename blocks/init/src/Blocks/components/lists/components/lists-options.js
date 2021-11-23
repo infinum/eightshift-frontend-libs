@@ -18,6 +18,7 @@ export const ListsOptions = (attributes) => {
 		showListsColor = true,
 		showListsSize = true,
 		showListsColorOnlyMarker = true,
+		showListsOrdered = true,
 	} = attributes;
 
 	if (!listsShowControls) {
@@ -28,6 +29,7 @@ export const ListsOptions = (attributes) => {
 	const listsColor = checkAttr('listsColor', attributes, manifest);
 	const listsSize = checkAttr('listsSize', attributes, manifest);
 	const listsColorOnlyMarker = checkAttr('listsColorOnlyMarker', attributes, manifest);
+	const listsOrdered = checkAttr('listsOrdered', attributes, manifest);
 
 	return (
 		<>
@@ -62,6 +64,18 @@ export const ListsOptions = (attributes) => {
 						/>
 					}
 
+					{showListsOrdered &&
+						<CustomSelect
+							label={<IconLabel icon={<BlockIcon iconName='es-footnotes' />} label={__('List type', 'edp')} />}
+							value={listsOrdered}
+							options={getOption('listsOrdered', attributes, manifest)}
+							onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
+							isClearable={false}
+							isSearchable={false}
+							simpleValue
+						/>
+					}
+				
 					{showListsColorOnlyMarker &&
 						<IconToggle
 							icon={<BlockIcon iconName='es-list-item' />}
