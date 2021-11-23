@@ -38,6 +38,16 @@
 		}
 	},
 	"options": {
+		"listsOrdered": [
+			{
+				"label": "Ordered list",
+				"value": "ol"
+			},
+			{
+				"label": "Bullet list",
+				"value": "ul"
+			}
+		],
 		"listsSize": [
 			{
 				"label": "Default (16)",
