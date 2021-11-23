@@ -26,6 +26,14 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
 $listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
+$listsOrderedOptions = array_map(function ($option) {
+	return $option['value'];
+}, $manifest['options']['listsOrdered'] ?? []);
+
+if (!in_array($listsOrdered, $listsOrderedOptions)) {
+	return;
+}
+
 $listsClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
