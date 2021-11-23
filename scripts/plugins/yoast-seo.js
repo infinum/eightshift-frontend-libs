@@ -49,10 +49,7 @@ class YoastSEOCustomData {
 			newData += this.checkData(require.context(`./../../../../../src/Blocks/custom`, true, /manifest.json$/), newData);
 
 			// Replace unicode characters so that Yoast can parse them.
-			newData = newData.replace(/\\u0022/g, '"');
-			newData = newData.replace(/\\u0026/g, '&');
-			newData = newData.replace(/\\u003c/g, '<');
-			newData = newData.replace(/\\u003e/g, '>');
+			newData = newData.replace(/\\u0022/g, '"').replace(/\\u0026/g, '&').replace(/\\u003c/g, '<').replace(/\\u003e/g, '>');
 
 			return newData;
 	}
