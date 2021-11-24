@@ -51,12 +51,12 @@ const IconsOutput = (props) => {
 						key={index}>
 						<div
 							css={{
-								marginBottom: '0.75rem',
+								marginBottom: '1rem',
 								color: blockIcons ? '#FFF' : '#3858E9',
 								backgroundColor: blockIcons ? '#3858E9' : 'transparent',
 								transform: 'scale(1.5)',
-								width: '1.75rem',
-								height: '1.75rem',
+								minWidth: '1.75rem',
+								minHeight: '1.75rem',
 								borderRadius: '0.25rem',
 								display: 'grid',
 								placeItems: 'center',
