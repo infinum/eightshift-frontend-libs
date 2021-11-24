@@ -122,6 +122,11 @@ export const CustomSelect = (props) => {
 	};
 
 	const onChangeInternal = (selectedOptions) => {
+		if (selectedOptions === undefined || selectedOptions === null) {
+			setSelected(undefined);
+			onChange(undefined);
+		}
+
 		let output;
 
 		// Compare current selected posts with the API and sync them.
@@ -131,6 +136,11 @@ export const CustomSelect = (props) => {
 			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
 		} else {
 			output = simpleValue ? selectedOptions?.value : selectedOptions;
+		}
+
+		if (simpleValue && selectedOptions && selectedOptions?.value) {
+			let selectionCache = JSON.parse(window.localStorage.getItem('es-custom-select-cache'));
+			window.localStorage.setItem('es-custom-select-cache', JSON.stringify({ ...selectionCache, [selectedOptions.value]: selectedOptions }));
 		}
 
 		setSelected(output);
@@ -144,6 +154,10 @@ export const CustomSelect = (props) => {
 	};
 
 	const getValue = () => {
+		if (selected === undefined || selected === null || selected?.length < 1) {
+			return selected;
+		}
+
 		if (multiple || !simpleValue || !Array.isArray(defaultOptions)) {
 			return selected;
 		}
@@ -152,7 +166,22 @@ export const CustomSelect = (props) => {
 			return options.filter(({ value }) => value === selected);
 		}
 
-		return defaultOptions.filter(({ value }) => value === selected)[0];
+		let selectionCache = JSON.parse(window.localStorage.getItem('es-custom-select-cache'));
+
+		const itemFromAsyncOptions = defaultOptions.filter(({ value }) => value === selected)[0];
+
+		if (itemFromAsyncOptions) {
+			return itemFromAsyncOptions;
+		}
+
+		if (selectionCache && selectionCache[selected]) {
+			return selectionCache[selected];
+		}
+
+		return {
+			label: `Item ${selected}`,
+			value: selected,
+		};
 	};
 
 	const customSelectClass = 'components-custom-select';
