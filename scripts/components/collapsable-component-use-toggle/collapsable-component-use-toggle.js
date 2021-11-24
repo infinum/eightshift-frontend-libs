@@ -35,6 +35,10 @@ export const CollapsableComponentUseToggle = ({
 		areChildrenExpanded ? 'is-open' : '',
 	]);
 
+	if (!showLabel && !showUseToggle) {
+		return children;
+	}
+
 	return (
 		<BaseControl className={componentClasses}>
 			<div className='es-collapsable-component-use-toggle__trigger'>
