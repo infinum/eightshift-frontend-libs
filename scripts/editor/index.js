@@ -2,6 +2,8 @@
 
 export {
 	icons,
+	illustrations,
+	blockIcons,
 	BlockIcon
 } from './icons/icons';
 export { getFetchWpApi } from './fetch-wp-api';
