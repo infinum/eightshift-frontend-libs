@@ -10,6 +10,7 @@ export {
 	ColorPickerComponent,
 	ColorPickerType
 } from './color-picker-component/color-picker-component';
+export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
 export { CustomSelect } from './custom-select/custom-select';
 export { HeadingLevel } from './heading-level/heading-level';
