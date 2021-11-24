@@ -179,8 +179,8 @@ export const CustomSelect = (props) => {
 			isLoading={loading}
 			blurInputOnSelect={blurInputOnSelect}
 			hideSelectedOptions={hideSelected}
-			loadingMessage={loadingMessage}
-			noOptionsMessage={noOptionsMessage}
+			loadingMessage={() => (<span>{loadingMessage}</span>)}
+			noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
 			components={{
 				MultiValue: SortableMultiValue,
 				MultiValueLabel: SortableMultiValueLabel,

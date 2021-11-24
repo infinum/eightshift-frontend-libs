@@ -17,6 +17,7 @@ const IconsOutput = (props) => {
 		label,
 		icons,
 		isJsxSvg = true,
+		blockIcons = false,
 	} = props;
 
 	return (
@@ -33,7 +34,7 @@ const IconsOutput = (props) => {
 			<div
 				css={{
 					display: 'grid',
-					gridTemplateColumns: 'repeat(auto-fill, 8rem)',
+					gridTemplateColumns: 'repeat(auto-fill, 14rem)',
 					gridAutoRows: 'auto',
 					gap: '0.5rem',
 				}}
@@ -50,23 +51,26 @@ const IconsOutput = (props) => {
 						key={index}>
 						<div
 							css={{
-								marginBottom: '0.75rem',
-								color: '#0D3636',
+								marginBottom: '1rem',
+								color: blockIcons ? '#FFF' : '#3858E9',
+								backgroundColor: blockIcons ? '#3858E9' : 'transparent',
+								transform: 'scale(1.5)',
+								minWidth: '1.75rem',
+								minHeight: '1.75rem',
+								borderRadius: '0.25rem',
+								display: 'grid',
+								placeItems: 'center',
+								lineHeight: 0,
 							}}
 						>
 							{isJsxSvg && value}
-							{!isJsxSvg &&
-								<div
-									dangerouslySetInnerHTML={{
-										__html: value.replace('<svg', '<svg style="height: 1.25rem; width: 1.25rem"')
-									}}
-								>
-								</div>}
+							{!isJsxSvg && <div dangerouslySetInnerHTML={{ __html: value }}></div>}
 						</div>
 						<span
 							css={{
 								fontSize: '0.75rem',
 								textAlign: 'center',
+								fontFamily: 'monospace',
 							}}
 						>
 							{key}
@@ -87,5 +91,5 @@ export const HelperIllustrations = () => (
 );
 
 export const BlockIcons = () => (
-	<IconsOutput label={'Block icons'} icons={blockIcons} isJsxSvg={false} />
+	<IconsOutput blockIcons label={'Block icons'} icons={blockIcons} isJsxSvg={false} />
 );

@@ -745,7 +745,10 @@ body {
 	.es-simple-v-single-select {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 1px;
+		border-radius: 0.25rem;
+
+		box-shadow: 0 0 0 1px hsl(0 0% 92%);
 
 		.components-button {
 			justify-content: flex-start !important;
@@ -754,13 +757,24 @@ body {
 				height: 1.5rem;
 				width: 1.5rem;
 			}
+
+			border-radius: 0 !important;
+
+			&:first-child {
+				border-top-left-radius: 0.25rem !important;
+				border-top-right-radius: 0.25rem !important;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: 0.25rem !important;
+				border-bottom-right-radius: 0.25rem !important;
+			}
 		}
 
 		.components-button:not(.is-pressed) {
-			border: 1px solid #F2F2F2;
-
 			&:hover {
 				border-color: var(--wp-admin-theme-color, #111111);
+				background-color: hsl(0 0% 98%) !important;
 			}
 		}
 	}
