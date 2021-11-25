@@ -133,7 +133,7 @@ export const CustomSelect = (props) => {
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
 		if (multiple) {
-			output = selectedOptions.filter((item) => options.some((element) => element.value === item.value));
+			output = selectedOptions.filter((item) => (options ?? defaultOptions).some((element) => element.value === item.value));
 		} else {
 			output = simpleValue ? selectedOptions?.value : selectedOptions;
 		}
