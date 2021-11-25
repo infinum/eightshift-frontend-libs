@@ -45,7 +45,7 @@
 				"icon": "listOrdered"
 			},
 			{
-				"label": "Bulleted list",
+				"label": "Bulleted",
 				"value": "ul",
 				"icon": "listUnordered"
 			}
