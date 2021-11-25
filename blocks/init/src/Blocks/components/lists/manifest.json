@@ -40,7 +40,7 @@
 	"options": {
 		"listsOrdered": [
 			{
-				"label": "Ordered list",
+				"label": "Ordered",
 				"value": "ol",
 				"icon": "listOrdered"
 			},
