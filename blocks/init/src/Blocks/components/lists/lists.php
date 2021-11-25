@@ -30,7 +30,7 @@ $listsOrderedOptions = array_map(function ($option) {
 	return $option['value'];
 }, $manifest['options']['listsOrdered'] ?? []);
 
-if (!in_array($listsOrdered, $listsOrderedOptions)) {
+if (!in_array($listsOrdered, $listsOrderedOptions, true)) {
 	return;
 }
 

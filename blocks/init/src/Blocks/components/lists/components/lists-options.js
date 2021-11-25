@@ -66,7 +66,7 @@ export const ListsOptions = (attributes) => {
 
 					{showListsOrdered &&
 						<CustomSelect
-							label={<IconLabel icon={<BlockIcon iconName='es-footnotes' />} label={__('List type', 'edp')} />}
+							label={<IconLabel icon={<BlockIcon iconName='es-footnotes' />} label={__('List type', 'eightshift-frontend-libs')} />}
 							value={listsOrdered}
 							options={getOption('listsOrdered', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
