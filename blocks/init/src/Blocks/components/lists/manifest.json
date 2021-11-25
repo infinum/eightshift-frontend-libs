@@ -41,11 +41,13 @@
 		"listsOrdered": [
 			{
 				"label": "Ordered list",
-				"value": "ol"
+				"value": "ol",
+				"icon": "listOrdered"
 			},
 			{
 				"label": "Bullet list",
-				"value": "ul"
+				"value": "ul",
+				"icon": "listUnordered"
 			}
 		],
 		"listsSize": [

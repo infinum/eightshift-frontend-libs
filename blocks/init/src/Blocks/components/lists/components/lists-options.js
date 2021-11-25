@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect, IconToggle, BlockIcon } from '@eightshift/frontend-libs/scripts';
+import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, CustomSelect, IconToggle, BlockIcon, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
@@ -65,8 +65,8 @@ export const ListsOptions = (attributes) => {
 					}
 
 					{showListsOrdered &&
-						<CustomSelect
-							label={<IconLabel icon={<BlockIcon iconName='es-footnotes' />} label={__('List type', 'eightshift-frontend-libs')} />}
+						<SimpleVerticalSingleSelect
+							label={__('List type', 'edp')}
 							value={listsOrdered}
 							options={getOption('listsOrdered', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
