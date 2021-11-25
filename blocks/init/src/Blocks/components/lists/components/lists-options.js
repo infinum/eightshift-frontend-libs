@@ -66,7 +66,7 @@ export const ListsOptions = (attributes) => {
 
 					{showListsOrdered &&
 						<SimpleVerticalSingleSelect
-							label={__('List type', 'edp')}
+							label={__('List type', 'eightshift-frontend-libs')}
 							value={listsOrdered}
 							options={getOption('listsOrdered', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
