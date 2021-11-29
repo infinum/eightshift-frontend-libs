@@ -16,7 +16,7 @@ export { inserter } from './inserter';
 export {
 	lockIfUndefined,
 	lockPostEditing,
-	unlockPostEditing
+	unlockPostEditing,
 } from './lock-editing';
 export {
 	outputCssVariablesGlobal,
