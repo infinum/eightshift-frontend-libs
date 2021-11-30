@@ -2,11 +2,11 @@
  * Debounce implementation
  *
  * @param {function} func - Callback to apply.
- * @param {number} wait   - Number of seconds for the delay of the callback function.
+ * @param {number} wait   - Number of milisseconds for the delay of the callback function. Default is 200ms.
  *
  * @return Debounced callback.
  */
-export function debounce(func, wait) {
+export function debounce(func, wait = 250) {
 	let timeout;
 
 	return function(...args) {
