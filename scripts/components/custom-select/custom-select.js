@@ -229,6 +229,40 @@ export const CustomSelect = (props) => {
 					primary: 'hsla(0, 0%, 0%, 1)'
 				},
 			})}
+			styles={{
+				menu: (provided) => {
+					let bgColor = provided?.backgroundColor ?? 'rgba(255 255 255 / 0.75)';
+
+					if (bgColor.includes('hsl') && !bgColor.includes('hsla')) {
+						bgColor = bgColor.replaceAll(',', '').replace(')', ' / 0.75)');
+					}
+
+					return {
+						...provided,
+						borderTopLeftRadius: '0',
+						borderTopRightRadius: '0',
+						zIndex: 5,
+						marginTop: 1,
+						backgroundColor: bgColor,
+						backdropFilter: 'blur(1rem) saturate(150%)',
+					};
+				},
+				control: (provided, state) => ({
+					...provided,
+					position: 'static',
+					borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
+					borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
+					zIndex: state.menuIsOpen ? 4 : null,
+				}),
+				option: (provided, state) => ({
+					...provided,
+					margin: '0.125rem 0.375rem',
+					width: 'calc(100% - 0.75rem)',
+					borderRadius: '0.25rem',
+					transition: 'all 0.3s ease-out',
+					...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, #111111)' } : {}),
+				}),
+			}}
 		/>
 	);
 
