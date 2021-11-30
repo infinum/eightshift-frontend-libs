@@ -509,11 +509,6 @@ body {
 		}
 	}
 
-	// Style for CustomSelect component.
-	.components-custom-select {
-		z-index: 4;
-	}
-
 	// Style for CustomSelect item with icon on the left.
 	.es-custom-select-flex {
 		display: flex;
@@ -820,7 +815,6 @@ body {
 			svg {
 				width: 1.2rem;
 				height: 1.2rem;
-				transform: translateY(2px);
 			}
 		}
 

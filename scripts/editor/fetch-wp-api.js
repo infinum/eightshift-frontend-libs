@@ -46,18 +46,18 @@ export function getFetchWpApi(endpoint, options = {}) {
 	 *
 	 * @returns Array of items in { label: '', value: '' } format.
 	 */
-	const fetchItems = async (searchText) => {
+	const fetchItems = async (searchText = '') => {
 		let params = {
 			per_page: perPage,
 		};
 
 		// Add fields in the params for optimisations.
-		if (fields.length) {
+		if (fields?.length) {
 			params['_fields'] = fields;
 		}
 
 		// Merge additional params to props.
-		if (additionalParam.length) {
+		if (additionalParam?.length) {
 			params = {
 				...params,
 				...additionalParam
@@ -65,7 +65,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		}
 
 		// Fetch fresh if you are searching something.
-		if (searchText.length) {
+		if (searchText?.length) {
 			params['search'] = searchText;
 
 			const newData = await apiFetch({ path: getRoute(endpoint, params, routePrefix) });
