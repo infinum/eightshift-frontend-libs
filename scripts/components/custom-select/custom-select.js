@@ -158,7 +158,7 @@ export const CustomSelect = (props) => {
 			return selected;
 		}
 
-		if (multiple || !simpleValue || !Array.isArray(defaultOptions)) {
+		if (!simpleValue && (!Array.isArray(defaultOptions) || multiple)) {
 			return selected;
 		}
 
