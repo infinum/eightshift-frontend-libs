@@ -2,7 +2,7 @@
  * Throttle implementation.
  *
  * @param {function} func - Callback to apply.
- * @param {number} wait   - Number of miliseconds of the callback function lock. Default is 250ms.
+ * @param {number} wait   - Number of milliseconds of the callback function lock. Default is 250ms.
  *
  * @return Throttled callback.
  */
