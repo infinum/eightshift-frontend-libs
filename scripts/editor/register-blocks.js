@@ -481,7 +481,7 @@ export const getExample = (
 const registerVariation = (
 	globalManifest = {},
 	blockManifest = {},
-	allBlocksManifests
+	allBlocksManifests,
 ) => {
 
 	// Append globalManifest data in to output.
