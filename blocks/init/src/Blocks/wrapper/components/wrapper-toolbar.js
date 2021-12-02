@@ -27,23 +27,19 @@ export const WrapperToolbar = ({attributes, setAttributes}) => {
 	return (
         <DropdownMenu 
             icon={icons.wrapperConfig}
-            label={__('Copy/paste wrapper attributes', 'eighsfhit-frontend-libs')}
+            label={__('Copy/paste wrapper attributes', 'eightshift-frontend-libs')}
             className="components-toolbar es-toolbar-icon-24"
         >
-            { ( { onClose } ) => (
+            {({onClose}) => (
                 <MenuGroup>
                     <MenuItem onClick={() => copyAttributes(onClose)} icon={icons.copy}>
-                        <button className="components-button components-dropdown-menu__toggle has-icon">
-                            {__('Copy wrapper attributes', 'eighsfhit-frontend-libs')}
-                        </button>
+                        {__('Copy wrapper attributes', 'eightshift-frontend-libs')}
                     </MenuItem>
                     <MenuItem onClick={() => pasteAttributes(onClose)} icon={icons.paste}>
-                        <button className="components-button components-dropdown-menu__toggle has-icon">
-                            {__('Paste wrapper attributes', 'eighsfhit-frontend-libs')}
-                        </button>
+                        {__('Paste wrapper attributes', 'eightshift-frontend-libs')}
                     </MenuItem>
                 </MenuGroup>
-            ) }
+            )}
         </DropdownMenu>
 	);
 };
