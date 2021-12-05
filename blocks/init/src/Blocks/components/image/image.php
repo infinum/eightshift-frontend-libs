@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
-$imageUse = Components::checkAttr('imageUse', $attributes, $manifest);
+$imageUse = Components::checkAttr('imageUse', $attributes, $manifest) ?? false;
 if (!$imageUse) {
 	return;
 }
