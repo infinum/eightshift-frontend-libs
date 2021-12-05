@@ -40,7 +40,7 @@ $imgClass = Components::classnames([
 ?>
 
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
-	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>" alt="<?php echo esc_attr($imageAlt); ?>">
 
 		<?php
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -66,6 +66,6 @@ $imgClass = Components::classnames([
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['large']); ?>" alt="<?php echo \esc_attr($imageAlt); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+		<img src="<?php echo \esc_url($imageUrl['large']); ?>" class="<?php echo \esc_attr($imgClass); ?>" alt="<?php echo esc_attr($imageAlt); ?>" />
 	</picture>
 <?php } ?>
