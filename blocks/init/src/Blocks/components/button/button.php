@@ -54,7 +54,9 @@ $buttonClass = Components::classnames([
 <?php if (! $buttonUrl) { ?>
 	<button
 		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($buttonId); ?>"
+		<?php if (!empty($buttonId)) { ?>
+			id="<?php echo \esc_attr($buttonId); ?>"
+		<?php } ?>
 		title="<?php echo \esc_attr($buttonContent); ?>"
 		<?php if (!empty($buttonAriaLabel)) { ?>
 			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
@@ -73,7 +75,9 @@ $buttonClass = Components::classnames([
 	<a
 		href="<?php echo \esc_url($buttonUrl); ?>"
 		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($buttonId); ?>"
+		<?php if (!empty($buttonId)) { ?>
+			id="<?php echo \esc_attr($buttonId); ?>"
+		<?php } ?>
 		title="<?php echo \esc_attr($buttonContent); ?>"
 		<?php if (!empty($buttonAriaLabel)) { ?>
 			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
