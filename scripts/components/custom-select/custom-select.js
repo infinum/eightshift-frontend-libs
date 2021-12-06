@@ -139,8 +139,14 @@ export const CustomSelect = (props) => {
 		}
 
 		if (simpleValue && selectedOptions && selectedOptions?.value) {
-			let selectionCache = JSON.parse(window.localStorage.getItem('es-custom-select-cache'));
-			window.localStorage.setItem('es-custom-select-cache', JSON.stringify({ ...selectionCache, [selectedOptions.value]: selectedOptions }));
+			const selectionCache = window.localStorage.getItem('es-custom-select-cache');
+			
+			if (!selectionCache) {
+				window.localStorage.setItem('es-custom-select-cache', JSON.stringify({ [selectedOptions.value]: selectedOptions }));
+			} else {
+				const parsedSelectionCache = JSON.parse(selectionCache ?? '{}');
+				window.localStorage.setItem('es-custom-select-cache', JSON.stringify({ ...parsedSelectionCache, [selectedOptions.value]: selectedOptions }));
+			}
 		}
 
 		setSelected(output);
@@ -166,7 +172,7 @@ export const CustomSelect = (props) => {
 			return options.filter(({ value }) => value === selected);
 		}
 
-		let selectionCache = JSON.parse(window.localStorage.getItem('es-custom-select-cache'));
+		const selectionCache = JSON.parse(window?.localStorage?.getItem('es-custom-select-cache') ?? '{}');
 
 		const itemFromAsyncOptions = defaultOptions.filter(({ value }) => value === selected)[0];
 
