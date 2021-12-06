@@ -172,10 +172,25 @@ export const CustomSelect = (props) => {
 			return options.filter(({ value }) => value === selected);
 		}
 
+		if (Array.isArray(defaultOptions) && defaultOptions?.length > 0) {
+			const itemFromAsyncOptions = defaultOptions.filter(({ value }) => value === selected)[0];
+
+			if (itemFromAsyncOptions) {
+				return itemFromAsyncOptions;
+			}
+		}
+
 		const selectionCache = JSON.parse(window?.localStorage?.getItem('es-custom-select-cache') ?? '{}');
 
 		if (selectionCache && selectionCache[selected]) {
 			return selectionCache[selected];
+		}
+
+		if (Number.isNaN(selected)) {
+			return {
+				label: 'Item',
+				value: selected,
+			};
 		}
 
 		return {
