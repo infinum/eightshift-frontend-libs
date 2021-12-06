@@ -133,15 +133,23 @@ export const CustomSelect = (props) => {
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
 		if (multiple) {
-			output = selectedOptions.filter((item) => (options ?? defaultOptions).some((element) => element.value === item.value));
+			output = selectedOptions.reduce((arr, curr) => {
+				const updatedItem = (options ?? defaultOptions)?.find((element) => element.value === curr.value);
+
+				if (updatedItem) {
+					return [...arr, updatedItem];
+				}
+
+				return [...arr, curr];
+			}, []);
 		} else {
 			output = simpleValue ? selectedOptions?.value : selectedOptions;
 		}
 
 		if (simpleValue && selectedOptions && selectedOptions?.value) {
 			const selectionCache = window.localStorage.getItem('es-custom-select-cache');
-			
-			if (!selectionCache) {
+
+			if (selectionCache === null || selectionCache === false || selectionCache === undefined) {
 				window.localStorage.setItem('es-custom-select-cache', JSON.stringify({ [selectedOptions.value]: selectedOptions }));
 			} else {
 				const parsedSelectionCache = JSON.parse(selectionCache ?? '{}');
@@ -160,11 +168,19 @@ export const CustomSelect = (props) => {
 	};
 
 	const getValue = () => {
-		if (selected === undefined || selected === null || selected?.length < 1) {
-			return selected;
+		if (
+			selected === undefined
+			|| selected === null
+			|| Object.prototype.hasOwnProperty.call(selected, 'value') && selected.value === undefined
+			|| Object.prototype.hasOwnProperty.call(selected, 'value') && selected.value === null
+			|| (Array.isArray(selected) && selected?.length < 1)
+			|| ((typeof selected).toLowerCase() === 'object' && Object.keys(selected).length === 0)
+			|| ((typeof selected).toLowerCase() === 'number' && Number.isNaN(selected))
+		) {
+			return undefined;
 		}
 
-		if (!simpleValue && (!Array.isArray(defaultOptions) || multiple)) {
+		if (multiple || !simpleValue) {
 			return selected;
 		}
 
