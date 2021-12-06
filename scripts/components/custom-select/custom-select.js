@@ -174,12 +174,6 @@ export const CustomSelect = (props) => {
 
 		const selectionCache = JSON.parse(window?.localStorage?.getItem('es-custom-select-cache') ?? '{}');
 
-		const itemFromAsyncOptions = defaultOptions.filter(({ value }) => value === selected)[0];
-
-		if (itemFromAsyncOptions) {
-			return itemFromAsyncOptions;
-		}
-
 		if (selectionCache && selectionCache[selected]) {
 			return selectionCache[selected];
 		}
