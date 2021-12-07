@@ -21,7 +21,7 @@ $carouselShowPagination = Components::checkAttr('carouselShowPagination', $attri
 $carouselClass = Components::classnames([
 	$blockClass,
 	$blockJsClass,
-	'swiper-container',
+	'swiper',
 ]);
 
 $prevButtonClass = Components::classnames([
