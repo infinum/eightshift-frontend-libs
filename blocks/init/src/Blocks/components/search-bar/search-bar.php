@@ -60,7 +60,9 @@ $labelClass = Components::classnames([
 		type="text"
 		value="<?php echo \get_search_query(); ?>"
 		name="s"
-		id="<?php echo \esc_attr($searchBarId); ?>"
+		<?php if (!empty($searchBarId)) { ?>
+			id="<?php echo \esc_attr($searchBarId); ?>"
+		<?php } ?>
 		class="<?php echo \esc_attr($inputClass); ?>"
 		placeholder="<?php echo \esc_attr($searchBarPlaceholder); ?>"
 	/>

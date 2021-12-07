@@ -47,18 +47,20 @@ $accordionPanelClass = Components::classnames([
 ]);
 
 $accordionContentClass = Components::selector($componentClass, $componentClass, 'content');
+
+$uniqueAccordionId = Components::getUnique();
 ?>
 
 <div
 	class="<?php echo \esc_attr($accordionClass); ?>"
 	data-accordion-open="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
 	data-close-others="<?php echo \esc_attr($accordionCloseOthers ? 'true' : 'false'); ?>"
-	aria-expanded="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
 >
 	<button
 		class="<?php echo \esc_attr($accordionTriggerClass); ?>"
 		aria-label="<?php echo esc_html($accordionTitle); ?>"
-		aria-controls
+		aria-controls="<?php echo \esc_attr($uniqueAccordionId); ?>"
+		aria-expanded="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
 	>
 		<?php echo \esc_html($accordionTitle); ?>
 		<div class="<?php echo \esc_attr($accordionIconClass); ?>" aria-hidden="true" >
@@ -66,9 +68,11 @@ $accordionContentClass = Components::selector($componentClass, $componentClass, 
 		</div>
 	</button>
 
-	<section
+	<div
+		role="region"
 		class="<?php echo \esc_attr($accordionPanelClass); ?>"
 		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
+		id="<?php echo esc_attr($uniqueAccordionId); ?>"
 	>
 		<div class="<?php echo \esc_attr($accordionContentClass); ?>">
 			<?php
@@ -76,5 +80,5 @@ $accordionContentClass = Components::selector($componentClass, $componentClass, 
 				echo $accordionContent;
 			?>
 		</div>
-	</section>
+	</div>
 </div>

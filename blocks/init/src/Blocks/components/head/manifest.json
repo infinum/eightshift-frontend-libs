@@ -6,7 +6,8 @@
 			"type": "string"
 		},
 		"headCharset": {
-			"type": "string"
+			"type": "string",
+			"default": "utf-8"
 		},
 		"headName": {
 			"type": "string"

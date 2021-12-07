@@ -39,7 +39,9 @@ $modalClass = Components::classnames([
 
 <div
 	class="<?php echo \esc_attr($modalClass); ?>"
-	id="<?php echo \esc_attr($modalId); ?>"
+	<?php if (!empty($modalId)) { ?>
+		id="<?php echo \esc_attr($modalId); ?>"
+	<?php } ?>
 	aria-hidden="true"
 >
 	<div
