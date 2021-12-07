@@ -26,6 +26,7 @@ registerBlocks(
 	require.context('./../../custom', true, /-block.js$/),
 	require.context('./../../custom', true, /-hooks.js$/),
 	require.context('./../../custom', true, /-transforms.js$/),
+	require.context('./../../custom', true, /-deprecations.js$/),
 );
 
 registerVariations(

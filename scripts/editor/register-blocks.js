@@ -573,6 +573,7 @@ const registerBlock = (
  *   require.context('./../../custom', true, /-block.js$/),
  *   require.context('./../../custom', true, /-hooks.js$/),
  *   require.context('./../../custom', true, /-transforms.js$/),
+ *   require.context('./../../custom', true, /-deprecations.js$/),
  * );
  * ```
  */
@@ -585,6 +586,7 @@ export const registerBlocks = (
 	blocksEditComponentPath,
 	hooksComponentPath = null,
 	transformsComponentPath = null,
+	deprecationsComponentPath = null,
 ) => {
 
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
@@ -612,6 +614,15 @@ export const registerBlocks = (
 			}
 		}
 
+		// Get Block Deprecations component from block name and deprecationsComponentPath.
+		if (deprecationsComponentPath !== null) {
+			const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
+
+			if (blockDeprecationsComponent !== null) {
+				blockManifest.deprecated = blockDeprecationsComponent;
+			}
+		}
+
 		// Get Block Hooks component from block name and hooksComponentPath.
 		if (hooksComponentPath !== null) {
 			const blockHooksComponent = getBlockGenericComponent(blockManifest.blockName, hooksComponentPath, 'hooks');
@@ -630,6 +641,35 @@ export const registerBlocks = (
 			wrapperComponent,
 			blockComponent
 		);
+
+		// Format the 'deprecated' attribute details to match the format Gutenberg wants.
+		if (blockDetails?.options?.deprecated) {
+			blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
+				if (deprecation?.attributes && deprecation?.migrate) {
+					return {
+						...deprecation,
+						isEligible: deprecation?.isEligible ?? (() => true),
+						save: blockDetails.options.save,
+					};
+				}
+
+				return {
+					attributes: {
+						...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+						...deprecation.oldAttributes,
+					},
+					migrate: (attributes) => {
+						return {
+							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+							...attributes,
+							...deprecation.newAttributes(attributes),
+						};
+					},
+					isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
+					save: blockDetails.options.save,
+				};
+			});
+		}
 
 		// Native WP method for block registration.
 		registerBlockType(blockDetails.blockName, blockDetails.options);
