@@ -33,7 +33,8 @@ const summary = async(answers) => {
 const maybePrompt = async(scriptArguments, argv) => {
   let answers = {};
   let confirm = false;
-
+  let prompted = false;
+  
   do {
     for (const argName in scriptArguments) {
       if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
@@ -53,6 +54,11 @@ const maybePrompt = async(scriptArguments, argv) => {
 
           // If argument is provided from CLI use that, otherwise prompt.
           const answer = argv[argName] ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
+
+          if (typeof (argv[argName]) === "undefined") {
+            prompted = true;
+          }
+
           answers = { ...answers, ...answer };
         }
       }
@@ -61,6 +67,11 @@ const maybePrompt = async(scriptArguments, argv) => {
     // Skip summary if noSummary argument is provided
     if (!argv.noSummary) {
       confirm = await summary(answers);
+
+      if (!confirm && prompted === false) {
+        process.exit(0);
+      }
+
       log('');
     } else {
       confirm = true;
