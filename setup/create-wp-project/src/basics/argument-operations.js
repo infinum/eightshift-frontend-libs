@@ -46,7 +46,7 @@ const maybePrompt = async(scriptArguments, argv) => {
         // on their settings.
         if (argument.skipPrompt) {
           continue;
-        } else if (argument.buildFrom) {
+        } else if (typeof(argv[argName]) === "undefined" && argument.buildFrom) {
           const { how, name } = argument.buildFrom;
           answers = { ...answers, [argument.name]: how(answers[name]) };
         } else {
