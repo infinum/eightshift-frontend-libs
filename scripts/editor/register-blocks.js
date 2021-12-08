@@ -472,18 +472,29 @@ export const getExample = (
 /**
  * Map and prepare all options from block manifest.json file for usage in registerBlockVariation method.
  *
- * @param {object} globalManifest - Global manifest.
- * @param {object} blockManifest  - Block manifest.
+ * @param {object} globalManifest     - Global manifest.
+ * @param {object} blockManifest      - Block manifest.
+ * @param {Array} allBlocksManifests  - All Blocks manifests.
  *
  * @returns {object}
  */
 const registerVariation = (
 	globalManifest = {},
 	blockManifest = {},
+	allBlocksManifests = [],
 ) => {
 
 	// Append globalManifest data in to output.
-	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
+	if (blockManifest['icon']) {
+		blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
+	} else {
+		// There is no icon passed to variation, use it's parent icon instead
+		allBlocksManifests.forEach(manifest => {
+			if (manifest.name === blockManifest.name) {
+				blockManifest['icon'] = manifest['icon'];
+			}
+		});
+	}
 
 	// This is a full block name used in Block Editor.
 	const fullBlockName = getFullBlockNameVariation(globalManifest, blockManifest);
@@ -717,6 +728,7 @@ export const registerVariations = (
 	globalManifest = {},
 	blocksManifestPath,
 ) => {
+	const allBlocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
 	// Iterate blocks to register.
 	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
@@ -724,7 +736,8 @@ export const registerVariations = (
 		// Pass data to registerVariation helper to get final output for registerBlockVariation.
 		const blockDetails = registerVariation(
 			globalManifest,
-			blockManifest
+			blockManifest,
+			allBlocksManifests,
 		);
 
 		// Native WP method for block registration.
