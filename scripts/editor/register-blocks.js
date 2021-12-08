@@ -481,7 +481,7 @@ export const getExample = (
 const registerVariation = (
 	globalManifest = {},
 	blockManifest = {},
-	allBlocksManifests,
+	allBlocksManifests = [],
 ) => {
 
 	// Append globalManifest data in to output.
@@ -697,7 +697,7 @@ export const registerVariations = (
 		const blockDetails = registerVariation(
 			globalManifest,
 			blockManifest,
-			allBlocksManifests
+			allBlocksManifests,
 		);
 
 		// Native WP method for block registration.
