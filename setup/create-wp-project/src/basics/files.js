@@ -2,7 +2,25 @@ const replace = require('replace-in-file');
 const path = require('path');
 const { readdir, rename } = require('fs-extra');
 
-const fullPath = path.join(process.cwd());
+/**
+ * Checks and returns required directory path.
+ *
+ * @param {string} requiredFolder Folder where installation must occur.
+ */
+const fullPath = async (requiredFolder = 'themes') => {
+  const currentPath = path.join(process.cwd());
+  const currentDirName = path.basename(currentPath);
+
+  if (currentDirName === requiredFolder) {
+    return currentPath;
+  }
+
+  const themesPath = (currentDirName === 'wp-content') ?
+    `${currentPath}/${requiredFolder}` :
+    `${currentPath}/wp-content/${requiredFolder}`;
+
+  return themesPath;
+};
 
 /**
  * Performs a wide search & replace.

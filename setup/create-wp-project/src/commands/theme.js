@@ -31,7 +31,8 @@ exports.handler = async (argv) => {
   let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
-  const projectPath = path.join(fullPath, promptedInfo.package);
+  const requiredPath = await fullPath('themes');
+  const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 

@@ -33,7 +33,8 @@ exports.handler = async (argv) => {
   let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
-  const projectPath = path.join(fullPath, promptedInfo.package);
+  const requiredPath = await fullPath('plugins');
+  const projectPath = path.join(requiredPath, promptedInfo.package);
   log('');
 
   await installStep({
