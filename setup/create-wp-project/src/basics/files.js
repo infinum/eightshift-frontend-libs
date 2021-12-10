@@ -15,11 +15,11 @@ const fullPath = async (requiredFolder = 'themes') => {
     return currentPath;
   }
 
-  const themesPath = (currentDirName === 'wp-content') ?
+  const requiredPath = (currentDirName === 'wp-content') ?
     `${currentPath}/${requiredFolder}` :
     `${currentPath}/wp-content/${requiredFolder}`;
 
-  return themesPath;
+  return requiredPath;
 };
 
 /**
