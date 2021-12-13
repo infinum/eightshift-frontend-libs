@@ -11,15 +11,8 @@ module.exports = (options) => {
 		path: options.config.outputPath,
 		publicPath: options.config.publicPath,
 
-		// These 2 fix the error we were having on projects with both theme + plugin using boilerplate (for example
-		// theme + Eightshift Forms) where we would sometimes get the following error:
-		//
-		// applicationBlocks.js?ver=1.0.0:64 Uncaught (in promise) TypeError: Cannot read property 'call' of undefined
-		// at __webpack_require__
-		//
-		// Fix source: https://github.com/webpack/webpack/issues/959#issuecomment-546506221
+		// If you are using the multiple webpack builds with dynamic import you must provide different name here in order to avoid collision.
 		library: '[name]',
-		umdNamedDefine: false,
 	};
 
 	// Load Application Entrypoint.
