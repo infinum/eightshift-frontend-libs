@@ -472,37 +472,36 @@ export const getExample = (
 /**
  * Map and prepare all options from block manifest.json file for usage in registerBlockVariation method.
  *
- * @param {object} globalManifest     - Global manifest.
- * @param {object} blockManifest      - Block manifest.
- * @param {Array} allBlocksManifests  - All Blocks manifests.
+ * @param {object} globalManifest    - Global manifest.
+ * @param {object} variationManifest - Variation manifest.
+ * @param {Array} blocksManifest     - Blocks manifests.
  *
  * @returns {object}
  */
-const registerVariation = (
+ const registerVariation = (
 	globalManifest = {},
-	blockManifest = {},
-	allBlocksManifests = [],
+	variationManifest = {},
+	blocksManifest = [],
 ) => {
-
 	// Append globalManifest data in to output.
-	if (blockManifest['icon']) {
-		blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
+	if (variationManifest['icon']) {
+		variationManifest['icon'] = getIconOptions(globalManifest, variationManifest);
 	} else {
 		// There is no icon passed to variation, use it's parent icon instead
-		allBlocksManifests.forEach(manifest => {
-			if (manifest.name === blockManifest.name) {
-				blockManifest['icon'] = manifest['icon'];
+		blocksManifest.forEach(manifest => {
+			if (manifest.name === variationManifest?.name) {
+				variationManifest['icon'] = manifest['icon'];
 			}
 		});
 	}
 
 	// This is a full block name used in Block Editor.
-	const fullBlockName = getFullBlockNameVariation(globalManifest, blockManifest);
+	const fullBlockName = getFullBlockNameVariation(globalManifest, variationManifest);
 
 	return {
 		blockName: fullBlockName,
 		options: {
-			...blockManifest,
+			...variationManifest,
 			blockName: fullBlockName,
 		},
 	};
@@ -727,8 +726,10 @@ const getComponentsManifest = () => {
  * Register all Variations Editor blocks using WP `registerBlockVariation` method.
  * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
  *
- * @param {object} globalManifest       - **Must provide global blocks setting `manifest.json`.**
- * @param {function} blocksManifestPath - **Must provide require.context for all block `manifest.json`s.**
+ * @param {object} globalManifest              - **Must provide global blocks setting `manifest.json`.**
+ * @param {function} variationsManifestPath    - **Must provide require.context for all variations `manifest.json`s.**
+ * @param {function} [blocksManifestPath]      - **require.context for all blocks `manifest.json`s.**
+ * @param {function?} [overridesComponentPath] - Function of overrides JavaScript files in a block from `require.context`.
  *
  * @returns {null}
  *
@@ -737,27 +738,32 @@ const getComponentsManifest = () => {
  * registerVariations(
  *   globalSettings,
  *   require.context('./../../variations', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /manifest.json$/),
  *   require.context('./../../variations', true, /-overrides.js$/),
  * );
  * ```
  */
-export const registerVariations = (
+ export const registerVariations = (
 	globalManifest = {},
+	variationsManifestPath,
 	blocksManifestPath,
 	overridesComponentPath = null,
 ) => {
-	const allBlocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+
+	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
+
 
 	// Iterate blocks to register.
-	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
+	variationsManifests.map((variationManifest) => {
 
 		// Get Block Overrides component from block name and overridesComponentPath.
 		if (overridesComponentPath !== null) {
-			const blockOverridesComponent = getBlockGenericComponent(blockManifest.name, overridesComponentPath, 'overrides');
+			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				blockManifest = {
-					...blockManifest,
+				variationManifest = {
+					...variationManifest,
 					...blockOverridesComponent
 				};
 			}
@@ -766,8 +772,8 @@ export const registerVariations = (
 		// Pass data to registerVariation helper to get final output for registerBlockVariation.
 		const blockDetails = registerVariation(
 			globalManifest,
-			blockManifest,
-			allBlocksManifests,
+			variationManifest,
+			blocksManifests,
 		);
 
 		// Native WP method for block registration.
