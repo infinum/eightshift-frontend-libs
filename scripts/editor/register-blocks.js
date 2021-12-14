@@ -737,17 +737,31 @@ const getComponentsManifest = () => {
  * registerVariations(
  *   globalSettings,
  *   require.context('./../../variations', true, /manifest.json$/),
+ *   require.context('./../../variations', true, /-overrides.js$/),
  * );
  * ```
  */
 export const registerVariations = (
 	globalManifest = {},
 	blocksManifestPath,
+	overridesComponentPath = null,
 ) => {
 	const allBlocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
 	// Iterate blocks to register.
 	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
+
+		// Get Block Overrides component from block name and overridesComponentPath.
+		if (overridesComponentPath !== null) {
+			const blockOverridesComponent = getBlockGenericComponent(blockManifest.name, overridesComponentPath, 'overrides');
+
+			if (blockOverridesComponent !== null) {
+				blockManifest = {
+					...blockManifest,
+					...blockOverridesComponent
+				};
+			}
+		}
 
 		// Pass data to registerVariation helper to get final output for registerBlockVariation.
 		const blockDetails = registerVariation(
