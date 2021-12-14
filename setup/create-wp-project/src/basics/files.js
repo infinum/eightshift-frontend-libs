@@ -2,12 +2,14 @@ const replace = require('replace-in-file');
 const path = require('path');
 const { readdir, rename } = require('fs-extra');
 
+const fullPath = path.join(process.cwd());
+
 /**
  * Checks and returns required directory path.
  *
  * @param {string} requiredFolder Folder where installation must occur.
  */
-const fullPath = async (requiredFolder = 'themes') => {
+const installPath = async (requiredFolder = 'themes') => {
   const currentPath = path.join(process.cwd());
   const currentDirName = path.basename(currentPath);
 
@@ -69,6 +71,7 @@ const readdirAsync = async (dirPath) => new Promise((resolve, reject) => {
 module.exports = {
   fullPath,
   findReplace,
+  installPath,
   readdirAsync,
   rename,
 };

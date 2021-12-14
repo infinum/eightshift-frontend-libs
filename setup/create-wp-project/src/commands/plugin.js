@@ -15,7 +15,7 @@ const {
     installNodeDependencies,
     installComposerDependencies,
   },
-  files: { fullPath },
+  files: { installPath },
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
@@ -33,7 +33,7 @@ exports.handler = async (argv) => {
   let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
-  const requiredPath = await fullPath('plugins');
+  const requiredPath = await installPath('plugins');
   const projectPath = path.join(requiredPath, promptedInfo.package);
   log('');
 

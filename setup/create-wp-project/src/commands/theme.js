@@ -13,7 +13,7 @@ const {
     installNodeDependencies,
     installComposerDependencies,
   },
-  files: { fullPath },
+  files: { installPath },
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
@@ -31,7 +31,7 @@ exports.handler = async (argv) => {
   let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
-  const requiredPath = await fullPath('themes');
+  const requiredPath = await installPath('themes');
   const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
