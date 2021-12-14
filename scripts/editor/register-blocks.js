@@ -562,14 +562,16 @@ const registerBlock = (
  * Register all Block Editor blocks using WP `registerBlockType` method.
  * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
  *
- * @param {object} globalManifest               - Must provide global blocks setting manifest.json.
- * @param {function?} [wrapperComponent]        - Callback function that returns a `Wrapper`.
- * @param {object} wrapperManifest              - `Wrapper` manifest.
- * @param {function} componentsManifestPath     - **Must provide `require.context` for all components `manifest.json`s.**
- * @param {function} blocksManifestPath         - **Must provide `require.context` for all blocks manifest.json-s.**
- * @param {function} blocksEditComponentPath    - **Must provide `require.context` for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).**
- * @param {function?} [hooksComponentPath]      - Function of hooks JavaScript files in a block from `require.context`.
- * @param {function?} [transformsComponentPath] - Function of transforms JavaScript files in a block from `require.context`.
+ * @param {object} globalManifest                 - Must provide global blocks setting manifest.json.
+ * @param {function?} [wrapperComponent]          - Callback function that returns a `Wrapper`.
+ * @param {object} wrapperManifest                - `Wrapper` manifest.
+ * @param {function} componentsManifestPath       - **Must provide `require.context` for all components `manifest.json`s.**
+ * @param {function} blocksManifestPath           - **Must provide `require.context` for all blocks manifest.json-s.**
+ * @param {function} blocksEditComponentPath      - **Must provide `require.context` for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).**
+ * @param {function?} [hooksComponentPath]        - Function of hooks JavaScript files in a block from `require.context`.
+ * @param {function?} [transformsComponentPath]   - Function of transforms JavaScript files in a block from `require.context`.
+ * @param {function?} [deprecationsComponentPath] - Function of deprecations JavaScript files in a block from `require.context`.
+ * @param {function?} [overridesComponentPath]    - Function of overrides JavaScript files in a block from `require.context`.
  *
  * @returns {mixed}
  *
@@ -585,6 +587,7 @@ const registerBlock = (
  *   require.context('./../../custom', true, /-hooks.js$/),
  *   require.context('./../../custom', true, /-transforms.js$/),
  *   require.context('./../../custom', true, /-deprecations.js$/),
+ *   require.context('./../../custom', true, /-overrides.js$/),
  * );
  * ```
  */
@@ -598,6 +601,7 @@ export const registerBlocks = (
 	hooksComponentPath = null,
 	transformsComponentPath = null,
 	deprecationsComponentPath = null,
+	overridesComponentPath = null,
 ) => {
 
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
@@ -640,6 +644,18 @@ export const registerBlocks = (
 
 			if (blockHooksComponent !== null) {
 				blockHooksComponent();
+			}
+		}
+
+		// Get Block Overrides component from block name and overridesComponentPath.
+		if (overridesComponentPath !== null) {
+			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
+
+			if (blockOverridesComponent !== null) {
+				blockManifest = {
+					...blockManifest,
+					...blockOverridesComponent
+				};
 			}
 		}
 
@@ -721,17 +737,31 @@ const getComponentsManifest = () => {
  * registerVariations(
  *   globalSettings,
  *   require.context('./../../variations', true, /manifest.json$/),
+ *   require.context('./../../variations', true, /-overrides.js$/),
  * );
  * ```
  */
 export const registerVariations = (
 	globalManifest = {},
 	blocksManifestPath,
+	overridesComponentPath = null,
 ) => {
 	const allBlocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
 	// Iterate blocks to register.
 	blocksManifestPath.keys().map(blocksManifestPath).map((blockManifest) => {
+
+		// Get Block Overrides component from block name and overridesComponentPath.
+		if (overridesComponentPath !== null) {
+			const blockOverridesComponent = getBlockGenericComponent(blockManifest.name, overridesComponentPath, 'overrides');
+
+			if (blockOverridesComponent !== null) {
+				blockManifest = {
+					...blockManifest,
+					...blockOverridesComponent
+				};
+			}
+		}
 
 		// Pass data to registerVariation helper to get final output for registerBlockVariation.
 		const blockDetails = registerVariation(

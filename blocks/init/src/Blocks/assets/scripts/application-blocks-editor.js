@@ -27,12 +27,13 @@ registerBlocks(
 	require.context('./../../custom', true, /-hooks.js$/),
 	require.context('./../../custom', true, /-transforms.js$/),
 	require.context('./../../custom', true, /-deprecations.js$/),
+	require.context('./../../custom', true, /-overrides.js$/),
 );
 
 registerVariations(
 	globalSettings,
 	require.context('./../../variations', true, /manifest.json$/),
-	require.context('./../../custom', true, /manifest.json$/),
+	require.context('./../../variations', true, /overrides.json$/),
 );
 
 // Run Wrapper hooks.
