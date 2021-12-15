@@ -34,6 +34,7 @@ import AsyncSelect from "react-select/async";
  * @param {boolean} [props.hideSelected=false]                         - If set to `true`, the selected option is hidden from the menu.
  * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
  * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
+ * @param {function} [props.filterAsyncOptions]                        - Function that wraps async options after async fetch. Enables adjusting, filtering, grouping etc. of the fetched data. Return format should match standard select options.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -61,6 +62,7 @@ export const CustomSelect = (props) => {
 		hideSelected = false,
 		loadingMessage = __('Loading', 'eightshift-frontend-libs'),
 		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
+		filterAsyncOptions = (options) => options,
 	} = props;
 
 	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
@@ -104,19 +106,19 @@ export const CustomSelect = (props) => {
 
 		if (!Array.isArray(defaultOptions)) {
 			const options = await loadOptions(inputValue);
-			setDefaultOptions(options);
+			setDefaultOptions(filterAsyncOptions(options));
 		}
 
 		if (reFetchOnSearch && inputValue.length) {
 			const options = await loadOptions(inputValue);
-			return new Promise((resolve) => resolve(options));
+			return new Promise((resolve) => resolve(filterAsyncOptions(options)));
 		}
 
 		return new Promise((resolve) => {
 			if (!inputValue.length) {
-				resolve(defaultOptions);
+				resolve(filterAsyncOptions(defaultOptions));
 			} else {
-				resolve([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label)));
+				resolve(filterAsyncOptions([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label))));
 			}
 		});
 	};
