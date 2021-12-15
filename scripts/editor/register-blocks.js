@@ -651,10 +651,7 @@ export const registerBlocks = (
 			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				blockManifest = {
-					...blockManifest,
-					...blockOverridesComponent
-				};
+				blockManifest = Object.assign(blockManifest, blockOverridesComponent);
 			}
 		}
 
@@ -762,10 +759,7 @@ const getComponentsManifest = () => {
 			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				variationManifest = {
-					...variationManifest,
-					...blockOverridesComponent
-				};
+				variationManifest = Object.assign(variationManifest, blockOverridesComponent);
 			}
 		}
 
