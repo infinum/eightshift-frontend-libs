@@ -9,7 +9,7 @@ import apiFetch from '@wordpress/api-fetch';
  *
  * @param {function} processId              Function that allows custom id processing.
  * @param {function} processLabel           Function that allows custom select option label processing.
- * @param {function} processMetadata        Function that allows custom field that can be used for aditional filtering/processing.
+ * @param {function} processMetadata        Function that allows modifying output data (e.g. for adding metadata for grouping inside a CustomSelect).
  * @param {integer}  [perPage=30]           Define max perPage items to fetch.
  * @param {string}   [routePrefix='wp/v2']  Define if using custom or native WP routes.
  * @param {object}   [additionalParam={}]   Define additional query params to fetch.

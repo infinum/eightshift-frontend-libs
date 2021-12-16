@@ -34,7 +34,7 @@ import AsyncSelect from "react-select/async";
  * @param {boolean} [props.hideSelected=false]                         - If set to `true`, the selected option is hidden from the menu.
  * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
  * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
- * @param {function} [props.filterAsyncOptions]                        - Function that wraps async options after async fetch. Enables adjusting, filtering, grouping etc. of the fetched data. Return format should match standard select options.
+ * @param {function} [props.filterAsyncOptions]                        - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
  */
 export const CustomSelect = (props) => {
 	const {
