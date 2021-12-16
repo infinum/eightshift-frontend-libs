@@ -5,6 +5,26 @@ const { readdir, rename } = require('fs-extra');
 const fullPath = path.join(process.cwd());
 
 /**
+ * Checks and returns required directory path.
+ *
+ * @param {string} requiredFolder Folder where installation must occur.
+ */
+const installPath = async (requiredFolder = 'themes') => {
+  const currentPath = path.join(process.cwd());
+  const currentDirName = path.basename(currentPath);
+
+  if (currentDirName === requiredFolder) {
+    return currentPath;
+  }
+
+  const requiredPath = (currentDirName === 'wp-content') ?
+    `${currentPath}/${requiredFolder}` :
+    `${currentPath}/wp-content/${requiredFolder}`;
+
+  return requiredPath;
+};
+
+/**
  * Performs a wide search & replace.
  *
  * @param {string} pathToFolder
@@ -51,6 +71,7 @@ const readdirAsync = async (dirPath) => new Promise((resolve, reject) => {
 module.exports = {
   fullPath,
   findReplace,
+  installPath,
   readdirAsync,
   rename,
 };
