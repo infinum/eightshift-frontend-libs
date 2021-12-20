@@ -488,11 +488,13 @@ export const getExample = (
 		variationManifest['icon'] = getIconOptions(globalManifest, variationManifest);
 	} else {
 		// There is no icon passed to variation, use it's parent icon instead
-		blocksManifest.forEach(manifest => {
-			if (manifest.name === variationManifest?.name) {
-				variationManifest['icon'] = manifest['icon'];
-			}
-		});
+		if (blocksManifest) {
+			blocksManifest.forEach(manifest => {
+				if (manifest.name === variationManifest?.name) {
+					variationManifest['icon'] = manifest['icon'];
+				}
+			});
+		}
 	}
 
 	// This is a full block name used in Block Editor.
@@ -743,13 +745,11 @@ const getComponentsManifest = () => {
  export const registerVariations = (
 	globalManifest = {},
 	variationsManifestPath,
-	blocksManifestPath,
+	blocksManifestPath = null,
 	overridesComponentPath = null,
 ) => {
 
-	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
-
 
 	// Iterate blocks to register.
 	variationsManifests.map((variationManifest) => {
@@ -767,7 +767,7 @@ const getComponentsManifest = () => {
 		const blockDetails = registerVariation(
 			globalManifest,
 			variationManifest,
-			blocksManifests,
+			(blocksManifestPath !== null) ? blocksManifestPath.keys().map(blocksManifestPath) : []
 		);
 
 		// Native WP method for block registration.
