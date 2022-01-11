@@ -68,7 +68,7 @@ const getBlockGenericComponent = (blockName, paths, fileName) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string?}
  */
 const getNamespace = (globalManifest, blockManifest) => {
@@ -80,7 +80,7 @@ const getNamespace = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string}
  */
 export const getFullBlockName = (globalManifest, blockManifest) => {
@@ -92,7 +92,7 @@ export const getFullBlockName = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string}
  */
 export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
@@ -103,7 +103,7 @@ export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
  * Return save function based on hasInnerBlocks option of block.
  *
  * @param {object} blockManifest - Block manifest.
- * 
+ *
  * @returns {function} Save callback.
  */
 const getSaveCallback = (blockManifest) => {
@@ -204,7 +204,7 @@ const getEditCallback = (Component, Wrapper) => (props) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {object}
  */
 const getIconOptions = (
@@ -251,7 +251,7 @@ const getIconOptions = (
  * @param {boolean} [isExample=false]         - Type of items to iterate, if false example key will be use, if true attributes will be used.
  * @param {string} [parent='']                - Parent component key with stacked parent component names for the final output.
  * @param {boolean} [currentAttributes=false] - Check if current attribute is a part of the current component.
- * 
+ *
  * @returns {object}
  */
 const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
@@ -304,7 +304,7 @@ const prepareComponentAttribute = (manifest, newName, realName, isExample = fals
  * @param {object} manifest           - Object of component/block manifest to get the data from.
  * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be used, if false attributes will be used.
  * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
- * 
+ *
  * @returns {object}
  */
 const prepareComponentAttributes = (
@@ -368,7 +368,7 @@ const prepareComponentAttributes = (
  * @param {object} wrapperManifest    - `Wrapper` manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} parentManifest     - Block or component (parent) manifest.
- * 
+ *
  * @returns {object} Object of all attributes registered for a specific block.
  *
  * Usage:
@@ -425,7 +425,7 @@ export const getAttributes = (
  *
  * @param {object} manifest    - Block/component manifest.
  * @param {string} [parent=''] - Parent component key with stacked parent component names for the final output.
- * 
+ *
  * @returns {object}
  *
  * Manifest:
@@ -635,7 +635,7 @@ export const registerBlocks = (
 			const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
 
 			if (blockDeprecationsComponent !== null) {
-				blockManifest.deprecated = blockDeprecationsComponent;
+				blockManifest.deprecated = blockDeprecationsComponent; // eslint-disable-line no-param-reassign
 			}
 		}
 
@@ -759,7 +759,7 @@ const getComponentsManifest = () => {
 			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				variationManifest = Object.assign(variationManifest, blockOverridesComponent);
+				variationManifest = Object.assign(variationManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
 			}
 		}
 
