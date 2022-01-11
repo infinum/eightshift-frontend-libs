@@ -16,6 +16,7 @@ export { escapeString } from './escape-string';
 export { getNavigatorVibrate } from './navigator';
 export { responsiveSelectors } from './responsive-selectors';
 export { selector } from './selector';
+export { classnames } from './classnames';
 export {
 	truncateMiddle,
 	unescapeHTML
