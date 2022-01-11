@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import { classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Create responsive selectors used for responsive attributes.

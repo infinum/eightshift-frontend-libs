@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const AccordionEditor = (attributes) => {

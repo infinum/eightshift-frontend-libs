@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HamburgerEditor = (attributes) => {

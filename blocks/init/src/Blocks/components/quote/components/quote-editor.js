@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { checkAttr, props, selector } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import manifest from './../manifest.json';

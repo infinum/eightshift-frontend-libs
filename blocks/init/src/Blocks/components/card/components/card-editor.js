@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
-import { outputCssVariables, getUnique, props, selector } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, getUnique, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';

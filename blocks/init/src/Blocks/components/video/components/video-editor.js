@@ -1,9 +1,8 @@
 import React from 'react';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
-import { selector, checkAttr, icons, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, icons, getAttrKey, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoEditor = (attributes) => {

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { ToggleControl, Button, BaseControl } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { icons, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A ComponentUseToggle with collapsable content.
- * 
+ *
  * @param {object} props                       - ComponentUseToggle options.
  * @param {string} props.label                 - Usually component name.
  * @param {boolean} props.checked              - Is the component currently in use.
@@ -60,7 +59,7 @@ export const CollapsableComponentUseToggle = ({
 					isTertiary
 					onClick={() => setIsOpen(!isOpen)}
 					className='es-collapsable-component-use-toggle__expander'
-					icon={!checked ? icons.chevronDown : (isOpen ? icons.chevronUp : icons.chevronDown)}
+					icon={!checked ? icons.chevronDown : (isOpen ? icons.chevronUp : icons.chevronDown)} // eslint-disable-line no-nested-ternary
 					disabled={disabled || (showUseToggle && !checked)}
 				/>
 			</div>

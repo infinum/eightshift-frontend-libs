@@ -1,6 +1,5 @@
 import React from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { icons, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Type of the inline notification
@@ -17,7 +16,7 @@ export const InlineNotificationType = {
 
 /**
  * A simple inline notification to be used inside the Editor or Options.
- * 
+ *
  * @param {object} props                                                       - InlineNotification options.
  * @param {string} props.text                                                  - Notification text.
  * @param {InlineNotificationType} [props.type=InlineNotificationType.WARNING] - Help text displayed below the picker.
