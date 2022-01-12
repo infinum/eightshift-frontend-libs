@@ -31,6 +31,7 @@ export const ColorPickerType = {
  * @param {string} [props.pickerPopupTitle]             - Color picker popup title.
  * @param {string} [props.resetLabel]                   - 'Reset' button tooltip.
  * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
+ * @param {string} props.tooltip                        - Tooltip of the picker button (if label not provided).
  */
 export const ColorPickerComponent = ({
 	colors,
@@ -41,6 +42,7 @@ export const ColorPickerComponent = ({
 	pickerPopupTitle = __('Pick a color', 'eightshift-frontend-libs'),
 	resetLabel = __('Reset', 'eightshift-frontend-libs'),
 	type = ColorPickerType.GENERIC,
+	tooltip,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -54,6 +56,23 @@ export const ColorPickerComponent = ({
 	const resetValue = () => {
 		onChange(undefined);
 		setIsDropdownOpen(false);
+	};
+
+	const getTooltipText = () => {
+		if (tooltip) {
+			return tooltip;
+		}
+
+		switch (type) {
+			case ColorPickerType.BACKGROUND_COLOR:
+				return __('Background color', 'eightshift-frontend-libs');
+			case ColorPickerType.TEXT_COLOR:
+				return __('Text color', 'eightshift-frontend-libs');
+			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+				return __('Text highlight color', 'eightshift-frontend-libs');
+			default:
+				return __('Color', 'eightshift-frontend-libs');
+		}
 	};
 
 	const colorPicker = isDropdownOpen && (
@@ -131,6 +150,7 @@ export const ColorPickerComponent = ({
 					icon={getButtonIcon()}
 					iconSize={24}
 					ref={ref}
+					label={getTooltipText()}
 				/>
 
 				{colorPicker}
