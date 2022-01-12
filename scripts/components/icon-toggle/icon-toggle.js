@@ -10,6 +10,7 @@ import { ToggleControl } from '@wordpress/components';
  * @param {function} props.onChange    - `onChange` handler from the `ToggleSwitch`.
  * @param {React.Component} props.icon - Icon to display.
  * @param {string?} props.help         - Help text to display.
+ * @param {boolean} [props.disabled=false]  - If `true`, control is disabled.
  */
 export const IconToggle = ({
 	label,
@@ -17,6 +18,7 @@ export const IconToggle = ({
 	onChange,
 	icon,
 	help,
+	disabled = false,
 }) => {
 	return (
 		<div className={`es-icon-toggle es-icon-toggle--reverse ${icon && help ? 'has-help' : ''}`}>
@@ -26,8 +28,8 @@ export const IconToggle = ({
 				checked={checked}
 				onChange={onChange}
 				help={help}
+				disabled={disabled}
 			/>
 		</div>
-
 	);
 };

@@ -28,6 +28,7 @@ export const AlignmentToolbarType = {
  * @param {React.Component?} props.label                  - Tooltip of the picker button (if not shown inline).
  * @param {string} props.title                            - Component/block name.
  * @param {boolean} [props.showInline=false]              - If `true`, the controls are displayed inline instead of a dropdown button.
+ * @param {boolean} [props.disabled=false]                - If `true`, control is disabled.
  */
 export const AlignmentToolbar = (props) => {
 	const {
@@ -38,6 +39,7 @@ export const AlignmentToolbar = (props) => {
 		label,
 		title = type === AlignmentToolbarType.TEXT ? __('text', 'eightshift-frontend-libs') : __('items', 'eightshift-frontend-libs'),
 		showInline = false,
+		disabled = false,
 	} = props;
 
 	const showAlignStart = options.includes('left');
@@ -137,6 +139,7 @@ export const AlignmentToolbar = (props) => {
 			isInline={showInline}
 			isToolbarButton
 			isInToolbar
+			disabled={disabled}
 		/>
 	);
 };
