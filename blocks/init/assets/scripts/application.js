@@ -4,6 +4,6 @@
  * Usage: `WordPress frontend screen`.
  */
 
-if (!window?._babelPolyfill) {
-	require('@babel/polyfill'); // eslint-disable-line no-underscore-dangle
+if (!window?._babelPolyfill) { // eslint-disable-line no-underscore-dangle
+	require('@babel/polyfill');
 }
