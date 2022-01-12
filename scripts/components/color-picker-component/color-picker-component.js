@@ -32,6 +32,7 @@ export const ColorPickerType = {
  * @param {string} [props.resetLabel]                   - 'Reset' button tooltip.
  * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
  * @param {string} props.tooltip                        - Tooltip of the picker button (if label not provided).
+ * @param {boolean} [props.disabled=false]  - If `true`, control is disabled.
  */
 export const ColorPickerComponent = ({
 	colors,
@@ -43,6 +44,7 @@ export const ColorPickerComponent = ({
 	resetLabel = __('Reset', 'eightshift-frontend-libs'),
 	type = ColorPickerType.GENERIC,
 	tooltip,
+	disabled = false,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -151,6 +153,7 @@ export const ColorPickerComponent = ({
 					iconSize={24}
 					ref={ref}
 					label={getTooltipText()}
+					disabled={disabled}
 				/>
 
 				{colorPicker}
@@ -169,6 +172,7 @@ export const ColorPickerComponent = ({
 					icon={getButtonIcon()}
 					iconSize={24}
 					ref={ref}
+					disabled={disabled}
 				/>
 			</div>
 

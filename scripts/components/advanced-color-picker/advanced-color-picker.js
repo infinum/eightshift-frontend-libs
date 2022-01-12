@@ -53,6 +53,7 @@ const CustomValueDisplay = (props) => {
  * @param {Array} [props.types]             - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
  * @param {string?} [props.label]           - Label displayed above the control.
  * @param {string?} [props.help]            - Help text displayed below the control.
+ * @param {boolean} [props.disabled=false]  - If `true`, control is disabled.
  */
 export const AdvancedColorPicker = (props) => {
 	const {
@@ -97,6 +98,8 @@ export const AdvancedColorPicker = (props) => {
 				value: 'gradient'
 			}
 		],
+
+		disabled = false,
 	} = props;
 
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
@@ -113,11 +116,12 @@ export const AdvancedColorPicker = (props) => {
 				customSingleValueDisplayComponent={CustomValueDisplay}
 				isClearable={false}
 				isSearchable={false}
+				disabled={disabled}
 			/>
 
 			<br />
 
-			{type === 'project' && showProjectColor &&
+			{type === 'project' && showProjectColor && !disabled &&
 				<ColorPaletteCustom
 					value={colorProject}
 					colors={typeof colorsProject == 'undefined' ? globalColors : colorsProject}
@@ -125,7 +129,7 @@ export const AdvancedColorPicker = (props) => {
 				/>
 			}
 
-			{type === 'solid' && showSolidColor &&
+			{type === 'solid' && showSolidColor && !disabled &&
 				<ColorPicker
 					color={colorSolid}
 					onChangeComplete={onChangeSolid}
@@ -133,7 +137,7 @@ export const AdvancedColorPicker = (props) => {
 				/>
 			}
 
-			{type === 'gradient' && showGradient &&
+			{type === 'gradient' && showGradient && !disabled &&
 				<GradientPicker
 					value={colorGradient}
 					onChange={onChangeGradient}
