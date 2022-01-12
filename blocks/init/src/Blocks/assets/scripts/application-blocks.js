@@ -10,7 +10,7 @@
 import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 
 if (!window?._babelPolyfill) {
-	require('@babel/polyfill');
+	require('@babel/polyfill'); // eslint-disable-line no-underscore-dangle
 }
 
 // Find all blocks and require assets index.js inside it.

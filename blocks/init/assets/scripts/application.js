@@ -5,5 +5,5 @@
  */
 
 if (!window?._babelPolyfill) {
-	require('@babel/polyfill');
+	require('@babel/polyfill'); // eslint-disable-line no-underscore-dangle
 }
