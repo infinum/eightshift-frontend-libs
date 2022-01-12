@@ -122,6 +122,22 @@ export const ColorPickerComponent = ({
 		}
 	};
 
+	if (!label) {
+		return (
+			<>
+				<Button
+					isSecondary
+					onClick={openPicker}
+					icon={getButtonIcon()}
+					iconSize={24}
+					ref={ref}
+				/>
+
+				{colorPicker}
+			</>
+		);
+	}
+
 	return (
 		<>
 			<div className='es-flex-between'>
