@@ -24,6 +24,10 @@
 			"type": "string",
 			"default": "div"
 		},
+		"layoutThreeColumnsAriaRole": {
+			"type": "string",
+			"default": ""
+		},
 		"layoutThreeColumnsUse": {
 			"type": "boolean",
 			"default": true
