@@ -41,3 +41,6 @@ it('tests classnames returns only valid classes', () => {
 	expect(accordionClassnames).toBe(`${accordionManifest.componentClass} ${accordionManifest.componentClass}__element--modifier`);
 });
 
+it('tests classnames throws error on wrong argument type', () => {
+	expect(() => {classnames('test-class');}).toThrow();
+});
