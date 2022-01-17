@@ -6,5 +6,5 @@
  * @return string
  */
 export function classnames(classnamesArray) {
-	return classnamesArray.filter(String).join(' ').trim();
+	return classnamesArray.map(className => className.trim()).filter(String).join(' ').trim();
 }
