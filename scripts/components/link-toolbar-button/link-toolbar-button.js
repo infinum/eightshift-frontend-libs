@@ -18,6 +18,7 @@ import { __, sprintf } from '@wordpress/i18n';
  * @param {boolean} [props.showNewTabOption=true] - If `true`, displays the 'Open in new tab' toggle.
  * @param {string} [props.newTabOptionName]       - Name of the 'Opens in new tab' option shown in the interface.
  * @param {string} [props.removeLinkLabel]        - Label on the 'Remove link' button.
+ * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
  */
 export const LinkToolbarButton = ({
 	url,
@@ -29,6 +30,7 @@ export const LinkToolbarButton = ({
 	showNewTabOption = true,
 	newTabOptionName = __('Open in new tab'),
 	removeLinkLabel = __('Remove link'),
+	disabled = false,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -120,11 +122,12 @@ export const LinkToolbarButton = ({
 	return (
 		<>
 			<ToolbarButton
-				name="link"
+				name='link'
 				icon={link}
 				title={sprintf(__('%s URL'), title)}
 				onClick={openLinkControl}
 				isActive={url?.length}
+				disabled={disabled}
 			/>
 			{linkControl}
 		</>

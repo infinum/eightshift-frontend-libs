@@ -19,6 +19,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {React.Component?} [props.buttonIcon]         - If set, the button that opens a dropdown option picker displays the set (JSX SVG) icon. Otherwise, the icon of the currently selected option (or first option if nothing selected) is used.
  * @param {boolean} [props.showToggleButtonLabel=false] - If `true`, the text label is shown next to the icon of the button that opens a dropdown option picker.
  * @param {boolean} [props.unsetOnClick=false] 			- If `true`, and you click a option that is currently selected, the value will be unset (set to `undefined`).
+ * @param {boolean} [props.disabled=false]              - If `true`, control is disabled.
  */
 export const OptionPicker
 	= ({
@@ -35,6 +36,7 @@ export const OptionPicker
 		buttonIcon,
 		showToggleButtonLabel = false,
 		unsetOnClick = false,
+		disabled = false,
 	}) => {
 		/**
 		 * Gets the onChange callback with will (un)set a value
@@ -83,6 +85,7 @@ export const OptionPicker
 					label: controlLabel,
 					showTooltip: true,
 					isPressed: isToggleButtonActive,
+					disabled: disabled,
 				}}
 				popoverProps={{
 					position: popoverPosition,

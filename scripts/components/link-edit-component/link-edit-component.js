@@ -20,6 +20,7 @@ import { icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
  * @param {string} [props.removeLinkTooltip]      - 'Remove link' button tooltip.
  * @param {string} [props.editUrlLabel]           - 'Edit URL' button label (when URL is set).
  * @param {string} [props.addUrlLabel]            - 'Add URL' button label (when URL is not set).
+ * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
  */
 export const LinkEditComponent = ({
 	url,
@@ -33,6 +34,7 @@ export const LinkEditComponent = ({
 	removeLinkTooltip = __('Remove link'),
 	editUrlLabel = __('Edit URL'),
 	addUrlLabel = __('Add URL'),
+	disabled = false,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -130,6 +132,7 @@ export const LinkEditComponent = ({
 					onClick={openLinkControl}
 					icon={url?.length > 0 ? icons.editOptions : icons.add}
 					iconSize={24}
+					disabled={disabled}
 				>
 					{url?.length > 0 ? editUrlLabel : addUrlLabel}
 				</Button>
@@ -141,6 +144,7 @@ export const LinkEditComponent = ({
 						icon={icons.trash}
 						iconSize={24}
 						label={removeLinkTooltip}
+						disabled={disabled}
 					/>
 				}
 			</div>

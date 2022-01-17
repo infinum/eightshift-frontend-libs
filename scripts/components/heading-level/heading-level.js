@@ -14,6 +14,7 @@ import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
  * @param {number?} props.selectedLevel  - Currently selected heading level.
  * @param {function} props.onChange      - Function called when the selection is changed.
  * @param {string} [props.title]         - Function called when the selection is changed.
+ * @param {boolean} [props.disabled=false]  - If `true`, control is disabled.
  */
 export const HeadingLevel = (props) => {
 	const {
@@ -23,6 +24,7 @@ export const HeadingLevel = (props) => {
 		selectedLevel,
 		onChange,
 		title = __('Heading', 'eightshift-frontend-libs'),
+		disabled = false,
 	} = props;
 
 	const options = range(minLevel, maxLevel + 1).map((level) => {
@@ -42,6 +44,7 @@ export const HeadingLevel = (props) => {
 			isInline={inline}
 			isToolbarButton
 			isInToolbar
+			disabled={disabled}
 		/>
 	);
 };

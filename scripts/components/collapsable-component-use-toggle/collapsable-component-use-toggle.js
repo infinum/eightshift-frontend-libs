@@ -38,6 +38,14 @@ export const CollapsableComponentUseToggle = ({
 		return children;
 	}
 
+	const getIcon = () => {
+		if (!checked) {
+			return icons.chevronDown;
+		}
+
+		return isOpen ? icons.chevronUp : icons.chevronDown;
+	};
+
 	return (
 		<BaseControl className={componentClasses}>
 			<div className='es-collapsable-component-use-toggle__trigger'>
@@ -59,7 +67,7 @@ export const CollapsableComponentUseToggle = ({
 					isTertiary
 					onClick={() => setIsOpen(!isOpen)}
 					className='es-collapsable-component-use-toggle__expander'
-					icon={!checked ? icons.chevronDown : (isOpen ? icons.chevronUp : icons.chevronDown)} // eslint-disable-line no-nested-ternary
+					icon={getIcon()}
 					disabled={disabled || (showUseToggle && !checked)}
 				/>
 			</div>

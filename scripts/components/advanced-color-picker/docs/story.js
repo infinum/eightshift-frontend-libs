@@ -52,6 +52,19 @@ export const component = () => {
 
 	const extractedProjectColor = colors.find(({ slug }) => slug === projectColor);
 
+	const getBackground = () => {
+		switch (type) {
+			case 'project':
+				return extractedProjectColor?.color;
+			case 'solid':
+				return solidColor?.hex;
+			case 'gradient':
+				return gradient;
+			default:
+				return 'transparent';
+		}
+	};
+
 	return (
 		<>
 			<div style={{
@@ -59,7 +72,7 @@ export const component = () => {
 				height: '3rem',
 				padding: '1rem',
 				boxShadow: 'inset 0 0 0 1px #FFFFFF, 0 0 0 1px #F0F0F0',
-				background: type === '' ? 'transparent' : (type === 'project' ? extractedProjectColor?.color : (type === 'solid' ? solidColor?.hex : gradient)), // eslint-disable-line no-nested-ternary
+				background: getBackground(),
 				borderRadius: '6rem',
 				margin: '0 0 1rem 8.5rem'
 			}}></div>
