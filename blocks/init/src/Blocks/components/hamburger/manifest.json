@@ -14,8 +14,7 @@
 			"default": true
 		},
 		"hamburgerLabel": {
-			"type": "string",
-			"default": ""
+			"type": "string"
 		}
 	}
 }
