@@ -7,6 +7,19 @@ import { SortableContainer, SortableElement, sortableHandle } from 'react-sortab
 import AsyncSelect from "react-select/async";
 
 /**
+ * Determines the CustomSelect border style.
+ *
+ * - `MATCH_WP` - matches the WP Admin theme color.
+ * - `BLACK` - black.
+ * - `DEFAULT` - 80% gray.
+ */
+export const CustomSelectStyle = {
+	MATCH_WP: 'var(--wp-admin-theme-color, #111111)',
+	BLACK: 'hsla(0, 0%, 0%, 1)',
+	DEFAULT: 'hsla(0, 0%, 80%, 1)',
+};
+
+/**
  * A modern, flexible and customizable select menu.
  *
  * @param {object} props                                               - CustomSelect options.
@@ -16,6 +29,7 @@ import AsyncSelect from "react-select/async";
  * @param {array?} props.options                                       - Options to choose. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                                         - Current value
  * @param {function} props.onChange                                    - Function called when the selection is changed.
+ * @param {boolean} [props.isCompact=false]                            - If `true`, the component will slightly reduce height so it fits nicely with WP Buttons and similar components.
  * @param {boolean} [props.isClearable=true]                           - If `true`, the currently selected item can be cleared. `null` is set as the value.
  * @param {boolean} [props.isSearchable=true]                          - If `true`, the options can be searched through.
  * @param {boolean} [props.closeMenuOnSelect=false]                    - If single-select mode is active, after a selection is made the dropdown is closed.
@@ -35,6 +49,7 @@ import AsyncSelect from "react-select/async";
  * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
  * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
  * @param {function} [props.filterAsyncOptions]                        - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
+ * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]  - Style of the CustomSelect.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -44,6 +59,7 @@ export const CustomSelect = (props) => {
 		options,
 		value,
 		onChange,
+		isCompact = false,
 		isClearable = true,
 		isSearchable = true,
 		closeMenuOnSelect = false,
@@ -63,6 +79,7 @@ export const CustomSelect = (props) => {
 		loadingMessage = __('Loading', 'eightshift-frontend-libs'),
 		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
 		filterAsyncOptions = (options) => options,
+		style = CustomSelectStyle.DEFAULT,
 	} = props;
 
 	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
@@ -253,7 +270,7 @@ export const CustomSelect = (props) => {
 			closeMenuOnSelect={closeMenuOnSelect}
 			theme={(theme) => ({
 				...theme,
-				borderRadius: 3,
+				borderRadius: 2,
 				colors: {
 					...theme.colors,
 					primary25: 'hsla(0, 0%, 90%, 1)',
@@ -286,6 +303,9 @@ export const CustomSelect = (props) => {
 					borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 					borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 					zIndex: state.menuIsOpen ? 4 : null,
+					borderColor: style,
+					minHeight: isCompact ? '2.25rem' : provided.minHeight,
+					height: isCompact ? '2.25rem' : provided.height,
 				}),
 				option: (provided, state) => ({
 					...provided,
@@ -295,6 +315,27 @@ export const CustomSelect = (props) => {
 					transition: 'all 0.3s ease-out',
 					...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, #111111)' } : {}),
 				}),
+				valueContainer: (provided) => {
+					if (!isCompact) {
+						return provided;
+					}
+
+					return {
+						...provided,
+						padding: '0 0.5rem',
+						height: '2.125rem',
+					};
+				},
+				indicatorsContainer: (provided) => {
+					if (!isCompact) {
+						return provided;
+					}
+
+					return {
+						...provided,
+						height: '2.125rem',
+					};
+				}
 			}}
 		/>
 	);

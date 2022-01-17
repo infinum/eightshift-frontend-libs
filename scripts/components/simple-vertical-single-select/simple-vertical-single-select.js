@@ -11,10 +11,12 @@ import { BaseControl, Button } from '@wordpress/components';
  * @param {string} props.options.label            - Option description.
  * @param {boolean} props.options.isActive        - Boolean to determine if the current option is active.
  * @param {React.Component?} [props.options.icon] - Icon beside the option.
+ * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
  */
 export const SimpleVerticalSingleSelect = ({
 	label,
 	options,
+	disabled = false,
 }) => {
 	return (
 		<BaseControl label={label}>
@@ -26,6 +28,7 @@ export const SimpleVerticalSingleSelect = ({
 						icon={icon}
 						iconSize={24}
 						isPressed={isActive}
+						disabled={disabled}
 					>
 						{label}
 					</Button>
