@@ -8,7 +8,7 @@ import AsyncSelect from "react-select/async";
 
 /**
  * Determines the CustomSelect border style.
- * 
+ *
  * - `MATCH_WP` - matches the WP Admin theme color.
  * - `BLACK` - black.
  * - `DEFAULT` - 80% gray.
@@ -48,6 +48,7 @@ export const CustomSelectStyle = {
  * @param {boolean} [props.hideSelected=false]                         - If set to `true`, the selected option is hidden from the menu.
  * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
  * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
+ * @param {function} [props.filterAsyncOptions]                        - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
  * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]  - Style of the CustomSelect.
  */
 export const CustomSelect = (props) => {
@@ -77,6 +78,7 @@ export const CustomSelect = (props) => {
 		hideSelected = false,
 		loadingMessage = __('Loading', 'eightshift-frontend-libs'),
 		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
+		filterAsyncOptions = (options) => options,
 		style = CustomSelectStyle.DEFAULT,
 	} = props;
 
@@ -121,19 +123,19 @@ export const CustomSelect = (props) => {
 
 		if (!Array.isArray(defaultOptions)) {
 			const options = await loadOptions(inputValue);
-			setDefaultOptions(options);
+			setDefaultOptions(filterAsyncOptions(options));
 		}
 
 		if (reFetchOnSearch && inputValue.length) {
 			const options = await loadOptions(inputValue);
-			return new Promise((resolve) => resolve(options));
+			return new Promise((resolve) => resolve(filterAsyncOptions(options)));
 		}
 
 		return new Promise((resolve) => {
 			if (!inputValue.length) {
-				resolve(defaultOptions);
+				resolve(filterAsyncOptions(defaultOptions));
 			} else {
-				resolve([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label)));
+				resolve(filterAsyncOptions([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label))));
 			}
 		});
 	};
