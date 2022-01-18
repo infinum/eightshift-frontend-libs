@@ -1,6 +1,7 @@
 // All exports are sorted in alphabetical order.
 
 // Components
+export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
 export {
 	AlignmentToolbar,
 	AlignmentToolbarType
