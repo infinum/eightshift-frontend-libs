@@ -67,6 +67,7 @@ function getConfig(
 		applicationAdminEntry: path.resolve(absolutePath, assetsPathConfigClean, 'application-admin.js'),
 		applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
 		applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
+		applicationBlocksFrontendEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-frontend.js'),
 
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 

@@ -399,6 +399,11 @@ body {
 		}
 	}
 
+	// Change wrapper panel background color a bit.
+	.es-panel-wrapper {
+		background-color: #F6F9FF;
+	}
+
 	// Panel body without title.
 	.es-panel-standalone {
 		.components-base-control.components-toggle-control {
