@@ -2,126 +2,81 @@
 	"componentName": "wrapper",
 	"title": "Wrapper",
 	"componentClass": "wrapper",
-	"example": {
-		"attributes": {
-			"wrapperId": "This a custom ID",
-			"wrapperUse": true,
-			"wrapperUseShowControl": true,
-			"wrapperUseSimple": false,
-			"wrapperUseSimpleShowControl": true,
-			"wrapperDisable": false,
-			"wrapperParentClass": "",
-
-			"wrapperWidthLarge": 12,
-			"wrapperWidthDesktop": 6,
-			"wrapperWidthTablet": 3,
-			"wrapperWidthMobile": 12,
-
-			"wrapperSpacingTopLarge": 100,
-			"wrapperSpacingTopDesktop": 80,
-			"wrapperSpacingTopTablet": 50,
-			"wrapperSpacingTopMobile": 20,
-
-			"wrapperSpacingBottomLarge": 100,
-			"wrapperSpacingBottomDesktop": 80,
-			"wrapperSpacingBottomTablet": 50,
-			"wrapperSpacingBottomMobile": 20
-		}
-	},
 	"attributes": {
-		"wrapperUse": {
-			"type": "boolean",
-			"default": true
-		},
-		"wrapperUseShowControl": {
-			"type": "boolean",
-			"default": true
-		},
-		"wrapperUseSimple": {
-			"type": "boolean",
-			"default": false
-		},
-		"wrapperUseSimpleShowControl": {
-			"type": "boolean",
-			"default": true
-		},
 		"wrapperDisable": {
 			"type": "boolean",
 			"default": false
 		},
-		"wrapperParentClass": {
-			"type": "string"
+
+		"wrapperLayoutUse": {
+			"type": "boolean",
+			"default": true
 		},
 
-		"className": {
-			"type": "string"
+		"wrapperIdShow": {
+			"type": "boolean",
+			"default": true
 		},
-
 		"wrapperId": {
 			"type": "string"
 		},
+
+		"wrapperAnchorIdShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperAnchorId": {
 			"type": "string"
+		},
+
+		"wrapperBackgroundColorShow": {
+			"type": "boolean",
+			"default": true
 		},
 		"wrapperBackgroundColor": {
 			"type": "string"
 		},
 
-		"wrapperWidthLarge": {
+		"wrapperStartShow": {
+			"type": "boolean",
+			"default": true
+		},
+		"wrapperStartLarge": {
+			"type": "integer",
+			"default": 1
+		},
+		"wrapperStartDesktop": {
+			"type": "integer"
+		},
+		"wrapperStartTablet": {
+			"type": "integer"
+		},
+		"wrapperStartMobile": {
+			"type": "integer"
+		},
+
+		"wrapperEndShow": {
+			"type": "boolean",
+			"default": true
+		},
+		"wrapperEndLarge": {
 			"type": "integer",
 			"default": 12
 		},
-		"wrapperWidthDesktop": {
+		"wrapperEndDesktop": {
 			"type": "integer"
 		},
-		"wrapperWidthTablet": {
+		"wrapperEndTablet": {
 			"type": "integer"
 		},
-		"wrapperWidthMobile": {
-			"type": "integer"
-		},
-
-		"wrapperOffsetLarge": {
-			"type": "integer"
-		},
-		"wrapperOffsetDesktop": {
-			"type": "integer"
-		},
-		"wrapperOffsetTablet": {
-			"type": "integer"
-		},
-		"wrapperOffsetMobile": {
+		"wrapperEndMobile": {
 			"type": "integer"
 		},
 
-		"wrapperContainerWidthLarge": {
-			"type": "string",
-			"default": "default"
+		"wrapperSpacingTopShow": {
+			"type": "boolean",
+			"default": true
 		},
-		"wrapperContainerWidthDesktop": {
-			"type": "string"
-		},
-		"wrapperContainerWidthTablet": {
-			"type": "string"
-		},
-		"wrapperContainerWidthMobile": {
-			"type": "string"
-		},
-
-		"wrapperGutterLarge": {
-			"type": "string",
-			"default": "default"
-		},
-		"wrapperGutterDesktop": {
-			"type": "string"
-		},
-		"wrapperGutterTablet": {
-			"type": "string"
-		},
-		"wrapperGutterMobile": {
-			"type": "string"
-		},
-
 		"wrapperSpacingTopLarge": {
 			"type": "integer"
 		},
@@ -135,6 +90,10 @@
 			"type": "integer"
 		},
 
+		"wrapperSpacingBottomShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperSpacingBottomLarge": {
 			"type": "integer",
 			"default": 40
@@ -149,6 +108,10 @@
 			"type": "integer"
 		},
 
+		"wrapperSpacingTopInShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperSpacingTopInLarge": {
 			"type": "integer"
 		},
@@ -162,6 +125,10 @@
 			"type": "integer"
 		},
 
+		"wrapperSpacingBottomInShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperSpacingBottomInLarge": {
 			"type": "integer"
 		},
@@ -175,6 +142,10 @@
 			"type": "integer"
 		},
 
+		"wrapperDividerTopShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperDividerTopLarge": {
 			"type": "boolean"
 		},
@@ -188,6 +159,10 @@
 			"type": "boolean"
 		},
 
+		"wrapperDividerBottomShow": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperDividerBottomLarge": {
 			"type": "boolean"
 		},
@@ -199,45 +174,20 @@
 		},
 		"wrapperDividerBottomMobile": {
 			"type": "boolean"
-		},
-
-		"wrapperHideLarge": {
-			"type": "boolean"
-		},
-		"wrapperHideDesktop": {
-			"type": "boolean"
-		},
-		"wrapperHideTablet": {
-			"type": "boolean"
-		},
-		"wrapperHideMobile": {
-			"type": "boolean"
 		}
 	},
 	"responsiveAttributes": {
-		"wrapperWidth": {
-			"large": "wrapperWidthLarge",
-			"desktop": "wrapperWidthDesktop",
-			"tablet": "wrapperWidthTablet",
-			"mobile": "wrapperWidthMobile"
+		"wrapperStart": {
+			"large": "wrapperStartLarge",
+			"desktop": "wrapperStartDesktop",
+			"tablet": "wrapperStartTablet",
+			"mobile": "wrapperStartMobile"
 		},
-		"wrapperOffset": {
-			"large": "wrapperOffsetLarge",
-			"desktop": "wrapperOffsetDesktop",
-			"tablet": "wrapperOffsetTablet",
-			"mobile": "wrapperOffsetMobile"
-		},
-		"wrapperContainerWidth": {
-			"large": "wrapperContainerWidthLarge",
-			"desktop": "wrapperContainerWidthDesktop",
-			"tablet": "wrapperContainerWidthTablet",
-			"mobile": "wrapperContainerWidthMobile"
-		},
-		"wrapperGutter": {
-			"large": "wrapperGutterLarge",
-			"desktop": "wrapperGutterDesktop",
-			"tablet": "wrapperGutterTablet",
-			"mobile": "wrapperGutterMobile"
+		"wrapperEnd": {
+			"large": "wrapperEndLarge",
+			"desktop": "wrapperEndDesktop",
+			"tablet": "wrapperEndTablet",
+			"mobile": "wrapperEndMobile"
 		},
 		"wrapperSpacingTop": {
 			"large": "wrapperSpacingTopLarge",
@@ -274,59 +224,14 @@
 			"desktop": "wrapperDividerBottomDesktop",
 			"tablet": "wrapperDividerBottomTablet",
 			"mobile": "wrapperDividerBottomMobile"
-		},
-		"wrapperHide": {
-			"large": "wrapperHideLarge",
-			"desktop": "wrapperHideDesktop",
-			"tablet": "wrapperHideTablet",
-			"mobile": "wrapperHideMobile"
 		}
 	},
 	"options": {
-		"wrapperOffset": [
-			{
-				"label": "Not set",
-				"value": ""
-			},
-			{
-				"label": "Center",
-				"value": "center"
-			}
-		],
-		"wrapperContainerWidth": [
-			{
-				"label": "Not set",
-				"value": ""
-			},
-			{
-				"label": "Default",
-				"value": "default"
-			}
-		],
-		"wrapperGutter": [
-			{
-				"label": "Not set",
-				"value": ""
-			},
-			{
-				"label": "Default",
-				"value": "default"
-			},
-			{
-				"label": "No spacing",
-				"value": "none"
-			}
-		],
 		"wrapperBackgroundColor": [
 			"primary",
 			"black",
 			"white"
 		],
-		"wrapperWidth": {
-			"min": 0,
-			"max": 12,
-			"step": 1
-		},
 		"wrapperSpacing": {
 			"min": -300,
 			"max": 300,
@@ -342,6 +247,84 @@
 			"desktop",
 			"tablet",
 			"mobile"
+		]
+	},
+	"variables": {
+		"wrapperStart": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-grid-column-start": "%value%"
+				}
+			}
+		],
+		"wrapperEnd": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-grid-column-end": "%value%"
+				}
+			}
+		],
+		"wrapperSpacingTop": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-top": "calc(var(--base-font-size) * calc(%value%rem / 10))"
+				}
+			}
+		],
+		"wrapperSpacingBottom": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-bottom": "calc(var(--base-font-size) * calc(%value%rem / 10))"
+				}
+			}
+		],
+		"wrapperSpacingTopIn": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-top-in": "calc(var(--base-font-size) * calc(%value%rem / 10))"
+				}
+			}
+		],
+		"wrapperSpacingBottomIn": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-bottom-in": "calc(var(--base-font-size) * calc(%value%rem / 10))"
+				}
+			}
+		],
+		"wrapperDividerBottom": {
+			"true": [
+				{
+					"inverse": true,
+					"variable": {
+						"wrapper-divider-bottom": "1px solid var(--global-colors-primary)"
+					}
+				}
+			]
+		},
+		"wrapperDividerTop": {
+			"true": [
+				{
+					"inverse": true,
+					"variable": {
+						"wrapper-divider-top": "1px solid var(--global-colors-primary)"
+					}
+				}
+			]
+		},
+		"wrapperBackgroundColor": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-background-color": "var(--global-colors-%value%)"
+				}
+			}
 		]
 	}
 }

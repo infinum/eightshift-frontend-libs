@@ -7,8 +7,6 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const HeadingEditor = (attributes) => {
-	const unique = useMemo(() => getUnique(), []);
-
 	const {
 		componentClass,
 	} = manifest;
@@ -18,8 +16,11 @@ export const HeadingEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-boilerplate'),
+		uniqueWrapperId,
 	} = attributes;
+
+	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingContent = checkAttr('headingContent', attributes, manifest);

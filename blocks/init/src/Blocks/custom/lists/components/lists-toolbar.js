@@ -14,7 +14,7 @@ export const ListsToolbar = ({ attributes, setAttributes }) => {
 		<AlignmentToolbar
 			value={listsAlign}
 			options={getOption('listsAlign', attributes, manifest)}
-			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
+			label={sprintf(__('%s text align', 'eightshift-boilerplate'), manifestTitle)}
 			title={manifestTitle}
 			onChange={(value) => setAttributes({ [getAttrKey('listsAlign', attributes, manifest)]: value })}
 		/>

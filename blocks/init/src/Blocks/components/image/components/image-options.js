@@ -46,14 +46,14 @@ export const ImageOptions = (attributes) => {
 			{imageUse &&
 				<>
 					{showImageUrl &&
-						<Responsive label={<IconLabel icon={icons.image} label={__('Image source', 'eightshift-frontend-libs')} />}>
+						<Responsive label={<IconLabel icon={icons.image} label={__('Image source', 'eightshift-boilerplate')} />}>
 							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest)).map(function (keyName) {
 
 								let point = ucfirst(keyName);
 								let pointLabel = point;
 								if (point === 'Large') {
 									point = '';
-									pointLabel = __('Default (all screens)', 'eightshift-frontend-libs');
+									pointLabel = __('Default (all screens)', 'eightshift-boilerplate');
 								}
 
 								const attr = getAttrKey(`imageUrl${point}`, attributes, manifest);
@@ -104,7 +104,7 @@ export const ImageOptions = (attributes) => {
 
 					{showImageAlt &&
 						<TextareaControl
-							label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-boilerplate')} />}
 							value={imageAlt}
 							onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
 						/>
@@ -113,8 +113,8 @@ export const ImageOptions = (attributes) => {
 					{showImageFull &&
 						<IconToggle
 							icon={icons.size}
-							label={__('Fill container', 'eightshift-frontend-libs')}
-							help={__('Span the full width of the container and ignore its maximum width', 'eightshift-frontend-libs')}
+							label={__('Fill container', 'eightshift-boilerplate')}
+							help={__('Span the full width of the container and ignore its maximum width', 'eightshift-boilerplate')}
 							checked={imageFull}
 							onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
 						/>

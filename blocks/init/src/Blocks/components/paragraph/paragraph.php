@@ -16,7 +16,7 @@ if (!$paragraphUse) {
 	return;
 }
 
-$unique = Components::getUnique();
+$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
@@ -27,6 +27,7 @@ $paragraphContent = Components::checkAttr('paragraphContent', $attributes, $mani
 
 $paragraphClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
+	Components::selector($blockClass, $blockClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);

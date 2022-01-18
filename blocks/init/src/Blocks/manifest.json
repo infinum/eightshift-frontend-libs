@@ -21,9 +21,10 @@
 			"default": "66rem"
 		},
 		"gutters": {
-			"none": "0",
-			"default": "1.25rem",
-			"big": "2.5rem"
+			"min": 1,
+			"max": 9,
+			"step": 1,
+			"default": 3
 		},
 		"sectionSpacing": {
 			"min":  -300,

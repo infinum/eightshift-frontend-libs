@@ -45,7 +45,7 @@ export const ListsOptions = (attributes) => {
 				<>
 					{showListsColor &&
 						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-boilerplate')} />}
 							colors={getOption('listsColor', attributes, manifest, true)}
 							value={listsColor}
 							onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
@@ -54,7 +54,7 @@ export const ListsOptions = (attributes) => {
 
 					{showListsSize &&
 						<CustomSelect
-							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-boilerplate')} />}
 							value={listsSize}
 							options={getOption('listsSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: value })}
@@ -66,7 +66,7 @@ export const ListsOptions = (attributes) => {
 
 					{showListsOrdered &&
 						<SimpleVerticalSingleSelect
-							label={__('List type', 'eightshift-frontend-libs')}
+							label={__('List type', 'eightshift-boilerplate')}
 							value={listsOrdered}
 							options={getOption('listsOrdered', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}
@@ -79,7 +79,7 @@ export const ListsOptions = (attributes) => {
 					{showListsColorOnlyMarker &&
 						<IconToggle
 							icon={<BlockIcon iconName='es-list-item' />}
-							label={__('Show color only on list markers', 'eightshift-frontend-libs')}
+							label={__('Show color only on list markers', 'eightshift-boilerplate')}
 							checked={listsColorOnlyMarker}
 							onChange={(value) => setAttributes({ [getAttrKey('listsColorOnlyMarker', attributes, manifest)]: value })}
 						/>

@@ -9,8 +9,6 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const CardEditor = (attributes) => {
-	const unique = useMemo(() => getUnique(), []);
-
 	const {
 		componentClass,
 	} = manifest;
@@ -19,7 +17,10 @@ export const CardEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
+		uniqueWrapperId,
 	} = attributes;
+
+	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
 
 	const cardClass = classnames([
 		selector(componentClass, componentClass),

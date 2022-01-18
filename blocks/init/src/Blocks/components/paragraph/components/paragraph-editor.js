@@ -7,8 +7,6 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ParagraphEditor = (attributes) => {
-	const unique = useMemo(() => getUnique(), []);
-
 	const {
 		componentClass,
 	} = manifest;
@@ -18,13 +16,16 @@ export const ParagraphEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-boilerplate'),
 
 		onSplit,
 		mergeBlocks,
 		onReplace,
 		onRemove,
+		uniqueWrapperId,
 	} = attributes;
+
+	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
 
 	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);

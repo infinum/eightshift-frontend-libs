@@ -9,7 +9,7 @@
  */
 import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers';
 
-if (!window?._babelPolyfill) { // eslint-disable-line no-underscore-dangle
+if (!window?._babelPolyfill) {
 	require('@babel/polyfill');
 }
 

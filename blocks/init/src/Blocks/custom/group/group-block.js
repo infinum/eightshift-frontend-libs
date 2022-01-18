@@ -1,20 +1,16 @@
 import React from 'react';
-import { useSelect } from '@wordpress/data';
-import { overrideInnerBlockSimpleWrapperAttributes } from '@eightshift/frontend-libs/scripts';
+import { InspectorControls } from '@wordpress/block-editor';
 import { GroupEditor } from './components/group-editor';
+import { GroupOptions } from './components/group-options';
 
 export const Group = (props) => {
-	const {
-		clientId,
-	} = props;
-
-	// Set this attributes to all inner blocks once inserted in DOM.
-	useSelect((select) => {
-		overrideInnerBlockSimpleWrapperAttributes(select, clientId);
-	});
-
 	return (
-		<GroupEditor {...props} />
+		<>
+			<InspectorControls>
+				<GroupOptions {...props} />
+			</InspectorControls>
+			<GroupEditor {...props} />
+		</>
 	);
 };
 

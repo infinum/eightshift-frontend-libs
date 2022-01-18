@@ -11,34 +11,7 @@
 		"btn",
 		"link"
 	],
-	"example": {
-		"attributes": {
-			"buttonAlign": "left"
-		}
-	},
-	"attributes": {
-		"buttonAlign": {
-			"type": "string",
-			"default": "left"
-		}
-	},
 	"components": {
 		"button": "button"
-	},
-	"options": {
-		"buttonAlign": [
-			"left",
-			"center",
-			"right"
-		]
-	},
-	"variables": {
-		"buttonAlign": [
-			{
-				"variable": {
-					"block-button-align": "%value%"
-				}
-			}
-		]
 	}
 }

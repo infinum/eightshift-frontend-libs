@@ -1,5 +1,6 @@
 .heading {
 	margin: 0;
+	text-align: var(--heading-align);
 	font-weight: var(--heading-font-weight, bold);
 	color: var(--heading-color, var(--global-colors-black, currentColor));
 	font-size: var(--heading-font-size, 1.5rem);

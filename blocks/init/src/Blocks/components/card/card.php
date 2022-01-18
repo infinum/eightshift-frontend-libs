@@ -16,10 +16,11 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$unique = Components::getUnique();
+$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
 
 $cardClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
+	Components::selector($blockClass, $blockClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);

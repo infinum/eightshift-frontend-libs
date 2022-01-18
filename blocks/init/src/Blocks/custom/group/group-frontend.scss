@@ -1,0 +1,9 @@
+@import './../../wrapper/style/shared.scss';
+
+.block-group {
+	@extend %wrapper;
+
+	> * {
+		@extend %wrapper-children;
+	}
+}

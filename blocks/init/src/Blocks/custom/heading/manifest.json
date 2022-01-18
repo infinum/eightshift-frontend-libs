@@ -36,7 +36,7 @@
 		"headingAlign": [
 			{
 				"variable": {
-					"block-heading-align": "%value%"
+					"heading-align": "%value%"
 				}
 			}
 		]

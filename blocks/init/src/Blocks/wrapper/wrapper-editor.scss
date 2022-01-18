@@ -1,0 +1,14 @@
+@import './style/shared';
+
+body {
+	.editor-styles-wrapper > .is-root-container {
+		height: initial !important;
+
+		@extend %wrapper;
+
+		> * {
+			@extend %wrapper-children;
+			@extend %wrapper-children-editor;
+		}
+	}
+}

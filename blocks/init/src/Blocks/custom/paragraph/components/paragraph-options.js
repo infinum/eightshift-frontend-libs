@@ -6,7 +6,7 @@ import { ParagraphOptions as ParagraphOptionsComponent } from '../../../componen
 
 export const ParagraphOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Paragraph', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Paragraph', 'eightshift-boilerplate')}>
 			<ParagraphOptionsComponent
 				{...props('paragraph', attributes, {
 					setAttributes,

@@ -27,5 +27,37 @@
 			}
 		]
 	},
-	"hasInnerBlocks": true
+	"hasInnerBlocks": true,
+	"attributes": {
+		"groupGutterLarge": {
+			"type": "integer"
+		},
+		"groupGutterDesktop": {
+			"type": "integer"
+		},
+		"groupGutterTablet": {
+			"type": "integer"
+		},
+		"groupGutterMobile": {
+			"type": "integer"
+		}
+	},
+	"responsiveAttributes": {
+		"groupGutter": {
+			"large": "groupGutterLarge",
+			"desktop": "groupGutterDesktop",
+			"tablet": "groupGutterTablet",
+			"mobile": "groupGutterMobile"
+		}
+	},
+	"variables": {
+		"groupGutter": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-scoped-gutter": "calc(%value% * 1%)"
+				}
+			}
+		]
+	}
 }

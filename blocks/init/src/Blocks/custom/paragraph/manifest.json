@@ -42,7 +42,7 @@
 		"paragraphAlign": [
 			{
 				"variable": {
-					"block-paragraph-align": "%value%"
+					"paragraph-align": "%value%"
 				}
 			}
 		]

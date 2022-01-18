@@ -18,7 +18,7 @@ export const ListsEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', 'eightshift-boilerplate'),
 	} = attributes;
 
 	const listsUse = checkAttr('listsUse', attributes, manifest);

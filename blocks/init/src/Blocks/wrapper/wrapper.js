@@ -9,6 +9,7 @@ export const Wrapper = (props) => {
 		props: {
 			setAttributes,
 			attributes,
+			clientId,
 		},
 		children,
 	} = props;
@@ -32,6 +33,7 @@ export const Wrapper = (props) => {
 			<WrapperEditor
 				attributes={attributes}
 				children={children}
+				clientId={clientId}
 			/>
 		</>
 	);

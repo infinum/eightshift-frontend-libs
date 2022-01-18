@@ -22,7 +22,7 @@ export const HeadingToolbar = ({ attributes, setAttributes }) => {
 			<AlignmentToolbar
 				value={headingAlign}
 				options={getOption('headingAlign', attributes, manifest)}
-				label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
+				label={sprintf(__('%s text align', 'eightshift-boilerplate'), manifestTitle)}
 				onChange={(value) => setAttributes({ [getAttrKey('headingAlign', attributes, manifest)]: value })}
 			/>
 		</>

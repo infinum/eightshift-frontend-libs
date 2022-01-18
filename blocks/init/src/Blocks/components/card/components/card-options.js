@@ -20,7 +20,7 @@ export const CardOptions = (attributes) => {
 				{...props('intro', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
-				label={__('Intro', 'eightshift-frontend-libs')}
+				label={__('Intro', 'eightshift-boilerplate')}
 				showHeadingUse
 				showLabel
 			/>
