@@ -613,7 +613,12 @@ export const registerBlocks = (
 		window['eightshift'] = {};
 	}
 
-	window['eightshift'][process.env.VERSION] = componentsManifest;
+	window['eightshift'][process.env.VERSION] = {
+		settings: globalManifest,
+		components: componentsManifest,
+		blocks: blocksManifests,
+		wrapper: wrapperManifest,
+	};
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {
@@ -653,7 +658,7 @@ export const registerBlocks = (
 			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				blockManifest = Object.assign(blockManifest, blockOverridesComponent);
+				blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
 			}
 		}
 
@@ -718,7 +723,7 @@ export const registerBlocks = (
  * @returns {object}
  */
 const getComponentsManifest = () => {
-	return window?.['eightshift']?.[process.env.VERSION] ?? {};
+	return window?.['eightshift']?.[process.env.VERSION].components ?? {};
 };
 
 /**
@@ -759,7 +764,7 @@ const getComponentsManifest = () => {
 			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				variationManifest = Object.assign(variationManifest, blockOverridesComponent);
+				variationManifest = Object.assign(variationManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
 			}
 		}
 
