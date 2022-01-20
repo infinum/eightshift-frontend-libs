@@ -608,7 +608,7 @@ export const registerBlocks = (
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
-	// Set componentsManifest to global window for usage in storybook.
+	// Set all manifests to global window for usage in storybook.
 	if (typeof window?.['eightshift'] === 'undefined') {
 		window['eightshift'] = {};
 	}
