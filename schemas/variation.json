@@ -26,7 +26,7 @@
 		},
 		"icon": {
 			"type": "object",
-			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress’ Dashicons (slug serving also as a fallback in non-js contexts). Also you can add our custom icons using es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
+			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress' Dashicons (slug serving also as a fallback in non-js contexts). Also, you can add our custom icons using es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
 			"properties": {
 				"background": {
 					"type": "string",
@@ -45,7 +45,7 @@
 		},
 		"description": {
 			"type": "string",
-			"description": "This is a short description for your variation, which can be translated with our translation functions. This will be shown in the block inspector."
+			"description": "A short description for your variation that can be translated with our translation functions. This will be shown in the block inspector."
 		},
 		"attributes": {
 			"type": "object",
