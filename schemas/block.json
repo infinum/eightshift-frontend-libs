@@ -17,7 +17,7 @@
 		},
 		"title": {
 			"type": "string",
-			"description": "This is the display title for your block, which can be translated with our translation functions. The block inserter will show this name."
+			"description": "The display title for your block that can be translated with our translation functions. The block inserter will show this name."
 		},
 		"category": {
 			"description": "Blocks are grouped into categories to help users browse and discover them.\n Default category is eightshift, but you can and more categories using php hooks in src/Blocks/Blocks.php file.",
@@ -38,14 +38,14 @@
 		},
 		"parent": {
 			"type": "array",
-			"description": "Setting parent lets a block require that it is only available when nested within the specified blocks. For example, you might want to allow an ‘Add to Cart’ block to only be available within a ‘Product’ block.",
+			"description": "Setting parent lets a block know that it is only available when nested within the specified blocks. For example, you might want to allow an 'Add to Cart' block to only be available within a 'Product' block.",
 			"items": {
 				"type": "string"
 			}
 		},
 		"icon": {
 			"type": "object",
-			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress’ Dashicons (slug serving also as a fallback in non-js contexts). Also you can add our custom icons using es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
+			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress' Dashicons (slug serving also as a fallback in non-js contexts). Also, you can add our custom icons using the es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
 			"properties": {
 				"background": {
 					"type": "string",
@@ -68,14 +68,14 @@
 		},
 		"keywords": {
 			"type": "array",
-			"description": "Sometimes a block could have aliases that help users discover it while searching. For example, an image block could also want to be discovered by photo. You can do so by providing an array of unlimited terms (which are translated).",
+			"description": "Sometimes a block can have aliases that help users discover it while searching. For example, an image block could also want to be discovered by photo name. You can do so by providing an array of unlimited terms (which are translated).",
 			"items": {
 				"type": "string"
 			}
 		},
 		"attributes": {
 			"type": "object",
-			"description": "Attributes provide the structured data needs of a block. They can exist in different forms when they are serialized, but they are declared together under a common interface.\n\nSee the attributes documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/ for more details.",
+			"description": "Attributes provide the structured data of a block. They can exist in different forms when they are serialized, but they are declared together under a common interface.\n\nSee the attributes documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/ for more details.",
 			"patternProperties": {
 				"[a-zA-Z]": {
 					"type": "object",
@@ -137,7 +137,7 @@
 						},
 						"attribute": {
 							"type": "string",
-							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block’s markup."
+							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block's markup."
 						}
 					},
 					"required": [
@@ -158,7 +158,7 @@
 				},
 				"align": {
 					"default": false,
-					"description": "This property adds block controls which allow to change block’s alignment.",
+					"description": "This property adds block controls which allow changing block's alignment.",
 					"oneOf": [{
 							"type": "boolean"
 						},
@@ -179,12 +179,12 @@
 				},
 				"alignWide": {
 					"type": "boolean",
-					"description": "This property allows to enable wide alignment for your theme. To disable this behavior for a single block, set this flag to false.",
+					"description": "This property allows enabling wide alignment for your theme. To disable this behavior for a single block, set this flag to false.",
 					"default": true
 				},
 				"customClassName": {
 					"type": "boolean",
-					"description": "This property adds a field to define a custom className for the block’s wrapper.",
+					"description": "This property adds a field, defining a custom className for the block's wrapper.",
 					"default": true
 				},
 				"defaultStylePicker": {
@@ -194,7 +194,7 @@
 				},
 				"html": {
 					"type": "boolean",
-					"description": "By default, a block’s markup can be edited individually. To disable this behavior, set html to false.",
+					"description": "By default, a block's markup can be edited individually. To disable this behavior, set it to false.",
 					"default": true
 				},
 				"inserter": {
@@ -204,7 +204,7 @@
 				},
 				"multiple": {
 					"type": "boolean",
-					"description": "A non-multiple block can be inserted into each post, one time only. For example, the built-in ‘More’ block cannot be inserted again if it already exists in the post being edited. A non-multiple block’s icon is automatically dimmed (unclickable) to prevent multiple instances.",
+					"description": "A non-multiple block can be inserted into each post, one time only. For example, the built-in 'More' block cannot be inserted again if it already exists in the post being edited. A non-multiple block’s icon is automatically dimmed (unclickable) to prevent multiple instances.",
 					"default": true
 				},
 				"reusable": {
