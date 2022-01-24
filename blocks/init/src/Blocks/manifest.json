@@ -32,7 +32,7 @@
 			"step": 10
 		},
 		"sectionInSpacing": {
-			"min":  12,
+			"min":  0,
 			"max":  300,
 			"step": 10
 		},
