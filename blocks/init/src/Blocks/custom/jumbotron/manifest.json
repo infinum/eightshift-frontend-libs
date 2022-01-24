@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "jumbotron",
 	"title": "Jumbotron",
 	"description" : "Jumbotron block with custom settings.",

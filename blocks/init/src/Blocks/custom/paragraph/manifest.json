@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "paragraph",
 	"title": "Paragraph",
 	"description" : "Paragraph block with custom settings.",

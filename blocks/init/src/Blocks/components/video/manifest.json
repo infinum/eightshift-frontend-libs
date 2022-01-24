@@ -1,4 +1,5 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/component.json",
 	"componentName": "video",
 	"title": "Video",
 	"componentClass": "video",

@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "featured-categories",
 	"title": "Featured Categories",
 	"description" : "Block for selecting and displaying featured categories",

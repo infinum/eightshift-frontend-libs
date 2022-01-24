@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "card",
 	"title": "Card",
 	"description" : "Card with custom settings.",

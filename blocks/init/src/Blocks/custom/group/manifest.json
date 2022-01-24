@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "group",
 	"title": "Group",
 	"description" : "Group block used to grouping multiple blocks.",

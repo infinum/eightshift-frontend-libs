@@ -1,4 +1,6 @@
 {
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"active": true,
 	"blockName": "columns",
 	"title": "Columns",
 	"description" : "Columns block with custom settings.",
