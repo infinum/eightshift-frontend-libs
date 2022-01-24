@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../../../../../node_modules/@eightshift/frontend-libs/schemas/variation.json",
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/variation.json",
 	"parentName": "button",
 	"name": "button-full-width",
 	"title": "Button Full Width",

@@ -1,6 +1,6 @@
 {
-	"$schema": "./../../../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
-	"active": false,
+	"active": true,
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
 	"blockName": "button",
 	"title": "Button",
 	"description" : "Button block with custom settings.",

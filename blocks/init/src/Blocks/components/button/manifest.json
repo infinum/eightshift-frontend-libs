@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../../../../../node_modules/@eightshift/frontend-libs/schemas/component.json",
+	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/component.json",
 	"componentName": "button",
 	"title": "Button",
 	"componentClass": "btn",
