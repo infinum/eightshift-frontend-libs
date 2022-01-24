@@ -19,4 +19,3 @@ echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputN
 	'heading',
 	Components::props('heading', $attributes)
 );
-?>

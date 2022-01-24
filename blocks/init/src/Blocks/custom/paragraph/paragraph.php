@@ -21,4 +21,3 @@ echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputN
 	'paragraph',
 	Components::props('paragraph', $attributes)
 );
-?>

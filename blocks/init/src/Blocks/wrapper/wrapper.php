@@ -18,7 +18,7 @@ if (!$wrapperDisable) {
 	$blockClass = $attributes['blockClass'] ?? '';
 	$attributes['uniqueWrapperId'] = $unique;
 
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest, $blockClass);
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest, $blockClass); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 $this->renderWrapperView(
