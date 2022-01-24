@@ -8,7 +8,7 @@
 		},
 		"active": {
 			"type": "boolean",
-			"description": "Is set to false your variation will not be registered and will not show in the block editor. Default: true."
+			"description": "If set to false your variation will not be registered and will not show in the block editor. Default: true."
 		},
 		"parentName": {
 			"type": "string",
