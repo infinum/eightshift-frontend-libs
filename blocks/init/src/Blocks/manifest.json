@@ -1,4 +1,5 @@
 {
+	"$schema": "./../../node_modules/@eightshift/frontend-libs/schemas/settings.json",
 	"namespace": "eightshift-boilerplate",
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
@@ -31,7 +32,7 @@
 			"step": 10
 		},
 		"sectionInSpacing": {
-			"min":  0,
+			"min":  12,
 			"max":  300,
 			"step": 10
 		},
