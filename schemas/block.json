@@ -57,7 +57,7 @@
 				},
 				"src": {
 					"type": "string",
-					"description": "Specifying an icon for the block."
+					"description": "Specifying an icon for the block. Can be a name of a Dashicon, a name of an Eighshift block icon, or a SVG string."
 				}
 			},
 			"additionalProperties": false
