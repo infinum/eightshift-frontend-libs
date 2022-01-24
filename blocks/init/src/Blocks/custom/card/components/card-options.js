@@ -7,7 +7,7 @@ import manifest from './../manifest.json';
 
 export const CardOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Card', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Card', 'eightshift-frontend-libs')}>
 			<CardOptionsComponent
 				{...props('card', attributes, {
 					setAttributes,

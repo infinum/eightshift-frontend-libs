@@ -16,7 +16,7 @@ export const ButtonEditor = (attributes) => {
 		selectorClass = componentClass,
 		additionalClass,
 		blockClass,
-		placeholder = __('Add content', 'eightshift-boilerplate'),
+		placeholder = __('Add content', 'eightshift-frontend-libs'),
 		uniqueWrapperId,
 	} = attributes;
 

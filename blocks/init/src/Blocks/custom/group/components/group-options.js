@@ -21,8 +21,8 @@ export const GroupOptions = ({ attributes, setAttributes }) => {
 	} = globalManifest;
 
 	return (
-		<PanelBody title={__('Group', 'eightshift-boilerplate')}>
-			<Responsive label={<IconLabel icon={icons.width} label={__('Gutter', 'eightshift-boilerplate')} />}>
+		<PanelBody title={__('Group', 'eightshift-frontend-libs')}>
+			<Responsive label={<IconLabel icon={icons.width} label={__('Gutter', 'eightshift-frontend-libs')} />}>
 				{Object.keys(checkAttrResponsive('groupGutter', attributes, manifest)).map(function (keyName) {
 
 					const point = ucfirst(keyName);

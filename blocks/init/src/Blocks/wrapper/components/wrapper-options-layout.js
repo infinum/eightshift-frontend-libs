@@ -91,7 +91,7 @@ export const WrapperOptionsLayout = ({ attributes, setAttributes }) => {
 			/>
 
 			{wrapperStartShow &&
-				<Responsive label={<IconLabel icon={icons.width} label={__('Start column', 'eightshift-boilerplate')} />}>
+				<Responsive label={<IconLabel icon={icons.width} label={__('Start column', 'eightshift-frontend-libs')} />}>
 					{Object.keys(wrapperStart).map(function (keyName) {
 
 						const point = ucfirst(keyName);
@@ -124,7 +124,7 @@ export const WrapperOptionsLayout = ({ attributes, setAttributes }) => {
 			}
 
 			{wrapperEndShow &&
-				<Responsive label={<IconLabel icon={icons.width} label={__('End column', 'eightshift-boilerplate')} />}>
+				<Responsive label={<IconLabel icon={icons.width} label={__('End column', 'eightshift-frontend-libs')} />}>
 					{Object.keys(wrapperEnd).map(function (keyName) {
 
 						const point = ucfirst(keyName);

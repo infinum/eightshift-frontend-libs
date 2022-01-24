@@ -73,7 +73,7 @@ export const ButtonOptions = (attributes) => {
 				<>
 					{showButtonColor &&
 						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 							value={buttonColor}
 							colors={getOption('buttonColor', attributes, manifest, true)}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
@@ -83,7 +83,7 @@ export const ButtonOptions = (attributes) => {
 					{showButtonIsLink &&
 						<IconToggle
 							icon={icons.link}
-							label={__('Display as link', 'eightshift-boilerplate')}
+							label={__('Display as link', 'eightshift-frontend-libs')}
 							checked={buttonIsLink}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonIsLink', attributes, manifest)]: value })}
 						/>
@@ -91,21 +91,21 @@ export const ButtonOptions = (attributes) => {
 
 					{showButtonSize && !buttonIsLink &&
 						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-frontend-libs')} />}
 							options={sizeOptions}
 						/>
 					}
 
 					{showButtonWidth && !buttonIsLink &&
 						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}
 							options={widthOptions}
 						/>
 					}
 				
 					{showButtonAriaLabel &&
 						<TextControl
-							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
 							value={buttonAriaLabel}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
 						/>
@@ -114,16 +114,16 @@ export const ButtonOptions = (attributes) => {
 					{showButtonIsAnchor &&
 						<IconToggle
 							icon={icons.anchor}
-							label={__('Anchor', 'eightshift-boilerplate')}
+							label={__('Anchor', 'eightshift-frontend-libs')}
 							checked={buttonIsAnchor}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonIsAnchor', attributes, manifest)]: value })}
-							help={__('Make sure to set the URL as an ID of the element you want to target, e.g. #my-block.', 'eightshift-boilerplate')}
+							help={__('Make sure to set the URL as an ID of the element you want to target, e.g. #my-block.', 'eightshift-frontend-libs')}
 						/>
 					}
 
 					{showButtonId &&
 						<TextControl
-							label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
 							value={buttonId}
 							onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
 						/>

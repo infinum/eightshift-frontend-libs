@@ -14,7 +14,7 @@ export const ParagraphToolbar = ({ attributes, setAttributes }) => {
 		<AlignmentToolbar
 			value={paragraphAlign}
 			options={getOption('paragraphAlign', attributes, manifest)}
-			label={sprintf(__('%s text align', 'eightshift-boilerplate'), manifestTitle)}
+			label={sprintf(__('%s text align', 'eightshift-frontend-libs'), manifestTitle)}
 			title={manifestTitle}
 			onChange={(value) => setAttributes({ [getAttrKey('paragraphAlign', attributes, manifest)]: value })}
 		/>

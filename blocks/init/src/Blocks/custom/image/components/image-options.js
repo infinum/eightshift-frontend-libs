@@ -6,7 +6,7 @@ import { ImageOptions as ImageOptionsComponent } from '../../../components/image
 
 export const ImageOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Image', 'eightshift-boilerplate')}>
+		<PanelBody title={__('Image', 'eightshift-frontend-libs')}>
 			<ImageOptionsComponent
 				{...props('image', attributes, {
 					setAttributes,

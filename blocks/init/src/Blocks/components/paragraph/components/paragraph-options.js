@@ -41,7 +41,7 @@ export const ParagraphOptions = (attributes) => {
 				<>
 					{showParagraphColor &&
 						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 							colors={getOption('paragraphColor', attributes, manifest, true)}
 							value={paragraphColor}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
@@ -50,7 +50,7 @@ export const ParagraphOptions = (attributes) => {
 
 					{showParagraphSize &&
 						<CustomSelect
-							label={<IconLabel icon={icons.textSize} label={__('Text size', 'eightshift-boilerplate')} />}
+							label={<IconLabel icon={icons.textSize} label={__('Text size', 'eightshift-frontend-libs')} />}
 							value={paragraphSize}
 							options={getOption('paragraphSize', attributes, manifest)}
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: value })}
