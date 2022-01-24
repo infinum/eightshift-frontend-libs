@@ -1,0 +1,255 @@
+{
+	"title": "JSON schema for Eightshift blocks used in block manifest.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"active": {
+			"type": "boolean",
+			"description": "Is set to false your block will not be registered and will not show in the block editor. Default: true."
+		},
+		"blockName": {
+			"type": "string",
+			"pattern": "[a-z][a-z0-9-]*$",
+			"description": "The name for a block is a unique string that identifies a block. Names have to be structured as `namespace/block-name`, where namespace is the name of your plugin or theme."
+		},
+		"title": {
+			"type": "string",
+			"description": "This is the display title for your block, which can be translated with our translation functions. The block inserter will show this name."
+		},
+		"category": {
+			"description": "Blocks are grouped into categories to help users browse and discover them.\n Default category is eightshift, but you can and more categories using php hooks in src/Blocks/Blocks.php file.",
+			"anyOf": [{
+					"type": "string"
+				},
+				{
+					"enum": [
+						"text",
+						"media",
+						"design",
+						"widgets",
+						"theme",
+						"embed"
+					]
+				}
+			]
+		},
+		"parent": {
+			"type": "array",
+			"description": "Setting parent lets a block require that it is only available when nested within the specified blocks. For example, you might want to allow an ‘Add to Cart’ block to only be available within a ‘Product’ block.",
+			"items": {
+				"type": "string"
+			}
+		},
+		"icon": {
+			"type": "object",
+			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress’ Dashicons (slug serving also as a fallback in non-js contexts). Also you can add our custom icons using es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
+			"properties": {
+				"background": {
+					"type": "string",
+					"description": "Specifying a background color to appear with the icon e.g.: in the inserter."
+				},
+				"foreground": {
+					"type": "string",
+					"description": "Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)"
+				},
+				"src": {
+					"type": "string",
+					"description": "Specifying an icon for the block."
+				}
+			}
+		},
+		"description": {
+			"type": "string",
+			"description": "This is a short description for your block, which can be translated with our translation functions. This will be shown in the block inspector."
+		},
+		"keywords": {
+			"type": "array",
+			"description": "Sometimes a block could have aliases that help users discover it while searching. For example, an image block could also want to be discovered by photo. You can do so by providing an array of unlimited terms (which are translated).",
+			"items": {
+				"type": "string"
+			}
+		},
+		"attributes": {
+			"type": "object",
+			"description": "Attributes provide the structured data needs of a block. They can exist in different forms when they are serialized, but they are declared together under a common interface.\n\nSee the attributes documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/ for more details.",
+			"patternProperties": {
+				"[a-zA-Z]": {
+					"type": "object",
+					"properties": {
+						"type": {
+							"description": "The type indicates the type of data that is stored by the attribute. It does not indicate where the data is stored, which is defined by the source field.\n\nA type is required, unless an enum is provided. A type can be used with an enum.\n\nNote that the validity of an object is determined by your source. For an example, see the query details below.",
+							"oneOf": [{
+									"type": "string",
+									"enum": [
+										"null",
+										"boolean",
+										"object",
+										"array",
+										"string",
+										"integer",
+										"number"
+									]
+								},
+								{
+									"type": "array",
+									"uniqueItems": true,
+									"items": {
+										"type": "string",
+										"enum": [
+											"null",
+											"boolean",
+											"object",
+											"array",
+											"string",
+											"integer",
+											"number"
+										]
+									}
+								}
+							]
+						},
+						"enum": {
+							"type": "array",
+							"description": "An attribute can be defined as one of a fixed set of values. This is specified by an enum, which contains an array of allowed values:",
+							"items": {
+								"oneOf": [{
+										"type": "boolean"
+									},
+									{
+										"type": "number"
+									},
+									{
+										"type": "string"
+									}
+								]
+							}
+						},
+						"source": {
+							"type": "string",
+							"description": "Attribute sources are used to define how the attribute values are extracted from saved post content. They provide a mechanism to map from the saved markup to a JavaScript representation of a block.",
+							"enum": [
+								"attribute"
+							]
+						},
+						"attribute": {
+							"type": "string",
+							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block’s markup."
+						}
+					},
+					"required": [
+						"type"
+					]
+				}
+			}
+		},
+		"supports": {
+			"type": "object",
+			"description": "It contains as set of options to control features used in the editor. See the the supports documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/ for more details.",
+			"properties": {
+				"anchor": {
+					"type": "boolean",
+					"description": "Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.",
+					"default": false
+				},
+				"align": {
+					"default": false,
+					"description": "This property adds block controls which allow to change block’s alignment.",
+					"oneOf": [{
+							"type": "boolean"
+						},
+						{
+							"type": "array",
+							"items": {
+								"type": "string",
+								"enum": [
+									"wide",
+									"full",
+									"left",
+									"center",
+									"right"
+								]
+							}
+						}
+					]
+				},
+				"alignWide": {
+					"type": "boolean",
+					"description": "This property allows to enable wide alignment for your theme. To disable this behavior for a single block, set this flag to false.",
+					"default": true
+				},
+				"customClassName": {
+					"type": "boolean",
+					"description": "This property adds a field to define a custom className for the block’s wrapper.",
+					"default": true
+				},
+				"defaultStylePicker": {
+					"type": "boolean",
+					"description": "When the style picker is shown, a dropdown is displayed so the user can select a default style for this block type. If you prefer not to show the dropdown, set this property to false.",
+					"default": true
+				},
+				"html": {
+					"type": "boolean",
+					"description": "By default, a block’s markup can be edited individually. To disable this behavior, set html to false.",
+					"default": true
+				},
+				"inserter": {
+					"type": "boolean",
+					"description": "By default, all blocks will appear in the inserter. To hide a block so that it can only be inserted programmatically, set inserter to false.",
+					"default": true
+				},
+				"multiple": {
+					"type": "boolean",
+					"description": "A non-multiple block can be inserted into each post, one time only. For example, the built-in ‘More’ block cannot be inserted again if it already exists in the post being edited. A non-multiple block’s icon is automatically dimmed (unclickable) to prevent multiple instances.",
+					"default": true
+				},
+				"reusable": {
+					"type": "boolean",
+					"description": "A block may want to disable the ability of being converted into a reusable block. By default all blocks can be converted to a reusable block. If supports reusable is set to false, the option to convert the block into a reusable block will not appear.",
+					"default": true
+				}
+			},
+			"additionalProperties": true
+		},
+		"example": {
+			"type": "object",
+			"description": "It provides structured example data for the block. This data is used to construct a preview for the block to be shown in the Inspector Help Panel when the user mouses over the block.\n\nSee the the example documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/#example-optional for more details.",
+			"properties": {
+				"attributes": {
+					"type": "object",
+					"description": "Set the attribues for the block example"
+				},
+				"innerBlocks": {
+					"type": "array",
+					"description": "Set the inner blocks that should be used within the block example. The blocks should be defined as a nested array like this: \n\n [ [ 'core/heading', { content: 'This is an Example' }, [] ] ]\n\n Where each block itself is an array that contains the block name, the block attributes, and the blocks inner blocks."
+				}
+			}
+		},
+		"hasInnerBlocks": {
+			"type": "boolean",
+			"description": "If the hasInnerBlocks key is set to true, the block's save method for inner blocks will be used. This method is used when the block has InnerBlocks. In the PHP view file, you will have the $innerBlockContent variable available. Default: false."
+		},
+		"components": {
+			"type": "object",
+			"description": "This key gives you the ability to use component attributes in your block without mapping all the component's attributes every time. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-component-in-block/ chapter for more details."
+		},
+		"responsiveAttributes": {
+			"type": "object",
+			"description": "This key is used to combine multiple attributes with the similar name for the responsive breakpoints. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-styles/ chapter for more details."
+		},
+		"variables": {
+			"type": "object",
+			"description": "This key is used to provide output for CSS variables. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-styles/ chapter for more details."
+		},
+		"options": {
+			"type": "object",
+			"description": "This key is used to provide options used in the Block Editor options for components like SelectControl or RangeControl. With this key, you can pass options and change them depending on the component used. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-component-in-block/ chapter for more details."
+		}
+	},
+	"required": [
+		"blockName",
+		"title"
+	]
+}
