@@ -13,15 +13,15 @@
 		},
 		"title": {
 			"type": "string",
-			"description": "This is the display title for your component."
+			"description": "The display title of your component."
 		},
 		"componentClass": {
 			"type": "string",
-			"description": "Set the value your component class will have."
+			"description": "The value your component class will have."
 		},
 		"description": {
 			"type": "string",
-			"description": "This is a short description for your block, which can be translated with our translation functions. This will be shown in the block inspector."
+			"description": "A short description for your block that can be translated with our translation functions. This will be shown in the block inspector."
 		},
 		"attributes": {
 			"type": "object",
@@ -87,7 +87,7 @@
 						},
 						"attribute": {
 							"type": "string",
-							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block’s markup."
+							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block's markup."
 						}
 					},
 					"required": [
