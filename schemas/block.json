@@ -12,8 +12,8 @@
 		},
 		"blockName": {
 			"type": "string",
-			"pattern": "[a-z][a-z0-9-]*$",
-			"description": "The name for a block is a unique string that identifies a block. Names have to be structured as `namespace/block-name`, where namespace is the name of your plugin or theme."
+			"pattern": "^[^\/][a-z0-9-]*$",
+			"description": "The name for a block is a unique string that identifies a block."
 		},
 		"title": {
 			"type": "string",
@@ -59,7 +59,8 @@
 					"type": "string",
 					"description": "Specifying an icon for the block."
 				}
-			}
+			},
+			"additionalProperties": false
 		},
 		"description": {
 			"type": "string",
@@ -143,7 +144,8 @@
 						"type"
 					]
 				}
-			}
+			},
+			"additionalProperties": false
 		},
 		"supports": {
 			"type": "object",
