@@ -44,7 +44,7 @@
 				},
 				"zIndex": {
 					"type": "object",
-					"description": "Z-index object provides the list of all zIndexes so you can easley find and debug your project stacking context."
+					"description": "Z-index object provides the list of all zIndexes so you can easily find and debug your project stacking context."
 				},
 				"breakpoints": {
 					"type": "object",
