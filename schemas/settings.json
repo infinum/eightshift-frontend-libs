@@ -27,7 +27,7 @@
 		},
 		"globalVariables": {
 			"type": "object",
-			"description": "GlobalVariables represents all custom settings for you project setup like, color, gutters, breakpoints, etc.",
+			"description": "GlobalVariables represents all custom settings for your project setup like, color, gutters, breakpoints, etc.",
 			"properties": {
 				"customBlocksName": {
 					"type": "string",
