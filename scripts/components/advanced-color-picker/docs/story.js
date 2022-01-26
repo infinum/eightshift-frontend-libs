@@ -59,7 +59,7 @@ export const component = () => {
 				height: '3rem',
 				padding: '1rem',
 				boxShadow: 'inset 0 0 0 1px #FFFFFF, 0 0 0 1px #F0F0F0',
-				background: type === '' ? 'transparent' : (type === 'project' ? extractedProjectColor?.color : (type === 'solid' ? solidColor?.hex : gradient)),
+				background: type === '' ? 'transparent' : (type === 'project' ? extractedProjectColor?.color : (type === 'solid' ? solidColor?.hex : gradient)), // eslint-disable-line no-nested-ternary
 				borderRadius: '6rem',
 				margin: '0 0 1rem 8.5rem'
 			}}></div>

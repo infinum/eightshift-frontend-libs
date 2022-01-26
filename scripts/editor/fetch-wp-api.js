@@ -6,7 +6,7 @@ import apiFetch from '@wordpress/api-fetch';
  *
  * @param {string} endpoint     Endpoint to fetch from (usually post type or taxonomy).
  * @param {object} [options={}] Additional options for fine tunning.
- * 
+ *
  * @param {function} processId              Function that allows custom id processing.
  * @param {function} processLabel           Function that allows custom select option label processing.
  * @param {integer}  [perPage=30]           Define max perPage items to fetch.
@@ -61,7 +61,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 			params = {
 				...params,
 				...additionalParam
-			}
+			};
 		}
 
 		// Fetch fresh if you are searching something.
@@ -100,7 +100,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		}
 
 		return await new Promise((resolve) => resolve(cachedItem.data));
-	}
+	};
 
 	return fetchItems;
 }
@@ -122,4 +122,4 @@ const getRoute = (endpoint, params = {}, routePrefix) => {
 	}
 
 	return `${url.pathname}${url.search}`;
-}
+};

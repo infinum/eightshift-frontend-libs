@@ -21,4 +21,4 @@ export const component = () => {
 			standalone
 		/>
 	);
-}
+};

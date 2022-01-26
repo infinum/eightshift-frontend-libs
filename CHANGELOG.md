@@ -7,8 +7,15 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [5.0.3] - 2022-01-26
 
+### Added
+- GH Actions optimization
+  - Added concurrency that will cancel previous workflow runs for the same branch that have not yet completed.
+
 ### Updated
 - Added new icons
+
+### Fixed
+- Linter fixes - missing semicolon
 
 ## [5.0.2] - 2021-09-13
 

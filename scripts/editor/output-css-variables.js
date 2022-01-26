@@ -115,7 +115,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 			}
 		</style>
 	`);
-}
+};
 
 /**
  * Process and return global CSS variables based on the type.
@@ -149,15 +149,15 @@ const globalInner = (itemValues, itemKey) => {
 	}
 
 	return output;
-}
+};
 
 /**
  * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
  * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
  * If there are no breakpoints, min and max will be empty strings.
- * 
+ *
  * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
- * 
+ *
  * @return {object} Object with min and max keys.
  */
 const getDefaultBreakpoints = (breakpoints) => {
@@ -165,7 +165,7 @@ const getDefaultBreakpoints = (breakpoints) => {
 		min: breakpoints?.[0]?.[0] || '',
 		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
 	};
-}
+};
 
 /**
  * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
@@ -188,8 +188,8 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
 			...attributeVariablesObject,
 			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
 		};
-	})
-}
+	});
+};
 
 /**
  * Iterating through variables matching the keys from responsiveAttributes and translating it to responsive attributes names.
@@ -238,7 +238,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 							return {
 								...acc,
 								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
-							}
+							};
 						}, {});
 
 					// Collect all the values from one responsive attribute to one object.
@@ -251,7 +251,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 			// Merge multiple responsive attributes to one object.
 			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
 		}, {});
-}
+};
 
 /**
  * Setting defined variables to each breakpoint.
@@ -288,7 +288,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 			const type = inverse ? 'max' : 'min';
 
 			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint;
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
@@ -308,7 +308,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 		});
 	}
 	return data;
-}
+};
 
 /**
  * Get component/block options and process them in CSS variables.
@@ -453,7 +453,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Output the style for CSS variables.
 	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
-}
+};
 
 /**
  * Create initial array of data to be able to populate later.
@@ -484,13 +484,13 @@ const prepareVariableData = (globalBreakpoints) => {
 			...itemObject,
 			type: 'min',
 			value: minBreakpointValue,
-		}
+		};
 
 		// Inner object for max values.
 		const itemObjectMax = {
 			...itemObject,
 			type: 'max',
-		}
+		};
 
 		// Transfer value to a larger breakpoint.
 		minBreakpointValue = value;
@@ -498,7 +498,7 @@ const prepareVariableData = (globalBreakpoints) => {
 		// Push both min and max to the defined arrays.
 		min.push(itemObjectMin);
 		max.push(itemObjectMax);
-	})
+	});
 
 	// Pop largest breakpoint out of min array.
 	min.shift();
@@ -527,7 +527,7 @@ const prepareVariableData = (globalBreakpoints) => {
 
 	// Merge both arrays.
 	return min.concat(max);
-}
+};
 
 /**
  * Internal helper to loop CSS Variables from array.
@@ -564,7 +564,7 @@ const variablesInner = (variables, attributeValue) => {
 	}
 
 	return output;
-}
+};
 
 /**
  * Returns a unique ID, generally used with CSS variable generation.
@@ -583,4 +583,4 @@ const variablesInner = (variables, attributeValue) => {
  */
 export const getUnique = () => {
 	return require('crypto').randomBytes(16).toString('hex');
-}
+};

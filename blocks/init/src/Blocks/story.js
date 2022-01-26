@@ -37,7 +37,7 @@ export const colors = () => {
 					</div>
 			</div>
 		);
-	}
+	};
 
 	return (
 		<>
@@ -57,5 +57,5 @@ export const colors = () => {
 				))}
 			</div>
 		</>
-	)
+	);
 };

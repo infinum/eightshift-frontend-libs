@@ -81,7 +81,7 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 
 	// If you have default name for component.
 	return manifest.options[key];
-}
+};
 
 /**
  * Use this hook to filter the global colors out of the component or block manifest.
@@ -132,7 +132,7 @@ export const getOptions = (attributes = {}, manifest = {}) => {
 	const optionsManifest = manifest?.['options'] ?? {};
 	const optionsAttributes = attributes?.['options'] ?? {};
 	const componentName = manifest['componentName'];
-	
+
 	const output = {};
 	const prefix = (typeof attributes['prefix'] === 'undefined') ? '' : attributes['prefix'];
 
@@ -143,4 +143,4 @@ export const getOptions = (attributes = {}, manifest = {}) => {
 	}
 
 	return Object.assign(output, optionsAttributes);
-}
+};
