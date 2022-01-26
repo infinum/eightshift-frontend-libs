@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.8] - 2022-01-26
+
+### Changed
+- Updated `ColorPalleteCustom`, `CustomSelect`, `HeadingLevel`, `LinkToolbarButton`, `OptionPicker`, `Responsive` and `ServerSideRender`
+- Added 11 new components and a couple of new helpers from Frontend Libs 5.x and 6.x
+- Updated UI and block icons
+- Added top-level imports for components, helpers and scripts
+- Update `override-editor` styles
+
 ## [4.0.7] - 2021-07-22
 
 ### Changed
