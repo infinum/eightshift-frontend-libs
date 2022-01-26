@@ -4,15 +4,16 @@
  * External dependencies
  */
 import { isEqual, debounce } from 'lodash';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * WordPress dependencies
  */
-import { Component, RawHTML, Fragment } from '@wordpress/element';
+import { Component, RawHTML } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { Placeholder, Spinner } from '@wordpress/components';
+import { Placeholder } from '@wordpress/components';
 
 export function rendererPath(block, attributes = null, urlQueryArgs = {}) {
 	return addQueryArgs(`/wp/v2/block-renderer/${block}`, {
@@ -21,6 +22,17 @@ export function rendererPath(block, attributes = null, urlQueryArgs = {}) {
 		...urlQueryArgs,
 	});
 }
+
+const Loader = () => {
+	return (
+		<div className="es-ssr-spinner-overlay">
+			<svg className="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
+				<circle className="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" strokeWidth="6"></circle>
+				<circle className="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" strokeWidth="3"></circle>
+			</svg>
+		</div>
+	);
+};
 
 /**
  * An update of the built-in ServerSideRender that keeps the current state when loading the new one.
@@ -101,13 +113,20 @@ export class ServerSideRender extends Component {
 	}
 
 	render() {
+		const spinner = `
+			   <div class="es-ssr-spinner-overlay">
+				   <svg class="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
+					   <circle class="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle>
+					   <circle class="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+				   </svg>
+			   </div>
+		   `;
 
-		const { right, top, unit } = this.props.spinnerLocation;
 		const response = this.state.response;
 		const prevResponse = this.state.prevResponse;
-		let prevResponseHTML = "";
+		let prevResponseHTML = spinner;
 		if (prevResponse !== null) {
-			prevResponseHTML = `<div style="position:relative;"><div style="z-index:10000;position:absolute;right:${right}${unit};top:${top}${unit}"><span class="components-spinner"></span></div>${prevResponse}</div>`;
+			prevResponseHTML = `<div>${prevResponse}</div>${spinner}`;
 		}
 
 		const {
@@ -125,11 +144,9 @@ export class ServerSideRender extends Component {
 			);
 		} else if (!response) {
 			return (
-				<Fragment>
-					<RawHTML key="html" className={className}>
-						{prevResponseHTML}
-					</RawHTML>
-				</Fragment>
+				<RawHTML key="html" className={className}>
+					{prevResponseHTML}
+				</RawHTML>
 			);
 		} else if (response.error) {
 			return (
@@ -149,9 +166,8 @@ export class ServerSideRender extends Component {
 }
 
 ServerSideRender.defaultProps = {
-	spinnerLocation: { right: 0, top: 10, unit: 'px' },
 	EmptyResponsePlaceholder: ({ className }) => (
-		<Placeholder className={className}>
+		<Placeholder icon={icons.errorCircle} className={className}>
 			{__('Block rendered as empty.')}
 		</Placeholder>
 	),
@@ -162,13 +178,13 @@ ServerSideRender.defaultProps = {
 			response.errorMsg
 		);
 		return (
-			<Placeholder className={className}>{errorMessage}</Placeholder>
+			<Placeholder icon={icons.errorCircle} className={className}>{errorMessage}</Placeholder>
 		);
 	},
 	LoadingResponsePlaceholder: ({ className }) => {
 		return (
-			<Placeholder className={className}>
-				<Spinner />
+			<Placeholder icon={icons.errorCircle} className={className}>
+				<Loader />
 			</Placeholder>
 		);
 	},

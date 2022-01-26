@@ -33,33 +33,33 @@ export const component = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={false}
 			isInToolbar={false}
 			options={demoOptions}
 			label={'Option label'}
 		/>
 	);
-}
+};
 
 export const toolbarGroup = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={true}
 			isInToolbar={true}
 			options={demoOptions}
 			label={'Option label'}
 		/>
 	);
-}
+};
 
 export const toolbarGroupInline = () => {
 	return (
 		<OptionPicker
 			value={'top'}
-			onChange={(value) => console.log(value)}
+			onChange={(value) => console.info(value)}
 			isToolbarButton={true}
 			isInToolbar={true}
 			isInline
@@ -67,4 +67,4 @@ export const toolbarGroupInline = () => {
 			label={'Option label'}
 		/>
 	);
-}
+};

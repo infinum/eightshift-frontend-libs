@@ -1,0 +1,44 @@
+# AdvancedColorPicker component
+
+Component used to provide solid and gradient picker functionality to your component options.
+
+## Implementation
+
+```jsx
+import { AdvancedColorPicker } from '../../advanced-color-picker/advanced-color-picker';
+
+<AdvancedColorPicker
+	type={mediaBgColorType}
+	colorProject={mediaBgColorProject}
+	colorSolid={mediaBgColorSolid}
+	colorGradient={mediaBgColorGradient}
+	onChangeProject={
+		(value) => setAttributes({
+			[getAttrKey('mediaBgColorProject', attributes, manifest)]: value,
+			[getAttrKey('mediaBgColorSolid', attributes, manifest)]: undefined,
+			[getAttrKey('mediaBgColorGradient', attributes, manifest)]: undefined
+		})
+	}
+	onChangeSolid={
+		(value) => setAttributes({
+			[getAttrKey('mediaBgColorProject', attributes, manifest)]: undefined,
+			[getAttrKey('mediaBgColorSolid', attributes, manifest)]: value.hex,
+			[getAttrKey('mediaBgColorGradient', attributes, manifest)]: undefined
+		})
+	}
+	onChangeGradient={
+		(value) => setAttributes({
+			[getAttrKey('mediaBgColorProject', attributes, manifest)]: undefined,
+			[getAttrKey('mediaBgColorSolid', attributes, manifest)]: undefined,
+			[getAttrKey('mediaBgColorGradient', attributes, manifest)]: value
+		})
+	}
+	onChangeType={(value) => setAttributes({
+		[getAttrKey('mediaBgColorType', attributes, manifest)]: value,
+		[getAttrKey('mediaBgColorProject', attributes, manifest)]: undefined,
+		[getAttrKey('mediaBgColorSolid', attributes, manifest)]: undefined,
+		[getAttrKey('mediaBgColorGradient', attributes, manifest)]: undefined
+	})}
+	globalManifest
+/>
+```

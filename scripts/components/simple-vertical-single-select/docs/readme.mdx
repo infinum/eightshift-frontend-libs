@@ -1,0 +1,23 @@
+# ComponentUseToggle
+
+A simple component for picking mutually exclusive options.
+
+## Usage
+
+```jsx
+<SimpleVerticalSingleSelect
+	label='abc'
+	options={options}
+/>
+```
+
+Each option should be in this format:
+
+```js
+{
+	onClick: () => console.info('Clicked!'),
+	icon: icons.large, // Optional
+	label: 'Large',
+	isActive: myBoolean,
+}
+```
