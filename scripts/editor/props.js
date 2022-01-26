@@ -102,7 +102,7 @@ export const props = (newName, attributes, manual = {}) => {
 			delete manual[key];
 
 			// // Add new key to the output with prepared attribute name.
-			Object.assign(manual, {[`${output['prefix']}${newKey}`]: value})
+			Object.assign(manual, {[`${output['prefix']}${newKey}`]: value});
 		}
 
 		// Merge manual and output objects to one.
@@ -111,4 +111,4 @@ export const props = (newName, attributes, manual = {}) => {
 
 	// Return the original attribute for optimization purposes.
 	return output;
-}
+};

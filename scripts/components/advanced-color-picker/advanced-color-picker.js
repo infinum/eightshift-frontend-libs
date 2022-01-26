@@ -17,7 +17,7 @@ const getIcon = (value) => {
 		default:
 			return icons[value];
 	}
-}
+};
 
 const CustomPickerOption = (props) => {
 	const { label, value } = props;
@@ -142,5 +142,5 @@ export const AdvancedColorPicker = (props) => {
 				/>
 			}
 		</BaseControl>
-	)
-}
+	);
+};

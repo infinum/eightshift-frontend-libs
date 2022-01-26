@@ -28,6 +28,5 @@ export const IconToggle = ({
 				help={help}
 			/>
 		</div>
-
 	);
-}
+};

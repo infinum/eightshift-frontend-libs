@@ -91,7 +91,7 @@ class YoastSEOCustomData {
 	// Find all strings using regex in the provided data set of dynamic attributes.
 	findStrings(key, data) {
 
-		const regex = new RegExp(`"${key}":".*?"`, 'gm')
+		const regex = new RegExp(`"${key}":".*?"`, 'gm');
 		const output = [];
 		let iterator;
 
@@ -117,7 +117,7 @@ class YoastSEOCustomData {
 
 /**
  * Searches all blocks and component manifests and returns attributes that have `"seo": "true"` set.
- * Attributes with this key will be passed as custom data to YoastSEO's analysis. 
+ * Attributes with this key will be passed as custom data to YoastSEO's analysis.
  * See https://developer.yoast.com/customization/yoast-seo/adding-custom-data-analysis for more info.
  *
  * Usage:
@@ -141,4 +141,4 @@ export const yoastSeo = () => {
 			});
 		}
 	});
-}
+};

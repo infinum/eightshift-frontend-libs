@@ -48,7 +48,7 @@ export const VideoEditor = (attributes) => {
 							return {
 								url,
 								mime: typeof (mime) === 'undefined' ? mime_type : mime,
-							}
+							};
 						})
 					})
 					}

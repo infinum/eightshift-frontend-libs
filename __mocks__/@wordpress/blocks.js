@@ -10,7 +10,7 @@ export const registerBlockType = (blockName, options = {}) => {
 		blockName,
 		options
 	};
-}
+};
 
 /**
  * Mock of the import { registerBlockVariation } from '@wordpress/blocks';
@@ -20,4 +20,4 @@ export const registerBlockVariation = (blockName, options = {}) => {
 		blockName,
 		options
 	};
-}
+};

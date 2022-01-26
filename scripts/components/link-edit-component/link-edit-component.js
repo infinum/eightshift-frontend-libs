@@ -78,7 +78,7 @@ export const LinkEditComponent = ({
 		currentValue = {
 			...currentValue,
 			opensInNewTab,
-		}
+		};
 	}
 
 	const linkControl = isDropdownOpen && (
@@ -152,4 +152,4 @@ export const LinkEditComponent = ({
 			{linkControl}
 		</BaseControl>
 	);
-}
+};

@@ -73,7 +73,7 @@ export const LinkToolbarButton = ({
 		currentValue = {
 			...currentValue,
 			opensInNewTab,
-		}
+		};
 	}
 
 	const linkControl = isDropdownOpen && (
@@ -129,4 +129,4 @@ export const LinkToolbarButton = ({
 			{linkControl}
 		</>
 	);
-}
+};

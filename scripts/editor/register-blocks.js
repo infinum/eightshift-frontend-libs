@@ -139,7 +139,7 @@ const getMergeCallback = (blockManifest) => {
 						break;
 					}
 					case "useDestinationAttribute": {
-						outputObject[attribute] = merger[attribute] ?? ''
+						outputObject[attribute] = merger[attribute] ?? '';
 						break;
 					}
 					case "addNumericIntValue": {
@@ -160,13 +160,13 @@ const getMergeCallback = (blockManifest) => {
 						const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
 						const calculatedValue = receiverValue + mergerValue;
 
-						outputObject[attribute] = `${calculatedValue}${receiverUnit}`
+						outputObject[attribute] = `${calculatedValue}${receiverUnit}`;
 						break;
 					}
 					/* eslint-enable no-case-declarations */
 					default: {
 						// "useSourceAttribute" is default
-						outputObject[attribute] = receiver[attribute] ?? ''
+						outputObject[attribute] = receiver[attribute] ?? '';
 						break;
 					}
 				}
@@ -228,7 +228,7 @@ const getIconOptions = (
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
 			src: reactHtmlParser(blockIcons[icon.src])[0],
-		}
+		};
 	}
 
 	return {
@@ -587,7 +587,7 @@ export const registerBlocks = (
 
 	// Set componentsManifest to global window for usage in storybook.
 	if (typeof window?.['eightshift'] === 'undefined') {
-		window['eightshift'] = {}
+		window['eightshift'] = {};
 	}
 
 	window['eightshift'][process.env.VERSION] = componentsManifest;
@@ -649,7 +649,7 @@ export const registerBlocks = (
  */
 const getComponentsManifest = () => {
 	return window?.['eightshift']?.[process.env.VERSION] ?? {};
-}
+};
 
 /**
  * Register all Variations Editor blocks using WP `registerBlockVariation` method.

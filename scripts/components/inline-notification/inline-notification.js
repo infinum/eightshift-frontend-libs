@@ -13,7 +13,7 @@ export const InlineNotificationType = {
 	WARNING: 'warning',
 	ERROR: 'error',
 	INFO: 'info'
-}
+};
 
 /**
  * A simple inline notification to be used inside the Editor or Options.
@@ -52,4 +52,4 @@ export const InlineNotification = ({
 			<span>{text}</span>
 		</div>
 	);
-}
+};

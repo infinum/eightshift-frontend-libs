@@ -7,7 +7,7 @@ import AsyncSelect from "react-select/async";
 
 /**
  * A modern, flexible and customizable select menu.
- * 
+ *
  * @param {object} props                                               - CustomSelect options.
  * @param {string?} [props.label]                                      - Label displayed above the control.
  * @param {string?} [props.help]                                       - Help text displayed below the control.
@@ -104,7 +104,7 @@ export const CustomSelect = (props) => {
 				resolve([...defaultOptions].filter(({ label }) => filterOptions(inputValue, label)));
 			}
 		});
-	}
+	};
 
 	const onChangeInternal = (selectedOptions) => {
 		if (!isSynchronous) {
@@ -115,7 +115,7 @@ export const CustomSelect = (props) => {
 
 		let output;
 
-		// Compare current selected posts with the API and sync them. 
+		// Compare current selected posts with the API and sync them.
 		// This will remove posts that are trashed, deleted or drafted.
 		// This will change the title if the post title has changed.
 		if (multiple) {

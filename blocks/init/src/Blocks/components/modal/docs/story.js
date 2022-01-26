@@ -44,7 +44,7 @@ export const editor = () => {
 				onClick={() => setOpen(false)}
 			/>
 		</>
-	)
+	);
 };
 
 export const options = () => (

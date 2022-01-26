@@ -5,9 +5,21 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
 
+## [5.0.3] - 2022-01-26
+
+### Added
+- GH Actions optimization
+  - Added concurrency that will cancel previous workflow runs for the same branch that have not yet completed.
+
+### Updated
+- Added new icons
+
+### Fixed
+- Linter fixes - missing semicolon
+
 ## [5.0.2] - 2021-09-13
 
-## Fixed
+### Fixed
 - Hotfix for missing package and broken build.
 
 ## [5.0.1] - 2021-09-13
@@ -20,12 +32,23 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Changed
 - OverrideInnerBlockAttributes helper now supports exclude prop.
 
-## Fixed
+### Fixed
 - Phpstan issues.
 - Blocks not rendering in the storybook.
 
 ## [5.0.0] - 2021-08-16
 - Major braking changes do to updates on css variables, and helpers.
+
+## [4.0.8] - 2022-01-26
+
+### Added
+- Added 11 new components and a couple of new helpers from Frontend Libs 5.x and 6.x
+- Added top-level imports for components, helpers and scripts
+
+### Changed
+- Updated `ColorPalleteCustom`, `CustomSelect`, `HeadingLevel`, `LinkToolbarButton`, `OptionPicker`, `Responsive` and `ServerSideRender`
+- Updated UI and block icons
+- Update `override-editor` styles
 
 ## [4.0.7] - 2021-07-22
 
