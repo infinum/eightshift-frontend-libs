@@ -7,12 +7,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [5.0.3] - 2022-01-26
 
-## Updated
+### Updated
 - Added new icons
 
 ## [5.0.2] - 2021-09-13
 
-## Fixed
+### Fixed
 - Hotfix for missing package and broken build.
 
 ## [5.0.1] - 2021-09-13
@@ -25,7 +25,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Changed
 - OverrideInnerBlockAttributes helper now supports exclude prop.
 
-## Fixed
+### Fixed
 - Phpstan issues.
 - Blocks not rendering in the storybook.
 
