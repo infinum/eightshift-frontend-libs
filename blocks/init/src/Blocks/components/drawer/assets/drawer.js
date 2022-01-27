@@ -1,3 +1,5 @@
+import { debounce } from '@eightshift/frontend-libs/scripts/helpers/debounce';
+
 export class Drawer {
 	constructor({ drawerElement }) {
 		this.drawerElement = drawerElement;
@@ -21,19 +23,27 @@ export class Drawer {
 	
 	openMobileMenu() {
 		this.trigger?.classList.add(this.CLASS_MENU_OPEN);
-		document.body.classList.add(this.CLASS_MENU_OPEN);
+		this.drawerElement.style.display = 'block';
+
+		const addClass = debounce(() => document.body.classList.add(this.CLASS_MENU_OPEN), 300);
+		addClass();
+
 		this.preventScroll();
 	}
 	
 	closeMobileMenu() {
 		this.trigger?.classList.remove(this.CLASS_MENU_OPEN);
 		document.body.classList.remove(this.CLASS_MENU_OPEN);
+
+		const setDisplayNone = debounce(() => this.drawerElement.style.display = 'none', 300);
+		setDisplayNone();
+
 		this.enableScroll();
 	}
 	
 	init() {
 		this.trigger.addEventListener('click', () => {
-			if (document.body.classList.contains(this.CLASS_MENU_OPEN)) {
+			if (this.trigger?.classList.contains(this.CLASS_MENU_OPEN)) {
 				this.closeMobileMenu();
 			} else {
 				this.openMobileMenu();
