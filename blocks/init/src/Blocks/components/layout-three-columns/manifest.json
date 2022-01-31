@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/component.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "layout-three-columns",
 	"title": "Layout Three Columns",
 	"componentClass": "layout-three-columns",

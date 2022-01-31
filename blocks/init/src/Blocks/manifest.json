@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../node_modules/@eightshift/frontend-libs/schemas/settings.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/settings.json",
 	"namespace": "eightshift-boilerplate",
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",

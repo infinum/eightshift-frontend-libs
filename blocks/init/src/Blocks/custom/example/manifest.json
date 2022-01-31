@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../../../node_modules/@eightshift/frontend-libs/schemas/block.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"active": true,
 	"blockName": "example",
 	"title": "Example",

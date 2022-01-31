@@ -1,5 +1,5 @@
 {
-	"$schema": "./../../../node_modules/@eightshift/frontend-libs/schemas/component.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "wrapper",
 	"title": "Wrapper",
 	"componentClass": "wrapper",

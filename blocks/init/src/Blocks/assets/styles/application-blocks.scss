@@ -12,7 +12,7 @@
 @import './../../../../assets/styles/parts/shared';
 
 // Register Wrapper block styles.
-// @import './../../wrapper/wrapper-style.scss';
+@import './../../wrapper/wrapper-style.scss';
 
 // Find all components and require component_name-style.scss inside it.
 @import './../../components/*/*-style.scss';

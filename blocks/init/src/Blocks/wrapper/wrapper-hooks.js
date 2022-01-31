@@ -72,12 +72,11 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 
 			return (
 					<>
-						{(name.split('/')[0] !== namespace) ?
-							<Wrapper props={props}>
-								<BlockEdit { ...props } />
-							</Wrapper> 
-							:
-							<BlockEdit { ...props } />
+						{(name.split('/')[0] !== namespace)
+							? <Wrapper props={props}>
+									<BlockEdit { ...props } />
+								</Wrapper> 
+							: <BlockEdit { ...props } />
 						}
 					</>
 			);
