@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "columns",
 	"title": "Columns",
 	"description" : "Columns block with custom settings.",

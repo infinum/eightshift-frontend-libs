@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "accordion",
 	"title": "Accordion",
 	"description" : "Accordion block with custom settings.",

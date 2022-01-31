@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "scroll-to-top",
 	"title": "Scroll To Top",
 	"componentClass": "scroll-to-top",

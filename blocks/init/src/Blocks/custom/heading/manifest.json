@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "heading",
 	"title": "Heading",
 	"description" : "Heading block with custom settings.",
