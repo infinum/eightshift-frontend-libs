@@ -1,6 +1,6 @@
 %wrapper {
 	display: grid;
-	grid-template-columns: repeat(var(--global-max-cols));
+	grid-template-columns: repeat(var(--global-max-cols), 1fr);
 	column-gap: var(--wrapper-scoped-gutter, calc(var(--global-gutters-default) * 1%));
 }
 
