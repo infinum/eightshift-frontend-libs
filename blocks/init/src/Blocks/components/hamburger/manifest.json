@@ -13,6 +13,9 @@
 		"hamburgerUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"hamburgerLabel": {
+			"type": "string"
 		}
 	}
 }

@@ -49,16 +49,16 @@ body {
 	// Moving border around the block to the actual block line.
 	.block-editor-block-list__layout {
 		.#{global-settings(customBlocksName)} {
-			.wp-block {
+			&.wp-block {
 				max-width: 100%;
 				transition: {
 					property: box-shadow;
 					timing-function: ease-in;
-					duration: 0.3s;
+					duration: 0.15s;
 				}
 
 				&:hover {
-					box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.15);
+					box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.3);
 				}
 			}
 
