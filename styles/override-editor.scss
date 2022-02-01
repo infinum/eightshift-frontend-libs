@@ -627,8 +627,9 @@ body {
 		// to make it easier to hit.
 		.block-list-appender.wp-block:not(:only-child) {
 			.block-list-appender__toggle.block-editor-button-block-appender {
-				width: 100%;
+				width: auto;
 				height: 100%;
+				margin: 0 auto;
 			}
 		}
 	}
