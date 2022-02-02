@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/variation.json",
 	"parentName": "card",
 	"name": "card-simple",
 	"title": "Card Simple",

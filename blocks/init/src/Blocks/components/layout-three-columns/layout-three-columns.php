@@ -24,6 +24,7 @@ $layoutThreeColumnsLeft = Components::checkAttr('layoutThreeColumnsLeft', $attri
 $layoutThreeColumnsCenter = Components::checkAttr('layoutThreeColumnsCenter', $attributes, $manifest);
 $layoutThreeColumnsRight = Components::checkAttr('layoutThreeColumnsRight', $attributes, $manifest);
 $layoutThreeColumnsHtmlTag = Components::checkAttr('layoutThreeColumnsHtmlTag', $attributes, $manifest);
+$layoutThreeColumnsAriaRole = Components::checkAttr('layoutThreeColumnsAriaRole', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
@@ -51,7 +52,12 @@ $columnRightClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?> class="<?php echo \esc_attr($layoutClass); ?>">
+<<?php echo esc_attr($layoutThreeColumnsHtmlTag); ?>
+	class="<?php echo \esc_attr($layoutClass); ?>"
+	<?php if ($layoutThreeColumnsAriaRole) { ?>
+		role="<?php echo \esc_attr($layoutThreeColumnsAriaRole); ?>"
+	<?php } ?>
+>
 
 		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo \esc_attr($columnLeftClass); ?>">

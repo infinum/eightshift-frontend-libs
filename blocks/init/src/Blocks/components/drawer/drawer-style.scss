@@ -2,45 +2,21 @@
 	$menu: &;
 	position: fixed;
 	top: auto;
-	height: 100%;
-	z-index: var(--global-z-index-drawer);
+	height: 0;
+	width: 100%;
 	margin: auto;
-	padding: var(--global-gutters-default);
-	display: block;
-	background: var(--global-colors-white);
-	width: var(--drawer-scoped-width, 22.5rem);
-	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+	display: none;
 	overflow-x: hidden;
+
+	background: var(--global-colors-white);
+
 	box-shadow: 0 0 0.15rem rgba(var(--global-colors-black), 0.2);
-
-	&__position {
-		pointer-events: none;
-
-		&--left {
-			left: 0;
-			transform: translate3d(-100%, 0, 0);
-		}
-
-		&--right {
-			right: 0;
-			transform: translate3d(100%, 0, 0);
-		}
-
-		&--top {
-			--drawer-scoped-width: 100%;
-			transform: translate3d(0, -100%, 0);
-		}
-
-		&--behind {
-			--drawer-scoped-width: 100%;
-			transform: translate3d(0, 0, 0);
-			opacity: 0;
-		}
-	}
+	transition: height 0.3s ease-in-out;
 
 	&.is-open {
-		transform: translate3d(0, 0, 0);
-		opacity: 1;
+		display: block;
+		padding: var(--global-gutters-default);
 		pointer-events: auto;
 	}
 }
@@ -49,8 +25,7 @@ body.is-menu-open {
 	overflow: hidden;
 
 	.drawer {
-		transform: translate3d(0, 0, 0);
-		opacity: 1;
 		pointer-events: auto;
+		height: 100%;
 	}
 }

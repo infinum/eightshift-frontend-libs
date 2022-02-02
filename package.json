@@ -82,7 +82,8 @@
 		"webpack": "^4.42.0",
 		"webpack-cli": "^4.3.1",
 		"webpack-manifest-plugin": "^3.0.0",
-		"webpack-merge": "^5.7.3"
+		"webpack-merge": "^5.7.3",
+		"swiper": "^7.3.1"
 	},
 	"husky": {
 		"hooks": {
@@ -103,8 +104,7 @@
 		"jest-expect-message": "^1.0.2",
 		"react-test-renderer": "^17.0.2",
 		"replace-in-file": "^6.2.0",
-		"sassdoc": "^2.7.3",
-		"swiper": "^7.3.1"
+		"sassdoc": "^2.7.3"
 	},
 	"sideEffects": false,
 	"jest": {

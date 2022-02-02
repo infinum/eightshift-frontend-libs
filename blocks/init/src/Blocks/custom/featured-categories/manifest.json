@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "featured-categories",
 	"title": "Featured Categories",
 	"description" : "Block for selecting and displaying featured categories",

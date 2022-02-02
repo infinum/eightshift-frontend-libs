@@ -653,7 +653,7 @@ export const registerBlocks = (
 			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
 			if (blockOverridesComponent !== null) {
-				blockManifest = Object.assign(blockManifest, blockOverridesComponent);
+				blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
 			}
 		}
 

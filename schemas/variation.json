@@ -1,0 +1,82 @@
+{
+	"title": "JSON schema for Eightshift blocks used in variation manifest.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"active": {
+			"type": "boolean",
+			"description": "If set to false your variation will not be registered and will not show in the block editor. Default: true."
+		},
+		"parentName": {
+			"type": "string",
+			"pattern": "^[^\/][a-z0-9-]*$",
+			"description": "Parent name defines what block is this child of. The name must be exact name as the parent block."
+		},
+		"name": {
+			"type": "string",
+			"pattern": "^[^\/][a-z0-9-]*$",
+			"description": "Name defines the name of variation just like block name."
+		},
+		"title": {
+			"type": "string",
+			"description": "This is the display title for your variation. The block inserter will show this name."
+		},
+		"icon": {
+			"type": "object",
+			"description": "An icon property should be specified to make it easier to identify a block. These can be any of WordPress' Dashicons (slug serving also as a fallback in non-js contexts). Also, you can add our custom icons using es- prefix. All icons can be found here https://infinum.github.io/eightshift-docs/storybook/",
+			"properties": {
+				"background": {
+					"type": "string",
+					"description": "Specifying a background color to appear with the icon e.g.: in the inserter."
+				},
+				"foreground": {
+					"type": "string",
+					"description": "Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)"
+				},
+				"src": {
+					"type": "string",
+					"description": "Specifying an icon for the variation."
+				}
+			},
+			"additionalProperties": false
+		},
+		"description": {
+			"type": "string",
+			"description": "A short description for your variation that can be translated with our translation functions. This will be shown in the block inspector."
+		},
+		"attributes": {
+			"type": "object",
+			"description": "Attributes provide the structured data needs of a block. They can exist in different forms when they are serialized, but they are declared together under a common interface.\n\nSee the attributes documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/ for more details."
+		},
+		"innerBlocks": {
+			"type": "array",
+			"description": "Set the inner blocks that should be used within the block example. The blocks should be defined as a nested array like this: \n\n [ [ 'core/heading', { content: 'This is an Example' }, [] ] ]\n\n Where each block itself is an array that contains the block name, the block attributes, and the blocks inner blocks."
+		},
+		"example": {
+			"type": "object",
+			"description": "It provides structured example data for the block. This data is used to construct a preview for the block to be shown in the Inspector Help Panel when the user mouses over the block.\n\nSee the the example documentation at https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/#example-optional for more details.",
+			"properties": {
+				"attributes": {
+					"type": "object",
+					"description": "Set the attribues for the block example"
+				},
+				"innerBlocks": {
+					"type": "array",
+					"description": "Set the inner blocks that should be used within the block example. The blocks should be defined as a nested array like this: \n\n [ [ 'core/heading', { content: 'This is an Example' }, [] ] ]\n\n Where each block itself is an array that contains the block name, the block attributes, and the blocks inner blocks."
+				}
+			}
+		},
+		"scope": {
+			"type": "array",
+			"description": "The list of scopes where the variation is applicable."
+		}
+	},
+	"required": [
+		"parentName",
+		"name",
+		"title"
+	]
+}
