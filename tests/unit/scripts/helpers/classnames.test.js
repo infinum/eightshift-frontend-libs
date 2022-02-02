@@ -36,9 +36,10 @@ it('tests classnames returns only valid classes', () => {
 		' ',
 		selector(accordionManifest.attributes.accordionUse.default, accordionManifest.componentClass, 'element', 'modifier'),
 		selector(true === false, accordionManifest.componentClass, 'element', 'modifier-2'),
+		accordionManifest.attributes.accordionIsOpen.default === true ? 'is-open' : 'is-closed',
 	]);
 
-	expect(accordionClassnames).toBe(`${accordionManifest.componentClass} ${accordionManifest.componentClass}__element--modifier`);
+	expect(accordionClassnames).toBe(`${accordionManifest.componentClass} ${accordionManifest.componentClass}__element--modifier is-closed`);
 });
 
 it('tests classnames throws error on wrong argument type', () => {
