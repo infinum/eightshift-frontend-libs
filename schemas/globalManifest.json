@@ -27,7 +27,7 @@
 		},
 		"config": {
 			"type": "object",
-			"description": "With config object you can flag features can be active or not depending on your need.",
+			"description": "With config object, you can flag features that can be active or not depending on your need.",
 			"properties": {
 				"outputVariablesInline": {
 					"type": "string",
