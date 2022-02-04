@@ -84,7 +84,7 @@ export const getComponentManifest = (componentName) => {
 };
 
 /**
- * Returns css variables array.
+ * Returns CSS variables array.
  *
  * @returns {array}
  */
