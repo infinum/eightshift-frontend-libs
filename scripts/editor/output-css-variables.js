@@ -432,7 +432,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 				styles.variables.push({
 					type: '',
 					variable,
-					value
+					value,
 				});
 			}
 		} else {
