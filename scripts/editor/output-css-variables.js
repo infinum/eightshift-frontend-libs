@@ -1,5 +1,6 @@
 import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
+import { getConfigOutputCssVariables, getStyles } from './get-manifest-details';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -404,6 +405,12 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
 	}
 
+	const styles = {
+		name,
+		unique,
+		variables: [],
+	};
+
 	// Loop data and provide correct selectors from data array.
 	data.forEach((values) => {
 
@@ -421,6 +428,12 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 					${variable.join('\n')}
 					}
 				`;
+
+				styles.variables.push({
+					type: '',
+					variable,
+					value
+				});
 			}
 		} else {
 			if (!_.isEmpty(variable)) {
@@ -430,13 +443,40 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 						}
 					}
 				`;
+
+				styles.variables.push({
+					type,
+					variable,
+					value
+				});
 			}
 		}
 	});
 
 	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
-	const manualEditor = _.has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
+	let manual = '';
+
+	if (_.has(manifest, 'variablesCustom')) {
+		manual = manifest['variablesCustom'].join(';\n');
+
+		styles.variables.push({
+			type: '',
+			variable: manifest['variablesCustom'],
+			value: 0
+		});
+	}
+
+	let manualEditor = '';
+
+	if (_.has(manifest, 'variablesCustomEditor')) {
+		manualEditor = manifest['variablesCustomEditor'].join(';\n');
+
+		styles.variables.push({
+			type: '',
+			variable: manifest['variablesCustomEditor'],
+			value: 0
+		});
+	}
 
 	// Prepare final output for testing.
 	const fullOutput = `
@@ -456,8 +496,68 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 		${manualEditor}
 	}` : '';
 
-	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	const existsIndex = getStyles().findIndex((item) => item.name === name && item.unique === unique);
+
+	if (existsIndex >= 0) {
+		getStyles()[existsIndex] = styles;
+	} else {
+		getStyles().push(styles);
+	}
+
+	if (!getConfigOutputCssVariables()) {
+		// Output the style for CSS variables.
+		return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	} else {
+		outputCssVariablesCombined();
+	}
+
+	return null;
+};
+
+/**
+ * Output css variables as a one inline style tag.
+ *
+ * @returns {string}
+ */
+const outputCssVariablesCombined = () => {
+	let output = '';
+
+	const styles = getStyles();
+
+	if (styles) {
+		for (const {name, unique, variables} of styles) {
+			let outputItem = '';
+			for (const {type, value, variable} of variables) {
+				if (type === '' && value === 0) {
+					outputItem += variable.join('\n');
+				} else {
+					outputItem += `@media (${type}-width: ${value}px) {
+							${variable.join('\n')}
+						}
+					`;
+				}
+			}
+
+			output += `.${name}[data-id='${unique}'] {
+				${outputItem}
+				}
+			`;
+		}
+	}
+
+	const styleTag = document.getElementById('esCssVariables');
+
+	if (styleTag) {
+		styleTag.innerHTML = output;
+	} else {
+		return document.head.insertAdjacentHTML('afterbegin', `
+			<style id="esCssVariables">
+				${output}
+			</style>
+		`);
+	}
+
+	return null;
 };
 
 /**

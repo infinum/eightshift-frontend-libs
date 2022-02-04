@@ -9,6 +9,21 @@ export {
 export { getFetchWpApi } from './fetch-wp-api';
 export { getActions } from './get-actions';
 export {
+	getProjectDetails,
+	getConfig,
+	getConfigOutputCssVariables,
+	setConfigOutputCssVariables,
+	getGlobalManifest,
+	getBlocksManifest,
+	getBlockManifest,
+	getComponentsManifest,
+	getComponentManifest,
+	getStyles,
+	getWrapperManifest,
+	getNamespace,
+	getBlockFullName
+} from './get-manifest-details';
+export {
 	getOption,
 	getOptionColors,
 	getOptions

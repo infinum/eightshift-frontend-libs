@@ -25,6 +25,16 @@
 			"pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
 			"description": "The same as background color, foreground represents the namespace secondary color. You can override this in every block manifest.json."
 		},
+		"config": {
+			"type": "object",
+			"description": "With config object you can flag features can be active or not depending on your need.",
+			"properties": {
+				"outputVariablesInline": {
+					"type": "string",
+					"description": "This key will output all inline style tags used for css variables in one style tag at the top of the head element. This is used for optimisation purposes. Default: true"
+				}
+			}
+		},
 		"globalVariables": {
 			"type": "object",
 			"description": "GlobalVariables represents all custom settings for your project setup like, color, gutters, breakpoints, etc.",

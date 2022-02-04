@@ -1,8 +1,11 @@
 {
-	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/settings.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/globalManifest.json",
 	"namespace": "eightshift-boilerplate",
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
+	"config": {
+		"outputVariablesInline": true
+	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,

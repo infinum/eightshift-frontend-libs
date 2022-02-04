@@ -40,6 +40,21 @@ export {
 export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
+	getProjectDetails,
+	getConfig,
+	getConfigOutputCssVariables,
+	setConfigOutputCssVariables,
+	getGlobalManifest,
+	getBlocksManifest,
+	getBlockManifest,
+	getComponentsManifest,
+	getComponentManifest,
+	getStyles,
+	getWrapperManifest,
+	getNamespace,
+	getBlockFullName
+} from './editor/get-manifest-details';
+export {
 	getOption,
 	getOptionColors,
 	getOptions

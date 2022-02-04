@@ -5,6 +5,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 import { blockIcons } from './icons/icons';
+import { getComponentsManifest, getGlobalManifest, setConfigOutputCssVariables } from './get-manifest-details';
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -613,7 +614,18 @@ export const registerBlocks = (
 		window['eightshift'] = {};
 	}
 
-	window['eightshift'][process.env.VERSION] = componentsManifest;
+	window['eightshift'][process.env.VERSION] = {
+		globalManifest,
+		components: componentsManifest,
+		blocks: blocksManifests,
+		wrapper: wrapperManifest,
+		styles: [],
+		config: {
+			outputVariablesInline: true,
+		}
+	};
+
+	setConfigFlags();
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {
@@ -713,15 +725,6 @@ export const registerBlocks = (
 };
 
 /**
- * Get component manifest got from window object.
- *
- * @returns {object}
- */
-const getComponentsManifest = () => {
-	return window?.['eightshift']?.[process.env.VERSION] ?? {};
-};
-
-/**
  * Register all Variations Editor blocks using WP `registerBlockVariation` method.
  * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
  *
@@ -775,4 +778,19 @@ const getComponentsManifest = () => {
 
 		return null;
 	});
+};
+
+/**
+ * Set features config flag set in the global manifest settings.
+ */
+const setConfigFlags = () => {
+	const {
+		config: {
+			outputVariablesInline,
+		},
+	} = getGlobalManifest();
+
+	if (typeof outputVariablesInline !== 'undefined') {
+		setConfigOutputCssVariables(outputVariablesInline);
+	}
 };
