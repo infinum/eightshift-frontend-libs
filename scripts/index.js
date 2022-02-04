@@ -52,7 +52,7 @@ export {
 	getStyles,
 	getWrapperManifest,
 	getNamespace,
-	getBlockFullName
+	getBlockFullName,
 } from './editor/get-manifest-details';
 export {
 	getOption,
