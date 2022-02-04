@@ -14,6 +14,14 @@ export {
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export { CustomSelect } from './components/custom-select/custom-select';
+export { 
+	CustomSlider, 
+	CustomSliderStyle
+} from './components/custom-slider/custom-slider';
+export { 
+	CustomRangeSlider,
+	CustomRangeSliderStyle
+} from './components/custom-slider/custom-range-slider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
