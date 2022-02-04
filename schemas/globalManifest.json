@@ -31,7 +31,7 @@
 			"properties": {
 				"outputVariablesInline": {
 					"type": "string",
-					"description": "This key will output all inline style tags used for css variables in one style tag at the top of the head element. This is used for optimisation purposes. Default: true"
+					"description": "This key will output all inline style tags used for CSS variables in one style tag at the top of the head element. This is used for optimization purposes. Default: true"
 				}
 			}
 		},
