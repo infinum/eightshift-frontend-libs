@@ -33,9 +33,9 @@ import './custom-slider.scss';
  * @param {Number} [props.value]                                            - Current value of the slider.
  * @param {Number} [props.startPoint=undefined]                             - Determines starting point of the slider track. If `undefined`, value of `min` is used.
  * @param {Number} [props.tabIndex=0]                                       - Sets the `tabIndex` of the slider handle.
- * @param {string?} [props.ariaLabelForHandle]                              - Sets the `arial-label` on the slider handle.
- * @param {string?} [props.ariaLabelledByForHandle]                         - Sets the `arial-labelledby` on the slider handle.
- * @param {callback} [props.ariaValueTextFormatterForHandle]                - Sets the `arial-valuetext` on the slider handle. Should be in format `(value) => string`.
+ * @param {string?} [props.ariaLabelForHandle]                              - Sets the `aria-label` on the slider handle.
+ * @param {string?} [props.ariaLabelledByForHandle]                         - Sets the `aria-labelledby` on the slider handle.
+ * @param {callback} [props.ariaValueTextFormatterForHandle]                - Sets the `aria-valuetext` on the slider handle. Should be in format `(value) => string`.
  * @param {string} [props.railColor]                                        - Custom rail color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.trackColor]                                       - Custom track color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.handleColor]                                      - Custom slider handle color. Should be a valid value of the CSS `background` property.

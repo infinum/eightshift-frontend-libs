@@ -16,11 +16,11 @@ export { ComponentUseToggle } from './components/component-use-toggle/component-
 export { CustomSelect } from './components/custom-select/custom-select';
 export { 
 	CustomSlider, 
-	CustomSliderStyle
+	CustomSliderStyle,
 } from './components/custom-slider/custom-slider';
 export { 
 	CustomRangeSlider,
-	CustomRangeSliderStyle
+	CustomRangeSliderStyle,
 } from './components/custom-slider/custom-range-slider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';

@@ -36,9 +36,9 @@ export const CustomRangeSliderStyle = {
  * @param {Number[]} [props.defaultValue=[0,0]]                                       - Initial positions of handles.
  * @param {Number[]} [props.value]                                                    - Current positions of handles.
  * @param {Number[]} [props.tabIndex=0]                                               - Sets the `tabIndex` of each slider handle.
- * @param {string[]} [props.ariaLabelGroupForHandles]                                 - Sets the `arial-label` on each slider handle.
- * @param {string[]} [props.ariaLabelledByForHandle]                                  - Sets the `arial-labelledby` on each slider handle.
- * @param {callback[]} [props.ariaValueTextFormatterForHandle]                        - Sets the `arial-valuetext` on each slider handle. Should be in format `(value) => string`.
+ * @param {string[]} [props.ariaLabelGroupForHandles]                                 - Sets the `aria-label` on each slider handle.
+ * @param {string[]} [props.ariaLabelledByForHandle]                                  - Sets the `aria-labelledby` on each slider handle.
+ * @param {callback[]} [props.ariaValueTextFormatterForHandle]                        - Sets the `aria-valuetext` on each slider handle. Should be in format `(value) => string`.
  * @param {string} [props.railColor]                                                  - Custom rail color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.trackColor]                                                 - Custom track color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.handleColor]                                                - Custom slider handle color. Should be a valid value of the CSS `background` property.
