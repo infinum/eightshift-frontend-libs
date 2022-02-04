@@ -21,7 +21,7 @@ export {
 	getStyles,
 	getWrapperManifest,
 	getNamespace,
-	getBlockFullName
+	getBlockFullName,
 } from './get-manifest-details';
 export {
 	getOption,
