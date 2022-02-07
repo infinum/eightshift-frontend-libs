@@ -539,7 +539,7 @@ const outputCssVariablesCombined = () => {
 			}
 
 			output += `.${name}[data-id='${unique}'] {
-				${outputItem}
+					${outputItem}
 				}
 			`;
 		}
