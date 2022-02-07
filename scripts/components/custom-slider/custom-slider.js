@@ -1,7 +1,6 @@
 import Slider, { SliderTooltip, Handle } from 'rc-slider';
 import { BaseControl, TextControl } from '@wordpress/components';
 import classnames from 'classnames';
-import './custom-slider.scss';
 
 /**
  * CustomSlider style.

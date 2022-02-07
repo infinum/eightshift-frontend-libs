@@ -1,7 +1,6 @@
 import Slider, { SliderTooltip, Handle, createSliderWithTooltip } from 'rc-slider';
 import { BaseControl, TextControl } from '@wordpress/components';
 import classnames from 'classnames';
-import './custom-slider.scss';
 
 const Range = createSliderWithTooltip(Slider.Range);
 
