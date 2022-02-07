@@ -1,6 +1,6 @@
 import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
-import { getConfigOutputCssVariables, getStyles } from './get-manifest-details';
+import { getConfigOutputCssVariablesGlobally, getStyles } from './get-manifest-details';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -504,7 +504,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 		getStyles().push(styles);
 	}
 
-	if (!getConfigOutputCssVariables()) {
+	if (!getConfigOutputCssVariablesGlobally()) {
 		// Output the style for CSS variables.
 		return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
 	} else {

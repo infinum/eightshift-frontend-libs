@@ -11,8 +11,8 @@ export { getActions } from './get-actions';
 export {
 	getProjectDetails,
 	getConfig,
-	getConfigOutputCssVariables,
-	setConfigOutputCssVariables,
+	getConfigOutputCssVariablesGlobally,
+	setConfigOutputCssVariablesGlobally,
 	getGlobalManifest,
 	getBlocksManifest,
 	getBlockManifest,

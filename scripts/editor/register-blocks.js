@@ -5,7 +5,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 import { blockIcons } from './icons/icons';
-import { getComponentsManifest, getGlobalManifest, setConfigOutputCssVariables } from './get-manifest-details';
+import { getComponentsManifest, getGlobalManifest, setConfigOutputCssVariablesGlobally } from './get-manifest-details';
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -786,11 +786,11 @@ export const registerBlocks = (
 const setConfigFlags = () => {
 	const {
 		config: {
-			outputVariablesInline,
+			outputCssVariablesGlobally,
 		},
 	} = getGlobalManifest();
 
-	if (typeof outputVariablesInline !== 'undefined') {
-		setConfigOutputCssVariables(outputVariablesInline);
+	if (typeof outputCssVariablesGlobally !== 'undefined') {
+		setConfigOutputCssVariablesGlobally(outputCssVariablesGlobally);
 	}
 };

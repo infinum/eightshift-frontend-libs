@@ -17,21 +17,21 @@ export const getConfig = () => {
 };
 
 /**
- * Get project features config - output variables inline.
+ * Get project features config - output css variables globally.
  *
  * @returns {object}
  */
-export const getConfigOutputCssVariables = () => {
-	return getConfig().outputVariablesInline;
+export const getConfigOutputCssVariablesGlobally = () => {
+	return getConfig().outputCssVariablesGlobally;
 };
 
 /**
- * Set project features config - output variables inline.
+ * Set project features config - output css variables globally.
  *
  * @returns {object}
  */
-export const setConfigOutputCssVariables = (value) => {
-	getConfig().outputVariablesInline = value;
+export const setConfigOutputCssVariablesGlobally = (value) => {
+	getConfig().outputCssVariablesGlobally = value;
 };
 
 /**
