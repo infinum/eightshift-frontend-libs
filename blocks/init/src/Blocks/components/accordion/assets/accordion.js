@@ -63,8 +63,8 @@ export class Accordion {
 		}
 
 		item.dataset.accordionOpen = false;
-		item.querySelector(this.triggerSelector)?.setAttribute("aria-expanded", "false");
-		panel.setAttribute("aria-hidden", "true");
+		item.querySelector(this.triggerSelector)?.setAttribute('aria-expanded', 'false');
+		panel.setAttribute('aria-hidden', 'true');
 	}
 
 	open(item, panel) {
@@ -74,8 +74,8 @@ export class Accordion {
 
 		panel.style.setProperty('--max-height', `${panel.scrollHeight}px`);
 		item.dataset.accordionOpen = true;
-		item.querySelector(this.triggerSelector)?.setAttribute("aria-expanded", "true");
-		panel.setAttribute("aria-hidden", "false");
+		item.querySelector(this.triggerSelector)?.setAttribute('aria-expanded', 'true');
+		panel.setAttribute('aria-hidden', 'false');
 
 		if (item.dataset.closeOthers === 'true') {
 			this.closeAdjacent(item);
