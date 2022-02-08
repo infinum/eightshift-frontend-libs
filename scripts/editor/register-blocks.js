@@ -621,7 +621,7 @@ export const registerBlocks = (
 		wrapper: wrapperManifest,
 		styles: [],
 		config: {
-			outputVariablesInline: true,
+			outputCssVariablesGlobally: true,
 		}
 	};
 
