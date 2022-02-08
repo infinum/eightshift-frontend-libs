@@ -40,7 +40,7 @@
 			{
 				"name": "Primary",
 				"slug": "primary",
-				"color": "#9973E3"
+				"color": "#662ED6"
 			},
 			{
 				"name": "Black",
@@ -60,27 +60,27 @@
 			{
 				"name": "Ocean",
 				"slug": "ocean",
-				"color": "#44AEDE"
+				"color": "#155D7E"
 			},
 			{
 				"name": "Green",
 				"slug": "green",
-				"color": "#29A3A3"
+				"color": "#175959"
 			},
 			{
 				"name": "Red",
 				"slug": "red",
-				"color": "#E84E4E"
+				"color": "#AF1818"
 			},
 			{
 				"name": "Yellow",
 				"slug": "yellow",
-				"color": "#F99922"
+				"color": "#77460D"
 			},
 			{
 				"name": "Blue",
 				"slug": "blue",
-				"color": "#4184C7"
+				"color": "#285786"
 			},
 			{
 				"name": "Mist",
