@@ -40,7 +40,7 @@
 			{
 				"name": "Primary",
 				"slug": "primary",
-				"color": "#662ED6"
+				"color": "#6200EA"
 			},
 			{
 				"name": "Black",
@@ -60,42 +60,42 @@
 			{
 				"name": "Ocean",
 				"slug": "ocean",
-				"color": "#155D7E"
+				"color": "#00B8D4"
 			},
 			{
 				"name": "Green",
 				"slug": "green",
-				"color": "#175959"
+				"color": "#00E676"
 			},
 			{
 				"name": "Red",
 				"slug": "red",
-				"color": "#AF1818"
+				"color": "#B30024"
 			},
 			{
 				"name": "Yellow",
 				"slug": "yellow",
-				"color": "#77460D"
+				"color": "#FFEA00"
 			},
 			{
 				"name": "Blue",
 				"slug": "blue",
-				"color": "#285786"
+				"color": "#0040F0"
 			},
 			{
 				"name": "Mist",
 				"slug": "mist",
-				"color": "#F0F8FF"
+				"color": "#F1FBFE"
 			},
 			{
 				"name": "Dew",
 				"slug": "dew",
-				"color": "#FBF9FF"
+				"color": "#FAF8FC"
 			},
 			{
 				"name": "Cream",
 				"slug": "cream",
-				"color": "#F4F3F0"
+				"color": "#FFFBF5"
 			},
 			{
 				"name": "Eightshift",
