@@ -21,6 +21,7 @@ export {
 	CustomRangeSlider,
 	CustomRangeSliderStyle,
 } from './custom-slider/custom-range-slider';
+export { FancyDivider } from './fancy-divider/fancy-divider';
 export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';
 export { IconLabel } from './icon-label/icon-label';
