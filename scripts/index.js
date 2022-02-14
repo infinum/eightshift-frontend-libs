@@ -22,6 +22,7 @@ export {
 	CustomRangeSlider,
 	CustomRangeSliderStyle,
 } from './components/custom-slider/custom-range-slider';
+export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
