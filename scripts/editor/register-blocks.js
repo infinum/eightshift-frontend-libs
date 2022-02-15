@@ -78,87 +78,93 @@ export const registerBlocks = (
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {
+		const {
+			active = true,
+		} = blockManifest;
 
-		// Get Block edit component from block name and blocksEditComponentPath.
-		const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
+		// If block has active key set to false the block will not show in the block editor.
+		if (active) {
+			// Get Block edit component from block name and blocksEditComponentPath.
+			const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
 
-		// Get Block Transforms component from block name and transformsComponentPath.
-		if (transformsComponentPath !== null) {
-			const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
+			// Get Block Transforms component from block name and transformsComponentPath.
+			if (transformsComponentPath !== null) {
+				const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
 
-			if (blockTransformsComponent !== null) {
-				blockManifest.transforms = blockTransformsComponent;
+				if (blockTransformsComponent !== null) {
+					blockManifest.transforms = blockTransformsComponent;
+				}
 			}
-		}
 
-		// Get Block Deprecations component from block name and deprecationsComponentPath.
-		if (deprecationsComponentPath !== null) {
-			const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
+			// Get Block Deprecations component from block name and deprecationsComponentPath.
+			if (deprecationsComponentPath !== null) {
+				const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
 
-			if (blockDeprecationsComponent !== null) {
-				blockManifest.deprecated = blockDeprecationsComponent;
+				if (blockDeprecationsComponent !== null) {
+					blockManifest.deprecated = blockDeprecationsComponent;
+				}
 			}
-		}
 
-		// Get Block Hooks component from block name and hooksComponentPath.
-		if (hooksComponentPath !== null) {
-			const blockHooksComponent = getBlockGenericComponent(blockManifest.blockName, hooksComponentPath, 'hooks');
+			// Get Block Hooks component from block name and hooksComponentPath.
+			if (hooksComponentPath !== null) {
+				const blockHooksComponent = getBlockGenericComponent(blockManifest.blockName, hooksComponentPath, 'hooks');
 
-			if (blockHooksComponent !== null) {
-				blockHooksComponent();
+				if (blockHooksComponent !== null) {
+					blockHooksComponent();
+				}
 			}
-		}
 
-		// Get Block Overrides component from block name and overridesComponentPath.
-		if (overridesComponentPath !== null) {
-			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
+			// Get Block Overrides component from block name and overridesComponentPath.
+			if (overridesComponentPath !== null) {
+				const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
-			if (blockOverridesComponent !== null) {
-				blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
+				if (blockOverridesComponent !== null) {
+					blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
+				}
 			}
-		}
 
-		// Pass data to registerBlock helper to get final output for registerBlockType.
-		const blockDetails = registerBlock(
-			globalManifest,
-			wrapperManifest,
-			componentsManifest,
-			blockManifest,
-			wrapperComponent,
-			blockComponent
-		);
+			// Pass data to registerBlock helper to get final output for registerBlockType.
+			const blockDetails = registerBlock(
+				globalManifest,
+				wrapperManifest,
+				componentsManifest,
+				blockManifest,
+				wrapperComponent,
+				blockComponent
+			);
 
-		// Format the 'deprecated' attribute details to match the format Gutenberg wants.
-		if (blockDetails?.options?.deprecated) {
-			blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
-				if (deprecation?.attributes && deprecation?.migrate) {
+			// Format the 'deprecated' attribute details to match the format Gutenberg wants.
+			if (blockDetails?.options?.deprecated) {
+				blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
+					if (deprecation?.attributes && deprecation?.migrate) {
+						return {
+							...deprecation,
+							isEligible: deprecation?.isEligible ?? (() => true),
+							save: blockDetails.options.save,
+						};
+					}
+
 					return {
-						...deprecation,
-						isEligible: deprecation?.isEligible ?? (() => true),
+						attributes: {
+							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+							...deprecation.oldAttributes,
+						},
+						migrate: (attributes) => {
+							return {
+								...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+								...attributes,
+								...deprecation.newAttributes(attributes),
+							};
+						},
+						isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
 						save: blockDetails.options.save,
 					};
-				}
+				});
+			}
 
-				return {
-					attributes: {
-						...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
-						...deprecation.oldAttributes,
-					},
-					migrate: (attributes) => {
-						return {
-							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
-							...attributes,
-							...deprecation.newAttributes(attributes),
-						};
-					},
-					isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
-					save: blockDetails.options.save,
-				};
-			});
+			// Native WP method for block registration.
+			registerBlockType(blockDetails.blockName, blockDetails.options);
 		}
-
-		// Native WP method for block registration.
-		registerBlockType(blockDetails.blockName, blockDetails.options);
 
 		return null;
 	});
@@ -207,25 +213,31 @@ export const registerVariations = (
 
 	// Iterate blocks to register.
 	variationsManifests.map((variationManifest) => {
+		const {
+			active = true,
+		} = variationManifest;
 
-		// Get Block Overrides component from block name and overridesComponentPath.
-		if (overridesComponentPath !== null) {
-			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
+		// If variation has active key set to false the variation will not show in the block editor.
+		if (active) {
+			// Get Block Overrides component from block name and overridesComponentPath.
+			if (overridesComponentPath !== null) {
+				const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
-			if (blockOverridesComponent !== null) {
-				variationManifest = Object.assign(variationManifest, blockOverridesComponent);// eslint-disable-line no-param-reassign
+				if (blockOverridesComponent !== null) {
+					variationManifest = Object.assign(variationManifest, blockOverridesComponent);// eslint-disable-line no-param-reassign
+				}
 			}
+
+			// Pass data to registerVariation helper to get final output for registerBlockVariation.
+			const blockDetails = registerVariation(
+				globalManifest,
+				variationManifest,
+				(blocksManifestPath !== null) ? blocksManifestPath.keys().map(blocksManifestPath) : []
+			);
+
+			// Native WP method for block registration.
+			registerBlockVariation(blockDetails.blockName, blockDetails.options);
 		}
-
-		// Pass data to registerVariation helper to get final output for registerBlockVariation.
-		const blockDetails = registerVariation(
-			globalManifest,
-			variationManifest,
-			(blocksManifestPath !== null) ? blocksManifestPath.keys().map(blocksManifestPath) : []
-		);
-
-		// Native WP method for block registration.
-		registerBlockVariation(blockDetails.blockName, blockDetails.options);
 
 		return null;
 	});
