@@ -4,6 +4,7 @@
 	background-color: var(--global-colors-mist);
 	color: var(--global-colors-black);
 	padding: 0.3rem;
+	z-index: calc(2 * var(--global-z-index-header));
 
 	&:focus {
 		top: 0.3rem;
