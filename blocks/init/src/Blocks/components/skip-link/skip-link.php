@@ -10,6 +10,11 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
+$skipLinkUse = Components::checkAttr('skipLinkUse', $attributes, $manifest);
+if (!$skipLinkUse) {
+	return;
+}
+
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
