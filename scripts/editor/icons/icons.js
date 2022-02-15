@@ -1,6 +1,46 @@
 import React from 'react';
 
 /**
+ * A component that displays a block icon.
+ *
+ * Usage:
+ *
+ * ```jsx
+ * import { BlockIcon } from '@eightshift/frontend-libs/scripts';
+ * 
+ * <BlockIcon iconName='es-button' />
+ * ```
+ *
+ * Output:
+ *
+ * Selected block icon displayed inline.
+ * ```html
+ * <i><svg ...> ... </svg></i>
+ * ```
+ *
+ * @param {object} props          - BlockIcon options.
+ * @param {string} props.iconName - Name of the block icon to display.
+ *
+ * @access public
+ *
+ * @returns {string}
+ */
+ export const BlockIcon = (props) => {
+	const { iconName } = props;
+
+	return (
+		<i
+			dangerouslySetInnerHTML={{ __html: blockIcons[iconName] }}
+			style={{ lineHeight: 0 }}
+		>
+		</i>
+	);
+};
+
+//---------------------------------------------------------------
+// Private methods
+
+/**
  * UI icons.
  */
 export const icons = {
@@ -334,38 +374,4 @@ export const blockIcons = {
 	"esf-form-mailerlite": "<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.25 11.25v-5m2.5 5v-3' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' fill='none'/><path d='m11.25 11.2-.304.06a1 1 0 0 1-1.196-.98V6.25l-1 1h2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='6.75' cy='6.5' r='.75' fill='currentColor'/><path d='M13 9h3.25v-.725c0-.897-.727-1.625-1.625-1.625v0c-.898 0-1.625.728-1.625 1.625V9zm0 0v.4c0 2 1.5 2.1 3.25 1.668' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M3.676 14.703 1 17.5V4a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 19 4v9.203a1.5 1.5 0 0 1-1.5 1.5H3.676z' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
 	"esf-radios": "<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='5' cy='3' r='2.25' fill='currentColor' stroke='currentColor' stroke-width='1.5'/><circle cx='5' cy='10' r='2.25' stroke='currentColor' stroke-width='1.5' fill='none'/><circle cx='5' cy='17' r='2.25' stroke='currentColor' stroke-width='1.5' fill='none'/><path d='M10 3h7.25M10 10h7.25M10 17h7.25' stroke='currentColor' stroke-opacity='.3' stroke-width='1.5' stroke-linecap='round' fill='none'/></svg>",
 	"esf-sender-email": "<svg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M16.5 9.813a.75.75 0 0 0 1.5 0h-1.5zM8.937 12.75a.75.75 0 0 0 0-1.5v1.5zM3 2.25h12.75V.75H3v1.5zm-.75 8.25V3H.75v7.5h1.5zM16.5 3v6.813H18V3h-1.5zm-7.563 8.25H3v1.5h5.938v-1.5zM.75 10.5A2.25 2.25 0 0 0 3 12.75v-1.5a.75.75 0 0 1-.75-.75H.75zm15-8.25a.75.75 0 0 1 .75.75H18A2.25 2.25 0 0 0 15.75.75v1.5zM3 .75A2.25 2.25 0 0 0 .75 3h1.5A.75.75 0 0 1 3 2.25V.75z' fill='currentColor'/><path d='m2.375 2.375 7 5.25 7-5.25m-14 9.188 4.813-5.25m4.812 0 3.233 3.637' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='m18.558 11.903-7.594.847 2.542 2.07.521 3.236 4.53-6.153z' fill='currentColor' fill-opacity='.3' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='m13.33 14.848 4.33-2.5' stroke='currentColor' stroke-opacity='.3' stroke-linejoin='round' fill='none'/><path d='m8 15.616 1.732-1m.134 2.232 1.732-1M10 19.08l1.732-1' stroke='currentColor' stroke-opacity='.3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
-};
-
-/**
- * A component that displays a block icon.
- * 
- * _Usage:_
- * 
- * ```jsx
- * import { BlockIcon } from '@eightshift/frontend-libs/scripts';
- * 
- * <BlockIcon iconName='es-button' />
- * ```
- * 
- * _Output:_
- *
- * Selected block icon displayed inline.
- * ```html
- * <i><svg ...> ... </svg></i>
- * ```
- * 
- * @param {object} props          - BlockIcon options.
- * @param {string} props.iconName - Name of the block icon to display.
- *
- */
-export const BlockIcon = (props) => {
-	const { iconName } = props;
-
-	return (
-		<i
-			dangerouslySetInnerHTML={{ __html: blockIcons[iconName] }}
-			style={{ lineHeight: 0 }}
-		>
-		</i>
-	);
 };

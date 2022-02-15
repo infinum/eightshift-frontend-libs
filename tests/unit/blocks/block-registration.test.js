@@ -7,7 +7,7 @@ import wrapperManifest from '../../../blocks/init/src/Blocks/wrapper/manifest.js
 import globalManifest from '../../../blocks/init/src/Blocks/manifest.json';
 import { blockAttributes } from '../../data/block-attributes';
 import { expect } from '@jest/globals';
-import { getAllComponentManifests, getAllBlockManifests, getComponentDependencies, recursiveBuildProps, getBlockDependencies, getComponentManifest, getBlockManifest, getMockComponentManifest, getMockBlockManifest } from '../../helpers/blocks';
+import { getAllComponentManifests, getAllBlockManifests, getComponentDependencies, recursiveBuildProps, getBlockDependencies, getComponentManifest, getSettingsBlock, getMockComponentManifest, getMockBlockManifest } from '../../helpers/blocks';
 import { propsOutput } from '../../data/props-output';
 
 /**

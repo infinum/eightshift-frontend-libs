@@ -40,19 +40,19 @@ export {
 export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
-	getProjectDetails,
-	getConfig,
-	getConfigOutputCssVariablesGlobally,
-	setConfigOutputCssVariablesGlobally,
-	getGlobalManifest,
-	getBlocksManifest,
-	getBlockManifest,
-	getComponentsManifest,
-	getComponentManifest,
-	getStyles,
-	getWrapperManifest,
-	getNamespace,
-	getBlockFullName,
+	getSettings,
+	getSettingsConfig,
+	getSettingsConfigOutputCssVariablesGlobally,
+	setSettingsConfigOutputCssVariablesGlobally,
+	getSettingsGlobal,
+	getSettingsBlocks,
+	getSettingsBlock,
+	getSettingsComponents,
+	getSettingsComponent,
+	getSettingsStyles,
+	getSettingsWrapper,
+	getSettingsNamespace,
+	getSettingsBlockFullName,
 } from './editor/get-manifest-details';
 export {
 	getOption,
@@ -78,10 +78,6 @@ export {
 export { pasteInto } from './editor/paste-handler';
 export { props } from './editor/props';
 export {
-	getAttributes,
-	getExample,
-	getFullBlockName,
-	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
 } from './editor/register-blocks';

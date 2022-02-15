@@ -6,6 +6,10 @@
  * @param {object} attributesObject Object of attributes to apply.
  * @param {array} exclude Array of block names to exclude.
  *
+ * @access public
+ *
+ * @returns {void}
+ *
  * Usage:
  * ```js
  * import { useSelect } from '@wordpress/data';
@@ -21,7 +25,7 @@
  * });
  * ```
  */
- export const overrideInnerBlockAttributes = (select, clientId, attributesObject = {}, exclude = []) => {
+export const overrideInnerBlockAttributes = (select, clientId, attributesObject = {}, exclude = []) => {
 	const { getBlock } = select('core/block-editor');
 
 	const block = getBlock(clientId);
@@ -52,6 +56,10 @@
  * @param {function} select State function.
  * @param {string} clientId Unique block ID from block editor.
  * @param {array} exclude Array of block names to exclude.
+ *
+ * @access public
+ *
+ * @returns {void}
  *
  * Usage:
  * ```js

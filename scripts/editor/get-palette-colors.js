@@ -5,6 +5,11 @@ import { useSelect } from '@wordpress/data';
  *
  * Requires WP => 5.3
  *
+ * @access public
+ *
+ *
+ * @returns {object}
+ *
  * Usage:
  * ```js
  * getPaletteColors()

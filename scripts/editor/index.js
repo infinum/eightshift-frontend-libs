@@ -9,19 +9,19 @@ export {
 export { getFetchWpApi } from './fetch-wp-api';
 export { getActions } from './get-actions';
 export {
-	getProjectDetails,
-	getConfig,
-	getConfigOutputCssVariablesGlobally,
-	setConfigOutputCssVariablesGlobally,
-	getGlobalManifest,
-	getBlocksManifest,
-	getBlockManifest,
-	getComponentsManifest,
-	getComponentManifest,
-	getStyles,
-	getWrapperManifest,
-	getNamespace,
-	getBlockFullName,
+	getSettings,
+	getSettingsConfig,
+	getSettingsConfigOutputCssVariablesGlobally,
+	setSettingsConfigOutputCssVariablesGlobally,
+	getSettingsGlobal,
+	getSettingsBlocks,
+	getSettingsBlock,
+	getSettingsComponents,
+	getSettingsComponent,
+	getSettingsStyles,
+	getSettingsWrapper,
+	getSettingsNamespace,
+	getSettingsBlockFullName,
 } from './get-manifest-details';
 export {
 	getOption,

@@ -1,11 +1,13 @@
 import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
-import { getConfigOutputCssVariablesGlobally, getStyles } from './get-manifest-details';
+import { getSettingsConfigOutputCssVariablesGlobally, getSettingsStyles } from './get-manifest-details';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
  * @param {array} globalManifest - Global variable data.
+ *
+ * @access public
  *
  * @return {string|void}
  *
@@ -119,199 +121,6 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 };
 
 /**
- * Process and return global CSS variables based on the type.
- *
- * @param {array} itemValues - Values to check.
- * @param {string} itemKey   - Item key to check.
- *
- * @return {string}
- */
-const globalInner = (itemValues, itemKey) => {
-	let output = '';
-
-	for (const [key, value] of Object.entries(itemValues)) {
-		const innerKey = _.kebabCase(key);
-		const itemInnerKey = _.kebabCase(itemKey);
-
-		switch (itemInnerKey) {
-			case 'colors':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['color']};\n`;
-				break;
-			case 'gradients':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['gradient']};\n`;
-				break;
-			case 'font-sizes':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['slug']};\n`;
-				break;
-			default:
-				output += `--global-${itemInnerKey}-${innerKey}: ${value};\n`;
-				break;
-		}
-	}
-
-	return output;
-};
-
-/**
- * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
- * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
- * If there are no breakpoints, min and max will be empty strings.
- * 
- * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
- * 
- * @return {object} Object with min and max keys.
- */
-const getDefaultBreakpoints = (breakpoints) => {
-	return {
-		min: breakpoints?.[0]?.[0] || '',
-		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
-	};
-};
-
-/**
- * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
- *
- * @param {array}  attributeVariables  - Array of attribute variables object.
- * @param {string} breakpointName    	 - Breakpoint name from responsiveAttribute's breakpoint in block's/component's manifest.
- * @param {number} breakpointIndex   	 - Index of responsiveAttribute's breakpoint in manifest.
- * @param {number} numberOfBreakpoints - Number of responsiveAttribute breakpoints in block's/component's manifest.
- *
- * @return {array}
- */
-const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
-	return attributeVariables.map((attributeVariablesObject) => {
-
-		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
-		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : (numberOfBreakpoints - 1);
-
-		// Expanding an object with an additional breakpoint property.
-		return {
-			...attributeVariablesObject,
-			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
-		};
-	});
-};
-
-/**
- * Iterating through variables matching the keys from responsiveAttributes and translating it to responsive attributes names.
- *
- * @param {object} responsiveAttributes - Responsive attributes that are read from component's/block's manifest.
- * @param {object} variables            - Object containing objects with component's/block's attribute variables that are read from manifest.
- *
- * @return {object} Object prepared for setting all the variables to its breakpoints.
- */
-const setupResponsiveVariables = (responsiveAttributes, variables) => {
-	// Iterate through responsive attributes.
-	return Object.entries(responsiveAttributes)
-		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
-
-			// If responsive attribute doesn't exist in variables object, skip it.
-			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
-				return responsiveAttributesVariables;
-			}
-
-			// Used for determination of default breakpoint.
-			const numberOfBreakpoints = Object.entries(responsiveAttributeObject).length;
-
-			// Iterate each responsive attribute object as breakpoint name is the key of the object,
-			// and value represents the name of the responsive variable.
-			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject)
-				.reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
-					let breakpointVariables = {};
-
-					if (Array.isArray(variables[responsiveAttributeName])) { // Array represents direct value(default or value).
-						breakpointVariables = setBreakpointResponsiveVariables(
-							variables[responsiveAttributeName],
-							breakpointName,
-							breakpointIndex,
-							numberOfBreakpoints
-						);
-						return {
-							...responsiveAttribute,
-							[breakpointVariableName]: breakpointVariables,
-						};
-					}
-
-					// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
-					// Iterate options/multiple choices/boolean...
-					breakpointVariables = Object.entries(variables[responsiveAttributeName])
-						.reduce((acc, [attributeValue, attributeObject]) => {
-							return {
-								...acc,
-								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
-							};
-						}, {});
-
-					// Collect all the values from one responsive attribute to one object.
-					return {
-						...responsiveAttribute,
-						[breakpointVariableName]: breakpointVariables,
-					};
-				}, {});
-
-			// Merge multiple responsive attributes to one object.
-			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
-		}, {});
-};
-
-/**
- * Setting defined variables to each breakpoint.
- *
- * @param {object} attributes         - Attributes fetched from manifest.
- * @param {object} variables          - Variables fetched from manifest.
- * @param {object} data               - Preset objects separated in breakpoints.
- * @param {array} manifest            - Component/block manifest data.
- * @param {object} defaultBreakpoints - Default breakpoints for mobile/desktop first.
- *
- * @return {object} Filled object with variables data separated in breakpoints.
- */
-const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
-	// Iterate each variable.
-	for (const [variableName, variableValue] of Object.entries(variables)) {
-
-		// Constant for attributes set value (in db or default).
-		const attributeValue = attributes[getAttrKey(variableName, attributes, manifest)];
-
-		// Set internal breakpoints variable.
-		const internalBreakpoints = Array.isArray(variableValue) ? variableValue : (variableValue[attributeValue] ?? []);
-
-		// Iterate variable array to check breakpoints.
-		internalBreakpoints.forEach((breakpointItem) => {
-
-			// Define variables from breakpointItem.
-			const {
-				breakpoint: itemBreakpoint, // Put in temporary variable before checking the type of breakpointItem.
-				inverse = false, // If inverse is not set use mobile first.
-				variable = [],
-			} = breakpointItem;
-
-			// Check if we are using mobile or desktop first. Mobile first is the default.
-			const type = inverse ? 'max' : 'min';
-
-			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
-
-			// Iterate each data array to find the correct breakpoint.
-			data.some((item, index) => {
-
-				// Check if breakpoint and type match.
-				if (item.name === breakpoint && item.type === type) {
-
-					// Merge data variables with the new variables array.
-					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
-
-					// Exit.
-					return true;
-				}
-
-				return false;
-			});
-		});
-	}
-	return data;
-};
-
-/**
  * Get component/block options and process them in CSS variables.
  *
  * @param {array} attributes      - Built attributes.
@@ -319,6 +128,8 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
  * @param {string} unique         - Unique key.
  * @param {object} globalManifest - Global manifest json.
  * @param {string} customSelector - Output custom selector to use as a style prefix.
+ *
+ * @access public
  *
  * @return {string}
  *
@@ -496,15 +307,15 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 		${manualEditor}
 	}` : '';
 
-	const existsIndex = getStyles().findIndex((item) => item.name === name && item.unique === unique);
+	const existsIndex = getSettingsStyles().findIndex((item) => item.name === name && item.unique === unique);
 
 	if (existsIndex >= 0) {
-		getStyles()[existsIndex] = styles;
+		getSettingsStyles()[existsIndex] = styles;
 	} else {
-		getStyles().push(styles);
+		getSettingsStyles().push(styles);
 	}
 
-	if (!getConfigOutputCssVariablesGlobally()) {
+	if (!getSettingsConfigOutputCssVariablesGlobally()) {
 		// Output the style for CSS variables.
 		return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
 	} else {
@@ -515,14 +326,236 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 };
 
 /**
+ * Returns a unique ID, generally used with CSS variable generation.
+ *
+ * @access public
+ *
+ * @return {string}
+ *
+ * Usage:
+ * ```js
+ * getUnique();
+ * ```
+ *
+ * Output:
+ * ```js
+ * 891273981374b98127419287
+ * ```
+ */
+export const getUnique = () => {
+	return require('crypto').randomBytes(16).toString('hex');
+};
+
+/**
+ * Process and return global CSS variables based on the type.
+ *
+ * @param {array} itemValues - Values to check.
+ * @param {string} itemKey   - Item key to check.
+ *
+ * @access private
+ *
+ * @return {string}
+ */
+export const globalInner = (itemValues, itemKey) => {
+	let output = '';
+
+	for (const [key, value] of Object.entries(itemValues)) {
+		const innerKey = _.kebabCase(key);
+		const itemInnerKey = _.kebabCase(itemKey);
+
+		switch (itemInnerKey) {
+			case 'colors':
+				output += `--global-${itemInnerKey}-${value['slug']}: ${value['color']};\n`;
+				break;
+			case 'gradients':
+				output += `--global-${itemInnerKey}-${value['slug']}: ${value['gradient']};\n`;
+				break;
+			case 'font-sizes':
+				output += `--global-${itemInnerKey}-${value['slug']}: ${value['slug']};\n`;
+				break;
+			default:
+				output += `--global-${itemInnerKey}-${innerKey}: ${value};\n`;
+				break;
+		}
+	}
+
+	return output;
+};
+
+/**
+ * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
+ * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
+ * If there are no breakpoints, min and max will be empty strings.
+ *
+ * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
+ *
+ * @access private
+ *
+ * @return {object} Object with min and max keys.
+ */
+export const getDefaultBreakpoints = (breakpoints) => {
+	return {
+		min: breakpoints?.[0]?.[0] || '',
+		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
+	};
+};
+
+/**
+ * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
+ *
+ * @param {array}  attributeVariables  - Array of attribute variables object.
+ * @param {string} breakpointName    	 - Breakpoint name from responsiveAttribute's breakpoint in block's/component's manifest.
+ * @param {number} breakpointIndex   	 - Index of responsiveAttribute's breakpoint in manifest.
+ * @param {number} numberOfBreakpoints - Number of responsiveAttribute breakpoints in block's/component's manifest.
+ *
+ * @return {array}
+ */
+export const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
+	return attributeVariables.map((attributeVariablesObject) => {
+
+		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
+		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : (numberOfBreakpoints - 1);
+
+		// Expanding an object with an additional breakpoint property.
+		return {
+			...attributeVariablesObject,
+			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
+		};
+	});
+};
+
+/**
+ * Iterating through variables matching the keys from responsiveAttributes and translating it to responsive attributes names.
+ *
+ * @param {object} responsiveAttributes - Responsive attributes that are read from component's/block's manifest.
+ * @param {object} variables            - Object containing objects with component's/block's attribute variables that are read from manifest.
+ *
+ * @return {object} Object prepared for setting all the variables to its breakpoints.
+ */
+export const setupResponsiveVariables = (responsiveAttributes, variables) => {
+	// Iterate through responsive attributes.
+	return Object.entries(responsiveAttributes)
+		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
+
+			// If responsive attribute doesn't exist in variables object, skip it.
+			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
+				return responsiveAttributesVariables;
+			}
+
+			// Used for determination of default breakpoint.
+			const numberOfBreakpoints = Object.entries(responsiveAttributeObject).length;
+
+			// Iterate each responsive attribute object as breakpoint name is the key of the object,
+			// and value represents the name of the responsive variable.
+			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject)
+				.reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
+					let breakpointVariables = {};
+
+					if (Array.isArray(variables[responsiveAttributeName])) { // Array represents direct value(default or value).
+						breakpointVariables = setBreakpointResponsiveVariables(
+							variables[responsiveAttributeName],
+							breakpointName,
+							breakpointIndex,
+							numberOfBreakpoints
+						);
+						return {
+							...responsiveAttribute,
+							[breakpointVariableName]: breakpointVariables,
+						};
+					}
+
+					// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
+					// Iterate options/multiple choices/boolean...
+					breakpointVariables = Object.entries(variables[responsiveAttributeName])
+						.reduce((acc, [attributeValue, attributeObject]) => {
+							return {
+								...acc,
+								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
+							};
+						}, {});
+
+					// Collect all the values from one responsive attribute to one object.
+					return {
+						...responsiveAttribute,
+						[breakpointVariableName]: breakpointVariables,
+					};
+				}, {});
+
+			// Merge multiple responsive attributes to one object.
+			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
+		}, {});
+};
+
+/**
+ * Setting defined variables to each breakpoint.
+ *
+ * @param {object} attributes         - Attributes fetched from manifest.
+ * @param {object} variables          - Variables fetched from manifest.
+ * @param {object} data               - Preset objects separated in breakpoints.
+ * @param {array} manifest            - Component/block manifest data.
+ * @param {object} defaultBreakpoints - Default breakpoints for mobile/desktop first.
+ *
+ * @access private
+ *
+ * @return {object} Filled object with variables data separated in breakpoints.
+ */
+export const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
+	// Iterate each variable.
+	for (const [variableName, variableValue] of Object.entries(variables)) {
+
+		// Constant for attributes set value (in db or default).
+		const attributeValue = attributes[getAttrKey(variableName, attributes, manifest)];
+
+		// Set internal breakpoints variable.
+		const internalBreakpoints = Array.isArray(variableValue) ? variableValue : (variableValue[attributeValue] ?? []);
+
+		// Iterate variable array to check breakpoints.
+		internalBreakpoints.forEach((breakpointItem) => {
+
+			// Define variables from breakpointItem.
+			const {
+				breakpoint: itemBreakpoint, // Put in temporary variable before checking the type of breakpointItem.
+				inverse = false, // If inverse is not set use mobile first.
+				variable = [],
+			} = breakpointItem;
+
+			// Check if we are using mobile or desktop first. Mobile first is the default.
+			const type = inverse ? 'max' : 'min';
+
+			// If breakpoint is not set or has default breakpoint value use default name.
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
+
+			// Iterate each data array to find the correct breakpoint.
+			data.some((item, index) => {
+
+				// Check if breakpoint and type match.
+				if (item.name === breakpoint && item.type === type) {
+
+					// Merge data variables with the new variables array.
+					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
+
+					// Exit.
+					return true;
+				}
+
+				return false;
+			});
+		});
+	}
+	return data;
+};
+
+/**
  * Output css variables as a one inline style tag.
+ *
+ * @access private
  *
  * @returns {string}
  */
-const outputCssVariablesCombined = () => {
+export const outputCssVariablesCombined = () => {
 	let output = '';
 
-	const styles = getStyles();
+	const styles = getSettingsStyles();
 
 	if (styles) {
 		for (const {name, unique, variables} of styles) {
@@ -565,9 +598,11 @@ const outputCssVariablesCombined = () => {
  *
  * @param {object} globalBreakpoints - Global breakpoints from global manifest to set the correct output.
  *
+ * @access private
+ *
  * @return {array}
  */
-const prepareVariableData = (globalBreakpoints) => {
+export const prepareVariableData = (globalBreakpoints) => {
 
 	// Define the min and max arrays.
 	const min = [];
@@ -640,9 +675,11 @@ const prepareVariableData = (globalBreakpoints) => {
  * @param {array} variables      - Array of variables of CSS variables.
  * @param {mixed} attributeValue - Original attribute value used in magic variable.
  *
+ * @access private
+ *
  * @returns {array}
  */
-const variablesInner = (variables, attributeValue) => {
+export const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -671,21 +708,3 @@ const variablesInner = (variables, attributeValue) => {
 	return output;
 };
 
-/**
- * Returns a unique ID, generally used with CSS variable generation.
- *
- * @return {string}
- *
- * Usage:
- * ```js
- * getUnique();
- * ```
- *
- * Output:
- * ```js
- * 891273981374b98127419287
- * ```
- */
-export const getUnique = () => {
-	return require('crypto').randomBytes(16).toString('hex');
-};

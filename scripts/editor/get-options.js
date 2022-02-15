@@ -10,7 +10,9 @@ import _ from 'lodash';
  * @param {array} attributes        - Array of attributes.
  * @param {object} manifest         - Components/blocks manifest.json
  * @param {boolean} [isColor=false] - If option is color return colors.
- * 
+ *
+ * @access public
+ *
  * @returns {object}
  *
  * Usage:
@@ -93,6 +95,8 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
  *
  * @param {array} colors Array of colors to filter.
  *
+ * @access public
+ *
  * @return {object}
  *
  * Usage:
@@ -120,6 +124,8 @@ export const getOptionColors = (colors) => {
  *
  * @param {array} [attributes={}] - Array of attributes.
  * @param {object} [manifest={}]  - Components/blocks manifest.json
+ *
+ * @access public
  *
  * @returns {object}
  *

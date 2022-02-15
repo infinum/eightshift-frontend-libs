@@ -1,55 +1,67 @@
 /**
  * Return project details from global window object.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getProjectDetails = () => {
+export const getSettings = () => {
 	return window?.['eightshift']?.[process.env.VERSION] ?? {};
 };
 
 /**
  * Returns project features config details.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getConfig = () => {
-	return getProjectDetails()?.config ?? {};
+export const getSettingsConfig = () => {
+	return getSettings()?.config ?? {};
 };
 
 /**
  * Get project features config - output css variables globally.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getConfigOutputCssVariablesGlobally = () => {
-	return getConfig().outputCssVariablesGlobally;
+export const getSettingsConfigOutputCssVariablesGlobally = () => {
+	return getSettingsConfig().outputCssVariablesGlobally;
 };
 
 /**
  * Set project features config - output css variables globally.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const setConfigOutputCssVariablesGlobally = (value) => {
-	getConfig().outputCssVariablesGlobally = value;
+export const setSettingsConfigOutputCssVariablesGlobally = (value) => {
+	getSettingsConfig().outputCssVariablesGlobally = value;
 };
 
 /**
  * Returns global manifest details.
  *
+ * @access public
+ *
  * @returns  {object}
  */
-export const getGlobalManifest = () => {
-	return getProjectDetails()?.globalManifest ?? {};
+export const getSettingsGlobal = () => {
+	return getSettings()?.globalManifest ?? {};
 };
 
 /**
  * Returns all blocks manifest array.
  *
+ * @access public
+ *
  * @returns {array}
  */
-export const getBlocksManifest = () => {
-	return getProjectDetails()?.blocks ?? [];
+export const getSettingsBlocks = () => {
+	return getSettings()?.blocks ?? [];
 };
 
 /**
@@ -57,19 +69,23 @@ export const getBlocksManifest = () => {
  *
  * @param {string} blockName Block name to search.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getBlockManifest = (blockName) => {
-	return getBlocksManifest().filter((item) => item.blockName === blockName) ?? {};
+export const getSettingsBlock = (blockName) => {
+	return getSettingsBlocks().filter((item) => item.blockName === blockName) ?? {};
 };
 
 /**
  * Returns all components manifest array.
  *
+ * @access public
+ *
  * @returns {array}
  */
-export const getComponentsManifest = () => {
-	return getProjectDetails()?.components ?? [];
+export const getSettingsComponents = () => {
+	return getSettings()?.components ?? [];
 };
 
 /**
@@ -77,47 +93,57 @@ export const getComponentsManifest = () => {
  *
  * @param {string} componentName Component name to search.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getComponentManifest = (componentName) => {
-	return getComponentsManifest().filter((item) => item.componentName === componentName) ?? {};
+export const getSettingsComponent = (componentName) => {
+	return getSettingsComponents().filter((item) => item.componentName === componentName) ?? {};
 };
 
 /**
  * Returns CSS variables array.
  *
+ * @access public
+ *
  * @returns {array}
  */
-export const getStyles = () => {
-	return getProjectDetails()?.styles ?? [];
+export const getSettingsStyles = () => {
+	return getSettings()?.styles ?? [];
 };
 
 /**
  * Returns wrapper manifest details.
  *
+ * @access public
+ *
  * @returns {object}
  */
-export const getWrapperManifest = () => {
-	return getProjectDetails()?.wrapper ?? {};
+export const getSettingsWrapper = () => {
+	return getSettings()?.wrapper ?? {};
 };
 
 /**
  * Returns project namespace from global settings.
  *
+ * @access public
+ *
  * @returns {string}
  */
-export const getNamespace = () => {
-	return getGlobalManifest()?.namespace ?? '';
+export const getSettingsNamespace = () => {
+	return getSettingsGlobal()?.namespace ?? '';
 };
 
 /**
  * Returns block full name that contains namespace and block name.
  *
+ * @access public
+ *
  * @returns {string}
  */
-export const getBlockFullName = (blockName) => {
-	const namespace = getNamespace();
-	const block = getBlockManifest(blockName)?.blockName;
+export const getSettingsBlockFullName = (blockName) => {
+	const namespace = getSettingsNamespace();
+	const block = getSettingsBlock(blockName)?.blockName;
 
 	return namespace && block ? `${namespace}/${block}` : '';
 };
