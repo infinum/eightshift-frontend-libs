@@ -3,10 +3,10 @@
 	top: -1000px;
 	background-color: var(--global-colors-mist);
 	color: var(--global-colors-black);
-	padding: 0.3em;
+	padding: 0.3rem;
 
 	&:focus {
-		top: 10px;
-		left: 10px;
+		top: 0.3rem;
+		left: 0.3rem;
 	}
 }
