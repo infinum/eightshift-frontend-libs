@@ -74,7 +74,7 @@ export const getSettingsBlocks = () => {
  * @returns {object}
  */
 export const getSettingsBlock = (blockName) => {
-	return getSettingsBlocks().filter((item) => item.blockName === blockName) ?? {};
+	return getSettingsBlocks().find((item) => item.blockName === blockName) ?? {};
 };
 
 /**
@@ -98,7 +98,7 @@ export const getSettingsComponents = () => {
  * @returns {object}
  */
 export const getSettingsComponent = (componentName) => {
-	return getSettingsComponents().filter((item) => item.componentName === componentName) ?? {};
+	return getSettingsComponents().find((item) => item.componentName === componentName) ?? {};
 };
 
 /**
