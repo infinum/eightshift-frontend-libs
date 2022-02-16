@@ -9,6 +9,8 @@ import _ from 'lodash';
  * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
  *
+ * @access public
+ *
  * @return {mixed} Based on the attribute type.
  *                 Boolean - false
  *                 String - ''
@@ -64,7 +66,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 		}
 	}
 
-	// If undefinedAllowed is true and attribute is missing default just return undefined to be able to unset attribute in blocke editor.
+	// If undefinedAllowed is true and attribute is missing default just return undefined to be able to unset attribute in block editor.
 	if (!Object.prototype.hasOwnProperty.call(manifestKey, 'default') && undefinedAllowed) {
 		return undefined;
 	}
@@ -100,6 +102,8 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
  * @param {array} attributes                 - Array of attributes.
  * @param {object} manifest                  - Components/blocks manifest.json
  * @param {boolean} [undefinedAllowed=false] - Allowed detection of undefined values.
+ *
+ * @access public
  *
  * @returns {mixed}
  *
@@ -154,7 +158,9 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	const output = {};
 
 	// Bailout if missing keys.
-	if (! _.has(manifest, 'responsiveAttributes')) {
+	const responsiveAttributes = manifest?.responsiveAttributes;
+
+	if (typeof responsiveAttributes === 'undefined') {
 		if (typeof manifest['blockName'] === 'undefined') {
 			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`);
 		} else {
@@ -163,12 +169,12 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	}
 
 	// Bailout if attribute keys is missing.
-	if (!_.has(manifest.responsiveAttributes, keyName)) {
+	if (!_.has(responsiveAttributes, keyName)) {
 		throw Error(`It looks like you are missing ${keyName} key in your manifest responsiveAttributes object.`);
 	}
 
 	// Iterate keys in responsiveAttributes object and use checkAttr helper.
-	for (const [key, value] of Object.entries(manifest.responsiveAttributes[keyName])) {
+	for (const [key, value] of Object.entries(responsiveAttributes[keyName])) {
 		output[key] = checkAttr(value, attributes, manifest, undefinedAllowed);
 	}
 
@@ -182,6 +188,8 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
  * @param {array} attributes - Array of attributes.
  * @param {object} manifest  - Components/blocks manifest.json
  *
+ * @access public
+ *
  * @return string
  */
 export const getAttrKey = (key, attributes, manifest) => {
@@ -191,12 +199,12 @@ export const getAttrKey = (key, attributes, manifest) => {
 	}
 
 	// Skip if using this helper in block.
-	if (Object.prototype.hasOwnProperty.call(manifest, 'blockName')) {
+	if (typeof manifest?.blockName !== 'undefined') {
 		return key;
 	}
 
 	// If missing prefix or prefix is empty return key.
-	if (!Object.prototype.hasOwnProperty.call(attributes, 'prefix') || attributes.prefix === '') {
+	if (typeof attributes?.prefix === 'undefined' || attributes?.prefix === '') {
 		return key;
 	}
 

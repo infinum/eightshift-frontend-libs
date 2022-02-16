@@ -5,7 +5,11 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 import { blockIcons } from './icons/icons';
-import { getSettingsComponents, getSettingsGlobal, setSettingsConfigOutputCssVariablesGlobally } from './get-manifest-details';
+import {
+	getSettingsComponents,
+	getSettingsGlobal,
+	setSettingsConfigOutputCssVariablesGlobally
+} from './get-manifest-details';
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -69,9 +73,7 @@ export const registerBlocks = (
 		blocks: blocksManifests,
 		wrapper: wrapperManifest,
 		styles: [],
-		config: {
-			outputCssVariablesGlobally: true,
-		}
+		config: {}
 	};
 
 	setConfigFlags();
@@ -841,11 +843,12 @@ export const registerBlock = (
  * @requires void
  */
 export const setConfigFlags = () => {
-	const {
-		config: {
-			outputCssVariablesGlobally,
-		},
-	} = getSettingsGlobal();
+	const settingsGlobal = getSettingsGlobal()?.config;
+
+	// outputCssVariablesGlobally
+	const outputCssVariablesGlobally = settingsGlobal?.outputCssVariablesGlobally;
+
+	setSettingsConfigOutputCssVariablesGlobally(false);
 
 	if (typeof outputCssVariablesGlobally !== 'undefined') {
 		setSettingsConfigOutputCssVariablesGlobally(outputCssVariablesGlobally);

@@ -3,6 +3,8 @@
  *
  * @param {object} element - DOM element
  *
+ * @access public
+ *
  * @return {number} Combined height of the children elements
  *
  * Usage:

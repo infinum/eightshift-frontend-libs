@@ -28,7 +28,7 @@ export const getSettingsConfig = () => {
  * @returns {object}
  */
 export const getSettingsConfigOutputCssVariablesGlobally = () => {
-	return getSettingsConfig().outputCssVariablesGlobally;
+	return getSettingsConfig()?.outputCssVariablesGlobally;
 };
 
 /**
@@ -146,4 +146,26 @@ export const getSettingsBlockFullName = (blockName) => {
 	const block = getSettingsBlock(blockName)?.blockName;
 
 	return namespace && block ? `${namespace}/${block}` : '';
+};
+
+/**
+ * Returns global settings global css variables object.
+ *
+ * @access public
+ *
+ * @returns {object}
+ */
+export const getSettingsGlobalCssVariables = () => {
+	return getSettingsGlobal()?.globalVariables ?? {};
+};
+
+/**
+ * Returns global settings global css one variable.
+ *
+ * @access public
+ *
+ * @returns {mixed}
+ */
+export const getSettingsGlobalCssVariable = (variable) => {
+	return getSettingsGlobalCssVariables()[variable];
 };

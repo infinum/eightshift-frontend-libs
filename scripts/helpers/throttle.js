@@ -4,7 +4,9 @@
  * @param {function} func - Callback to apply.
  * @param {number} wait   - Number of milliseconds of the callback function lock. Default is 250ms.
  *
- * @return Throttled callback.
+ * @access public
+ *
+ * @return {function} Throttled callback.
  */
 export function throttle(func, wait = 250) {
 	let timeout;

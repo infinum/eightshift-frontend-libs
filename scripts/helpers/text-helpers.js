@@ -5,6 +5,8 @@
  * @param {number} maxLength         - Maximum allowed string length. Should be at least 8.
  * @param {string} [separator='...'] - Separator to insert. Should be exactly three characters long.
  *
+ * @access public
+ *
  * @returns {string} Truncated string.
  *
  * Usage:
@@ -28,6 +30,8 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
  * Un-escapes HTML entities.
  *
  * @param {string} input - Input string.
+ *
+ * @access public
  *
  * @returns {string} String with HTML entities unescaped.
  *
