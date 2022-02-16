@@ -5,7 +5,9 @@
  *
  * @param {string} string - String to escape.
  *
- * @return Escaped string.
+ * @access public
+ *
+ * @return {string} Escaped string.
  *
  * Usage:
  * ```js

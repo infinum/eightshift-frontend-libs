@@ -59,7 +59,7 @@ $modalClass = Components::classnames([
 					<button
 						<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
 						class="<?php echo \esc_attr("{$componentClass}__close-button"); ?>"
-						aria-label="Close modal"
+						aria-label="<?php echo \esc_attr__('Close modal', 'eightshift-frontend-libs'); ?>"
 					>
 						<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>

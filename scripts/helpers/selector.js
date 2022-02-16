@@ -6,6 +6,8 @@
  * @param {string} [element]  - BEM Element selector.
  * @param {string} [modifier] - BEM Modifier selector.
  *
+ * @access public
+ *
  * @return string
  *
  * Usage:

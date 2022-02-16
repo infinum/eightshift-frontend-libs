@@ -11,6 +11,10 @@ export const cookies = {
 	 * @param {number} time  - Number denoting the expiration of the cookie.
 	 * @param {string} path  - URL path that must exist in the requested URL in order to send the Cookie header.
 	 *
+	 * @access public
+	 *
+	 * @returns {void}
+	 *
 	 * Usage:
 	 * ```js
 	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/');

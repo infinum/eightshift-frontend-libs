@@ -14,6 +14,15 @@ export {
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export { CustomSelect } from './components/custom-select/custom-select';
+export { 
+	CustomSlider, 
+	CustomSliderStyle,
+} from './components/custom-slider/custom-slider';
+export { 
+	CustomRangeSlider,
+	CustomRangeSliderStyle,
+} from './components/custom-slider/custom-range-slider';
+export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
@@ -40,6 +49,21 @@ export {
 export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
+	getSettings,
+	getSettingsConfig,
+	getSettingsConfigOutputCssVariablesGlobally,
+	setSettingsConfigOutputCssVariablesGlobally,
+	getSettingsGlobal,
+	getSettingsBlocks,
+	getSettingsBlock,
+	getSettingsComponents,
+	getSettingsComponent,
+	getSettingsStyles,
+	getSettingsWrapper,
+	getSettingsNamespace,
+	getSettingsBlockFullName,
+} from './editor/get-manifest-details';
+export {
 	getOption,
 	getOptionColors,
 	getOptions
@@ -63,10 +87,6 @@ export {
 export { pasteInto } from './editor/paste-handler';
 export { props } from './editor/props';
 export {
-	getAttributes,
-	getExample,
-	getFullBlockName,
-	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
 } from './editor/register-blocks';

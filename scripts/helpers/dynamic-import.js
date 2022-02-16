@@ -5,6 +5,10 @@
  *
  * @param {object} paths - All `require.context` paths to iterate.
  *
+ * @access public
+ *
+ * @returns {void}
+ *
  * Usage:
  * ```js
  * dynamicImport(require.context('./../../custom', true, /assets\/index.js$/));

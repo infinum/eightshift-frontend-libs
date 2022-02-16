@@ -3,6 +3,10 @@
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
  *
+ * @access public
+ *
+ * @returns {string}
+ *
  * Usage:
  * ```js
  * getNavigatorVibrate();

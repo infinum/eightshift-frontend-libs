@@ -6,7 +6,9 @@ import _ from 'lodash';
  * @param {string} newName     - *New* key to use to rename attributes.
  * @param {object} attributes  - Attributes from the block/component.
  * @param {object} [manual={}] - Object of attributes to change key and merge to the original output.
- * 
+ *
+ * @access public
+ *
  * @returns {object}
  *
  * Manifest:

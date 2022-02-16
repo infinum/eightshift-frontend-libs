@@ -2,6 +2,11 @@ import domReady from '@wordpress/dom-ready';
 
 /* global YoastSEO */
 
+/**
+ * Fixes Yoast seo blocks count.
+ *
+ * @access public
+ */
 class YoastSEOCustomData {
 	constructor() {
 

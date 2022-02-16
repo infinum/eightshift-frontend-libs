@@ -49,6 +49,7 @@ $accordionPanelClass = Components::classnames([
 $accordionContentClass = Components::selector($componentClass, $componentClass, 'content');
 
 $uniqueAccordionId = Components::getUnique();
+$uniqueAccordionTriggerId = Components::getUnique();
 ?>
 
 <div
@@ -61,6 +62,7 @@ $uniqueAccordionId = Components::getUnique();
 		aria-label="<?php echo esc_html($accordionTitle); ?>"
 		aria-controls="<?php echo \esc_attr($uniqueAccordionId); ?>"
 		aria-expanded="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
+		id="<?php echo \esc_attr($uniqueAccordionTriggerId); ?>"
 	>
 		<?php echo \esc_html($accordionTitle); ?>
 		<div class="<?php echo \esc_attr($accordionIconClass); ?>" aria-hidden="true" >
@@ -72,6 +74,7 @@ $uniqueAccordionId = Components::getUnique();
 		role="region"
 		class="<?php echo \esc_attr($accordionPanelClass); ?>"
 		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
+		aria-labelledby="<?php echo \esc_attr($uniqueAccordionTriggerId); ?>"
 		id="<?php echo esc_attr($uniqueAccordionId); ?>"
 	>
 		<div class="<?php echo \esc_attr($accordionContentClass); ?>">
