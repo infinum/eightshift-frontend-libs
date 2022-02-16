@@ -5,7 +5,9 @@
  * @param {function} func - Callback to apply.
  * @param {number} wait   - Number of milliseconds for the delay of the callback function. Default is 200ms.
  *
- * @return Debounced callback.
+ * @access public
+ *
+ * @return {function} Debounced callback.
  *
  * Usage:
  * ```js

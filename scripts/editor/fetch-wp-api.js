@@ -16,6 +16,8 @@ import apiFetch from '@wordpress/api-fetch';
  * @param {string}   [cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
  * @param {fields}   [fields='id,title']    Fields to return for optimised response.
  *
+ * @access public
+ *
  * @returns Callback function that can be passed to CustomSelect loadOptions
  *
  * Usage:
@@ -110,6 +112,9 @@ export function getFetchWpApi(endpoint, options = {}) {
 	return fetchItems;
 }
 
+//---------------------------------------------------------------
+// Private methods
+
 /**
  * Create valid url for fetching.
  *
@@ -117,9 +122,11 @@ export function getFetchWpApi(endpoint, options = {}) {
  * @param {object} params Additional search params.
  * @param {string} routePrefix Route prefix for endpoint.
  *
+ * @access private
+ *
  * @returns API valid url.
  */
-const getRoute = (endpoint, params = {}, routePrefix) => {
+export const getRoute = (endpoint, params = {}, routePrefix) => {
 	const url = new URL(`${window.location.origin}/${routePrefix}/${endpoint}/`);
 
 	for (const [key, value] of Object.entries(params)) {

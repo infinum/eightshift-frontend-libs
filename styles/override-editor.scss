@@ -835,11 +835,121 @@ body {
 		gap: 0.5rem;
 	}
 
+	.es-v-spaced-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-v-end {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+	}
+
+	.es-v-end-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-v-start {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+	.es-v-start-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-v-center {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+	.es-v-center-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
 	// A horizontal flex container with a gap.
 	.es-h-spaced {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.es-h-spaced-wrap {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-h-end {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+	}
+
+	.es-h-end-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-h-start {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+	.es-h-start-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.es-h-center {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+	.es-h-center-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
 	}
 
 	// Spinner animations for ServerSideRender.
@@ -988,4 +1098,152 @@ body {
 			}
 		}
 	}
+
+	// Fancy divider styles.
+	.es-fancy-divider {
+		margin: 1.5em 0;
+		position: relative;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 1px;
+			background: rgb(240 240 240);
+			z-index: -1;
+		}
+
+		span {
+			background: rgb(255 255 255);
+			padding: 0.25em;
+			color: rgb(160, 160, 160);
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			font-weight: normal;
+			user-select: none;
+			font-size: 0.9em;
+		}
+	}
+
+	// PanelBody title muted text.
+	.es-panel-body-muted {
+		font-weight: normal;
+		opacity: 0.6;
+	}
+
+	// Gutenberg Popover enhancements.
+	.es-popover-content {
+		padding: 1rem;
+		min-width: 16rem;
+	}
+
+	.components-popover__content {
+		border-radius: 6px !important;
+	}
+
+	// Modal max-widths.
+	.es-modal-max-width-s {
+		.components-modal__content {
+			max-width: 24rem;
+		}
+	}
+
+	.es-modal-max-width-m {
+		.components-modal__content {
+			max-width: 36rem;
+		}
+	}
+
+	.es-modal-max-width-l {
+		.components-modal__content {
+			max-width: 40rem;
+		}
+	}
+
+	.es-modal-max-width-xl {
+		.components-modal__content {
+			max-width: 44rem;
+		}
+	}
+
+	.es-modal-max-width-xxl {
+		.components-modal__content {
+			max-width: 48rem;
+		}
+	}
+
+	.es-modal-max-width-3xl {
+		.components-modal__content {
+			max-width: 56rem;
+		}
+	}
+
+	.es-modal-max-width-4xl {
+		.components-modal__content {
+			max-width: 60rem;
+		}
+	}
+
+	// Basic layouts.
+	.es-fifty-fifty-h {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1rem;
+	}
+
+	.es-fifty-fifty-auto-h {
+		display: grid;
+		grid-template-columns: 1fr 1fr auto;
+		grid-gap: 1rem;
+	}
+
+	// Grid align helpers.
+	@for $eblCol from 1 through 12 {
+		.es-col-#{$eblCol} {
+			grid-column: #{$eblCol};
+		}
+	}
+
+	@for $eblRow from 1 through 12 {
+		.es-row-#{$eblRow} {
+			grid-row: #{$eblRow};
+		}
+	}
+
+	// Helper to disable default Gutenberg field spacing (e.g. for inlining input fields).
+	.es-no-field-spacing {
+		margin-bottom: 0 !important;
+
+		.components-base-control__field {
+			margin-bottom: 0 !important;
+		}
+	}
+
+	// Slight border for default buttons if needed.
+	.es-slight-button-border:not(.is-pressed) {
+		box-shadow: inset 0 0 0 1px rgb(240 240 240);
+	}
+
+	// Add WP field spacing if needed.
+	.es-has-wp-field-v-space {
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.es-has-wp-field-b-space {
+		margin-bottom: 1.5rem;
+	}
+
+	.es-has-wp-field-t-space {
+		margin-top: 1.5rem;
+	}
 }
+
+@import '../scripts/components/custom-slider/custom-slider.scss';

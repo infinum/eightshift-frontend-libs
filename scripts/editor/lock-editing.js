@@ -7,6 +7,8 @@
  * @param {string} blockClientId A block's client ID
  * @param {string} attributeKey The attribute key
  *
+ * @access public
+ *
  * @returns {void}
  * 
  * Usage:
@@ -15,7 +17,7 @@
  * ```
  */
 export const lockPostEditing = (blockClientId, attributeKey) => {
-  wp.data.dispatch('core/editor').lockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	wp.data.dispatch('core/editor').lockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
 };
 
 /**
@@ -26,7 +28,9 @@ export const lockPostEditing = (blockClientId, attributeKey) => {
  *
  * @param {string} blockClientId A block's client ID
  * @param {string} attributeKey The attribute key
- * 
+ *
+ * @access public
+ *
  * @returns {void}
  * 
  * Usage:
@@ -36,7 +40,7 @@ export const lockPostEditing = (blockClientId, attributeKey) => {
  */
 
 export const unlockPostEditing = (blockClientId, attributeKey) => {
-  wp.data.dispatch('core/editor').unlockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	wp.data.dispatch('core/editor').unlockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
 };
 
 /**
@@ -49,7 +53,9 @@ export const unlockPostEditing = (blockClientId, attributeKey) => {
  *
  * @param {string} blockClientId A block's client ID
  * @param {string} attributeKey The attribute key
- * 
+ *
+ * @access public
+ *
  * @returns {void}
  * 
  * Usage:
@@ -62,9 +68,9 @@ export const unlockPostEditing = (blockClientId, attributeKey) => {
  */
 
 export const lockIfUndefined = (blockClientId, attributeKey, value) => {
-  if (typeof value === 'undefined' || value === null || value === '') {
-    lockPostEditing(blockClientId, attributeKey);
-    return;
-  }
-  unlockPostEditing(blockClientId, attributeKey);
+	if (typeof value === 'undefined' || value === null || value === '') {
+		lockPostEditing(blockClientId, attributeKey);
+		return;
+	}
+	unlockPostEditing(blockClientId, attributeKey);
 };

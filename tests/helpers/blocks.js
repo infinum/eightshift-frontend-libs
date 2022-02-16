@@ -53,7 +53,7 @@ const getManifest = (path, name) => {
 }
 
 export const getComponentManifest = (componentName) => getManifest(pathToComponents, componentName);
-export const getBlockManifest = (blockName) => getManifest(pathToBlocks, blockName);
+export const getSettingsBlock = (blockName) => getManifest(pathToBlocks, blockName);
 export const getMockComponentManifest = (componentName) => getManifest(pathToMockComponents, componentName);
 export const getMockBlockManifest = (blockName) => getManifest(pathToMockBlocks, blockName);
 

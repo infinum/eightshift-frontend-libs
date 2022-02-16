@@ -3,6 +3,8 @@
  *
  * @param {string} string - String to convert.
  *
+ * @access public
+ *
  * @return {string} *camelCase*-formatted string.
  *
  * Usage:

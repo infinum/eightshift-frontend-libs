@@ -5,6 +5,248 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 import { blockIcons } from './icons/icons';
+import {
+	getSettingsComponents,
+	getSettingsGlobal,
+	setSettingsConfigOutputCssVariablesGlobally
+} from './get-manifest-details';
+
+/**
+ * Register all Block Editor blocks using WP `registerBlockType` method.
+ * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
+ *
+ * @param {object} globalManifest                 - Must provide global blocks setting manifest.json.
+ * @param {function?} [wrapperComponent]          - Callback function that returns a `Wrapper`.
+ * @param {object} wrapperManifest                - `Wrapper` manifest.
+ * @param {function} componentsManifestPath       - **Must provide `require.context` for all components `manifest.json`s.**
+ * @param {function} blocksManifestPath           - **Must provide `require.context` for all blocks manifest.json-s.**
+ * @param {function} blocksEditComponentPath      - **Must provide `require.context` for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).**
+ * @param {function?} [hooksComponentPath]        - Function of hooks JavaScript files in a block from `require.context`.
+ * @param {function?} [transformsComponentPath]   - Function of transforms JavaScript files in a block from `require.context`.
+ * @param {function?} [deprecationsComponentPath] - Function of deprecations JavaScript files in a block from `require.context`.
+ * @param {function?} [overridesComponentPath]    - Function of overrides JavaScript files in a block from `require.context`.
+ *
+ * @access public
+ *
+ * @returns {mixed}
+ *
+ * Usage:
+ * ```js
+ * registerBlocks(
+ *   globalSettings,
+ *   Wrapper,
+ *   WrapperManifest,
+ *   require.context('./../../components', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /-block.js$/),
+ *   require.context('./../../custom', true, /-hooks.js$/),
+ *   require.context('./../../custom', true, /-transforms.js$/),
+ *   require.context('./../../custom', true, /-deprecations.js$/),
+ *   require.context('./../../custom', true, /-overrides.js$/),
+ * );
+ * ```
+ */
+export const registerBlocks = (
+	globalManifest = {},
+	wrapperComponent = null,
+	wrapperManifest = {},
+	componentsManifestPath,
+	blocksManifestPath,
+	blocksEditComponentPath,
+	hooksComponentPath = null,
+	transformsComponentPath = null,
+	deprecationsComponentPath = null,
+	overridesComponentPath = null,
+) => {
+
+	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
+	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+
+	// Set componentsManifest to global window for usage in storybook.
+	if (typeof window?.['eightshift'] === 'undefined') {
+		window['eightshift'] = {};
+	}
+
+	window['eightshift'][process.env.VERSION] = {
+		globalManifest,
+		components: componentsManifest,
+		blocks: blocksManifests,
+		wrapper: wrapperManifest,
+		styles: [],
+		config: {}
+	};
+
+	setConfigFlags();
+
+	// Iterate blocks to register.
+	blocksManifests.map((blockManifest) => {
+		const {
+			active = true,
+		} = blockManifest;
+
+		// If block has active key set to false the block will not show in the block editor.
+		if (active) {
+			// Get Block edit component from block name and blocksEditComponentPath.
+			const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
+
+			// Get Block Transforms component from block name and transformsComponentPath.
+			if (transformsComponentPath !== null) {
+				const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
+
+				if (blockTransformsComponent !== null) {
+					blockManifest.transforms = blockTransformsComponent;
+				}
+			}
+
+			// Get Block Deprecations component from block name and deprecationsComponentPath.
+			if (deprecationsComponentPath !== null) {
+				const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
+
+				if (blockDeprecationsComponent !== null) {
+					blockManifest.deprecated = blockDeprecationsComponent;
+				}
+			}
+
+			// Get Block Hooks component from block name and hooksComponentPath.
+			if (hooksComponentPath !== null) {
+				const blockHooksComponent = getBlockGenericComponent(blockManifest.blockName, hooksComponentPath, 'hooks');
+
+				if (blockHooksComponent !== null) {
+					blockHooksComponent();
+				}
+			}
+
+			// Get Block Overrides component from block name and overridesComponentPath.
+			if (overridesComponentPath !== null) {
+				const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
+
+				if (blockOverridesComponent !== null) {
+					blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
+				}
+			}
+
+			// Pass data to registerBlock helper to get final output for registerBlockType.
+			const blockDetails = registerBlock(
+				globalManifest,
+				wrapperManifest,
+				componentsManifest,
+				blockManifest,
+				wrapperComponent,
+				blockComponent
+			);
+
+			// Format the 'deprecated' attribute details to match the format Gutenberg wants.
+			if (blockDetails?.options?.deprecated) {
+				blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
+					if (deprecation?.attributes && deprecation?.migrate) {
+						return {
+							...deprecation,
+							isEligible: deprecation?.isEligible ?? (() => true),
+							save: blockDetails.options.save,
+						};
+					}
+
+					return {
+						attributes: {
+							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+							...deprecation.oldAttributes,
+						},
+						migrate: (attributes) => {
+							return {
+								...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+								...attributes,
+								...deprecation.newAttributes(attributes),
+							};
+						},
+						isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
+						save: blockDetails.options.save,
+					};
+				});
+			}
+
+			// Native WP method for block registration.
+			registerBlockType(blockDetails.blockName, blockDetails.options);
+		}
+
+		return null;
+	});
+
+	// Add icon foreground and background colors as CSS variables for later use.
+	const {
+		background: backgroundGlobal,
+		foreground: foregroundGlobal,
+	} = globalManifest;
+
+	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
+	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
+};
+
+/**
+ * Register all Variations Editor blocks using WP `registerBlockVariation` method.
+ * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
+ *
+ * @param {object} globalManifest              - **Must provide global blocks setting `manifest.json`.**
+ * @param {function} variationsManifestPath    - **Must provide require.context for all variations `manifest.json`s.**
+ * @param {function} [blocksManifestPath]      - **require.context for all blocks `manifest.json`s.**
+ * @param {function?} [overridesComponentPath] - Function of overrides JavaScript files in a block from `require.context`.
+ *
+ * @access public
+ *
+ * @returns {null}
+ *
+ * Usage:
+ * ```js
+ * registerVariations(
+ *   globalSettings,
+ *   require.context('./../../variations', true, /manifest.json$/),
+ *   require.context('./../../custom', true, /manifest.json$/),
+ *   require.context('./../../variations', true, /-overrides.js$/),
+ * );
+ * ```
+ */
+export const registerVariations = (
+	globalManifest = {},
+	variationsManifestPath,
+	blocksManifestPath = null,
+	overridesComponentPath = null,
+) => {
+
+	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
+
+	// Iterate blocks to register.
+	variationsManifests.map((variationManifest) => {
+		const {
+			active = true,
+		} = variationManifest;
+
+		// If variation has active key set to false the variation will not show in the block editor.
+		if (active) {
+			// Get Block Overrides component from block name and overridesComponentPath.
+			if (overridesComponentPath !== null) {
+				const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
+
+				if (blockOverridesComponent !== null) {
+					variationManifest = Object.assign(variationManifest, blockOverridesComponent);// eslint-disable-line no-param-reassign
+				}
+			}
+
+			// Pass data to registerVariation helper to get final output for registerBlockVariation.
+			const blockDetails = registerVariation(
+				globalManifest,
+				variationManifest,
+				(blocksManifestPath !== null) ? blocksManifestPath.keys().map(blocksManifestPath) : []
+			);
+
+			// Native WP method for block registration.
+			registerBlockVariation(blockDetails.blockName, blockDetails.options);
+		}
+
+		return null;
+	});
+};
+
+//---------------------------------------------------------------
+// Private methods
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -13,8 +255,12 @@ import { blockIcons } from './icons/icons';
  * @param {function} paths   - Function of all JavaScript files in a block got from require.context.
  * @param {string} fileName  - Block partial name.
  *
+ * @access private
+ *
+ * @returns {function}
+ *
  */
-const getBlockEditComponent = (blockName, paths, fileName) => {
+export const getBlockEditComponent = (blockName, paths, fileName) => {
 
 	// Create an array of all blocks file paths.
 	const pathsKeys = paths.keys();
@@ -45,8 +291,12 @@ const getBlockEditComponent = (blockName, paths, fileName) => {
  * @param {function} paths   - Function of all JavaScript files in a block got from require.context.
  * @param {string} fileName  - Block partial name.
  *
+ * @access private
+ *
+ * @returns {function}
+ *
  */
-const getBlockGenericComponent = (blockName, paths, fileName) => {
+export const getBlockGenericComponent = (blockName, paths, fileName) => {
 
 	// Create an array of all blocks file paths.
 	const pathsKeys = paths.keys();
@@ -68,10 +318,12 @@ const getBlockGenericComponent = (blockName, paths, fileName) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
+ * @access private
+ *
  * @returns {string?}
  */
-const getNamespace = (globalManifest, blockManifest) => {
+export const getNamespace = (globalManifest, blockManifest) => {
 	return (typeof blockManifest.namespace === 'undefined') ? globalManifest.namespace : blockManifest.namespace;
 };
 
@@ -80,7 +332,9 @@ const getNamespace = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
+ * @access private
+ *
  * @returns {string}
  */
 export const getFullBlockName = (globalManifest, blockManifest) => {
@@ -92,7 +346,9 @@ export const getFullBlockName = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
+ * @access private
+ *
  * @returns {string}
  */
 export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
@@ -103,10 +359,12 @@ export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
  * Return save function based on hasInnerBlocks option of block.
  *
  * @param {object} blockManifest - Block manifest.
- * 
+ *
+ * @access private
+ *
  * @returns {function} Save callback.
  */
-const getSaveCallback = (blockManifest) => {
+export const getSaveCallback = (blockManifest) => {
 	const {
 		hasInnerBlocks,
 	} = blockManifest;
@@ -121,9 +379,11 @@ const getSaveCallback = (blockManifest) => {
 /**
  * Return merge function based on existence of `mergeableAttributes` option of block.
  *
+ * @access private
+ *
  * @param {object} blockManifest - Block manifest.
  */
-const getMergeCallback = (blockManifest) => {
+export const getMergeCallback = (blockManifest) => {
 	const {
 		mergeableAttributes,
 	} = blockManifest;
@@ -189,9 +449,11 @@ const getMergeCallback = (blockManifest) => {
  * @param {React.Component} Component - Component to render inside the wrapper.
  * @param {React.Component} Wrapper   - Wrapper component.
  *
+ * @access private
+ *
  * @returns {React.Component}
  */
-const getEditCallback = (Component, Wrapper) => (props) => {
+export const getEditCallback = (Component, Wrapper) => (props) => {
 	return (
 		<Wrapper props={props}>
 			<Component {...props} />
@@ -204,10 +466,12 @@ const getEditCallback = (Component, Wrapper) => (props) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
+ * @access private
+ *
  * @returns {object}
  */
-const getIconOptions = (
+export const getIconOptions = (
 	globalManifest,
 	blockManifest
 ) => {
@@ -251,10 +515,12 @@ const getIconOptions = (
  * @param {boolean} [isExample=false]         - Type of items to iterate, if false example key will be use, if true attributes will be used.
  * @param {string} [parent='']                - Parent component key with stacked parent component names for the final output.
  * @param {boolean} [currentAttributes=false] - Check if current attribute is a part of the current component.
- * 
+ *
+ * @access private
+ *
  * @returns {object}
  */
-const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
+export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
 	const output = {};
 
 	// Define different data point for attributes or example.
@@ -304,10 +570,12 @@ const prepareComponentAttribute = (manifest, newName, realName, isExample = fals
  * @param {object} manifest           - Object of component/block manifest to get the data from.
  * @param {boolean} [isExample=false] - Type of items to iterate, if true example key will be used, if false attributes will be used.
  * @param {string} [parent='']        - Parent component key with stacked parent component names for the final output.
- * 
+ *
+ * @access private
+ *
  * @returns {object}
  */
-const prepareComponentAttributes = (
+export const prepareComponentAttributes = (
 	componentsManifest,
 	manifest,
 	isExample = false,
@@ -371,6 +639,8 @@ const prepareComponentAttributes = (
  * 
  * @returns {object} Object of all attributes registered for a specific block.
  *
+ * @access private
+ *
  * Usage:
  * ```js
  * getAttributes(globalManifest, wrapperManifest, componentManifests, manifest)
@@ -428,6 +698,8 @@ export const getAttributes = (
  * 
  * @returns {object}
  *
+ * @access private
+ *
  * Manifest:
  * ```js
  * {
@@ -466,7 +738,7 @@ export const getExample = (
 	manifest = {}
 ) => {
 
-	return prepareComponentAttributes(getComponentsManifest(), manifest, true, parent);
+	return prepareComponentAttributes(getSettingsComponents(), manifest, true, parent);
 };
 
 /**
@@ -476,9 +748,11 @@ export const getExample = (
  * @param {object} variationManifest - Variation manifest.
  * @param {Array} blocksManifest     - Blocks manifests.
  *
+ * @access private
+ *
  * @returns {object}
  */
- const registerVariation = (
+export const registerVariation = (
 	globalManifest = {},
 	variationManifest = {},
 	blocksManifest = [],
@@ -519,9 +793,11 @@ export const getExample = (
  * @param {function} wrapperComponent - Callback function that returns a `Wrapper`.
  * @param {function} blockComponent   - Edit callback function.
  *
+ * @access private
+ *
  * @returns {object}
  */
-const registerBlock = (
+export const registerBlock = (
 	globalManifest = {},
 	wrapperManifest = {},
 	componentsManifest = {},
@@ -560,219 +836,22 @@ const registerBlock = (
 };
 
 /**
- * Register all Block Editor blocks using WP `registerBlockType` method.
- * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
+ * Set features config flag set in the global manifest settings.
  *
- * @param {object} globalManifest                 - Must provide global blocks setting manifest.json.
- * @param {function?} [wrapperComponent]          - Callback function that returns a `Wrapper`.
- * @param {object} wrapperManifest                - `Wrapper` manifest.
- * @param {function} componentsManifestPath       - **Must provide `require.context` for all components `manifest.json`s.**
- * @param {function} blocksManifestPath           - **Must provide `require.context` for all blocks manifest.json-s.**
- * @param {function} blocksEditComponentPath      - **Must provide `require.context` for all blocks JavaScript files (unable to add only block edit file due to dynamic naming).**
- * @param {function?} [hooksComponentPath]        - Function of hooks JavaScript files in a block from `require.context`.
- * @param {function?} [transformsComponentPath]   - Function of transforms JavaScript files in a block from `require.context`.
- * @param {function?} [deprecationsComponentPath] - Function of deprecations JavaScript files in a block from `require.context`.
- * @param {function?} [overridesComponentPath]    - Function of overrides JavaScript files in a block from `require.context`.
+ * @access private
  *
- * @returns {mixed}
- *
- * Usage:
- * ```js
- * registerBlocks(
- *   globalSettings,
- *   Wrapper,
- *   WrapperManifest,
- *   require.context('./../../components', true, /manifest.json$/),
- *   require.context('./../../custom', true, /manifest.json$/),
- *   require.context('./../../custom', true, /-block.js$/),
- *   require.context('./../../custom', true, /-hooks.js$/),
- *   require.context('./../../custom', true, /-transforms.js$/),
- *   require.context('./../../custom', true, /-deprecations.js$/),
- *   require.context('./../../custom', true, /-overrides.js$/),
- * );
- * ```
+ * @requires void
  */
-export const registerBlocks = (
-	globalManifest = {},
-	wrapperComponent = null,
-	wrapperManifest = {},
-	componentsManifestPath,
-	blocksManifestPath,
-	blocksEditComponentPath,
-	hooksComponentPath = null,
-	transformsComponentPath = null,
-	deprecationsComponentPath = null,
-	overridesComponentPath = null,
-) => {
+export const setConfigFlags = () => {
+	const settingsGlobal = getSettingsGlobal()?.config;
 
-	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
-	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+	// outputCssVariablesGlobally
+	const outputCssVariablesGlobally = settingsGlobal?.outputCssVariablesGlobally;
 
-	// Set componentsManifest to global window for usage in storybook.
-	if (typeof window?.['eightshift'] === 'undefined') {
-		window['eightshift'] = {};
+	setSettingsConfigOutputCssVariablesGlobally(false);
+
+	if (typeof outputCssVariablesGlobally !== 'undefined') {
+		setSettingsConfigOutputCssVariablesGlobally(outputCssVariablesGlobally);
 	}
-
-	window['eightshift'][process.env.VERSION] = componentsManifest;
-
-	// Iterate blocks to register.
-	blocksManifests.map((blockManifest) => {
-
-		// Get Block edit component from block name and blocksEditComponentPath.
-		const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
-
-		// Get Block Transforms component from block name and transformsComponentPath.
-		if (transformsComponentPath !== null) {
-			const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
-
-			if (blockTransformsComponent !== null) {
-				blockManifest.transforms = blockTransformsComponent;
-			}
-		}
-
-		// Get Block Deprecations component from block name and deprecationsComponentPath.
-		if (deprecationsComponentPath !== null) {
-			const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
-
-			if (blockDeprecationsComponent !== null) {
-				blockManifest.deprecated = blockDeprecationsComponent;
-			}
-		}
-
-		// Get Block Hooks component from block name and hooksComponentPath.
-		if (hooksComponentPath !== null) {
-			const blockHooksComponent = getBlockGenericComponent(blockManifest.blockName, hooksComponentPath, 'hooks');
-
-			if (blockHooksComponent !== null) {
-				blockHooksComponent();
-			}
-		}
-
-		// Get Block Overrides component from block name and overridesComponentPath.
-		if (overridesComponentPath !== null) {
-			const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
-
-			if (blockOverridesComponent !== null) {
-				blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
-			}
-		}
-
-		// Pass data to registerBlock helper to get final output for registerBlockType.
-		const blockDetails = registerBlock(
-			globalManifest,
-			wrapperManifest,
-			componentsManifest,
-			blockManifest,
-			wrapperComponent,
-			blockComponent
-		);
-
-		// Format the 'deprecated' attribute details to match the format Gutenberg wants.
-		if (blockDetails?.options?.deprecated) {
-			blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
-				if (deprecation?.attributes && deprecation?.migrate) {
-					return {
-						...deprecation,
-						isEligible: deprecation?.isEligible ?? (() => true),
-						save: blockDetails.options.save,
-					};
-				}
-
-				return {
-					attributes: {
-						...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
-						...deprecation.oldAttributes,
-					},
-					migrate: (attributes) => {
-						return {
-							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
-							...attributes,
-							...deprecation.newAttributes(attributes),
-						};
-					},
-					isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
-					save: blockDetails.options.save,
-				};
-			});
-		}
-
-		// Native WP method for block registration.
-		registerBlockType(blockDetails.blockName, blockDetails.options);
-
-		return null;
-	});
-
-	// Add icon foreground and background colors as CSS variables for later use.
-	const {
-		background: backgroundGlobal,
-		foreground: foregroundGlobal,
-	} = globalManifest;
-
-	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
-	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 };
 
-/**
- * Get component manifest got from window object.
- *
- * @returns {object}
- */
-const getComponentsManifest = () => {
-	return window?.['eightshift']?.[process.env.VERSION] ?? {};
-};
-
-/**
- * Register all Variations Editor blocks using WP `registerBlockVariation` method.
- * Due to restrictions in dynamic import using dynamic names all block are register using `require.context`.
- *
- * @param {object} globalManifest              - **Must provide global blocks setting `manifest.json`.**
- * @param {function} variationsManifestPath    - **Must provide require.context for all variations `manifest.json`s.**
- * @param {function} [blocksManifestPath]      - **require.context for all blocks `manifest.json`s.**
- * @param {function?} [overridesComponentPath] - Function of overrides JavaScript files in a block from `require.context`.
- *
- * @returns {null}
- *
- * Usage:
- * ```js
- * registerVariations(
- *   globalSettings,
- *   require.context('./../../variations', true, /manifest.json$/),
- *   require.context('./../../custom', true, /manifest.json$/),
- *   require.context('./../../variations', true, /-overrides.js$/),
- * );
- * ```
- */
- export const registerVariations = (
-	globalManifest = {},
-	variationsManifestPath,
-	blocksManifestPath = null,
-	overridesComponentPath = null,
-) => {
-
-	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
-
-	// Iterate blocks to register.
-	variationsManifests.map((variationManifest) => {
-
-		// Get Block Overrides component from block name and overridesComponentPath.
-		if (overridesComponentPath !== null) {
-			const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
-
-			if (blockOverridesComponent !== null) {
-				variationManifest = Object.assign(variationManifest, blockOverridesComponent);// eslint-disable-line no-param-reassign
-			}
-		}
-
-		// Pass data to registerVariation helper to get final output for registerBlockVariation.
-		const blockDetails = registerVariation(
-			globalManifest,
-			variationManifest,
-			(blocksManifestPath !== null) ? blocksManifestPath.keys().map(blocksManifestPath) : []
-		);
-
-		// Native WP method for block registration.
-		registerBlockVariation(blockDetails.blockName, blockDetails.options);
-
-		return null;
-	});
-};

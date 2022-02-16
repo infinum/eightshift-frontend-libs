@@ -3,6 +3,8 @@
  *
  * @param {string} str - String to convert to first letter uppercase.
  *
+ * @access public
+ *
  * @returns {string} - String with the first letter uppercase.
  *
  * Usage:

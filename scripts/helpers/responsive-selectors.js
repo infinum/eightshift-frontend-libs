@@ -8,6 +8,8 @@ import classnames from 'classnames';
  * @param {string}  parent             - Parent block selector.
  * @param {boolean} [useModifier=true] - If false you can use this selector for visibility.
  *
+ * @access public
+ *
  * @return string
  *
  * Usage:

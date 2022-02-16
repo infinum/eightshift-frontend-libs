@@ -1,10 +1,17 @@
-import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
+import { getAttrKey } from '../helpers/check-attr';
+import {
+	getSettingsConfigOutputCssVariablesGlobally,
+	getSettingsStyles,
+	getSettingsGlobalCssVariables,
+} from './get-manifest-details';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
- * @param {array} globalManifest - Global variable data.
+ * @param {object} globalManifest - (Optional) Global variable data.
+ *
+ * @access public
  *
  * @return {string|void}
  *
@@ -86,15 +93,21 @@ import _ from 'lodash';
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest) => {
+export const outputCssVariablesGlobal = (globalManifest = {}) => {
 
 	let output = '';
+	let globalVariables = getSettingsGlobalCssVariables();
 
-	if (!globalManifest || !_.has(globalManifest, 'globalVariables')) {
-		return output;
+	// Read from global cache data if no item is provided using props.
+	if (!_.isEmpty(globalManifest)) {
+		globalVariables = globalManifest?.globalVariables;
 	}
 
-	for (const [itemKey, itemValue] of Object.entries(globalManifest['globalVariables'])) {
+	if (typeof globalVariables === 'undefined') {
+		throw Error(`It looks like you are missing variables in the provided globalManifest object. Please check if you data has globalVariables key.`);
+	}
+
+	for (const [itemKey, itemValue] of Object.entries(globalVariables)) {
 		const itemKeyInner = _.kebabCase(itemKey);
 
 		if (_.isObject(itemValue)) {
@@ -102,10 +115,6 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 		} else {
 			output += `--global-${itemKeyInner}: ${itemValue};\n`;
 		}
-	}
-
-	if (!output) {
-		return '';
 	}
 
 	return document.head.insertAdjacentHTML('afterbegin', `
@@ -118,29 +127,279 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 };
 
 /**
+ * Get component/block options and process them in CSS variables.
+ *
+ * @param {array} attributes      - Built attributes.
+ * @param {array} manifest        - Component/block manifest data.
+ * @param {string} unique         - Unique key.
+ * @param {object} globalManifest - (Optional) Global manifest json.
+ * @param {string} customSelector - Output custom selector to use as a style prefix.
+ *
+ * @access public
+ *
+ * @return {string}
+ *
+ * Usage:
+ * ```js
+ * import React, { useMemo } from 'react';
+ *
+ * const unique = useMemo(() => getUnique(), []);
+ *
+ * outputCssVariables(attributes, manifest, unique, globalManifest);
+ * ```
+ */
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
+
+	let output = '';
+
+	const outputGloballyFlag = getSettingsConfigOutputCssVariablesGlobally();
+	let globalVariables = getSettingsGlobalCssVariables();
+
+	// Read from global cache data if no item is provided using props.
+	if (!_.isEmpty(globalManifest)) {
+		globalVariables = globalManifest?.globalVariables;
+	}
+
+	if (typeof globalVariables === 'undefined') {
+		throw Error(`It looks like you are missing variables in the provided globalManifest object. Please check if you data has globalVariables key.`);
+	}
+
+	const breakpoints = globalVariables?.breakpoints;
+
+	// Bailout if global breakpoints are missing.
+	if (typeof breakpoints === 'undefined') {
+		return '';
+	}
+
+	// Define variables from manifest.
+	const variables = manifest?.variables;
+	const variablesEditor = manifest?.variablesEditor;
+	const responsiveAttributes = manifest?.responsiveAttributes;
+
+	const sortedBreakpoints = Object.entries(breakpoints)
+		.sort((a, b) => {
+			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+		});
+
+	const defaultBreakpoints = {
+		min: sortedBreakpoints?.[0]?.[0] || '',
+		max: sortedBreakpoints?.[sortedBreakpoints.length - 1]?.[0] || '',
+	};
+
+	// Get the initial data array.
+	const data = prepareVariableData(sortedBreakpoints);
+
+	// Check if component or block.
+	let name = manifest.componentClass ?? attributes.blockClass;
+
+	if (customSelector !== '') {
+		name = customSelector;
+	}
+
+	if (typeof variables !== 'undefined') {
+		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
+		if (typeof responsiveAttributes !== 'undefined') {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
+		}
+
+		// Iterate each variable from variables field.
+		setVariablesToBreakpoints(attributes, variables, data, manifest, defaultBreakpoints);
+	}
+
+	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
+	if (typeof variablesEditor !== 'undefined') {
+		if (typeof responsiveAttributes !== 'undefined') {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
+		}
+
+		// Iterate each variable from variablesEditor field.
+		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
+	}
+
+	// Prepare output style object.
+	const styles = {
+		name,
+		unique,
+		variables: [],
+	};
+
+	// Loop data and provide correct selectors from data array.
+	data.forEach((values) => {
+
+		// Define variables from values.
+		const {
+			type,
+			value,
+			variable,
+		} = values;
+
+		// If breakpoint value is 0 then don't wrap the media query around it.
+		if (value === 0) {
+			if (!_.isEmpty(variable)) {
+				if (outputGloballyFlag) {
+					styles.variables.push({
+						type: '',
+						variable,
+						value,
+					});
+				} else {
+					output += `.${name}[data-id='${unique}'] {
+						${variable.join('\n')}
+						}
+					`;
+				}
+			}
+		} else {
+			if (!_.isEmpty(variable)) {
+				if (outputGloballyFlag) {
+					styles.variables.push({
+						type,
+						variable,
+						value
+					});
+				} else {
+					output += `@media (${type}-width: ${value}px) {
+						.${name}[data-id='${unique}'] {
+							${variable.join('\n')}
+						}
+					}
+				`;
+				}
+			}
+		}
+	});
+
+	// Output manual output from the array of variables.
+	let manual = '';
+
+	const variablesCustom = manifest?.variablesCustom;
+
+	if (typeof variablesCustom !== 'undefined') {
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type: '',
+				variable: variablesCustom,
+				value: 0
+			});
+		} else {
+			manual = variablesCustom.join(';\n');
+		}
+	}
+
+	let manualEditor = '';
+	const variablesCustomEditor = manifest?.variablesCustomEditor;
+
+	if (typeof variablesCustomEditor !== 'undefined') {
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type: '',
+				variable: variablesCustomEditor,
+				value: 0
+			});
+		} else {
+			manualEditor = variablesCustomEditor.join(';\n');
+		}
+	}
+
+	if (outputGloballyFlag) {
+		const existsIndex = getSettingsStyles().findIndex((item) => item.name === name && item.unique === unique);
+
+		if (existsIndex >= 0) {
+			getSettingsStyles()[existsIndex] = styles;
+		} else {
+			getSettingsStyles().push(styles);
+		}
+
+		outputCssVariablesCombined();
+	} else {
+		// Prepare final output for testing.
+		const fullOutput = `
+			${output}
+			${manual}
+			${manualEditor}
+		`;
+
+		// Check if final output is empty and remove if it is.
+		if (_.isEmpty(fullOutput.trim())) {
+			return '';
+		}
+
+		// Prepare output for manual variables.
+		const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}'] {
+			${manual}
+			${manualEditor}
+		}` : '';
+
+		// Output the style for CSS variables.
+		return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	}
+
+	return null;
+};
+
+/**
+ * Returns a unique ID, generally used with CSS variable generation.
+ *
+ * @access public
+ *
+ * @return {string}
+ *
+ * Usage:
+ * ```js
+ * getUnique();
+ * ```
+ *
+ * Output:
+ * ```js
+ * 891273981374b98127419287
+ * ```
+ */
+export const getUnique = () => {
+	return require('crypto').randomBytes(16).toString('hex');
+};
+
+/**
  * Process and return global CSS variables based on the type.
  *
  * @param {array} itemValues - Values to check.
  * @param {string} itemKey   - Item key to check.
  *
+ * @access private
+ *
  * @return {string}
  */
-const globalInner = (itemValues, itemKey) => {
+export const globalInner = (itemValues, itemKey) => {
 	let output = '';
 
 	for (const [key, value] of Object.entries(itemValues)) {
 		const innerKey = _.kebabCase(key);
 		const itemInnerKey = _.kebabCase(itemKey);
 
+		const {
+			slug,
+			color,
+			gradient,
+		} = value;
+
 		switch (itemInnerKey) {
 			case 'colors':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['color']};\n`;
+				if ( typeof slug === 'undefined' || typeof color === 'undefined') {
+					break;
+				}
+
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.color};\n`;
 				break;
 			case 'gradients':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['gradient']};\n`;
+				if ( typeof slug === 'undefined' || typeof gradient === 'undefined') {
+					break;
+				}
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.gradient};\n`;
 				break;
 			case 'font-sizes':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['slug']};\n`;
+				if ( typeof slug === 'undefined') {
+					break;
+				}
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.slug};\n`;
 				break;
 			default:
 				output += `--global-${itemInnerKey}-${innerKey}: ${value};\n`;
@@ -149,22 +408,6 @@ const globalInner = (itemValues, itemKey) => {
 	}
 
 	return output;
-};
-
-/**
- * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
- * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
- * If there are no breakpoints, min and max will be empty strings.
- * 
- * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
- * 
- * @return {object} Object with min and max keys.
- */
-const getDefaultBreakpoints = (breakpoints) => {
-	return {
-		min: breakpoints?.[0]?.[0] || '',
-		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
-	};
 };
 
 /**
@@ -177,7 +420,7 @@ const getDefaultBreakpoints = (breakpoints) => {
  *
  * @return {array}
  */
-const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
+export const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
 	return attributeVariables.map((attributeVariablesObject) => {
 
 		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
@@ -199,7 +442,7 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
  *
  * @return {object} Object prepared for setting all the variables to its breakpoints.
  */
-const setupResponsiveVariables = (responsiveAttributes, variables) => {
+export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 	// Iterate through responsive attributes.
 	return Object.entries(responsiveAttributes)
 		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
@@ -262,9 +505,11 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
  * @param {array} manifest            - Component/block manifest data.
  * @param {object} defaultBreakpoints - Default breakpoints for mobile/desktop first.
  *
+ * @access private
+ *
  * @return {object} Filled object with variables data separated in breakpoints.
  */
-const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
+export const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
 	// Iterate each variable.
 	for (const [variableName, variableValue] of Object.entries(variables)) {
 
@@ -311,153 +556,49 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 };
 
 /**
- * Get component/block options and process them in CSS variables.
+ * Output css variables as a one inline style tag.
  *
- * @param {array} attributes      - Built attributes.
- * @param {array} manifest        - Component/block manifest data.
- * @param {string} unique         - Unique key.
- * @param {object} globalManifest - Global manifest json.
- * @param {string} customSelector - Output custom selector to use as a style prefix.
+ * @access private
  *
- * @return {string}
- *
- * Usage:
- * ```js
- * import React, { useMemo } from 'react';
- *
- * const unique = useMemo(() => getUnique(), []);
- *
- * outputCssVariables(attributes, manifest, unique, globalManifest);
- * ```
+ * @returns {string}
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest, customSelector = '') => {
-
+export const outputCssVariablesCombined = () => {
 	let output = '';
 
-	// Bailout if global breakpoints are missing.
-	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
-		return '';
-	}
+	const styles = getSettingsStyles();
 
-	// Bailout if attributes or manifest is missing.
-	if (!attributes || !manifest) {
-		return '';
-	}
-
-	// Bailout if manifest is missing any of variables key.
-	if (
-		!_.has(manifest, 'variables') &&
-		!_.has(manifest, 'variablesEditor') &&
-		!_.has(manifest, 'variablesCustom') &&
-		!_.has(manifest, 'variablesCustomEditor')
-	) {
-		return '';
-	}
-
-	// Define variables from globalManifest.
-	const {
-		breakpoints: globalBreakpoints,
-	} = globalManifest.globalVariables;
-
-	// Define variables from manifest.
-	const {
-		variables,
-		variablesEditor,
-		responsiveAttributes,
-	} = manifest;
-
-	const sortedBreakpoints = Object.entries(globalBreakpoints)
-		.sort((a, b) => {
-			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
-		});
-
-	const defaultBreakpoints = getDefaultBreakpoints(sortedBreakpoints);
-
-	// Get the initial data array.
-	const data = prepareVariableData(sortedBreakpoints);
-
-	// Check if component or block.
-	let name = manifest['componentClass'] ?? attributes['blockClass'];
-
-	if (customSelector !== '') {
-		name = customSelector;
-	}
-
-	if (variables) {
-
-		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
-		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
-		}
-
-		// Iterate each variable from variables field.
-		setVariablesToBreakpoints(attributes, variables, data, manifest, defaultBreakpoints);
-	}
-
-	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
-	if (variablesEditor) {
-		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
-		}
-
-		// Iterate each variable from variablesEditor field.
-		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
-	}
-
-	// Loop data and provide correct selectors from data array.
-	data.forEach((values) => {
-
-		// Define variables from values.
-		const {
-			type,
-			value,
-			variable,
-		} = values;
-
-		// If breakpoint value is 0 then don't wrap the media query around it.
-		if (value === 0) {
-			if (!_.isEmpty(variable)) {
-				output += `.${name}[data-id='${unique}'] {
-					${variable.join('\n')}
-					}
-				`;
-			}
-		} else {
-			if (!_.isEmpty(variable)) {
-				output += `@media (${type}-width: ${value}px) {
-						.${name}[data-id='${unique}'] {
+	if (styles) {
+		for (const {name, unique, variables} of styles) {
+			let outputItem = '';
+			for (const {type, value, variable} of variables) {
+				if (type === '' && value === 0) {
+					outputItem += variable.join('\n');
+				} else {
+					outputItem += `@media (${type}-width: ${value}px) {
 							${variable.join('\n')}
 						}
-					}
-				`;
+					`;
+				}
 			}
+
+			output += `.${name}[data-id='${unique}'] {
+					${outputItem}
+				}
+			`;
 		}
-	});
-
-	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
-	const manualEditor = _.has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
-
-	// Prepare final output for testing.
-	const fullOutput = `
-		${output}
-		${manual}
-		${manualEditor}
-	`;
-
-	// Check if final output is empty and remove if it is.
-	if (_.isEmpty(fullOutput.trim())) {
-		return '';
 	}
 
-	// Prepare output for manual variables.
-	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}'] {
-		${manual}
-		${manualEditor}
-	}` : '';
+	const styleTag = document.getElementById('esCssVariables');
 
-	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	if (!styleTag) {
+		return document.head.insertAdjacentHTML('afterbegin', `
+		<style id="esCssVariables">
+			${output}
+		</style>
+	`);
+	}
+
+	styleTag.innerHTML = output;
 };
 
 /**
@@ -465,9 +606,11 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
  *
  * @param {object} globalBreakpoints - Global breakpoints from global manifest to set the correct output.
  *
+ * @access private
+ *
  * @return {array}
  */
-const prepareVariableData = (globalBreakpoints) => {
+export const prepareVariableData = (globalBreakpoints) => {
 
 	// Define the min and max arrays.
 	const min = [];
@@ -540,9 +683,11 @@ const prepareVariableData = (globalBreakpoints) => {
  * @param {array} variables      - Array of variables of CSS variables.
  * @param {mixed} attributeValue - Original attribute value used in magic variable.
  *
+ * @access private
+ *
  * @returns {array}
  */
-const variablesInner = (variables, attributeValue) => {
+export const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -571,21 +716,3 @@ const variablesInner = (variables, attributeValue) => {
 	return output;
 };
 
-/**
- * Returns a unique ID, generally used with CSS variable generation.
- *
- * @return {string}
- *
- * Usage:
- * ```js
- * getUnique();
- * ```
- *
- * Output:
- * ```js
- * 891273981374b98127419287
- * ```
- */
-export const getUnique = () => {
-	return require('crypto').randomBytes(16).toString('hex');
-};

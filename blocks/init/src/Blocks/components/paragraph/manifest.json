@@ -92,7 +92,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-primary)",
 						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+						"paragraph-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -101,7 +101,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-black)",
 						"paragraph-link-color": "var(--global-colors-primary)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
+						"paragraph-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -109,8 +109,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-green)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
+						"paragraph-link-color": "var(--global-colors-white)",
+						"paragraph-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -118,8 +118,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-ocean)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-red)"
+						"paragraph-link-color": "var(--global-colors-white)",
+						"paragraph-link-color-hover": "var(--global-colors-green)"
 					}
 				}
 			],
@@ -127,8 +127,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-yellow)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
+						"paragraph-link-color": "var(--global-colors-white)",
+						"paragraph-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -137,7 +137,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-blue)",
 						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
 					}
 				}
 			],
@@ -146,7 +146,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-red)",
 						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+						"paragraph-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -155,7 +155,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-cream)",
 						"paragraph-link-color": "var(--global-colors-yellow)",
-						"paragraph-link-color-hover": "var(--global-red)"
+						"paragraph-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -164,7 +164,7 @@
 					"variable": {
 						"paragraph-color": "var(--global-colors-white)",
 						"paragraph-link-color": "var(--global-colors-yellow)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
+						"paragraph-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -172,8 +172,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-eightshift)",
-						"paragraph-link-color": "var(--global-colors-green)",
-						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+						"paragraph-link-color": "var(--global-colors-blue)",
+						"paragraph-link-color-hover": "var(--global-colors-primary)"
 					}
 				}
 			],
@@ -181,8 +181,8 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-dew)",
-						"paragraph-link-color": "var(--global-colors-primary)",
-						"paragraph-link-color-hover": "var(--global-colors-yellow)"
+						"paragraph-link-color": "var(--global-colors-ocean)",
+						"paragraph-link-color-hover": "var(--global-colors-white)"
 					}
 				}
 			],
@@ -190,7 +190,7 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-mist)",
-						"paragraph-link-color": "var(--global-colors-blue)",
+						"paragraph-link-color": "var(--global-colors-ocean)",
 						"paragraph-link-color-hover": "var(--global-colors-green)"
 					}
 				}

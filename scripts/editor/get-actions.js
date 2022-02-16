@@ -1,5 +1,7 @@
 import { ucfirst } from './ucfirst';
 
+// This file is deprecated.
+
 /**
  * This method is used when attributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
  * This function generates callback for each of the values from attribute. Generate callback with name onChange${attribute_name}${property_name}
@@ -28,6 +30,8 @@ import { ucfirst } from './ucfirst';
  * @param {object} propsAttributes - Current attribute when this function executes.
  *
  * @returns {object}
+ *
+ * @deprecated This method is deprecated. Please update to the latest version.
  */
 const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) => {
 	const output = {};
@@ -68,6 +72,8 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
  * @param {string} key             - Came of the property in manifest.
  *
  * @returns {object}
+ *
+ * @deprecated This method is deprecated. Please update to the latest version.
  */
 const singlePropsAction = (setAttributes, key) => {
 	const output = {};
@@ -107,6 +113,8 @@ const singlePropsAction = (setAttributes, key) => {
  * @param {string} key             - Key from the manifest.
  *
  * @returns {object}
+ *
+ * @deprecated This method is deprecated. Please update to the latest version.
  */
 const mediaPropsAction = (setAttributes, key) => {
 	const output = {};
@@ -141,6 +149,8 @@ const mediaPropsAction = (setAttributes, key) => {
  * @deprecated This helper is not used anymore. Use `setAttributes` instead.
  *
  * @returns {object}
+ *
+ * @deprecated This method is deprecated. Please update to the latest version.
  */
 export const getActions = (props, manifest) => {
 
