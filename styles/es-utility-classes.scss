@@ -87,6 +87,18 @@ $es-utility-props: (
 		.es-#{$propShorthand}-#{$size} {
 			#{$propCssName}: #{$value};
 		}
+
+		.es-#{$propShorthand}-#{$size}-important {
+			#{$propCssName}: #{$value} !important;
+		}
+
+		.-es-#{$propShorthand}-#{$size} {
+			#{$propCssName}: -#{$value};
+		}
+
+		.-es-#{$propShorthand}-#{$size}-important {
+			#{$propCssName}: -#{$value} !important;
+		}
 	}
 };
 
@@ -262,7 +274,7 @@ $es-utility-props: (
 .es-h-center {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	gap: 0.5rem;
 }
 
