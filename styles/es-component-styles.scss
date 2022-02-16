@@ -1,6 +1,19 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
 @import './es-keyframes.scss';
+@import '../scripts/components/custom-slider/custom-slider.scss';
+@import '../scripts/components/link-edit-component/link-edit-component.scss';
+@import '../scripts/components/responsive/responsive.scss';
+@import '../scripts/components/help-modal/help-modal.scss';
+@import '../scripts/components/icon-toggle/icon-toggle.scss';
+@import '../scripts/components/component-use-toggle/component-use-toggle.scss';
+@import '../scripts/components/custom-select/custom-select.scss';
+@import '../scripts/components/color-picker-component/color-picker-component.scss';
+@import '../scripts/components/inline-notification/inline-notification.scss';
+@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select.scss';
+@import '../scripts/components/server-side-render/server-side-render.scss';
+@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle.scss';
+@import '../scripts/components/fancy-divider/fancy-divider.scss';
 
 body {
 
@@ -152,22 +165,6 @@ body {
 	.es-slight-button-border:not(.is-pressed) {
 		box-shadow: inset 0 0 0 1px rgb(240 240 240);
 	}
-
-	// stylelint-disable indentation
-	@import '../scripts/components/custom-slider/custom-slider.scss';
-	@import '../scripts/components/link-edit-component/link-edit-component.scss';
-	@import '../scripts/components/responsive/responsive.scss';
-	@import '../scripts/components/help-modal/help-modal.scss';
-	@import '../scripts/components/icon-toggle/icon-toggle.scss';
-	@import '../scripts/components/component-use-toggle/component-use-toggle.scss';
-	@import '../scripts/components/custom-select/custom-select.scss';
-	@import '../scripts/components/color-picker-component/color-picker-component.scss';
-	@import '../scripts/components/inline-notification/inline-notification.scss';
-	@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select.scss';
-	@import '../scripts/components/server-side-render/server-side-render.scss';
-	@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle.scss';
-	@import '../scripts/components/fancy-divider/fancy-divider.scss';
-	// stylelint-enable indentation
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
