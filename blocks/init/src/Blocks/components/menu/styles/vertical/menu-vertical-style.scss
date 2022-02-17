@@ -18,6 +18,7 @@ $menu-vertical: (
 		text-decoration: none;
 		transition: 0.3s color ease-in-out;
 		padding: map-get-strict($menu-vertical, link-padding);
+		overflow-wrap: anywhere;
 
 		@include link($menu-vertical, link-modifiers);
 	}
