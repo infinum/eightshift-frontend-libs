@@ -42,7 +42,7 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
  */
 export const unescapeHTML = (input) =>
 	input.replace(
-		/&amp;|&lt;|&gt;|&#39;|&#38;|&#039;|&#038;|&quot;/g,
+		/&amp;|&lt;|&gt;|&#39;|&#38;|&#039;|&#038;|&quot;|&#8211;/g,
 		tag =>
 		({
 			'&amp;': '&',
@@ -52,6 +52,7 @@ export const unescapeHTML = (input) =>
 			'&#38;': "&",
 			'&#039;': "'",
 			'&#038;': "&",
-			'&quot;': '"'
+			'&quot;': '"',
+			'&#8211;': '-',
 		}[tag] || tag)
 	);
