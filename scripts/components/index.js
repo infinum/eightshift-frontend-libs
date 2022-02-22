@@ -12,12 +12,19 @@ export {
 } from './color-picker-component/color-picker-component';
 export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
-export { CustomSelect } from './custom-select/custom-select';
-export { 
-	CustomSlider, 
+export {
+	CustomSelect,
+	CustomSelectCustomOption,
+	CustomSelectCustomValueDisplay,
+	CustomSelectCustomMultipleValueDisplay,
+	CustomSelectCustomMultipleValueDisplayContainer,
+	CustomSelectCustomMultipleValueRemoveButton,
+} from './custom-select/custom-select';
+export {
+	CustomSlider,
 	CustomSliderStyle,
 } from './custom-slider/custom-slider';
-export { 
+export {
 	CustomRangeSlider,
 	CustomRangeSliderStyle,
 } from './custom-slider/custom-range-slider';
