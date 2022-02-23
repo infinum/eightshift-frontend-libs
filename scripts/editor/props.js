@@ -77,4 +77,4 @@ export const props = (attributes, realName, newName = '', isBlock = false) => {
 	output['parent'] = newNameInternal;
 
 	return output;
-}
+};

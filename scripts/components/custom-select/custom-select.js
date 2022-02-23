@@ -12,44 +12,104 @@ import AsyncSelect from "react-select/async";
  * - `MATCH_WP` - matches the WP Admin theme color.
  * - `BLACK` - black.
  * - `DEFAULT` - 80% gray.
+ * - `WP_INPUTS` - same as default Gutenberg input field borders.
  */
 export const CustomSelectStyle = {
 	MATCH_WP: 'var(--wp-admin-theme-color, #111111)',
 	BLACK: 'hsla(0, 0%, 0%, 1)',
 	DEFAULT: 'hsla(0, 0%, 80%, 1)',
+	WP_INPUTS: 'hsla(0, 0%, 46%, 1)',
 };
+
+/**
+ * Custom option for CustomSelect.
+ * 
+ * (a wrapper for `components.Option` from `react-select`)
+ *
+ * @param {object} props - components.Option props.
+*/
+export const CustomSelectCustomOption = (props) => (
+	<components.Option {...props} />
+);
+
+/**
+ * Custom value display for CustomSelect.
+ * 
+ * (a wrapper for `components.SingleValue` from `react-select`)
+ *
+ * @param {object} props - components.SingleValue props.
+*/
+export const CustomSelectCustomValueDisplay = (props) => (
+	<components.SingleValue {...props} />
+);
+
+/**
+ * Custom multiple value display for CustomSelect.
+ * 
+ * (a wrapper for `components.MultiValueLabel` from `react-select`)
+ *
+ * @param {object} props - components.MultiValueLabel props.
+*/
+export const CustomSelectCustomMultipleValueDisplay = (props) => (
+	<components.MultiValueLabel {...props} />
+);
+
+/**
+ * Custom multiple value display container for CustomSelect.
+ * 
+ * (a wrapper for `components.MultiValueContainer` from `react-select`)
+ *
+ * @param {object} props - components.MultiValueContainer props.
+*/
+export const CustomSelectCustomMultipleValueDisplayContainer = (props) => (
+	<components.MultiValueContainer {...props} />
+);
+
+/**
+ * Custom multiple value remove button for CustomSelect.
+ * 
+ * (a wrapper for `components.MultiValueRemove` from `react-select`)
+ *
+ * @param {object} props - components.MultiValueRemove props.
+*/
+export const CustomSelectCustomMultipleValueRemoveButton = (props) => (
+	<components.MultiValueRemove {...props} />
+);
 
 /**
  * A modern, flexible and customizable select menu.
  *
- * @param {object} props                                               - CustomSelect options.
- * @param {string?} [props.label]                                      - Label displayed above the control.
- * @param {string?} [props.help]                                       - Help text displayed below the control.
- * @param {boolean} [props.multiple=false]                             - If `true`, allows multiple items to be selected.
- * @param {array?} props.options                                       - Options to choose. Option should be in `{label: '', value: ''}` format.
- * @param {object} props.value                                         - Current value
- * @param {function} props.onChange                                    - Function called when the selection is changed.
- * @param {boolean} [props.isCompact=false]                            - If `true`, the component will slightly reduce height so it fits nicely with WP Buttons and similar components.
- * @param {boolean} [props.isClearable=true]                           - If `true`, the currently selected item can be cleared. `null` is set as the value.
- * @param {boolean} [props.isSearchable=true]                          - If `true`, the options can be searched through.
- * @param {boolean} [props.closeMenuOnSelect=false]                    - If single-select mode is active, after a selection is made the dropdown is closed.
- * @param {boolean} [props.cacheOptions=true]                          - If in async mode (`loadOptions` is set) and set to `true`, the options are cached internally.
- * @param {boolean} [props.reFetchOnSearch=false]                      - If in async mode (`loadOptions` is set) and set to `true`, after a character is typed the `loadOptions` callback runs again with the provided search text as an argument.
- * @param {function?} props.loadOptions                                - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
- * @param {string?} [props.placeholder]                                - Placeholder text when no item is selected.
- * @param {string} [props.sortAxis=y]                                  - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
- * @param {React.Component?} [props.customOptionComponent]             - If provided, this control replaces the default option displayed in the dropdown.
- * @param {React.Component?} [props.customSingleValueDisplayComponent] - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
- * @param {React.Component?} [props.customIndicatorSeparator]          - If provided, adds a separator between the select content and the dropdown arrow on the right.
- * @param {boolean} [props.simpleValue=false]                          - If in single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
- * @param {boolean} [props.disabled=false]                             - If set to `true`, renders the component as disabled.
- * @param {boolean} [props.loading=false]                              - If set to `true`, renders the component in a loading state.
- * @param {boolean} [props.blurInputOnSelect=false]                    - If set to `true`, focus is removed from the input once an option is selected.
- * @param {boolean} [props.hideSelected=false]                         - If set to `true`, the selected option is hidden from the menu.
- * @param {string} [props.loadingMessage='Loading']                    - Text to display when loading options.
- * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
- * @param {function} [props.filterAsyncOptions]                        - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
- * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]  - Style of the CustomSelect.
+ * @param {object} props                                                       - CustomSelect options.
+ * @param {string?} [props.label]                                              - Label displayed above the control.
+ * @param {string?} [props.help]                                               - Help text displayed below the control.
+ * @param {boolean} [props.multiple=false]                                     - If `true`, allows multiple items to be selected.
+ * @param {array?} props.options                                               - Options to choose. Option should be in `{label: '', value: ''}` format.
+ * @param {object} props.value                                                 - Current value
+ * @param {function} props.onChange                                            - Function called when the selection is changed.
+ * @param {boolean} [props.isCompact=false]                                    - If `true`, the component will slightly reduce height so it fits nicely with WP Buttons and similar components.
+ * @param {boolean} [props.isClearable=true]                                   - If `true`, the currently selected item can be cleared. `null` is set as the value.
+ * @param {boolean} [props.isSearchable=true]                                  - If `true`, the options can be searched through.
+ * @param {boolean} [props.closeMenuOnSelect=false]                            - If single-select mode is active, after a selection is made the dropdown is closed.
+ * @param {boolean} [props.cacheOptions=true]                                  - If in async mode (`loadOptions` is set) and set to `true`, the options are cached internally.
+ * @param {boolean} [props.reFetchOnSearch=false]                              - If in async mode (`loadOptions` is set) and set to `true`, after a character is typed the `loadOptions` callback runs again with the provided search text as an argument.
+ * @param {function?} props.loadOptions                                        - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
+ * @param {string?} [props.placeholder]                                        - Placeholder text when no item is selected.
+ * @param {string} [props.sortAxis=y]                                          - If multiple-select mode is active, determines the axis the items can be sorted on. Can be `x`, `y` or `xy`.
+ * @param {React.Component?} [props.customOptionComponent]                     - If provided, this control replaces the default option displayed in the dropdown.
+ * @param {React.Component?} [props.customSingleValueDisplayComponent]         - If provided and in single-select mode, this control replaces the default current value display when the dropdown is closed.
+ * @param {React.Component?} [props.customMultiValueDisplayComponent]          - If provided and in multi-select mode, this control replaces the default current value display of each selected item.
+ * @param {React.Component?} [props.customMultiValueDisplayContainerComponent] - If provided and in multi-select mode, this control replaces the default wrapper of the current value display of each selected items (contains item label and remove button).
+ * @param {React.Component?} [props.customMultiValueRemoveButton]              - If provided and in multi-select mode, this control replaces the default item remove button.
+ * @param {React.Component?} [props.customIndicatorSeparator]                  - If provided, adds a separator between the select content and the dropdown arrow on the right.
+ * @param {boolean} [props.simpleValue=false]                                  - If in single-item (`multiple = false`) mode and this option set to `true`, you only need to provide the value to the component instead of an object. The return type also changes to value-only.
+ * @param {boolean} [props.disabled=false]                                     - If set to `true`, renders the component as disabled.
+ * @param {boolean} [props.loading=false]                                      - If set to `true`, renders the component in a loading state.
+ * @param {boolean} [props.blurInputOnSelect=false]                            - If set to `true`, focus is removed from the input once an option is selected.
+ * @param {boolean} [props.hideSelected=false]                                 - If set to `true`, the selected option is hidden from the menu.
+ * @param {string} [props.loadingMessage='Loading']                            - Text to display when loading options.
+ * @param {string} [props.noOptionsMessage='No options']                       - Text to display when no options are available.
+ * @param {function} [props.filterAsyncOptions]                                - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
+ * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]          - Style of the CustomSelect.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -70,6 +130,9 @@ export const CustomSelect = (props) => {
 		sortAxis = 'y',
 		customOptionComponent,
 		customSingleValueDisplayComponent,
+		customMultiValueDisplayComponent,
+		customMultiValueDisplayContainerComponent,
+		customMultiValueRemoveButton,
 		customIndicatorSeparator,
 		simpleValue = false,
 		disabled = false,
@@ -82,7 +145,7 @@ export const CustomSelect = (props) => {
 		style = CustomSelectStyle.DEFAULT,
 	} = props;
 
-	const { Option, SingleValue, MultiValue, MultiValueLabel } = components;
+	const { Option, SingleValue, MultiValue, MultiValueLabel, MultiValueContainer, MultiValueRemove } = components;
 
 	const isSynchronous = !loadOptions;
 
@@ -106,9 +169,17 @@ export const CustomSelect = (props) => {
 		return <MultiValue {...propsSortable} innerProps={innerProps} />;
 	}, []);
 
-	const SortableMultiValueLabel = sortableHandle((props) => (
-		<MultiValueLabel {...props} />
-	));
+	const SortableMultiValueLabel = sortableHandle((props) => {
+		const CustomMultiValue = customMultiValueDisplayComponent;
+
+		if (customMultiValueDisplayComponent) {
+			return <CustomMultiValue {...props} />;
+		}
+
+		return (
+			<MultiValueLabel {...props} />
+		);
+	});
 
 	const SortableSelect = SortableContainer(isSynchronous ? Select : AsyncSelect);
 
@@ -266,6 +337,8 @@ export const CustomSelect = (props) => {
 				Option: customOptionComponent ?? Option,
 				SingleValue: customSingleValueDisplayComponent ?? SingleValue,
 				IndicatorSeparator: customIndicatorSeparator ?? null,
+				MultiValueContainer: customMultiValueDisplayContainerComponent ?? MultiValueContainer,
+				MultiValueRemove: customMultiValueRemoveButton ?? MultiValueRemove,
 			}}
 			closeMenuOnSelect={closeMenuOnSelect}
 			theme={(theme) => ({

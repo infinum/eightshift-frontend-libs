@@ -36,7 +36,7 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 			}
 		</style>
 	`);
-}
+};
 
 /**
  * Process and return global CSS variables based on the type.
@@ -70,7 +70,7 @@ export const globalInner = (itemValues, itemKey) => {
 	}
 
 	return output;
-}
+};
 
 /**
  * Sets up a breakpoint value to responsive attribute objects from responsiveAttribute object.
@@ -93,8 +93,8 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
 			...attributeVariablesObject,
 			breakpoint: breakpointIndex === defaultBreakpointIndex ? 'default' : breakpointName,
 		};
-	})
-}
+	});
+};
 
 /**
  * Iterating through variables matching the keys from responsiveAttributes and translating it to responsive attributes names.
@@ -143,7 +143,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 							return {
 								...acc,
 								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
-							}
+							};
 						}, {});
 
 					// Collect all the values from one responsive attribute to one object.
@@ -156,7 +156,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 			// Merge multiple responsive attributes to one object.
 			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
 		}, {});
-}
+};
 
 /**
  * Setting defined variables to each breakpoint.
@@ -208,7 +208,7 @@ const setVariablesToBreakpoints = (attributes, variables, data) => {
 		});
 	}
 	return data;
-}
+};
 
 /**
  * Get component/block options and process them in CSS variables.
@@ -329,7 +329,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 	// Output the style for CSS variables.
 	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
-}
+};
 
 /**
  * Create initial array of data to be able to populate later.
@@ -358,18 +358,18 @@ export const prepareVariableData = (globalBreakpoints) => {
 		const itemObjectMin = {
 			type: 'min',
 			...itemObject,
-		}
+		};
 
 		// Inner object for max values.
 		const itemObjectMax = {
 			type: 'max',
 			...itemObject,
-		}
+		};
 
 		// Push both min and max to the defined arrays.
 		min.push(itemObjectMin);
 		max.push(itemObjectMax);
-	})
+	});
 
 	// Add default object to the top of the array.
 	min.unshift({
@@ -392,7 +392,7 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 	// Merge both arrays.
 	return min.concat(max);
-}
+};
 
 /**
  * Internal helper to loop CSS Variables from array.
@@ -429,7 +429,7 @@ export const prepareVariableData = (globalBreakpoints) => {
 	}
 
 	return output;
-}
+};
 
 /**
  * Returns a unique ID.
@@ -438,4 +438,4 @@ export const prepareVariableData = (globalBreakpoints) => {
  */
 export const getUnique = () => {
 	return require('crypto').randomBytes(16).toString('hex');
-}
+};

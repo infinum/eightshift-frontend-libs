@@ -52,7 +52,7 @@ export const ParagraphEditor = (attributes) => {
 						placeholder={placeholder}
 						value={paragraphContent}
 						onChange={(value) => {
-							setAttributes({ [`${componentName}Content`]: value })
+							setAttributes({ [`${componentName}Content`]: value });
 						}}
 						allowedFormats={['core/bold', 'core/link', 'core/italic']}
 						onSplit={onSplit}

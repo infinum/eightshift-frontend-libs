@@ -89,7 +89,7 @@ export const VideoOptions = (attributes) => {
 												return {
 													url: item.url,
 													mime: typeof(item.mime) === 'undefined' ? item.mime_type : item.mime,
-												}
+												};
 											})
 										})
 									}
