@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [4.0.9] - 2022-02-23
+
+### Added
+- Added 18 new UI and 4 new block icons
+- Fixed missing semicolons
+
+### Changed
+- Updated `CollapsableComponentUseToggle` and `CustomSelect` with a couple of new features
+
 ## [4.0.8] - 2022-01-26
 
 ### Added
