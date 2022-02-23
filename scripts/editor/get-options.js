@@ -36,4 +36,4 @@ export const getOptions = (manifest = {}, componentName, attribute, options = {}
 
 	// If you have default name for component.
 	return manifest.options[originalKey];
-}
+};

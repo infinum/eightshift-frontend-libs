@@ -31,7 +31,7 @@ const processTag = (inputTextParam) => {
     }
 
     return output;
-}
+};
 
 /**
  * Process content and paste in into blocks smartly.
@@ -90,7 +90,7 @@ const handlePaste = (textFromClipboard, attributes, setAttributes) => {
         // Insert the block
         wp.data.dispatch('core/block-editor').insertBlock(block, blockIndex + 1);
     }
-}
+};
 
 /**
  * Paste event handler.
