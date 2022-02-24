@@ -52,10 +52,10 @@ $paginationClass = Components::classnames([
 	</div>
 
 	<?php if ($carouselShowPrevNext) { ?>
-		<button class="<?php echo \esc_attr($prevButtonClass); ?>">
+		<button class="<?php echo \esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', 'eightshift-frontend-libs'); ?>">
 			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
-		<button class="<?php echo \esc_attr($nextButtonClass); ?>">
+		<button class="<?php echo \esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', 'eightshift-frontend-libs'); ?>">
 			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	<?php } ?>
