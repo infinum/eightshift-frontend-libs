@@ -27,7 +27,9 @@ export class CarouselSlider {
 			modules: [
 				Navigation, Pagination, A11y
 			],
-			a11y: true,
+			a11y: {
+				slideRole: 'figure',
+			},
 			keyboard: {
 				enabled: true,
 			},
