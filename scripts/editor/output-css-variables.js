@@ -118,6 +118,32 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 };
 
 /**
+ * Convert hex color into RGB values.
+ *
+ * @param {string} input - Input hex color (either 3 or 6 characters).
+ *
+ * @return {string}
+ */
+const hexToRgb = (input) => {
+	let r = 0, g = 0, b = 0;
+	const h = input.replace('#', '').trim();
+
+	if (h.length === 3) {
+		const [r1, g1, b1] = h;
+		r = `0x${r1}${r1}`;
+		g = `0x${g1}${g1}`;
+		b = `0x${b1}${b1}`;
+	} else if (h.length === 6) {
+		const [r1, r2, g1, g2, b1, b2] = h;
+		r = `0x${r1}${r2}`;
+		g = `0x${g1}${g2}`;
+		b = `0x${b1}${b2}`;
+	}
+
+	return `${Number(r)} ${Number(g)} ${Number(b)}`;
+};
+
+/**
  * Process and return global CSS variables based on the type.
  *
  * @param {array} itemValues - Values to check.
@@ -135,6 +161,7 @@ const globalInner = (itemValues, itemKey) => {
 		switch (itemInnerKey) {
 			case 'colors':
 				output += `--global-${itemInnerKey}-${value['slug']}: ${value['color']};\n`;
+				output += `--global-${itemInnerKey}-${value['slug']}-values: ${hexToRgb(value.color)};\n`;
 				break;
 			case 'gradients':
 				output += `--global-${itemInnerKey}-${value['slug']}: ${value['gradient']};\n`;
@@ -249,7 +276,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 				}, {});
 
 			// Merge multiple responsive attributes to one object.
-			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
+			return { ...responsiveAttributesVariables, ...responsiveAttributeVariables };
 		}, {});
 };
 
@@ -288,7 +315,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 			const type = inverse ? 'max' : 'min';
 
 			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint;
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
@@ -457,7 +484,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest,
 	}` : '';
 
 	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	return <style dangerouslySetInnerHTML={{ __html: `${output} ${finalManualOutput}` }}></style>;
 };
 
 /**
