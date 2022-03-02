@@ -45,7 +45,7 @@ export const QuoteOptions = (attributes) => {
 					/>
 
 					<ParagraphOptions
-						label={__('Attribution', 'access-guru')}
+						label={__('Attribution', 'eightshift-frontend-libs')}
 						showLabel={true}
 						showParagraphUse={true}
 						{...props('paragraph', attributes, {
