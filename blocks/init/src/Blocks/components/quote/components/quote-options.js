@@ -1,6 +1,5 @@
 import React from 'react';
 import { props, getOptions, checkAttr, getAttrKey, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
-import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
 import manifest from './../manifest.json';
 
@@ -36,7 +35,7 @@ export const QuoteOptions = (attributes) => {
 
 			{quoteUse &&
 				<>
-					<HeadingOptions
+					<ParagraphOptions
 						{...props('heading', attributes, {
 							options: getOptions(attributes, manifest),
 						})}
