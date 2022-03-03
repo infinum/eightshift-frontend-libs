@@ -38,6 +38,18 @@
 			{
 				"label": "Small (13)",
 				"value": "small"
+			},
+			{
+				"label": "Tiny (11)",
+				"value": "tiny"
+			},
+			{
+				"label": "Big (40)",
+				"value": "big"
+			},
+			{
+				"label": "Huge (60)",
+				"value": "huge"
 			}
 		],
 		"paragraphColor": [
@@ -82,6 +94,42 @@
 					"breakpoint": "tablet",
 					"variable": {
 						"paragraph-font-size": "0.8rem"
+					}
+				}
+			],
+			"tiny": [
+				{
+					"variable": {
+						"paragraph-font-size": "0.45rem",
+						"paragraph-line-height": "1"
+					}
+				}
+			],
+			"big": [
+				{
+					"variable": {
+						"paragraph-font-size": "1.5rem",
+						"paragraph-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-font-size": "2.5rem"
+					}
+				}
+			],
+			"huge": [
+				{
+					"variable": {
+						"paragraph-font-size": "1.5rem",
+						"paragraph-line-height": "1"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-font-size": "4.25rem"
 					}
 				}
 			]

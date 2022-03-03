@@ -37,7 +37,7 @@ $quoteClass = Components::classnames([
 	<blockquote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
 		<?php
 		echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			'heading',
+			'paragraph',
 			Components::props('heading', $attributes, [
 				'blockClass' => $componentClass
 			])
