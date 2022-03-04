@@ -25,7 +25,7 @@ global $post;
 
 ?>
 
-<div
+<ul
 	class="<?php echo esc_attr($blockClass); ?>"
 	data-items-per-line=<?php echo \esc_attr($featuredPostsItemsPerLine); ?>
 	data-id="<?php echo \esc_attr($unique); ?>"
@@ -104,12 +104,12 @@ global $post;
 				}
 				?>
 
-				<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
+				<li class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 					<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</div>
+				</li>
 				<?php
 			}
 			\wp_reset_postdata();
 		}
 		?>
-</div>
+</ul>
