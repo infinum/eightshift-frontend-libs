@@ -25,6 +25,10 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
 
+if (!$paragraphContent) {
+	return;
+}
+
 $paragraphClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
