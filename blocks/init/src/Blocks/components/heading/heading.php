@@ -24,6 +24,10 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
 $headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
 
+if (!$headingContent) {
+	return;
+}
+
 $headingClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
