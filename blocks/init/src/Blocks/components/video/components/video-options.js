@@ -26,6 +26,7 @@ export const VideoOptions = (attributes) => {
 		showVideoControls = true,
 		showVideoMuted = true,
 		showVideoPreload = true,
+		showVideoCaptions = true,
 	} = attributes;
 
 	const videoUse = checkAttr('videoUse', attributes, manifest);
@@ -38,6 +39,7 @@ export const VideoOptions = (attributes) => {
 	const videoControls = checkAttr('videoControls', attributes, manifest);
 	const videoMuted = checkAttr('videoMuted', attributes, manifest);
 	const videoPreload = checkAttr('videoPreload', attributes, manifest);
+	const videoSubtitleTracks = checkAttr('videoSubtitleTracks', attributes, manifest);
 
 	if (!videoShowControls) {
 		return null;
