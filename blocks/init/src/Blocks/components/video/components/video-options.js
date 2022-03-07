@@ -62,6 +62,19 @@ export const VideoOptions = (attributes) => {
 			[getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks
 		});
 	};
+	const getTrackIcon = (kind) => {							
+		switch (kind) {
+			case 'subtitles':
+				return icons.videoSubtitle;
+			case 'captions':
+				return icons.closedCaptions;
+			case 'descriptions':
+				return icons.hide;
+			case 'chapters':
+				return icons.videoChapters;
+		}
+		return icons.warning;
+	};
 	const useToggle = (
 		<ComponentUseToggle
 			label={label}
