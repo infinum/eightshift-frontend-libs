@@ -1,9 +1,9 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Button, BaseControl, Placeholder } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
+import { Button, BaseControl, Placeholder, ExternalLink, TextControl, Popover } from '@wordpress/components';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect, FancyDivider, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
@@ -50,6 +50,8 @@ export const VideoOptions = (attributes) => {
 
 	const [showAdvanced, setShowAdvanced] = useState(false);
 
+	const [trackEditOpen, setTrackEditOpen] = useState({});
+
 	const addCaptionItem = () => {
 		const modifiedVideoSubtitleTracks = ([...videoSubtitleTracks, {
 			src: '',
@@ -62,6 +64,7 @@ export const VideoOptions = (attributes) => {
 			[getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks
 		});
 	};
+
 	const getTrackIcon = (kind) => {							
 		switch (kind) {
 			case 'subtitles':
@@ -75,6 +78,7 @@ export const VideoOptions = (attributes) => {
 		}
 		return icons.warning;
 	};
+
 	const useToggle = (
 		<ComponentUseToggle
 			label={label}
@@ -274,6 +278,148 @@ export const VideoOptions = (attributes) => {
 							})}
 						/>
 					}
+				</>
+			}
+
+			{showVideoCaptions && hasVideo &&
+				<>
+					<FancyDivider label={__('Captions', 'eightshift-frontend-libs')} />
+
+					<div className='es-v-spaced'>
+						{videoSubtitleTracks.map((_, index) => {
+							const trackIcon = getTrackIcon(videoSubtitleTracks[index].kind);
+
+							return (
+								<div className='onefr-auto' key={index}>
+
+									<Button onClick={() => setTrackEditOpen({...trackEditOpen, [index]: true})} icon={trackIcon}>
+										{videoSubtitleTracks[index].label.length > 0 ? videoSubtitleTracks[index].label : __('New caption track', 'eightshift-frontend-libs')}
+									</Button>
+
+									{trackEditOpen[index] === true &&
+
+										<Popover onClose={() => setTrackEditOpen({...trackEditOpen, [index]: false})} noArrow={false} position='middle right'>
+
+											<div className='es-popover-content'>
+												{!videoSubtitleTracks[index].src &&
+													<MediaPlaceholder
+														accept={['.vtt', 'text/vtt']}
+														labels = {{
+															title: __('Track file', 'eightshift-frontend-libs'),
+														}}
+														onSelect={
+															(track) => {
+																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+																modifiedVideoSubtitleTracks[index].src = track.url;
+																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+															}
+														}
+													>
+														{__('Upload a VTT file containing captions, subtitles, descriptions or chapters for this video', 'eightshift-frontend-libs')}
+													</MediaPlaceholder>
+
+												}
+
+												{videoSubtitleTracks[index].src &&
+													<>
+														<b>{sprintf(__('Track #%d', 'eightshift-frontend-libs'), index + 1)}</b>
+
+														<hr />
+
+														<ExternalLink href={videoSubtitleTracks[index].src}>
+															{__('Open track file', 'eightshift-frontend-libs')}
+														</ExternalLink>
+
+														<TextControl
+															label={__('Track label', 'eightshift-frontend-libs')}
+															help={__('A user-readable title of the text track, shown to viewers when listing available text tracks', 'eightshift-frontend-libs')}
+															value={videoSubtitleTracks[index].label}
+															onChange={(label) => {
+																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+																modifiedVideoSubtitleTracks[index].label = label;
+																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+															}}
+														/>
+
+														<CustomSelect
+															label={__('Track type', 'eightshift-frontend-libs')}
+															value={videoSubtitleTracks[index].kind}
+															options={getOption('videoSubtitleTrackKind', attributes, manifest)}
+															simpleValue={true}
+															onChange={(kind) => {
+																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+																modifiedVideoSubtitleTracks[index].kind = kind;
+																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+															}}
+															customOptionComponent = { props => {
+																return (
+																	<CustomSelectCustomOption {...props}>
+																		<span className='es-h-start'>{getTrackIcon(props.value)} {props.label}</span>
+																	</CustomSelectCustomOption>
+																);
+															}}
+															customSingleValueDisplayComponent = { props => {
+																return (
+																	<CustomSelectCustomValueDisplay {...props}>
+																		<span className='es-h-start'>{getTrackIcon(props.children.toLowerCase())} {props.children}</span>
+																	</CustomSelectCustomValueDisplay>
+																);
+															}}
+														/>
+
+														<TextControl
+															label={__('Language code', 'eightshift-frontend-libs')}
+															help={__('An IETF (BCP47) language tag for the language of the track text data. Only required for subtitles.', 'eightshift-frontend-libs')}
+															value={videoSubtitleTracks[index].srclang}
+															onChange={(srclang) => {
+																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+																modifiedVideoSubtitleTracks[index].srclang = srclang;
+																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+															}}
+														/>
+
+														<ExternalLink href={'https://en.wikipedia.org/wiki/IETF_language_tag#List_of_major_primary_language_subtags'}>
+															{__('Language tags for major languages', 'eightshift-frontend-libs')}
+														</ExternalLink>
+
+														<br />
+
+														<ExternalLink href={'https://r12a.github.io/app-subtags/'}>
+															{__('Language tags for all languages', 'eightshift-frontend-libs')}
+														</ExternalLink>
+
+														<hr />
+
+														<Button
+															isDestructive
+															isSecondary
+															onClick={() => {
+																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+																modifiedVideoSubtitleTracks.splice(index, 1);
+																setTrackEditOpen({...trackEditOpen, [index]: false});
+																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+															}}
+															icon={icons.trash}
+														>
+															{__('Remove track', 'eightshift-frontend-libs')}
+														</Button>
+
+													</>
+												}
+											</div>
+										</Popover>
+									}
+								</div>
+							);
+						})}
+					</div>
+					<Button
+						isPrimary
+						icon={icons.add}
+						onClick={addCaptionItem}
+					>
+						{__('Add track', 'eightshift-frontend-libs')}
+					</Button>
 				</>
 			}
 		</>
