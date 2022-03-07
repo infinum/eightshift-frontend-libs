@@ -55,6 +55,13 @@
 		"videoUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"videoSubtitleTracks": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			},
+			"default": []
 		}
 	},
 	"options": {
