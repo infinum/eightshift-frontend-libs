@@ -81,6 +81,24 @@
 				"value": "none",
 				"icon": "none"
 			}
+		],
+		"videoSubtitleTrackKind": [
+			{
+				"label": "Subtitles",
+				"value": "subtitles"
+			},
+			{
+				"label": "Captions",
+				"value": "captions"
+			},
+			{
+				"label": "Descriptions",
+				"value": "descriptions"
+			},
+			{
+				"label": "Chapters",
+				"value": "chapters"
+			}
 		]
 	}
 }
