@@ -13,7 +13,10 @@
 			],
 			"videoPoster": "https://loremflickr.com/300/200",
 			"videoAccept": ".mp4,.webm",
-			"videoAllowedTypes": ["video/mp4", "video/webm"],
+			"videoAllowedTypes": [
+				"video/mp4",
+				"video/webm"
+			],
 			"videoUse": true
 		}
 	},
@@ -27,7 +30,10 @@
 		},
 		"videoAllowedTypes": {
 			"type": "array",
-			"default": ["video/mp4", "video/webm"]
+			"default": [
+				"video/mp4",
+				"video/webm"
+			]
 		},
 		"videoLoop": {
 			"type": "boolean",
