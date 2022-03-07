@@ -50,6 +50,18 @@ export const VideoOptions = (attributes) => {
 
 	const [showAdvanced, setShowAdvanced] = useState(false);
 
+	const addCaptionItem = () => {
+		const modifiedVideoSubtitleTracks = ([...videoSubtitleTracks, {
+			src: '',
+			kind: '',
+			label: '',
+			srclang: '',
+		}]);
+
+		setAttributes({
+			[getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks
+		});
+	};
 	const useToggle = (
 		<ComponentUseToggle
 			label={label}
