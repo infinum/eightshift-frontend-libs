@@ -2,8 +2,8 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Button, BaseControl, Placeholder, ExternalLink, TextControl, Popover } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect, FancyDivider, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay } from '@eightshift/frontend-libs/scripts';
+import { Button, BaseControl, Placeholder, ExternalLink, TextControl } from '@wordpress/components';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, Collapsable, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect, FancyDivider, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
@@ -291,16 +291,17 @@ export const VideoOptions = (attributes) => {
 
 							return (
 								<div className='onefr-auto' key={index}>
-
-									<Button onClick={() => setTrackEditOpen({...trackEditOpen, [index]: true})} icon={trackIcon}>
-										{videoSubtitleTracks[index].label.length > 0 ? videoSubtitleTracks[index].label : __('New caption track', 'eightshift-frontend-libs')}
-									</Button>
-
-									{trackEditOpen[index] === true &&
-
-										<Popover onClose={() => setTrackEditOpen({...trackEditOpen, [index]: false})} noArrow={false} position='middle right'>
-
-											<div className='es-popover-content'>
+										<Collapsable 
+											label={
+												<IconLabel
+													standalone={true}
+													icon={trackIcon}
+													label={videoSubtitleTracks[index].label.length > 0 ? videoSubtitleTracks[index].label : __('New caption track', 'eightshift-frontend-libs')}
+												/>
+											}
+										>
+										
+											<>
 												{!videoSubtitleTracks[index].src &&
 													<MediaPlaceholder
 														accept={['.vtt', 'text/vtt']}
@@ -317,7 +318,6 @@ export const VideoOptions = (attributes) => {
 													>
 														{__('Upload a VTT file containing captions, subtitles, descriptions or chapters for this video', 'eightshift-frontend-libs')}
 													</MediaPlaceholder>
-
 												}
 
 												{videoSubtitleTracks[index].src &&
@@ -406,9 +406,8 @@ export const VideoOptions = (attributes) => {
 
 													</>
 												}
-											</div>
-										</Popover>
-									}
+											</>
+										</Collapsable>
 								</div>
 							);
 						})}
