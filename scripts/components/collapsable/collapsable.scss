@@ -22,7 +22,7 @@
 			timing-function: ease-out;
 			duration: 0.3s;
 		}
-  }
+	}
 
 	&.is-open {
 		box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #194BD4);
@@ -31,11 +31,11 @@
 		margin-left: -0.5rem;
 		margin-right: -0.5rem;
 
-    .es-collapsable__trigger {
+		.es-collapsable__trigger {
 			color: var(--wp-admin-theme-color, #194BD4);
 			border-bottom-color: hsl(0 0 96%);
 			padding-bottom: 0.5rem;
 			margin-bottom: 0.5rem;
 		}
-  }
+	}
 }
