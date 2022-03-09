@@ -15,7 +15,11 @@ if (!$hamburgerUse) {
 	return;
 }
 
-$hamburgerLabel = Components::checkAttr('hamburgerLabel', $attributes, $manifest) ?? __('Menu', 'eightshift-frontend-libs');
+$hamburgerLabel = Components::checkAttr('hamburgerLabel', $attributes, $manifest);
+if (!$hamburgerLabel) {
+	$hamburgerLabel = __('Menu', 'eightshift-frontend-libs');
+}
+
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
