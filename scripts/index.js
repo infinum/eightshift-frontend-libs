@@ -11,6 +11,7 @@ export {
 	ColorPickerComponent,
 	ColorPickerType
 } from './components/color-picker-component/color-picker-component';
+export { Collapsable } from './components/collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export {
