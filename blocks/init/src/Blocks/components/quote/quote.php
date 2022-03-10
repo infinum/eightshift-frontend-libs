@@ -29,14 +29,14 @@ $quoteClass = Components::classnames([
 
 ?>
 
-<figure class="<?php echo \esc_attr($quoteClass); ?>">
-	<i class="<?php echo \esc_attr("{$componentClass}__icon"); ?>">
-		<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<figure class="<?php echo esc_attr($quoteClass); ?>">
+	<i class="<?php echo esc_attr("{$componentClass}__icon"); ?>">
+		<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 	</i>
 
-	<blockquote class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
+	<blockquote class="<?php echo esc_attr("{$componentClass}__content"); ?>">
 		<?php
-		echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::render(
 			'paragraph',
 			Components::props('heading', $attributes, [
 				'blockClass' => $componentClass
@@ -45,11 +45,11 @@ $quoteClass = Components::classnames([
 		?>
 	</blockquote>
 
-	<div class="<?php echo \esc_attr("{$componentClass}__separator"); ?>"></div>
+	<div class="<?php echo esc_attr("{$componentClass}__separator"); ?>"></div>
 
-	<figcaption class="<?php echo \esc_attr("{$componentClass}__caption"); ?>">
+	<figcaption class="<?php echo esc_attr("{$componentClass}__caption"); ?>">
 		<?php
-		echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::render(
 			'paragraph',
 			Components::props('paragraph', $attributes, [
 				'blockClass' => $componentClass

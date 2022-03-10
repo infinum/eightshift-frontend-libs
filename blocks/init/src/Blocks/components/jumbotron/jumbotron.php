@@ -34,7 +34,7 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 
 ?>
 
-<div class="<?php echo \esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+<div class="<?php echo esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -48,8 +48,8 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 	);
 	?>
 
-	<div class="<?php echo \esc_attr($jumbotronContentClass); ?>">
-		<div class="<?php echo \esc_attr($jumbotronContentWrapClass); ?>">
+	<div class="<?php echo esc_attr($jumbotronContentClass); ?>">
+		<div class="<?php echo esc_attr($jumbotronContentWrapClass); ?>">
 			<?php
 			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'heading',
