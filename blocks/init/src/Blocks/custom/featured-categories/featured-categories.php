@@ -26,7 +26,7 @@ if (!$taxonomyName) {
 }
 ?>
 
-<div
+<ul
 	class="<?php echo \esc_attr($blockClass); ?>"
 	data-id="<?php echo \esc_attr($unique); ?>"
 >
@@ -72,8 +72,8 @@ if (!$taxonomyName) {
 		}
 		?>
 
-		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
+		<li class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 			<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</div>
+		</li>
 	<?php } ?>
-</div>
+</ul>
