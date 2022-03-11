@@ -230,9 +230,50 @@
 		"buttonWidth": {
 			"default": [
 				{
+					"inverse": true,
 					"variable": {
 						"button-display": "inline-flex",
-						"button-width": "auto"
+						"aaa": "aaa"
+					}
+				},
+				{
+					"inverse": true,
+					"breakpoint": "tablet",
+					"variable": {
+						"button-display": "inline-flex",
+						"bbb": "bbb"
+					}
+				},
+				{
+					"inverse": true,
+					"breakpoint": "desktop",
+					"variable": {
+						"button-display": "inline-flex",
+						"ccc": "ccc"
+					}
+				},
+				{
+					"breakpoint": "mobile",
+					"variable": {
+						"button-display": "inline-flex",
+						"button-width": "auto",
+						"ddd": "ddd"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"button-display": "inline-flex",
+						"button-width": "auto2",
+						"eee": "eee"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"button-display": "inline-flex",
+						"button-width": "auto3",
+						"fff": "fff"
 					}
 				}
 			],
@@ -240,7 +281,8 @@
 				{
 					"variable": {
 						"button-display": "flex",
-						"button-width": "100%"
+						"button-width": "100%",
+						"ggg": "ggg"
 					}
 				}
 			]

@@ -15,7 +15,7 @@ export { CollapsableComponentUseToggle } from './components/collapsable-componen
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export { CustomSelect } from './components/custom-select/custom-select';
 export { 
-	CustomSlider, 
+	CustomSlider,
 	CustomSliderStyle,
 } from './components/custom-slider/custom-slider';
 export { 
@@ -50,17 +50,6 @@ export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
 	getSettings,
-	getSettingsConfig,
-	getSettingsConfigOutputCssVariablesGlobally,
-	setSettingsConfigOutputCssVariablesGlobally,
-	getSettingsGlobal,
-	getSettingsBlocks,
-	getSettingsBlock,
-	getSettingsComponents,
-	getSettingsComponent,
-	getSettingsStyles,
-	getSettingsWrapper,
-	getSettingsNamespace,
 	getSettingsBlockFullName,
 } from './editor/get-manifest-details';
 export {
@@ -78,6 +67,7 @@ export {
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
+	outputCssVariablesCombined,
 	getUnique
 } from './editor/output-css-variables';
 export {

@@ -1,15 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
+import { getUnique } from './../editor/output-css-variables';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
 import { blockIcons } from './icons/icons';
-import {
-	getSettingsComponents,
-	getSettingsGlobal,
-	setSettingsConfigOutputCssVariablesGlobally
-} from './get-manifest-details';
+import { getSettings } from './get-manifest-details';
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -68,12 +65,16 @@ export const registerBlocks = (
 	}
 
 	window['eightshift'][process.env.VERSION] = {
-		globalManifest,
-		components: componentsManifest,
 		blocks: blocksManifests,
+		components: componentsManifest,
+		config: {
+			outputCssVariablesGlobally: true,
+			outputCssVariablesGloballyOptimize: true,
+		},
 		wrapper: wrapperManifest,
+		settings: globalManifest,
 		styles: [],
-		config: {}
+		stylesMap: [],
 	};
 
 	setConfigFlags();
@@ -588,7 +589,7 @@ export const prepareComponentAttributes = (
 	} = manifest;
 
 	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
-	const name = Object.prototype.hasOwnProperty.call(manifest, 'blockName') ? manifest.blockName : manifest.componentName;
+	const name = manifest?.blockName ? manifest.blockName : manifest.componentName;
 
 	const newParent = (parent === '') ? name : parent;
 
@@ -606,7 +607,7 @@ export const prepareComponentAttributes = (
 		let outputAttributes = {};
 
 		// If component has more components do recursive loop.
-		if (Object.prototype.hasOwnProperty.call(component, 'components')) {
+		if (component?.components) {
 			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${_.upperFirst(_.camelCase(newComponentName))}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.
@@ -669,6 +670,10 @@ export const getAttributes = (
 		blockName: {
 			type: 'string',
 			default: blockName,
+		},
+		blockTopLevelId: { // Used to pass reference to all components.
+			type: 'string',
+			default: getUnique(),
 		},
 		blockFullName: {
 			type: 'string',
@@ -738,7 +743,7 @@ export const getExample = (
 	manifest = {}
 ) => {
 
-	return prepareComponentAttributes(getSettingsComponents(), manifest, true, parent);
+	return prepareComponentAttributes(getSettings('components'), manifest, true, parent);
 };
 
 /**
@@ -840,18 +845,19 @@ export const registerBlock = (
  *
  * @access private
  *
- * @requires void
+ * @returns {void}
  */
 export const setConfigFlags = () => {
-	const settingsGlobal = getSettingsGlobal()?.config;
+	const settingsGlobal = getSettings('settings', 'config');
 
 	// outputCssVariablesGlobally
-	const outputCssVariablesGlobally = settingsGlobal?.outputCssVariablesGlobally;
+	if (typeof settingsGlobal?.outputCssVariablesGlobally === 'boolean') {
+		window['eightshift'][process.env.VERSION].config.outputCssVariablesGlobally = settingsGlobal.outputCssVariablesGlobally;
+	}
 
-	setSettingsConfigOutputCssVariablesGlobally(false);
-
-	if (typeof outputCssVariablesGlobally !== 'undefined') {
-		setSettingsConfigOutputCssVariablesGlobally(outputCssVariablesGlobally);
+	// outputCssVariablesGloballyOptimize
+	if (typeof settingsGlobal?.outputCssVariablesGloballyOptimize === 'boolean') {
+		window['eightshift'][process.env.VERSION].config.outputCssVariablesGloballyOptimize = settingsGlobal.outputCssVariablesGloballyOptimize;
 	}
 };
 

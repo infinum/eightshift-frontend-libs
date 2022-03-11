@@ -1,10 +1,9 @@
 import _ from 'lodash';
+import { subscribe, select } from '@wordpress/data';
 import { getAttrKey } from '../helpers/check-attr';
-import {
-	getSettingsConfigOutputCssVariablesGlobally,
-	getSettingsStyles,
-	getSettingsGlobalCssVariables,
-} from './get-manifest-details';
+import { getSettings } from './get-manifest-details';
+
+let breakpointsPreparedVariableDataCache = [];
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -96,11 +95,11 @@ import {
 export const outputCssVariablesGlobal = (globalManifest = {}) => {
 
 	let output = '';
-	let globalVariables = getSettingsGlobalCssVariables();
+	let globalVariables = globalManifest?.globalVariables;
 
 	// Read from global cache data if no item is provided using props.
-	if (!_.isEmpty(globalManifest)) {
-		globalVariables = globalManifest?.globalVariables;
+	if (typeof globalVariables === 'undefined') {
+		globalVariables = getSettings('settings', 'globalVariables');
 	}
 
 	if (typeof globalVariables === 'undefined') {
@@ -116,6 +115,8 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 			output += `--global-${itemKeyInner}: ${itemValue};\n`;
 		}
 	}
+
+	setBreakpointsCacheData();
 
 	return document.head.insertAdjacentHTML('afterbegin', `
 		<style>
@@ -152,24 +153,17 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 
 	let output = '';
 
-	const outputGloballyFlag = getSettingsConfigOutputCssVariablesGlobally();
-	let globalVariables = getSettingsGlobalCssVariables();
+	const outputGloballyFlag = getSettings('config', 'outputCssVariablesGlobally');
+	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+
+	let globalVariables = globalManifest?.globalVariables;
 
 	// Read from global cache data if no item is provided using props.
-	if (!_.isEmpty(globalManifest)) {
-		globalVariables = globalManifest?.globalVariables;
-	}
-
 	if (typeof globalVariables === 'undefined') {
-		throw Error(`It looks like you are missing variables in the provided globalManifest object. Please check if you data has globalVariables key.`);
+		globalVariables = getSettings('settings', 'globalVariables');
 	}
 
 	const breakpoints = globalVariables?.breakpoints;
-
-	// Bailout if global breakpoints are missing.
-	if (typeof breakpoints === 'undefined') {
-		return '';
-	}
 
 	// Define variables from manifest.
 	const variables = manifest?.variables;
@@ -220,64 +214,40 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	const styles = {
 		name,
 		unique,
+		blockTopLevelId: attributes?.blockTopLevelId,
 		variables: [],
 	};
 
 	// Loop data and provide correct selectors from data array.
-	data.forEach((values) => {
-
-		// Define variables from values.
-		const {
-			type,
-			value,
-			variable,
-		} = values;
-
+	for(const {type, value, variable} of data) {
 		// If breakpoint value is 0 then don't wrap the media query around it.
-		if (value === 0) {
-			if (!_.isEmpty(variable)) {
-				if (outputGloballyFlag) {
-					styles.variables.push({
-						type: '',
-						variable,
-						value,
-					});
-				} else {
-					output += `.${name}[data-id='${unique}'] {
-						${variable.join('\n')}
-						}
-					`;
-				}
-			}
+		if (variable.length === 0) {
+			continue;
+		}
+
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type,
+				variable,
+				value,
+			});
 		} else {
-			if (!_.isEmpty(variable)) {
-				if (outputGloballyFlag) {
-					styles.variables.push({
-						type,
-						variable,
-						value
-					});
-				} else {
-					output += `@media (${type}-width: ${value}px) {
-						.${name}[data-id='${unique}'] {
-							${variable.join('\n')}
-						}
-					}
-				`;
-				}
+			if (value === 0) {
+				output += `\n .${name}[data-id='${unique}']{\n${variable.join('\n')}\n}`;
+			} else {
+				output += `\n @media (${type}-width: ${value}px) {\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n}\n}`;
 			}
 		}
-	});
+	}
 
 	// Output manual output from the array of variables.
 	let manual = '';
-
 	const variablesCustom = manifest?.variablesCustom;
 
 	if (typeof variablesCustom !== 'undefined') {
 		if (outputGloballyFlag) {
 			styles.variables.push({
-				type: '',
+				type: 'min',
 				variable: variablesCustom,
 				value: 0
 			});
@@ -292,7 +262,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	if (typeof variablesCustomEditor !== 'undefined') {
 		if (outputGloballyFlag) {
 			styles.variables.push({
-				type: '',
+				type: 'min',
 				variable: variablesCustomEditor,
 				value: 0
 			});
@@ -302,39 +272,75 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	}
 
 	if (outputGloballyFlag) {
-		const existsIndex = getSettingsStyles().findIndex((item) => item.name === name && item.unique === unique);
+		const settingsStyles = getSettings('styles');
+		const existsIndex = settingsStyles.findIndex((item) => item?.name === name && item?.unique === unique);
 
-		if (existsIndex >= 0) {
-			getSettingsStyles()[existsIndex] = styles;
+		const blockTopLevelId = attributes?.blockTopLevelId ?? '';
+
+		if (blockTopLevelId) {
+			const settingsStylesMap = getSettings('stylesMap');
+
+			if (settingsStylesMap.indexOf(blockTopLevelId) === -1) {
+				settingsStylesMap.push(blockTopLevelId);
+			}
+		}
+
+		if (existsIndex !== -1) {
+			settingsStyles[existsIndex] = styles;
 		} else {
-			getSettingsStyles().push(styles);
+			settingsStyles.push(styles);
 		}
 
-		outputCssVariablesCombined();
-	} else {
-		// Prepare final output for testing.
-		const fullOutput = `
-			${output}
-			${manual}
-			${manualEditor}
-		`;
-
-		// Check if final output is empty and remove if it is.
-		if (_.isEmpty(fullOutput.trim())) {
-			return '';
-		}
-
-		// Prepare output for manual variables.
-		const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}'] {
-			${manual}
-			${manualEditor}
-		}` : '';
-
-		// Output the style for CSS variables.
-		return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+		return null;
 	}
 
-	return null;
+	// Prepare final output for testing.
+	const fullOutput = `
+		${output}
+		${manual}
+		${manualEditor}
+	`;
+
+	// Check if final output is empty and remove if it is.
+	if (_.isEmpty(fullOutput.trim())) {
+		return '';
+	}
+
+	// Prepare output for manual variables.
+	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}']{ ${manual} ${manualEditor}}` : '';
+
+	if (outputGloballyOptimizeFlag) {
+		output.replace('\n', '');
+		finalManualOutput.replace('\n', '');
+	}
+
+	// Output the style for CSS variables.
+	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+};
+
+/**
+ * Output css variables as a one inline style tag.
+ *
+ * @access public
+ *
+ * @returns {void}
+ */
+export const outputCssVariablesCombined = () => {
+	// Update state on change.
+	let contentState = select( 'core/block-editor' ).getBlocks();
+
+	subscribe(
+		_.debounce(() => {
+			const newState = select('core/block-editor').getBlocks();
+
+			if (contentState !== newState) {
+				outputCssVariablesCombinedInner(newState);
+			}
+
+			// Update reference.
+			contentState = newState;
+		}, 50)
+	);
 };
 
 /**
@@ -556,52 +562,6 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 };
 
 /**
- * Output css variables as a one inline style tag.
- *
- * @access private
- *
- * @returns {string}
- */
-export const outputCssVariablesCombined = () => {
-	let output = '';
-
-	const styles = getSettingsStyles();
-
-	if (styles) {
-		for (const {name, unique, variables} of styles) {
-			let outputItem = '';
-			for (const {type, value, variable} of variables) {
-				if (type === '' && value === 0) {
-					outputItem += variable.join('\n');
-				} else {
-					outputItem += `@media (${type}-width: ${value}px) {
-							${variable.join('\n')}
-						}
-					`;
-				}
-			}
-
-			output += `.${name}[data-id='${unique}'] {
-					${outputItem}
-				}
-			`;
-		}
-	}
-
-	const styleTag = document.getElementById('esCssVariables');
-
-	if (!styleTag) {
-		return document.head.insertAdjacentHTML('afterbegin', `
-		<style id="esCssVariables">
-			${output}
-		</style>
-	`);
-	}
-
-	styleTag.innerHTML = output;
-};
-
-/**
  * Create initial array of data to be able to populate later.
  *
  * @param {object} globalBreakpoints - Global breakpoints from global manifest to set the correct output.
@@ -716,3 +676,136 @@ export const variablesInner = (variables, attributeValue) => {
 	return output;
 };
 
+/**
+ * Set breakpoints cache for optimized load time.
+ *
+ * @access private
+ *
+ * @returns {void}
+ */
+export const setBreakpointsCacheData = () => {
+	// Prepare breakpoints.
+	const breakpoints = getSettings('settings', 'globalVariables')?.breakpoints;
+
+	const breakpointsCache = Object.entries(breakpoints).sort((a, b) => {
+		return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+	});
+
+	// Prepare breakpoints data to output combined css variables.
+	const breakpointsMin = breakpointsCache.map((item) => {
+		return {
+			type: 'min',
+			value: item[1],
+		};
+	});
+	breakpointsMin.unshift({
+		type: 'min',
+		value: 0,
+	});
+
+	const breakpointsMax = breakpointsCache.reverse().map((item) => {
+		return {
+			type: 'max',
+			value: item[1],
+		};
+	});
+	breakpointsMax.unshift({
+		type: 'max',
+		value: 0,
+	});
+
+	breakpointsPreparedVariableDataCache = breakpointsMin.concat(breakpointsMax);
+};
+
+/**
+ * Output css variables as a one inline style tag - inner.
+ *
+ * @access private
+ *
+ * @returns {string}
+ */
+export const outputCssVariablesCombinedInner = (newBlocks) => {
+	const styles = getSettings('styles');
+	let stylesMap = getSettings('stylesMap');
+
+	if (!styles.length) {
+		return;
+	}
+
+	// Find all blocks that are remaining in the dom and compare them to our stylesMap.
+	const remainingBlocks = newBlocks.filter((block) => {
+		return stylesMap.indexOf(block?.attributes?.blockTopLevelId) !== -1;
+	}).map((item) => item?.attributes?.blockTopLevelId);
+
+	// Find all blocks that are removed from the dom by comparing that to the remainingBlocks.
+	const missingBlocks = stylesMap.filter(val => !remainingBlocks.includes(val));
+
+	// Get updated styles with removed blocks.
+	const updatedStyles = styles.filter((item) => !missingBlocks.includes(item.blockTopLevelId));
+
+	// Update global state.
+	window['eightshift'][process.env.VERSION].stylesMap = remainingBlocks;
+	window['eightshift'][process.env.VERSION].styles = updatedStyles;
+
+	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+
+	const breakpoints = [];
+
+	// Loop styles.
+	for (const {name, unique, variables} of updatedStyles) {
+		// Bailout if variables are missing.
+		if (variables.length === 0) {
+			continue;
+		}
+
+		// Loop inner variables.
+		for (const {type, value, variable} of variables) {
+			// Bailout if variable is missing.
+			if (variable.length === 0) {
+				continue;
+			}
+
+			// Set breakpoint to empty if it is missing initially.
+			if (typeof breakpoints[`${type}---${value}`] === 'undefined') {
+				breakpoints[`${type}---${value}`] = '';
+			}
+
+			// Populate breakpoints output.
+			breakpoints[`${type}---${value}`] += `\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n} `;
+		}
+	}
+
+	// Prepare final output.
+	let output = '';
+
+	// Loop all breakpoints prepared for output.
+	breakpointsPreparedVariableDataCache.forEach(({type, value}) => {
+		const breakpointValue = breakpoints[`${type}---${value}`] ?? '';
+
+		// Bailout if breakpoint is missing.
+		if (breakpointValue === '') {
+			return;
+		}
+
+		// Wrap media queries with correct selectors.
+		if (value === 0) {
+			output += `${breakpointValue}\n`;
+		} else {
+			output += `\n@media (${type}-width:${value}px){${breakpointValue}}\n `;
+		}
+	});
+
+	// Remove newlines.
+	if (outputGloballyOptimizeFlag) {
+		output = output.replace(/\n|\r/g, '');
+	}
+
+	// Detect if style tag is present in dom.
+	const styleTag = document.getElementById('esCssVariables');
+
+	if (!styleTag) {
+		document.body.insertAdjacentHTML('beforeend', `<style id="esCssVariables">${output}</style>`);
+	} else {
+		styleTag.innerHTML = output;
+	}
+};
