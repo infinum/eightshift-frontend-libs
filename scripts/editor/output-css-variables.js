@@ -124,23 +124,31 @@ export const outputCssVariablesGlobal = (globalManifest) => {
  *
  * @return {string}
  */
-const hexToRgb = (input) => {
+export const hexToRgb = (input) => {
 	let r = 0, g = 0, b = 0;
-	const h = input.replace('#', '').trim();
+	const hex = input.replace('#', '').trim();
 
-	if (h.length === 3) {
-		const [r1, g1, b1] = h;
+	if (hex.length === 3) {
+		const [r1, g1, b1] = hex;
 		r = `0x${r1}${r1}`;
 		g = `0x${g1}${g1}`;
 		b = `0x${b1}${b1}`;
-	} else if (h.length === 6) {
-		const [r1, r2, g1, g2, b1, b2] = h;
+	} else if (hex.length === 6) {
+		const [r1, r2, g1, g2, b1, b2] = hex;
 		r = `0x${r1}${r2}`;
 		g = `0x${g1}${g2}`;
 		b = `0x${b1}${b2}`;
 	}
 
-	return `${Number(r)} ${Number(g)} ${Number(b)}`;
+	r = Number(r);
+	g = Number(g);
+	b = Number(b);
+
+	if (isNaN(r) || isNaN(g) || isNaN(b)) {
+		return '0 0 0';
+	}
+
+	return `${r} ${g} ${b}`;
 };
 
 /**
