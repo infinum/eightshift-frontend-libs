@@ -33,9 +33,9 @@ $drawerClass = Components::classnames([
 
 ?>
 <div
-	class="<?php echo \esc_attr($drawerClass); ?>"
-	data-trigger="<?php echo \esc_attr($drawerTrigger); ?>"
+	class="<?php echo esc_attr($drawerClass); ?>"
+	data-trigger="<?php echo esc_attr($drawerTrigger); ?>"
 >
-	<?php echo \wp_kses_post($drawerMenu); ?>
+	<?php echo wp_kses_post($drawerMenu); ?>
 </div>
 

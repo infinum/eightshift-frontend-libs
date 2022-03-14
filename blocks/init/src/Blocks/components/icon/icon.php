@@ -30,5 +30,5 @@ $iconClass = Components::classnames([
 
 ?>
 <i class="<?php echo esc_attr($iconClass); ?>">
-	<?php echo $manifest['icons'][$iconName]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo $manifest['icons'][$iconName]; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 </i>
