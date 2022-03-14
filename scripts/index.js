@@ -71,7 +71,8 @@ export {
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
-	getUnique
+	getUnique,
+	hexToRgb,
 } from './editor/output-css-variables';
 export {
 	overrideInnerBlockAttributes,
