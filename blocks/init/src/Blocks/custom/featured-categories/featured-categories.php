@@ -27,8 +27,8 @@ if (!$taxonomyName) {
 ?>
 
 <ul
-	class="<?php echo \esc_attr($blockClass); ?>"
-	data-id="<?php echo \esc_attr($unique); ?>"
+	class="<?php echo esc_attr($blockClass); ?>"
+	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -47,7 +47,7 @@ if (!$taxonomyName) {
 		),
 	];
 
-	$allTerms = \get_terms($args);
+	$allTerms = get_terms($args);
 
 	if (!is_iterable($allTerms)) {
 		return;
@@ -61,7 +61,7 @@ if (!$taxonomyName) {
 			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
 			'paragraphUse' => is_object($termObject),
 			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
-			'buttonUrl' => \get_term_link($termObject),
+			'buttonUrl' => get_term_link($termObject),
 			'buttonColor' => 'primary',
 			'headingSize' => 'big',
 		];
