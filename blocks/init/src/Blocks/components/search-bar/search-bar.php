@@ -47,24 +47,24 @@ $labelClass = Components::classnames([
 
 <form
 	role="search"
-	method="<?php echo \esc_attr($searchBarMethod); ?>"
-	class="<?php echo \esc_attr($searchClass); ?>"
-	action="<?php echo \esc_url($searchBarAction); ?>"
+	method="<?php echo esc_attr($searchBarMethod); ?>"
+	class="<?php echo esc_attr($searchClass); ?>"
+	action="<?php echo esc_url($searchBarAction); ?>"
 >
 	<label
-		class="<?php echo \esc_attr($labelClass); ?>"
-		for="<?php echo \esc_attr($searchBarId); ?>">
-		<?php echo \esc_html($searchBarLabel); ?>
+		class="<?php echo esc_attr($labelClass); ?>"
+		for="<?php echo esc_attr($searchBarId); ?>">
+		<?php echo esc_html($searchBarLabel); ?>
 	</label>
 	<input
 		type="text"
-		value="<?php echo \get_search_query(); ?>"
+		value="<?php echo get_search_query(); ?>"
 		name="s"
 		<?php if (!empty($searchBarId)) { ?>
-			id="<?php echo \esc_attr($searchBarId); ?>"
+			id="<?php echo esc_attr($searchBarId); ?>"
 		<?php } ?>
-		class="<?php echo \esc_attr($inputClass); ?>"
-		placeholder="<?php echo \esc_attr($searchBarPlaceholder); ?>"
+		class="<?php echo esc_attr($inputClass); ?>"
+		placeholder="<?php echo esc_attr($searchBarPlaceholder); ?>"
 	/>
-	<input type="hidden" name="post_type" value="<?php echo \esc_attr($searchBarPostType); ?>" />
+	<input type="hidden" name="post_type" value="<?php echo esc_attr($searchBarPostType); ?>" />
 </form>

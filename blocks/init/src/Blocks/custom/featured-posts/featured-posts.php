@@ -27,8 +27,8 @@ global $post;
 
 <ul
 	class="<?php echo esc_attr($blockClass); ?>"
-	data-items-per-line=<?php echo \esc_attr($featuredPostsItemsPerLine); ?>
-	data-id="<?php echo \esc_attr($unique); ?>"
+	data-items-per-line=<?php echo esc_attr($featuredPostsItemsPerLine); ?>
+	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -75,25 +75,25 @@ global $post;
 			$args['orderby'] = 'post__in';
 		}
 
-		$mainQuery = new \WP_Query($args);
+		$mainQuery = new WP_Query($args);
 
 		if ($mainQuery->have_posts()) {
 			while ($mainQuery->have_posts()) {
 				$mainQuery->the_post();
 
-				$postId = \get_the_ID();
-				$image = \get_the_post_thumbnail_url($postId, 'large');
-				$excerpt = \get_the_excerpt($postId);
+				$postId = get_the_ID();
+				$image = get_the_post_thumbnail_url($postId, 'large');
+				$excerpt = get_the_excerpt($postId);
 
 				$cardProps = [
 					'imageUrl' => $image,
 					'imageUse' => $image ?? true,
 					'introUse' => false,
-					'headingContent' => \get_the_title($postId), // @phpstan-ignore-line
+					'headingContent' => get_the_title($postId), // @phpstan-ignore-line
 					'paragraphContent' => $excerpt,
 					'paragraphUse' => !empty($excerpt),
 					'buttonContent' => __('Read', 'eightshift-frontend-libs'),
-					'buttonUrl' => \get_the_permalink($postId), // @phpstan-ignore-line
+					'buttonUrl' => get_the_permalink($postId), // @phpstan-ignore-line
 					'buttonColor' => 'primary',
 					'headingSize' => 'big',
 				];
@@ -109,7 +109,7 @@ global $post;
 				</li>
 				<?php
 			}
-			\wp_reset_postdata();
+			wp_reset_postdata();
 		}
 		?>
 </ul>

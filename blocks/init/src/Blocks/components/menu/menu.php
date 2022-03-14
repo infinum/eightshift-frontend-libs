@@ -34,5 +34,5 @@ $bemMenu = Menu::bemMenu( // @phpstan-ignore-line will be fixed in the stubs.
 );
 
 if (!empty($bemMenu) && !$bemMenu) {
-	echo \esc_html($bemMenu);
+	echo esc_html($bemMenu);
 }
