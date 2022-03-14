@@ -375,6 +375,18 @@ body {
 		border-radius: 6px !important;
 	}
 
+	// Fix for scrollbar overflow.
+	@supports (scrollbar-gutter: stable) {
+		.interface-interface-skeleton__sidebar {
+			scrollbar-gutter: stable;
+		}
+	}
+		
+	@supports not (scrollbar-gutter: stable) {
+		.interface-interface-skeleton__sidebar {
+			overflow-x: hidden;
+		}
+	}
 }
 
 @import './es-utility-classes.scss';
