@@ -1,3 +1,31 @@
+.es-color-theme-container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.es-color-palette-custom {
+	&--list,
+	&--list-two-col {
+		display: grid;
+		grid-auto-rows: auto;
+	}
+
+	&--list {
+		grid-template-columns: 1fr;
+	}
+
+	&--list-two-col {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&--inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+	}
+}
+
 .generic-swatch-icon-color {
 	transition: {
 		property: rx, fill;
