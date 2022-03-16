@@ -1,0 +1,31 @@
+.generic-swatch-icon-color {
+	transition: {
+		property: rx, fill;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+
+	rx: 2;
+
+	&:hover {
+		rx: 3;
+	}
+
+	& ~ circle {
+		transition: {
+			property: opacity;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+	}
+}
+
+.is-generic-swatch-active {
+	.generic-swatch-icon-color {
+		rx: 9;
+
+		&:hover {
+			rx: 8;
+		}
+	}
+}
