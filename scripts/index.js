@@ -48,6 +48,7 @@ export { MatrixAlignControl } from './components/matrix-align-control/matrix-ali
 export { OptionPicker } from './components/option-picker/option-picker';
 export { Responsive } from './components/responsive/responsive';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
+export { SimpleHorizontalSingleSelect } from './components/simple-horizontal-single-select/simple-horizontal-single-select';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 
 // Editor
