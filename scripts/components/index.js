@@ -5,10 +5,13 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType
 } from './alignment-toolbar/alignment-toolbar';
-export { ColorPaletteCustom } from './color-palette-custom/color-palette-custom';
+export { 
+	ColorPaletteCustom,
+	ColorPaletteCustomLayout,
+} from './color-palette-custom/color-palette-custom';
 export {
 	ColorPickerComponent,
-	ColorPickerType
+	ColorPickerType,
 } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
