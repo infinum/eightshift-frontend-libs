@@ -22,12 +22,15 @@ const searchReplace = async(data, projectPath) => {
   const pathEntryFile = path.join(projectPath, `${defaultValues.package}.php`);
 
   // functions.php.
-  if (data.projectName && data.description && await fs.pathExists(pathFunctionsPhp)) {
+  if (data.projectName && await fs.pathExists(pathFunctionsPhp)) {
     await replace({
       files: pathFunctionsPhp,
       from: /^ \* Theme Name:.*$/m,
       to: ` * Theme Name: ${data.projectName}`,
     });
+  }
+
+  if (data.description && await fs.pathExists(pathFunctionsPhp)) {
     await replace({
       files: pathFunctionsPhp,
       from: /^ \* Description:.*$/m,
@@ -36,7 +39,7 @@ const searchReplace = async(data, projectPath) => {
   }
 
   // style.css
-  if (data.projectName && data.description && await fs.pathExists(pathStyleCss)) {
+  if (data.projectName && await fs.pathExists(pathStyleCss)) {
     await replace({
       files: pathStyleCss,
       from: /^Theme Name: .*$/m,
@@ -47,6 +50,9 @@ const searchReplace = async(data, projectPath) => {
       from: /^Plugin Name: .*$/m,
       to: `Plugin Name: ${data.projectName}`,
     });
+  }
+
+  if (data.description && await fs.pathExists(pathStyleCss)) {
     await replace({
       files: pathStyleCss,
       from: /^Description: .*$/m,
@@ -55,12 +61,14 @@ const searchReplace = async(data, projectPath) => {
   }
 
   // eightshift-boilerplate.php
-  if (data.projectName && data.description && await fs.pathExists(pathEntryFile)) {
+  if (data.projectName && await fs.pathExists(pathEntryFile)) {
     await replace({
       files: pathEntryFile,
       from: /^ \* Plugin Name:.*$/m,
       to: ` * Plugin Name: ${data.projectName}`,
     });
+  }
+  if (data.description && await fs.pathExists(pathEntryFile)) {
     await replace({
       files: pathEntryFile,
       from: /^ \* Description:.*$/m,

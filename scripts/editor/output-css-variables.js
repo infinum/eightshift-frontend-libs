@@ -344,6 +344,42 @@ export const outputCssVariablesCombined = () => {
 };
 
 /**
+ * Convert hex color into RGB values.
+ *
+ * @param {string} input - Input hex color (either 3 or 6 characters).
+ *
+ * @access public
+ *
+ * @return {string}
+ */
+ export const hexToRgb = (input) => {
+	let r = 0, g = 0, b = 0;
+	const hex = input.replace('#', '').trim();
+
+	if (hex.length === 3) {
+		const [r1, g1, b1] = hex;
+		r = `0x${r1}${r1}`;
+		g = `0x${g1}${g1}`;
+		b = `0x${b1}${b1}`;
+	} else if (hex.length === 6) {
+		const [r1, r2, g1, g2, b1, b2] = hex;
+		r = `0x${r1}${r2}`;
+		g = `0x${g1}${g2}`;
+		b = `0x${b1}${b2}`;
+	}
+
+	r = Number(r);
+	g = Number(g);
+	b = Number(b);
+
+	if (isNaN(r) || isNaN(g) || isNaN(b)) {
+		return '0 0 0';
+	}
+
+	return `${r} ${g} ${b}`;
+};
+
+/**
  * Returns a unique ID, generally used with CSS variable generation.
  *
  * @access public
@@ -389,11 +425,12 @@ export const globalInner = (itemValues, itemKey) => {
 
 		switch (itemInnerKey) {
 			case 'colors':
-				if ( typeof slug === 'undefined' || typeof color === 'undefined') {
+				if (typeof slug === 'undefined' || typeof color === 'undefined') {
 					break;
 				}
 
 				output += `--global-${itemInnerKey}-${value.slug}: ${value.color};\n`;
+				output += `--global-${itemInnerKey}-${value.slug}-values: ${hexToRgb(value.color)};\n`;
 				break;
 			case 'gradients':
 				if ( typeof slug === 'undefined' || typeof gradient === 'undefined') {

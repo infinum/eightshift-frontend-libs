@@ -11,14 +11,22 @@ export {
 	ColorPickerComponent,
 	ColorPickerType
 } from './components/color-picker-component/color-picker-component';
+export { Collapsable } from './components/collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
-export { CustomSelect } from './components/custom-select/custom-select';
-export { 
+export {
+	CustomSelect,
+	CustomSelectCustomOption,
+	CustomSelectCustomValueDisplay,
+	CustomSelectCustomMultipleValueDisplay,
+	CustomSelectCustomMultipleValueDisplayContainer,
+	CustomSelectCustomMultipleValueRemoveButton,
+} from './components/custom-select/custom-select';
+export {
 	CustomSlider,
 	CustomSliderStyle,
 } from './components/custom-slider/custom-slider';
-export { 
+export {
 	CustomRangeSlider,
 	CustomRangeSliderStyle,
 } from './components/custom-slider/custom-range-slider';
@@ -68,7 +76,8 @@ export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	outputCssVariablesCombined,
-	getUnique
+	getUnique,
+	hexToRgb,
 } from './editor/output-css-variables';
 export {
 	overrideInnerBlockAttributes,

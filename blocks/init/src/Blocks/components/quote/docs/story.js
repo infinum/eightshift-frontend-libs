@@ -4,7 +4,6 @@ import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { QuoteEditor } from '../components/quote-editor';
 import { QuoteOptions } from '../components/quote-options';
-import { QuoteToolbar } from '../components/quote-toolbar';
 
 export default {
 	title: `Components/${manifest.title}`,
@@ -23,14 +22,6 @@ export const editor = () => (
 
 export const options = () => (
 	<QuoteOptions
-		{...props('quote', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
-);
-
-export const toolbar = () => (
-	<QuoteToolbar
 		{...props('quote', attributes, {
 			options: getOptions(attributes, manifest),
 		})}

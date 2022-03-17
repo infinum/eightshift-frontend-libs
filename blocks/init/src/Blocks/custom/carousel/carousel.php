@@ -48,19 +48,19 @@ $paginationClass = Components::classnames([
 	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
 	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">
-		<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 	</div>
 
 	<?php if ($carouselShowPrevNext) { ?>
-		<button class="<?php echo \esc_attr($prevButtonClass); ?>">
-			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<button class="<?php echo esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', 'eightshift-frontend-libs'); ?>">
+			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
-		<button class="<?php echo \esc_attr($nextButtonClass); ?>">
-			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<button class="<?php echo esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', 'eightshift-frontend-libs'); ?>">
+			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
 	<?php } ?>
 
 	<?php if ($carouselShowPagination) { ?>
-		<div class="<?php echo \esc_attr($paginationClass); ?>"></div>
+		<div class="<?php echo esc_attr($paginationClass); ?>"></div>
 	<?php } ?>
 </div>

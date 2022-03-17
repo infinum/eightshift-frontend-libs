@@ -28,7 +28,8 @@ export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	outputCssVariablesCombined,
-	getUnique
+	getUnique,
+	hexToRgb,
 } from './output-css-variables';
 export {
 	overrideInnerBlockAttributes,

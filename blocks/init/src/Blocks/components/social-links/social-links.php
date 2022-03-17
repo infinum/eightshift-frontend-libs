@@ -29,7 +29,7 @@ $socialLinksClass = Components::classnames([
 ]);
 
 ?>
-<ul class="<?php echo \esc_html($socialLinksClass); ?>">
+<ul class="<?php echo esc_html($socialLinksClass); ?>">
 	<?php
 	if (!is_iterable($socialLinksItems)) {
 		return;
@@ -46,15 +46,15 @@ $socialLinksClass = Components::classnames([
 		}
 
 		?>
-		<li class="<?php echo \esc_html("{$componentClass}__item"); ?>">
+		<li class="<?php echo esc_html("{$componentClass}__item"); ?>">
 			<a
-				class="<?php echo \esc_html("{$componentClass}__link"); ?>"
+				class="<?php echo esc_html("{$componentClass}__link"); ?>"
 				href="<?php echo esc_url($href); ?>"
 				title="<?php echo esc_attr($linkTitle); ?>"
 				target="_blank"
 				rel="noreferrer noopener"
 			>
-				<?php echo $manifest['icons'][$icon]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo $manifest['icons'][$icon]; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 			</a>
 		</li>
 	<?php } ?>

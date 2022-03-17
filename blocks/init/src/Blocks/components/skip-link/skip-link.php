@@ -30,7 +30,7 @@ $skipLinkTarget = Components::checkAttr('skipLinkTarget', $attributes, $manifest
 ?>
 <a
 	href="<?php echo esc_url($skipLinkTarget); ?>"
-	class="<?php echo \esc_attr($skipLinkClasses); ?>"
+	class="<?php echo esc_attr($skipLinkClasses); ?>"
 >
 	<?php echo esc_html__('Skip to main content', 'eightshift-frontend-libs'); ?>
 </a>

@@ -42,6 +42,18 @@
 			"type": "integer",
 			"default": 4
 		},
+		"featuredPostsItemsPerLineDesktop": {
+			"type": "integer",
+			"default": 4
+		},
+		"featuredPostsItemsPerLineTablet": {
+			"type": "integer",
+			"default": 3
+		},
+		"featuredPostsItemsPerLineMobile": {
+			"type": "integer",
+			"default": 2
+		},
 		"featuredPostsShowItems": {
 			"type": "integer"
 		},
@@ -52,6 +64,14 @@
 		"featuredPostsServerSideRender": {
 			"type": "boolean",
 			"default": false
+		}
+	},
+	"responsiveAttributes": {
+		"featuredPostsItemsPerLine": {
+			"large": "featuredPostsItemsPerLine",
+			"desktop": "featuredPostsItemsPerLineDesktop",
+			"tablet": "featuredPostsItemsPerLineTablet",
+			"mobile": "featuredPostsItemsPerLineMobile"
 		}
 	},
 	"allowed": {

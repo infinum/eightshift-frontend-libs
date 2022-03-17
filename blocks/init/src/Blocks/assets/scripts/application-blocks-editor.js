@@ -55,7 +55,7 @@ outputCssVariablesCombined();
 // Change the default block to the custom paragraph.
 // If changing this block update the blocks filter method in Blocks.php.
 domReady(() => {
-	// setDefaultBlockName(`${globalSettings.namespace}/paragraph`);
+	setDefaultBlockName(`${globalSettings.namespace}/paragraph`);
 });
 
 // Inserter for inserting blocks from console.
