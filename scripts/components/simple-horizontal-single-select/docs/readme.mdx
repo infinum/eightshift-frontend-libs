@@ -1,0 +1,25 @@
+# SimpleHorizontalSingleSelect
+
+A simple component for picking mutually exclusive options.
+
+## Usage
+
+```jsx
+<SimpleHorizontalSingleSelect
+	label='Size'
+	options={options}
+	onChange={(val) => setAttributes(...)}
+	value={value}
+/>
+```
+
+Each option should be in this format:
+
+```js
+{
+	icon: icons.large, // Optional, can be either ES icon (name or whole icon element) or dashicon name.
+	value: 'l',
+	label: 'L', // Optional
+	tooltip: 'Large', // Optional, label will be used as fallback
+}
+```
