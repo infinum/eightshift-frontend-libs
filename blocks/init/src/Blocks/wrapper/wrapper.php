@@ -23,8 +23,8 @@ $wrapperParentClassItemInnerClass = Components::selector($wrapperParentClass, $w
 if (!$wrapperUse || $wrapperDisable) {
 	if ($wrapperParentClass) {
 		?>
-			<div class="<?php echo \esc_attr($wrapperParentClassItemClass); ?>">
-				<div class="<?php echo \esc_attr($wrapperParentClassItemInnerClass); ?>">
+			<div class="<?php echo esc_attr($wrapperParentClassItemClass); ?>">
+				<div class="<?php echo esc_attr($wrapperParentClassItemInnerClass); ?>">
 		<?php
 	}
 
@@ -92,17 +92,17 @@ $wrapperMainAnchorClass = Components::selector($componentClass, $componentClass,
 $idOutput = '';
 
 if ($wrapperId) {
-	$escapedId = \esc_attr($wrapperId);
+	$escapedId = esc_attr($wrapperId);
 	$idOutput = "id='{$escapedId}'";
 }
 
 ?>
 <div
-	class="<?php echo \esc_attr($wrapperClass); ?>"
-	<?php echo $idOutput; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	class="<?php echo esc_attr($wrapperClass); ?>"
+	<?php echo $idOutput; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 >
 	<?php if ($wrapperAnchorId) { ?>
-		<div class="<?php echo \esc_attr($wrapperMainAnchorClass); ?>" id="<?php echo \esc_attr($wrapperAnchorId); ?>"></div>
+		<div class="<?php echo esc_attr($wrapperMainAnchorClass); ?>" id="<?php echo esc_attr($wrapperAnchorId); ?>"></div>
 	<?php } ?>
 
 	<?php if ($wrapperUseSimple) { ?>
@@ -114,8 +114,8 @@ if ($wrapperId) {
 		);
 		?>
 	<?php } else { ?>
-		<div class="<?php echo \esc_attr($wrapperContainerClass); ?>">
-			<div class="<?php echo \esc_attr($wrapperInnerClass); ?>">
+		<div class="<?php echo esc_attr($wrapperContainerClass); ?>">
+			<div class="<?php echo esc_attr($wrapperInnerClass); ?>">
 				<?php
 				$this->renderWrapperView(
 					$templatePath,

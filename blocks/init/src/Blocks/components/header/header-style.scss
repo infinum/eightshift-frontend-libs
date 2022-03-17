@@ -9,7 +9,7 @@
 
 	width: 100%;
 	max-width: var(--global-containers-default);
-	height: var(--header-scoped-height, 5rem);
+	min-height: var(--header-scoped-height, 5rem);
 
 	background: var(--header-scoped-background, var(--global-colors-white));
 

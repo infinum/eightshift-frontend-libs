@@ -3,7 +3,8 @@ import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, RangeControl } from '@wordpress/components';
-import { CustomSelect, icons, IconLabel, BlockIcon, ucfirst, getAttrKey, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { Fragment } from '@wordpress/element';
+import { CustomSelect, icons, IconLabel, BlockIcon, ucfirst, getAttrKey, IconToggle, Responsive } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 import { unescapeHTML } from '@eightshift/frontend-libs/scripts/helpers/text-helpers';
 
@@ -13,7 +14,8 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 		allowed: {
 			postTypes,
 			taxonomies
-		}
+		},
+		attributes: manifestAttributes,
 	} = manifest;
 
 	const {
@@ -24,10 +26,11 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 			terms,
 			posts,
 		},
-		featuredPostsItemsPerLine,
 		featuredPostsShowItems,
 		featuredPostsExcludeCurrentPost,
 	} = attributes;
+
+	const breakpoints = ['large', 'desktop', 'tablet', 'mobile'];
 
 	// Fetch all post types.
 	// Filter allowed post types defined in the block manifest.
@@ -199,14 +202,27 @@ export const FeaturedPostsOptions = ({ attributes, setAttributes }) => {
 
 			<hr />
 
-			<RangeControl
-				label={<IconLabel icon={icons.itemsPerRow} label={__('Items per row', 'eightshift-frontend-libs')} />}
-				value={featuredPostsItemsPerLine}
-				onChange={(value) => setAttributes({ [getAttrKey('featuredPostsItemsPerLine', attributes, manifest)]: value })}
-				min={manifestOptions.featuredPostsItemsPerLine.min}
-				max={manifestOptions.featuredPostsItemsPerLine.max}
-				step={manifestOptions.featuredPostsItemsPerLine.step}
-			/>
+			<Responsive label={<IconLabel icon={icons.itemPerRow} label={__('Items per row', 'eightshift-frontend-libs')} />}>
+				{breakpoints.map((keyName) => {
+					const point = ucfirst(keyName);
+					const attr = point === 'Large' ? `${getAttrKey('featuredPostsItemsPerLine', attributes, manifest)}` : `${getAttrKey('featuredPostsItemsPerLine', attributes, manifest)}${point}`;
+
+					return (
+						<Fragment key={keyName}>
+							<RangeControl
+								label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
+								onChange={(value) => setAttributes({ [attr]: value })}
+								resetFallbackValue={manifestAttributes[attr].default}
+								value={attributes[attr]}
+								min={manifestOptions.featuredPostsItemsPerLine.min}
+								max={manifestOptions.featuredPostsItemsPerLine.max}
+								step={manifestOptions.featuredPostsItemsPerLine.step}
+								allowReset
+							/>
+						</Fragment>
+					);
+				})}
+			</Responsive>
 
 			<RangeControl
 				label={<IconLabel icon={icons.totalItems} label={__('Maximum items', 'eightshift-frontend-libs')} />}

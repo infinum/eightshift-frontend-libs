@@ -1,4 +1,4 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, A11y } from 'swiper';
 import globalManifest from './../../../manifest.json';
 
 export class CarouselSlider {
@@ -25,8 +25,11 @@ export class CarouselSlider {
 			slidesPerView: 1,
 			spaceBetween: 10,
 			modules: [
-				Navigation, Pagination
+				Navigation, Pagination, A11y
 			],
+			a11y: {
+				slideRole: 'figure',
+			},
 			keyboard: {
 				enabled: true,
 			},
