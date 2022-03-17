@@ -31,6 +31,7 @@ export const ColorPaletteCustomLayout = {
  * @param {string?} [props.layout='']                                                - If `true` and a `label` or `help` is provided, removes the default bottom spacing from WP `BaseControl`.
  * @param {ColorPaletteCustomLayout} [props.layout=ColorPaletteCustomLayout.DEFAULT] - Determines the layout of the control.
  * @param {boolean} [props.searchable=true]                                          - If `true`, the list of color can be searched through.
+ * @param {boolean} [props.disabled]                                                 - If `true`, the component can't be interacted with.
  */
 export const ColorPaletteCustom = (props) => {
 	const {
@@ -43,6 +44,7 @@ export const ColorPaletteCustom = (props) => {
 		inline = false,
 		layout = ColorPaletteCustomLayout.DEFAULT,
 		searchable = true,
+		disabled,
 	} = props;
 
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
@@ -84,6 +86,7 @@ export const ColorPaletteCustom = (props) => {
 		<>
 			{searchable &&
 				<TextControl
+					disabled={disabled}
 					placeholder={__('Search colors', 'eightshift-frontend-libs')}
 					className='es-mb-s-important'
 					onChange={(v) => {
@@ -137,6 +140,7 @@ export const ColorPaletteCustom = (props) => {
 											onClick={() => onChange(slug)}
 											className={`es-button-icon-24 es-button-square-28 ${value === slug ? 'is-generic-swatch-active' : ''}`}
 											icon={icons.genericColorSwatch}
+											disabled={disabled}
 											style={{
 												'--selected-color': color,
 												'--current-opacity': value === slug ? 1 : 0,
@@ -165,6 +169,7 @@ export const ColorPaletteCustom = (props) => {
 									onClick={() => onChange(slug)}
 									className={`es-button-icon-24 ${layout === ColorPaletteCustomLayout.DEFAULT ? 'es-button-square-28' : ''} ${value === slug ? 'is-generic-swatch-active' : ''}`}
 									icon={icons.genericColorSwatch}
+									disabled={disabled}
 									style={{
 										'--selected-color': color,
 										'--current-opacity': value === slug ? 1 : 0,
@@ -184,6 +189,7 @@ export const ColorPaletteCustom = (props) => {
 					onClick={() => onChange(undefined)}
 					icon={icons.reset}
 					className='es-mt-m es-button-icon-24'
+					disabled={disabled}
 				>
 					{__('Reset', 'eightshift-frontend-libs')}
 				</Button>
