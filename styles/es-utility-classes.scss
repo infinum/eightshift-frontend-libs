@@ -215,16 +215,16 @@ $es-utility-props: (
 .es-v-end {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
+	align-items: flex-end;
 	gap: 0.5rem;
 }
 
 .es-v-end-wrap {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
+	align-items: flex-end;
 	gap: 0.5rem;
 	flex-wrap: wrap;
 }
@@ -232,16 +232,16 @@ $es-utility-props: (
 .es-v-start {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
 	gap: 0.5rem;
 }
 
 .es-v-start-wrap {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
 	gap: 0.5rem;
 	flex-wrap: wrap;
 }
@@ -249,16 +249,16 @@ $es-utility-props: (
 .es-v-center {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
 	gap: 0.5rem;
 }
 
 .es-v-center-wrap {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	gap: 0.5rem;
 	flex-wrap: wrap;
 }
