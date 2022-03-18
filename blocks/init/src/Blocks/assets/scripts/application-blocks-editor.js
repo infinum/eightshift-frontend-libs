@@ -51,7 +51,6 @@ outputCssVariablesGlobal();
 
 outputCssVariablesCombined();
 
-
 // Change the default block to the custom paragraph.
 // If changing this block update the blocks filter method in Blocks.php.
 domReady(() => {

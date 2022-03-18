@@ -70,6 +70,7 @@ export const registerBlocks = (
 		config: {
 			outputCssVariablesGlobally: true,
 			outputCssVariablesGloballyOptimize: true,
+			outputCssVariablesSelectorName: 'esCssVariables',
 		},
 		wrapper: wrapperManifest,
 		settings: globalManifest,
@@ -858,6 +859,11 @@ export const setConfigFlags = () => {
 	// outputCssVariablesGloballyOptimize
 	if (typeof settingsGlobal?.outputCssVariablesGloballyOptimize === 'boolean') {
 		window['eightshift'][process.env.VERSION].config.outputCssVariablesGloballyOptimize = settingsGlobal.outputCssVariablesGloballyOptimize;
+	}
+
+	// outputCssVariablesSelectorName
+	if (typeof settingsGlobal?.outputCssVariablesSelectorName === 'string') {
+		window['eightshift'][process.env.VERSION].config.outputCssVariablesSelectorName = settingsGlobal.outputCssVariablesSelectorName;
 	}
 };
 

@@ -116,6 +116,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 		}
 	}
 
+	// Set breakpoints cache for optimized load time.
 	setBreakpointsCacheData();
 
 	return document.head.insertAdjacentHTML('afterbegin', `
@@ -837,11 +838,13 @@ export const outputCssVariablesCombinedInner = (newBlocks) => {
 		output = output.replace(/\n|\r/g, '');
 	}
 
+	const selector = getSettings('config', 'outputCssVariablesSelectorName');
+
 	// Detect if style tag is present in dom.
-	const styleTag = document.getElementById('esCssVariables');
+	const styleTag = document.getElementById(selector);
 
 	if (!styleTag) {
-		document.body.insertAdjacentHTML('beforeend', `<style id="esCssVariables">${output}</style>`);
+		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output}</style>`);
 	} else {
 		styleTag.innerHTML = output;
 	}

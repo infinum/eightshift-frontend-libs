@@ -12,14 +12,17 @@ export const getSettings = (type, item = '') => {
 		throw Error(`It looks like there is no data to provide in global window object for eightshift - ${process.env.VERSION}.`);
 	}
 
+	// If type is block or component.
 	if (type === 'block' || type === 'component') {
-		let name = 'blockName';
+		let keyName = 'blockName';
+		let keyDetails = 'blocks';
 
 		if (type === 'component') {
-			name = 'componentName';
+			keyName = 'componentName';
+			keyDetails = 'components';
 		}
 
-		const items = data[type].find((item) => item[name] === item);
+		const items = data[keyDetails].find((item) => item[keyName] === item);
 
 		if (!items) {
 			throw Error(`Item ${item} not found in the ${type} settings or the output data is empty. Please check if the provided key and parent is correct.`);
@@ -28,6 +31,7 @@ export const getSettings = (type, item = '') => {
 		return items;
 	}
 
+	// If searching for one item in array.
 	if (item) {
 		const items = data?.[type]?.[item];
 
@@ -38,7 +42,7 @@ export const getSettings = (type, item = '') => {
 		return items;
 	}
 
-
+	// If searching for one item only.
 	const items = data?.[type];
 
 	if (typeof items === 'undefined') {
@@ -46,18 +50,4 @@ export const getSettings = (type, item = '') => {
 	}
 
 	return items;
-};
-
-/**
- * Returns block full name that contains namespace and block name.
- *
- * @access public
- *
- * @returns {string}
- */
-export const getSettingsBlockFullName = (blockName) => {
-	const namespace = getSettings('settings', 'namespace');
-	const block = getSettings('block', blockName);
-
-	return namespace && block ? `${namespace}/${block}` : '';
 };
