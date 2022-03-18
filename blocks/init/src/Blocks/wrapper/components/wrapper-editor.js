@@ -1,5 +1,11 @@
 import React from 'react';
-import { responsiveSelectors, selector, checkAttr, checkAttrResponsive, classnames } from '@eightshift/frontend-libs/scripts';
+import {
+	responsiveSelectors,
+	selector,
+	checkAttr,
+	checkAttrResponsive,
+	classnames
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
