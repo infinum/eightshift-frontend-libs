@@ -5,167 +5,49 @@
  *
  * @returns {object}
  */
-export const getSettings = () => {
-	return window?.['eightshift']?.[process.env.VERSION] ?? {};
-};
+export const getSettings = (type, item = '') => {
+	const data = window?.['eightshift']?.[process.env.VERSION];
 
-/**
- * Returns project features config details.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsConfig = () => {
-	return getSettings()?.config ?? {};
-};
+	if (typeof data === 'undefined') {
+		throw Error(`It looks like there is no data to provide in global window object for eightshift - ${process.env.VERSION}.`);
+	}
 
-/**
- * Get project features config - output css variables globally.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsConfigOutputCssVariablesGlobally = () => {
-	return getSettingsConfig()?.outputCssVariablesGlobally;
-};
+	// If type is block or component.
+	if (type === 'block' || type === 'component') {
+		let keyName = 'blockName';
+		let keyDetails = 'blocks';
 
-/**
- * Set project features config - output css variables globally.
- *
- * @access public
- *
- * @returns {object}
- */
-export const setSettingsConfigOutputCssVariablesGlobally = (value) => {
-	getSettingsConfig().outputCssVariablesGlobally = value;
-};
+		if (type === 'component') {
+			keyName = 'componentName';
+			keyDetails = 'components';
+		}
 
-/**
- * Returns global manifest details.
- *
- * @access public
- *
- * @returns  {object}
- */
-export const getSettingsGlobal = () => {
-	return getSettings()?.globalManifest ?? {};
-};
+		const items = data[keyDetails].find((item) => item[keyName] === item);
 
-/**
- * Returns all blocks manifest array.
- *
- * @access public
- *
- * @returns {array}
- */
-export const getSettingsBlocks = () => {
-	return getSettings()?.blocks ?? [];
-};
+		if (!items) {
+			throw Error(`Item ${item} not found in the ${type} settings or the output data is empty. Please check if the provided key and parent is correct.`);
+		}
 
-/**
- * Returns one block manifest details.
- *
- * @param {string} blockName Block name to search.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsBlock = (blockName) => {
-	return getSettingsBlocks().find((item) => item.blockName === blockName) ?? {};
-};
+		return items;
+	}
 
-/**
- * Returns all components manifest array.
- *
- * @access public
- *
- * @returns {array}
- */
-export const getSettingsComponents = () => {
-	return getSettings()?.components ?? [];
-};
+	// If searching for one item in array.
+	if (item) {
+		const items = data?.[type]?.[item];
 
-/**
- * Returns one component manifest details.
- *
- * @param {string} componentName Component name to search.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsComponent = (componentName) => {
-	return getSettingsComponents().find((item) => item.componentName === componentName) ?? {};
-};
+		if (typeof items === 'undefined') {
+			throw Error(`Key ${item} not found in the ${type} - ${item} settings or the output data is empty. Please check if the provided key and parent is correct.`);
+		}
 
-/**
- * Returns CSS variables array.
- *
- * @access public
- *
- * @returns {array}
- */
-export const getSettingsStyles = () => {
-	return getSettings()?.styles ?? [];
-};
+		return items;
+	}
 
-/**
- * Returns wrapper manifest details.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsWrapper = () => {
-	return getSettings()?.wrapper ?? {};
-};
+	// If searching for one item only.
+	const items = data?.[type];
 
-/**
- * Returns project namespace from global settings.
- *
- * @access public
- *
- * @returns {string}
- */
-export const getSettingsNamespace = () => {
-	return getSettingsGlobal()?.namespace ?? '';
-};
+	if (typeof items === 'undefined') {
+		throw Error(`Key ${type} not found in the settings or the output data is empty. Please check if the provided key and parent is correct.`);
+	}
 
-/**
- * Returns block full name that contains namespace and block name.
- *
- * @access public
- *
- * @returns {string}
- */
-export const getSettingsBlockFullName = (blockName) => {
-	const namespace = getSettingsNamespace();
-	const block = getSettingsBlock(blockName)?.blockName;
-
-	return namespace && block ? `${namespace}/${block}` : '';
-};
-
-/**
- * Returns global settings global css variables object.
- *
- * @access public
- *
- * @returns {object}
- */
-export const getSettingsGlobalCssVariables = () => {
-	return getSettingsGlobal()?.globalVariables ?? {};
-};
-
-/**
- * Returns global settings global css one variable.
- *
- * @access public
- *
- * @returns {mixed}
- */
-export const getSettingsGlobalCssVariable = (variable) => {
-	return getSettingsGlobalCssVariables()[variable];
+	return items;
 };

@@ -1,10 +1,16 @@
-import { getAttrKey } from '../helpers/check-attr';
 import _ from 'lodash';
+import { subscribe, select } from '@wordpress/data';
+import { getAttrKey } from '../helpers/check-attr';
+import { getSettings } from './get-manifest-details';
+
+let breakpointsPreparedVariableDataCache = [];
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
- * @param {array} globalManifest - Global variable data.
+ * @param {object} globalManifest - (Optional) Global variable data.
+ *
+ * @access public
  *
  * @return {string|void}
  *
@@ -86,15 +92,21 @@ import _ from 'lodash';
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest) => {
+export const outputCssVariablesGlobal = (globalManifest = {}) => {
 
 	let output = '';
+	let globalVariables = globalManifest?.globalVariables;
 
-	if (!globalManifest || !_.has(globalManifest, 'globalVariables')) {
-		return output;
+	// Read from global cache data if no item is provided using props.
+	if (typeof globalVariables === 'undefined') {
+		globalVariables = getSettings('settings', 'globalVariables');
 	}
 
-	for (const [itemKey, itemValue] of Object.entries(globalManifest['globalVariables'])) {
+	if (typeof globalVariables === 'undefined') {
+		throw Error(`It looks like you are missing variables in the provided globalManifest object. Please check if you data has globalVariables key.`);
+	}
+
+	for (const [itemKey, itemValue] of Object.entries(globalVariables)) {
 		const itemKeyInner = _.kebabCase(itemKey);
 
 		if (_.isObject(itemValue)) {
@@ -104,9 +116,8 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 		}
 	}
 
-	if (!output) {
-		return '';
-	}
+	// Set breakpoints cache for optimized load time.
+	setBreakpointsCacheData();
 
 	return document.head.insertAdjacentHTML('afterbegin', `
 		<style>
@@ -118,13 +129,231 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 };
 
 /**
+ * Get component/block options and process them in CSS variables.
+ *
+ * @param {array} attributes      - Built attributes.
+ * @param {array} manifest        - Component/block manifest data.
+ * @param {string} unique         - Unique key.
+ * @param {object} globalManifest - (Optional) Global manifest json.
+ * @param {string} customSelector - Output custom selector to use as a style prefix.
+ *
+ * @access public
+ *
+ * @return {string}
+ *
+ * Usage:
+ * ```js
+ * import React, { useMemo } from 'react';
+ *
+ * const unique = useMemo(() => getUnique(), []);
+ *
+ * outputCssVariables(attributes, manifest, unique, globalManifest);
+ * ```
+ */
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
+
+	let output = '';
+
+	const outputGloballyFlag = getSettings('config', 'outputCssVariablesGlobally');
+	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+
+	let globalVariables = globalManifest?.globalVariables;
+
+	// Read from global cache data if no item is provided using props.
+	if (typeof globalVariables === 'undefined') {
+		globalVariables = getSettings('settings', 'globalVariables');
+	}
+
+	const breakpoints = globalVariables?.breakpoints;
+
+	// Define variables from manifest.
+	const variables = manifest?.variables;
+	const variablesEditor = manifest?.variablesEditor;
+	const responsiveAttributes = manifest?.responsiveAttributes;
+
+	const sortedBreakpoints = Object.entries(breakpoints)
+		.sort((a, b) => {
+			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+		});
+
+	const defaultBreakpoints = {
+		min: sortedBreakpoints?.[0]?.[0] || '',
+		max: sortedBreakpoints?.[sortedBreakpoints.length - 1]?.[0] || '',
+	};
+
+	// Get the initial data array.
+	const data = prepareVariableData(sortedBreakpoints);
+
+	// Check if component or block.
+	let name = manifest.componentClass ?? attributes.blockClass;
+
+	if (customSelector !== '') {
+		name = customSelector;
+	}
+
+	if (typeof variables !== 'undefined') {
+		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
+		if (typeof responsiveAttributes !== 'undefined') {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
+		}
+
+		// Iterate each variable from variables field.
+		setVariablesToBreakpoints(attributes, variables, data, manifest, defaultBreakpoints);
+	}
+
+	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
+	if (typeof variablesEditor !== 'undefined') {
+		if (typeof responsiveAttributes !== 'undefined') {
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
+		}
+
+		// Iterate each variable from variablesEditor field.
+		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
+	}
+
+	// Prepare output style object.
+	const styles = {
+		name,
+		unique,
+		blockTopLevelId: attributes?.blockTopLevelId,
+		variables: [],
+	};
+
+	// Loop data and provide correct selectors from data array.
+	for(const {type, value, variable} of data) {
+		// If breakpoint value is 0 then don't wrap the media query around it.
+		if (variable.length === 0) {
+			continue;
+		}
+
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type,
+				variable,
+				value,
+			});
+		} else {
+			if (value === 0) {
+				output += `\n .${name}[data-id='${unique}']{\n${variable.join('\n')}\n}`;
+			} else {
+				output += `\n @media (${type}-width: ${value}px) {\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n}\n}`;
+			}
+		}
+	}
+
+	// Output manual output from the array of variables.
+	let manual = '';
+	const variablesCustom = manifest?.variablesCustom;
+
+	if (typeof variablesCustom !== 'undefined') {
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type: 'min',
+				variable: variablesCustom,
+				value: 0
+			});
+		} else {
+			manual = variablesCustom.join(';\n');
+		}
+	}
+
+	let manualEditor = '';
+	const variablesCustomEditor = manifest?.variablesCustomEditor;
+
+	if (typeof variablesCustomEditor !== 'undefined') {
+		if (outputGloballyFlag) {
+			styles.variables.push({
+				type: 'min',
+				variable: variablesCustomEditor,
+				value: 0
+			});
+		} else {
+			manualEditor = variablesCustomEditor.join(';\n');
+		}
+	}
+
+	if (outputGloballyFlag) {
+		const settingsStyles = getSettings('styles');
+		const existsIndex = settingsStyles.findIndex((item) => item?.name === name && item?.unique === unique);
+
+		const blockTopLevelId = attributes?.blockTopLevelId ?? '';
+
+		if (blockTopLevelId) {
+			const settingsStylesMap = getSettings('stylesMap');
+
+			if (settingsStylesMap.indexOf(blockTopLevelId) === -1) {
+				settingsStylesMap.push(blockTopLevelId);
+			}
+		}
+
+		if (existsIndex !== -1) {
+			settingsStyles[existsIndex] = styles;
+		} else {
+			settingsStyles.push(styles);
+		}
+
+		return null;
+	}
+
+	// Prepare final output for testing.
+	const fullOutput = `
+		${output}
+		${manual}
+		${manualEditor}
+	`;
+
+	// Check if final output is empty and remove if it is.
+	if (_.isEmpty(fullOutput.trim())) {
+		return '';
+	}
+
+	// Prepare output for manual variables.
+	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}']{ ${manual} ${manualEditor}}` : '';
+
+	if (outputGloballyOptimizeFlag) {
+		output.replace('\n', '');
+		finalManualOutput.replace('\n', '');
+	}
+
+	// Output the style for CSS variables.
+	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+};
+
+/**
+ * Output css variables as a one inline style tag.
+ *
+ * @access public
+ *
+ * @returns {void}
+ */
+export const outputCssVariablesCombined = () => {
+	// Update state on change.
+	let contentState = select( 'core/block-editor' ).getBlocks();
+
+	subscribe(
+		_.debounce(() => {
+			const newState = select('core/block-editor').getBlocks();
+
+			if (contentState !== newState) {
+				outputCssVariablesCombinedInner(newState);
+			}
+
+			// Update reference.
+			contentState = newState;
+		}, 50)
+	);
+};
+
+/**
  * Convert hex color into RGB values.
  *
  * @param {string} input - Input hex color (either 3 or 6 characters).
  *
+ * @access public
+ *
  * @return {string}
  */
-export const hexToRgb = (input) => {
+ export const hexToRgb = (input) => {
 	let r = 0, g = 0, b = 0;
 	const hex = input.replace('#', '').trim();
 
@@ -152,30 +381,69 @@ export const hexToRgb = (input) => {
 };
 
 /**
+ * Returns a unique ID, generally used with CSS variable generation.
+ *
+ * @access public
+ *
+ * @return {string}
+ *
+ * Usage:
+ * ```js
+ * getUnique();
+ * ```
+ *
+ * Output:
+ * ```js
+ * 891273981374b98127419287
+ * ```
+ */
+export const getUnique = () => {
+	return require('crypto').randomBytes(16).toString('hex');
+};
+
+/**
  * Process and return global CSS variables based on the type.
  *
  * @param {array} itemValues - Values to check.
  * @param {string} itemKey   - Item key to check.
  *
+ * @access private
+ *
  * @return {string}
  */
-const globalInner = (itemValues, itemKey) => {
+export const globalInner = (itemValues, itemKey) => {
 	let output = '';
 
 	for (const [key, value] of Object.entries(itemValues)) {
 		const innerKey = _.kebabCase(key);
 		const itemInnerKey = _.kebabCase(itemKey);
 
+		const {
+			slug,
+			color,
+			gradient,
+		} = value;
+
 		switch (itemInnerKey) {
 			case 'colors':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['color']};\n`;
-				output += `--global-${itemInnerKey}-${value['slug']}-values: ${hexToRgb(value.color)};\n`;
+				if (typeof slug === 'undefined' || typeof color === 'undefined') {
+					break;
+				}
+
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.color};\n`;
+				output += `--global-${itemInnerKey}-${value.slug}-values: ${hexToRgb(value.color)};\n`;
 				break;
 			case 'gradients':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['gradient']};\n`;
+				if ( typeof slug === 'undefined' || typeof gradient === 'undefined') {
+					break;
+				}
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.gradient};\n`;
 				break;
 			case 'font-sizes':
-				output += `--global-${itemInnerKey}-${value['slug']}: ${value['slug']};\n`;
+				if ( typeof slug === 'undefined') {
+					break;
+				}
+				output += `--global-${itemInnerKey}-${value.slug}: ${value.slug};\n`;
 				break;
 			default:
 				output += `--global-${itemInnerKey}-${innerKey}: ${value};\n`;
@@ -184,22 +452,6 @@ const globalInner = (itemValues, itemKey) => {
 	}
 
 	return output;
-};
-
-/**
- * Extracting the names of default breakpoints depending on the case used in responsive(mobile first/desktop first).
- * Returning the 'min' key with default name for mobile first, and the 'max' key for desktop first version.
- * If there are no breakpoints, min and max will be empty strings.
- * 
- * @param {string} breakpoints - Sorted breakpoints that are read from global manifest.
- * 
- * @return {object} Object with min and max keys.
- */
-const getDefaultBreakpoints = (breakpoints) => {
-	return {
-		min: breakpoints?.[0]?.[0] || '',
-		max: breakpoints?.[breakpoints.length - 1]?.[0] || '',
-	};
 };
 
 /**
@@ -212,7 +464,7 @@ const getDefaultBreakpoints = (breakpoints) => {
  *
  * @return {array}
  */
-const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
+export const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
 	return attributeVariables.map((attributeVariablesObject) => {
 
 		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
@@ -234,7 +486,7 @@ const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, br
  *
  * @return {object} Object prepared for setting all the variables to its breakpoints.
  */
-const setupResponsiveVariables = (responsiveAttributes, variables) => {
+export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 	// Iterate through responsive attributes.
 	return Object.entries(responsiveAttributes)
 		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
@@ -284,7 +536,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 				}, {});
 
 			// Merge multiple responsive attributes to one object.
-			return { ...responsiveAttributesVariables, ...responsiveAttributeVariables };
+			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
 		}, {});
 };
 
@@ -297,9 +549,11 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
  * @param {array} manifest            - Component/block manifest data.
  * @param {object} defaultBreakpoints - Default breakpoints for mobile/desktop first.
  *
+ * @access private
+ *
  * @return {object} Filled object with variables data separated in breakpoints.
  */
-const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
+export const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
 	// Iterate each variable.
 	for (const [variableName, variableValue] of Object.entries(variables)) {
 
@@ -323,7 +577,7 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 			const type = inverse ? 'max' : 'min';
 
 			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint;
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
@@ -346,163 +600,15 @@ const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaul
 };
 
 /**
- * Get component/block options and process them in CSS variables.
- *
- * @param {array} attributes      - Built attributes.
- * @param {array} manifest        - Component/block manifest data.
- * @param {string} unique         - Unique key.
- * @param {object} globalManifest - Global manifest json.
- * @param {string} customSelector - Output custom selector to use as a style prefix.
- *
- * @return {string}
- *
- * Usage:
- * ```js
- * import React, { useMemo } from 'react';
- *
- * const unique = useMemo(() => getUnique(), []);
- *
- * outputCssVariables(attributes, manifest, unique, globalManifest);
- * ```
- */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest, customSelector = '') => {
-
-	let output = '';
-
-	// Bailout if global breakpoints are missing.
-	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
-		return '';
-	}
-
-	// Bailout if attributes or manifest is missing.
-	if (!attributes || !manifest) {
-		return '';
-	}
-
-	// Bailout if manifest is missing any of variables key.
-	if (
-		!_.has(manifest, 'variables') &&
-		!_.has(manifest, 'variablesEditor') &&
-		!_.has(manifest, 'variablesCustom') &&
-		!_.has(manifest, 'variablesCustomEditor')
-	) {
-		return '';
-	}
-
-	// Define variables from globalManifest.
-	const {
-		breakpoints: globalBreakpoints,
-	} = globalManifest.globalVariables;
-
-	// Define variables from manifest.
-	const {
-		variables,
-		variablesEditor,
-		responsiveAttributes,
-	} = manifest;
-
-	const sortedBreakpoints = Object.entries(globalBreakpoints)
-		.sort((a, b) => {
-			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
-		});
-
-	const defaultBreakpoints = getDefaultBreakpoints(sortedBreakpoints);
-
-	// Get the initial data array.
-	const data = prepareVariableData(sortedBreakpoints);
-
-	// Check if component or block.
-	let name = manifest['componentClass'] ?? attributes['blockClass'];
-
-	if (customSelector !== '') {
-		name = customSelector;
-	}
-
-	if (variables) {
-
-		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
-		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
-		}
-
-		// Iterate each variable from variables field.
-		setVariablesToBreakpoints(attributes, variables, data, manifest, defaultBreakpoints);
-	}
-
-	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
-	if (variablesEditor) {
-		if (responsiveAttributes) {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
-		}
-
-		// Iterate each variable from variablesEditor field.
-		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
-	}
-
-	// Loop data and provide correct selectors from data array.
-	data.forEach((values) => {
-
-		// Define variables from values.
-		const {
-			type,
-			value,
-			variable,
-		} = values;
-
-		// If breakpoint value is 0 then don't wrap the media query around it.
-		if (value === 0) {
-			if (!_.isEmpty(variable)) {
-				output += `.${name}[data-id='${unique}'] {
-					${variable.join('\n')}
-					}
-				`;
-			}
-		} else {
-			if (!_.isEmpty(variable)) {
-				output += `@media (${type}-width: ${value}px) {
-						.${name}[data-id='${unique}'] {
-							${variable.join('\n')}
-						}
-					}
-				`;
-			}
-		}
-	});
-
-	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
-	const manualEditor = _.has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
-
-	// Prepare final output for testing.
-	const fullOutput = `
-		${output}
-		${manual}
-		${manualEditor}
-	`;
-
-	// Check if final output is empty and remove if it is.
-	if (_.isEmpty(fullOutput.trim())) {
-		return '';
-	}
-
-	// Prepare output for manual variables.
-	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}'] {
-		${manual}
-		${manualEditor}
-	}` : '';
-
-	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{ __html: `${output} ${finalManualOutput}` }}></style>;
-};
-
-/**
  * Create initial array of data to be able to populate later.
  *
  * @param {object} globalBreakpoints - Global breakpoints from global manifest to set the correct output.
  *
+ * @access private
+ *
  * @return {array}
  */
-const prepareVariableData = (globalBreakpoints) => {
+export const prepareVariableData = (globalBreakpoints) => {
 
 	// Define the min and max arrays.
 	const min = [];
@@ -575,9 +681,11 @@ const prepareVariableData = (globalBreakpoints) => {
  * @param {array} variables      - Array of variables of CSS variables.
  * @param {mixed} attributeValue - Original attribute value used in magic variable.
  *
+ * @access private
+ *
  * @returns {array}
  */
-const variablesInner = (variables, attributeValue) => {
+export const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -607,20 +715,137 @@ const variablesInner = (variables, attributeValue) => {
 };
 
 /**
- * Returns a unique ID, generally used with CSS variable generation.
+ * Set breakpoints cache for optimized load time.
  *
- * @return {string}
+ * @access private
  *
- * Usage:
- * ```js
- * getUnique();
- * ```
- *
- * Output:
- * ```js
- * 891273981374b98127419287
- * ```
+ * @returns {void}
  */
-export const getUnique = () => {
-	return require('crypto').randomBytes(16).toString('hex');
+export const setBreakpointsCacheData = () => {
+	// Prepare breakpoints.
+	const breakpoints = getSettings('settings', 'globalVariables')?.breakpoints;
+
+	const breakpointsCache = Object.entries(breakpoints).sort((a, b) => {
+		return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+	});
+
+	// Prepare breakpoints data to output combined css variables.
+	const breakpointsMin = breakpointsCache.map((item) => {
+		return {
+			type: 'min',
+			value: item[1],
+		};
+	});
+	breakpointsMin.unshift({
+		type: 'min',
+		value: 0,
+	});
+
+	const breakpointsMax = breakpointsCache.reverse().map((item) => {
+		return {
+			type: 'max',
+			value: item[1],
+		};
+	});
+	breakpointsMax.unshift({
+		type: 'max',
+		value: 0,
+	});
+
+	breakpointsPreparedVariableDataCache = breakpointsMin.concat(breakpointsMax);
+};
+
+/**
+ * Output css variables as a one inline style tag - inner.
+ *
+ * @access private
+ *
+ * @returns {string}
+ */
+export const outputCssVariablesCombinedInner = (newBlocks) => {
+	const styles = getSettings('styles');
+	let stylesMap = getSettings('stylesMap');
+
+	if (!styles.length) {
+		return;
+	}
+
+	// Find all blocks that are remaining in the dom and compare them to our stylesMap.
+	const remainingBlocks = newBlocks.filter((block) => {
+		return stylesMap.indexOf(block?.attributes?.blockTopLevelId) !== -1;
+	}).map((item) => item?.attributes?.blockTopLevelId);
+
+	// Find all blocks that are removed from the dom by comparing that to the remainingBlocks.
+	const missingBlocks = stylesMap.filter(val => !remainingBlocks.includes(val));
+
+	// Get updated styles with removed blocks.
+	const updatedStyles = styles.filter((item) => !missingBlocks.includes(item.blockTopLevelId));
+
+	// Update global state.
+	window['eightshift'][process.env.VERSION].stylesMap = remainingBlocks;
+	window['eightshift'][process.env.VERSION].styles = updatedStyles;
+
+	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+
+	const breakpoints = [];
+
+	// Loop styles.
+	for (const {name, unique, variables} of updatedStyles) {
+		// Bailout if variables are missing.
+		if (variables.length === 0) {
+			continue;
+		}
+
+		// Loop inner variables.
+		for (const {type, value, variable} of variables) {
+			// Bailout if variable is missing.
+			if (variable.length === 0) {
+				continue;
+			}
+
+			// Set breakpoint to empty if it is missing initially.
+			if (typeof breakpoints[`${type}---${value}`] === 'undefined') {
+				breakpoints[`${type}---${value}`] = '';
+			}
+
+			// Populate breakpoints output.
+			breakpoints[`${type}---${value}`] += `\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n} `;
+		}
+	}
+
+	// Prepare final output.
+	let output = '';
+
+	// Loop all breakpoints prepared for output.
+	breakpointsPreparedVariableDataCache.forEach(({type, value}) => {
+		const breakpointValue = breakpoints[`${type}---${value}`] ?? '';
+
+		// Bailout if breakpoint is missing.
+		if (breakpointValue === '') {
+			return;
+		}
+
+		// Wrap media queries with correct selectors.
+		if (value === 0) {
+			output += `${breakpointValue}\n`;
+		} else {
+			output += `\n@media (${type}-width:${value}px){${breakpointValue}}\n `;
+		}
+	});
+
+	// Remove newlines.
+	if (outputGloballyOptimizeFlag) {
+		output = output.replace(/\n|\r/g, '');
+	}
+
+	const selector = getSettings('config', 'outputCssVariablesSelectorName');
+
+	// Detect if style tag is present in dom.
+	const styleTag = document.getElementById(selector);
+
+	if (!styleTag) {
+		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output}</style>`);
+	} else {
+		styleTag.innerHTML = output;
+	}
 };

@@ -11,7 +11,13 @@
 
 import domReady from '@wordpress/dom-ready';
 import { setDefaultBlockName } from '@wordpress/blocks';
-import { registerBlocks, registerVariations, outputCssVariablesGlobal, inserter } from '@eightshift/frontend-libs/scripts/editor';
+import {
+	registerBlocks,
+	registerVariations,
+	outputCssVariablesGlobal,
+	inserter,
+	outputCssVariablesCombined
+} from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
 import globalSettings from '../../manifest.json';
@@ -42,6 +48,8 @@ hooks();
 
 // Output global css variables.
 outputCssVariablesGlobal();
+
+outputCssVariablesCombined();
 
 // Change the default block to the custom paragraph.
 // If changing this block update the blocks filter method in Blocks.php.

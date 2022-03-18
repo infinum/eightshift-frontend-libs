@@ -61,18 +61,6 @@ export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
 	getSettings,
-	getSettingsConfig,
-	getSettingsConfigOutputCssVariablesGlobally,
-	setSettingsConfigOutputCssVariablesGlobally,
-	getSettingsGlobal,
-	getSettingsBlocks,
-	getSettingsBlock,
-	getSettingsComponents,
-	getSettingsComponent,
-	getSettingsStyles,
-	getSettingsWrapper,
-	getSettingsNamespace,
-	getSettingsBlockFullName,
 } from './editor/get-manifest-details';
 export {
 	getOption,
@@ -89,8 +77,9 @@ export {
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
-	getUnique,
+	outputCssVariablesCombined,
 	hexToRgb,
+	getUnique,
 } from './editor/output-css-variables';
 export {
 	overrideInnerBlockAttributes,
