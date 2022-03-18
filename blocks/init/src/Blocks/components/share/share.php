@@ -10,9 +10,9 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$postUrl = $attributes['postUrl'] ?? \get_the_permalink();
-$postTitle = $attributes['postTitle'] ?? \get_the_title();
-$postImageUrl = $attributes['postImageUrl'] ?? \get_the_post_thumbnail_url(\get_the_ID(), 'large') ?? '';
+$postUrl = $attributes['postUrl'] ?? get_the_permalink();
+$postTitle = $attributes['postTitle'] ?? get_the_title();
+$postImageUrl = $attributes['postImageUrl'] ?? get_the_post_thumbnail_url(get_the_ID(), 'large') ?? '';
 
 $socialNetworks = [
 	'twitter' => "https://twitter.com/intent/tweet?url={$postUrl}&text={$postTitle}",
@@ -42,7 +42,7 @@ $shareItemClass = Components::classnames([
 
 $networkNames = array_column($manifest['socialOptions'], 'label', 'value');
 ?>
-<div class="<?php echo \esc_attr($shareClass); ?>">
+<div class="<?php echo esc_attr($shareClass); ?>">
 	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>
 
 	<?php

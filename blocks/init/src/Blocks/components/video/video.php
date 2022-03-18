@@ -50,10 +50,10 @@ if (!$videoUrl) {
 ?>
 
 <video
-	class="<?php echo \esc_attr($videoClass); ?>"
-	<?php echo \esc_attr($additionalAttributes); ?>
-	preload="<?php echo \esc_attr($videoPreload); ?>"
-	poster="<?php echo \esc_attr($videoPoster); ?>"
+	class="<?php echo esc_attr($videoClass); ?>"
+	<?php echo esc_attr($additionalAttributes); ?>
+	preload="<?php echo esc_attr($videoPreload); ?>"
+	poster="<?php echo esc_attr($videoPoster); ?>"
 >
 	<?php
 	if (!is_iterable($videoUrl)) {

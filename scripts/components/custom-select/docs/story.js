@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from './readme.mdx';
-import { CustomSelect } from '../custom-select';
-import { components } from 'react-select';
+import { icons } from '../../../editor/icons/icons';
+import { CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay, CustomSelectCustomMultipleValueDisplay, CustomSelectCustomMultipleValueDisplayContainer, CustomSelectCustomMultipleValueRemoveButton } from '../custom-select';
 
 export default {
 	title: 'Options/Custom Select',
@@ -67,22 +67,59 @@ const getSearchableData = (inputValue) => {
 };
 
 const CustomPickerOption = props => (
-	<components.Option {...props}>
+	<CustomSelectCustomOption {...props}>
 		<div>
 			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
 			<span>{props.label}</span>
 		</div>
-	</components.Option>
+	</CustomSelectCustomOption>
 );
 
 const CustomValueDisplay = ({ children, ...props }) => (
-	<components.SingleValue {...props}>
+	<CustomSelectCustomValueDisplay {...props}>
 		<div>
 			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
 			<span>{children}</span>
 		</div>
-	</components.SingleValue>
+	</CustomSelectCustomValueDisplay>
 );
+
+const CustomMultiValueDisplay = (props) => {
+	return (
+		<CustomSelectCustomMultipleValueDisplay {...props}>
+			<div>
+				<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
+				<span>{props.children}</span>
+			</div>
+		</CustomSelectCustomMultipleValueDisplay>
+	);
+};
+
+const CustomMultiValueDisplayContainer = (props) => {
+	const customProps = {
+		...props,
+		innerProps: {
+			...props.innerProps,
+			style: {
+				backgroundColor: 'yellow',
+				flexDirection: 'row-reverse',
+				padding: '0.125rem 0.25rem',
+				borderRadius: '100rem',
+			},
+		}
+	};
+	return (
+		<CustomSelectCustomMultipleValueDisplayContainer {...customProps} />
+	);
+};
+
+const CustomMultiValueRemoveButton = (props) => {
+	return (
+		<CustomSelectCustomMultipleValueRemoveButton {...props}>
+			{icons.trash}
+		</CustomSelectCustomMultipleValueRemoveButton>
+	);
+};
 
 export const SelectSingle = () => {
 	return (
@@ -180,6 +217,48 @@ export const CustomRendering = () => {
 				label={'My cool multiple select menu'}
 				customOptionComponent={CustomPickerOption}
 				options={data}
+			/>
+
+			<p>Custom multi-select value display</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={true}
+				label={'Multiple synchrounous select'}
+				placeholder={'Select an item'}
+				options={data}
+				customMultiValueDisplayComponent={CustomMultiValueDisplay}
+			/>
+
+			<p>Custom multi-select value container</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={true}
+				label={'Multiple synchrounous select'}
+				placeholder={'Select an item'}
+				options={data}
+				customMultiValueDisplayContainerComponent={CustomMultiValueDisplayContainer}
+			/>
+
+			<p>Custom multi-select item remove button</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={true}
+				label={'Multiple synchrounous select'}
+				placeholder={'Select an item'}
+				options={data}
+				customMultiValueRemoveButton={CustomMultiValueRemoveButton}
+			/>
+
+			<p>Fully customized multi-select item</p>
+			<CustomSelect
+				{...defaultProps}
+				multiple={true}
+				label={'Multiple synchrounous select'}
+				placeholder={'Select an item'}
+				options={data}
+				customMultiValueRemoveButton={CustomMultiValueRemoveButton}
+				customMultiValueDisplayComponent={CustomMultiValueDisplay}
+				customMultiValueDisplayContainerComponent={CustomMultiValueDisplayContainer}
 			/>
 		</>
 	);

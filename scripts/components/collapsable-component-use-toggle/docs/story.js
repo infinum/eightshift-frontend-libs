@@ -38,6 +38,49 @@ export const component = () => {
 			>
 				<p>Content goes here</p>
 			</CollapsableComponentUseToggle>
+
+			<h2>No use toggle</h2>
+			<CollapsableComponentUseToggle
+				label='My component'
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				showUseToggle={false}
+				showLabel
+			>
+				<p>Content goes here</p>
+			</CollapsableComponentUseToggle>
+			
+			<h2>No label and use toggle</h2>
+			<CollapsableComponentUseToggle
+				label='My component'
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				showUseToggle={false}
+				showLabel={false}
+			>
+				<p>Content goes here</p>
+			</CollapsableComponentUseToggle>
+
+			<h2>No expander toggle (basic use toggle)</h2>
+			<CollapsableComponentUseToggle
+				label='My component'
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				showExpanderButton={false}
+			>
+				<p>Content goes here</p>
+			</CollapsableComponentUseToggle>
+
+			<h2>No expander toggle (basic use toggle) with expand on enable</h2>
+			<CollapsableComponentUseToggle
+				label='My component'
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				showExpanderButton={false}
+				expandOnChecked
+			>
+				<p>Content goes here</p>
+			</CollapsableComponentUseToggle>
 		</div>
 	);
 };

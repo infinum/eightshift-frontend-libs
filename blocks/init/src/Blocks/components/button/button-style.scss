@@ -37,4 +37,12 @@
 		--button-scoped-background-color: var(--global-colors-light);
 		--button-cursor: not-allowed;
 	}
+
+	&:focus {
+		outline: {
+			color: var(--button-outline-focus-color, var(--button-scoped-background-color, var(--button-background-color, var(--global-colors-primary))));
+			style: var(--button-outline-focus-style, dotted);
+			width: var(--button-outline-focus-width, 0.25rem);
+		}
+	}
 }

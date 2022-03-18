@@ -3,7 +3,7 @@ import { __experimentalLinkControl as LinkControl } from '@wordpress/block-edito
 import { Popover, Button, BaseControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Options panel component that allows picking an URL in a clean and simple way.
@@ -21,6 +21,9 @@ import { icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
  * @param {string} [props.editUrlLabel]           - 'Edit URL' button label (when URL is set).
  * @param {string} [props.addUrlLabel]            - 'Add URL' button label (when URL is not set).
  * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
+ * @param {boolean} [props.hasDeleteButton=true]  - If `true`, the component has a 'Remove link' button when a link is selected.
+ * @param {boolean} [props.hasUrlPreview=true]    - If `true`, a URL preview is shown inside the component.
+ * @param {boolean} [props.isCompact=false]       - If `true`, the component is rendered with a more compact layout.
  */
 export const LinkEditComponent = ({
 	url,
@@ -35,10 +38,14 @@ export const LinkEditComponent = ({
 	editUrlLabel = __('Edit URL'),
 	addUrlLabel = __('Add URL'),
 	disabled = false,
+	hasDeleteButton = true,
+	hasUrlPreview = true,
+	isCompact = false,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const ref = useRef();
+	const refCompact = useRef();
 
 	const openLinkControl = () => {
 		setIsDropdownOpen(true);
@@ -58,7 +65,6 @@ export const LinkEditComponent = ({
 		}
 
 		setAttributes(newValues);
-
 		setIsDropdownOpen(false);
 	};
 
@@ -87,7 +93,8 @@ export const LinkEditComponent = ({
 		<Popover
 			position='bottom center'
 			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={ref?.current}
+			anchorRef={isCompact ? refCompact?.current : ref?.current}
+			noArrow={false}
 		>
 			<LinkControl
 				value={currentValue}
@@ -108,49 +115,83 @@ export const LinkEditComponent = ({
 					}
 
 					setAttributes(newValues);
-					
+
 					if (newUrl !== url) {
 						setIsDropdownOpen(false);
 					}
 				}}
 			/>
+
+			{url?.length > 0 && hasDeleteButton && isCompact &&
+				<div className='es-popover-content'>
+					<Button
+						onClick={unlinkButton}
+						isDestructive={true}
+						icon={icons.trash}
+						iconSize={24}
+						disabled={disabled}
+					>
+						{removeLinkTooltip}
+					</Button>
+				</div>
+			}
 		</Popover>
 	);
 
 	return (
 		<BaseControl
 			label={
-				<>
-					{icons.link}
-					{sprintf(__('%s URL'), title)}
-				</>
+				<div className='es-flex-between'>
+					<IconLabel icon={icons.link} label={sprintf(__('%s URL'), title)} standalone />
+
+					{isCompact &&
+						<div className='es-h-spaced'>
+							<Button
+								isTertiary
+								onClick={openLinkControl}
+								icon={url?.length > 0 ? icons.editOptions : icons.plusCircle}
+								iconSize={24}
+								disabled={disabled}
+								label={url?.length > 0 ? editUrlLabel : addUrlLabel}
+								ref={refCompact}
+							/>
+						</div>
+					}
+				</div>
 			}
 		>
-			<div className='es-simple-editor-button-row'>
-				<Button
-					isSecondary
-					onClick={openLinkControl}
-					icon={url?.length > 0 ? icons.editOptions : icons.add}
-					iconSize={24}
-					disabled={disabled}
-				>
-					{url?.length > 0 ? editUrlLabel : addUrlLabel}
-				</Button>
-
-				{url?.length > 0 &&
+			{!isCompact &&
+				<div className='es-simple-editor-button-row'>
 					<Button
-						onClick={unlinkButton}
-						isDestructive={true}
-						icon={icons.trash}
+						isSecondary
+						onClick={openLinkControl}
+						icon={url?.length > 0 ? icons.editOptions : icons.add}
 						iconSize={24}
-						label={removeLinkTooltip}
 						disabled={disabled}
-					/>
-				}
-			</div>
+						ref={ref}
+					>
+						{url?.length > 0 ? editUrlLabel : addUrlLabel}
+					</Button>
 
-			{url?.length > 0 &&
-				<span className='es-decorative-text'>{truncateMiddle(url, 40)}</span>
+					{url?.length > 0 && hasDeleteButton &&
+						<Button
+							onClick={unlinkButton}
+							isDestructive={true}
+							icon={icons.trash}
+							iconSize={24}
+							label={removeLinkTooltip}
+							disabled={disabled}
+						/>
+					}
+				</div>
+			}
+
+			{url?.length > 0 && hasUrlPreview &&
+				<span
+					className={`es-decorative-text ${isCompact ? 'es-link-edit-component-compact-label' : ''}`}
+				>
+					{truncateMiddle(url, 40)}
+				</span>
 			}
 
 			{linkControl}

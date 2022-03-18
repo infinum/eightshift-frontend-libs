@@ -1,6 +1,5 @@
 import React from 'react';
 import { checkAttr, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
-import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import manifest from './../manifest.json';
 
@@ -45,7 +44,7 @@ export const QuoteEditor = (attributes) => {
 				></i>
 
 				<blockquote className={quoteContentClass}>
-					<HeadingEditor
+					<ParagraphEditor
 						{...props('heading', attributes, {
 							blockClass: componentClass,
 						})}
