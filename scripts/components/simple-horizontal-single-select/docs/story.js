@@ -8,7 +8,7 @@ export default {
 	title: 'Options/SimpleHorizontalSingleSelect',
 	parameters: {
 		docs: {
-			page: readme
+			page: readme,
 		}
 	},
 };

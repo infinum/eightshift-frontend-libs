@@ -19,7 +19,7 @@ import classnames from 'classnames';
  * @param {'none'|'inset'|'offset'} [props.border='none']                           - Sets the appearance of a border around the buttons.
  * @param {'default'|'stretch'|'left'|'center'|'right'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {boolean} [props.includeWpBottomSpacing=false]                            - If `true`, the component will add bottom spacing to match other Gutenberg components.
- * @param {boolean} [props.compactButtons=false]                                     - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.compactButtons=false]                                    - If `true`, the buttons are rendered smaller
  */
 export const SimpleHorizontalSingleSelect = (props) => {
 	const {
@@ -40,29 +40,38 @@ export const SimpleHorizontalSingleSelect = (props) => {
 	} = props;
 
 	const spacingConfig = {
-		width: 'max-content',
+		default: {
+			width: 'max-content',
+		},
+		left: {
+			marginRight: 'auto',
+			justifyContent: 'flex-start',
+			width: 'max-content',
+		},
+		center: {
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			justifyContent: 'center',
+			width: 'max-content',
+		},
+		right: {
+			marginLeft: 'auto',
+			justifyContent: 'flex-end',
+			width: 'max-content',
+		},
+		stretch: {
+			justifyContent: 'space-between',
+			width: '100%',
+		}
 	};
 
-	if (alignment === 'left') {
-		spacingConfig['marginRight'] = 'auto';
-		spacingConfig['justifyContent'] = 'flex-start';
-	} else if (alignment === 'center') {
-		spacingConfig['marginLeft'] = 'auto';
-		spacingConfig['marginRight'] = 'auto';
-		spacingConfig['justifyContent'] = 'center';
-	} else if (alignment === 'right') {
-		spacingConfig['marginLeft'] = 'auto';
-		spacingConfig['justifyContent'] = 'flex-end';
-	} else if (alignment === 'stretch') {
-		spacingConfig['justifyContent'] = 'space-between';
-		spacingConfig['width'] = '100%';
-	}
-
-	if (border === 'offset') {
-		spacingConfig['borderRadius'] = 3;
-		spacingConfig['padding'] = '0.125rem';
-		spacingConfig['border'] = '1px solid #ccc';
-	}
+	const borderConfig = {
+		offset: {
+			borderRadius: 3,
+			padding: '0.125rem',
+			border: '1px solid #ccc',
+		}
+	};
 
 	const control = (
 		<div
@@ -74,7 +83,8 @@ export const SimpleHorizontalSingleSelect = (props) => {
 				display: 'flex',
 				flexWrap: allowWrap ? 'wrap' : 'nowrap',
 				maxWidth: '100%',
-				...spacingConfig,
+				...(spacingConfig[alignment] ?? {}),
+				...(borderConfig[border] ?? {}),
 			}}
 		>
 			{options.map((item, i) => {

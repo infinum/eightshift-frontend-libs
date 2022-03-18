@@ -6,7 +6,7 @@ A simple component for picking mutually exclusive options.
 
 ```jsx
 <SimpleHorizontalSingleSelect
-	label='Size'
+	label={__('Size', 'eightshift-frontend-libs')}
 	options={options}
 	onChange={(val) => setAttributes(...)}
 	value={value}
@@ -19,7 +19,7 @@ Each option should be in this format:
 {
 	icon: icons.large, // Optional, can be either ES icon (name or whole icon element) or dashicon name.
 	value: 'l',
-	label: 'L', // Optional
-	tooltip: 'Large', // Optional, label will be used as fallback
+	label: __('L', 'eightshift-frontend-libs'), // Optional
+	tooltip: __('Large', 'eightshift-frontend-libs'), // Optional, label will be used as fallback
 }
 ```
