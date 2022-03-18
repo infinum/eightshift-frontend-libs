@@ -155,7 +155,7 @@ export const component = () => {
 
 			<ControlDisplay
 				title='Inline label'
-				propsUsed={['iconOnly']}
+				propsUsed={['inlineLabel']}
 			>
 				<SimpleHorizontalSingleSelect
 					inlineLabel='Size'
