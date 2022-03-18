@@ -1,6 +1,6 @@
 import Slider, { SliderTooltip, Handle } from 'rc-slider';
 import { BaseControl, TextControl } from '@wordpress/components';
-import classnames from 'classnames';
+import { classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * CustomSlider style.
@@ -123,7 +123,7 @@ export const CustomSlider = (props) => {
 
 	if (vertical) {
 		controlAdditionalStyles['flexDirection'] = 'column';
-		
+
 		if (marks) {
 			controlAdditionalStyles['--es-custom-slider-vertical-mark-offset'] = ([...Object.keys(marks)]?.length ?? 0) % 2 === 0 ? '-0.5rem' : '0.25rem';
 		}

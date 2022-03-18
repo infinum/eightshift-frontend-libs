@@ -1,6 +1,6 @@
 import Slider, { SliderTooltip, Handle, createSliderWithTooltip } from 'rc-slider';
 import { BaseControl, TextControl } from '@wordpress/components';
-import classnames from 'classnames';
+import { classnames } from '@eightshift/frontend-libs/scripts';
 
 const Range = createSliderWithTooltip(Slider.Range);
 
