@@ -17,6 +17,7 @@ const {
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
+const { replaceVersionNumbers } = require('../replace-version-numbers');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 const { installModifiedNodeDependencies, installModifiedComposerDependencies } = require('../dependencies');
@@ -79,6 +80,12 @@ exports.handler = async (argv) => {
   await installStep({
     describe: `${step}. Cleaning up`,
     thisHappens: cleanup(projectPath),
+  });
+  step++;
+
+  await installStep({
+    describe: `${step}. Replacing version numbers`,
+    thisHappens: replaceVersionNumbers(projectPath),
   });
   step++;
 
