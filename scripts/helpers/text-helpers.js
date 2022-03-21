@@ -58,6 +58,7 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
  * Output:
  * ```js
  * Test&Up
+ * ```
  */
 export const unescapeHTML = (input) =>
 	input.replace(
