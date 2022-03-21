@@ -2,8 +2,8 @@
  * Slices the string in the middle and inputs the provided separator so that the string is maxLength characters long.
  *
  * @param {string} input             - String to slice.
- * @param {number} maxLength         - Maximum allowed string length. Should be at least 8.
- * @param {string} [separator='...'] - Separator to insert. Should be exactly three characters long.
+ * @param {number} maxLength         - Maximum allowed string length.
+ * @param {string} [separator='...'] - Separator to insert.
  *
  * @access public
  *
