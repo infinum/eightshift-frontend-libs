@@ -16,14 +16,29 @@
  *
  * Output:
  * ```js
- * "https://eig...contact/"
+ * "https://ei.../contact/"
  */
 export const truncateMiddle = (input, maxLength, separator = '...') => {
-	if (input?.length <= maxLength) {
+	 // If the string is shorter than maxLength, just return it.
+	 if (input?.length <= maxLength) {
 		return input;
-	}
-
-	return `${input.slice(0, maxLength / 2)}${separator}${input.slice(-1 * (maxLength / 2 - 3))}`;
+	  }
+	
+	  // Return error if separator would prevent any characters from the word showing.
+	  if (separator.length + 1 > maxLength) {
+		return new Error('Separator length exceeds the passed maximum length, string wouldn\'t be visible.');
+	  }
+	
+	  // Smartly split up the string.
+	  const maxStringLength = maxLength - separator.length;
+	
+	  const leftPartLength = Math.ceil(maxStringLength / 2);
+	  const rightPartLength = Math.floor(maxStringLength / 2);
+	
+	  const leftPart = input.slice(0, leftPartLength).trim();
+	  const rightPart = rightPartLength > 0 ? input.slice(-1 * rightPartLength).trim() : '';
+	
+	  return `${leftPart}${separator}${rightPart}`;
 };
 
 /**
