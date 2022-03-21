@@ -26,7 +26,7 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
 	
 	  // Return error if separator would prevent any characters from the word showing.
 	  if (separator.length + 1 > maxLength) {
-		return new Error('Separator length exceeds the passed maximum length, string wouldn\'t be visible.');
+		throw new Error('Separator length exceeds the passed maximum length, string wouldn\'t be visible.');
 	  }
 	
 	  // Smartly split up the string.
