@@ -85,7 +85,7 @@ exports.handler = async (argv) => {
 
   await installStep({
     describe: `${step}. Replacing version numbers`,
-    thisHappens: replaceVersionNumbers(projectPath),
+    thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
   });
   step++;
 
