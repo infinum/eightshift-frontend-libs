@@ -7,7 +7,7 @@
  *
  * @access public
  *
- * @returns {string} Truncated string.
+ * @returns {string|Error} Truncated string or error if separator length exceeds maxLength.
  *
  * Usage:
  * ```js
