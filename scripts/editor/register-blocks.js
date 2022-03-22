@@ -68,8 +68,8 @@ export const registerBlocks = (
 		blocks: blocksManifests,
 		components: componentsManifest,
 		config: {
-			outputCssVariablesGlobally: true,
-			outputCssVariablesGloballyOptimize: true,
+			outputCssVariablesGlobally: false,
+			outputCssVariablesGloballyOptimize: false,
 			outputCssVariablesSelectorName: 'esCssVariables',
 		},
 		wrapper: wrapperManifest,
@@ -849,7 +849,7 @@ export const registerBlock = (
  * @returns {void}
  */
 export const setConfigFlags = () => {
-	const settingsGlobal = getSettings('settings', 'config');
+	const settingsGlobal = window['eightshift'][process.env.VERSION]?.settings?.config;
 
 	// outputCssVariablesGlobally
 	if (typeof settingsGlobal?.outputCssVariablesGlobally === 'boolean') {
