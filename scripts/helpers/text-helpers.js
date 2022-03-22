@@ -2,12 +2,12 @@
  * Slices the string in the middle and inputs the provided separator so that the string is maxLength characters long.
  *
  * @param {string} input             - String to slice.
- * @param {number} maxLength         - Maximum allowed string length. Should be at least 8.
- * @param {string} [separator='...'] - Separator to insert. Should be exactly three characters long.
+ * @param {number} maxLength         - Maximum allowed string length.
+ * @param {string} [separator='...'] - Separator to insert.
  *
  * @access public
  *
- * @returns {string} Truncated string.
+ * @returns {string|Error} Truncated string or error if separator length exceeds maxLength.
  *
  * Usage:
  * ```js
@@ -16,14 +16,29 @@
  *
  * Output:
  * ```js
- * "https://eig...contact/"
+ * "https://ei.../contact/"
  */
 export const truncateMiddle = (input, maxLength, separator = '...') => {
-	if (input?.length <= maxLength) {
+	 // If the string is shorter than maxLength, just return it.
+	 if (input?.length <= maxLength) {
 		return input;
-	}
-
-	return `${input.slice(0, maxLength / 2)}${separator}${input.slice(-1 * (maxLength / 2 - 3))}`;
+	  }
+	
+	  // Return error if separator would prevent any characters from the word showing.
+	  if (separator.length + 1 > maxLength) {
+		throw new Error('Separator length exceeds the passed maximum length, string wouldn\'t be visible.');
+	  }
+	
+	  // Smartly split up the string.
+	  const maxStringLength = maxLength - separator.length;
+	
+	  const leftPartLength = Math.ceil(maxStringLength / 2);
+	  const rightPartLength = Math.floor(maxStringLength / 2);
+	
+	  const leftPart = input.slice(0, leftPartLength).trim();
+	  const rightPart = rightPartLength > 0 ? input.slice(-1 * rightPartLength).trim() : '';
+	
+	  return `${leftPart}${separator}${rightPart}`;
 };
 
 /**
@@ -43,6 +58,7 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
  * Output:
  * ```js
  * Test&Up
+ * ```
  */
 export const unescapeHTML = (input) =>
 	input.replace(
