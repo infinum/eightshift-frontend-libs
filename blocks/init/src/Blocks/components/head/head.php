@@ -36,23 +36,22 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
 <!-- Win phone Meta -->
-<?php if (isset($headName)) { ?>
+<?php if ($headName ?? '') { ?>
   <meta name="application-name" content="<?php echo esc_attr($headName); ?>" />
 <?php } ?>
 
 <!-- Apple -->
-<?php if (isset($headName)) { ?>
+<?php if ($headName ?? '') { ?>
   <meta name="apple-mobile-web-app-title" content="<?php echo esc_attr($headName); ?>">
 <?php } ?>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 
-<?php if (isset($headFavicon)) { ?>
+<?php if ($headFavicon ?? '') { ?>
   <link rel="apple-touch-startup-image" href="<?php echo esc_url($headFavicon); ?>">
+	<link rel="shortcut icon" href="<?php echo esc_url($headFavicon); ?>" />
 <?php } ?>
 
-<!-- General -->
-<link rel="shortcut icon" href="<?php echo esc_url($headFavicon); ?>" />
 
 <?php
 echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
