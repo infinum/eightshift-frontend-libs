@@ -4,8 +4,8 @@
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
 	"config": {
-		"outputCssVariablesGlobally": true,
-		"outputCssVariablesGloballyOptimize": true,
+		"outputCssVariablesGlobally": false,
+		"outputCssVariablesGloballyOptimize": false,
 		"outputCssVariablesSelectorName": "esCssVariables"
 	},
 	"globalVariables": {
