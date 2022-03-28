@@ -8,6 +8,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = (options) => {
 
+	// Enable Webpack caching for production
+	const cache = true;
+
 	// All Plugins used in production build.
 	const plugins = [];
 
@@ -20,7 +23,6 @@ module.exports = (options) => {
 	// Plugin used to minify output.
 	if (!options.overrides.includes('terserPlugin')) {
 		optimization.minimizer.push(new TerserPlugin({
-			cache: true,
 			parallel: true,
 			terserOptions: {
 				output: {
@@ -48,5 +50,6 @@ module.exports = (options) => {
 	return {
 		plugins,
 		optimization,
+		cache
 	};
 };
