@@ -7,6 +7,3 @@
 
 // Styles.
 import './styles/application-blocks.scss';
-
-// Scripts.
-import './scripts/application-blocks';
