@@ -69,7 +69,6 @@ function getConfig(
 		applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
 		applicationBlocksFrontendEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-frontend.js'),
 
-
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 
 		useSsl,

@@ -49,6 +49,7 @@ hooks();
 // Output global css variables.
 outputCssVariablesGlobal();
 
+// Output content css variables in one style tag.
 outputCssVariablesCombined();
 
 // Change the default block to the custom paragraph.

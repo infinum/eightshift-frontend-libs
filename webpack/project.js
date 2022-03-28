@@ -35,9 +35,10 @@ module.exports = (options) => {
 		entry.applicationBlocksEditor = options.config.applicationBlocksEditorEntry;
 	}
 
-	if (!options.overrides.includes('applicationBlocksFrontend') && fs.existsSync(options.config.applicationBlocksFrontendEntry)) {
-		entry.applicationBlocksFrontend = options.config.applicationBlocksFrontendEntry;
-	}
+		// Load applicationBlocksFrontend Entrypoint.
+		if (!options.overrides.includes('applicationBlocksFrontend') && fs.existsSync(options.config.applicationBlocksFrontendEntry)) {
+			entry.applicationBlocksFrontend = options.config.applicationBlocksFrontendEntry;
+		}
 
 	// Load filename Output.
 	if (!options.overrides.includes('filename')) {
