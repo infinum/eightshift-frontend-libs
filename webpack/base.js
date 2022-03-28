@@ -34,6 +34,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('definePlugin')) {
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.VERSION': JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)),
+			'process.browser': true,
 		}));
 	}
 
