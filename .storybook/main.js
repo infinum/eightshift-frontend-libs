@@ -5,4 +5,7 @@ module.exports = {
 		'./../scripts/editor/icons/story.js',
 	],
 	addons: ['@storybook/addon-essentials'],
+	core: {
+		builder: 'webpack5',
+	}
 };
