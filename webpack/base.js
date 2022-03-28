@@ -138,9 +138,17 @@ module.exports = (options) => {
 		});
 	}
 
+	const resolve = {
+		fallback: {
+			"crypto": require.resolve("crypto-browserify"),
+			"stream": require.resolve("stream-browserify"),
+		}
+	};
+
 	return {
 		optimization,
 		plugins,
 		module,
+		resolve
 	};
 };
