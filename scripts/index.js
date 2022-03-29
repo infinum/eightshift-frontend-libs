@@ -62,6 +62,7 @@ export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
 	getSettings,
+	getSetting,
 } from './editor/get-manifest-details';
 export {
 	getOption,

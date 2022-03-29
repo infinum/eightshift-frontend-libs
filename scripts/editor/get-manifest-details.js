@@ -28,6 +28,10 @@ export const getSettings = (type, item = '') => {
 			throw Error(`Item ${item} not found in the ${type} settings or the output data is empty. Please check if the provided key and parent is correct.`);
 		}
 
+		if (typeof items === 'string') {
+			throw Error(`Requested function getSettings returns array, please use getSetting function that returns string.`);
+		}
+
 		return items;
 	}
 
@@ -39,6 +43,10 @@ export const getSettings = (type, item = '') => {
 			throw Error(`Key ${item} not found in the ${type} - ${item} settings or the output data is empty. Please check if the provided key and parent is correct.`);
 		}
 
+		if (typeof items === 'string') {
+			throw Error(`Requested function getSettings returns array, please use getSetting function that returns string.`);
+		}
+
 		return items;
 	}
 
@@ -47,6 +55,33 @@ export const getSettings = (type, item = '') => {
 
 	if (typeof items === 'undefined') {
 		throw Error(`Key ${type} not found in the settings or the output data is empty. Please check if the provided key and parent is correct.`);
+	}
+
+	if (typeof items === 'string') {
+		throw Error(`Requested function getSettings returns array, please use getSetting function that returns string.`);
+	}
+
+	return items;
+};
+
+/**
+ * Return project details from global window object.
+ *
+ * @access public
+ *
+ * @returns {object}
+ */
+export const getSetting = (type, item) => {
+	const settings = getSettings(type);
+
+	const items = settings?.[item];
+
+	if (typeof items === 'undefined') {
+		throw Error(`Key ${item} not found in the ${type} - ${item} settings or the output data is empty. Please check if the provided key and parent is correct.`);
+	}
+
+	if (Array.isArray(items)) {
+		throw Error(`Requested function getSettings returns array, please use getSetting function that returns string.`);
 	}
 
 	return items;

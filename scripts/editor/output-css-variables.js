@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { subscribe, select } from '@wordpress/data';
 import { getAttrKey } from '../helpers/check-attr';
-import { getSettings } from './get-manifest-details';
+import { getSettings, getSetting } from './get-manifest-details';
 
 let breakpointsPreparedVariableDataCache = [];
 
@@ -154,8 +154,8 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 
 	let output = '';
 
-	const outputGloballyFlag = getSettings('config', 'outputCssVariablesGlobally');
-	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+	const outputGloballyFlag = getSetting('config', 'outputCssVariablesGlobally');
+	const outputGloballyOptimizeFlag = getSetting('config', 'outputCssVariablesGloballyOptimize');
 
 	let globalVariables = globalManifest?.globalVariables;
 
@@ -785,7 +785,7 @@ export const outputCssVariablesCombinedInner = (newBlocks) => {
 	window['eightshift'][process.env.VERSION].stylesMap = remainingBlocks;
 	window['eightshift'][process.env.VERSION].styles = updatedStyles;
 
-	const outputGloballyOptimizeFlag = getSettings('config', 'outputCssVariablesGloballyOptimize');
+	const outputGloballyOptimizeFlag = getSetting('config', 'outputCssVariablesGloballyOptimize');
 
 	const breakpoints = [];
 
@@ -838,7 +838,7 @@ export const outputCssVariablesCombinedInner = (newBlocks) => {
 		output = output.replace(/\n|\r/g, '');
 	}
 
-	const selector = getSettings('config', 'outputCssVariablesSelectorName');
+	const selector = getSetting('config', 'outputCssVariablesSelectorName');
 
 	// Detect if style tag is present in dom.
 	const styleTag = document.getElementById(selector);

@@ -10,6 +10,7 @@ export { getFetchWpApi } from './fetch-wp-api';
 export { getActions } from './get-actions';
 export {
 	getSettings,
+	getSetting,
 } from './get-manifest-details';
 export {
 	getOption,
