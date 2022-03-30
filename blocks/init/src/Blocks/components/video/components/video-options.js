@@ -2,7 +2,7 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Button, BaseControl, Placeholder, ExternalLink, TextControl } from '@wordpress/components';
+import { Button, BaseControl, Placeholder, ExternalLink, TextControl, Notice } from '@wordpress/components';
 import { getOption, checkAttr, getAttrKey, IconLabel, icons, Collapsable, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect, FancyDivider, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
@@ -261,6 +261,16 @@ export const VideoOptions = (attributes) => {
 							checked={videoMuted}
 							onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
 						/>
+					}
+
+
+					{videoAutoplay && !videoMuted && !videoControls &&
+						<Notice 
+							status="warning"
+							isDismissible={false}
+						>
+							{__('This video autoplays with sound and without controls. Reconsider these choices, as they present a challenge to disabled users, cause frustration for all users and might be a violation of WCAG.', 'eightshift-frontend-libs')}
+						</Notice>
 					}
 
 					{showVideoPreload && <br />}
