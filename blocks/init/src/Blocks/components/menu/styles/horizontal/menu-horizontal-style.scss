@@ -2,10 +2,12 @@ $menu-horizontal: (
 	link-modifiers: (
 		normal: (
 			color: global-settings(colors, black),
+			text-decoration-color: rgba(global-settings(colors, black), 0.15),
 		),
 		hover: (
 			color: global-settings(colors, primary),
-		)
+			text-decoration-color: rgba(global-settings(colors, primary), 1),
+		),
 	),
 );
 
@@ -19,14 +21,23 @@ $menu-horizontal: (
 	gap: 0.75rem;
 
 	&__link {
-		text-decoration: none;
+		text-decoration: underline;
+		text-decoration-color: map-get-deep($menu-horizontal, link-modifiers, normal, text-decoration-color);
 		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: 0.3s color ease-in-out;
+		transition: color 0.3s, text-decoration-color 0.3s ease-in-out;
 		overflow-wrap: anywhere;
 
 		@include link($menu-horizontal, link-modifiers);
+
+		&:hover {
+			text-decoration-color: map-get-deep($menu-horizontal, link-modifiers, hover, text-decoration-color);
+		}
+
+		@media (prefers-contrast: more) {
+			text-decoration-color: map-get-deep($menu-horizontal, link-modifiers, hover, text-decoration-color);
+		}
 	}
 }

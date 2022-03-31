@@ -65,9 +65,9 @@ $uniqueAccordionTriggerId = Components::getUnique();
 		id="<?php echo esc_attr($uniqueAccordionTriggerId); ?>"
 	>
 		<?php echo esc_html($accordionTitle); ?>
-		<div class="<?php echo esc_attr($accordionIconClass); ?>" aria-hidden="true" >
+		<span class="<?php echo esc_attr($accordionIconClass); ?>" aria-hidden="true" >
 			<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
-		</div>
+		</span>
 	</button>
 
 	<div
