@@ -61,10 +61,6 @@ export {
 export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export {
-	getSettings,
-	getSetting,
-} from './editor/get-manifest-details';
-export {
 	getOption,
 	getOptionColors,
 	getOptions
@@ -79,7 +75,6 @@ export {
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
-	outputCssVariablesCombined,
 	hexToRgb,
 	getUnique,
 } from './editor/output-css-variables';
@@ -93,6 +88,10 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './editor/register-blocks';
+export {
+	STORE_NAME,
+	BUILD_VERSION,
+} from './editor/store';
 export { ucfirst } from './editor/ucfirst';
 
 // Helpers

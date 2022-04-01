@@ -47,6 +47,7 @@ export const props = (newName, attributes, manual = {}) => {
 	// Check what attributes we need to includes.
 	const includes = [
 		'blockName',
+		'blockClientId',
 		'blockTopLevelId',
 		'blockFullName',
 		'blockClass',

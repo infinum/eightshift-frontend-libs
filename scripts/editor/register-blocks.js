@@ -1,12 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
-import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
-import { getUnique } from './../editor/output-css-variables';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
+import { InnerBlocks } from '@wordpress/block-editor';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
+import { dispatch, select } from '@wordpress/data';
+import { addFilter } from '@wordpress/hooks';
+import { createElement } from '@wordpress/element';
+import { getUnique } from './../editor/output-css-variables';
 import { blockIcons } from './icons/icons';
-import { getSettings } from './get-manifest-details';
+import { STORE_NAME, BUILD_VERSION } from './store';
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -43,6 +46,7 @@ import { getSettings } from './get-manifest-details';
  * );
  * ```
  */
+
 export const registerBlocks = (
 	globalManifest = {},
 	wrapperComponent = null,
@@ -59,25 +63,13 @@ export const registerBlocks = (
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
-	// Set componentsManifest to global window for usage in storybook.
-	if (typeof window?.['eightshift'] === 'undefined') {
-		window['eightshift'] = {};
-	}
+	// Set all store values.
+	dispatch(STORE_NAME).setBlocks(blocksManifests);
+	dispatch(STORE_NAME).setComponents(componentsManifest);
+	dispatch(STORE_NAME).setWrapper(wrapperManifest);
+	dispatch(STORE_NAME).setSettings(globalManifest);
 
-	window['eightshift'][process.env.VERSION] = {
-		blocks: blocksManifests,
-		components: componentsManifest,
-		config: {
-			outputCssVariablesGlobally: false,
-			outputCssVariablesGloballyOptimize: false,
-			outputCssVariablesSelectorName: 'esCssVariables',
-		},
-		wrapper: wrapperManifest,
-		settings: globalManifest,
-		styles: [],
-		stylesMap: [],
-	};
-
+	// Override store config values from local manifest.
 	setConfigFlags();
 
 	// Iterate blocks to register.
@@ -181,6 +173,9 @@ export const registerBlocks = (
 
 	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
+
+	// Set all data to the dom that is necessary for project.
+	addFilter('editor.BlockListBlock', BUILD_VERSION, blocksFilterHook);
 };
 
 /**
@@ -672,6 +667,9 @@ export const getAttributes = (
 			type: 'string',
 			default: blockName,
 		},
+		blockClientId: {
+			type: 'integer'
+		},
 		blockTopLevelId: { // Used to pass reference to all components.
 			type: 'string',
 			default: getUnique(),
@@ -744,7 +742,7 @@ export const getExample = (
 	manifest = {}
 ) => {
 
-	return prepareComponentAttributes(getSettings('components'), manifest, true, parent);
+	return prepareComponentAttributes(select(STORE_NAME).getComponents(), manifest, true, parent);
 };
 
 /**
@@ -849,21 +847,64 @@ export const registerBlock = (
  * @returns {void}
  */
 export const setConfigFlags = () => {
-	const settingsGlobal = window['eightshift'][process.env.VERSION]?.settings?.config;
 
-	// outputCssVariablesGlobally
-	if (typeof settingsGlobal?.outputCssVariablesGlobally === 'boolean') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesGlobally = settingsGlobal.outputCssVariablesGlobally;
-	}
+	const config = select(STORE_NAME).getSettings()?.config;
 
-	// outputCssVariablesGloballyOptimize
-	if (typeof settingsGlobal?.outputCssVariablesGloballyOptimize === 'boolean') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesGloballyOptimize = settingsGlobal.outputCssVariablesGloballyOptimize;
-	}
+	if (typeof config !== 'undefined') {
+		// outputCssGlobally
+		if (typeof config?.outputCssGlobally === 'boolean') {
+			dispatch(STORE_NAME).setConfigOutputCssGlobally(config.outputCssGlobally);
+		}
 
-	// outputCssVariablesSelectorName
-	if (typeof settingsGlobal?.outputCssVariablesSelectorName === 'string') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesSelectorName = settingsGlobal.outputCssVariablesSelectorName;
+		// outputCssOptimize
+		if (typeof config?.outputCssOptimize === 'boolean') {
+			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
+		}
+
+		// outputCssSelectorName
+		if (typeof config?.outputCssSelectorName === 'string') {
+			dispatch(STORE_NAME).setConfigOutputCssSelectorName(config.outputCssSelectorName);
+		}
 	}
 };
+
+/**
+ * Filter callback for setting up the correct data to the blocks.
+ *
+ * @abstract private
+ */
+const blocksFilterHook = createHigherOrderComponent((BlockListBlock) => {
+	return (innerProps) => {
+		const {
+			name,
+			clientId,
+		} = innerProps;
+
+		let updatedProps = innerProps;
+
+		// Update only our blocks.
+		if (name.split('/')[0] === select(STORE_NAME).getSettingsNamespace()) {
+			updatedProps = _.assign(
+				{},
+				innerProps,
+				{
+					// Assign clientId to our internal attribute used for inline css variables.
+					attributes: _.assign({}, innerProps.attributes, {
+						blockClientId: clientId,
+					}),
+					block: {
+						attributes: _.assign({}, innerProps.block.attributes, {
+							blockClientId: clientId,
+						}),
+					},
+
+					// Add className to block defined by our project.
+					className: select(STORE_NAME).getSettingsGlobalVariablesCustomBlockName(),
+				}
+			);
+		}
+		return <BlockListBlock {...updatedProps} />;
+	};
+}, 'blocksFilterHook');
+
 

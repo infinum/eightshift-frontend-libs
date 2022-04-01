@@ -9,10 +9,6 @@ export {
 export { getFetchWpApi } from './fetch-wp-api';
 export { getActions } from './get-actions';
 export {
-	getSettings,
-	getSetting,
-} from './get-manifest-details';
-export {
 	getOption,
 	getOptionColors,
 	getOptions
@@ -27,7 +23,6 @@ export {
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
-	outputCssVariablesCombined,
 	hexToRgb,
 	getUnique,
 } from './output-css-variables';
@@ -45,4 +40,8 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './register-blocks';
+export {
+	STORE_NAME,
+	BUILD_VERSION,
+} from './store';
 export { ucfirst } from './ucfirst';

@@ -4,9 +4,9 @@
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
 	"config": {
-		"outputCssVariablesGlobally": false,
-		"outputCssVariablesGloballyOptimize": false,
-		"outputCssVariablesSelectorName": "esCssVariables"
+		"outputCssGlobally": false,
+		"outputCssOptimize": false,
+		"outputCssSelectorName": "esCssVariables"
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
