@@ -362,7 +362,7 @@ export const getDifference = (array1, array2) => {
 };
 
 /**
- * Return css variables in default type. On the place where it was called.
+ * Return CSS variables in default type. On the place where it was called.
  *
  * @param {string} name - Output css selector name.
  * @param {array} data - Data prepared for checking.
