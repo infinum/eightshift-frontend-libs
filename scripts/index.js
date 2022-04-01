@@ -61,7 +61,11 @@ export {
 export { getActions } from './editor/actions';
 export {
 	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
+	overrideInnerBlockSimpleWrapperAttributes,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	props,
 } from './editor/attributes';
 export { getPaletteColors } from './editor/colors';
 export {
@@ -83,7 +87,6 @@ export {
 	getOptions
 } from './editor/options';
 export { pasteInto } from './editor/paste-handler';
-export { props } from './editor/props';
 export {
 	getAttributes,
 	getExample,
@@ -93,6 +96,10 @@ export {
 	registerVariations,
 } from './editor/registration';
 export {
+	selector,
+	responsiveSelectors,
+} from './editor/selectors';
+export {
 	STORE_NAME,
 	BUILD_VERSION,
 } from './editor/store';
@@ -100,11 +107,6 @@ export { ucfirst } from './editor/utility';
 
 // Helpers
 export { camelize } from './helpers/camelize';
-export {
-	checkAttr,
-	checkAttrResponsive,
-	getAttrKey
-} from './helpers/check-attr';
 export { cookies } from './helpers/cookies';
 export { debounce } from './helpers/debounce';
 export { throttle } from './helpers/throttle';
@@ -113,8 +115,6 @@ export { dynamicImport } from './helpers/dynamic-import';
 export { elementChildrenHeight } from './helpers/element-children-height';
 export { escapeString } from './helpers/escape-string';
 export { getNavigatorVibrate } from './helpers/navigator';
-export { responsiveSelectors } from './helpers/responsive-selectors';
-export { selector } from './helpers/selector';
 export {
 	truncateMiddle,
 	unescapeHTML

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { getPaletteColors } from "./colors";
-import { getAttrKey } from '../helpers/check-attr';
+import { getAttrKey } from './attributes';
 
 /**
  * Provides the ability to override component options from the parent block/component.

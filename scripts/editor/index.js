@@ -9,7 +9,11 @@ export {
 export { getActions } from './actions';
 export {
 	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
+	overrideInnerBlockSimpleWrapperAttributes,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	props,
 } from './attributes';
 export { getPaletteColors } from './colors';
 export {
@@ -31,7 +35,6 @@ export {
 	getOptions
 } from './options';
 export { pasteInto } from './paste-handler';
-export { props } from './props';
 export {
 	getAttributes,
 	getExample,
@@ -40,6 +43,10 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './registration';
+export {
+	selector,
+	responsiveSelectors,
+} from './selectors';
 export {
 	STORE_NAME,
 	BUILD_VERSION,

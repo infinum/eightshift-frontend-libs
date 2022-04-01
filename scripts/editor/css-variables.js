@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { subscribe, select, dispatch } from '@wordpress/data';
-import { getAttrKey } from '../helpers/check-attr';
+import { getAttrKey } from './attributes';
 import { STORE_NAME } from './store';
 
 /**
