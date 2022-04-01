@@ -7,7 +7,7 @@ import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { createElement } from '@wordpress/element';
-import { getUnique } from './../editor/output-css-variables';
+import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
 import { STORE_NAME, BUILD_VERSION } from './store';
 

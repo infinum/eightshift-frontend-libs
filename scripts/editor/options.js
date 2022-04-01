@@ -1,6 +1,6 @@
-import { getPaletteColors } from "./get-palette-colors";
-import { getAttrKey } from './../helpers/check-attr';
 import _ from 'lodash';
+import { getPaletteColors } from "./colors";
+import { getAttrKey } from '../helpers/check-attr';
 
 /**
  * Provides the ability to override component options from the parent block/component.

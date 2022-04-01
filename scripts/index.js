@@ -58,41 +58,45 @@ export {
 	blockIcons,
 	BlockIcon
 } from './editor/icons/icons';
-export { getFetchWpApi } from './editor/fetch-wp-api';
-export { getActions } from './editor/get-actions';
+export { getActions } from './editor/actions';
 export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './editor/get-options';
-export { getPaletteColors } from './editor/get-palette-colors';
-export { inserter } from './editor/inserter';
-export {
-	lockIfUndefined,
-	lockPostEditing,
-	unlockPostEditing,
-} from './editor/lock-editing';
+	overrideInnerBlockAttributes,
+	overrideInnerBlockSimpleWrapperAttributes
+} from './editor/attributes';
+export { getPaletteColors } from './editor/colors';
 export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	hexToRgb,
 	getUnique,
-} from './editor/output-css-variables';
+} from './editor/css-variables';
 export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './editor/override-inner-block-attributes';
+	lockIfUndefined,
+	lockPostEditing,
+	unlockPostEditing,
+} from './editor/editor';
+export { getFetchWpApi } from './editor/fetch';
+export { inserter } from './editor/inserter';
+export {
+	getOption,
+	getOptionColors,
+	getOptions
+} from './editor/options';
 export { pasteInto } from './editor/paste-handler';
 export { props } from './editor/props';
 export {
+	getAttributes,
+	getExample,
+	getFullBlockName,
+	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
-} from './editor/register-blocks';
+} from './editor/registration';
 export {
 	STORE_NAME,
 	BUILD_VERSION,
 } from './editor/store';
-export { ucfirst } from './editor/ucfirst';
+export { ucfirst } from './editor/utility';
 
 // Helpers
 export { camelize } from './helpers/camelize';
