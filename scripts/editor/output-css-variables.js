@@ -286,7 +286,7 @@ export const getUnique = () => {
 let breakpointsPreparedVariableDataCache = [];
 
 /**
- * Output css variables as a one inline style tag.
+ * Output CSS variables as one inline style tag.
  *
  * @access private
  *
