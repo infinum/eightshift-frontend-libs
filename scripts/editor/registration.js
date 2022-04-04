@@ -9,7 +9,7 @@ import { addFilter } from '@wordpress/hooks';
 import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
-import { STORE_NAME, BUILD_VERSION } from './store';
+import { STORE_NAME, setStoreGlobalWindow, setStore } from './store';
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -64,10 +64,12 @@ export const registerBlocks = (
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
 	// Set all store values.
+	setStore();
 	dispatch(STORE_NAME).setBlocks(blocksManifests);
 	dispatch(STORE_NAME).setComponents(componentsManifest);
 	dispatch(STORE_NAME).setWrapper(wrapperManifest);
 	dispatch(STORE_NAME).setSettings(globalManifest);
+	setStoreGlobalWindow();
 
 	// Override store config values from local manifest.
 	setConfigFlags();
@@ -175,7 +177,7 @@ export const registerBlocks = (
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 
 	// Set all data to the dom that is necessary for project.
-	addFilter('editor.BlockListBlock', BUILD_VERSION, blocksFilterHook);
+	addFilter('editor.BlockListBlock', `eightshift/${select(STORE_NAME).getSettingsNamespace()}`, blocksFilterHook);
 };
 
 /**

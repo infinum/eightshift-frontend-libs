@@ -1,4 +1,4 @@
-import { registerStore } from '@wordpress/data';
+import { registerStore, select } from '@wordpress/data';
 
 // Store name defined by build version so we can have multiple themes and plugins.
 export const BUILD_VERSION = process.env.VERSION;
@@ -328,11 +328,22 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 };
 
 // Register the store.
-registerStore(
-	STORE_NAME,
-	{
-		selectors,
-		actions,
-		reducer,
+export const setStore = () => {
+	registerStore(
+		STORE_NAME,
+		{
+			selectors,
+			actions,
+			reducer,
+		}
+	);
+};
+
+// Set global window data for easier debugging.
+export const setStoreGlobalWindow = () => {
+	if (typeof window?.['eightshift']?.['store'] === 'undefined') {
+		window['eightshift']['store'] = {};
 	}
-);
+
+	window['eightshift']['store'][select(STORE_NAME).getSettingsNamespace()] = STORE_NAME;
+};

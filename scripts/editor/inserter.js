@@ -31,10 +31,10 @@ import { createBlock } from '@wordpress/blocks';
  * @returns {void}
  */
 export const inserter = () => {
-	if (typeof window['eightshift'] === 'undefined') {
-		window['eightshift'] = {};
+	if (typeof window?.['eightshift']?.['inserter'] === 'undefined') {
+		window['eightshift']['inserter'] = {};
 	}
-	
+
 	window['eightshift']['inserter'] = {
 		save: false,
 		reset: false,

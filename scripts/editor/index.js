@@ -50,5 +50,7 @@ export {
 export {
 	STORE_NAME,
 	BUILD_VERSION,
+	setStore,
+	setStoreGlobalWindow,
 } from './store';
 export { ucfirst } from './utility';
