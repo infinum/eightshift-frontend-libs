@@ -6,8 +6,6 @@ import { STORE_NAME } from './store';
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
- * @param {object} globalManifest - (Optional) Global variable data.
- *
  * @access public
  *
  * @return {string|void}
