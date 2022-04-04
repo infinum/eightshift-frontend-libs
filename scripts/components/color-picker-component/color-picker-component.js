@@ -95,31 +95,32 @@ export const ColorPickerComponent = ({
 	);
 
 	const getButtonIcon = () => {
-		let icon = React.cloneElement(icons.genericColorSwatch);
-
-		switch (type) {
-			case ColorPickerType.TEXT_COLOR:
-				icon = React.cloneElement(icons.textColorSwatch);
-				break;
-			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
-				icon = React.cloneElement(icons.textHighlightColorSwatch);
-				break;
-			case ColorPickerType.BACKGROUND_COLOR:
-				icon = React.cloneElement(icons.backgroundColorSwatch);
-				break;
-		}
+		let style = {};
 
 		if (!value) {
-			icon.props.style = {
+			style = {
 				'--selected-color': 'transparent',
 				'--selected-opacity': '1',
 			};
 		} else {
-			icon.props.style = {
+			style = {
 				'--selected-color': `var(--global-colors-${value})`,
 			};
 		}
 
+		let icon = React.cloneElement(icons.genericColorSwatch, { style });
+
+		switch (type) {
+			case ColorPickerType.TEXT_COLOR:
+				icon = React.cloneElement(icons.textColorSwatch, { style });
+				break;
+			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+				icon = React.cloneElement(icons.textHighlightColorSwatch, { style });
+				break;
+			case ColorPickerType.BACKGROUND_COLOR:
+				icon = React.cloneElement(icons.backgroundColorSwatch, { style });
+				break;
+		}
 
 		return icon;
 	};
