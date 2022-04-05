@@ -888,11 +888,11 @@ export const getAllBlocksFlat = (blocks) => {
  *
  * @returns {string}
  */
-export const outputCssVariablesCombinedInner = (newBlocks) => {
+export const outputCssVariablesCombinedInner = (styles) => {
 	const breakpoints = [];
 
 	// Loop styles.
-	for (const {name, unique, variables} of newBlocks) {
+	for (const {name, unique, variables} of styles) {
 		// Bailout if variables are missing.
 		if (variables.length === 0) {
 			continue;
