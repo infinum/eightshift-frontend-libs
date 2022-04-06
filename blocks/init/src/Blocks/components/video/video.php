@@ -29,6 +29,7 @@ $videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest);
 $videoControls = Components::checkAttr('videoControls', $attributes, $manifest);
 $videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest);
 $videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest);
+$videoSubtitleTracks = Components::checkAttr('videoSubtitleTracks', $attributes, $manifest) ?? [];
 
 $videoClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
@@ -54,6 +55,9 @@ if (!$videoUrl) {
 	<?php echo esc_attr($additionalAttributes); ?>
 	preload="<?php echo esc_attr($videoPreload); ?>"
 	poster="<?php echo esc_attr($videoPoster); ?>"
+	<?php if ($videoPoster) { ?>
+		poster="<?php echo esc_attr($videoPoster); ?>"
+	<?php } ?>
 >
 	<?php
 	if (!is_iterable($videoUrl)) {
@@ -68,5 +72,21 @@ if (!$videoUrl) {
 		if ($url && $mime) { ?>
 			<source src="<?php echo esc_url($url); ?>" type="<?php echo esc_attr($mime); ?>" />
 		<?php } ?>
+	<?php } ?>
+
+	<?php foreach ($videoSubtitleTracks as $track) {
+		if (!($track['src'] ?? '') || !($track['kind'] ?? '') || !($track['label'])) {
+			continue;
+		}
+		?>
+		
+		<track 
+			src="<?php echo esc_url($track['src']); ?>"
+			kind="<?php echo esc_attr($track['kind']); ?>"
+			label="<?php echo esc_attr($track['label']); ?>"
+			<?php if ($track['srclang']) { ?>
+				srclang="<?php echo esc_attr($track['srclang']); ?>"
+			<?php } ?>
+		>		
 	<?php } ?>
 </video>
