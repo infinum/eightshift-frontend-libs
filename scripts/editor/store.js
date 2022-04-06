@@ -79,40 +79,10 @@ const actions = {
 			blocks,
 		};
 	},
-	getBlocks(blocks) {
-		return {
-			type: 'GET_BLOCKS',
-			blocks,
-		};
-	},
-	getBlock(block) {
-		return {
-			type: 'GET_BLOCK',
-			block,
-		};
-	},
 	setComponents(components) {
 		return {
 			type: 'SET_COMPONENTS',
 			components,
-		};
-	},
-	getComponents(components) {
-		return {
-			type: 'GET_COMPONENTS',
-			components,
-		};
-	},
-	getComponent(component) {
-		return {
-			type: 'GET_COMPONENT',
-			component,
-		};
-	},
-	getConfigOutputCssGlobally(config) {
-		return {
-			type: 'GET_CONFIG_OUTPUT_CSS_GLOBALLY',
-			config,
 		};
 	},
 	setConfigOutputCssGlobally(config) {
@@ -121,21 +91,9 @@ const actions = {
 			config,
 		};
 	},
-	getConfigOutputCssOptimize(config) {
-		return {
-			type: 'GET_CONFIG_OUTPUT_CSS_OPTIMIZE',
-			config,
-		};
-	},
 	setConfigOutputCssOptimize(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE',
-			config,
-		};
-	},
-	getConfigOutputCssSelectorName(config) {
-		return {
-			type: 'GET_CONFIG_OUTPUT_CSS_SELECTOR_NAME',
 			config,
 		};
 	},
@@ -151,45 +109,9 @@ const actions = {
 			wrapper,
 		};
 	},
-	getWrapper(wrapper) {
-		return {
-			type: 'GET_WRAPPER',
-			wrapper,
-		};
-	},
 	setSettings(settings) {
 		return {
 			type: 'SET_SETTINGS',
-			settings,
-		};
-	},
-	getSettings(settings) {
-		return {
-			type: 'GET_SETTINGS',
-			settings,
-		};
-	},
-	getSettingsNamespace(settings) {
-		return {
-			type: 'GET_SETTINGS_NAMESPACE',
-			settings,
-		};
-	},
-	getSettingsGlobalVariables(settings) {
-		return {
-			type: 'GET_SETTINGS_GLOBAL_VARIABLES',
-			settings,
-		};
-	},
-	getSettingsGlobalVariablesBreakpoints(settings) {
-		return {
-			type: 'GET_SETTINGS_GLOBAL_VARIABLES_BREAKPOINTS',
-			settings,
-		};
-	},
-	getSettingsGlobalVariablesCustomBlockName(settings) {
-		return {
-			type: 'GET_SETTINGS_GLOBAL_VARIABLES_CUSTOM_BLOCK_NAME',
 			settings,
 		};
 	},
@@ -210,12 +132,6 @@ const actions = {
 			type: 'SET_STYLE_BY_INDEX',
 			styles,
 			index,
-		};
-	},
-	getStyles(styles) {
-		return {
-			type: 'GET_STYLES',
-			styles,
 		};
 	},
 	setStylesUpdated() {
