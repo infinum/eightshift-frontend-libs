@@ -245,6 +245,10 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 
 // Register the store.
 export const setStore = () => {
+	if (typeof window?.['eightshift'] === 'undefined') {
+		window['eightshift'] = {};
+	}
+
 	registerStore(
 		STORE_NAME,
 		{
