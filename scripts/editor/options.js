@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { getPaletteColors } from "./colors";
+import { getPaletteColors } from './colors';
 import { getAttrKey } from './attributes';
 
 /**
