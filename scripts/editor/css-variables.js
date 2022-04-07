@@ -6,6 +6,8 @@ import { STORE_NAME } from './store';
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
+ * @param {object} globalManifest - (Optional) Global variable data. - Deprecated.
+ *
  * @access public
  *
  * @return {string|void}
@@ -88,7 +90,7 @@ import { STORE_NAME } from './store';
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = () => { // eslint-disable-line no-unused-vars
+export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-disable-line no-unused-vars
 	let output = '';
 
 	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
