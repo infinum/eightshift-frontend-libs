@@ -670,7 +670,7 @@ export const getAttributes = (
 			default: blockName,
 		},
 		blockClientId: {
-			type: 'integer'
+			type: 'string'
 		},
 		blockTopLevelId: { // Used to pass reference to all components.
 			type: 'string',
