@@ -942,6 +942,14 @@ export const outputCssVariablesCombinedInner = (styles) => {
 		output = output.replace(/\n|\r/g, '');
 	}
 
+	// Add additional style from config settings.
+	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
+	let additionalStylesOutput = '';
+	if (typeof additionalStyles !== 'undefined') {
+		additionalStylesOutput = additionalStyles.join(';\n');
+	}
+
+
 	// Get style id name from store.
 	const selector = select(STORE_NAME).getConfigOutputCssSelectorName();
 
@@ -949,7 +957,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const styleTag = document.getElementById(selector);
 
 	if (!styleTag) {
-		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output}</style>`);
+		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {
 		styleTag.innerHTML = output;
 	}

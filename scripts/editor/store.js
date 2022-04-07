@@ -1,4 +1,4 @@
-import { registerStore, select } from '@wordpress/data';
+import { registerStore, select, dispatch } from '@wordpress/data';
 
 // Store name defined by build version so we can have multiple themes and plugins.
 export const BUILD_VERSION = process.env.VERSION;
@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
 		outputCssGlobally: false,
 		outputCssOptimize: false,
 		outputCssSelectorName: 'esCssVariables',
+		outputCssGloballyAdditionalStyles: [],
 	},
 	wrapper: {},
 	settings: {},
@@ -44,6 +45,9 @@ const selectors = {
 	},
 	getConfigOutputCssSelectorName(state) {
 		return state.config.outputCssSelectorName;
+	},
+	getConfigOutputCssGloballyAdditionalStyles(state) {
+		return state.config.outputCssGloballyAdditionalStyles;
 	},
 	getWrapper(state) {
 		return state.wrapper;
@@ -100,6 +104,12 @@ const actions = {
 	setConfigOutputCssSelectorName(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_SELECTOR_NAME',
+			config,
+		};
+	},
+	setConfigOutputCssGloballyAdditionalStyles(config) {
+		return {
+			type: 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES',
 			config,
 		};
 	},
@@ -188,6 +198,15 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				}
 			};
 		}
+		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES': {
+			return {
+				...state,
+				config: {
+					...state.config,
+					outputCssGloballyAdditionalStyles: action.config,
+				}
+			};
+		}
 		case 'SET_WRAPPER': {
 			return {
 				...state,
@@ -257,6 +276,40 @@ export const setStore = () => {
 			reducer,
 		}
 	);
+};
+
+/**
+ * Set features config flag set in the global manifest settings.
+ *
+ * @access private
+ *
+ * @returns {void}
+ */
+ export const setConfigFlags = () => {
+
+	const config = select(STORE_NAME).getSettings()?.config;
+
+	if (typeof config !== 'undefined') {
+		// outputCssGlobally
+		if (typeof config?.outputCssGlobally === 'boolean') {
+			dispatch(STORE_NAME).setConfigOutputCssGlobally(config.outputCssGlobally);
+		}
+
+		// outputCssOptimize
+		if (typeof config?.outputCssOptimize === 'boolean') {
+			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
+		}
+
+		// outputCssSelectorName
+		if (typeof config?.outputCssSelectorName === 'string') {
+			dispatch(STORE_NAME).setConfigOutputCssSelectorName(config.outputCssSelectorName);
+		}
+
+		// outputCssGloballyAdditionalStyles
+		if (Array.isArray(config?.outputCssGloballyAdditionalStyles)) {
+			dispatch(STORE_NAME).setConfigOutputCssGloballyAdditionalStyles(config.outputCssGloballyAdditionalStyles);
+		}
+	}
 };
 
 // Set global window data for easier debugging.

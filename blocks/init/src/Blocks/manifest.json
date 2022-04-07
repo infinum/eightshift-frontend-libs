@@ -6,7 +6,10 @@
 	"config": {
 		"outputCssGlobally": false,
 		"outputCssOptimize": false,
-		"outputCssSelectorName": "esCssVariables"
+		"outputCssSelectorName": "esCssVariables",
+		"outputCssGloballyAdditionalStyles": [
+			":root {--es-loader-opacity: 1;}"
+		]
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",

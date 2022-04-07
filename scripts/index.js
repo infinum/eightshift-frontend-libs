@@ -104,6 +104,7 @@ export {
 	BUILD_VERSION,
 	setStore,
 	setStoreGlobalWindow,
+	setConfigFlags,
 } from './editor/store';
 export { ucfirst } from './editor/utility';
 

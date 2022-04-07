@@ -9,7 +9,7 @@ import { addFilter } from '@wordpress/hooks';
 import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
-import { STORE_NAME, setStoreGlobalWindow, setStore } from './store';
+import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
 
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -839,35 +839,6 @@ export const registerBlock = (
 			merge: getMergeCallback(blockManifest),
 		},
 	};
-};
-
-/**
- * Set features config flag set in the global manifest settings.
- *
- * @access private
- *
- * @returns {void}
- */
-export const setConfigFlags = () => {
-
-	const config = select(STORE_NAME).getSettings()?.config;
-
-	if (typeof config !== 'undefined') {
-		// outputCssGlobally
-		if (typeof config?.outputCssGlobally === 'boolean') {
-			dispatch(STORE_NAME).setConfigOutputCssGlobally(config.outputCssGlobally);
-		}
-
-		// outputCssOptimize
-		if (typeof config?.outputCssOptimize === 'boolean') {
-			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
-		}
-
-		// outputCssSelectorName
-		if (typeof config?.outputCssSelectorName === 'string') {
-			dispatch(STORE_NAME).setConfigOutputCssSelectorName(config.outputCssSelectorName);
-		}
-	}
 };
 
 /**
