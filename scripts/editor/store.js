@@ -125,6 +125,12 @@ const actions = {
 			settings,
 		};
 	},
+	setSettingsGlobalVariablesBreakpoints(breakpoints) {
+		return {
+			type: 'SET_SETTINGS_GLOBAL_VARIABLES_BREAKPOINTS',
+			breakpoints,
+		};
+	},
 	setStyle(styles) {
 		return {
 			type: 'SET_STYLE',
@@ -217,6 +223,18 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 			return {
 				...state,
 				settings: action.settings,
+			};
+		}
+		case 'SET_SETTINGS_GLOBAL_VARIABLES_BREAKPOINTS': {
+			return {
+				...state,
+				settings: {
+					...state.settings,
+					globalVariables: {
+						...state.settings.globalVariables,
+						breakpoints: action.breakpoints,
+					},
+				},
 			};
 		}
 		case 'SET_STYLE': {
