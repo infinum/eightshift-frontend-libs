@@ -959,7 +959,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	if (!styleTag) {
 		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {
-		styleTag.innerHTML = output;
+		styleTag.innerHTML = `${output} ${additionalStylesOutput}`;
 	}
 
 	// Reset state to original.
