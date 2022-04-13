@@ -47,7 +47,7 @@
 				},
 				"useWrapper": {
 					"type": "boolean",
-					"description": "With this key you can change if you want to use wrapper in your project. Default: true"
+					"description": "With this key you can change if you want to use Wrapper in your project. Default: true"
 				}
 			}
 		},
