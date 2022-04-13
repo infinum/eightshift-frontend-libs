@@ -43,7 +43,7 @@
 				},
 				"outputCssGloballyAdditionalStyles": {
 					"type": "array",
-					"description": "With this key you append additional css variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
+					"description": "With this key you append CSS variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
 				},
 				"useWrapper": {
 					"type": "boolean",
