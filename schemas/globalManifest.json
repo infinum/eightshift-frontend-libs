@@ -40,6 +40,14 @@
 				"outputCssSelectorName": {
 					"type": "string",
 					"description": "With this key you can change the id selector for output css variables so you can have multiple builds in one project. Default: esCssVariables"
+				},
+				"outputCssGloballyAdditionalStyles": {
+					"type": "array",
+					"description": "With this key you append additional css variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
+				},
+				"useWrapper": {
+					"type": "boolean",
+					"description": "With this key you can change if you want to use wrapper in your project. Default: true"
 				}
 			}
 		},

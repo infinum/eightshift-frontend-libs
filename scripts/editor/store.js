@@ -13,6 +13,7 @@ const DEFAULT_STATE = {
 		outputCssOptimize: false,
 		outputCssSelectorName: 'esCssVariables',
 		outputCssGloballyAdditionalStyles: [],
+		useWrapper: true,
 	},
 	wrapper: {},
 	settings: {},
@@ -48,6 +49,9 @@ const selectors = {
 	},
 	getConfigOutputCssGloballyAdditionalStyles(state) {
 		return state.config.outputCssGloballyAdditionalStyles;
+	},
+	getConfigUseWrapper(state) {
+		return state.config.useWrapper;
 	},
 	getWrapper(state) {
 		return state.wrapper;
@@ -110,6 +114,12 @@ const actions = {
 	setConfigOutputCssGloballyAdditionalStyles(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES',
+			config,
+		};
+	},
+	setConfigUseWrapper(config) {
+		return {
+			type: 'SET_CONFIG_USE_WRAPPER',
 			config,
 		};
 	},
@@ -210,6 +220,15 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssGloballyAdditionalStyles: action.config,
+				}
+			};
+		}
+		case 'SET_CONFIG_USE_WRAPPER': {
+			return {
+				...state,
+				config: {
+					...state.config,
+					useWrapper: action.config,
 				}
 			};
 		}
@@ -326,6 +345,11 @@ export const setStore = () => {
 		// outputCssGloballyAdditionalStyles
 		if (Array.isArray(config?.outputCssGloballyAdditionalStyles)) {
 			dispatch(STORE_NAME).setConfigOutputCssGloballyAdditionalStyles(config.outputCssGloballyAdditionalStyles);
+		}
+
+		// useWrapper
+		if (typeof config?.useWrapper === 'boolean') {
+			dispatch(STORE_NAME).setConfigUseWrapper(config.useWrapper);
 		}
 	}
 };
