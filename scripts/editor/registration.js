@@ -65,10 +65,14 @@ export const registerBlocks = (
 
 	// Set all store values.
 	setStore();
+	dispatch(STORE_NAME).setSettings(globalManifest);
 	dispatch(STORE_NAME).setBlocks(blocksManifests);
 	dispatch(STORE_NAME).setComponents(componentsManifest);
-	dispatch(STORE_NAME).setWrapper(wrapperManifest);
-	dispatch(STORE_NAME).setSettings(globalManifest);
+
+	if (select(STORE_NAME).getConfigUseWrapper()) {
+		dispatch(STORE_NAME).setWrapper(wrapperManifest);
+	}
+
 	setStoreGlobalWindow();
 
 	// Override store config values from local manifest.
@@ -453,10 +457,14 @@ export const getMergeCallback = (blockManifest) => {
  * @returns {React.Component}
  */
 export const getEditCallback = (Component, Wrapper) => (props) => {
+	const useWrapper = select(STORE_NAME).getConfigUseWrapper();
+
 	return (
-		<Wrapper props={props}>
+		useWrapper ?
+			<Wrapper props={props}>
+				<Component {...props} />
+			</Wrapper> :
 			<Component {...props} />
-		</Wrapper>
 	);
 };
 
@@ -660,10 +668,6 @@ export const getAttributes = (
 		blockClassPrefix = 'block',
 	} = globalManifest;
 
-	const {
-		attributes: attributesWrapper,
-	} = wrapperManifest;
-
 	const output = {
 		blockName: {
 			type: 'string',
@@ -689,7 +693,7 @@ export const getAttributes = (
 			default: `js-${blockClassPrefix}-${blockName}`,
 		},
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
-		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
+		...(wrapperManifest?.attributes ?? {}),
 		...prepareComponentAttributes(componentsManifest, parentManifest),
 	};
 

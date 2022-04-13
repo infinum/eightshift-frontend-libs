@@ -9,7 +9,8 @@
 		"outputCssSelectorName": "esCssVariables",
 		"outputCssGloballyAdditionalStyles": [
 			":root {--es-loader-opacity: 1;}"
-		]
+		],
+		"useWrapper": true
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
