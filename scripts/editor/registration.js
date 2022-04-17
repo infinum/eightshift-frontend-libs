@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import reactHtmlParser from 'react-html-parser';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { createHigherOrderComponent } from '@wordpress/compose';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
@@ -10,7 +9,6 @@ import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
 import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
-
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
  * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
@@ -181,7 +179,12 @@ export const registerBlocks = (
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
 
 	// Set all data to the dom that is necessary for project.
-	addFilter('editor.BlockListBlock', `eightshift/${select(STORE_NAME).getSettingsNamespace()}`, blocksFilterHook);
+	if (process.env.NODE_ENV !== 'test') {
+		// Require set like this because some import issue with jest unit tests.
+		const { blocksFilterHook } = require('./hooks');
+
+		addFilter('editor.BlockListBlock', `eightshift/${select(STORE_NAME).getSettingsNamespace()}`, blocksFilterHook);
+	}
 };
 
 /**
@@ -844,44 +847,3 @@ export const registerBlock = (
 		},
 	};
 };
-
-/**
- * Filter callback for setting up the correct data to the blocks.
- *
- * @abstract private
- */
-const blocksFilterHook = createHigherOrderComponent((BlockListBlock) => {
-	return (innerProps) => {
-		const {
-			name,
-			clientId,
-		} = innerProps;
-
-		let updatedProps = innerProps;
-
-		// Update only our blocks.
-		if (name.split('/')[0] === select(STORE_NAME).getSettingsNamespace()) {
-			updatedProps = _.assign(
-				{},
-				innerProps,
-				{
-					// Assign clientId to our internal attribute used for inline css variables.
-					attributes: _.assign({}, innerProps.attributes, {
-						blockClientId: clientId,
-					}),
-					block: {
-						attributes: _.assign({}, innerProps.block.attributes, {
-							blockClientId: clientId,
-						}),
-					},
-
-					// Add className to block defined by our project.
-					className: select(STORE_NAME).getSettingsGlobalVariablesCustomBlockName(),
-				}
-			);
-		}
-		return <BlockListBlock {...updatedProps} />;
-	};
-}, 'blocksFilterHook');
-
-
