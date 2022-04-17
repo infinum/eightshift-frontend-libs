@@ -376,6 +376,12 @@ export const getDifference = (array1, array2) => {
 export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	let output = '';
 
+	let uniqueSelector = `[data-id='${unique}']`;
+
+	if (!unique) {
+		uniqueSelector = '';
+	}
+
 	// Loop data and provide correct selectors from data array.
 	for(const {type, value, variable} of data) {
 		// If breakpoint value is 0 then don't wrap the media query around it.
@@ -385,10 +391,10 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 
 		if (value === 0) {
 			// No breakpoint outputted.
-			output += `\n .${name}[data-id='${unique}']{\n${variable.join('\n')}\n}`;
+			output += `\n .${name}${uniqueSelector}{\n${variable.join('\n')}\n}`;
 		} else {
 			// With breakpoint.
-			output += `\n @media (${type}-width: ${value}px) {\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n}\n}`;
+			output += `\n @media (${type}-width: ${value}px) {\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n}\n}`;
 		}
 	}
 
@@ -421,7 +427,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	}
 
 	// Prepare output for manual variables.
-	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}']{ ${manual} ${manualEditor}}` : '';
+	const finalManualOutput = manual || manualEditor ? `.${name}${uniqueSelector}{ ${manual} ${manualEditor}}` : '';
 
 	// Implement some optimizations if necessary.
 	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
@@ -900,6 +906,12 @@ export const outputCssVariablesCombinedInner = (styles) => {
 			continue;
 		}
 
+		let uniqueSelector = `[data-id='${unique}']`;
+
+		if (!unique) {
+			uniqueSelector = '';
+		}
+
 		// Loop inner variables.
 		for (const {type, value, variable} of variables) {
 			// Bailout if variable is missing.
@@ -913,7 +925,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 			}
 
 			// Populate breakpoints output.
-			breakpoints[`${type}---${value}`] += `\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n} `;
+			breakpoints[`${type}---${value}`] += `\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n} `;
 		}
 	}
 
