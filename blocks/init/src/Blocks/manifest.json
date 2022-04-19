@@ -4,8 +4,8 @@
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
 	"config": {
-		"outputCssGlobally": false,
-		"outputCssOptimize": false,
+		"outputCssGlobally": true,
+		"outputCssOptimize": true,
 		"outputCssSelectorName": "esCssVariables",
 		"outputCssGloballyAdditionalStyles": [
 			":root {--es-loader-opacity: 1;}"
