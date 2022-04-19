@@ -4,9 +4,13 @@
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
 	"config": {
-		"outputCssVariablesGlobally": false,
-		"outputCssVariablesGloballyOptimize": false,
-		"outputCssVariablesSelectorName": "esCssVariables"
+		"outputCssGlobally": false,
+		"outputCssOptimize": false,
+		"outputCssSelectorName": "esCssVariables",
+		"outputCssGloballyAdditionalStyles": [
+			":root {--es-loader-opacity: 1;}"
+		],
+		"useWrapper": true
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",

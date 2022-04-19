@@ -1,14 +1,12 @@
 import _ from 'lodash';
-import { subscribe, select } from '@wordpress/data';
-import { getAttrKey } from '../helpers/check-attr';
-import { getSettings, getSetting } from './get-manifest-details';
-
-let breakpointsPreparedVariableDataCache = [];
+import { subscribe, select, dispatch } from '@wordpress/data';
+import { getAttrKey } from './attributes';
+import { STORE_NAME } from './store';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
  *
- * @param {object} globalManifest - (Optional) Global variable data.
+ * @param {object} globalManifest - (Optional) Global variable data. - Deprecated.
  *
  * @access public
  *
@@ -92,21 +90,10 @@ let breakpointsPreparedVariableDataCache = [];
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest = {}) => {
-
+export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-disable-line no-unused-vars
 	let output = '';
-	let globalVariables = globalManifest?.globalVariables;
 
-	// Read from global cache data if no item is provided using props.
-	if (typeof globalVariables === 'undefined') {
-		globalVariables = getSettings('settings', 'globalVariables');
-	}
-
-	if (typeof globalVariables === 'undefined') {
-		throw Error(`It looks like you are missing variables in the provided globalManifest object. Please check if you data has globalVariables key.`);
-	}
-
-	for (const [itemKey, itemValue] of Object.entries(globalVariables)) {
+	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
 		const itemKeyInner = _.kebabCase(itemKey);
 
 		if (_.isObject(itemValue)) {
@@ -116,16 +103,24 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 		}
 	}
 
+	// Optimize if necessary.
+	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
+		output.replace('\n', '');
+	}
+
+	// Prepare output.
+	const finalOutput = `<style id="${select(STORE_NAME).getConfigOutputCssSelectorName()}-global">:root {${output}}</style>`;
+
 	// Set breakpoints cache for optimized load time.
 	setBreakpointsCacheData();
 
-	return document.head.insertAdjacentHTML('afterbegin', `
-		<style>
-			:root {
-				${output}
-			}
-		</style>
-	`);
+	// If using inline css variables output them.
+	if (select(STORE_NAME).getConfigOutputCssGlobally()) {
+		outputCssVariablesInline();
+	}
+
+	// Output style tag.
+	return document.head.insertAdjacentHTML('afterbegin', finalOutput);
 };
 
 /**
@@ -134,7 +129,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
  * @param {array} attributes      - Built attributes.
  * @param {array} manifest        - Component/block manifest data.
  * @param {string} unique         - Unique key.
- * @param {object} globalManifest - (Optional) Global manifest json.
+ * @param {object} globalManifest - (Optional) Global variable data.
  * @param {string} customSelector - Output custom selector to use as a style prefix.
  *
  * @access public
@@ -147,30 +142,19 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
  *
  * const unique = useMemo(() => getUnique(), []);
  *
- * outputCssVariables(attributes, manifest, unique, globalManifest);
+ * outputCssVariables(attributes, manifest, unique);
  * ```
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => { // eslint-disable-line no-unused-vars
 
-	let output = '';
-
-	const outputGloballyFlag = getSetting('config', 'outputCssVariablesGlobally');
-	const outputGloballyOptimizeFlag = getSetting('config', 'outputCssVariablesGloballyOptimize');
-
-	let globalVariables = globalManifest?.globalVariables;
-
-	// Read from global cache data if no item is provided using props.
-	if (typeof globalVariables === 'undefined') {
-		globalVariables = getSettings('settings', 'globalVariables');
-	}
-
-	const breakpoints = globalVariables?.breakpoints;
+	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
 
 	// Define variables from manifest.
 	const variables = manifest?.variables;
 	const variablesEditor = manifest?.variablesEditor;
 	const responsiveAttributes = manifest?.responsiveAttributes;
 
+	// Sort breakpoints in correct order.
 	const sortedBreakpoints = Object.entries(breakpoints)
 		.sort((a, b) => {
 			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
@@ -183,13 +167,6 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 
 	// Get the initial data array.
 	const data = prepareVariableData(sortedBreakpoints);
-
-	// Check if component or block.
-	let name = manifest.componentClass ?? attributes.blockClass;
-
-	if (customSelector !== '') {
-		name = customSelector;
-	}
 
 	if (typeof variables !== 'undefined') {
 		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
@@ -211,137 +188,37 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 		setVariablesToBreakpoints(attributes, variablesEditor, data, manifest, defaultBreakpoints);
 	}
 
-	// Prepare output style object.
-	const styles = {
-		name,
-		unique,
-		blockTopLevelId: attributes?.blockTopLevelId,
-		variables: [],
-	};
+	// Check if component or block.
+	let name = manifest.componentClass ?? attributes.blockClass;
 
-	// Loop data and provide correct selectors from data array.
-	for(const {type, value, variable} of data) {
-		// If breakpoint value is 0 then don't wrap the media query around it.
-		if (variable.length === 0) {
-			continue;
-		}
-
-		if (outputGloballyFlag) {
-			styles.variables.push({
-				type,
-				variable,
-				value,
-			});
-		} else {
-			if (value === 0) {
-				output += `\n .${name}[data-id='${unique}']{\n${variable.join('\n')}\n}`;
-			} else {
-				output += `\n @media (${type}-width: ${value}px) {\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n}\n}`;
-			}
-		}
+	// Switch selector name.
+	if (customSelector !== '') {
+		name = customSelector;
 	}
 
-	// Output manual output from the array of variables.
-	let manual = '';
-	const variablesCustom = manifest?.variablesCustom;
-
-	if (typeof variablesCustom !== 'undefined') {
-		if (outputGloballyFlag) {
-			styles.variables.push({
-				type: 'min',
-				variable: variablesCustom,
-				value: 0
-			});
-		} else {
-			manual = variablesCustom.join(';\n');
-		}
+	// If default output just echo.
+	if (!select(STORE_NAME).getConfigOutputCssGlobally()) {
+		return getCssVariablesTypeDefault(name, data, manifest, unique);
 	}
 
-	let manualEditor = '';
-	const variablesCustomEditor = manifest?.variablesCustomEditor;
+	// Find if style exists in the store.
+	const existsIndex = select(STORE_NAME).getStyles().findIndex((item) => item?.name === name && item?.unique === unique);
 
-	if (typeof variablesCustomEditor !== 'undefined') {
-		if (outputGloballyFlag) {
-			styles.variables.push({
-				type: 'min',
-				variable: variablesCustomEditor,
-				value: 0
-			});
-		} else {
-			manualEditor = variablesCustomEditor.join(';\n');
-		}
-	}
+	// Find blockClientId from the attributes.
+	const blockClientId = attributes?.blockClientId;
 
-	if (outputGloballyFlag) {
-		const settingsStyles = getSettings('styles');
-		const existsIndex = settingsStyles.findIndex((item) => item?.name === name && item?.unique === unique);
-
-		const blockTopLevelId = attributes?.blockTopLevelId ?? '';
-
-		if (blockTopLevelId) {
-			const settingsStylesMap = getSettings('stylesMap');
-
-			if (settingsStylesMap.indexOf(blockTopLevelId) === -1) {
-				settingsStylesMap.push(blockTopLevelId);
-			}
-		}
-
+	// Don't do anything if blockClientId is missing.
+	if (typeof blockClientId !== 'undefined') {
 		if (existsIndex !== -1) {
-			settingsStyles[existsIndex] = styles;
+			// Update existing styles.
+			dispatch(STORE_NAME).setStyleByIndex(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId), existsIndex);
 		} else {
-			settingsStyles.push(styles);
+			// Add new styles.
+			dispatch(STORE_NAME).setStyle(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId));
 		}
-
-		return null;
 	}
 
-	// Prepare final output for testing.
-	const fullOutput = `
-		${output}
-		${manual}
-		${manualEditor}
-	`;
-
-	// Check if final output is empty and remove if it is.
-	if (_.isEmpty(fullOutput.trim())) {
-		return '';
-	}
-
-	// Prepare output for manual variables.
-	const finalManualOutput = manual || manualEditor ? `.${name}[data-id='${unique}']{ ${manual} ${manualEditor}}` : '';
-
-	if (outputGloballyOptimizeFlag) {
-		output.replace('\n', '');
-		finalManualOutput.replace('\n', '');
-	}
-
-	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
-};
-
-/**
- * Output css variables as a one inline style tag.
- *
- * @access public
- *
- * @returns {void}
- */
-export const outputCssVariablesCombined = () => {
-	// Update state on change.
-	let contentState = select( 'core/block-editor' ).getBlocks();
-
-	subscribe(
-		_.debounce(() => {
-			const newState = select('core/block-editor').getBlocks();
-
-			if (contentState !== newState) {
-				outputCssVariablesCombinedInner(newState);
-			}
-
-			// Update reference.
-			contentState = newState;
-		}, 50)
-	);
+	return null;
 };
 
 /**
@@ -399,6 +276,227 @@ export const outputCssVariablesCombined = () => {
  */
 export const getUnique = () => {
 	return require('crypto').randomBytes(16).toString('hex');
+};
+
+// ------------------------------------------------------------------------------
+// PRIVATE METHODS
+// ------------------------------------------------------------------------------
+
+// Internal variable for storing caches breakpoint data.
+let breakpointsPreparedVariableDataCache = [];
+
+/**
+ * Output CSS variables as one inline style tag.
+ *
+ * @access private
+ *
+ * @returns {void}
+ */
+export const outputCssVariablesInline = () => {
+	// Subscribe to changes in state.
+	subscribe(
+		// Add some debounce for optimizations.
+		_.debounce(() => {
+			// Check if style has changed.
+			const hasStylesUpdated = select(STORE_NAME).hasStylesUpdated();
+
+			if (hasStylesUpdated) {
+				// Output inline style tag from store data.
+				outputCssVariablesCombinedInner(select(STORE_NAME).getStyles());
+			}
+		}, 50)
+	);
+
+	// Find current tree with all inner blocks and all reusable blocks.
+	let currentStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
+
+	// Subscribe to changes in state.
+	subscribe(() => {
+		// Find updated state of blocks after render.
+		const newStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
+
+		// Make changes only if blocks changed.
+		if (newStateBlocks !== currentStateBlocks) {
+			// Make all current and next blocks flat for easy checking.
+			const next = getAllBlocksFlat(newStateBlocks);
+			const previous = getAllBlocksFlat(currentStateBlocks);
+
+			// Find deleted blocks.
+			const deleted = getDifference(previous, next);
+
+			// If blocks are deleted remove them from the style store.
+			if (deleted) {
+				// Loop all styles.
+				select(STORE_NAME).getStyles().forEach((item, index) => {
+					// Find index of deleted item by clientId and remove it from the store.
+					deleted.forEach((element) => {
+						if (element.clientId === item.blockClientId) {
+							dispatch(STORE_NAME).unsetStyleByIndex(index);
+						}
+					});
+				});
+			}
+		}
+
+		// Update current state with the new one.
+		currentStateBlocks = newStateBlocks;
+	});
+};
+
+/**
+ * Find difference in two arrays with multiple nesting levels.
+ *
+ * @param {array} array1 Array to look.
+ * @param {array} array2 Array to check.
+ *
+ * @access private
+ *
+ * @returns {array}
+ */
+export const getDifference = (array1, array2) => {
+	return array1.filter(object1 => {
+		return !array2.some(object2 => {
+			return object1.clientId === object2.clientId;
+		});
+	});
+};
+
+/**
+ * Return CSS variables in default type. On the place where it was called.
+ *
+ * @param {string} name - Output css selector name.
+ * @param {array} data - Data prepared for checking.
+ * @param {array} manifest - Component/block manifest data.
+ * @param {string} unique - Unique key.
+ *
+ * @access private
+ *
+ * @returns {string}
+ */
+export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
+	let output = '';
+
+	let uniqueSelector = `[data-id='${unique}']`;
+
+	if (!unique) {
+		uniqueSelector = '';
+	}
+
+	// Loop data and provide correct selectors from data array.
+	for(const {type, value, variable} of data) {
+		// If breakpoint value is 0 then don't wrap the media query around it.
+		if (variable.length === 0) {
+			continue;
+		}
+
+		if (value === 0) {
+			// No breakpoint outputted.
+			output += `\n .${name}${uniqueSelector}{\n${variable.join('\n')}\n}`;
+		} else {
+			// With breakpoint.
+			output += `\n @media (${type}-width: ${value}px) {\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n}\n}`;
+		}
+	}
+
+	// Output manual output from the array of variables.
+	let manual = '';
+	const variablesCustom = manifest?.variablesCustom;
+
+	if (typeof variablesCustom !== 'undefined') {
+		manual = variablesCustom.join(';\n');
+	}
+
+	// Output manual editor output from the array of variables.
+	let manualEditor = '';
+	const variablesCustomEditor = manifest?.variablesCustomEditor;
+
+	if (typeof variablesCustomEditor !== 'undefined') {
+		manualEditor = variablesCustomEditor.join(';\n');
+	}
+
+	// Prepare final output for testing.
+	const fullOutput = `
+		${output}
+		${manual}
+		${manualEditor}
+	`;
+
+	// Check if final output is empty and return if empty string if it is.
+	if (_.isEmpty(fullOutput.trim())) {
+		return '';
+	}
+
+	// Prepare output for manual variables.
+	const finalManualOutput = manual || manualEditor ? `.${name}${uniqueSelector}{ ${manual} ${manualEditor}}` : '';
+
+	// Implement some optimizations if necessary.
+	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
+		output.replace('\n', '');
+		finalManualOutput.replace('\n', '');
+	}
+
+	// Output the style for CSS variables.
+	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+};
+
+/**
+ * Get css variables in inline type. In one place in dom.
+ *
+ * @param {string} name - Output css selector name.
+ * @param {array} data - Data prepared for checking.
+ * @param {array} manifest - Component/block manifest data.
+ * @param {string} unique - Unique key.
+ * @param {string} blockClientId - blockClientId key from attributes, corresponds to the original clientId from core.
+ *
+ * @access private
+ *
+ * @returns {array}
+ */
+export const getCssVariablesTypeInline = (name, data, manifest, unique, blockClientId) => {
+	// Prepare output style object.
+	const styles = {
+		name,
+		unique,
+		blockClientId,
+		variables: [],
+	};
+
+	// Loop data and provide correct selectors from data array.
+	for (const {type, value, variable} of data) {
+		// If breakpoint value is 0 then don't wrap the media query around it.
+		if (variable.length === 0) {
+			continue;
+		}
+
+		// Push data to local state.
+		styles.variables.push({
+			type,
+			variable,
+			value,
+		});
+	}
+
+	// Output manual output from the array of variables.
+	const variablesCustom = manifest?.variablesCustom;
+	if (typeof variablesCustom !== 'undefined') {
+		styles.variables.push({
+			type: 'min',
+			variable: variablesCustom,
+			value: 0
+		});
+	}
+
+	// Output manual editor output from the array of variables.
+	const variablesCustomEditor = manifest?.variablesCustomEditor;
+	if (typeof variablesCustomEditor !== 'undefined') {
+		styles.variables.push({
+			type: 'min',
+			variable: variablesCustomEditor,
+			value: 0
+		});
+	}
+
+	return styles;
 };
 
 /**
@@ -723,7 +821,7 @@ export const variablesInner = (variables, attributeValue) => {
  */
 export const setBreakpointsCacheData = () => {
 	// Prepare breakpoints.
-	const breakpoints = getSettings('settings', 'globalVariables')?.breakpoints;
+	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
 
 	const breakpointsCache = Object.entries(breakpoints).sort((a, b) => {
 		return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
@@ -756,44 +854,62 @@ export const setBreakpointsCacheData = () => {
 };
 
 /**
+ * Get all blacks inner-blocks recursively in one flat array.
+ *
+ * @param {array} blocks - Array of blocks.
+ *
+ * @access private
+ *
+ * @returns {array}
+ */
+export const getAllBlocksFlat = (blocks) => {
+	let output = [];
+
+	// Loop all blocks.
+	blocks.forEach((block) => {
+		const {
+			innerBlocks,
+		} = block;
+
+		// Internal output.
+		let innerOutput = [];
+
+		// Add current block to the state.
+		output.push(block);
+
+		// If inner blocks are listed do recursive add.
+		if (innerBlocks.length > 0) {
+			innerOutput = getAllBlocksFlat(innerBlocks);
+		}
+
+		// Output all.
+		output = output.concat(innerOutput);
+	});
+
+	return output;
+};
+
+/**
  * Output css variables as a one inline style tag - inner.
  *
  * @access private
  *
  * @returns {string}
  */
-export const outputCssVariablesCombinedInner = (newBlocks) => {
-	const styles = getSettings('styles');
-	let stylesMap = getSettings('stylesMap');
-
-	if (!styles.length) {
-		return;
-	}
-
-	// Find all blocks that are remaining in the dom and compare them to our stylesMap.
-	const remainingBlocks = newBlocks.filter((block) => {
-		return stylesMap.indexOf(block?.attributes?.blockTopLevelId) !== -1;
-	}).map((item) => item?.attributes?.blockTopLevelId);
-
-	// Find all blocks that are removed from the dom by comparing that to the remainingBlocks.
-	const missingBlocks = stylesMap.filter(val => !remainingBlocks.includes(val));
-
-	// Get updated styles with removed blocks.
-	const updatedStyles = styles.filter((item) => !missingBlocks.includes(item.blockTopLevelId));
-
-	// Update global state.
-	window['eightshift'][process.env.VERSION].stylesMap = remainingBlocks;
-	window['eightshift'][process.env.VERSION].styles = updatedStyles;
-
-	const outputGloballyOptimizeFlag = getSetting('config', 'outputCssVariablesGloballyOptimize');
-
+export const outputCssVariablesCombinedInner = (styles) => {
 	const breakpoints = [];
 
 	// Loop styles.
-	for (const {name, unique, variables} of updatedStyles) {
+	for (const {name, unique, variables} of styles) {
 		// Bailout if variables are missing.
 		if (variables.length === 0) {
 			continue;
+		}
+
+		let uniqueSelector = `[data-id='${unique}']`;
+
+		if (!unique) {
+			uniqueSelector = '';
 		}
 
 		// Loop inner variables.
@@ -809,7 +925,7 @@ export const outputCssVariablesCombinedInner = (newBlocks) => {
 			}
 
 			// Populate breakpoints output.
-			breakpoints[`${type}---${value}`] += `\n.${name}[data-id='${unique}']{\n${variable.join('\n')}\n} `;
+			breakpoints[`${type}---${value}`] += `\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n} `;
 		}
 	}
 
@@ -833,19 +949,31 @@ export const outputCssVariablesCombinedInner = (newBlocks) => {
 		}
 	});
 
-	// Remove newlines.
-	if (outputGloballyOptimizeFlag) {
+	// Do optimizations if necessary.
+	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
 		output = output.replace(/\n|\r/g, '');
 	}
 
-	const selector = getSetting('config', 'outputCssVariablesSelectorName');
+	// Add additional style from config settings.
+	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
+	let additionalStylesOutput = '';
+	if (typeof additionalStyles !== 'undefined') {
+		additionalStylesOutput = additionalStyles.join(';\n');
+	}
+
+
+	// Get style id name from store.
+	const selector = select(STORE_NAME).getConfigOutputCssSelectorName();
 
 	// Detect if style tag is present in dom.
 	const styleTag = document.getElementById(selector);
 
 	if (!styleTag) {
-		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output}</style>`);
+		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {
-		styleTag.innerHTML = output;
+		styleTag.innerHTML = `${output} ${additionalStylesOutput}`;
 	}
+
+	// Reset state to original.
+	dispatch(STORE_NAME).unsetStylesUpdated();
 };

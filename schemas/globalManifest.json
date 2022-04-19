@@ -29,17 +29,25 @@
 			"type": "object",
 			"description": "With config object, you can flag features that can be active or not depending on your need.",
 			"properties": {
-				"outputCssVariablesGlobally": {
+				"outputCssGlobally": {
 					"type": "boolean",
 					"description": "This key will output all inline style tags used for CSS variables in one style tag at the top of the head element. This is used for optimization purposes. Default: false"
 				},
-				"outputCssVariablesGloballyOptimize": {
+				"outputCssOptimize": {
 					"type": "boolean",
 					"description": "This key will minimize your inline css output and make it production ready. Default: false"
 				},
-				"outputCssVariablesSelectorName": {
+				"outputCssSelectorName": {
 					"type": "string",
 					"description": "With this key you can change the id selector for output css variables so you can have multiple builds in one project. Default: esCssVariables"
+				},
+				"outputCssGloballyAdditionalStyles": {
+					"type": "array",
+					"description": "With this key you append CSS variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
+				},
+				"useWrapper": {
+					"type": "boolean",
+					"description": "With this key you can change if you want to use Wrapper in your project. Default: true"
 				}
 			}
 		},

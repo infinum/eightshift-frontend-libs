@@ -20,7 +20,7 @@ import { subscribe, select } from '@wordpress/data';
 export const yoastSeo = () => {
 	domReady(() => {
 		// Bailout if plugin is missing.
-		if (typeof YoastSEO?.app !== 'undefined') {
+		if (typeof YoastSEO !== 'undefined' && typeof YoastSEO?.app !== 'undefined') {
 
 			// Check if data is available from the state.
 			let isDataAvailable = false;

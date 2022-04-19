@@ -1,4 +1,4 @@
-import { ucfirst } from "../../../../scripts/editor";
+import { ucfirst } from "../../../../scripts/editor/utility";
 
 test.each([
 	{input: 'aaa', expected: 'Aaa'},

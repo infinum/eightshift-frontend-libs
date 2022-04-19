@@ -1,6 +1,6 @@
 import Path from 'path';
 import { readdirSync, readFileSync } from "fs";
-import { props } from '../../scripts/editor';
+import { props } from '../../scripts/editor/attributes';
 
 const pathToBlocksFolder = Path.resolve(__dirname, '..', '..', 'blocks', 'init', 'src', 'Blocks');
 const pathToComponents = Path.resolve(pathToBlocksFolder, 'components');

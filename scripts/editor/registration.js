@@ -1,13 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
-import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
-import { getUnique } from './../editor/output-css-variables';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
+import { InnerBlocks } from '@wordpress/block-editor';
+import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
+import { dispatch, select } from '@wordpress/data';
+import { addFilter } from '@wordpress/hooks';
+import { createElement } from '@wordpress/element';
+import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
-import { getSettings } from './get-manifest-details';
-
+import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
  * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
@@ -43,6 +44,7 @@ import { getSettings } from './get-manifest-details';
  * );
  * ```
  */
+
 export const registerBlocks = (
 	globalManifest = {},
 	wrapperComponent = null,
@@ -59,25 +61,19 @@ export const registerBlocks = (
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
-	// Set componentsManifest to global window for usage in storybook.
-	if (typeof window?.['eightshift'] === 'undefined') {
-		window['eightshift'] = {};
+	// Set all store values.
+	setStore();
+	dispatch(STORE_NAME).setSettings(globalManifest);
+	dispatch(STORE_NAME).setBlocks(blocksManifests);
+	dispatch(STORE_NAME).setComponents(componentsManifest);
+
+	if (select(STORE_NAME).getConfigUseWrapper()) {
+		dispatch(STORE_NAME).setWrapper(wrapperManifest);
 	}
 
-	window['eightshift'][process.env.VERSION] = {
-		blocks: blocksManifests,
-		components: componentsManifest,
-		config: {
-			outputCssVariablesGlobally: false,
-			outputCssVariablesGloballyOptimize: false,
-			outputCssVariablesSelectorName: 'esCssVariables',
-		},
-		wrapper: wrapperManifest,
-		settings: globalManifest,
-		styles: [],
-		stylesMap: [],
-	};
+	setStoreGlobalWindow();
 
+	// Override store config values from local manifest.
 	setConfigFlags();
 
 	// Iterate blocks to register.
@@ -181,6 +177,14 @@ export const registerBlocks = (
 
 	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
 	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
+
+	// Set all data to the dom that is necessary for project.
+	if (process.env.NODE_ENV !== 'test') {
+		// Require set like this because some import issue with jest unit tests.
+		const { blocksFilterHook } = require('./hooks');
+
+		addFilter('editor.BlockListBlock', `eightshift/${select(STORE_NAME).getSettingsNamespace()}`, blocksFilterHook);
+	}
 };
 
 /**
@@ -456,10 +460,14 @@ export const getMergeCallback = (blockManifest) => {
  * @returns {React.Component}
  */
 export const getEditCallback = (Component, Wrapper) => (props) => {
+	const useWrapper = select(STORE_NAME).getConfigUseWrapper();
+
 	return (
-		<Wrapper props={props}>
+		useWrapper ?
+			<Wrapper props={props}>
+				<Component {...props} />
+			</Wrapper> :
 			<Component {...props} />
-		</Wrapper>
 	);
 };
 
@@ -663,14 +671,13 @@ export const getAttributes = (
 		blockClassPrefix = 'block',
 	} = globalManifest;
 
-	const {
-		attributes: attributesWrapper,
-	} = wrapperManifest;
-
 	const output = {
 		blockName: {
 			type: 'string',
 			default: blockName,
+		},
+		blockClientId: {
+			type: 'string'
 		},
 		blockTopLevelId: { // Used to pass reference to all components.
 			type: 'string',
@@ -689,7 +696,7 @@ export const getAttributes = (
 			default: `js-${blockClassPrefix}-${blockName}`,
 		},
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
-		...((typeof attributesWrapper === 'undefined') ? {} : attributesWrapper),
+		...(wrapperManifest?.attributes ?? {}),
 		...prepareComponentAttributes(componentsManifest, parentManifest),
 	};
 
@@ -744,7 +751,7 @@ export const getExample = (
 	manifest = {}
 ) => {
 
-	return prepareComponentAttributes(getSettings('components'), manifest, true, parent);
+	return prepareComponentAttributes(select(STORE_NAME).getComponents(), manifest, true, parent);
 };
 
 /**
@@ -840,30 +847,3 @@ export const registerBlock = (
 		},
 	};
 };
-
-/**
- * Set features config flag set in the global manifest settings.
- *
- * @access private
- *
- * @returns {void}
- */
-export const setConfigFlags = () => {
-	const settingsGlobal = window['eightshift'][process.env.VERSION]?.settings?.config;
-
-	// outputCssVariablesGlobally
-	if (typeof settingsGlobal?.outputCssVariablesGlobally === 'boolean') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesGlobally = settingsGlobal.outputCssVariablesGlobally;
-	}
-
-	// outputCssVariablesGloballyOptimize
-	if (typeof settingsGlobal?.outputCssVariablesGloballyOptimize === 'boolean') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesGloballyOptimize = settingsGlobal.outputCssVariablesGloballyOptimize;
-	}
-
-	// outputCssVariablesSelectorName
-	if (typeof settingsGlobal?.outputCssVariablesSelectorName === 'string') {
-		window['eightshift'][process.env.VERSION].config.outputCssVariablesSelectorName = settingsGlobal.outputCssVariablesSelectorName;
-	}
-};
-

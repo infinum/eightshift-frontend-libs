@@ -1,4 +1,4 @@
-import { ucfirst } from './ucfirst';
+import { ucfirst } from './utility';
 
 // This file is deprecated.
 
