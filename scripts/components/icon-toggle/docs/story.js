@@ -34,6 +34,27 @@ export const component = () => {
 				onChange={(value) => setCurrent(value)}
 				help={__('Help text here.', 'eightshift-frontend-libs')}
 			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				isCheckbox
+			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				help={__('Help text here.', 'eightshift-frontend-libs')}
+				isCheckbox
+			/>
 		</div>
 	);
 };
