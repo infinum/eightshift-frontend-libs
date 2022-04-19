@@ -28,7 +28,7 @@ export const IconToggle = ({
 		onChange,
 		disabled,
 		help,
-		className: ['es-icon-toggle', help ? 'es-icon-toggle--with-help' : ''],
+		className: ['es-icon-toggle-checkbox', help ? 'es-icon-toggle-checkbox--with-help' : ''],
 	};
 
 	if (label) {
