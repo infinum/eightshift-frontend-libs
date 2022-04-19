@@ -143,6 +143,7 @@ body {
 			height: 1.5rem !important;
 			width: 1.5rem !important;
 			margin: 0 !important;
+			flex-shrink: 0;
 
 			&:not(button svg) {
 				color: var(--wp-admin-theme-color, #111111);

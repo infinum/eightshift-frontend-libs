@@ -375,6 +375,12 @@ body {
 		border-radius: 6px !important;
 	}
 
+	// Fix for inserter corners looking weird with rounded popovers.
+	.block-editor-inserter__quick-inserter .block-editor-inserter__search {
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+	}
+
 	// Fix for scrollbar overflow.
 	@supports (scrollbar-gutter: stable) {
 		.interface-interface-skeleton__sidebar {
