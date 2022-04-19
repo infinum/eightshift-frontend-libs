@@ -167,6 +167,9 @@ $es-utility-props: (
 		min-height: #{$value} !important;
 
 		padding: 0 !important;
+
+		align-items: center;
+		justify-content: center;
 	}
 }
 
