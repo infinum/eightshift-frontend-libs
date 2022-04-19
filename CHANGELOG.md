@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.0.0] - 2022-04-19
+
+- Major braking changes do to updates on css variables, and helpers and updating min PHP version to 7.4.
+- Full change log can be checked on Github [releases](https://github.com/infinum/eightshift-frontend-libs/releases/tag/6.0.0).
 
 ## [5.0.2] - 2021-09-13
 
@@ -451,6 +455,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[6.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.2...6.0.0
 [5.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.1...5.0.2
 [5.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.7...5.0.0
