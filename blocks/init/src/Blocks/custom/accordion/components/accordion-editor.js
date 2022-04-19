@@ -7,7 +7,7 @@ export const AccordionEditor = ({ attributes, setAttributes }) => {
 	return (
 		<AccordionEditorComponent
 			{...props('accordion', attributes, {
-				setAttributes: setAttributes,
+				setAttributes,
 				accordionContent: <InnerBlocks />
 			})}
 		/>

@@ -1,29 +1,21 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "drawer",
 	"title": "Drawer",
 	"componentClass": "drawer",
 	"componentJsClass": "js-drawer",
 	"example": {
 		"attributes": {
-			"drawerPosition": "left",
 			"drawerMenu": "Menu component",
 			"drawerTrigger": "",
-			"drawerOverlay": "",
 			"drawerUse": true
 		}
 	},
 	"attributes": {
-		"drawerPosition": {
-			"type": "string",
-			"default": "left"
-		},
 		"drawerMenu": {
 			"type": "string"
 		},
 		"drawerTrigger": {
-			"type": "string"
-		},
-		"drawerOverlay": {
 			"type": "string"
 		},
 		"drawerUse": {

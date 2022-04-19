@@ -2,28 +2,39 @@
 
 export {
 	icons,
+	illustrations,
+	blockIcons,
 	BlockIcon
 } from './icons/icons';
-export { getFetchWpApi } from './fetch-wp-api';
-export { getActions } from './get-actions';
+export { getActions } from './actions';
+export {
+	overrideInnerBlockAttributes,
+	overrideInnerBlockSimpleWrapperAttributes,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	props,
+} from './attributes';
+export { getPaletteColors } from './colors';
+export {
+	outputCssVariablesGlobal,
+	outputCssVariables,
+	hexToRgb,
+	getUnique,
+} from './css-variables';
+export {
+	lockIfUndefined,
+	lockPostEditing,
+	unlockPostEditing,
+} from './editor';
+export { getFetchWpApi } from './fetch';
+export { inserter } from './inserter';
 export {
 	getOption,
 	getOptionColors,
 	getOptions
-} from './get-options';
-export { getPaletteColors } from './get-palette-colors';
-export { inserter } from './inserter';
-export {
-	outputCssVariablesGlobal,
-	outputCssVariables,
-	getUnique
-} from './output-css-variables';
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './override-inner-block-attributes';
+} from './options';
 export { pasteInto } from './paste-handler';
-export { props } from './props';
 export {
 	getAttributes,
 	getExample,
@@ -31,5 +42,16 @@ export {
 	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
-} from './register-blocks';
-export { ucfirst } from './ucfirst';
+} from './registration';
+export {
+	selector,
+	responsiveSelectors,
+} from './selectors';
+export {
+	STORE_NAME,
+	BUILD_VERSION,
+	setStore,
+	setStoreGlobalWindow,
+	setConfigFlags,
+} from './store';
+export { ucfirst } from './utility';

@@ -1,0 +1,29 @@
+@keyframes es-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes es-dash {
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
+
+// Gutenberg 'Animate' component 'slide-in' animation top/bottom direction polyfill.
+@keyframes components-animate__slide-in-y-animation {
+	100% {
+		transform: translateY(0%);
+	}
+}

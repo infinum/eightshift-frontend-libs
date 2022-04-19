@@ -1,18 +1,11 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/variation.json",
 	"parentName": "card",
 	"name": "card-simple",
 	"title": "Card Simple",
 	"description" : "Card Block Variation for simple style.",
 	"icon": {
 		"src": "es-card-simple"
-	},
-	"example": {
-		"attributes": {
-			"cardCardHeadingContent": "Test Heading",
-			"cardCardIntroContent": "Test Intro",
-			"cardCardParagraphUse": false,
-			"cardCardButtonContent": "Button Link Test"
-		}
 	},
 	"attributes": {
 		"cardCardHeadingContent": "Test Heading",

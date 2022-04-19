@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "header",
 	"title": "Header",
 	"componentClass": "header"

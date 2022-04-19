@@ -19,41 +19,13 @@ import { useSelect, select as globalSelect } from '@wordpress/data';
 import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-blocks';
 
 /**
- * Create Inner Blocks.
- *
- * @param {array} [innerBlocks=[]]      - Array of inner blocks.
- * @param {boolean} [isVariation=false] - Check if block is variation type.
- */
-const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
-	return innerBlocks.map((blockItem) => {
-
-		let blockInner;
-
-		if (isVariation) {
-			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
-		} else {
-			blockInner = createBlock(blockItem.name);
-		}
-
-		// Set example attributes for inner block.
-		blockInner.attributes = {
-			...blockInner.attributes,
-			...blockItem.attributes,
-		};
-
-		// Run recursive because of multiple nested blocks.
-		blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
-
-		return blockInner;
-	});
-};
-
-/**
  * Combine block details in one object.
  *
  * @param {object} blockManifest        - Block Manifest data.
  * @param {object} globalManifest       - Global Blocks Manifest data.
  * @param {boolean} [isVariation=false] - Check if block is variation type. Default: false.
+ *
+ * @access public
  *
  * @returns {object}
  *
@@ -83,8 +55,8 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 
 		output = {
 			blockName: getFullBlockNameVariation(globalManifest, blockManifest),
-			attributes: variation.example.attributes,
-			innerBlocks: getInnerBlocks(variation.example.innerBlocks),
+			attributes: variation.example?.attributes ?? variation.attributes,
+			innerBlocks: getInnerBlocks(variation.example?.innerBlocks ?? variation.innerBlocks),
 			isVariation,
 		};
 	} else {
@@ -109,7 +81,11 @@ export const blockDetails = (blockManifest, globalManifest, isVariation = false)
 /**
  * Load actual Block Editor and all the magic.
  *
+ * @access public
+ *
  * @param {object} props - All Props for blocks.
+ *
+ * @returns {component}
  *
  * Usage:
  * ```js
@@ -160,4 +136,38 @@ export const Gutenberg = ({ props }) => {
 			</SlotFillProvider>
 		</div>
 	);
+};
+
+/**
+ * Create Inner Blocks.
+ *
+ * @param {array} [innerBlocks=[]]      - Array of inner blocks.
+ * @param {boolean} [isVariation=false] - Check if block is variation type.
+ *
+ * @access private
+ *
+ * @returns {object}
+ */
+export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
+	return innerBlocks.map((blockItem) => {
+
+		let blockInner;
+
+		if (isVariation) {
+			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
+		} else {
+			blockInner = createBlock(blockItem.name);
+		}
+
+		// Set example attributes for inner block.
+		blockInner.attributes = {
+			...blockInner.attributes,
+			...blockItem.attributes,
+		};
+
+		// Run recursive because of multiple nested blocks.
+		blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
+
+		return blockInner;
+	});
 };

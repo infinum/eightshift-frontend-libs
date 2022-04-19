@@ -12,22 +12,30 @@ import { createBlock } from '@wordpress/blocks';
  * ```
  *
  * 2. Open block editor and run the following commands in the console:
- * Run all: `window.eightshiftInserter.runAll();`.
+ * Run all: `window.eightshift.inserter.runAll();`.
  * - namespace prop {string} -  Namespace of blocks to insert.
  * - save prop {bool} [save=false] -  Save dom if true.
  * - reset prop {bool} [reset=false] - Reset all in dom if true.
  *
- * Run run one: `window.eightshiftInserter.runOne('full-block-name');`.
+ * Run run one: `window.eightshift.inserter.runOne('full-block-name');`.
  * - name prop {string} - Full block name with namespace.
  * - save prop {bool} [save=false] - Save dom if true.
  * - reset prop {bool} [reset=false] - Reset all in dom if true.
  *
- * Run reset: `window.eightshiftInserter.runReset();`.
+ * Run reset: `window.eightshift.inserter.runReset();`.
  *
- * Run save all: `window.eightshiftInserter.runSave();`.
+ * Run save all: `window.eightshift.inserter.runSave();`.
+ *
+ * @access private
+ *
+ * @returns {void}
  */
 export const inserter = () => {
-	window['eightshiftInserter'] = {
+	if (typeof window?.['eightshift']?.['inserter'] === 'undefined') {
+		window['eightshift']['inserter'] = {};
+	}
+
+	window['eightshift']['inserter'] = {
 		save: false,
 		reset: false,
 		runAll: function(
@@ -93,13 +101,20 @@ export const inserter = () => {
 	};
 };
 
+//---------------------------------------------------------------
+// Private methods
+
 /**
  * Iterate all blocks by full block name.
  *
  * @param {array} blocks         - List of all blocks registered in Block Editor.
  * @param {string} blockFullName - Full block name with namespace.
+ *
+ * @access private
+ *
+ * @returns {void}
  */
-export const iterateBlocksByName = (blocks, blockFullName) => {
+const iterateBlocksByName = (blocks, blockFullName) => {
 	for (const value of blocks) {
 		const {
 			name,
@@ -120,8 +135,12 @@ export const iterateBlocksByName = (blocks, blockFullName) => {
  *
  * @param {array} blocks     - List of all blocks registered in Block Editor.
  * @param {string} namespace - Namespace to find.
+ *
+ * @access private
+ *
+ * @returns {void}
  */
-export const iterateBlocksByNamespace = (blocks, namespace) => {
+const iterateBlocksByNamespace = (blocks, namespace) => {
 	for (const value of blocks) {
 		const {
 			name,
@@ -144,8 +163,12 @@ export const iterateBlocksByNamespace = (blocks, namespace) => {
  * Insert one block in to dom.
  *
  * @param {object} block - One block details to insert.
+ *
+ * @access private
+ *
+ * @returns {void}
  */
-export const insertOneBlock = (block) => {
+const insertOneBlock = (block) => {
 	// Prepare keys.
 	const name = block?.name ?? '';
 	const attributes = block?.example?.attributes ?? {};
@@ -171,9 +194,11 @@ export const insertOneBlock = (block) => {
  *
  * @param {array} blocks - List of all blocks to iterate.
  *
+ * @access private
+ *
  * @returns {array}
  */
-export const buildBlocks = (blocks) => {
+const buildBlocks = (blocks) => {
 	const output = [];
 
 	blocks.forEach((block) => {

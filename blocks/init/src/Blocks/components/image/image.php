@@ -11,7 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
-$imageUse = Components::checkAttr('imageUse', $attributes, $manifest);
+$imageUse = Components::checkAttr('imageUse', $attributes, $manifest) ?? false;
 if (!$imageUse) {
 	return;
 }
@@ -23,7 +23,7 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest);
+$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest) ?? '';
 $imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
 
 $pictureClass = Components::classnames([
@@ -40,7 +40,7 @@ $imgClass = Components::classnames([
 ?>
 
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
-	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+	<picture class="<?php echo esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
 		<?php
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -62,10 +62,10 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['large']); ?>" class="<?php echo \esc_attr($imgClass); ?>" />
+		<img src="<?php echo esc_url($imageUrl['large']); ?>" class="<?php echo esc_attr($imgClass); ?>" alt="<?php echo esc_attr($imageAlt); ?>" />
 	</picture>
 <?php } ?>

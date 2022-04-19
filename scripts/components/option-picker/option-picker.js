@@ -19,91 +19,95 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {React.Component?} [props.buttonIcon]         - If set, the button that opens a dropdown option picker displays the set (JSX SVG) icon. Otherwise, the icon of the currently selected option (or first option if nothing selected) is used.
  * @param {boolean} [props.showToggleButtonLabel=false] - If `true`, the text label is shown next to the icon of the button that opens a dropdown option picker.
  * @param {boolean} [props.unsetOnClick=false] 			- If `true`, and you click a option that is currently selected, the value will be unset (set to `undefined`).
+ * @param {boolean} [props.disabled=false]              - If `true`, control is disabled.
  */
-export const OptionPicker = ({
-	value: currentValue,
-	onChange,
-	options,
-	label: controlLabel,
-	screenReaderDescription : describedBy = sprintf(__('Change %s'), controlLabel),
-	isInline: isCollapsed = false,
-	isInToolbar: isToolbar = false,
-	isToolbarButton = true,
-	popoverPosition = 'bottom right',
-	isToggleButtonActive = false,
-	buttonIcon,
-	showToggleButtonLabel = false,
-	unsetOnClick = false,
-}) => {
-	/**
-	 * Gets the onChange callback with will (un)set a value
-	 * when a new option gets picked.
-	 * @param {*} value
-	 * @returns onChange callback
-	 */
-	function applyOrUnset(value) {
-		if (unsetOnClick && currentValue === value) {
-			return () => onChange(undefined);
-		}
-
-		return () => onChange(value);
-	}
-
-	/**
-	 * Gets the buttonIcon if set, otherwise gets active option's
-	 * icon or the first option's icon if nothing is selected.
-	 * @returns JSX icon.
-	 */
-	function getIcon() {
-		if (buttonIcon) {
-			return buttonIcon;
-		}
-
-		const activeOption = options.find((control) => control.value === currentValue);
-
-		if (activeOption) {
-			return icons[activeOption.icon] ?? activeOption.icon;
-		}
-
-		return icons[options[0].icon] ?? options[0].icon;
-	}
-
-	// Get the right container component and options
-	const UIComponent = isToolbar ? ToolbarGroup : DropdownMenu;
-	const extraProps = isToolbar ? { isCollapsed: !isCollapsed } : { isToolbarButton };
-
-	return (
-		<UIComponent
-			icon={getIcon()}
-			label={controlLabel}
-			text={showToggleButtonLabel ? controlLabel : null}
-			toggleProps={{
-				describedBy: describedBy,
-				label: controlLabel,
-				showTooltip: true,
-				isPressed: isToggleButtonActive,
-			}}
-			popoverProps={{
-				position: popoverPosition,
-				isAlternate: true,
-			}}
-			controls={
-				options.map((control) => {
-					const { value, icon } = control;
-					const isActive = currentValue === value;
-
-					return {
-						...control,
-						icon: icons[icon] ?? icon,
-						isActive,
-						role: isCollapsed ? 'menuitemradio' : undefined,
-						onClick: applyOrUnset(value),
-					};
-				})
+export const OptionPicker
+	= ({
+		value: currentValue,
+		onChange,
+		options,
+		label: controlLabel,
+		screenReaderDescription : describedBy = sprintf(__('Change %s'), controlLabel),
+		isInline: isCollapsed = false,
+		isInToolbar: isToolbar = false,
+		isToolbarButton = true,
+		popoverPosition = 'bottom right',
+		isToggleButtonActive = false,
+		buttonIcon,
+		showToggleButtonLabel = false,
+		unsetOnClick = false,
+		disabled = false,
+	}) => {
+		/**
+		 * Gets the onChange callback with will (un)set a value
+		 * when a new option gets picked.
+		 * @param {*} value 
+		 * @returns onChange callback
+		 */
+		function applyOrUnset(value) {
+			if (unsetOnClick && currentValue === value) {
+				return () => onChange(undefined);
 			}
-			iconSize={24}
-			className='es-toolbar-icon-24'
-			{...extraProps}
-		/>
-	);
-};
+
+			return () => onChange(value);
+		}
+
+		/**
+		 * Gets the buttonIcon if set, otherwise gets active option's
+		 * icon or the first option's icon if nothing is selected.
+		 * @returns JSX icon.
+		 */
+		function getIcon() {
+			if (buttonIcon) {
+				return buttonIcon;
+			}
+			
+			const activeOption = options.find((control) => control.value === currentValue);
+
+			if (activeOption) {
+				return icons[activeOption.icon] ?? activeOption.icon;
+			}
+
+			return icons[options[0].icon] ?? options[0].icon;
+		}
+
+		// Get the right container component and options
+		const UIComponent = isToolbar ? ToolbarGroup : DropdownMenu;
+		const extraProps = isToolbar ? { isCollapsed: !isCollapsed } : { isToolbarButton };
+
+		return (
+			<UIComponent
+				icon={getIcon()}
+				label={controlLabel}
+				text={showToggleButtonLabel ? controlLabel : null}
+				toggleProps={{ 
+					describedBy: describedBy,
+					label: controlLabel,
+					showTooltip: true,
+					isPressed: isToggleButtonActive,
+					disabled: disabled,
+				}}
+				popoverProps={{
+					position: popoverPosition,
+					isAlternate: true,
+				}}
+				controls={
+					options.map((control) => {
+						const { value, icon } = control;
+						const isActive = currentValue === value;
+
+						return {
+							...control,
+							icon: icons[icon] ?? icon,
+							isActive,
+							role: isCollapsed ? 'menuitemradio' : undefined,
+							onClick: applyOrUnset(value),
+						};
+					})
+				}
+				iconSize={24}
+				className='es-toolbar-icon-24'
+				{...extraProps}
+			/>
+		);
+	};

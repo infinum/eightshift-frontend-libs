@@ -17,16 +17,15 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 
 ?>
 
-<meta charset="<?php echo \esc_attr($headCharset); ?>" />
+<?php if (isset($headCharset)) { ?>
+  <meta charset="<?php echo esc_attr($headCharset); ?>" />
+<?php } ?>
 
 <!-- Responsive -->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <!-- Remove IE's ability to use compatibility mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<!-- Correct type -->
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
 <!-- Disable phone formatting on safari -->
 <meta name="format-detection" content="telephone=no">
@@ -37,15 +36,22 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
 <!-- Win phone Meta -->
-<meta name="application-name" content="<?php echo \esc_attr($headName); ?>"/>
+<?php if ($headName ?? '') { ?>
+  <meta name="application-name" content="<?php echo esc_attr($headName); ?>" />
+<?php } ?>
 
 <!-- Apple -->
-<meta name="apple-mobile-web-app-title" content="<?php echo \esc_attr($headName); ?>">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="apple-touch-startup-image" href="<?php echo \esc_url($headFavicon); ?>">
+<?php if ($headName ?? '') { ?>
+  <meta name="apple-mobile-web-app-title" content="<?php echo esc_attr($headName); ?>">
+<?php } ?>
 
-<!-- General -->
-<link rel="shortcut icon" href="<?php echo \esc_url($headFavicon); ?>" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<?php if ($headFavicon ?? '') { ?>
+  <link rel="apple-touch-startup-image" href="<?php echo esc_url($headFavicon); ?>">
+	<link rel="shortcut icon" href="<?php echo esc_url($headFavicon); ?>" />
+<?php } ?>
+
 
 <?php
-echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

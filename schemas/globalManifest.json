@@ -1,0 +1,194 @@
+{
+	"title": "JSON schema for Eightshift blocks used in blocks global settings manifest.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"active": {
+			"type": "boolean",
+			"description": "If set to false your block will not be registered and will not show in the block editor. Default: true."
+		},
+		"namespace": {
+			"type": "string",
+			"pattern": "^[^\/][a-z0-9-]*$",
+			"description": "The main blocks group namespace is a unique string that identifies blocks affiliation. It is combined with the block name to get the full block name. Example: eightshift-boilerplate/button."
+		},
+		"background": {
+			"type": "string",
+			"pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+			"description": "Background color represents the namespace main color. In block editor you will see all your blocks with this background color. You can override this in every block manifest.json."
+		},
+		"foreground": {
+			"type": "string",
+			"pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+			"description": "The same as background color, foreground represents the namespace secondary color. You can override this in every block manifest.json."
+		},
+		"config": {
+			"type": "object",
+			"description": "With config object, you can flag features that can be active or not depending on your need.",
+			"properties": {
+				"outputCssGlobally": {
+					"type": "boolean",
+					"description": "This key will output all inline style tags used for CSS variables in one style tag at the top of the head element. This is used for optimization purposes. Default: false"
+				},
+				"outputCssOptimize": {
+					"type": "boolean",
+					"description": "This key will minimize your inline css output and make it production ready. Default: false"
+				},
+				"outputCssSelectorName": {
+					"type": "string",
+					"description": "With this key you can change the id selector for output css variables so you can have multiple builds in one project. Default: esCssVariables"
+				},
+				"outputCssGloballyAdditionalStyles": {
+					"type": "array",
+					"description": "With this key you append CSS variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
+				},
+				"useWrapper": {
+					"type": "boolean",
+					"description": "With this key you can change if you want to use Wrapper in your project. Default: true"
+				}
+			}
+		},
+		"globalVariables": {
+			"type": "object",
+			"description": "GlobalVariables represents all custom settings for your project setup like, color, gutters, breakpoints, etc.",
+			"properties": {
+				"customBlocksName": {
+					"type": "string",
+					"const": "eightshift-block",
+					"description": "This key represents a custom selector that is added on the every custom block you create so we can make necessary correction to the block style in order for the wrapper, blocks, custom components and etc to work correctly. You must not change this value."
+				},
+				"maxCols": {
+					"type": "integer",
+					"description": "Max columns represent the maximum number of columns to show in grid. This is used in css grid, wrapper, and multiple other places. Default: 12."
+				},
+				"baseFont": {
+					"type": "string",
+					"description": "Base font defined the main font family name used in the css."
+				},
+				"zIndex": {
+					"type": "object",
+					"description": "Z-index object provides the list of all zIndexes so you can easily find and debug your project stacking context."
+				},
+				"breakpoints": {
+					"type": "object",
+					"description": "Breakpoints work in correlation with our media-blender plugin. They determine project breakpoints and all the responsive attributes in the blocks.",
+					"properties": {
+						"mobile": {
+							"type": "integer",
+							"description": "Breakpoint value for mobile size."
+						},
+						"tablet": {
+							"type": "integer",
+							"description": "Breakpoint value for tablet size."
+						},
+						"desktop": {
+							"type": "integer",
+							"description": "Breakpoint value for desktop size."
+						},
+						"large": {
+							"type": "integer",
+							"description": "Breakpoint value for large size."
+						}
+					},
+					"required": [
+						"mobile",
+						"tablet",
+						"desktop",
+						"large"
+					]
+				},
+				"containers": {
+					"type": "object",
+					"description": "Containers object provides the list of all containers so you can use them in you css and block options."
+				},
+				"gutters": {
+					"type": "object",
+					"description": "Gutters object provides the list of all gutters so you can use them in you css and block options."
+				},
+				"sectionSpacing": {
+					"type": "object",
+					"description": "Section spacing object represents the wrappers margin top and bottom used in the RangeControl component.",
+					"properties": {
+						"min": {
+							"type": "integer",
+							"description": "Section spacing min size."
+						},
+						"max": {
+							"type": "integer",
+							"description": "Section spacing max size."
+						},
+						"step": {
+							"type": "integer",
+							"description": "Section spacing step interval."
+						}
+					},
+					"required": [
+						"min",
+						"max",
+						"step"
+					]
+				},
+				"sectionInSpacing": {
+					"type": "object",
+					"description": "Section spacing in object represents the wrappers padding top and bottom used in the RangeControl component.",
+					"properties": {
+						"min": {
+							"type": "integer",
+							"description": "Section spacing min size."
+						},
+						"max": {
+							"type": "integer",
+							"description": "Section spacing max size."
+						},
+						"step": {
+							"type": "integer",
+							"description": "Section spacing step interval."
+						}
+					},
+					"required": [
+						"min",
+						"max",
+						"step"
+					]
+				},
+				"colors": {
+					"type": "array",
+					"description": "Colors object provides the projects color pallete used in all color components.",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string",
+								"description": "Color name used in the block editor, this should be user-friendly name."
+							},
+							"slug": {
+								"type": "string",
+								"description": "Color slug used in the block editor, to be used as reference."
+							},
+							"color": {
+								"type": "string",
+								"pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+								"description": "Actual hex color value."
+							}
+						}
+					}
+				}
+			},
+			"required": [
+				"customBlocksName",
+				"maxCols",
+				"breakpoints",
+				"colors"
+			]
+		}
+	},
+	"required": [
+		"namespace",
+		"background",
+		"foreground",
+		"globalVariables"
+	]
+}

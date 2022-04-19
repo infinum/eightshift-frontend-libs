@@ -5,13 +5,35 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType
 } from './alignment-toolbar/alignment-toolbar';
-export { ColorPaletteCustom } from './color-palette-custom/color-palette-custom';
+export { 
+	ColorPaletteCustom,
+	ColorPaletteCustomLayout,
+} from './color-palette-custom/color-palette-custom';
 export {
 	ColorPickerComponent,
-	ColorPickerType
+	ColorPickerType,
 } from './color-picker-component/color-picker-component';
+export { Collapsable } from './collapsable/collapsable';
+export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
+export { CompactResponsive } from './compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
-export { CustomSelect } from './custom-select/custom-select';
+export {
+	CustomSelect,
+	CustomSelectCustomOption,
+	CustomSelectCustomValueDisplay,
+	CustomSelectCustomMultipleValueDisplay,
+	CustomSelectCustomMultipleValueDisplayContainer,
+	CustomSelectCustomMultipleValueRemoveButton,
+} from './custom-select/custom-select';
+export {
+	CustomSlider,
+	CustomSliderStyle,
+} from './custom-slider/custom-slider';
+export {
+	CustomRangeSlider,
+	CustomRangeSliderStyle,
+} from './custom-slider/custom-range-slider';
+export { FancyDivider } from './fancy-divider/fancy-divider';
 export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';
 export { IconLabel } from './icon-label/icon-label';
@@ -26,4 +48,5 @@ export { MatrixAlignControl } from './matrix-align-control/matrix-align-control'
 export { OptionPicker } from './option-picker/option-picker';
 export { Responsive } from './responsive/responsive';
 export { ServerSideRender } from './server-side-render/server-side-render';
+export { SimpleHorizontalSingleSelect } from './simple-horizontal-single-select/simple-horizontal-single-select';
 export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';

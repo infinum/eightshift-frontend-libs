@@ -1,10 +1,8 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, A11y } from 'swiper';
 import globalManifest from './../../../manifest.json';
 
 export class CarouselSlider {
 	constructor(options) {
-		Swiper.use([Navigation, Pagination]);
-
 		this.element = options.element;
 		this.blockClass = options.blockClass;
 		this.nextElement = options.nextElement;
@@ -20,13 +18,18 @@ export class CarouselSlider {
 
 		const showItems = item?.dataset?.showItems ?? -1;
 		const loopMode = item?.dataset?.swiperLoop ?? 'false';
-		
 
 		new Swiper(item, {
 			loop: loopMode === 'true',
 			slideClass: `${this.blockClass}__item`,
 			slidesPerView: 1,
 			spaceBetween: 10,
+			modules: [
+				Navigation, Pagination, A11y
+			],
+			a11y: {
+				slideRole: 'figure',
+			},
 			keyboard: {
 				enabled: true,
 			},

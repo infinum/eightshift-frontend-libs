@@ -1,0 +1,20 @@
+{
+	"componentName": "skip-link",
+	"title": "Skip link",
+	"componentClass": "skip-link",
+	"example": {
+		"attributes": {
+			"skipLinkUse": true
+		}
+	},
+	"attributes": {
+		"skipLinkUse": {
+			"type": "boolean",
+			"default": true
+		},
+		"skipLinkTarget": {
+			"type": "string",
+			"default": "#main-content"
+		}
+	}
+}

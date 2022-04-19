@@ -53,34 +53,42 @@ $buttonClass = Components::classnames([
 
 <?php if (! $buttonUrl) { ?>
 	<button
-		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($buttonId); ?>"
-		title="<?php echo \esc_attr($buttonContent); ?>"
-		aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		class="<?php echo esc_attr($buttonClass); ?>"
+		<?php if (!empty($buttonId)) { ?>
+			id="<?php echo esc_attr($buttonId); ?>"
+		<?php } ?>
+		title="<?php echo esc_attr($buttonContent); ?>"
+		<?php if (!empty($buttonAriaLabel)) { ?>
+			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
+		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {
-			echo \wp_kses_post("{$key}=" . $value . " ");
+			echo wp_kses_post("{$key}=" . $value . " ");
 		}
 		?>
 	>
-		<?php echo \esc_html($buttonContent); ?>
+		<?php echo esc_html($buttonContent); ?>
 	</button>
 
 <?php } else { ?>
 	<a
-		href="<?php echo \esc_url($buttonUrl); ?>"
-		class="<?php echo \esc_attr($buttonClass); ?>"
-		id="<?php echo \esc_attr($buttonId); ?>"
-		title="<?php echo \esc_attr($buttonContent); ?>"
-		aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+		href="<?php echo esc_url($buttonUrl); ?>"
+		class="<?php echo esc_attr($buttonClass); ?>"
+		<?php if (!empty($buttonId)) { ?>
+			id="<?php echo esc_attr($buttonId); ?>"
+		<?php } ?>
+		title="<?php echo esc_attr($buttonContent); ?>"
+		<?php if (!empty($buttonAriaLabel)) { ?>
+			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
+		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {
-			echo \wp_kses_post("{$key}=" . $value . " ");
+			echo wp_kses_post("{$key}=" . $value . " ");
 		}
 		?>
 	>
-		<?php echo \esc_html($buttonContent); ?>
+		<?php echo esc_html($buttonContent); ?>
 	</a>
 <?php } ?>

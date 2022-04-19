@@ -4,7 +4,7 @@
  * @group unit
  */
 
-const { getOptionColors } = require('../../../../scripts/editor/get-options');
+import {getOptionColors} from './../../../../scripts/editor/options';
 
 // Mock for getPaletteColors() return value.
 const coreColors = {

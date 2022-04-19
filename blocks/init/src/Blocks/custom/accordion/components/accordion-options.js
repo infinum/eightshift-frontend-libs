@@ -9,7 +9,7 @@ export const AccordionOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Accordion', 'eightshift-frontend-libs')}>
 			<AccordionOptionsComponent
 				{...props('accordion', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</PanelBody>

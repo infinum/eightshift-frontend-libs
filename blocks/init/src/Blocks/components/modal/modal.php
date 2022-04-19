@@ -38,35 +38,37 @@ $modalClass = Components::classnames([
 ?>
 
 <div
-	class="<?php echo \esc_attr($modalClass); ?>"
-	id="<?php echo \esc_attr($modalId); ?>"
+	class="<?php echo esc_attr($modalClass); ?>"
+	<?php if (!empty($modalId)) { ?>
+		id="<?php echo esc_attr($modalId); ?>"
+	<?php } ?>
 	aria-hidden="true"
 >
 	<div
-		<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
-		class="<?php echo \esc_attr("{$componentClass}__overlay"); ?>"
+		<?php echo esc_attr("data-{$componentJsToggleClass}-close"); ?>
+		class="<?php echo esc_attr("{$componentClass}__overlay"); ?>"
 		tabIndex="-1"
 	>
 		<div
-			class="<?php echo \esc_attr("{$componentClass}__dialog"); ?>"
+			class="<?php echo esc_attr("{$componentClass}__dialog"); ?>"
 			role="dialog"
 			aria-modal="true"
 		>
 			<?php if ($modalExitButton) { ?>
-				<div class="<?php echo \esc_attr("{$componentClass}__close"); ?>">
+				<div class="<?php echo esc_attr("{$componentClass}__close"); ?>">
 					<button
-						<?php echo \esc_attr("data-{$componentJsToggleClass}-close"); ?>
-						class="<?php echo \esc_attr("{$componentClass}__close-button"); ?>"
-						aria-label="Close modal"
+						<?php echo esc_attr("data-{$componentJsToggleClass}-close"); ?>
+						class="<?php echo esc_attr("{$componentClass}__close-button"); ?>"
+						aria-label="<?php echo esc_attr__('Close modal', 'eightshift-frontend-libs'); ?>"
 					>
-						<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 					</button>
 				</div>
 			<?php } ?>
 
-			<div class="<?php echo \esc_attr("{$componentClass}__content"); ?>">
+			<div class="<?php echo esc_attr("{$componentClass}__content"); ?>">
 				<?php
-					echo $modalContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $modalContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 				?>
 			</div>
 		</div>

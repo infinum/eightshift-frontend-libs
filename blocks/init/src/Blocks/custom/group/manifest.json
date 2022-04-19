@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "group",
 	"title": "Group",
 	"description" : "Group block used to grouping multiple blocks.",

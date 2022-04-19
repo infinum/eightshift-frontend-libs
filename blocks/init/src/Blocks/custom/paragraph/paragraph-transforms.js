@@ -8,12 +8,17 @@ export const transforms = {
 		{
 			type: 'block',
 			blocks: [`${globalManifest.namespace}/${manifestHeading.blockName}`],
-			transform: ( { headingHeadingColor, headingHeadingContent, headingAlign } ) => {
-				return createBlock(`${globalManifest.namespace}/${manifestParagraph.blockName}`, {
-					paragraphParagraphColor: headingHeadingColor,
-					paragraphParagraphContent: headingHeadingContent,
-					paragraphAlign: headingAlign,
-				});
+			transform: (attributes) => {
+				let paragraphAttributes = {};
+				for (const attribute in attributes) {
+					if (attribute.startsWith('block')) {
+						continue;
+					}
+					const attrKey = attribute.replace('heading', 'paragraph').replace('Heading', 'Paragraph');
+					paragraphAttributes[attrKey] = attributes[attribute];
+				}
+
+				return createBlock(`${globalManifest.namespace}/${manifestParagraph.blockName}`, paragraphAttributes);
 			},
 		},
 		{

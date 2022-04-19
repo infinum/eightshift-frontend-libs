@@ -3,9 +3,11 @@
  * For more information, check [this blog post](https://davidwalsh.name/javascript-debounce-function).
  *
  * @param {function} func - Callback to apply.
- * @param {number} wait   - Number of seconds for the delay of the callback function.
+ * @param {number} wait   - Number of milliseconds for the delay of the callback function. Default is 200ms.
  *
- * @return Debounced callback.
+ * @access public
+ *
+ * @return {function} Debounced callback.
  *
  * Usage:
  * ```js
@@ -14,7 +16,7 @@
  * }, 250);
  * ```
  */
-export function debounce(func, wait) {
+export function debounce(func, wait = 250) {
 	let timeout;
 
 	return function(...args) {

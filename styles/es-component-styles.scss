@@ -1,0 +1,175 @@
+// stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
+
+@import './es-keyframes.scss';
+@import '../scripts/components/custom-slider/custom-slider.scss';
+@import '../scripts/components/link-edit-component/link-edit-component.scss';
+@import '../scripts/components/responsive/responsive.scss';
+@import '../scripts/components/help-modal/help-modal.scss';
+@import '../scripts/components/icon-toggle/icon-toggle.scss';
+@import '../scripts/components/component-use-toggle/component-use-toggle.scss';
+@import '../scripts/components/custom-select/custom-select.scss';
+@import '../scripts/components/color-picker-component/color-picker-component.scss';
+@import '../scripts/components/inline-notification/inline-notification.scss';
+@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select.scss';
+@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select.scss';
+@import '../scripts/components/server-side-render/server-side-render.scss';
+@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle.scss';
+@import '../scripts/components/fancy-divider/fancy-divider.scss';
+@import '../scripts/components/collapsable/collapsable.scss';
+@import '../scripts/components/color-palette-custom/color-palette-custom.scss';
+@import '../scripts/components/compact-responsive/compact-responsive.scss';
+
+body {
+
+	// Full width button.
+	.custom-full-width-button {
+		width: 100%;
+		justify-content: center;
+	}
+
+	// Custom divider.
+	.custom-divider {
+		width: 100%;
+		height: 1px;
+		background-color: map-get-strict($override-map, divider);
+		margin: 10px 0;
+	}
+
+	// Highlighted panel
+	.custom-highlighted-panel {
+		background-color: map-get-strict($override-map, highlighted-panel);
+	}
+
+	// Panel body title with icon in front.
+	// Must have the title wrapped in a <span>!
+	.es-panel-title {
+		> .components-panel__body-title {
+			> .components-panel__body-toggle {
+				display: flex;
+				align-items: center;
+				flex-direction: row-reverse !important;
+				gap: 0.5rem;
+
+				span {
+					margin-right: auto !important;
+				}
+
+				svg:not(span svg) {
+					margin: 0 !important;
+					color: #757575;
+					height: 1.25rem !important;
+					width: 1.25rem !important;
+				}
+			}
+		}
+
+		i {
+			line-height: 0;
+		}
+	}
+
+	// Panel body without title.
+	.es-panel-standalone {
+		.components-base-control.components-toggle-control {
+			margin-bottom: 0;
+
+			.components-base-control__field {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Updated Placeholder component styles.
+	.components-placeholder {
+		.es-placeholder-input-flex {
+			display: flex;
+			flex-wrap: nowrap;
+			gap: 0.5rem;
+			width: 100%;
+
+			.components-input-control {
+				max-width: 19rem;
+			}
+		}
+	}
+
+	// Input error text style.
+	.es-input-error {
+		color: $base-error-color;
+		font-size: 0.85rem;
+		font-weight: 500;
+	}
+
+	// Simple button row/toolbar.
+	.es-simple-editor-button-row {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	// Match WP button size to WP input field height.
+	.es-input-matched-button-size {
+		min-height: 1.875rem !important;
+		min-width: 1.875rem !important;
+		height: 1.875rem !important;
+		width: 1.875rem !important;
+	}
+
+	// Remove outline on WP buttons (e.g. when using 'isDestructive' when you want no border).
+	.es-button-no-outline {
+		box-shadow: inset 0 0 0 1px transparent !important;
+	}
+
+	// Decorative/unselectable text.
+	.es-decorative-text {
+		opacity: 0.6;
+		user-select: none;
+	}
+
+	// Fix fancy use toggle spacing.
+	.es-panel-text-divider.es-icon-toggle.es-icon-toggle--reverse {
+		& > .components-base-control__field {
+			margin-bottom: 0.2rem;
+		}
+	}
+
+	// Style for labels which are not contained inside BaseControl.
+	.es-label-flex {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		svg {
+			height: 1.5rem !important;
+			width: 1.5rem !important;
+			margin: 0 !important;
+			flex-shrink: 0;
+
+			&:not(button svg) {
+				color: var(--wp-admin-theme-color, #111111);
+			}
+		}
+	}
+
+	// Add this class to any custom Responsive sub-element that should be inset when not expanded.
+	.es-responsive-inset {} // stylelint-disable-line
+
+	// PanelBody title muted text.
+	.es-panel-body-muted {
+		font-weight: normal;
+		opacity: 0.6;
+	}
+
+	// Custom popover content.
+	.es-popover-content {
+		padding: 1rem;
+		min-width: 16rem;
+	}
+
+	// Slight border for default buttons if needed.
+	.es-slight-button-border:not(.is-pressed) {
+		box-shadow: inset 0 0 0 1px rgb(240 240 240);
+	}
+}
+
+// stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

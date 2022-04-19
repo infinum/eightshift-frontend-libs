@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "5.0.3",
+	"version": "6.0.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -45,7 +45,7 @@
 		"@babel/plugin-proposal-class-properties": "^7.12.1",
 		"@babel/plugin-syntax-dynamic-import": "^7.8.3",
 		"@babel/polyfill": "^7.12.1",
-		"@infinumjs/eslint-config-react-js": "^2.2.0",
+		"@infinumjs/eslint-config-react-js": "^2.7.0",
 		"@wordpress/api-fetch": "^5.2.2",
 		"@wordpress/babel-preset-default": "^4.20.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^2.9.0",
@@ -72,6 +72,7 @@
 		"precss": "^4.0.0",
 		"promisify-child-process": "^4.1.1",
 		"raw-loader": "^4.0.2",
+		"rc-slider": "^9.7.5",
 		"react-html-parser": "^2.0.2",
 		"react-select": "^4.3.1",
 		"react-sortable-hoc": "^1.11.0",
@@ -104,8 +105,7 @@
 		"jest-expect-message": "^1.0.2",
 		"react-test-renderer": "^17.0.2",
 		"replace-in-file": "^6.2.0",
-		"sassdoc": "^2.7.3",
-		"swiper": "^6.7.5"
+		"sassdoc": "^2.7.3"
 	},
 	"sideEffects": false,
 	"jest": {

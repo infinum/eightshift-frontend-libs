@@ -1,0 +1,64 @@
+// stylelint-disable number-max-precision, selector-max-specificity
+
+.es-collapsable-v2 {
+	outline: 1px solid transparent;
+	outline-offset: 0.35rem;
+	border-radius: 0.0625rem;
+
+	transition: {
+		property: outline, outline-offset;
+		timing-function: ease-out;
+		duration: 0.15s;
+	}
+
+	&__trigger {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: auto;
+		gap: 1rem;
+
+		border-bottom: 1px solid transparent;
+
+		transition: {
+			property: border-color;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		.components-button svg {
+			transition: {
+				property: transform;
+				timing-function: ease-out;
+				duration: 0.15s;
+			}
+		}
+	}
+
+	.components-button svg {
+		transition: {
+			property: transform;
+			timing-function: ease-out;
+			duration: 0.15s;
+		}
+	}
+
+	&.is-open {
+		outline-offset: 0.25rem;
+		outline: 1px solid var(--wp-admin-theme-color);
+
+		// Flip the triangle icon.
+		.es-collapsable-v2__trigger .components-button svg {
+			transform: scaleY(-1);
+		}
+
+		.es-collapsable-v2__trigger {
+			color: var(--wp-admin-theme-color, #194BD4);
+			border-bottom-color: hsl(0 0 96%);
+			padding-bottom: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+}
+
+// stylelint-enable number-max-precision, selector-max-specificity

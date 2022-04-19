@@ -15,7 +15,7 @@ export const ButtonToolbar = ({ attributes, setAttributes }) => {
 		<>
 			<ButtonToolbarComponent
 				{...props('button', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 

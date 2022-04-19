@@ -1,16 +1,11 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/variation.json",
 	"parentName": "button",
 	"name": "button-full-width",
 	"title": "Button Full Width",
 	"description" : "Button Block Variation for full width style.",
 	"icon": {
 		"src": "es-button-block"
-	},
-	"example": {
-		"attributes": {
-			"buttonButtonWidth": "block",
-			"buttonButtonContent": "Button variation"
-		}
 	},
 	"attributes": {
 		"buttonButtonWidth": "block"

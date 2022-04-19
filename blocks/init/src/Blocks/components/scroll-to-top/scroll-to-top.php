@@ -29,6 +29,6 @@ $scrollToTopClass = Components::classnames([
 ]);
 ?>
 
-<button class="<?php echo \esc_attr($scrollToTopClass); ?>">
-	<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<button class="<?php echo esc_attr($scrollToTopClass); ?>">
+	<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 </button>

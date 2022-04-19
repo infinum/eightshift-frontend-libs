@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "button",
 	"title": "Button",
 	"componentClass": "btn",
@@ -138,7 +139,7 @@
 			"yellow": [
 				{
 					"variable": {
-						"button-color": "var(--global-colors-white)",
+						"button-color": "var(--global-colors-black)",
 						"button-color-hover": "var(--global-colors-white)",
 						"button-background-color": "var(--global-colors-yellow)",
 						"button-background-color-hover": "var(--global-colors-black)",
@@ -150,7 +151,7 @@
 			"ocean": [
 				{
 					"variable": {
-						"button-color": "var(--global-colors-white)",
+						"button-color": "var(--global-colors-black)",
 						"button-color-hover": "var(--global-colors-white)",
 						"button-background-color": "var(--global-colors-ocean)",
 						"button-background-color-hover": "var(--global-colors-black)",
@@ -162,7 +163,7 @@
 			"green": [
 				{
 					"variable": {
-						"button-color": "var(--global-colors-white)",
+						"button-color": "var(--global-colors-black)",
 						"button-color-hover": "var(--global-colors-white)",
 						"button-background-color": "var(--global-colors-green)",
 						"button-background-color-hover": "var(--global-colors-black)",

@@ -13,10 +13,11 @@ const {
     installNodeDependencies,
     installComposerDependencies,
   },
-  files: { fullPath },
+  files: { installPath },
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
+const { replaceVersionNumbers } = require('../replace-version-numbers');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 const { installModifiedNodeDependencies, installModifiedComposerDependencies } = require('../dependencies');
@@ -31,7 +32,8 @@ exports.handler = async (argv) => {
   let step = 1;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
-  const projectPath = path.join(fullPath, promptedInfo.package);
+  const requiredPath = await installPath('themes');
+  const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 
@@ -78,6 +80,12 @@ exports.handler = async (argv) => {
   await installStep({
     describe: `${step}. Cleaning up`,
     thisHappens: cleanup(projectPath),
+  });
+  step++;
+
+  await installStep({
+    describe: `${step}. Replacing version numbers`,
+    thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
   });
   step++;
 

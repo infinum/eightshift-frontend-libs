@@ -9,7 +9,7 @@ export const JumbotronOptions = ({ attributes, setAttributes }) => {
 		<PanelBody title={__('Jumbotron', 'eightshift-frontend-libs')}>
 			<JumbotronOptionsComponent
 				{...props('jumbotron', attributes, {
-					setAttributes: setAttributes,
+					setAttributes,
 				})}
 			/>
 		</PanelBody>
