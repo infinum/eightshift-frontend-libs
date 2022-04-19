@@ -1,6 +1,6 @@
 // stylelint-disable number-max-precision, selector-max-specificity
 
-.es-collapsable {
+.es-collapsable-v2 {
 	outline: 1px solid transparent;
 	outline-offset: 0.35rem;
 	border-radius: 0.0625rem;
@@ -48,11 +48,11 @@
 		outline: 1px solid var(--wp-admin-theme-color);
 
 		// Flip the triangle icon.
-		.es-collapsable__trigger .components-button svg {
+		.es-collapsable-v2__trigger .components-button svg {
 			transform: scaleY(-1);
 		}
 
-		.es-collapsable__trigger {
+		.es-collapsable-v2__trigger {
 			color: var(--wp-admin-theme-color, #194BD4);
 			border-bottom-color: hsl(0 0 96%);
 			padding-bottom: 0.5rem;

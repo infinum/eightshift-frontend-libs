@@ -21,13 +21,13 @@ export const Collapsable = ({
 	const [isOpen, setIsOpen] = useState(startOpen);
 
 	const componentClasses = [
-		'es-collapsable',
+		'es-collapsable-v2',
 		isOpen ? 'is-open' : '',
 	];
 
 	return (
 		<BaseControl className={componentClasses}>
-			<div className='es-collapsable__trigger'>
+			<div className='es-collapsable-v2__trigger'>
 				{label}
 
 				{showExpanderIcon &&
@@ -41,7 +41,7 @@ export const Collapsable = ({
 			</div>
 
 			{isOpen &&
-				<Animate type='appear' options={{ origin: 'top right' }} >
+				<Animate type='slide-in' options={{ origin: 'bottom' }} >
 					{({ className }) => (
 						<div className={className}>
 							{children}
