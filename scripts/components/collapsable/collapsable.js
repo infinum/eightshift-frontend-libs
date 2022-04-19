@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { projectIcons } from './project-icons';
+import { icons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
 
 /**
  * A collapsable container for options, akin to CollapsableComponentUseToggle.
@@ -35,7 +35,7 @@ export const Collapsable = ({
 						onClick={() => setIsOpen(!isOpen)}
 						className='es-button-icon-24 es-button-square-32 es-justify-content-center es-align-items-center'
 					>
-						{projectIcons.caretDown}
+						{icons.caretDown}
 					</Button>
 				}
 			</div>
