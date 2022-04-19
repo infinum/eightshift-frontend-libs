@@ -1,11 +1,14 @@
+// stylelint-disable number-max-precision, selector-max-specificity
+
 .es-collapsable {
-	border-radius: 0.5rem;
-	box-shadow: 0 0 0 0 transparent;
+	outline: 1px solid transparent;
+	outline-offset: 0.35rem;
+	border-radius: 0.0625rem;
 
 	transition: {
-		property: box-shadow, padding, margin;
+		property: outline, outline-offset;
 		timing-function: ease-out;
-		duration: 0.2s;
+		duration: 0.15s;
 	}
 
 	&__trigger {
@@ -22,14 +25,32 @@
 			timing-function: ease-out;
 			duration: 0.3s;
 		}
+
+		.components-button svg {
+			transition: {
+				property: transform;
+				timing-function: ease-out;
+				duration: 0.15s;
+			}
+		}
+	}
+
+	.components-button svg {
+		transition: {
+			property: transform;
+			timing-function: ease-out;
+			duration: 0.15s;
+		}
 	}
 
 	&.is-open {
-		box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #194BD4);
-		padding: 0.5rem;
+		outline-offset: 0.25rem;
+		outline: 1px solid var(--wp-admin-theme-color);
 
-		margin-left: -0.5rem;
-		margin-right: -0.5rem;
+		// Flip the triangle icon.
+		.es-collapsable__trigger .components-button svg {
+			transform: scaleY(-1);
+		}
 
 		.es-collapsable__trigger {
 			color: var(--wp-admin-theme-color, #194BD4);
@@ -39,3 +60,5 @@
 		}
 	}
 }
+
+// stylelint-enable number-max-precision, selector-max-specificity

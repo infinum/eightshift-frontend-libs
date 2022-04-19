@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { BaseControl, Button } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { BaseControl, Button, Animate } from '@wordpress/components';
+import { projectIcons } from './project-icons';
 
 /**
  * A collapsable container for options, akin to CollapsableComponentUseToggle.
@@ -19,36 +18,37 @@ export const Collapsable = ({
 	showExpanderIcon = true,
 	children,
 }) => {
-
 	const [isOpen, setIsOpen] = useState(startOpen);
 
-	const componentClasses = classnames([
+	const componentClasses = [
 		'es-collapsable',
 		isOpen ? 'is-open' : '',
-	]);
-
-	const expanderIcon = isOpen ? icons.chevronUp : icons.chevronDown;
+	];
 
 	return (
 		<BaseControl className={componentClasses}>
 			<div className='es-collapsable__trigger'>
-				<Button 
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					{label}
-				</Button>
+				{label}
 
 				{showExpanderIcon &&
-					<Button 
+					<Button
 						onClick={() => setIsOpen(!isOpen)}
+						className='es-button-icon-24 es-button-square-32 es-justify-content-center es-align-items-center'
 					>
-						{expanderIcon}
+						{projectIcons.caretDown}
 					</Button>
 				}
-
 			</div>
 
-			{isOpen && children}
+			{isOpen &&
+				<Animate type='appear' options={{ origin: 'top right' }} >
+					{({ className }) => (
+						<div className={className}>
+							{children}
+						</div>
+					)}
+				</Animate>
+			}
 		</BaseControl>
 	);
 };
