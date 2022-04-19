@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ToggleControl, Button, BaseControl } from '@wordpress/components';
+import { ToggleControl, Button, BaseControl, Animate } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
@@ -83,7 +83,15 @@ export const CollapsableComponentUseToggle = ({
 				}
 			</div>
 
-			{areChildrenExpanded && children}
+			{areChildrenExpanded &&
+				<Animate type='slide-in' options={{ origin: 'bottom' }} >
+					{({ className }) => (
+						<div className={className}>
+							{children}
+						</div>
+					)}
+				</Animate>
+			}
 		</BaseControl>
 	);
 };

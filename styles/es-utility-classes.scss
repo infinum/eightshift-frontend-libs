@@ -167,6 +167,9 @@ $es-utility-props: (
 		min-height: #{$value} !important;
 
 		padding: 0 !important;
+
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -573,6 +576,19 @@ $es-utility-props: (
 		timing-function: ease-out;
 		duration: 0.3s;
 	}
+}
+
+// Inline input-label combos.
+.es-inline-input-label-s {
+	.components-base-control__field {
+		display: grid;
+		grid-template-columns: 1fr 3rem;
+	}
+}
+
+.components-number-control.es-inline-input-label-s {
+	display: grid !important;
+	grid-template-columns: 1fr 3.25rem !important;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

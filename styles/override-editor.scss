@@ -375,6 +375,12 @@ body {
 		border-radius: 6px !important;
 	}
 
+	// Fix for inserter corners looking weird with rounded popovers.
+	.block-editor-inserter__quick-inserter .block-editor-inserter__search {
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+	}
+
 	// Fix for scrollbar overflow.
 	@supports (scrollbar-gutter: stable) {
 		.interface-interface-skeleton__sidebar {
@@ -386,6 +392,36 @@ body {
 		.interface-interface-skeleton__sidebar {
 			overflow-x: hidden;
 		}
+	}
+
+	// Gutenberg 'Animate' component 'slide-in' animation top/bottom direction polyfill.
+	.components-animate__slide-in.is-from-top {
+		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
+		animation-fill-mode: forwards;
+	
+		transform: translateY(+25%);
+	}
+	
+	.components-animate__slide-in.is-from-bottom {
+		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
+		animation-fill-mode: forwards;
+	
+		transform: translateY(-25%);
+	}
+
+	@media (prefers-reduced-motion) {
+		.components-animate__slide-in.is-from-top,
+		.components-animate__slide-in.is-from-bottom {
+			animation-duration: 1ms;
+		}
+	}
+}
+
+// WP 5.9 fixes.
+body.branch-5-9 {
+	// Fix range slider looking broken when markings are enabled.
+	.components-range-control__marks {
+		top: 13px !important;
 	}
 }
 
