@@ -16,7 +16,7 @@ import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
 import { useSelect, select as globalSelect } from '@wordpress/data';
-import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-blocks';
+import { getFullBlockName, getFullBlockNameVariation } from '../editor/registration';
 
 /**
  * Combine block details in one object.

@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
-import { ColorPickerComponent, ColorPickerType } from '@eightshift/frontend-libs/scripts/components/color-picker-component/color-picker-component';
+import { ColorPickerComponent, ColorPickerType } from '../color-picker-component';
 import { getPaletteColors } from '../../../editor';
 
 export default {
