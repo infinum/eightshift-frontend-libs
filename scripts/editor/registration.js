@@ -66,15 +66,13 @@ export const registerBlocks = (
 	dispatch(STORE_NAME).setSettings(globalManifest);
 	dispatch(STORE_NAME).setBlocks(blocksManifests);
 	dispatch(STORE_NAME).setComponents(componentsManifest);
+	setConfigFlags();
 
 	if (select(STORE_NAME).getConfigUseWrapper()) {
 		dispatch(STORE_NAME).setWrapper(wrapperManifest);
 	}
 
 	setStoreGlobalWindow();
-
-	// Override store config values from local manifest.
-	setConfigFlags();
 
 	// Iterate blocks to register.
 	blocksManifests.map((blockManifest) => {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import readme from '@eightshift/frontend-libs/scripts/components/simple-horizontal-single-select/docs/readme.mdx';
+import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
+import readme from './readme.mdx';
 import { SimpleHorizontalSingleSelect } from '../simple-horizontal-single-select';
-import { ucfirst } from '../../../editor/ucfirst';
 
 export default {
 	title: 'Options/SimpleHorizontalSingleSelect',
