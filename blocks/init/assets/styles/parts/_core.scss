@@ -17,4 +17,11 @@ body {
 	background-color: var(--global-colors-white);
 	position: relative;
 	overflow-x: hidden;
+	opacity: var(--es-loader-opacity, 0);
+
+	transition: {
+		property: opacity;
+		duration: 0.5s;
+		delay: 0.5s;
+	};
 }

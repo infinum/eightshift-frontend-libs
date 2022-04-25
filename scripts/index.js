@@ -16,6 +16,7 @@ export {
 } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
+export { CompactResponsive } from './components/compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export {
 	CustomSelect,
@@ -58,49 +59,58 @@ export {
 	blockIcons,
 	BlockIcon
 } from './editor/icons/icons';
-export { getFetchWpApi } from './editor/fetch-wp-api';
-export { getActions } from './editor/get-actions';
+export { getActions } from './editor/actions';
 export {
-	getSettings,
-} from './editor/get-manifest-details';
+	overrideInnerBlockAttributes,
+	overrideInnerBlockSimpleWrapperAttributes,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	props,
+} from './editor/attributes';
+export { getPaletteColors } from './editor/colors';
 export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './editor/get-options';
-export { getPaletteColors } from './editor/get-palette-colors';
-export { inserter } from './editor/inserter';
+	outputCssVariablesGlobal,
+	outputCssVariables,
+	hexToRgb,
+	getUnique,
+} from './editor/css-variables';
 export {
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
-} from './editor/lock-editing';
+} from './editor/editor';
+export { getFetchWpApi } from './editor/fetch';
+export { inserter } from './editor/inserter';
 export {
-	outputCssVariablesGlobal,
-	outputCssVariables,
-	outputCssVariablesCombined,
-	hexToRgb,
-	getUnique,
-} from './editor/output-css-variables';
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './editor/override-inner-block-attributes';
+	getOption,
+	getOptionColors,
+	getOptions
+} from './editor/options';
 export { pasteInto } from './editor/paste-handler';
-export { props } from './editor/props';
 export {
+	getAttributes,
+	getExample,
+	getFullBlockName,
+	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
-} from './editor/register-blocks';
-export { ucfirst } from './editor/ucfirst';
+} from './editor/registration';
+export {
+	selector,
+	responsiveSelectors,
+} from './editor/selectors';
+export {
+	STORE_NAME,
+	BUILD_VERSION,
+	setStore,
+	setStoreGlobalWindow,
+	setConfigFlags,
+} from './editor/store';
+export { ucfirst } from './editor/utility';
 
 // Helpers
 export { camelize } from './helpers/camelize';
-export {
-	checkAttr,
-	checkAttrResponsive,
-	getAttrKey
-} from './helpers/check-attr';
 export { cookies } from './helpers/cookies';
 export { debounce } from './helpers/debounce';
 export { throttle } from './helpers/throttle';
@@ -109,8 +119,6 @@ export { dynamicImport } from './helpers/dynamic-import';
 export { elementChildrenHeight } from './helpers/element-children-height';
 export { escapeString } from './helpers/escape-string';
 export { getNavigatorVibrate } from './helpers/navigator';
-export { responsiveSelectors } from './helpers/responsive-selectors';
-export { selector } from './helpers/selector';
 export {
 	truncateMiddle,
 	unescapeHTML

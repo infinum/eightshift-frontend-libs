@@ -1,3 +1,5 @@
+import { dispatch } from '@wordpress/data';
+
 /**
  * Given a block's client ID and an attribute key, locks post saving in Gutenberg.
  * A lock is created under the name undefined-lock-[blockClientId]-[attributeKey], 
@@ -17,7 +19,7 @@
  * ```
  */
 export const lockPostEditing = (blockClientId, attributeKey) => {
-	wp.data.dispatch('core/editor').lockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	dispatch('core/editor').lockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
 };
 
 /**
@@ -38,9 +40,8 @@ export const lockPostEditing = (blockClientId, attributeKey) => {
  * unlockPostEditing(clientId, getAttrKey('headingContent', attributes, manifest), value);
  * ```
  */
-
 export const unlockPostEditing = (blockClientId, attributeKey) => {
-	wp.data.dispatch('core/editor').unlockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	dispatch('core/editor').unlockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
 };
 
 /**
@@ -66,7 +67,6 @@ export const unlockPostEditing = (blockClientId, attributeKey) => {
  * }}
  * ```
  */
-
 export const lockIfUndefined = (blockClientId, attributeKey, value) => {
 	if (typeof value === 'undefined' || value === null || value === '') {
 		lockPostEditing(blockClientId, attributeKey);

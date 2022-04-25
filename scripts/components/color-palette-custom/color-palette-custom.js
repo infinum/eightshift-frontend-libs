@@ -43,7 +43,7 @@ export const ColorPaletteCustom = (props) => {
 		help,
 		inline = false,
 		layout = ColorPaletteCustomLayout.DEFAULT,
-		searchable = true,
+		searchable = false,
 		disabled,
 	} = props;
 

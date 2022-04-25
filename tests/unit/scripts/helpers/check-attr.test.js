@@ -1,4 +1,4 @@
-import { checkAttr } from "../../../../scripts/helpers/check-attr";
+import { checkAttr } from "../../../../scripts/editor/attributes";
 import { getComponentManifest, getMockComponentManifest } from "../../../helpers/blocks";
 
 it('tests checkAttr returns attributes with prefix', () => {

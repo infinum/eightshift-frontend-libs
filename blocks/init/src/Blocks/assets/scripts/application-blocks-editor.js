@@ -11,17 +11,17 @@
 
 import domReady from '@wordpress/dom-ready';
 import { setDefaultBlockName } from '@wordpress/blocks';
+import { select } from '@wordpress/data';
 import {
 	registerBlocks,
 	registerVariations,
 	outputCssVariablesGlobal,
 	inserter,
-	outputCssVariablesCombined
+	STORE_NAME,
 } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
 import globalSettings from '../../manifest.json';
-import { hooks } from '../../wrapper/wrapper-hooks';
 
 registerBlocks(
 	globalSettings,
@@ -43,19 +43,15 @@ registerVariations(
 	require.context('./../../variations', true, /overrides.json$/),
 );
 
-// Run Wrapper hooks.
-hooks();
-
 // Output global css variables.
 outputCssVariablesGlobal();
-
-// Output content css variables in one style tag.
-outputCssVariablesCombined();
 
 // Change the default block to the custom paragraph.
 // If changing this block update the blocks filter method in Blocks.php.
 domReady(() => {
-	setDefaultBlockName(`${globalSettings.namespace}/paragraph`);
+	const namespace = select(STORE_NAME).getSettingsNamespace();
+
+	setDefaultBlockName(`${namespace}/paragraph`);
 });
 
 // Inserter for inserting blocks from console.
