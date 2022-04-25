@@ -83,7 +83,6 @@
 		"stream-browserify": "^3.0.0",
 		"style-loader": "^3.3.1",
 		"stylelint": "^14.6.1",
-		"swiper": "^8.0.7",
 		"terser-webpack-plugin": "^5.3.1",
 		"webpack": "^5.70.0",
 		"webpack-cli": "^4.9.2",
