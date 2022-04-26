@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ToggleControl, Button, BaseControl, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '../../../scripts';
 import classnames from 'classnames';
 
 /**

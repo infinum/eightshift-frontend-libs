@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
+import { icons } from '../../../scripts';
 
 /**
  * A collapsable container for options, akin to CollapsableComponentUseToggle.

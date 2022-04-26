@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Popover, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, icons } from '@eightshift/frontend-libs/scripts';
+import { ColorPaletteCustom, icons } from '../../../scripts';
 import { ColorPaletteCustomLayout } from '../color-palette-custom/color-palette-custom';
 
 /**

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, TextControl } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
+import { icons } from '../../../scripts';
 import classnames from 'classnames';
 
 /**

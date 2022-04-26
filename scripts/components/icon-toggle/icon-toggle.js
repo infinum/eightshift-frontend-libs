@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToggleControl, CheckboxControl } from '@wordpress/components';
-import { IconLabel } from '@eightshift/frontend-libs/scripts';
+import { IconLabel } from '../../../scripts';
 
 /**
  * Right-aligned toggle control with an icon and label on the left.

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { IconLabel, icons, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, icons, ucfirst } from '../../../scripts';
 
 /**
  * A component that displays options adjustable across screen sizes.

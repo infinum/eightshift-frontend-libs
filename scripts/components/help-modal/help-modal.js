@@ -3,7 +3,7 @@ import { Fragment, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Modal } from '@wordpress/components';
 import { helperMessages } from './data';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '../../../scripts';
 
 /**
  * A modal dialog for displaying help about component's options.
