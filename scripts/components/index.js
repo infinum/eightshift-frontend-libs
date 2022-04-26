@@ -5,7 +5,7 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType
 } from './alignment-toolbar/alignment-toolbar';
-export { 
+export {
 	ColorPaletteCustom,
 	ColorPaletteCustomLayout,
 } from './color-palette-custom/color-palette-custom';
@@ -17,14 +17,13 @@ export { Collapsable } from './collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { CompactResponsive } from './compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
-export {
-	CustomSelect,
-	CustomSelectCustomOption,
-	CustomSelectCustomValueDisplay,
-	CustomSelectCustomMultipleValueDisplay,
-	CustomSelectCustomMultipleValueDisplayContainer,
-	CustomSelectCustomMultipleValueRemoveButton,
-} from './custom-select/custom-select';
+export { CustomSelect } from './custom-select/custom-select';
+export { CustomSelectCustomOption } from './custom-select/custom-select-custom-option';
+export { CustomSelectCustomValueDisplay } from './custom-select/custom-select-custom-value-display';
+export { CustomSelectCustomMultipleValueDisplay } from './custom-select/custom-select-custom-multiple-value-display';
+export { CustomSelectCustomMultipleValueDisplayContainer } from './custom-select/custom-select-custom-multiple-value-display-container';
+export { CustomSelectCustomMultipleValueRemoveButton } from './custom-select/custom-select-custom-multiple-value-remove-button';
+export { CustomSelectCustomDropdownIndicator } from './custom-select/custom-select-custom-dropdown-indicator';
 export {
 	CustomSlider,
 	CustomSliderStyle,
