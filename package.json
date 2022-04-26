@@ -65,7 +65,6 @@
 		"import-glob-loader": "^1.1.0",
 		"media-blender": "^2.1.0",
 		"mini-css-extract-plugin": "^2.6.0",
-		"normalize-scss": "^7.0.1",
 		"postcss-loader": "^6.2.1",
 		"promisify-child-process": "^4.1.1",
 		"raw-loader": "^4.0.2",
