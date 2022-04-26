@@ -45,6 +45,10 @@
 					"type": "array",
 					"description": "With this key you append CSS variables to the final inline output style tag. You can use this key to provide loading state for example. Default: []."
 				},
+				"useRemBaseSize": {
+					"type": "boolean",
+					"description": "If true, all CSS variables outputted inside the editor will have REMs converted to calced values. Default: false"
+				},
 				"useWrapper": {
 					"type": "boolean",
 					"description": "With this key you can change if you want to use Wrapper in your project. Default: true"

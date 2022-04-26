@@ -414,6 +414,11 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 		manualEditor = variablesCustomEditor.join(';\n');
 	}
 
+	// Process CSS variables.
+	output = processCssVarsRemBaseSize(output);
+	manual = processCssVarsRemBaseSize(manual);
+	manualEditor = processCssVarsRemBaseSize(manualEditor);
+
 	// Prepare final output for testing.
 	const fullOutput = `
 		${output}
@@ -675,7 +680,7 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 			const type = inverse ? 'max' : 'min';
 
 			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint; 
+			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint;
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
@@ -892,6 +897,27 @@ export const getAllBlocksFlat = (blocks) => {
 /**
  * Output css variables as a one inline style tag - inner.
  *
+ * @param {string} styles - CSS variables to process.
+ *
+ * @access private
+ *
+ * @returns {string}
+ */
+const processCssVarsRemBaseSize = (styles) => {
+		const remRegex = /([0-9.-]+rem)/g;
+		const remReplacement = 'calc($1 * var(--base-font-size, 1))';
+		// console.log('select(STORE_NAME)');
+		// console.log(select(STORE_NAME).getConfigUseRemBaseSize());
+
+		// console.log('frugo');
+		// console.log(select(STORE_NAME).getConfigOutputCssOptimize());
+
+		return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
+};
+
+/**
+ * Output css variables as a one inline style tag - inner.
+ *
  * @access private
  *
  * @returns {string}
@@ -961,13 +987,14 @@ export const outputCssVariablesCombinedInner = (styles) => {
 		additionalStylesOutput = additionalStyles.join(';\n');
 	}
 
-
 	// Get style id name from store.
 	const selector = select(STORE_NAME).getConfigOutputCssSelectorName();
 
 	// Detect if style tag is present in dom.
 	const styleTag = document.getElementById(selector);
-
+	// Process styles.
+	output = processCssVarsRemBaseSize(output);
+	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
 	if (!styleTag) {
 		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {
