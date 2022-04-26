@@ -25,14 +25,9 @@ export { CustomSelectCustomMultipleValueDisplay } from './components/custom-sele
 export { CustomSelectCustomMultipleValueDisplayContainer } from './components/custom-select/custom-select-custom-multiple-value-display-container';
 export { CustomSelectCustomMultipleValueRemoveButton } from './components/custom-select/custom-select-custom-multiple-value-remove-button';
 export { CustomSelectCustomDropdownIndicator } from './components/custom-select/custom-select-custom-dropdown-indicator';
-export {
-	CustomSlider,
-	CustomSliderStyle,
-} from './components/custom-slider/custom-slider';
-export {
-	CustomRangeSlider,
-	CustomRangeSliderStyle,
-} from './components/custom-slider/custom-range-slider';
+export { CustomSlider } from './components/custom-slider/custom-slider';
+export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
+export { CustomSliderStyle, CustomRangeSliderStyle } from './components/custom-slider/custom-slider-style';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';

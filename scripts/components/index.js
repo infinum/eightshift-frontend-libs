@@ -24,14 +24,9 @@ export { CustomSelectCustomMultipleValueDisplay } from './custom-select/custom-s
 export { CustomSelectCustomMultipleValueDisplayContainer } from './custom-select/custom-select-custom-multiple-value-display-container';
 export { CustomSelectCustomMultipleValueRemoveButton } from './custom-select/custom-select-custom-multiple-value-remove-button';
 export { CustomSelectCustomDropdownIndicator } from './custom-select/custom-select-custom-dropdown-indicator';
-export {
-	CustomSlider,
-	CustomSliderStyle,
-} from './custom-slider/custom-slider';
-export {
-	CustomRangeSlider,
-	CustomRangeSliderStyle,
-} from './custom-slider/custom-range-slider';
+export { CustomSlider } from './custom-slider/custom-slider';
+export { CustomRangeSlider } from './custom-slider/custom-range-slider';
+export { CustomSliderStyle, CustomRangeSliderStyle } from './custom-slider/custom-slider-style';
 export { FancyDivider } from './fancy-divider/fancy-divider';
 export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';

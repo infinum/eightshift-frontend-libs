@@ -1,19 +1,9 @@
-import Slider, { SliderTooltip, Handle, createSliderWithTooltip } from 'rc-slider';
-import { BaseControl, TextControl } from '@wordpress/components';
+import { useMemo } from 'react';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
+import { TextControl } from '@wordpress/components';
+import { getCustomHandle, getSliderComponent, getSliderStyles } from './shared';
+import { CustomRangeSliderStyle } from './custom-slider-style';
 import classnames from 'classnames';
-
-const Range = createSliderWithTooltip(Slider.Range);
-
-/**
- * CustomRangeSlider style.
- *
- * @param {string} DEFAULT - The default slider.
- */
-export const CustomRangeSliderStyle = {
-	DEFAULT: 'default',
-	COLUMN_PICKER: 'columnPicker',
-	COLUMN_PICKER_WITH_DOTS: 'columnPickerWithDots',
-};
 
 /**
  * A modern and customizable custom slider.
@@ -91,78 +81,21 @@ export const CustomRangeSlider = (props) => {
 		hasInputFields = false,
 		hasCompactMarks = false,
 		hasValueDisplay = false,
-		sliderStyle = 'default',
+		sliderStyle = CustomRangeSliderStyle.DEFAULT,
 		tooltipPlacement = 'top',
 		hasVerticalLabels = false,
 		tooltipFormat = (value) => value,
 		valueDisplayElement = (<span className='es-custom-slider-current-value'>{value.join(', ')}</span>),
 	} = props;
 
-	const controlAdditionalStyles = {};
+	const Range = useMemo(() => createSliderWithTooltip(Slider.Range), []);
 
-	if (trackColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-track-color'] = trackColor;
-	}
+	const controlAdditionalStyles = useMemo(
+		() => getSliderStyles({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels }),
+		[activeMarkColor, activeMarkLabelColor, handleColor, hasVerticalLabels, inactiveMarkColor, inactiveMarkLabelColor, marks, railColor, trackColor, vertical]
+	);
 
-	if (railColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-rail-color'] = railColor;
-	}
-
-	if (activeMarkColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-active-mark-color'] = activeMarkColor;
-	}
-
-	if (inactiveMarkColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-mark-color'] = inactiveMarkColor;
-	}
-
-	if (activeMarkLabelColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-active-mark-label-color'] = activeMarkLabelColor;
-	}
-
-	if (inactiveMarkLabelColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-mark-label-color'] = inactiveMarkLabelColor;
-	}
-
-	if (handleColor) {
-		controlAdditionalStyles['--es-custom-slider-custom-handle-color'] = handleColor;
-	}
-
-	if (vertical) {
-		controlAdditionalStyles['flexDirection'] = 'column';
-
-		if (marks) {
-			controlAdditionalStyles['--es-custom-slider-vertical-mark-offset'] = ([...Object.keys(marks)]?.length ?? 0) % 2 === 0 ? '-0.5rem' : '0.25rem';
-		}
-	}
-
-	if (hasVerticalLabels) {
-		const maxLabelLength = Math.max(...Object.values(marks).map((i) => parseInt(i?.length ?? 0)));
-
-		controlAdditionalStyles['--es-custom-slider-additional-bottom-padding'] = maxLabelLength * 0.25;
-	}
-
-	const customHandle = (props) => {
-		const { value, dragging, index, ...restProps } = props;
-
-		if (tooltipPlacement === 'hide') {
-			return (<Handle value={value} {...restProps} />);
-		}
-
-		return (
-			<SliderTooltip
-				prefixCls='rc-slider-tooltip'
-				overlay={tooltipFormat(value, dragging)}
-				visible={dragging}
-				placement={tooltipPlacement}
-				key={index}
-			>
-				<Handle value={value} {...restProps} />
-			</SliderTooltip>
-		);
-	};
-
-	const sliderClass = classnames([
+	const sliderClass = useMemo(() => classnames([
 		hasVerticalLabels ? 'es-custom-slider-vertical-labels' : '',
 		sliderStyle === 'numberStrip' ? 'es-custom-slider-number-strip' : '',
 		sliderStyle === 'columnPicker' || sliderStyle === 'columnPickerWithDots' ? 'es-custom-slider-column-picker' : '',
@@ -170,9 +103,9 @@ export const CustomRangeSlider = (props) => {
 		isInline ? 'es-flex-between' : '',
 		marks && hasCompactMarks && !dots ? 'es-custom-slider-compact-with-marks' : '',
 		dots & !marks ? 'es-custom-slider-compact-with-dots' : '',
-	]);
+	]), [dots, hasCompactMarks, hasVerticalLabels, isInline, marks, sliderStyle]);
 
-	const inputFieldElement = (key) => (
+	const inputFieldElement = useMemo(() => (key) => (
 		<TextControl
 			key={key}
 			type='number'
@@ -189,41 +122,17 @@ export const CustomRangeSlider = (props) => {
 			step={step}
 			disabled={disabled}
 		/>
-	);
+	), [disabled, max, min, onChange, step, value]);
 
-	const sliderElement = (
+	const sliderElement = useMemo(() => (
 		<div className='es-custom-slider-container' style={controlAdditionalStyles}>
 			{leftAddition}
-			<Range {...props} handle={handle ?? customHandle} />
+			<Range {...props} handle={handle ?? getCustomHandle({ tooltipPlacement, tooltipFormat })} />
 			{rightAddition}
-			{hasInputFields && !hasValueDisplay && Array.from({length: value?.length ?? 2}, (_, i) => inputFieldElement(i))}
+			{hasInputFields && !hasValueDisplay && Array.from({ length: value?.length ?? 2 }, (_, i) => inputFieldElement(i))}
 			{!hasInputFields && hasValueDisplay && valueDisplayElement}
 		</div>
-	);
+	), [controlAdditionalStyles, handle, hasInputFields, hasValueDisplay, inputFieldElement, leftAddition, props, rightAddition, tooltipFormat, tooltipPlacement, value?.length, valueDisplayElement]);
 
-	if (!label && !help) {
-		return sliderElement;
-	}
-
-	if (isInline && label) {
-		return (
-			<div className={sliderClass}>
-				{typeof label === 'string' &&
-					<p className='es-custom-slider-inline-label'>{label}</p>
-				}
-				{typeof label !== 'string' && label}
-				{sliderElement}
-			</div>
-		);
-	}
-
-	return (
-		<BaseControl
-			label={label}
-			help={help}
-			className={sliderClass}
-		>
-			{sliderElement}
-		</BaseControl>
-	);
+	return getSliderComponent({ label, help, sliderElement, isInline, sliderClass });
 };
