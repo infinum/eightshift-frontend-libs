@@ -11,6 +11,9 @@
 // Globals.
 @import './../../../../assets/styles/parts/shared';
 
+// Register frontend specific styles.
+@import './../../frontend/frontend.scss';
+
 // Register Wrapper block styles.
 @import './../../wrapper/wrapper-frontend.scss';
 

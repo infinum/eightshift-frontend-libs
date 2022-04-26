@@ -9,10 +9,42 @@ https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_co
 $base-col-number: global-settings(maxCols);
 
 :root {
-	--base-font-size: 0.625;
+
+	/*
+	 * The variables will be explained based on the default browser font size 16px(defaultBrowserFontSize).
+	 *
+	 * What we want to get is base 10, so 1rem is equal 10px on a desktop screen(scaleCoefficient = 10px/16px = 0.625).
+	 * To get the --base-font-size variable you have to calculate => scaleCoefficient * wantedFontSize/defaultBrowserFontSize
+	 * Example: wantedFontSize = 14px;
+	 * 10px/16px * 14px/16px = 0.546875
+	 */
+
+	// wantedFontSize = 14
+	--base-font-size: 0.546875;
+
+	@include media(tablet up) {
+		// wantedFontSize = 15
+		--base-font-size: 0.5859375;
+	}
+
+	@include media(desktop up) {
+		// wantedFontSize = 16
+		--base-font-size: 0.625;
+	}
+
+	@media (min-width: 1600px) {
+		// wantedFontSize = 18
+		--base-font-size: 0.703125;
+	}
 
 	@include media(large up) {
-		--base-font-size: 0.85;
+		// wantedFontSize = 21
+		--base-font-size: 0.8203125;
+	}
+
+	@media (min-width: 2400px) {
+		// wantedFontSize = 24
+		--base-font-size: 0.9375;
 	}
 
 	--global-font-family: var(--global-base-font), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
