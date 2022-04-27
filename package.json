@@ -32,8 +32,8 @@
 		"sassdocBuild": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs",
 		"docsBuild": "rm -rf docs && npm run sassdocBuild && npm run storybookBuild",
 		"docsDeploy": "npm run docsBuild && gh-pages -d docs",
-		"test": "NODE_ENV=test jest --maxWorkers=2",
-		"test:unit": "NODE_ENV=test jest --testPathPattern=tests/unit",
+		"test": "jest --maxWorkers=2",
+		"test:unit": "jest --testPathPattern=tests/unit",
 		"test:integration": "jest --testPathPattern=tests/integration"
 	},
 	"homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
@@ -105,29 +105,11 @@
 		"del": "^6.0.0",
 		"gh-pages": "^3.2.3",
 		"jest": "^27.5.1",
-		"jest-expect-message": "^1.0.2",
 		"react-test-renderer": "^17.0.2",
 		"replace-in-file": "^6.3.2",
 		"sassdoc": "^2.7.3"
 	},
 	"sideEffects": false,
-	"jest": {
-		"setupFilesAfterEnv": [
-			"jest-expect-message"
-		],
-		"verbose": true,
-		"transform": {
-			"\\.js$": [
-				"babel-jest",
-				{
-					"configFile": "./babel/babel.config.js"
-				}
-			]
-		},
-		"setupFiles": [
-			"./tests/setup-global.js"
-		]
-	},
 	"resolutions": {
 		"webpack": "5.70.0"
 	}

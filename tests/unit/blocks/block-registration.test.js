@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import 'jest-expect-message'
 import { getAttributes } from '../../../scripts/editor/registration';
 import wrapperManifest from '../../../blocks/init/src/Blocks/wrapper/manifest.json';
 import globalManifest from '../../../blocks/init/src/Blocks/manifest.json';
@@ -40,47 +39,53 @@ const debugName = (builtProps) => {
 const recursiveAssertProps = (expectedProps, builtProps, isBlock = false) => {
 
 	// Some sanity check
-	expect(
-		builtProps,
-		`Missing attributes key in built props for: ${debugName(builtProps)}`
-	).toHaveProperty('attributes');
+	try {
+		expect(builtProps).toHaveProperty('attributes');
+	} catch(e) {
+		throw Error(`Missing attributes key in built props for: ${debugName(builtProps)}`);
+	}
 
-	expect(
-		typeof builtProps.attributes,
-		`Attributes key found but is not an array in built props for: ${debugName(builtProps)}`
-	).toBe('object');
+	try {
+		expect(typeof builtProps.attributes).toBe('object');
+	} catch(e) {
+		throw Error(`Attributes key found but is not an array in built props for: ${debugName(builtProps)}`);
+	}
 
 	// Check expected
 	if (!isBlock || expectedProps.expected) {
 		for (const expected of expectedProps.expected) {
-			expect(
-				builtProps.attributes,
-				`Missing expected property in built props for: ${debugName(builtProps)}`
-			).toHaveProperty(expected);
+			try {
+				expect(builtProps.attributes).toHaveProperty(expected);
+			} catch(e) {
+				throw Error(`Missing expected property in built props for: ${debugName(builtProps)}`);
+			}
 		}
 	}
 
 	// Check not expected
 	if (!isBlock || expectedProps.notExpected) {
 		for (const notExpected of expectedProps.notExpected) {
-			expect(
-				builtProps.attributes,
-				`Found not-expected property in built props for: ${debugName(builtProps)}`
-			).not.toHaveProperty(notExpected);
+			try {
+				expect(builtProps.attributes).not.toHaveProperty(notExpected);
+			} catch(e) {
+				throw Error(`Found not-expected property in built props for: ${debugName(builtProps)}`);
+			}
 		}
 	}
 
 	// Check prefix (but only if expected)
 	if (!isBlock || expectedProps.prefix) {
-		expect(
-			builtProps.attributes,
-			`Missing "prefix" key in built props for ${debugName(builtProps)}`
-		).toHaveProperty('prefix');
+		try {
+			expect(builtProps.attributes).toHaveProperty('prefix');
+		} catch(e) {
+			throw Error(`Missing "prefix" key in built props for ${debugName(builtProps)}`);
+		}
 
-		expect(
-			builtProps.attributes.prefix,
-			`Prefix key not correct when sending props to ${debugName(builtProps)}`
-		).toEqual(expectedProps.prefix);
+		try {
+			expect(builtProps.attributes.prefix).toEqual(expectedProps.prefix);
+		} catch(e) {
+			throw Error(`Prefix key not correct when sending props to ${debugName(builtProps)}`);
+		}
 	}
 
 	// Repeat if expected has subComponents
@@ -88,15 +93,17 @@ const recursiveAssertProps = (expectedProps, builtProps, isBlock = false) => {
 		for (const componentKey of Object.keys(expectedProps.components)) {
 
 			// Expect built props has subComponents
-			expect(
-				builtProps,
-				`Missing "subComponents" key in built props for ${debugName(builtProps)}. Expecting one because this has subComponents defined in props-output.js`
-			).toHaveProperty('subComponents');
+			try {
+				expect(builtProps).toHaveProperty('subComponents');
+			} catch(e) {
+				throw Error(`Missing "subComponents" key in built props for ${debugName(builtProps)}. Expecting one because this has subComponents defined in props-output.js`);
+			}
 
-			expect(
-				builtProps.subComponents,
-				`"subComponents" key in built props empty for ${debugName(builtProps)}.`
-			).not.toEqual([]);
+			try {
+				expect(builtProps.subComponents).not.toEqual([]);
+			} catch(e) {
+				throw Error(`"subComponents" key in built props empty for ${debugName(builtProps)}.`);
+			}
 
 			// Find the correct subComponent
 			const subComponent = builtProps.subComponents.filter((subComponent) => {
@@ -105,10 +112,11 @@ const recursiveAssertProps = (expectedProps, builtProps, isBlock = false) => {
 			});
 
 			// Expect to find exactly 1 sub component
-			expect(
-				subComponent,
-				`Expected subComponent not found in built props for ${debugName(builtProps)}.`
-			).toHaveLength(1);
+			try {
+				expect(subComponent).toHaveLength(1);
+			} catch(e) {
+				throw Error(`Expected subComponent not found in built props for ${debugName(builtProps)}.`);
+			}
 
 			// Repeat for all subComponents
 			recursiveAssertProps(expectedProps.components[componentKey], subComponent[0]);
@@ -140,19 +148,21 @@ it('tests block registration properly inherits all component attributes', () => 
 
 		// Make sure the block contains all expected attributes.
 		if (blockAttributes[blockName].expected) {
-			expect(
-				attributeNames,
-				`Block ${blockName} does not contain all expected attributes`
-			).toEqual(expect.arrayContaining(blockAttributes[blockName].expected));
+			try {
+				expect(attributeNames).toEqual(expect.arrayContaining(blockAttributes[blockName].expected));
+			} catch(e) {
+				throw Error(`Block ${blockName} does not contain all expected attributes`);
+			}
 		}
 
 		// Make sure the block does not contain nonExpected attributes.
 		if (blockAttributes[blockName].notExpected) {
 			for (const notExpected of blockAttributes[blockName].notExpected) {
-				expect(
-					attributeNames,
-					`Block ${blockName} contains some non-expected attributes`
-				).not.toEqual(expect.arrayContaining([notExpected]));
+				try {
+					expect(attributeNames).not.toEqual(expect.arrayContaining([notExpected]));
+				} catch(e) {
+					throw Error(`Block ${blockName} contains some non-expected attributes`);
+				}
 			}
 		}
 	}

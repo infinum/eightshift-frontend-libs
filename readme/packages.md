@@ -66,7 +66,6 @@ This is a document explaining what each `package.json` package is used for.
 * del - Terminal delete library. Used in project setup.
 * gh-pages - Terminal GH pages lib for deployment to GH pages.
 * jest - Jest testing lib.
-* jest-expect-message - Jest testing expect msg.
 * react-test-renderer - This package provides an experimental React renderer that can be used to render React components to pure JavaScript objects.
 * replace-in-file - A simple utility to quickly replace text in one or more files or globs.
 * sassdoc - Sass docs library.
