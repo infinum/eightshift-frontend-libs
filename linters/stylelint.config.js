@@ -95,5 +95,11 @@ module.exports = {
 		'no-duplicate-selectors': true,
 		'no-eol-whitespace': true,
 		'no-unknown-animations': true,
+
+		'keyframes-name-pattern': null,
+		'scss/at-function-pattern': null,
+		'scss/dollar-variable-pattern': null,
+		'selector-class-pattern': null,
+		'no-descending-specificity': null
 	},
 };

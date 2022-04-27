@@ -1,26 +1,25 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
-@import './es-keyframes.scss';
-@import '../scripts/components/custom-slider/custom-slider.scss';
-@import '../scripts/components/link-edit-component/link-edit-component.scss';
-@import '../scripts/components/responsive/responsive.scss';
-@import '../scripts/components/help-modal/help-modal.scss';
-@import '../scripts/components/icon-toggle/icon-toggle.scss';
-@import '../scripts/components/component-use-toggle/component-use-toggle.scss';
-@import '../scripts/components/custom-select/custom-select.scss';
-@import '../scripts/components/color-picker-component/color-picker-component.scss';
-@import '../scripts/components/inline-notification/inline-notification.scss';
-@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select.scss';
-@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select.scss';
-@import '../scripts/components/server-side-render/server-side-render.scss';
-@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle.scss';
-@import '../scripts/components/fancy-divider/fancy-divider.scss';
-@import '../scripts/components/collapsable/collapsable.scss';
-@import '../scripts/components/color-palette-custom/color-palette-custom.scss';
-@import '../scripts/components/compact-responsive/compact-responsive.scss';
+@import './es-keyframes';
+@import '../scripts/components/custom-slider/custom-slider';
+@import '../scripts/components/link-edit-component/link-edit-component';
+@import '../scripts/components/responsive/responsive';
+@import '../scripts/components/help-modal/help-modal';
+@import '../scripts/components/icon-toggle/icon-toggle';
+@import '../scripts/components/component-use-toggle/component-use-toggle';
+@import '../scripts/components/custom-select/custom-select';
+@import '../scripts/components/color-picker-component/color-picker-component';
+@import '../scripts/components/inline-notification/inline-notification';
+@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
+@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select';
+@import '../scripts/components/server-side-render/server-side-render';
+@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle';
+@import '../scripts/components/fancy-divider/fancy-divider';
+@import '../scripts/components/collapsable/collapsable';
+@import '../scripts/components/color-palette-custom/color-palette-custom';
+@import '../scripts/components/compact-responsive/compact-responsive';
 
 body {
-
 	// Full width button.
 	.custom-full-width-button {
 		width: 100%;

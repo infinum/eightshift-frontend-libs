@@ -5,6 +5,8 @@ This is a document explaining what each `package.json` package is used for.
 ## Dependencies
 
 * @babel/cli - Adds terminal commands for babel.
+* @babel/eslint-parser - JS Parser for babel.
+* @babel/eslint-plugin - JS Parser for babel plugin.
 * @babel/polyfill - Adds polyfill option to your project.
 * @infinumjs/eslint-config-react-js - Adds JS linter config.
 * @wordpress/api-fetch - WP package for api fetch.
@@ -21,13 +23,14 @@ This is a document explaining what each `package.json` package is used for.
 * css-loader - Webpack loader user for css.
 * css-minimizer-webpack-plugin - Webpack plugin used to minimize output.
 * eslint - Package used for linting JS.
+* eslint-plugin-jsx-a11y - Package used for linting JS.
+* eslint-plugin-react - Package used for linting JS.
+* eslint-plugin-react-hooks - Package used for linting JS.
 * file-loader - Webpack loaded used for images and files.
 * husky - Package used for linting code on git commands.
 * import-glob-loader - Webpack loader used for putting regex in css import.
 * media-blender - Package used for providing media queries.
-* micromodal - Package for modal.
 * mini-css-extract-plugin - Webpack plugin extracts CSS into separate files.
-* normalize-scss - Provides css reset.
 * postcss-loader - Webpack loader used for postcss.
 * promisify-child-process - Async child process library used in project setup.
 * raw-loader - Webpack loader used for files.
@@ -41,11 +44,14 @@ This is a document explaining what each `package.json` package is used for.
 * stream-browserify - Used in combination with crypto.
 * style-loader - Webpack loader used for styles.
 * stylelint - Css linter.
+* stylelint-config-standard-scss - Css linter for scss type.
 * terser-webpack-plugin - Webpack plugin used for minimization.
 * webpack - Webpack library.
 * webpack-cli - Webpack cli library.
 * webpack-manifest-plugin - Webpack plugin used for outputting manifest.json.
 * webpack-merge - Webpack utility for merging multiple webpack files.
+* postcss - package for getting postcss options.
+* postcss-scss - package for parsing scss used for style linter.
 
 ## Dev dependencies
 
