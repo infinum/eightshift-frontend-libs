@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { BaseControl, ColorPicker, __experimentalGradientPicker as GradientPicker } from '@wordpress/components';
+import { BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
 import { ColorPaletteCustom, CustomSelect, icons, IconLabel } from '@eightshift/frontend-libs/scripts';
 import { components } from 'react-select';
 
@@ -39,7 +39,7 @@ const CustomValueDisplay = (props) => {
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
- * 
+ *
  * @param {object} props                    - AdvancedColorPicker options.
  * @param {string?} props.colorProject      - Currently selected project color.
  * @param {string?} props.colorSolid        - Currently selected solid color.
@@ -101,10 +101,12 @@ export const AdvancedColorPicker = (props) => {
 
 		disabled = false,
 	} = props;
-
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
 	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
 	const showGradient = types.find(({ value }) => value === 'gradient') !== undefined;
+
+	// GradientPicker implemented in WP version 5.9
+	const GradientPickerComponent = GradientPicker ?? GradientPickerOld;
 
 	return (
 		<BaseControl label={label} help={help}>
@@ -138,7 +140,7 @@ export const AdvancedColorPicker = (props) => {
 			}
 
 			{type === 'gradient' && showGradient && !disabled &&
-				<GradientPicker
+				<GradientPickerComponent
 					value={colorGradient}
 					onChange={onChangeGradient}
 					gradients={gradients}
