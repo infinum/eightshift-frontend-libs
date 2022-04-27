@@ -1,5 +1,7 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
+@use "sass:map";
+
 $es-spacings: (
 	'0': 0,
 	'px': '1px',
