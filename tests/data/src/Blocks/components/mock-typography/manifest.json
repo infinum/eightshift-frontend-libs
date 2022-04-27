@@ -15,8 +15,7 @@
 	},
 	"attributes": {
 		"mockTypographyContent": {
-			"type": "string",
-			"seo": true
+			"type": "string"
 		},
 		"mockTypographyTag": {
 			"type": "string",

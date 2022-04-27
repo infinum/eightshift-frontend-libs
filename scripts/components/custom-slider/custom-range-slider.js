@@ -1,3 +1,4 @@
+import React from 'react';
 import Slider, { SliderTooltip, Handle, createSliderWithTooltip } from 'rc-slider';
 import { BaseControl, TextControl } from '@wordpress/components';
 import classnames from 'classnames';

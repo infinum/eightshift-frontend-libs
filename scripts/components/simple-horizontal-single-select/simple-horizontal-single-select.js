@@ -1,3 +1,4 @@
+import React from 'react';
 import { icons } from '@eightshift/frontend-libs/scripts/editor';
 import { BaseControl, Button } from '@wordpress/components';
 import classnames from 'classnames';

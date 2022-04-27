@@ -3,6 +3,7 @@
 /**
  * External dependencies
  */
+import React from 'react';
 import _ from 'lodash';
 import { icons } from '@eightshift/frontend-libs/scripts';
 

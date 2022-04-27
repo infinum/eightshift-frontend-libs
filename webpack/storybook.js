@@ -51,5 +51,10 @@ module.exports = (
 		config.resolve.alias['@eightshift/frontend-libs'] = projectRoot;
 	}
 
+	config.resolve.fallback = {
+		"crypto": require.resolve("crypto-browserify"),
+		"stream": require.resolve("stream-browserify"),
+	};
+
 	return config;
 };

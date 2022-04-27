@@ -1,3 +1,4 @@
+import React from 'react';
 import _ from 'lodash';
 import { subscribe, select, dispatch } from '@wordpress/data';
 import { getAttrKey } from './attributes';

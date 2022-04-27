@@ -1,3 +1,4 @@
+import React from 'react';
 import _ from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';

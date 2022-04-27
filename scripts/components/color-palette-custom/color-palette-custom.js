@@ -79,8 +79,7 @@ export const ColorPaletteCustom = (props) => {
 
 	const detailView = layout === ColorPaletteCustomLayout.LIST || layout === ColorPaletteCustomLayout.LIST_TWO_COL;
 
-	const searchEmptyIcon = React.cloneElement(icons.searchEmpty);
-	searchEmptyIcon.props.className = 'es-w-xl es-h-xl es-has-wp-admin-theme-color';
+	const searchEmptyIcon = React.cloneElement(icons.searchEmpty, {className: 'es-w-xl es-h-xl es-has-wp-admin-theme-color'});
 
 	const control = (
 		<>

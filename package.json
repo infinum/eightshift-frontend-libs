@@ -96,7 +96,7 @@
 	"devDependencies": {
 		"@babel/preset-env": "^7.16.11",
 		"@babel/preset-react": "^7.16.7",
-		"@eightshift/storybook": "^5.6",
+		"@eightshift/storybook": "^5.9.3",
 		"@jest/globals": "^27.5.1",
 		"@storybook/builder-webpack5": "^6.4.19",
 		"@storybook/manager-webpack5": "^6.4.19",

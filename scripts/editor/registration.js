@@ -748,7 +748,6 @@ export const getExample = (
 	parent = '',
 	manifest = {}
 ) => {
-
 	return prepareComponentAttributes(select(STORE_NAME).getComponents(), manifest, true, parent);
 };
 
@@ -765,22 +764,29 @@ export const getExample = (
  */
 export const registerVariation = (
 	globalManifest = {},
-	variationManifest = {},
-	blocksManifest = [],
+	variationManifest = {}
 ) => {
+	const parentBlockManifest = select(STORE_NAME).getBlock(variationManifest.parentName);
+
 	// Append globalManifest data in to output.
 	if (variationManifest['icon']) {
 		variationManifest['icon'] = getIconOptions(globalManifest, variationManifest);
 	} else {
 		// There is no icon passed to variation, use it's parent icon instead
-		if (blocksManifest) {
-			blocksManifest.forEach(manifest => {
-				if (manifest.name === variationManifest?.name) {
-					variationManifest['icon'] = manifest['icon'];
-				}
-			});
-		}
+		variationManifest['icon'] = parentBlockManifest?.icon;
 	}
+
+	// Set full example list.
+	if (typeof variationManifest['example'] === 'undefined') {
+		variationManifest['example'] = {};
+	}
+
+	// Set full examples list.
+	variationManifest['example'].attributes = {
+		...parentBlockManifest?.example?.attributes,
+		...variationManifest['attributes'],
+		...variationManifest['example']?.attributes,
+	};
 
 	// This is a full block name used in Block Editor.
 	const fullBlockName = getFullBlockNameVariation(globalManifest, variationManifest);
@@ -824,15 +830,28 @@ export const registerBlock = (
 	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
 
 	// Set full attributes list.
-	blockManifest['attributes'] = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+	const attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+
+	blockManifest['attributes'] = attributes;
 
 	// Set full example list.
 	if (typeof blockManifest['example'] === 'undefined') {
 		blockManifest['example'] = {};
 	}
 
+	// Find all attributes that have default value and output that to example.
+	const exampleAttributes = {};
+	for (const [key, value] of Object.entries(attributes)) {
+		if (value?.default) {
+			exampleAttributes[key] = value.default;
+		}
+	}
+
 	// Set full examples list.
-	blockManifest['example'].attributes = getExample('', blockManifest);
+	blockManifest['example'].attributes = {
+		...exampleAttributes,
+		...getExample('', blockManifest),
+	};
 
 	return {
 		blockName: fullBlockName,

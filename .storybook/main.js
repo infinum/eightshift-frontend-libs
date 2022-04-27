@@ -7,5 +7,8 @@ module.exports = {
 	addons: ['@storybook/addon-essentials'],
 	core: {
 		builder: 'webpack5',
+	},
+	features: {
+		emotionAlias: false,
 	}
 };
