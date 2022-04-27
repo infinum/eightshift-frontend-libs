@@ -1,6 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { range } from 'lodash';
+import _ from 'lodash';
 import { BlockIcon, icons } from '@eightshift/frontend-libs/scripts/editor';
 import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
 
@@ -27,7 +27,7 @@ export const HeadingLevel = (props) => {
 		disabled = false,
 	} = props;
 
-	const options = range(minLevel, maxLevel + 1).map((level) => {
+	const options = _.range(minLevel, maxLevel + 1).map((level) => {
 		return {
 			icon: icons[`h${level}`] ?? <BlockIcon iconName='es-heading' />,
 			title: sprintf(__('Heading %d', 'eightshift-frontend-libs'), level),

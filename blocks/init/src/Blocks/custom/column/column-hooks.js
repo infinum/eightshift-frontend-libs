@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import _ from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from "@wordpress/hooks";
@@ -33,7 +33,7 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 				blockClass,
 				customBlocksName,
 			]);
-			updatedProps = assign(
+			updatedProps = _.assign(
 				{},
 				innerProps,
 				{

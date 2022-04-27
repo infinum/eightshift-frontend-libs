@@ -3,7 +3,7 @@
 /**
  * External dependencies
  */
-import { isEqual, debounce } from 'lodash';
+import _ from 'lodash';
 import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
@@ -55,7 +55,7 @@ export class ServerSideRender extends Component {
 		this.fetch(this.props);
 		// Only debounce once the initial fetch occurs to ensure that the first
 		// renders show data as soon as possible.
-		this.fetch = debounce(this.fetch, 500);
+		this.fetch = _.debounce(this.fetch, 500);
 	}
 
 	componentWillUnmount() {
@@ -63,7 +63,7 @@ export class ServerSideRender extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (!isEqual(prevProps, this.props)) {
+		if (!_.isEqual(prevProps, this.props)) {
 			this.fetch(this.props);
 		}
 	}
