@@ -4,7 +4,10 @@ module.exports = {
 		'./../scripts/components/**/story.js',
 		'./../scripts/editor/icons/story.js',
 	],
-	addons: ['@storybook/addon-essentials'],
+	addons: [
+		'@storybook/addon-essentials',
+		'@storybook/addon-a11y'
+	],
 	core: {
 		builder: 'webpack5',
 	},

@@ -96,7 +96,7 @@
 	"devDependencies": {
 		"@babel/preset-env": "^7.16.11",
 		"@babel/preset-react": "^7.16.7",
-		"@eightshift/storybook": "git+https://github.com/infinum/eightshift-storybook.git#develop",
+		"@eightshift/storybook": "^1.4.0",
 		"@jest/globals": "^27.5.1",
 		"babel-jest": "^27.5.1",
 		"chalk": "^5.0.1",

@@ -15,6 +15,7 @@
 /// .test {
 ///   width: calc-column-width(10);
 /// }
+
 @use 'sass:math';
 
 @function calc-column-width($cols: $base-col-number) {
