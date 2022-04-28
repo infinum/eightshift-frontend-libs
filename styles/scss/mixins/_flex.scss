@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Mixin that creates flex grid.
 /// It should be applied to the container element that will act as grid row.
 /// All of the child elements will act as grid columns.
@@ -10,8 +12,6 @@
 /// @param {string} $horizontal - Horizontal alignment of the items. Uses values for justify-content property.
 /// @param {string} $vertical - Vertical alignment of the items. Uses values for align-items property.
 /// @param {string} $order - List of item order overrides.
-
-@use 'sass:math';
 
 @mixin flex-container(
 	$layout: (),

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Mixin that will output modifier classes for specific number range from map key.
 ///
 /// @param {string} $map - Map to search for.
@@ -32,7 +34,6 @@
 ///   padding-top: 30px;
 /// }
 /// ```
-@use 'sass:math';
 
 @mixin modifiers-range($map, $key, $selector) {
 	$min: map-get-deep($map, $key, min);

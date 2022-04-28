@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Calculate dynamic sizes using linear function for calculations.
 ///
 /// ### Output
@@ -18,8 +20,6 @@
 /// .test {
 ///   font-size: calc-dynamic-size(10px, 100px, mobile, desktop);
 /// }
-
-@use 'sass:math';
 
 @function calc-dynamic-size($min-size, $max-size, $min-width: tablet, $max-width: desktop) {
 

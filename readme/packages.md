@@ -59,8 +59,6 @@ This is a document explaining what each `package.json` package is used for.
 * @babel/preset-react - Babel preset for React.
 * @eightshift/storybook - Our storybook used for frontend libs.
 * @jest/globals - Jest testing globals.
-* @storybook/builder-webpack5 - Webpack 5 builders for Storybook, can be removed when Storybook changes default to Webpack 5.
-* @storybook/manager-webpack5 - Webpack 5 managers for Storybook, can be removed when Storybook changes default to Webpack 5.
 * babel-jest - Jest testing Babel preset.
 * chalk - Terminal coloring library. Used in project setup.
 * del - Terminal delete library. Used in project setup.
