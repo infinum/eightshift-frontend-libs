@@ -1,0 +1,298 @@
+:root {
+	--doc-sidebar-width: 300px;
+	--ifm-heading-font-family: var(--ifm-font-family-base);
+	--ifm-heading-font-weight: var(--ifm-font-weight-bold);
+	--ifm-heading-line-height: 1.25;
+	--ifm-pre-padding: 1rem;
+	--ifm-menu-link-padding-horizontal: 1rem;
+	--ifm-menu-link-padding-vertical: 0.375rem;
+	--ifm-global-radius: 0.4rem;
+	--ifm-code-border-radius: var(--ifm-global-radius);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #f4f3f0;
+	color: #0C3636;
+	font-family: IBMPlexSans, sans-serif;
+	margin: 0 auto;
+	padding: 0 25px;
+	width: 100%;
+}
+
+@media (min-width: 992px) {
+	body {
+		display: flex;
+		max-width: 1330px;
+	}
+}
+
+a {
+	color: #0c3636;
+	text-decoration: none;
+}
+
+a:hover,
+.sidebar a:hover {
+	color: #e84e4e;
+	transition: .3s color ease-in;
+}
+
+.sidebar {
+	display: none;
+}
+
+@media (min-width: 992px) {
+	.sidebar {
+		display: block;
+		width: 100%;
+		max-width: var(--doc-sidebar-width);
+	}
+}
+
+.sidebar__body {
+	padding-right: 25px;
+}
+
+.sidebar__header,
+.btn-toggle,
+.sidebar__item--heading,
+.header,
+.main__heading,
+.main__heading--secondary,
+.footer {
+	display: none;
+}
+
+.sidebar__item--sub-heading {
+	margin: 0;
+	padding: var(--ifm-menu-link-padding-vertical) 0;
+}
+
+.sidebar__item--sub-heading a {
+	color: #0c3636;
+	font-size: 18px;
+	font-weight: 700;
+	font-family: MarkPro, monospace;
+}
+
+.sidebar .list-unstyled {
+	list-style: none;
+	margin: 0.25rem 0;
+	padding: 0 0 0 var(--ifm-menu-link-padding-horizontal);
+}
+
+.sassdoc__item a {
+	color: #4b5555;
+	font-family: IBMPlexSans, sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: .4px;
+	line-height: 1.43;
+	padding: var(--ifm-menu-link-padding-vertical) 0;
+	display: block;
+}
+
+@media (min-width: 992px) {
+	.main {
+		padding: 0;
+		max-width: calc(100% - var(--doc-sidebar-width));
+	}
+}
+
+.item__heading {
+	font-size: 2em;
+	margin: 0 0 0.67em 0;
+	font-family: IBMPlexSans, sans-serif;
+	font-weight: 700;
+	line-height: var(--ifm-heading-line-height);
+}
+.item__heading a {
+	color: #0c3636;
+	cursor: default;
+}
+
+.item__sub-heading,
+#output {
+	font-family: IBMPlexSans, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+.item__example {
+	margin-bottom: 20px;
+}
+
+.item__cross-type {
+	font-weight: bold;
+}
+
+pre {
+	color: rgb(248, 248, 242);
+	background-color: rgb(40, 42, 54);
+	overflow: auto;
+	margin: 0;
+	border-radius: var(--ifm-code-border-radius);
+	padding: var(--ifm-pre-padding);
+	margin-bottom: 15px;
+}
+
+code {
+	background-color: #282a36;
+	color: #fff;
+	font-family: IBMPlexMono, monospace;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.5;
+	min-width: 100%;
+	padding: 5px;
+	border-radius: var(--ifm-code-border-radius);
+}
+
+.token.selector,
+.token.keyword {
+	color: rgb(255, 121, 198);
+}
+
+.token.function {
+	color: rgb(80, 250, 123);
+}
+
+.token.variable {
+	color: rgb(189, 147, 249);
+	font-style: italic;
+}
+
+.token.comment {
+	color: rgb(98, 114, 164);
+}
+
+pre code {
+	padding: 0;
+}
+
+p {
+	color: #4b5555;
+	font-weight: 500;
+	line-height: 1.7;
+	font-size: 16px;
+	margin-bottom: 10px;
+	margin-top: 0;
+}
+
+.main .list-unstyled {
+	margin: 0;
+	padding: 0
+}
+
+.main .list-unstyled li {
+	margin-bottom: 10px;
+}
+
+.main__item {
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.list-unstyled {
+	list-style: none;
+}
+
+table {
+	width: 100%;
+}
+
+thead {
+	display: none;
+}
+
+@media (min-width: 1200px) {
+	thead {
+		display: table-row-group;
+	}
+}
+
+th,
+td {
+	text-align: left;
+	padding: 5px;
+	font-weight: 400;
+	display: block;
+}
+
+@media (min-width: 1200px) {
+	th,
+	td {
+		display: table-cell;
+		border-bottom: 1px solid #e2e2e2;
+	}
+}
+
+th {
+	padding-top: 15px;
+}
+
+@media (min-width: 1200px) {
+	th {
+		padding-top: 5px;
+	}
+}
+
+th::before,
+td::before {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+th:nth-child(1)::before {
+	content: "Name:";
+}
+
+td:nth-child(2):before {
+	content: "Desc:";
+}
+
+td:nth-child(3):before {
+	content: "Type:";
+}
+
+td:nth-child(4):before {
+	content: "Default:";
+}
+
+td:last-child {
+	border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 15px;
+}
+
+@media (min-width: 1200px) {
+	th::before,
+	td::before {
+		display: none;
+	}
+}
+
+@media (min-width: 1200px) {
+	td:last-child {
+		padding-bottom: 5px;
+	}
+}
+
+@media (min-width: 1200px) {
+	th code,
+	td code {
+		white-space: nowrap;
+	}
+}
+
+table p {
+	margin: 0;
+}
+
+.visually-hidden {
+	display: none;
+}
