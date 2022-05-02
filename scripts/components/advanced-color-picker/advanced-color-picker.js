@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
-import { ColorPaletteCustom, CustomSelect, icons, IconLabel } from '@eightshift/frontend-libs/scripts';
+import { ColorPaletteCustom, CustomSelect, icons, IconLabel } from '../../../scripts';
 import { components } from 'react-select';
 
 const getIcon = (value) => {

@@ -1,4 +1,4 @@
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons } from '../../../scripts';
 import { BaseControl, Button } from '@wordpress/components';
 import classnames from 'classnames';
 

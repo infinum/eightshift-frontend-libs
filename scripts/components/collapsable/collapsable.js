@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
+import { icons } from '../../../scripts';
 
 /**
  * A collapsable container for options, akin to CollapsableComponentUseToggle.
@@ -27,16 +28,17 @@ export const Collapsable = ({
 
 	return (
 		<BaseControl className={componentClasses}>
-			<div className='es-collapsable-v2__trigger'>
+			<div className='es-collapsable-v2__trigger es-h-between'>
 				{label}
 
 				{showExpanderIcon &&
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
-						className='es-button-icon-24 es-button-square-32 es-justify-content-center es-align-items-center'
-					>
-						{icons.caretDown}
-					</Button>
+						icon={icons.caretDown}
+						className='es-collapsable-v2__expander-button es-button-square-32 es-button-icon-24'
+						label={isOpen ? __('Show options', 'eightshift-frontend-libs') : __('Hide options', 'eightshift-frontend-libs')}
+						showTooltip
+					/>
 				}
 			</div>
 

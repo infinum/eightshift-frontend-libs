@@ -1,36 +1,50 @@
-// stylelint-disable number-max-precision, selector-max-specificity
+// stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important
 
 .es-collapsable-v2 {
+	$this: &;
+
 	outline: 1px solid transparent;
-	outline-offset: 0.35rem;
-	border-radius: 0.0625rem;
+	outline-offset: 0.25rem;
+	border-radius: 0.05rem;
+	padding: 0;
 
 	transition: {
-		property: outline, outline-offset;
+		property: outline, outline-offset, padding, margin;
 		timing-function: ease-out;
-		duration: 0.15s;
+		duration: 0.2s;
+	}
+
+	@media (prefers-reduced-motion) {
+		transition-duration: 0.01s;
 	}
 
 	&__trigger {
-		display: grid;
-		align-items: center;
-		grid-template-columns: 1fr auto;
-		grid-template-rows: auto;
-		gap: 1rem;
+		min-height: 2.25rem;
 
-		border-bottom: 1px solid transparent;
+		> div > .components-button {
+			border-radius: 0.25rem !important;
 
-		transition: {
-			property: border-color;
-			timing-function: ease-out;
-			duration: 0.3s;
+			transition: box-shadow 0.1s linear, opacity 0.3s ease-out;
 		}
 
-		.components-button svg {
-			transition: {
-				property: transform;
-				timing-function: ease-out;
-				duration: 0.15s;
+		transition: {
+			property: margin-bottom;
+			timing-function: ease-out;
+			duration: 0.2s;
+		}
+
+		@media (prefers-reduced-motion) {
+			transition-duration: 0.01s;
+		}
+
+		#{$this}__label {
+			font-size: 0.8125rem;
+			font-weight: 500;
+
+			transition: color 0.3s ease-out, margin-left 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+			@media (prefers-reduced-motion) {
+				transition-duration: 0.01s;
 			}
 		}
 	}
@@ -44,21 +58,36 @@
 	}
 
 	&.is-open {
-		outline-offset: 0.25rem;
-		outline: 1px solid var(--wp-admin-theme-color);
+		outline-offset: 0.45rem;
+		outline-color: var(--es-admin-accent-color);
 
-		// Flip the triangle icon.
-		.es-collapsable-v2__trigger .components-button svg {
+		#{$this}__trigger {
+			color: var(--es-admin-accent-color);
+			margin-bottom: 1rem;
+		}
+
+		#{$this}__expander-button svg {
 			transform: scaleY(-1);
 		}
+	}
 
-		.es-collapsable-v2__trigger {
-			color: var(--wp-admin-theme-color, #194BD4);
-			border-bottom-color: hsl(0 0 96%);
-			padding-bottom: 0.5rem;
-			margin-bottom: 0.5rem;
+	&__expander-button svg {
+		transition: 0.3s transform cubic-bezier(0.33, 1, 0.68, 1);
+
+		@media (prefers-reduced-motion) {
+			transition: none;
 		}
+	}
+
+	// Workaround for margin collapsing in content.
+	> .components-base-control__field {
+		padding-bottom: 0.01rem;
 	}
 }
 
-// stylelint-enable number-max-precision, selector-max-specificity
+// Reduce border offset if inside CollapsableComponentUseToggle or CompactResponsive.
+.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-v2.is-open {
+	outline-offset: 0.3rem;
+}
+
+// stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important
