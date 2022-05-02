@@ -124,4 +124,9 @@
 	}
 }
 
+// Reduce border offset if nested.
+.es-collapsable-component-use-toggle > div > div > .es-collapsable-component-use-toggle.is-open {
+	outline-offset: 0.3rem;
+}
+
 // stylelint-enable declaration-no-important, number-max-precision
