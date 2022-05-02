@@ -45,6 +45,7 @@ import { CustomSelectDefaultDropdownIndicator, CustomSelectDefaultClearIndicator
  * @param {string} [props.noOptionsMessage='No options']                       - Text to display when no options are available.
  * @param {function} [props.filterAsyncOptions]                                - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
  * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]          - Style of the CustomSelect.
+ * @param {string?} [props.additionalClasses='']                               - If passed, the classes will be added to the `<BaseControl>` element if `label` or `help` are passed, otherwise the classes are added to the component directly.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -75,6 +76,7 @@ export const CustomSelect = (props) => {
 		isClearable = true,
 		isSearchable = true,
 		hideSelected = false,
+		additionalClasses = '',
 		blurInputOnSelect = false,
 		closeMenuOnSelect = false,
 
@@ -225,7 +227,7 @@ export const CustomSelect = (props) => {
 	}, [selected, multiple, simpleValue, options, defaultOptions]);
 
 	return (
-		<BaseControl label={label} help={help}>
+		<BaseControl label={label} help={help} className={(label || help) ? additionalClasses : ''} >
 			<SortableSelect
 				useDragHandle
 				axis={sortAxis}
@@ -235,7 +237,7 @@ export const CustomSelect = (props) => {
 				value={getValue()}
 				loadOptions={customLoadOptions}
 				cacheOptions={cacheOptions}
-				className='components-custom-select'
+				className={`components-custom-select ${(!label && !help) && additionalClasses ? additionalClasses : ''}`}
 				placeholder={placeholder}
 				defaultOptions={defaultOptions}
 				onChange={onChangeInternal}
