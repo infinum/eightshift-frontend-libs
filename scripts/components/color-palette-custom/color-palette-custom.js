@@ -51,12 +51,19 @@ export const ColorPaletteCustom = (props) => {
 		groupShades = true,
 	} = props;
 
+	console.log(colors);
+
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
 
 	let groupedColors = colors;
 
 	if (groupShades) {
 		groupedColors = colors.reduce((output, current) => {
+			// Bailout if a color is invalid.
+			if (current === undefined || current?.name === undefined || current?.slug === undefined) {
+				return output;
+			}
+
 			if (current.slug.match(colorSuffixRegex)?.length) {
 				const newSlug = current.name.replace(colorSuffixRegex, '').trim();
 	
