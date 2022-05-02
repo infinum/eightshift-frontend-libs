@@ -51,8 +51,6 @@ export const ColorPaletteCustom = (props) => {
 		groupShades = true,
 	} = props;
 
-	console.log(colors);
-
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
 
 	let groupedColors = colors;
