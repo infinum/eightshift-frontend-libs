@@ -121,7 +121,7 @@ export const CustomSelect = (props) => {
 		// Reload the selected item.
 		setSelected(selected);
 
-		if (reFetchOnSearch) {
+		if (reFetchOnSearch && Array.isArray(defaultOptions)) {
 			const opts = await loadOptions(inputValue);
 
 			return new Promise((resolve) => resolve(filterAsyncOptions(opts)));
