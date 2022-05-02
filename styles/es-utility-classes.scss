@@ -166,6 +166,20 @@ $es-utility-props: (
 		align-items: center;
 		justify-content: center;
 	}
+
+	.es-toolbar-icon-#{$size} {
+		& > button > svg {
+			width: #{$value};
+			height: #{$value};
+		}
+	}
+
+	.es-button-icon-#{$size} {
+		& > svg {
+			width: #{$value};
+			height: #{$value};
+		}
+	}
 }
 
 // Default WP field spacing.
@@ -186,19 +200,6 @@ $es-utility-props: (
 // Note: could override any current drop shadows!
 .es-hi-vis-outline {
 	box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #111111;
-}
-
-// Sets the toolbar/button icon size if the default 'iconSize' prop doesn't work.
-.es-button-icon-24 {
-	& > svg {
-		width: 1.5rem;
-		height: 1.5rem;
-	}
-
-	& > button > svg {
-		width: 1.5rem;
-		height: 1.5rem;
-	}
 }
 
 // Flex container with items space-between, gap and a slight padding.

@@ -1,8 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
-import { BlockIcon, icons } from '@eightshift/frontend-libs/scripts/editor';
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
+import { BlockIcon, icons, OptionPicker } from '../../../scripts';
 
 /**
  * A heading level selector.
