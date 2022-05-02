@@ -1,6 +1,6 @@
 // stylelint-disable declaration-no-important, number-max-precision
 
-.es-collapsable-component-use-toggle {
+.es-collapsable-component-use-toggle-v2 {
 	$this: &;
 
 	outline: 1px solid transparent;
@@ -125,7 +125,7 @@
 }
 
 // Reduce border offset if nested.
-.es-collapsable-component-use-toggle > div > div > .es-collapsable-component-use-toggle.is-open {
+.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-component-use-toggle-v2.is-open {
 	outline-offset: 0.3rem;
 }
 

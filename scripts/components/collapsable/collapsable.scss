@@ -86,7 +86,7 @@
 }
 
 // Reduce border offset if inside CollapsableComponentUseToggle or CompactResponsive.
-.es-collapsable-component-use-toggle > div > div > .es-collapsable-v2.is-open {
+.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-v2.is-open {
 	outline-offset: 0.3rem;
 }
 

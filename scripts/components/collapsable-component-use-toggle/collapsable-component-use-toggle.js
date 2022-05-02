@@ -36,7 +36,7 @@ export const CollapsableComponentUseToggle = ({
 	const areChildrenExpanded = ((showUseToggle && checked && isOpen) || (!showUseToggle && isOpen)) || (!showExpanderButton && showUseToggle && checked && expandOnChecked);
 
 	const componentClasses = classnames([
-		'es-collapsable-component-use-toggle',
+		'es-collapsable-component-use-toggle-v2',
 		areChildrenExpanded ? 'is-open' : '',
 		showUseToggle ? 'has-use-toggle' : '',
 	]);
@@ -46,12 +46,12 @@ export const CollapsableComponentUseToggle = ({
 	}
 
 	const toggleIcon = React.cloneElement(icons.toggleOff, {
-		className: `es-collapsable-component-use-toggle__toggle-button ${checked ? 'is-active' : ''}`,
+		className: `es-collapsable-component-use-toggle-v2__toggle-button ${checked ? 'is-active' : ''}`,
 	});
 
 	return (
 		<BaseControl className={componentClasses}>
-			<div className='es-collapsable-component-use-toggle__trigger es-h-between'>
+			<div className='es-collapsable-component-use-toggle-v2__trigger es-h-between'>
 				<div className='es-h-spaced'>
 					{showUseToggle &&
 						<Button
@@ -65,19 +65,19 @@ export const CollapsableComponentUseToggle = ({
 					}
 
 					{showLabel && label && (
-						<span className='es-collapsable-component-use-toggle__label'>
+						<span className='es-collapsable-component-use-toggle-v2__label'>
 							{label}
 						</span>
 					)}
 				</div>
 
-				<div className='es-h-spaced es-collapsable-component-use-toggle__trigger-right'>
+				<div className='es-h-spaced es-collapsable-component-use-toggle-v2__trigger-right'>
 
 
 					{showExpanderButton &&
 						<Button
 							onClick={() => setIsOpen(!isOpen)}
-							className='es-collapsable-component-use-toggle__expander-button es-button-square-32 es-button-icon-24'
+							className='es-collapsable-component-use-toggle-v2__expander-button es-button-square-32 es-button-icon-24'
 							icon={icons.caretDown}
 							disabled={disabled || (showUseToggle && !checked)}
 							label={checked ? __('Show options', 'eightshift-frontend-libs') : __('Hide options', 'eightshift-frontend-libs')}
