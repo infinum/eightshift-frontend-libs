@@ -33,17 +33,21 @@ export const ColorPickerType = {
  * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
  * @param {string} props.tooltip                        - Tooltip of the picker button (if label not provided).
  * @param {boolean} [props.disabled=false]              - If `true`, control is disabled.
+ * @param {boolean} [props.searchable=false]            - If `true`, the list of color can be searched through.
+ * @param {boolean} [props.groupShades=true]            - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
  */
 export const ColorPickerComponent = ({
 	colors,
 	value,
 	onChange,
 	label,
-	canReset = true,
+	canReset = false,
 	pickerPopupTitle = (<h4 className='es-m-0'>{__('Pick a color', 'eightshift-frontend-libs')}</h4>),
 	type = ColorPickerType.GENERIC,
 	tooltip,
 	disabled = false,
+	searachable = false,
+	groupShades = true,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -89,6 +93,8 @@ export const ColorPickerComponent = ({
 					clearable={canReset}
 					inline
 					layout={ColorPaletteCustomLayout.LIST_TWO_COL}
+					searachable={searachable}
+					groupShades={groupShades}
 				/>
 			</div>
 		</Popover>

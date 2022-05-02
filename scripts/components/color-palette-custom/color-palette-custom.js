@@ -3,6 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, TextControl } from '@wordpress/components';
 import { icons } from '../../../scripts';
 import classnames from 'classnames';
+import { select } from '@wordpress/data';
+import { STORE_NAME } from './../../editor/store';
 
 /**
  * Determines the color picker layout.
@@ -30,12 +32,13 @@ export const ColorPaletteCustomLayout = {
  * @param {string?} [props.inline=false]                                             - If `true` and a `label` or `help` is provided, removes the default bottom spacing from WP `BaseControl`.
  * @param {string?} [props.layout='']                                                - If `true` and a `label` or `help` is provided, removes the default bottom spacing from WP `BaseControl`.
  * @param {ColorPaletteCustomLayout} [props.layout=ColorPaletteCustomLayout.DEFAULT] - Determines the layout of the control.
- * @param {boolean} [props.searchable=true]                                          - If `true`, the list of color can be searched through.
+ * @param {boolean} [props.searchable=false]                                         - If `true`, the list of color can be searched through.
  * @param {boolean} [props.disabled]                                                 - If `true`, the component can't be interacted with.
+ * @param {boolean} [props.groupShades=true]                                         - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
  */
 export const ColorPaletteCustom = (props) => {
 	const {
-		colors,
+		colors = select(STORE_NAME).getSettings().globalVariables.colors,
 		value,
 		onChange,
 		clearable = false,
@@ -45,34 +48,48 @@ export const ColorPaletteCustom = (props) => {
 		layout = ColorPaletteCustomLayout.DEFAULT,
 		searchable = false,
 		disabled,
+		groupShades = true,
 	} = props;
 
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
 
-	const groupedColors = colors.reduce((output, current) => {
-		if (current.slug.match(colorSuffixRegex)?.length) {
-			const newSlug = current.name.replace(colorSuffixRegex, '').trim();
+	let groupedColors = colors;
 
-			if (!output[newSlug]) {
-				output[newSlug] = [];
+	if (groupShades) {
+		groupedColors = colors.reduce((output, current) => {
+			if (current.slug.match(colorSuffixRegex)?.length) {
+				const newSlug = current.name.replace(colorSuffixRegex, '').trim();
+	
+				if (!output[newSlug]) {
+					output[newSlug] = [];
+				}
+	
+				output[newSlug] = [
+					...output[newSlug],
+					{
+						...current,
+						shade: current.slug.match(colorSuffixRegex)[0].replace('-', ''),
+					},
+				];
+			} else {
+				output.generic = [
+					...output.generic,
+					current,
+				];
 			}
-
-			output[newSlug] = [
-				...output[newSlug],
-				{
-					...current,
-					shade: current.slug.match(colorSuffixRegex)[0].replace('-', ''),
-				},
-			];
-		} else {
-			output.generic = [
-				...output.generic,
-				current,
-			];
+	
+			return output;
+		}, { generic: [] });
+	
+		// Don't show color groups if only one color would end up in the group.
+		for (let [colorName, colors] of Object.entries(groupedColors)) {
+			if (colors.length === 1 && colorName !== 'generic') {
+				groupedColors.generic.push(colors[0]);
+	
+				delete groupedColors[colorName];
+			}
 		}
-
-		return output;
-	}, { generic: [] });
+	}
 
 	const [filteredColors, setFilteredColors] = useState(groupedColors);
 	const [searchTerm, setSearchTerm] = useState('');
