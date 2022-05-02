@@ -117,7 +117,7 @@
 	}
 
 	// Shift component labels if the component has no use toggle and is preceded by one that has it.
-	&.has-use-toggle + &:not(.has-use-toggle) {
+	&.has-use-toggle ~ &:not(.has-use-toggle) {
 		&:not(.is-open) #{$this}__label {
 			margin-left: 2.5rem;
 		}
