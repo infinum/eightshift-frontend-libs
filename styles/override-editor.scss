@@ -399,14 +399,14 @@ body {
 		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
 		animation-fill-mode: forwards;
 	
-		transform: translateY(+25%);
+		transform: translateY(+1rem);
 	}
 	
 	.components-animate__slide-in.is-from-bottom {
 		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
 		animation-fill-mode: forwards;
 	
-		transform: translateY(-25%);
+		transform: translateY(-1rem);
 	}
 
 	@media (prefers-reduced-motion) {
@@ -414,6 +414,11 @@ body {
 		.components-animate__slide-in.is-from-bottom {
 			animation-duration: 1ms;
 		}
+	}
+
+	// Fix disabled button showing hover state.
+	.components-button[disabled]:hover {
+		color: currentColor !important;
 	}
 }
 
