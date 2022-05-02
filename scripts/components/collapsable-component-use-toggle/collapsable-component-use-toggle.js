@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ToggleControl, Button, BaseControl, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { Button, BaseControl, Animate } from '@wordpress/components';
+import { icons } from '../../../scripts';
 import classnames from 'classnames';
 
 /**
@@ -35,55 +36,58 @@ export const CollapsableComponentUseToggle = ({
 	const areChildrenExpanded = ((showUseToggle && checked && isOpen) || (!showUseToggle && isOpen)) || (!showExpanderButton && showUseToggle && checked && expandOnChecked);
 
 	const componentClasses = classnames([
-		'es-collapsable-component-use-toggle',
+		'es-collapsable-component-use-toggle-v2',
 		areChildrenExpanded ? 'is-open' : '',
+		showUseToggle ? 'has-use-toggle' : '',
 	]);
 
 	if (!showLabel && !showUseToggle) {
 		return children;
 	}
 
-	const getIcon = () => {
-		if (!checked) {
-			return icons.chevronDown;
-		}
-
-		return isOpen ? icons.chevronUp : icons.chevronDown;
-	};
-
-	if (!showUseToggle && !showLabel) {
-		return children;
-	}
+	const toggleIcon = React.cloneElement(icons.toggleOff, {
+		className: `es-collapsable-component-use-toggle-v2__toggle-button ${checked ? 'is-active' : ''}`,
+	});
 
 	return (
 		<BaseControl className={componentClasses}>
-			<div className='es-collapsable-component-use-toggle__trigger'>
-				{showUseToggle &&
-					<ToggleControl
-						label={label}
-						checked={checked}
-						onChange={onChange}
-						className='es-icon-toggle es-icon-toggle--reverse es-collapsable-component-use-toggle__toggle'
-						disabled={disabled}
-					/>
-				}
+			<div className='es-collapsable-component-use-toggle-v2__trigger es-h-between'>
+				<div className='es-h-spaced'>
+					{showUseToggle &&
+						<Button
+							icon={toggleIcon}
+							onClick={() => onChange(!checked)}
+							disabled={disabled}
+							className='es-button-square-32 es-button-icon-28 es-button-no-outline'
+							label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
+							showTooltip
+						/>
+					}
 
-				{!showUseToggle && showLabel && label && <span className='es-collapsable-component-use-toggle__label'>
-					{label}
-				</span>}
+					{showLabel && label && (
+						<span className='es-collapsable-component-use-toggle-v2__label'>
+							{label}
+						</span>
+					)}
+				</div>
 
-				{showExpanderButton &&
-					<Button
-						isTertiary
-						onClick={() => setIsOpen(!isOpen)}
-						className='es-collapsable-component-use-toggle__expander'
-						icon={getIcon()}
-						disabled={disabled || (showUseToggle && !checked)}
-					/>
-				}
+				<div className='es-h-spaced es-collapsable-component-use-toggle-v2__trigger-right'>
+
+
+					{showExpanderButton &&
+						<Button
+							onClick={() => setIsOpen(!isOpen)}
+							className='es-collapsable-component-use-toggle-v2__expander-button es-button-square-32 es-button-icon-24'
+							icon={icons.caretDown}
+							disabled={disabled || (showUseToggle && !checked)}
+							label={checked ? __('Show options', 'eightshift-frontend-libs') : __('Hide options', 'eightshift-frontend-libs')}
+							showTooltip
+						/>
+					}
+				</div>
 			</div>
 
-			{areChildrenExpanded &&
+			{(areChildrenExpanded || (!showUseToggle && !showExpanderButton)) &&
 				<Animate type='slide-in' options={{ origin: 'bottom' }} >
 					{({ className }) => (
 						<div className={className}>

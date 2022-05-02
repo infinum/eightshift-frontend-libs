@@ -1,95 +1,132 @@
-// stylelint-disable declaration-no-important
+// stylelint-disable declaration-no-important, number-max-precision
 
-.es-collapsable-component-use-toggle {
-	border-radius: 0.5rem;
-	box-shadow: 0 0 0 0 transparent;
+.es-collapsable-component-use-toggle-v2 {
+	$this: &;
+
+	outline: 1px solid transparent;
+	outline-offset: 0.25rem;
+	border-radius: 0.05rem;
+	padding: 0;
 
 	transition: {
-		property: box-shadow, padding, margin;
+		property: outline, outline-offset, padding, margin;
 		timing-function: ease-out;
 		duration: 0.2s;
 	}
 
-	&__trigger {
-		display: grid;
-		align-items: center;
-		grid-template-columns: 1fr auto;
-		grid-template-rows: auto;
-		gap: 1rem;
+	@media (prefers-reduced-motion) {
+		transition-duration: 0.01s;
+	}
 
-		border-bottom: 1px solid transparent;
+	&__trigger {
+		min-height: 2.25rem;
+
+		> div > .components-button {
+			border-radius: 0.25rem !important;
+
+			transition: box-shadow 0.1s linear, opacity 0.3s ease-out;
+		}
 
 		transition: {
-			property: border-color;
+			property: margin-bottom;
 			timing-function: ease-out;
-			duration: 0.3s;
+			duration: 0.2s;
 		}
 
-		.components-base-control,
-		.components-base-control__field {
-			margin: 0 !important;
+		@media (prefers-reduced-motion) {
+			transition-duration: 0.01s;
 		}
 
-		span,
-		label {
-			display: block;
-			margin: 0;
-			padding: 0;
-			opacity: 0.9;
-			font-size: 0.7rem;
+		#{$this}__label {
+			font-size: 0.8125rem;
 			font-weight: 500;
-			letter-spacing: 1px;
-			text-transform: uppercase;
-			user-select: none;
-			color: currentColor;
 
-			transition: {
-				property: color;
-				timing-function: ease-out;
-				duration: 0.3s;
+			transition: color 0.3s ease-out, margin-left 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+			@media (prefers-reduced-motion) {
+				transition-duration: 0.01s;
 			}
 		}
 	}
 
-	&__toggle {
-		.components-base-control__field {
-			flex-grow: 1;
-		}
-	}
-
 	&.is-open {
-		box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #194BD4);
-		padding: 0.5rem;
+		outline-offset: 0.45rem;
+		outline-color: var(--es-admin-accent-color);
 
-		margin-left: -0.5rem;
-		margin-right: -0.5rem;
-
-		.es-collapsable-component-use-toggle__trigger {
-			color: var(--wp-admin-theme-color, #194BD4);
-			border-bottom-color: hsl(0 0 96%);
-			padding-bottom: 0.5rem;
-			margin-bottom: 0.5rem;
+		#{$this}__trigger {
+			color: var(--es-admin-accent-color);
+			margin-bottom: 1rem;
 		}
 
-		span,
-		label {
-			opacity: 1;
+		#{$this}__expander-button svg {
+			transform: scaleY(-1);
 		}
 	}
 
-	&__expander {
-		width: 2.25rem;
-		height: 2rem;
-		padding: 0;
+	&__placeholder-icon {
+		display: flex;
+	}
 
-		box-shadow: inset 0 0 0 1px hsl(0 0 96%);
-		border-radius: 100rem;
+	&__toggle-button {
+		.es-toggle-icon-thumb,
+		.es-toggle-icon-container {
+			--transition-duration: 0.25s;
+			--transition-timing-function-basic: ease-out;
+			--transition-timing-function-transform: cubic-bezier(0.33, 1, 0.68, 1);
 
-		svg {
-			width: 1rem !important;
-			height: 1rem !important;
+			transition: fill var(--transition-duration) var(--transition-timing-function-basic),
+				fill-opacity var(--transition-duration) var(--transition-timing-function-basic),
+				stroke var(--transition-duration) var(--transition-timing-function-basic),
+				stroke-opacity var(--transition-duration) var(--transition-timing-function-basic),
+				transform var(--transition-duration) var(--transition-timing-function-transform);
+
+			@media (prefers-reduced-motion) {
+				--transition-duration: 0.01s;
+				--transition-timing-function-basic: linear;
+				--transition-timing-function-transform: linear;
+			}
+		}
+
+		&.is-active {
+			.es-toggle-icon-thumb {
+				--es-toggle-icon-thumb-stroke: rgb(255 255 255);
+				--es-toggle-icon-thumb-fill: rgb(255 255 255);
+				--es-toggle-icon-thumb-fill-opacity: 1;
+				transform: translateX(0.5rem);
+			}
+
+			.es-toggle-icon-container {
+				--es-toggle-icon-container-stroke: var(--es-admin-accent-color);
+				--es-toggle-icon-container-fill: var(--es-admin-accent-color);
+				--es-toggle-icon-container-fill-opacity: 1;
+			}
+		}
+	}
+
+	&__expander-button svg {
+		transition: 0.3s transform cubic-bezier(0.33, 1, 0.68, 1);
+
+		@media (prefers-reduced-motion) {
+			transition: none;
+		}
+	}
+
+	// Workaround for margin collapsing in content.
+	> .components-base-control__field {
+		padding-bottom: 0.01rem;
+	}
+
+	// Shift component labels if the component has no use toggle and is preceded by one that has it.
+	&.has-use-toggle ~ &:not(.has-use-toggle) {
+		&:not(.is-open) #{$this}__label {
+			margin-left: 2.5rem;
 		}
 	}
 }
 
-// stylelint-enable declaration-no-important
+// Reduce border offset if nested.
+.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-component-use-toggle-v2.is-open {
+	outline-offset: 0.3rem;
+}
+
+// stylelint-enable declaration-no-important, number-max-precision

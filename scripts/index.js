@@ -18,22 +18,16 @@ export { Collapsable } from './components/collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { CompactResponsive } from './components/compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
-export {
-	CustomSelect,
-	CustomSelectCustomOption,
-	CustomSelectCustomValueDisplay,
-	CustomSelectCustomMultipleValueDisplay,
-	CustomSelectCustomMultipleValueDisplayContainer,
-	CustomSelectCustomMultipleValueRemoveButton,
-} from './components/custom-select/custom-select';
-export {
-	CustomSlider,
-	CustomSliderStyle,
-} from './components/custom-slider/custom-slider';
-export {
-	CustomRangeSlider,
-	CustomRangeSliderStyle,
-} from './components/custom-slider/custom-range-slider';
+export { CustomSelect } from './components/custom-select/custom-select';
+export { CustomSelectCustomOption } from './components/custom-select/custom-select-custom-option';
+export { CustomSelectCustomValueDisplay } from './components/custom-select/custom-select-custom-value-display';
+export { CustomSelectCustomMultipleValueDisplay } from './components/custom-select/custom-select-custom-multiple-value-display';
+export { CustomSelectCustomMultipleValueDisplayContainer } from './components/custom-select/custom-select-custom-multiple-value-display-container';
+export { CustomSelectCustomMultipleValueRemoveButton } from './components/custom-select/custom-select-custom-multiple-value-remove-button';
+export { CustomSelectCustomDropdownIndicator } from './components/custom-select/custom-select-custom-dropdown-indicator';
+export { CustomSlider } from './components/custom-slider/custom-slider';
+export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
+export { CustomSliderStyle, CustomRangeSliderStyle } from './components/custom-slider/custom-slider-style';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';

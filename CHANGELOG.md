@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.0.2] - 2022-05-02
+
+### Fixed:
+- internal components now use relative paths for internal imports (instead of `@eightshfit/frontend-libs/scripts`).
+- `CustomSelect` and `Custom(Range)Slider` have been partly refactored and should be more performant now.
+- `CompactResposnive` now has an option to hide the default breakpoint indicators; this now allows the old `Responsive` to render the new component without any breaking changes 🎉  (you should still take your time and remove the breakpoint labels and switch to `CompactResponsive`, though 😄 ).
+- `CustomSelect` has an `additionalClasses` param now.
+- `ColorPickerComponent`/`ColorPalleteCustom` now have an improved sorting logic - single color shades won't get their own group; also the grouping functionality is toggleable now.
+- `ColorPickerComponent` has its missing `searachable` prop readded 😅 .
+- `CollapsableComponentUseToggle` has a brand new look and a way nicer feel and layout.
+- `Collapsable` was partly reworked to optimize its styles and better align it to the new CollapsableComponentUseToggle.
+- there are a couple of new (UI) icons.
+- a couple of style fixes and utility classes were added.
+- add `GradientPicker` component with fallback for versions prior to 5.9
+
 ## [6.0.1] - 2022-04-21
 
 ### Fixed
@@ -483,6 +498,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[6.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.2...6.0.0
 [5.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.1...5.0.2

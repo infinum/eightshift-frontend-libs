@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { IconLabel, icons, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, icons, ucfirst } from '../../../scripts';
 
 /**
  * A component that displays options adjustable across screen sizes.
@@ -20,6 +20,9 @@ export const CompactResponsive = (props) => {
 		children = [],
 		breakpoints = ['large', 'desktop', 'tablet', 'mobile'],
 		inheritButton,
+
+		// Should only be used for compatibility with old Responsive.
+		hideBreakpointLabels = false,
 	} = props;
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +64,7 @@ export const CompactResponsive = (props) => {
 					<BaseControl
 						key={index}
 						className='es-no-field-spacing'
-						label={current === -1 &&
+						label={current === -1 && !hideBreakpointLabels &&
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
 								{({ className: customClass }) => (
 									<div className={`es-flex-between ${customClass}`}>
