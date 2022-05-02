@@ -20,6 +20,7 @@
 @import '../scripts/components/compact-responsive/compact-responsive.scss';
 
 body {
+	--es-admin-accent-color: var(--wp-admin-theme-color, #194BD4);
 
 	// Full width button.
 	.custom-full-width-button {
@@ -169,6 +170,19 @@ body {
 	// Slight border for default buttons if needed.
 	.es-slight-button-border:not(.is-pressed) {
 		box-shadow: inset 0 0 0 1px rgb(240 240 240);
+	}
+
+	// Ability to make BaseControl inline.
+	.es-inline-base-control {
+		> .components-base-control__field {
+			display: grid;
+			grid-template-columns: var(--es-inline-base-control-label-width, max-content) var(--es-inline-base-control-content-width, 1fr);
+			column-gap: 1rem;
+		}
+
+		&--no-bottom-space {
+			margin-bottom: 0 !important;
+		}
 	}
 }
 
