@@ -27,5 +27,24 @@
 		font-weight: normal;
 		user-select: none;
 		font-size: 0.9em;
+
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+
+		svg {
+			width: 1.15rem;
+			height: 1.15rem;
+		}
+	}
+
+	&--lowercase {
+		span {
+			// stylelint-disable declaration-no-important
+			font-size: 1em !important;
+			letter-spacing: 0 !important;
+			text-transform: none !important;
+			// stylelint-enable declaration-no-important
+		}
 	}
 }
