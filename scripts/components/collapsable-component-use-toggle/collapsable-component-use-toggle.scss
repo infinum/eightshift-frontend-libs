@@ -53,14 +53,15 @@
 		outline-offset: 0.45rem;
 		outline-color: var(--es-admin-accent-color);
 
-		#{$this}__trigger {
+		> div > #{$this}__trigger {
 			color: var(--es-admin-accent-color);
 			margin-bottom: 1rem;
+
+			#{$this}__expander-button svg {
+				transform: scaleY(-1);
+			}
 		}
 
-		#{$this}__expander-button svg {
-			transform: scaleY(-1);
-		}
 	}
 
 	&__placeholder-icon {
