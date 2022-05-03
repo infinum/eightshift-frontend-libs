@@ -155,6 +155,31 @@ $es-utility-props: (
 		.-es-#{$propShorthand}-#{$size}-important {
 			#{$propCssName}: -#{$value} !important;
 		}
+
+		// Classes for WP BaseControl fields.
+		.es-#{$propShorthand}-#{$size}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: #{$value};
+			}
+		}
+
+		.es-#{$propShorthand}-#{$size}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: #{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value};
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value} !important;
+			}
+		}
 	}
 }
 
