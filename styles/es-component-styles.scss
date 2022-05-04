@@ -175,9 +175,23 @@ body {
 	// Ability to make BaseControl inline.
 	.es-inline-base-control {
 		> .components-base-control__field {
-			display: grid;
-			grid-template-columns: var(--es-inline-base-control-label-width, max-content) var(--es-inline-base-control-content-width, 1fr);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 			column-gap: 1rem;
+
+			> .components-base-control__label {
+				width: var(--es-inline-base-control-label-width, max-content) !important;
+				max-width: 45%;
+				margin: 0 !important;
+			}
+
+			> *:not(:first-child) {
+				flex-shrink: 0;
+				flex-grow: 1;
+
+				max-width: var(--es-inline-base-control-content-width, auto);
+			}
 		}
 
 		&--no-bottom-space {
