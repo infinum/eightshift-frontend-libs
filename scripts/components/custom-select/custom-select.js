@@ -229,6 +229,8 @@ export const CustomSelect = (props) => {
 	return (
 		<BaseControl label={label} help={help} className={(label || help) ? additionalClasses : ''} >
 			<SortableSelect
+				menuPortalTarget={document.body}
+				menuPosition='fixed'
 				useDragHandle
 				axis={sortAxis}
 				onSortEnd={onSortEnd}
