@@ -102,6 +102,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							icon={icon}
 							disabled={disabled}
 							isSmall={compactButtons}
+							className={iconOnly ? 'es-button-square-40' : ''}
 						/>
 					);
 				} else if (icon && label && iconOnly) {
@@ -115,6 +116,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							disabled={disabled}
 							showTooltip
 							isSmall={compactButtons}
+							className={iconOnly ? 'es-button-square-40' : ''}
 						/>
 					);
 				} else if (icon && label) {
@@ -128,6 +130,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							isSmall={compactButtons}
 							label={tooltip !== label ? tooltip : null}
 							showTooltip={tooltip !== label}
+							className={iconOnly ? 'es-button-square-40' : ''}
 						>
 							{label}
 						</Button>
@@ -143,6 +146,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 						isSmall={compactButtons}
 						label={tooltip !== label ? tooltip : null}
 						showTooltip={tooltip !== label}
+						className={iconOnly ? 'es-button-square-40' : ''}
 					>
 						{label}
 					</Button>
