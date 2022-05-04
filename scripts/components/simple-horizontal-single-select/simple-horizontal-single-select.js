@@ -20,6 +20,7 @@ import classnames from 'classnames';
  * @param {'default'|'stretch'|'left'|'center'|'right'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {boolean} [props.includeWpBottomSpacing=false]                            - If `true`, the component will add bottom spacing to match other Gutenberg components.
  * @param {boolean} [props.compactButtons=false]                                    - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.largerIcons=false]                                       - If `true`, the icons inside of buttons are rendered larger.
  */
 export const SimpleHorizontalSingleSelect = (props) => {
 	const {
@@ -37,7 +38,13 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		alignment = 'default',
 		includeWpBottomSpacing = true,
 		compactButtons = false,
+		largerIcons = false,
 	} = props;
+
+	const buttonClasses = classnames([
+		iconOnly ? 'es-button-square-40' : '',
+		largerIcons ? 'es-button-icon-24' : '',
+	]);
 
 	const spacingConfig = {
 		default: {
@@ -116,7 +123,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							disabled={disabled}
 							showTooltip
 							isSmall={compactButtons}
-							className={iconOnly ? 'es-button-square-40' : ''}
+							className={buttonClasses}
 						/>
 					);
 				} else if (icon && label) {
@@ -130,7 +137,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							isSmall={compactButtons}
 							label={tooltip !== label ? tooltip : null}
 							showTooltip={tooltip !== label}
-							className={iconOnly ? 'es-button-square-40' : ''}
+							className={buttonClasses}
 						>
 							{label}
 						</Button>
@@ -146,7 +153,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 						isSmall={compactButtons}
 						label={tooltip !== label ? tooltip : null}
 						showTooltip={tooltip !== label}
-						className={iconOnly ? 'es-button-square-40' : ''}
+						className={buttonClasses}
 					>
 						{label}
 					</Button>
