@@ -170,7 +170,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		<div
 			className={classnames([
 				'es-h-flex-between',
-				'es-gap-l',
+				'es-gap-s',
 				includeWpBottomSpacing ? 'es-has-wp-field-b-space' : '',
 			])}
 		>
