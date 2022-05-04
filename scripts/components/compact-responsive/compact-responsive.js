@@ -62,7 +62,7 @@ export const CompactResponsive = (props) => {
 					showChild = false;
 				}
 
-				const breakpointLabel = breakpointLabels[index] ?? (ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index]));
+				const breakpointLabel = breakpointLabels?.[index] ?? (ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index]));
 
 				return (
 					<BaseControl
