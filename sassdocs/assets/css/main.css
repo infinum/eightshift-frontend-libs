@@ -3,32 +3,15 @@
 	--global-font-family-alternative: 'MarkPro', monospace;
 	--global-block-family-code: 'IBMPlexMono', monospace;
 
-	--global-container-default: 1330px;
-	--global-container-medium: 1094px;
-	--global-container-small: 867px;
-	--global-container-smaller: 768px;
-	--global-container-tiny: 640px;
-
 	--global-gutter: 25px;
 
 	--global-colors-charade:  #282A36;
 	--global-colors-elephant: #0C3636;
 	--global-colors-cape:     #4B5555;
-	--global-colors-nevada:   #656F6F;
-	--global-colors-pewter:   #999C9C;
 	--global-colors-mandy:    #E84E4E;
-	--global-colors-picton:   #44AEDE;
-	--global-colors-chamois:  #F5DD64;
-	--global-colors-egg:      #F7EFC7;
 	--global-colors-cararra:  #F4F3F0;
-	--global-colors-sapling:  #DADDE1;
 	--global-colors-white:    #FFFFFF;
 
-	--global-shadow-elephant: rgba(0, 0, 0, 0.1);
-
-	--global-font-size-gigantic: 132px;
-	--global-font-size-enormous: 100px;
-	--global-font-size-huge: 64px;
 	--global-font-size-big: 48px;
 	--global-font-size-larger: 32px;
 	--global-font-size-large: 24px;
@@ -36,14 +19,42 @@
 	--global-font-size-medium: 16px;
 	--global-font-size-small: 14px;
 
-	--global-mobile-nav-button-size: 40px;
-
 	--global-border-radius: 6px;
 	
-	--global-header-height: 80px;
 	--global-sidebar-width: 300px;
 	--global-docs-top-spacing: 30px;
-	--global-container-spacing-default: 60px;
+}
+
+@font-face {
+	font-display: swap;
+	font-family: MarkPro;
+	font-style: normal;
+	font-weight: 400;
+	src: url('MarkPro.woff2') format('woff2'),url('MarkPro.woff') format('woff')
+}
+
+@font-face {
+	font-display: swap;
+	font-family: IBMPlexSans;
+	font-style: normal;
+	font-weight: 600;
+	src: url('IBMPlexSans-SemiBold.woff2') format('woff2'),url('IBMPlexSans-SemiBold.woff') format('woff')
+}
+
+@font-face {
+	font-display: swap;
+	font-family: IBMPlexSans;
+	font-style: normal;
+	font-weight: 500;
+	src: url('IBMPlexSans-Medium.woff2') format('woff2'),url('IBMPlexSans-Medium.woff') format('woff')
+}
+
+@font-face {
+	font-display: swap;
+	font-family: IBMPlexSans;
+	font-style: italic;
+	font-weight: 300;
+	src: url('IBMPlexSans-LightItalic.woff2') format('woff2'),url('IBMPlexSans-LightItalic.woff') format('woff')
 }
 
 *,
@@ -56,9 +67,12 @@ body {
 	background-color: var(--global-colors-white);
 	color: var(--global-colors-elephant);
 	font-family: var(--global-font-family);
+	font-size: var(--global-font-size-default);
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 992px) {
@@ -123,6 +137,7 @@ a:hover,
 	font-size: 18px;
 	font-weight: 700;
 	font-family: var(--global-font-family-alternative);
+	text-transform: capitalize;
 }
 
 .sidebar .list-unstyled {
@@ -140,31 +155,43 @@ a:hover,
 	line-height: 1.43;
 	padding: 10px 0;
 	display: block;
+	text-transform: capitalize;
+}
+
+.main {
+	padding: var(--global-docs-top-spacing) var(--global-gutter) 0;
 }
 
 @media (min-width: 992px) {
 	.main {
-		padding-top: var(--global-docs-top-spacing);
 		padding-left: calc(var(--global-sidebar-width) + calc(var(--global-gutter) * 2));
-		padding-right: calc(var(--global-sidebar-width) + var(--global-gutter)*2);
+		padding-right: calc(var(--global-gutter)*2);
 		width: 100%;
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 1500px) {
+	.main {
+		max-width: 70%;
 	}
 }
 
 .item__heading {
-	font-size: var(--global-font-size-large);
-	line-height: var(--line-height, 1.13);
+	font-size: var(--font-size, var(--global-font-size-larger));
+	line-height: var(--line-height, 1.2);
 	font-family: var(--global-font-family-alternative);
 	letter-spacing: -2px;
 	color: var(--global-colors-elephant);
-	margin-bottom: 10px;
 	margin-top: 0;
+	margin-bottom: 20px;
+	text-transform: capitalize;
 }
 
 @media (min-width: 768px) {
 	.item__heading {
-		font-size: var(--global-font-size-larger);
-		line-height: 1.2;
+		font-size: var(--global-font-size-big);
+		line-height: 1.13;
 	}
 }
 
@@ -178,19 +205,14 @@ a:hover,
 	font-family: var(--global-font-family-alternative);
 	letter-spacing: -2px;
 	color: var(--global-colors-elephant);
-	margin-bottom: 10px;
 	font-size: var(--font-size, var(--global-font-size-large));
 	line-height: var(--line-height, 1.13);
 	font-weight: 700;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .item__example {
 	margin-bottom: 20px;
-}
-
-.item__cross-type {
-	font-weight: bold;
 }
 
 pre {
@@ -240,8 +262,7 @@ pre code {
 p {
 	color: var(--global-colors-cape);
 	font-weight: 500;
-	line-height: 1.7;
-	font-size: 16px;
+	line-height: 1.56;
 	margin-bottom: 10px;
 	margin-top: 0;
 }
@@ -251,6 +272,7 @@ code {
 }
 
 .main .list-unstyled {
+	font-size: var(--global-font-size-medium);
 	margin: 0;
 	padding: 0
 }
@@ -261,8 +283,8 @@ code {
 
 .main__item {
 	margin-bottom: 30px;
-	padding-bottom: 70px;
-	border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 100px;
+	border-bottom: 1px solid var(--global-colors-cararra);;
 }
 
 .list-unstyled {
@@ -271,6 +293,7 @@ code {
 
 table {
 	width: 100%;
+	font-size: var(--global-font-size-small);
 }
 
 thead {
@@ -295,7 +318,7 @@ td {
 	th,
 	td {
 		display: table-cell;
-		border-bottom: 1px solid #e2e2e2;
+		border-bottom: 1px solid var(--global-colors-cararra);;
 	}
 }
 
@@ -316,23 +339,23 @@ td::before {
 }
 
 th:nth-child(1)::before {
-	content: "Name:";
+	content: 'Name:';
 }
 
 td:nth-child(2):before {
-	content: "Desc:";
+	content: 'Desc:';
 }
 
 td:nth-child(3):before {
-	content: "Type:";
+	content: 'Type:';
 }
 
 td:nth-child(4):before {
-	content: "Default:";
+	content: 'Default:';
 }
 
 td:last-child {
-	border-bottom: 1px solid #e2e2e2;
+	border-bottom: 1px solid var(--global-colors-cararra);;
 	padding-bottom: 15px;
 }
 
@@ -356,8 +379,10 @@ td:last-child {
 	}
 }
 
-table p {
+table p,
+table code {
 	margin: 0;
+	font-size: var(--global-font-size-small);
 }
 
 .visually-hidden {
