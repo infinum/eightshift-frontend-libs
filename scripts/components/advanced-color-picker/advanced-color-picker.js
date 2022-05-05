@@ -46,7 +46,7 @@ export const AdvancedColorPicker = (props) => {
 		onChangeGradient,
 		onChangeType,
 
-		label = <IconLabel icon={icons.backgroundType} label={__('Background', 'eightshift-frontend-libs')} />,
+		label = <IconLabel icon={icons.backgroundTypeAlt2} label={__('Background', 'eightshift-frontend-libs')} />,
 		help,
 
 		types = [
