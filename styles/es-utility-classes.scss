@@ -212,6 +212,8 @@ $es-utility-props: (
 		& > svg {
 			width: #{$value};
 			height: #{$value};
+
+			flex-shrink: 0;
 		}
 	}
 }
