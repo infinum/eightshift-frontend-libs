@@ -110,7 +110,8 @@ export const ColorPickerComponent = ({
 			};
 		} else {
 			style = {
-				'--selected-color': `var(--global-colors-${value})`,
+				'--checkerboard-opacity': value === 'transparent' ? 1 : 0,
+				'--selected-color': value === 'transparent' ? 'transparent' : `var(--global-colors-${value})`,
 			};
 		}
 
