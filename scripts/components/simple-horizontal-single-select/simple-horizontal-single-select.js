@@ -42,7 +42,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 	} = props;
 
 	const buttonClasses = classnames([
-		iconOnly ? 'es-button-square-40' : '',
+		iconOnly ? 'es-button-square-36' : '',
 		largerIcons ? 'es-button-icon-24' : '',
 	]);
 
