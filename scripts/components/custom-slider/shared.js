@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseControl } from '@wordpress/components';
 import { SliderTooltip, Handle } from 'rc-slider';
 
@@ -8,7 +9,7 @@ import { SliderTooltip, Handle } from 'rc-slider';
  */
 export const getSliderComponent = ({ label, help, sliderElement, isInline, sliderClass }) => {
 	if (!label && !help) {
-		return sliderElement;
+		return React.cloneElement(sliderElement, { className: `${sliderElement.props.className} ${sliderClass}` });
 	}
 
 	if (isInline && label) {
