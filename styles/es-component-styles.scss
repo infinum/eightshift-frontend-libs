@@ -1,6 +1,7 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
 @import './es-keyframes.scss';
+@import '../scripts/components/advanced-color-picker/advanced-color-picker.scss';
 @import '../scripts/components/custom-slider/custom-slider.scss';
 @import '../scripts/components/link-edit-component/link-edit-component.scss';
 @import '../scripts/components/responsive/responsive.scss';
