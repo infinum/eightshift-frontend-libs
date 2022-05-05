@@ -9,6 +9,12 @@ $es-spacings: (
 	'xxs': '0.125rem',
 	'xs': '0.25rem',
 	's': '0.5rem',
+	'smaller': '0.75rem',
+	'smaller-em': '0.75em',
+	'smallish': '0.85rem',
+	'smallish-em': '0.85em',
+	'smallish-l': '0.95rem',
+	'smallish-l-em': '0.95em',
 	'm': '1rem',
 	'l': '1.5rem',
 	'xl': '2rem',
@@ -171,6 +177,11 @@ $es-utility-props: (
 	),
 	'line-h': (
 		'cssProp': 'line-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'text': (
+		'cssProp': 'font-size',
 		'values': $es-spacings,
 		'valuePrefix': '',
 	),
@@ -657,6 +668,27 @@ $es-utility-props: (
 .components-number-control.es-inline-input-label-s {
 	display: grid !important;
 	grid-template-columns: 1fr 3.25rem !important;
+}
+
+// Flex utils.
+.es-flex-1 {
+	flex: 1;
+}
+
+.es-flex-shrink-0 {
+	flex-shrink: 0;
+}
+
+.es-flex-shrink-1 {
+	flex-shrink: 1;
+}
+
+.es-flex-grow-0 {
+	flex-grow: 0;
+}
+
+.es-flex-grow-1 {
+	flex-grow: 1;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
