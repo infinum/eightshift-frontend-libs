@@ -1,7 +1,9 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
 $es-spacings: (
+	'auto': auto,
 	'0': 0,
+	'1': 1,
 	'px': '1px',
 	'2px': '2px',
 	'xxs': '0.125rem',
@@ -14,6 +16,17 @@ $es-spacings: (
 	'3xl': '8rem',
 	'4xl': '12rem',
 	'5xl': '16rem',
+	'6xl': '18rem',
+	'7xl': '20rem',
+	'8xl': '24rem',
+	'9xl': '30rem',
+	'10xl': '32rem',
+	'11xl': '36rem',
+	'12xl': '40rem',
+	'13xl': '44rem',
+	'14xl': '48rem',
+	'15xl': '54rem',
+	'16xl': '60rem',
 );
 
 $es-square-button-sizes: (
@@ -133,6 +146,31 @@ $es-utility-props: (
 	),
 	'col-gap': (
 		'cssProp': 'column-gap',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'min-w': (
+		'cssProp': 'min-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'min-h': (
+		'cssProp': 'min-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-w': (
+		'cssProp': 'max-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-h': (
+		'cssProp': 'max-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'line-h': (
+		'cssProp': 'line-height',
 		'values': $es-spacings,
 		'valuePrefix': '',
 	),
