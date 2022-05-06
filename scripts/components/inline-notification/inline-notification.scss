@@ -24,17 +24,17 @@
 	}
 
 	&--error {
-		color: #FFFFFF;
-		background-color: #FF6666;
+		color: var(--es-admin-on-red-500);
+		background-color: var(--es-admin-red-500);
 	}
 
 	&--warning {
-		color: #111111;
-		background-color: #FFC837;
+		color: var(--es-admin-on-yellow-500);
+		background-color: var(--es-admin-yellow-500);
 	}
 
 	&--info {
-		color: #00172C;
-		background-color: #E0F6FF;
+		color: var(--es-admin-on-blue-gray-50);
+		background-color: var(--es-admin-blue-gray-50);
 	}
 }

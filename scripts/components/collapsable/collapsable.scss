@@ -41,7 +41,7 @@
 			font-size: 0.8125rem;
 			font-weight: 500;
 
-			transition: color 0.3s ease-out, margin-left 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+			transition: color 0.3s ease-out, margin-left 0.2s var(--es-admin-ease-out-cubic);
 
 			@media (prefers-reduced-motion) {
 				transition-duration: 0.01s;
@@ -72,7 +72,7 @@
 	}
 
 	&__expander-button svg {
-		transition: 0.3s transform cubic-bezier(0.33, 1, 0.68, 1);
+		transition: 0.3s transform var(--es-admin-ease-out-cubic);
 
 		@media (prefers-reduced-motion) {
 			transition: none;

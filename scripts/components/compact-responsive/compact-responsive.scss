@@ -38,15 +38,15 @@
 
 		// Breakpoint icon.
 		> i {
-			color: #777777;
-			--wp-admin-theme-color: #777777;
+			color: var(--es-admin-gray-800);
+			--wp-admin-theme-color: var(--es-admin-gray-800);
 		}
 
 		// Breakpoint label.
 		> span {
 			font-size: 0.8rem;
 			margin-right: 0.25rem;
-			color: #777777;
+			color: var(--es-admin-gray-800);
 		}
 
 		// Visual separator.
@@ -65,7 +65,7 @@
 
 			transition: {
 				property: transform, fill-opacity, opacity;
-				timing-function: ease-out;
+				timing-function: var(--es-admin-ease-out-cubic);
 				duration: 0.3s;
 			}
 		}
