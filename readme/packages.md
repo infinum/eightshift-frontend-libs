@@ -7,7 +7,6 @@ This is a document explaining what each `package.json` package is used for.
 * @babel/cli - Adds terminal commands for babel.
 * @babel/eslint-parser - JS Parser for babel.
 * @babel/eslint-plugin - JS Parser for babel plugin.
-* @babel/polyfill - Adds polyfill option to your project.
 * @infinumjs/eslint-config-react-js - Adds JS linter config.
 * @wordpress/api-fetch - WP package for api fetch.
 * @wordpress/dependency-extraction-webpack-plugin - Allows Webpack to read all @wordpress packages as external dependency.
@@ -19,6 +18,7 @@ This is a document explaining what each `package.json` package is used for.
 * browser-sync-webpack-plugin - Browser sync plugin for Webpack.
 * classnames - Classnames package used in view components.
 * clean-webpack-plugin - Webpack plugin used to delete build folder.
+* core-js - Latest core Js to use in babel.
 * crypto-browserify - Webpack plugin used to generate random numbers.
 * css-loader - Webpack loader user for css.
 * css-minimizer-webpack-plugin - Webpack plugin used to minimize output.
@@ -31,13 +31,16 @@ This is a document explaining what each `package.json` package is used for.
 * import-glob-loader - Webpack loader used for putting regex in css import.
 * media-blender - Package used for providing media queries.
 * mini-css-extract-plugin - Webpack plugin extracts CSS into separate files.
+* postcss - package for getting postcss options.
 * postcss-loader - Webpack loader used for postcss.
+* postcss-scss - package for parsing scss used for style linter.
 * promisify-child-process - Async child process library used in project setup.
 * raw-loader - Webpack loader used for files.
 * rc-slider - React slider component used in our components.
 * react-html-parser - Utility for converting HTML strings into React components.
 * react-select - Select component for React.
 * react-sortable-hoc - Sortable component for React.
+* regenerator-runtime - Used for Core-js polyfill.
 * sass - A pure JavaScript implementation of Sass
 * sass-loader - Webpack loader used for sass.
 * storybook - Storybook library used in projects.
@@ -50,8 +53,6 @@ This is a document explaining what each `package.json` package is used for.
 * webpack-cli - Webpack cli library.
 * webpack-manifest-plugin - Webpack plugin used for outputting manifest.json.
 * webpack-merge - Webpack utility for merging multiple webpack files.
-* postcss - package for getting postcss options.
-* postcss-scss - package for parsing scss used for style linter.
 
 ## Dev dependencies
 
