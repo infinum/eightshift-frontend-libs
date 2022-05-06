@@ -284,7 +284,7 @@ $es-utility-props: (
 // A11y high-visibility outline.
 // Note: could override any current drop shadows!
 .es-hi-vis-outline {
-	box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #111111;
+	box-shadow: 0 0 0 1px var(--es-admin-hi-vis-outline-1, #FFFFFF), 0 0 0 2px var(--es-admin-hi-vis-outline-2, #111111);
 }
 
 // Flex container with items space-between, gap and a slight padding.
@@ -637,7 +637,7 @@ $es-utility-props: (
 
 // Class to use WP admin theme color.
 .es-has-wp-admin-theme-color {
-	color: var(--wp-admin-theme-color, #111111);
+	color: var(--es-admin-has-wp-admin-theme-color, var(--wp-admin-theme-color, #111111));
 }
 
 // SVG utility classes.
