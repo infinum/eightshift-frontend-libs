@@ -146,7 +146,7 @@ body {
 	button[disabled] .block-editor-block-icon.has-colors,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
 		.block-editor-block-icon {
-		background-color: var(--es-admin-block-icon-foreground, transparent) !important;
+		background-color: var(--es-admin-block-icon-background, transparent) !important;
 		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 		opacity: 1 !important;
 	}
@@ -220,7 +220,7 @@ body {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
 			border-radius: 3px;
-			background-color: var(--es-admin-block-icon-foreground, transparent) !important;
+			background-color: var(--es-admin-block-icon-background, transparent) !important;
 			color: var(--es-admin-block-icon-background, var(--es-admin-gray-850)) !important;
 
 			svg {
