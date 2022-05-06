@@ -310,7 +310,7 @@ export const CustomSelect = (props) => {
 						width: 'calc(100% - 0.75rem)',
 						borderRadius: '0.25rem',
 						transition: 'all 0.3s ease-out',
-						...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, #111111)' } : {}),
+						...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' } : {}),
 					}),
 					valueContainer: (provided) => {
 						if (!isCompact) {
