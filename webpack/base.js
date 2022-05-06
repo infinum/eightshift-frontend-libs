@@ -78,7 +78,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('js')) {
 		module.rules.push({
 			test: /\.(js|jsx)$/,
-			exclude: /node_modules\/(?!@eightshift)/,
+			exclude: /node_modules[\\/](?!@eightshift)/,
 			use: [
 				{
 					loader: 'babel-loader',
