@@ -146,13 +146,13 @@ body {
 	button[disabled] .block-editor-block-icon.has-colors,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
 		.block-editor-block-icon {
-		background-color: var(--es-admin-button-icon-background, transparent) !important;
-		color: var(--es-admin-button-icon-foreground, var(--es-admin-gray-850)) !important;
+		background-color: var(--es-admin-block-icon-foreground, transparent) !important;
+		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 		opacity: 1 !important;
 	}
 
 	.components-button.block-editor-block-switcher__no-switcher-icon:disabled .block-editor-block-icon.has-colors {
-		color: var(--es-admin-button-icon-foreground, var(--es-admin-gray-850)) !important;
+		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 	}
 
 	// Enlarge the icons in the Options panel a bit.
@@ -220,8 +220,8 @@ body {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
 			border-radius: 3px;
-			background-color: var(--es-admin-button-icon-background, transparent) !important;
-			color: var(--es-admin-button-icon-foreground, var(--es-admin-gray-850)) !important;
+			background-color: var(--es-admin-block-icon-foreground, transparent) !important;
+			color: var(--es-admin-block-icon-background, var(--es-admin-gray-850)) !important;
 
 			svg {
 				width: 1.25rem;
