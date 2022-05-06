@@ -53,7 +53,7 @@ export const ColorPaletteCustom = (props) => {
 
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
 
-	let groupedColors = colors;
+	let groupedColors = {generic: colors};
 
 	if (groupShades) {
 		groupedColors = colors.reduce((output, current) => {
