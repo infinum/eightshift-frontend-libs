@@ -108,12 +108,14 @@
 	// Anti-confusion inner icon coloring system (AIICS)
 	// (colors the top-level component icons to black if the control is not expanded)
 	&:not(.is-open) {
+		.components-base-control__field .uses-anti-confusion-technology svg:not(button svg),
 		.components-base-control__field > .components-base-control .components-base-control__label svg:not(button svg),
 		.components-base-control__field > .components-base-control .components-input-control__label svg:not(button svg) {
 			color: currentColor;
 		}
 	}
 
+	.components-base-control__field .uses-anti-confusion-technology svg:not(button svg),
 	.components-base-control__field > .components-base-control .components-base-control__label svg:not(button svg),
 	.components-base-control__field > .components-base-control .components-input-control__label svg:not(button svg) {
 		transition: {
