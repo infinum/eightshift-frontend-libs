@@ -17,7 +17,11 @@ module.exports = (options) => {
 
 	// Load Application Entrypoint.
 	if (!options.overrides.includes('application') && fs.existsSync(options.config.applicationEntry)) {
-		entry.application = options.config.applicationEntry;
+		entry.application = [
+			require.resolve('core-js/stable'),
+			require.resolve('regenerator-runtime/runtime'),
+			options.config.applicationEntry
+		];
 	}
 
 	// Load ApplicationAdmin Entrypoint.
@@ -37,7 +41,11 @@ module.exports = (options) => {
 
 		// Load applicationBlocksFrontend Entrypoint.
 		if (!options.overrides.includes('applicationBlocksFrontend') && fs.existsSync(options.config.applicationBlocksFrontendEntry)) {
-			entry.applicationBlocksFrontend = options.config.applicationBlocksFrontendEntry;
+			entry.applicationBlocksFrontend = [
+				require.resolve('core-js/stable'),
+				require.resolve('regenerator-runtime/runtime'),
+				options.config.applicationBlocksFrontendEntry
+			];
 		}
 
 	// Load filename Output.

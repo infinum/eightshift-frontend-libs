@@ -6,7 +6,7 @@ module.exports = api => {
 			[
 				'@babel/preset-env',
 				{
-					useBuiltIns: 'entry',
+					useBuiltIns: 'usage',
 					corejs: '3',
 					modules: isTest ? "auto" : false,
 				}
