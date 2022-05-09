@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "6.0.1",
+	"version": "6.0.2",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -29,7 +29,7 @@
 		"lint": "npm run lintJs && npm run lintStyle",
 		"storybookBuild": "build-storybook -c .storybook -o docs/storybook",
 		"storybook": "start-storybook -c .storybook",
-		"sassdocBuild": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs && cp ./styles/sassdocs/main.css ./docs/sassdocs/assets/css/",
+		"sassdocBuild": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs && cp ./styles/sassdocs/main.css ./docs/sassdocs/assets/css/ && cp ./styles/sassdocs/fonts/* ./docs/sassdocs/assets/css/",
 		"docsBuild": "rm -rf docs && npm run sassdocBuild && npm run storybookBuild",
 		"docsDeploy": "npm run docsBuild && gh-pages -d docs",
 		"test": "jest --maxWorkers=2",

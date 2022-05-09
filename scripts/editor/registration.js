@@ -173,8 +173,8 @@ export const registerBlocks = (
 		foreground: foregroundGlobal,
 	} = globalManifest;
 
-	document.documentElement.style.setProperty('--eightshift-block-icon-foreground', foregroundGlobal);
-	document.documentElement.style.setProperty('--eightshift-block-icon-background', backgroundGlobal);
+	document.documentElement.style.setProperty('--es-admin-block-icon-foreground', foregroundGlobal);
+	document.documentElement.style.setProperty('--es-admin-block-icon-background', backgroundGlobal);
 
 	// Set all data to the dom that is necessary for project.
 	if (process.env.NODE_ENV !== 'test') {

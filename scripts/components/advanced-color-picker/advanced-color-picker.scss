@@ -1,0 +1,23 @@
+// stylelint-disable number-max-precision
+
+.es-adv-color-picker-icon-container {
+	position: relative;
+
+	display: grid;
+	grid-template: auto / auto;
+	place-items: center;
+}
+
+.es-adv-color-picker-gradient-icon {
+	grid-row: 1;
+	grid-column: 1;
+
+	width: 1.375rem;
+	height: 1.375rem;
+
+	border-radius: 2px;
+
+	transition: 0.3s opacity ease-out;
+}
+
+// stylelint-enable number-max-precision
