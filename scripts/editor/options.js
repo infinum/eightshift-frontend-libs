@@ -138,7 +138,7 @@ export const getOptions = (attributes = {}, manifest = {}) => {
 	const optionsManifest = manifest?.['options'] ?? {};
 	const optionsAttributes = attributes?.['options'] ?? {};
 	const componentName = manifest['componentName'];
-	
+
 	const output = {};
 	const prefix = (typeof attributes['prefix'] === 'undefined') ? '' : attributes['prefix'];
 
