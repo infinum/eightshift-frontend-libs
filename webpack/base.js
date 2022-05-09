@@ -62,13 +62,6 @@ module.exports = (options) => {
 		}));
 	}
 
-	// All Optimizations used in production and development build.
-	const optimization = {};
-
-	if (!options.overrides.includes('runtimeChunk')) {
-		optimization.runtimeChunk = false;
-	}
-
 	// All module used in production and development build.
 	const module = {
 		rules: [],
@@ -141,13 +134,12 @@ module.exports = (options) => {
 	const resolve = {
 		symlinks: false,
 		fallback: {
-			"crypto": require.resolve("crypto-browserify"),
-			"stream": require.resolve("stream-browserify"),
+			crypto: require.resolve("crypto-browserify"),
+			stream: require.resolve("stream-browserify"),
 		}
 	};
 
 	return {
-		optimization,
 		plugins,
 		module,
 		resolve
