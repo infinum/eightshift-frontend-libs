@@ -10,7 +10,7 @@
 
 	svg {
 		min-width: 3.5rem;
-		color: var(--wp-admin-theme-color, #007CBA);
+		color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 	}
 }
 

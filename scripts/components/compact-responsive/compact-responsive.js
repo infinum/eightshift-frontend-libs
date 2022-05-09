@@ -11,6 +11,8 @@ import { IconLabel, icons, ucfirst } from '../../../scripts';
  * @param {React.Component} props.icon                                           - Option icon.
  * @param {array} props.children                                                 - Items to show.
  * @param {array<string>} [props.breakpoints]                                    - Breakpoints to show (default: `large`, `desktop`, `tablet` and `mobile`)
+ * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
+ * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
 export const CompactResponsive = (props) => {
@@ -20,6 +22,8 @@ export const CompactResponsive = (props) => {
 		children = [],
 		breakpoints = ['large', 'desktop', 'tablet', 'mobile'],
 		inheritButton,
+		breakpointLabels,
+		additionalClasses,
 
 		// Should only be used for compatibility with old Responsive.
 		hideBreakpointLabels = false,
@@ -35,7 +39,7 @@ export const CompactResponsive = (props) => {
 
 	return (
 		<BaseControl
-			className={['es-compact-responsive', isOpen ? 'is-open' : '']}
+			className={['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? '']}
 			label={
 				<div className='es-flex-between'>
 					<IconLabel icon={icon} label={label} standalone />
@@ -60,6 +64,8 @@ export const CompactResponsive = (props) => {
 					showChild = false;
 				}
 
+				const breakpointLabel = breakpointLabels?.[index] ?? (ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index]));
+
 				return (
 					<BaseControl
 						key={index}
@@ -70,7 +76,7 @@ export const CompactResponsive = (props) => {
 									<div className={`es-flex-between ${customClass}`}>
 										<div className='es-compact-responsive-breakpoint-label'>
 											<i>{icons[`screen${ucfirst(breakpoints[index])}`]}</i>
-											<span>{ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index])}</span>
+											<span>{breakpointLabel}</span>
 											<hr />
 										</div>
 
