@@ -53,7 +53,7 @@ export const ColorPaletteCustom = (props) => {
 
 	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
 
-	let groupedColors = colors;
+	let groupedColors = {generic: colors};
 
 	if (groupShades) {
 		groupedColors = colors.reduce((output, current) => {
@@ -164,8 +164,9 @@ export const ColorPaletteCustom = (props) => {
 											icon={icons.genericColorSwatch}
 											disabled={disabled}
 											style={{
-												'--selected-color': color,
+												'--selected-color': slug === 'transparent' ? 'transparent' : color,
 												'--current-opacity': value === slug ? 1 : 0,
+												'--checkerboard-opacity': slug === 'transparent' ? 1 : 0,
 											}}
 										/>
 									);
@@ -193,8 +194,9 @@ export const ColorPaletteCustom = (props) => {
 									icon={icons.genericColorSwatch}
 									disabled={disabled}
 									style={{
-										'--selected-color': color,
+										'--selected-color': slug === 'transparent' ? 'transparent' : color,
 										'--current-opacity': value === slug ? 1 : 0,
+										'--checkerboard-opacity': slug === 'transparent' ? 1 : 0,
 									}}
 								>
 									{detailView && name}

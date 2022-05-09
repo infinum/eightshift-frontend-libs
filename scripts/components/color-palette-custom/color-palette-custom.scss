@@ -26,6 +26,15 @@
 	}
 }
 
+.generic-swatch-icon-checkerboard-group {
+	transition: {
+		property: opacity;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+}
+
+.generic-swatch-icon-color-mask,
 .generic-swatch-icon-color {
 	transition: {
 		property: rx, fill;
@@ -49,6 +58,7 @@
 }
 
 .is-generic-swatch-active {
+	.generic-swatch-icon-color-mask,
 	.generic-swatch-icon-color {
 		rx: 9;
 

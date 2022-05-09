@@ -25,6 +25,7 @@ export { CustomSelectCustomMultipleValueDisplay } from './components/custom-sele
 export { CustomSelectCustomMultipleValueDisplayContainer } from './components/custom-select/custom-select-custom-multiple-value-display-container';
 export { CustomSelectCustomMultipleValueRemoveButton } from './components/custom-select/custom-select-custom-multiple-value-remove-button';
 export { CustomSelectCustomDropdownIndicator } from './components/custom-select/custom-select-custom-dropdown-indicator';
+export { CustomSelectStyle } from './components/custom-select/custom-select-style';
 export { CustomSlider } from './components/custom-slider/custom-slider';
 export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
 export { CustomSliderStyle, CustomRangeSliderStyle } from './components/custom-slider/custom-slider-style';

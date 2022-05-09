@@ -31,7 +31,7 @@
 		"lint": "npm run lintJs && npm run lintStyle",
 		"storybookBuild": "build-storybook -c .storybook -o docs/storybook",
 		"storybook": "start-storybook -c .storybook",
-		"sassdocBuild": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs",
+		"sassdocBuild": "node ./node_modules/sassdoc/bin/sassdoc styles/scss --dest docs/sassdocs && cp ./styles/sassdocs/main.css ./docs/sassdocs/assets/css/ && cp ./styles/sassdocs/fonts/* ./docs/sassdocs/assets/css/",
 		"docsBuild": "rm -rf docs && npm run sassdocBuild && npm run storybookBuild",
 		"docsDeploy": "npm run docsBuild && gh-pages -d docs",
 		"test": "NODE_ENV=test jest --maxWorkers=2",

@@ -1,12 +1,20 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
 $es-spacings: (
+	'auto': auto,
 	'0': 0,
+	'1': 1,
 	'px': '1px',
 	'2px': '2px',
 	'xxs': '0.125rem',
 	'xs': '0.25rem',
 	's': '0.5rem',
+	'smaller': '0.75rem',
+	'smaller-em': '0.75em',
+	'smallish': '0.85rem',
+	'smallish-em': '0.85em',
+	'smallish-l': '0.95rem',
+	'smallish-l-em': '0.95em',
 	'm': '1rem',
 	'l': '1.5rem',
 	'xl': '2rem',
@@ -14,15 +22,33 @@ $es-spacings: (
 	'3xl': '8rem',
 	'4xl': '12rem',
 	'5xl': '16rem',
+	'6xl': '18rem',
+	'7xl': '20rem',
+	'8xl': '24rem',
+	'9xl': '30rem',
+	'10xl': '32rem',
+	'11xl': '36rem',
+	'12xl': '40rem',
+	'13xl': '44rem',
+	'14xl': '48rem',
+	'15xl': '54rem',
+	'16xl': '60rem',
 );
 
 $es-square-button-sizes: (
 	'16': '1rem',
+	'18': '1.125rem',
+	'20': '1.25rem',
+	'22': '1.375rem',
 	'24': '1.5rem',
 	'26': '1.525rem',
 	'28': '1.75rem',
 	'30': '1.875rem',
 	'32': '2rem',
+	'36': '2.25rem',
+	'40': '2.5rem',
+	'44': '2.75rem',
+	'48': '3rem',
 );
 
 $es-text-aligns: (
@@ -132,6 +158,36 @@ $es-utility-props: (
 		'values': $es-spacings,
 		'valuePrefix': '',
 	),
+	'min-w': (
+		'cssProp': 'min-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'min-h': (
+		'cssProp': 'min-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-w': (
+		'cssProp': 'max-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-h': (
+		'cssProp': 'max-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'line-h': (
+		'cssProp': 'line-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'text': (
+		'cssProp': 'font-size',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
 );
 
 // Generic utility classes (defined in maps above).
@@ -154,6 +210,31 @@ $es-utility-props: (
 
 		.-es-#{$propShorthand}-#{$size}-important {
 			#{$propCssName}: -#{$value} !important;
+		}
+
+		// Classes for WP BaseControl fields.
+		.es-#{$propShorthand}-#{$size}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: #{$value};
+			}
+		}
+
+		.es-#{$propShorthand}-#{$size}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: #{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value};
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value} !important;
+			}
 		}
 	}
 }
@@ -183,6 +264,8 @@ $es-utility-props: (
 		& > svg {
 			width: #{$value};
 			height: #{$value};
+
+			flex-shrink: 0;
 		}
 	}
 }
@@ -203,8 +286,9 @@ $es-utility-props: (
 
 // A11y high-visibility outline.
 // Note: could override any current drop shadows!
+// Please don't change the default colors, they should be hardcoded in this case!
 .es-hi-vis-outline {
-	box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #111111;
+	box-shadow: 0 0 0 1px var(--es-admin-hi-vis-outline-1, #FFFFFF), 0 0 0 2px var(--es-admin-hi-vis-outline-2, #111111);
 }
 
 // Flex container with items space-between, gap and a slight padding.
@@ -557,7 +641,7 @@ $es-utility-props: (
 
 // Class to use WP admin theme color.
 .es-has-wp-admin-theme-color {
-	color: var(--wp-admin-theme-color, #111111);
+	color: var(--es-admin-has-wp-admin-theme-color, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
 }
 
 // SVG utility classes.
@@ -588,6 +672,27 @@ $es-utility-props: (
 .components-number-control.es-inline-input-label-s {
 	display: grid !important;
 	grid-template-columns: 1fr 3.25rem !important;
+}
+
+// Flex utils.
+.es-flex-1 {
+	flex: 1;
+}
+
+.es-flex-shrink-0 {
+	flex-shrink: 0;
+}
+
+.es-flex-shrink-1 {
+	flex-shrink: 1;
+}
+
+.es-flex-grow-0 {
+	flex-grow: 0;
+}
+
+.es-flex-grow-1 {
+	flex-grow: 1;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
