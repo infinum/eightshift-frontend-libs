@@ -25,10 +25,12 @@ module.exports = (options) => {
 		optimization.minimizer.push(new TerserPlugin({
 			parallel: true,
 			terserOptions: {
-				output: {
+				minify: TerserPlugin.uglifyJsMinify,
+				format: {
 					comments: false,
 				},
 			},
+			extractComments: false,
 		}));
 	}
 
