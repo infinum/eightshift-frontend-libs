@@ -4,6 +4,43 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.0.3] - 2022-05-09
+
+### Changed:
+- sassdocs build style.
+- all internal components now uses internal links and not alias.
+- all internal components now uses css variables that can be overriden from the project.
+- readded missing export for `CustomSelectStyle`.
+- `IconToggle` can now have additional classes passed through.
+- `FancyDivider` has a new alternate look option.
+- `SimpleHorizontalSingleSelect`.
+  - buttons are now square when `iconOnly` is set.
+  - new option for larger icons.
+  - there is a new `vertical` layout.
+- `CompactResponsive`
+  - custom breakpoint labels can be passed to the component now.
+  - additional classes can be passed through.
+- fixed z-index overlap issues in some cases with `CustomSelect`.
+- `ColorPickerComponent` and `ColorPalleteCustom` now properly handle `transparent` color (checkerboard pattern is rendered).
+- `IconLabel` now has a `subtitle` option (a more compact option for basic help).
+- `AdvancedColorPicker` has been fully refactored to make it look nicer and more compact.
+
+### Added:
+- added new icons and update some existing ones.
+- added new utility classes.
+
+### Screenshots
+
+- New `AdvancedColorPicker`
+
+![image](https://user-images.githubusercontent.com/77000136/166936581-b6fac794-eacc-4809-8c2e-26478b52dc64.png)
+![image](https://user-images.githubusercontent.com/77000136/166936637-0e3c3868-7a85-4a65-b51f-6b797a577962.png)
+
+- `transparent` support in color picker components
+
+![image](https://user-images.githubusercontent.com/77000136/166936740-bb8eb73f-25ea-4c78-80c2-18fd04f78f35.png)
+![image](https://user-images.githubusercontent.com/77000136/166936793-fbaeb2d9-be8e-4787-8954-272088fd8565.png)
+
 ## [6.0.2] - 2022-05-02
 
 ### Fixed:
@@ -498,6 +535,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[6.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.2...6.0.3
 [6.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.2...6.0.0
