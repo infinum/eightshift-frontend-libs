@@ -25,7 +25,6 @@ module.exports = (options) => {
 		optimization.minimizer.push(new TerserPlugin({
 			parallel: true,
 			terserOptions: {
-				minify: TerserPlugin.uglifyJsMinify,
 				format: {
 					comments: false,
 				},
