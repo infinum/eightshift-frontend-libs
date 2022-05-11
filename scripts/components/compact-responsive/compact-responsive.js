@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 import { BaseControl, Button, Animate } from '@wordpress/components';
 import { IconLabel, icons, ucfirst } from '../../../scripts';
 
@@ -39,7 +40,7 @@ export const CompactResponsive = (props) => {
 
 	return (
 		<BaseControl
-			className={['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? '']}
+			className={classnames['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? '']}
 			label={
 				<div className='es-flex-between'>
 					<IconLabel icon={icon} label={label} standalone />
@@ -83,7 +84,7 @@ export const CompactResponsive = (props) => {
 										{index > 0 && inheritButton !== undefined &&
 											<Button
 												onClick={inheritButton[index].callback}
-												className={['es-compact-responsive-inherit-button es-button-icon-24 es-slight-button-border', inheritButton[index].isActive ? 'is-inherited' : '']}
+												className={classnames['es-compact-responsive-inherit-button es-button-icon-24 es-slight-button-border', inheritButton[index].isActive ? 'is-inherited' : '']}
 												iconPosition='right'
 												isTertiary={inheritButton[index].isActive}
 												icon={icons.inherit}

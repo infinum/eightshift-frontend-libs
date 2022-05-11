@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 /**
  * A simple <hr /> replacement that draws text.
@@ -16,7 +17,7 @@ export const FancyDivider = (props) => {
 	} = props;
 
 	return (
-		<span className={['es-fancy-divider', lowercase ? 'es-fancy-divider--lowercase' : '', additionalClasses ?? '']}>
+		<span className={classnames['es-fancy-divider', lowercase ? 'es-fancy-divider--lowercase' : '', additionalClasses ?? '']}>
 			<span>{label}</span>
 		</span>
 	);
