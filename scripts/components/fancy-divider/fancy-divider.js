@@ -17,7 +17,7 @@ export const FancyDivider = (props) => {
 	} = props;
 
 	return (
-		<span className={classnames['es-fancy-divider', lowercase ? 'es-fancy-divider--lowercase' : '', additionalClasses ?? '']}>
+		<span className={classnames(['es-fancy-divider', lowercase ? 'es-fancy-divider--lowercase' : '', additionalClasses ?? ''])}>
 			<span>{label}</span>
 		</span>
 	);

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.0.5] - 2022-05-11
+
+### Fixed:
+- classNames style issue fixed.
+
 ## [6.0.4] - 2022-05-11
 
 ### Fixed:
@@ -540,6 +545,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[6.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.4...6.0.5
 [6.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.3...6.0.4
 [6.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.2...6.0.3
 [6.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.1...6.0.2

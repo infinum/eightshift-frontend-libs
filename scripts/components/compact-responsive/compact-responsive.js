@@ -40,7 +40,7 @@ export const CompactResponsive = (props) => {
 
 	return (
 		<BaseControl
-			className={classnames['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? '']}
+			className={classnames(['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? ''])}
 			label={
 				<div className='es-flex-between'>
 					<IconLabel icon={icon} label={label} standalone />
@@ -84,7 +84,7 @@ export const CompactResponsive = (props) => {
 										{index > 0 && inheritButton !== undefined &&
 											<Button
 												onClick={inheritButton[index].callback}
-												className={classnames['es-compact-responsive-inherit-button es-button-icon-24 es-slight-button-border', inheritButton[index].isActive ? 'is-inherited' : '']}
+												className={classnames(['es-compact-responsive-inherit-button es-button-icon-24 es-slight-button-border', inheritButton[index].isActive ? 'is-inherited' : ''])}
 												iconPosition='right'
 												isTertiary={inheritButton[index].isActive}
 												icon={icons.inherit}
