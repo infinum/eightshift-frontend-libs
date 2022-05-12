@@ -49,6 +49,7 @@ import { CustomSliderStyle } from './custom-slider-style';
  * @param {React.Component} [props.valueDisplayElement]                     - If set and `hasValueDisplay` is enabled, sets the value display element that is used.
  * @param {string?} [props.label]                                           - Label displayed above the control.
  * @param {string?} [props.help]                                            - Help text displayed below the control.
+ * @param {string?} [props.additionalClass]                                 - If passed, the classes are appended to the slider.
  */
 export const CustomSlider = (props) => {
 	const {
@@ -69,6 +70,7 @@ export const CustomSlider = (props) => {
 		handleColor,
 		leftAddition,
 		rightAddition,
+		additionalClass,
 		activeMarkColor,
 		inactiveMarkColor,
 		activeMarkLabelColor,
@@ -96,7 +98,8 @@ export const CustomSlider = (props) => {
 		isInline ? 'es-flex-between' : '',
 		marks && hasCompactMarks && !dots ? 'es-custom-slider-compact-with-marks' : '',
 		dots & !marks ? 'es-custom-slider-compact-with-dots' : '',
-	]), [dots, hasCompactMarks, hasVerticalLabels, isInline, marks, sliderStyle]);
+		additionalClass ?? '',
+	]), [dots, hasCompactMarks, hasVerticalLabels, isInline, marks, sliderStyle, additionalClass]);
 
 	const inputFieldElement = useMemo(
 		() => (
