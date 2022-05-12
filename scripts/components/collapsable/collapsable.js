@@ -11,6 +11,7 @@ import { icons } from '../../../scripts';
  * @param {boolean} props.startOpen           - If true, the component is expanded by default. Default: false 
  * @param {boolean} props.showExpanderIcon    - If true, the expander icon is rendered. Default: true
  * @param {React.Component} props.children    - Child items that are shown when expanded.
+ * @param {string?} [props.additionalClasses] - If passed, the classes are appended to the component classes.
  * @returns 
  */
 export const Collapsable = ({
@@ -18,12 +19,14 @@ export const Collapsable = ({
 	startOpen = false,
 	showExpanderIcon = true,
 	children,
+	additionalClasses,
 }) => {
 	const [isOpen, setIsOpen] = useState(startOpen);
 
 	const componentClasses = [
 		'es-collapsable-v2',
 		isOpen ? 'is-open' : '',
+		additionalClasses ?? '',
 	];
 
 	return (

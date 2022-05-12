@@ -18,6 +18,7 @@ import classnames from 'classnames';
  * @param {boolean} [props.expandOnChecked=false]   - If `true`, the expander button disabled, use toggle enabled and checked, the contents will expand/collapse depending on the state of the use toggle.
  * @param {boolean} [props.showLabel=true]          - If `true` and the toggle is not visible, the label will be shown.
  * @param {boolean} [props.startOpen=false]         - If `true`, the options are initially expanded.
+ * @param {string?} [props.additionalClasses]       - If passed, the classes are appended to the component classes.
  */
 export const CollapsableComponentUseToggle = ({
 	label,
@@ -29,6 +30,7 @@ export const CollapsableComponentUseToggle = ({
 	disabled = false,
 	showExpanderButton = true,
 	expandOnChecked = false,
+	additionalClasses,
 	children,
 }) => {
 	const [isOpen, setIsOpen] = useState(startOpen);
@@ -39,6 +41,7 @@ export const CollapsableComponentUseToggle = ({
 		'es-collapsable-component-use-toggle-v2',
 		areChildrenExpanded ? 'is-open' : '',
 		showUseToggle ? 'has-use-toggle' : '',
+		additionalClasses ?? '',
 	]);
 
 	if (!showLabel && !showUseToggle) {
