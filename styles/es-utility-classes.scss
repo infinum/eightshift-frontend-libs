@@ -19,6 +19,8 @@ $es-spacings: (
 	'l': '1.5rem',
 	'xl': '2rem',
 	'xxl': '4rem',
+	'2xl': '4rem',
+	'xxl\\+': '6rem',
 	'3xl': '8rem',
 	'4xl': '12rem',
 	'5xl': '16rem',
@@ -33,6 +35,14 @@ $es-spacings: (
 	'14xl': '48rem',
 	'15xl': '54rem',
 	'16xl': '60rem',
+	'1\\/4': '25%',
+	'1\\/3': '33.3%',
+	'1\\/2': '50%',
+	'2\\/3': '66.6%',
+	'3\\/4': '75%',
+	'full': '100%',
+	'max': 'max-content',
+	'min': 'min-content'
 );
 
 $es-square-button-sizes: (
@@ -58,6 +68,17 @@ $es-text-aligns: (
 	'justify': 'justify',
 );
 
+$es-general-aligns: (
+	'left': 'left',
+	'center': 'center',
+	'right': 'right',
+	'justify': 'justify',
+	'start': 'flex-start',
+	'end': 'flex-end',
+	'between': 'space-between',
+	'around': 'space-around',
+);
+
 $es-opacities: (
 	'0': '0%',
 	'10': '10%',
@@ -72,7 +93,27 @@ $es-opacities: (
 	'100': '100%',
 );
 
+$es-displays: (
+	'grid': 'grid',
+	'flex': 'flex',
+	'block': 'block',
+	'inline': 'inline',
+	'inline-block': 'inline-block',
+	'inline-flex': 'inline-flex',
+	'none': 'none',
+);
+
 $es-utility-props: (
+	'mx': (
+		'cssProp': 'margin-inline',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'my': (
+		'cssProp': 'margin-block',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
 	'mt': (
 		'cssProp': 'margin-top',
 		'values': $es-spacings,
@@ -95,6 +136,16 @@ $es-utility-props: (
 	),
 	'm': (
 		'cssProp': 'margin',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'px': (
+		'cssProp': 'padding-inline',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'py': (
+		'cssProp': 'padding-block',
 		'values': $es-spacings,
 		'valuePrefix': '',
 	),
@@ -188,6 +239,36 @@ $es-utility-props: (
 		'values': $es-spacings,
 		'valuePrefix': '',
 	),
+	'rounded': (
+		'cssProp': 'border-radius',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'items': (
+		'cssProp': 'align-items',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'content': (
+		'cssProp': 'justify-content',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'align-self': (
+		'cssProp': 'align-self',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'justify-self': (
+		'cssProp': 'justify-self',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'display': (
+		'cssProp': 'display',
+		'values': $es-displays,
+		'valuePrefix': '',
+	),
 );
 
 // Generic utility classes (defined in maps above).
@@ -195,43 +276,66 @@ $es-utility-props: (
 	$propCssName: map-get($propData, 'cssProp');
 	$values: map-get($propData, 'values');
 
+
 	@each $size, $value in $values {
-		.es-#{$propShorthand}-#{$size} {
+		$size2: $size + '';
+
+		.es-#{$propShorthand}-#{$size2} {
 			#{$propCssName}: #{$value};
 		}
 
-		.es-#{$propShorthand}-#{$size}-important {
+		.es-#{$propShorthand}-#{$size2}-important {
 			#{$propCssName}: #{$value} !important;
 		}
 
-		.-es-#{$propShorthand}-#{$size} {
+		.es-#{$propShorthand}-#{$size2}\! {
+			#{$propCssName}: #{$value} !important;
+		}
+
+		.-es-#{$propShorthand}-#{$size2} {
 			#{$propCssName}: -#{$value};
 		}
 
-		.-es-#{$propShorthand}-#{$size}-important {
+		.-es-#{$propShorthand}-#{$size2}-important {
+			#{$propCssName}: -#{$value} !important;
+		}
+
+		.-es-#{$propShorthand}-#{$size2}\! {
 			#{$propCssName}: -#{$value} !important;
 		}
 
 		// Classes for WP BaseControl fields.
-		.es-#{$propShorthand}-#{$size}-bcf {
+		.es-#{$propShorthand}-#{$size2}-bcf {
 			.components-base-control__field {
 				#{$propCssName}: #{$value};
 			}
 		}
 
-		.es-#{$propShorthand}-#{$size}-bcf-important {
+		.es-#{$propShorthand}-#{$size2}-bcf-important {
 			.components-base-control__field {
 				#{$propCssName}: #{$value} !important;
 			}
 		}
 
-		.-es-#{$propShorthand}-#{$size}-bcf {
+		.es-#{$propShorthand}-#{$size2}-bcf\! {
+			.components-base-control__field {
+				#{$propCssName}: #{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-bcf {
 			.components-base-control__field {
 				#{$propCssName}: -#{$value};
 			}
 		}
 
-		.-es-#{$propShorthand}-#{$size}-bcf-important {
+		.-es-#{$propShorthand}-#{$size2}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-bcf\! {
 			.components-base-control__field {
 				#{$propCssName}: -#{$value} !important;
 			}
@@ -679,6 +783,10 @@ $es-utility-props: (
 	flex: 1;
 }
 
+.es-flex-0 {
+	flex: 1;
+}
+
 .es-flex-shrink-0 {
 	flex-shrink: 0;
 }
@@ -693,6 +801,22 @@ $es-utility-props: (
 
 .es-flex-grow-1 {
 	flex-grow: 1;
+}
+
+.es-flex-row {
+	flex-direction: row;
+}
+
+.es-flex-row-reverse {
+	flex-direction: row-reverse;
+}
+
+.es-flex-col {
+	flex-direction: column;
+}
+
+.es-flex-col-reverse {
+	flex-direction: column-reverse;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
