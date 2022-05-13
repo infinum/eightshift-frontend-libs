@@ -58,7 +58,6 @@ export const LinkEditComponent = ({
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const ref = useRef();
-	const refCompact = useRef();
 
 	const openLinkControl = () => {
 		setIsDropdownOpen(true);
@@ -102,7 +101,7 @@ export const LinkEditComponent = ({
 		<Popover
 			position='bottom center'
 			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={displayMode === 'compact' ? refCompact?.current : ref?.current}
+			anchorRef={ref?.current}
 			noArrow={false}
 		>
 			<LinkControl
@@ -183,7 +182,7 @@ export const LinkEditComponent = ({
 	let labelToDisplay = label;
 
 	if (icon) {
-		const urlPreview = <Tooltip text={<span>{url}</span>}><span>{truncateMiddle(url.replace('https://', '').replace(/\/{1}$/, ''), displayMode === 'legacy' ? 22 : 28)}</span></Tooltip>;
+		const urlPreview = url?.length > 0 ? <Tooltip text={<span>{url}</span>}><span>{truncateMiddle(url?.replace('https://', '')?.replace(/\/{1}$/, ''), displayMode === 'legacy' ? 22 : 28)}</span></Tooltip> : null;
 
 		labelToDisplay = (
 			<IconLabel
@@ -227,7 +226,7 @@ export const LinkEditComponent = ({
 					icon={url?.length > 0 ? editIcon : icons.plusCircle}
 					disabled={disabled}
 					label={url?.length > 0 ? editUrlLabel : addUrlLabel}
-					ref={refCompact}
+					ref={ref}
 					className='es-button-icon-24 es-button-square-36'
 				/>
 			</div>
