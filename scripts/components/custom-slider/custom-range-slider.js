@@ -93,8 +93,8 @@ export const CustomRangeSlider = (props) => {
 	const Range = useMemo(() => createSliderWithTooltip(Slider.Range), []);
 
 	const controlAdditionalStyles = useMemo(
-		() => getSliderStyles({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels }),
-		[activeMarkColor, activeMarkLabelColor, handleColor, hasVerticalLabels, inactiveMarkColor, inactiveMarkLabelColor, marks, railColor, trackColor, vertical]
+		() => getSliderStyles({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels, max }),
+		[activeMarkColor, activeMarkLabelColor, handleColor, hasVerticalLabels, inactiveMarkColor, inactiveMarkLabelColor, marks, railColor, trackColor, vertical, max]
 	);
 
 	const sliderClass = useMemo(() => classnames([

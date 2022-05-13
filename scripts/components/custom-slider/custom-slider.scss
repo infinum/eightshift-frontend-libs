@@ -286,6 +286,11 @@
 .es-custom-slider-current-value {
 	font-variant-numeric: tabular-nums;
 	user-select: none;
+
+	text-align: end;
+	letter-spacing: -0.025em;
+
+	width: calc(var(--es-custom-slider-value-display-width, 3) * 1ch);
 }
 
 .es-custom-slider-column-picker {
