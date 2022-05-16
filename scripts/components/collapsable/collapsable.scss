@@ -83,6 +83,12 @@
 	> .components-base-control__field {
 		padding-bottom: 0.01rem;
 	}
+
+	// Reduce border offset if inside CollapsableComponentUseToggle or CompactResponsive.
+	& &.is-open,
+	.es-collapsable-component-use-toggle-v2 &.is-open {
+		outline-offset: 0.3rem;
+	}
 }
 
 // Reduce border offset if inside CollapsableComponentUseToggle or CompactResponsive.

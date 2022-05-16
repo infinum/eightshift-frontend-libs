@@ -125,11 +125,18 @@
 			margin-left: 2.5rem;
 		}
 	}
-}
 
-// Reduce border offset if nested.
-.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-component-use-toggle-v2.is-open {
-	outline-offset: 0.3rem;
+	// Reduce border offset if nested - 1 level deep.
+	// stylelint-disable-next-line no-duplicate-selectors
+	& &.is-open,
+	.es-collapsable-v2.is-open & {
+		outline-offset: 0.35rem !important;
+	}
+
+	// Reduce border offset if nested - 2 levels deep.
+	& & &.is-open {
+		outline-offset: 0.2rem !important;
+	}
 }
 
 // stylelint-enable declaration-no-important, number-max-precision

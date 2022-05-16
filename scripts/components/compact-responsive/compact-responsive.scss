@@ -74,6 +74,16 @@
 			duration: 0.3s;
 		}
 	}
+
+	// Workaround for margin collapsing in content.
+	> .components-base-control__field {
+		padding-bottom: 0.01rem;
+	}
+
+	// Reduce border offset if nested - 1 level deep.
+	.es-collapsable-v2.is-open & {
+		outline-offset: 0.15rem;
+	}
 }
 
 .es-compact-responsive-inherit-button {
