@@ -104,7 +104,16 @@ export const SimpleHorizontalSingleSelect = (props) => {
 			}}
 		>
 			{options.map((item, i) => {
-				const icon = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+				const iconData = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+
+				let icon = iconData;
+
+				if (iconData && typeof iconData === 'string' && (iconData?.startsWith('<svg') ?? false)) {
+					icon = (
+						<i className='es-line-h-0 es-display-contents' dangerouslySetInnerHTML={{ __html: iconData }}></i>
+					);
+				}
+
 				const label = item?.label ?? optionLabels?.[i]?.label;
 				const current = optionLabels ? item : item?.value;
 				const tooltip = item?.tooltip ?? optionLabels?.[i]?.tooltip ?? item?.label ?? optionLabels?.[i]?.label;
