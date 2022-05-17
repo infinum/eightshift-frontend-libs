@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { BaseControl, Button, Animate } from '@wordpress/components';
+import { select } from '@wordpress/data';
 import { IconLabel, icons, ucfirst } from '../../../scripts';
-
+import { STORE_NAME } from './../../editor/store';
 /**
  * A component that displays options adjustable across screen sizes.
  * 
@@ -21,7 +22,7 @@ export const CompactResponsive = (props) => {
 		label,
 		icon,
 		children = [],
-		breakpoints = ['large', 'desktop', 'tablet', 'mobile'],
+		breakpoints = Object.keys(select(STORE_NAME).getSettings().globalVariables.breakpoints).reverse(),
 		inheritButton,
 		breakpointLabels,
 		additionalClasses,
