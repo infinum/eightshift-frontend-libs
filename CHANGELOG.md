@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.0.6] - 2022-05-17
+
+### Fixed:
+
+- refactored `unescapeHTML` to work way more reliably
+- readme and doc comment for `Responsive` are now correct
+- `Collapsable`, `CollapsableComponentUseToggle` and `CompactResponsive` are now smarter with outline indentation and nesting
+
+### Changed:
+
+- additional/custom classes can be passed to more components now (`CollapsableComponentUseToggle`, `SimpleHorizontalSingleSelect`, `CustomSlider`, `CustomRangeSlider` )
+- added new utility classes for display, aligns, flexbox, ...
+- added new sizes for utility classes
+- refactored `InlineNotification` to make it fit in better with current components
+- refactored `LinkEditComponent` to make it fit in better with current components
+- added an opt-in class to allow animating the `inherit` arrow
+- a couple of default ES admin colors were changed to have more contrast and look better
+- `CustomSlider` and `CustomRangeSlider` have better value displays now - the width is auto-calculated based on the `max` value to prevent the layout from moving when changing for example from 9 to 10
+- `IconLabel` has a subtitle gap option now
+- added new icons
+
 ## [6.0.5] - 2022-05-11
 
 ### Fixed:
