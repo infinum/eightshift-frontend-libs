@@ -17,7 +17,7 @@ export const Responsive = (props) => {
 	} = props;
 
 	return (
-		<CompactResponsive label={label} hideBreakpointLabels>
+		<CompactResponsive label={label} hideBreakpointLabels {...props}>
 			{children}
 		</CompactResponsive>
 	);
