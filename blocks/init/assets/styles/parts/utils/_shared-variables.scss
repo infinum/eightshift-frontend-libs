@@ -8,6 +8,13 @@ https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_co
 
 $base-col-number: global-settings(maxCols);
 
+$media-breakpoints: (
+    mobile: 0 global-settings(breakpoints, mobile),
+    tablet: (global-settings(breakpoints, mobile) + 1) global-settings(breakpoints, tablet),
+    desktop: (global-settings(breakpoints, tablet) + 1) global-settings(breakpoints, desktop),
+    large: (global-settings(breakpoints, desktop) + 1)
+);
+
 :root {
 
 	/*

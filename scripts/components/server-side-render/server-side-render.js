@@ -4,7 +4,7 @@
  * External dependencies
  */
 import { isEqual, debounce } from 'lodash';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '../../../scripts';
 
 /**
  * WordPress dependencies

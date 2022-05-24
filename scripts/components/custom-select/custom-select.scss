@@ -30,7 +30,21 @@
 
 	&--color {
 		i {
-			color: var(--wp-admin-theme-color, #007CBA);
+			color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 		}
+	}
+}
+
+.es-custom-select-dropdown-icon {
+	line-height: 0;
+
+	&.is-open {
+		transform: scaleY(-1);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.es-custom-select-dropdown-icon {
+		transition: 0.3s transform ease-out;
 	}
 }

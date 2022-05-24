@@ -5,7 +5,7 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType
 } from './alignment-toolbar/alignment-toolbar';
-export { 
+export {
 	ColorPaletteCustom,
 	ColorPaletteCustomLayout,
 } from './color-palette-custom/color-palette-custom';
@@ -17,22 +17,17 @@ export { Collapsable } from './collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { CompactResponsive } from './compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
-export {
-	CustomSelect,
-	CustomSelectCustomOption,
-	CustomSelectCustomValueDisplay,
-	CustomSelectCustomMultipleValueDisplay,
-	CustomSelectCustomMultipleValueDisplayContainer,
-	CustomSelectCustomMultipleValueRemoveButton,
-} from './custom-select/custom-select';
-export {
-	CustomSlider,
-	CustomSliderStyle,
-} from './custom-slider/custom-slider';
-export {
-	CustomRangeSlider,
-	CustomRangeSliderStyle,
-} from './custom-slider/custom-range-slider';
+export { CustomSelect } from './custom-select/custom-select';
+export { CustomSelectCustomOption } from './custom-select/custom-select-custom-option';
+export { CustomSelectCustomValueDisplay } from './custom-select/custom-select-custom-value-display';
+export { CustomSelectCustomMultipleValueDisplay } from './custom-select/custom-select-custom-multiple-value-display';
+export { CustomSelectCustomMultipleValueDisplayContainer } from './custom-select/custom-select-custom-multiple-value-display-container';
+export { CustomSelectCustomMultipleValueRemoveButton } from './custom-select/custom-select-custom-multiple-value-remove-button';
+export { CustomSelectCustomDropdownIndicator } from './custom-select/custom-select-custom-dropdown-indicator';
+export { CustomSelectStyle } from './custom-select/custom-select-style';
+export { CustomSlider } from './custom-slider/custom-slider';
+export { CustomRangeSlider } from './custom-slider/custom-range-slider';
+export { CustomSliderStyle, CustomRangeSliderStyle } from './custom-slider/custom-slider-style';
 export { FancyDivider } from './fancy-divider/fancy-divider';
 export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';

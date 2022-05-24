@@ -1,25 +1,28 @@
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
+import { icons } from '../../../scripts';
 import { BaseControl, Button } from '@wordpress/components';
 import classnames from 'classnames';
 
 /**
  * Horizontal button option selector, inspired by WP 5.9.
  * 
- * @param {object} props                                                            - SimpleHorizontalSingleSelect options.
- * @param {React.Component?} [props.help]                                           - Help text displayed below the control.
- * @param {any} [props.value]                                                       - Current value.
- * @param {React.Component?} [props.label]                                          - Label displayed above the control.
- * @param {array<string|{label, value, icon, tooltip}>} [props.options]             - Options to show, either values or objects with {label?, value, icon?}
- * @param {function} [props.onChange]                                               - Function that is called on every value change.
- * @param {React.Component?} [props.inlineLabel]                                    - Label displayed inline with the control.
- * @param {array<{label, value}>?} [props.optionLabels]                             - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
- * @param {boolean} [props.iconOnly=false]                                          - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
- * @param {boolean} [props.allowWrap=true]                                          - If `true` and there is more options then can fit, the buttons will wrap to the row below.
- * @param {boolean} [props.disabled=false]                                          - If `true`, the component will be disabled.
- * @param {'none'|'inset'|'offset'} [props.border='none']                           - Sets the appearance of a border around the buttons.
- * @param {'default'|'stretch'|'left'|'center'|'right'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
- * @param {boolean} [props.includeWpBottomSpacing=false]                            - If `true`, the component will add bottom spacing to match other Gutenberg components.
- * @param {boolean} [props.compactButtons=false]                                    - If `true`, the buttons are rendered smaller
+ * @param {object} props                                                                       - SimpleHorizontalSingleSelect options.
+ * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
+ * @param {any} [props.value]                                                                  - Current value.
+ * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
+ * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
+ * @param {function} [props.onChange]                                                          - Function that is called on every value change.
+ * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
+ * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
+ * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
+ * @param {boolean} [props.allowWrap=true]                                                     - If `true` and there is more options then can fit, the buttons will wrap to the row below.
+ * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
+ * @param {'none'|'inset'|'offset'} [props.border='none']                                      - Sets the appearance of a border around the buttons.
+ * @param {'default'|'stretch'|'left'|'center'|'right'|'vertical'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
+ * @param {boolean} [props.includeWpBottomSpacing=false]                                       - If `true`, the component will add bottom spacing to match other Gutenberg components.
+ * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
+ * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the BaseControl / control wrapper.
+ * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
  */
 export const SimpleHorizontalSingleSelect = (props) => {
 	const {
@@ -37,7 +40,16 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		alignment = 'default',
 		includeWpBottomSpacing = true,
 		compactButtons = false,
+		largerIcons = false,
+		additionalClass,
+		additionalButtonClass,
 	} = props;
+
+	const buttonClasses = classnames([
+		iconOnly ? 'es-button-square-36' : '',
+		largerIcons ? 'es-button-icon-24' : '',
+		additionalButtonClass ?? '',
+	]);
 
 	const spacingConfig = {
 		default: {
@@ -61,6 +73,10 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		},
 		stretch: {
 			justifyContent: 'space-between',
+			width: '100%',
+		},
+		vertical: {
+			flexDirection: 'column',
 			width: '100%',
 		}
 	};
@@ -88,7 +104,16 @@ export const SimpleHorizontalSingleSelect = (props) => {
 			}}
 		>
 			{options.map((item, i) => {
-				const icon = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+				const iconData = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+
+				let icon = iconData;
+
+				if (iconData && typeof iconData === 'string' && (iconData?.startsWith('<svg') ?? false)) {
+					icon = (
+						<i className='es-line-h-0 es-display-contents' dangerouslySetInnerHTML={{ __html: iconData }}></i>
+					);
+				}
+
 				const label = item?.label ?? optionLabels?.[i]?.label;
 				const current = optionLabels ? item : item?.value;
 				const tooltip = item?.tooltip ?? optionLabels?.[i]?.tooltip ?? item?.label ?? optionLabels?.[i]?.label;
@@ -102,6 +127,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							icon={icon}
 							disabled={disabled}
 							isSmall={compactButtons}
+							className={buttonClasses}
 						/>
 					);
 				} else if (icon && label && iconOnly) {
@@ -115,6 +141,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							disabled={disabled}
 							showTooltip
 							isSmall={compactButtons}
+							className={buttonClasses}
 						/>
 					);
 				} else if (icon && label) {
@@ -128,6 +155,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 							isSmall={compactButtons}
 							label={tooltip !== label ? tooltip : null}
 							showTooltip={tooltip !== label}
+							className={buttonClasses}
 						>
 							{label}
 						</Button>
@@ -143,6 +171,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 						isSmall={compactButtons}
 						label={tooltip !== label ? tooltip : null}
 						showTooltip={tooltip !== label}
+						className={buttonClasses}
 					>
 						{label}
 					</Button>
@@ -155,8 +184,9 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		<div
 			className={classnames([
 				'es-h-flex-between',
-				'es-gap-l',
+				'es-gap-s',
 				includeWpBottomSpacing ? 'es-has-wp-field-b-space' : '',
+				additionalClass ?? '',
 			])}
 		>
 			{inlineLabel}
@@ -168,7 +198,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 
 	if ((includeWpBottomSpacing || label || help) && !inlineLabel) {
 		return (
-			<BaseControl label={label} help={help}>
+			<BaseControl label={label} help={help} className={additionalClass ?? ''}>
 				{controlToReturn}
 			</BaseControl>
 		);

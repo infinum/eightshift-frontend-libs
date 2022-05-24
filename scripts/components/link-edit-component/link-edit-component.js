@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
-import { Popover, Button, BaseControl } from '@wordpress/components';
+import { Popover, Button, BaseControl, Tooltip } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { IconLabel, icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, icons, truncateMiddle } from '../../../scripts';
+import { IconToggle } from '@eightshift/frontend-libs/scripts/components/icon-toggle/icon-toggle';
 
 /**
  * Options panel component that allows picking an URL in a clean and simple way.
@@ -22,12 +23,14 @@ import { IconLabel, icons, truncateMiddle } from '@eightshift/frontend-libs/scri
  * @param {string} [props.addUrlLabel]                                              - 'Add URL' button label (when URL is not set).
  * @param {boolean} [props.disabled=false]                                          - If `true`, control is disabled.
  * @param {boolean} [props.hasDeleteButton=true]                                    - If `true`, the component has a 'Remove link' button when a link is selected.
- * @param {boolean} [props.hasUrlPreview=true]                                      - If `true`, a URL preview is shown inside the component.
+ * @param {boolean} [props.hasUrlPreview=false]                                     - If `true`, and icon and label are provided separately, a URL preview is shown inside the component.
  * @param {React.Component?} [props.additionalOptions]                              - If `true`, displays a URL label editor in the options.
  * @param {React.Component?} [props.removeButtonIcon=icons.trash]                   - Allows overriding the 'Remove link' button icon.
  * @param {React.Component?} [props.label]                                          - Allows overriding the default component label.
- * @param {React.Component?} [props.help]                                           - Help text shown below the component
- * @param {'default'|'compact'|'button'|'iconButton'} [props.displayMode='default'] - Sets the component display mode.
+ * @param {React.Component?} [props.icon]                                           - If provided, displays an icon.
+ * @param {React.Component?} [props.help]                                           - Help text shown below the component.
+ * @param {'default'|'legacy'|'button'|'iconButton'} [props.displayMode='default']  - Sets the component display mode.
+ * @param {string?} [props.additionalClass]                                         - If passed, the classes are forwarded to the component.
  */
 export const LinkEditComponent = ({
 	url,
@@ -39,21 +42,22 @@ export const LinkEditComponent = ({
 	showNewTabOption = true,
 	newTabOptionName = __('Open in new tab'),
 	removeLinkTooltip = __('Remove link'),
-	editUrlLabel = __('Edit URL'),
-	addUrlLabel = __('Add URL'),
+	editUrlLabel = __('Edit'),
+	addUrlLabel = __('Add'),
 	disabled = false,
 	hasDeleteButton = true,
 	hasUrlPreview = true,
 	additionalOptions,
 	removeButtonIcon = icons.trash,
+	icon,
 	label = (<IconLabel icon={icons.link} label={sprintf(__('%s URL'), title)} standalone />),
 	help,
 	displayMode = 'default',
+	additionalClass,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const ref = useRef();
-	const refCompact = useRef();
 
 	const openLinkControl = () => {
 		setIsDropdownOpen(true);
@@ -76,53 +80,39 @@ export const LinkEditComponent = ({
 		setIsDropdownOpen(false);
 	};
 
-	let urlSettings = [];
-
 	if (showNewTabOption) {
-		urlSettings = [...urlSettings, {
-			id: 'opensInNewTab',
-			title: newTabOptionName,
-		}
-		];
-	}
+		// eslint-disable-next-line no-param-reassign
+		additionalOptions = (
+			<>
+				<IconToggle
+					icon={icons.newTab}
+					label={newTabOptionName}
+					checked={opensInNewTab}
+					onChange={(value) => setAttributes({ [isNewTabAttrName]: value })}
+					additionalClasses='es-w-full'
+				/>
 
-	let currentValue = {
-		url
-	};
-
-	if (showNewTabOption) {
-		currentValue = {
-			...currentValue,
-			opensInNewTab,
-		};
+				{additionalOptions}
+			</>
+		);
 	}
 
 	const linkControl = isDropdownOpen && (
 		<Popover
 			position='bottom center'
 			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={displayMode === 'compact' ? refCompact?.current : ref?.current}
+			anchorRef={ref?.current}
 			noArrow={false}
 		>
 			<LinkControl
-				value={currentValue}
-				settings={urlSettings}
+				value={{ url }}
+				settings={[]}
 				onChange={({
-					url: newUrl = '',
-					opensInNewTab: newTab,
+					url: newUrl = ''
 				}) => {
-					let newValues = {
+					setAttributes({
 						[urlAttrName]: newUrl,
-					};
-
-					if (showNewTabOption) {
-						newValues = {
-							...newValues,
-							[isNewTabAttrName]: newTab,
-						};
-					}
-
-					setAttributes(newValues);
+					});
 
 					if (newUrl !== url) {
 						setIsDropdownOpen(false);
@@ -130,7 +120,7 @@ export const LinkEditComponent = ({
 				}}
 			/>
 
-			{((url?.length > 0 && hasDeleteButton && (displayMode === 'compact' || displayMode === 'iconButton' || displayMode === 'button')) || additionalOptions) &&
+			{url?.length > 0 && (hasDeleteButton || additionalOptions) &&
 				<div className='es-popover-content es-v-start'>
 					{additionalOptions}
 
@@ -139,9 +129,8 @@ export const LinkEditComponent = ({
 							onClick={unlinkButton}
 							isDestructive={true}
 							icon={removeButtonIcon}
-							iconSize={24}
 							disabled={disabled}
-							className='es-button-no-outline'
+							className='es-button-no-outline es-button-icon-24'
 						>
 							{removeLinkTooltip}
 						</Button>
@@ -156,13 +145,12 @@ export const LinkEditComponent = ({
 			<>
 				<Button
 					onClick={openLinkControl}
-					icon={icons.link}
-					iconSize={24}
+					icon={icon ?? icons.link}
 					disabled={disabled}
 					label={url?.length > 0 ? editUrlLabel : addUrlLabel}
 					isPressed={url?.length > 0}
 					ref={ref}
-					className='es-button-icon-24'
+					className={`es-button-icon-24 ${additionalClass ?? ''}`}
 				/>
 
 				{linkControl}
@@ -175,12 +163,11 @@ export const LinkEditComponent = ({
 			<>
 				<Button
 					onClick={openLinkControl}
-					icon={icons.link}
-					iconSize={24}
+					icon={icon ?? icons.link}
 					disabled={disabled}
 					isPressed={url?.length > 0}
 					ref={ref}
-					className='es-button-icon-24'
+					className={`es-button-icon-24 ${additionalClass ?? ''}`}
 				>
 					{label}
 				</Button>
@@ -192,60 +179,57 @@ export const LinkEditComponent = ({
 
 	const editIcon = showNewTabOption ? icons.editOptions : icons.edit;
 
-	return (
-		<BaseControl
-			label={
-				<div className='es-flex-between'>
-					{label}
+	let labelToDisplay = label;
 
-					{displayMode === 'compact' &&
-						<div className='es-h-spaced'>
-							<Button
-								isTertiary
-								onClick={openLinkControl}
-								icon={url?.length > 0 ? editIcon : icons.plusCircle}
-								iconSize={24}
-								disabled={disabled}
-								label={url?.length > 0 ? editUrlLabel : addUrlLabel}
-								ref={refCompact}
-							/>
-						</div>
-					}
-				</div>
-			}
-			help={help}
-		>
-			{displayMode !== 'compact' &&
-				<div className='es-simple-editor-button-row'>
+	if (icon) {
+		const urlPreview = url?.length > 0 ? <Tooltip text={<span>{url}</span>}><span>{truncateMiddle(url?.replace('https://', '')?.replace(/\/{1}$/, ''), displayMode === 'legacy' ? 22 : 28)}</span></Tooltip> : null;
+
+		labelToDisplay = (
+			<IconLabel
+				icon={icon}
+				label={label}
+				subtitle={hasUrlPreview && url?.length > 0 ? urlPreview : null}
+				standalone
+			/>
+		);
+	}
+
+	if (displayMode === 'legacy') {
+		return (
+			<BaseControl help={help} className={additionalClass ?? ''}>
+				<div className='es-flex-between'>
+					{labelToDisplay}
+
 					<Button
-						isSecondary
 						onClick={openLinkControl}
-						icon={url?.length > 0 ? editIcon : icons.add}
-						iconSize={24}
+						icon={url?.length > 0 ? editIcon : icons.plusCircle}
 						disabled={disabled}
 						ref={ref}
+						className='es-button-icon-24 es-slight-button-border es-flex-shrink-0'
 					>
 						{url?.length > 0 ? editUrlLabel : addUrlLabel}
 					</Button>
-
-					{url?.length > 0 && hasDeleteButton &&
-						<Button
-							onClick={unlinkButton}
-							isDestructive={true}
-							icon={removeButtonIcon}
-							iconSize={24}
-							label={removeLinkTooltip}
-							disabled={disabled}
-						/>
-					}
 				</div>
-			}
 
-			{url?.length > 0 && hasUrlPreview &&
-				<span className={`es-decorative-text ${displayMode === 'compact' ? 'es-link-edit-component-compact-label' : ''}`}>
-					{truncateMiddle(url, 40)}
-				</span>
-			}
+				{linkControl}
+			</BaseControl>
+		);
+	}
+
+	return (
+		<BaseControl help={help} className={additionalClass ?? ''}>
+			<div className='es-flex-between'>
+				{labelToDisplay}
+
+				<Button
+					onClick={openLinkControl}
+					icon={url?.length > 0 ? editIcon : icons.plusCircle}
+					disabled={disabled}
+					label={url?.length > 0 ? editUrlLabel : addUrlLabel}
+					ref={ref}
+					className='es-button-icon-24 es-button-square-36'
+				/>
+			</div>
 
 			{linkControl}
 		</BaseControl>

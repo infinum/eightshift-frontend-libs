@@ -41,7 +41,11 @@ $socialLinksClass = Components::classnames([
 		$icon = $socialLink['icon'] ?? '';
 		$linkTitle = $socialLink['title'] ?? '';
 
-		if (empty($href) || empty($icon) || !isset($manifest['icons'][$icon])) {
+		if (
+			empty($href)
+			|| empty($icon)
+			|| !isset($manifest['icons'][$icon]) // @phpstan-ignore-line
+		) {
 			continue;
 		}
 
@@ -54,7 +58,10 @@ $socialLinksClass = Components::classnames([
 				target="_blank"
 				rel="noreferrer noopener"
 			>
-				<?php echo $manifest['icons'][$icon]; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+				<?php
+					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					echo $manifest['icons'][$icon]; // @phpstan-ignore-line
+				?>
 			</a>
 		</li>
 	<?php } ?>

@@ -5,16 +5,6 @@
 
 // stylelint-disable number-max-precision
 
-$base-sea-color: #F5F5F5;
-$base-silver-color: #D4D1D1;
-$base-error-color: #CC1818;
-
-$override-map: (
-	highlighted-panel: $base-sea-color,
-	divider: $base-silver-color,
-	hover: $base-black-color,
-);
-
 /* stylelint-disable */
 // Overrides default styles from inline editor.
 body {
@@ -37,7 +27,7 @@ body {
 				}
 
 				&:hover {
-					box-shadow: 0 0 3px rgba(map-get-strict($override-map, hover), 0.3);
+					box-shadow: 0 0 3px var(--es-admin-block-hover-shadow, rgb(0 0 0 / 0.3));
 				}
 			}
 
@@ -130,7 +120,10 @@ body {
 			margin: 0 !important;
 
 			&:not(button svg) {
-				color: var(--wp-admin-theme-color, #111111);
+				color: var(
+					--es-admin-components-base-control-svg,
+					var(--wp-admin-theme-color, var(--es-admin-accent-color-default))
+				);
 			}
 		}
 
@@ -153,13 +146,13 @@ body {
 	button[disabled] .block-editor-block-icon.has-colors,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
 		.block-editor-block-icon {
-		background-color: var(--eightshift-block-icon-background, transparent) !important;
-		color: var(--eightshift-block-icon-foreground, #333333) !important;
+		background-color: var(--es-admin-block-icon-background, transparent) !important;
+		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 		opacity: 1 !important;
 	}
 
 	.components-button.block-editor-block-switcher__no-switcher-icon:disabled .block-editor-block-icon.has-colors {
-		color: var(--eightshift-block-icon-foreground, #333333) !important;
+		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 	}
 
 	// Enlarge the icons in the Options panel a bit.
@@ -182,11 +175,11 @@ body {
 	// Enlarge the icons in the toolbar a bit.
 	button[disabled] .block-editor-block-icon.has-colors,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
-	.block-editor-block-icon,
+		.block-editor-block-icon,
 	.block-editor-block-toolbar__block-controls
-	.block-editor-block-switcher
-	.components-dropdown-menu__toggle
-	.block-editor-block-icon {
+		.block-editor-block-switcher
+		.components-dropdown-menu__toggle
+		.block-editor-block-icon {
 		height: 1.75rem !important;
 		width: 1.75rem !important;
 		border-radius: 4px;
@@ -227,8 +220,8 @@ body {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
 			border-radius: 3px;
-			background-color: var(--eightshift-block-icon-background, transparent) !important;
-			color: var(--eightshift-block-icon-foreground, #333333) !important;
+			background-color: var(--es-admin-block-icon-background, transparent) !important;
+			color: var(--es-admin-block-icon-background, var(--es-admin-gray-850)) !important;
 
 			svg {
 				width: 1.25rem;
@@ -263,7 +256,7 @@ body {
 		}
 
 		&.is-large {
-			box-shadow: inset 0 0 0 1px #E0E0E0;
+			box-shadow: inset 0 0 0 1px var(--es-admin-components-placeholder-large-shadow, var(--es-admin-gray-250));
 			border-radius: 4px;
 			min-height: 0;
 
@@ -282,7 +275,7 @@ body {
 		&.is-medium,
 		&.is-small {
 			padding: 1rem;
-			box-shadow: inset 0 0 0 1px #E0E0E0;
+			box-shadow: inset 0 0 0 1px var(--es-admin-components-placeholder-large-shadow, var(--es-admin-gray-250));
 			min-height: 0 !important;
 			border-radius: 4px;
 
@@ -326,7 +319,7 @@ body {
 			height: 100%;
 			min-height: 4rem;
 			border-radius: 8px;
-			border: 1px dashed hsl(0, 0%, 90%);
+			border: 1px dashed var(--es-admin-block-empty-border, var(--es-admin-gray-200));
 		}
 
 		// If it has one child, expand the expander to fill everything.
@@ -336,7 +329,7 @@ body {
 
 			.components-dropdown.block-editor-inserter {
 				border-radius: 8px;
-				border: 1px dashed hsl(0, 0%, 90%);
+				border: 1px dashed var(--es-admin-block-empty-border, var(--es-admin-gray-200));
 				height: 100%;
 
 				.block-list-appender__toggle.block-editor-button-block-appender {
@@ -387,7 +380,7 @@ body {
 			scrollbar-gutter: stable;
 		}
 	}
-		
+
 	@supports not (scrollbar-gutter: stable) {
 		.interface-interface-skeleton__sidebar {
 			overflow-x: hidden;
@@ -398,15 +391,15 @@ body {
 	.components-animate__slide-in.is-from-top {
 		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
 		animation-fill-mode: forwards;
-	
-		transform: translateY(+25%);
+
+		transform: translateY(+1rem);
 	}
-	
+
 	.components-animate__slide-in.is-from-bottom {
 		animation: components-animate__slide-in-y-animation 0.1s cubic-bezier(0, 0, 0.2, 1);
 		animation-fill-mode: forwards;
-	
-		transform: translateY(-25%);
+
+		transform: translateY(-1rem);
 	}
 
 	@media (prefers-reduced-motion) {
@@ -414,6 +407,11 @@ body {
 		.components-animate__slide-in.is-from-bottom {
 			animation-duration: 1ms;
 		}
+	}
+
+	// Fix disabled button showing hover state.
+	.components-button[disabled]:hover {
+		color: currentColor !important;
 	}
 }
 

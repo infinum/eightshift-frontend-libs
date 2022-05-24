@@ -29,10 +29,11 @@
 		"php-di/php-di": "^6.3.2"
 	},
 	"require-dev": {
-		"infinum/eightshift-coding-standards": "^1.5",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"szepeviktor/phpstan-wordpress": "^1.0.3",
-		"php-stubs/wordpress-stubs": "^5.9"
+		"infinum/eightshift-coding-standards": "^1.5",
+		"infinum/eightshift-libs-stubs": "^0.5.0",
+		"php-stubs/wordpress-stubs": "^5.9",
+		"szepeviktor/phpstan-wordpress": "^1.0.3"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,

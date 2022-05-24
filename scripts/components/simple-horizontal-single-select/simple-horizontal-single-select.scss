@@ -30,7 +30,7 @@
 	.components-button {
 		&:not(.is-pressed) {
 			&:hover {
-				background-color: hsl(0 0% 98%) !important;
+				background-color: var(--es-admin-gray-50) !important;
 			}
 		}
 	}

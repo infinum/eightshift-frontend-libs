@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Popover, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, icons } from '@eightshift/frontend-libs/scripts';
+import { ColorPaletteCustom, icons } from '../../../scripts';
 import { ColorPaletteCustomLayout } from '../color-palette-custom/color-palette-custom';
 
 /**
@@ -23,27 +23,35 @@ export const ColorPickerType = {
 /**
  * Component that allows simple inline color picking while taking up not much space.
  * 
- * @param {object} props                                - ColorPickerComponent options.
- * @param {array?} props.colors                         - List of options to display. If not set, all global manifest colors are used.
- * @param {string} props.value                          - Current value (color slug).
- * @param {function} props.onChange                     - Callback that applies the changes.
- * @param {React.Component?} props.label                - Label to represent the control
- * @param {boolean} [props.canReset=true]               - If `true`, a clear/reset button is shown.
- * @param {string} [props.pickerPopupTitle]             - Color picker popup title.
- * @param {string} [props.type=ColorPickerType.GENERIC] - Color picker type (determines the visual style of the picker).
- * @param {string} props.tooltip                        - Tooltip of the picker button (if label not provided).
- * @param {boolean} [props.disabled=false]              - If `true`, control is disabled.
+ * @param {object} props                                  - ColorPickerComponent options.
+ * @param {array?} props.colors                           - List of options to display. If not set, all global manifest colors are used.
+ * @param {string} props.value                            - Current value (color slug).
+ * @param {function} props.onChange                       - Callback that applies the changes.
+ * @param {React.Component?} props.label                  - Label to represent the control
+ * @param {boolean} [props.canReset=true]                 - If `true`, a clear/reset button is shown.
+ * @param {string} [props.pickerPopupTitle]               - Color picker popup title.
+ * @param {string} [props.type=ColorPickerType.GENERIC]   - Color picker type (determines the visual style of the picker).
+ * @param {string} props.tooltip                          - Tooltip of the picker button (if label not provided).
+ * @param {boolean} [props.disabled=false]                - If `true`, control is disabled.
+ * @param {boolean} [props.searchable=false]              - If `true`, the list of color can be searched through.
+ * @param {boolean} [props.groupShades=true]              - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
+ * @param {boolean?} [props.includeWpBottomSpacing=false] - If `true`, the WP default control spacing will be applied.
+ * @param {string?} [props.additionalClasses]             - If provided, the classes are passed to the component.
  */
 export const ColorPickerComponent = ({
 	colors,
 	value,
 	onChange,
 	label,
-	canReset = true,
+	canReset = false,
 	pickerPopupTitle = (<h4 className='es-m-0'>{__('Pick a color', 'eightshift-frontend-libs')}</h4>),
 	type = ColorPickerType.GENERIC,
 	tooltip,
 	disabled = false,
+	searachable = false,
+	groupShades = true,
+	includeWpBottomSpacing = false,
+	additionalClasses,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -89,6 +97,8 @@ export const ColorPickerComponent = ({
 					clearable={canReset}
 					inline
 					layout={ColorPaletteCustomLayout.LIST_TWO_COL}
+					searachable={searachable}
+					groupShades={groupShades}
 				/>
 			</div>
 		</Popover>
@@ -104,7 +114,8 @@ export const ColorPickerComponent = ({
 			};
 		} else {
 			style = {
-				'--selected-color': `var(--global-colors-${value})`,
+				'--checkerboard-opacity': value === 'transparent' ? 1 : 0,
+				'--selected-color': value === 'transparent' ? 'transparent' : `var(--global-colors-${value})`,
 			};
 		}
 
@@ -138,17 +149,17 @@ export const ColorPickerComponent = ({
 
 	if (!label) {
 		return (
-			<>
+			<div className={`${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
 				{triggerButton}
 
 				{colorPicker}
-			</>
+			</div>
 		);
 	}
 
 	return (
 		<>
-			<div className='es-flex-between'>
+			<div className={`es-flex-between ${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
 				<div className='es-label-flex'>{label}</div>
 
 				{triggerButton}

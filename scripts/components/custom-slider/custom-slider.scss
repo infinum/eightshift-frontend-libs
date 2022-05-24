@@ -3,10 +3,10 @@
 // stylelint-disable number-max-precision
 
 .rc-slider {
-	--slider-color-light: rgb(215, 218, 222);
-	--slider-color-dark: rgb(108, 119, 129);
-	--slider-color-active: var(--wp-admin-theme-color, #111111);
-	--es-custom-slider-col-picker-element-color: linear-gradient(-45deg, rgb(170, 170, 170), rgb(240, 240, 240));
+	--slider-color-light: var(--es-admin-cool-gray-900);
+	--slider-color-dark: var(--es-admin-cool-gray-500);
+	--slider-color-active: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
+	--es-custom-slider-col-picker-element-color: linear-gradient(-45deg, var(--es-admin-gray-500), var(--es-admin-gray-200));
 }
 
 .rc-slider-dot {
@@ -106,8 +106,8 @@
 }
 
 .rc-slider-tooltip-inner {
-	background-color: #1E1E1E;
-	color: #FFFFFF;
+	background-color: var(--es-admin-gray-900);
+	color: var(--es-admin-pure-white);
 	padding: 3px 6px;
 	border-radius: 2px;
 	font-size: 0.75rem;
@@ -227,7 +227,7 @@
 		height: 1.75rem;
 		bottom: -0.125rem;
 		background: none;
-		border: 1px solid rgb(240 240 240);
+		border: 1px solid var(--es-admin-gray-200);
 		border-radius: 100rem;
 	}
 
@@ -286,6 +286,11 @@
 .es-custom-slider-current-value {
 	font-variant-numeric: tabular-nums;
 	user-select: none;
+
+	text-align: end;
+	letter-spacing: -0.025em;
+
+	width: calc(var(--es-custom-slider-value-display-width, 3) * 1ch);
 }
 
 .es-custom-slider-column-picker {
@@ -309,7 +314,7 @@
 		background: transparent;
 		border-radius: 0.25rem;
 		bottom: -1.4rem;
-		border: 1px solid #EEEEEE;
+		border: 1px solid var(--es-admin-gray-200);
 		width: calc(100% + 0.25rem);
 		transform: translateX(-0.125rem);
 	}

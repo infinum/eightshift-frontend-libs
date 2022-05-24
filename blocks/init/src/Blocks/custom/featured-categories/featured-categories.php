@@ -57,8 +57,8 @@ if (!$taxonomyName) {
 		$cardProps = [
 			'imageUse' => false,
 			'introUse' => false,
-			'headingContent' => is_object($termObject) ? $termObject->name : '',
-			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
+			'headingContent' => is_object($termObject) ? $termObject->name : '', // @phpstan-ignore-line
+			'paragraphContent' => is_object($termObject) ? $termObject->description : '', // @phpstan-ignore-line
 			'paragraphUse' => is_object($termObject),
 			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
 			'buttonUrl' => get_term_link($termObject),
