@@ -906,11 +906,6 @@ export const getAllBlocksFlat = (blocks) => {
 const processCssVarsRemBaseSize = (styles) => {
 		const remRegex = /([0-9.-]+rem)/g;
 		const remReplacement = 'calc($1 * var(--base-font-size, 1))';
-		// console.log('select(STORE_NAME)');
-		// console.log(select(STORE_NAME).getConfigUseRemBaseSize());
-
-		// console.log('frugo');
-		// console.log(select(STORE_NAME).getConfigOutputCssOptimize());
 
 		return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
 };
