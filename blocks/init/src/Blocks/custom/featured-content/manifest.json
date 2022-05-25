@@ -1,0 +1,86 @@
+{
+	"active": true,
+	"blockName": "featured-content",
+	"title": "Featured Content",
+	"description" : "Block for selecting and displaying featured content",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-featured-posts"
+	},
+	"keywords": [
+		"featured",
+		"posts",
+		"content"
+	],
+	"attributes": {
+		"featuredContentPostType": {
+			"type": "string",
+			"default": "post"
+		},
+		"featuredContentTaxonomy": {
+			"type": "string"
+		},
+		"featuredContentTerms": {
+			"type": "array"
+		},
+		"featuredContentPosts": {
+			"type": "array"
+		},
+		"featuredContentUseCurrentTerm": {
+			"type": "boolean",
+			"default": false
+		},
+		"featuredContentExcludeCurrentPost": {
+			"type": "boolean",
+			"default": false
+		},
+		"featuredContentServerSideRender": {
+			"type": "boolean",
+			"default": false
+		},
+		"featuredContentRandomOrder": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"attributesSsr": [
+		"featuredContentPostType",
+		"featuredContentTaxonomy",
+		"featuredContentTerms",
+		"featuredContentPosts",
+		"featuredContentLayoutTotalItems",
+		"featuredContentLayoutType"
+	],
+	"components": {
+		"layout": "layout"
+	},
+	"options": {
+		"featuredContentPostType": [
+			{
+				"label": "Post",
+				"value": "post",
+				"api": "posts",
+				"taxonomy": [
+					"category"
+				]
+			},
+			{
+				"label": "Page",
+				"value": "page",
+				"api": "pages"
+			},
+			{
+				"label": "News",
+				"value": "news",
+				"api": "news"
+			}
+		],
+		"featuredContentTaxonomy": [
+			{
+				"label": "Category",
+				"value": "category",
+				"api": "categories"
+			}
+		]
+	}
+}
