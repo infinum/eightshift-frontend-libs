@@ -904,10 +904,10 @@ export const getAllBlocksFlat = (blocks) => {
  * @returns {string}
  */
 const processCssVarsRemBaseSize = (styles) => {
-		const remRegex = /([0-9.-]+rem)/g;
-		const remReplacement = 'calc($1 * var(--base-font-size, 1))';
+	const remRegex = /([0-9.-]+rem)/g;
+	const remReplacement = 'calc($1 * var(--base-font-size, 1))';
 
-		return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
+	return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
 };
 
 /**
@@ -987,6 +987,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 
 	// Detect if style tag is present in dom.
 	const styleTag = document.getElementById(selector);
+
 	// Process styles.
 	output = processCssVarsRemBaseSize(output);
 	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
