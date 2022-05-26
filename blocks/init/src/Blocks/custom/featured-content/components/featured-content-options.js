@@ -18,7 +18,6 @@ import {
 	getOptions
 } from '@eightshift/frontend-libs/scripts';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
-import { SectionIntroOptions } from '../../../components/section-intro/components/section-intro-options';
 import manifest from '../manifest.json';
 
 export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
@@ -63,7 +62,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 					status={"warning"}
 					isDismissible={false}
 				>
-					{__('This options can only be used in post single. Keep in mind by selecting this option the editor preview may not show the correct items!', 'eightshift-frontend-libs')}
+					{__('This options can only be used in post single. Keep in mind by selecting this option the editor preview may not show the correct items!', 'eightshift-boilerplate')}
 				</Notice>
 				<br />
 			</>
@@ -71,11 +70,11 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 	};
 
 	return (
-		<PanelBody title={__('Featured content', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured content', 'eightshift-boilerplate')}>
 			{postTypeOptions.length > 0 &&
 				<>
 					<CustomSelect
-						label={<IconLabel icon={icons.file} label={__('Filter by content type', 'eightshift-frontend-libs')} />}
+						label={<IconLabel icon={icons.file} label={__('Filter by content type', 'eightshift-boilerplate')} />}
 						value={featuredContentPostType}
 						options={postTypeOptions}
 						onChange={(value) => {
@@ -95,7 +94,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 					{taxonomyOption().length > 0 &&
 						<CustomSelect
-							label={<IconLabel icon={icons.editOptions} label={__('Filter by taxonomy', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.editOptions} label={__('Filter by taxonomy', 'eightshift-boilerplate')} />}
 							value={featuredContentTaxonomy}
 							options={taxonomyOption()}
 							onChange={(value) => {
@@ -117,8 +116,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<>
 							<IconToggle
 								icon={icons.hoverBackgroundType}
-								label={__('Select specific items', 'eightshift-frontend-libs')}
-								help={__('This options will allow you to manually select items to show.', 'eightshift-frontend-libs')}
+								label={__('Select specific items', 'eightshift-boilerplate')}
+								help={__('This options will allow you to manually select items to show.', 'eightshift-boilerplate')}
 								checked={useSpecificTerms}
 								onChange={() => {
 									setUseSpecificTerms(!useSpecificTerms);
@@ -131,8 +130,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 							{useSpecificTerms ?
 								<CustomSelect
-									label={<IconLabel icon={icons.clipboard}  label={__('Show only specific items', 'eightshift-frontend-libs')} />}
-									help={__('You will preview the latest 30 items, use the search option to find the item you are looking for. If nothing is selected, all items are shown.', 'eightshift-frontend-libs')}
+									label={<IconLabel icon={icons.clipboard}  label={__('Show only specific items', 'eightshift-boilerplate')} />}
+									help={__('You will preview the latest 30 items, use the search option to find the item you are looking for. If nothing is selected, all items are shown.', 'eightshift-boilerplate')}
 									value={featuredContentTerms}
 									multiple={true}
 									reFetchOnSearch={true}
@@ -146,8 +145,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 								<>
 									<IconToggle
 										icon={icons.filterAlt}
-										label={__('Use term of the current post', 'eightshift-frontend-libs')}
-										help={__('This option allows you to show items in the current post taxonomy. In order for this to work you must select value in the Filter by taxonomy option.', 'eightshift-frontend-libs')}
+										label={__('Use term of the current post', 'eightshift-boilerplate')}
+										help={__('This option allows you to show items in the current post taxonomy. In order for this to work you must select value in the Filter by taxonomy option.', 'eightshift-boilerplate')}
 										checked={featuredContentUseCurrentTerm}
 										onChange={() => {
 											setAttributes({
@@ -168,9 +167,9 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<>
 							<IconToggle
 								icon={icons.visible}
-								label={__('Select specific items to show?', 'eightshift-frontend-libs')}
+								label={__('Select specific items to show?', 'eightshift-boilerplate')}
 								checked={useSpecificPosts}
-								help={__('This option allows you to select individual items to show.', 'eightshift-frontend-libs')}
+								help={__('This option allows you to select individual items to show.', 'eightshift-boilerplate')}
 								onChange={() => {
 									setUseSpecificPosts(!useSpecificPosts);
 									setAttributes({
@@ -181,8 +180,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 							{useSpecificPosts &&
 								<CustomSelect
-									label={<IconLabel icon={<BlockIcon iconName='esf-select' />}  label={__('Show only specific items', 'eightshift-frontend-libs')} />}
-									help={__('You will preview the latest 30 items, use the search option to find the item you are looking for. If nothing is selected, all items are shown.', 'eightshift-frontend-libs')}
+									label={<IconLabel icon={<BlockIcon iconName='esf-select' />}  label={__('Show only specific items', 'eightshift-boilerplate')} />}
+									help={__('You will preview the latest 30 items, use the search option to find the item you are looking for. If nothing is selected, all items are shown.', 'eightshift-boilerplate')}
 									value={featuredContentPosts}
 									multiple={true}
 									reFetchOnSearch={true}
@@ -201,9 +200,9 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 			<IconToggle
 				icon={icons.none}
-				label={__('Exclude current post', 'eightshift-frontend-libs')}
+				label={__('Exclude current post', 'eightshift-boilerplate')}
 				checked={featuredContentExcludeCurrentPost}
-				help={__('Exclude current post from the featured content block items.', 'eightshift-frontend-libs')}
+				help={__('Exclude current post from the featured content block items.', 'eightshift-boilerplate')}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredContentExcludeCurrentPost', attributes, manifest)]: value })}
 			/>
 
@@ -213,9 +212,9 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 			<IconToggle
 				icon={icons.rotateRight}
-				label={__('Use random order', 'eightshift-frontend-libs')}
+				label={__('Use random order', 'eightshift-boilerplate')}
 				checked={featuredContentRandomOrder}
-				help={__('Show posts in random order.', 'eightshift-frontend-libs')}
+				help={__('Show posts in random order.', 'eightshift-boilerplate')}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredContentRandomOrder', attributes, manifest)]: value })}
 			/>
 

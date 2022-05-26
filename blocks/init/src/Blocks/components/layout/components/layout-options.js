@@ -42,7 +42,7 @@ export const LayoutOptions = (attributes) => {
 	return (
 		<>
 			<ComponentUseToggle
-				label={sprintf(__('%s', 'eightshift-frontend-libs'), label)}
+				label={sprintf(__('%s', 'eightshift-boilerplate'), label)}
 				checked={layoutUse}
 				onChange={(value) => setAttributes({ [getAttrKey('layoutUse', attributes, manifest)]: value })}
 				showUseToggle={showLayoutUse}
@@ -54,7 +54,7 @@ export const LayoutOptions = (attributes) => {
 
 					{showLayoutType &&
 						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Layout Type', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Layout Type', 'eightshift-boilerplate')} />}
 							options={getOption('layoutType', attributes, manifest).map(({ label, value, icon: iconName }) => {
 								return {
 									onClick: () => setAttributes({
@@ -71,7 +71,7 @@ export const LayoutOptions = (attributes) => {
 
 					{showLayoutTotalItems &&
 						<RangeControl
-							label={<IconLabel icon={icons.totalItems} label={__('Maximum items to show', 'eightshift-frontend-libs')} />}
+							label={<IconLabel icon={icons.totalItems} label={__('Maximum items to show', 'eightshift-boilerplate')} />}
 							{...getOption('layoutTotalItems', attributes, manifest)}
 							value={layoutTotalItems}
 							allowReset={true}

@@ -23,11 +23,24 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $layoutItems = Components::checkAttr('layoutItems', $attributes, $manifest);
 $layoutTag = Components::checkAttr('layoutTag', $attributes, $manifest);
 $layoutType = Components::checkAttr('layoutType', $attributes, $manifest);
+$layoutLoadMoreId = Components::checkAttr('layoutLoadMoreId', $attributes, $manifest);
 
 $layoutClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
+]);
+
+$loadMoreComponentJsContainerClass = '';
+if ($layoutLoadMoreId) {
+	$loadMoreManifest = Components::getComponent('load-more');
+
+	$loadMoreComponentJsContainerClass = $loadMoreManifest['componentJsContainerClass'] ?? '';
+}
+
+$layoutWrapClass = Components::classnames([
+	Components::selector($componentClass, "{$componentClass}__wrap"),
+	Components::selector($layoutLoadMoreId, $loadMoreComponentJsContainerClass),
 ]);
 
 $unique = Components::getUnique();
@@ -40,7 +53,10 @@ $unique = Components::getUnique();
 	data-layout-type="<?php echo esc_attr($layoutType); ?>"
 >
 	<?php echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	<div class="<?php echo esc_attr("{$componentClass}__wrap"); ?>">
+	<div
+		class="<?php echo esc_attr($layoutWrapClass); ?>"
+		data-load-more-id="<?php echo esc_attr($layoutLoadMoreId); ?>"
+	>
 		<?php echo Components::ensureString($layoutItems); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 	</div>
 </<?php echo esc_attr($layoutTag); ?>>

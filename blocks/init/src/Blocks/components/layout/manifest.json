@@ -26,6 +26,9 @@
 			"type": "integer",
 			"default": 3
 		},
+		"layoutLoadMoreId": {
+			"type": "string"
+		},
 		"layoutUse": {
 			"type": "boolean",
 			"default": true

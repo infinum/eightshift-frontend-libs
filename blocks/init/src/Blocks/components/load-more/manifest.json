@@ -1,0 +1,24 @@
+{
+	"componentName": "load-more",
+	"title": "Load More",
+	"componentClass": "load-more",
+	"componentJsClass": "js-load-more",
+	"componentJsContainerClass": "js-load-more-container",
+	"componentJsLoaderClass": "js-load-more-loader",
+	"attributes": {
+		"loadMoreQuery": {
+			"type": "string"
+		},
+		"loadMoreId": {
+			"type": "string"
+		},
+		"loadMoreUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"components": {
+		"button": "button",
+		"loader": "loader"
+	}
+}

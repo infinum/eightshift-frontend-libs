@@ -3,26 +3,26 @@
 
 	&__wrap {
 		display: grid;
-		column-gap: var(--global-grid-gutter);
-		row-gap: calc(var(--base-font-size) * 6rem);
+		column-gap: var(--global-gutters-default);
+		row-gap: 6rem;
 
 		@include media(tablet up) {
-			row-gap: var(--global-grid-gutter);
+			row-gap: var(--global-gutters-default);
 		}
 	}
 
 	&__col > * {
-		margin-bottom: calc(var(--base-font-size) * 3rem);
+		margin-bottom: 3rem;
 
 		@include media(tablet up) {
-			margin-bottom: calc(var(--base-font-size) * 4rem);
+			margin-bottom: 4rem;
 		}
 	}
 
 	&[data-layout-type='layout-grid-2'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: calc(var(--base-font-size) * 10rem);
+				row-gap: 10rem;
 				grid-template-columns: repeat(12, 1fr);
 			}
 
@@ -37,7 +37,7 @@
 	&[data-layout-type='layout-grid-3'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: calc(var(--base-font-size) * 8rem);
+				row-gap: 8rem;
 				grid-template-columns: repeat(12, 1fr);
 			}
 
@@ -56,7 +56,7 @@
 	&[data-layout-type='layout-grid-4'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: calc(var(--base-font-size) * 8rem);
+				row-gap: 8rem;
 				grid-template-columns: repeat(12, 1fr);
 			}
 

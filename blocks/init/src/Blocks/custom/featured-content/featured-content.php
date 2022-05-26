@@ -11,6 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
+$blockName = $attributes['blockName'] ?? '';
 
 $unique = Components::getUnique();
 
@@ -23,12 +24,14 @@ $featuredContentUseCurrentTerm = Components::checkAttr('featuredContentUseCurren
 $featuredContentServerSideRender = Components::checkAttr('featuredContentServerSideRender', $attributes, $manifest);
 $featuredContentRandomOrder = Components::checkAttr('featuredContentRandomOrder', $attributes, $manifest);
 $featuredContentLayoutTotalItems = Components::checkAttr('featuredContentLayoutTotalItems', $attributes, $manifest);
+$featuredContentLoadMoreUse = Components::checkAttr('featuredContentLoadMoreUse', $attributes, $manifest);
 
 global $post;
 
 $args = [
 	'post_type' => $featuredContentPostType,
 	'posts_per_page' => $featuredContentLayoutTotalItems,
+	'fields' => 'ids',
 ];
 
 if ($featuredContentTaxonomy) {
@@ -85,45 +88,47 @@ if (!$mainQuery->have_posts()) {
 	return;
 }
 
+$loadMoreId = "{$blockName}-{$unique}";
+
+$args['blockName'] = $blockName;
+
 ?>
 
-<div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+<div
+	class="<?php echo esc_attr($blockClass); ?>"
+	data-id="<?php echo esc_attr($unique); ?>"
+>
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
-	$output = [];
+	$cards = Components::render(
+		'featured-content-card.php',
+		[
+			'ids' => $mainQuery->posts,
+			'ssr' => $featuredContentServerSideRender,
+		],
+		__DIR__ . '/content'
+	);
 
-	while ($mainQuery->have_posts()) {
-		$mainQuery->the_post();
-
-		$postId = get_the_ID();
-
-		$output[] = Components::render(
-			'card-article',
-			Components::props(
-				'cardArticle',
-				[
-					'cardArticleHeadingTypographyContent' => get_the_title($postId),
-					'cardArticleMediaUse' => true,
-					'blockSsr' => $featuredContentServerSideRender,
-				],
-			),
-			'',
-			true
-		);
-	}
-	
-	wp_reset_postdata();
-
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::render(
 		'layout',
 		Components::props('layout', $attributes, [
 			'blockClass' => $blockClass,
-			'layoutItems' => $output,
+			'layoutItems' => $cards,
+			'layoutLoadMoreId' => $loadMoreId,
 			'blockSsr' => $featuredContentServerSideRender,
 		]),
 		'',
 		true
+	);
+
+	echo Components::render(
+		'load-more',
+		Components::props('load-more', [
+			'loadMoreQuery' => http_build_query($args),
+			'loadMoreId' => $loadMoreId,
+			'loadMoreBlockName' => $blockName,
+		])
 	);
 	?>
 </div>

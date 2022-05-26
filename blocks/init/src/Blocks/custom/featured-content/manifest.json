@@ -52,7 +52,8 @@
 		"featuredContentLayoutType"
 	],
 	"components": {
-		"layout": "layout"
+		"layout": "layout",
+		"loadMore": "loadMore"
 	},
 	"options": {
 		"featuredContentPostType": [
