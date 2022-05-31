@@ -9,7 +9,6 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $ids = $attributes['ids'] ?? [];
-$ssr = $attributes['ssr'] ?? false;
 
 $output = [];
 
@@ -28,7 +27,7 @@ foreach ($ids as $id) {
 				'cardButtonUrl' => get_the_permalink($id),
 				'cardButtonContent' => __('View More', 'eightshift-boilerplate'),
 				'cardImageUrl' => \get_the_post_thumbnail_url($id, 'large'),
-				'blockSsr' => $ssr,
+				'blockSsr' => $attributes['blockSsr'],
 			],
 		),
 		'',

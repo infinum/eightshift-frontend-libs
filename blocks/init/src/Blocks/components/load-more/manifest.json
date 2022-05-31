@@ -9,6 +9,13 @@
 		"loadMoreQuery": {
 			"type": "string"
 		},
+		"loadMoreType": {
+			"type": "string"
+		},
+		"loadMoreCount": {
+			"type": "integer",
+			"default": 2
+		},
 		"loadMoreId": {
 			"type": "string"
 		},
@@ -18,7 +25,6 @@
 		}
 	},
 	"components": {
-		"button": "button",
-		"loader": "loader"
+		"button": "button"
 	}
 }

@@ -90,24 +90,24 @@ if (!$mainQuery->have_posts()) {
 
 $loadMoreId = "{$blockName}-{$unique}";
 
-$args['blockName'] = $blockName;
-
 ?>
 
 <div
 	class="<?php echo esc_attr($blockClass); ?>"
 	data-id="<?php echo esc_attr($unique); ?>"
+	aria-live="polite"
 >
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
 	$cards = Components::render(
-		'featured-content-card.php',
+		'cards.php',
 		[
 			'ids' => $mainQuery->posts,
-			'ssr' => $featuredContentServerSideRender,
+			'blockSsr' => $featuredContentServerSideRender,
 		],
-		__DIR__ . '/content'
+		__DIR__ . '/partials',
+		true
 	);
 
 	echo Components::render(
@@ -122,13 +122,18 @@ $args['blockName'] = $blockName;
 		true
 	);
 
-	echo Components::render(
-		'load-more',
-		Components::props('load-more', [
-			'loadMoreQuery' => http_build_query($args),
-			'loadMoreId' => $loadMoreId,
-			'loadMoreBlockName' => $blockName,
-		])
-	);
+	if (!$featuredContentServerSideRender) {
+		echo Components::render(
+			'load-more',
+			Components::props('loadMore', $attributes, [
+				'loadMoreQuery' => wp_json_encode($args),
+				'loadMoreId' => $loadMoreId,
+				'loadMoreType' => $blockName,
+				'loadMoreCount' => 2,
+			]),
+			'',
+			true
+		);
+	}
 	?>
 </div>

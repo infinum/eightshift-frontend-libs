@@ -1,38 +1,88 @@
 export class LoadMore {
 	constructor(options) {
+		// All trigger elements.
+		this.triggerElements = options.triggerElements;
+
+		// Simple selectors.
 		this.container = options.container;
-		this.trigger = options.trigger;
 		this.loader = options.loader;
-		this.IS_HIDDEN = 'is-hidden';
-		this.IS_LOADING = 'is-loading';
 
-		// Load params that don't change.
-		this.attrPage = 2;
+		// Ajax.
+		this.ajaxHandler = options.ajaxHandler;
+		this.ajaxUrl = options.ajaxUrl;
 
-		this.id = this.trigger.getAttribute('data-load-more-id');
-		this.container = document.querySelector(`[data-load-more-id="${this.id}"]`);
+		// Get classes.
+		this.CLASS_IS_HIDDEN = 'is-hidden';
+		this.CLASS_IS_LOADING = 'is-loading';
 
-		// Create an url from params.
-		this.route = new URL(this.trigger.getAttribute('data-load-more-route'));
+		// Get attrs.
+		this.ATTR_COUNT = 'data-load-more-count';
+		this.ATTR_TYPE = 'data-load-more-type';
+		this.ATTR_QUERY = 'data-load-more-query';
+		this.ATTR_ID = 'data-load-more-id';
 	}
 
+	/**
+	 * Init all event-listeners.
+	 */
 	init() {
-		this.trigger.addEventListener('click', (event) => {
-			event.preventDefault();
+		// Loop all triggers.
+		[...this.triggerElements].forEach((trigger) => {
 
-			console.log(this.route.searchParams.get('page'));
-			
+			// Prepare params.
+			this.id = trigger.getAttribute(this.ATTR_ID);
+			this.container = document.querySelector(`[${this.ATTR_ID}="${this.id}"]`);
 
-			// This param changes every click.
-			this.attrPage = parseInt(this.route.searchParams.get('page'), 10);
+			// Add listener on trigger click.
+			trigger.addEventListener('click', (event) => {
+				event.preventDefault();
 
-			this.fetchData(this.route.href, this.container);
+				// Prevent clicking on the button until loading state is active.
+				if (!event.target.classList.contains(this.CLASS_IS_LOADING)) {
+
+					// Prepare data.
+					const data = {
+						action: this.ajaxHandler,
+						type: trigger.getAttribute(this.ATTR_TYPE),
+						query: trigger.getAttribute(this.ATTR_QUERY),
+						count: parseInt(trigger.getAttribute(this.ATTR_COUNT), 10),
+					};
+
+					// Fetch new data.
+					this.fetchData(
+						trigger,
+						data,
+						this.container
+					);
+				}
+			});
 		});
 	}
 
-	fetchData = (route, container) => {
+	/**
+	 * Prepare form data for fetch.
+	 *
+	 * @param {object} dataItems Object to build data.
+	 * @returns 
+	 */
+	getFormData = (dataItems) => {
+		const data = new FormData();
+
+		Object.entries(dataItems).forEach(([key, value]) => data.append(key, value));
+
+		return data;
+	}
+
+	/**
+	 * Fetch new data.
+	 *
+	 * @param {object} trigger Element for trigger.
+	 * @param {object} data Data object.
+	 * @param {object} container Element for container.
+	 */
+	fetchData = (trigger, data, container) => {
 		const body = {
-			method: 'GET',
+			method: 'POST',
 			mode: 'same-origin',
 			headers: {
 				Accept: 'application/json',
@@ -40,44 +90,57 @@ export class LoadMore {
 			credentials: 'same-origin',
 			redirect: 'follow',
 			referrer: 'no-referrer',
+			body: this.getFormData(data),
 		};
 
-		this.showLoader();
+		this.showLoader(container);
 
-		fetch(route, body)
+		fetch(this.ajaxUrl, body)
+			.then((response) => response.json())
 			.then((response) => {
-				return response.json();
-			})
-			.then((response) => {
-				if (response.data.status === 200) {
+				if (response.success) {
 					container.insertAdjacentHTML('beforeend', response.data.body);
 
-					this.route.searchParams.set('page', this.attrPage + 1);
-					this.trigger.setAttribute('data-load-more-route', this.route.href);
+					trigger.setAttribute(this.ATTR_COUNT, data.count + 1);
 
-					if (response.headers['X-WP-TotalPages'] === this.attrPage) {
-						this.removeTrigger();
+					if (response.data.maxCount === response.data.currentCount) {
+						this.removeTrigger(trigger);
 					}
 				} else {
-					this.removeTrigger();
+					this.removeTrigger(trigger);
 				}
 
-				this.removeLoader();
+				this.removeLoader(container);
 
 			});
 	};
 
-	showLoader() {
-		this.container.classList.add(this.IS_LOADING);
+	/**
+	 * Add container loading class.
+	 *
+	 * @param {object} container Element for container.
+	 */
+	showLoader(container) {
+		container.classList.add(this.CLASS_IS_LOADING);
 	}
 
-	removeLoader() {
+	/**
+	 * Remove container loading class.
+	 *
+	 * @param {object} container Element for container.
+	 */
+	removeLoader(container) {
 		setTimeout(() => {
-			this.container.classList.remove(this.IS_LOADING);
+			container.classList.remove(this.CLASS_IS_LOADING);
 		}, 500);
 	}
 
-	removeTrigger() {
-		this.trigger.classList.add(this.IS_HIDDEN);
+	/**
+	 * Add trigger hidden class.
+	 *
+	 * @param {object} trigger Element for trigger.
+	 */
+	removeTrigger(trigger) {
+		trigger.classList.add(this.CLASS_IS_HIDDEN);
 	}
 }

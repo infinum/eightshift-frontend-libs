@@ -43,14 +43,6 @@
 			"default": false
 		}
 	},
-	"attributesSsr": [
-		"featuredContentPostType",
-		"featuredContentTaxonomy",
-		"featuredContentTerms",
-		"featuredContentPosts",
-		"featuredContentLayoutTotalItems",
-		"featuredContentLayoutType"
-	],
 	"components": {
 		"layout": "layout",
 		"loadMore": "loadMore"

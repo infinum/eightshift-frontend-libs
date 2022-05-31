@@ -1,3 +1,5 @@
+/* global esBlocksLocalization */
+
 import domReady from '@wordpress/dom-ready';
 import manifest from './../manifest.json';
 
@@ -13,15 +15,15 @@ domReady(() => {
 
 	if (elements.length) {
 		import('./load-more').then(({ LoadMore }) => {
-			[...elements].forEach((item) => {
-				const loadMore = new LoadMore({
-					trigger: item,
-					container: `.${componentJsContainerClass}`,
-					loader: `.${componentJsLoaderClass}`,
-				});
-
-				loadMore.init();
+			const loadMore = new LoadMore({
+				triggerElements: elements,
+				container: `.${componentJsContainerClass}`,
+				loader: `.${componentJsLoaderClass}`,
+				ajaxHandler: 'dynamic_data',
+				ajaxUrl: esBlocksLocalization?.ajaxurl,
 			});
+
+			loadMore.init();
 		});
 	}
 });

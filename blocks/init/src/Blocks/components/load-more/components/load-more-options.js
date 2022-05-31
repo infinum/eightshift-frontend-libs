@@ -1,23 +1,21 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
-import { ToggleControl, TextControl } from '@wordpress/components';
-import { checkAttr, camelize } from '@eightshift/frontend-libs/scripts/helpers';
+import { checkAttr, CollapsableComponentUseToggle, getAttrKey, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
-
-const { title } = manifest;
+import { ButtonOptions } from '../../button/components/button-options';
 
 export const LoadMoreOptions = (attributes) => {
 	const {
+		title: manifestTitle,
+	} = manifest;
+
+	const {
 		setAttributes,
-		componentName = manifest.componentName,
-		label = title,
+		label = manifestTitle,
 		loadMoreShowControls = true,
+		showLoadMoreUse = true,
+		showLabel = true,
 
-		loadMoreContent = checkAttr('loadMoreContent', attributes, manifest, componentName),
-
-		loadMoreUse = checkAttr('loadMoreUse', attributes, manifest, componentName),
-
+		loadMoreUse = checkAttr('loadMoreUse', attributes, manifest),
 	} = attributes;
 
 	if (!loadMoreShowControls) {
@@ -25,25 +23,18 @@ export const LoadMoreOptions = (attributes) => {
 	}
 
 	return (
-		<Fragment>
-
-			{label &&
-				<h3 className={'options-label'}>
-					{label}
-				</h3>
-			}
-
-			<ToggleControl
-				label={sprintf(__('Use %s', 'eightshift-boilerplate'), label)}
-				checked={loadMoreUse}
-				onChange={(value) => setAttributes({ [`${camelize(componentName)}Use`]: value })}
+		<CollapsableComponentUseToggle
+			label={label}
+			checked={loadMoreUse}
+			onChange={(value) => setAttributes({ [getAttrKey('loadMoreUse', attributes, manifest)]: value })}
+			showUseToggle={showLoadMoreUse}
+			showLabel={showLabel}
+		>
+			<ButtonOptions
+				{...props('button', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
 			/>
-
-			<TextControl
-				label={__('Content', 'eightshift-boilerplate')}
-				value={loadMoreContent}
-				onChange={(value) => setAttributes({ [`${camelize(componentName)}Content`]: value })}
-			/>
-		</Fragment>
+		</CollapsableComponentUseToggle>
 	);
 };

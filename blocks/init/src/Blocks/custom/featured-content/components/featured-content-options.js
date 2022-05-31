@@ -13,12 +13,12 @@ import {
 	getOption,
 	unescapeHTML,
 	getFetchWpApi,
-	SimpleVerticalSingleSelect,
 	props,
 	getOptions
 } from '@eightshift/frontend-libs/scripts';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
 import manifest from '../manifest.json';
+import { LoadMoreOptions } from '../../../components/load-more/components/load-more-options';
 
 export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 	const featuredContentPostType = checkAttr('featuredContentPostType', attributes, manifest);
@@ -224,6 +224,13 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 					options: getOptions(attributes, manifest),
 				})}
 				showLayoutUse={false}
+			/>
+
+			<LoadMoreOptions
+				{...props('load-more', attributes, {
+					setAttributes,
+					options: getOptions(attributes, manifest),
+				})}
 			/>
 		</PanelBody>
 	);
