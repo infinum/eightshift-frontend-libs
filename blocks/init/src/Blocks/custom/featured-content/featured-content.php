@@ -88,6 +88,9 @@ if (!$mainQuery->have_posts()) {
 	return;
 }
 
+
+wp_reset_postdata();
+
 $loadMoreId = "{$blockName}-{$unique}";
 
 ?>
@@ -103,7 +106,7 @@ $loadMoreId = "{$blockName}-{$unique}";
 	$cards = Components::render(
 		'cards.php',
 		[
-			'ids' => $mainQuery->posts,
+			'items' => $mainQuery->posts,
 			'blockSsr' => $featuredContentServerSideRender,
 		],
 		__DIR__ . '/partials',
@@ -126,10 +129,10 @@ $loadMoreId = "{$blockName}-{$unique}";
 		echo Components::render(
 			'load-more',
 			Components::props('loadMore', $attributes, [
+				'loadMoreInitiaItems' => wp_json_encode($mainQuery->posts),
 				'loadMoreQuery' => wp_json_encode($args),
 				'loadMoreId' => $loadMoreId,
 				'loadMoreType' => $blockName,
-				'loadMoreCount' => 2,
 			]),
 			'',
 			true

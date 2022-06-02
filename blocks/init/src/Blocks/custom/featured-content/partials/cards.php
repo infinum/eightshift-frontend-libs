@@ -8,25 +8,25 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$ids = $attributes['ids'] ?? [];
+$items = $attributes['items'] ?? [];
 
 $output = [];
 
-if (!$ids) {
+if (!$items) {
 	return $output;
 }
 
-foreach ($ids as $id) {
+foreach ($items as $item) {
 	echo Components::render(
 		'card',
 		Components::props(
 			'card',
 			[
-				'cardHeadingContent' => get_the_title($id),
-				'cardParagraphContent' => get_the_excerpt($id),
-				'cardButtonUrl' => get_the_permalink($id),
+				'cardHeadingContent' => get_the_title($item),
+				'cardParagraphContent' => get_the_excerpt($item),
+				'cardButtonUrl' => get_the_permalink($item),
 				'cardButtonContent' => __('View More', 'eightshift-boilerplate'),
-				'cardImageUrl' => \get_the_post_thumbnail_url($id, 'large'),
+				'cardImageUrl' => get_the_post_thumbnail_url($item, 'large'),
 				'blockSsr' => $attributes['blockSsr'],
 			],
 		),

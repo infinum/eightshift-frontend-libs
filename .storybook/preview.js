@@ -1,3 +1,5 @@
+import { dispatch } from '@wordpress/data';
+import { STORE_NAME } from '@eightshift/frontend-libs/scripts/editor/store';
 import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '../scripts/storybook';
 import globalSettings from '../blocks/init/src/Blocks/manifest.json';
 
@@ -24,3 +26,6 @@ require('./../blocks/init/src/Blocks/assets/styles/application-blocks-editor.scs
 
 // Project Blocks Editor Part.
 require('../blocks/init/src/Blocks/assets/scripts/application-blocks-editor');
+
+// Prevent one inline style tag.
+dispatch(STORE_NAME).setConfigOutputCssGlobally(false);

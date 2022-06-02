@@ -6,8 +6,6 @@ import manifest from './../manifest.json';
 domReady(() => {
 	const {
 		componentJsClass,
-		componentJsContainerClass,
-		componentJsLoaderClass
 	} = manifest;
 
 	const selectors = `.${componentJsClass}`;
@@ -17,8 +15,6 @@ domReady(() => {
 		import('./load-more').then(({ LoadMore }) => {
 			const loadMore = new LoadMore({
 				triggerElements: elements,
-				container: `.${componentJsContainerClass}`,
-				loader: `.${componentJsLoaderClass}`,
 				ajaxHandler: 'dynamic_data',
 				ajaxUrl: esBlocksLocalization?.ajaxurl,
 			});

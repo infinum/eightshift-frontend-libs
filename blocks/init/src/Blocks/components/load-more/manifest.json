@@ -3,8 +3,6 @@
 	"title": "Load More",
 	"componentClass": "load-more",
 	"componentJsClass": "js-load-more",
-	"componentJsContainerClass": "js-load-more-container",
-	"componentJsLoaderClass": "js-load-more-loader",
 	"attributes": {
 		"loadMoreQuery": {
 			"type": "string"
@@ -12,12 +10,14 @@
 		"loadMoreType": {
 			"type": "string"
 		},
-		"loadMoreCount": {
-			"type": "integer",
-			"default": 2
-		},
 		"loadMoreId": {
 			"type": "string"
+		},
+		"loadMoreInitialItems": {
+			"type": "string"
+		},
+		"loadMorePerPageOverride": {
+			"type": "integer"
 		},
 		"loadMoreUse": {
 			"type": "boolean",

@@ -31,18 +31,6 @@ $layoutClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
-$loadMoreComponentJsContainerClass = '';
-if ($layoutLoadMoreId) {
-	$loadMoreManifest = Components::getComponent('load-more');
-
-	$loadMoreComponentJsContainerClass = $loadMoreManifest['componentJsContainerClass'] ?? '';
-}
-
-$layoutWrapClass = Components::classnames([
-	Components::selector($componentClass, "{$componentClass}__wrap"),
-	Components::selector($layoutLoadMoreId, $loadMoreComponentJsContainerClass),
-]);
-
 $unique = Components::getUnique();
 
 ?>
@@ -54,7 +42,7 @@ $unique = Components::getUnique();
 >
 	<?php echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<div
-		class="<?php echo esc_attr($layoutWrapClass); ?>"
+		class="<?php echo esc_attr("{$componentClass}__wrap"); ?>"
 		data-load-more-id="<?php echo esc_attr($layoutLoadMoreId); ?>"
 	>
 		<?php echo Components::ensureString($layoutItems); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
