@@ -78,7 +78,7 @@ global $post;
 		$mainQuery = new WP_Query($args);
 
 		if ($mainQuery->have_posts()) {
-			while ($mainQuery->have_posts()) {
+			while ($mainQuery->have_posts()) { // @phpstan-ignore-line
 				$mainQuery->the_post();
 
 				$postId = get_the_ID();
@@ -87,7 +87,7 @@ global $post;
 
 				$cardProps = [
 					'imageUrl' => $image,
-					'imageUse' => $image ?? true,
+					'imageUse' => $image !== false,
 					'introUse' => false,
 					'headingContent' => get_the_title($postId), // @phpstan-ignore-line
 					'paragraphContent' => $excerpt,
@@ -109,7 +109,7 @@ global $post;
 				</li>
 				<?php
 			}
-			wp_reset_postdata();
+			wp_reset_postdata(); // @phpstan-ignore-line
 		}
 		?>
 </ul>

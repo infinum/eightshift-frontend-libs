@@ -9,20 +9,21 @@ import { ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts/comp
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
  *
- * @param {object} props                    - AdvancedColorPicker options.
- * @param {string?} props.colorProject      - Currently selected project color.
- * @param {string?} props.colorSolid        - Currently selected solid color.
- * @param {string?} props.colorGradient     - Currently selected gradient.
- * @param {string?} props.type              - Currently selected color type.
- * @param {function} props.onChangeProject  - Function called when the project color is changed.
- * @param {function} props.onChangeSolid    - Function called when the solid color is changed.
- * @param {function} props.onChangeGradient - Function called when the gradient is changed.
- * @param {function} props.onChangeType     - Function called when the color type is changed.
- * @param {object} props.globalManifest     - Project's `globalManifest`.
- * @param {Array} [props.types]             - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
- * @param {string?} [props.label]           - Label displayed above the control.
- * @param {string?} [props.help]            - Help text displayed below the control.
- * @param {boolean} [props.disabled=false]  - If `true`, control is disabled.
+ * @param {object} props                      - AdvancedColorPicker options.
+ * @param {string?} props.colorProject        - Currently selected project color.
+ * @param {string?} props.colorSolid          - Currently selected solid color.
+ * @param {string?} props.colorGradient       - Currently selected gradient.
+ * @param {string?} props.type                - Currently selected color type.
+ * @param {function} props.onChangeProject    - Function called when the project color is changed.
+ * @param {function} props.onChangeSolid      - Function called when the solid color is changed.
+ * @param {function} props.onChangeGradient   - Function called when the gradient is changed.
+ * @param {function} props.onChangeType       - Function called when the color type is changed.
+ * @param {object} props.globalManifest       - Project's `globalManifest`.
+ * @param {Array} [props.types]               - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
+ * @param {string?} [props.label]             - Label displayed above the control.
+ * @param {string?} [props.help]              - Help text displayed below the control.
+ * @param {boolean} [props.disabled=false]    - If `true`, control is disabled.
+ * @param {string?} [props.additionalClasses] - If passed, the classes are added to the component's `BaseControl`.
  */
 export const AdvancedColorPicker = (props) => {
 	const {
@@ -73,6 +74,8 @@ export const AdvancedColorPicker = (props) => {
 		],
 
 		disabled = false,
+
+		additionalClasses,
 	} = props;
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
 	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
@@ -118,6 +121,7 @@ export const AdvancedColorPicker = (props) => {
 
 	return (
 		<BaseControl
+			className={additionalClasses ?? ''}
 			label={
 				<div className='es-flex-between'>
 					<div className='es-h-center es-line-h-0'>

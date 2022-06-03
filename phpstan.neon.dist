@@ -12,3 +12,11 @@ parameters:
 		# Ignore errors about reflection class variable being undefined. Errors are caught.
 		- '/^Variable (\$attributes|\$innerBlockContent|\$this|\$templatePath|\$reflectionClass) might not be defined\.$/'
 		- '/^Parameter \#1 [\$a-z0-9\_]+ of function (get_the_post_thumbnail_url|get_the_title|get_the_excerpt|get_the_permalink) expects int\|WP_Post\|null, [a-zA-Z0-9\_\|<>]+ given\.$/'
+		- '/^Parameter #\d \$\w+ of static method (\w+\\)+Components::(classnames|selector|responsiveSelectors|ensureString)\(\) expects [\w\d\s\|,<>]+ given.\s*$/'
+		- '/^Parameter #\d \$\w+ of function esc_attr expects [\w\d\s\|,<>]+ given.\s*$/'
+		- '/^Part \$\w+ \(mixed\) of encapsed string cannot be cast to string\.?\s?$/'
+		- '/^Parameter \#\d+ \$\w+ of function esc_url expects string, mixed given\.?\s?$/'
+		- '/^Parameter \#\d+ \$\w+ of function esc_html expects string, mixed given\.?\s?$/'
+		- "/^Cannot access offset '[\\w_]+' on mixed\\.?\\s?$/"
+		- '/^Parameter #\d+ \(mixed\) of echo cannot be converted to string\.?\s?$/'
+		- '/^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.?\s?$/'

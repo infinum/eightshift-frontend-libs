@@ -39,5 +39,8 @@ $paragraphClass = Components::classnames([
 <?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 <p class="<?php echo esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php echo wp_kses_post($paragraphContent); ?>
+	<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $paragraphContent;
+	?>
 </p>

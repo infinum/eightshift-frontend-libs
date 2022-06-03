@@ -63,8 +63,12 @@ export const getCustomHandle = ({ tooltipPlacement, tooltipFormat }) => (props) 
  *
  * @param {Object} props - Props to pass through.
  */
-export const getSliderStyles = ({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels }) => {
+export const getSliderStyles = ({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels, max }) => {
 	const styles = {};
+
+	if (max?.toString()?.length > 0) {
+		styles['--es-custom-slider-value-display-width'] = max?.toString()?.length;
+	}
 
 	if (trackColor) {
 		styles['--es-custom-slider-custom-track-color'] = trackColor;

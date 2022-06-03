@@ -22,6 +22,8 @@ import classnames from 'classnames';
  * @param {boolean} [props.includeWpBottomSpacing=false]                                       - If `true`, the component will add bottom spacing to match other Gutenberg components.
  * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
+ * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the BaseControl / control wrapper.
+ * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
  */
 export const SimpleHorizontalSingleSelect = (props) => {
 	const {
@@ -40,11 +42,14 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		includeWpBottomSpacing = true,
 		compactButtons = false,
 		largerIcons = false,
+		additionalClass,
+		additionalButtonClass,
 	} = props;
 
 	const buttonClasses = classnames([
 		iconOnly ? 'es-button-square-36' : '',
 		largerIcons ? 'es-button-icon-24' : '',
+		additionalButtonClass ?? '',
 	]);
 
 	const spacingConfig = {
@@ -100,7 +105,16 @@ export const SimpleHorizontalSingleSelect = (props) => {
 			}}
 		>
 			{options.map((item, i) => {
-				const icon = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+				const iconData = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
+
+				let icon = iconData;
+
+				if (iconData && typeof iconData === 'string' && (iconData?.startsWith('<svg') ?? false)) {
+					icon = (
+						<i className='es-line-h-0 es-display-contents' dangerouslySetInnerHTML={{ __html: iconData }}></i>
+					);
+				}
+
 				const label = item?.label ?? optionLabels?.[i]?.label;
 				const current = optionLabels ? item : item?.value;
 				const tooltip = item?.tooltip ?? optionLabels?.[i]?.tooltip ?? item?.label ?? optionLabels?.[i]?.label;
@@ -173,6 +187,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 				'es-h-flex-between',
 				'es-gap-s',
 				includeWpBottomSpacing ? 'es-has-wp-field-b-space' : '',
+				additionalClass ?? '',
 			])}
 		>
 			{inlineLabel}
@@ -184,7 +199,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 
 	if ((includeWpBottomSpacing || label || help) && !inlineLabel) {
 		return (
-			<BaseControl label={label} help={help}>
+			<BaseControl label={label} help={help} className={additionalClass ?? ''}>
 				{controlToReturn}
 			</BaseControl>
 		);

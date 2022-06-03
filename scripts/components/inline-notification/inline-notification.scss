@@ -1,40 +1,27 @@
-.es-inline-notification {
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
-	padding: 0.25rem 0.3rem;
-	padding-right: 0.45rem;
-	font-size: 0.85rem;
-	letter-spacing: 0.1px;
-	border-radius: 0.6rem;
-	font-weight: 600;
-	width: max-content;
-
-	&__icon {
-		width: 1.5rem;
-		height: 1.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		svg {
-			width: 1.5rem;
-			height: 1.5rem;
-		}
-	}
+.es-inline-notification-v2 {
+	background-color: var(--es-admin-pure-white);
 
 	&--error {
-		color: var(--es-admin-on-red-500);
-		background-color: var(--es-admin-red-500);
+		--wp-admin-theme-color: var(--es-admin-red-500);
+
+		border: 1px solid var(--es-admin-red-500);
 	}
 
 	&--warning {
-		color: var(--es-admin-on-yellow-500);
-		background-color: var(--es-admin-yellow-500);
+		--wp-admin-theme-color: var(--es-admin-yellow-500);
+
+		border: 1px solid var(--es-admin-yellow-500);
 	}
 
 	&--info {
-		color: var(--es-admin-on-blue-gray-50);
-		background-color: var(--es-admin-blue-gray-50);
+		--wp-admin-theme-color: var(--es-admin-blue-500);
+
+		border: 1px solid var(--es-admin-blue-500);
+	}
+
+	&--success {
+		--wp-admin-theme-color: var(--es-admin-green-500);
+
+		border: 1px solid var(--es-admin-green-500);
 	}
 }

@@ -53,6 +53,7 @@ import classnames from 'classnames';
  * @param {boolean} [props.draggableTrack=false]                                      - If `true`, the track can be dragged to move all of the values together.
  * @param {string?} [props.label]                                                     - Label displayed above the control.
  * @param {string?} [props.help]                                                      - Help text displayed below the control.
+ * @param {string?} [props.additionalClass]                                           - If passed, the classes are appended to the slider.
  */
 export const CustomRangeSlider = (props) => {
 	const {
@@ -73,6 +74,7 @@ export const CustomRangeSlider = (props) => {
 		handleColor,
 		leftAddition,
 		rightAddition,
+		additionalClass,
 		activeMarkColor,
 		inactiveMarkColor,
 		activeMarkLabelColor,
@@ -92,8 +94,8 @@ export const CustomRangeSlider = (props) => {
 	const Range = useMemo(() => createSliderWithTooltip(Slider.Range), []);
 
 	const controlAdditionalStyles = useMemo(
-		() => getSliderStyles({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels }),
-		[activeMarkColor, activeMarkLabelColor, handleColor, hasVerticalLabels, inactiveMarkColor, inactiveMarkLabelColor, marks, railColor, trackColor, vertical]
+		() => getSliderStyles({ trackColor, railColor, activeMarkColor, inactiveMarkColor, activeMarkLabelColor, inactiveMarkLabelColor, handleColor, vertical, marks, hasVerticalLabels, max }),
+		[activeMarkColor, activeMarkLabelColor, handleColor, hasVerticalLabels, inactiveMarkColor, inactiveMarkLabelColor, marks, railColor, trackColor, vertical, max]
 	);
 
 	const sliderClass = useMemo(() => classnames([
@@ -104,7 +106,8 @@ export const CustomRangeSlider = (props) => {
 		isInline ? 'es-flex-between' : '',
 		marks && hasCompactMarks && !dots ? 'es-custom-slider-compact-with-marks' : '',
 		dots & !marks ? 'es-custom-slider-compact-with-dots' : '',
-	]), [dots, hasCompactMarks, hasVerticalLabels, isInline, marks, sliderStyle]);
+		additionalClass ?? '',
+	]), [dots, hasCompactMarks, hasVerticalLabels, isInline, marks, sliderStyle, additionalClass]);
 
 	const inputFieldElement = useMemo(() => (key) => (
 		<TextControl
