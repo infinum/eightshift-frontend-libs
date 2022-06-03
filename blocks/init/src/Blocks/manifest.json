@@ -10,6 +10,7 @@
 		"outputCssGloballyAdditionalStyles": [
 			":root {--es-loader-opacity: 1;}"
 		],
+		"useRemBaseSize": false,
 		"useWrapper": true
 	},
 	"globalVariables": {

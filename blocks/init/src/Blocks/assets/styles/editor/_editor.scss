@@ -4,7 +4,6 @@
 body .editor-styles-wrapper {
 	@include font-smoothing;
 	font-family: var(--global-font-family);
-	font-size: var(--base-font-size);
 	color: var(--global-colors-black);
 	background-color: var(--global-colors-white);
 }
