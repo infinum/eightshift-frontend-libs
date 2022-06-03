@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [6.2.0] - 2022-06-03
+
+### Added
+- New block icons.
+- Breakpoints map to style to be able to use manifest breakpoints.
+- Option to use rem based fonts on frontend and in editor. Used for fluid design.
+
+### Fixed
+- Safari bug on hamburger menu.
+
 ## [6.1.0] - 2022-05-19
 
 ### Fixed:
@@ -564,6 +574,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[6.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.5...6.1.0
 [6.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.4...6.0.5
 [6.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.3...6.0.4
