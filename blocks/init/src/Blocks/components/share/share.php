@@ -12,7 +12,7 @@ $manifest = Components::getManifest(__DIR__);
 
 $postUrl = $attributes['postUrl'] ?? get_the_permalink();
 $postTitle = $attributes['postTitle'] ?? get_the_title();
-$postImageUrl = $attributes['postImageUrl'] ?? get_the_post_thumbnail_url(get_the_ID(), 'large') ?? '';
+$postImageUrl = $attributes['postImageUrl'] ?? get_the_post_thumbnail_url(get_the_ID(), 'large');
 
 $socialNetworks = [
 	'twitter' => "https://twitter.com/intent/tweet?url={$postUrl}&text={$postTitle}",
@@ -40,7 +40,7 @@ $shareItemClass = Components::classnames([
 	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
-$networkNames = array_column($manifest['socialOptions'], 'label', 'value');
+$networkNames = array_column($manifest['socialOptions'], 'label', 'value'); // @phpstan-ignore-line
 ?>
 <div class="<?php echo esc_attr($shareClass); ?>">
 	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>

@@ -53,7 +53,7 @@
 		outline-offset: 0.45rem;
 		outline-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 
-		#{$this}__trigger {
+		> div > #{$this}__trigger {
 			color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 			margin-bottom: 1rem;
 
@@ -119,16 +119,24 @@
 	}
 
 	// Shift component labels if the component has no use toggle and is preceded by one that has it.
+	&.has-inset-label,
 	&.has-use-toggle ~ &:not(.has-use-toggle) {
-		&:not(.is-open) #{$this}__label {
+		&:not(.is-open) > div > #{$this}__trigger #{$this}__label {
 			margin-left: 2.5rem;
 		}
 	}
-}
 
-// Reduce border offset if nested.
-.es-collapsable-component-use-toggle-v2 > div > div > .es-collapsable-component-use-toggle-v2.is-open {
-	outline-offset: 0.3rem;
+	// Reduce border offset if nested - 1 level deep.
+	// stylelint-disable-next-line no-duplicate-selectors
+	& &.is-open,
+	.es-collapsable-v2.is-open & {
+		outline-offset: 0.35rem !important;
+	}
+
+	// Reduce border offset if nested - 2 levels deep.
+	& & &.is-open {
+		outline-offset: 0.2rem !important;
+	}
 }
 
 // stylelint-enable declaration-no-important, number-max-precision

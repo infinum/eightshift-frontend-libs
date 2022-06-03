@@ -22,7 +22,7 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$videoUrl = (array)Components::checkAttr('videoUrl', $attributes, $manifest) ?? [];
+$videoUrl = (array) Components::checkAttr('videoUrl', $attributes, $manifest) ?? []; // @phpstan-ignore-line
 $videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest);
 $videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest);
 $videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest);
@@ -79,14 +79,14 @@ if (!$videoUrl) {
 			continue;
 		}
 		?>
-		
-		<track 
+
+		<track
 			src="<?php echo esc_url($track['src']); ?>"
 			kind="<?php echo esc_attr($track['kind']); ?>"
 			label="<?php echo esc_attr($track['label']); ?>"
 			<?php if ($track['srclang']) { ?>
 				srclang="<?php echo esc_attr($track['srclang']); ?>"
 			<?php } ?>
-		>		
+		>
 	<?php } ?>
 </video>
