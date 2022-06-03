@@ -217,6 +217,9 @@ export const registerVariations = (
 
 	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
 
+	// Set all store values.
+	dispatch(STORE_NAME).setVariations(variationsManifests);
+
 	// Iterate blocks to register.
 	variationsManifests.map((variationManifest) => {
 		const {
