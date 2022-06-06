@@ -13,9 +13,11 @@ const DEFAULT_STATE = {
 		outputCssOptimize: false,
 		outputCssSelectorName: 'esCssVariables',
 		outputCssGloballyAdditionalStyles: [],
+		useRemBaseSize: false,
 		useWrapper: true,
 	},
 	wrapper: {},
+	variations: {},
 	settings: {},
 	styles: [],
 	hasStylesUpdated: false,
@@ -35,6 +37,12 @@ const selectors = {
 	getComponent(state, componentName) {
 		return state.components.find((component) => component.componentName === componentName);
 	},
+	getVariations(state) {
+		return state.variations;
+	},
+	getVariation(state, name) {
+		return state.variations.find((variation) => variation.name === name);
+	},
 	getConfig(state) {
 		return state.config;
 	},
@@ -49,6 +57,9 @@ const selectors = {
 	},
 	getConfigOutputCssGloballyAdditionalStyles(state) {
 		return state.config.outputCssGloballyAdditionalStyles;
+	},
+	getConfigUseRemBaseSize(state) {
+		return state.config.useRemBaseSize;
 	},
 	getConfigUseWrapper(state) {
 		return state.config.useWrapper;
@@ -93,6 +104,12 @@ const actions = {
 			components,
 		};
 	},
+	setVariations(variations) {
+		return {
+			type: 'SET_VARIATIONS',
+			variations,
+		};
+	},
 	setConfigOutputCssGlobally(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_GLOBALLY',
@@ -102,6 +119,12 @@ const actions = {
 	setConfigOutputCssOptimize(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE',
+			config,
+		};
+	},
+	setConfigUseRemBaseSize(config) {
+		return {
+			type: 'SET_CONFIG_USE_REM_BASE_SIZE',
 			config,
 		};
 	},
@@ -187,6 +210,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				components: action.components,
 			};
 		}
+		case 'SET_VARIATIONS': {
+			return {
+				...state,
+				variations: action.variations,
+			};
+		}
 		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY': {
 			return {
 				...state,
@@ -211,6 +240,15 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssSelectorName: action.config,
+				}
+			};
+		}
+		case 'SET_CONFIG_USE_REM_BASE_SIZE': {
+			return {
+				...state,
+				config: {
+					...state.config,
+					useRemBaseSize: action.config,
 				}
 			};
 		}
@@ -335,6 +373,11 @@ export const setStore = () => {
 		// outputCssOptimize
 		if (typeof config?.outputCssOptimize === 'boolean') {
 			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
+		}
+
+		// useRemBaseSize
+		if (typeof config?.useRemBaseSize === 'boolean') {
+			dispatch(STORE_NAME).setConfigUseRemBaseSize(config.useRemBaseSize);
 		}
 
 		// outputCssSelectorName
