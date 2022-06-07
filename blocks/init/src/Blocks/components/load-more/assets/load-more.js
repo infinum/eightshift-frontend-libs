@@ -33,8 +33,6 @@ export class LoadMore {
 	 * @returns {object} Object of data based on the ID.
 	 */
 	getData(id) {
-		console.log(typeof id);
-		
 		return this.data[id];
 	}
 

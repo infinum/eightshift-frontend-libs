@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Layout component - Grid Columns grid.
+ * Layout component view.
  *
  * @package EightshiftBoilerplate
  */
@@ -40,7 +40,7 @@ $unique = Components::getUnique();
 	data-id="<?php echo esc_attr($unique); ?>"
 	data-layout-type="<?php echo esc_attr($layoutType); ?>"
 >
-	<?php echo Components::outputCssVariables($attributes, $manifest, $unique); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
 	<div
 		class="<?php echo esc_attr("{$componentClass}__wrap"); ?>"
 		data-load-more-id="<?php echo esc_attr($layoutLoadMoreId); ?>"
