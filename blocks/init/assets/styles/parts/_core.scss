@@ -6,10 +6,6 @@
 	@include box-sizing;
 }
 
-html {
-	font-size: var(--base-font-size);
-}
-
 body {
 	@include font-smoothing;
 	font-family: var(--global-font-family);
