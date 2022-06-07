@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Calculates column width from base columns number and then outputs percentage.
 ///
 /// ### Output
@@ -15,7 +17,6 @@
 /// .test {
 ///   width: calc-column-width(10);
 /// }
-@use 'sass:math';
 
 @function calc-column-width($cols: $base-col-number) {
 	@return math.div(100, $cols) + 0%;

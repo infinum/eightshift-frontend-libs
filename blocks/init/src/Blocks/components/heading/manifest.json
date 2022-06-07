@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"headingContent": {
-			"type": "string",
-			"seo": true
+			"type": "string"
 		},
 		"headingLevel": {
 			"type": "integer",

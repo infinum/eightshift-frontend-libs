@@ -12,11 +12,6 @@
 		"btn",
 		"link"
 	],
-	"example": {
-		"attributes": {
-			"buttonAlign": "left"
-		}
-	},
 	"attributes": {
 		"buttonAlign": {
 			"type": "string",

@@ -1,4 +1,6 @@
-import React from 'react';
+/** @jsx jsx */
+import React from 'react'; // eslint-disable-line
+import { jsx } from '@emotion/core';
 import { Fragment } from '@wordpress/element';
 import { icons, illustrations, blockIcons } from './icons';
 import readme from './readme.mdx';

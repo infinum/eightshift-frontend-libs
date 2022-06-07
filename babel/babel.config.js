@@ -1,35 +1,19 @@
-module.exports = {
-	presets: [
-		"@wordpress/default",
-	],
-	plugins: [
-		'@babel/plugin-syntax-dynamic-import',
-		[
-			'@babel/plugin-proposal-object-rest-spread',
-			{
-				useBuiltIns: true,
-			},
+module.exports = api => {
+	const isTest = api.env('test');
+
+	return {
+		presets: [
+			[
+				'@babel/preset-env',
+				{
+					useBuiltIns: 'usage',
+					corejs: '3',
+					modules: isTest ? "auto" : false,
+				}
+			],
+			[
+				"@babel/preset-react"
+			],
 		],
-		[
-			"@babel/plugin-proposal-class-properties",
-			{
-				"loose": true
-			}
-		],
-		[
-			"@babel/plugin-proposal-private-methods",
-			{
-				"loose": true
-			}
-		],
-		[
-			"@babel/plugin-proposal-private-property-in-object",
-			{
-				"loose": true
-			}
-		],
-	],
-	env: {
-		test: {}
-	}
+	};
 };

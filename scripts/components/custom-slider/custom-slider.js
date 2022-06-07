@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMemo } from 'react';
 import { TextControl } from '@wordpress/components';
 import { getCustomHandle, getSliderComponent, getSliderStyles } from './shared';

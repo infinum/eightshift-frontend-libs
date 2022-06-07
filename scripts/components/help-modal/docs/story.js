@@ -5,7 +5,7 @@ import { HelpModal } from '../help-modal';
 export default {
 	title: 'Options/HelpModal',
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
