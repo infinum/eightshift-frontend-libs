@@ -65,7 +65,7 @@ export const LayoutOptions = (attributes) => {
 
 				{showLayoutTotalItems &&
 					<RangeControl
-						label={<IconLabel icon={icons.totalItems} label={__('Maximum items to show', 'eightshift-boilerplate')} />}
+						label={<IconLabel icon={icons.totalItems} label={__('Maximum number of items to show', 'eightshift-boilerplate')} />}
 						{...getOption('layoutTotalItems', attributes, manifest)}
 						value={layoutTotalItems}
 						allowReset={true}

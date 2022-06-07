@@ -13,26 +13,26 @@ wp boilerplate use_component --name=load-more
 ## Dependency
 
 Load more component must be implemented in some other component because it can't work by itself.
-It also depends on the PHP part of dynamic data that can be instaled with this command:
+It also depends on the PHP part of dynamic data that can be installed with this command:
 
 ```shell
 wp boilerplate create_dynamic_data
 ```
 
-## How it works?
+## How does it work?
 
 This example will use featured content block as an example:
 
-1. You have featured content block that must implemnet load more component.
+1. You have featured content block that must implement load more component.
 2. Container that will be used to provide new data got from load more must have `data-load-more-id` data attribute added.
 3. Load more and the container must have the same ID that will connect them. Load more component uses `loadMoreId` attribute for that.
 4. You must provide load more component `loadMoreQuery` attribute with encoded json string with all WP_Query args you want to use. In general this is the same query you use to provide the initial data.
-5. You must provide load more component `loadMoreType` attribute that will determin what map you will use in you dynamic data class to provide view output.
+5. You must provide load more component `loadMoreType` attribute that will determine what map you will use in you dynamic data class to provide view output.
 5. You must provide load more component `loadMoreInitiaItems` attribute that contains the array of IDs for the initial loaded data in the DOM.
-6. Optional load more component `loadMorePerPageOverride` attribute is used to load different number of items than they are initialy set in the DOM.
+6. Optional load more component `loadMorePerPageOverride` attribute is used to load different number of items than they are initially set in the DOM.
 7. After all this items are connected and provided, when you click on the load more button it will make a request using JS on the admin ajax hook in your dynamic data class.
 8. Dynamic data will provide the query data that you will map to your component view and provide the data back to the dom via ajax.
-9. In you component you must have partial view component that will map ids from the dynamic data to the actial output.
+9. In your component you must have partial view component that will map ids from the dynamic data to the actual output.
 10. Keep in mind that you also must have `esBlocksLocalization` global variable provided with ajaxurl variable in your `EnqueueTheme` class.
 
 ### EnqueueTheme
@@ -110,7 +110,7 @@ foreach ($items as $item) {
 
 ```PHP
 	/**
-	 * Map dynamic data reponse with the component to provide to output.
+	 * Map dynamic data response with the component to provide to output.
 	 *
 	 * @param string $type Type of load more used, usually block name.
 	 * @param array $response Response of IDs.

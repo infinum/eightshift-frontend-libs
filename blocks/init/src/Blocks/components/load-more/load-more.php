@@ -28,7 +28,7 @@ $loadMoreId = Components::checkAttr('loadMoreId', $attributes, $manifest, $compo
 $loadMoreType = Components::checkAttr('loadMoreType', $attributes, $manifest, $componentName);
 $loadMorePerPageOverride = Components::checkAttr('loadMorePerPageOverride', $attributes, $manifest, $componentName);
 
-// Bailout if no query is not provided.
+// Bailout if no query is provided.
 if (!$loadMoreQuery) {
 	return;
 }
