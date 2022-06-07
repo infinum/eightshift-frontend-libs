@@ -32,6 +32,7 @@ $args = [
 	'post_type' => $featuredContentPostType,
 	'posts_per_page' => $featuredContentLayoutTotalItems,
 	'fields' => 'ids',
+	'order' => 'ASC',
 ];
 
 if ($featuredContentTaxonomy) {
