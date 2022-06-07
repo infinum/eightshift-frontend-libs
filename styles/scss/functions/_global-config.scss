@@ -1,0 +1,45 @@
+/// Function returns global_settings variable from Eightshift-frontend-libs setup.
+/// It expects $$global-variables key to be available.
+///
+/// ### Map
+/// ```scss
+/// $globalConfig: (
+///   useRemBaseSize: true,
+/// );
+/// ```
+/// ### Output
+/// ```scss
+/// .test {
+///   width: 2rem;
+/// }
+/// ```
+///
+/// @access public
+/// @author Karlo Volf
+/// @param {string} $keys Map keys from global settings.
+///
+/// @example
+/// .test {
+///   @if (global-config(useRemBaseSize)) {
+///				width: 2rem;
+///	    ...
+///   }
+/// }
+
+@function global-config($keys...) {
+	$global-config: null !default;
+
+	@if $global-variables != null {
+		$value: $global-config;
+
+		@each $key in $keys {
+			$value: map-get-strict($value, $key);
+		}
+
+		@return $value;
+	}
+
+	@else {
+		@error 'ERROR: $global-config variable doesnt exist!';
+	}
+}
