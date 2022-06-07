@@ -45,9 +45,12 @@ This example will use featured content block as an example:
 	 */
 	protected function getLocalizations(): array
 	{
+		$namespace = Config::getProjectRoutesNamespace();
+		$version = Config::getProjectRoutesVersion();
+
 		return [
 			'esBlocksLocalization' => [
-				'ajaxurl' => admin_url('admin-ajax.php'),
+				'loadMoreRestUrl' => \get_rest_url(null, "{$namespace}/{$version}/" . AbstractLoadMore::LOAD_MORE_ROUTE),
 			],
 		];
 	}
@@ -106,34 +109,32 @@ foreach ($items as $item) {
 
 ```
 
-### Dynamic data class
+### Load more data class
 
 ```PHP
 	/**
-	 * Map dynamic data response with the component to provide to output.
+	 * Map load more data reponse with the component to provide to output.
 	 *
 	 * @param string $type Type of load more used, usually block name.
-	 * @param array $response Response of IDs.
+	 * @param array<int> $response Response of IDs.
 	 *
 	 * @return string
 	 */
-	public function getMappedDynamicData(string $type, array $response): string
+	public function getMappedData(string $type, array $response): string
 	{
 		switch ($type) {
 			case 'featured-content':
-				return Components::render(
-					'cards.php',
+				return Components::renderPartial(
+					'block',
+					$type,
+					'cards',
 					[
-						'ids' => $response,
+						'items' => $response,
 						'blockSsr' => true,
-					],
-					dirname(__DIR__, 1) . '/Blocks/custom/featured-content/partials',
-					true
+					]
 				);
-				break;
 			default:
 				return '';
-				break;
 		}
 	}
 ```
