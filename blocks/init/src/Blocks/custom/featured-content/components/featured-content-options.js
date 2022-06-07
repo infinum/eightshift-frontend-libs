@@ -62,7 +62,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 					status={"warning"}
 					isDismissible={false}
 				>
-					{__('This options can only be used in post single. Keep in mind by selecting this option the editor preview may not show the correct items!', 'eightshift-boilerplate')}
+					{__('These options can only be used in a single post. Keep in mind that, by selecting this option, the editor preview may not show the correct items!', 'eightshift-boilerplate')}
 				</Notice>
 				<br />
 			</>
@@ -117,7 +117,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 							<IconToggle
 								icon={icons.hoverBackgroundType}
 								label={__('Select specific items', 'eightshift-boilerplate')}
-								help={__('This options will allow you to manually select items to show.', 'eightshift-boilerplate')}
+								help={__('These options will allow you to manually select items to show.', 'eightshift-boilerplate')}
 								checked={useSpecificTerms}
 								onChange={() => {
 									setUseSpecificTerms(!useSpecificTerms);
@@ -200,9 +200,9 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 			<IconToggle
 				icon={icons.none}
-				label={__('Exclude current post', 'eightshift-boilerplate')}
+				label={__('Exclude the current post', 'eightshift-boilerplate')}
 				checked={featuredContentExcludeCurrentPost}
-				help={__('Exclude current post from the featured content block items.', 'eightshift-boilerplate')}
+				help={__('Exclude the current post from the featured content block items.', 'eightshift-boilerplate')}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredContentExcludeCurrentPost', attributes, manifest)]: value })}
 			/>
 
