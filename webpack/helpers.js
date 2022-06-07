@@ -20,15 +20,15 @@ const fs = require('fs');
  *
  */
 function getConfig(
-		projectDir,
-		proxyUrl,
-		projectPathConfig,
-		assetsPathConfig = 'assets',
-		blocksAssetsPathConfig = 'src/Blocks/assets',
-		outputPathConfig = 'public',
-		blocksManifestSettingsPath = 'src/Blocks/manifest.json',
-		useSsl = false,
-	) {
+	projectDir,
+	proxyUrl,
+	projectPathConfig,
+	assetsPathConfig = 'assets',
+	blocksAssetsPathConfig = 'src/Blocks/assets',
+	outputPathConfig = 'public',
+	blocksManifestSettingsPath = 'src/Blocks/manifest.json',
+	useSsl = false,
+) {
 
 	if (typeof projectDir === 'undefined') {
 		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
@@ -126,9 +126,13 @@ function convertJsonToSassMapInner(data, key) {
 /**
  * Convert Json to SASS valid output and prefix it with map key.
  *
- * @param {object} data Json Data object.
+ * @param path Path to JSON file.
+ * @param propertyName Name of the variable that will it be exported.
+ * @param variableName Name of the variable that will it be exported.
+ *
+ * @return string Sass variable
  */
-function convertJsonToSass(path) {
+function convertJsonToSass(path, propertyName = 'globalVariables', variableName = 'global-variables') {
 	let data = {};
 
 	if (fs.existsSync(path)) {
@@ -139,7 +143,7 @@ function convertJsonToSass(path) {
 		return '';
 	}
 
-	return `$global-variables: (${convertJsonToSassMap(data['globalVariables'])});`;
+	return `\$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
 }
 
 module.exports = {
