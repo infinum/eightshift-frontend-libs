@@ -4,8 +4,7 @@ export class LoadMore {
 		this.triggerElements = options.triggerElements;
 
 		// Ajax.
-		this.ajaxHandler = options.ajaxHandler;
-		this.ajaxUrl = options.ajaxUrl;
+		this.restUrl = options.restUrl;
 
 		// Get classes.
 		this.CLASS_IS_HIDDEN = 'is-hidden';
@@ -114,7 +113,6 @@ export class LoadMore {
 
 		// Set store top level.
 		this.setDataTop(id, {
-			action: this.ajaxHandler,
 			query,
 			initialItems,
 			id,
@@ -146,7 +144,7 @@ export class LoadMore {
 
 		// Prepare body data.
 		const body = {
-			method: 'POST',
+			method: 'GET',
 			mode: 'same-origin',
 			headers: {
 				Accept: 'application/json',
@@ -154,14 +152,15 @@ export class LoadMore {
 			credentials: 'same-origin',
 			redirect: 'follow',
 			referrer: 'no-referrer',
-			body: this.getFormData(data),
 		};
 
 		// Loader.
 		this.showLoader(container);
 
+		const params = new URLSearchParams(data).toString();
+
 		// Fetch data from ajax.
-		fetch(this.ajaxUrl, body)
+		fetch(`${this.restUrl}?${params}`, body)
 			.then((response) => response.json())
 			.then((response) => {
 				if (response.success) {
@@ -206,20 +205,6 @@ export class LoadMore {
 				this.removeLoader(container);
 			});
 	};
-
-	/**
-	 * Prepare form data for fetch.
-	 *
-	 * @param {object} dataItems Object to build data.
-	 * @returns 
-	 */
-	 getFormData = (dataItems) => {
-		const data = new FormData();
-
-		Object.entries(dataItems).forEach(([key, value]) => data.append(key, value));
-
-		return data;
-	}
 
 	/**
 	 * Set and fetch data via url.
