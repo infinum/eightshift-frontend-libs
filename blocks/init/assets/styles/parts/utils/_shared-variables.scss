@@ -26,7 +26,7 @@ $media-breakpoints: (
 	 * 10px/16px * 14px/16px = 0.546875
 	 */
 
-	@if (global-settings(config, useRemBaseSize)) {
+	@if (global-config(useRemBaseSize)) {
 		// wantedFontSize = 14
 		--base-font-size: 0.546875;
 
