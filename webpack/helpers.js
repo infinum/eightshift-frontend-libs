@@ -85,10 +85,6 @@ function convertJsonToSassMap(data) {
 
 	for (const [key, value] of Object.entries(data)) {
 		if (typeof value === 'object') {
-			if (Array.isArray(value)) {
-				continue;
-			}
-
 			output += `${key}: (${convertJsonToSassMapInner(value, key)}),`;
 			continue;
 		}
@@ -120,6 +116,10 @@ function convertJsonToSassMapInner(data, key) {
 				output += `${innerKey}: ${innerValue['slug']},`;
 				break;
 			default:
+				if (Array.isArray(data)) {
+					return output;
+				}
+
 				output += `${innerKey}: ${innerValue},`;
 				break;
 		}
