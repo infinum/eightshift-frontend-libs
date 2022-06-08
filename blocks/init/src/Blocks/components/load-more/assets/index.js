@@ -15,8 +15,7 @@ domReady(() => {
 		import('./load-more').then(({ LoadMore }) => {
 			const loadMore = new LoadMore({
 				triggerElements: elements,
-				ajaxHandler: 'dynamic_data',
-				ajaxUrl: esBlocksLocalization?.ajaxurl,
+				restUrl: esBlocksLocalization?.loadMoreRestUrl,
 			});
 
 			loadMore.init();
