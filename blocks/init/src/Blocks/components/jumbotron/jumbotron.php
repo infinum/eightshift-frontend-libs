@@ -36,7 +36,7 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 
 <div class="<?php echo esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>" role="region">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',

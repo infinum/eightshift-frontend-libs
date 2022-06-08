@@ -1,0 +1,7 @@
+.load-more {
+	$this: &;
+
+	.is-hidden {
+		opacity: 0;
+	}
+}
