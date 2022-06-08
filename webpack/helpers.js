@@ -85,10 +85,15 @@ function convertJsonToSassMap(data) {
 
 	for (const [key, value] of Object.entries(data)) {
 		if (typeof value === 'object') {
+			if (Array.isArray(value)) {
+				continue;
+			}
+
 			output += `${key}: (${convertJsonToSassMapInner(value, key)}),`;
-		} else {
-			output += `${key}: ${value},`;
+			continue;
 		}
+
+		output += `${key}: ${value},`;
 	}
 
 	return output;
@@ -143,7 +148,7 @@ function convertJsonToSass(path, propertyName = 'globalVariables', variableName 
 		return '';
 	}
 
-	return `\$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
+	return `$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
 }
 
 module.exports = {
