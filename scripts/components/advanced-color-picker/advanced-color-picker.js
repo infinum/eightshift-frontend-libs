@@ -136,7 +136,7 @@ export const AdvancedColorPicker = (props) => {
 							{getTriggerButtonIcon()}
 						</div>}
 						ref={ref}
-						label={__('Pick a color or gradient', 'redesign')}
+						label={__('Pick a color or gradient', 'eightshift-frontend-libs')}
 						className='es-button-icon-24'
 					/>
 				</div>
