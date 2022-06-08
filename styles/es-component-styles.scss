@@ -1,31 +1,29 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
-@import './es-keyframes.scss';
-@import '../scripts/components/advanced-color-picker/advanced-color-picker.scss';
-@import '../scripts/components/custom-slider/custom-slider.scss';
-@import '../scripts/components/link-edit-component/link-edit-component.scss';
-@import '../scripts/components/help-modal/help-modal.scss';
-@import '../scripts/components/icon-toggle/icon-toggle.scss';
-@import '../scripts/components/component-use-toggle/component-use-toggle.scss';
-@import '../scripts/components/custom-select/custom-select.scss';
-@import '../scripts/components/color-picker-component/color-picker-component.scss';
-@import '../scripts/components/inline-notification/inline-notification.scss';
-@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select.scss';
-@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select.scss';
-@import '../scripts/components/server-side-render/server-side-render.scss';
-@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle.scss';
-@import '../scripts/components/fancy-divider/fancy-divider.scss';
-@import '../scripts/components/collapsable/collapsable.scss';
-@import '../scripts/components/color-palette-custom/color-palette-custom.scss';
-@import '../scripts/components/compact-responsive/compact-responsive.scss';
+@import './es-keyframes';
+@import '../scripts/components/advanced-color-picker/advanced-color-picker';
+@import '../scripts/components/custom-slider/custom-slider';
+@import '../scripts/components/link-edit-component/link-edit-component';
+@import '../scripts/components/help-modal/help-modal';
+@import '../scripts/components/icon-toggle/icon-toggle';
+@import '../scripts/components/component-use-toggle/component-use-toggle';
+@import '../scripts/components/custom-select/custom-select';
+@import '../scripts/components/color-picker-component/color-picker-component';
+@import '../scripts/components/inline-notification/inline-notification';
+@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
+@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select';
+@import '../scripts/components/server-side-render/server-side-render';
+@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle';
+@import '../scripts/components/fancy-divider/fancy-divider';
+@import '../scripts/components/collapsable/collapsable';
+@import '../scripts/components/color-palette-custom/color-palette-custom';
+@import '../scripts/components/compact-responsive/compact-responsive';
 
 :root {
 	// Colors
 	--es-admin-accent-color-default: #194BD4;
-
 	--es-admin-pure-white: #FFFFFF;
 	--es-admin-pure-black: #000000;
-
 	--es-admin-gray-50: #FAFAFA;
 	--es-admin-gray-100: #F7F7F7;
 	--es-admin-gray-200: #F0F0F0;
@@ -39,25 +37,18 @@
 	--es-admin-gray-850: #333333;
 	--es-admin-gray-900: #1E1E1E;
 	--es-admin-gray-950: #111111;
-
 	--es-admin-red-500: #CF2E2E;
 	--es-admin-on-red-500: #FFFFFF;
-
 	--es-admin-yellow-500: #FF6900;
 	--es-admin-on-yellow-500: #212121;
-
 	--es-admin-green-500: #4CAF50;
 	--es-admin-on-green-500: #FFFFFF;
-
 	--es-admin-blue-500: #0693E3;
 	--es-admin-on-blue-500: #FFFFFF;
-
 	--es-admin-blue-gray-50: #ECEFF1;
 	--es-admin-on-blue-gray-50: #263238;
-
 	--es-admin-cool-gray-900: #D7DADE;
 	--es-admin-cool-gray-500: #6C7781;
-
 	--es-admin-eightshift-50: #F8FFFF;
 	--es-admin-eightshift-500: #0D3636;
 
@@ -233,7 +224,6 @@ body {
 			> *:not(:first-child) {
 				flex-shrink: 0;
 				flex-grow: 1;
-
 				max-width: var(--es-inline-base-control-content-width, auto);
 			}
 		}
@@ -251,11 +241,13 @@ body {
 			--transition-timing-function-basic: ease-out;
 			--transition-timing-function-transform: var(--es-admin-ease-out-cubic);
 
+			/* stylelint-disable declaration-colon-newline-after */
 			transition: fill var(--transition-duration) var(--transition-timing-function-basic),
 				fill-opacity var(--transition-duration) var(--transition-timing-function-basic),
 				stroke var(--transition-duration) var(--transition-timing-function-basic),
 				stroke-opacity var(--transition-duration) var(--transition-timing-function-basic),
 				transform var(--transition-duration) var(--transition-timing-function-transform);
+			/* stylelint-enable declaration-colon-newline-after */
 
 			@media (prefers-reduced-motion) {
 				--transition-duration: 0.01s;
@@ -270,6 +262,7 @@ body {
 				--es-toggle-icon-thumb-stroke: var(--es-admin-pure-white);
 				--es-toggle-icon-thumb-fill: var(--es-admin-pure-white);
 				--es-toggle-icon-thumb-fill-opacity: 1;
+
 				transform: translateX(0.5rem);
 			}
 

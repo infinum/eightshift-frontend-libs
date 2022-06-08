@@ -121,7 +121,7 @@ export class LoadMore {
 			urlLoadMoreAction: false,
 			preventAction: false,
 		});
-	}
+	};
 
 	/**
 	 * Fetch new data.
@@ -236,7 +236,7 @@ export class LoadMore {
 
 		// Fetch new data.
 		this.fetchData(trigger, id, container);
-	}
+	};
 
 	/**
 	 * Add container loading class.

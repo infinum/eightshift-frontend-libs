@@ -71,7 +71,6 @@ $es-text-aligns: (
 	'right': 'right',
 	'justify': 'justify',
 );
-
 $es-general-aligns: (
 	'left': 'left',
 	'center': 'center',
@@ -82,7 +81,6 @@ $es-general-aligns: (
 	'between': 'space-between',
 	'around': 'space-around',
 );
-
 $es-opacities: (
 	'0': '0%',
 	'10': '10%',
@@ -96,7 +94,6 @@ $es-opacities: (
 	'90': '90%',
 	'100': '100%',
 );
-
 $es-displays: (
 	'grid': 'grid',
 	'flex': 'flex',
@@ -107,7 +104,6 @@ $es-displays: (
 	'none': 'none',
 	'contents': 'contents',
 );
-
 $es-utility-props: (
 	'mx': (
 		'cssProp': 'margin-inline',
@@ -370,7 +366,6 @@ $es-utility-props: (
 		& > svg {
 			width: #{$value};
 			height: #{$value};
-
 			flex-shrink: 0;
 		}
 	}

@@ -48,8 +48,8 @@ if ($featuredContentTaxonomy) {
 			},
 			(array)$featuredContentTerms
 		);
-	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender) {
-		$currentTerms = get_the_terms($post->ID, $featuredContentTaxonomy);
+	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender)  {
+		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy));
 
 		if ($currentTerms) {
 			$args['tax_query'][0]['terms'] = [$currentTerms[0]->term_id]; // @phpstan-ignore-line
