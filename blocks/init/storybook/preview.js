@@ -1,7 +1,7 @@
 import { dispatch } from '@wordpress/data';
+import { STORE_NAME } from '@eightshift/frontend-libs/scripts/editor/store';
 import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
 import globalSettings from '../src/Blocks/manifest.json';
-import { STORE_NAME } from '@eightshift/frontend-libs/scripts/editor/store';
 
 // Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
 

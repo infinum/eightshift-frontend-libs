@@ -17,7 +17,7 @@ if (!$buttonUse) {
 }
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';

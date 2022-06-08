@@ -31,7 +31,7 @@ if (!$taxonomyName) {
 	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 	$terms = $featuredCategoriesQuery['terms'] ?? [];
 
