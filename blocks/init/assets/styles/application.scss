@@ -5,10 +5,6 @@
  *
  */
 
-// Vendors - node modules
-@import 'normalize-scss';
-@include normalize(); // stylelint-disable-line at-rule-empty-line-before
-
 // Globals.
 @import './parts/shared';
 

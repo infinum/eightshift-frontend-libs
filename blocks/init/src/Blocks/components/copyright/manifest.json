@@ -18,8 +18,7 @@
 			"type": "string"
 		},
 		"copyrightContent": {
-			"type": "string",
-			"seo": true
+			"type": "string"
 		},
 		"copyrightUse": {
 			"type": "boolean",
