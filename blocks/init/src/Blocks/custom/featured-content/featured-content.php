@@ -48,7 +48,7 @@ if ($featuredContentTaxonomy) {
 			},
 			(array)$featuredContentTerms
 		);
-	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender)  {
+	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender) {
 		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy));
 
 		if ($currentTerms) {
