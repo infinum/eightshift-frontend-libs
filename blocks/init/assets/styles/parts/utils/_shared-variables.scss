@@ -9,14 +9,13 @@ https://github.com/infinum/eightshift-frontend-libs/blob/develop/styles/scss/_co
 $base-col-number: global-settings(maxCols);
 
 $media-breakpoints: (
-    mobile: 0 global-settings(breakpoints, mobile),
-    tablet: (global-settings(breakpoints, mobile) + 1) global-settings(breakpoints, tablet),
-    desktop: (global-settings(breakpoints, tablet) + 1) global-settings(breakpoints, desktop),
-    large: (global-settings(breakpoints, desktop) + 1)
+	mobile: 0 global-settings(breakpoints, mobile),
+	tablet: (global-settings(breakpoints, mobile) + 1) global-settings(breakpoints, tablet),
+	desktop: (global-settings(breakpoints, tablet) + 1) global-settings(breakpoints, desktop),
+	large: (global-settings(breakpoints, desktop) + 1)
 );
 
 :root {
-
 	/*
 	 * The variables will be explained based on the default browser font size 16px(defaultBrowserFontSize).
 	 *
@@ -26,34 +25,36 @@ $media-breakpoints: (
 	 * 10px/16px * 14px/16px = 0.546875
 	 */
 
-	// wantedFontSize = 14
-	--base-font-size: 0.546875;
+	@if (global-config(useRemBaseSize)) {
+		// wantedFontSize = 14
+		--base-font-size: 0.546875;
 
-	@include media(tablet up) {
-		// wantedFontSize = 15
-		--base-font-size: 0.5859375;
+		@include media(tablet up) {
+			// wantedFontSize = 15
+			--base-font-size: 0.5859375;
+		}
+
+		@include media(desktop up) {
+			// wantedFontSize = 16
+			--base-font-size: 0.625;
+		}
+
+		@media (min-width: 1600px) {
+			// wantedFontSize = 18
+			--base-font-size: 0.703125;
+		}
+
+		@include media(large up) {
+			// wantedFontSize = 21
+			--base-font-size: 0.8203125;
+		}
+
+		@media (min-width: 2400px) {
+			// wantedFontSize = 24
+			--base-font-size: 0.9375;
+		}
 	}
 
-	@include media(desktop up) {
-		// wantedFontSize = 16
-		--base-font-size: 0.625;
-	}
-
-	@media (min-width: 1600px) {
-		// wantedFontSize = 18
-		--base-font-size: 0.703125;
-	}
-
-	@include media(large up) {
-		// wantedFontSize = 21
-		--base-font-size: 0.8203125;
-	}
-
-	@media (min-width: 2400px) {
-		// wantedFontSize = 24
-		--base-font-size: 0.9375;
-	}
-
-	--global-font-family: var(--global-base-font), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--global-font-family: var(--global-base-font), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
