@@ -16,10 +16,10 @@
 @import './editor/editor';
 
 // Register Wrapper block styles.
-@import './../../wrapper/wrapper-editor.scss';
+@import './../../wrapper/wrapper-editor';
 
 // Find all components and require component_name-style.scss inside it.
-@import './../../components/*/*-editor.scss';
+@import './../../components/*/*-editor';
 
 // Find all blocks and require block_name-editor.scss inside it.
-@import './../../custom/*/*-editor.scss';
+@import './../../custom/*/*-editor';

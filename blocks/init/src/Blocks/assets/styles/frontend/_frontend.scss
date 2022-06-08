@@ -1,9 +1,0 @@
-/**
- * This is a file that will be processed only on frontend.
- */
-
-@if (global-config(useRemBaseSize)) {
-	html {
-		font-size: calc(var(--base-font-size, 1) * 100%);
-	}
-}
