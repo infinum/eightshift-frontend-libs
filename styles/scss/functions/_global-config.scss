@@ -1,5 +1,5 @@
 /// Function returns global_settings variable from Eightshift-frontend-libs setup.
-/// It expects $$global-variables key to be available.
+/// It expects $global-config key to be available. If the key is not available there is no warning nor error.
 ///
 /// ### Map
 /// ```scss
@@ -29,11 +29,13 @@
 @function global-config($keys...) {
 	$global-config: null !default;
 
-	@if $global-variables != null {
+	@if $global-config != null {
 		$value: $global-config;
 
 		@each $key in $keys {
-			$value: map-get-strict($value, $key);
+			@if map-has-key($value, $key) {
+				$value: map-get-strict($value, $key);
+			}
 		}
 
 		@return $value;
