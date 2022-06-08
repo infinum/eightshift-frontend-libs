@@ -33,7 +33,7 @@ This example will use featured content block as an example:
 7. After all this items are connected and provided, when you click on the load more button it will make a request using JS on the admin ajax hook in your dynamic data class.
 8. Dynamic data will provide the query data that you will map to your component view and provide the data back to the dom via ajax.
 9. In your component you must have partial view component that will map ids from the dynamic data to the actual output.
-10. Keep in mind that you also must have `esBlocksLocalization` global variable provided with ajaxurl variable in your `EnqueueTheme` class.
+10. Keep in mind that you also must have `esBlocksLocalization` global variable provided with loadMoreRestUrl variable in your `EnqueueTheme` class.
 
 ### EnqueueTheme
 
@@ -50,7 +50,7 @@ This example will use featured content block as an example:
 
 		return [
 			'esBlocksLocalization' => [
-				'loadMoreRestUrl' => \get_rest_url(null, "{$namespace}/{$version}/" . AbstractLoadMore::LOAD_MORE_ROUTE),
+				'loadMoreRestUrl' => \get_rest_url(null, "{$namespace}/{$version}/" . LoadMoreRoute::LOAD_MORE_ROUTE),
 			],
 		];
 	}
