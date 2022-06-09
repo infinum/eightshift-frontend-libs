@@ -11,4 +11,5 @@ module.exports = {
 	setupFiles: [
 		"./tests/setup-global.js"
 	],
+	testEnvironment: "jsdom",
 }
