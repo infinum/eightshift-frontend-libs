@@ -16,7 +16,7 @@
 @import './../../wrapper/wrapper-frontend';
 
 // Find all components and require component_name-style.scss inside it.
-@import './../../components/*/*-frontend';
+@import './../../components/*/*-frontend.scss';
 
 // Find all blocks and require block_name-editor.scss inside it.
-@import './../../custom/*/*-frontend';
+@import './../../custom/*/*-frontend.scss';

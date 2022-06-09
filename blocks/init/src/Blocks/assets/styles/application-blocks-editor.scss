@@ -19,7 +19,7 @@
 @import './../../wrapper/wrapper-editor';
 
 // Find all components and require component_name-style.scss inside it.
-@import './../../components/*/*-editor';
+@import './../../components/*/*-editor.scss';
 
 // Find all blocks and require block_name-editor.scss inside it.
-@import './../../custom/*/*-editor';
+@import './../../custom/*/*-editor.scss';
