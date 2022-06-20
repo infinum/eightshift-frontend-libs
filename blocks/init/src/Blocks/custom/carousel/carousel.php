@@ -47,7 +47,7 @@ $paginationClass = Components::classnames([
 	data-swiper-loop="<?php echo esc_attr($carouselIsLoop ? 'true' : 'false'); ?>"
 	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
-	<div class="<?php echo esc_attr('swiper-wrapper'); ?>">
+	<div class="swiper-wrapper">
 		<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 	</div>
 
