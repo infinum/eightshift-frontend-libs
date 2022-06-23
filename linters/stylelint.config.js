@@ -1,5 +1,5 @@
 module.exports = {
-	extends: ["stylelint-config-standard-scss"],
+	extends: ['stylelint-config-standard-scss'],
 	rules: {
 		indentation: 'tab',
 		'comment-empty-line-before': [
@@ -21,6 +21,7 @@ module.exports = {
 		'color-hex-length': 'long',
 		'color-named': 'never',
 		'color-no-invalid-hex': true,
+		'color-function-notation': null,
 
 		'font-family-name-quotes': 'always-unless-keyword',
 
@@ -36,7 +37,7 @@ module.exports = {
 		'function-whitespace-after': 'always',
 
 		'number-leading-zero': 'always',
-		'number-max-precision': 2,
+		'number-max-precision': 3,
 		'number-no-trailing-zeros': true,
 		'length-zero-no-unit': true,
 
@@ -46,14 +47,18 @@ module.exports = {
 
 		'value-no-vendor-prefix': true,
 		'value-list-comma-newline-before': 'never-multi-line',
-		'value-list-comma-space-after': 'always-single-line',
+		'value-list-comma-newline-after': null,
 		'value-list-comma-space-before': 'never',
+		'value-list-comma-space-after': 'always-single-line',
+		'value-keyword-case': null,
 
 		'property-no-vendor-prefix': true,
 
 		'declaration-bang-space-after': 'never',
 		'declaration-bang-space-before': 'always',
 		'declaration-colon-space-before': 'never',
+		'declaration-colon-newline-after': null,
+		'declaration-empty-line-before': null,
 		'declaration-no-important': true,
 
 		'declaration-block-no-duplicate-properties': true,
@@ -99,6 +104,8 @@ module.exports = {
 		'keyframes-name-pattern': null,
 		'scss/at-function-pattern': null,
 		'scss/dollar-variable-pattern': null,
+		'scss/at-import-partial-extension': null,
+		'scss/no-global-function-names': null,
 		'selector-class-pattern': null,
 		'no-descending-specificity': null
 	},
