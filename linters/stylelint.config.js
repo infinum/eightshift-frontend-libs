@@ -7,7 +7,6 @@ module.exports = {
 				ignore: ['stylelint-commands', 'after-comment'],
 			},
 		],
-		'declaration-colon-space-after': 'always',
 		'max-empty-lines': 2,
 		'max-line-length': 250,
 		'rule-empty-line-before': [
@@ -16,10 +15,11 @@ module.exports = {
 				ignore: ['after-comment'],
 			},
 		],
+		'alpha-value-notation': 'number',
 
 		'color-hex-case': 'upper',
 		'color-hex-length': 'long',
-		'color-named': 'never',
+		'color-named': null,
 		'color-no-invalid-hex': true,
 		'color-function-notation': null,
 
@@ -51,12 +51,14 @@ module.exports = {
 		'value-list-comma-space-before': 'never',
 		'value-list-comma-space-after': 'always-single-line',
 		'value-keyword-case': null,
+		'value-list-max-empty-lines': 1,
 
 		'property-no-vendor-prefix': true,
 
 		'declaration-bang-space-after': 'never',
 		'declaration-bang-space-before': 'always',
 		'declaration-colon-space-before': 'never',
+		'declaration-colon-space-after': 'always-single-line',
 		'declaration-colon-newline-after': null,
 		'declaration-empty-line-before': null,
 		'declaration-no-important': true,
@@ -106,6 +108,12 @@ module.exports = {
 		'scss/dollar-variable-pattern': null,
 		'scss/at-import-partial-extension': null,
 		'scss/no-global-function-names': null,
+		'scss/dollar-variable-empty-line-before': null,
+		'scss/at-if-closing-brace-newline-after': null,
+		'scss/at-if-closing-brace-space-after': null,
+		'scss/at-else-closing-brace-newline-after': null,
+		'scss/at-else-closing-brace-space-after': null,
+		'scss/at-if-no-null': null,
 		'selector-class-pattern': null,
 		'no-descending-specificity': null
 	},
