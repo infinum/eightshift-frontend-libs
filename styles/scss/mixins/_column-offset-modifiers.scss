@@ -39,7 +39,6 @@
 					#{$selector}: calc-column-width($i);
 				}
 			}
-
 			@else {
 				#{$selector}: calc-column-width($i);
 			}

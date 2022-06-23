@@ -134,7 +134,6 @@
 			}
 		}
 	}
-
 	@else {
 		@include for-each-attribute($underline-inactive-state);
 

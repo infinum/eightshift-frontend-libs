@@ -28,9 +28,9 @@
 /// ```
 
 @mixin inline-font-colors($colors) {
-  @each $colorName, $colorValue in $colors {
-    .has-#{$colorName}-color {
-      color: $colorValue;
-    }
-  }
+	@each $colorName, $colorValue in $colors {
+		.has-#{$colorName}-color {
+			color: $colorValue;
+		}
+	}
 }

@@ -38,7 +38,6 @@
 
 		@return $value;
 	}
-
 	@else {
 		@error 'ERROR: $global-config variable doesnt exist!';
 	}

@@ -39,7 +39,6 @@
 					#{$selector}: calc-grid-width($i);
 				}
 			}
-
 			@else {
 				#{$selector}: calc-grid-width($i);
 			}
