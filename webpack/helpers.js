@@ -107,7 +107,7 @@ function escapeSassMapComma(input) {
 	}
 
 	return input;
-};
+}
 
 /**
  * Convert Recursive map object data to Sass map variables for inner objects.
