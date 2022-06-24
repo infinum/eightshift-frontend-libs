@@ -89,11 +89,25 @@ function convertJsonToSassMap(data) {
 			continue;
 		}
 
-		output += `${key}: ${value},`;
+		output += `${key}: ${escapeSassMapComma(value)},`;
 	}
 
 	return output;
 }
+
+/**
+ * Adds parentheses around the output if the value contains a comma.
+ *
+ * @param {any} input Input value.
+ * @returns Input value with parentheses around the value if needed.
+ */
+function escapeSassMapComma(input) {
+	if (typeof input === 'string' && input?.includes(',')) {
+		return `(${input})`;
+	}
+
+	return input;
+};
 
 /**
  * Convert Recursive map object data to Sass map variables for inner objects.
@@ -107,20 +121,20 @@ function convertJsonToSassMapInner(data, key) {
 	for (const [innerKey, innerValue] of Object.entries(data)) {
 		switch (key) {
 			case 'colors':
-				output += `${innerValue['slug']}: ${innerValue['color']},`;
+				output += `${innerValue['slug']}: ${escapeSassMapComma(innerValue['color'])},`;
 				break;
 			case 'gradients':
-				output += `${innerValue['slug']}: ${innerValue['gradient']},`;
+				output += `${innerValue['slug']}: ${escapeSassMapComma(innerValue['gradient'])},`;
 				break;
 			case 'fontSizes':
-				output += `${innerKey}: ${innerValue['slug']},`;
+				output += `${innerKey}: ${escapeSassMapComma(innerValue['slug'])},`;
 				break;
 			default:
 				if (Array.isArray(data)) {
 					return output;
 				}
 
-				output += `${innerKey}: ${innerValue},`;
+				output += `${innerKey}: ${escapeSassMapComma(innerValue)},`;
 				break;
 		}
 	}
