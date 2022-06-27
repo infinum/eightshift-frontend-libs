@@ -47,13 +47,12 @@
 	$i: 0;
 
 	@each $breakpoint, $breakpointMap in map-get-deep($map, $keys...) {
-		@if (type-of($breakpointMap) == 'map') {
+		@if type-of($breakpointMap) == 'map' {
 			@if $i == 0 {
 				@each $cssSelector, $cssValue in $breakpointMap {
 					#{$cssSelector}: $cssValue;
 				}
 			}
-
 			@else {
 				@include media(#{$breakpoint} up) {
 					@each $cssSelector, $cssValue in $breakpointMap { // stylelint-disable-line max-nesting-depth
@@ -62,7 +61,6 @@
 				}
 			}
 		}
-
 		@else {
 			@error 'ERROR: Responsive Map breakpointMap items are not map please check: #{$map} with key: #{breakpointMap}';
 		}

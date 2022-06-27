@@ -323,7 +323,7 @@
 		height: 3rem;
 		bottom: -2.5rem;
 		border-radius: 1rem;
-		background: rgb(20 20 20 / 0.2);
+		background: rgb(20 20 20 / 0.2); // stylelint-disable-line alpha-value-notation
 	}
 
 	.rc-slider-dot:first-child,

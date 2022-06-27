@@ -40,7 +40,6 @@
 				}
 			}
 		}
-
 		@else {
 			&--#{"" + $modifier} {
 				#{$selector}: $value;

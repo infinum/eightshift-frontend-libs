@@ -47,6 +47,7 @@
 				}
 			}
 		}
+
 		// Setting the width of all columns as a relation between max column number and width of the columns.
 		@if type-of($layout) == number {
 			& > * {
@@ -55,6 +56,7 @@
 			}
 		}
 	}
+
 	// Fallback for undefined layout
 	@else {
 		& > * {
@@ -62,6 +64,7 @@
 			max-width: 100%;
 		}
 	}
+
 	// Logic for defining order of the columns.
 	@if length($order) > 0 {
 		@if type-of($order) == list {
@@ -73,11 +76,11 @@
 				}
 			}
 		}
+
 		@if type-of($order) == number {
 			& > * {
 				order: $order;
 			}
 		}
 	}
-
 }

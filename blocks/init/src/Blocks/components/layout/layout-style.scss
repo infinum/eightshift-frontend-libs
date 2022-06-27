@@ -64,6 +64,7 @@
 				@include media(tablet) { // stylelint-disable-line max-nesting-depth
 					grid-column-end: span 6;
 				}
+
 				@include media(desktop up) { // stylelint-disable-line max-nesting-depth
 					grid-column-end: span 3;
 				}

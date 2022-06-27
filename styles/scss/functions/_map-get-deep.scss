@@ -34,7 +34,6 @@
 		@if map-has-key($value, $key) {
 			$value: map-get($value, $key);
 		}
-
 		@else {
 			@error 'ERROR: Specified index does not exist in map #{$map}, with value: #{$key}';
 		}

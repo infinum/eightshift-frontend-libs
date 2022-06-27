@@ -37,7 +37,6 @@
 
 		@return $value;
 	}
-
 	@else {
 		@error 'ERROR: $global-settings variable doesnt exist!';
 	}
