@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-const { log, label, variable } = require('./misc');
+const { log, label, variable, error } = require('./misc');
+const { eightshiftForbiddenKeywords } = require('./variables');
 
 /**
  * Output a summary for all user-provided answers and ask for a confirmation.
@@ -34,9 +35,13 @@ const maybePrompt = async(scriptArguments, argv) => {
   let answers = {};
   let confirm = false;
   let prompted = false;
+  let mustPrompt = false;
+  const argsArray = Object.keys(scriptArguments);
   
   do {
-    for (const argName in scriptArguments) {
+    for (let i = 0; i < argsArray.length - 1; i++) {
+      const argName = argsArray[i];
+
       if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
         const argument = {
           ...scriptArguments[argName],
@@ -53,10 +58,20 @@ const maybePrompt = async(scriptArguments, argv) => {
         } else {
 
           // If argument is provided from CLI use that, otherwise prompt.
-          const answer = argv[argName] ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
+          const answer = argv[argName] && !mustPrompt ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
 
           if (typeof (argv[argName]) === "undefined") {
             prompted = true;
+          }
+
+          // Check if the project name matches a forbidden keyword.
+          if (argName === 'projectName' && eightshiftForbiddenKeywords.find((word) => word === answer[argName])) {
+            error(`Project name '${answer.projectName}' is forbidden. Choose a different name.`);
+            mustPrompt = true;
+            i--;
+            continue;
+          } else {
+            mustPrompt = false;
           }
 
           answers = { ...answers, ...answer };
