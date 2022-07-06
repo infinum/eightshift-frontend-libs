@@ -7,7 +7,14 @@
 import inquirer from 'inquirer';
 import { log } from '../../../../setup/create-wp-project/src/basics/misc';
 
-jest.mock('inquirer');
+jest.mock('chalk', () => ({
+	bgRed: jest.fn(),
+	red: jest.fn(),
+	blue: jest.fn(),
+	green: jest.fn(),
+	cyan: jest.fn(),
+	yellow: jest.fn(),
+}));
 
 const {
 	maybePrompt,
@@ -36,6 +43,8 @@ const testArgsFail = {
 	noSummary: true,
 };
 
+let backup;
+
 test('Project name will not pass if it matches forrbiden keyword.', async () => {
 	expect.assertions(eightshiftForbiddenKeywords.length);
 
@@ -48,15 +57,19 @@ test('Project name will pass if it does not match any of forrbiden keywords.', a
 	expect(checkProjectName('TestTheme')).toBeUndefined();
 });
 
-test('Prompt will succeed if .', async () => {
-	expect(maybePrompt(scriptArguments, testArgsSuccess)).toBe({
-		projectName: 'TestTheme',
-		url: 'dev-url.test',
-		description: 'Test description',
-		noSummary: true,
-	});
+test('Prompt will succeed with correctly passed arguments.', async () => {
+	const output = await maybePrompt(scriptArguments, testArgsSuccess);
+
+	expect(output.projectName).toBe(testArgsSuccess.projectName);
+	expect(output.projectName).not.toBe('Boilerplate theme');
+
 });
 
-test('Test maybe prompt fail.', async () => {
-	expect(maybePrompt(scriptArguments, testArgsSuccess)).not.toBeNull();
+test('Prompt will fail with forbidden keyword.', async () => {
+	backup = inquirer.prompt;
+    inquirer.prompt = (questions) => Promise.resolve('My Theme');
+
+	expect(await maybePrompt(scriptArguments, testArgsFail).projectName).toBe('My Theme');
+	
+	inquirer.prompt = backup;
 });
