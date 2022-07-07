@@ -42,7 +42,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm'
-          cache-dependency-path: gpackage-lock.json
 
       - name: Install node packages
         run: npm install
