@@ -13,10 +13,5 @@ module.exports = api => {
 			],
 			['@babel/preset-react'],
 		],
-		env: {
-			test: {
-				plugins: ['@babel/plugin-transform-modules-commonjs'],
-			},
-		},
 	};
 };

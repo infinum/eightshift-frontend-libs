@@ -95,7 +95,6 @@
 		}
 	},
 	"devDependencies": {
-		"@babel/plugin-transform-modules-commonjs": "^7.18.6",
 		"@babel/preset-env": "^7.16.11",
 		"@babel/preset-react": "^7.16.7",
 		"@eightshift/storybook": "^1.4.0",
