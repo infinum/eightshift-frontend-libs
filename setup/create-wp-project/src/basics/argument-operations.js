@@ -65,7 +65,7 @@ const maybePrompt = async(scriptArguments, argv) => {
           }
 
           // Check if the project name matches a forbidden keyword.
-          if (argName === 'projectName' && eightshiftForbiddenKeywords.find((word) => word === answer[argName])) {
+          if (argName === 'projectName' && !projectNameValidator(answer[argName], false)) {
             error(`Project name '${answer.projectName}' is forbidden. Choose a different name.`);
             mustPrompt = true;
             i--;
@@ -112,7 +112,21 @@ const promptToBool = async(prompt) => {
     lwrPrompt === 'i do';
 };
 
+/**
+ * Checks if entered project named is the same as forbidden keywords.
+ *
+ * @param  {string} input String entered in prompt
+ * @return {bool}
+ */
+const projectNameValidator = (input) => {
+	if (eightshiftForbiddenKeywords.find((word) => word === input)) {
+    return false;
+	}
+	return true;
+};
+
 module.exports = {
-  maybePrompt,
-  promptToBool,
+	maybePrompt,
+	promptToBool,
+	projectNameValidator,
 };

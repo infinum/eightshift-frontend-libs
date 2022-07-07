@@ -64,7 +64,6 @@
 		"file-loader": "^6.2.0",
 		"husky": "^7.0.4",
 		"import-glob-loader": "^1.1.0",
-		"inquirer": "^9.0.0",
 		"media-blender": "^2.1.0",
 		"mini-css-extract-plugin": "^2.6.0",
 		"postcss": "^8.4.12",
