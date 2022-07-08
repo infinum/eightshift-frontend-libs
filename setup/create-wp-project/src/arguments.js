@@ -2,12 +2,12 @@ const scriptArguments = {
   projectName: {
     type: 'text',
     name: 'projectName',
-    describe: 'Please enter your project name (e.g. Your Project Name):',
+    describe: 'Please enter your project name (e.g. Infinum):',
   },
   url: {
     type: 'text',
     name: 'url',
-    describe: 'Your dev url (e.g. dev.wordpress.com):',
+    describe: 'Your dev url (e.g. dev.infinum.com):',
   },
   description: {
     type: 'text',

@@ -108,8 +108,5 @@
 		"replace-in-file": "^6.3.2",
 		"sassdoc": "^2.7.3"
 	},
-	"sideEffects": false,
-	"resolutions": {
-		"webpack": "5.70.0"
-	}
+	"sideEffects": false
 }
