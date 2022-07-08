@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "6.2.0",
+	"version": "7.0.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -97,7 +97,7 @@
 	"devDependencies": {
 		"@babel/preset-env": "^7.18.6",
 		"@babel/preset-react": "^7.18.6",
-		"@eightshift/storybook": "^1.4.0",
+		"@eightshift/storybook": "^1.4.1",
 		"@jest/globals": "^28.1.2",
 		"babel-jest": "^28.1.2",
 		"chalk": "^5.0.1",

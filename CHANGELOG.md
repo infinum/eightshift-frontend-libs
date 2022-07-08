@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [7.0.0] - 2022-07-11
+
+### Changed
+- Updated Webpack to v5 and all packages.
+- Updated block featured-content to use load-more.
+- Stylelint config.
+- Babel config.
+- Eslint config.
+
+### Added
+- New component layout.
+- New component load-more.
+- Corrections for the new create-project setup.
+- Rem transform helper for postcss.
+- Variations to store.
+- Readme description about every package used.
+- New frontend entrypoint file for blocks/components.
+
+### Fixed
+- Issues regarding dart-sass.
+
+### Removed
+- normalize.scss package and replaced it with our version.
+
 ## [6.2.0] - 2022-06-03
 
 ### Added
@@ -574,6 +598,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[7.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.2.0...7.0.0
 [6.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.5...6.1.0
 [6.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.4...6.0.5

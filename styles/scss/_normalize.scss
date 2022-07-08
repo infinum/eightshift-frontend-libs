@@ -28,6 +28,8 @@ html {
 	-webkit-text-size-adjust: 100%; /* 2 */
 	-moz-tab-size: 4; /* 3 */
 	tab-size: 4; /* 3 */
+	padding: 0;
+	margin: 0;
 }
 
 /*
@@ -42,6 +44,7 @@ Sections
 
 body {
 	margin: 0; /* 1 */
+	padding: 0;
 	font-family:
 		system-ui,
 		-apple-system, /* Firefox supports this but not yet `system-ui` */
