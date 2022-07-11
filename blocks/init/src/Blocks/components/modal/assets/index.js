@@ -1,7 +1,8 @@
 import domReady from '@wordpress/dom-ready';
-import { componentJsClass, componentJsToggleClass } from './../manifest.json';
+import manifest from './../manifest.json';
 
 domReady(async () => {
+	const { componentJsClass, componentJsToggleClass } = manifest;
 	const body = document.querySelector('body');
 	const modalSelector = `.${componentJsClass}`;
 	const modalElements = document.querySelectorAll(modalSelector);
