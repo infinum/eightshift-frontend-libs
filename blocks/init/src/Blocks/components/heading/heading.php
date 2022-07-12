@@ -39,7 +39,7 @@ $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 $unique = Components::getUnique();
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); ?>
 
 <<?php echo esc_attr($headingLevel); ?> class="<?php echo esc_attr($headingClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php

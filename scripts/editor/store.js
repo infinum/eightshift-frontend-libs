@@ -17,6 +17,7 @@ const DEFAULT_STATE = {
 		useWrapper: true,
 	},
 	wrapper: {},
+	variations: {},
 	settings: {},
 	styles: [],
 	hasStylesUpdated: false,
@@ -35,6 +36,12 @@ const selectors = {
 	},
 	getComponent(state, componentName) {
 		return state.components.find((component) => component.componentName === componentName);
+	},
+	getVariations(state) {
+		return state.variations;
+	},
+	getVariation(state, name) {
+		return state.variations.find((variation) => variation.name === name);
 	},
 	getConfig(state) {
 		return state.config;
@@ -95,6 +102,12 @@ const actions = {
 		return {
 			type: 'SET_COMPONENTS',
 			components,
+		};
+	},
+	setVariations(variations) {
+		return {
+			type: 'SET_VARIATIONS',
+			variations,
 		};
 	},
 	setConfigOutputCssGlobally(config) {
@@ -195,6 +208,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 			return {
 				...state,
 				components: action.components,
+			};
+		}
+		case 'SET_VARIATIONS': {
+			return {
+				...state,
+				variations: action.variations,
 			};
 		}
 		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY': {

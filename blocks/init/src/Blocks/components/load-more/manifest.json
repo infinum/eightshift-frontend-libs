@@ -1,0 +1,30 @@
+{
+	"componentName": "load-more",
+	"title": "Load More",
+	"componentClass": "load-more",
+	"componentJsClass": "js-load-more",
+	"attributes": {
+		"loadMoreQuery": {
+			"type": "string"
+		},
+		"loadMoreType": {
+			"type": "string"
+		},
+		"loadMoreId": {
+			"type": "string"
+		},
+		"loadMoreInitialItems": {
+			"type": "string"
+		},
+		"loadMorePerPageOverride": {
+			"type": "integer"
+		},
+		"loadMoreUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"components": {
+		"button": "button"
+	}
+}

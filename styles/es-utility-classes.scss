@@ -1,5 +1,7 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
+@use 'sass:map';
+
 $es-spacings: (
 	'auto': auto,
 	'0': 0,
@@ -44,7 +46,6 @@ $es-spacings: (
 	'max': 'max-content',
 	'min': 'min-content'
 );
-
 $es-square-button-sizes: (
 	'8': '0.5rem',
 	'10': '0.625rem',
@@ -64,14 +65,12 @@ $es-square-button-sizes: (
 	'44': '2.75rem',
 	'48': '3rem',
 );
-
 $es-text-aligns: (
 	'left': 'left',
 	'center': 'center',
 	'right': 'right',
 	'justify': 'justify',
 );
-
 $es-general-aligns: (
 	'left': 'left',
 	'center': 'center',
@@ -82,7 +81,6 @@ $es-general-aligns: (
 	'between': 'space-between',
 	'around': 'space-around',
 );
-
 $es-opacities: (
 	'0': '0%',
 	'10': '10%',
@@ -96,7 +94,6 @@ $es-opacities: (
 	'90': '90%',
 	'100': '100%',
 );
-
 $es-displays: (
 	'grid': 'grid',
 	'flex': 'flex',
@@ -107,7 +104,6 @@ $es-displays: (
 	'none': 'none',
 	'contents': 'contents',
 );
-
 $es-utility-props: (
 	'mx': (
 		'cssProp': 'margin-inline',
@@ -278,8 +274,8 @@ $es-utility-props: (
 
 // Generic utility classes (defined in maps above).
 @each $propShorthand, $propData in $es-utility-props {
-	$propCssName: map-get($propData, 'cssProp');
-	$values: map-get($propData, 'values');
+	$propCssName: map.get($propData, 'cssProp');
+	$values: map.get($propData, 'values');
 
 
 	@each $size, $value in $values {
@@ -352,12 +348,9 @@ $es-utility-props: (
 	.es-button-square-#{$size} {
 		width: #{$value} !important;
 		height: #{$value} !important;
-
 		min-width: #{$value} !important;
 		min-height: #{$value} !important;
-
 		padding: 0 !important;
-
 		align-items: center;
 		justify-content: center;
 	}
@@ -373,7 +366,6 @@ $es-utility-props: (
 		& > svg {
 			width: #{$value};
 			height: #{$value};
-
 			flex-shrink: 0;
 		}
 	}
@@ -419,9 +411,8 @@ $es-utility-props: (
 
 .es-v-spaced-wrap {
 	display: flex;
-	flex-direction: column;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-end {
@@ -434,11 +425,10 @@ $es-utility-props: (
 
 .es-v-end-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: flex-end;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-start {
@@ -451,11 +441,10 @@ $es-utility-props: (
 
 .es-v-start-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-center {
@@ -468,11 +457,10 @@ $es-utility-props: (
 
 .es-v-center-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 // Horizontal flex containers with gaps (and optional item wrapping).
@@ -486,7 +474,7 @@ $es-utility-props: (
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-between {
@@ -501,7 +489,7 @@ $es-utility-props: (
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-end {
@@ -516,7 +504,7 @@ $es-utility-props: (
 	align-items: center;
 	justify-content: flex-end;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-start {
@@ -531,7 +519,7 @@ $es-utility-props: (
 	align-items: center;
 	justify-content: flex-start;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-center {
@@ -546,7 +534,7 @@ $es-utility-props: (
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 // Horizontal flex containers.
@@ -558,7 +546,7 @@ $es-utility-props: (
 .es-h-flex-wrap {
 	display: flex;
 	align-items: center;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-flex-between {
@@ -571,7 +559,7 @@ $es-utility-props: (
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-flex-end {
@@ -584,7 +572,7 @@ $es-utility-props: (
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-flex-start {
@@ -597,7 +585,7 @@ $es-utility-props: (
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 .es-h-flex-center {
@@ -610,7 +598,7 @@ $es-utility-props: (
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
+	flex-flow: wrap;
 }
 
 // Vertical flex containers.
@@ -621,8 +609,7 @@ $es-utility-props: (
 
 .es-v-flex-wrap {
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-flex-end {
@@ -634,10 +621,9 @@ $es-utility-props: (
 
 .es-v-flex-end-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: flex-end;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-flex-start {
@@ -649,10 +635,9 @@ $es-utility-props: (
 
 .es-v-flex-start-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 .es-v-flex-center {
@@ -664,10 +649,9 @@ $es-utility-props: (
 
 .es-v-flex-center-wrap {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 }
 
 // Helper to disable default Gutenberg field spacing (e.g. for inlining input fields).

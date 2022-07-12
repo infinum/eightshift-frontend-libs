@@ -13,6 +13,7 @@ $menu-horizontal: (
 
 .menu-horizontal {
 	@extend %list-reset;
+
 	$this: &;
 	height: 100%;
 	display: flex;

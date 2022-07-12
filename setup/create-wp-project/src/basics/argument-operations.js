@@ -17,7 +17,7 @@ const summary = async(answers) => {
   const { confirmSummary } = await inquirer.prompt({
     name: 'confirmSummary',
     type: 'confirm',
-    message: 'Looks good?',
+    message: 'Please confirm that everything looks good!',
   });
 
   return confirmSummary;

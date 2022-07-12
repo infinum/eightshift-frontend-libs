@@ -3,7 +3,7 @@
  *
  * @group unit
  */
-const { scriptArguments } = require('../../../setup/create-wp-project/src/arguments.js');
+import { scriptArguments } from '../../../setup/create-wp-project/src/arguments.js';
 
 it('tests PACKAGE argument build method', async() => {
   const packageName = scriptArguments.package;

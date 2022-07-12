@@ -42,7 +42,6 @@
 					@include flex-column-width($i);
 				}
 			}
-
 			@else {
 				@include flex-column-width($i);
 			}

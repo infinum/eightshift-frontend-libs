@@ -1,5 +1,9 @@
+/**
+ * This is a file that will be processed only in editor.
+ */
+
 // Override default editor styles.
-@import '@eightshift/frontend-libs/styles/override-editor.scss';
+@import '@eightshift/frontend-libs/styles/override-editor';
 
 body .editor-styles-wrapper {
 	@include font-smoothing;

@@ -28,7 +28,7 @@ $cardClass = Components::classnames([
 
 <div class="<?php echo esc_attr($cardClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		'image',

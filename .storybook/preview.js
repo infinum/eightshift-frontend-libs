@@ -1,5 +1,7 @@
+import { dispatch } from '@wordpress/data';
 import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '../scripts/storybook';
 import globalSettings from '../blocks/init/src/Blocks/manifest.json';
+import { STORE_NAME } from './../scripts/editor/store';
 
 // Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
@@ -24,3 +26,6 @@ require('./../blocks/init/src/Blocks/assets/styles/application-blocks-editor.scs
 
 // Project Blocks Editor Part.
 require('../blocks/init/src/Blocks/assets/scripts/application-blocks-editor');
+
+// Prevent one inline style tag.
+dispatch(STORE_NAME).setConfigOutputCssGlobally(false);

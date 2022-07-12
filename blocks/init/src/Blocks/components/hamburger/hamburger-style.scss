@@ -1,6 +1,7 @@
 // stylelint-disable max-nesting-depth, selector-max-specificity, number-max-precision
 .hamburger {
 	$this: &;
+
 	@extend %button-reset;
 
 	&:not(.is-always-visible) {

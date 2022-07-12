@@ -3,19 +3,17 @@ import {
 	BlockEditorKeyboardShortcuts,
 	BlockEditorProvider,
 	BlockList,
+	BlockTools,
 	BlockInspector,
 	WritingFlow,
 	ObserveTyping,
 } from '@wordpress/block-editor';
-import {
-	Popover,
-	SlotFillProvider,
-	DropZoneProvider,
-} from '@wordpress/components';
+import { Popover, SlotFillProvider } from '@wordpress/components';
+import { ShortcutProvider } from '@wordpress/keyboard-shortcuts';
 import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-import { useSelect, select as globalSelect } from '@wordpress/data';
+import { select as globalSelect } from '@wordpress/data';
 import { getFullBlockName, getFullBlockNameVariation } from '../editor/registration';
 
 /**
@@ -37,45 +35,20 @@ import { getFullBlockName, getFullBlockNameVariation } from '../editor/registrat
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
 	const blockName = getFullBlockName(globalManifest, blockManifest);
 
-	const block = useSelect((select) => {
-		return select('core/blocks').getBlockType(blockName);
-	});
-
-	let output = {};
-
 	if (isVariation) {
-
-		const variation = useSelect((select) => {
-			const variations = select('core/blocks').getBlockTypes();
-
-			const variationItem = variations.filter((element) => element.variations.find((item) => item.name === blockManifest.name));
-
-			return variationItem[0].variations[0];
-		});
-
-		output = {
+		return {
 			blockName: getFullBlockNameVariation(globalManifest, blockManifest),
-			attributes: variation.example?.attributes ?? variation.attributes,
-			innerBlocks: getInnerBlocks(variation.example?.innerBlocks ?? variation.innerBlocks),
+			attributes: blockManifest?.example?.attributes ?? blockManifest?.attributes,
+			innerBlocks: getInnerBlocks(blockManifest?.example?.innerBlocks ?? blockManifest?.innerBlocks),
 			isVariation,
-		};
-	} else {
-		if (typeof block.example === 'undefined') {
-			throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
-		}
-
-		if (typeof block.example.attributes === 'undefined') {
-			throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
-		}
-
-		output = {
-			blockName,
-			attributes: block.example.attributes,
-			innerBlocks: getInnerBlocks(block.example.innerBlocks),
 		};
 	}
 
-	return output;
+	return {
+		blockName,
+		attributes: blockManifest?.example?.attributes,
+		innerBlocks: getInnerBlocks(blockManifest?.example?.innerBlocks),
+	};
 };
 
 /**
@@ -111,29 +84,32 @@ export const Gutenberg = ({ props }) => {
 
 	return (
 		<div className="playground">
-			<SlotFillProvider>
-				<DropZoneProvider>
+			<ShortcutProvider>
+				<SlotFillProvider>
 					<BlockEditorProvider
 						value={blocks}
 						onInput={updateBlocks}
 						onChange={updateBlocks}
 					>
-						<div className="playground__sidebar edit-post-sidebar">
+						<div className="playground__sidebar">
 							<BlockInspector />
 						</div>
-						<div className="editor-styles-wrapper">
-							<Popover.Slot name="block-toolbar" />
-							<BlockEditorKeyboardShortcuts />
-							<WritingFlow>
-								<ObserveTyping>
-									<BlockList />
-								</ObserveTyping>
-							</WritingFlow>
+						<div className="playground__content">
+							<BlockTools>
+								<div className="editor-styles-wrapper">
+									<BlockEditorKeyboardShortcuts.Register />
+									<WritingFlow>
+										<ObserveTyping>
+											<BlockList />
+										</ObserveTyping>
+									</WritingFlow>
+								</div>
+							</BlockTools>
 						</div>
 						<Popover.Slot />
 					</BlockEditorProvider>
-				</DropZoneProvider>
-			</SlotFillProvider>
+				</SlotFillProvider>
+			</ShortcutProvider>
 		</div>
 	);
 };

@@ -3,9 +3,9 @@
  *
  * @group integration
  */
-const { exec } = require('promisify-child-process');
-const { ensureDir } = require('fs-extra');
-const del = require('del');
+import { exec } from 'promisify-child-process';
+import { ensureDir } from 'fs-extra';
+import del from 'del';
 
 const { log } = console;
 const timeout = 360000; // in ms

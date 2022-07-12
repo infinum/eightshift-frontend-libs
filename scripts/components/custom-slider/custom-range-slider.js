@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMemo } from 'react';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import { TextControl } from '@wordpress/components';

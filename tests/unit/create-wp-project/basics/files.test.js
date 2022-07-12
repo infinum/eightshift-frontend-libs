@@ -3,16 +3,16 @@
  *
  * @group unit
  */
-const del = require('del');
-const path = require('path');
-const {
+import path from 'path';
+import del from 'del';
+import {
   existsSync,
   writeFileSync,
   readFile,
   mkdirSync,
-} = require('fs');
-const { fullPath, findReplace, readdirAsync } = require('../../../../setup/create-wp-project/src/basics/files.js');
-const { promisify } = require('util');
+} from 'fs';
+import { fullPath, findReplace, readdirAsync } from '../../../../setup/create-wp-project/src/basics/files.js';
+import { promisify } from 'util';
 
 const testFiles = {
   dir: path.join(`${fullPath}/jestTestDir`),

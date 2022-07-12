@@ -3,7 +3,7 @@
  *
  * @group unit
  */
-const { capCase } = require('../../../../setup/create-wp-project/src/basics/misc.js');
+import { capCase } from '../../../../setup/create-wp-project/src/basics/misc.js';
 
 test('Should make cap case of: aaa aaa', () => {
   expect(capCase('aaa aaa')).toBe('Aaa_Aaa');

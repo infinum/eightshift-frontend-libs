@@ -7,19 +7,12 @@
 		"attributes": {
 			"buttonContent": "This is a button",
 			"buttonUrl": "https://infinum.github.io/eightshift-docs/",
-			"buttonId": "custom ID",
-			"buttonSize": "default",
-			"buttonColor": "primary",
-			"buttonWidth": "default",
-			"buttonIsAnchor": false,
-			"buttonIsLink": false,
-			"buttonUse": true
+			"buttonId": "custom ID"
 		}
 	},
 	"attributes": {
 		"buttonContent": {
-			"type": "string",
-			"seo": true
+			"type": "string"
 		},
 		"buttonUrl": {
 			"type": "string"

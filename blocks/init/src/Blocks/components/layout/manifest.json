@@ -1,0 +1,84 @@
+{
+	"componentName": "layout",
+	"title": "Layout",
+	"componentClass": "layout",
+	"example": {
+		"attributes": {
+			"layoutType": "layout-grid-3",
+			"layoutTotalItems": 3,
+			"layoutTag": "div",
+			"layoutUse": true
+		}
+	},
+	"attributes": {
+		"layoutItems": {
+			"type": "array"
+		},
+		"layoutType": {
+			"type": "string",
+			"default": "layout-grid-3"
+		},
+		"layoutTag": {
+			"type": "string",
+			"default": "div"
+		},
+		"layoutTotalItems": {
+			"type": "integer",
+			"default": 3
+		},
+		"layoutLoadMoreId": {
+			"type": "string"
+		},
+		"layoutUse": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"options": {
+		"layoutType": [
+			{
+				"label": "2 col, grid",
+				"value": "layout-grid-2",
+				"icon": "singleItemLeftInset"
+			},
+			{
+				"label": "3 col, grid",
+				"value": "layout-grid-3",
+				"icon": "singleItemLeftInset"
+			},
+			{
+				"label": "4 col, grid",
+				"value": "layout-grid-4",
+				"icon": "singleItemLeftInset"
+			}
+		],
+		"layoutTotalItems": {
+			"min": 1,
+			"max": 50,
+			"step": 1
+		}
+	},
+	"combinations": {
+		"layoutType": {
+			"layout-grid-2": {
+				"layoutTotalItems": 2
+			},
+			"layout-grid-3": {
+				"layoutTotalItems": 3
+			},
+			"layout-grid-4": {
+				"layoutTotalItems": 4
+			}
+		}
+	},
+	"variables": {
+		"layoutTotalItems": [
+			{
+				"inverse": true,
+				"variable": {
+					"layout-total-items": "%value%"
+				}
+			}
+		]
+	}
+}

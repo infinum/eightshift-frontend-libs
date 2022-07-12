@@ -23,7 +23,7 @@
 
 		z-index: 100;
 
-		background-color: rgba(16 16 16 / 0.9);
+		background-color: rgba(16 16 16 / 0.9); // stylelint-disable-line alpha-value-notation
 		color: var(--global-colors-white);
 
 		@supports (backdrop-filter: blur(10px)) {
