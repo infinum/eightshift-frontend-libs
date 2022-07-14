@@ -10,6 +10,7 @@ const {
   argumentOperations: { maybePrompt },
   commandLine: {
     cloneRepoTo,
+    checkRequirements,
     installNodeDependencies,
     installComposerDependencies,
   },
@@ -30,6 +31,12 @@ exports.handler = async (argv) => {
   await clearConsole();
   await writeIntro();
   let step = 1;
+
+  await installStep({
+		describe: `${step}. Checking requirements`,
+		thisHappens: checkRequirements(),
+  });
+  step++;
 
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const requiredPath = await installPath('themes');
