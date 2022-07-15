@@ -13,7 +13,20 @@ const summary = async(answers) => {
   Object.keys(answers).forEach((key) => {
     log(`- ${key}: ${variable(answers[key])}`);
   });
-
+  
+  log('');
+  log(label('Requirements: '));
+  log('Please check if you have installed these packages before you start the setup:');
+  log(`${variable('1.')} Node.js - LTS`);
+  log(`- check by running: ${variable('node -v')}`);
+  log(`${variable('2.')} Composer - LTS`);
+  log(`- check by running: ${variable('composer -v')}`);
+  log(`${variable('3.')} WP-CLI - LTS`);
+  log(`- check by running: ${variable('wp --info')}`);
+  log(`${variable('4.')} Git - LTS`);
+  log(`- check by running: ${variable('git --version')}`);
+  log('');
+  
   const { confirmSummary } = await inquirer.prompt({
     name: 'confirmSummary',
     type: 'confirm',
