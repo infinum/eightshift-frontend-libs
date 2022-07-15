@@ -12,16 +12,16 @@ const checkGitVersion = async () => exec(`git --version`);
 
 const checkRequirements = async () => {
   const nodeVersion = await checkNodeVersion();
-  if (nodeVersion.stderr !== '') process.exit(0);
+  if (nodeVersion.stderr !== '') process.exit(1);
   
   const composerVersion = await checkComposerVersion();
-  if (composerVersion.stderr !== '') process.exit(0);
+  if (composerVersion.stderr !== '') process.exit(1);
   
   const wpCliVersion = await checkWPCliVersion();
-  if (wpCliVersion.stderr !== '') process.exit(0);
+  if (wpCliVersion.stderr !== '') process.exit(1);
   
   const gitVersion = await checkGitVersion();
-  if (gitVersion.stderr !== '') process.exit(0);
+  if (gitVersion.stderr !== '') process.exit(1);
   
   return true;
 };
