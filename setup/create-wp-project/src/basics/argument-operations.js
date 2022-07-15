@@ -22,9 +22,9 @@ const summary = async(answers) => {
   log(`- check by running: ${variable('node -v')}`);
   log(`${variable('2.')} Composer - LTS`);
   log(`- check by running: ${variable('composer -v')}`);
-  log(`${variable('3.')} WP-CLI - LTS`);
+  log(`${variable('3.')} WP-CLI`);
   log(`- check by running: ${variable('wp --info')}`);
-  log(`${variable('4.')} Git - LTS`);
+  log(`${variable('4.')} Git`);
   log(`- check by running: ${variable('git --version')}`);
   log('');
   
