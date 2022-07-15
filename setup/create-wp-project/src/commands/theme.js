@@ -38,6 +38,7 @@ exports.handler = async (argv) => {
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 
+  // Check if all requirements are installed 
   await installStep({
 		describe: `${step}. Checking requirements`,
 		thisHappens: checkRequirements(),

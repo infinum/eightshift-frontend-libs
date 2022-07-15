@@ -14,6 +14,7 @@ const summary = async(answers) => {
     log(`- ${key}: ${variable(answers[key])}`);
   });
   
+  // Write out all the requirements needed to run the script without any errors
   log('');
   log(label('Requirements: '));
   log('Please check if you have installed these packages before you start the setup:');

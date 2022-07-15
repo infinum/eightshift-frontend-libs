@@ -5,11 +5,16 @@ const { exec } = require('promisify-child-process');
 // RangeError [ERR_CHILD_PROCESS_STDIO_MAXBUFFER]: stderr maxBuffer length exceeded
 const cloneTimeout = 45000;
 
+// Check Node.js version
 const checkNodeVersion = async () => exec(`node -v`);
+// Check Composer version
 const checkComposerVersion = async () => exec(`composer -v`);
+// Check WP-Cli version
 const checkWPCliVersion = async () => exec(`wp --info`);
+// Check Git version
 const checkGitVersion = async () => exec(`git --version`);
 
+// Go trough every requirement and check for errors. If there are any errors script will fail
 const checkRequirements = async () => {
   const nodeVersion = await checkNodeVersion();
   if (nodeVersion.stderr !== '') process.exit(1);
