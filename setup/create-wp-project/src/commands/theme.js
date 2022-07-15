@@ -1,5 +1,4 @@
-#!/Users/karlobiscan/.nvm/versions/node/v14.19.3/bin/ node
-
+#!/usr/bin/env node
 const path = require('path');
 
 const {
