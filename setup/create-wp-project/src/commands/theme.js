@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+#!/Users/karlobiscan/.nvm/versions/node/v14.19.3/bin/ node
+
 const path = require('path');
 
 const {
@@ -32,17 +33,17 @@ exports.handler = async (argv) => {
   await writeIntro();
   let step = 1;
 
-  await installStep({
-		describe: `${step}. Checking requirements`,
-		thisHappens: checkRequirements(),
-  });
-  step++;
-
   const promptedInfo = await maybePrompt(scriptArguments, argv);
   const requiredPath = await installPath('themes');
   const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
+
+  await installStep({
+		describe: `${step}. Checking requirements`,
+		thisHappens: checkRequirements(),
+	});
+	step++;
 
   await installStep({
     describe: `${step}. Cloning repo`,
