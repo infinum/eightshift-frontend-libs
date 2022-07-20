@@ -45,5 +45,19 @@ jobs:
       - name: Install node packages
         run: npm install
 
-      - name: Run unit tests
-        run: npm run test:unit
+      - name: Install node packages in setup
+        working-directory: ./setup/create-wp-project
+        run: npm install
+
+      - name: Run coverage generation
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/clover.xml
+          flags: unittests
+          name: frontend-libs-codecov
+          fail_ci_if_error: true
+
