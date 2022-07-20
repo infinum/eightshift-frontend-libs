@@ -28,7 +28,7 @@ module.exports = (mode, optionsData = {}) => {
 	);
 
 	options.config.mode = mode;
-	options.config.filesOutput = (mode === 'production' ? '[name]-[hash]' : '[name]');
+	options.config.filesOutput = (mode === 'production' ? '[name]-[contenthash]' : '[name]');
 
 	// Get all webpack partials.
 	const base = require('./base')(options);

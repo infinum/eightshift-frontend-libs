@@ -16,6 +16,9 @@ if (!$buttonUse) {
 	return;
 }
 
+$unique = Components::getUnique();
+echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
@@ -54,42 +57,42 @@ echo Components::outputCssVariables($attributes, $manifest, $unique, $globalMani
 
 <?php if (! $buttonUrl) { ?>
 	<button
-		class="<?php echo \esc_attr($buttonClass); ?>"
+		class="<?php echo esc_attr($buttonClass); ?>"
 		<?php if (!empty($buttonId)) { ?>
-			id="<?php echo \esc_attr($buttonId); ?>"
+			id="<?php echo esc_attr($buttonId); ?>"
 		<?php } ?>
-		title="<?php echo \esc_attr($buttonContent); ?>"
+		title="<?php echo esc_attr($buttonContent); ?>"
 		<?php if (!empty($buttonAriaLabel)) { ?>
-			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
 		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {
-			echo \wp_kses_post("{$key}=" . $value . " ");
+			echo wp_kses_post("{$key}=" . $value . " ");
 		}
 		?>
 	>
-		<?php echo \esc_html($buttonContent); ?>
+		<?php echo esc_html($buttonContent); ?>
 	</button>
 
 <?php } else { ?>
 	<a
-		href="<?php echo \esc_url($buttonUrl); ?>"
-		class="<?php echo \esc_attr($buttonClass); ?>"
+		href="<?php echo esc_url($buttonUrl); ?>"
+		class="<?php echo esc_attr($buttonClass); ?>"
 		<?php if (!empty($buttonId)) { ?>
-			id="<?php echo \esc_attr($buttonId); ?>"
+			id="<?php echo esc_attr($buttonId); ?>"
 		<?php } ?>
-		title="<?php echo \esc_attr($buttonContent); ?>"
+		title="<?php echo esc_attr($buttonContent); ?>"
 		<?php if (!empty($buttonAriaLabel)) { ?>
-			aria-label="<?php echo \esc_attr($buttonAriaLabel); ?>"
+			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
 		<?php } ?>
 		data-id="<?php echo esc_attr($unique); ?>"
 		<?php
 		foreach ($buttonAttrs as $key => $value) {
-			echo \wp_kses_post("{$key}=" . $value . " ");
+			echo wp_kses_post("{$key}=" . $value . " ");
 		}
 		?>
 	>
-		<?php echo \esc_html($buttonContent); ?>
+		<?php echo esc_html($buttonContent); ?>
 	</a>
 <?php } ?>

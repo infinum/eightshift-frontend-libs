@@ -33,9 +33,11 @@ $drawerClass = Components::classnames([
 
 ?>
 <div
-	class="<?php echo \esc_attr($drawerClass); ?>"
-	data-trigger="<?php echo \esc_attr($drawerTrigger); ?>"
+	class="<?php echo esc_attr($drawerClass); ?>"
+	data-trigger="<?php echo esc_attr($drawerTrigger); ?>"
 >
-	<?php echo \wp_kses_post($drawerMenu); ?>
+	<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $drawerMenu;
+	?>
 </div>
-

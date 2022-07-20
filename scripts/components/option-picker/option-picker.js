@@ -1,6 +1,7 @@
+import React from 'react';
 import { DropdownMenu, ToolbarGroup } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '../../../scripts';
 
 /**
  * A flexible picker of mutually exclusive options.

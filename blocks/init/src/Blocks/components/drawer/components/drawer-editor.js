@@ -18,7 +18,6 @@ export const DrawerEditor = (attributes) => {
 	const drawerUse = checkAttr('drawerUse', attributes, manifest);
 	const drawerMenu = checkAttr('drawerMenu', attributes, manifest);
 	const drawerTrigger = checkAttr('drawerTrigger', attributes, manifest);
-	const drawerOverlay = checkAttr('drawerOverlay', attributes, manifest);
 	const drawerPosition = checkAttr('drawerPosition', attributes, manifest);
 
 	const drawerClass = classnames([
@@ -35,7 +34,6 @@ export const DrawerEditor = (attributes) => {
 				<div
 					className={drawerClass}
 					data-trigger={drawerTrigger}
-					data-overlay={drawerOverlay}
 				>
 					{drawerMenu}
 				</div>

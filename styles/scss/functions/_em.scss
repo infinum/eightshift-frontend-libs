@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Transforms the pixel value to em value.
 ///
 /// If context is not provided, it will be pulled from the $base-font-size.
@@ -35,10 +37,7 @@
 ///   }
 /// }
 ///
-@use 'sass:math';
 
-$browser-context: $base-font-size;
-
-@function em($pixels, $context: $browser-context) {
+@function em($pixels, $context: $base-font-size) {
 	@return math.div(strip-unit($pixels), strip-unit($context)) * 1em;
 }

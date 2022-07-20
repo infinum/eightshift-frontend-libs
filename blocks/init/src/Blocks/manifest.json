@@ -1,8 +1,18 @@
 {
-	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/settings.json",
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/globalManifest.json",
 	"namespace": "eightshift-boilerplate",
 	"background": "#FBF9FF",
 	"foreground": "#9973E3",
+	"config": {
+		"outputCssGlobally": true,
+		"outputCssOptimize": true,
+		"outputCssSelectorName": "esCssVariables",
+		"outputCssGloballyAdditionalStyles": [
+			":root {--es-loader-opacity: 1;}"
+		],
+		"useRemBaseSize": false,
+		"useWrapper": true
+	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"maxCols": 12,
@@ -41,7 +51,7 @@
 			{
 				"name": "Primary",
 				"slug": "primary",
-				"color": "#9973E3"
+				"color": "#6200EA"
 			},
 			{
 				"name": "Black",
@@ -61,42 +71,42 @@
 			{
 				"name": "Ocean",
 				"slug": "ocean",
-				"color": "#44AEDE"
+				"color": "#00B8D4"
 			},
 			{
 				"name": "Green",
 				"slug": "green",
-				"color": "#29A3A3"
+				"color": "#00E676"
 			},
 			{
 				"name": "Red",
 				"slug": "red",
-				"color": "#E84E4E"
+				"color": "#B30024"
 			},
 			{
 				"name": "Yellow",
 				"slug": "yellow",
-				"color": "#F99922"
+				"color": "#FFEA00"
 			},
 			{
 				"name": "Blue",
 				"slug": "blue",
-				"color": "#4184C7"
+				"color": "#0040F0"
 			},
 			{
 				"name": "Mist",
 				"slug": "mist",
-				"color": "#F0F8FF"
+				"color": "#F1FBFE"
 			},
 			{
 				"name": "Dew",
 				"slug": "dew",
-				"color": "#FBF9FF"
+				"color": "#FAF8FC"
 			},
 			{
 				"name": "Cream",
 				"slug": "cream",
-				"color": "#F4F3F0"
+				"color": "#FFFBF5"
 			},
 			{
 				"name": "Eightshift",

@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"listsContent": {
-			"type": "string",
-			"seo": true
+			"type": "string"
 		},
 		"listsOrdered": {
 			"type": "string",
@@ -131,7 +130,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-primary)",
 						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-yellow)"
+						"lists-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -140,7 +139,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-black)",
 						"lists-link-color": "var(--global-colors-primary)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
+						"lists-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -148,8 +147,8 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-green)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
+						"lists-link-color": "var(--global-colors-white)",
+						"lists-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -157,8 +156,8 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-ocean)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-red)"
+						"lists-link-color": "var(--global-colors-white)",
+						"lists-link-color-hover": "var(--global-colors-green)"
 					}
 				}
 			],
@@ -166,8 +165,8 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-yellow)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
+						"lists-link-color": "var(--global-colors-white)",
+						"lists-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -176,7 +175,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-blue)",
 						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-yellow)"
+						"lists-link-color-hover": "var(--global-colors-primary)"
 					}
 				}
 			],
@@ -185,7 +184,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-red)",
 						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-yellow)"
+						"lists-link-color-hover": "var(--global-colors-blue)"
 					}
 				}
 			],
@@ -194,7 +193,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-cream)",
 						"lists-link-color": "var(--global-colors-yellow)",
-						"lists-link-color-hover": "var(--global-colors-red)"
+						"lists-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -203,7 +202,7 @@
 					"variable": {
 						"lists-color": "var(--global-colors-white)",
 						"lists-link-color": "var(--global-colors-yellow)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
+						"lists-link-color-hover": "var(--global-colors-ocean)"
 					}
 				}
 			],
@@ -211,8 +210,8 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-eightshift)",
-						"lists-link-color": "var(--global-colors-green)",
-						"lists-link-color-hover": "var(--global-colors-yellow)"
+						"lists-link-color": "var(--global-colors-blue)",
+						"lists-link-color-hover": "var(--global-colors-primary)"
 					}
 				}
 			],
@@ -220,8 +219,8 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-dew)",
-						"lists-link-color": "var(--global-colors-primary)",
-						"lists-link-color-hover": "var(--global-colors-yellow)"
+						"lists-link-color": "var(--global-colors-ocean)",
+						"lists-link-color-hover": "var(--global-colors-white)"
 					}
 				}
 			],
@@ -229,7 +228,7 @@
 				{
 					"variable": {
 						"lists-color": "var(--global-colors-mist)",
-						"lists-link-color": "var(--global-colors-blue)",
+						"lists-link-color": "var(--global-colors-ocean)",
 						"lists-link-color-hover": "var(--global-colors-green)"
 					}
 				}

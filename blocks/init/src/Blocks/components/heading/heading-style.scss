@@ -5,4 +5,5 @@
 	color: var(--heading-color, var(--global-colors-black, currentColor));
 	font-size: var(--heading-font-size, 1.5rem);
 	line-height: var(--heading-line-height, 1.25);
+	overflow-wrap: anywhere;
 }

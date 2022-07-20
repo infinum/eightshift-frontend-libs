@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
-import { LinkEditComponent } from '@eightshift/frontend-libs/scripts/components/link-edit-component/link-edit-component';
+import { LinkEditComponent } from '../link-edit-component';
 
 export default {
 	title: 'Options/LinkEditComponent',

@@ -7,7 +7,7 @@ import readme from './readme.mdx';
 export default {
 	title: `Variations/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},

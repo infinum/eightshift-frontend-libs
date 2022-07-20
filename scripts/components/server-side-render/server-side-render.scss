@@ -1,0 +1,39 @@
+// Spinner animations.
+.es-ssr-spinner-overlay {
+	position: absolute;
+	inset: 0;
+
+	width: 100%;
+	height: 100%;
+	min-height: 4rem;
+	min-width: 4rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&__spinner {
+		z-index: 2;
+		width: 3rem;
+		height: 3rem;
+
+		// stylelint-disable-next-line no-unknown-animations
+		animation: es-rotate 2s linear infinite; // (animation is defined in es-keyframes.scss)
+	}
+
+	&__spinner-path,
+	&__spinner-path-2 {
+		stroke-linecap: round;
+
+		// stylelint-disable-next-line no-unknown-animations
+		animation: es-dash 1.5s ease-in-out infinite;  // (animation is defined in es-keyframes.scss)
+	}
+
+	&__spinner-path {
+		stroke: var(--es-admin-eightshift-50);
+	}
+
+	&__spinner-path-2 {
+		stroke: var(--es-admin-eightshift-500);
+	}
+}

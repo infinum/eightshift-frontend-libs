@@ -1,6 +1,6 @@
 import React from 'react';
-import readme from '@eightshift/frontend-libs/scripts/components/option-picker/docs/readme.mdx';
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components/option-picker/option-picker';
+import readme from './readme.mdx';
+import { OptionPicker } from '../option-picker';
 
 export default {
 	title: 'Options/OptionPicker',

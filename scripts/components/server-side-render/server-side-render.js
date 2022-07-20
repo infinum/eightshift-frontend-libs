@@ -3,8 +3,9 @@
 /**
  * External dependencies
  */
-import { isEqual, debounce } from 'lodash';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import React from 'react';
+import _ from 'lodash';
+import { icons } from '../../../scripts';
 
 /**
  * WordPress dependencies
@@ -14,6 +15,8 @@ import { __, sprintf } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { Placeholder } from '@wordpress/components';
+import { select } from '@wordpress/data';
+import { STORE_NAME } from '../../editor/store';
 
 export function rendererPath(block, attributes = null, urlQueryArgs = {}) {
 	return addQueryArgs(`/wp/v2/block-renderer/${block}`, {
@@ -36,7 +39,7 @@ const Loader = () => {
 
 /**
  * An update of the built-in ServerSideRender that keeps the current state when loading the new one.
- * 
+ *
  * @param {object} props           - ServerSideRender options.
  * @param {string} props.block     - Name of the block to render (should include the namespace!).
  * @param {array} props.attributes - Attributes to pass to the rendered item.
@@ -55,7 +58,7 @@ export class ServerSideRender extends Component {
 		this.fetch(this.props);
 		// Only debounce once the initial fetch occurs to ensure that the first
 		// renders show data as soon as possible.
-		this.fetch = debounce(this.fetch, 500);
+		this.fetch = _.debounce(this.fetch, 500);
 	}
 
 	componentWillUnmount() {
@@ -63,7 +66,7 @@ export class ServerSideRender extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (!isEqual(prevProps, this.props)) {
+		if (!_.isEqual(prevProps, this.props)) {
 			this.fetch(this.props);
 		}
 	}
@@ -114,13 +117,13 @@ export class ServerSideRender extends Component {
 
 	render() {
 		const spinner = `
-			   <div class="es-ssr-spinner-overlay">
-				   <svg class="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
-					   <circle class="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle>
-					   <circle class="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
-				   </svg>
-			   </div>
-		   `;
+				<div class="es-ssr-spinner-overlay">
+					<svg class="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
+						<circle class="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle>
+						<circle class="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+					</svg>
+				</div>
+			`;
 
 		const response = this.state.response;
 		const prevResponse = this.state.prevResponse;
@@ -157,9 +160,12 @@ export class ServerSideRender extends Component {
 			);
 		}
 
+		const remRegex = /([0-9.-]+rem)/g;
+		const remReplacement = 'calc($1 * var(--base-font-size, 1))';
+
 		return (
 			<RawHTML key="html" className={className}>
-				{response}
+				{select(STORE_NAME).getConfigUseRemBaseSize() ? response.replaceAll(remRegex, remReplacement) : response}
 			</RawHTML>
 		);
 	}

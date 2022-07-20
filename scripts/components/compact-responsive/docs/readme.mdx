@@ -1,0 +1,29 @@
+# Compact responsive
+
+This is a more compact version of the 'Responsive' component. Also, it adds the functionality of providing an inline 'Inherit' button with customizable callback.
+
+## Transforming from regular 'Responsive' to 'CompactResponsive'
+
+1. Separate the `icon` and `label` from `IconLabel` to separate attributes
+2. Remove breakpoint labels from inside the children
+3. (optional) hook up the 'Inherit' button functionality
+
+## Example
+
+```jsx
+<CompactResponsive
+	label={__('Demo option', 'eightshift-frontend-libs'}
+>
+	// Child items go here, usually:
+	{options.breakpoints.map((breakpoint, index) => {
+		const point = ucfirst(breakpoint);
+		const attr = `myAttributeName${point}`;
+
+		return (
+			<Fragment key={index}>
+				// ...
+			</Fragment>
+		);
+	})}
+</CompactResponsive>
+```

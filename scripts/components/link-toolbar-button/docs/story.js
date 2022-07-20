@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
-import { LinkToolbarButton } from '@eightshift/frontend-libs/scripts/components/link-toolbar-button/link-toolbar-button';
+import { LinkToolbarButton } from '../link-toolbar-button';
 
 export default {
 	title: 'Options/LinkToolbarButton',

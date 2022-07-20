@@ -1,0 +1,811 @@
+// stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
+
+@use 'sass:map';
+
+$es-spacings: (
+	'auto': auto,
+	'0': 0,
+	'1': 1,
+	'px': '1px',
+	'2px': '2px',
+	'xxs': '0.125rem',
+	'xs': '0.25rem',
+	's': '0.5rem',
+	'smaller': '0.75rem',
+	'smaller-em': '0.75em',
+	'smallish': '0.85rem',
+	'smallish-em': '0.85em',
+	'smallish-l': '0.95rem',
+	'smallish-l-em': '0.95em',
+	'm': '1rem',
+	'l': '1.5rem',
+	'xl': '2rem',
+	'xxl': '4rem',
+	'2xl': '4rem',
+	'xxl\\+': '6rem',
+	'3xl': '8rem',
+	'4xl': '12rem',
+	'5xl': '16rem',
+	'6xl': '18rem',
+	'7xl': '20rem',
+	'8xl': '24rem',
+	'9xl': '30rem',
+	'10xl': '32rem',
+	'11xl': '36rem',
+	'12xl': '40rem',
+	'13xl': '44rem',
+	'14xl': '48rem',
+	'15xl': '54rem',
+	'16xl': '60rem',
+	'1\\/4': '25%',
+	'1\\/3': '33.3%',
+	'1\\/2': '50%',
+	'2\\/3': '66.6%',
+	'3\\/4': '75%',
+	'full': '100%',
+	'max': 'max-content',
+	'min': 'min-content'
+);
+$es-square-button-sizes: (
+	'8': '0.5rem',
+	'10': '0.625rem',
+	'12': '0.75rem',
+	'14': '0.875rem',
+	'16': '1rem',
+	'18': '1.125rem',
+	'20': '1.25rem',
+	'22': '1.375rem',
+	'24': '1.5rem',
+	'26': '1.525rem',
+	'28': '1.75rem',
+	'30': '1.875rem',
+	'32': '2rem',
+	'36': '2.25rem',
+	'40': '2.5rem',
+	'44': '2.75rem',
+	'48': '3rem',
+);
+$es-text-aligns: (
+	'left': 'left',
+	'center': 'center',
+	'right': 'right',
+	'justify': 'justify',
+);
+$es-general-aligns: (
+	'left': 'left',
+	'center': 'center',
+	'right': 'right',
+	'justify': 'justify',
+	'start': 'flex-start',
+	'end': 'flex-end',
+	'between': 'space-between',
+	'around': 'space-around',
+);
+$es-opacities: (
+	'0': '0%',
+	'10': '10%',
+	'20': '20%',
+	'30': '30%',
+	'40': '40%',
+	'50': '50%',
+	'60': '60%',
+	'70': '70%',
+	'80': '80%',
+	'90': '90%',
+	'100': '100%',
+);
+$es-displays: (
+	'grid': 'grid',
+	'flex': 'flex',
+	'block': 'block',
+	'inline': 'inline',
+	'inline-block': 'inline-block',
+	'inline-flex': 'inline-flex',
+	'none': 'none',
+	'contents': 'contents',
+);
+$es-utility-props: (
+	'mx': (
+		'cssProp': 'margin-inline',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'my': (
+		'cssProp': 'margin-block',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'mt': (
+		'cssProp': 'margin-top',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'mb': (
+		'cssProp': 'margin-bottom',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'ml': (
+		'cssProp': 'margin-left',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'mr': (
+		'cssProp': 'margin-right',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'm': (
+		'cssProp': 'margin',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'px': (
+		'cssProp': 'padding-inline',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'py': (
+		'cssProp': 'padding-block',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'pt': (
+		'cssProp': 'padding-top',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'pb': (
+		'cssProp': 'padding-bottom',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'pl': (
+		'cssProp': 'padding-left',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'pr': (
+		'cssProp': 'padding-right',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'p': (
+		'cssProp': 'padding',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'w': (
+		'cssProp': 'width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'h': (
+		'cssProp': 'height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'text-align': (
+		'cssProp': 'text-align',
+		'values': $es-text-aligns,
+		'valuePrefix': '',
+	),
+	'opacity': (
+		'cssProp': 'opacity',
+		'values': $es-opacities,
+		'valuePrefix': '',
+	),
+	'gap': (
+		'cssProp': 'gap',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'row-gap': (
+		'cssProp': 'row-gap',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'col-gap': (
+		'cssProp': 'column-gap',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'min-w': (
+		'cssProp': 'min-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'min-h': (
+		'cssProp': 'min-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-w': (
+		'cssProp': 'max-width',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'max-h': (
+		'cssProp': 'max-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'line-h': (
+		'cssProp': 'line-height',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'text': (
+		'cssProp': 'font-size',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'rounded': (
+		'cssProp': 'border-radius',
+		'values': $es-spacings,
+		'valuePrefix': '',
+	),
+	'items': (
+		'cssProp': 'align-items',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'content': (
+		'cssProp': 'justify-content',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'align-self': (
+		'cssProp': 'align-self',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'justify-self': (
+		'cssProp': 'justify-self',
+		'values': $es-general-aligns,
+		'valuePrefix': '',
+	),
+	'display': (
+		'cssProp': 'display',
+		'values': $es-displays,
+		'valuePrefix': '',
+	),
+);
+
+// Generic utility classes (defined in maps above).
+@each $propShorthand, $propData in $es-utility-props {
+	$propCssName: map.get($propData, 'cssProp');
+	$values: map.get($propData, 'values');
+
+
+	@each $size, $value in $values {
+		$size2: $size + '';
+
+		.es-#{$propShorthand}-#{$size2} {
+			#{$propCssName}: #{$value};
+		}
+
+		.es-#{$propShorthand}-#{$size2}-important {
+			#{$propCssName}: #{$value} !important;
+		}
+
+		.es-#{$propShorthand}-#{$size2}\! {
+			#{$propCssName}: #{$value} !important;
+		}
+
+		.-es-#{$propShorthand}-#{$size2} {
+			#{$propCssName}: -#{$value};
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-important {
+			#{$propCssName}: -#{$value} !important;
+		}
+
+		.-es-#{$propShorthand}-#{$size2}\! {
+			#{$propCssName}: -#{$value} !important;
+		}
+
+		// Classes for WP BaseControl fields.
+		.es-#{$propShorthand}-#{$size2}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: #{$value};
+			}
+		}
+
+		.es-#{$propShorthand}-#{$size2}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: #{$value} !important;
+			}
+		}
+
+		.es-#{$propShorthand}-#{$size2}-bcf\! {
+			.components-base-control__field {
+				#{$propCssName}: #{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-bcf {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value};
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-bcf-important {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value} !important;
+			}
+		}
+
+		.-es-#{$propShorthand}-#{$size2}-bcf\! {
+			.components-base-control__field {
+				#{$propCssName}: -#{$value} !important;
+			}
+		}
+	}
+}
+
+@each $size, $value in $es-square-button-sizes {
+	.es-button-square-#{$size} {
+		width: #{$value} !important;
+		height: #{$value} !important;
+		min-width: #{$value} !important;
+		min-height: #{$value} !important;
+		padding: 0 !important;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.es-toolbar-icon-#{$size} {
+		& > button > svg {
+			width: #{$value};
+			height: #{$value};
+		}
+	}
+
+	.es-button-icon-#{$size} {
+		& > svg {
+			width: #{$value};
+			height: #{$value};
+			flex-shrink: 0;
+		}
+	}
+}
+
+// Default WP field spacing.
+.es-has-wp-field-v-space {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.es-has-wp-field-b-space {
+	margin-bottom: 1.5rem;
+}
+
+.es-has-wp-field-t-space {
+	margin-top: 1.5rem;
+}
+
+// A11y high-visibility outline.
+// Note: could override any current drop shadows!
+// Please don't change the default colors, they should be hardcoded in this case!
+.es-hi-vis-outline {
+	box-shadow: 0 0 0 1px var(--es-admin-hi-vis-outline-1, #FFFFFF), 0 0 0 2px var(--es-admin-hi-vis-outline-2, #111111);
+}
+
+// Flex container with items space-between, gap and a slight padding.
+.es-flex-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	width: 100%;
+	padding: 0.25rem 0;
+}
+
+// Vertical flex containers with gaps (and optional item wrapping).
+.es-v-spaced {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.es-v-spaced-wrap {
+	display: flex;
+	gap: 0.5rem;
+	flex-flow: column wrap;
+}
+
+.es-v-end {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	gap: 0.5rem;
+}
+
+.es-v-end-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	gap: 0.5rem;
+	flex-flow: column wrap;
+}
+
+.es-v-start {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.es-v-start-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.5rem;
+	flex-flow: column wrap;
+}
+
+.es-v-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.es-v-center-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	flex-flow: column wrap;
+}
+
+// Horizontal flex containers with gaps (and optional item wrapping).
+.es-h-spaced {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.es-h-spaced-wrap {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
+.es-h-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
+.es-h-between-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
+.es-h-end {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.es-h-end-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
+.es-h-start {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5rem;
+}
+
+.es-h-start-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
+.es-h-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.es-h-center-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
+// Horizontal flex containers.
+.es-h-flex {
+	display: flex;
+	align-items: center;
+}
+
+.es-h-flex-wrap {
+	display: flex;
+	align-items: center;
+	flex-flow: wrap;
+}
+
+.es-h-flex-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.es-h-flex-between-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-flow: wrap;
+}
+
+.es-h-flex-end {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.es-h-flex-end-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-flow: wrap;
+}
+
+.es-h-flex-start {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.es-h-flex-start-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-flow: wrap;
+}
+
+.es-h-flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.es-h-flex-center-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: wrap;
+}
+
+// Vertical flex containers.
+.es-v-flex {
+	display: flex;
+	flex-direction: column;
+}
+
+.es-v-flex-wrap {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.es-v-flex-end {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.es-v-flex-end-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	flex-flow: column wrap;
+}
+
+.es-v-flex-start {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.es-v-flex-start-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-flow: column wrap;
+}
+
+.es-v-flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.es-v-flex-center-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+
+// Helper to disable default Gutenberg field spacing (e.g. for inlining input fields).
+.es-no-field-spacing {
+	margin-bottom: 0 !important;
+
+	.components-base-control__field {
+		margin-bottom: 0 !important;
+	}
+}
+
+// Basic layouts.
+.es-fifty-fifty-h {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+}
+
+.es-fifty-fifty-auto-h {
+	display: grid;
+	grid-template-columns: 1fr 1fr auto;
+	grid-gap: 1rem;
+}
+
+// Grid align helpers.
+@for $eblCol from 1 through 12 {
+	.es-col-#{$eblCol} {
+		grid-column: #{$eblCol};
+	}
+}
+
+@for $eblRow from 1 through 12 {
+	.es-row-#{$eblRow} {
+		grid-row: #{$eblRow};
+	}
+}
+
+// Gutenberg Modal max-widths.
+.es-modal-max-width-s {
+	.components-modal__content {
+		max-width: 24rem;
+	}
+}
+
+.es-modal-max-width-m {
+	.components-modal__content {
+		max-width: 36rem;
+	}
+}
+
+.es-modal-max-width-l {
+	.components-modal__content {
+		max-width: 40rem;
+	}
+}
+
+.es-modal-max-width-xl {
+	.components-modal__content {
+		max-width: 44rem;
+	}
+}
+
+.es-modal-max-width-xxl {
+	.components-modal__content {
+		max-width: 48rem;
+	}
+}
+
+.es-modal-max-width-3xl {
+	.components-modal__content {
+		max-width: 56rem;
+	}
+}
+
+.es-modal-max-width-4xl {
+	.components-modal__content {
+		max-width: 60rem;
+	}
+}
+
+// Class to use WP admin theme color.
+.es-has-wp-admin-theme-color {
+	color: var(--es-admin-has-wp-admin-theme-color, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
+}
+
+// SVG utility classes.
+.es-has-animated-fill {
+	transition: {
+		property: fill;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+}
+
+.es-has-animated-stroke {
+	transition: {
+		property: stroke;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+}
+
+// Inline input-label combos.
+.es-inline-input-label-s {
+	.components-base-control__field {
+		display: grid;
+		grid-template-columns: 1fr 3rem;
+	}
+}
+
+.components-number-control.es-inline-input-label-s {
+	display: grid !important;
+	grid-template-columns: 1fr 3.25rem !important;
+}
+
+// Flex utils.
+.es-flex-1 {
+	flex: 1;
+}
+
+.es-flex-0 {
+	flex: 1;
+}
+
+.es-flex-shrink-0 {
+	flex-shrink: 0;
+}
+
+.es-flex-shrink-1 {
+	flex-shrink: 1;
+}
+
+.es-flex-grow-0 {
+	flex-grow: 0;
+}
+
+.es-flex-grow-1 {
+	flex-grow: 1;
+}
+
+.es-flex-row {
+	flex-direction: row;
+}
+
+.es-flex-row-reverse {
+	flex-direction: row-reverse;
+}
+
+.es-flex-col {
+	flex-direction: column;
+}
+
+.es-flex-col-reverse {
+	flex-direction: column-reverse;
+}
+
+// stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

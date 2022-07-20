@@ -49,34 +49,37 @@ $accordionPanelClass = Components::classnames([
 $accordionContentClass = Components::selector($componentClass, $componentClass, 'content');
 
 $uniqueAccordionId = Components::getUnique();
+$uniqueAccordionTriggerId = Components::getUnique();
 ?>
 
 <div
-	class="<?php echo \esc_attr($accordionClass); ?>"
-	data-accordion-open="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
-	data-close-others="<?php echo \esc_attr($accordionCloseOthers ? 'true' : 'false'); ?>"
+	class="<?php echo esc_attr($accordionClass); ?>"
+	data-accordion-open="<?php echo esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
+	data-close-others="<?php echo esc_attr($accordionCloseOthers ? 'true' : 'false'); ?>"
 >
 	<button
-		class="<?php echo \esc_attr($accordionTriggerClass); ?>"
+		class="<?php echo esc_attr($accordionTriggerClass); ?>"
 		aria-label="<?php echo esc_html($accordionTitle); ?>"
-		aria-controls="<?php echo \esc_attr($uniqueAccordionId); ?>"
-		aria-expanded="<?php echo \esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
+		aria-controls="<?php echo esc_attr($uniqueAccordionId); ?>"
+		aria-expanded="<?php echo esc_attr($accordionIsOpen ? 'true' : 'false'); ?>"
+		id="<?php echo esc_attr($uniqueAccordionTriggerId); ?>"
 	>
-		<?php echo \esc_html($accordionTitle); ?>
-		<div class="<?php echo \esc_attr($accordionIconClass); ?>" aria-hidden="true" >
-			<?php echo $manifest['resources']['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</div>
+		<?php echo esc_html($accordionTitle); ?>
+		<span class="<?php echo esc_attr($accordionIconClass); ?>" aria-hidden="true" >
+			<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+		</span>
 	</button>
 
 	<div
 		role="region"
-		class="<?php echo \esc_attr($accordionPanelClass); ?>"
-		aria-hidden="<?php echo \esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
+		class="<?php echo esc_attr($accordionPanelClass); ?>"
+		aria-hidden="<?php echo esc_attr($accordionIsOpen ? 'false' : 'true'); ?>"
+		aria-labelledby="<?php echo esc_attr($uniqueAccordionTriggerId); ?>"
 		id="<?php echo esc_attr($uniqueAccordionId); ?>"
 	>
-		<div class="<?php echo \esc_attr($accordionContentClass); ?>">
+		<div class="<?php echo esc_attr($accordionContentClass); ?>">
 			<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 				echo $accordionContent;
 			?>
 		</div>

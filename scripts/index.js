@@ -6,14 +6,30 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType
 } from './components/alignment-toolbar/alignment-toolbar';
-export { ColorPaletteCustom } from './components/color-palette-custom/color-palette-custom';
+export {
+	ColorPaletteCustom,
+	ColorPaletteCustomLayout,
+} from './components/color-palette-custom/color-palette-custom';
 export {
 	ColorPickerComponent,
-	ColorPickerType
+	ColorPickerType,
 } from './components/color-picker-component/color-picker-component';
+export { Collapsable } from './components/collapsable/collapsable';
 export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
+export { CompactResponsive } from './components/compact-responsive/compact-responsive';
 export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
 export { CustomSelect } from './components/custom-select/custom-select';
+export { CustomSelectCustomOption } from './components/custom-select/custom-select-custom-option';
+export { CustomSelectCustomValueDisplay } from './components/custom-select/custom-select-custom-value-display';
+export { CustomSelectCustomMultipleValueDisplay } from './components/custom-select/custom-select-custom-multiple-value-display';
+export { CustomSelectCustomMultipleValueDisplayContainer } from './components/custom-select/custom-select-custom-multiple-value-display-container';
+export { CustomSelectCustomMultipleValueRemoveButton } from './components/custom-select/custom-select-custom-multiple-value-remove-button';
+export { CustomSelectCustomDropdownIndicator } from './components/custom-select/custom-select-custom-dropdown-indicator';
+export { CustomSelectStyle } from './components/custom-select/custom-select-style';
+export { CustomSlider } from './components/custom-slider/custom-slider';
+export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
+export { CustomSliderStyle, CustomRangeSliderStyle } from './components/custom-slider/custom-slider-style';
+export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
@@ -28,6 +44,7 @@ export { MatrixAlignControl } from './components/matrix-align-control/matrix-ali
 export { OptionPicker } from './components/option-picker/option-picker';
 export { Responsive } from './components/responsive/responsive';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
+export { SimpleHorizontalSingleSelect } from './components/simple-horizontal-single-select/simple-horizontal-single-select';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 
 // Editor
@@ -37,31 +54,35 @@ export {
 	blockIcons,
 	BlockIcon
 } from './editor/icons/icons';
-export { getFetchWpApi } from './editor/fetch-wp-api';
-export { getActions } from './editor/get-actions';
+export { getActions } from './editor/actions';
 export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './editor/get-options';
-export { getPaletteColors } from './editor/get-palette-colors';
-export { inserter } from './editor/inserter';
+	overrideInnerBlockAttributes,
+	overrideInnerBlockSimpleWrapperAttributes,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	props,
+} from './editor/attributes';
+export { getPaletteColors } from './editor/colors';
+export {
+	outputCssVariablesGlobal,
+	outputCssVariables,
+	hexToRgb,
+	getUnique,
+} from './editor/css-variables';
 export {
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
-} from './editor/lock-editing';
+} from './editor/editor';
+export { getFetchWpApi } from './editor/fetch';
+export { inserter } from './editor/inserter';
 export {
-	outputCssVariablesGlobal,
-	outputCssVariables,
-	getUnique
-} from './editor/output-css-variables';
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './editor/override-inner-block-attributes';
+	getOption,
+	getOptionColors,
+	getOptions
+} from './editor/options';
 export { pasteInto } from './editor/paste-handler';
-export { props } from './editor/props';
 export {
 	getAttributes,
 	getExample,
@@ -69,16 +90,22 @@ export {
 	getFullBlockNameVariation,
 	registerBlocks,
 	registerVariations,
-} from './editor/register-blocks';
-export { ucfirst } from './editor/ucfirst';
+} from './editor/registration';
+export {
+	selector,
+	responsiveSelectors,
+} from './editor/selectors';
+export {
+	STORE_NAME,
+	BUILD_VERSION,
+	setStore,
+	setStoreGlobalWindow,
+	setConfigFlags,
+} from './editor/store';
+export { ucfirst } from './editor/utility';
 
 // Helpers
 export { camelize } from './helpers/camelize';
-export {
-	checkAttr,
-	checkAttrResponsive,
-	getAttrKey
-} from './helpers/check-attr';
 export { cookies } from './helpers/cookies';
 export { debounce } from './helpers/debounce';
 export { throttle } from './helpers/throttle';
@@ -87,8 +114,6 @@ export { dynamicImport } from './helpers/dynamic-import';
 export { elementChildrenHeight } from './helpers/element-children-height';
 export { escapeString } from './helpers/escape-string';
 export { getNavigatorVibrate } from './helpers/navigator';
-export { responsiveSelectors } from './helpers/responsive-selectors';
-export { selector } from './helpers/selector';
 export {
 	truncateMiddle,
 	unescapeHTML

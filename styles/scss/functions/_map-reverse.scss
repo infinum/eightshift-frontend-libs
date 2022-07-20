@@ -40,12 +40,10 @@
 		@if type-of($map-reversed) == 'map' {
 			$result: $map-reversed;
 		}
-
 		@else {
 			@warn 'There was an error reversing the order of "#{$map}"';
 		}
 	}
-
 	@else {
 		@warn '"#{$map}" is not a valid map';
 	}

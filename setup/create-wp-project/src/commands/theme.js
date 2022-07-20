@@ -17,6 +17,7 @@ const {
   misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
+const { replaceVersionNumbers } = require('../replace-version-numbers');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 const { installModifiedNodeDependencies, installModifiedComposerDependencies } = require('../dependencies');
@@ -82,13 +83,19 @@ exports.handler = async (argv) => {
   });
   step++;
 
+  await installStep({
+    describe: `${step}. Replacing version numbers`,
+    thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
+  });
+  step++;
+
   log('----------------');
   log('Success!!!');
   log('');
   log('Please do the following steps manually to complete the setup:');
   log(`1. Activate your new theme by running ${variable(`wp theme activate ${variable(promptedInfo.package)}`)}`);
   log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
-  log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate setup_theme')} inside your new theme folder.`);
+  log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init theme')} inside your new theme folder.`);
   log('');
   log(`Please read the documentation ${variable('https://infinum.github.io/eightshift-docs/')} if you run into any issues or if you have any questions.`);
   log('');

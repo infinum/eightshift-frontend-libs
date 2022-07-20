@@ -28,7 +28,7 @@ $listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
 $listsOrderedOptions = array_map(function ($option) {
 	return $option['value'];
-}, $manifest['options']['listsOrdered'] ?? []);
+}, $manifest['options']['listsOrdered'] ?? []); // @phpstan-ignore-line
 
 if (!in_array($listsOrdered, $listsOrderedOptions, true)) {
 	return;
@@ -44,8 +44,10 @@ $listsClass = Components::classnames([
 
 <<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
 
-		echo wp_kses_post($listsContent);
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		$listsContent;
 	?>
 </<?php echo esc_attr($listsOrdered); ?>>

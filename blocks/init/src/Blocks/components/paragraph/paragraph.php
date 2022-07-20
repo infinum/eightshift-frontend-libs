@@ -25,6 +25,10 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
 
+if (!$paragraphContent) {
+	return;
+}
+
 $paragraphClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass),
@@ -33,10 +37,11 @@ $paragraphClass = Components::classnames([
 ]);
 ?>
 
-<p class="<?php echo \esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); ?>
 
-		echo \wp_kses_post($paragraphContent);
+<p class="<?php echo esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+	<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $paragraphContent;
 	?>
 </p>

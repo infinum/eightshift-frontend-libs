@@ -29,7 +29,7 @@ $socialLinksClass = Components::classnames([
 ]);
 
 ?>
-<ul class="<?php echo \esc_html($socialLinksClass); ?>">
+<ul class="<?php echo esc_html($socialLinksClass); ?>">
 	<?php
 	if (!is_iterable($socialLinksItems)) {
 		return;
@@ -41,20 +41,27 @@ $socialLinksClass = Components::classnames([
 		$icon = $socialLink['icon'] ?? '';
 		$linkTitle = $socialLink['title'] ?? '';
 
-		if (empty($href) || empty($icon) || !isset($manifest['icons'][$icon])) {
+		if (
+			empty($href)
+			|| empty($icon)
+			|| !isset($manifest['icons'][$icon]) // @phpstan-ignore-line
+		) {
 			continue;
 		}
 
 		?>
-		<li class="<?php echo \esc_html("{$componentClass}__item"); ?>">
+		<li class="<?php echo esc_html("{$componentClass}__item"); ?>">
 			<a
-				class="<?php echo \esc_html("{$componentClass}__link"); ?>"
+				class="<?php echo esc_html("{$componentClass}__link"); ?>"
 				href="<?php echo esc_url($href); ?>"
 				title="<?php echo esc_attr($linkTitle); ?>"
 				target="_blank"
 				rel="noreferrer noopener"
 			>
-				<?php echo $manifest['icons'][$icon]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php
+					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					echo $manifest['icons'][$icon]; // @phpstan-ignore-line
+				?>
 			</a>
 		</li>
 	<?php } ?>

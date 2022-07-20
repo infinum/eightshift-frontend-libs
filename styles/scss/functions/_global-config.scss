@@ -1,0 +1,44 @@
+/// Function returns global config variable from Eightshift-frontend-libs setup.
+/// It expects $global-config key to be available. If the key is not available there is no warning nor error, just `null` returned.
+///
+/// ### Map
+/// ```scss
+/// $globalConfig: (
+///   useRemBaseSize: true,
+/// );
+/// ```
+/// ### Output
+/// ```scss
+/// .test {
+///   width: 2rem;
+/// }
+/// ```
+///
+/// @access public
+/// @author Karlo Volf
+/// @param {string} $key Key from global manifest config.
+///
+/// @example
+/// .test {
+///   @if (global-config(useRemBaseSize)) {
+///				width: 2rem;
+///	    ...
+///   }
+/// }
+
+@function global-config($key) {
+	$global-config: null !default;
+
+	@if $global-config != null {
+		$value: null;
+
+		@if map-has-key($global-config, $key) {
+			$value: map-get-strict($global-config, $key);
+		}
+
+		@return $value;
+	}
+	@else {
+		@error 'ERROR: $global-config variable doesnt exist!';
+	}
+}

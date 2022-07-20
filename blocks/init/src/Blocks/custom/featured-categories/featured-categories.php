@@ -26,12 +26,12 @@ if (!$taxonomyName) {
 }
 ?>
 
-<div
-	class="<?php echo \esc_attr($blockClass); ?>"
-	data-id="<?php echo \esc_attr($unique); ?>"
+<ul
+	class="<?php echo esc_attr($blockClass); ?>"
+	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 	$terms = $featuredCategoriesQuery['terms'] ?? [];
 
@@ -47,7 +47,7 @@ if (!$taxonomyName) {
 		),
 	];
 
-	$allTerms = \get_terms($args);
+	$allTerms = get_terms($args);
 
 	if (!is_iterable($allTerms)) {
 		return;
@@ -57,11 +57,11 @@ if (!$taxonomyName) {
 		$cardProps = [
 			'imageUse' => false,
 			'introUse' => false,
-			'headingContent' => is_object($termObject) ? $termObject->name : '',
-			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
+			'headingContent' => is_object($termObject) ? $termObject->name : '', // @phpstan-ignore-line
+			'paragraphContent' => is_object($termObject) ? $termObject->description : '', // @phpstan-ignore-line
 			'paragraphUse' => is_object($termObject),
 			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
-			'buttonUrl' => \get_term_link($termObject),
+			'buttonUrl' => get_term_link($termObject),
 			'buttonColor' => 'primary',
 			'headingSize' => 'big',
 		];
@@ -72,8 +72,8 @@ if (!$taxonomyName) {
 		}
 		?>
 
-		<div class="<?php echo esc_attr("{$blockClass}__item"); ?>">
+		<li class="<?php echo esc_attr("{$blockClass}__item"); ?>">
 			<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</div>
+		</li>
 	<?php } ?>
-</div>
+</ul>

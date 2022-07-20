@@ -1,7 +1,6 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons } from '@eightshift/frontend-libs/scripts/editor';
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
+import { icons, OptionPicker } from '../../../scripts';
 
 /**
  * Alignment toolbar type.

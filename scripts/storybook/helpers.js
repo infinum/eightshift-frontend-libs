@@ -3,50 +3,18 @@ import {
 	BlockEditorKeyboardShortcuts,
 	BlockEditorProvider,
 	BlockList,
+	BlockTools,
 	BlockInspector,
 	WritingFlow,
 	ObserveTyping,
 } from '@wordpress/block-editor';
-import {
-	Popover,
-	SlotFillProvider,
-	DropZoneProvider,
-} from '@wordpress/components';
+import { Popover, SlotFillProvider } from '@wordpress/components';
+import { ShortcutProvider } from '@wordpress/keyboard-shortcuts';
 import '@wordpress/format-library';
 import { useState, useEffect } from '@wordpress/element';
 import { createBlock } from '@wordpress/blocks';
-import { useSelect, select as globalSelect } from '@wordpress/data';
-import { getFullBlockName, getFullBlockNameVariation } from '../editor/register-blocks';
-
-/**
- * Create Inner Blocks.
- *
- * @param {array} [innerBlocks=[]]      - Array of inner blocks.
- * @param {boolean} [isVariation=false] - Check if block is variation type.
- */
-const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
-	return innerBlocks.map((blockItem) => {
-
-		let blockInner;
-
-		if (isVariation) {
-			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
-		} else {
-			blockInner = createBlock(blockItem.name);
-		}
-
-		// Set example attributes for inner block.
-		blockInner.attributes = {
-			...blockInner.attributes,
-			...blockItem.attributes,
-		};
-
-		// Run recursive because of multiple nested blocks.
-		blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
-
-		return blockInner;
-	});
-};
+import { select as globalSelect } from '@wordpress/data';
+import { getFullBlockName, getFullBlockNameVariation } from '../editor/registration';
 
 /**
  * Combine block details in one object.
@@ -54,6 +22,8 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
  * @param {object} blockManifest        - Block Manifest data.
  * @param {object} globalManifest       - Global Blocks Manifest data.
  * @param {boolean} [isVariation=false] - Check if block is variation type. Default: false.
+ *
+ * @access public
  *
  * @returns {object}
  *
@@ -65,51 +35,30 @@ const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
 export const blockDetails = (blockManifest, globalManifest, isVariation = false) => {
 	const blockName = getFullBlockName(globalManifest, blockManifest);
 
-	const block = useSelect((select) => {
-		return select('core/blocks').getBlockType(blockName);
-	});
-
-	let output = {};
-
 	if (isVariation) {
-
-		const variation = useSelect((select) => {
-			const variations = select('core/blocks').getBlockTypes();
-
-			const variationItem = variations.filter((element) => element.variations.find((item) => item.name === blockManifest.name));
-
-			return variationItem[0].variations[0];
-		});
-
-		output = {
+		return {
 			blockName: getFullBlockNameVariation(globalManifest, blockManifest),
-			attributes: variation.example?.attributes ?? variation.attributes,
-			innerBlocks: getInnerBlocks(variation.example?.innerBlocks ?? variation.innerBlocks),
+			attributes: blockManifest?.example?.attributes ?? blockManifest?.attributes,
+			innerBlocks: getInnerBlocks(blockManifest?.example?.innerBlocks ?? blockManifest?.innerBlocks),
 			isVariation,
-		};
-	} else {
-		if (typeof block.example === 'undefined') {
-			throw Error(`Your block "${blockName}" is missing example key in manifest.json file. Please check.`);
-		}
-
-		if (typeof block.example.attributes === 'undefined') {
-			throw Error(`Your block "${blockName}" is missing example attributes key in manifest.json file. Please check.`);
-		}
-
-		output = {
-			blockName,
-			attributes: block.example.attributes,
-			innerBlocks: getInnerBlocks(block.example.innerBlocks),
 		};
 	}
 
-	return output;
+	return {
+		blockName,
+		attributes: blockManifest?.example?.attributes,
+		innerBlocks: getInnerBlocks(blockManifest?.example?.innerBlocks),
+	};
 };
 
 /**
  * Load actual Block Editor and all the magic.
  *
+ * @access public
+ *
  * @param {object} props - All Props for blocks.
+ *
+ * @returns {component}
  *
  * Usage:
  * ```js
@@ -135,29 +84,66 @@ export const Gutenberg = ({ props }) => {
 
 	return (
 		<div className="playground">
-			<SlotFillProvider>
-				<DropZoneProvider>
+			<ShortcutProvider>
+				<SlotFillProvider>
 					<BlockEditorProvider
 						value={blocks}
 						onInput={updateBlocks}
 						onChange={updateBlocks}
 					>
-						<div className="playground__sidebar edit-post-sidebar">
+						<div className="playground__sidebar">
 							<BlockInspector />
 						</div>
-						<div className="editor-styles-wrapper">
-							<Popover.Slot name="block-toolbar" />
-							<BlockEditorKeyboardShortcuts />
-							<WritingFlow>
-								<ObserveTyping>
-									<BlockList />
-								</ObserveTyping>
-							</WritingFlow>
+						<div className="playground__content">
+							<BlockTools>
+								<div className="editor-styles-wrapper">
+									<BlockEditorKeyboardShortcuts.Register />
+									<WritingFlow>
+										<ObserveTyping>
+											<BlockList />
+										</ObserveTyping>
+									</WritingFlow>
+								</div>
+							</BlockTools>
 						</div>
 						<Popover.Slot />
 					</BlockEditorProvider>
-				</DropZoneProvider>
-			</SlotFillProvider>
+				</SlotFillProvider>
+			</ShortcutProvider>
 		</div>
 	);
+};
+
+/**
+ * Create Inner Blocks.
+ *
+ * @param {array} [innerBlocks=[]]      - Array of inner blocks.
+ * @param {boolean} [isVariation=false] - Check if block is variation type.
+ *
+ * @access private
+ *
+ * @returns {object}
+ */
+export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
+	return innerBlocks.map((blockItem) => {
+
+		let blockInner;
+
+		if (isVariation) {
+			blockInner = createBlock(blockItem[0], blockItem[1], blockItem[2]);
+		} else {
+			blockInner = createBlock(blockItem.name);
+		}
+
+		// Set example attributes for inner block.
+		blockInner.attributes = {
+			...blockInner.attributes,
+			...blockItem.attributes,
+		};
+
+		// Run recursive because of multiple nested blocks.
+		blockInner.innerBlocks = getInnerBlocks(blockItem.innerBlocks, isVariation);
+
+		return blockInner;
+	});
 };

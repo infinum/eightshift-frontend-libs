@@ -1,6 +1,6 @@
 import Path from 'path';
 import { readdirSync, readFileSync } from "fs";
-import { props } from '../../scripts/editor';
+import { props } from '../../scripts/editor/attributes';
 
 const pathToBlocksFolder = Path.resolve(__dirname, '..', '..', 'blocks', 'init', 'src', 'Blocks');
 const pathToComponents = Path.resolve(pathToBlocksFolder, 'components');
@@ -53,7 +53,7 @@ const getManifest = (path, name) => {
 }
 
 export const getComponentManifest = (componentName) => getManifest(pathToComponents, componentName);
-export const getBlockManifest = (blockName) => getManifest(pathToBlocks, blockName);
+export const getSettingsBlock = (blockName) => getManifest(pathToBlocks, blockName);
 export const getMockComponentManifest = (componentName) => getManifest(pathToMockComponents, componentName);
 export const getMockBlockManifest = (blockName) => getManifest(pathToMockBlocks, blockName);
 

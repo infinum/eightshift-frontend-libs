@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /// Strips the unit from the passed value
 ///
 /// ### Output
@@ -11,12 +13,10 @@
 /// @param {Number} $number The number to remove unit from.
 ///
 
-@use 'sass:math';
-
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return math.div($number, ($number * 0 + 1));
-  }
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return math.div($number, ($number * 0 + 1));
+	}
 
-  @return $number;
+	@return $number;
 }

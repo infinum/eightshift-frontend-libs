@@ -4,6 +4,7 @@
 	font-size: var(--paragraph-font-size, 1rem);
 	text-align: var(--paragraph-align);
 	line-height: var(--paragraph-line-height, 1.5);
+	overflow-wrap: anywhere;
 
 	a {
 		cursor: pointer;

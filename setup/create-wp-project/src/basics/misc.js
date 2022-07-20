@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 const log = (msg) => console.log(msg);
 const error = (msg) => log(`${chalk.bgRed('Error')}${chalk.red(' - ')}${msg}`);

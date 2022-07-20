@@ -16,6 +16,9 @@ $exampleContent = Components::checkAttr('exampleContent', $attributes, $manifest
 
 ?>
 
-<div class="<?php echo \esc_attr($blockClass); ?>">
-	<?php echo \wp_kses_post($exampleContent); ?>
+<div class="<?php echo esc_attr($blockClass); ?>">
+	<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $exampleContent;
+	?>
 </div>

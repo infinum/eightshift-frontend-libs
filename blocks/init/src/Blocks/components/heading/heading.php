@@ -24,6 +24,10 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
 $headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
 
+if (!$headingContent) {
+	return;
+}
+
 $headingClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
 	Components::selector($blockClass, $blockClass),
@@ -38,5 +42,8 @@ echo Components::outputCssVariables($attributes, $manifest, $unique, $globalMani
 ?>
 
 <<?php echo esc_attr($headingLevel); ?> class="<?php echo esc_attr($headingClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php echo wp_kses_post($headingContent); ?>
+	<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $headingContent;
+	?>
 </<?php echo esc_attr($headingLevel); ?>>

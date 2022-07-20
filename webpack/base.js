@@ -34,6 +34,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('definePlugin')) {
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.VERSION': JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)),
+			'process.browser': true,
 		}));
 	}
 
@@ -53,19 +54,12 @@ module.exports = (options) => {
 	if (!options.overrides.includes('dependencyExtractionWebpackPlugin')) {
 		plugins.push(new DependencyExtractionWebpackPlugin({
 			outputFormat: 'json',
-			requestToExternal: function ( request ) { // eslint-disable-line consistent-return
-				if ( request === '@wordpress/dom-ready' ) {
+			requestToExternal: function (request) { // eslint-disable-line consistent-return
+				if (request === '@wordpress/dom-ready') {
 					return '';
 				}
 			}
 		}));
-	}
-
-	// All Optimizations used in production and development build.
-	const optimization = {};
-
-	if (!options.overrides.includes('runtimeChunk')) {
-		optimization.runtimeChunk = false;
 	}
 
 	// All module used in production and development build.
@@ -77,7 +71,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('js')) {
 		module.rules.push({
 			test: /\.(js|jsx)$/,
-			exclude: /node_modules\/(?!@eightshift)/,
+			exclude: /node_modules[\\/](?!@eightshift)/,
 			use: [
 				{
 					loader: 'babel-loader',
@@ -127,7 +121,7 @@ module.exports = (options) => {
 					loader: 'sass-loader',
 					options: {
 						implementation: require("sass"),
-						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath),
+						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},
 				{
@@ -137,9 +131,17 @@ module.exports = (options) => {
 		});
 	}
 
+	const resolve = {
+		symlinks: false,
+		fallback: {
+			crypto: require.resolve("crypto-browserify"),
+			stream: require.resolve("stream-browserify"),
+		}
+	};
+
 	return {
-		optimization,
 		plugins,
 		module,
+		resolve
 	};
 };

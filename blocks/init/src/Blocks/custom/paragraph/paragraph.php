@@ -12,6 +12,11 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
+$paragraphParagraphUse = $attributes['paragraphParagraphUse'] ?? true;
+
+if (!$paragraphParagraphUse) {
+	return;
+}
 
 $unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
 

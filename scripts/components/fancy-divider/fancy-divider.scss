@@ -1,0 +1,50 @@
+.es-fancy-divider {
+	margin: 1.5em 0;
+	position: relative;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 1px;
+		background: var(--es-admin-gray-200);
+		z-index: -1;
+	}
+
+	span {
+		background: var(--es-admin-pure-white);
+		padding: 0.25em;
+		color: var(--es-admin-gray-600);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: normal;
+		user-select: none;
+		font-size: 0.9em;
+
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+
+		svg {
+			width: 1.15rem;
+			height: 1.15rem;
+		}
+	}
+
+	&--lowercase {
+		span {
+			// stylelint-disable declaration-no-important
+			font-size: 1em !important;
+			letter-spacing: 0 !important;
+			text-transform: none !important;
+			// stylelint-enable declaration-no-important
+		}
+	}
+}

@@ -40,7 +40,7 @@ $imgClass = Components::classnames([
 ?>
 
 <?php if (isset($imageUrl['large']) && $imageUrl['large']) { ?>
-	<picture class="<?php echo \esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>" alt="<?php echo esc_attr($imageAlt); ?>">
+	<picture class="<?php echo esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
 		<?php
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -56,16 +56,16 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? '';
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? ''; // @phpstan-ignore-line
 
 			if (!$breakpointValue) {
 				continue;
 			}
 
-			echo '<source srcset="' . \esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 
-		<img src="<?php echo \esc_url($imageUrl['large']); ?>" class="<?php echo \esc_attr($imgClass); ?>" alt="<?php echo esc_attr($imageAlt); ?>" />
+		<img src="<?php echo esc_url($imageUrl['large']); ?>" class="<?php echo esc_attr($imgClass); ?>" alt="<?php echo esc_attr($imageAlt); ?>" />
 	</picture>
 <?php } ?>

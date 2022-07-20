@@ -42,7 +42,6 @@
 					@include flex-grid-width($i);
 				}
 			}
-
 			@else {
 				@include flex-grid-width($i);
 			}

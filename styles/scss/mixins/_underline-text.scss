@@ -126,18 +126,21 @@
 			@include for-each-attribute($underline-inactive-state);
 		}
 
-		&:#{$state} {
-			#{$element} {
-				@include for-each-attribute($underline-active-state);
+		@if $state != false {
+			&:#{$state} {
+				#{$element} {
+					@include for-each-attribute($underline-active-state);
+				}
 			}
 		}
 	}
-
 	@else {
 		@include for-each-attribute($underline-inactive-state);
 
-		&:#{$state} {
-			@include for-each-attribute($underline-active-state);
+		@if $state != false {
+			&:#{$state} {
+				@include for-each-attribute($underline-active-state);
+			}
 		}
 	}
 }

@@ -2,6 +2,10 @@ import { dispatch, select } from '@wordpress/data';
 
 /**
  * Manually populate categories for blocks. This is generated in the PHP part of the real project.
+ *
+ * @access public
+ *
+ * @returns {void}
  */
 export const storybookDefaultMocksCategories = () => {
 	dispatch('core/blocks').setCategories([
@@ -21,6 +25,10 @@ export const storybookDefaultMocksCategories = () => {
  * Manually populate blocks color palette. This is generated in the PHP part of the real project.
  *
  * @param {object} blocksGlobalManifest Full path to global blocks manifest.
+ *
+ * @access public
+ *
+ * @returns {void}
  */
 export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
 	select('core/block-editor').getSettings().colors = blocksGlobalManifest.globalVariables.colors;
@@ -28,6 +36,10 @@ export const storybookDefaultMocksColorPalette = (blocksGlobalManifest) => {
 
 /**
  * Loading WP build files.
+ *
+ * @access public
+ *
+ * @returns {void}
  */
 export const storybookWindowObjects = () => {
 	window.wp.a11y = require('@wordpress/a11y/build-module');
@@ -70,13 +82,16 @@ export const storybookWindowObjects = () => {
 	window.wp.tokenList = require('@wordpress/token-list/build-module');
 	window.wp.url = require('@wordpress/url/build-module');
 	window.wp.viewport = require('@wordpress/viewport/build-module');
-	window.wp.warning = require('@wordpress/warning/build-module');
 	window.wp.wordcount = require('@wordpress/wordcount/build-module');
 	window.wp.icons = require('@wordpress/icons/build-module');
 };
 
 /**
  * Loading styles for block editor.
+ *
+ * @access public
+ *
+ * @returns {void}
  */
 export const storybookWpStyles = () => {
 	require('@wordpress/editor/build-style/style-rtl.css');

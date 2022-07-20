@@ -1,5 +1,7 @@
-// Playground styles.
+@import '~rc-slider/assets/index.css';
+@import '../scripts/components/custom-slider/custom-slider';
 
+// Playground styles.
 $sidebar-width: 280px;
 $light-gray-500: #E2E4E7;
 $break-small: 600px;
@@ -8,6 +10,7 @@ $break-small: 600px;
 	@media (min-width: #{ ($break-small) }) {
 		width: calc(100% - #{$sidebar-width});
 	}
+
 	padding-top: 20px;
 	padding-bottom: 20px;
 }

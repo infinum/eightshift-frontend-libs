@@ -1,6 +1,7 @@
 // stylelint-disable max-nesting-depth, selector-max-specificity, number-max-precision
 .hamburger {
 	$this: &;
+
 	@extend %button-reset;
 
 	&:not(.is-always-visible) {
@@ -28,11 +29,11 @@
 			}
 
 			&--top {
-				transform: translate3d(0, -2%, 0);
+				transform: rotate(0) translate3d(0, -2%, 0) scale3d(1, 1, 1);
 			}
 
 			&--btm {
-				transform: translate3d(0, 2%, 0);
+				transform: rotate(0) translate3d(0, 2%, 0) scale3d(1, 1, 1);
 			}
 		}
 	}
@@ -56,7 +57,7 @@
 			transition: {
 				property: transform;
 				duration: 0.3s;
-				timing: ease-out;
+				timing-function: ease-out;
 			}
 		}
 
@@ -64,7 +65,7 @@
 			transition: {
 				property: transform, opacity;
 				duration: 0.3s;
-				timing: ease-out;
+				timing-function: ease-out;
 			}
 		}
 
@@ -83,7 +84,7 @@
 	&.is-menu-open {
 		#{$this}__icon {
 			&--top {
-				transform: rotate(45deg) translate3d(0, 20%, 0);
+				transform: rotate(45deg) translate3d(0, 20%, 0) scale3d(1, 1, 1);
 			}
 
 			&--mid {
@@ -91,7 +92,7 @@
 			}
 
 			&--btm {
-				transform: rotate(-45deg) translate3d(0, -20%, 0);
+				transform: rotate(-45deg) translate3d(0, -20%, 0) scale3d(1, 1, 1);
 			}
 		}
 

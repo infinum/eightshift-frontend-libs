@@ -4,10 +4,146 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [7.0.0] - 2022-07-11
+
+### Changed
+- Updated Webpack to v5 and all packages.
+- Updated block featured-content to use load-more.
+- Stylelint config.
+- Babel config.
+- Eslint config.
+
+### Added
+- New component layout.
+- New component load-more.
+- Corrections for the new create-project setup.
+- Rem transform helper for postcss.
+- Variations to store.
+- Readme description about every package used.
+- New frontend entrypoint file for blocks/components.
+
+### Fixed
+- Issues regarding dart-sass.
+
+### Removed
+- normalize.scss package and replaced it with our version.
+
+## [6.2.0] - 2022-06-03
+
+### Added
+- New block icons.
+- Breakpoints map to style to be able to use manifest breakpoints.
+- Option to use rem based fonts on frontend and in editor. Used for fluid design.
+
+### Fixed
+- Safari bug on hamburger menu.
+
+## [6.1.0] - 2022-05-19
+
+### Fixed:
+- refactored `unescapeHTML` to work way more reliably.
+- readme and doc comment for `Responsive` are now correct.
+- `Collapsable`, `CollapsableComponentUseToggle` and `CompactResponsive` are now smarter with outline indentation and nesting.
+
+### Changed:
+- additional/custom classes can be passed to more components now (`CollapsableComponentUseToggle`, `SimpleHorizontalSingleSelect`, `CustomSlider`, `CustomRangeSlider` ).
+- added new utility classes for display, aligns, flexbox, ...
+- added new sizes for utility classes.
+- refactored `InlineNotification` to make it fit in better with current components.
+- refactored `LinkEditComponent` to make it fit in better with current components.
+- added an opt-in class to allow animating the `inherit` arrow.
+- a couple of default ES admin colors were changed to have more contrast and look better.
+- `CustomSlider` and `CustomRangeSlider` have better value displays now - the width is auto-calculated based on the `max` value to prevent the layout from moving when changing for example from 9 to 10.
+- `IconLabel` has a subtitle gap option now.
+- added new icons.
+
+## [6.0.5] - 2022-05-11
+
+### Fixed:
+- classNames style issue fixed.
+
+## [6.0.4] - 2022-05-11
+
+### Fixed:
+- classNames issue on fancy divider and compact responsive components.
+
+## [6.0.3] - 2022-05-09
+
+### Changed:
+- sassdocs build style.
+- all internal components now uses internal links and not alias.
+- all internal components now uses css variables that can be overriden from the project.
+- readded missing export for `CustomSelectStyle`.
+- `IconToggle` can now have additional classes passed through.
+- `FancyDivider` has a new alternate look option.
+- `SimpleHorizontalSingleSelect`.
+  - buttons are now square when `iconOnly` is set.
+  - new option for larger icons.
+  - there is a new `vertical` layout.
+- `CompactResponsive`
+  - custom breakpoint labels can be passed to the component now.
+  - additional classes can be passed through.
+- fixed z-index overlap issues in some cases with `CustomSelect`.
+- `ColorPickerComponent` and `ColorPalleteCustom` now properly handle `transparent` color (checkerboard pattern is rendered).
+- `IconLabel` now has a `subtitle` option (a more compact option for basic help).
+- `AdvancedColorPicker` has been fully refactored to make it look nicer and more compact.
+
+### Added:
+- added new icons and update some existing ones.
+- added new utility classes.
+
+### Screenshots
+
+- New `AdvancedColorPicker`
+
+![image](https://user-images.githubusercontent.com/77000136/166936581-b6fac794-eacc-4809-8c2e-26478b52dc64.png)
+![image](https://user-images.githubusercontent.com/77000136/166936637-0e3c3868-7a85-4a65-b51f-6b797a577962.png)
+
+- `transparent` support in color picker components
+
+![image](https://user-images.githubusercontent.com/77000136/166936740-bb8eb73f-25ea-4c78-80c2-18fd04f78f35.png)
+![image](https://user-images.githubusercontent.com/77000136/166936793-fbaeb2d9-be8e-4787-8954-272088fd8565.png)
+
+## [6.0.2] - 2022-05-02
+
+### Fixed:
+- internal components now use relative paths for internal imports (instead of `@eightshfit/frontend-libs/scripts`).
+- `CustomSelect` and `Custom(Range)Slider` have been partly refactored and should be more performant now.
+- `CompactResposnive` now has an option to hide the default breakpoint indicators; this now allows the old `Responsive` to render the new component without any breaking changes 🎉  (you should still take your time and remove the breakpoint labels and switch to `CompactResponsive`, though 😄 ).
+- `CustomSelect` has an `additionalClasses` param now.
+- `ColorPickerComponent`/`ColorPalleteCustom` now have an improved sorting logic - single color shades won't get their own group; also the grouping functionality is toggleable now.
+- `ColorPickerComponent` has its missing `searachable` prop readded 😅 .
+- `CollapsableComponentUseToggle` has a brand new look and a way nicer feel and layout.
+- `Collapsable` was partly reworked to optimize its styles and better align it to the new CollapsableComponentUseToggle.
+- there are a couple of new (UI) icons.
+- a couple of style fixes and utility classes were added.
+- add `GradientPicker` component with fallback for versions prior to 5.9
+
+## [6.0.1] - 2022-04-21
+
+### Fixed
+- Blocks correct order of store registration.
+
+## [6.0.0] - 2022-04-19
+
+- Major braking changes do to updates on css variables, and helpers and updating min PHP version to 7.4.
+- Full change log can be checked on Github [releases](https://github.com/infinum/eightshift-frontend-libs/releases/tag/6.0.0).
+
+## [5.0.3] - 2022-01-26
+
+### Added
+- GH Actions optimization
+  - Added concurrency that will cancel previous workflow runs for the same branch that have not yet completed.
+
+### Updated
+- Added new icons
+
+### Fixed
+- Linter fixes - missing semicolon
 
 ## [5.0.2] - 2021-09-13
 
-## Fixed
+### Fixed
 - Hotfix for missing package and broken build.
 
 ## [5.0.1] - 2021-09-13
@@ -20,12 +156,23 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Changed
 - OverrideInnerBlockAttributes helper now supports exclude prop.
 
-## Fixed
+### Fixed
 - Phpstan issues.
 - Blocks not rendering in the storybook.
 
 ## [5.0.0] - 2021-08-16
 - Major braking changes do to updates on css variables, and helpers.
+
+## [4.0.8] - 2022-01-26
+
+### Added
+- Added 11 new components and a couple of new helpers from Frontend Libs 5.x and 6.x
+- Added top-level imports for components, helpers and scripts
+
+### Changed
+- Updated `ColorPalleteCustom`, `CustomSelect`, `HeadingLevel`, `LinkToolbarButton`, `OptionPicker`, `Responsive` and `ServerSideRender`
+- Updated UI and block icons
+- Update `override-editor` styles
 
 ## [4.0.7] - 2021-07-22
 
@@ -451,6 +598,15 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[7.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.2.0...7.0.0
+[6.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.1.0...6.2.0
+[6.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.5...6.1.0
+[6.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.4...6.0.5
+[6.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.3...6.0.4
+[6.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.2...6.0.3
+[6.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.1...6.0.2
+[6.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.0...6.0.1
+[6.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.2...6.0.0
 [5.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.1...5.0.2
 [5.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/4.0.7...5.0.0

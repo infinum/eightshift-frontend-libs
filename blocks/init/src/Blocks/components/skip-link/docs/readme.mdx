@@ -1,0 +1,29 @@
+# Skip Link Component
+
+Component used to provide skip functionality to your project.
+
+## Implementation
+
+Open a terminal and type in this command inside your projects root:
+
+```shell
+wp boilerplate use_component --name=skip-link
+```
+
+## Usage considerations
+
+If you're using skip links to improve accessibility on your website
+(e. g., to conform to WCAG SC 2.4.1.), skip links should be the
+first focusable elements on your website or the applicable content block.
+
+This component doesn't modify the tabindex, so browsers automatically
+calculate its inherent tab order based on the position in the DOM.
+This is to support WCAG Techniques G1, G123 and G124 with the same component.
+
+Depending on which technique you use, you'll probably need to do one of the following:
+  * ensure the component is positioned in the DOM so that it's the first focusable element, and there are no elements with a tabindex that prevents that
+  * add a tabindex to the component
+
+For more information on using skip links to improve accessibility, please see [Understanding Success Criterion 2.4.1: Bypass Blocks](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html).
+
+To set the skip link target, set the `skipLinkTarget` attribute.

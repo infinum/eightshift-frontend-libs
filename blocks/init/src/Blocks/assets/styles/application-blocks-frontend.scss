@@ -10,9 +10,10 @@
 
 // Globals.
 @import './../../../../assets/styles/parts/shared';
+@import '@eightshift/frontend-libs/styles/scss/normalize';
 
 // Register Wrapper block styles.
-@import './../../wrapper/wrapper-frontend.scss';
+@import './../../wrapper/wrapper-frontend';
 
 // Find all components and require component_name-style.scss inside it.
 @import './../../components/*/*-frontend.scss';
