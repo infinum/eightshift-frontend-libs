@@ -284,7 +284,7 @@ code {
 .main__item {
 	margin-bottom: 30px;
 	padding-bottom: 100px;
-	border-bottom: 1px solid var(--global-colors-cararra);;
+	border-bottom: 1px solid var(--global-colors-cararra);
 }
 
 .list-unstyled {
