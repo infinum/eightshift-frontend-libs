@@ -45,10 +45,6 @@ jobs:
       - name: Install node packages
         run: npm install
 
-      - name: Install node packages in setup
-        working-directory: ./setup/create-wp-project
-        run: npm install
-
       - name: Run coverage generation
         run: npm run test:coverage
 
