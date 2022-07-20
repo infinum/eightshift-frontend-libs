@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-const { log, label, variable } = require('./misc');
+const { log, label, variable, error } = require('./misc');
+const { eightshiftForbiddenKeywords } = require('./variables');
 
 /**
  * Output a summary for all user-provided answers and ask for a confirmation.
@@ -48,9 +49,13 @@ const maybePrompt = async(scriptArguments, argv) => {
   let answers = {};
   let confirm = false;
   let prompted = false;
+  let mustPrompt = false;
+  const argsArray = Object.keys(scriptArguments);
   
   do {
-    for (const argName in scriptArguments) {
+    for (let i = 0; i < argsArray.length - 1; i++) {
+      const argName = argsArray[i];
+
       if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
         const argument = {
           ...scriptArguments[argName],
@@ -67,10 +72,20 @@ const maybePrompt = async(scriptArguments, argv) => {
         } else {
 
           // If argument is provided from CLI use that, otherwise prompt.
-          const answer = argv[argName] ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
+          const answer = argv[argName] && !mustPrompt ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
 
           if (typeof (argv[argName]) === "undefined") {
             prompted = true;
+          }
+
+          // Check if the project name matches a forbidden keyword.
+          if (argName === 'projectName' && !projectNameValidator(answer[argName], false)) {
+            error(`Project name '${answer.projectName}' is forbidden. Choose a different name.`);
+            mustPrompt = true;
+            i--;
+            continue;
+          } else {
+            mustPrompt = false;
           }
 
           answers = { ...answers, ...answer };
@@ -111,7 +126,21 @@ const promptToBool = async(prompt) => {
     lwrPrompt === 'i do';
 };
 
+/**
+ * Checks if entered project named is the same as forbidden keywords.
+ *
+ * @param  {string} input String entered in prompt
+ * @return {bool}
+ */
+const projectNameValidator = (input) => {
+	if (eightshiftForbiddenKeywords.find((word) => word === input)) {
+    return false;
+	}
+	return true;
+};
+
 module.exports = {
-  maybePrompt,
-  promptToBool,
+	maybePrompt,
+	promptToBool,
+	projectNameValidator,
 };

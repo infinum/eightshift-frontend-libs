@@ -8,12 +8,10 @@ module.exports = api => {
 				{
 					useBuiltIns: 'usage',
 					corejs: '3',
-					modules: isTest ? "auto" : false,
-				}
+					modules: isTest ? 'auto' : false,
+				},
 			],
-			[
-				"@babel/preset-react"
-			],
+			['@babel/preset-react'],
 		],
 	};
 };
