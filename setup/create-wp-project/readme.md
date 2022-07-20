@@ -81,3 +81,13 @@ You can get a list of available script arguments by running:
 
 `npx create-wp-project --help`
 
+
+## Development
+
+To do any development on the actual setup script you can run it locally by using this command:
+
+```
+npm run develop
+```
+
+This command will run the script from the code directly and it will output the theme/plugin to the setup folder.
