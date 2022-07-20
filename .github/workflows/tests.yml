@@ -45,11 +45,15 @@ jobs:
       - name: Install node packages
         run: npm install
 
+      - name: Install node packages in setup
+        working-directory: ./setup/create-wp-project
+        run: npm install
+
       - name: Run coverage generation
         run: npm run test:coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/clover.xml
