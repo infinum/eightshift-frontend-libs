@@ -10,6 +10,7 @@ const {
   argumentOperations: { maybePrompt },
   commandLine: {
     cloneRepoTo,
+    checkRequirements,
     installNodeDependencies,
     installComposerDependencies,
   },
@@ -38,6 +39,13 @@ exports.handler = async (argv) => {
   const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
+
+  // Check if all requirements are installed 
+  await installStep({
+		describe: `${step}. Checking requirements`,
+		thisHappens: checkRequirements(),
+	});
+	step++;
 
   // Clone repo from git with given arguments
   await installStep({
