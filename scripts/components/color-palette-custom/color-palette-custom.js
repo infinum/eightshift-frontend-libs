@@ -159,7 +159,7 @@ export const ColorPaletteCustom = (props) => {
 											key={j}
 											label={name}
 											onClick={() => onChange(slug)}
-											className={`es-button-icon-24 es-button-square-28 ${value === slug ? 'is-generic-swatch-active' : ''}`}
+											className={`es-button-icon-26 es-button-square-28 ${value === slug ? 'is-generic-swatch-active' : ''}`}
 											icon={icons.genericColorSwatch}
 											disabled={disabled}
 											style={{
@@ -189,7 +189,7 @@ export const ColorPaletteCustom = (props) => {
 									key={i}
 									label={name}
 									onClick={() => onChange(slug)}
-									className={`es-button-icon-24 ${layout === ColorPaletteCustomLayout.DEFAULT ? 'es-button-square-28' : ''} ${value === slug ? 'is-generic-swatch-active' : ''}`}
+									className={`es-button-icon-26 ${layout === ColorPaletteCustomLayout.DEFAULT ? 'es-button-square-28' : ''} ${value === slug ? 'is-generic-swatch-active' : ''}`}
 									icon={icons.genericColorSwatch}
 									disabled={disabled}
 									style={{
