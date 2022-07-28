@@ -15,10 +15,12 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
 
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
-	<?php echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+
+		echo $innerBlockContent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	?>
 </div>

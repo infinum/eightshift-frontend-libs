@@ -20,7 +20,6 @@ $unique = Components::getUnique();
 
 $cardClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);

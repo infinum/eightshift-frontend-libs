@@ -7,6 +7,8 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ButtonEditor = (attributes) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		componentClass,
 	} = manifest;
@@ -18,8 +20,6 @@ export const ButtonEditor = (attributes) => {
 		blockClass,
 		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
-
-	const unique = useMemo(() => getUnique(), []);
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);
 	const buttonUse = checkAttr('buttonUse', attributes, manifest);

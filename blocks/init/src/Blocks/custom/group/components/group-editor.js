@@ -5,11 +5,11 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const GroupEditor = ({ attributes }) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		blockClass,
 	} = attributes;
-
-	const unique = useMemo(() => getUnique(), []);
 
 	return (
 		<div className={blockClass} data-id={unique}>

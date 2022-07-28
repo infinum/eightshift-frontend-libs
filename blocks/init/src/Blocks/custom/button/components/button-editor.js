@@ -5,13 +5,14 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ButtonEditor = ({ attributes, setAttributes }) => {
-	const {
-	} = attributes;
-
 	const unique = useMemo(() => getUnique(), []);
 
+	const {
+		blockClass,
+	} = attributes;
+
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ButtonEditorComponent
@@ -19,6 +20,6 @@ export const ButtonEditor = ({ attributes, setAttributes }) => {
 					setAttributes,
 				})}
 			/>
-		</>
+		</div>
 	);
 };

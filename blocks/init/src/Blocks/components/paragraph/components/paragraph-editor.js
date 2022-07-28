@@ -7,6 +7,8 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ParagraphEditor = (attributes) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		componentClass,
 	} = manifest;
@@ -23,8 +25,6 @@ export const ParagraphEditor = (attributes) => {
 		onReplace,
 		onRemove,
 	} = attributes;
-
-	const unique = useMemo(() => getUnique(), []);
 
 	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);

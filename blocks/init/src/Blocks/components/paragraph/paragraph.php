@@ -31,7 +31,6 @@ if (!$paragraphContent) {
 
 $paragraphClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass),
 	Components::selector($blockClass, $blockClass, $selectorClass),
 	Components::selector($additionalClass, $additionalClass),
 ]);

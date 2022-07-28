@@ -5,13 +5,14 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const HeadingEditor = ({ attributes, setAttributes }) => {
-	const {
-	} = attributes;
-
 	const unique = useMemo(() => getUnique(), []);
 
+	const {
+		blockClass,
+	} = attributes;
+
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<HeadingEditorComponent
@@ -19,6 +20,6 @@ export const HeadingEditor = ({ attributes, setAttributes }) => {
 					setAttributes,
 				})}
 			/>
-		</>
+		</div>
 	);
 };

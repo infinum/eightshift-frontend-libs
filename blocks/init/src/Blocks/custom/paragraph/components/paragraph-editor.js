@@ -6,14 +6,14 @@ import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
 export const ParagraphEditor = (keyProps) => {
+	const unique = useMemo(() => getUnique(), []);
 
 	const { attributes, setAttributes, onReplace, mergeBlocks } = keyProps;
 
 	const {
+		blockClass,
 		blockFullName,
 	} = attributes;
-
-	const unique = useMemo(() => getUnique(), []);
 
 	const propsObject = props('paragraph', attributes);
 
@@ -35,7 +35,7 @@ export const ParagraphEditor = (keyProps) => {
 	};
 
 	return (
-		<>
+		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
 			<ParagraphEditorComponent
@@ -46,6 +46,6 @@ export const ParagraphEditor = (keyProps) => {
 				onReplace={onReplace}
 				onRemove={onReplace ? () => onReplace([]) : undefined}
 			/>
-		</>
+		</div>
 	);
 };
