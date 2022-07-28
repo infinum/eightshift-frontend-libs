@@ -11,3 +11,6 @@ package-lock.json
 
 # Local env settings
 .vscode/settings.json
+
+# Tests
+/coverage

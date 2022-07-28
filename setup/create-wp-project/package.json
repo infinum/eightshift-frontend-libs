@@ -1,7 +1,7 @@
 {
   "name": "create-wp-project",
   "description": "This is a setup script for creating a WordPress project.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "Team Eightshift",
   "main": "",
   "license": "MIT",
@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --mode production",
-    "test": "jest"
+    "test": "jest",
+    "develop": "node create-wp-project.js"
   },
   "bin": {
     "create-wp-project": "./create-wp-project.js"
