@@ -17,10 +17,9 @@ export const CardEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	const cardClass = classnames([
 		selector(componentClass, componentClass),

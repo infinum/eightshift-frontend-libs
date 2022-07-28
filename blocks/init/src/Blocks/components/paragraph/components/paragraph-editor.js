@@ -22,10 +22,9 @@ export const ParagraphEditor = (attributes) => {
 		mergeBlocks,
 		onReplace,
 		onRemove,
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);

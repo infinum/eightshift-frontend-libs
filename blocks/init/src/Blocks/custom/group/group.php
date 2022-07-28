@@ -13,7 +13,7 @@ $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
+$unique = Components::getUnique();
 
 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 

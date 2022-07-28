@@ -7,10 +7,9 @@ import globalManifest from './../../../manifest.json';
 export const GroupEditor = ({ attributes }) => {
 	const {
 		blockClass,
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	return (
 		<div className={blockClass} data-id={unique}>

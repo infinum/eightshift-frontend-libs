@@ -37,7 +37,7 @@ $headingClass = Components::classnames([
 
 $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 
-$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
+$unique = Components::getUnique();
 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
 

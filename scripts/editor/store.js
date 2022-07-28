@@ -17,6 +17,7 @@ const DEFAULT_STATE = {
 		useWrapper: true,
 	},
 	wrapper: {},
+	wrapperComponent: {},
 	variations: {},
 	settings: {},
 	styles: [],
@@ -66,6 +67,12 @@ const selectors = {
 	},
 	getWrapper(state) {
 		return state.wrapper;
+	},
+	getWrapperComponent(state) {
+		return state.wrapperComponent;
+	},
+	getWrapperAttributes(state) {
+		return state.wrapper.attributes;
 	},
 	getSettings(state) {
 		return state.settings;
@@ -150,6 +157,12 @@ const actions = {
 		return {
 			type: 'SET_WRAPPER',
 			wrapper,
+		};
+	},
+	setWrapperComponent(wrapperComponent) {
+		return {
+			type: 'SET_WRAPPER_COMPONENT',
+			wrapperComponent,
 		};
 	},
 	setSettings(settings) {
@@ -274,6 +287,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 			return {
 				...state,
 				wrapper: action.wrapper,
+			};
+		}
+		case 'SET_WRAPPER_COMPONENT': {
+			return {
+				...state,
+				wrapperComponent: action.wrapperComponent,
 			};
 		}
 		case 'SET_SETTINGS': {

@@ -1,10 +1,12 @@
-%wrapper {
+// Define grid parent container.
+@mixin grid-parent {
 	display: grid;
 	grid-template-columns: repeat(var(--global-max-cols), 1fr);
 	column-gap: var(--wrapper-scoped-gutter, calc(var(--global-gutters-default) * 1%));
 }
 
-%wrapper-children {
+// Define grid item details
+@mixin grid-item {
 	grid-column: var(--wrapper-grid-column-start, 1) / span var(--wrapper-grid-column-end, var(--global-max-cols));
 	margin-top: var(--wrapper-spacing-top);
 	margin-bottom: var(--wrapper-spacing-bottom);
@@ -15,7 +17,21 @@
 	background-color: var(--wrapper-background-color);
 }
 
-%wrapper-children-editor {
+// Define grid item editor overrides.
+@mixin grid-item-editor {
 	margin-left: 0 !important;
 	margin-right: 0 !important;
+}
+
+// Combine all grid output.
+@mixin grid($inEditor: false) {
+	@include grid-parent;
+
+	* {
+		@include grid-item;
+
+		@if $inEditor {
+			@include grid-item-editor();
+		}
+	}
 }

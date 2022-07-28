@@ -6,8 +6,8 @@ import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { createElement } from '@wordpress/element';
-import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
+import { getUnique } from './css-variables';
 import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
@@ -70,6 +70,7 @@ export const registerBlocks = (
 
 	if (select(STORE_NAME).getConfigUseWrapper()) {
 		dispatch(STORE_NAME).setWrapper(wrapperManifest);
+		dispatch(STORE_NAME).setWrapperComponent(wrapperComponent);
 	}
 
 	setStoreGlobalWindow();
@@ -179,9 +180,17 @@ export const registerBlocks = (
 	// Set all data to the dom that is necessary for project.
 	if (process.env.NODE_ENV !== 'test') {
 		// Require set like this because some import issue with jest unit tests.
-		const { blocksFilterHook } = require('./hooks');
+		const {
+			setCorrectBlockData,
+			setCorrectBlockAttributes,
+			setWrapperComponentOutput
+		} = require('./hooks');
 
-		addFilter('editor.BlockListBlock', `eightshift/${select(STORE_NAME).getSettingsNamespace()}`, blocksFilterHook);
+		const filterNamespace = `eightshift/${select(STORE_NAME).getSettingsNamespace()}`;
+
+		addFilter('editor.BlockListBlock', filterNamespace, setCorrectBlockData);
+		addFilter('blocks.registerBlockType', filterNamespace, setCorrectBlockAttributes);
+		addFilter('editor.BlockEdit', filterNamespace, setWrapperComponentOutput);
 	}
 };
 
@@ -331,7 +340,7 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  * @returns {string?}
  */
 export const getNamespace = (globalManifest, blockManifest) => {
-	return (typeof blockManifest.namespace === 'undefined') ? globalManifest.namespace : blockManifest.namespace;
+	return (!blockManifest?.namespace) ? globalManifest.namespace : blockManifest.namespace;
 };
 
 /**
@@ -344,8 +353,8 @@ export const getNamespace = (globalManifest, blockManifest) => {
  *
  * @returns {string}
  */
-export const getFullBlockName = (globalManifest, blockManifest) => {
-	return `${getNamespace(globalManifest, blockManifest)}/${blockManifest.blockName}`;
+export const getFullBlockName = (globalManifest, blockManifest, deliminator = '/') => {
+	return `${getNamespace(globalManifest, blockManifest)}${deliminator}${blockManifest.blockName}`;
 };
 
 /**
@@ -642,6 +651,7 @@ export const prepareComponentAttributes = (
 
 /**
  * Get Block attributes combined in one: "shared, global, wrapper, components, block".
+ * All common attributes are added in hooks.
  *
  * @param {object} globalManifest     - Global manifest.
  * @param {object} wrapperManifest    - `Wrapper` manifest.
@@ -668,34 +678,12 @@ export const getAttributes = (
 	} = parentManifest;
 
 	const {
+		namespace,
 		attributes: attributesGlobal,
-		blockClassPrefix = 'block',
 	} = globalManifest;
 
 	const output = {
-		blockName: {
-			type: 'string',
-			default: blockName,
-		},
-		blockClientId: {
-			type: 'string'
-		},
-		blockTopLevelId: { // Used to pass reference to all components.
-			type: 'string',
-			default: getUnique(),
-		},
-		blockFullName: {
-			type: 'string',
-			default: getFullBlockName(globalManifest, parentManifest),
-		},
-		blockClass: {
-			type: 'string',
-			default: `${blockClassPrefix}-${blockName}`,
-		},
-		blockJsClass: {
-			type: 'string',
-			default: `js-${blockClassPrefix}-${blockName}`,
-		},
+		...getCommonAttributes(namespace, blockName),
 		...((typeof attributesGlobal === 'undefined') ? {} : attributesGlobal),
 		...(wrapperManifest?.attributes ?? {}),
 		...prepareComponentAttributes(componentsManifest, parentManifest),
@@ -703,6 +691,55 @@ export const getAttributes = (
 
 	return output;
 };
+
+/**
+ * Get common attributes.
+ *
+ * @param {string} namespace Namespace prefix.
+ * @param {string} blockName Block name without namespace.
+ * @param {boolean} [isInternalBlock=true] Define if block is internal or other.
+ *
+ * @returns {objects}
+ *
+ * @access private
+ *
+  * Usage:
+ * ```js
+ * getCommonAttributes('core', 'paragraph', false);
+ * getCommonAttributes('eightshift-boilerplate', 'paragraph', true);
+ * ```
+ */
+export const getCommonAttributes = (namespace, blockName, isInternalBlock = true) => {
+
+	let prefix = 'block';
+
+	return {
+		blockName: {
+			type: 'string',
+			default: blockName,
+		},
+		blockClientId: {
+			type: 'string',
+			default: getUnique(),
+		},
+		blockFullName: {
+			type: 'string',
+			default: `${namespace}/${blockName}`,
+		},
+		blockWrapClass: {
+			type: 'string',
+			default: `${namespace}-${blockName}`,
+		},
+		blockClass: {
+			type: 'string',
+			default: isInternalBlock ? `${prefix}-${blockName}` : `${prefix}-${namespace}-${blockName}`,
+		},
+		blockJsClass: {
+			type: 'string',
+			default: isInternalBlock ? `js-${prefix}-${blockName}` : `js-${prefix}-${namespace}-${blockName}`,
+		},
+	};
+}
 
 /**
  * Get Block example attributes combined in one: "components and block".

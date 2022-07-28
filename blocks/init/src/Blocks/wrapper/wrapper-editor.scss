@@ -4,19 +4,14 @@ body {
 	.editor-styles-wrapper > .is-root-container {
 		height: initial !important;
 
-		@extend %wrapper;
-
-		> * {
-			@extend %wrapper-children;
-			@extend %wrapper-children-editor;
-		}
+		@include grid(true);
 
 		.wrapper__grid {
 			display: none;
 		}
 
 		> .wrapper__grid {
-			@extend %wrapper;
+			@include grid-parent;
 			display: block;
 			position: absolute;
 			top: 0;

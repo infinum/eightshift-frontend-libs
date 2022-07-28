@@ -1,44 +1,99 @@
 import React from 'react';
-import _ from 'lodash';
+import { assign } from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
+import { getCommonAttributes } from './registration';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './store';
 
+const namespace = select(STORE_NAME).getSettingsNamespace();
+
 /**
- * Filter callback for setting up the correct data to the blocks.
+ * Update attributes with the correct blockClientId with the block clientID.
  *
- * @abstract private
+ * @access private
  */
- export const blocksFilterHook = createHigherOrderComponent((BlockListBlock) => {
+export const setCorrectBlockData = createHigherOrderComponent((BlockListBlock) => {
 	return (innerProps) => {
 		const {
-			name,
 			clientId,
+			name,
+			attributes,
+			block,
 		} = innerProps;
 
 		let updatedProps = innerProps;
 
-		// Update only our blocks.
-		if (name.split('/')[0] === select(STORE_NAME).getSettingsNamespace()) {
-			updatedProps = _.assign(
-				{},
-				innerProps,
-				{
-					// Assign clientId to our internal attribute used for inline css variables.
-					attributes: _.assign({}, innerProps.attributes, {
+		if (name.split('/')[0] === namespace) {
+			// Update only our blocks.
+			updatedProps = assign({}, innerProps, {
+				// Assign clientId to our internal attribute used for inline css variables.
+				attributes: assign({}, attributes, {
+					blockClientId: clientId,
+				}),
+				block: {
+					attributes: assign({}, block.attributes, {
 						blockClientId: clientId,
 					}),
-					block: {
-						attributes: _.assign({}, innerProps.block.attributes, {
-							blockClientId: clientId,
-						}),
-					},
-
-					// Add className to block defined by our project.
-					className: select(STORE_NAME).getSettingsGlobalVariablesCustomBlockName(),
-				}
-			);
+				},
+			});
 		}
-		return <BlockListBlock {...updatedProps} />;
+
+		return (
+			<BlockListBlock {...updatedProps} />
+		);
 	};
-}, 'blocksFilterHook');
+}, 'setCorrectBlockData');
+
+/**
+ * Set correct block attributes for not our eightshift blocks.
+ *
+ * @param {object} settings Block settings to filter.
+ * @param {string} name Block name to filter.
+ * 
+ * @access private
+ * 
+ * @returns {object} Correct blocks attributes.
+ *
+ */
+export const setCorrectBlockAttributes = (settings, name) => {
+	const blockNameSplit = name.split('/');
+	const blockNamespace = blockNameSplit[0];
+	const blockName = blockNameSplit[1];
+
+	const wrapperAttributes = select(STORE_NAME).getWrapperAttributes();
+
+	if (blockNamespace !== namespace) {
+		const {
+			attributes,
+		} = settings;
+		return assign({}, settings, {
+			attributes: assign({}, attributes, wrapperAttributes, getCommonAttributes(blockNamespace, blockName, false)),
+		});
+	}
+
+	return settings;
+};
+
+/**
+ * Set wrapper component around the not Eightshift
+ */
+export const setWrapperComponentOutput = createHigherOrderComponent((BlockEdit) => {
+	const WrapperComponent = select(STORE_NAME).getWrapperComponent();
+
+	return (props) => {
+		const {
+			name,
+		} = props;
+
+			return (
+					<>
+						{(name.split('/')[0] !== namespace)
+							? <WrapperComponent props={props}>
+									<BlockEdit { ...props } />
+								</WrapperComponent>
+							: <BlockEdit { ...props } />
+						}
+					</>
+			);
+	};
+}, 'setWrapperComponentOutput');

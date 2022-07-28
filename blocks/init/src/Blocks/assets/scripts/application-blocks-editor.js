@@ -21,6 +21,7 @@ import {
 } from '@eightshift/frontend-libs/scripts/editor';
 import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
+import { hooks as wrapperHooks } from './../../wrapper/wrapper-hooks';
 import globalSettings from '../../manifest.json';
 
 registerBlocks(
@@ -42,6 +43,8 @@ registerVariations(
 	require.context('./../../custom', true, /manifest.json$/),
 	require.context('./../../variations', true, /overrides.json$/),
 );
+
+wrapperHooks();
 
 // Output global css variables.
 outputCssVariablesGlobal();

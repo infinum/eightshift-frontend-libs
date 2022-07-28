@@ -349,8 +349,8 @@ export const props = (newName, attributes, manual = {}) => {
 	const includes = [
 		'blockName',
 		'blockClientId',
-		'blockTopLevelId',
 		'blockFullName',
+		'blockWrapClass',
 		'blockClass',
 		'blockJsClass',
 		'componentJsClass',

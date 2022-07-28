@@ -16,7 +16,7 @@ if (!$paragraphUse) {
 	return;
 }
 
-$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
+$unique = Components::getUnique();
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';

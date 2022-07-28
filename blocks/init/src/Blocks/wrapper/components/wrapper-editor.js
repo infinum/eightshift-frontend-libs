@@ -1,20 +1,18 @@
 import React from 'react';
 import { useSelect } from '@wordpress/data';
-import { outputCssVariables, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, checkAttr, getUnique } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../manifest.json';
 
-export const WrapperEditor = ({ clientId, attributes, children }) => {
+export const WrapperEditor = ({ attributes, children }) => {
 	const {
-		blockClass,
-	} = attributes;
-
-	const wrapperMainClass = 'wrapper';
+		componentClass,
+	} = manifest;
 
 	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
 
-	if (!wrapperDisable) {
-		attributes.uniqueWrapperId = clientId;
+	if (wrapperDisable) {
+		return children;
 	}
 
 	const isEditMode = useSelect((select) => {
@@ -25,11 +23,11 @@ export const WrapperEditor = ({ clientId, attributes, children }) => {
 		const items = [];
 
 		for(let i = 1; i <= globalManifest.globalVariables.maxCols; i++) {
-			items.push(<div className={`${wrapperMainClass}__grid-item`} key={i}>{i}</div>);
+			items.push(<div className={`${componentClass}__grid-item`} key={i}>{i}</div>);
 		}
 
 		return (
-			<div className={`${wrapperMainClass}__grid`}>
+			<div className={`${componentClass}__grid`}>
 				{items}
 			</div>
 		);
@@ -37,10 +35,6 @@ export const WrapperEditor = ({ clientId, attributes, children }) => {
 
 	return (
 		<>
-			{!wrapperDisable &&
-				outputCssVariables(attributes, manifest, clientId, globalManifest, blockClass)
-			}
-
 			{isEditMode &&
 				<GetGridLayout />
 			}

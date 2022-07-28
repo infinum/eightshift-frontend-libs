@@ -13,7 +13,7 @@
 @import '@eightshift/frontend-libs/styles/scss/normalize';
 
 // Register Wrapper block styles.
-@import './../../wrapper/wrapper-style';
+// @import './../../wrapper/wrapper-style';
 
 // Find all components and require component_name-style.scss inside it.
 @import './../../components/*/*-style.scss';

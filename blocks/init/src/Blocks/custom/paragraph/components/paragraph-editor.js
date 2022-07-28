@@ -11,10 +11,9 @@ export const ParagraphEditor = (keyProps) => {
 
 	const {
 		blockFullName,
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	const propsObject = props('paragraph', attributes);
 

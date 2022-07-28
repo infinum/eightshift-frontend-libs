@@ -2,9 +2,5 @@
 @import './style/shared';
 
 .main-content {
-	@extend %wrapper;
-
-	> * {
-		@extend %wrapper-children;
-	}
+	@include grid;
 }

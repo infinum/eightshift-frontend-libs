@@ -6,10 +6,9 @@ import globalManifest from './../../../manifest.json';
 
 export const HeadingEditor = ({ attributes, setAttributes }) => {
 	const {
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	return (
 		<>

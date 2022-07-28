@@ -17,10 +17,9 @@ export const HeadingEditor = (attributes) => {
 		blockClass,
 		additionalClass,
 		placeholder = __('Add content', 'eightshift-frontend-libs'),
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingContent = checkAttr('headingContent', attributes, manifest);

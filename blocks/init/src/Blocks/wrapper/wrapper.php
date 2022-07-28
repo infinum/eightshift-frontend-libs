@@ -8,21 +8,45 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 1));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getWrapper();
 
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
 
-if (!$wrapperDisable) {
-	$unique = Components::getUnique();
-	$blockClass = $attributes['blockClass'] ?? '';
-	$attributes['uniqueWrapperId'] = $unique;
+if ($wrapperDisable) {
+	$this->renderWrapperView(
+		$templatePath,
+		$attributes,
+		$innerBlockContent
+	);
 
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest, $blockClass); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	return;
 }
 
-$this->renderWrapperView(
-	$templatePath,
-	$attributes,
-	$innerBlockContent
-);
+$componentClass = $manifest['componentClass'];
+
+$blockWrapClass = Components::checkAttr('blockWrapClass', $attributes, $manifest);
+
+$customBlockName = Components::getSettingsGlobalVariablesCustomBlockName();
+
+$wrapperClass = Components::classnames([
+	$componentClass,
+	$customBlockName,
+	$blockWrapClass,
+]);
+
+$unique = Components::getUnique();
+
+?>
+<div class="<?php echo \esc_attr($wrapperClass); ?>" data-id="<?php echo \esc_attr($unique); ?>">
+	<?php
+	echo Components::outputCssVariables($attributes, $manifest, $unique, [], $componentClass);
+
+	$this->renderWrapperView(
+		$templatePath,
+		$attributes,
+		$innerBlockContent
+	);
+	?>
+</div>
+
+

@@ -50,7 +50,7 @@ $buttonClass = Components::classnames([
 	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
 ]);
 
-$unique = $attributes['uniqueWrapperId'] ?? Components::getUnique();
+$unique = Components::getUnique();
 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 ?>

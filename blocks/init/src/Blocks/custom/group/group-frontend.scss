@@ -1,9 +1,5 @@
-@import './../../wrapper/style/shared.scss';
+@import './../../wrapper/style/shared';
 
 .block-group {
-	@extend %wrapper;
-
-	> * {
-		@extend %wrapper-children;
-	}
+	@include grid;
 }

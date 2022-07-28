@@ -17,10 +17,9 @@ export const ButtonEditor = (attributes) => {
 		additionalClass,
 		blockClass,
 		placeholder = __('Add content', 'eightshift-frontend-libs'),
-		uniqueWrapperId,
 	} = attributes;
 
-	const unique = uniqueWrapperId ?? useMemo(() => getUnique(), []);
+	const unique = useMemo(() => getUnique(), []);
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);
 	const buttonUse = checkAttr('buttonUse', attributes, manifest);
