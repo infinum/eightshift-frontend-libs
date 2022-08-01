@@ -10,6 +10,7 @@ const {
   argumentOperations: { maybePrompt },
   commandLine: {
     cloneRepoTo,
+    checkRequirements,
     installNodeDependencies,
     installComposerDependencies,
   },
@@ -31,12 +32,22 @@ exports.handler = async (argv) => {
   await writeIntro();
   let step = 1;
 
+  // Trigger prompts if any of the required arguments was not set
   const promptedInfo = await maybePrompt(scriptArguments, argv);
+  // Check if you are in the required folder
   const requiredPath = await installPath('themes');
   const projectPath = path.join(requiredPath, promptedInfo.package);
   const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
   const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 
+  // Check if all requirements are installed 
+  await installStep({
+		describe: `${step}. Checking requirements`,
+		thisHappens: checkRequirements(),
+	});
+	step++;
+
+  // Clone repo from git with given arguments
   await installStep({
     describe: `${step}. Cloning repo`,
     thisHappens: cloneRepoTo(boilerplateRepoUrl, projectPath, boilerplateRepoBranch),
@@ -57,6 +68,7 @@ exports.handler = async (argv) => {
   }
   step++;
 
+  // Replace default theme information with the prompted information
   await installStep({
     describe: `${step}. Replacing theme info`,
     thisHappens: searchReplace(promptedInfo, projectPath),
@@ -77,18 +89,21 @@ exports.handler = async (argv) => {
   }
   step++;
 
+  // Remove unused cloned folders and files
   await installStep({
     describe: `${step}. Cleaning up`,
     thisHappens: cleanup(projectPath),
   });
   step++;
 
+  // Reset version numbers to 1.0.0
   await installStep({
     describe: `${step}. Replacing version numbers`,
     thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
   });
   step++;
 
+  // Show success message and exit successfully.
   log('----------------');
   log('Success!!!');
   log('');

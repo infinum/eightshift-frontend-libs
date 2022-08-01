@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - develop
-      - master
+      - main
     paths-ignore:
       - '**.md'
   pull_request:
@@ -19,35 +19,45 @@ concurrency:
 
 jobs:
   tests:
-    name: Jest - Unit tests
+    name: Jest - Unit tests on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
-
+    continue-on-error: ${{ matrix.allowed_failure }}
     strategy:
       fail-fast: false
       matrix:
-        node: [ 14, 15.x ]
+        node: [ '16' ]
+        allowed_failure: [ false ]
+        include:
+          # Test against latest Node version, but allow it to fail.
+          # We need success only on LTS versions.
+          - node: '18'
+            allowed_failure: true
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set Node.js version
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
 
       - name: Install node packages
         run: npm install
 
-      - name: Run unit tests
-        run: npm run test:unit
+      - name: Install node packages in setup
+        working-directory: ./setup/create-wp-project
+        run: npm install
+
+      - name: Run coverage generation
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/clover.xml
+          flags: unittests
+          name: frontend-libs-codecov
+          fail_ci_if_error: true
+

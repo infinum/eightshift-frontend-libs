@@ -4,6 +4,7 @@
 [![GitHub tag](https://img.shields.io/github/tag/infinum/eightshift-frontend-libs.svg?style=for-the-badge)](https://github.com/infinum/eightshift-frontend-libs)
 [![GitHub stars](https://img.shields.io/github/stars/infinum/eightshift-frontend-libs.svg?style=for-the-badge&label=Stars)](https://github.com/infinum/eightshift-frontend-libs/)
 [![license](https://img.shields.io/github/license/infinum/eightshift-frontend-libs.svg?style=for-the-badge)](https://github.com/infinum/eightshift-frontend-libs)
+[![codecov](https://img.shields.io/codecov/c/gh/infinum/eightshift-frontend-libs/develop?label=Codecov&style=for-the-badge&token=ScdMBJWv59)](https://codecov.io/gh/infinum/eightshift-frontend-libs)
 
 # Eightshift Frontend Libs
 
