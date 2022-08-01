@@ -1,0 +1,22 @@
+.#{global-settings(namespace)}-grid-preview {
+	position: absolute!important;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0.3;
+	pointer-events: none;
+
+	.block-grid-preview {
+		&__grid {
+			@include grid-parent;
+			background-color: var(--global-colors-primary);
+			height: 100%;
+		}
+	
+		&__grid-item {
+			background-color: var(--global-colors-ocean);
+			height: 100%;
+		}
+	}
+}

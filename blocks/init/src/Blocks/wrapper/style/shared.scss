@@ -27,7 +27,7 @@
 @mixin grid($inEditor: false) {
 	@include grid-parent;
 
-	* {
+	> * {
 		@include grid-item;
 
 		@if $inEditor {

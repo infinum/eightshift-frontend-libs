@@ -143,7 +143,7 @@ function convertJsonToSassMapInner(data, key) {
 }
 
 /**
- * Convert Json to SASS valid output and prefix it with map key.
+* Convert Json to SASS valid output and prefix it with map key.
  *
  * @param path Path to JSON file.
  * @param propertyName Name of the variable that will it be exported.
@@ -158,11 +158,17 @@ function convertJsonToSass(path, propertyName = 'globalVariables', variableName 
 		data = require(path);
 	}
 
-	if (Object.getOwnPropertyNames(data).length === 0 || !Object.prototype.hasOwnProperty.call(data, 'globalVariables')) {
+	if (Object.getOwnPropertyNames(data).length === 0) {
 		return '';
 	}
 
-	return `$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
+	return `$${variableName}: (
+		namespace: ${data['namespace']},
+		background: ${data['background']},
+		foreground: ${data['foreground']},
+		config: (${convertJsonToSassMap(data['config'])}),
+		${convertJsonToSassMap(data['globalVariables'])}
+	);`;
 }
 
 module.exports = {

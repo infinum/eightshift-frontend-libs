@@ -13,11 +13,7 @@ $manifest = Components::getWrapper();
 $wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
 
 if ($wrapperDisable) {
-	$this->renderWrapperView(
-		$templatePath,
-		$attributes,
-		$innerBlockContent
-	);
+	echo $wrapperChildren;
 
 	return;
 }
@@ -41,11 +37,7 @@ $unique = Components::getUnique();
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique, [], $componentClass);
 
-	$this->renderWrapperView(
-		$templatePath,
-		$attributes,
-		$innerBlockContent
-	);
+	echo $wrapperChildren;
 	?>
 </div>
 

@@ -1,0 +1,15 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"active": true,
+	"blockName": "grid-preview",
+	"title": "Grid Preview",
+	"description" : "Grid preview block only used in editor to display grid. It will not show on frontend.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-group"
+	},
+	"keywords": [
+		"grid",
+		"preview"
+	]
+}

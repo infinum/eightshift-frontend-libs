@@ -6,25 +6,13 @@ body {
 
 		@include grid(true);
 
-		.wrapper__grid {
-			display: none;
-		}
-
-		> .wrapper__grid {
-			@include grid-parent;
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			background-color: var(--global-colors-primary);
-			opacity: 0.3;
-		}
-
-		.wrapper__grid-item {
-			background-color: var(--global-colors-ocean);
-			height: 100%;
+		.wrapper {
+			// Disable none es blocks div around the inner blocks.
+			&.none-eightshift-block {
+				.wrapper {
+					display: contents;
+				}
+			}
 		}
 	}
 }

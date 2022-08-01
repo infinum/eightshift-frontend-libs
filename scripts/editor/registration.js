@@ -183,14 +183,12 @@ export const registerBlocks = (
 		const {
 			setCorrectBlockData,
 			setCorrectBlockAttributes,
-			setWrapperComponentOutput
 		} = require('./hooks');
 
 		const filterNamespace = `eightshift/${select(STORE_NAME).getSettingsNamespace()}`;
 
 		addFilter('editor.BlockListBlock', filterNamespace, setCorrectBlockData);
 		addFilter('blocks.registerBlockType', filterNamespace, setCorrectBlockAttributes);
-		addFilter('editor.BlockEdit', filterNamespace, setWrapperComponentOutput);
 	}
 };
 

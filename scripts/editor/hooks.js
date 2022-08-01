@@ -73,27 +73,3 @@ export const setCorrectBlockAttributes = (settings, name) => {
 
 	return settings;
 };
-
-/**
- * Set wrapper component around the not Eightshift
- */
-export const setWrapperComponentOutput = createHigherOrderComponent((BlockEdit) => {
-	const WrapperComponent = select(STORE_NAME).getWrapperComponent();
-
-	return (props) => {
-		const {
-			name,
-		} = props;
-
-			return (
-					<>
-						{(name.split('/')[0] !== namespace)
-							? <WrapperComponent props={props}>
-									<BlockEdit { ...props } />
-								</WrapperComponent>
-							: <BlockEdit { ...props } />
-						}
-					</>
-			);
-	};
-}, 'setWrapperComponentOutput');
