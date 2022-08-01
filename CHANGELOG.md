@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [7.0.1] - 2022-08-01
+
+### Changed 
+- Fixing tests.
+- Updating create setup process to show requirements and forbidden words.
+- Updated Github actions.
+- Override editor to fix broken inserter position.
+
+### Added
+- Tag in readme for codecov.
+- Added tests coverage.
+
 ## [7.0.0] - 2022-07-11
 
 ### Changed
@@ -598,6 +610,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[7.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.2.0...7.0.0
 [6.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.0.5...6.1.0
