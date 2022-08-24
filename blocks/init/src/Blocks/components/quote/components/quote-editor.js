@@ -46,7 +46,7 @@ export const QuoteEditor = (attributes) => {
 
 				<blockquote className={quoteContentClass}>
 					<ParagraphEditor
-						{...props('heading', attributes, {
+						{...props('quote', attributes, {
 							blockClass: componentClass,
 						})}
 					/>
@@ -56,7 +56,7 @@ export const QuoteEditor = (attributes) => {
 
 				<figcaption className={quoteCaptionClass}>
 					<ParagraphEditor
-						{...props('paragraph', attributes, {
+						{...props('attribution', attributes, {
 							blockClass: componentClass,
 						})}
 					/>

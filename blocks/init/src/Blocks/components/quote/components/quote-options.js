@@ -39,7 +39,7 @@ export const QuoteOptions = (attributes) => {
 					<ParagraphOptions
 						label={__('Quote', 'eightshift-frontend-libs')}
 						showLabel={true}
-						{...props('heading', attributes, {
+						{...props('quote', attributes, {
 							options: getOptions(attributes, manifest),
 						})}
 					/>
@@ -48,7 +48,7 @@ export const QuoteOptions = (attributes) => {
 						label={__('Attribution', 'eightshift-frontend-libs')}
 						showLabel={true}
 						showParagraphUse={true}
-						{...props('paragraph', attributes, {
+						{...props('attribution ', attributes, {
 							options: getOptions(attributes, manifest),
 						})}
 					/>

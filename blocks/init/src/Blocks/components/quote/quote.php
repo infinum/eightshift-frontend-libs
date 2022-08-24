@@ -38,7 +38,7 @@ $quoteClass = Components::classnames([
 		<?php
 		echo Components::render(
 			'paragraph',
-			Components::props('heading', $attributes, [
+			Components::props('quote', $attributes, [
 				'blockClass' => $componentClass
 			])
 		);
@@ -51,7 +51,7 @@ $quoteClass = Components::classnames([
 		<?php
 		echo Components::render(
 			'paragraph',
-			Components::props('paragraph', $attributes, [
+			Components::props('attribution', $attributes, [
 				'blockClass' => $componentClass
 			])
 		);
