@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Button, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
+import { Button, Popover, BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
 import { ColorPaletteCustom, icons, IconLabel } from '../../../scripts';
 import { SimpleHorizontalSingleSelect } from '@eightshift/frontend-libs/scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
 import { ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts/components/color-palette-custom/color-palette-custom';
