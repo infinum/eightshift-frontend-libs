@@ -1,35 +1,49 @@
 import React from 'react';
-import { ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { Button } from '@wordpress/components';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A fancy replacement for a component Use toggle.
- * 
+ *
  * @param {object} props                       - ComponentUseToggle options.
  * @param {string} props.label                 - Usually component name.
  * @param {boolean} props.checked              - Is the component currently in use.
  * @param {function} props.onChange            - `onChange` handler from the `ToggleSwitch`.
  * @param {boolean} [props.showUseToggle=true] - If `true`, the use toggle is shown.
- * @param {boolean} [props.showLabel=true]     - If `true` and the toggle is not visible, the label will be shown.
+ * @param {boolean} [props.disabled=false]     - Is the component currently disabled.
  */
 export const ComponentUseToggle = ({
 	label,
 	checked,
 	onChange,
 	showUseToggle = true,
-	showLabel = true,
+	disabled = false,
 }) => {
-	return (
-		<>
-			{showUseToggle &&
-				<ToggleControl
-					label={label}
-					checked={checked}
-					onChange={onChange}
-					className='es-panel-text-divider es-icon-toggle es-icon-toggle--reverse'
-				/>
-			}
+	const toggleIcon = React.cloneElement(icons.toggleOff, {
+		className: `es-collapsable-component-use-toggle-v2__toggle-button has-full-color-off-state ${checked ? 'is-active' : ''}`,
+	});
 
-			{!showUseToggle && showLabel && label && <span className='es-panel-text-divider'>{label}</span>}
-		</>
+	return (
+		<div className={`es-collapsable-component-use-toggle-v2__trigger es-h-between es-mb-2.5 es-pb-1.0 ${checked ? 'es-border-b-cool-gray-300' : 'es-border-b-transparent'}`}>
+			<div className='es-h-spaced'>
+				{showUseToggle &&
+					<Button
+						icon={toggleIcon}
+						onClick={() => onChange(!checked)}
+						disabled={disabled}
+						className='es-button-square-24 es-button-icon-24 es-button-no-outline es-p-0!'
+						label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
+						showTooltip
+					/>
+				}
+
+				{label &&
+					<span className='es-collapsable-component-use-toggle-v2__label'>
+						{label}
+					</span>
+				}
+			</div>
+		</div>
 	);
 };
