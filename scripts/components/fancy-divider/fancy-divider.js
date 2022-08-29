@@ -1,9 +1,8 @@
 import React from 'react';
-import classnames from 'classnames';
 
 /**
  * A simple <hr /> replacement that draws text.
- * 
+ *
  * @param {object} props                      - FancyDivider options.
  * @param {string} props.label                - Label shown on the divider.
  * @param {boolean} [props.lowercase=true]    - If `true`, the label is shown in an alternate, lowercase style.
@@ -17,7 +16,7 @@ export const FancyDivider = (props) => {
 	} = props;
 
 	return (
-		<span className={classnames(['es-fancy-divider', lowercase ? 'es-fancy-divider--lowercase' : '', additionalClasses ?? ''])}>
+		<span className={`es-fancy-divider es-my-6 ${lowercase ? 'es-fancy-divider--lowercase' : ''} ${additionalClasses ?? ''}`}>
 			<span>{label}</span>
 		</span>
 	);
