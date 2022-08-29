@@ -3,7 +3,8 @@ import { Icon } from '@wordpress/components';
 
 /**
  * A simple icon-label combo for streamlined components.
- * 
+ *
+ * @param {object} props                         - IconLabel options.
  * @param {React.Component} props.label          - Label to display.
  * @param {React.Component} props.icon           - Icon to display.
  * @param {React.Component?} [props.subtitle]    - Label to display.
