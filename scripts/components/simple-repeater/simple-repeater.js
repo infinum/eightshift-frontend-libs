@@ -94,12 +94,12 @@ export const SimpleRepeater = ({
 					>
 						{children.map((item, i) => (
 							<SortableItem
-								key={item.id}
-								id={item.id}
-								icon={item.icon}
-								title={item.title}
-								subtitle={item.subtitle}
-								onRemove={item.onRemove ?? (
+								key={item.props.id}
+								id={item.props.id}
+								icon={item.props.icon}
+								title={item.props.title}
+								subtitle={item.props.subtitle}
+								onRemove={item.props.onRemove ?? (
 									() => {
 										const newArray = [...items].filter((_, index) => index !== i);
 										setAttributes({ [attributeName]: newArray });
@@ -108,7 +108,7 @@ export const SimpleRepeater = ({
 								isFirst={i === 0}
 								isLast={i === items?.length - 1}
 							>
-								{item.children}
+								{item.props.children}
 							</SortableItem>
 						))}
 					</SortableContext>
