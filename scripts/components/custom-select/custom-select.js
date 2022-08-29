@@ -226,9 +226,8 @@ export const CustomSelect = (props) => {
 		};
 	}, [selected, multiple, simpleValue, options, defaultOptions]);
 
-	return (
-		<BaseControl label={label} help={help} className={(label || help) ? additionalClasses : ''} >
-			<SortableSelect
+	const selectControl = (
+		<SortableSelect
 				menuPortalTarget={document.body}
 				menuPosition='fixed'
 				useDragHandle
@@ -267,7 +266,7 @@ export const CustomSelect = (props) => {
 				closeMenuOnSelect={closeMenuOnSelect}
 				theme={(theme) => ({
 					...theme,
-					borderRadius: 2,
+					borderRadius: 3,
 					colors: {
 						...theme.colors,
 						primary25: 'hsla(0, 0%, 90%, 1)',
@@ -335,6 +334,15 @@ export const CustomSelect = (props) => {
 					}
 				}}
 			/>
+	);
+
+	if (!label && !help) {
+		return selectControl;
+	}
+
+	return (
+		<BaseControl label={label} help={help} className={(label || help) ? additionalClasses : ''} >
+			{selectControl}
 		</BaseControl>
 	);
 };
