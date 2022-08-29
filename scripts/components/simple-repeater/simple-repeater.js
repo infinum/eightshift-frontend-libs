@@ -76,7 +76,7 @@ export const SimpleRepeater = ({
 				<Button
 					onClick={() => setAttributes({ [attributeName]: [...items, { id: (items?.length ?? 0) + 1 }] })}
 					icon={icons.plusCircle}
-					className='es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0 es-mr-1.5'
+					className='es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0'
 					label={__('Add item', 'eightshift-frontend-libs')}
 				/>
 			</div>
