@@ -29,6 +29,7 @@
 	--es-admin-gray-200: #F0F0F0;
 	--es-admin-gray-250: #EBEBEB;
 	--es-admin-gray-300: #E6E6E6;
+	--es-admin-gray-400: #CCCCCC;
 	--es-admin-gray-500: #AAAAAA;
 	--es-admin-gray-600: #A0A0A0;
 	--es-admin-gray-700: #888888;
@@ -47,13 +48,48 @@
 	--es-admin-on-blue-500: #FFFFFF;
 	--es-admin-blue-gray-50: #ECEFF1;
 	--es-admin-on-blue-gray-50: #263238;
-	--es-admin-cool-gray-900: #D7DADE;
+	--es-admin-cool-gray-50: #F8F8F9;
+	--es-admin-cool-gray-100: #E9EBEC;
+	--es-admin-cool-gray-200: #DFE1E3;
+	--es-admin-cool-gray-300: #D7DADE;
+	--es-admin-cool-gray-400: #B6BBC0;
+	--es-admin-cool-gray-450: #89929A;
 	--es-admin-cool-gray-500: #6C7781;
+	--es-admin-cool-gray-600: #515961;
+	--es-admin-cool-gray-650: #444B51;
+	--es-admin-cool-gray-700: #3B4147;
+	--es-admin-cool-gray-800: #262A2D;
+	--es-admin-cool-gray-900: #202427;
 	--es-admin-eightshift-50: #F8FFFF;
 	--es-admin-eightshift-500: #0D3636;
 
 	// Eases
-	--es-admin-ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+	// Source: https://easings.net/
+	--es-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	--es-ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	--es-ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+	--es-ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--es-ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+	--es-ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+	--es-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+	--es-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--es-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--es-ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+	--es-ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+	--es-ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--es-ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+	--es-ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--es-ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--es-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--es-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--es-ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--es-ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--es-ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--es-ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--es-ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--es-ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--es-ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--es-admin-ease-out-cubic: var(--es-ease-out-cubic);
 }
 
 body {
@@ -143,12 +179,24 @@ body {
 		margin-bottom: 0.5rem;
 	}
 
-	// Match WP button size to WP input field height.
+	// Match WP button size or border to WP input field height/border-color.
 	.es-input-matched-button-size {
 		min-height: 1.875rem !important;
 		min-width: 1.875rem !important;
 		height: 1.875rem !important;
 		width: 1.875rem !important;
+	}
+
+	.es-input-matched-slight-button-border {
+		border-radius: 3px;
+
+		&:not(.is-pressed) {
+			box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 80%);
+
+			&:hover {
+				box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 70%);
+			}
+		}
 	}
 
 	// Remove outline on WP buttons (e.g. when using 'isDestructive' when you want no border).
@@ -182,7 +230,14 @@ body {
 			flex-shrink: 0;
 
 			&:not(button svg) {
-				color: var(--es-admin-label-flex-svg, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
+				color: var(--es-admin-label-flex-svg, var(--es-admin-cool-gray-650));
+			}
+		}
+
+		&.has-monochrome-icon,
+		&.has-muted-icon {
+			svg:not(button svg) {
+				color: var(--es-admin-cool-gray-450);
 			}
 		}
 	}
@@ -239,15 +294,15 @@ body {
 		.es-toggle-icon-container {
 			--transition-duration: 0.25s;
 			--transition-timing-function-basic: ease-out;
-			--transition-timing-function-transform: var(--es-admin-ease-out-cubic);
+			--transition-timing-function-transform: var(--es-ease-out-back);
 
-			/* stylelint-disable declaration-colon-newline-after */
+			// stylelint-disable declaration-colon-newline-after
 			transition: fill var(--transition-duration) var(--transition-timing-function-basic),
 				fill-opacity var(--transition-duration) var(--transition-timing-function-basic),
 				stroke var(--transition-duration) var(--transition-timing-function-basic),
 				stroke-opacity var(--transition-duration) var(--transition-timing-function-basic),
 				transform var(--transition-duration) var(--transition-timing-function-transform);
-			/* stylelint-enable declaration-colon-newline-after */
+			// stylelint-enable declaration-colon-newline-after
 
 			@media (prefers-reduced-motion) {
 				--transition-duration: 0.01s;
@@ -270,6 +325,39 @@ body {
 				--es-toggle-icon-container-stroke: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 				--es-toggle-icon-container-fill: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 				--es-toggle-icon-container-fill-opacity: 1;
+			}
+		}
+	}
+
+	// Fancy image preview for the Options panel.
+	.es-image-preview {
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 0.5rem;
+
+			margin-bottom: 0.25rem;
+			border: 1px solid var(--es-admin-cool-gray-400);
+
+			aspect-ratio: 3 / 2.25;
+
+			object-fit: cover;
+		}
+	}
+
+	// Animated y-flip arrow.
+	.es-has-animated-y-flip-icon {
+		svg {
+			transition: {
+				property: transform;
+				timing-function: var(--es-ease-out-back);
+				duration: 0.5s;
+			}
+		}
+
+		&.is-active {
+			svg {
+				transform: scaleY(-1);
 			}
 		}
 	}

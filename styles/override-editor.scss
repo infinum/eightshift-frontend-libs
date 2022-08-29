@@ -118,10 +118,7 @@ body {
 			margin: 0 !important;
 
 			&:not(button svg) {
-				color: var(
-					--es-admin-components-base-control-svg,
-					var(--wp-admin-theme-color, var(--es-admin-accent-color-default))
-				);
+				color: var(--es-admin-components-base-control-svg, var(--es-admin-cool-gray-650));
 			}
 		}
 
@@ -219,7 +216,7 @@ body {
 			width: 1.75rem !important;
 			border-radius: 3px;
 			background-color: var(--es-admin-block-icon-background, transparent) !important;
-			color: var(--es-admin-block-icon-background, var(--es-admin-gray-850)) !important;
+			color: var(--es-admin-block-icon-foreground, var(--es-admin-gray-850)) !important;
 
 			svg {
 				width: 1.25rem;
@@ -411,6 +408,26 @@ body {
 	// Fix disabled button showing hover state.
 	.components-button[disabled]:hover {
 		color: currentColor !important;
+	}
+
+	// Align WP panels with our arrows.
+	.components-panel__body .components-panel__arrow {
+		margin-right: 0.25rem !important;
+	}
+
+	// Remove margin from placeholder.
+	.es-placeholder-no-label-margin .components-placeholder__label {
+		margin: 0;
+	}
+
+	// Remove Gutenberg button icon spacing.
+	.es-button-no-icon-spacing > svg {
+		margin-right: 0 !important;
+	}
+
+	// Tweak default text input border radius to better fit in.
+	.components-text-control__input {
+		border-radius: 3px !important;
 	}
 }
 
