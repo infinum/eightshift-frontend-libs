@@ -107,6 +107,7 @@ export const SimpleRepeater = ({
 								)}
 								isFirst={i === 0}
 								isLast={i === items?.length - 1}
+								additionalLabelClass={item?.props?.additionalLabelClass}
 							>
 								{item?.props?.children}
 							</SortableItem>

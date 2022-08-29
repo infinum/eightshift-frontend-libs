@@ -22,6 +22,7 @@ export const SortableItem = (props) => {
 		onRemove,
 		isFirst,
 		isLast,
+		additionalLabelClass,
 	} = props;
 
 	const [showChildren, setShowChildren] = useState(false);
@@ -51,7 +52,7 @@ export const SortableItem = (props) => {
 		])}>
 			<div className={`es-pl-3 es-py-1.0 es-pr-1.0 es-h-between ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
 				<button className={`es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! ${showChildren ? 'es-pointer-events-none' : 'es-cursor-pointer'}`} {...additionalTriggerProps}>
-					<IconLabel icon={icon} label={title} subtitle={subtitle} standalone />
+					<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 
 					{!showChildren &&
 						<div className='es-nested-color-cool-gray-400 es-line-h-0'>
