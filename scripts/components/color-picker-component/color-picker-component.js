@@ -7,7 +7,7 @@ import { ColorPaletteCustomLayout } from '../color-palette-custom/color-palette-
 
 /**
  * Determines the color picker type.
- * 
+ *
  * - `TEXT_COLOR` - displays an icon suitable for text color selection.
  * - `TEXT_HIGHLIGHT_COLOR` - displays an icon suitable for text highlight color selection.
  * - `BACKGROUND_COLOR` - displays an icon suitable for background color selection.
@@ -22,7 +22,7 @@ export const ColorPickerType = {
 
 /**
  * Component that allows simple inline color picking while taking up not much space.
- * 
+ *
  * @param {object} props                                  - ColorPickerComponent options.
  * @param {array?} props.colors                           - List of options to display. If not set, all global manifest colors are used.
  * @param {string} props.value                            - Current value (color slug).
@@ -37,6 +37,7 @@ export const ColorPickerType = {
  * @param {boolean} [props.groupShades=true]              - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
  * @param {boolean?} [props.includeWpBottomSpacing=false] - If `true`, the WP default control spacing will be applied.
  * @param {string?} [props.additionalClasses]             - If provided, the classes are passed to the component.
+ * @param {string?} [props.additionalTriggerClasses]      - If provided, the classes are passed to the component's trigger button.
  */
 export const ColorPickerComponent = ({
 	colors,
@@ -44,7 +45,7 @@ export const ColorPickerComponent = ({
 	onChange,
 	label,
 	canReset = false,
-	pickerPopupTitle = (<h4 className='es-m-0'>{__('Pick a color', 'eightshift-frontend-libs')}</h4>),
+	pickerPopupTitle,
 	type = ColorPickerType.GENERIC,
 	tooltip,
 	disabled = false,
@@ -52,8 +53,23 @@ export const ColorPickerComponent = ({
 	groupShades = true,
 	includeWpBottomSpacing = false,
 	additionalClasses,
+	additionalTriggerClasses,
 }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+	let defaultPopupTitle = __('Pick a color', 'eightshift-frontend-libs');
+
+	switch (type) {
+		case ColorPickerType.BACKGROUND_COLOR:
+			defaultPopupTitle = __('Background color', 'eightshift-frontend-libs');
+			break;
+		case ColorPickerType.TEXT_COLOR:
+			defaultPopupTitle = __('Text color', 'eightshift-frontend-libs');
+			break;
+		case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+			defaultPopupTitle = __('Text highlight color', 'eightshift-frontend-libs');
+			break;
+	}
 
 	const ref = useRef();
 
@@ -86,9 +102,9 @@ export const ColorPickerComponent = ({
 			anchorRef={ref?.current}
 			noArrow={false}
 		>
-			<div className='es-popover-content'>
+			<div className='es-popover-content es-min-w-80!'>
 				<ColorPaletteCustom
-					label={pickerPopupTitle}
+					label={<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>}
 					colors={colors}
 					value={value}
 					onChange={(value) => {
@@ -143,7 +159,7 @@ export const ColorPickerComponent = ({
 			ref={ref}
 			label={getTooltipText()}
 			disabled={disabled}
-			className='es-button-icon-24'
+			className={`es-button-icon-24 ${additionalTriggerClasses ?? ''}`}
 		/>
 	);
 
