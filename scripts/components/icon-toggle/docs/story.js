@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IconToggle } from '../icon-toggle';
-import { icons } from '../../../editor/icons/icons';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
 
@@ -42,7 +42,7 @@ export const component = () => {
 				label={__('Full width', 'eightshift-frontend-libs')}
 				checked={current}
 				onChange={(value) => setCurrent(value)}
-				isCheckbox
+				type='checkbox'
 			/>
 
 			<br />
@@ -53,7 +53,37 @@ export const component = () => {
 				checked={current}
 				onChange={(value) => setCurrent(value)}
 				help={__('Help text here.', 'eightshift-frontend-libs')}
-				isCheckbox
+				type='checkbox'
+			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='button'
+			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='iconButton'
+			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='tileButton'
 			/>
 		</div>
 	);
