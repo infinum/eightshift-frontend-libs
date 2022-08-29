@@ -45,7 +45,12 @@ export { OptionPicker } from './components/option-picker/option-picker';
 export { Responsive } from './components/responsive/responsive';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
 export { SimpleHorizontalSingleSelect } from './components/simple-horizontal-single-select/simple-horizontal-single-select';
+export { SimpleRepeater } from './components/simple-repeater/simple-repeater';
+export { SimpleRepeaterItem } from './components/simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
+export { SpacingSlider } from './components/spacing-slider/spacing-slider';
+export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
+export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 
 // Editor
 export {
@@ -105,6 +110,7 @@ export {
 export { ucfirst } from './editor/utility';
 
 // Helpers
+export { getDefaultBreakpointNames } from './helpers/breakpoints';
 export { camelize } from './helpers/camelize';
 export { cookies } from './helpers/cookies';
 export { debounce } from './helpers/debounce';
