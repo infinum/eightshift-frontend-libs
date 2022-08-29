@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconLabel } from '../icon-label';
-import { icons } from '../../../editor/icons/icons';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
 
