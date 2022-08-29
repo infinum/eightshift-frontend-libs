@@ -55,9 +55,9 @@ export const SimpleRepeater = ({
 		const { active, over } = event;
 
 		if (active.id !== over.id && items) {
-			const items = items.map(({ id }) => id);
-			const oldIndex = items.indexOf(active.id);
-			const newIndex = items.indexOf(over.id);
+			const mappedItems = items.map(({ id }) => id);
+			const oldIndex = mappedItems?.indexOf(active.id) ?? -1;
+			const newIndex = mappedItems?.indexOf(over.id) ?? -1;
 
 			setAttributes({ [attributeName]: arrayMove([...items], oldIndex, newIndex) });
 		}
