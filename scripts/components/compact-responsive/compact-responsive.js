@@ -7,6 +7,7 @@ import { IconLabel, icons, ucfirst, getDefaultBreakpointNames, FancyDivider } fr
  *
  * @param {object} props                                                         - Compact responsive options.
  * @param {React.Component} props.label                                          - Option label.
+ * @param {React.Component?} [props.help]                                        - Optional help text to show below the component.
  * @param {React.Component} props.icon                                           - Option icon.
  * @param {array} props.children                                                 - Items to show.
  * @param {array<string>} [props.breakpoints]                                    - Breakpoints to show (default: `large`, `desktop`, `tablet` and `mobile`)
@@ -17,6 +18,7 @@ import { IconLabel, icons, ucfirst, getDefaultBreakpointNames, FancyDivider } fr
 export const CompactResponsive = (props) => {
 	const {
 		label,
+		help,
 		icon,
 		children = [],
 		breakpoints = getDefaultBreakpointNames(),
@@ -39,6 +41,7 @@ export const CompactResponsive = (props) => {
 	return (
 		<BaseControl
 			className={`es-compact-responsive ${isOpen ? 'is-open' : ''} ${additionalClasses ?? ''}`}
+			help={help}
 			label={
 				<div className='es-flex-between'>
 					<IconLabel icon={icon} label={label} standalone />
