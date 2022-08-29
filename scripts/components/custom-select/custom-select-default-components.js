@@ -1,24 +1,24 @@
 import classNames from 'classnames';
 import React from 'react';
 import { components } from 'react-select';
-import { icons } from '../../editor/icons/icons';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Default dropdown indicator for CustomSelect.
- * 
+ *
  * @param {object} props - components.DropdownIndicator props.
 */
 export const CustomSelectDefaultDropdownIndicator = (props) => (
 	<components.DropdownIndicator {...props}>
-		{React.cloneElement(icons.dropdownCaret, {
-			className: classNames(['es-custom-select-dropdown-icon', props.selectProps.menuIsOpen ? 'is-open' : '']),
+		{React.cloneElement(icons.dropdownCaretAlt, {
+			className: classNames(['es-custom-select-dropdown-icon -es-mr-1.0', props.selectProps.menuIsOpen ? 'is-open' : '']),
 		})}
 	</components.DropdownIndicator>
 );
 
 /**
  * Default clear indicator for CustomSelect.
- * 
+ *
  * @param {object} props - components.DropdownIndicator props.
 */
 export const CustomSelectDefaultClearIndicator = (props) => (
