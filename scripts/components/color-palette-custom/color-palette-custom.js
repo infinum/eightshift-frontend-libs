@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, TextControl } from '@wordpress/components';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './../../editor/store';
 
 /**
  * Determines the color picker layout.
- * 
+ *
  * - `DEFAULT` - colors are shown as circles without labels, each one has a tooltip.
  * - `LIST` - colors as shown as a single-column list with color names visible.
  * - `LIST_TWO_COL` - colors as shown as a two-column list with color names visible.
@@ -21,7 +21,7 @@ export const ColorPaletteCustomLayout = {
 
 /**
  * Modified version of WordPress's `ColorPalette` which saves values as color names/slugs instead of hex codes.
- * 
+ *
  * @param {object} props                                                             - ColorPaletteCustom options.
  * @param {array} props.colors                                                       - Colors to display.
  * @param {object} props.value                                                       - Current value.
@@ -34,7 +34,7 @@ export const ColorPaletteCustomLayout = {
  * @param {ColorPaletteCustomLayout} [props.layout=ColorPaletteCustomLayout.DEFAULT] - Determines the layout of the control.
  * @param {boolean} [props.searchable=false]                                         - If `true`, the list of color can be searched through.
  * @param {boolean} [props.disabled]                                                 - If `true`, the component can't be interacted with.
- * @param {boolean} [props.groupShades=true]                                         - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
+ * @param {boolean} [props.groupShades=true]                                         - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900 or -10, -20, ..., -90).
  */
 export const ColorPaletteCustom = (props) => {
 	const {
@@ -51,7 +51,7 @@ export const ColorPaletteCustom = (props) => {
 		groupShades = true,
 	} = props;
 
-	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900){1})$/gi;
+	const colorSuffixRegex = /(?!^.+)(-?(?:50|100|200|300|400|500|600|700|800|900|10|20|30|40|50|60|70|80|90){1})$/gi;
 
 	let groupedColors = {generic: colors};
 
@@ -64,11 +64,11 @@ export const ColorPaletteCustom = (props) => {
 
 			if (current.slug.match(colorSuffixRegex)?.length) {
 				const newSlug = current.name.replace(colorSuffixRegex, '').trim();
-	
+
 				if (!output[newSlug]) {
 					output[newSlug] = [];
 				}
-	
+
 				output[newSlug] = [
 					...output[newSlug],
 					{
@@ -82,15 +82,15 @@ export const ColorPaletteCustom = (props) => {
 					current,
 				];
 			}
-	
+
 			return output;
 		}, { generic: [] });
-	
+
 		// Don't show color groups if only one color would end up in the group.
 		for (let [colorName, colors] of Object.entries(groupedColors)) {
 			if (colors.length === 1 && colorName !== 'generic') {
 				groupedColors.generic.push(colors[0]);
-	
+
 				delete groupedColors[colorName];
 			}
 		}
@@ -143,7 +143,7 @@ export const ColorPaletteCustom = (props) => {
 			{Object.entries(filteredColors).map(([groupName, groupColors], i) => {
 				const isOtherColors = groupName === 'generic';
 
-				if (groupColors?.length === 0) {
+				if (groupColors?.length === 0 || isOtherColors) {
 					return null;
 				}
 
@@ -159,7 +159,7 @@ export const ColorPaletteCustom = (props) => {
 											key={j}
 											label={name}
 											onClick={() => onChange(slug)}
-											className={`es-button-icon-26 es-button-square-28 ${value === slug ? 'is-generic-swatch-active' : ''}`}
+											className={`es-button-icon-28 es-button-square-30 ${value === slug ? 'is-generic-swatch-active' : ''}`}
 											icon={icons.genericColorSwatch}
 											disabled={disabled}
 											style={{
@@ -189,7 +189,7 @@ export const ColorPaletteCustom = (props) => {
 									key={i}
 									label={name}
 									onClick={() => onChange(slug)}
-									className={`es-button-icon-26 ${layout === ColorPaletteCustomLayout.DEFAULT ? 'es-button-square-28' : ''} ${value === slug ? 'is-generic-swatch-active' : ''}`}
+									className={`es-button-icon-28 ${layout === ColorPaletteCustomLayout.DEFAULT ? 'es-button-square-30' : ''} ${value === slug ? 'is-generic-swatch-active' : ''}`}
 									icon={icons.genericColorSwatch}
 									disabled={disabled}
 									style={{
