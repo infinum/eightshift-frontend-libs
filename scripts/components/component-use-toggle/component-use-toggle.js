@@ -11,6 +11,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {boolean} props.checked              - Is the component currently in use.
  * @param {function} props.onChange            - `onChange` handler from the `ToggleSwitch`.
  * @param {boolean} [props.showUseToggle=true] - If `true`, the use toggle is shown.
+ * @param {boolean} [props.showLabel=true]     - If `true`, the label is shown.
  * @param {boolean} [props.disabled=false]     - Is the component currently disabled.
  */
 export const ComponentUseToggle = ({
@@ -19,7 +20,12 @@ export const ComponentUseToggle = ({
 	onChange,
 	showUseToggle = true,
 	disabled = false,
+	showLabel = true,
 }) => {
+	if (!showUseToggle && !showLabel) {
+		return null;
+	}
+
 	const toggleIcon = React.cloneElement(icons.toggleOff, {
 		className: `es-collapsable-component-use-toggle-v2__toggle-button has-full-color-off-state ${checked ? 'is-active' : ''}`,
 	});
@@ -38,7 +44,7 @@ export const ComponentUseToggle = ({
 					/>
 				}
 
-				{label &&
+				{label && (showLabel || showUseToggle) &&
 					<span className='es-collapsable-component-use-toggle-v2__label'>
 						{label}
 					</span>
