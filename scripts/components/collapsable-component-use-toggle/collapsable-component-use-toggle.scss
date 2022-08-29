@@ -133,7 +133,7 @@
 	&.has-inset-label,
 	&.has-use-toggle ~ &:not(.has-use-toggle) {
 		&:not(.is-open) > div > #{$this}__trigger #{$this}__label {
-			margin-left: 2.5rem;
+			margin-left: 2rem;
 		}
 	}
 
