@@ -54,7 +54,7 @@ export const SimpleRepeater = ({
 	const handleDragEnd = (event) => {
 		const { active, over } = event;
 
-		if (active.id !== over.id) {
+		if (active.id !== over.id && items) {
 			const items = items.map(({ id }) => id);
 			const oldIndex = items.indexOf(active.id);
 			const newIndex = items.indexOf(over.id);
@@ -94,12 +94,12 @@ export const SimpleRepeater = ({
 					>
 						{children.map((item, i) => (
 							<SortableItem
-								key={item.props.id}
-								id={item.props.id}
-								icon={item.props.icon}
-								title={item.props.title}
-								subtitle={item.props.subtitle}
-								onRemove={item.props.onRemove ?? (
+								key={items?.[i]?.id}
+								id={items?.[i]?.id}
+								icon={item?.props?.icon}
+								title={item?.props?.title ?? __('New item', 'eightshift-frontend-libs')}
+								subtitle={item?.props?.subtitle}
+								onRemove={item?.props?.onRemove ?? (
 									() => {
 										const newArray = [...items].filter((_, index) => index !== i);
 										setAttributes({ [attributeName]: newArray });
@@ -108,7 +108,7 @@ export const SimpleRepeater = ({
 								isFirst={i === 0}
 								isLast={i === items?.length - 1}
 							>
-								{item.props.children}
+								{item?.props?.children}
 							</SortableItem>
 						))}
 					</SortableContext>
