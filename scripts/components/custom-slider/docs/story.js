@@ -3,7 +3,7 @@ import readme from './readme.mdx';
 import { Button } from '@wordpress/components';
 import { CustomSlider } from '../custom-slider';
 import { CustomRangeSlider, CustomRangeSliderStyle } from '../custom-range-slider';
-import { icons } from '../../..';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 export default {
 	title: 'Options/CustomSlider',
