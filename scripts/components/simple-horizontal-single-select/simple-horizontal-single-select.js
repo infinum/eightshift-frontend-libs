@@ -1,11 +1,11 @@
 import React from 'react';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import { BaseControl, Button } from '@wordpress/components';
 import classnames from 'classnames';
 
 /**
  * Horizontal button option selector, inspired by WP 5.9.
- * 
+ *
  * @param {object} props                                                                       - SimpleHorizontalSingleSelect options.
  * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
  * @param {any} [props.value]                                                                  - Current value.
