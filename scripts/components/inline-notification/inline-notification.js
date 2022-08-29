@@ -1,5 +1,5 @@
 import React from 'react';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 import { IconLabel } from '../icon-label/icon-label';
 
@@ -20,7 +20,7 @@ export const InlineNotificationType = {
 
 /**
  * A simple inline notification to be used inside the Editor or Options.
- * 
+ *
  * @param {object} props                                                       - InlineNotification options.
  * @param {string} props.text                                                  - Notification text.
  * @param {string} [props.subtitle]                                            - Notification text.
