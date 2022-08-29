@@ -18,6 +18,8 @@ export const component = () => {
 
 	return (
 		<div style={{width: '20rem'}}>
+			<h4>Regular toggle</h4>
+
 			<IconToggle
 				icon={icons.width}
 				label='Full width'
@@ -42,6 +44,17 @@ export const component = () => {
 				label={__('Full width', 'eightshift-frontend-libs')}
 				checked={current}
 				onChange={(value) => setCurrent(value)}
+				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
+				inlineHelp
+			/>
+
+			<h4>Checkbox</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
 				type='checkbox'
 			/>
 
@@ -63,10 +76,22 @@ export const component = () => {
 				label={__('Full width', 'eightshift-frontend-libs')}
 				checked={current}
 				onChange={(value) => setCurrent(value)}
+				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
+				type='checkbox'
+				inlineHelp
+			/>
+
+			<h4>Button</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
 				type='button'
 			/>
 
-			<br />
+			<h4>Icon button</h4>
 
 			<IconToggle
 				icon={icons.width}
@@ -76,7 +101,7 @@ export const component = () => {
 				type='iconButton'
 			/>
 
-			<br />
+			<h4>Tile button</h4>
 
 			<IconToggle
 				icon={icons.width}

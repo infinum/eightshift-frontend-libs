@@ -2,7 +2,6 @@ import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
 import { ColorPickerComponent, ColorPickerType } from '../color-picker-component';
-import { getPaletteColors } from '../../../editor';
 
 export default {
 	title: 'Options/ColorPickerComponent',
@@ -16,6 +15,36 @@ export default {
 const maxWidthStyle = {
 	maxWidth: '15rem',
 };
+
+const getPaletteColors = () => (
+	[
+		{
+			name: 'Primary 500',
+			slug: 'primary500',
+			color: '#610BEF'
+		},
+		{
+			name: 'Primary 700',
+			slug: 'primary700',
+			color: '#4700AB'
+		},
+		{
+			name: 'Primary 300',
+			slug: 'primary300',
+			color: '#BFBEFC'
+		},
+		{
+			name: 'Black',
+			slug: 'black',
+			color: '#14142B'
+		},
+		{
+			name: 'White',
+			slug: 'white',
+			color: '#FFFFFF'
+		}
+	]
+);
 
 export const component = () => {
 	const [objData, setObjData] = useState({ color: undefined });

@@ -17,14 +17,26 @@ export const basicComponent = () => {
 	const [attributes, setAttributes] = useState({
 		videoCaptions: [
 			{
-				title: 'This is a demo',
+				id: 1,
+				title: 'Item 1',
+				icon: icons.num1Circle,
 			},
+			{
+				id: 2,
+				title: 'Item 2',
+				icon: icons.num2Circle,
+			},
+			{
+				id: 3,
+				title: 'Item 3',
+				icon: icons.num3Circle,
+			}
 		],
 	});
 
 	return (
-
-		<SimpleRepeater
+		<div className='es-max-w-84'>
+			<SimpleRepeater
 			icon={icons.videoSubtitleAlt}
 			label='Captions'
 			items={attributes.videoCaptions}
@@ -33,8 +45,8 @@ export const basicComponent = () => {
 		>
 			{attributes.videoCaptions.map((item, i) => (
 				<SimpleRepeaterItem
-					key={item.id}
-					icon={icons.experiment}
+					key={i}
+					icon={item?.icon ?? icons.experiment}
 					title={item.title}
 				>
 					<TextControl
@@ -49,5 +61,6 @@ export const basicComponent = () => {
 				</SimpleRepeaterItem>
 			))}
 		</SimpleRepeater>
+		</div>
 	);
 };
