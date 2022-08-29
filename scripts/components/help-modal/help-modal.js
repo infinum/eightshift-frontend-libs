@@ -3,11 +3,11 @@ import { Fragment, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Modal } from '@wordpress/components';
 import { helperMessages } from './data';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A modal dialog for displaying help about component's options.
- * 
+ *
  * @param {object} props                - HelpModal options.
  * @param {string} props.buttonLabel    - Text to display on the button that opens the dialog.
  * @param {string} props.modalLabel     - Title of the modal.
@@ -23,7 +23,6 @@ export const HelpModal = (props) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 
-	
 	const Item = (item) => {
 		const {
 			icon,
@@ -54,7 +53,7 @@ export const HelpModal = (props) => {
 				icon={icons.help}
 				label={buttonLabel}
 				className='es-help-button'
-				onClick={() => setIsOpen(true)} 
+				onClick={() => setIsOpen(true)}
 				isTertiary
 				iconSize={24}
 			>
