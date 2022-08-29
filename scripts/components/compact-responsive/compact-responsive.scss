@@ -14,8 +14,8 @@
 	.es-compact-responsive-trigger > svg:first-child {
 		transition: {
 			property: transform;
-			timing-function: ease-out;
-			duration: 0.15s;
+			timing-function: var(--es-ease-out-back);
+			duration: 0.5s;
 		}
 	}
 
@@ -29,40 +29,13 @@
 		}
 	}
 
-	.es-compact-responsive-breakpoint-label {
-		display: grid;
-		align-items: center;
-		grid-template-columns: auto auto 1fr;
-		width: 100%;
-		column-gap: 0.25rem;
-
-		// Breakpoint icon.
-		> i {
-			color: var(--es-admin-gray-800);
-
-			--wp-admin-theme-color: var(--es-admin-gray-800);
-		}
-
-		// Breakpoint label.
-		> span {
-			font-size: 0.8rem;
-			margin-right: 0.25rem;
-			color: var(--es-admin-gray-800);
-		}
-
-		// Visual separator.
-		> hr {
-			margin: 0;
-		}
-	}
-
 	// Anti-confusion inner icon coloring system (AIICS)
-	// (colors the top-level component icons to black if the control is not expanded)
+	// (dims the top-level component icons if the control is not expanded)
 	&:not(.is-open) {
 		.components-base-control__field .uses-anti-confusion-technology svg:not(button svg),
 		.components-base-control__field > .components-base-control .components-base-control__label svg:not(button svg),
 		.components-base-control__field > .components-base-control .components-input-control__label svg:not(button svg) {
-			color: currentColor;
+			color: var(--es-admin-cool-gray-450);
 		}
 	}
 
@@ -97,8 +70,8 @@
 
 		transition: {
 			property: transform, fill-opacity, opacity;
-			timing-function: var(--es-admin-ease-out-cubic);
-			duration: 0.3s;
+			timing-function: var(--es-ease-out-back), ease-out, ease-out;
+			duration: 0.5s, 0.3s, 0.3s;
 		}
 	}
 

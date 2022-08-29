@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
 import { BaseControl, Button, Animate } from '@wordpress/components';
-import { select } from '@wordpress/data';
-import { IconLabel, icons, ucfirst } from '../../../scripts';
-import { STORE_NAME } from './../../editor/store';
+import { IconLabel, icons, ucfirst, getDefaultBreakpointNames, FancyDivider } from '@eightshift/frontend-libs/scripts';
 /**
  * A component that displays options adjustable across screen sizes.
- * 
+ *
  * @param {object} props                                                         - Compact responsive options.
  * @param {React.Component} props.label                                          - Option label.
  * @param {React.Component} props.icon                                           - Option icon.
@@ -22,7 +19,7 @@ export const CompactResponsive = (props) => {
 		label,
 		icon,
 		children = [],
-		breakpoints = Object.keys(select(STORE_NAME).getSettings().globalVariables.breakpoints).reverse(),
+		breakpoints = getDefaultBreakpointNames(),
 		inheritButton,
 		breakpointLabels,
 		additionalClasses,
@@ -41,16 +38,16 @@ export const CompactResponsive = (props) => {
 
 	return (
 		<BaseControl
-			className={classnames(['es-compact-responsive', isOpen ? 'is-open' : '', additionalClasses ?? ''])}
+			className={`es-compact-responsive ${isOpen ? 'is-open' : ''} ${additionalClasses ?? ''}`}
 			label={
 				<div className='es-flex-between'>
 					<IconLabel icon={icon} label={label} standalone />
 
 					<Button
 						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
-						icon={icons.caretDown}
+						icon={isOpen ? icons.caretDownFill : icons.caretDown}
 						onClick={toggleOpen}
-						className='es-button-icon-24 es-compact-responsive-trigger'
+						className='es-button-icon-24 es-compact-responsive-trigger es-rounded-0.75'
 						showTooltip
 						isTertiary
 					>
@@ -74,24 +71,9 @@ export const CompactResponsive = (props) => {
 						className='es-no-field-spacing'
 						label={current === -1 && !hideBreakpointLabels &&
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
-								{({ className: customClass }) => (
-									<div className={`es-flex-between ${customClass}`}>
-										<div className='es-compact-responsive-breakpoint-label'>
-											<i>{icons[`screen${ucfirst(breakpoints[index])}`]}</i>
-											<span>{breakpointLabel}</span>
-											<hr />
-										</div>
-
-										{index > 0 && inheritButton !== undefined &&
-											<Button
-												onClick={inheritButton[index].callback}
-												className={classnames(['es-compact-responsive-inherit-button es-button-icon-24 es-slight-button-border', inheritButton[index].isActive ? 'is-inherited' : ''])}
-												iconPosition='right'
-												isTertiary={inheritButton[index].isActive}
-												icon={icons.inherit}
-												text={inheritButton[index].isActive ? __('Inherited', 'eightshift-frontend-libs') : __('Inherit', 'eightshift-frontend-libs')}
-											/>
-										}
+								{({ className }) => (
+									<div className={`${className} es-w-full`}>
+										<FancyDivider label={<IconLabel icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />} additionalClasses='es-mx-0! es-mt-0! es-mb-1.0!' />
 									</div>
 								)}
 							</Animate>
@@ -99,10 +81,38 @@ export const CompactResponsive = (props) => {
 					>
 						{index === 0 && child}
 
-						{(showChild && index > 0 && current === -1) &&
+						{index > 0 && current === -1 && inheritButton !== undefined &&
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
 								{({ className }) => (
-									<div className={className}>
+									<div className={`${className} es-w-full`}>
+										<Button
+											onClick={inheritButton[index].callback}
+											className={`es-compact-responsive-inherit-button es-button-no-icon-spacing es-button-icon-24 es-rounded-0.75 es-text-3 es-h-11! es-px-2.5! es-py-0! es-text-align-left es-gap-2 es-line-h-1.15 -es-mt-0.5 es-w-full ${inheritButton[index].isActive ? 'is-inherited es-slight-button-border-cool-gray-400 es-mb-2 es-nested-color-admin-accent' : 'es-slight-button-border-cool-gray-100 es-mb-4 es-nested-color-cool-gray-600'} ${index === breakpoints.length - 1 && !showChild ? 'es-mb-0!' : ''}`}
+											icon={icons.inherit}
+										>
+											{inheritButton[index].isActive &&
+												<span>
+													{__('Using value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
+													<br />
+													<span className='es-text-2.5 es-opacity-80'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
+												</span>
+											}
+
+											{!inheritButton[index].isActive &&
+												<span>
+													{__('Use value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
+												</span>
+											}
+										</Button>
+									</div>
+								)}
+							</Animate>
+						}
+
+						{showChild && index > 0 && current === -1 &&
+							<Animate type='slide-in' options={{ origin: 'bottom' }} >
+								{({ className }) => (
+									<div className={`${className} es-w-full`}>
 										{child}
 									</div>
 								)}
