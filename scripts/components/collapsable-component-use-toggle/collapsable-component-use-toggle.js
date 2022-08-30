@@ -49,7 +49,10 @@ export const CollapsableComponentUseToggle = ({
 	}
 
 	const toggleIcon = React.cloneElement(icons.toggleOff, {
-		className: `es-collapsable-component-use-toggle-v2__toggle-button has-full-color-off-state ${checked ? 'is-active' : ''}`,
+		className: classnames([
+			'es-collapsable-component-use-toggle-v2__toggle-button has-full-color-off-state',
+			checked ? 'is-active' : '',
+		]),
 	});
 
 	return (

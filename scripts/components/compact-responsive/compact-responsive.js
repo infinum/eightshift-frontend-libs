@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, Button, Animate } from '@wordpress/components';
 import { IconLabel, icons, ucfirst, getDefaultBreakpointNames, FancyDivider } from '@eightshift/frontend-libs/scripts';
+import classnames from 'classnames';
+
 /**
  * A component that displays options adjustable across screen sizes.
  *
@@ -90,7 +92,11 @@ export const CompactResponsive = (props) => {
 									<div className={`${className} es-w-full`}>
 										<Button
 											onClick={inheritButton[index].callback}
-											className={`es-compact-responsive-inherit-button es-button-no-icon-spacing es-button-icon-24 es-rounded-0.75 es-text-3 es-h-11! es-px-2.5! es-py-0! es-text-align-left es-gap-2 es-line-h-1.15 -es-mt-0.5 es-w-full ${inheritButton[index].isActive ? 'is-inherited es-slight-button-border-cool-gray-400 es-mb-2 es-nested-color-admin-accent' : 'es-slight-button-border-cool-gray-100 es-mb-4 es-nested-color-cool-gray-600'} ${index === breakpoints.length - 1 && !showChild ? 'es-mb-0!' : ''}`}
+											className={classnames([
+												'es-compact-responsive-inherit-button es-button-no-icon-spacing es-button-icon-24 es-rounded-0.75 es-text-3 es-h-11! es-px-2.5! es-py-0! es-text-align-left es-gap-2 es-line-h-1.15 -es-mt-0.5 es-w-full',
+												inheritButton[index].isActive ? 'is-inherited es-slight-button-border-cool-gray-400 es-mb-2 es-nested-color-admin-accent' : 'es-slight-button-border-cool-gray-100 es-mb-4 es-nested-color-cool-gray-600',
+												index === breakpoints.length - 1 && !showChild ? 'es-mb-0!' : '',
+											])}
 											icon={icons.inherit}
 										>
 											{inheritButton[index].isActive &&
