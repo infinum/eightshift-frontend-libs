@@ -138,7 +138,7 @@ export const LinkEditComponent = ({
 			}
 
 			{url?.length > 0 && (additionalOptionTiles || showNewTabOption) &&
-				<div className='es-popover-content es-v-start es-max-w-84! es-border-t-gray-400'>
+				<div className='es-popover-content es-h-spaced es-max-w-84! es-border-t-gray-400'>
 					{showNewTabOption &&
 						<IconToggle
 							icon={icons.newTab}
