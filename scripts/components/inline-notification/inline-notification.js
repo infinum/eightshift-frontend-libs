@@ -46,7 +46,7 @@ export const InlineNotification = ({
 			break;
 		case InlineNotificationType.WARNING:
 			icon = icons.warning;
-			iconColor = 'es-nested-color-orange-500!';
+			iconColor = 'es-nested-color-yellow-500!';
 			break;
 		case InlineNotificationType.SUCCESS:
 			icon = icons.checkCircle;
