@@ -106,7 +106,7 @@ export const CustomSlider = (props) => {
 		() => (
 			<TextControl
 				type='number'
-				value={value}
+				value={parseFloat(value)}
 				onChange={onChange}
 				hideLabelFromVision
 				min={min}
