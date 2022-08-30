@@ -58,11 +58,7 @@ export const IconToggle = ({
 		);
 	}
 
-	let ComponentToRender = ToggleControl;
-
-	if (isCheckbox || type === 'checkbox') {
-		ComponentToRender = CheckboxControl;
-	}
+	const ComponentToRender = (isCheckbox || type === 'checkbox') ? CheckboxControl : ToggleControl;
 
 	return (
 		<ComponentToRender
