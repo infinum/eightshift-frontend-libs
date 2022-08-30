@@ -67,7 +67,7 @@ export const IconToggle = ({
 			disabled={disabled}
 			help={!inlineHelp && help}
 			label={icon ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
-			className={classnames(['es-icon-toggle-checkbox', help ? 'es-icon-toggle-checkbox--with-help' : '', additionalClasses ?? ''])}
+			className={classnames(['es-mb-6 es-icon-toggle-checkbox', help ? 'es-icon-toggle-checkbox--with-help' : '', additionalClasses ?? ''])}
 		/>
 	);
 };
