@@ -23,6 +23,8 @@ export const SortableItem = (props) => {
 		isFirst,
 		isLast,
 		additionalLabelClass,
+		noReordering,
+		hideRemove,
 	} = props;
 
 	const [showChildren, setShowChildren] = useState(false);
@@ -34,12 +36,16 @@ export const SortableItem = (props) => {
 		transition: transition ? `${transition}, ${otherTransitions}` : otherTransitions,
 	};
 
-	const additionalTriggerProps = showChildren ? {
+	const additionalTriggerProps = (showChildren || noReordering) ? {
 		disabled: 'disabled',
 	} : {
 		...attributes,
 		...listeners,
 	};
+
+	const itemLabel = (
+		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
+	);
 
 	return (
 		<div ref={setNodeRef} style={style} className={classnames([
@@ -51,16 +57,19 @@ export const SortableItem = (props) => {
 			showChildren && !isFirst && isLast ? 'es-mt-2.5!' : '',
 		])}>
 			<div className={`es-pl-3 es-py-1.0 es-pr-1.0 es-h-between ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
-				<button className={`es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! ${showChildren ? 'es-pointer-events-none' : 'es-cursor-pointer'}`} {...additionalTriggerProps}>
-					<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
+				{noReordering && itemLabel}
 
-					{!showChildren &&
-						<div className='es-nested-color-cool-gray-400 es-line-h-0'>
-							{icons.reorderGrabberV}
-						</div>
-					}
-				</button>
+				{!noReordering &&
+					<button className={`es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! ${showChildren ? 'es-pointer-events-none' : 'es-cursor-pointer'}`} {...additionalTriggerProps}>
+						{itemLabel}
 
+						{!showChildren &&
+							<div className='es-nested-color-cool-gray-400 es-line-h-0'>
+								{icons.reorderGrabberV}
+							</div>
+						}
+					</button>
+				}
 
 				<Button
 					icon={showChildren ? icons.caretDownFill : icons.caretDown}
@@ -76,15 +85,18 @@ export const SortableItem = (props) => {
 							<div className='es-p-3'>
 								{props.children}
 							</div>
-							<div className='es-pl-3 es-pr-1.0 es-py-1.5 es-h-end es-border-t-cool-gray-50'>
-								<Button
-									icon={icons.trash}
-									onClick={onRemove}
-									label={__('Remove', 'eightshift-frontend-libs')}
-									showTooltip
-									className='es-button-icon-24 es-nested-color-red-500 es-rounded-1.0'
-								/>
-							</div>
+
+							{!hideRemove &&
+								<div className='es-pl-3 es-pr-1.0 es-py-1.5 es-h-end es-border-t-cool-gray-50'>
+									<Button
+										icon={icons.trash}
+										onClick={onRemove}
+										label={__('Remove', 'eightshift-frontend-libs')}
+										showTooltip
+										className='es-button-icon-24 es-nested-color-red-500 es-rounded-1.0'
+									/>
+								</div>
+							}
 						</div>
 					)}
 				</Animate>

@@ -32,6 +32,7 @@ import { SortableItem } from './sortable-item';
  * @param {string} props.attributeName               - Name of the attribute for items.
  * @param {function} props.setAttributes             - The `setAttributes` callback from component/block attributes.
  * @param {array<SimpleRepeaterItem>} props.children - Child items, mapped from `items`. Contains all the option for child items.
+ * @param {boolean} [props.noReordering=false]       - If `true`, the items can't be reordered.
  */
 export const SimpleRepeater = ({
 	icon,
@@ -43,6 +44,8 @@ export const SimpleRepeater = ({
 	setAttributes,
 
 	children,
+
+	noReordering = false,
 }) => {
 	const sensors = useSensors(
 		useSensor(PointerSensor),
@@ -108,6 +111,8 @@ export const SimpleRepeater = ({
 								isFirst={i === 0}
 								isLast={i === items?.length - 1}
 								additionalLabelClass={item?.props?.additionalLabelClass}
+								noReordering={noReordering}
+								hideRemove={item?.props?.hideRemove ?? false}
 							>
 								{item?.props?.children}
 							</SortableItem>

@@ -9,6 +9,8 @@
  * @param {function} props.onRemove                  - If provided, runs a custom remove item functionality instead of the default.
  * @param {string?} [props.additionalLabelClass]     - If provided, adds extra classes to the item main label.
  * @param {array<SimpleRepeaterItem>} props.children - Child items, usually additional options.
+ * @param {array<SimpleRepeaterItem>} props.children - Child items, usually additional options.
+ * @param {boolean} [props.hideRemove=false]         - If `true`, the default remove button is hidden.
  */
 export const SimpleRepeaterItem = (props) => {
 	const {
@@ -18,10 +20,11 @@ export const SimpleRepeaterItem = (props) => {
 		onRemove,
 		children,
 		additionalLabelClass,
+		hideRemove = false,
 	} = props;
 
 	return (
-		<div icon={icon} title={title} subtitle={subtitle} onRemove={onRemove} additionalLabelClass={additionalLabelClass}>
+		<div icon={icon} title={title} subtitle={subtitle} onRemove={onRemove} additionalLabelClass={additionalLabelClass} hideRemove={hideRemove}>
 			{children}
 		</div>
 	);
