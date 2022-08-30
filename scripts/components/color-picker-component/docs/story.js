@@ -19,6 +19,11 @@ const maxWidthStyle = {
 const getPaletteColors = () => (
 	[
 		{
+			name: 'Primary 300',
+			slug: 'primary300',
+			color: '#BFBEFC'
+		},
+		{
 			name: 'Primary 500',
 			slug: 'primary500',
 			color: '#610BEF'
@@ -27,11 +32,6 @@ const getPaletteColors = () => (
 			name: 'Primary 700',
 			slug: 'primary700',
 			color: '#4700AB'
-		},
-		{
-			name: 'Primary 300',
-			slug: 'primary300',
-			color: '#BFBEFC'
 		},
 		{
 			name: 'Black',

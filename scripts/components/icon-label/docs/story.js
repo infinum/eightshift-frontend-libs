@@ -15,7 +15,7 @@ export default {
 
 export const component = () => {
 	return (
-		<div>
+		<>
 			<h4>Regular label</h4>
 			<IconLabel
 				icon={icons.roundedCorners}
@@ -57,7 +57,6 @@ export const component = () => {
 			/>
 			<br />
 			<small><code>additionalClasses=&apos;es-nested-color-blue-500!&apos;</code></small>
-
-		</div>
+		</>
 	);
 };
