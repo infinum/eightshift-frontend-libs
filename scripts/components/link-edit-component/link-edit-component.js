@@ -25,7 +25,8 @@ import { IconToggle } from '@eightshift/frontend-libs/scripts/components/icon-to
  * @param {boolean} [props.disabled=false]                                          - If `true`, control is disabled.
  * @param {boolean} [props.hasDeleteButton=true]                                    - If `true`, the component has a 'Remove link' button when a link is selected.
  * @param {boolean} [props.hasUrlPreview=false]                                     - If `true`, and icon and label are provided separately, a URL preview is shown inside the component.
- * @param {React.Component?} [props.additionalOptions]                              - If `true`, displays a URL label editor in the options.
+ * @param {React.Component?} [props.additionalOptions]                              - If provided, allows adding options below the option tiles.
+ * @param {React.Component?} [props.additionalOptionTiles]                          - If provided, allows adding additional option tiles.
  * @param {React.Component?} [props.removeButtonIcon=icons.trash]                   - Allows overriding the 'Remove link' button icon.
  * @param {React.Component?} [props.label]                                          - Allows overriding the default component label.
  * @param {React.Component?} [props.icon]                                           - If provided, displays an icon.
@@ -50,6 +51,7 @@ export const LinkEditComponent = ({
 	hasDeleteButton = true,
 	hasUrlPreview = true,
 	additionalOptions,
+	additionalOptionTiles,
 	removeButtonIcon = icons.trash,
 	icon,
 	label = (<IconLabel icon={icons.link} label={sprintf(__('%s URL'), title)} standalone />),
@@ -81,23 +83,6 @@ export const LinkEditComponent = ({
 		setAttributes(newValues);
 		setIsDropdownOpen(false);
 	};
-
-	if (showNewTabOption) {
-		// eslint-disable-next-line no-param-reassign
-		additionalOptions = (
-			<>
-				<IconToggle
-					icon={icons.newTab}
-					label={newTabOptionName}
-					checked={opensInNewTab}
-					onChange={(value) => setAttributes({ [isNewTabAttrName]: value })}
-					type='tileButton'
-				/>
-
-				{additionalOptions}
-			</>
-		);
-	}
 
 	const linkControl = isDropdownOpen && (
 		<Popover
@@ -149,6 +134,22 @@ export const LinkEditComponent = ({
 						additionalClasses='has-muted-icon'
 						standalone
 					/>
+				</div>
+			}
+
+			{url?.length > 0 && (additionalOptionTiles || showNewTabOption) &&
+				<div className='es-popover-content es-v-start es-max-w-84! es-border-t-gray-400'>
+					{showNewTabOption &&
+						<IconToggle
+							icon={icons.newTab}
+							label={newTabOptionName}
+							checked={opensInNewTab}
+							onChange={(value) => setAttributes({ [isNewTabAttrName]: value })}
+							type='tileButton'
+						/>
+					}
+
+					{additionalOptionTiles}
 				</div>
 			}
 
