@@ -8,14 +8,15 @@ import { IconToggle } from '@eightshift/frontend-libs/scripts/components/icon-to
 
 /**
  * Options panel component that allows picking an URL in a clean and simple way.
- * 
+ *
  * @param {object} props                                                            - LinkEditComponent options.
  * @param {string?} props.url                                                       - Currently selected URL.
  * @param {boolean} props.opensInNewTab                                             - Currently selected option for opening the link in a new tab.
  * @param {function} props.setAttributes                                            - The `setAttributes` callback from component/block attributes.
  * @param {string} props.title                                                      - Name of the component/block displayed in the tooltip (*Use <title>*).
  * @param {string} props.urlAttrName                                                - Name of the `url` attribute (use `getAttrKey`)
- * @param {string} props.isNewTabAttrName                                           - Name of the `isNewTab` attribute (use `getAttrKey`)
+ * @param {string} [props.isNewTabAttrName]                                         - Name of the `isNewTab` attribute (use `getAttrKey`)
+ * @param {string} [props.isAnchorAttrName]                                         - Name of the `isAnchor` attribute (use `getAttrKey`)
  * @param {boolean} [props.showNewTabOption=true]                                   - If `true`, displays the 'Open in new tab' toggle.
  * @param {string} [props.newTabOptionName]                                         - Name of the 'Opens in new tab' option shown in the interface.
  * @param {string} [props.removeLinkTooltip]                                        - 'Remove link' button tooltip.
@@ -24,7 +25,8 @@ import { IconToggle } from '@eightshift/frontend-libs/scripts/components/icon-to
  * @param {boolean} [props.disabled=false]                                          - If `true`, control is disabled.
  * @param {boolean} [props.hasDeleteButton=true]                                    - If `true`, the component has a 'Remove link' button when a link is selected.
  * @param {boolean} [props.hasUrlPreview=false]                                     - If `true`, and icon and label are provided separately, a URL preview is shown inside the component.
- * @param {React.Component?} [props.additionalOptions]                              - If `true`, displays a URL label editor in the options.
+ * @param {React.Component?} [props.additionalOptions]                              - If provided, allows adding options below the option tiles.
+ * @param {React.Component?} [props.additionalOptionTiles]                          - If provided, allows adding additional option tiles.
  * @param {React.Component?} [props.removeButtonIcon=icons.trash]                   - Allows overriding the 'Remove link' button icon.
  * @param {React.Component?} [props.label]                                          - Allows overriding the default component label.
  * @param {React.Component?} [props.icon]                                           - If provided, displays an icon.
@@ -38,6 +40,7 @@ export const LinkEditComponent = ({
 	setAttributes,
 	urlAttrName,
 	isNewTabAttrName,
+	isAnchorAttrName,
 	title,
 	showNewTabOption = true,
 	newTabOptionName = __('Open in new tab'),
@@ -48,6 +51,7 @@ export const LinkEditComponent = ({
 	hasDeleteButton = true,
 	hasUrlPreview = true,
 	additionalOptions,
+	additionalOptionTiles,
 	removeButtonIcon = icons.trash,
 	icon,
 	label = (<IconLabel icon={icons.link} label={sprintf(__('%s URL'), title)} standalone />),
@@ -80,61 +84,78 @@ export const LinkEditComponent = ({
 		setIsDropdownOpen(false);
 	};
 
-	if (showNewTabOption) {
-		// eslint-disable-next-line no-param-reassign
-		additionalOptions = (
-			<>
-				<IconToggle
-					icon={icons.newTab}
-					label={newTabOptionName}
-					checked={opensInNewTab}
-					onChange={(value) => setAttributes({ [isNewTabAttrName]: value })}
-					additionalClasses='es-w-full'
-				/>
-
-				{additionalOptions}
-			</>
-		);
-	}
-
 	const linkControl = isDropdownOpen && (
 		<Popover
-			position='bottom center'
+			position={displayMode === 'default' ? 'bottom left' : 'bottom center'}
 			onClose={() => setIsDropdownOpen(false)}
 			anchorRef={ref?.current}
 			noArrow={false}
 		>
-			<LinkControl
-				value={{ url }}
-				settings={[]}
-				onChange={({
-					url: newUrl = ''
-				}) => {
-					setAttributes({
-						[urlAttrName]: newUrl,
-					});
+			<div className={`es-display-flex es-max-w-84! ${url?.length > 0 && hasDeleteButton ? 'es-pr-4' : ''}`}>
+				<LinkControl
+					value={{ url }}
+					settings={[]}
+					onChange={({
+						url: newUrl = ''
+					}) => {
+						setAttributes(
+							isAnchorAttrName ? {
+								[urlAttrName]: newUrl,
+								[isAnchorAttrName]: newUrl?.startsWith('#') ?? false,
+							} : {
+								[urlAttrName]: newUrl,
+							}
+						);
 
-					if (newUrl !== url) {
-						setIsDropdownOpen(false);
+						if (newUrl !== url) {
+							setIsDropdownOpen(false);
+						}
+					}}
+				/>
+
+				{url?.length > 0 && hasDeleteButton &&
+					<Button
+						onClick={unlinkButton}
+						icon={removeButtonIcon}
+						disabled={disabled}
+						className='es-button-no-outline es-button-icon-24 es-nested-color-red-500 es-rounded-1.0 es-mt-4'
+						label={removeLinkTooltip}
+						showTooltip
+					/>
+				}
+			</div>
+
+			{url?.length > 0 && url?.includes('#') &&
+				<div className='es-p-4 es-border-t-gray-400'>
+					<IconLabel
+						icon={icons.anchor}
+						label={__('Anchor link selected', 'eightshift-frontend-libs')}
+						subtitle={__('Links to an element on a page', 'eightshift-frontend-libs')}
+						additionalClasses='has-muted-icon'
+						standalone
+					/>
+				</div>
+			}
+
+			{url?.length > 0 && (additionalOptionTiles || showNewTabOption) &&
+				<div className='es-popover-content es-h-spaced es-max-w-84! es-border-t-gray-400'>
+					{showNewTabOption &&
+						<IconToggle
+							icon={icons.newTab}
+							label={newTabOptionName}
+							checked={opensInNewTab}
+							onChange={(value) => setAttributes({ [isNewTabAttrName]: value })}
+							type='tileButton'
+						/>
 					}
-				}}
-			/>
 
-			{url?.length > 0 && (hasDeleteButton || additionalOptions) &&
-				<div className='es-popover-content es-v-start'>
+					{additionalOptionTiles}
+				</div>
+			}
+
+			{url?.length > 0 && additionalOptions &&
+				<div className='es-popover-content es-v-start es-max-w-84! es-border-t-gray-400'>
 					{additionalOptions}
-
-					{url?.length > 0 && hasDeleteButton &&
-						<Button
-							onClick={unlinkButton}
-							isDestructive={true}
-							icon={removeButtonIcon}
-							disabled={disabled}
-							className='es-button-no-outline es-button-icon-24'
-						>
-							{removeLinkTooltip}
-						</Button>
-					}
 				</div>
 			}
 		</Popover>
@@ -186,9 +207,10 @@ export const LinkEditComponent = ({
 
 		labelToDisplay = (
 			<IconLabel
-				icon={icon}
+				icon={url?.length > 0 && url?.includes('#') ? icons.globeAnchor : icon}
 				label={label}
-				subtitle={hasUrlPreview && url?.length > 0 ? urlPreview : null}
+				subtitle={hasUrlPreview && url?.length > 0 ? urlPreview : __('Click to add', 'eightshift-frontend-libs')}
+				additionalClasses='es-nested-color-cool-gray-650'
 				standalone
 			/>
 		);
@@ -218,18 +240,20 @@ export const LinkEditComponent = ({
 
 	return (
 		<BaseControl help={help} className={additionalClass ?? ''}>
-			<div className='es-flex-between'>
+			<Button
+				onClick={openLinkControl}
+				disabled={disabled}
+				label={url?.length > 0 ? editUrlLabel : addUrlLabel}
+				ref={ref}
+				className='es-button-icon-24 es-text-align-left es-slight-button-border-cool-gray-300 es-w-full es-h-12 es-rounded-1.0'
+				showTooltip
+			>
 				{labelToDisplay}
 
-				<Button
-					onClick={openLinkControl}
-					icon={url?.length > 0 ? editIcon : icons.plusCircle}
-					disabled={disabled}
-					label={url?.length > 0 ? editUrlLabel : addUrlLabel}
-					ref={ref}
-					className='es-button-icon-24 es-button-square-36'
-				/>
-			</div>
+				<div className='es-nested-color-cool-gray-400 es-ml-auto es-line-h-0'>
+					{url?.length > 0 ? icons.edit : icons.plusCircle}
+				</div>
+			</Button>
 
 			{linkControl}
 		</BaseControl>

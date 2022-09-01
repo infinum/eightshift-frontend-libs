@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, BaseControl, Animate } from '@wordpress/components';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
  * A ComponentUseToggle with collapsable content.
- * 
+ *
  * @param {object} props                            - ComponentUseToggle options.
  * @param {string} props.label                      - Usually component name.
  * @param {boolean} props.checked                   - Is the component currently in use.
- * @param {boolean} props.disabled                  - Is the component currently disabled.
+ * @param {boolean} [props.disabled=false]          - Is the component currently disabled.
  * @param {function} props.onChange                 - `onChange` handler from the `ToggleSwitch`.
  * @param {React.Component} props.children          - Child items that are shown when expanded.
  * @param {boolean} [props.showUseToggle=true]      - If `true`, the use toggle is shown.
@@ -49,7 +49,10 @@ export const CollapsableComponentUseToggle = ({
 	}
 
 	const toggleIcon = React.cloneElement(icons.toggleOff, {
-		className: `es-collapsable-component-use-toggle-v2__toggle-button ${checked ? 'is-active' : ''}`,
+		className: classnames([
+			'es-collapsable-component-use-toggle-v2__toggle-button has-full-color-off-state',
+			checked ? 'is-active' : '',
+		]),
 	});
 
 	return (
@@ -61,27 +64,25 @@ export const CollapsableComponentUseToggle = ({
 							icon={toggleIcon}
 							onClick={() => onChange(!checked)}
 							disabled={disabled}
-							className='es-button-square-32 es-button-icon-28 es-button-no-outline'
+							className='es-button-square-24 es-button-icon-24 es-button-no-outline es-p-0!'
 							label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
 							showTooltip
 						/>
 					}
 
-					{showLabel && label && (
+					{showLabel && label &&
 						<span className='es-collapsable-component-use-toggle-v2__label'>
 							{label}
 						</span>
-					)}
+					}
 				</div>
 
 				<div className='es-h-spaced es-collapsable-component-use-toggle-v2__trigger-right'>
-
-
 					{showExpanderButton &&
 						<Button
 							onClick={() => setIsOpen(!isOpen)}
-							className='es-collapsable-component-use-toggle-v2__expander-button es-button-square-32 es-button-icon-24'
-							icon={icons.caretDown}
+							className={`es-collapsable-component-use-toggle-v2__expander-button es-button-square-32 es-button-icon-24 es-rounded-full ${areChildrenExpanded ? 'es-nested-color-admin-accent' : ''}`}
+							icon={areChildrenExpanded ? icons.caretDownFill : icons.caretDown}
 							disabled={disabled || (showUseToggle && !checked)}
 							label={checked ? __('Show options', 'eightshift-frontend-libs') : __('Hide options', 'eightshift-frontend-libs')}
 							showTooltip

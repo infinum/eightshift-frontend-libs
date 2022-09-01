@@ -1,6 +1,6 @@
 import React from 'react';
 import readme from './readme.mdx';
-import { icons } from '../../../editor/icons/icons';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import { CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay, CustomSelectCustomMultipleValueDisplay, CustomSelectCustomMultipleValueDisplayContainer, CustomSelectCustomMultipleValueRemoveButton } from '../custom-select';
 
 export default {

@@ -226,115 +226,123 @@ export const CustomSelect = (props) => {
 		};
 	}, [selected, multiple, simpleValue, options, defaultOptions]);
 
+	const selectControl = (
+		<SortableSelect
+			menuPortalTarget={document.body}
+			menuPosition='fixed'
+			useDragHandle
+			axis={sortAxis}
+			onSortEnd={onSortEnd}
+			distance={4}
+			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
+			value={getValue()}
+			loadOptions={customLoadOptions}
+			cacheOptions={cacheOptions}
+			className={`components-custom-select ${(!label && !help) && additionalClasses ? additionalClasses : ''}`}
+			placeholder={placeholder}
+			defaultOptions={defaultOptions}
+			onChange={onChangeInternal}
+			options={options}
+			isMulti={multiple}
+			isSearchable={isSearchable}
+			isClearable={isClearable}
+			isDisabled={disabled}
+			isLoading={loading}
+			blurInputOnSelect={blurInputOnSelect}
+			hideSelectedOptions={hideSelected}
+			loadingMessage={() => (<span>{loadingMessage}</span>)}
+			noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
+			components={{
+				MultiValue: SortableMultiValue,
+				MultiValueLabel: SortableMultiValueLabel,
+				Option: customOptionComponent ?? Option,
+				SingleValue: customSingleValueDisplayComponent ?? SingleValue,
+				IndicatorSeparator: customIndicatorSeparator ?? null,
+				MultiValueContainer: customMultiValueDisplayContainerComponent ?? MultiValueContainer,
+				MultiValueRemove: customMultiValueRemoveButton ?? MultiValueRemove,
+				DropdownIndicator: customDropdownIndicator ?? CustomSelectDefaultDropdownIndicator,
+				ClearIndicator: customClearIndicator ?? CustomSelectDefaultClearIndicator,
+			}}
+			closeMenuOnSelect={closeMenuOnSelect}
+			theme={(theme) => ({
+				...theme,
+				borderRadius: 3,
+				colors: {
+					...theme.colors,
+					primary25: 'hsla(0, 0%, 90%, 1)',
+					primary50: 'hsla(0, 0%, 80%, 1)',
+					primary75: 'hsla(0, 0%, 70%, 1)',
+					primary: 'hsla(0, 0%, 0%, 1)'
+				},
+			})}
+			styles={{
+				menu: (provided) => {
+					let bgColor = provided?.backgroundColor ?? 'rgba(255 255 255 / 0.75)';
+
+					if (bgColor.includes('hsl') && !bgColor.includes('hsla')) {
+						bgColor = bgColor.replaceAll(',', '').replace(')', ' / 0.75)');
+					}
+
+					return {
+						...provided,
+						borderTopLeftRadius: '0',
+						borderTopRightRadius: '0',
+						zIndex: 5,
+						marginTop: 1,
+						backgroundColor: bgColor,
+						backdropFilter: 'blur(1rem) saturate(150%)',
+					};
+				},
+				control: (provided, state) => ({
+					...provided,
+					position: 'static',
+					borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
+					borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
+					zIndex: state.menuIsOpen ? 4 : null,
+					borderColor: style,
+					minHeight: isCompact ? '2.25rem' : provided.minHeight,
+					height: isCompact ? '2.25rem' : provided.height,
+				}),
+				option: (provided, state) => ({
+					...provided,
+					margin: '0.125rem 0.375rem',
+					width: 'calc(100% - 0.75rem)',
+					borderRadius: '0.25rem',
+					transition: 'all 0.3s ease-out',
+					...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' } : {}),
+				}),
+				valueContainer: (provided) => {
+					if (!isCompact) {
+						return provided;
+					}
+
+					return {
+						...provided,
+						padding: '0 0.5rem',
+						height: '2.125rem',
+					};
+				},
+				indicatorsContainer: (provided) => {
+					if (!isCompact) {
+						return provided;
+					}
+
+					return {
+						...provided,
+						height: '2.125rem',
+					};
+				}
+			}}
+		/>
+	);
+
+	if (!label && !help) {
+		return selectControl;
+	}
+
 	return (
 		<BaseControl label={label} help={help} className={(label || help) ? additionalClasses : ''} >
-			<SortableSelect
-				menuPortalTarget={document.body}
-				menuPosition='fixed'
-				useDragHandle
-				axis={sortAxis}
-				onSortEnd={onSortEnd}
-				distance={4}
-				getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-				value={getValue()}
-				loadOptions={customLoadOptions}
-				cacheOptions={cacheOptions}
-				className={`components-custom-select ${(!label && !help) && additionalClasses ? additionalClasses : ''}`}
-				placeholder={placeholder}
-				defaultOptions={defaultOptions}
-				onChange={onChangeInternal}
-				options={options}
-				isMulti={multiple}
-				isSearchable={isSearchable}
-				isClearable={isClearable}
-				isDisabled={disabled}
-				isLoading={loading}
-				blurInputOnSelect={blurInputOnSelect}
-				hideSelectedOptions={hideSelected}
-				loadingMessage={() => (<span>{loadingMessage}</span>)}
-				noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
-				components={{
-					MultiValue: SortableMultiValue,
-					MultiValueLabel: SortableMultiValueLabel,
-					Option: customOptionComponent ?? Option,
-					SingleValue: customSingleValueDisplayComponent ?? SingleValue,
-					IndicatorSeparator: customIndicatorSeparator ?? null,
-					MultiValueContainer: customMultiValueDisplayContainerComponent ?? MultiValueContainer,
-					MultiValueRemove: customMultiValueRemoveButton ?? MultiValueRemove,
-					DropdownIndicator: customDropdownIndicator ?? CustomSelectDefaultDropdownIndicator,
-					ClearIndicator: customClearIndicator ?? CustomSelectDefaultClearIndicator,
-				}}
-				closeMenuOnSelect={closeMenuOnSelect}
-				theme={(theme) => ({
-					...theme,
-					borderRadius: 2,
-					colors: {
-						...theme.colors,
-						primary25: 'hsla(0, 0%, 90%, 1)',
-						primary50: 'hsla(0, 0%, 80%, 1)',
-						primary75: 'hsla(0, 0%, 70%, 1)',
-						primary: 'hsla(0, 0%, 0%, 1)'
-					},
-				})}
-				styles={{
-					menu: (provided) => {
-						let bgColor = provided?.backgroundColor ?? 'rgba(255 255 255 / 0.75)';
-
-						if (bgColor.includes('hsl') && !bgColor.includes('hsla')) {
-							bgColor = bgColor.replaceAll(',', '').replace(')', ' / 0.75)');
-						}
-
-						return {
-							...provided,
-							borderTopLeftRadius: '0',
-							borderTopRightRadius: '0',
-							zIndex: 5,
-							marginTop: 1,
-							backgroundColor: bgColor,
-							backdropFilter: 'blur(1rem) saturate(150%)',
-						};
-					},
-					control: (provided, state) => ({
-						...provided,
-						position: 'static',
-						borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
-						borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
-						zIndex: state.menuIsOpen ? 4 : null,
-						borderColor: style,
-						minHeight: isCompact ? '2.25rem' : provided.minHeight,
-						height: isCompact ? '2.25rem' : provided.height,
-					}),
-					option: (provided, state) => ({
-						...provided,
-						margin: '0.125rem 0.375rem',
-						width: 'calc(100% - 0.75rem)',
-						borderRadius: '0.25rem',
-						transition: 'all 0.3s ease-out',
-						...(state.isSelected ? { backgroundColor: 'var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' } : {}),
-					}),
-					valueContainer: (provided) => {
-						if (!isCompact) {
-							return provided;
-						}
-
-						return {
-							...provided,
-							padding: '0 0.5rem',
-							height: '2.125rem',
-						};
-					},
-					indicatorsContainer: (provided) => {
-						if (!isCompact) {
-							return provided;
-						}
-
-						return {
-							...provided,
-							height: '2.125rem',
-						};
-					}
-				}}
-			/>
+			{selectControl}
 		</BaseControl>
 	);
 };

@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import _ from 'lodash';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * WordPress dependencies

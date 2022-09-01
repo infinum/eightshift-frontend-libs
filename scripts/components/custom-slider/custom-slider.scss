@@ -3,7 +3,7 @@
 // stylelint-disable number-max-precision
 
 .rc-slider {
-	--slider-color-light: var(--es-admin-cool-gray-900);
+	--slider-color-light: var(--es-admin-cool-gray-300);
 	--slider-color-dark: var(--es-admin-cool-gray-500);
 	--slider-color-active: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
 	--es-custom-slider-col-picker-element-color: linear-gradient(-45deg, var(--es-admin-gray-500), var(--es-admin-gray-200));
@@ -301,7 +301,7 @@
 	}
 
 	.rc-slider-track {
-		height: 3.25rem;
+		height: 2.75rem;
 		border-radius: 0.125rem;
 		background: var(--es-custom-slider-col-picker-element-color);
 		bottom: -1.25rem;
@@ -310,7 +310,7 @@
 	}
 
 	.rc-slider-rail {
-		height: 3.5rem;
+		height: 3rem;
 		background: transparent;
 		border-radius: 0.25rem;
 		bottom: -1.4rem;
@@ -320,7 +320,7 @@
 	}
 
 	.rc-slider-dot {
-		height: 3rem;
+		height: 2.5rem;
 		bottom: -2.5rem;
 		border-radius: 1rem;
 		background: rgb(20 20 20 / 0.2); // stylelint-disable-line alpha-value-notation
@@ -333,7 +333,7 @@
 
 	.rc-slider-with-marks {
 		.rc-slider-handle {
-			margin-bottom: 0.875rem;
+			margin-top: 0.05rem;
 		}
 
 		.rc-slider-dot {
@@ -357,20 +357,64 @@
 .es-custom-slider-column-picker-with-dots,
 .es-custom-slider-column-picker-with-dots .rc-slider-with-marks {
 	.rc-slider-dot {
-		height: 3rem;
+		height: 2.5rem;
 		bottom: -2.5rem;
 		border-radius: 1rem;
 	}
 
 	.rc-slider-handle {
-		margin-top: 0.875rem;
+		margin-top: 0.05rem;
 	}
 
 	.rc-slider-track {
-		bottom: -1.25rem;
+		bottom: -1.3rem;
 	}
 
 	.rc-slider-mark {
 		display: none;
+	}
+}
+
+.rd-slider-mark-offset {
+	.rc-slider-mark-text {
+		margin-left: 0.9em;
+	}
+}
+
+.rd-slider-mark-offset-fullwidth {
+	.rc-slider-mark-text {
+		margin-left: 0.8em;
+	}
+}
+
+@for $i from 1 through 70 {
+	.rd-slider-mark-ignore-#{$i} {
+		.rc-slider-mark-text:nth-of-type(#{$i}) {
+			--es-custom-slider-custom-active-mark-label-color: #999999;
+			opacity: 0.4;
+		}
+	}
+
+	.rd-slider-line-ignore-#{$i} {
+		.rc-slider-dot:nth-of-type(#{$i}) {
+			display: none;
+		}
+	}
+}
+
+.rd-no-offset-handle .rc-slider-handle.rc-slider-handle-1,
+.rd-no-width-handle .rc-slider-handle.rc-slider-handle-2 {
+	display: none;
+	pointer-events: none;
+	user-select: none;
+}
+
+.rd-no-offset-handle,
+.rd-no-width-handle {
+	.rc-slider-step,
+	.rc-slider-dot,
+	.rc-slider-mark,
+	.rc-slider-mark-text {
+		pointer-events: none;
 	}
 }

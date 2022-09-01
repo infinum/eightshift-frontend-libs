@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IconToggle } from '../icon-toggle';
-import { icons } from '../../../editor/icons/icons';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
 
@@ -18,6 +18,8 @@ export const component = () => {
 
 	return (
 		<div style={{width: '20rem'}}>
+			<h4>Regular toggle</h4>
+
 			<IconToggle
 				icon={icons.width}
 				label='Full width'
@@ -42,7 +44,18 @@ export const component = () => {
 				label={__('Full width', 'eightshift-frontend-libs')}
 				checked={current}
 				onChange={(value) => setCurrent(value)}
-				isCheckbox
+				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
+				inlineHelp
+			/>
+
+			<h4>Checkbox</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='checkbox'
 			/>
 
 			<br />
@@ -53,7 +66,49 @@ export const component = () => {
 				checked={current}
 				onChange={(value) => setCurrent(value)}
 				help={__('Help text here.', 'eightshift-frontend-libs')}
-				isCheckbox
+				type='checkbox'
+			/>
+
+			<br />
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
+				type='checkbox'
+				inlineHelp
+			/>
+
+			<h4>Button</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='button'
+			/>
+
+			<h4>Icon button</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='iconButton'
+			/>
+
+			<h4>Tile button</h4>
+
+			<IconToggle
+				icon={icons.width}
+				label={__('Full width', 'eightshift-frontend-libs')}
+				checked={current}
+				onChange={(value) => setCurrent(value)}
+				type='tileButton'
 			/>
 		</div>
 	);

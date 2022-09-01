@@ -2,6 +2,64 @@
 
 @use 'sass:map';
 
+$es-colors: (
+	'current': 'currentColor',
+	'transparent': 'transparent',
+	'admin-accent': 'var(--wp-admin-theme-color, var(--es-admin-accent-color-default))',
+	'accent-color-default': 'var(--es-admin-accent-color-default)',
+	'pure-white': 'var(--es-admin-pure-white)',
+	'pure-black': 'var(--es-admin-pure-black)',
+	'gray-50': 'var(--es-admin-gray-50)',
+	'gray-100': 'var(--es-admin-gray-100)',
+	'gray-200': 'var(--es-admin-gray-200)',
+	'gray-250': 'var(--es-admin-gray-250)',
+	'gray-300': 'var(--es-admin-gray-300)',
+	'gray-400': 'var(--es-admin-gray-400)',
+	'gray-500': 'var(--es-admin-gray-500)',
+	'gray-600': 'var(--es-admin-gray-600)',
+	'gray-700': 'var(--es-admin-gray-700)',
+	'gray-750': 'var(--es-admin-gray-750)',
+	'gray-800': 'var(--es-admin-gray-800)',
+	'gray-850': 'var(--es-admin-gray-850)',
+	'gray-900': 'var(--es-admin-gray-900)',
+	'gray-950': 'var(--es-admin-gray-950)',
+	'red-500': 'var(--es-admin-red-500)',
+	'on-red-500': 'var(--es-admin-on-red-500)',
+	'yellow-500': 'var(--es-admin-yellow-500)',
+	'on-yellow-500': 'var(--es-admin-on-yellow-500)',
+	'green-500': 'var(--es-admin-green-500)',
+	'on-green-500': 'var(--es-admin-on-green-500)',
+	'blue-500': 'var(--es-admin-blue-500)',
+	'on-blue-500': 'var(--es-admin-on-blue-500)',
+	'blue-gray-50': 'var(--es-admin-blue-gray-50)',
+	'on-blue-gray-50': 'var(--es-admin-on-blue-gray-50)',
+	'cool-gray-50': 'var(--es-admin-cool-gray-50)',
+	'cool-gray-100': 'var(--es-admin-cool-gray-100)',
+	'cool-gray-200': 'var(--es-admin-cool-gray-200)',
+	'cool-gray-300': 'var(--es-admin-cool-gray-300)',
+	'cool-gray-400': 'var(--es-admin-cool-gray-400)',
+	'cool-gray-450': 'var(--es-admin-cool-gray-450)',
+	'cool-gray-500': 'var(--es-admin-cool-gray-500)',
+	'cool-gray-600': 'var(--es-admin-cool-gray-600)',
+	'cool-gray-650': 'var(--es-admin-cool-gray-650)',
+	'cool-gray-700': 'var(--es-admin-cool-gray-700)',
+	'cool-gray-800': 'var(--es-admin-cool-gray-800)',
+	'cool-gray-900': 'var(--es-admin-cool-gray-900)',
+	'eightshift-50': 'var(--es-admin-eightshift-50)',
+	'eightshift-500': 'var(--es-admin-eightshift-500)',
+);
+
+$es-line-heights: (
+	'0': 0,
+	'1': 1,
+	'1\\.15': '1.15',
+	'1\\.2': '1.2',
+	'1\\.25': '1.25',
+	'1\\.3': '1.3',
+	'1\\.5': '1.5',
+	'2': '2',
+);
+
 $es-spacings: (
 	'auto': auto,
 	'0': 0,
@@ -44,8 +102,73 @@ $es-spacings: (
 	'3\\/4': '75%',
 	'full': '100%',
 	'max': 'max-content',
-	'min': 'min-content'
+	'min': 'min-content',
+	// Tailwind sizes.
+	'0\\.25': '0.0625rem',
+	'0\\.5': '0.125rem',
+	'0\\.75': '0.1875rem',
+	'1\\.0': '0.25rem',
+	'1\\.25': '0.3125rem',
+	'1\\.5':'0.375rem',
+	'1\\.75': '0.4375rem',
+	'2': '0.5rem',
+	'2\\.25': '0.5625rem',
+	'2\\.5':'0.625rem',
+	'2\\.75': '0.6875rem',
+	'3': '0.75rem',
+	'3\\.5': '0.875rem',
+	'4': '1rem',
+	'5': '1.25rem',
+	'6': '1.5rem',
+	'7': '1.75rem',
+	'8': '2rem',
+	'9': '2.25rem',
+	'10': '2.5rem',
+	'11': '2.75rem',
+	'12': '3rem',
+	'13': '3.25rem',
+	'14': '3.5rem',
+	'15': '3.75rem',
+	'16': '4rem',
+	'17': '4.25rem',
+	'18': '4.5rem',
+	'19': '4.75rem',
+	'20': '5rem',
+	'21': '5.25rem',
+	'22': '5.5rem',
+	'23': '5.75rem',
+	'24': '6rem',
+	'25': '6.25rem',
+	'26': '6.5rem',
+	'27': '6.75rem',
+	'28': '7rem',
+	'29': '7.25rem',
+	'30': '7.5rem',
+	'31': '7.75rem',
+	'32': '8rem',
+	'33': '8.25rem',
+	'34': '8.5rem',
+	'35': '8.75rem',
+	'36': '9rem',
+	'37': '9.25rem',
+	'38': '9.5rem',
+	'39': '9.75rem',
+	'40': '10rem',
+	'44': '11rem',
+	'48': '12rem',
+	'52': '13rem',
+	'56': '14rem',
+	'60': '15rem',
+	'64': '16rem',
+	'68': '17rem',
+	'72': '18rem',
+	'80': '20rem',
+	'84': '21rem',
+	'88': '22rem',
+	'92': '23rem',
+	'96': '24rem',
 );
+
 $es-square-button-sizes: (
 	'8': '0.5rem',
 	'10': '0.625rem',
@@ -65,12 +188,14 @@ $es-square-button-sizes: (
 	'44': '2.75rem',
 	'48': '3rem',
 );
+
 $es-text-aligns: (
 	'left': 'left',
 	'center': 'center',
 	'right': 'right',
 	'justify': 'justify',
 );
+
 $es-general-aligns: (
 	'left': 'left',
 	'center': 'center',
@@ -81,6 +206,7 @@ $es-general-aligns: (
 	'between': 'space-between',
 	'around': 'space-around',
 );
+
 $es-opacities: (
 	'0': '0%',
 	'10': '10%',
@@ -94,6 +220,7 @@ $es-opacities: (
 	'90': '90%',
 	'100': '100%',
 );
+
 $es-displays: (
 	'grid': 'grid',
 	'flex': 'flex',
@@ -104,241 +231,655 @@ $es-displays: (
 	'none': 'none',
 	'contents': 'contents',
 );
+
 $es-utility-props: (
+	'border': (
+		'cssProp': 'border',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'bg': (
+		'cssProp': 'background',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'color': (
+		'cssProp': 'color',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'border-t': (
+		'cssProp': 'border-top',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'border-b': (
+		'cssProp': 'border-bottom',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'border-l': (
+		'cssProp': 'border-left',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'border-r': (
+		'cssProp': 'border-right',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'border-x': (
+		'cssProp': 'border-inline',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
+	'border-y': (
+		'cssProp': 'border-block',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '1px solid',
+		'includeNegativeValues': 'false',
+	),
 	'mx': (
 		'cssProp': 'margin-inline',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'my': (
 		'cssProp': 'margin-block',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'mt': (
 		'cssProp': 'margin-top',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'mb': (
 		'cssProp': 'margin-bottom',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'ml': (
 		'cssProp': 'margin-left',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'mr': (
 		'cssProp': 'margin-right',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'm': (
 		'cssProp': 'margin',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'px': (
 		'cssProp': 'padding-inline',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'py': (
 		'cssProp': 'padding-block',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'pt': (
 		'cssProp': 'padding-top',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'pb': (
 		'cssProp': 'padding-bottom',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'pl': (
 		'cssProp': 'padding-left',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'pr': (
 		'cssProp': 'padding-right',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'p': (
 		'cssProp': 'padding',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'w': (
 		'cssProp': 'width',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'h': (
 		'cssProp': 'height',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'text-align': (
 		'cssProp': 'text-align',
 		'values': $es-text-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'opacity': (
 		'cssProp': 'opacity',
 		'values': $es-opacities,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'gap': (
 		'cssProp': 'gap',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'row-gap': (
 		'cssProp': 'row-gap',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'col-gap': (
 		'cssProp': 'column-gap',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'min-w': (
 		'cssProp': 'min-width',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'min-h': (
 		'cssProp': 'min-height',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'max-w': (
 		'cssProp': 'max-width',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'max-h': (
 		'cssProp': 'max-height',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'line-h': (
 		'cssProp': 'line-height',
-		'values': $es-spacings,
+		'values': $es-line-heights,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'true',
 	),
 	'text': (
 		'cssProp': 'font-size',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'true',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'rounded': (
 		'cssProp': 'border-radius',
 		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'rounded-tl': (
+		'cssProp': 'border-top-left-radius',
+		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'rounded-tr': (
+		'cssProp': 'border-top-right-radius',
+		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'rounded-bl': (
+		'cssProp': 'border-bottom-left-radius',
+		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'rounded-br': (
+		'cssProp': 'border-bottom-right-radius',
+		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'items': (
 		'cssProp': 'align-items',
 		'values': $es-general-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'content': (
 		'cssProp': 'justify-content',
 		'values': $es-general-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'align-self': (
 		'cssProp': 'align-self',
 		'values': $es-general-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'justify-self': (
 		'cssProp': 'justify-self',
 		'values': $es-general-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 	'display': (
 		'cssProp': 'display',
 		'values': $es-displays,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-color': (
+		'cssProp': 'color',
+		'values': $es-colors,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'slight-button-border': (
+		'cssProp': 'box-shadow',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': 'inset 0 0 0 1px',
+		'includeNegativeValues': 'false',
+	),
+	'border-w': (
+		'cssProp': 'border-width',
+		'values': $es-spacings,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'border-color': (
+		'cssProp': 'border-color',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'fill': (
+		'cssProp': 'fill',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'stroke': (
+		'cssProp': 'stroke',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-fill': (
+		'cssProp': 'fill',
+		'values': $es-colors,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-stroke': (
+		'cssProp': 'stroke',
+		'values': $es-colors,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-w': (
+		'cssProp': 'width',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-h': (
+		'cssProp': 'height',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-max-w': (
+		'cssProp': 'max-width',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-max-h': (
+		'cssProp': 'max-width',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-min-w': (
+		'cssProp': 'min-width',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'nested-min-h': (
+		'cssProp': 'min-width',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
 	),
 );
+
+// Additional borders (default).
+.es-border {
+	border: 1px solid currentColor;
+}
+
+.es-border-t {
+	border-top: 1px solid currentColor;
+}
+
+.es-border-b {
+	border-bottom: 1px solid currentColor;
+}
+
+.es-border-l {
+	border-left: 1px solid currentColor;
+}
+
+.es-border-r {
+	border-right: 1px solid currentColor;
+}
+
+.es-border-x {
+	border-inline: 1px solid currentColor;
+}
+
+.es-border-y {
+	border-block: 1px solid currentColor;
+}
 
 // Generic utility classes (defined in maps above).
 @each $propShorthand, $propData in $es-utility-props {
 	$propCssName: map.get($propData, 'cssProp');
 	$values: map.get($propData, 'values');
+	$additionalSelector: map.get($propData, 'additionalSelector');
+	$includeBcfSelectors: map.get($propData, 'includeBcfSelectors');
+	$selectorSuffix: map.get($propData, 'selectorSuffix');
+	$valuePrefix: map.get($propData, 'valuePrefix');
+	$includeNegativeValues: map.get($propData, 'includeNegativeValues');
 
 
 	@each $size, $value in $values {
 		$size2: $size + '';
 
-		.es-#{$propShorthand}-#{$size2} {
-			#{$propCssName}: #{$value};
+		.es-#{$propShorthand}-#{$size2}#{$selectorSuffix} #{$additionalSelector} {
+			#{$propCssName}: #{$valuePrefix} #{$value};
 		}
 
-		.es-#{$propShorthand}-#{$size2}-important {
-			#{$propCssName}: #{$value} !important;
+		.es-#{$propShorthand}-#{$size2}-important#{$selectorSuffix} #{$additionalSelector} {
+			#{$propCssName}: #{$valuePrefix} #{$value} !important;
 		}
 
-		.es-#{$propShorthand}-#{$size2}\! {
-			#{$propCssName}: #{$value} !important;
+		.es-#{$propShorthand}-#{$size2}\!#{$selectorSuffix} #{$additionalSelector} {
+			#{$propCssName}: #{$valuePrefix} #{$value} !important;
 		}
 
-		.-es-#{$propShorthand}-#{$size2} {
-			#{$propCssName}: -#{$value};
-		}
+		@if $includeNegativeValues == 'true' {
+			.-es-#{$propShorthand}-#{$size2}#{$selectorSuffix} #{$additionalSelector} {
+				#{$propCssName}: #{$valuePrefix} -#{$value};
+			}
 
-		.-es-#{$propShorthand}-#{$size2}-important {
-			#{$propCssName}: -#{$value} !important;
-		}
+			.-es-#{$propShorthand}-#{$size2}-important#{$selectorSuffix} #{$additionalSelector} {
+				#{$propCssName}: #{$valuePrefix} -#{$value} !important;
+			}
 
-		.-es-#{$propShorthand}-#{$size2}\! {
-			#{$propCssName}: -#{$value} !important;
+			.-es-#{$propShorthand}-#{$size2}\!#{$selectorSuffix} #{$additionalSelector} {
+				#{$propCssName}: #{$valuePrefix} -#{$value} !important;
+			}
 		}
 
 		// Classes for WP BaseControl fields.
-		.es-#{$propShorthand}-#{$size2}-bcf {
-			.components-base-control__field {
-				#{$propCssName}: #{$value};
+		@if $includeBcfSelectors == 'true' {
+			.es-#{$propShorthand}-#{$size2}-bcf#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} #{$value};
+				}
 			}
-		}
 
-		.es-#{$propShorthand}-#{$size2}-bcf-important {
-			.components-base-control__field {
-				#{$propCssName}: #{$value} !important;
+			.es-#{$propShorthand}-#{$size2}-bcf-important#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} #{$value} !important;
+				}
 			}
-		}
 
-		.es-#{$propShorthand}-#{$size2}-bcf\! {
-			.components-base-control__field {
-				#{$propCssName}: #{$value} !important;
+			.es-#{$propShorthand}-#{$size2}-bcf\!#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} #{$value} !important;
+				}
 			}
-		}
 
-		.-es-#{$propShorthand}-#{$size2}-bcf {
-			.components-base-control__field {
-				#{$propCssName}: -#{$value};
+			.-es-#{$propShorthand}-#{$size2}-bcf#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} -#{$value};
+				}
 			}
-		}
 
-		.-es-#{$propShorthand}-#{$size2}-bcf-important {
-			.components-base-control__field {
-				#{$propCssName}: -#{$value} !important;
+			.-es-#{$propShorthand}-#{$size2}-bcf-important#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} -#{$value} !important;
+				}
 			}
-		}
 
-		.-es-#{$propShorthand}-#{$size2}-bcf\! {
-			.components-base-control__field {
-				#{$propCssName}: -#{$value} !important;
+			.-es-#{$propShorthand}-#{$size2}-bcf\!#{$selectorSuffix} #{$additionalSelector} {
+				.components-base-control__field {
+					#{$propCssName}: #{$valuePrefix} -#{$value} !important;
+				}
 			}
 		}
 	}
@@ -451,7 +992,7 @@ $es-utility-props: (
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	gap: 0.5rem;
 }
 
@@ -676,6 +1217,17 @@ $es-utility-props: (
 	grid-gap: 1rem;
 }
 
+.es-fifty-fifty-h-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 1rem;
+
+	> * {
+		flex: 1 0 calc(50% - 0.5rem);
+		max-width: calc(50% - 0.5rem);
+	}
+}
+
 // Grid align helpers.
 @for $eblCol from 1 through 12 {
 	.es-col-#{$eblCol} {
@@ -755,6 +1307,15 @@ $es-utility-props: (
 }
 
 // Inline input-label combos.
+@each $name, $value in $es-spacings {
+	.es-inline-input-label-#{$name} {
+		.components-base-control__field {
+			display: grid;
+			grid-template-columns: 1fr #{$value};
+		}
+	}
+}
+
 .es-inline-input-label-s {
 	.components-base-control__field {
 		display: grid;
@@ -806,6 +1367,120 @@ $es-utility-props: (
 
 .es-flex-col-reverse {
 	flex-direction: column-reverse;
+}
+
+// New style for default Gutenberg buttons pressed state.
+.es-has-v2-gutenberg-button-active-state-inside > .components-button,
+.es-has-v2-gutenberg-button-active-state {
+	@include es-v2-gutenberg-button-active-state;
+}
+
+// Button group.
+.es-button-group {
+	display: flex;
+	align-items: center;
+	gap: 1px;
+
+	> .components-button {
+		@include es-v2-gutenberg-button-active-state;
+	}
+}
+
+// Basic transitions.
+.es-transition-all {
+	transition: {
+		property: all;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+.es-transition {
+	transition: {
+		property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+.es-transition-colors {
+	transition: {
+		property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+.es-transition-opacity {
+	transition: {
+		property: opacity;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+.es-transition-shadow {
+	transition: {
+		property: box-shadow;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+.es-transition-transform {
+	transition: {
+		property: transform;
+		timing-function: var(--es-ease-out-cubic);
+		duration: 0.3s;
+	}
+}
+
+// Pointer events / user-select.
+.es-pointer-events-none {
+	pointer-events: none;
+}
+
+.es-pointer-events-all {
+	pointer-events: all;
+}
+
+.es-user-select-none {
+	user-select: none;
+}
+
+.es-user-select-auto {
+	user-select: auto;
+}
+
+.es-user-select-text {
+	user-select: text;
+}
+
+// Button/link resets.
+.es-button-reset {
+	@extend %button-reset;
+	background: none;
+}
+
+.es-link-reset {
+	@extend %link-reset;
+}
+
+// Cursors.
+.es-cursor-pointer {
+	cursor: pointer;
+}
+
+.es-cursor-default {
+	cursor: default;
+}
+
+.es-cursor-none {
+	cursor: none;
+}
+
+.es-cursor-grab {
+	cursor: grab;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

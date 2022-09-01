@@ -1,5 +1,5 @@
 import React from 'react';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 import { IconLabel } from '../icon-label/icon-label';
 
@@ -20,7 +20,7 @@ export const InlineNotificationType = {
 
 /**
  * A simple inline notification to be used inside the Editor or Options.
- * 
+ *
  * @param {object} props                                                       - InlineNotification options.
  * @param {string} props.text                                                  - Notification text.
  * @param {string} [props.subtitle]                                            - Notification text.
@@ -37,15 +37,20 @@ export const InlineNotification = ({
 }) => {
 	let icon;
 
+	let iconColor = 'es-nested-color-blue-500!';
+
 	switch (type) {
 		case InlineNotificationType.ERROR:
 			icon = icons.errorCircle;
+			iconColor = 'es-nested-color-red-500!';
 			break;
 		case InlineNotificationType.WARNING:
 			icon = icons.warning;
+			iconColor = 'es-nested-color-yellow-500!';
 			break;
 		case InlineNotificationType.SUCCESS:
 			icon = icons.checkCircle;
+			iconColor = 'es-nested-color-green-500!';
 			break;
 		default:
 			icon = icons.infoCircle;
@@ -54,12 +59,12 @@ export const InlineNotification = ({
 
 	return (
 		<div className={classnames([
-			'es-inline-notification-v2 es-p-s es-rounded-s',
-			`es-inline-notification-v2--${type}`,
+			'es-inline-notification-v3 es-p-s es-rounded-s',
+			`es-inline-notification-v3--${type}`,
 			showContrastOutline ? 'es-hi-vis-outline' : '',
-			removeBottomFieldSpacing ? '': 'es-mb-l',
+			removeBottomFieldSpacing ? '': 'es-mb-6',
 		])}>
-			<IconLabel icon={icon} label={text} subtitle={subtitle} standalone/>
+			<IconLabel icon={icon} label={text} subtitle={subtitle} additionalClasses={iconColor} standalone />
 		</div>
 	);
 };

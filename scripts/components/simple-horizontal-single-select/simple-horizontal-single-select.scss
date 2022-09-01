@@ -1,6 +1,12 @@
 // stylelint-disable declaration-no-important, selector-max-specificity
 
 .es-simple-h-single-select {
+	@each $name, $value in $es-spacings {
+		.es-simple-h-single-select-max-w-#{$name} & {
+			max-width: #{$value} !important;
+		}
+	}
+
 	&.has-inset-border {
 		.components-button {
 			&:first-child {
@@ -28,11 +34,7 @@
 	}
 
 	.components-button {
-		&:not(.is-pressed) {
-			&:hover {
-				background-color: var(--es-admin-gray-50) !important;
-			}
-		}
+		@include es-v2-gutenberg-button-active-state;
 	}
 }
 

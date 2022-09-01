@@ -3,7 +3,7 @@ import { BaseControl, Button } from '@wordpress/components';
 
 /**
  * A simple and elegant vertical option picker, best used for up to 5 options.
- * 
+ *
  * @param {object} props                          - ComponentUseToggle options.
  * @param {string} props.label                    - Usually component name.
  * @param {Array} props.options                   - Options to display

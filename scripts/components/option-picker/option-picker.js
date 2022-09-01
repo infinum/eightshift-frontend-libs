@@ -1,11 +1,11 @@
 import React from 'react';
 import { DropdownMenu, ToolbarGroup } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons } from '../../../scripts';
+import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A flexible picker of mutually exclusive options.
- * 
+ *
  * @param {object} props                                - OptionPicker options.
  * @param {object} props.value                          - Current value
  * @param {function} props.onChange                     - Function called when the selection is changed.
@@ -42,7 +42,7 @@ export const OptionPicker
 		/**
 		 * Gets the onChange callback with will (un)set a value
 		 * when a new option gets picked.
-		 * @param {*} value 
+		 * @param {*} value
 		 * @returns onChange callback
 		 */
 		function applyOrUnset(value) {
@@ -62,7 +62,7 @@ export const OptionPicker
 			if (buttonIcon) {
 				return buttonIcon;
 			}
-			
+
 			const activeOption = options.find((control) => control.value === currentValue);
 
 			if (activeOption) {
@@ -81,7 +81,7 @@ export const OptionPicker
 				icon={getIcon()}
 				label={controlLabel}
 				text={showToggleButtonLabel ? controlLabel : null}
-				toggleProps={{ 
+				toggleProps={{
 					describedBy: describedBy,
 					label: controlLabel,
 					showTooltip: true,
