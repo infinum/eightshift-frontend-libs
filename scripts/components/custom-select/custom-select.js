@@ -46,6 +46,7 @@ import { CustomSelectDefaultDropdownIndicator, CustomSelectDefaultClearIndicator
  * @param {function} [props.filterAsyncOptions]                                - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label` and `value` keys, additional fields can be added as required.
  * @param {CustomSelectStyle} [props.style=CustomSelectStyle.DEFAULT]          - Style of the CustomSelect.
  * @param {string?} [props.additionalClasses='']                               - If passed, the classes will be added to the `<BaseControl>` element if `label` or `help` are passed, otherwise the classes are added to the component directly.
+ * @param {object?} [props.additionalProps={}]                                 - If passed, the provided props will be passed to the Select control.
  */
 export const CustomSelect = (props) => {
 	const {
@@ -93,6 +94,9 @@ export const CustomSelect = (props) => {
 		customMultiValueDisplayComponent,
 		customSingleValueDisplayComponent,
 		customMultiValueDisplayContainerComponent,
+
+		// Misc.
+		additionalProps = {},
 	} = props;
 
 	const { Option, SingleValue, MultiValueLabel, MultiValueContainer, MultiValueRemove } = components;
@@ -333,6 +337,7 @@ export const CustomSelect = (props) => {
 					};
 				}
 			}}
+			{...additionalProps}
 		/>
 	);
 
