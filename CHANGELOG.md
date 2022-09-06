@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [7.1.0] - 2022-09-06
+
+### Changed
+- facelift for all components and a bunch of new components. All details can be seen [here](https://github.com/infinum/eightshift-frontend-libs/pull/661)
+
+### Fixed
+- advanced-color-picker component double import.
+
 ## [7.0.1] - 2022-08-01
 
 ### Changed 
@@ -610,6 +618,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[7.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.1...7.1.0
 [7.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.2.0...7.0.0
 [6.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.1.0...6.2.0
