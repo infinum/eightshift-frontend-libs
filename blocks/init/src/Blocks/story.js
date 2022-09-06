@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { Fragment } from '@wordpress/element';
 import manifest from './manifest.json';
 
