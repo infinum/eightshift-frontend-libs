@@ -9,6 +9,8 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
+$globalManifest = Components::getManifest(dirname(__DIR__, 2));
+
 $iconUse = Components::checkAttr('iconUse', $attributes, $manifest);
 
 if (!$iconUse) {
@@ -28,10 +30,13 @@ $iconClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
+$unique = Components::getUnique();
 ?>
-<i class="<?php echo esc_attr($iconClass); ?>">
+<i class="<?php echo esc_attr($iconClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo $manifest['icons'][$iconName]; // @phpstan-ignore-line
+	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
+	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	$manifest['icons'][$iconName];
 	?>
 </i>
