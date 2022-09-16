@@ -37,19 +37,19 @@
 	"options": {
 		"layoutType": [
 			{
-				"label": "2 col, grid",
+				"label": "2 columns",
 				"value": "layout-grid-2",
-				"icon": "singleItemLeftInset"
+				"icon": "twoColumns"
 			},
 			{
-				"label": "3 col, grid",
+				"label": "3 columns",
 				"value": "layout-grid-3",
-				"icon": "singleItemLeftInset"
+				"icon": "columns"
 			},
 			{
-				"label": "4 col, grid",
+				"label": "4 columns",
 				"value": "layout-grid-4",
-				"icon": "singleItemLeftInset"
+				"icon": "fourColumns"
 			}
 		],
 		"layoutTotalItems": {
