@@ -1,5 +1,5 @@
 .loader {
-	--loader-color-1: var(--loader-primary, var(--global-colors-primary, currentColor));
+	--loader-color-1: var(--loader-primary, var(--global-colors-primary500, currentColor));
 	--loader-color-2: var(--loader-secondary, var(--global-colors-black, currentColor));
 
 	display: flex;

@@ -2,12 +2,12 @@ $menu-vertical: (
 	link-padding: 0.5rem 0,
 	link-modifiers: (
 		normal: (
-			color: global-settings(colors, black),
-			text-decoration-color: rgba(global-settings(colors, black), 0.15),
+			color: var(--global-colors-primary500),
+			text-decoration-color: var(--global-colors-primary300),
 		),
 		hover: (
-			color: global-settings(colors, primary),
-			text-decoration-color: rgba(global-settings(colors, primary), 1),
+			color: var(--global-colors-primary500),
+			text-decoration-color: var(--global-colors-primary300),
 		),
 	),
 );
