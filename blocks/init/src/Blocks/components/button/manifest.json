@@ -20,13 +20,13 @@
 		"buttonId": {
 			"type": "string"
 		},
-		"buttonSize": {
-			"type": "string",
-			"default": "default"
-		},
 		"buttonColor": {
 			"type": "string",
-			"default": "primary"
+			"default": "primary500"
+		},
+		"buttonVariant": {
+			"type": "string",
+			"default": "buttonFilled"
 		},
 		"buttonWidth": {
 			"type": "string",
@@ -55,17 +55,25 @@
 			"default": true
 		}
 	},
+	"components": {
+		"icon": "icon"
+	},
 	"options": {
-		"buttonSize": [
+		"buttonVariant": [
 			{
-				"label": "Default",
-				"value": "default",
-				"icon": "checkCircle"
+				"label": "Filled",
+				"value": "fill",
+				"icon": "buttonFilled"
 			},
 			{
-				"label": "Big",
-				"value": "big",
-				"icon": "arrowsRightDiagonal"
+				"label": "Outlined",
+				"value": "outline",
+				"icon": "buttonOutline"
+			},
+			{
+				"label": "Ghost",
+				"value": "ghost",
+				"icon": "buttonGhost"
 			}
 		],
 		"buttonWidth": [
@@ -81,141 +89,42 @@
 			}
 		],
 		"buttonColor": [
-			"primary",
-			"black",
-			"blue",
-			"yellow",
-			"ocean",
-			"green",
-			"red",
-			"white"
+			"primary500"
 		]
 	},
 	"variables": {
-		"buttonColor": {
-			"primary": [
+		"buttonVariant": {
+			"fill": [
 				{
 					"variable": {
+						"button-background-color": "var(--global-colors-primary500)",
+						"button-background-color-hover": "var(--global-colors-primary700)",
 						"button-color": "var(--global-colors-white)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-primary)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-primary)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
+						"button-border": "1px solid var(--global-colors-primary500)",
+						"button-border-hover": "1px solid var(--global-colors-primary700)",
+						"button-border-focus": "1px solid transparent"
 					}
 				}
 			],
-			"black": [
+			"outline": [
 				{
 					"variable": {
-						"button-color": "var(--global-colors-white)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-black)",
-						"button-background-color-hover": "var(--global-colors-primary)",
-						"button-color-is-link": "var(--global-colors-black)",
-						"button-color-is-link-hover": "var(--global-colors-primary)"
+						"button-background-color": "transparent",
+						"button-color": "var(--global-colors-primary500)",
+						"button-color-hover": "var(--global-colors-primary700)",
+						"button-border": "1px solid var(--global-colors-primary500)",
+						"button-border-hover": "1px solid var(--global-colors-primary700)",
+						"button-border-focus": "1px solid transparent"
 					}
 				}
 			],
-			"blue": [
+			"ghost": [
 				{
 					"variable": {
-						"button-color": "var(--global-colors-white)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-blue)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-blue)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
-					}
-				}
-			],
-			"yellow": [
-				{
-					"variable": {
-						"button-color": "var(--global-colors-black)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-yellow)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-yellow)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
-					}
-				}
-			],
-			"ocean": [
-				{
-					"variable": {
-						"button-color": "var(--global-colors-black)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-ocean)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-ocean)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
-					}
-				}
-			],
-			"green": [
-				{
-					"variable": {
-						"button-color": "var(--global-colors-black)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-green)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-green)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
-					}
-				}
-			],
-			"red": [
-				{
-					"variable": {
-						"button-color": "var(--global-colors-white)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-red)",
-						"button-background-color-hover": "var(--global-colors-black)",
-						"button-color-is-link": "var(--global-colors-red)",
-						"button-color-is-link-hover": "var(--global-colors-black)"
-					}
-				}
-			],
-			"white": [
-				{
-					"variable": {
-						"button-color": "var(--global-colors-black)",
-						"button-color-hover": "var(--global-colors-white)",
-						"button-background-color": "var(--global-colors-white)",
-						"button-background-color-hover": "var(--global-colors-yellow)",
-						"button-color-is-link": "var(--global-colors-white)",
-						"button-color-is-link-hover": "var(--global-colors-yellow)"
-					}
-				}
-			]
-		},
-		"buttonSize": {
-			"default": [
-				{
-					"variable": {
-						"button-font-size": "0.8rem",
-						"button-line-height": "1.4"
-					}
-				},
-				{
-					"breakpoint": "tablet",
-					"variable": {
-						"button-font-size": "1rem"
-					}
-				}
-			],
-			"big": [
-				{
-					"variable": {
-						"button-font-size": "1rem",
-						"button-line-height": "1.4"
-					}
-				},
-				{
-					"breakpoint": "tablet",
-					"variable": {
-						"button-font-size": "1.2rem"
+						"button-background-color": "transparent",
+						"button-color": "var(--global-colors-primary500)",
+						"button-color-hover": "var(--global-colors-primary700)",
+						"button-border": "1px solid transparent"
 					}
 				}
 			]

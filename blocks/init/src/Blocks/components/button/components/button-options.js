@@ -1,7 +1,8 @@
-import React from 'react';
-import { __ } from '@wordpress/i18n';
+import React, { useState } from 'react';
+import { __, sprintf } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, IconToggle, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, CollapsableComponentUseToggle, LinkEditComponent, SimpleHorizontalSingleSelect, FancyDivider, props, getOptions, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
@@ -14,15 +15,17 @@ export const ButtonOptions = (attributes) => {
 		label = manifestTitle,
 		buttonShowControls = true,
 
-		showButtonUse = false,
-		showLabel = false,
+		showButtonUse = true,
+		showLabel = true,
 		showButtonAriaLabel = true,
-		showButtonColor = true,
-		showButtonSize = true,
-		showButtonWidth = true,
-		showButtonIsAnchor = true,
 		showButtonId = true,
-		showButtonIsLink = true,
+		showButtonUrl = true,
+		showButtonVariant = true,
+
+		showExpanderButton = true,
+
+		additionalControls,
+		additionalControlsSplitArea,
 	} = attributes;
 
 	if (!buttonShowControls) {
@@ -30,107 +33,111 @@ export const ButtonOptions = (attributes) => {
 	}
 
 	const buttonUse = checkAttr('buttonUse', attributes, manifest);
-	const buttonColor = checkAttr('buttonColor', attributes, manifest);
-	const buttonSize = checkAttr('buttonSize', attributes, manifest);
-	const buttonWidth = checkAttr('buttonWidth', attributes, manifest);
-	const buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest);
 	const buttonId = checkAttr('buttonId', attributes, manifest);
-	const buttonIsLink = checkAttr('buttonIsLink', attributes, manifest);
 	const buttonAriaLabel = checkAttr('buttonAriaLabel', attributes, manifest);
+	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
+	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
+	const buttonVariant = checkAttr('buttonVariant', attributes, manifest);
 
-	const sizeOptions = getOption('buttonSize', attributes, manifest).map(({ label, value, icon: iconName }) => {
-		return {
-			onClick: () => setAttributes({
-				[getAttrKey('buttonSize', attributes, manifest)]: value,
-				[getAttrKey('buttonIsLink', attributes, manifest)]: false
-			}),
-			label: label,
-			isActive: buttonSize === value,
-			icon: icons[iconName],
-		};
-	});
-
-	const widthOptions = getOption('buttonWidth', attributes, manifest).map(({ label, value, icon: iconName }) => {
-		return {
-			onClick: () => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value }),
-			label: label,
-			isActive: buttonWidth === value,
-			icon: icons[iconName],
-		};
-	});
+	const [one, setOne] = useState(false);
+	const [two, setTwo] = useState(false);
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={buttonUse}
-				onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
-				showUseToggle={showButtonUse}
-				showLabel={showLabel}
-			/>
-
-			{buttonUse &&
-				<>
-					{showButtonColor &&
-						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
-							value={buttonColor}
-							colors={getOption('buttonColor', attributes, manifest, true)}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showButtonIsLink &&
+		<CollapsableComponentUseToggle
+			label={label}
+			checked={buttonUse}
+			onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
+			showUseToggle={showButtonUse}
+			showLabel={showLabel}
+			showExpanderButton={showExpanderButton}
+		>
+			{showButtonUrl &&
+				<LinkEditComponent
+					url={buttonUrl}
+					opensInNewTab={buttonIsNewTab}
+					setAttributes={setAttributes}
+					urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
+					isNewTabAttrName={getAttrKey('buttonIsNewTab', attributes, manifest)}
+					hasUrlPreview
+					icon={icons.globe}
+					label={(!showLabel && !showButtonUse) || (showLabel && showButtonUse) ? __('URL', 'eightshift-frontend-libs') : sprintf(__('%s URL'), label)}
+					additionalClass='es-mb-0-bcf! es-mb-2!'
+					additionalOptions={
 						<IconToggle
-							icon={icons.link}
-							label={__('Display as link', 'eightshift-frontend-libs')}
-							checked={buttonIsLink}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonIsLink', attributes, manifest)]: value })}
+							icon={icons.experiment}
+							label='Demo 1'
+							checked={one}
+							onChange={(v) => setOne(v)}
+							additionalClasses='es-mb-0! es-w-full'
 						/>
 					}
-
-					{showButtonSize && !buttonIsLink &&
-						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-frontend-libs')} />}
-							options={sizeOptions}
-						/>
-					}
-
-					{showButtonWidth && !buttonIsLink &&
-						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}
-							options={widthOptions}
-						/>
-					}
-				
-					{showButtonAriaLabel &&
-						<TextControl
-							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
-							value={buttonAriaLabel}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
-						/>
-					}
-				
-					{showButtonIsAnchor &&
+					additionalOptionTiles={
 						<IconToggle
-							icon={icons.anchor}
-							label={__('Anchor', 'eightshift-frontend-libs')}
-							checked={buttonIsAnchor}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonIsAnchor', attributes, manifest)]: value })}
-							help={__('Make sure to set the URL as an ID of the element you want to target, e.g. #my-block.', 'eightshift-frontend-libs')}
+							icon={icons.experiment}
+							label='Demo 2'
+							checked={two}
+							onChange={(v) => setTwo(v)}
+							type='tileButton'
 						/>
 					}
-
-					{showButtonId &&
-						<TextControl
-							label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
-							value={buttonId}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
-						/>
-					}
-				</>
+				/>
 			}
 
-		</>
+			{(showButtonVariant || additionalControlsSplitArea) &&
+				<div className={additionalControlsSplitArea ? 'es-fifty-fifty-h-wrap' : ''}>
+					{showButtonVariant &&
+						<SimpleHorizontalSingleSelect
+							label={additionalControlsSplitArea ? __('Type', 'eightshift-frontend-libs') : null}
+							inlineLabel={!additionalControlsSplitArea ? __('Type', 'eightshift-frontend-libs') : null}
+							value={buttonVariant}
+							onChange={(value) => setAttributes({
+								[getAttrKey('buttonVariant', attributes, manifest)]: value,
+								[getAttrKey('buttonSize', attributes, manifest)]: value === 'link' ? 'link' : 'default',
+							})}
+							options={getOption('buttonVariant', attributes, manifest)}
+							additionalClass={additionalControlsSplitArea ? '' : 'es-my-4!'}
+							border='offset'
+							iconOnly
+						/>
+					}
+
+					{additionalControlsSplitArea}
+				</div>
+			}
+
+			{additionalControls}
+
+			<IconOptions
+				{...props('icon', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				showIconSize={false}
+			/>
+
+			{showButtonAriaLabel &&
+				<FancyDivider label={<IconLabel icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} />} additionalClasses='es-mt-0 es-mb-2.5' />
+			}
+
+			{showButtonAriaLabel &&
+				<TextControl
+					label={<IconLabel icon={icons.ariaLabel} label={__('ARIA label', 'eightshift-frontend-libs')} />}
+					value={buttonAriaLabel}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
+					help={__('Description of the button.', 'eightshift-frontend-libs')}
+				/>
+			}
+
+			{showButtonId &&
+				<FancyDivider label={<IconLabel icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} />} additionalClasses='es-mt-0 es-mb-2.5' />
+			}
+
+			{showButtonId &&
+				<TextControl
+					label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
+					value={buttonId}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
+				/>
+			}
+		</CollapsableComponentUseToggle>
 	);
 };

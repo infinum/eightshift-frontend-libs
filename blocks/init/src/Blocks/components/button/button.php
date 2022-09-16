@@ -17,7 +17,6 @@ if (!$buttonUse) {
 }
 
 $unique = Components::getUnique();
-echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
@@ -32,14 +31,24 @@ $buttonIsNewTab = Components::checkAttr('buttonIsNewTab', $attributes, $manifest
 $buttonAriaLabel = Components::checkAttr('buttonAriaLabel', $attributes, $manifest);
 $buttonAttrs = (array)Components::checkAttr('buttonAttrs', $attributes, $manifest);
 
+$buttonAttrs['title'] = $buttonContent;
+$buttonAttrs['data-id'] = $unique;
+
+if (!empty($buttonUrl)) {
+	$buttonAttrs['href'] = $buttonUrl;
+}
+
 if ($buttonIsNewTab) {
-	$buttonAttrs = array_merge(
-		[
-			'target' => '_blank',
-			'rel' => '"noopener noreferrer"',
-		],
-		$buttonAttrs
-	);
+	$buttonAttrs['target'] = '_blank';
+	$buttonAttrs['rel'] = '"noopener noreferrer"';
+}
+
+if (!empty($buttonId)) {
+	$buttonAttrs['id'] = $buttonId;
+}
+
+if (!empty($buttonAriaLabel)) {
+	$buttonAttrs['aria-label'] = $buttonAriaLabel;
 }
 
 $buttonClass = Components::classnames([
@@ -49,46 +58,34 @@ $buttonClass = Components::classnames([
 	Components::selector($buttonIsAnchor, 'js-scroll-to-anchor'),
 ]);
 
+$buttonTag = $buttonUrl ? 'a' : 'button';
 ?>
 
-<?php if (! $buttonUrl) { ?>
-	<button
-		class="<?php echo esc_attr($buttonClass); ?>"
-		<?php if (!empty($buttonId)) { ?>
-			id="<?php echo esc_attr($buttonId); ?>"
-		<?php } ?>
-		title="<?php echo esc_attr($buttonContent); ?>"
-		<?php if (!empty($buttonAriaLabel)) { ?>
-			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
-		<?php } ?>
-		data-id="<?php echo esc_attr($unique); ?>"
-		<?php
-		foreach ($buttonAttrs as $key => $value) {
-			echo wp_kses_post("{$key}=" . $value . " ");
-		}
-		?>
-	>
-		<?php echo esc_html($buttonContent); ?>
-	</button>
+<?php
+	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+?>
 
-<?php } else { ?>
-	<a
-		href="<?php echo esc_url($buttonUrl); ?>"
-		class="<?php echo esc_attr($buttonClass); ?>"
-		<?php if (!empty($buttonId)) { ?>
-			id="<?php echo esc_attr($buttonId); ?>"
-		<?php } ?>
-		title="<?php echo esc_attr($buttonContent); ?>"
-		<?php if (!empty($buttonAriaLabel)) { ?>
-			aria-label="<?php echo esc_attr($buttonAriaLabel); ?>"
-		<?php } ?>
-		data-id="<?php echo esc_attr($unique); ?>"
-		<?php
-		foreach ($buttonAttrs as $key => $value) {
+<?php // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+<<?php echo $buttonTag; ?>
+	class="<?php echo esc_attr($buttonClass); ?>"
+	<?php
+	foreach ($buttonAttrs as $key => $value) {
+		if (!empty($key) && !empty($value)) {
 			echo wp_kses_post("{$key}=" . $value . " ");
 		}
-		?>
-	>
-		<?php echo esc_html($buttonContent); ?>
-	</a>
-<?php } ?>
+	}
+	?>
+>
+	<?php
+	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	echo Components::render('icon', Components::props('icon', $attributes, [
+		'blockClass' => $componentClass,
+	]));
+	?>
+
+	<?php if (!empty($buttonContent)) { ?>
+		<span><?php echo esc_html($buttonContent); ?></span>
+	<?php } ?>
+<?php // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+</<?php echo $buttonTag; ?>>
