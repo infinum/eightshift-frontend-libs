@@ -1,1 +1,141 @@
-// Style overrides for wrapper in editor
+.wp-block {
+	.wrapper {
+		opacity: var(--wrapper-display-opacity, 1);
+
+		transition: {
+			property: opacity;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&--edit-mode {
+			position: relative;
+
+			.wrapper__inner {
+				transition: {
+					property: opacity;
+					timing-function: ease-out;
+					duration: 0.3s;
+				}
+
+				// stylelint-disable-next-line max-nesting-depth
+				&:hover {
+					opacity: 0.4;
+				}
+			}
+		}
+
+		&--edit-mode-fullwidth {
+			--wrapper-grid-guide-width: 100%;
+			--wrapper-grid-guide-margin-left: 0;
+			--wrapper-grid-guide-margin-right: 0;
+		}
+
+		&__grid {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: var(--wrapper-grid-guide-width, calc(100% - 2 * var(--wrapper-grid-side-columns) - 2 * var(--global-grid-gutter)));
+			height: 100%;
+
+			display: grid;
+			grid-template-columns: var(--wrapper-grid-template-columns);
+			column-gap: var(--global-grid-gutter);
+
+			background-color: var(--global-colors-prince100);
+			box-shadow: inset 0 0 0 1px var(--global-colors-prince200);
+			border-radius: 0.15rem;
+
+			margin-left: var(--wrapper-grid-guide-margin-left, calc(var(--global-grid-gutter) + var(--wrapper-grid-side-columns)));
+			margin-right: var(--wrapper-grid-guide-margin-right, calc(var(--global-grid-gutter) + var(--wrapper-grid-side-columns)));
+		}
+
+		&__grid-item {
+			background-color: var(--global-colors-white);
+			border: 1px solid var(--global-colors-prince200);
+			color: var(--global-colors-prince100);
+
+			font-size: 1.5em;
+			font-weight: bold;
+
+			height: 100%;
+			padding: 0.25rem;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:first-child {
+				border-top-left-radius: 0.15rem;
+				border-bottom-left-radius: 0.15rem;
+			}
+
+			&:last-child {
+				border-top-right-radius: 0.15rem;
+				border-bottom-right-radius: 0.15rem;
+			}
+		}
+	}
+}
+
+.rd-slider-mark-offset {
+	.rc-slider-mark-text {
+		margin-left: 0.9em;
+	}
+}
+
+.rd-slider-mark-offset-fullwidth {
+	.rc-slider-mark-text {
+		margin-left: 0.8em;
+	}
+}
+
+@for $i from 1 through 32 {
+	.rd-slider-mark-ignore-#{$i} {
+		.rc-slider-mark-text:nth-of-type(#{$i}) {
+			--es-custom-slider-custom-active-mark-label-color: #999999;
+			opacity: 0.4;
+		}
+	}
+
+	.rd-slider-line-ignore-#{$i} {
+		.rc-slider-dot:nth-of-type(#{$i}) {
+			display: none;
+		}
+	}
+}
+
+.rd-no-offset-handle .rc-slider-handle.rc-slider-handle-1,
+.rd-no-width-handle .rc-slider-handle.rc-slider-handle-2 {
+	display: none;
+	pointer-events: none;
+	user-select: none;
+}
+
+.rd-no-offset-handle,
+.rd-no-width-handle {
+	.rc-slider-step,
+	.rc-slider-dot,
+	.rc-slider-mark,
+	.rc-slider-mark-text {
+		pointer-events: none;
+	}
+}
+
+.blr-wrapper-border-control {
+	display: grid;
+	grid-template-columns: repeat(3, 1.875rem);
+	grid-template-rows: repeat(3, 1.875rem);
+	gap: 0.25rem;
+}
+
+.blr-wrapper-border-display {
+	border-radius: 0.25rem;
+
+	grid-column: 2;
+	grid-row: 2;
+
+	width: 100%;
+	height: 100%;
+}
