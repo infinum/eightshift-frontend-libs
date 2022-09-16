@@ -18,7 +18,7 @@ $unique = Components::getUnique();
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique) ?>">
 	<?php
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $innerBlockContent;
 	?>
 </div>

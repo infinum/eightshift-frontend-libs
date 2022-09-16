@@ -9,7 +9,9 @@ export const ColumnEditor = ({ attributes, clientId }) => {
 		<>
 			{outputCssVariables(attributes, manifest, clientId, globalManifest)}
 
-			<InnerBlocks />
+			<InnerBlocks
+				// renderAppender={() => <InnerBlocks.ButtonBlockAppender />}
+			/>
 		</>
 	);
 };

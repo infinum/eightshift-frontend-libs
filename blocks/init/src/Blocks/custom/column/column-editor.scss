@@ -7,7 +7,7 @@
 	transition: {
 		// stylelint-disable-next-line declaration-no-important
 		property: opacity, transform !important;
-		timing-function: ease-out;
+		timing-function: ease-out, var(--ease-out-back);
 		duration: 0.3s;
 	}
 }
