@@ -73,17 +73,17 @@
 	"options": {
 		"videoPreload": [
 			{
-				"label": "Auto",
+				"label": "Video and metadata",
 				"value": "auto",
-				"icon": "checkCircle"
+				"icon": "automatic"
 			},
 			{
-				"label": "Metadata",
+				"label": "Metadata only",
 				"value": "metadata",
-				"icon": "file"
+				"icon": "fileMetadata"
 			},
 			{
-				"label": "None",
+				"label": "Don't preload",
 				"value": "none",
 				"icon": "none"
 			}
@@ -91,19 +91,23 @@
 		"videoSubtitleTrackKind": [
 			{
 				"label": "Subtitles",
-				"value": "subtitles"
+				"value": "subtitles",
+				"icon": "videoSubtitle"
 			},
 			{
 				"label": "Captions",
-				"value": "captions"
+				"value": "captions",
+				"icon": "closedCaptions"
 			},
 			{
 				"label": "Descriptions",
-				"value": "descriptions"
+				"value": "descriptions",
+				"icon": "hide"
 			},
 			{
 				"label": "Chapters",
-				"value": "chapters"
+				"value": "chapters",
+				"icon": "videoChapters"
 			}
 		]
 	}

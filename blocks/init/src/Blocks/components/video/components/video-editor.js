@@ -69,9 +69,9 @@ export const VideoEditor = (attributes) => {
 			}
 
 			{hasVideo &&
-				<video className={videoClass}>
+				<video className={videoClass} controls muted>
 					{videoUrl.map(({ url, mime }) => <source key={url} src={url} type={mime} />)}
-					<track kind="captions" />
+					<track kind='captions' />
 				</video>
 			}
 		</>
