@@ -1,6 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "accordion",
+	"blockJsClass": "js-block-accordion",
 	"title": "Accordion",
 	"description" : "Accordion block with custom settings.",
 	"category": "eightshift",
@@ -13,21 +14,28 @@
 	"example": {
 		"innerBlocks": [
 			{
-				"name": "eightshift-boilerplate/heading",
+				"name": "eightshift-boilerplate/accordion-item",
 				"attributes": {
-					"headingHeadingContent": "Lorem ipsum dolor sit amet"
-				}
-			},
-			{
-				"name": "eightshift-boilerplate/paragraph",
-				"attributes": {
-					"paragraphParagraphContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum. "
+					"accordionItemAccordionItemTitle": "Demo accordion",
+					"accordionItemAccordionItemContent": "Demo accordion content"
 				}
 			}
 		]
 	},
 	"hasInnerBlocks": true,
-	"components": {
-		"accordion": "accordion"
+	"attributes": {
+		"accordionCloseAdjacent": {
+			"type": "boolean",
+			"default": false
+		},
+		"accordionAllowedBlocks": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"eightshift-boilerplate/accordion-item"
+			]
+		}
 	}
 }
