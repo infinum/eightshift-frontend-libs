@@ -27,34 +27,37 @@ $quoteClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
+$quoteContentClass = Components::selector($componentClass, $componentClass, 'content');
+$quoteSeparatorClass = Components::selector($componentClass, $componentClass, 'separator');
+$quoteCaptionClass = Components::selector($componentClass, $componentClass, 'caption');
+
+$quoteAuthorUse = Components::checkAttr('quoteAuthorUse', $attributes, $manifest);
 ?>
 
 <figure class="<?php echo esc_attr($quoteClass); ?>">
-	<i class="<?php echo esc_attr("{$componentClass}__icon"); ?>">
-		<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
-	</i>
+	<?php
+	echo Components::render('icon', Components::props('icon', $attributes, [
+		'blockClass' => $componentClass
+	]));
+	?>
 
-	<blockquote class="<?php echo esc_attr("{$componentClass}__content"); ?>">
+	<blockquote class="<?php echo esc_attr($quoteContentClass); ?>">
 		<?php
-		echo Components::render(
-			'paragraph',
-			Components::props('heading', $attributes, [
-				'blockClass' => $componentClass
-			])
-		);
+		echo Components::render('paragraph', Components::props('paragraph', $attributes, [
+			'blockClass' => $componentClass
+		]));
 		?>
 	</blockquote>
 
-	<div class="<?php echo esc_attr("{$componentClass}__separator"); ?>"></div>
+	<?php if ($quoteAuthorUse) { ?>
+		<div class="<?php echo esc_attr($quoteSeparatorClass); ?>"></div>
 
-	<figcaption class="<?php echo esc_attr("{$componentClass}__caption"); ?>">
-		<?php
-		echo Components::render(
-			'paragraph',
-			Components::props('paragraph', $attributes, [
+		<figcaption class="<?php echo esc_attr($quoteCaptionClass); ?>">
+			<?php
+			echo Components::render('paragraph', Components::props('author', $attributes, [
 				'blockClass' => $componentClass
-			])
-		);
-		?>
-	</figcaption>
+			]));
+			?>
+		</figcaption>
+	<?php } ?>
 </figure>
