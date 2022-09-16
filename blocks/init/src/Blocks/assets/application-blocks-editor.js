@@ -6,6 +6,7 @@
  */
 
 // Styles.
+import './styles/application-blocks-editor-components.scss';
 import './styles/application-blocks-editor.scss';
 
 // Scripts.

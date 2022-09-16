@@ -1,0 +1,13 @@
+/**
+ * This file contains all the styles for editor components.
+ *
+ * Usage: `WordPress admin editor`.
+ *
+ */
+
+// Globals.
+@import './../../../../assets/styles/parts/shared';
+@import '@eightshift/frontend-libs/styles/scss/normalize';
+
+// Editor styles overrides.
+@import './editor/editor';
