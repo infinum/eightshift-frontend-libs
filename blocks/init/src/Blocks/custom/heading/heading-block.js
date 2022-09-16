@@ -1,7 +1,6 @@
 import React from 'react';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { HeadingEditor } from './components/heading-editor';
-import { HeadingToolbar } from './components/heading-toolbar';
 import { HeadingOptions } from './components/heading-options';
 
 export const Heading = (props) => {
@@ -10,9 +9,6 @@ export const Heading = (props) => {
 			<InspectorControls>
 				<HeadingOptions {...props} />
 			</InspectorControls>
-			<BlockControls>
-				<HeadingToolbar {...props} />
-			</BlockControls>
 			<HeadingEditor {...props} />
 		</>
 	);
