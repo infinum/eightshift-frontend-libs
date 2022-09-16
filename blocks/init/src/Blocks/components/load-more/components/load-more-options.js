@@ -34,6 +34,11 @@ export const LoadMoreOptions = (attributes) => {
 				{...props('button', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
+				showButtonUse={false}
+				showLabel={false}
+				showExpanderButton={false}
+				showButtonId={false}
+				showButtonUrl={false}
 			/>
 		</CollapsableComponentUseToggle>
 	);

@@ -15,7 +15,7 @@ domReady(() => {
 		import('./load-more').then(({ LoadMore }) => {
 			const loadMore = new LoadMore({
 				triggerElements: elements,
-				restUrl: esBlocksLocalization?.loadMoreRestUrl,
+				restUrl: esBlocksLocalization?.loadMoreRestUrl ?? '',
 			});
 
 			loadMore.init();

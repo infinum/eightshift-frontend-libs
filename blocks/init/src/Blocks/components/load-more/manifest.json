@@ -1,6 +1,6 @@
 {
 	"componentName": "load-more",
-	"title": "Load More",
+	"title": "Load more",
 	"componentClass": "load-more",
 	"componentJsClass": "js-load-more",
 	"attributes": {

@@ -61,4 +61,3 @@ $loadMoreClass = Components::classnames([
 	);
 	?>
 </div>
-
