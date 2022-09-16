@@ -1,15 +1,19 @@
 .paragraph {
-	margin: 0;
-	color: var(--paragraph-color, var(--global-colors-black, currentColor));
 	font-size: var(--paragraph-font-size, 1rem);
+	font-weight: var(--paragraph-font-weight);
 	line-height: var(--paragraph-line-height, 1.5);
+	letter-spacing: var(--paragraph-letter-spacing, 0);
+
+	color: var(--paragraph-color, var(--global-colors-black, currentColor));
+
+	margin: 0;
 	overflow-wrap: anywhere;
 
 	a {
 		cursor: pointer;
 		text-decoration: underline;
-		color: var(--paragraph-link-color, var(--global-colors-primary, #5555CE));
-		text-decoration-color: var(--paragraph-link-color, var(--global-colors-primary, #5555CE));
+		color: var(--paragraph-link-color, var(--global-colors-primary500, #5555CE));
+		text-decoration-color: var(--paragraph-link-color, var(--global-colors-primary500, #5555CE));
 
 		transition: {
 			property: color;
@@ -18,7 +22,7 @@
 		}
 
 		&:hover {
-			color: var(--paragraph-link-color-hover, var(--global-colors-yellow, #FFDD48));
+			color: var(--paragraph-link-color-hover, var(--global-colors-primary500, #FFDD48));
 		}
 	}
 }
