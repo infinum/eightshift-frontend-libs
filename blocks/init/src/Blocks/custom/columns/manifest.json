@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "columns",
 	"title": "Columns",
-	"description" : "Columns block with custom settings.",
+	"description" : "Display content across multiple columns with flexible sizing and alignment options.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-columns"
@@ -101,7 +101,8 @@
 			"type": "integer"
 		},
 		"columnsColumnGapMobile": {
-			"type": "integer"
+			"type": "integer",
+			"default": 0
 		},
 
 		"columnsRowGapLarge": {
@@ -116,6 +117,39 @@
 		},
 		"columnsRowGapMobile": {
 			"type": "integer"
+		},
+
+		"wrapperUseSimple": {
+			"type": "boolean",
+			"default": true
+		},
+		"wrapperUseInner": {
+			"type": "boolean",
+			"default": false
+		},
+		"wrapperWidthMobile": {
+			"type": "integer"
+		},
+		"wrapperIsFullWidthLarge": {
+			"type": "boolean",
+			"default": true
+		},
+
+		"showWrapperWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperOffset": {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperDisable":  {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperIsFullWidth": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"responsiveAttributes": {
@@ -149,7 +183,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-row-gap": "calc((%value% / 16) * 1rem)"
+					"columns-row-gap": "calc(var(--base-font-size) * %value%rem)"
 				}
 			}
 		],
@@ -157,7 +191,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-column-gap": "calc((%value% / 16) * 1rem)"
+					"columns-column-gap": "calc(var(--base-font-size) * %value%rem)"
 				}
 			}
 		]
