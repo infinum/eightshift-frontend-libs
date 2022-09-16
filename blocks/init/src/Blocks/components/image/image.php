@@ -43,7 +43,6 @@ $imgClass = Components::classnames([
 	<picture class="<?php echo esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
 		<?php
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 		?>
 
@@ -56,13 +55,13 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? ''; // @phpstan-ignore-line
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? '';
 
 			if (!$breakpointValue) {
 				continue;
 			}
 
-			echo '<source srcset="' . esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<source srcset="' . esc_url($item) . '" media="(max-width: ' . esc_attr($breakpointValue) . 'px)" />'; // phpcs:ignore Eightshift.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php } ?>
 

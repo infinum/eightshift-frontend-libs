@@ -19,5 +19,7 @@
 		max-height: var(--image-img-max-height, 100%);
 
 		object-fit: cover;
+
+		border-radius: var(--image-border-radius, 0);
 	}
 }
