@@ -22,6 +22,10 @@
 		"loadMoreUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"loadMoreButtonContent": {
+			"type": "string",
+			"default": "Load more"
 		}
 	},
 	"components": {
