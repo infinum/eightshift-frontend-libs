@@ -92,7 +92,6 @@ export const ButtonOptions = (attributes) => {
 							value={buttonVariant}
 							onChange={(value) => setAttributes({
 								[getAttrKey('buttonVariant', attributes, manifest)]: value,
-								[getAttrKey('buttonSize', attributes, manifest)]: value === 'link' ? 'link' : 'default',
 							})}
 							options={getOption('buttonVariant', attributes, manifest)}
 							additionalClass={additionalControlsSplitArea ? '' : 'es-my-4!'}
