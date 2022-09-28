@@ -53,6 +53,10 @@
 		"buttonUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"buttonIconUse": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"components": {
