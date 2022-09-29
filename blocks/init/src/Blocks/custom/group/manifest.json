@@ -28,5 +28,9 @@
 			}
 		]
 	},
-	"hasInnerBlocks": true
+	"hasInnerBlocks": true,
+	"innerBlocksDependency": [
+		"heading",
+		"paragraph"
+	]
 }

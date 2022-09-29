@@ -161,5 +161,8 @@
 				}
 			}
 		]
-	}
+	},
+	"innerBlocksDependency": [
+		"column"
+	]
 }

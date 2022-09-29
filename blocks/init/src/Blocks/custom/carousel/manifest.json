@@ -84,5 +84,8 @@
 	},
 	"nodeDependency": [
 		"swiper"
+	],
+	"innerBlocksDependency": [
+		"image"
 	]
 }
