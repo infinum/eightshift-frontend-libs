@@ -6,7 +6,7 @@
 	"example": {
 		"attributes": {
 			"buttonContent": "This is a button",
-			"buttonUrl": "https://infinum.github.io/eightshift-docs/",
+			"buttonUrl": "https://eightshift.com/",
 			"buttonId": "custom ID"
 		}
 	},

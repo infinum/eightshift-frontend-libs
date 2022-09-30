@@ -91,7 +91,7 @@ exports.handler = async (argv) => {
   log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
   log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init plugin')} inside your new plugin folder.`);
   log('');
-  log(`Please read the documentation ${variable('https://infinum.github.io/eightshift-docs/')} if you run into any issues or if you have any questions.`);
+  log(`Please read the documentation ${variable('https://eightshift.com/')} if you run into any issues or if you have any questions.`);
   log('');
   log('Best of luck!');
   log('----------------');

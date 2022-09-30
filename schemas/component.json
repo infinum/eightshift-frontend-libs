@@ -113,19 +113,19 @@
 		},
 		"components": {
 			"type": "object",
-			"description": "This key gives you the ability to use component attributes in your block without mapping all the component's attributes every time. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-component-in-block/ chapter for more details."
+			"description": "This key gives you the ability to use component attributes in your block without mapping all the component's attributes every time. Please check https://eightshift.com/docs/basics/blocks-component-in-block/ chapter for more details."
 		},
 		"responsiveAttributes": {
 			"type": "object",
-			"description": "This key is used to combine multiple attributes with the similar name for the responsive breakpoints. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-styles/ chapter for more details."
+			"description": "This key is used to combine multiple attributes with the similar name for the responsive breakpoints. Please check https://eightshift.com/docs/basics/blocks-styles/ chapter for more details."
 		},
 		"variables": {
 			"type": "object",
-			"description": "This key is used to provide output for CSS variables. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-styles/ chapter for more details."
+			"description": "This key is used to provide output for CSS variables. Please check https://eightshift.com/docs/basics/blocks-styles/ chapter for more details."
 		},
 		"options": {
 			"type": "object",
-			"description": "This key is used to provide options used in the Block Editor options for components like SelectControl or RangeControl. With this key, you can pass options and change them depending on the component used. Please check https://infinum.github.io/eightshift-docs/docs/basics/blocks-component-in-block/ chapter for more details."
+			"description": "This key is used to provide options used in the Block Editor options for components like SelectControl or RangeControl. With this key, you can pass options and change them depending on the component used. Please check https://eightshift.com/docs/basics/blocks-component-in-block/ chapter for more details."
 		}
 	},
 	"required": [

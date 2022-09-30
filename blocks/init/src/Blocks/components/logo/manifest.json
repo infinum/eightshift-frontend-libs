@@ -5,10 +5,10 @@
 	"componentClass": "logo",
 	"example": {
 		"attributes": {
-			"logoSrc": "https://infinum.github.io/eightshift-docs/img/eightshift-dev-kit-logo.svg",
+			"logoSrc": "https://eightshift.com/img/eightshift-dev-kit-logo.svg",
 			"logoAlt": "Eightshift Development Kit",
 			"logoTitle": "Eightshift Development Kit",
-			"logoHref": "https://infinum.github.io/eightshift-docs/",
+			"logoHref": "https://eightshift.com/",
 			"logoUse": true
 		}
 	},
