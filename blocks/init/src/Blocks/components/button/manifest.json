@@ -26,7 +26,7 @@
 		},
 		"buttonVariant": {
 			"type": "string",
-			"default": "buttonFilled"
+			"default": "fill"
 		},
 		"buttonWidth": {
 			"type": "string",
