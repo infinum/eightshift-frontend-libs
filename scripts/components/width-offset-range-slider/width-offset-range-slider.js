@@ -1,5 +1,5 @@
 import { checkAttrResponsive, CompactResponsive, CustomRangeSlider, CustomRangeSliderStyle, getAttrKey, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
-import { __ } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 
 export const WidthOffsetRangeSlider = (props) => {
@@ -148,6 +148,18 @@ export const WidthOffsetRangeSlider = (props) => {
 							disabled={typeof width === 'undefined' && typeof offset === 'undefined'} // Disable the slider if offset & width are inherited.
 							min={1}
 							max={maxWidth}
+							tooltipFormat={(v) => {
+								if (v === offset) {
+									if (v - 1 === 0) {
+										return __('No offset', 'eightshift-frontend-libs');
+									}
+
+									return sprintf(_n('Offset: %d column', 'Offset: %d columns', v - 1, 'eightshift-frontend-libs'), v - 1);
+								}
+
+								return sprintf(_n('Width: %d column', 'Width: %d columns', v - 1, 'eightshift-frontend-libs'), v - 1);
+							}}
+							tooltipPlacement='left'
 							value={[(offset ?? offsetInherited ?? autoOffsetFactor ?? 1), Math.min((width ?? widthInherited) + (offset ?? offsetInherited ?? autoOffsetFactor ?? 1), maxWidth)]} // Take the inherited value, if it doesn't exist take the actual value. Limit it all to max width.
 							onChange={([start, endRaw]) => {
 								// Limit the end value.
