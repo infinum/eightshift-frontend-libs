@@ -25,39 +25,28 @@
 			}
 		}
 
-		&--edit-mode-fullwidth {
-			--wrapper-grid-guide-width: 100%;
-			--wrapper-grid-guide-margin-left: 0;
-			--wrapper-grid-guide-margin-right: 0;
-		}
-
 		&__grid {
 			position: absolute;
 			top: 0;
 			left: 0;
+			right: 0;
 
-			width: var(--wrapper-grid-guide-width, calc(100% - 2 * var(--wrapper-grid-side-columns) - 2 * var(--global-grid-gutter)));
 			height: 100%;
 
 			display: grid;
 			grid-template-columns: var(--wrapper-grid-template-columns);
 			column-gap: var(--global-grid-gutter);
-
-			background-color: var(--global-colors-prince100);
-			box-shadow: inset 0 0 0 1px var(--global-colors-prince200);
-			border-radius: 0.15rem;
-
-			margin-left: var(--wrapper-grid-guide-margin-left, calc(var(--global-grid-gutter) + var(--wrapper-grid-side-columns)));
-			margin-right: var(--wrapper-grid-guide-margin-right, calc(var(--global-grid-gutter) + var(--wrapper-grid-side-columns)));
 		}
 
 		&__grid-item {
-			background-color: var(--global-colors-white);
-			border: 1px solid var(--global-colors-prince200);
-			color: var(--global-colors-prince100);
+			position: relative;
+
+			border-inline: 1px dashed rgb(255 0 255);
+			color: rgb(255 0 255 / 0.8);
 
 			font-size: 1.5em;
-			font-weight: bold;
+			font-weight: normal;
+			font-variant-numeric: tabular-nums;
 
 			height: 100%;
 			padding: 0.25rem;
@@ -66,71 +55,62 @@
 			align-items: center;
 			justify-content: center;
 
-			&:first-child {
-				border-top-left-radius: 0.15rem;
-				border-bottom-left-radius: 0.15rem;
+			&:not(:last-child)::after {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: calc(-1 * var(--global-grid-gutter) - 1px);
+				width: var(--global-grid-gutter);
+
+				background-color: rgb(255 0 255 / 0.1);
 			}
 
-			&:last-child {
-				border-top-right-radius: 0.15rem;
-				border-bottom-right-radius: 0.15rem;
+			&:first-child::before,
+			&:last-child::before {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: var(--global-grid-side-padding);
+
+				background-color: rgb(255 0 255 / 0.1);
+			}
+
+			&:first-child::before {
+				left: calc(-1 * var(--global-grid-side-padding) - 1px);
+			}
+
+			&:last-child::before {
+				right: calc(-1 * var(--global-grid-side-padding) - 1px);
 			}
 		}
-	}
-}
 
-.rd-slider-mark-offset {
-	.rc-slider-mark-text {
-		margin-left: 0.9em;
-	}
-}
+		&--edit-mode-fullwidth {
+			--wrapper-grid-guide-width: 100%;
+			--wrapper-grid-guide-margin-left: 0;
+			--wrapper-grid-guide-margin-right: 0;
 
-.rd-slider-mark-offset-fullwidth {
-	.rc-slider-mark-text {
-		margin-left: 0.8em;
-	}
-}
-
-@for $i from 1 through 32 {
-	.rd-slider-mark-ignore-#{$i} {
-		.rc-slider-mark-text:nth-of-type(#{$i}) {
-			--es-custom-slider-custom-active-mark-label-color: #999999;
-			opacity: 0.4;
-		}
-	}
-
-	.rd-slider-line-ignore-#{$i} {
-		.rc-slider-dot:nth-of-type(#{$i}) {
-			display: none;
+			// stylelint-disable selector-max-specificity
+			.wrapper__grid-item:first-child::before,
+			.wrapper__grid-item:last-child::before {
+				display: none;
+			}
+			// stylelint-enable selector-max-specificity
 		}
 	}
 }
 
-.rd-no-offset-handle .rc-slider-handle.rc-slider-handle-1,
-.rd-no-width-handle .rc-slider-handle.rc-slider-handle-2 {
-	display: none;
-	pointer-events: none;
-	user-select: none;
-}
-
-.rd-no-offset-handle,
-.rd-no-width-handle {
-	.rc-slider-step,
-	.rc-slider-dot,
-	.rc-slider-mark,
-	.rc-slider-mark-text {
-		pointer-events: none;
-	}
-}
-
-.blr-wrapper-border-control {
+.es-wrapper-border-control {
 	display: grid;
-	grid-template-columns: repeat(3, 1.875rem);
-	grid-template-rows: repeat(3, 1.875rem);
-	gap: 0.25rem;
+	grid-template: repeat(3, 2.25rem) / repeat(3, 2.25rem);
+	align-items: center;
+	justify-items: center;
 }
 
-.blr-wrapper-border-display {
+.es-wrapper-border-display {
 	border-radius: 0.25rem;
 
 	grid-column: 2;
@@ -138,4 +118,15 @@
 
 	width: 100%;
 	height: 100%;
+
+	align-self: center;
+	justify-self: center;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.es-wrapper-options-copy-paste > .components-button:not(:hover):not(:focus) {
+	color: var(--es-admin-cool-gray-500);
 }

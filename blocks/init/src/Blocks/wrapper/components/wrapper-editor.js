@@ -29,9 +29,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 		);
 	}
 
-	const isEditMode = useSelect((select) => {
-		return select('core/block-editor').isNavigationMode();
-	});
+	const isEditMode = useSelect((select) => select('core/block-editor').isNavigationMode());
 
 	const unique = useMemo(() => getUnique(), []);
 	attributes['uniqueWrapperId'] = unique;
@@ -77,7 +75,11 @@ export const WrapperEditor = ({ attributes, children }) => {
 		const maxItems = wrapperIsFullWidthLarge ? 14 : 12;
 
 		for (let i = 1; i <= maxItems; i++) {
-			items.push(<div className={`${wrapperMainClass}__grid-item`} key={i}>{i}</div>);
+			const itemStyle = {
+				gridColumn: `${wrapperIsFullWidthLarge ? i : i + 1} / span 1`,
+			};
+
+			items.push(<div className={`${wrapperMainClass}__grid-item`} style={itemStyle} key={i}>{i}</div>);
 		}
 
 		return (
@@ -87,9 +89,14 @@ export const WrapperEditor = ({ attributes, children }) => {
 		);
 	};
 
+	const blockName = attributes?.blockName ?? '';
+	const gridGuidesAllowList = ['columns'];
+
+	const shouldHaveGuides = ((attributes?.wrapperUseSimple ?? false) === false && (attributes?.wrapperUse ?? false) === true) || gridGuidesAllowList?.includes(blockName);
+
 	return (
 		<div ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>
-			{isEditMode && <GridGuides />}
+			{isEditMode && shouldHaveGuides && <GridGuides />}
 
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 

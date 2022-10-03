@@ -75,7 +75,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const wrapperDividerRight = checkAttrResponsive('wrapperDividerRight', attributes, manifest, true);
 
 	// Copy/paste attributes.
-	const copyAttributes = () => {
+	const copyAttributes = (e) => {
+		e.stopPropagation();
+
 		localStorage.removeItem('esCopiedWrapperAttributes');
 
 		const copiedWrapperAttributes = Object.keys(attributes).filter((key) => key.includes('wrapper'))
@@ -87,35 +89,45 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		localStorage.setItem('esCopiedWrapperAttributes', JSON.stringify(copiedWrapperAttributes));
 	};
 
-	const pasteAttributes = () => {
+	const pasteAttributes = (e) => {
+		e.stopPropagation();
+
 		const wrapperAttributesToBePasted = JSON.parse(localStorage.getItem('esCopiedWrapperAttributes'));
 		setAttributes(wrapperAttributesToBePasted);
 	};
 
 	return (
-		<PanelBody initialOpen={isEditMode ?? false} icon={icons.layout} className='es-panel-title' title={label}>
-			{!wrapperDisable && wrapperUseShowControl && 
-				<div className='es-h-spaced es-has-wp-field-b-space es-pb-1.5 es-border-b-gray-100'>
-					<IconLabel icon={icons.wrapperConfig} label={__('Layout config', 'eightshift-frontend-libs')} additionalClasses='es-mr-auto' standalone />
+		<PanelBody initialOpen={isEditMode ?? false}
+			title={
+				<div className='es-h-between es-w-full'>
+					<div className='es-h-spaced'>
+						{icons.layout}
+						{label}
+					</div>
 
-					<Button
-						icon={icons.copy}
-						onClick={copyAttributes}
-						className='es-button-icon-24 es-slight-button-border es-rounded-1.0'
-						label={__('Copy', 'eightshift-frontend-libs')}
-						showTooltip
-					/>
+					{!wrapperDisable && wrapperUseShowControl &&
+						<div className='es-display-flex es-items-center es-gap-1.0 es-ml-auto es-flex-shrink-0 es-mr-1.0 es-wrapper-options-copy-paste'>
+							<Button
+								icon={icons.copy}
+								onClick={copyAttributes}
+								className='es-button-icon-20 es-button-square-24 es-rounded-0.5'
+								label={__('Copy configuration', 'eightshift-frontend-libs')}
+								showTooltip
+							/>
 
-					<Button
-						icon={icons.paste}
-						onClick={pasteAttributes}
-						disabled={!localStorage?.getItem('esCopiedWrapperAttributes')}
-						className='es-button-icon-24 es-slight-button-border es-rounded-1.0'
-						label={__('Paste', 'eightshift-frontend-libs')}
-						showTooltip
-					/>
+							<Button
+								icon={icons.paste}
+								onClick={pasteAttributes}
+								disabled={!localStorage?.getItem('esCopiedWrapperAttributes')}
+								className='es-button-icon-20 es-button-square-24 es-rounded-0.5'
+								label={__('Paste configuration', 'eightshift-frontend-libs')}
+								showTooltip
+							/>
+						</div>
+					}
 				</div>
 			}
+		>
 			{wrapperUseShowControl &&
 				<IconToggle
 					icon={icons.wrapper}
@@ -156,15 +168,15 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								marks: {
 									'-300': '-3',
 									'-250': '',
-									'-200': '',
-									'-150': '-150',
-									'-100': '',
+									'-200': '-2',
+									'-150': '',
+									'-100': '-1',
 									'-50': '',
 									0: '0',
 									50: '',
-									100: '',
-									150: '150',
-									200: '',
+									100: '1',
+									150: '',
+									200: '2',
 									250: '',
 									300: '3',
 								},
@@ -188,15 +200,15 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								marks: {
 									'-300': '-3',
 									'-250': '',
-									'-200': '',
-									'-150': '-150',
-									'-100': '',
+									'-200': '-2',
+									'-150': '',
+									'-100': '-1',
 									'-50': '',
 									0: '0',
 									50: '',
-									100: '',
-									150: '150',
-									200: '',
+									100: '1',
+									150: '',
+									200: '2',
 									250: '',
 									300: '3',
 								},
@@ -357,77 +369,83 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 												}
 
 												{!(breakpointAttrValueTop === undefined && breakpointAttrValueBottom === undefined && breakpointAttrValueLeft === undefined && breakpointAttrValueRight === undefined) &&
-													<div className='es-flex-between'>
-														<span>{__('Show', 'eightshift-frontend-libs')}</span>
-
-														<div className='blr-wrapper-border-control'>
-															<div
-																className='blr-wrapper-border-display'
-																style={{
-																	borderTop: breakpointAttrValueTop === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
-																	borderLeft: breakpointAttrValueLeft === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
-																	borderBottom: breakpointAttrValueBottom === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
-																	borderRight: breakpointAttrValueRight === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
-																}}
-															>
-															</div>
-
-															{showWrapperDividerTop && (index === 0 || (index !== 0 && breakpointAttrValueTop !== undefined)) &&
-																<Button
-																	style={{ gridColumn: 2, gridRow: 1 }}
-																	icon={React.cloneElement(icons.toggleOff, {
-																		className: `es-animated-toggle-icon ${breakpointAttrValueTop === true ? 'is-checked' : ''}`
-																	})}
-																	onClick={() => setAttributes({ [breakpointAttrNameTop]: !breakpointAttrValueTop })}
-																	disabled={breakpointAttrValueTop === undefined}
-																	label={__('Top divider', 'eightshift-frontend-libs')}
-																	showTooltip
-																	className='es-button-square-30 es-button-icon-24'
-																/>
-															}
-
-															{showWrapperDividerBottom && (index === 0 || (index !== 0 && breakpointAttrValueBottom !== undefined)) &&
-																<Button
-																	style={{ gridColumn: 2, gridRow: 3 }}
-																	icon={React.cloneElement(icons.toggleOff, {
-																		className: `es-animated-toggle-icon ${breakpointAttrValueBottom === true ? 'is-checked' : ''}`
-																	})}
-																	onClick={() => setAttributes({ [breakpointAttrNameBottom]: !breakpointAttrValueBottom })}
-																	disabled={breakpointAttrValueBottom === undefined}
-																	label={__('Bottom divider', 'eightshift-frontend-libs')}
-																	showTooltip
-																	className='es-button-square-30 es-button-icon-24'
-																/>
-															}
-
-															{showWrapperDividerLeft && (index === 0 || (index !== 0 && breakpointAttrValueLeft !== undefined)) &&
-																<Button
-																	style={{ gridColumn: 1, gridRow: 2 }}
-																	icon={React.cloneElement(icons.toggleOff, {
-																		className: `es-animated-toggle-icon ${breakpointAttrValueLeft === true ? 'is-checked' : ''}`
-																	})}
-																	onClick={() => setAttributes({ [breakpointAttrNameLeft]: !breakpointAttrValueLeft })}
-																	disabled={breakpointAttrValueLeft === undefined}
-																	label={__('Left divider', 'eightshift-frontend-libs')}
-																	showTooltip
-																	className='es-button-square-30 es-button-icon-24'
-																/>
-															}
-
-															{showWrapperDividerRight && (index === 0 || (index !== 0 && breakpointAttrValueRight !== undefined)) &&
-																<Button
-																	style={{ gridColumn: 3, gridRow: 2 }}
-																	icon={React.cloneElement(icons.toggleOff, {
-																		className: `es-animated-toggle-icon ${breakpointAttrValueRight === true ? 'is-checked' : ''}`
-																	})}
-																	onClick={() => setAttributes({ [breakpointAttrNameRight]: !breakpointAttrValueRight })}
-																	disabled={breakpointAttrValueRight === undefined}
-																	label={__('Right divider', 'eightshift-frontend-libs')}
-																	showTooltip
-																	className='es-button-square-30 es-button-icon-24'
+													<div className='es-wrapper-border-control es-mx-auto'>
+														<div
+															className='es-wrapper-border-display'
+															style={{
+																borderTop: breakpointAttrValueTop === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
+																borderLeft: breakpointAttrValueLeft === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
+																borderBottom: breakpointAttrValueBottom === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
+																borderRight: breakpointAttrValueRight === true ? '3px solid var(--wp-admin-theme-color, var(--es-admin-accent-color-default))' : '3px solid var(--es-admin-gray-250)',
+															}}
+														>
+															{showWrapperDividerColor && (breakpointAttrValueTop || breakpointAttrValueLeft || breakpointAttrValueBottom || breakpointAttrValueRight) &&
+																<ColorPickerComponent
+																	colors={[{ name: __('None', 'eightshift-frontend-libs'), slug: undefined, color: 'transparent' }, ...dividerColors]}
+																	value={wrapperDividerColor}
+																	onChange={(value) => setAttributes({ wrapperDividerColor: value })}
+																	additionalClasses='es-w-6 es-h-6'
+																	additionalTriggerClasses='es-p-0! es-button-square-24'
+																	pickerPopupTitle={__('Divider color', 'eightshift-frontend-libs')}
 																/>
 															}
 														</div>
+
+														{showWrapperDividerTop && (index === 0 || (index !== 0 && breakpointAttrValueTop !== undefined)) &&
+															<Button
+																style={{ gridColumn: 2, gridRow: 1 }}
+																icon={React.cloneElement(icons.toggleOff, {
+																	className: `es-animated-toggle-icon ${breakpointAttrValueTop === true ? 'is-checked' : ''}`
+																})}
+																onClick={() => setAttributes({ [breakpointAttrNameTop]: !breakpointAttrValueTop })}
+																disabled={breakpointAttrValueTop === undefined}
+																label={__('Top divider', 'eightshift-frontend-libs')}
+																showTooltip
+																className='es-button-square-30 es-button-icon-24'
+															/>
+														}
+
+														{showWrapperDividerBottom && (index === 0 || (index !== 0 && breakpointAttrValueBottom !== undefined)) &&
+															<Button
+																style={{ gridColumn: 2, gridRow: 3 }}
+																icon={React.cloneElement(icons.toggleOff, {
+																	className: `es-animated-toggle-icon ${breakpointAttrValueBottom === true ? 'is-checked' : ''}`
+																})}
+																onClick={() => setAttributes({ [breakpointAttrNameBottom]: !breakpointAttrValueBottom })}
+																disabled={breakpointAttrValueBottom === undefined}
+																label={__('Bottom divider', 'eightshift-frontend-libs')}
+																showTooltip
+																className='es-button-square-30 es-button-icon-24'
+															/>
+														}
+
+														{showWrapperDividerLeft && (index === 0 || (index !== 0 && breakpointAttrValueLeft !== undefined)) &&
+															<Button
+																style={{ gridColumn: 1, gridRow: 2 }}
+																icon={React.cloneElement(icons.toggleOff, {
+																	className: `es-animated-toggle-icon ${breakpointAttrValueLeft === true ? 'is-checked' : ''}`
+																})}
+																onClick={() => setAttributes({ [breakpointAttrNameLeft]: !breakpointAttrValueLeft })}
+																disabled={breakpointAttrValueLeft === undefined}
+																label={__('Left divider', 'eightshift-frontend-libs')}
+																showTooltip
+																className='es-button-square-30 es-button-icon-24'
+															/>
+														}
+
+														{showWrapperDividerRight && (index === 0 || (index !== 0 && breakpointAttrValueRight !== undefined)) &&
+															<Button
+																style={{ gridColumn: 3, gridRow: 2 }}
+																icon={React.cloneElement(icons.toggleOff, {
+																	className: `es-animated-toggle-icon ${breakpointAttrValueRight === true ? 'is-checked' : ''}`
+																})}
+																onClick={() => setAttributes({ [breakpointAttrNameRight]: !breakpointAttrValueRight })}
+																disabled={breakpointAttrValueRight === undefined}
+																label={__('Right divider', 'eightshift-frontend-libs')}
+																showTooltip
+																className='es-button-square-30 es-button-icon-24'
+															/>
+														}
 													</div>
 												}
 											</div>
@@ -436,15 +454,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								</CompactResponsive>
 							}
 
-							{showWrapperDividerColor &&
-								<ColorPickerComponent
-									label={__('Color', 'eightshift-frontend-libs')}
-									colors={[{ name: __('None', 'eightshift-frontend-libs'), slug: undefined, color: 'transparent' }, ...dividerColors]}
-									value={wrapperDividerColor}
-									onChange={(value) => setAttributes({ wrapperDividerColor: value })}
-									additionalClasses='es-mb-s'
-								/>
-							}
+
 						</Collapsable>
 					}
 
@@ -472,7 +482,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 							{showWrapperId &&
 								<TextControl
-									label={<IconLabel icon={icons.id} label={__('Block unqique identifier', 'eightshift-frontend-libs')} />}
+									label={<IconLabel icon={icons.id} label={__('Block unique identifier', 'eightshift-frontend-libs')} />}
 									value={wrapperId}
 									onChange={(value) => setAttributes({ wrapperId: value })}
 								/>
