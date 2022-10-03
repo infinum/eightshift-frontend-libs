@@ -5,7 +5,7 @@
 
 	& > .block-editor-inner-blocks > .block-editor-block-list__layout {
 		display: grid;
-		grid-template-columns: var(--wrapper-grid-template-columns);
+		grid-template-columns: var(--columns-grid-template-columns);
 		column-gap: var(--columns-gutter, var(--global-grid-gutter));
 		row-gap: var(--columns-vertical-spacing, 0);
 	}

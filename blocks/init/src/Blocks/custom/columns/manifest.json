@@ -91,32 +91,32 @@
 		},
 
 		"columnsColumnGapLarge": {
-			"type": "integer",
-			"default": 30
+			"type": "number",
+			"default": 2.5
 		},
 		"columnsColumnGapDesktop": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsColumnGapTablet": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsColumnGapMobile": {
-			"type": "integer",
+			"type": "number",
 			"default": 0
 		},
 
 		"columnsRowGapLarge": {
-			"type": "integer",
-			"default": 30
+			"type": "number",
+			"default": 2.5
 		},
 		"columnsRowGapDesktop": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsRowGapTablet": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsRowGapMobile": {
-			"type": "integer"
+			"type": "number"
 		},
 
 		"wrapperUseSimple": {
@@ -170,12 +170,12 @@
 		"columnsColumnGap": {
 			"min": 0,
 			"max": 100,
-			"step": 10
+			"step": 1
 		},
 		"columnsRowGap": {
 			"min": 0,
 			"max": 100,
-			"step": 10
+			"step": 1
 		}
 	},
 	"variables": {
