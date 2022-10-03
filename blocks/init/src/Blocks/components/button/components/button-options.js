@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, CollapsableComponentUseToggle, LinkEditComponent, SimpleHorizontalSingleSelect, FancyDivider, props, getOptions, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, CollapsableComponentUseToggle, LinkEditComponent, SimpleHorizontalSingleSelect, FancyDivider, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 
@@ -39,9 +39,6 @@ export const ButtonOptions = (attributes) => {
 	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
 	const buttonVariant = checkAttr('buttonVariant', attributes, manifest);
 
-	const [one, setOne] = useState(false);
-	const [two, setTwo] = useState(false);
-
 	return (
 		<CollapsableComponentUseToggle
 			label={label}
@@ -62,24 +59,6 @@ export const ButtonOptions = (attributes) => {
 					icon={icons.globe}
 					label={(!showLabel && !showButtonUse) || (showLabel && showButtonUse) ? __('URL', 'eightshift-frontend-libs') : sprintf(__('%s URL'), label)}
 					additionalClass='es-mb-0-bcf! es-mb-2!'
-					additionalOptions={
-						<IconToggle
-							icon={icons.experiment}
-							label='Demo 1'
-							checked={one}
-							onChange={(v) => setOne(v)}
-							additionalClasses='es-mb-0! es-w-full'
-						/>
-					}
-					additionalOptionTiles={
-						<IconToggle
-							icon={icons.experiment}
-							label='Demo 2'
-							checked={two}
-							onChange={(v) => setTwo(v)}
-							type='tileButton'
-						/>
-					}
 				/>
 			}
 
