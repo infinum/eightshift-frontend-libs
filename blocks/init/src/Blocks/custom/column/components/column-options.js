@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { icons, getAttrKey, getOption, IconLabel, CompactResponsive, SimpleHorizontalSingleSelect, checkAttr, SpacingSlider, VisibilityToggleResponsive, WidthOffsetRangeSlider, FancyDivider } from '@eightshift/frontend-libs/scripts';
+import { icons, getAttrKey, getOption, IconLabel, CompactResponsive, SimpleHorizontalSingleSelect, checkAttr, VisibilityToggleResponsive, WidthOffsetRangeSlider, FancyDivider, CustomSlider, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
@@ -78,23 +78,59 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 			<FancyDivider label={<IconLabel icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} />} additionalClasses='es-mb-2.5' />
 
-			<SpacingSlider
-				icon={icons.order}
-				label={__('Order', 'eightshift-frontend-libs')}
-				attributeName='columnOrder'
-				attributes={attributes}
-				setAttributes={setAttributes}
-				manifest={manifest}
-				markSteps={2}
-				hasInputField={false}
-				hasValueDisplay
-				valueDisplayFormat={(v) => !isNaN(v) && v > 0 ? v : icons.automatic}
-				showDisableButton
-				disableWithUndefined
-				isNumeric
-				customProps={{ hasCompactMarks: false }}
-				help={__('Forces an item order, independent of the actual element order. To be effective, must be set on all the columns in the same Columns block.')}
-			/>
+			<CompactResponsive
+				label={<IconLabel icon={icons.order} label={__('Order', 'eightshift-frontend-libs')} />}
+				help={
+				<>
+					<span>{__('Forces column order, independent of the element order in the editor.', 'eightshift-frontend-libs')}</span>
+					<br />
+					<br />
+					<span>{__('If not automatic, must be set on all the columns in the same Columns block.', 'eightshift-frontend-libs')}</span>
+				</>
+			}
+				inheritButton={getDefaultBreakpointNames().map((breakpoint) => {
+					const { columnOrder: attrNames } = manifest.responsiveAttributes;
+					const breakpointAttrName = attrNames[breakpoint];
+					const breakpointAttrValue = checkAttr(breakpointAttrName, attributes, manifest);
+
+					const isInherited = typeof breakpointAttrValue === 'undefined' || breakpointAttrValue?.length === 0;
+
+					return {
+						callback: () => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: isInherited ? 0 : undefined }),
+						isActive: isInherited,
+					};
+				})}
+			>
+				{getDefaultBreakpointNames().map((breakpoint, index) => {
+					const { columnOrder: attrNames } = manifest.responsiveAttributes;
+					const breakpointAttrName = attrNames[breakpoint];
+					const breakpointAttrValue = checkAttr(breakpointAttrName, attributes, manifest);
+					const { max, step } = manifest.options.columnOrder;
+
+					const marks = { 0: icons.automatic };
+
+					for (let i = 1; i <= max; i++) {
+						marks[i] = i % 2 === 0 ? i : '';
+					}
+
+					return (
+						<CustomSlider
+							key={index}
+							className={index !== 0 ? 'es-mb-m' : 'es-mb-s'}
+							value={breakpointAttrValue}
+							onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: value })}
+							min={0}
+							max={max}
+							step={step}
+							marks={marks}
+							hasInputField={false}
+							hasValueDisplay={false}
+							defaultValue={-1}
+							hasCompactMarks={false}
+						/>
+					);
+				})}
+			</CompactResponsive>
 
 			<VisibilityToggleResponsive
 				attributeName='columnHide'
