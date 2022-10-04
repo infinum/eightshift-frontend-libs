@@ -23,10 +23,11 @@ export const SimpleRepeaterItem = (props) => {
 		hideRemove = false,
 	} = props;
 
+	// eslint-disable react/no-unknown-property
 	return (
-		// eslint-disable-next-line react/no-unknown-property
 		<div icon={icon} title={title} subtitle={subtitle} onRemove={onRemove} additionalLabelClass={additionalLabelClass} hideRemove={hideRemove}>
 			{children}
 		</div>
 	);
+	// eslint-enable react/no-unknown-property
 };
