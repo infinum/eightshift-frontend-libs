@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [7.1.1] - 2022-10-04
+## [7.2.0] - 2022-10-04
 
 ## Added
 - new flag in the manifest for innerBlocksDependency that will tell the WP-CLI to include this in the process.
@@ -17,7 +17,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `CustomRangeSlider` had broken custom tooltip formatter, it works fine now!
 - `WidthOffsetRangeSlider` now has new, more logical tooltips on width and offset handles.
 - `ColorPickerComponent` can have the pop-up color list style changed.
-- Rename the paragraph components as `quote` and `attribution`.
+- Quote component - renamed the paragraph components as `quote` to `attribution`.
 - double import of `@wordpress/components` statement in the advanced color picker component.
 
 ## [7.1.0] - 2022-09-06
@@ -634,7 +634,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
-[7.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/7.1.0...7.1.1
+[7.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.1.0...7.2.0
 [7.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.1...7.1.0
 [7.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/6.2.0...7.0.0
