@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, getOption, CollapsableComponentUseToggle, IconLabel, icons, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, CollapsableComponentUseToggle, IconLabel, icons, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType, ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
@@ -58,6 +58,7 @@ export const ParagraphOptions = (attributes) => {
 							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
 							type={ColorPickerType.TEXT_COLOR}
 							additionalTriggerClasses='es-input-matched-slight-button-border'
+							colorPaletteLayout={ColorPaletteCustomLayout.LIST}
 						/>
 					}
 

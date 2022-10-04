@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, CollapsableComponentUseToggle, SimpleHorizontalSingleSelect, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, CollapsableComponentUseToggle, SimpleHorizontalSingleSelect, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType, ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
@@ -60,6 +60,7 @@ export const HeadingOptions = (attributes) => {
 							onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 							type={ColorPickerType.TEXT_COLOR}
 							additionalTriggerClasses='es-input-matched-slight-button-border'
+							colorPaletteLayout={ColorPaletteCustomLayout.LIST}
 						/>
 					}
 

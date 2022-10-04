@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, IconToggle, SimpleHorizontalSingleSelect, CollapsableComponentUseToggle, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, IconToggle, SimpleHorizontalSingleSelect, CollapsableComponentUseToggle, ColorPickerComponent, CustomSelect, ucfirst, ColorPickerType, ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
@@ -59,6 +59,7 @@ export const ListsOptions = (attributes) => {
 							onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
 							additionalTriggerClasses='es-input-matched-slight-button-border'
 							type={ColorPickerType.TEXT_COLOR}
+							colorPaletteLayout={ColorPaletteCustomLayout.LIST}
 						/>
 					}
 
