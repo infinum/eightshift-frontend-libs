@@ -1,3 +1,4 @@
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { checkAttr, CompactResponsive, getAttrKey, IconLabel, icons, SimpleHorizontalSingleSelect, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
