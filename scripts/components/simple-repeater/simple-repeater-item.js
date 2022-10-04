@@ -12,31 +12,12 @@
  * @param {array<SimpleRepeaterItem>} props.children - Child items, usually additional options.
  * @param {boolean} [props.hideRemove=false]         - If `true`, the default remove button is hidden.
  */
-export const SimpleRepeaterItem = (props) => {
-	const {
-		icon,
-		title,
-		subtitle,
-		onRemove,
-		children,
-		additionalLabelClass,
-		hideRemove = false,
-	} = props;
+ export const SimpleRepeaterItem = (props) => {
+	const { children } = props;
 
-	const passedProps = {
-		icon: icon,
-		title: title,
-		subtitle: subtitle,
-		onRemove: onRemove,
-		additionalLabelClass: additionalLabelClass,
-		hideRemove: hideRemove,
-	};
-
-	// eslint react/no-unknown-property: 0
 	return (
-		<div {...passedProps}>
+		<div {...props}>
 			{children}
 		</div>
 	);
-	// eslint react/no-unknown-property: 1
 };
