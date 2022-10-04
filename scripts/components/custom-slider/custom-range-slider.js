@@ -131,7 +131,7 @@ export const CustomRangeSlider = (props) => {
 	const sliderElement = useMemo(() => (
 		<div className='es-custom-slider-container' style={controlAdditionalStyles}>
 			{leftAddition}
-			<Range {...props} handle={handle ?? getCustomHandle({ tooltipPlacement, tooltipFormat })} />
+			<Range {...props} tipFormatter={tooltipFormat} tipProps={{placement: tooltipPlacement}} handle={handle ?? getCustomHandle({ tooltipPlacement, tooltipFormat })} />
 			{rightAddition}
 			{hasInputFields && !hasValueDisplay && Array.from({ length: value?.length ?? 2 }, (_, i) => inputFieldElement(i))}
 			{!hasInputFields && hasValueDisplay && valueDisplayElement}

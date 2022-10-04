@@ -38,7 +38,7 @@
 		#{$this}__label {
 			font-size: 0.8125rem;
 
-			transition: color 0.3s ease-out, margin-left 0.2s var(--es-admin-ease-out-cubic);
+			transition: color 0.3s ease-out, margin-left 0.2s var(--es-ease-out-back);
 
 			@media (prefers-reduced-motion) {
 				transition-duration: 0.01s;

@@ -429,6 +429,21 @@ body {
 	.components-text-control__input {
 		border-radius: 3px !important;
 	}
+
+	// Tweak NumberControl to better fit in.
+	.components-number-control {
+		.components-input-control__backdrop {
+			border-radius: 3px !important;
+			border-color: hsl(0deg 0% 80%) !important;
+
+		}
+
+		&:hover {
+			.components-input-control__backdrop {
+				border-color: hsl(0deg 0% 70%) !important;
+			}
+		}
+	}
 }
 
 // WP 5.9 fixes.
