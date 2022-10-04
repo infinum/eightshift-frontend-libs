@@ -6,10 +6,10 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [7.2.0] - 2022-10-04
 
-## Added
+### Added
 - new flag in the manifest for innerBlocksDependency that will tell the WP-CLI to include this in the process.
 
-## Fixed
+### Fixed
 - duplicated normalize imports on block assets.
 - tweaked Gutenberg's` NumberControl` style to better match our components.
 - added new icons.
