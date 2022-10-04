@@ -41,7 +41,7 @@ const IconsOutput = (props) => {
 
 
 			<div
-				css={{
+				style={{
 					display: 'grid',
 					gridTemplateColumns: 'repeat(auto-fill, 14rem)',
 					gridAutoRows: 'auto',
@@ -50,7 +50,7 @@ const IconsOutput = (props) => {
 			>
 				{filteredIcons.map(([key, value], index) => (
 					<div
-						css={{
+						style={{
 							display: 'grid',
 							gridTemplateRows: '1fr auto',
 							alignItems: 'center',
@@ -59,7 +59,7 @@ const IconsOutput = (props) => {
 						}}
 						key={index}>
 						<div
-							css={{
+							style={{
 								marginBottom: '1rem',
 								color: blockIcons ? '#FFF' : '#3858E9',
 								backgroundColor: blockIcons ? '#3858E9' : 'transparent',
@@ -76,7 +76,7 @@ const IconsOutput = (props) => {
 							{!isJsxSvg && <div dangerouslySetInnerHTML={{ __html: value }}></div>}
 						</div>
 						<span
-							css={{
+							style={{
 								fontSize: '0.75rem',
 								textAlign: 'center',
 								fontFamily: 'monospace',

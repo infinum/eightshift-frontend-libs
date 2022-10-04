@@ -16,20 +16,20 @@ export const colors = () => {
 		} = props;
 
 		return (
-			<div css={{
+			<div style={{
 				color: '#111111',
 				fontSize: '13px',
 				textTransform: 'uppercase',
 				fontWeight: 'bold'
 			}}>
-				<div css={{
+				<div style={{
 					backgroundColor: color,
 					textAlign: 'center',
 					height: '50px',
 					marginBottom: '10px',
 				}}></div>
 					{label}
-					<div css={{
+					<div style={{
 						color: '#525E6C',
 						fontSize: '13px',
 						marginTop: '5px'
@@ -42,7 +42,7 @@ export const colors = () => {
 
 	return (
 		<>
-			<div css={{
+			<div style={{
 				display: 'grid',
 				gridGap: '10px',
 				marginBottom: '80px',

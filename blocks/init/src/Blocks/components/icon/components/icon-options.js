@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, getOption, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay, CollapsableComponentUseToggle, SimpleHorizontalSingleSelect, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay, CollapsableComponentUseToggle } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 const {

@@ -17,7 +17,8 @@ if (!$items) {
 }
 
 foreach ($items as $item) {
-	echo Components::render('card',
+	echo Components::render(
+		'card',
 		Components::props('card', [
 				'cardIntroUse' => true,
 				'cardIntroSize' => 'h6-medium',
