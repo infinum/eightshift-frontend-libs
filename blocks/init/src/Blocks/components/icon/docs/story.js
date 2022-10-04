@@ -34,7 +34,7 @@ export const icons = () => (
 	<>
 		{manifest.options.iconName.map((values, index) => (
 			<div
-			css={{
+			style={{
 				display: 'flex',
 				marginBottom: '20px',
 			}}
@@ -45,7 +45,7 @@ export const icons = () => (
 					})}
 				/>
 
-				<div css={{
+				<div style={{
 					marginLeft: '20px',
 				}}>
 					{values.label}
