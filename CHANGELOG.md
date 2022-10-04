@@ -7,17 +7,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [7.2.0] - 2022-10-04
 
 ### Added
-- new flag in the manifest for innerBlocksDependency that will tell the WP-CLI to include this in the process.
+- new flag in the manifest for `innerBlocksDependency` that will tell the WP-CLI about items dependency.
 
 ### Fixed
-- duplicated normalize imports on block assets.
 - tweaked Gutenberg's` NumberControl` style to better match our components.
 - added new icons.
 - `CustomSelect` can now have custom props passed (e.g., if you need to selectively disable some options or need any feature from React Select that we didn't have an abstraction for).
 - `CustomRangeSlider` had broken custom tooltip formatter, it works fine now!
 - `WidthOffsetRangeSlider` now has new, more logical tooltips on width and offset handles.
 - `ColorPickerComponent` can have the pop-up color list style changed.
-- Quote component - renamed the paragraph components as `quote` to `attribution`.
+- rename the paragraph components inside the quote component to `quote` and `attribution` for better distinction.
+
+### Removed
+- duplicated normalize imports on block assets.
 - double import of `@wordpress/components` statement in the advanced color picker component.
 
 ## [7.1.0] - 2022-09-06
