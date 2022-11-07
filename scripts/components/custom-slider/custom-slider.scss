@@ -272,8 +272,8 @@
 	width: calc(100% - 1rem);
 	margin-left: 0.75rem;
 
-	& > *:not(.rc-slider) {
-		flex-shrink: 0;
+	.components-base-control {
+		flex-basis: 50%;
 	}
 
 	.components-base-control,
