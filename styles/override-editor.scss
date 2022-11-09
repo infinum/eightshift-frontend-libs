@@ -454,5 +454,14 @@ body.branch-5-9 {
 	}
 }
 
+// WP 6.1 fixes
+body.branch-6-1 {
+	.components-base-control__label {
+		text-transform: none !important;
+		font-size: 0.8125rem !important;
+		font-weight: normal !important;
+	}
+}
+
 @import './es-utility-classes.scss';
 @import './es-component-styles.scss';
