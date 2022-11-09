@@ -3,37 +3,15 @@
 .es-simple-v-single-select {
 	display: flex;
 	flex-direction: column;
-	gap: 1px;
-	border-radius: 0.25rem;
+	gap: 0.5rem;
+	padding: 0.125rem;
 
-	box-shadow: 0 0 0 1px var(--es-admin-gray-250);
+	border-radius: 5px;
+	border: 1px solid var(--es-admin-gray-400);
 
 	.components-button {
-		justify-content: flex-start !important;
-
-		> svg {
-			height: 1.5rem;
-			width: 1.5rem;
-		}
-
-		border-radius: 0 !important;
-
-		&:first-child {
-			border-top-left-radius: 0.25rem !important;
-			border-top-right-radius: 0.25rem !important;
-		}
-
-		&:last-child {
-			border-bottom-left-radius: 0.25rem !important;
-			border-bottom-right-radius: 0.25rem !important;
-		}
-	}
-
-	.components-button:not(.is-pressed) {
-		&:hover {
-			border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
-			background-color: var(--es-admin-gray-50) !important;
-		}
+		@include es-v2-gutenberg-button-active-state;
+		border-radius: 3px !important;
 	}
 }
 
