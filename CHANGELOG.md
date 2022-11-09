@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [7.3.0] - 2022-11-09
+
+### Changed
+- reverted WP 6.1 `BaseControl label` casing.
+- fixed `IconToggle` and `ToggleControl` changes due to the new internal structure.
+- slightly tweaked `SimpleHorizontalSingleSelect` styling.
+- restyled `SimpleVerticalSingleSelect` to match `SimpleHorizontalSingleSelect`.
+- tweaked Gutenberg toggle controls to better fit into our libs.
+- added new icons.
+- fixed weird icon alignments in pickers and inserter.
+
 ## [7.2.0] - 2022-10-04
 
 ### Added
@@ -636,6 +647,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[7.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.2.0...7.3.0
 [7.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.1.0...7.2.0
 [7.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.1...7.1.0
 [7.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.0...7.0.1
