@@ -84,9 +84,9 @@ export const SimpleHorizontalSingleSelect = (props) => {
 
 	const borderConfig = {
 		offset: {
-			borderRadius: 3,
+			borderRadius: 5,
 			padding: '0.125rem',
-			border: '1px solid #ccc',
+			border: '1px solid var(--es-admin-gray-400)',
 		}
 	};
 
@@ -94,7 +94,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		<div
 			className={classnames([
 				'es-simple-h-single-select',
-				border === 'inset' ? 'has-inset-border' : '',
+				border !== 'none' ? `has-${border}-border` : '',
 			])}
 			style={{
 				display: 'flex',
