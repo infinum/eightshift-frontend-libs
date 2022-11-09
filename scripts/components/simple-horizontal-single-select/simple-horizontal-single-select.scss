@@ -33,6 +33,12 @@
 		}
 	}
 
+	&.has-offset-border {
+		.components-button {
+			border-radius: 3px !important;
+		}
+	}
+
 	.components-button {
 		@include es-v2-gutenberg-button-active-state;
 	}
