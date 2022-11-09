@@ -444,6 +444,80 @@ body {
 			}
 		}
 	}
+
+	// Make Gutenberg ToggleControl toggle better match libs.
+	.components-form-toggle {
+		&__input {
+			@supports selector(:focus-visible) {
+				&:focus + .components-form-toggle__track {
+					box-shadow: none !important;
+				}
+
+				&:focus:focus-visible + .components-form-toggle__track {
+					box-shadow: 0 0 0 0.275rem rgb(255 255 255 / 0.7), 0 0 0 0.25rem var(--wp-admin-theme-color) !important; // 3px
+					border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+				}
+			}
+
+			@supports not selector(:focus-visible) {
+				&:focus + .components-form-toggle__track {
+					box-shadow: 0 0 0 0.275rem rgb(255 255 255 / 0.7), 0 0 0 0.25rem var(--wp-admin-theme-color) !important; // 3px
+					border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+				}
+			}
+		}
+
+		&__track {
+			background-color: rgb(var(--es-admin-cool-gray-500-values) / 0) !important;
+			border: 0.09375rem solid var(--es-admin-cool-gray-500) !important; // 1.5px
+			border-radius: 100rem !important;
+
+			width: 2.21875rem !important; // 35.5px
+			height: 1.25rem !important; // 20px;
+
+			transition: {
+				property: background-color, color, border-color, box-shadow !important;
+				timing-function: ease-out, ease-out, ease-out, var(--es-ease-out-back) !important;
+				duration: 0.3s !important;
+			}
+		}
+
+		&__thumb {
+			width: 0.75rem !important; // 12px
+			height: 0.75rem !important; // 12px
+
+			top: 0.25rem !important; // 5px
+			left: 0.25rem !important; // 5px
+
+			background-color: var(--es-admin-cool-gray-600) !important;
+
+			border: none !important;
+
+			transition: {
+				property: background-color, transform !important;
+				timing-function: ease-out, var(--es-ease-out-back) !important;
+				duration: 0.3s, 0.25s !important;
+			}
+		}
+
+		&:hover {
+			.components-form-toggle__track {
+				border-color: var(--es-admin-cool-gray-600) !important;
+			}
+		}
+
+		&.is-checked {
+			.components-form-toggle__track {
+				background-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+				border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+			}
+
+			.components-form-toggle__thumb {
+				transform: translateX(0.96875rem) !important; // 15.5px
+				background-color: var(--es-admin-pure-white) !important;
+			}
+		}
+	}
 }
 
 // WP 5.9 fixes.
