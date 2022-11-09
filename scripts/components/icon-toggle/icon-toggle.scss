@@ -32,4 +32,15 @@
 	}
 }
 
+// WP 6.1 fixes
+body.branch-6-1 {
+	.es-icon-toggle-checkbox {
+		.components-h-stack {
+			flex-direction: row-reverse !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+		}
+	}
+}
+
 // stylelint-enable declaration-no-important
