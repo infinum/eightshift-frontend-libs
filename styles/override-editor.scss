@@ -535,6 +535,14 @@ body.branch-6-1 {
 		font-size: 0.8125rem !important;
 		font-weight: normal !important;
 	}
+
+	.components-toggle-control {
+		.components-h-stack {
+			flex-direction: row-reverse !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+		}
+	}
 }
 
 @import './es-utility-classes.scss';
