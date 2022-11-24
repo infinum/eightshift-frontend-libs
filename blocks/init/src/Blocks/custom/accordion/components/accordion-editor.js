@@ -1,15 +1,17 @@
 import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { props } from '@eightshift/frontend-libs/scripts';
-import { AccordionEditor as AccordionEditorComponent } from '../../../components/accordion/components/accordion-editor';
 
-export const AccordionEditor = ({ attributes, setAttributes }) => {
+export const AccordionEditor = ({ attributes }) => {
+	const {
+		accordionAllowedBlocks,
+		blockClass,
+	} = attributes;
+
 	return (
-		<AccordionEditorComponent
-			{...props('accordion', attributes, {
-				setAttributes,
-				accordionContent: <InnerBlocks />
-			})}
-		/>
+		<div className={blockClass}>
+			<InnerBlocks
+				allowedBlocks={(typeof accordionAllowedBlocks === 'undefined') || accordionAllowedBlocks}
+			/>
+		</div>
 	);
 };
