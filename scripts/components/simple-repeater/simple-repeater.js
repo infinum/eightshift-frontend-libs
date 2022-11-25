@@ -33,6 +33,8 @@ import { SortableItem } from './sortable-item';
  * @param {function} props.setAttributes             - The `setAttributes` callback from component/block attributes.
  * @param {array<SimpleRepeaterItem>} props.children - Child items, mapped from `items`. Contains all the option for child items.
  * @param {boolean} [props.noReordering=false]       - If `true`, the items can't be reordered.
+ * @param {function} [props.handleAdd]               - Callback for providing custom item adding logic.
+ * @param {function} [props.handleItemReorder]       - Callback for providing custom item reordering logic.
  */
 export const SimpleRepeater = ({
 	icon,
@@ -46,6 +48,9 @@ export const SimpleRepeater = ({
 	children,
 
 	noReordering = false,
+
+	handleAdd,
+	handleItemReorder,
 }) => {
 	const sensors = useSensors(
 		useSensor(PointerSensor),
@@ -62,7 +67,11 @@ export const SimpleRepeater = ({
 			const oldIndex = mappedItems?.indexOf(active.id) ?? -1;
 			const newIndex = mappedItems?.indexOf(over.id) ?? -1;
 
-			setAttributes({ [attributeName]: arrayMove([...items], oldIndex, newIndex) });
+			if (handleItemReorder) {
+				handleItemReorder(arrayMove, oldIndex, newIndex);
+			} else {
+				setAttributes({ [attributeName]: arrayMove([...items], oldIndex, newIndex) });
+			}
 		}
 	};
 
@@ -77,7 +86,15 @@ export const SimpleRepeater = ({
 				/>
 
 				<Button
-					onClick={() => setAttributes({ [attributeName]: [...items, { id: (items?.length ?? 0) + 1 }] })}
+					onClick={() => {
+						const itemBase = { id: (items?.length ?? 0) + 1 };
+
+						if (handleAdd) {
+							handleAdd(itemBase);
+						} else {
+							setAttributes({ [attributeName]: [...items, itemBase] });
+						}
+					}}
 					icon={icons.plusCircle}
 					className='es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0'
 					label={__('Add item', 'eightshift-frontend-libs')}
