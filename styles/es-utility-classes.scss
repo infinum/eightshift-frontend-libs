@@ -773,6 +773,24 @@ $es-utility-props: (
 		'valuePrefix': '',
 		'includeNegativeValues': 'false',
 	),
+	'nested-m': (
+		'cssProp': 'margin',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'true',
+	),
+	'nested-p': (
+		'cssProp': 'padding',
+		'values': $es-spacings,
+		'additionalSelector': 'svg',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
 );
 
 // Additional borders (default).
