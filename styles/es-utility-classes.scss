@@ -1347,26 +1347,32 @@ $es-utility-props: (
 }
 
 // Flex utils.
+.es-nested-flex-1 svg,
 .es-flex-1 {
 	flex: 1;
 }
 
+.es-nested-flex-0 svg,
 .es-flex-0 {
 	flex: 1;
 }
 
+.es-nested-flex-shrink-0 svg,
 .es-flex-shrink-0 {
 	flex-shrink: 0;
 }
 
+.es-nested-flex-shrink-1 svg,
 .es-flex-shrink-1 {
 	flex-shrink: 1;
 }
 
+.es-nested-flex-grow-0 svg,
 .es-flex-grow-0 {
 	flex-grow: 0;
 }
 
+.es-nested-flex-grow-1 svg,
 .es-flex-grow-1 {
 	flex-grow: 1;
 }
