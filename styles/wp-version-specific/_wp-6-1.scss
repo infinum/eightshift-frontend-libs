@@ -1,0 +1,50 @@
+// stylelint-disable
+
+// WP 6.1 fixes
+body.branch-6-1 {
+	// Fix label casing.
+	.components-base-control__label {
+		text-transform: inherit !important;
+		font-size: inherit !important;
+		font-weight: inherit !important;
+	}
+
+	// Fix label styling and stylize SVGs
+	.components-base-control__label,
+	.components-input-control__label {
+		display: block;
+		width: 100%;
+
+		svg {
+			height: 1.5rem !important;
+			width: 1.5rem !important;
+			margin: 0 !important;
+
+			&:not(button svg) {
+				color: var(--es-admin-components-base-control-svg, var(--es-admin-cool-gray-650));
+			}
+		}
+
+		button {
+			margin-left: auto !important;
+		}
+	}
+
+	// Fix ToggleControl flex.
+	.components-toggle-control {
+		.components-h-stack {
+			flex-direction: row-reverse !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+		}
+	}
+
+	// Fix block icons being misaligned.
+	.block-editor-block-icon.has-colors svg,
+	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon .block-editor-block-icon svg,
+	.block-editor-block-toolbar__block-controls .block-editor-block-switcher .components-dropdown-menu__toggle .block-editor-block-icon svg {
+		width: 1.25rem !important;
+		height: 1.25rem !important;
+	}
+}
+// stylelint-enable

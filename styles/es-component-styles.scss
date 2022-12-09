@@ -63,29 +63,17 @@
 	--es-admin-eightshift-50: #F8FFFF;
 	--es-admin-eightshift-500: #0D3636;
 
+	// Border radii.
+	--es-component-border-radius-sm: 3px;
+	--es-component-border-radius-md: 4px;
+	--es-component-border-radius-lg: 6px;
+	--es-component-border-radius-xl: 9px;
+	--es-component-border-radius-full: 100rem;
+
 	@include es-eases;
 }
 
 body {
-	// Full width button.
-	.custom-full-width-button {
-		width: 100%;
-		justify-content: center;
-	}
-
-	// Custom divider.
-	.custom-divider {
-		width: 100%;
-		height: 1px;
-		background-color: var(--es-admin-custom-divider, var(--es-admin-gray-400));
-		margin: 10px 0;
-	}
-
-	// Highlighted panel
-	.custom-highlighted-panel {
-		background-color: var(--es-admin-custom-highlighted-panel, var(--es-admin-gray-100));
-	}
-
 	// Panel body title with icon in front.
 	// Must have the title wrapped in a <span>!
 	.es-panel-title {
@@ -125,20 +113,6 @@ body {
 		}
 	}
 
-	// Updated Placeholder component styles.
-	.components-placeholder {
-		.es-placeholder-input-flex {
-			display: flex;
-			flex-wrap: nowrap;
-			gap: 0.5rem;
-			width: 100%;
-
-			.components-input-control {
-				max-width: 19rem;
-			}
-		}
-	}
-
 	// Input error text style.
 	.es-input-error {
 		color: var(--es-admin-input-error, var(--es-admin-red-500));
@@ -162,13 +136,13 @@ body {
 	}
 
 	.es-input-matched-slight-button-border {
-		border-radius: 3px;
+		border-radius: var(--es-component-border-radius-xl);
 
 		&:not(.is-pressed) {
-			box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 80%);
+			box-shadow: inset 0 0 0 1px var(--es-admin-gray-400);
 
 			&:hover {
-				box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 70%);
+				box-shadow: inset 0 0 0 1px var(--es-admin-cool-gray-500);
 			}
 		}
 	}
@@ -308,7 +282,7 @@ body {
 		img {
 			width: 100%;
 			height: auto;
-			border-radius: 0.5rem;
+			border-radius: var(--es-component-border-radius-lg);
 
 			margin-bottom: 0.25rem;
 			border: 1px solid var(--es-admin-cool-gray-400);
