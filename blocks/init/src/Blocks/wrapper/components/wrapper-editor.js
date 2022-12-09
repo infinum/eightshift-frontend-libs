@@ -1,87 +1,112 @@
-import React from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
+import { useSelect } from '@wordpress/data';
 import classnames from 'classnames';
-import { responsiveSelectors, selector, checkAttr, checkAttrResponsive } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
+import globalManifest from './../../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
 	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
-	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperUseInner = checkAttr('wrapperUseInner', attributes, manifest);
 	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
 	const wrapperId = checkAttr('wrapperId', attributes, manifest);
-	const wrapperBackgroundColor = checkAttr('wrapperBackgroundColor', attributes, manifest);
 	const wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest);
-	const className = checkAttr('className', attributes, manifest);
-
-	if (!wrapperUse || wrapperDisable) {
-		return children;
-	}
+	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperGetGridInfo = checkAttr('wrapperGetGridInfo', attributes, manifest);
+	const wrapperIsFullWidthLarge = checkAttr('wrapperIsFullWidthLarge', attributes, manifest, true);
 
 	if (!wrapperUse || wrapperDisable) {
 		if (!wrapperParentClass) {
 			return children;
 		}
 
-		const wrapperParentClassItemClass = selector(wrapperParentClass, wrapperParentClass, 'item');
-		const wrapperParentClassItemInnerClass = selector(wrapperParentClass, wrapperParentClass, 'item-inner');
-
 		return (
-			<div className={wrapperParentClassItemClass}>
-				<div className={wrapperParentClassItemInnerClass}>
+			<div className={`${wrapperParentClass}__item`}>
+				<div className={`${wrapperParentClass}__item-inner`}>
 					{children}
 				</div>
 			</div>
 		);
 	}
 
-	const wrapperSpacingTop = checkAttrResponsive('wrapperSpacingTop', attributes, manifest);
-	const wrapperSpacingBottom = checkAttrResponsive('wrapperSpacingBottom', attributes, manifest);
-	const wrapperSpacingTopIn = checkAttrResponsive('wrapperSpacingTopIn', attributes, manifest);
-	const wrapperSpacingBottomIn = checkAttrResponsive('wrapperSpacingBottomIn', attributes, manifest);
-	const wrapperDividerTop = checkAttrResponsive('wrapperDividerTop', attributes, manifest);
-	const wrapperDividerBottom = checkAttrResponsive('wrapperDividerBottom', attributes, manifest);
-	const wrapperContainerWidth = checkAttrResponsive('wrapperContainerWidth', attributes, manifest);
-	const wrapperGutter = checkAttrResponsive('wrapperGutter', attributes, manifest);
-	const wrapperWidth = checkAttrResponsive('wrapperWidth', attributes, manifest);
-	const wrapperOffset = checkAttrResponsive('wrapperOffset', attributes, manifest);
-	const wrapperHide = checkAttrResponsive('wrapperHide', attributes, manifest);
+	const isEditMode = useSelect((select) => select('core/block-editor').isNavigationMode());
 
-	const wrapperMainClass = 'wrapper';
+	const unique = useMemo(() => getUnique(), []);
+	attributes['uniqueWrapperId'] = unique;
 
+	const wrapperMainClass = attributes['componentClass'] || manifest['componentClass'];
 	const wrapperClass = classnames([
 		wrapperMainClass,
-		selector(wrapperMainClass, wrapperMainClass, 'bg-color', wrapperBackgroundColor),
-		responsiveSelectors(wrapperSpacingTop, 'spacing-top', wrapperMainClass),
-		responsiveSelectors(wrapperSpacingBottom, 'spacing-bottom', wrapperMainClass),
-		responsiveSelectors(wrapperSpacingTopIn, 'spacing-top-in', wrapperMainClass),
-		responsiveSelectors(wrapperSpacingBottomIn, 'spacing-bottom-in', wrapperMainClass),
-		responsiveSelectors(wrapperDividerTop, 'divider-top', wrapperMainClass, false),
-		responsiveSelectors(wrapperDividerBottom, 'divider-bottom', wrapperMainClass, false),
-		responsiveSelectors(wrapperHide, 'hide-editor', wrapperMainClass, false),
-		className,
-	]);
-
-	const wrapperContainerClass = classnames([
-		`${wrapperMainClass}__container`,
-		responsiveSelectors(wrapperContainerWidth, 'container-width', wrapperMainClass),
-		responsiveSelectors(wrapperGutter, 'gutter', wrapperMainClass),
+		wrapperUseSimple ? `${wrapperMainClass}--simple` : '',
+		isEditMode ? `${wrapperMainClass}--edit-mode` : '',
+		isEditMode && wrapperIsFullWidthLarge ? `${wrapperMainClass}--edit-mode-fullwidth` : '',
 	]);
 
 	const wrapperInnerClass = classnames([
 		`${wrapperMainClass}__inner`,
-		responsiveSelectors(wrapperWidth, 'width', wrapperMainClass),
-		responsiveSelectors(wrapperOffset, 'offset', wrapperMainClass),
 	]);
 
+	const reference = useRef(null);
+	const [gridWidth, setGridWidth] = useState([]);
+
+	if (wrapperGetGridInfo) {
+		const calculateGridWidth = () => {
+			const [edgeColumn, middleColumn] = getComputedStyle(reference.current).gridTemplateColumns.split(' ');
+
+			setGridWidth({
+				'--wrapper-grid-column-width-edge': edgeColumn,
+				'--wrapper-grid-column-width-middle': middleColumn,
+			});
+		};
+
+		useEffect(() => {
+			calculateGridWidth();
+			window.addEventListener('resize', calculateGridWidth);
+
+			return () => {
+				window.removeEventListener('resize', calculateGridWidth);
+			};
+		}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}
+
+	const GridGuides = () => {
+		const items = [];
+
+		const maxItems = wrapperIsFullWidthLarge ? 14 : 12;
+
+		for (let i = 1; i <= maxItems; i++) {
+			const itemStyle = {
+				gridColumn: `${wrapperIsFullWidthLarge ? i : i + 1} / span 1`,
+			};
+
+			items.push(<div className={`${wrapperMainClass}__grid-item`} style={itemStyle} key={i}>{i}</div>);
+		}
+
+		return (
+			<div className={`${wrapperMainClass}__grid`}>
+				{items}
+			</div>
+		);
+	};
+
+	const blockName = attributes?.blockName ?? '';
+	const gridGuidesAllowList = ['columns'];
+
+	const shouldHaveGuides = ((attributes?.wrapperUseSimple ?? false) === false && (attributes?.wrapperUse ?? false) === true) || gridGuidesAllowList?.includes(blockName);
+
 	return (
-		<div className={wrapperClass} id={wrapperId}>
-			{wrapperUseSimple && children}
-			{!wrapperUseSimple &&
-				<div className={wrapperContainerClass}>
-					<div className={wrapperInnerClass}>
-						{children}
-					</div>
+		<div ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>
+			{isEditMode && shouldHaveGuides && <GridGuides />}
+
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
+
+			{wrapperUseInner &&
+				<div className={wrapperInnerClass}>
+					{children}
 				</div>
 			}
+
+			{!wrapperUseInner && children}
 		</div>
 	);
 };

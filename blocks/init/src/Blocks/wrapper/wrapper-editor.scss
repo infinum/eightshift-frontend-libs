@@ -1,1 +1,132 @@
-// Style overrides for wrapper in editor
+.wp-block {
+	.wrapper {
+		opacity: var(--wrapper-display-opacity, 1);
+
+		transition: {
+			property: opacity;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&--edit-mode {
+			position: relative;
+
+			.wrapper__inner {
+				transition: {
+					property: opacity;
+					timing-function: ease-out;
+					duration: 0.3s;
+				}
+
+				// stylelint-disable-next-line max-nesting-depth
+				&:hover {
+					opacity: 0.4;
+				}
+			}
+		}
+
+		&__grid {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+
+			height: 100%;
+
+			display: grid;
+			grid-template-columns: var(--wrapper-grid-template-columns);
+			column-gap: var(--global-grid-gutter);
+		}
+
+		&__grid-item {
+			position: relative;
+
+			border-inline: 1px dashed rgb(255 0 255);
+			color: rgb(255 0 255 / 0.8);
+
+			font-size: 1.5em;
+			font-weight: normal;
+			font-variant-numeric: tabular-nums;
+
+			height: 100%;
+			padding: 0.25rem;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:not(:last-child)::after {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: calc(-1 * var(--global-grid-gutter) - 1px);
+				width: var(--global-grid-gutter);
+
+				background-color: rgb(255 0 255 / 0.1);
+			}
+
+			&:first-child::before,
+			&:last-child::before {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: var(--global-grid-side-padding);
+
+				background-color: rgb(255 0 255 / 0.1);
+			}
+
+			&:first-child::before {
+				left: calc(-1 * var(--global-grid-side-padding) - 1px);
+			}
+
+			&:last-child::before {
+				right: calc(-1 * var(--global-grid-side-padding) - 1px);
+			}
+		}
+
+		&--edit-mode-fullwidth {
+			--wrapper-grid-guide-width: 100%;
+			--wrapper-grid-guide-margin-left: 0;
+			--wrapper-grid-guide-margin-right: 0;
+
+			// stylelint-disable selector-max-specificity
+			.wrapper__grid-item:first-child::before,
+			.wrapper__grid-item:last-child::before {
+				display: none;
+			}
+			// stylelint-enable selector-max-specificity
+		}
+	}
+}
+
+.es-wrapper-border-control {
+	display: grid;
+	grid-template: repeat(3, 2.25rem) / repeat(3, 2.25rem);
+	align-items: center;
+	justify-items: center;
+}
+
+.es-wrapper-border-display {
+	border-radius: 0.25rem;
+
+	grid-column: 2;
+	grid-row: 2;
+
+	width: 100%;
+	height: 100%;
+
+	align-self: center;
+	justify-self: center;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.es-wrapper-options-copy-paste > .components-button:not(:hover):not(:focus) {
+	color: var(--es-admin-cool-gray-500);
+}

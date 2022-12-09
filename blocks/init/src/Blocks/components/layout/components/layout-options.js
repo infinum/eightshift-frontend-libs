@@ -1,21 +1,20 @@
 import React from 'react';
-import { __, sprintf } from '@wordpress/i18n';
-import { RangeControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { BaseControl, __experimentalNumberControl as ExperimentalNumberControl, NumberControl as StableNumberControl } from '@wordpress/components';
 import {
 	icons,
 	IconLabel,
 	getAttrKey,
 	checkAttr,
 	getOption,
-	SimpleVerticalSingleSelect,
-	CollapsableComponentUseToggle
+	CollapsableComponentUseToggle,
+	SimpleHorizontalSingleSelect
 } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const LayoutOptions = (attributes) => {
 	const {
 		title: manifestTitle,
-		attributes: reset,
 		combinations,
 	} = manifest;
 
@@ -37,43 +36,51 @@ export const LayoutOptions = (attributes) => {
 	const layoutType = checkAttr('layoutType', attributes, manifest);
 	const layoutTotalItems = checkAttr('layoutTotalItems', attributes, manifest);
 
+	const layouts = getOption('layoutType', attributes, manifest);
+
+	const NumberControl = ExperimentalNumberControl ?? StableNumberControl;
+
 	return (
 		<CollapsableComponentUseToggle
-			label={sprintf(__('%s', 'eightshift-boilerplate'), label)}
+			label={
+				<IconLabel
+					icon={showLayoutUse ? null : icons.layoutAlt3}
+					label={label}
+					subtitle={layoutType !== null ? layouts.find(({ value }) => value === layoutType).label : ''}
+					standalone
+				/>
+			}
 			checked={layoutUse}
 			onChange={(value) => setAttributes({ [getAttrKey('layoutUse', attributes, manifest)]: value })}
 			showUseToggle={showLayoutUse}
 			showLabel={label}
 		>
-			<>
-				{showLayoutType &&
-					<SimpleVerticalSingleSelect
-						label={<IconLabel icon={icons.backgroundTypeAlt} label={__('Layout Type', 'eightshift-boilerplate')} />}
-						options={getOption('layoutType', attributes, manifest).map(({ label, value, icon: iconName }) => {
-							return {
-								onClick: () => setAttributes({
-									[getAttrKey('layoutType', attributes, manifest)]: value,
-									[getAttrKey('layoutTotalItems', attributes, manifest)]: combinations.layoutType[value].layoutTotalItems,
-								}),
-								label: label,
-								isActive: layoutType === value,
-								icon: icons[iconName],
-							};
-						})}
-					/>
-				}
+			{showLayoutType &&
+				<SimpleHorizontalSingleSelect
+					onChange={(value) => setAttributes({
+						[getAttrKey('layoutType', attributes, manifest)]: value,
+						[getAttrKey('layoutTotalItems', attributes, manifest)]: combinations.layoutType[value].layoutTotalItems,
+					})}
+					value={layoutType}
+					options={layouts}
+					alignment='vertical'
+					border='offset'
+				/>
+			}
 
-				{showLayoutTotalItems &&
-					<RangeControl
-						label={<IconLabel icon={icons.totalItems} label={__('Maximum number of items to show', 'eightshift-boilerplate')} />}
+			{showLayoutTotalItems &&
+				<BaseControl
+					label={<IconLabel icon={icons.itemLimit} label={__('Max. number of items', 'eightshift-frontend-libs')} />}
+					className='es-inline-input-label-14'
+				>
+					<NumberControl
 						{...getOption('layoutTotalItems', attributes, manifest)}
 						value={layoutTotalItems}
-						allowReset={true}
 						onChange={(value) => setAttributes({ [getAttrKey('layoutTotalItems', attributes, manifest)]: value })}
-						resetFallbackValue={reset['layoutTotalItems'].default}
+						isDragEnabled
 					/>
-				}
-			</>
+				</BaseControl>
+			}
 		</CollapsableComponentUseToggle>
 	);
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { ToolbarGroup } from '@wordpress/components';
-import { checkAttr, getAttrKey, MatrixAlignControl, props } from '@eightshift/frontend-libs/scripts';
-import { HeadingToolbar } from '../../heading/components/heading-toolbar';
-import { ButtonToolbar } from '../../button/components/button-toolbar';
+import { checkAttr, getAttrKey, MatrixAlignControl } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const JumbotronToolbar = (attributes) => {
@@ -37,17 +35,7 @@ export const JumbotronToolbar = (attributes) => {
 				</ToolbarGroup>
 			}
 
-			<ToolbarGroup>
-				<HeadingToolbar
-					{...props('heading', attributes)}
-				/>
-			</ToolbarGroup>
 
-			<ToolbarGroup>
-				<ButtonToolbar
-					{...props('button', attributes)}
-				/>
-			</ToolbarGroup>
 		</>
 	);
 };

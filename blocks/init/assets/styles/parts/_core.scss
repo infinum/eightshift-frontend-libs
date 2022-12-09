@@ -1,4 +1,10 @@
-/* stylelint-disable-line selector-no-type */
+// Fonts.
+@include font-face('DM Sans', 'DMSans-Regular');
+@include font-face('DM Sans', 'DMSans-Italic', 400, italic);
+@include font-face('DM Sans', 'DMSans-Medium', 500);
+@include font-face('DM Sans', 'DMSans-MediumItalic', 500, italic);
+@include font-face('DM Sans', 'DMSans-Bold', 700);
+@include font-face('DM Sans', 'DMSans-BoldItalic', 700, italic);
 
 *,
 *::after,
@@ -13,7 +19,8 @@ html {
 body {
 	@include font-smoothing;
 
-	font-family: var(--global-font-family);
+	// Overrides normalize font-family definition.
+	font-family: var(--global-font-family) !important; // stylelint-disable-line declaration-no-important
 	color: var(--global-colors-black);
 	background-color: var(--global-colors-white);
 	position: relative;

@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { checkAttr, props, selector } from '@eightshift/frontend-libs/scripts';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
+import { IconEditor } from '../../icon/components/icon-editor';
 import manifest from './../manifest.json';
 
 export const QuoteEditor = (attributes) => {
@@ -14,9 +15,6 @@ export const QuoteEditor = (attributes) => {
 
 	const {
 		componentClass,
-		resources: {
-			icon
-		},
 	} = manifest;
 
 	const {
@@ -31,32 +29,34 @@ export const QuoteEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	]);
 
-	const quoteIconClass = selector(componentClass, componentClass, 'icon');
 	const quoteContentClass = selector(componentClass, componentClass, 'content');
 	const quoteSeparator = selector(componentClass, componentClass, 'separator');
 	const quoteCaptionClass = selector(componentClass, componentClass, 'caption');
 
+	const quoteAuthorUse = checkAttr('quoteAuthorUse', attributes, manifest);
+
 	return (
 		<>
 			<figure className={quoteClass}>
-				<i
-					className={quoteIconClass}
-					dangerouslySetInnerHTML={{ __html: icon }}
-				></i>
+				<IconEditor
+					{...props('icon', attributes, {
+						blockClass: componentClass,
+					})}
+				/>
 
 				<blockquote className={quoteContentClass}>
 					<ParagraphEditor
-						{...props('quote', attributes, {
+						{...props('paragraph', attributes, {
 							blockClass: componentClass,
 						})}
 					/>
 				</blockquote>
 
-				<div className={quoteSeparator}></div>
+				{quoteAuthorUse && <div className={quoteSeparator}></div>}
 
 				<figcaption className={quoteCaptionClass}>
 					<ParagraphEditor
-						{...props('attribution', attributes, {
+						{...props('author', attributes, {
 							blockClass: componentClass,
 						})}
 					/>

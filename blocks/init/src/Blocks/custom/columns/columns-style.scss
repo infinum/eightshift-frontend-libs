@@ -1,6 +1,9 @@
 .block-columns {
+	--columns-grid-side-columns: calc(var(--global-grid-side-padding) - var(--global-grid-gutter));
+	--columns-grid-template-columns: var(--columns-grid-side-columns) repeat(var(--global-main-content-width), minmax(0, 1fr)) var(--columns-grid-side-columns);
+
 	display: grid;
-	grid-template-columns: repeat(var(--global-max-cols), 1fr);
-	column-gap: var(--columns-column-gap, var(--global-gutters-default, 0));
+	grid-template-columns: var(--columns-grid-template-columns);
+	column-gap: var(--columns-column-gap, var(--global-grid-gutter));
 	row-gap: var(--columns-row-gap, 0);
 }

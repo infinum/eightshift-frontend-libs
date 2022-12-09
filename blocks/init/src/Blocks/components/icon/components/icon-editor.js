@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
+import globalManifest from './../../../manifest.json';
 
 export const IconEditor = (attributes) => {
+	const unique = useMemo(() => getUnique(), []);
+
 	const {
 		componentClass,
 		icons: manifestIcons,
@@ -29,6 +32,9 @@ export const IconEditor = (attributes) => {
 	}
 
 	return (
-		<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }}></i>
+		<>
+			{outputCssVariables(attributes, manifest, unique, globalManifest)}
+			<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }} data-id={unique}></i>
+		</>
 	);
 };

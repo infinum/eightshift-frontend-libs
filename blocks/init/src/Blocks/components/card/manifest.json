@@ -6,7 +6,7 @@
 	"example": {
 		"attributes": {
 			"cardIntroContent": "This is intro",
-			"cardIntroSize": "small",
+			"cardIntroSize": "xs",
 			"cardIntroColor": "light",
 			"cardAlign": "left"
 		}
@@ -18,18 +18,30 @@
 		},
 		"cardIntroSize": {
 			"type": "string",
-			"default": "tiny"
+			"default": "h4-medium"
 		},
 		"cardHeadingSize": {
 			"type": "string",
-			"default": "big"
+			"default": "h3-bold"
 		}
 	},
 	"options": {
 		"cardAlign": [
-			"left",
-			"center",
-			"right"
+			{
+				"label": "Left",
+				"value": "left",
+				"icon": "horizontalAlignLeft"
+			},
+			{
+				"label": "Center",
+				"value": "center",
+				"icon": "horizontalAlignCenter"
+			},
+			{
+				"label": "Right",
+				"value": "right",
+				"icon": "horizontalAlignRight"
+			}
 		]
 	},
 	"components": {

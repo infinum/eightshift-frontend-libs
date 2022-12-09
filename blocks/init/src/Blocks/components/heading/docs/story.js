@@ -5,12 +5,11 @@ import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { HeadingEditor } from '../components/heading-editor';
 import { HeadingOptions } from '../components/heading-options';
-import { HeadingToolbar } from '../components/heading-toolbar';
 
 export default {
 	title: `Components/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
@@ -28,10 +27,6 @@ export const options = () => (
 			options: getOptions(attributes, manifest),
 		})}
 	/>
-);
-
-export const toolbar = () => (
-	<HeadingToolbar {...props('heading', attributes)} />
 );
 
 export const size = () => (

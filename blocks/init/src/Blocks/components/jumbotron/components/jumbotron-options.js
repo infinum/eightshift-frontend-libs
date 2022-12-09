@@ -15,8 +15,8 @@ export const JumbotronOptions = (attributes) => {
 		setAttributes,
 		label = manifestTitle,
 		jumbotronShowControls = true,
-		showJumbotronUse = false,
-		showLabel = false,
+		showJumbotronUse = true,
+		showLabel = true,
 	} = attributes;
 
 	if (!jumbotronShowControls) {

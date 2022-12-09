@@ -2,6 +2,11 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	transition: color 0.3s ease-in-out;
+	transition: var(--icon-scoped-transition, color 0.3s ease-in-out);
 	color: inherit;
+
+	svg {
+		width: var(--icon-scoped-width, var(--icon-size));
+		height: var(--icon-scoped-height, var(--icon-size));
+	}
 }

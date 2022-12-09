@@ -9,7 +9,7 @@ export const ColumnsEditor = ({ attributes }) => {
 		columnsAllowedBlocks,
 		blockClass,
 	} = attributes;
-	
+
 	const unique = getUnique();
 
 	return (
@@ -18,6 +18,7 @@ export const ColumnsEditor = ({ attributes }) => {
 
 			<InnerBlocks
 				allowedBlocks={(typeof columnsAllowedBlocks === 'undefined') || columnsAllowedBlocks}
+				orientation='horizontal'
 			/>
 		</div>
 	);

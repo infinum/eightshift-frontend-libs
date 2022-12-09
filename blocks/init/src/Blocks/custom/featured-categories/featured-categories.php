@@ -63,7 +63,7 @@ if (!$taxonomyName) {
 			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
 			'buttonUrl' => get_term_link($termObject),
 			'buttonColor' => 'primary',
-			'headingSize' => 'big',
+			'headingSize' => 'm',
 		];
 
 		if ($featuredCategoriesServerSideRender) {

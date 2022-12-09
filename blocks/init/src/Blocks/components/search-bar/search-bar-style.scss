@@ -32,13 +32,13 @@
 		}
 
 		&:hover {
-			border-color: var(--global-colors-primary);
+			border-color: var(--global-colors-primary500);
 		}
 
 		&:focus {
 			outline: none;
-			border-color: var(--global-colors-primary);
-			box-shadow: 0 0 0 2px var(--global-colors-primary);
+			border-color: var(--global-colors-primary500);
+			box-shadow: 0 0 0 2px var(--global-colors-primary500);
 		}
 	}
 }

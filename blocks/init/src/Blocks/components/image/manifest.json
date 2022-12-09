@@ -47,6 +47,10 @@
 		"imageUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"imageRoundedCorners": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"responsiveAttributes": {
@@ -65,6 +69,15 @@
 						"image-width": "100%",
 						"image-img-width": "100%",
 						"image-img-max-width": "none"
+					}
+				}
+			]
+		},
+		"imageRoundedCorners": {
+			"true": [
+				{
+					"variable": {
+						"image-border-radius": "1rem"
 					}
 				}
 			]

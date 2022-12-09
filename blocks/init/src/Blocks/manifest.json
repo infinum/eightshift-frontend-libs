@@ -1,8 +1,8 @@
 {
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/globalManifest.json",
 	"namespace": "eightshift-boilerplate",
-	"background": "#FBF9FF",
-	"foreground": "#9973E3",
+	"background": "#FCFAFF",
+	"foreground": "#610BEF",
 	"config": {
 		"outputCssGlobally": true,
 		"outputCssOptimize": true,
@@ -15,8 +15,9 @@
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
+		"mainContentWidth": 12,
 		"maxCols": 12,
-		"baseFont": "Inter",
+		"baseFont": "'DM Sans'",
 		"zIndex": {
 			"header": 100,
 			"drawer": 99,
@@ -25,16 +26,12 @@
 		"breakpoints": {
 			"mobile": 480,
 			"tablet": 960,
-			"desktop": 1920,
-			"large": 1921
+			"desktop": 1440,
+			"large": 1920
 		},
-		"containers": {
-			"default": "66rem"
-		},
-		"gutters": {
-			"none": "0",
-			"default": "1.25rem",
-			"big": "2.5rem"
+		"grid":{
+			"gutter": "1vw",
+			"sidePadding": "6.75vw"
 		},
 		"sectionSpacing": {
 			"min":  -300,
@@ -48,69 +45,74 @@
 		},
 		"colors": [
 			{
-				"name": "Primary",
-				"slug": "primary",
-				"color": "#6200EA"
+				"name": "Primary 700",
+				"slug": "primary700",
+				"color": "#4700AB"
+			},
+			{
+				"name": "Primary 500",
+				"slug": "primary500",
+				"color": "#610BEF"
+			},
+			{
+				"name": "Primary 300",
+				"slug": "primary300",
+				"color": "#BFBEFC"
 			},
 			{
 				"name": "Black",
 				"slug": "black",
-				"color": "#000000"
+				"color": "#14142B"
 			},
 			{
-				"name": "Light",
-				"slug": "light",
-				"color": "#CCCCCC"
+				"name": "Gray 900",
+				"color": "#2C2C40",
+				"slug": "gray900"
+			},
+			{
+				"name": "Gray 800",
+				"color": "#434355",
+				"slug": "gray800"
+			},
+			{
+				"name": "Gray 700",
+				"color": "#5B5B6B",
+				"slug": "gray700"
+			},
+			{
+				"name": "Gray 600",
+				"color": "#727280",
+				"slug": "gray600"
+			},
+			{
+				"name": "Gray 500",
+				"color": "#8A8A95",
+				"slug": "gray500"
+			},
+			{
+				"name": "Gray 400",
+				"color": "#A1A1AA",
+				"slug": "gray400"
+			},
+			{
+				"name": "Gray 300",
+				"color": "#B9B9BF",
+				"slug": "gray300"
+			},
+			{
+				"name": "Gray 200",
+				"color": "#D0D0D5",
+				"slug": "gray200"
+			},
+			{
+				"name": "Gray 100",
+				"color": "#E8E8EA",
+				"slug": "gray100"
 			},
 			{
 				"name": "White",
 				"slug": "white",
 				"color": "#FFFFFF"
-			},
-			{
-				"name": "Ocean",
-				"slug": "ocean",
-				"color": "#00B8D4"
-			},
-			{
-				"name": "Green",
-				"slug": "green",
-				"color": "#00E676"
-			},
-			{
-				"name": "Red",
-				"slug": "red",
-				"color": "#B30024"
-			},
-			{
-				"name": "Yellow",
-				"slug": "yellow",
-				"color": "#FFEA00"
-			},
-			{
-				"name": "Blue",
-				"slug": "blue",
-				"color": "#0040F0"
-			},
-			{
-				"name": "Mist",
-				"slug": "mist",
-				"color": "#F1FBFE"
-			},
-			{
-				"name": "Dew",
-				"slug": "dew",
-				"color": "#FAF8FC"
-			},
-			{
-				"name": "Cream",
-				"slug": "cream",
-				"color": "#FFFBF5"
-			},
-			{
-				"name": "Eightshift",
-				"slug": "eightshift",
-				"color": "#0D3636"
 			}
 		]
 	}

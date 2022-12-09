@@ -25,20 +25,26 @@
 	},
 	"options": {
 		"paragraphAlign": [
-			"left",
-			"center",
-			"right"
+			{
+				"label": "Left",
+				"value": "left",
+				"icon": "textAlignLeft"
+			},
+			{
+				"label": "Center",
+				"value": "center",
+				"icon": "textAlignCenter"
+			},
+			{
+				"label": "Right",
+				"value": "right",
+				"icon": "textAlignRight"
+			}
 		]
 	},
 	"components": {
 		"paragraph": "paragraph"
 	},
-	"mergeableAttributes": [
-		{
-			"attribute": "paragraphParagraphContent",
-			"mergeStrategy": "append"
-		}
-	],
 	"variables": {
 		"paragraphAlign": [
 			{

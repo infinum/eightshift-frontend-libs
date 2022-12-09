@@ -1,176 +1,144 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
-import { PanelBody, RangeControl, ButtonGroup, Button } from '@wordpress/components';
-import { icons, ucfirst, Responsive, HelpModal, getAttrKey, getOption, IconLabel, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { PanelBody } from '@wordpress/components';
+import { icons, getAttrKey, getOption, IconLabel, CompactResponsive, SimpleHorizontalSingleSelect, checkAttr, VisibilityToggleResponsive, WidthOffsetRangeSlider, FancyDivider, CustomSlider, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
-import globalManifest from '../../../manifest.json';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
 	const {
-		attributes: manifestAttributes,
+		responsiveAttributes: {
+			columnHorizontalAlign,
+			columnVerticalAlign,
+		},
 	} = manifest;
-
-	const breakpoints = Object.keys(globalManifest.globalVariables.breakpoints).reverse();
 
 	return (
 		<PanelBody title={__('Column', 'eightshift-frontend-libs')}>
-
-			<HelpModal
-				type='column'
-				buttonLabel={__('How to use a Column?', 'eightshift-frontend-libs')}
-				modalLabel={__('Column', 'eightshift-frontend-libs')}
+			<WidthOffsetRangeSlider
+				offsetAttributeName='columnOffset'
+				widthAttributeName='columnWidth'
+				manifest={manifest}
+				attributes={attributes}
+				setAttributes={setAttributes}
+				showFullWidthToggle={false}
+				includeGutters
+				showOffsetAutoToggle
 			/>
 
-			<br /><br />
+			<FancyDivider label={<IconLabel icon={icons.horizontalAlign} label={__('Alignment', 'eightshift-frontend-libs')} />} additionalClasses='es-mb-2.5' />
 
-			<Responsive label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map((keyName) => {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnWidth', attributes, manifest)}${point}`;
-					const { min, max, step } = getOption('columnWidth', attributes, manifest);
+			<CompactResponsive
+				label={__('Horizontal', 'eightshift-frontend-libs')}
+				inheritButton={Object.values(columnHorizontalAlign).map((responsiveAttribute) => {
+					const isInherited = checkAttr(responsiveAttribute, attributes, manifest, true) === undefined;
+
+					return {
+						callback: () => setAttributes({ [getAttrKey(responsiveAttribute, attributes, manifest)]: isInherited ? 'stretch' : undefined }),
+						isActive: isInherited,
+					};
+				})}
+				additionalClasses='-es-mb-0.5!'
+			>
+				{Object.values(columnHorizontalAlign).map((responsiveAttribute, index) =>
+					<SimpleHorizontalSingleSelect
+						key={index}
+						value={checkAttr(responsiveAttribute, attributes, manifest, true)}
+						options={getOption('columnHorizontalAlign', attributes, manifest)}
+						onChange={(value) => setAttributes({ [getAttrKey(responsiveAttribute, attributes, manifest)]: value })}
+						border='offset'
+						includeWpBottomSpacing={false}
+						iconOnly
+					/>
+				)}
+			</CompactResponsive>
+
+			<CompactResponsive
+				label={__('Vertical', 'eightshift-frontend-libs')}
+				inheritButton={Object.values(columnVerticalAlign).map((responsiveAttribute) => {
+					const isInherited = checkAttr(responsiveAttribute, attributes, manifest, true) === undefined;
+
+					return {
+						callback: () => setAttributes({ [getAttrKey(responsiveAttribute, attributes, manifest)]: isInherited ? 'stretch' : undefined }),
+						isActive: isInherited,
+					};
+				})}
+			>
+				{Object.values(columnVerticalAlign).map((responsiveAttribute, index) =>
+					<SimpleHorizontalSingleSelect
+						key={index}
+						value={checkAttr(responsiveAttribute, attributes, manifest, true)}
+						options={getOption('columnVerticalAlign', attributes, manifest)}
+						onChange={(value) => setAttributes({ [getAttrKey(responsiveAttribute, attributes, manifest)]: value })}
+						border='offset'
+						includeWpBottomSpacing={false}
+						iconOnly
+					/>
+				)}
+			</CompactResponsive>
+
+			<FancyDivider label={<IconLabel icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} />} additionalClasses='es-mb-2.5' />
+
+			<CompactResponsive
+				label={<IconLabel icon={icons.order} label={__('Order', 'eightshift-frontend-libs')} />}
+				help={
+				<>
+					<span>{__('Forces column order, independent of the element order in the editor.', 'eightshift-frontend-libs')}</span>
+					<br />
+					<br />
+					<span>{__('If not automatic, must be set on all the columns in the same Columns block.', 'eightshift-frontend-libs')}</span>
+				</>
+			}
+				inheritButton={getDefaultBreakpointNames().map((breakpoint) => {
+					const { columnOrder: attrNames } = manifest.responsiveAttributes;
+					const breakpointAttrName = attrNames[breakpoint];
+					const breakpointAttrValue = checkAttr(breakpointAttrName, attributes, manifest);
+
+					const isInherited = typeof breakpointAttrValue === 'undefined' || breakpointAttrValue?.length === 0;
+
+					return {
+						callback: () => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: isInherited ? 0 : undefined }),
+						isActive: isInherited,
+					};
+				})}
+			>
+				{getDefaultBreakpointNames().map((breakpoint, index) => {
+					const { columnOrder: attrNames } = manifest.responsiveAttributes;
+					const breakpointAttrName = attrNames[breakpoint];
+					const breakpointAttrValue = checkAttr(breakpointAttrName, attributes, manifest);
+					const { max, step } = manifest.options.columnOrder;
+
+					const marks = { 0: icons.automatic };
+
+					for (let i = 1; i <= max; i++) {
+						marks[i] = i % 2 === 0 ? i : '';
+					}
 
 					return (
-						<Fragment key={keyName}>
-							<RangeControl
-								label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
-								onChange={(value) => setAttributes({ [attr]: value })}
-								resetFallbackValue={manifestAttributes[attr].default}
-								value={attributes[attr]}
-								min={min}
-								max={max}
-								step={step}
-								allowReset
-							/>
-						</Fragment>
+						<CustomSlider
+							key={index}
+							className={index !== 0 ? 'es-mb-m' : 'es-mb-s'}
+							value={breakpointAttrValue}
+							onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: value })}
+							min={0}
+							max={max}
+							step={step}
+							marks={marks}
+							hasInputField={false}
+							hasValueDisplay={false}
+							defaultValue={-1}
+							hasCompactMarks={false}
+						/>
 					);
 				})}
-			</Responsive>
+			</CompactResponsive>
 
-			<Responsive label={<IconLabel icon={icons.offset} label={__('Offset', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map(function (keyName) {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnOffset', attributes, manifest)}${point}`;
-					const { min, max, step } = getOption('columnOffset', attributes, manifest);
-
-					return (
-						<Fragment key={keyName}>
-							<RangeControl
-								label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
-								onChange={(value) => setAttributes({ [attr]: value })}
-								resetFallbackValue={manifestAttributes[attr].default}
-								value={attributes[attr]}
-								min={min}
-								max={max}
-								step={step}
-								allowReset
-							/>
-						</Fragment>
-					);
-				})}
-			</Responsive>
-
-			<Responsive label={<IconLabel icon={icons.order} label={__('Order', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map((keyName, index) => {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnOrder', attributes, manifest)}${point}`;
-					const { min, max, step } = getOption('columnOrder', attributes, manifest);
-
-					return (
-						<Fragment key={keyName}>
-							<RangeControl
-								label={<IconLabel icon={icons[`screen${point}`]} label={point} />}
-								onChange={(value) => setAttributes({ [attr]: value })}
-								resetFallbackValue={manifestAttributes[attr].default}
-								value={attributes[attr]}
-								min={min}
-								max={max}
-								step={step}
-								allowReset
-							/>
-							{index === 0 &&
-								<p className='es-decorative-text'>{__('Needs to be set on all columns!', 'eightshift-frontend-libs')}</p>
-							}
-						</Fragment>
-					);
-				})}
-			</Responsive>
-
-			<Responsive label={<IconLabel icon={icons.verticalAlign} label={__('Vertical align', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map((keyName, index) => {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnVerticalAlign', attributes, manifest)}${point}`;
-					const options = getOption('columnVerticalAlign', attributes, manifest);
-
-					return (
-						<div className='es-responsive-inset es-v-spaced' key={index}>
-							<IconLabel icon={icons[`screen${point}`]} label={point} standalone />
-							<ButtonGroup>
-								{options.map(({ label, value }, index) => {
-									return (
-										<Button
-											key={index}
-											label={label}
-											isPressed={attributes[attr] === value}
-											onClick={() => setAttributes({ [attr]: value })}
-											icon={icons[`verticalAlign${ucfirst(value)}`]}
-											iconSize={24}
-										/>
-									);
-								}
-								)}
-							</ButtonGroup>
-						</div>
-					);
-				})}
-			</Responsive>
-
-			<Responsive label={<IconLabel icon={icons.horizontalAlign} label={__('Horizontal align', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map((keyName, index) => {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnHorizontalAlign', attributes, manifest)}${point}`;
-					const options = getOption('columnHorizontalAlign', attributes, manifest);
-
-					return (
-						<div className='es-responsive-inset es-v-spaced' key={index}>
-							<IconLabel icon={icons[`screen${point}`]} label={point} standalone />
-							<ButtonGroup>
-								{options.map(({ label, value }, index) => {
-									return (
-										<Button
-											key={index}
-											label={label}
-											isPressed={attributes[attr] === value}
-											onClick={() => setAttributes({ [attr]: value })}
-											icon={icons[`horizontalAlign${ucfirst(value)}`]}
-											iconSize={24}
-										/>
-									);
-								}
-								)}
-							</ButtonGroup>
-						</div>
-					);
-				})}
-			</Responsive>
-
-			<Responsive label={<IconLabel icon={icons.hide} label={__('Hide', 'eightshift-frontend-libs')} />}>
-				{breakpoints.map((keyName) => {
-					const point = ucfirst(keyName);
-					const attr = `${getAttrKey('columnHide', attributes, manifest)}${point}`;
-
-					return (
-						<Fragment key={keyName}>
-							<IconToggle
-								icon={icons[`screen${point}`]}
-								label={point}
-								checked={attributes[attr]}
-								onChange={(value) => setAttributes({ [attr]: value })}
-							/>
-						</Fragment>
-					);
-				})}
-			</Responsive>
+			<VisibilityToggleResponsive
+				attributeName='columnHide'
+				manifest={manifest}
+				attributes={attributes}
+				setAttributes={setAttributes}
+				label={__('Visibility', 'eightshift-frontend-libs')}
+			/>
 		</PanelBody>
 	);
 };

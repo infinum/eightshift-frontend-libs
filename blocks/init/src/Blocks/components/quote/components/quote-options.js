@@ -1,7 +1,8 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { props, getOptions, checkAttr, getAttrKey, ComponentUseToggle } from '@eightshift/frontend-libs/scripts';
+import { props, getOptions, checkAttr, getAttrKey, CollapsableComponentUseToggle } from '@eightshift/frontend-libs/scripts';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
+import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 
 export const QuoteOptions = (attributes) => {
@@ -14,8 +15,11 @@ export const QuoteOptions = (attributes) => {
 		label = manifestTitle,
 		quoteShowControls = true,
 
-		showQuoteUse = false,
-		showLabel = false,
+		showQuoteUse = true,
+		showLabel = true,
+		showExpanderButton = true,
+
+		additionalControls,
 	} = attributes;
 
 	if (!quoteShowControls) {
@@ -25,35 +29,37 @@ export const QuoteOptions = (attributes) => {
 	const quoteUse = checkAttr('quoteUse', attributes, manifest);
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={quoteUse}
-				onChange={(value) => setAttributes({ [getAttrKey('quoteUse', attributes, manifest)]: value })}
-				showUseToggle={showQuoteUse}
-				showLabel={showLabel}
+		<CollapsableComponentUseToggle
+			label={label}
+			checked={quoteUse}
+			onChange={(value) => setAttributes({ [getAttrKey('quoteUse', attributes, manifest)]: value })}
+			showUseToggle={showQuoteUse}
+			showLabel={showLabel}
+			showExpanderButton={showExpanderButton}
+		>
+			{additionalControls}
+
+			<ParagraphOptions
+				{...props('paragraph', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				label={__('Quote text', 'eightshift-frontend-libs')}
+				showParagraphUse={false}
+				showExpanderButton={false}
 			/>
 
-			{quoteUse &&
-				<>
-					<ParagraphOptions
-						label={__('Quote', 'eightshift-frontend-libs')}
-						showLabel={true}
-						{...props('quote', attributes, {
-							options: getOptions(attributes, manifest),
-						})}
-					/>
+			<ParagraphOptions
+				{...props('author', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				label={__('Author', 'eightshift-frontend-libs')}
+			/>
 
-					<ParagraphOptions
-						label={__('Attribution', 'eightshift-frontend-libs')}
-						showLabel={true}
-						showParagraphUse={true}
-						{...props('attribution ', attributes, {
-							options: getOptions(attributes, manifest),
-						})}
-					/>
-				</>
-			}
-		</>
+			<IconOptions
+				{...props('icon', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+			/>
+		</CollapsableComponentUseToggle>
 	);
 };

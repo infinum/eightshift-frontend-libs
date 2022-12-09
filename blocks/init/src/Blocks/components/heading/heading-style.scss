@@ -1,8 +1,13 @@
 .heading {
-	margin: 0;
-	font-weight: var(--heading-font-weight, bold);
-	color: var(--heading-color, var(--global-colors-black, currentColor));
 	font-size: var(--heading-font-size, 1.5rem);
-	line-height: var(--heading-line-height, 1.25);
+	font-weight: var(--heading-font-weight, bold);
+	letter-spacing: var(--heading-letter-spacing, 0);
+	line-height: var(--heading-line-height, 1);
+
+	color: var(--heading-color, var(--global-colors-black, currentColor));
+
+	margin: 0;
 	overflow-wrap: anywhere;
+
+	text-decoration: var(--heading-decoration);
 }

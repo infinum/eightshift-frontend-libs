@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "columns",
 	"title": "Columns",
-	"description" : "Columns block with custom settings.",
+	"description" : "Display content across multiple columns with flexible sizing and alignment options.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-columns"
@@ -91,31 +91,65 @@
 		},
 
 		"columnsColumnGapLarge": {
-			"type": "integer",
-			"default": 30
+			"type": "number",
+			"default": 2.5
 		},
 		"columnsColumnGapDesktop": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsColumnGapTablet": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsColumnGapMobile": {
-			"type": "integer"
+			"type": "number",
+			"default": 0
 		},
 
 		"columnsRowGapLarge": {
-			"type": "integer",
-			"default": 30
+			"type": "number",
+			"default": 2.5
 		},
 		"columnsRowGapDesktop": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsRowGapTablet": {
-			"type": "integer"
+			"type": "number"
 		},
 		"columnsRowGapMobile": {
+			"type": "number"
+		},
+
+		"wrapperUseSimple": {
+			"type": "boolean",
+			"default": true
+		},
+		"wrapperUseInner": {
+			"type": "boolean",
+			"default": false
+		},
+		"wrapperWidthMobile": {
 			"type": "integer"
+		},
+		"wrapperIsFullWidthLarge": {
+			"type": "boolean",
+			"default": true
+		},
+
+		"showWrapperWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperOffset": {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperDisable":  {
+			"type": "boolean",
+			"default": false
+		},
+		"showWrapperIsFullWidth": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"responsiveAttributes": {
@@ -136,12 +170,12 @@
 		"columnsColumnGap": {
 			"min": 0,
 			"max": 100,
-			"step": 10
+			"step": 1
 		},
 		"columnsRowGap": {
 			"min": 0,
 			"max": 100,
-			"step": 10
+			"step": 1
 		}
 	},
 	"variables": {
@@ -149,7 +183,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-row-gap": "calc((%value% / 16) * 1rem)"
+					"columns-row-gap": "calc(var(--base-font-size) * %value%rem)"
 				}
 			}
 		],
@@ -157,7 +191,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-column-gap": "calc((%value% / 16) * 1rem)"
+					"columns-column-gap": "calc(var(--base-font-size) * %value%rem)"
 				}
 			}
 		]

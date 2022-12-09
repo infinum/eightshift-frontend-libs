@@ -17,23 +17,14 @@
 	},
 	"options": {
 		"cardCardIntroSize": [
-			"tiny",
-			"small",
-			"regular"
+			"h4",
+			"h5",
+			"h6"
 		],
 		"cardCardHeadingSize": [
-			"regular",
-			"big",
-			"huge"
-		],
-		"cardCardHeadingColor": [
-			"black",
-			"primary",
-			"white",
-			"blue",
-			"yellow",
-			"red",
-			"green"
+			"h2",
+			"h3",
+			"h4"
 		]
 	}
 }

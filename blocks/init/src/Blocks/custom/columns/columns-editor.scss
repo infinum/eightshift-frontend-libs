@@ -1,11 +1,12 @@
 .block-columns {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 
 	& > .block-editor-inner-blocks > .block-editor-block-list__layout {
 		display: grid;
-		grid-template-columns: repeat(var(--global-max-cols), 1fr);
-		column-gap: var(--columns-gutter, var(--global-gutters-default, 0));
+		grid-template-columns: var(--columns-grid-template-columns);
+		column-gap: var(--columns-gutter, var(--global-grid-gutter));
 		row-gap: var(--columns-vertical-spacing, 0);
 	}
 }

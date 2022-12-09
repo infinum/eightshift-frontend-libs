@@ -28,9 +28,21 @@
 	},
 	"options": {
 		"headingAlign": [
-			"left",
-			"center",
-			"right"
+			{
+				"label": "Left",
+				"value": "left",
+				"icon": "textAlignLeft"
+			},
+			{
+				"label": "Center",
+				"value": "center",
+				"icon": "textAlignCenter"
+			},
+			{
+				"label": "Right",
+				"value": "right",
+				"icon": "textAlignRight"
+			}
 		]
 	},
 	"variables": {
