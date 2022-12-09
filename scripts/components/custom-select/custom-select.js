@@ -270,7 +270,7 @@ export const CustomSelect = (props) => {
 			closeMenuOnSelect={closeMenuOnSelect}
 			theme={(theme) => ({
 				...theme,
-				borderRadius: 3,
+				borderRadius: 4,
 				colors: {
 					...theme.colors,
 					primary25: 'hsla(0, 0%, 90%, 1)',
@@ -294,7 +294,7 @@ export const CustomSelect = (props) => {
 						zIndex: 5,
 						marginTop: 1,
 						backgroundColor: bgColor,
-						backdropFilter: 'blur(1rem) saturate(150%)',
+						backdropFilter: 'blur(1.25rem) saturate(150%)',
 					};
 				},
 				control: (provided, state) => ({
