@@ -8,6 +8,9 @@ import { __, sprintf } from '@wordpress/i18n';
 /**
  * A toolbar button that allows picking an URL in a clean and simple way.
  *
+ * @deprecated since 8.0.0 - Instead of placing a button in the toolbar, place it in the Options panel instead - use `LinkEditComponent`.
+ * @see LinkEditComponent
+ *
  * @param {object} props                          - LinkToolbarButton options.
  * @param {string?} props.url                     - Currently selected URL.
  * @param {boolean} props.opensInNewTab           - Currently selected option for opening the link in a new tab.
