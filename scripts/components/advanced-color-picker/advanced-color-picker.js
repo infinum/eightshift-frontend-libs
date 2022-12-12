@@ -145,7 +145,7 @@ export const AdvancedColorPicker = (props) => {
 			{isOpen &&
 				<Popover
 					onClose={() => setIsOpen(false)}
-					anchorRef={ref?.current}
+					anchor={ref?.current}
 					noArrow={false}
 					position='middle left'
 				>

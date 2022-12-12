@@ -7,7 +7,7 @@ import { __, sprintf } from '@wordpress/i18n';
 
 /**
  * A toolbar button that allows picking an URL in a clean and simple way.
- * 
+ *
  * @param {object} props                          - LinkToolbarButton options.
  * @param {string?} props.url                     - Currently selected URL.
  * @param {boolean} props.opensInNewTab           - Currently selected option for opening the link in a new tab.
@@ -82,7 +82,7 @@ export const LinkToolbarButton = ({
 		<Popover
 			position='bottom center'
 			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={ref?.current}
+			anchor={ref?.current}
 		>
 			<LinkControl
 				value={currentValue}
@@ -94,14 +94,14 @@ export const LinkToolbarButton = ({
 					let newValues = {
 						[urlAttrName]: newUrl,
 					};
-			
+
 					if (showNewTabOption) {
 						newValues = {
 							...newValues,
 							[isNewTabAttrName]: newTab,
 						};
 					}
-			
+
 					setAttributes(newValues);
 				}}
 			/>

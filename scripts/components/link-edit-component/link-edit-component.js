@@ -88,7 +88,7 @@ export const LinkEditComponent = ({
 		<Popover
 			position={displayMode === 'default' ? 'bottom left' : 'bottom center'}
 			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={ref?.current}
+			anchor={ref?.current}
 			noArrow={false}
 		>
 			<div className={`es-display-flex es-max-w-84! ${url?.length > 0 && hasDeleteButton ? 'es-pr-4' : ''}`}>
