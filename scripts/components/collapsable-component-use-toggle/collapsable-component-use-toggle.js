@@ -52,9 +52,17 @@ export const CollapsableComponentUseToggle = ({
 		);
 	}
 
+	let bottomSpacingClass = 'es-pb-0.25';
+
+	if (!noBottomSpacing && isOpen) {
+		bottomSpacingClass = 'es-mb-5';
+	} else if (!noBottomSpacing && !isOpen) {
+		bottomSpacingClass = 'es-mb-4';
+	}
+
 	if (noUseToggle && !noLabel && !noExpandButton) {
 		return (
-			<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${noBottomSpacing ? '' : 'es-mb-3 es-pb-0.25'} ${additionalClasses ?? ''}`}>
+			<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${bottomSpacingClass} ${additionalClasses ?? ''}`}>
 				<div className='es-h-between es-w-full es-h-7 es-mb-3'>
 					<div>
 						{label}
@@ -86,7 +94,7 @@ export const CollapsableComponentUseToggle = ({
 	const openCondition = noExpandButton ? checked : checked && isOpen;
 
 	return (
-		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${noBottomSpacing ? '' : `${noExpandButton ? 'es-mb-6' : 'es-mb-3'} es-pb-0.25`} ${additionalClasses ?? ''}`}>
+		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${bottomSpacingClass} ${additionalClasses ?? ''}`}>
 			<div className='es-h-between es-w-full es-h-7 es-mb-3'>
 				<Button
 					icon={toggleIcon}
