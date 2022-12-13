@@ -21,7 +21,7 @@ import classnames from 'classnames';
  * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
  * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
- * @param {boolean} [props.noSpacing=false]                                                    - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing=false]                                              - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the button container.
  * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
  * @param {string?} [props.additionalContainerClass]                                           - If provided, the classes are appended to the container.
@@ -48,7 +48,7 @@ export const OptionSelector = (props) => {
 		largerIcons = false,
 		compactButtons = false,
 
-		noSpacing = false,
+		noBottomSpacing = false,
 
 		additionalClass,
 		additionalButtonClass,
@@ -192,7 +192,7 @@ export const OptionSelector = (props) => {
 	);
 
 	return (
-		<div className={`es-v-spaced ${noSpacing ? '' : 'es-mb-5'} ${additionalContainerClass ?? ''}`}>
+		<div className={`es-v-spaced ${noBottomSpacing ? '' : 'es-mb-5'} ${additionalContainerClass ?? ''}`}>
 			{inlineLabel &&
 				<div className='es-h-between'>
 					{inlineLabel}
