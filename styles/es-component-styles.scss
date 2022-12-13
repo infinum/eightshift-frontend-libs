@@ -174,7 +174,7 @@ body {
 			flex-shrink: 0;
 
 			&:not(button svg) {
-				color: var(--es-admin-label-flex-svg, var(--es-admin-cool-gray-650));
+				color: var(--es-admin-label-flex-svg, var(--es-admin-cool-gray-500));
 			}
 		}
 
