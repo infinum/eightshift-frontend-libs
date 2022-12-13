@@ -75,4 +75,16 @@ button[disabled] .block-editor-block-icon.has-colors,
 	border-radius: var(--es-component-border-radius-md);
 }
 
+// Make Gutenberg button focus state only on :focus-visible (if supported).
+@supports selector(:focus-visible) {
+	.components-button:focus:not(:disabled) {
+		box-shadow: none;
+	}
+
+	.components-button:focus-visible:not(:disabled) {
+		box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+		outline: 3px solid transparent;
+	}
+}
+
 // stylelint-enable

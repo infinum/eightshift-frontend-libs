@@ -6,18 +6,16 @@
 @import '../scripts/components/link-edit-component/link-edit-component';
 @import '../scripts/components/help-modal/help-modal';
 @import '../scripts/components/icon-toggle/icon-toggle';
-@import '../scripts/components/component-use-toggle/component-use-toggle';
 @import '../scripts/components/custom-select/custom-select';
 @import '../scripts/components/color-picker-component/color-picker-component';
 @import '../scripts/components/inline-notification/inline-notification';
 @import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
 @import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select';
 @import '../scripts/components/server-side-render/server-side-render';
-@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle';
 @import '../scripts/components/fancy-divider/fancy-divider';
-@import '../scripts/components/collapsable/collapsable';
 @import '../scripts/components/color-palette-custom/color-palette-custom';
 @import '../scripts/components/compact-responsive/compact-responsive';
+@import './es-shared/es-nested-collapsable';
 
 :root {
 	// Colors
@@ -307,6 +305,64 @@ body {
 			svg {
 				transform: scaleY(-1);
 			}
+		}
+	}
+
+	// Animated inherit icon.
+	.es-animated-inherit-icon {
+		.arrow-top,
+		.arrow-mid,
+		.arrow-btm {
+			transform-origin: center;
+
+			transition: {
+				property: transform, fill-opacity, opacity;
+				timing-function: var(--es-ease-out-back), ease-out, ease-out;
+				duration: 0.5s, 0.3s, 0.3s;
+			}
+		}
+
+		.arrow-btm {
+			fill: currentColor;
+			fill-opacity: 0;
+		}
+
+		&:not(.is-inherited) {
+			&:hover {
+				.arrow-top {
+					transform: translateY(5%);
+				}
+
+				.arrow-btm {
+					transform: translateY(-5%);
+				}
+			}
+		}
+
+		&.is-inherited {
+			.arrow-top {
+				transform: translateY(32.5%);
+
+				opacity: 0;
+			}
+
+			.arrow-mid {
+				opacity: 0;
+			}
+
+			.arrow-btm {
+				fill-opacity: 1;
+				transform: translateY(-37.5%) scale(1.15);
+			}
+		}
+	}
+
+	// A11y improvements.
+	@media (prefers-reduced-motion) {
+		.es-animated-inherit-icon .arrow-top,
+		.es-animated-inherit-icon .arrow-mid,
+		.es-animated-inherit-icon .arrow-btm {
+			transition-duration: 25ms !important;
 		}
 	}
 }

@@ -16,12 +16,15 @@ body.branch-6-1 {
 		align-items: center;
 		gap: 0.5rem;
 
+		margin: 0;
 		width: 100%;
 
 		svg {
-			height: 1.5rem !important;
-			width: 1.5rem !important;
-			margin: 0 !important;
+			height: 1.5rem;
+			width: 1.5rem;
+			margin: 0;
+
+			flex-shrink: 0;
 
 			&:not(button svg) {
 				color: var(--es-admin-components-base-control-svg, var(--es-admin-cool-gray-650));

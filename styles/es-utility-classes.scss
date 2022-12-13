@@ -832,7 +832,6 @@ $es-utility-props: (
 	$valuePrefix: map.get($propData, 'valuePrefix');
 	$includeNegativeValues: map.get($propData, 'includeNegativeValues');
 
-
 	@each $size, $value in $values {
 		$size2: $size + '';
 
@@ -927,6 +926,13 @@ $es-utility-props: (
 			height: #{$value};
 			flex-shrink: 0;
 		}
+	}
+}
+
+// Font weight utilities.
+@for $i from 1 through 9 {
+	.es-font-weight-#{$i * 100} {
+		font-weight: #{$i * 100};
 	}
 }
 
