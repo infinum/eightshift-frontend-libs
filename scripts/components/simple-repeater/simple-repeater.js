@@ -33,6 +33,7 @@ import { SortableItem } from './sortable-item';
  * @param {function} props.setAttributes             - The `setAttributes` callback from component/block attributes.
  * @param {array<SimpleRepeaterItem>} props.children - Child items, mapped from `items`. Contains all the option for child items.
  * @param {boolean} [props.noReordering=false]       - If `true`, the items can't be reordered.
+ * @param {boolean} [props.noBottomSpacing=false]    - If `true`, the default bottom spacing is removed.
  * @param {function} [props.handleAdd]               - Callback for providing custom item adding logic.
  * @param {function} [props.handleItemReorder]       - Callback for providing custom item reordering logic.
  */
@@ -48,6 +49,8 @@ export const SimpleRepeater = ({
 	children,
 
 	noReordering = false,
+
+	noBottomSpacing = false,
 
 	handleAdd,
 	handleItemReorder,
@@ -101,7 +104,7 @@ export const SimpleRepeater = ({
 				/>
 			</div>
 
-			<div>
+			<div className={noBottomSpacing ? '' : 'es-mb-5'}>
 				<DndContext
 					sensors={sensors}
 					collisionDetection={closestCenter}
