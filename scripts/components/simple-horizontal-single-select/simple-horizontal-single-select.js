@@ -95,6 +95,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 			className={classnames([
 				'es-simple-h-single-select',
 				border !== 'none' ? `has-${border}-border` : '',
+				!label && !help ? (additionalClass ?? '') : '',
 			])}
 			style={{
 				display: 'flex',
