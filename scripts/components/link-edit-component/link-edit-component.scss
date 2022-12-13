@@ -1,4 +1,20 @@
-.es-link-edit-component-compact-label {
-	display: block;
-	margin-top: -0.5rem;
+// stylelint-disable declaration-no-important
+
+.es-link-edit-component {
+	&__url-field {
+		.block-editor-url-input__input {
+			border: 1px solid var(--es-admin-cool-gray-500) !important;
+			border-radius: 0.25rem !important;
+			width: 100% !important;
+			height: 2.5rem !important;
+		}
+	}
+
+	&__delete-button {
+		position: absolute;
+		top: calc(0.25rem - 0.5px);
+		right: calc(0.25rem - 0.5px);
+	}
 }
+
+// stylelint-enable declaration-no-important
