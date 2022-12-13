@@ -1,13 +1,16 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import _ from 'lodash';
-import { BlockIcon, icons, OptionPicker } from '../../../scripts';
+import { BlockIcon, icons, ToolbarOptionPicker } from '../../../scripts';
 
 /**
  * A heading level selector.
- * 
+ *
+ * @deprecated since 8.0.0 - Use `OptionSelector` inside the block options instead.
+ * @see OptionSelector
+ *
  * @param {object} props                 - Heading level selector options.
- * @param {boolean} [props.inline=false] - If `true`, the control's options are shown inline. 
+ * @param {boolean} [props.inline=false] - If `true`, the control's options are shown inline.
  * @param {number} [props.minLevel=1]    - Lowest allowed level.
  * @param {number} [props.maxLevel=6]    - Highest allowed level.
  * @param {number?} props.selectedLevel  - Currently selected heading level.
@@ -35,7 +38,7 @@ export const HeadingLevel = (props) => {
 	});
 
 	return (
-		<OptionPicker
+		<ToolbarOptionPicker
 			value={selectedLevel}
 			onChange={onChange}
 			options={options}

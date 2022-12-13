@@ -1,10 +1,10 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { icons, OptionPicker } from '../../../scripts';
+import { icons, ToolbarOptionPicker } from '../../../scripts';
 
 /**
  * Alignment toolbar type.
- * 
+ *
  * Can be:
  * - `TEXT` - for text align controls.
  * - `VERTICAL` - for object vertical align controls.
@@ -18,7 +18,10 @@ export const AlignmentToolbarType = {
 
 /**
  * Component that allows flexible text or object alignment options display.
- * 
+ *
+ * @deprecated since 8.0.0 - Use `OptionSelector` inside the block options instead.
+ * @see OptionSelector
+ *
  * @param {object} props                                  - AlignmentToolbar options.
  * @param {string} [props.type=AlignmentToolbarType.TEXT] - Alignment toolbar type.
  * @param {array} props.options                           - Alignment options to display. Can any combination be `left`, `center`, `right`, `justify` (text align) / `stretch` (object align).
@@ -130,7 +133,7 @@ export const AlignmentToolbar = (props) => {
 	const filteredControls = Object.values(getControls()).filter((control) => control !== null);
 
 	return (
-		<OptionPicker
+		<ToolbarOptionPicker
 			value={value}
 			onChange={onChange}
 			options={filteredControls}
