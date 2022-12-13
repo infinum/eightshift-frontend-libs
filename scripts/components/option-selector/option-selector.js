@@ -95,7 +95,7 @@ export const OptionSelector = (props) => {
 		offset: {
 			borderRadius: 5,
 			padding: '0.125rem',
-			border: '1px solid var(--es-admin-gray-400)',
+			border: '1px solid var(--es-admin-cool-gray-300)',
 		}
 	};
 
