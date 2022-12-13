@@ -5,6 +5,8 @@
 }
 
 .es-nested-collapsable {
+	$this: &;
+
 	border-radius: 0.125rem;
 
 	box-shadow: 0 0 0 0.05rem var(--es-admin-pure-white), 0 0 0 0.05rem var(--es-admin-pure-white);
@@ -19,14 +21,14 @@
 		@include es-nested-collapsable-shadow(0.4rem, var(--wp-admin-theme-color));
 	}
 
-	&:has(.is-open) {
+	&:has(#{$this}.is-open) {
 		border-radius: 0.175rem;
 
 		@include es-nested-collapsable-shadow(0.7rem, var(--es-admin-cool-gray-100));
 
 		--wp-admin-theme-color: var(--es-admin-cool-gray-500);
 
-		.is-open {
+		#{$this}.is-open {
 			// stylelint-disable-next-line custom-property-pattern
 			--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb));
 
@@ -34,19 +36,19 @@
 		}
 	}
 
-	&:has(.is-open .is-open) {
+	&:has(#{$this}.is-open #{$this}.is-open) {
 		border-radius: 0.25rem;
 
 		@include es-nested-collapsable-shadow(0.75rem, var(--es-admin-cool-gray-100));
 
 		--wp-admin-theme-color: var(--es-admin-cool-gray-400);
 
-		.is-open {
+		#{$this}.is-open {
 			--wp-admin-theme-color: var(--es-admin-cool-gray-500);
 
 			@include es-nested-collapsable-shadow(0.55rem, var(--es-admin-cool-gray-200));
 
-			.is-open {
+			#{$this}.is-open {
 				// stylelint-disable-next-line custom-property-pattern
 				--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb));
 
