@@ -58,8 +58,8 @@
 	}
 
 	// Auto-indenting when when no toggle in chain of nested items is present.
-	&:has(.es-full-color-toggle) ~ &:not(:has(.es-full-color-toggle)),
-	&:not(:has(.es-full-color-toggle)):has(~ #{$this} .es-full-color-toggle) {
+	&:has(.es-full-color-toggle) + &:not(:has(.es-full-color-toggle)),
+	&:not(:has(.es-full-color-toggle)):has(+ #{$this} .es-full-color-toggle) {
 		:first-child {
 			transition: {
 				property: padding-left;
