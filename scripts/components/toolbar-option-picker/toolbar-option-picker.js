@@ -6,6 +6,9 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 /**
  * A flexible picker of mutually exclusive options.
  *
+ * @deprecated since 8.0.0 - Use `OptionSelector` inside the block options instead.
+ * @see OptionSelector
+ *
  * @param {object} props                                - ToolbarOptionPicker options.
  * @param {object} props.value                          - Current value
  * @param {function} props.onChange                     - Function called when the selection is changed.
