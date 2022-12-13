@@ -56,7 +56,7 @@ export const SortableItem = (props) => {
 			showChildren && isFirst && !isLast ? 'es-mb-2.5!' : '',
 			showChildren && !isFirst && isLast ? 'es-mt-2.5!' : '',
 		])}>
-			<div className={`es-pl-3 es-py-1.0 es-pr-1.0 es-h-between ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
+			<div className={`es-pl-2 es-py-1.0 es-pr-0 es-display-flex es-items-center ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
 				{noReordering && itemLabel}
 
 				{!noReordering &&

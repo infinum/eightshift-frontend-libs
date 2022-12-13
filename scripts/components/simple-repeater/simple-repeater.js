@@ -80,7 +80,7 @@ export const SimpleRepeater = ({
 
 	return (
 		<>
-			<div className='es-flex-between'>
+			<div className={`es-h-between ${items?.length > 0 ? 'es-mb-1.5' : ''}`}>
 				<IconLabel
 					icon={icon}
 					label={label}
@@ -99,7 +99,7 @@ export const SimpleRepeater = ({
 						}
 					}}
 					icon={icons.plusCircle}
-					className='es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0'
+					className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0'
 					label={__('Add item', 'eightshift-frontend-libs')}
 				/>
 			</div>
