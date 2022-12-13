@@ -43,6 +43,7 @@ export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { OptionPicker } from './components/option-picker/option-picker';
 export { Responsive } from './components/responsive/responsive';
+export { Section } from './components/section/section';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
 export { SimpleHorizontalSingleSelect } from './components/simple-horizontal-single-select/simple-horizontal-single-select';
 export { SimpleRepeater } from './components/simple-repeater/simple-repeater';
