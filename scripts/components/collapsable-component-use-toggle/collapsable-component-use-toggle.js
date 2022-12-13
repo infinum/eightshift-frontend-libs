@@ -84,14 +84,16 @@ export const CollapsableComponentUseToggle = ({
 	}
 
 	const openCondition = noExpandButton ? checked : checked && isOpen;
-	const fancyOpenCondition = !noExpandButton && isOpen;
 
 	return (
-		<div className={`es-nested-collapsable ${fancyOpenCondition ? 'is-open' : ''} ${noBottomSpacing ? '' : 'es-mb-3 es-pb-0.25'} ${additionalClasses ?? ''}`}>
+		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${noBottomSpacing ? '' : `${noExpandButton ? 'es-mb-6' : 'es-mb-3'} es-pb-0.25`} ${additionalClasses ?? ''}`}>
 			<div className='es-h-between es-w-full es-h-7 es-mb-3'>
 				<Button
 					icon={toggleIcon}
-					onClick={() => onChange(!checked)}
+					onClick={() => {
+						onChange(!checked);
+						setIsOpen(false);
+					}}
 					disabled={disabled}
 					className={`es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2 es-nested-m-0! es-max-w-40 es-text-align-left ${checked ? 'is-checked' : ''}`}
 					label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
