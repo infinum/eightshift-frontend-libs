@@ -46,7 +46,7 @@ export const Section = (props) => {
 						icon={icon}
 						label={label}
 						subtitle={subtitle}
-						additionalClasses='es-nested-bg-cool-gray-450 es-nested-rounded-1.0 es-nested-color-pure-white! es-nested-p-0.75 es-color-cool-gray-700'
+						additionalClasses='es-nested-bg-cool-gray-450 es-nested-rounded-1.0 es-nested-color-pure-white! es-nested-p-0.75 es-color-cool-gray-600'
 						standalone
 					/>
 				}
