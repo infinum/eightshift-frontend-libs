@@ -23,11 +23,28 @@ export const simpleDivider = () => {
 			</Section>
 			<br />
 
+			<h4>With subtitle</h4>
+			<Section label='Divider' subtitle='I divide'>
+				<p>Content inside the section</p>
+			</Section>
+			<br />
+
 			<h4>With icon</h4>
 			<Section label='Divider' icon={icons.iconGeneric}>
 				<p>Content inside the section</p>
 			</Section>
 			<br />
+
+			<h4>With icon and subtitle</h4>
+			<Section label='Divider' icon={icons.iconGeneric} subtitle='I divide'>
+				<p>Content inside the section</p>
+			</Section>
+			<br />
+
+			<h4>Collapsable section (<code>collapsable</code>)</h4>
+			<Section label='Divider' icon={icons.iconGeneric} collapsable>
+				<p>Content inside the section</p>
+			</Section>
 
 			<h4>Conditionally rendered (with <code>showIf</code>)</h4>
 
