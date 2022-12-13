@@ -57,6 +57,22 @@
 		}
 	}
 
+	// Auto-indenting when when no toggle in chain of nested items is present.
+	&:has(.es-full-color-toggle) ~ &:not(:has(.es-full-color-toggle)),
+	&:not(:has(.es-full-color-toggle)):has(~ #{$this} .es-full-color-toggle) {
+		:first-child {
+			transition: {
+				property: padding-left;
+				timing-function: var(--es-ease-out-cubic);
+				duration: 0.3s;
+			}
+		}
+
+		&:not(.is-open) > :first-child {
+			padding-left: 2rem;
+		}
+	}
+
 	// Full-color toggle, specific to the collapsable components.
 	.es-full-color-toggle {
 		.es-toggle-icon-thumb,
