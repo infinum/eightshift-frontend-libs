@@ -1,9 +1,9 @@
 import React from 'react';
 import readme from './readme.mdx';
-import { OptionPicker } from '../option-picker';
+import { ToolbarOptionPicker } from '../toolbar-option-picker';
 
 export default {
-	title: 'Options/OptionPicker',
+	title: 'Options/ToolbarOptionPicker',
 	parameters: {
 		docs: {
 			page: readme
@@ -31,7 +31,7 @@ const demoOptions = [
 
 export const component = () => {
 	return (
-		<OptionPicker
+		<ToolbarOptionPicker
 			value={'top'}
 			onChange={(value) => console.info(value)}
 			isToolbarButton={false}
@@ -44,7 +44,7 @@ export const component = () => {
 
 export const toolbarGroup = () => {
 	return (
-		<OptionPicker
+		<ToolbarOptionPicker
 			value={'top'}
 			onChange={(value) => console.info(value)}
 			isToolbarButton={true}
@@ -57,7 +57,7 @@ export const toolbarGroup = () => {
 
 export const toolbarGroupInline = () => {
 	return (
-		<OptionPicker
+		<ToolbarOptionPicker
 			value={'top'}
 			onChange={(value) => console.info(value)}
 			isToolbarButton={true}

@@ -4,9 +4,9 @@ import { Button } from '@wordpress/components';
 import classnames from 'classnames';
 
 /**
- * Horizontal button option selector, inspired by WP 5.9.
+ * Button-based option selector, inspired by WP 5.9.
  *
- * @param {object} props                                                                       - SimpleHorizontalSingleSelect options.
+ * @param {object} props                                                                       - OptionSelector options.
  * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
  * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
  * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
@@ -26,7 +26,7 @@ import classnames from 'classnames';
  * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
  * @param {string?} [props.additionalContainerClass]                                           - If provided, the classes are appended to the container.
  */
-export const SimpleHorizontalSingleSelect = (props) => {
+export const OptionSelector = (props) => {
 	const {
 		help,
 		label,
@@ -102,7 +102,7 @@ export const SimpleHorizontalSingleSelect = (props) => {
 	const control = (
 		<div
 			className={classnames([
-				'es-simple-h-single-select',
+				'es-option-selector',
 				border !== 'none' ? `has-${border}-border` : '',
 				!label && !help ? (additionalClass ?? '') : '',
 			])}

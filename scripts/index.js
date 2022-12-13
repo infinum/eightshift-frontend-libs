@@ -41,15 +41,15 @@ export {
 export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
-export { OptionPicker } from './components/option-picker/option-picker';
+export { OptionSelector } from './components/option-selector/option-selector';
 export { Responsive } from './components/responsive/responsive';
 export { Section } from './components/section/section';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
-export { SimpleHorizontalSingleSelect } from './components/simple-horizontal-single-select/simple-horizontal-single-select';
 export { SimpleRepeater } from './components/simple-repeater/simple-repeater';
 export { SimpleRepeaterItem } from './components/simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 export { SpacingSlider } from './components/spacing-slider/spacing-slider';
+export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 

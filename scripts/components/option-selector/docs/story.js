@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
-import { SimpleHorizontalSingleSelect } from '../simple-horizontal-single-select';
+import { OptionSelector } from '../option-selector';
 
 export default {
-	title: 'Options/SimpleHorizontalSingleSelect',
+	title: 'Options/OptionSelector',
 	parameters: {
 		docs: {
 			page: readme,
@@ -143,7 +143,7 @@ export const component = () => {
 			<ControlDisplay
 				title='Default'
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					label='Size'
 					options={optionsWithoutIcons}
 					onChange={(v) => setFirst(v)}
@@ -156,7 +156,7 @@ export const component = () => {
 				title='Inline label'
 				propsUsed={['inlineLabel']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					inlineLabel='Size'
 					options={optionsWithoutIcons}
 					onChange={(v) => setFirst(v)}
@@ -169,7 +169,7 @@ export const component = () => {
 				title='Icons only, inline label'
 				propsUsed={['iconOnly', 'inlineLabel']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					inlineLabel='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
@@ -184,7 +184,7 @@ export const component = () => {
 				subtitle="This kind of border should only be used with options that don't wrap"
 				propsUsed={['iconOnly', 'inlineLabel', 'border = inset']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					inlineLabel='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
@@ -199,7 +199,7 @@ export const component = () => {
 				title='Icons only, inline label, WP 5.9-style border'
 				propsUsed={['iconOnly', 'inlineLabel', 'border = offset']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					inlineLabel='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
@@ -214,7 +214,7 @@ export const component = () => {
 				title='Fullwidth, WP 5.9-style border'
 				propsUsed={['label', 'border = offset', 'alignment = stretch']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					label='Size'
 					options={optionsWithoutIcons2}
 					onChange={(v) => setThird(v)}
@@ -229,7 +229,7 @@ export const component = () => {
 				title='Icon-only, left aligned, WP 5.9-style border'
 				propsUsed={['iconOnly', 'label', 'border = offset', 'alignment = left']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					label='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
@@ -245,7 +245,7 @@ export const component = () => {
 				title='Compact buttons, inline label, WP 5.9-style border'
 				propsUsed={['inlineLabel', 'border = offset', 'compactButtons']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					inlineLabel='Size'
 					options={optionsWithoutIcons2}
 					onChange={(v) => setThird(v)}
@@ -260,7 +260,7 @@ export const component = () => {
 				title='Icon only, huge amount of options'
 				propsUsed={['label', 'iconOnly', 'alignment = right']}
 			>
-				<SimpleHorizontalSingleSelect
+				<OptionSelector
 					label='Icon'
 					options={iconOptions}
 					onChange={(v) => setSecond(v)}

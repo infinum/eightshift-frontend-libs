@@ -6,7 +6,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 /**
  * A flexible picker of mutually exclusive options.
  *
- * @param {object} props                                - OptionPicker options.
+ * @param {object} props                                - ToolbarOptionPicker options.
  * @param {object} props.value                          - Current value
  * @param {function} props.onChange                     - Function called when the selection is changed.
  * @param {array} props.options                         - Options to choose. Option should be in `{title: '', value: '', icon: ''}` format - `title` and  `value` are strings, `icon` is a JSX SVG component.
@@ -22,7 +22,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {boolean} [props.unsetOnClick=false] 			- If `true`, and you click a option that is currently selected, the value will be unset (set to `undefined`).
  * @param {boolean} [props.disabled=false]              - If `true`, control is disabled.
  */
-export const OptionPicker
+export const ToolbarOptionPicker
 	= ({
 		value: currentValue,
 		onChange,

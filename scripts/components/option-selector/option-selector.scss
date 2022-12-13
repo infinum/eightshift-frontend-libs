@@ -1,8 +1,8 @@
 // stylelint-disable declaration-no-important, selector-max-specificity
 
-.es-simple-h-single-select {
+.es-option-selector {
 	@each $name, $value in $es-spacings {
-		.es-simple-h-single-select-max-w-#{$name} & {
+		.es-option-selector-max-w-#{$name} & {
 			max-width: #{$value} !important;
 		}
 	}

@@ -1,4 +1,4 @@
-# OptionPicker
+# ToolbarOptionPicker
 
 A flexible control that allows nice-looking radio-like option selection with multiple modes.
 
@@ -26,7 +26,7 @@ It can be used as:
 ### Toolbar button
 
 ```jsx
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
+import { ToolbarOptionPicker } from '@eightshift/frontend-libs/scripts/components';
 
 // ...
 
@@ -34,7 +34,7 @@ export const ButtonToolbar = (attributes) =>  {
 	return (
 			// ...
 
-			<OptionPicker
+			<ToolbarOptionPicker
 				value={buttonAlign}
 				onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 				isToolbarButton={true}
@@ -50,7 +50,7 @@ export const ButtonToolbar = (attributes) =>  {
 ### Toolbar inline button group
 
 ```jsx
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
+import { ToolbarOptionPicker } from '@eightshift/frontend-libs/scripts/components';
 
 // ...
 
@@ -58,7 +58,7 @@ export const ButtonToolbar = (attributes) =>  {
 	return (
 			// ...
 
-			<OptionPicker
+			<ToolbarOptionPicker
 				value={buttonAlign}
 				onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 				isInToolbar={true}
@@ -74,7 +74,7 @@ export const ButtonToolbar = (attributes) =>  {
 ### Standalone button
 
 ```jsx
-import { OptionPicker } from '@eightshift/frontend-libs/scripts/components';
+import { ToolbarOptionPicker } from '@eightshift/frontend-libs/scripts/components';
 
 // ...
 
@@ -82,7 +82,7 @@ export const ButtonOptions = (attributes) =>  {
 	return (
 			// ...
 
-			<OptionPicker
+			<ToolbarOptionPicker
 				value={buttonAlign}
 				onChange={(value) => setAttributes({ [`${componentName}Align`]: value })}
 				isToolbarButton={false}
