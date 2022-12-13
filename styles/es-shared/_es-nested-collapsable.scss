@@ -68,15 +68,15 @@
 
 	// If the element:
 	// 1) has a immediate sibling of the same class
-	// 2) doesn't have an .es-full-color-toggle inside
-	// 3) has an element following it that doesn't have a .es-full-color-toggle inside
-	&:has(+ #{$this}):not(:has(> div .es-full-color-toggle)):has(~ #{$this} > div .es-full-color-toggle),
+	// 2) doesn't have an .es-full-color-toggle inside the toggle div
+	// 3) has an element following it that has a .es-full-color-toggle and .es-has-animated-y-flip-icon inside the toggle div
+	&:has(+ #{$this}):not(:has(> div > .es-full-color-toggle)):has(~ #{$this} > div > .es-full-color-toggle):has(~ #{$this} > div > .es-has-animated-y-flip-icon),
 	// If the element:
 	// 1) has a immediate sibling of the same class
-	// 2) has an .es-full-color-toggle inside
-	// and is followed by an element of the same class that doesn't have a .es-full-color-toggle inside
-	&:has(+ #{$this}):has(> div .es-full-color-toggle) ~ #{$this}:not(:has(> div .es-full-color-toggle)) {
-		&:not(.is-open) > :first-child {
+	// 2) has an .es-full-color-toggle and .es-has-animated-y-flip-icon inside the toggle div
+	// and is followed by an element of the same class that doesn't have a .es-full-color-toggle inside the toggle div
+	&:has(+ #{$this}):has(> div > .es-full-color-toggle):has(> div > .es-has-animated-y-flip-icon) ~ #{$this}:not(:has(> div > .es-full-color-toggle)) {
+		&:not(:has(> .es-full-color-toggle)):not(.is-open) > :first-child {
 			padding-left: 2rem;
 		}
 	}
