@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, Animate } from '@wordpress/components';
-import { IconLabel, icons, ucfirst, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, FancyDivider, icons, ucfirst, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
@@ -77,12 +77,8 @@ export const CompactResponsive = (props) => {
 						{current === -1 && !hideBreakpointLabels &&
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
 								{({ className }) => (
-									<div className={`${className} es-w-full es-mt-3 es-mb-1.5 es-h-spaced es-color-cool-gray-800`}>
-										<div className='es-display-flex es-button-square-24 es-button-icon-20 es-rounded-0.75 es-bg-cool-gray-500 es-nested-color-pure-white es-line-h-0'>
-											{icons[`screen${ucfirst(breakpoints[index])}`]}
-										</div>
-
-										<span>{breakpointLabel}</span>
+									<div className={className}>
+										<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} additionalClasses='es-mt-3' />
 									</div>
 								)}
 							</Animate>
