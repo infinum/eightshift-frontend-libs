@@ -27,13 +27,13 @@ export const Collapsable = ({
 	const componentClasses = classnames([
 		'es-nested-collapsable',
 		isOpen ? 'is-open' : '',
-		noBottomSpacing ? '' : 'es-mb-3 es-pb-0.25',
+		noBottomSpacing ? 'es-pb-0.25' : 'es-mb-5',
 		additionalClasses ?? '',
 	]);
 
 	return (
 		<div className={componentClasses}>
-			<div className='es-h-between es-w-full es-h-7 es-mb-3'>
+			<div className='es-h-between es-w-full es-h-7 es-mb-2'>
 				<div>
 					{label}
 				</div>
