@@ -19,7 +19,7 @@ export const IconLabel = (props) => {
 		return (
 			<div className={`es-label-flex ${additionalClasses ?? ''}`}>
 				<Icon icon={icon} />
-				<div className={`es-v-spaced ${addSubtitleGap ? 'es-gap-xs-important' : 'es-gap-0-important'}`}>
+				<div className={`es-display-flex es-flex-col es-line-h-1.2 ${addSubtitleGap ? 'es-gap-0.5' : ''}`}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-decorative-text es-text-smallish-l-em es-flex-shrink-0'>{subtitle}</span>}
 				</div>
@@ -31,7 +31,7 @@ export const IconLabel = (props) => {
 		return (
 			<>
 				<Icon icon={icon} />
-				<div className='es-v-spaced es-gap-xs-important'>
+				<div className={`es-display-flex es-flex-col es-line-h-1.2 ${addSubtitleGap ? 'es-gap-0.5' : ''}`}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-decorative-text es-text-smallish-l-em es-flex-shrink-0'>{subtitle}</span>}
 				</div>
