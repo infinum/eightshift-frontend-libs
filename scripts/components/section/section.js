@@ -7,6 +7,7 @@ import { FancyDivider } from '../fancy-divider/fancy-divider';
  * @param {object} props                           - Section options.
  * @param {string} props.label                     - Label shown on the divider.
  * @param {React.Component?} [props.icon]          - Icon shown on the divider.
+ * @param {boolean?} [props.showIf]                - If provided, the section is only shown if the condition is `true`.
  * @param {boolean} [props.noBottomSpacing=false]  - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]      - Allows passing through extra classes.
  * @param {string?} [props.additionalLabelClasses] - Allows passing through extra classes to the label.
@@ -17,6 +18,8 @@ export const Section = (props) => {
 		label,
 		icon,
 
+		showIf,
+
 		noBottomSpacing = false,
 
 		additionalClasses,
@@ -24,6 +27,10 @@ export const Section = (props) => {
 
 		children,
 	} = props;
+
+	if (typeof showIf !== 'undefined' && showIf === false) {
+		return null;
+	}
 
 	return (
 		<>
