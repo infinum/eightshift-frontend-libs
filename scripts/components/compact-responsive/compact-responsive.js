@@ -78,7 +78,7 @@ export const CompactResponsive = (props) => {
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
 								{({ className }) => (
 									<div className={className}>
-										<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} additionalClasses='es-mt-3' />
+										<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />
 									</div>
 								)}
 							</Animate>
