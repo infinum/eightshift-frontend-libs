@@ -14,7 +14,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {boolean} [props.noLabel=false]         - If `true`, the label is not shown.
  * @param {boolean} [props.noUseToggle=false]     - If `true`, the use toggle is not shown.
  * @param {boolean} [props.noExpandButton=false]  - If `true`, the expand button is not shown.
- * @param {boolean} [props.noBottomSpacing=false] - If `true`, the expand button is not shown.
+ * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the component classes.
  * @param {React.Component} props.children        - Child items that are shown when expanded.
  */

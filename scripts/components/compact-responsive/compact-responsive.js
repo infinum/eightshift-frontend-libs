@@ -15,6 +15,7 @@ import classnames from 'classnames';
  * @param {array<string>} [props.breakpoints]                                    - Breakpoints to show (default: `large`, `desktop`, `tablet` and `mobile`)
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
  * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
+ * @param {boolean} [props.noBottomSpacing=false]                                - If `true`, the default bottom spacing is removed.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
 export const CompactResponsive = (props) => {
