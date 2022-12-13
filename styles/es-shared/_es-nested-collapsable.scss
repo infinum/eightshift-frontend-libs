@@ -18,7 +18,7 @@
 	}
 
 	&.is-open {
-		@include es-nested-collapsable-shadow(0.4rem, var(--wp-admin-theme-color));
+		@include es-nested-collapsable-shadow(0.4rem, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
 	}
 
 	&:has(#{$this}.is-open) {
@@ -30,9 +30,9 @@
 
 		#{$this}.is-open {
 			// stylelint-disable-next-line custom-property-pattern
-			--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb));
+			--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb, var(--es-admin-accent-color-default)));
 
-			@include es-nested-collapsable-shadow(0.4rem, var(--wp-admin-theme-color));
+			@include es-nested-collapsable-shadow(0.4rem, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
 		}
 	}
 
@@ -50,9 +50,9 @@
 
 			#{$this}.is-open {
 				// stylelint-disable-next-line custom-property-pattern
-				--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb));
+				--wp-admin-theme-color: rgb(var(--wp-admin-theme-color--rgb, var(--es-admin-accent-color-default)));
 
-				@include es-nested-collapsable-shadow(0.35rem, var(--wp-admin-theme-color));
+				@include es-nested-collapsable-shadow(0.35rem, var(--wp-admin-theme-color, var(--es-admin-accent-color-default)));
 			}
 		}
 	}
