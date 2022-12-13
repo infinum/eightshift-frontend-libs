@@ -1,6 +1,6 @@
 import React from 'react';
 import { icons } from '@eightshift/frontend-libs/scripts';
-import { BaseControl, Button } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import classnames from 'classnames';
 
 /**
@@ -8,42 +8,51 @@ import classnames from 'classnames';
  *
  * @param {object} props                                                                       - SimpleHorizontalSingleSelect options.
  * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
- * @param {any} [props.value]                                                                  - Current value.
  * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
- * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
- * @param {function} [props.onChange]                                                          - Function that is called on every value change.
  * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
- * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
- * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
- * @param {boolean} [props.allowWrap=true]                                                     - If `true` and there is more options then can fit, the buttons will wrap to the row below.
+ * @param {any} [props.value]                                                                  - Current value.
+ * @param {function} [props.onChange]                                                          - Function that is called on every value change.
  * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
+ * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
+ * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
  * @param {'none'|'inset'|'offset'} [props.border='none']                                      - Sets the appearance of a border around the buttons.
+ * @param {boolean} [props.allowWrap=true]                                                     - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {'default'|'stretch'|'left'|'center'|'right'|'vertical'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
- * @param {boolean} [props.includeWpBottomSpacing=false]                                       - If `true`, the component will add bottom spacing to match other Gutenberg components.
- * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
- * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the BaseControl / control wrapper.
+ * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.noSpacing=false]                                                    - If `true`, the default bottom spacing is removed.
+ * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the button container.
  * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
+ * @param {string?} [props.additionalContainerClass]                                           - If provided, the classes are appended to the container.
  */
 export const SimpleHorizontalSingleSelect = (props) => {
 	const {
 		help,
-		value,
 		label,
-		options,
-		onChange,
 		inlineLabel,
-		optionLabels,
-		iconOnly = false,
-		allowWrap = true,
+
+		value,
+		onChange,
+
 		disabled = false,
+
+		options,
+		optionLabels,
+
 		border = 'none',
+		allowWrap = true,
 		alignment = 'default',
-		includeWpBottomSpacing = true,
-		compactButtons = false,
+
+		iconOnly = false,
 		largerIcons = false,
+		compactButtons = false,
+
+		noSpacing = false,
+
 		additionalClass,
 		additionalButtonClass,
+		additionalContainerClass,
 	} = props;
 
 	const buttonClasses = classnames([
@@ -182,29 +191,21 @@ export const SimpleHorizontalSingleSelect = (props) => {
 		</div>
 	);
 
-	const wrappedControl = (
-		<div
-			className={classnames([
-				'es-h-flex-between',
-				'es-gap-s',
-				includeWpBottomSpacing ? 'es-has-wp-field-b-space' : '',
-				additionalClass ?? '',
-			])}
-		>
-			{inlineLabel}
-			{control}
+	return (
+		<div className={`es-v-spaced ${noSpacing ? '' : 'es-mb-5'} ${additionalContainerClass ?? ''}`}>
+			{inlineLabel &&
+				<div className='es-h-between'>
+					{inlineLabel}
+					{control}
+				</div>
+			}
+
+			{!inlineLabel && label}
+			{!inlineLabel && control}
+
+			{help &&
+				<span className='es-text-3 es-color-cool-gray-500'>{help}</span>
+			}
 		</div>
 	);
-
-	const controlToReturn = inlineLabel ? wrappedControl : control;
-
-	if ((includeWpBottomSpacing || label || help) && !inlineLabel) {
-		return (
-			<BaseControl label={label} help={help} className={additionalClass ?? ''}>
-				{controlToReturn}
-			</BaseControl>
-		);
-	}
-
-	return controlToReturn;
 };
