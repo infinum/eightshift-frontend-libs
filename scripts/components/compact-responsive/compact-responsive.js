@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { BaseControl, Button, Animate } from '@wordpress/components';
-import { IconLabel, icons, ucfirst, getDefaultBreakpointNames, FancyDivider } from '@eightshift/frontend-libs/scripts';
+import { Button, Animate } from '@wordpress/components';
+import { IconLabel, icons, ucfirst, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
  * A component that displays options adjustable across screen sizes.
  *
- * @param {object} props                                                         - Compact responsive options.
+ * @param {object} props                                                         - CompactResponsive options.
  * @param {React.Component} props.label                                          - Option label.
  * @param {React.Component?} [props.help]                                        - Optional help text to show below the component.
  * @param {React.Component} props.icon                                           - Option icon.
@@ -22,11 +22,16 @@ export const CompactResponsive = (props) => {
 		label,
 		help,
 		icon,
+
 		children = [],
+
 		breakpoints = getDefaultBreakpointNames(),
+
 		inheritButton,
 		breakpointLabels,
 		additionalClasses,
+
+		noBottomSpacing = false,
 
 		// Should only be used for compatibility with old Responsive.
 		hideBreakpointLabels = false,
@@ -41,26 +46,23 @@ export const CompactResponsive = (props) => {
 	};
 
 	return (
-		<BaseControl
-			className={`es-compact-responsive ${isOpen ? 'is-open' : ''} ${additionalClasses ?? ''}`}
-			help={help}
-			label={
-				<div className='es-flex-between'>
-					<IconLabel icon={icon} label={label} standalone />
+		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${noBottomSpacing ? '' : 'es-mb-3 es-pb-0.25'} ${additionalClasses ?? ''}`}>
+			<div className='es-h-between es-w-full es-h-7 es-mb-3'>
+				<IconLabel icon={icon} label={label} standalone />
 
-					<Button
-						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
-						icon={isOpen ? icons.caretDownFill : icons.caretDown}
-						onClick={toggleOpen}
-						className='es-button-icon-24 es-compact-responsive-trigger es-rounded-0.75'
-						showTooltip
-						isTertiary
-					>
-						{icons.responsiveOverridesAlt}
-					</Button>
-				</div>
-			}
-		>
+				<Button
+					label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
+					onClick={toggleOpen}
+					className={`es-transition-colors es-button-icon-24 es-rounded-1.5 es-h-7! es-py-0! es-pr-0.5! es-pl-1.5! ${isOpen ? 'es-nested-color-pure-white es-bg-admin-accent' : ''}`}
+					showTooltip
+				>
+					{icons.responsiveOverridesAlt}
+					<div className={`es-button-icon-24 es-h-flex es-has-animated-y-flip-icon ${isOpen ? 'is-active' : ''}`}>
+						{isOpen ? icons.caretDownFill : icons.caretDown}
+					</div>
+				</Button>
+			</div>
+
 			{children.map((child, index) => {
 				let showChild = true;
 
@@ -71,19 +73,21 @@ export const CompactResponsive = (props) => {
 				const breakpointLabel = breakpointLabels?.[index] ?? (ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index]));
 
 				return (
-					<BaseControl
-						key={index}
-						className='es-no-field-spacing'
-						label={current === -1 && !hideBreakpointLabels &&
+					<div key={index}>
+						{current === -1 && !hideBreakpointLabels &&
 							<Animate type='slide-in' options={{ origin: 'bottom' }} >
 								{({ className }) => (
-									<div className={`${className} es-w-full`}>
-										<FancyDivider label={<IconLabel icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />} additionalClasses='es-mx-0! es-mt-0! es-mb-1.0!' />
+									<div className={`${className} es-w-full es-mt-3 es-mb-1.5 es-h-spaced es-color-cool-gray-800`}>
+										<div className='es-display-flex es-button-square-24 es-button-icon-20 es-rounded-0.75 es-bg-cool-gray-500 es-nested-color-pure-white es-line-h-0'>
+											{icons[`screen${ucfirst(breakpoints[index])}`]}
+										</div>
+
+										<span>{breakpointLabel}</span>
 									</div>
 								)}
 							</Animate>
 						}
-					>
+
 						{index === 0 && child}
 
 						{index > 0 && current === -1 && inheritButton !== undefined &&
@@ -93,22 +97,22 @@ export const CompactResponsive = (props) => {
 										<Button
 											onClick={inheritButton[index].callback}
 											className={classnames([
-												'es-compact-responsive-inherit-button es-button-no-icon-spacing es-button-icon-24 es-rounded-0.75 es-text-3 es-h-11! es-px-2.5! es-py-0! es-text-align-left es-gap-2 es-line-h-1.15 -es-mt-0.5 es-w-full',
-												inheritButton[index].isActive ? 'is-inherited es-slight-button-border-cool-gray-400 es-mb-2 es-nested-color-admin-accent' : 'es-slight-button-border-cool-gray-100 es-mb-4 es-nested-color-cool-gray-600',
-												index === breakpoints.length - 1 && !showChild ? 'es-mb-0!' : '',
+												'es-transition-colors es-text-align-left es-rounded-1.5 es-nested-m-0! es-gap-2! es-animated-inherit-icon es-w-full es-pl-0! es-pr-2! es-py-5!',
+												inheritButton[index].isActive ? 'is-inherited es-nested-color-admin-accent es-border-transparent' : 'es-border-cool-gray-200',
+												!inheritButton[index].isActive ? 'es-mb-3' : '',
 											])}
 											icon={icons.inherit}
 										>
 											{inheritButton[index].isActive &&
-												<span>
+												<span className='es-text-3 es-color-cool-gray-600'>
 													{__('Using value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
 													<br />
-													<span className='es-text-2.5 es-opacity-80'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
+													<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
 												</span>
 											}
 
 											{!inheritButton[index].isActive &&
-												<span>
+												<span className='es-color-cool-gray-600'>
 													{__('Use value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
 												</span>
 											}
@@ -127,10 +131,13 @@ export const CompactResponsive = (props) => {
 								)}
 							</Animate>
 						}
-					</BaseControl>
+					</div>
 				);
-			})
+			})}
+
+			{help &&
+				<span>{help}</span>
 			}
-		</BaseControl>
+		</div>
 	);
 };
