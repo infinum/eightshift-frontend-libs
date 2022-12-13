@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, Popover } from '@wordpress/components';
-import { icons, SimpleHorizontalSingleSelect } from '../../../scripts';
+import { icons, OptionSelector } from '../../../scripts';
 import { camelize } from '../../../scripts/helpers';
 import { ucfirst } from '../../../scripts/editor';
 
@@ -109,7 +109,7 @@ export const MatrixAlignControl = (props) => {
 					position='top center'
 				>
 					<div className='es-popover-content es-min-w-auto! es-min-h-auto! es-p-1.5!'>
-						<SimpleHorizontalSingleSelect
+						<OptionSelector
 							options={sizeOptions}
 							onChange={(value) => onChange(value)}
 							value={value ?? (size === '3x3' ? 'center center' : 'top left')}

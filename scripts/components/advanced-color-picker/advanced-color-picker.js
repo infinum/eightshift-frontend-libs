@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, Popover, BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
-import { ColorPaletteCustom, icons, IconLabel } from '../../../scripts';
-import { SimpleHorizontalSingleSelect } from '@eightshift/frontend-libs/scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
-import { ColorPaletteCustomLayout } from '@eightshift/frontend-libs/scripts/components/color-palette-custom/color-palette-custom';
+import { ColorPaletteCustom, icons, IconLabel, OptionSelector, ColorPaletteCustomLayout } from '../../../scripts';
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
@@ -151,7 +149,7 @@ export const AdvancedColorPicker = (props) => {
 				>
 					<div className='es-popover-content es-h-spaced es-gap-l-important'>
 						<div className='es-w-4xl es-mb-auto'>
-							<SimpleHorizontalSingleSelect
+							<OptionSelector
 								value={type}
 								options={types}
 								onChange={((value) => onChangeType(value))}

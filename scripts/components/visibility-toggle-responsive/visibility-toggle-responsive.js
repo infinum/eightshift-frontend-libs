@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, CompactResponsive, getAttrKey, IconLabel, icons, SimpleHorizontalSingleSelect, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, CompactResponsive, getAttrKey, IconLabel, icons, OptionSelector, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A responsive block/component visibility control.
@@ -60,7 +60,7 @@ export const VisibilityToggleResponsive = (props) => {
 				];
 
 				return (
-					<SimpleHorizontalSingleSelect
+					<OptionSelector
 						key={index}
 						options={options}
 						border='offset'
