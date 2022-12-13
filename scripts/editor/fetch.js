@@ -1,4 +1,4 @@
-import { unescapeHTML } from '../helpers/text-helpers';
+import { unescapeHTML } from '@eightshift/frontend-libs/scripts';
 import apiFetch from '@wordpress/api-fetch';
 
 /**
@@ -7,16 +7,15 @@ import apiFetch from '@wordpress/api-fetch';
  * @param {string} endpoint     Endpoint to fetch from (usually post type or taxonomy).
  * @param {object} [options={}] Additional options for fine tunning.
  *
- * @param {function} processId              Function that allows custom id processing.
- * @param {function} processLabel           Function that allows custom select option label processing.
- * @param {function} processMetadata        Function that allows modifying output data (e.g. for adding metadata for grouping inside a CustomSelect).
- * @param {integer}  [perPage=30]           Define max perPage items to fetch.
- * @param {string}   [routePrefix='wp/v2']  Define if using custom or native WP routes.
- * @param {object}   [additionalParam={}]   Define additional query params to fetch.
- * @param {string}   [cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
- * @param {fields}   [fields='id,title']    Fields to return for optimised response.
- *
- * @access public
+ * @param {function} options.processId              Function that allows custom id processing.
+ * @param {function} options.processLabel           Function that allows custom select option label processing.
+ * @param {function} options.processMetadata        Function that allows modifying output data (e.g. for adding metadata for grouping inside a CustomSelect).
+ * @param {integer}  [options.perPage=30]           Define max perPage items to fetch.
+ * @param {string}   [options.routePrefix='wp/v2']  Define if using custom or native WP routes.
+ * @param {object}   [options.additionalParam={}]   Define additional query params to fetch.
+ * @param {string}   [options.cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
+ * @param {fields}   [options.fields='id,title']    Fields to return for optimized response.
+ * @param {fields}   [options.noCache=false]        If `true`, bypasses cache when fetching items.
  *
  * @returns Callback function that can be passed to CustomSelect loadOptions
  *
@@ -35,13 +34,14 @@ import apiFetch from '@wordpress/api-fetch';
 export function getFetchWpApi(endpoint, options = {}) {
 	const {
 		processId = ({ id }) => id,
-		processLabel = ({ name }) => unescapeHTML(name),
+		processLabel = ({ title }) => unescapeHTML(title),
 		processMetadata = () => null,
 		perPage = 30,
 		routePrefix = 'wp/v2',
 		additionalParam = {},
 		cacheTime = '86400000', // One day.
 		fields = 'id,title',
+		noCache = false,
 	} = options;
 
 	/**
@@ -54,25 +54,30 @@ export function getFetchWpApi(endpoint, options = {}) {
 	const fetchItems = async (searchText = '') => {
 		let params = {
 			per_page: perPage,
+			...additionalParam,
 		};
 
 		// Add fields in the params for optimisations.
-		if (fields?.length) {
+		if (fields?.length > 0) {
 			params['_fields'] = fields;
 		}
 
-		// Merge additional params to props.
-		if (additionalParam?.length) {
-			params = {
-				...params,
-				...additionalParam
-			};
-		}
-
 		// Fetch fresh if you are searching something.
-		if (searchText?.length) {
+		if (searchText?.length > 0) {
 			params['search'] = searchText;
 
+			const newData = await apiFetch({ path: getRoute(endpoint, params, routePrefix) });
+
+			return await new Promise((resolve) => resolve([...newData].map((item) => {
+				return {
+					label: processLabel(item),
+					value: processId(item),
+					metadata: processMetadata(item),
+				};
+			})));
+		}
+
+		if (noCache) {
 			const newData = await apiFetch({ path: getRoute(endpoint, params, routePrefix) });
 
 			return await new Promise((resolve) => resolve([...newData].map((item) => {
@@ -88,7 +93,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		let cachedItem = JSON.parse(window.localStorage.getItem(`es-cache-${endpoint}`));
 
 		// If the item doesn't exist in cache, is older than 1 day (86400000 = one day) or doesn't have any data, do a fresh fetch
-		if (!cachedItem || cachedItem?.time < (Date.now() - parseInt(cacheTime)) || !cachedItem?.data?.length) {
+		if (!cachedItem || cachedItem?.time < (Date.now() - parseInt(cacheTime)) || !cachedItem?.data?.length > 0) {
 			const newData = await apiFetch({ path: getRoute(endpoint, params, routePrefix) });
 
 			cachedItem = {
@@ -112,9 +117,6 @@ export function getFetchWpApi(endpoint, options = {}) {
 	return fetchItems;
 }
 
-//---------------------------------------------------------------
-// Private methods
-
 /**
  * Create valid url for fetching.
  *
@@ -122,11 +124,9 @@ export function getFetchWpApi(endpoint, options = {}) {
  * @param {object} params Additional search params.
  * @param {string} routePrefix Route prefix for endpoint.
  *
- * @access private
- *
  * @returns API valid url.
  */
-export const getRoute = (endpoint, params = {}, routePrefix) => {
+ const getRoute = (endpoint, params = {}, routePrefix) => {
 	const url = new URL(`${window.location.origin}/${routePrefix}/${endpoint}/`);
 
 	for (const [key, value] of Object.entries(params)) {
