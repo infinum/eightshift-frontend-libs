@@ -11,7 +11,7 @@ export const WidthOffsetRangeSlider = (props) => {
 		attributes,
 		setAttributes,
 
-		icon = icons.positioningGuideAlt,
+		icon = icons.positioningWidthGuide,
 		label = __('Width & offset', 'eightshift-frontend-libs'),
 
 		isFullWidthAttributeName,
@@ -119,9 +119,8 @@ export const WidthOffsetRangeSlider = (props) => {
 				return (
 					<div className={index === 0 ? 'es-mb-0 es-pb-l' : 'es-has-wp-field-b-space'} key={index}>
 						<div className='es-h-end es-mb-s'>
-							{showFullWidthToggle &&
+							{showFullWidthToggle && typeof isFullWidth !== 'undefined' &&
 								<Button
-									disabled={typeof isFullWidth === 'undefined'}
 									isSmall
 									isPressed={isFullWidth}
 									onClick={() => setAttributes({ [getAttrKey(isFullWidthAttr, attributes, manifest)]: !isFullWidth, })}
@@ -204,8 +203,8 @@ export const WidthOffsetRangeSlider = (props) => {
 						/>
 
 						{index !== 0 &&
-							<div className='es-h-start es-mt-xl'>
-								<span className='es-h-spaced es-gap-0-important'><IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} /></span>
+							<div className='es-h-start es-mt-xl es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1.0! es-py-0.5! es-display-flex es-gap-1.0! es-ml-2.5'>
+								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1.0 es-nested-color-cool-gray-450!' />
 
 								<Button
 									isSmall
