@@ -117,7 +117,7 @@ export const MatrixAlignControl = (props) => {
 							alignment='center'
 							additionalClass={size === '3x3' ? 'es-w-27!' : 'es-w-18!'}
 							additionalButtonClass='es-rounded-1.0!'
-							includeWpBottomSpacing={false}
+							noBottomSpacing
 							iconOnly
 						/>
 					</div>
