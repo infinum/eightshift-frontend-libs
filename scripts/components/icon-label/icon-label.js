@@ -31,7 +31,7 @@ export const IconLabel = (props) => {
 		return (
 			<>
 				<Icon icon={icon} />
-				<div className={`es-display-flex es-flex-col es-line-h-1.2 ${addSubtitleGap ? 'es-gap-0.5' : ''}`}>
+				<div className={`es-display-flex es-flex-col es-line-h-1.2 ${addSubtitleGap ? 'es-gap-0.5' : ''} ${additionalClasses ?? ''}`}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
