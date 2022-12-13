@@ -15,7 +15,7 @@ import classnames from 'classnames';
  * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
  * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
  * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
- * @param {'none'|'inset'|'offset'} [props.border='none']                                      - Sets the appearance of a border around the buttons.
+ * @param {'none'|'offset'} [props.border='none']                                              - Sets the appearance of a border around the buttons.
  * @param {boolean} [props.allowWrap=true]                                                     - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {'default'|'stretch'|'left'|'center'|'right'|'vertical'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
@@ -58,6 +58,7 @@ export const OptionSelector = (props) => {
 	const buttonClasses = classnames([
 		iconOnly ? 'es-button-square-36' : '',
 		largerIcons ? 'es-button-icon-24' : '',
+		border === 'offset' ? 'es-rounded-0.75!' : '',
 		additionalButtonClass ?? '',
 	]);
 
@@ -103,7 +104,7 @@ export const OptionSelector = (props) => {
 		<div
 			className={classnames([
 				'es-option-selector',
-				border !== 'none' ? `has-${border}-border` : '',
+				'es-has-v2-gutenberg-button-active-state-inside',
 				!label && !help ? (additionalClass ?? '') : '',
 			])}
 			style={{
