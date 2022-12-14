@@ -41,7 +41,7 @@ export const IconToggle = ({
 				icon={icon}
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
-				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalClasses}`}
+				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalClasses}`}
 			>
 				{label}
 			</Button>
@@ -56,7 +56,7 @@ export const IconToggle = ({
 				isPressed={checked}
 				label={type === 'iconButton' && label}
 				showTooltip={type === 'iconButton'}
-				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state ${type === 'iconButton' ? 'es-button-square-36' : ''} ${additionalClasses}`}
+				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state ${type === 'iconButton' ? 'es-button-square-36' : ''} ${additionalClasses}`}
 			>
 				{type === 'button' && label}
 			</Button>
