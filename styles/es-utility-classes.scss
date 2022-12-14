@@ -77,52 +77,26 @@ $es-positions: (
 
 $es-spacings: (
 	'auto': auto,
+
 	'0': 0,
-	'1': 1,
 	'px': '1px',
 	'2px': '2px',
-	'xxs': '0.125rem',
-	'xs': '0.25rem',
-	's': '0.5rem',
-	'smaller': '0.75rem',
-	'smaller-em': '0.75em',
-	'smallish': '0.85rem',
-	'smallish-em': '0.85em',
-	'smallish-l': '0.95rem',
-	'smallish-l-em': '0.95em',
-	'm': '1rem',
-	'l': '1.5rem',
-	'xl': '2rem',
-	'xxl': '4rem',
-	'2xl': '4rem',
-	'xxl\\+': '6rem',
-	'3xl': '8rem',
-	'4xl': '12rem',
-	'5xl': '16rem',
-	'6xl': '18rem',
-	'7xl': '20rem',
-	'8xl': '24rem',
-	'9xl': '30rem',
-	'10xl': '32rem',
-	'11xl': '36rem',
-	'12xl': '40rem',
-	'13xl': '44rem',
-	'14xl': '48rem',
-	'15xl': '54rem',
-	'16xl': '60rem',
+	'3px': '3px',
+
 	'1\\/4': '25%',
 	'1\\/3': '33.3%',
 	'1\\/2': '50%',
 	'2\\/3': '66.6%',
 	'3\\/4': '75%',
 	'full': '100%',
+
 	'max': 'max-content',
 	'min': 'min-content',
-	// Tailwind sizes.
+
 	'0\\.25': '0.0625rem',
 	'0\\.5': '0.125rem',
 	'0\\.75': '0.1875rem',
-	'1\\.0': '0.25rem',
+	'1': '0.25rem',
 	'1\\.25': '0.3125rem',
 	'1\\.5':'0.375rem',
 	'1\\.75': '0.4375rem',
@@ -1034,10 +1008,6 @@ $es-utility-props: (
 			#{$propCssName}: #{$valuePrefix} #{$value};
 		}
 
-		.es-#{$propShorthand}-#{$size2}-important#{$selectorSuffix} #{$additionalSelector} {
-			#{$propCssName}: #{$valuePrefix} #{$value} !important;
-		}
-
 		.es-#{$propShorthand}-#{$size2}\!#{$selectorSuffix} #{$additionalSelector} {
 			#{$propCssName}: #{$valuePrefix} #{$value} !important;
 		}
@@ -1045,10 +1015,6 @@ $es-utility-props: (
 		@if $includeNegativeValues == 'true' {
 			.-es-#{$propShorthand}-#{$size2}#{$selectorSuffix} #{$additionalSelector} {
 				#{$propCssName}: #{$valuePrefix} -#{$value};
-			}
-
-			.-es-#{$propShorthand}-#{$size2}-important#{$selectorSuffix} #{$additionalSelector} {
-				#{$propCssName}: #{$valuePrefix} -#{$value} !important;
 			}
 
 			.-es-#{$propShorthand}-#{$size2}\!#{$selectorSuffix} #{$additionalSelector} {
@@ -1064,12 +1030,6 @@ $es-utility-props: (
 				}
 			}
 
-			.es-#{$propShorthand}-#{$size2}-bcf-important#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
-					#{$propCssName}: #{$valuePrefix} #{$value} !important;
-				}
-			}
-
 			.es-#{$propShorthand}-#{$size2}-bcf\!#{$selectorSuffix} #{$additionalSelector} {
 				.components-base-control__field {
 					#{$propCssName}: #{$valuePrefix} #{$value} !important;
@@ -1079,12 +1039,6 @@ $es-utility-props: (
 			.-es-#{$propShorthand}-#{$size2}-bcf#{$selectorSuffix} #{$additionalSelector} {
 				.components-base-control__field {
 					#{$propCssName}: #{$valuePrefix} -#{$value};
-				}
-			}
-
-			.-es-#{$propShorthand}-#{$size2}-bcf-important#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
-					#{$propCssName}: #{$valuePrefix} -#{$value} !important;
 				}
 			}
 
@@ -1152,15 +1106,6 @@ $es-utility-props: (
 	box-shadow: 0 0 0 1px var(--es-admin-hi-vis-outline-1, #FFFFFF), 0 0 0 2px var(--es-admin-hi-vis-outline-2, #111111);
 }
 
-// Flex container with items space-between, gap and a slight padding.
-.es-flex-between {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0.5rem;
-	width: 100%;
-	padding: 0.25rem 0;
-}
 
 // Vertical flex containers with gaps (and optional item wrapping).
 .es-v-spaced {

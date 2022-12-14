@@ -103,7 +103,7 @@ export const CustomRangeSlider = (props) => {
 		sliderStyle === 'numberStrip' ? 'es-custom-slider-number-strip' : '',
 		sliderStyle === 'columnPicker' || sliderStyle === 'columnPickerWithDots' ? 'es-custom-slider-column-picker' : '',
 		sliderStyle === 'columnPickerWithDots' ? 'es-custom-slider-column-picker-with-dots' : '',
-		isInline ? 'es-flex-between' : '',
+		isInline ? 'es-h-between' : '',
 		marks && hasCompactMarks && !dots ? 'es-custom-slider-compact-with-marks' : '',
 		dots & !marks ? 'es-custom-slider-compact-with-dots' : '',
 		additionalClass ?? '',

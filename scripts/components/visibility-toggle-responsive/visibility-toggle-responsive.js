@@ -36,7 +36,7 @@ export const VisibilityToggleResponsive = (props) => {
 	return (
 		<CompactResponsive
 			label={<IconLabel icon={icon} label={label} />}
-			additionalClasses={`-es-mb-xs-important ${additionalClasses ?? ''}`}
+			additionalClasses={`-es-mb-1! ${additionalClasses ?? ''}`}
 			breakpoints={breakpointNames}
 			inheritButton={breakpointNames.map((breakpoint) => {
 				const breakpointAttrName = attrNames[breakpoint];
@@ -66,7 +66,6 @@ export const VisibilityToggleResponsive = (props) => {
 						border='offset'
 						value={breakpointAttrValue?.toString()}
 						onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: typeof breakpointAttrValue === 'boolean' ? value === 'true' : value })}
-						additionalClass='-es-mt-s'
 					/>
 				);
 			})}

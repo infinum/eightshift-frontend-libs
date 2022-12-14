@@ -117,8 +117,8 @@ export const WidthOffsetRangeSlider = (props) => {
 				const maxWidth = ((isFullWidth ?? isFullWidthInherited) || (showFullWidthToggle && includeGutters)) ? (totalNumberOfColumns + 3) : (totalNumberOfColumns + 1);
 
 				return (
-					<div className={index === 0 ? 'es-mb-0 es-pb-l' : 'es-has-wp-field-b-space'} key={index}>
-						<div className='es-h-end es-mb-s'>
+					<div className={index === 0 ? 'es-mb-0 es-pb-6' : 'es-has-wp-field-b-space'} key={index}>
+						<div className='es-h-end es-mb-2'>
 							{showFullWidthToggle && typeof isFullWidth !== 'undefined' &&
 								<Button
 									isSmall
@@ -203,7 +203,7 @@ export const WidthOffsetRangeSlider = (props) => {
 						/>
 
 						{index !== 0 &&
-							<div className='es-h-start es-mt-xl es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1.0! es-py-0.5! es-display-flex es-gap-1.0! es-ml-2.5'>
+							<div className='es-h-start es-mt-8 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1.0! es-py-0.5! es-display-flex es-gap-1.0! es-ml-2.5'>
 								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1.0 es-nested-color-cool-gray-450!' />
 
 								<Button

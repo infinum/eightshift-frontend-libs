@@ -101,7 +101,7 @@ export const ColorPaletteCustom = (props) => {
 
 	const detailView = layout === ColorPaletteCustomLayout.LIST || layout === ColorPaletteCustomLayout.LIST_TWO_COL;
 
-	const searchEmptyIcon = React.cloneElement(icons.searchEmpty, {className: 'es-w-xl es-h-xl es-has-wp-admin-theme-color'});
+	const searchEmptyIcon = React.cloneElement(icons.searchEmpty, {className: 'es-w-8 es-h-8 es-has-wp-admin-theme-color'});
 
 	const control = (
 		<>
@@ -109,7 +109,7 @@ export const ColorPaletteCustom = (props) => {
 				<TextControl
 					disabled={disabled}
 					placeholder={__('Search colors', 'eightshift-frontend-libs')}
-					className='es-mb-s-important'
+					className='es-mb-2!'
 					onChange={(v) => {
 						setSearchTerm(v);
 
@@ -148,7 +148,7 @@ export const ColorPaletteCustom = (props) => {
 				}
 
 				return (
-					<div className='es-h-between-wrap es-mb-s' key={i}>
+					<div className='es-h-between-wrap es-mb-2' key={i}>
 						{!isOtherColors && <p className='es-mt-0 es-mb-0'>{groupName}</p>}
 
 						{!isOtherColors &&
@@ -211,7 +211,7 @@ export const ColorPaletteCustom = (props) => {
 					label={__('Reset', 'eightshift-frontend-libs')}
 					onClick={() => onChange(undefined)}
 					icon={icons.reset}
-					className='es-mt-m es-button-icon-24'
+					className='es-mt-4 es-button-icon-24'
 					disabled={disabled}
 				>
 					{__('Reset', 'eightshift-frontend-libs')}

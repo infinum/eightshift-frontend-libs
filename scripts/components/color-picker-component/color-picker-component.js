@@ -187,7 +187,7 @@ export const ColorPickerComponent = ({
 
 	return (
 		<>
-			<div className={`es-flex-between ${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
+			<div className={`es-h-between ${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
 				<div className='es-label-flex'>{label}</div>
 
 				{triggerButton}

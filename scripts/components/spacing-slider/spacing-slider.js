@@ -146,7 +146,7 @@ export const SpacingSlider = (props) => {
 				}
 
 				return (
-					<div className={index !== 0 ? 'es-mb-m' : 'es-mb-s'} key={index}>
+					<div className={index !== 0 ? 'es-mb-4' : 'es-mb-2'} key={index}>
 						<CustomSlider
 							value={processValue(breakpointAttrValue)}
 							onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processBeforeSetAttr(value / (compensateForRemBase10 ? 10 : 1)) })}
@@ -162,7 +162,7 @@ export const SpacingSlider = (props) => {
 							rightAddition={
 								<>
 									{(showResetButton || showDisableButton) &&
-										<div className='es-v-center es-gap-0-important -es-mr-s'>
+										<div className='es-v-center es-gap-0! -es-mr-2'>
 											{showResetButton && (typeof resetValue !== 'undefined' || typeof manifestAttributes[breakpointAttrName]?.default !== 'undefined') &&
 												<Button
 													isSmall

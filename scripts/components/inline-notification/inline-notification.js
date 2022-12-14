@@ -59,7 +59,7 @@ export const InlineNotification = ({
 
 	return (
 		<div className={classnames([
-			'es-inline-notification-v3 es-p-s es-rounded-s',
+			'es-inline-notification-v3 es-p-2 es-rounded-2',
 			`es-inline-notification-v3--${type}`,
 			showContrastOutline ? 'es-hi-vis-outline' : '',
 			removeBottomFieldSpacing ? '': 'es-mb-6',

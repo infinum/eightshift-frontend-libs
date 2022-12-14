@@ -96,7 +96,7 @@ export const CustomSlider = (props) => {
 	const sliderClass = useMemo(() => classnames([
 		hasVerticalLabels ? 'es-custom-slider-vertical-labels' : '',
 		sliderStyle === 'number-strip' ? 'es-custom-slider-number-strip' : '',
-		isInline ? 'es-flex-between' : '',
+		isInline ? 'es-h-between' : '',
 		marks && hasCompactMarks && !dots ? 'es-custom-slider-compact-with-marks' : '',
 		dots & !marks ? 'es-custom-slider-compact-with-dots' : '',
 		additionalClass ?? '',

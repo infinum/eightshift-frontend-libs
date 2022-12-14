@@ -120,7 +120,7 @@ export const AdvancedColorPicker = (props) => {
 		<BaseControl
 			className={additionalClasses ?? ''}
 			label={
-				<div className='es-flex-between'>
+				<div className='es-h-between'>
 					<div className='es-h-center es-line-h-0'>
 						{label}
 					</div>
@@ -147,8 +147,8 @@ export const AdvancedColorPicker = (props) => {
 					noArrow={false}
 					position='middle left'
 				>
-					<div className='es-popover-content es-h-spaced es-gap-l-important'>
-						<div className='es-w-4xl es-mb-auto'>
+					<div className='es-popover-content es-h-spaced es-gap-6!'>
+						<div className='es-w-48 es-mb-auto'>
 							<OptionSelector
 								value={type}
 								options={types}
@@ -159,7 +159,7 @@ export const AdvancedColorPicker = (props) => {
 							/>
 						</div>
 
-						<div className='es-min-w-7xl es-min-h-7xl es-mb-auto'>
+						<div className='es-min-w-80 es-min-h-80 es-mb-auto'>
 							{type === 'project' && showProjectColor && !disabled &&
 								<ColorPaletteCustom
 									value={colorProject}
