@@ -13,6 +13,9 @@
 @import '../scripts/components/color-palette-custom/color-palette-custom';
 @import './es-shared/es-nested-collapsable';
 
+// Animated icons.
+@import './es-animated-icons.scss';
+
 :root {
 	// Colors
 	--es-admin-accent-color-default: #194BD4;
