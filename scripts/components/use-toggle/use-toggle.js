@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, BaseControl, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+
+export const config = (attributes, manifest, attributeName) => {
+	const {
+		noLabel,
+		noUseToggle,
+		noExpandButton,
+
+		setAttributes,
+	} = attributes;
+
+	const checked = checkAttr(attributeName, attributes, manifest);
+
+	return {
+		label: attributes?.label ?? manifest.title,
+		checked: checked,
+		noLabel: noLabel,
+		noUseToggle: noUseToggle,
+		noExpandButton: noExpandButton,
+		onChange: (value) => setAttributes({ [getAttrKey(attributeName, attributes, manifest)]: value }),
+	};
+};
 
 /**
  * A component use toggle with collapsable content.

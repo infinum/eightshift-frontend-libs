@@ -52,7 +52,10 @@ export { SimpleRepeaterItem } from './components/simple-repeater/simple-repeater
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 export { SpacingSlider } from './components/spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
-export { UseToggle } from './components/use-toggle/use-toggle';
+export {
+	UseToggle,
+	config,
+} from './components/use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 

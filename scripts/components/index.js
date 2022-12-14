@@ -51,6 +51,9 @@ export { SimpleRepeaterItem } from './simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';
 export { SpacingSlider } from './spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
-export { UseToggle } from './use-toggle/use-toggle';
+export {
+	UseToggle,
+	config,
+} from './use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
