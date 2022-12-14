@@ -24,8 +24,6 @@ import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValue
  * @param {boolean} [props.disabled=false]                             - If set `true`, the component is disabled.
  * @param {boolean} [props.keepMenuOpenAfterSelect=false]              - If set `true`, the dropdown is not closed immediately after selecting an option.
  * @param {string?} [props.placeholder]                                - Placeholder text when nothing is selected.
- * @param {string?} [props.loadingMessage]                             - Text to display while loading options.
- * @param {string?} [props.noOptionsMessage]                           - Text to display when no options are available.
  * @param {React.Component?} [props.customDropdownIndicator]           - If provided, replaces the default dropdown arrow indicator.
  * @param {React.Component?} [props.customClearIndicator]              - If provided and `noClear` is `false`, replaces the default 'Clear all' button.
  * @param {React.Component?} [props.customMenuOption]                  - If provided, replaces the default item in the dropdown menu (react-select's `components.Option`).
@@ -58,8 +56,6 @@ export const AsyncMultiSelect = (props) => {
 		keepMenuOpenAfterSelect = false,
 
 		placeholder,
-		loadingMessage,
-		noOptionsMessage,
 
 		customClearIndicator,
 		customDropdownArrow,
@@ -103,8 +99,6 @@ export const AsyncMultiSelect = (props) => {
 						isSearchable={!noSearch}
 						isDisabled={disabled}
 						className={additionalSelectClasses}
-						noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : components.NoOptionsMessage}
-						loadingMessage={loadingMessage ? () => (<span>{loadingMessage}</span>) : components.LoadingMessage}
 						placeholder={placeholder}
 						theme={defaultEightshiftColorScheme}
 						styles={defaultEightshiftStyles}
