@@ -51,4 +51,5 @@ export { UseToggle } from './use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
 
+export { AsyncMultiSelect } from './custom-select/async-multi-select';
 export { MultiSelect } from './custom-select/multi-select';
