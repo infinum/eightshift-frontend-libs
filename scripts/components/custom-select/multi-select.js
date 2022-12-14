@@ -90,7 +90,7 @@ export const MultiSelect = (props) => {
 						isSearchable={!noSearch}
 						isDisabled={disabled}
 						className={additionalSelectClasses}
-						noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : null}
+						noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : components.NoOptionsMessage}
 						placeholder={placeholder}
 						theme={defaultEightshiftColorScheme}
 						styles={defaultEightshiftStyles}
