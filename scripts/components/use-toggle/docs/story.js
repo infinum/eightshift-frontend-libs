@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CollapsableComponentUseToggle } from '../collapsable-component-use-toggle';
+import { UseToggle } from '../use-toggle';
 import readme from './readme.mdx';
 
 export default {
-	title: 'Options/CollapsableComponentUseToggle',
+	title: 'Options/UseToggle',
 	parameters: {
 		docs: {
 			page: readme
@@ -17,7 +17,7 @@ export const component = () => {
 	return (
 		<div>
 			<h2>Default toggle</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -25,10 +25,10 @@ export const component = () => {
 				showLabel
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
-			
+			</UseToggle>
+
 			<h2>Expanded by default</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -37,10 +37,10 @@ export const component = () => {
 				startOpen
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
+			</UseToggle>
 
 			<h2>No use toggle</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -48,10 +48,10 @@ export const component = () => {
 				showLabel
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
-			
+			</UseToggle>
+
 			<h2>No label and use toggle</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -59,20 +59,20 @@ export const component = () => {
 				showLabel={false}
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
+			</UseToggle>
 
 			<h2>No expander toggle (basic use toggle)</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
 				showExpanderButton={false}
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
+			</UseToggle>
 
 			<h2>No expander toggle (basic use toggle) with expand on enable</h2>
-			<CollapsableComponentUseToggle
+			<UseToggle
 				label='My component'
 				checked={current}
 				onChange={(value) => setCurrent(value)}
@@ -80,7 +80,7 @@ export const component = () => {
 				expandOnChecked
 			>
 				<p>Content goes here</p>
-			</CollapsableComponentUseToggle>
+			</UseToggle>
 		</div>
 	);
 };

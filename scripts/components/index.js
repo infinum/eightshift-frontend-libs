@@ -14,9 +14,7 @@ export {
 	ColorPickerType,
 } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
-export { CollapsableComponentUseToggle } from './collapsable-component-use-toggle/collapsable-component-use-toggle';
 export { CompactResponsive } from './compact-responsive/compact-responsive';
-export { ComponentUseToggle } from './component-use-toggle/component-use-toggle';
 export { CustomSelect } from './custom-select/custom-select';
 export { CustomSelectCustomOption } from './custom-select/custom-select-custom-option';
 export { CustomSelectCustomValueDisplay } from './custom-select/custom-select-custom-value-display';
@@ -49,5 +47,6 @@ export { SimpleRepeaterItem } from './simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';
 export { SpacingSlider } from './spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
+export { UseToggle } from './use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';

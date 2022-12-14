@@ -6,7 +6,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 /**
  * A component use toggle with collapsable content.
  *
- * @param {object} props                          - CollapsableComponentUseToggle options.
+ * @param {object} props                          - UseToggle options.
  * @param {string} props.label                    - Usually component name.
  * @param {boolean} props.checked                 - Is the component currently in use.
  * @param {function} props.onChange               - `onChange` handler from the `ToggleSwitch`.
@@ -18,7 +18,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
  * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the component classes.
  * @param {React.Component} props.children        - Child items that are shown when expanded.
  */
-export const CollapsableComponentUseToggle = ({
+export const UseToggle = ({
 	label,
 	checked,
 	onChange,
