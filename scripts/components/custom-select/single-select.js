@@ -1,9 +1,7 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import RSSelect, { components } from 'react-select';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
-import { customOnChange, getValue } from './shared';
 
 /**
  * A simple, customizable select menu.
@@ -13,13 +11,13 @@ import { customOnChange, getValue } from './shared';
  * @param {string?} [props.help]                             - Help text displayed below the control.
  * @param {array<{string, string}>?} props.options           - Options to choose from. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                               - Current value
- * @param {boolean} [props.simpleValue=false]                - If `true`, instead of passing (and getting) a `{label: '', value: ''}` object from the component, only the value is returned.
  * @param {function} props.onChange                          - Function called when the selection is changed.
  * @param {boolean} [props.noClear=false]                    - If `true`, the items cannot be cleared/deleted all at once.
  * @param {boolean} [props.noSearch=false]                   - If `true`, the search functionality is disabled.
  * @param {boolean} [props.disabled=false]                   - If set `true`, the component is disabled.
  * @param {boolean} [props.closeMenuAfterSelect=false]       - If set `true`, the dropdown is closed immediately after selecting an option.
- * @param {string} [props.noOptionsMessage='No options']     - Text to display when no options are available.
+ * @param {string?} [props.placeholder]                      - Placeholder text when nothing is selected.
+ * @param {string?} [props.noOptionsMessage]                 - Text to display when no options are available.
  * @param {React.Component?} [props.customDropdownIndicator] - If provided, replaces the default dropdown arrow indicator.
  * @param {React.Component?} [props.customClearIndicator]    - If provided and `noClear` is `false`, replaces the default 'Clear all' button.
  * @param {React.Component?} [props.customMenuOption]        - If provided, replaces the default item in the dropdown menu (react-select's `components.Option`).
@@ -37,8 +35,6 @@ export const Select = (props) => {
 		options,
 		value,
 
-		simpleValue = false,
-
 		onChange,
 
 		noClear = false,
@@ -48,7 +44,8 @@ export const Select = (props) => {
 
 		closeMenuAfterSelect = false,
 
-		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
+		placeholder,
+		noOptionsMessage,
 
 		customClearIndicator,
 		customDropdownArrow,
@@ -70,14 +67,15 @@ export const Select = (props) => {
 
 			<RSSelect
 				options={options}
-				value={getValue(simpleValue, value, options)}
-				onChange={(v) => customOnChange(simpleValue, v, onChange)}
+				value={value}
+				onChange={onChange}
 				closeMenuOnSelect={closeMenuAfterSelect}
 				isClearable={!noClear}
 				isSearchable={!noSearch}
 				isDisabled={disabled}
 				className={additionalSelectClasses}
-				noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
+				noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : null}
+				placeholder={placeholder}
 				theme={defaultEightshiftColorScheme}
 				styles={defaultEightshiftStyles}
 				components={{

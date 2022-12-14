@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { components } from 'react-select';
 import RSAsyncSelect from 'react-select/async';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
@@ -20,8 +19,9 @@ import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator
  * @param {boolean} [props.noOptionCaching=false]                      - If `true`, react-select option caching functionality is disabled.
  * @param {boolean} [props.disabled=false]                             - If set `true`, the component is disabled.
  * @param {boolean} [props.closeMenuAfterSelect=false]                 - If set `true`, the dropdown is closed immediately after selecting an option.
- * @param {string} [props.noOptionsMessage='No options']               - Text to display when no options are available.
- * @param {string} [props.loadingMessage='Loading']                    - Text to display while loading options.
+ * @param {string?} [props.placeholder]                                - Placeholder text when nothing is selected.
+ * @param {string?} [props.loadingMessage]                             - Text to display while loading options.
+ * @param {string?} [props.noOptionsMessage]                           - Text to display when no options are available.
  * @param {React.Component?} [props.customDropdownIndicator]           - If provided, replaces the default dropdown arrow indicator.
  * @param {React.Component?} [props.customClearIndicator]              - If provided and `noClear` is `false`, replaces the default 'Clear all' button.
  * @param {React.Component?} [props.customMenuOption]                  - If provided, replaces the default item in the dropdown menu (react-select's `components.Option`).
@@ -51,7 +51,9 @@ export const AsyncSelect = (props) => {
 
 		closeMenuAfterSelect = false,
 
-		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
+		placeholder,
+		loadingMessage,
+		noOptionsMessage,
 
 		customClearIndicator,
 		customDropdownArrow,
@@ -89,7 +91,9 @@ export const AsyncSelect = (props) => {
 				isSearchable={!noSearch}
 				isDisabled={disabled}
 				className={additionalSelectClasses}
-				noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
+				noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : null}
+				loadingMessage={loadingMessage ? () => (<span>{loadingMessage}</span>) : null}
+				placeholder={placeholder}
 				theme={defaultEightshiftColorScheme}
 				styles={defaultEightshiftStyles}
 				components={{
