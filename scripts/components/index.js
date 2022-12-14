@@ -18,11 +18,12 @@ export {
 export { Collapsable } from './collapsable/collapsable';
 export { CompactResponsive } from './compact-responsive/compact-responsive';
 export {
+	RSOption,
 	RSDropdownIndicator,
+	RSSingleValue,
+	RSMultiValueRemove,
 	RSMultiValueContainer,
 	RSMultiValueLabel,
-	RSMultiValueRemove,
-	RSOption,
 } from './custom-select/react-select-component-wrappers';
 export { CustomSlider } from './custom-slider/custom-slider';
 export { CustomRangeSlider } from './custom-slider/custom-range-slider';

@@ -19,11 +19,12 @@ export {
 export { Collapsable } from './components/collapsable/collapsable';
 export { CompactResponsive } from './components/compact-responsive/compact-responsive';
 export {
+	RSOption,
 	RSDropdownIndicator,
+	RSSingleValue,
+	RSMultiValueRemove,
 	RSMultiValueContainer,
 	RSMultiValueLabel,
-	RSMultiValueRemove,
-	RSOption,
 } from './components/custom-select/react-select-component-wrappers';
 export { CustomSlider } from './components/custom-slider/custom-slider';
 export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
