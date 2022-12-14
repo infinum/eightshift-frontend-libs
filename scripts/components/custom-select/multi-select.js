@@ -1,68 +1,12 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import Select, { components } from 'react-select';
-
 import { DndContext, useDroppable } from '@dnd-kit/core';
-
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-
-import {
-	arrayMove,
-	horizontalListSortingStrategy,
-	SortableContext,
-	useSortable,
-} from '@dnd-kit/sortable';
-
+import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-
-
-const MultiValue = (props) => {
-	const onMouseDown = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
-	};
-
-	const innerProps = { ...props.innerProps, onMouseDown };
-
-	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-		id: props.data.id,
-	});
-
-	const style = {
-		transform: CSS.Transform.toString(transform),
-		transition,
-	};
-
-	return (
-		<div style={style} ref={setNodeRef} {...attributes} {...listeners}>
-			<components.MultiValue {...props} innerProps={innerProps} />
-		</div>
-	);
-};
-
-const MultiValueContainer = (props) => {
-	const { setNodeRef } = useDroppable({ id: 'droppable' });
-
-	return (
-		// <Tooltip content={'Customise your multi-value container!'}>
-		<div ref={setNodeRef}>
-			<components.MultiValueContainer {...props} />
-		</div>
-		// </Tooltip>
-	);
-};
-
-const MultiValueRemove = (props) => {
-	return (
-		<components.MultiValueRemove
-			{...props}
-			innerProps={{
-				onPointerDown: (e) => e.stopPropagation(),
-				...props.innerProps,
-			}}
-		/>
-	);
-};
+import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
+import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
 
 export const MultiSelect = (props) => {
 	const {
@@ -74,8 +18,6 @@ export const MultiSelect = (props) => {
 
 		onChange,
 
-		size = 'default', // 'compact',
-
 		noClear = false,
 		noSearch = false,
 
@@ -83,9 +25,16 @@ export const MultiSelect = (props) => {
 
 		closeAfterSelect = false,
 
-		style = 'default', // 'black', 'reactSelectDefault'
-
 		noOptionsMessage = __('No options', 'eightshift-frontend-libs'),
+
+		customClearIndicator,
+		customDropdownArrow,
+		customIndicatorSeparator,
+
+		customMenuOption,
+		customValueDisplay,
+		customValueRemove,
+		customValueContainer,
 
 		additionalClass,
 		additionalProps,
@@ -103,39 +52,88 @@ export const MultiSelect = (props) => {
 		}
 	};
 
+	const MultiValue = (props) => {
+		const onMouseDown = (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+		};
+
+		const ComponentToRender = customValueDisplay ?? components.MultiValue;
+
+		const innerProps = { ...props.innerProps, onMouseDown };
+
+		const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.data.id });
+
+		const style = {
+			transform: CSS.Transform.toString(transform),
+			transition,
+		};
+
+		return (
+			<div style={style} ref={setNodeRef} {...attributes} {...listeners}>
+				<ComponentToRender {...props} innerProps={innerProps} />
+			</div>
+		);
+	};
+
+	const MultiValueContainer = (props) => {
+		const { setNodeRef } = useDroppable({ id: 'droppable' });
+
+		const ComponentToRender = customValueContainer ?? components.MultiValueContainer;
+
+		return (
+			<div ref={setNodeRef}>
+				<ComponentToRender {...props} />
+			</div>
+		);
+	};
+
+	const MultiValueRemove = (props) => {
+		const ComponentToRender = customValueRemove ?? components.MultiValueRemove;
+
+		return (
+			<ComponentToRender
+				{...props}
+				innerProps={{
+					onPointerDown: (e) => e.stopPropagation(),
+					...props.innerProps,
+				}} />
+		);
+	};
+
 	return (
 		<>
 			{label &&
 				<span>{label}</span>
 			}
 
-			<DndContext
-				modifiers={[restrictToParentElement]}
-				onDragEnd={handleDragEnd}
-			>
-				<SortableContext
-					items={value}
-					strategy={horizontalListSortingStrategy}
-				>
+			<DndContext modifiers={[restrictToParentElement]} onDragEnd={handleDragEnd}>
+				<SortableContext items={value.map(({ id }) => id)}>
 					<Select
-						// menuPortalTarget={document.body}
-						// menuPosition='fixed'
-						distance={4}
 						isMulti
-						options={options}
+						options={options.map((item) => ({ id: item.value, ...item }))}
 						value={value}
 						onChange={onChange}
 						closeMenuOnSelect={closeAfterSelect}
 						isClearable={!noClear}
 						isSearchable={!noSearch}
 						isDisabled={disabled}
+						className={`${additionalClass ?? ''}`}
 						noOptionsMessage={() => (<span>{noOptionsMessage}</span>)}
-						// className={`${additionalClass ?? ''}`}
+						theme={defaultEightshiftColorScheme}
+						styles={defaultEightshiftStyles}
 						components={{
 							MultiValue,
 							MultiValueContainer,
 							MultiValueRemove,
+
+							Option: customMenuOption ?? components.Option,
+
+							IndicatorSeparator: customIndicatorSeparator ?? null,
+							DropdownIndicator: customDropdownArrow ?? CustomSelectDefaultDropdownIndicator,
+							ClearIndicator: customClearIndicator ?? CustomSelectDefaultClearIndicator,
 						}}
+
 						{...additionalProps}
 					/>
 				</SortableContext>
