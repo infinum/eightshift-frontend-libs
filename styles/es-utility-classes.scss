@@ -1584,6 +1584,14 @@ $es-utility-props: (
 }
 
 // Basic transitions.
+.es-custom-transition {
+	transition: {
+		property: var(--es-transition-property, all);
+		timing-function: var(--es-transition-timing-function, var(--es-ease-out-cubic));
+		duration: var(--es-transition-duration, 0.3s);
+	}
+}
+
 .es-transition-all {
 	transition: {
 		property: all;
