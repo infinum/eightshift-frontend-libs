@@ -70,7 +70,7 @@ export const MultiSelect = (props) => {
 	return (
 		<div className={`${noBottomSpacing ? '' : 'es-mb-5'} ${additionalClasses ?? ''}`}>
 			{label &&
-				<span className='es-mb-3'>{label}</span>
+				<div className='es-mb-2'>{label}</div>
 			}
 
 			<DndContext modifiers={[restrictToParentElement]} onDragEnd={getDragEndHandler(onChange, value)}>
@@ -105,7 +105,7 @@ export const MultiSelect = (props) => {
 			</DndContext>
 
 			{help &&
-				<span className='es-mt-3'>{help}</span>
+				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
 			}
 		</div>
 	);
