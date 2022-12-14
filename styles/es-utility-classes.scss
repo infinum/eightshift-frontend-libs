@@ -221,6 +221,17 @@ $es-displays: (
 	'contents': 'contents',
 );
 
+$es-shadows: (
+	'sm': box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05),
+	'regular': box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1),
+	'md': box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1),
+	'lg': box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1),
+	'xl': box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1),
+	'2xl': box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25),
+	'inner': box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05),
+	'none': box-shadow: 0 0 rgb(0 0 0 / 0),
+);
+
 $es-utility-props: (
 	'border': (
 		'cssProp': 'border',
@@ -960,6 +971,33 @@ $es-utility-props: (
 		'valuePrefix': '',
 		'includeNegativeValues': 'true',
 	),
+	'shadow': (
+		'cssProp': 'box-shadow',
+		'values': $es-shadow,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'hover-shadow': (
+		'cssProp': 'box-shadow',
+		'values': $es-shadow,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': ':hover',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'focus-shadow': (
+		'cssProp': 'box-shadow',
+		'values': $es-shadow,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': ':focus-visible',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
 );
 
 // Additional borders (default).
@@ -1640,39 +1678,6 @@ $es-utility-props: (
 
 .es-cursor-grab {
 	cursor: grab;
-}
-
-// Shadow.
-.es-shadow-sm {
-	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-}
-
-.es-shadow {
-	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-}
-
-.es-shadow-md {
-	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-.es-shadow-lg {
-	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-.es-shadow-xl {
-	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.es-shadow-2xl {
-	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-}
-
-.es-shadow-inner {
-	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-}
-
-.es-shadow-none {
-	box-shadow: 0 0 rgb(0 0 0 / 0);
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
