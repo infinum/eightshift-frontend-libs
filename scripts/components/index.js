@@ -16,7 +16,6 @@ export {
 	ColorPickerType,
 } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
-export { CompactResponsive } from './compact-responsive/compact-responsive';
 export {
 	RSOption,
 	RSDropdownIndicator,
