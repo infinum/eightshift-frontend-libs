@@ -1473,13 +1473,11 @@ $es-utility-props: (
 // Inline input-label combos.
 @each $name, $value in $es-spacings {
 	.es-inline-input-label-#{$name} {
+		--es-gutenberg-base-control-label-margin: 0;
+
 		.components-base-control__field {
 			display: grid;
 			grid-template-columns: 1fr #{$value};
-		}
-
-		components-base-control__label {
-			margin: 0 !important;
 		}
 	}
 }
