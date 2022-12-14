@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { __ } from '@wordpress/i18n';
+import ReactHtmlParser from 'react-html-parser';
+import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { AnimatedContentVisibility, Control } from '../shared';
 import { classnames, getDefaultBreakpointNames } from '../../helpers';
@@ -30,20 +31,16 @@ export const Responsive = (props) => {
 
 		breakpoints = getDefaultBreakpointNames(),
 
-		inheritButton,
+		inheritButton = [],
 		breakpointLabels,
 		additionalClasses,
 
 		noBottomSpacing = false,
 	} = props;
 
-	const [isOpen, setIsOpen] = useState(false);
-	const [current, setCurrent] = useState(0);
+	const fallbackBreakpointLabels = breakpoints.map((v) => ucfirst(v));
 
-	const toggleOpen = () => {
-		setIsOpen(!isOpen);
-		setCurrent(isOpen ? 0 : -1);
-	};
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<Control
@@ -55,7 +52,7 @@ export const Responsive = (props) => {
 			actions={
 				<Button
 					label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
-					onClick={toggleOpen}
+					onClick={() => setIsOpen(!isOpen)}
 					className={`es-transition-colors es-button-icon-24 es-rounded-1.5 es-h-7! es-py-0! es-pr-0.5! es-pl-1.5! ${isOpen ? 'es-nested-color-pure-white es-bg-admin-accent' : ''}`}
 					showTooltip
 				>
@@ -67,52 +64,49 @@ export const Responsive = (props) => {
 			}
 		>
 			{children.map((child, index) => {
-				let showChild = true;
+				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
+				const previousBreakpointLabel = index === 0 ? '' : breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1);
+				const breakpointIcon = icons[`screen${ucfirst(breakpoints[index])}`];
 
-				if (inheritButton && index > 0 && inheritButton[index].isActive) {
-					showChild = false;
-				}
-
-				const breakpointLabel = breakpointLabels?.[index] ?? (ucfirst(index === 0 ? `${breakpoints[0]} (${__('Default', 'eightshift-frontend-libs')})` : breakpoints[index]));
+				const currentInheritButton = inheritButton?.at(index);
 
 				return (
-					<div key={index}>
-						<AnimatedContentVisibility showIf={current === -1} additionalContainerClasses='es-w-full'>
-							<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />
+					<>
+						<AnimatedContentVisibility showIf={isOpen}>
+							<FancyDivider icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} />
+
+							{index > 0 && currentInheritButton &&
+								<Button
+									icon={icons.inherit}
+									onClick={currentInheritButton?.callback}
+									className={classnames(
+										'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1 es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
+										currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : 'es-mb-2.5'
+									)}
+								>
+									{currentInheritButton?.isActive &&
+										<span className='es-text-3 es-color-cool-gray-600'>
+											{ReactHtmlParser(sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))}
+											<br />
+											<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
+										</span>
+									}
+
+									{!currentInheritButton?.isActive &&
+										<span className='es-color-cool-gray-600'>
+											{ReactHtmlParser(sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))}
+										</span>
+									}
+								</Button>
+							}
 						</AnimatedContentVisibility>
 
 						{index === 0 && child}
 
-						<AnimatedContentVisibility showIf={index > 0 && current === -1 && inheritButton !== undefined} additionalContainerClasses='es-w-full'>
-							<Button
-								onClick={inheritButton[index].callback}
-								className={classnames([
-									'es-transition-colors es-text-align-left es-rounded-1.5 es-nested-m-0! es-gap-2! es-animated-inherit-icon es-w-full es-pl-0! es-pr-2! es-py-5!',
-									inheritButton[index].isActive ? 'is-inherited es-nested-color-admin-accent es-border-transparent' : 'es-border-cool-gray-200',
-									!inheritButton[index].isActive ? 'es-mb-3' : '',
-								])}
-								icon={icons.inherit}
-							>
-								{inheritButton[index].isActive &&
-									<span className='es-text-3 es-color-cool-gray-600'>
-										{__('Using value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
-										<br />
-										<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
-									</span>
-								}
-
-								{!inheritButton[index].isActive &&
-									<span className='es-color-cool-gray-600'>
-										{__('Use value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
-									</span>
-								}
-							</Button>
-						</AnimatedContentVisibility>
-
-						<AnimatedContentVisibility showIf={showChild && index > 0 && current === -1} additionalContainerClasses='es-w-full'>
+						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}>
 							{child}
 						</AnimatedContentVisibility>
-					</div>
+					</>
 				);
 			})}
 		</Control>
