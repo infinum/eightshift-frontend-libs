@@ -103,8 +103,8 @@ export const AsyncMultiSelect = (props) => {
 						isSearchable={!noSearch}
 						isDisabled={disabled}
 						className={additionalSelectClasses}
-						noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : null}
-						loadingMessage={loadingMessage ? () => (<span>{loadingMessage}</span>) : null}
+						noOptionsMessage={noOptionsMessage ? () => (<span>{noOptionsMessage}</span>) : components.NoOptionsMessage}
+						loadingMessage={loadingMessage ? () => (<span>{loadingMessage}</span>) : components.LoadingMessage}
 						placeholder={placeholder}
 						theme={defaultEightshiftColorScheme}
 						styles={defaultEightshiftStyles}
