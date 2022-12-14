@@ -5,7 +5,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 import classnames from 'classnames';
 
 /**
- * A collapsable container for options, akin to CollapsableComponentUseToggle.
+ * A collapsable container for options.
  *
  * @param {object} props                          - Collapsable options.
  * @param {string} props.label                    - Trigger label.
