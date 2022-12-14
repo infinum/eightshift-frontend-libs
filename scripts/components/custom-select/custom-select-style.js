@@ -46,12 +46,13 @@ export const defaultEightshiftStyles = {
 		...provided,
 		'&:hover': {
 			...provided['&:hover'],
-			borderColor: state.theme.colors.neutral40,
+			borderColor: state.theme.colors.neutral50,
 		},
 		borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 		borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
-		borderColor: state.theme.colors.neutral30,
-		height: 36,
+		borderColor: state.theme.colors.neutral40,
+		height: this.isMulti ? provided.height : 36,
+		minHeight: this.isMulti ? provided.minHeight : 36,
 	}),
 
 	// Option in the dropdown menu.
@@ -74,7 +75,7 @@ export const defaultEightshiftStyles = {
 	// Main container in the dropdown.
 	valueContainer: (provided, state) => ({
 		...provided,
-		padding: state.isMulti ? '0.25rem' : '0.125rem 0.25rem',
+		padding: state.isMulti && state.hasValue ? '0.125rem' : '0.125rem 0.25rem',
 	}),
 
 	// Multi-item 'chip' - single inner item.
