@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkAttrResponsive, CompactResponsive, CustomRangeSlider, CustomRangeSliderStyle, getAttrKey, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttrResponsive, Responsive, CustomRangeSlider, CustomRangeSliderStyle, getAttrKey, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import { __, _n, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 
@@ -38,7 +38,7 @@ export const WidthOffsetRangeSlider = (props) => {
 	}
 
 	return (
-		<CompactResponsive label={<IconLabel icon={icon} label={label} />}>
+		<Responsive label={<IconLabel icon={icon} label={label} />}>
 			{breakpointNames.map((breakpoint, index) => {
 				const {
 					[offsetAttributeName]: offsetNames,
@@ -239,6 +239,6 @@ export const WidthOffsetRangeSlider = (props) => {
 					</div>
 				);
 			})}
-		</CompactResponsive>
+		</Responsive>
 	);
 };

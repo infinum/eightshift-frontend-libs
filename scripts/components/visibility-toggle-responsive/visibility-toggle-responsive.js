@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, CompactResponsive, getAttrKey, IconLabel, icons, OptionSelector, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, Responsive, getAttrKey, IconLabel, icons, OptionSelector, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A responsive block/component visibility control.
@@ -34,7 +34,7 @@ export const VisibilityToggleResponsive = (props) => {
 	const { [attributeName]: attrNames } = manifestResponsiveAttributes;
 
 	return (
-		<CompactResponsive
+		<Responsive
 			label={<IconLabel icon={icon} label={label} />}
 			additionalClasses={`-es-mb-1! ${additionalClasses ?? ''}`}
 			breakpoints={breakpointNames}
@@ -69,6 +69,6 @@ export const VisibilityToggleResponsive = (props) => {
 					/>
 				);
 			})}
-		</CompactResponsive>
+		</Responsive>
 	);
 };

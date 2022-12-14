@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { checkAttr, CompactResponsive, CustomSlider, getAttrKey, getOption, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, Responsive, CustomSlider, getAttrKey, getOption, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A responsive slider to set spacings.
@@ -71,7 +71,7 @@ export const SpacingSlider = (props) => {
 	} = manifest;
 
 	return (
-		<CompactResponsive
+		<Responsive
 			label={<IconLabel icon={icon} label={label} />}
 			breakpoints={breakpointNames}
 			help={help}
@@ -195,6 +195,6 @@ export const SpacingSlider = (props) => {
 					</div>
 				);
 			})}
-		</CompactResponsive>
+		</Respon>
 	);
 };
