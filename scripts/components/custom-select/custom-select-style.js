@@ -9,12 +9,11 @@ export const defaultEightshiftColorScheme = (theme) => {
 		borderRadius: 4,
 		colors: {
 			...theme.colors,
-			// primary25: 'var(--es-admin-cool-gray-100)',
-			// primary50: 'var(--es-admin-cool-gray-200)',
-			// primary75: 'var(--es-admin-cool-gray-600)',
+			primary25: 'var(--es-admin-cool-gray-100)',
+			primary50: 'var(--es-admin-cool-gray-200)',
+			primary75: 'var(--es-admin-cool-gray-600)',
 			primary: 'var(--wp-admin-theme-color, var(--es-admin-accent-color-default))',
 			danger: 'var(--es-admin-red-500)',
-			// dangerLight: '#FFBDAD',
 			neutral0: 'var(--es-admin-pure-white)',
 			neutral5: 'var(--es-admin-cool-gray-50)',
 			neutral10: 'var(--es-admin-cool-gray-100)',
@@ -52,6 +51,7 @@ export const defaultEightshiftStyles = {
 		borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 		borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 		borderColor: state.theme.colors.neutral30,
+		height: 36,
 	}),
 
 	// Option in the dropdown menu.
@@ -62,7 +62,7 @@ export const defaultEightshiftStyles = {
 		borderRadius: 3,
 	}),
 
-	// Input textbox.
+	// Input TextBox.
 	input: (provided) => {
 		return {
 			...provided,
