@@ -124,3 +124,6 @@ export {
 	truncateMiddle,
 	unescapeHTML
 } from './helpers/text-helpers';
+
+
+export { MultiSelect } from './components/custom-select/multi-select';
