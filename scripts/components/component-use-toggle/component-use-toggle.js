@@ -31,7 +31,7 @@ export const ComponentUseToggle = ({
 	});
 
 	return (
-		<div className={`es-collapsable-component-use-toggle-v2__trigger es-h-between es-mb-2.5 es-pb-1.0 ${checked ? 'es-border-b-cool-gray-300' : 'es-border-b-transparent'}`}>
+		<div className={`es-collapsable-component-use-toggle-v2__trigger es-h-between es-mb-2.5 es-pb-1 ${checked ? 'es-border-b-cool-gray-300' : 'es-border-b-transparent'}`}>
 			<div className='es-h-spaced'>
 				{showUseToggle &&
 					<Button

@@ -116,7 +116,7 @@ export const MatrixAlignControl = (props) => {
 							border='none'
 							alignment='center'
 							additionalClass={size === '3x3' ? 'es-w-27!' : 'es-w-18!'}
-							additionalButtonClass='es-rounded-1.0!'
+							additionalButtonClass='es-rounded-1!'
 							noBottomSpacing
 							iconOnly
 						/>
@@ -139,7 +139,7 @@ export const MatrixAlignControl = (props) => {
 					icon={icons[`position${size}${ucfirst(camelize(value))}`]}
 					onClick={() => setIsOpen(!isOpen)}
 					ref={ref}
-					className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1.0! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalTriggerClasses}`}
+					className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalTriggerClasses}`}
 				>
 					{label}
 				</Button>

@@ -124,7 +124,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									isSmall
 									isPressed={isFullWidth}
 									onClick={() => setAttributes({ [getAttrKey(isFullWidthAttr, attributes, manifest)]: !isFullWidth, })}
-									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1 es-h-7! es-px-2!'
 									icon={icons.columnGuttersLR}
 								>
 									{__('Fullwidth', 'eightshift-frontend-libs')}
@@ -136,7 +136,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									isSmall
 									isPressed={typeof offset === 'undefined'}
 									onClick={() => setAttributes({ [getAttrKey(offsetAttr, attributes, manifest)]: typeof offset === 'undefined' ? 1 : undefined })}
-									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1 es-h-7! es-px-2!'
 									icon={icons.offsetAuto}
 								>
 									{__('Automatic offset', 'eightshift-frontend-libs')}
@@ -203,14 +203,14 @@ export const WidthOffsetRangeSlider = (props) => {
 						/>
 
 						{index !== 0 &&
-							<div className='es-h-start es-mt-8 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1.0! es-py-0.5! es-display-flex es-gap-1.0! es-ml-2.5'>
-								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1.0 es-nested-color-cool-gray-450!' />
+							<div className='es-h-start es-mt-8 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1! es-py-0.5! es-display-flex es-gap-1! es-ml-2.5'>
+								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1 es-nested-color-cool-gray-450!' />
 
 								<Button
 									isSmall
 									isPressed={typeof offset === 'undefined'}
 									onClick={() => setAttributes({ [getAttrKey(offsetAttr, attributes, manifest)]: typeof offset === 'undefined' ? 1 : undefined })}
-									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1 es-h-7! es-px-2!'
 								>
 									{__('Offset', 'eightshift-frontend-libs')}
 								</Button>
@@ -219,7 +219,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									isSmall
 									isPressed={typeof width === 'undefined'}
 									onClick={() => setAttributes({ [getAttrKey(widthAttr, attributes, manifest)]: typeof width === 'undefined' ? maxWidth : undefined, })}
-									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1 es-h-7! es-px-2!'
 								>
 									{__('Width', 'eightshift-frontend-libs')}
 								</Button>
@@ -229,7 +229,7 @@ export const WidthOffsetRangeSlider = (props) => {
 										isSmall
 										isPressed={typeof isFullWidth === 'undefined'}
 										onClick={() => setAttributes({ [getAttrKey(isFullWidthAttr, attributes, manifest)]: typeof isFullWidth === 'undefined' ? false : undefined })}
-										className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+										className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1 es-h-7! es-px-2!'
 									>
 										{__('Fullwidth', 'eightshift-frontend-libs')}
 									</Button>

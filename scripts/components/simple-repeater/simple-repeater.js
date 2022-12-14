@@ -99,7 +99,7 @@ export const SimpleRepeater = ({
 						}
 					}}
 					icon={icons.plusCircle}
-					className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1.0'
+					className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1'
 					label={__('Add item', 'eightshift-frontend-libs')}
 				/>
 			</div>

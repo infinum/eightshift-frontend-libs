@@ -102,11 +102,11 @@ export const LinkEditComponent = ({
 				{!isLoading &&
 					<Animate type='slide-in' options={{ origin: 'bottom' }}>
 						{({ className }) => (
-							<div className={`${className} es-v-spaced es-gap-1.0! es-max-h-44 es-mt-3 es-pb-3 es-px-0.5`} style={{ overflowY: 'auto' }}>
+							<div className={`${className} es-v-spaced es-gap-1! es-max-h-44 es-mt-3 es-pb-3 es-px-0.5`} style={{ overflowY: 'auto' }}>
 								{suggestions.map((suggestion, i) => {
 									const { title, type, url } = suggestion;
 
-									let typeIcon = (<span className='es-p-1.0 es-rounded-1.0 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>{type.toUpperCase()}</span>);
+									let typeIcon = (<span className='es-p-1 es-rounded-1 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>{type.toUpperCase()}</span>);
 
 									const isCreateNew = type.toLowerCase() === '__create__';
 
@@ -214,7 +214,7 @@ export const LinkEditComponent = ({
 										}}
 										icon={removeIcon}
 										disabled={disabled}
-										className='es-link-edit-component__delete-button es-button-no-outline es-button-icon-24 es-nested-color-red-500 es-rounded-1.0'
+										className='es-link-edit-component__delete-button es-button-no-outline es-button-icon-24 es-nested-color-red-500 es-rounded-1'
 										label={__('Remove', 'eightshift-frontend-libs')}
 										showTooltip
 									/>

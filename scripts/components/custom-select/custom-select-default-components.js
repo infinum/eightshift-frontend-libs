@@ -11,7 +11,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 export const CustomSelectDefaultDropdownIndicator = (props) => (
 	<components.DropdownIndicator {...props}>
 		{React.cloneElement(icons.dropdownCaretAlt, {
-			className: classNames(['es-custom-select-dropdown-icon -es-mr-1.0', props.selectProps.menuIsOpen ? 'is-open' : '']),
+			className: classNames(['es-custom-select-dropdown-icon -es-mr-1', props.selectProps.menuIsOpen ? 'is-open' : '']),
 		})}
 	</components.DropdownIndicator>
 );
