@@ -119,6 +119,7 @@ export { ucfirst } from './editor/utility';
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';
 export { camelize } from './helpers/camelize';
+export { classnames } from './helpers/classnames';
 export { cookies } from './helpers/cookies';
 export { debounce } from './helpers/debounce';
 export { throttle } from './helpers/throttle';

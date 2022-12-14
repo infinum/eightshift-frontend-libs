@@ -2,6 +2,7 @@
 
 export { getDefaultBreakpointNames } from './breakpoints';
 export { camelize } from './camelize';
+export { classnames } from './classnames';
 export { cookies } from './cookies';
 export { debounce } from './debounce';
 export { throttle } from './throttle';
