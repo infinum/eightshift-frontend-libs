@@ -1,7 +1,10 @@
 import { classnames } from '../helpers';
 import { IconLabel } from './icon-label/icon-label';
+import { Animate } from '@wordpress/components';
 
 /**
+ * @since 8.0.0
+ *
  * A base component to optionally encase a component with a label and help.
  *
  * @param {object} props                           - Control options.
@@ -53,5 +56,44 @@ export const Control = (props) => {
 				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
 			}
 		</div>
+	);
+};
+
+/**
+ * @since 8.0.0
+ *
+ * A wrapper around the Gutenberg Animate component.
+ *
+ * @param {object} props                               - AnimatedContentVisibility options.
+ * @param {boolean} [props.showIf]                     - When to show the content.
+ * @param {string?} [props.animation='slide-in']       - Animation to use.
+ * @param {string?} [props.direction='bottom']         - Animation direction.
+ * @param {string?} [props.additionalContainerClasses] - Classes to add to the animated container.
+ * @param {React.Component?} [props.children]          - Content to show.
+ */
+export const AnimatedContentVisibility = (props) => {
+	const {
+		showIf,
+
+		animation = 'slide-in',
+		direction = 'bottom',
+
+		additionalContainerClasses,
+
+		children,
+	} = props;
+
+	if (!showIf) {
+		return null;
+	}
+
+	return (
+		<Animate type={animation} options={{ origin: direction }} >
+			{({ className }) => (
+				<div className={classnames(className, additionalContainerClasses)}>
+					{children}
+				</div>
+			)}
+		</Animate>
 	);
 };
