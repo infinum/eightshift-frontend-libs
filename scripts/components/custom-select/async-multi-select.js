@@ -18,7 +18,7 @@ import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValue
  * @param {callback<Promise<>>?} props.loadOptions                     - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
  * @param {object} props.value                                         - Current value
  * @param {function} props.onChange                                    - Function called when the selection is changed.
- * @param {boolean} [props.noClear=false]                              - If `true`, the items cannot be cleared/deleted all at once.
+ * @param {boolean} [props.clearable=false]                            - If `true`, a button to remove all items is shown.
  * @param {boolean} [props.noSearch=false]                             - If `true`, the search functionality is disabled.
  * @param {boolean} [props.noOptionCaching=false]                      - If `true`, react-select option caching functionality is disabled.
  * @param {boolean} [props.disabled=false]                             - If set `true`, the component is disabled.
@@ -47,7 +47,7 @@ export const AsyncMultiSelect = (props) => {
 
 		onChange,
 
-		noClear = false,
+		clearable = false,
 		noSearch = false,
 		noOptionCaching = false,
 
@@ -95,7 +95,7 @@ export const AsyncMultiSelect = (props) => {
 						value={value}
 						onChange={onChange}
 						closeMenuOnSelect={!keepMenuOpenAfterSelect}
-						isClearable={!noClear}
+						isClearable={clearable}
 						isSearchable={!noSearch}
 						isDisabled={disabled}
 						className={additionalSelectClasses}

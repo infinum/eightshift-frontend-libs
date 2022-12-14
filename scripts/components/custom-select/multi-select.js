@@ -18,7 +18,7 @@ import { customOnChange, getValue } from './shared';
  * @param {object} props.value                               - Current value
  * @param {function} props.onChange                          - Function called when the selection is changed.
  * @param {boolean} [props.simpleValue=false]                - If `true`, instead of passing (and getting) a `{label: '', value: ''}` object from the component, only the value is returned.
- * @param {boolean} [props.noClear=false]                    - If `true`, the items cannot be cleared/deleted all at once.
+ * @param {boolean} [props.clearable=false]                  - If `true`, a button to remove all items is shown.
  * @param {boolean} [props.noSearch=false]                   - If `true`, the search functionality is disabled.
  * @param {boolean} [props.disabled=false]                   - If set `true`, the component is disabled.
  * @param {boolean} [props.keepMenuOpenAfterSelect=false]    - If set `true`, the dropdown is not closed immediately after selecting an option.
@@ -46,7 +46,7 @@ export const MultiSelect = (props) => {
 
 		onChange,
 
-		noClear = false,
+		clearable = false,
 		noSearch = false,
 
 		disabled = false,
@@ -84,7 +84,7 @@ export const MultiSelect = (props) => {
 						value={getValue(simpleValue, value, options)}
 						onChange={(v) => customOnChange(simpleValue, v, onChange)}
 						closeMenuOnSelect={!keepMenuOpenAfterSelect}
-						isClearable={!noClear}
+						isClearable={clearable}
 						isSearchable={!noSearch}
 						isDisabled={disabled}
 						className={additionalSelectClasses}
