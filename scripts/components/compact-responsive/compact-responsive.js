@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button, Animate } from '@wordpress/components';
-import { IconLabel, FancyDivider, icons, ucfirst, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { Button } from '@wordpress/components';
+import { AnimatedContentVisibility, Control } from '../shared';
+import { classnames, getDefaultBreakpointNames } from '../../helpers';
+import { icons, ucfirst } from '../../editor';
+import { FancyDivider } from '../fancy-divider/fancy-divider';
 
 /**
  * A component that displays options adjustable across screen sizes.
@@ -33,9 +35,6 @@ export const CompactResponsive = (props) => {
 		additionalClasses,
 
 		noBottomSpacing = false,
-
-		// Should only be used for compatibility with old Responsive.
-		hideBreakpointLabels = false,
 	} = props;
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +46,13 @@ export const CompactResponsive = (props) => {
 	};
 
 	return (
-		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${noBottomSpacing ? '' : 'es-mb-3 es-pb-0.25'} ${additionalClasses ?? ''}`}>
-			<div className='es-h-between es-w-full es-h-7 es-mb-3'>
-				<IconLabel icon={icon} label={label} standalone />
-
+		<Control
+			icon={icon}
+			label={label}
+			help={help}
+			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			noBottomSpacing={noBottomSpacing}
+			actions={
 				<Button
 					label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
 					onClick={toggleOpen}
@@ -62,8 +64,8 @@ export const CompactResponsive = (props) => {
 						{isOpen ? icons.caretDownFill : icons.caretDown}
 					</div>
 				</Button>
-			</div>
-
+			}
+		>
 			{children.map((child, index) => {
 				let showChild = true;
 
@@ -75,66 +77,44 @@ export const CompactResponsive = (props) => {
 
 				return (
 					<div key={index}>
-						{current === -1 && !hideBreakpointLabels &&
-							<Animate type='slide-in' options={{ origin: 'bottom' }} >
-								{({ className }) => (
-									<div className={className}>
-										<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />
-									</div>
-								)}
-							</Animate>
-						}
+						<AnimatedContentVisibility showIf={current === -1} additionalContainerClasses='es-w-full'>
+							<FancyDivider icon={icons[`screen${ucfirst(breakpoints[index])}`]} label={breakpointLabel} />
+						</AnimatedContentVisibility>
 
 						{index === 0 && child}
 
-						{index > 0 && current === -1 && inheritButton !== undefined &&
-							<Animate type='slide-in' options={{ origin: 'bottom' }} >
-								{({ className }) => (
-									<div className={`${className} es-w-full`}>
-										<Button
-											onClick={inheritButton[index].callback}
-											className={classnames([
-												'es-transition-colors es-text-align-left es-rounded-1.5 es-nested-m-0! es-gap-2! es-animated-inherit-icon es-w-full es-pl-0! es-pr-2! es-py-5!',
-												inheritButton[index].isActive ? 'is-inherited es-nested-color-admin-accent es-border-transparent' : 'es-border-cool-gray-200',
-												!inheritButton[index].isActive ? 'es-mb-3' : '',
-											])}
-											icon={icons.inherit}
-										>
-											{inheritButton[index].isActive &&
-												<span className='es-text-3 es-color-cool-gray-600'>
-													{__('Using value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
-													<br />
-													<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
-												</span>
-											}
+						<AnimatedContentVisibility showIf={index > 0 && current === -1 && inheritButton !== undefined} additionalContainerClasses='es-w-full'>
+							<Button
+								onClick={inheritButton[index].callback}
+								className={classnames([
+									'es-transition-colors es-text-align-left es-rounded-1.5 es-nested-m-0! es-gap-2! es-animated-inherit-icon es-w-full es-pl-0! es-pr-2! es-py-5!',
+									inheritButton[index].isActive ? 'is-inherited es-nested-color-admin-accent es-border-transparent' : 'es-border-cool-gray-200',
+									!inheritButton[index].isActive ? 'es-mb-3' : '',
+								])}
+								icon={icons.inherit}
+							>
+								{inheritButton[index].isActive &&
+									<span className='es-text-3 es-color-cool-gray-600'>
+										{__('Using value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
+										<br />
+										<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
+									</span>
+								}
 
-											{!inheritButton[index].isActive &&
-												<span className='es-color-cool-gray-600'>
-													{__('Use value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
-												</span>
-											}
-										</Button>
-									</div>
-								)}
-							</Animate>
-						}
+								{!inheritButton[index].isActive &&
+									<span className='es-color-cool-gray-600'>
+										{__('Use value from ', 'eightshift-frontend-libs')} <strong>{ucfirst(breakpoints?.[index - 1])}</strong>
+									</span>
+								}
+							</Button>
+						</AnimatedContentVisibility>
 
-						{showChild && index > 0 && current === -1 &&
-							<Animate type='slide-in' options={{ origin: 'bottom' }} >
-								{({ className }) => (
-									<div className={`${className} es-w-full`}>
-										{child}
-									</div>
-								)}
-							</Animate>
-						}
+						<AnimatedContentVisibility showIf={showChild && index > 0 && current === -1} additionalContainerClasses='es-w-full'>
+							{child}
+						</AnimatedContentVisibility>
 					</div>
 				);
 			})}
-
-			{help &&
-				<span>{help}</span>
-			}
-		</div>
+		</Control>
 	);
 };
