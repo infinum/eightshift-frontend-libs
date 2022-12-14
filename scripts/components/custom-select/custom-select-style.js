@@ -51,8 +51,8 @@ export const defaultEightshiftStyles = {
 		borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 		borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
 		borderColor: state.theme.colors.neutral40,
-		height: this.isMulti ? provided.height : 36,
-		minHeight: this.isMulti ? provided.minHeight : 36,
+		height: state.isMulti ? provided.height : 36,
+		minHeight: state.isMulti ? provided.minHeight : 36,
 	}),
 
 	// Option in the dropdown menu.
