@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import RSSelect, { components } from 'react-select';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
+import { customOnChange, getValue } from './shared';
 
 /**
  * A simple, customizable select menu.
@@ -12,6 +13,7 @@ import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator
  * @param {string?} [props.help]                             - Help text displayed below the control.
  * @param {array<{string, string}>?} props.options           - Options to choose from. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                               - Current value
+ * @param {boolean} [props.simpleValue=false]                - If `true`, instead of passing (and getting) a `{label: '', value: ''}` object from the component, only the value is returned.
  * @param {function} props.onChange                          - Function called when the selection is changed.
  * @param {boolean} [props.noClear=false]                    - If `true`, the items cannot be cleared/deleted all at once.
  * @param {boolean} [props.noSearch=false]                   - If `true`, the search functionality is disabled.
@@ -34,6 +36,8 @@ export const Select = (props) => {
 
 		options,
 		value,
+
+		simpleValue = false,
 
 		onChange,
 
@@ -66,8 +70,8 @@ export const Select = (props) => {
 
 			<RSSelect
 				options={options}
-				value={value}
-				onChange={onChange}
+				value={getValue(simpleValue, value, options)}
+				onChange={(v) => customOnChange(simpleValue, v, onChange)}
 				closeMenuOnSelect={closeMenuAfterSelect}
 				isClearable={!noClear}
 				isSearchable={!noSearch}

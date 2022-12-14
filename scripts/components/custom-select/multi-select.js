@@ -7,6 +7,7 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
 import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './multi-select-components';
+import { customOnChange, getValue } from './shared';
 
 /**
  * Multi-select, re-orderable select menu.
@@ -17,6 +18,7 @@ import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValue
  * @param {array<{string, string}>?} props.options           - Options to choose from. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                               - Current value
  * @param {function} props.onChange                          - Function called when the selection is changed.
+ * @param {boolean} [props.simpleValue=false]                - If `true`, instead of passing (and getting) a `{label: '', value: ''}` object from the component, only the value is returned.
  * @param {boolean} [props.noClear=false]                    - If `true`, the items cannot be cleared/deleted all at once.
  * @param {boolean} [props.noSearch=false]                   - If `true`, the search functionality is disabled.
  * @param {boolean} [props.disabled=false]                   - If set `true`, the component is disabled.
@@ -40,6 +42,8 @@ export const MultiSelect = (props) => {
 
 		options,
 		value,
+
+		simpleValue = false,
 
 		onChange,
 
@@ -78,8 +82,8 @@ export const MultiSelect = (props) => {
 					<Select
 						isMulti
 						options={options.map((item) => ({ id: item.value, ...item }))}
-						value={value}
-						onChange={onChange}
+						value={getValue(simpleValue, value, options)}
+						onChange={(v) => customOnChange(simpleValue, v, onChange)}
 						closeMenuOnSelect={!keepMenuOpenAfterSelect}
 						isClearable={!noClear}
 						isSearchable={!noSearch}
