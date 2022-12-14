@@ -1,60 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { __ } from '@wordpress/i18n';
-import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { icons, ucfirst, IconToggle } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import { Responsive } from '../responsive';
 
 export default {
 	title: 'Options/Responsive',
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
-	},
-};
-
-const attributes = {
-	wrapperSpacingBottomLarge: 100,
-	wrapperSpacingBottomDesktop: 50,
-	wrapperSpacingBottomTablet: 30,
-	wrapperSpacingBottomMobile: 10,
-
-	wrapperDividerBottomLarge: true,
-	wrapperDividerBottomDesktop: false,
-	wrapperDividerBottomTablet: false,
-	wrapperDividerBottomMobile: false,
-};
-
-const wrapperSpacingBottom = [
-	attributes.wrapperSpacingBottomLarge,
-	attributes.wrapperSpacingBottomDesktop,
-	attributes.wrapperSpacingBottomTablet,
-	attributes.wrapperSpacingBottomMobile,
-];
-
-const wrapperDividerBottom = [
-	attributes.wrapperDividerBottomLarge,
-	attributes.wrapperDividerBottomDesktop,
-	attributes.wrapperDividerBottomTablet,
-	attributes.wrapperDividerBottomMobile,
-];
-
-const wrapperContainerWidth = [
-	attributes.wrapperContainerWidthLarge,
-	attributes.wrapperContainerWidthDesktop,
-	attributes.wrapperContainerWidthTablet,
-	attributes.wrapperContainerWidthMobile,
-];
-
-const setAttributes = () => {};
-
-const defaults = {
-	sectionSpacing: {
-		min: -300,
-		max: 300,
-		step: 10,
 	},
 };
 
@@ -65,145 +20,80 @@ const options = {
 		'tablet',
 		'mobile',
 	],
-	containerWidths: [
-		{
-			label: 'Not Set',
-			value: '',
-		},
-		{
-			label: 'Default',
-			value: 'default',
-		},
-	],
 };
 
-const reset = {
-	wrapperSpacingBottomLarge: {
-		type: 'int',
-		default: 40,
-	},
-	wrapperSpacingBottomDesktop: {
-		type: 'int',
-	},
-	wrapperSpacingBottomTablet: {
-		type: 'int',
-	},
-	wrapperSpacingBottomMobile: {
-		type: 'int',
-	},
+export const basicComponent = () => {
+	const [attributes, setAttributes] = useState({
+		demoComponentToggleLarge: '1',
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: '0',
+	});
 
-	wrapperDividerBottomLarge: {
-		type: 'boolean',
-		default: true,
-	},
-	wrapperDividerBottomDesktop: {
-		type: 'boolean',
-	},
-	wrapperDividerBottomTablet: {
-		type: 'boolean',
-	},
-	wrapperDividerBottomMobile: {
-		type: 'boolean',
-	},
+	return (
+		<div className='es-max-w-96'>
+			<Responsive
+				label={__('Basic demo', 'eightshift-frontend-libs')}
+				icon={icons.experiment}
+			>
+				{options.breakpoints.map((breakpoint, index) => {
+					const point = ucfirst(breakpoint);
+					const attr = `demoComponentToggle${point}`;
 
-	wrapperContainerWidthLarge: {
-		type: 'string',
-		default: 'default',
-	},
-	wrapperContainerWidthDesktop: {
-		type: 'string',
-	},
-	wrapperContainerWidthTablet: {
-		type: 'string',
-	},
-	wrapperContainerWidthMobile: {
-		type: 'string',
-	},
+					return (
+						<IconToggle
+							key={index}
+							icon={icons.wrench}
+							label={__('Demo option 1', 'eightshift-frontend-libs')}
+							checked={attributes[attr] === '1'}
+							onChange={(value) => setAttributes({ ...attributes, [attr]: value === true ? '1' : '0' })} />
+					);
+				})}
+			</Responsive>
+		</div>
+	);
 };
 
-export const componentRange = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.spacingBottom} />
-				{__('Spacing Bottom', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperSpacingBottom.map((item, index) => {
+export const withInheritButton = () => {
+	const [attributes, setAttributes] = useState({
+		demoComponentToggleLarge: '1',
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: '0',
+	});
 
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperSpacingBottom${point}`;
+	return (
+		<div className='es-max-w-96'>
+			<Responsive
+				label={__('Inheritance demo', 'eightshift-frontend-libs')}
+				icon={icons.inherit}
+				inheritButton={options.breakpoints.map((breakpoint) => {
+					const point = ucfirst(breakpoint);
+					const attr = `demoComponentToggle${point}`;
 
-			return (
-				<Fragment key={index}>
-					<RangeControl
-						label={point}
-						allowReset={true}
-						value={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-						min={defaults.sectionSpacing.min}
-						max={defaults.sectionSpacing.max}
-						step={defaults.sectionSpacing.step}
-						resetFallbackValue={reset[attr]?.default}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);
+					return {
+						callback: () => setAttributes({
+							...attributes,
+							[attr]: attributes[attr] === '' ? '0' : '',
+						}),
+						isActive: attributes[attr] === '',
+					};
+				})}
+			>
+				{options.breakpoints.map((breakpoint, index) => {
+					const point = ucfirst(breakpoint);
+					const attr = `demoComponentToggle${point}`;
 
-export const componentToggle = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.dividerBottom} />
-				{__('Divider Bottom', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperDividerBottom.map((item, index) => {
-
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperDividerBottom${point}`;
-
-			return (
-				<Fragment key={index}>
-					<ToggleControl
-						label={point}
-						checked={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);
-
-export const componentSelect = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.containerWidth} />
-				{__('ContainerWidth', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperContainerWidth.map((item, index) => {
-
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperContainerWidth${point}`;
-
-			return (
-				<Fragment key={index}>
-					<SelectControl
-						label={point}
-						options={options.containerWidths}
-						value={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);
+					return (
+						<IconToggle
+							key={index}
+							icon={icons.wrench}
+							label={__('Demo option 1', 'eightshift-frontend-libs')}
+							checked={attributes[attr] === '1'}
+							onChange={(value) => setAttributes({ ...attributes, [attr]: value === true ? '1' : '0' })} />
+					);
+				})}
+			</Responsive>
+		</div>
+	);
+};
