@@ -3,8 +3,10 @@
 export { AdvancedColorPicker } from './advanced-color-picker/advanced-color-picker';
 export {
 	AlignmentToolbar,
-	AlignmentToolbarType
+	AlignmentToolbarType,
 } from './alignment-toolbar/alignment-toolbar';
+export { AsyncSelect } from './custom-select/async-single-select';
+export { AsyncMultiSelect } from './custom-select/async-multi-select';
 export {
 	ColorPaletteCustom,
 	ColorPaletteCustomLayout,
@@ -15,14 +17,13 @@ export {
 } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
 export { CompactResponsive } from './compact-responsive/compact-responsive';
-export { CustomSelect } from './custom-select/custom-select';
-export { CustomSelectCustomOption } from './custom-select/custom-select-custom-option';
-export { CustomSelectCustomValueDisplay } from './custom-select/custom-select-custom-value-display';
-export { CustomSelectCustomMultipleValueDisplay } from './custom-select/custom-select-custom-multiple-value-display';
-export { CustomSelectCustomMultipleValueDisplayContainer } from './custom-select/custom-select-custom-multiple-value-display-container';
-export { CustomSelectCustomMultipleValueRemoveButton } from './custom-select/custom-select-custom-multiple-value-remove-button';
-export { CustomSelectCustomDropdownIndicator } from './custom-select/custom-select-custom-dropdown-indicator';
-export { CustomSelectStyle } from './custom-select/custom-select-style';
+export {
+	RSDropdownIndicator,
+	RSMultiValueContainer,
+	RSMultiValueLabel,
+	RSMultiValueRemove,
+	RSOption,
+} from './custom-select/react-select-component-wrappers';
 export { CustomSlider } from './custom-slider/custom-slider';
 export { CustomRangeSlider } from './custom-slider/custom-range-slider';
 export { CustomSliderStyle, CustomRangeSliderStyle } from './custom-slider/custom-slider-style';
@@ -33,14 +34,16 @@ export { IconLabel } from './icon-label/icon-label';
 export { IconToggle } from './icon-toggle/icon-toggle';
 export {
 	InlineNotification,
-	InlineNotificationType
+	InlineNotificationType,
 } from './inline-notification/inline-notification';
 export { LinkEditComponent } from './link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
+export { MultiSelect } from './custom-select/multi-select';
 export { OptionSelector } from './option-selector/option-selector';
 export { Responsive } from './responsive/responsive';
 export { Section } from './section/section';
+export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { SimpleRepeater } from './simple-repeater/simple-repeater';
 export { SimpleRepeaterItem } from './simple-repeater/simple-repeater-item';
@@ -50,8 +53,3 @@ export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-pick
 export { UseToggle } from './use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
-
-export { Select } from './custom-select/single-select';
-export { AsyncSelect } from './custom-select/async-single-select';
-export { AsyncMultiSelect } from './custom-select/async-multi-select';
-export { MultiSelect } from './custom-select/multi-select';

@@ -7,7 +7,7 @@ import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext } from '@dnd-kit/sortable';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
-import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './reorderable-select-components';
+import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './multi-select-components';
 
 /**
  * Multi-select, asynchronously-loading, re-orderable select menu.
