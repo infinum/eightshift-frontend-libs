@@ -126,5 +126,7 @@ export {
 } from './helpers/text-helpers';
 
 
+export { Select } from './components/custom-select/single-select';
+export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
 export { MultiSelect } from './components/custom-select/multi-select';
