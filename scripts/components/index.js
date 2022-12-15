@@ -42,5 +42,6 @@ export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simp
 export { SpacingSlider } from './spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, config } from './use-toggle/use-toggle';
+export { TileButton } from './shared';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
