@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, AnimatedContentVisibility, Control } from '@eightshift/frontend-libs/scripts';
+import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A collapsable container for options.
@@ -27,7 +27,7 @@ export const Collapsable = ({
 		<Control
 			label={label}
 			noBottomSpacing={noBottomSpacing}
-			additionalClasses={additionalClasses}
+			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			actions={
 				<Button
 					onClick={() => setIsOpen(!isOpen)}
