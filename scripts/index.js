@@ -2,21 +2,12 @@
 
 // Components
 export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
-export {
-	AlignmentToolbar,
-	AlignmentToolbarType,
-} from './components/alignment-toolbar/alignment-toolbar';
+export { AlignmentToolbar, AlignmentToolbarType } from './components/alignment-toolbar/alignment-toolbar';
 export { AnimatedContentVisibility } from './components/shared';
 export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
-export {
-	ColorPaletteCustom,
-	ColorPaletteCustomLayout,
-} from './components/color-palette-custom/color-palette-custom';
-export {
-	ColorPickerComponent,
-	ColorPickerType,
-} from './components/color-picker-component/color-picker-component';
+export { ColorPaletteCustom, ColorPaletteCustomLayout } from './components/color-palette-custom/color-palette-custom';
+export { ColorPickerComponent, ColorPickerType } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
 export { Control } from './components/shared';
 export {
@@ -35,15 +26,13 @@ export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
 export { IconToggle } from './components/icon-toggle/icon-toggle';
-export {
-	InlineNotification,
-	InlineNotificationType
-} from './components/inline-notification/inline-notification';
+export { InlineNotification, InlineNotificationType } from './components/inline-notification/inline-notification';
 export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { MultiSelect } from './components/custom-select/multi-select';
 export { OptionSelector } from './components/option-selector/option-selector';
+export { PopoverWithTrigger } from './components/shared';
 export { Responsive } from './components/responsive/responsive';
 export { Section } from './components/section/section';
 export { Select } from './components/custom-select/single-select';
@@ -59,6 +48,7 @@ export {
 } from './components/use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
+
 
 // Editor
 export {
