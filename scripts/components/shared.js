@@ -41,7 +41,7 @@ export const Control = (props) => {
 	return (
 		<div className={classnames(additionalClasses, !noBottomSpacing && 'es-mb-5')}>
 			{label &&
-				<div className={classnames('es-mb-2', actions && 'es-h-between')}>
+				<div className={classnames('es-mb-2 es-min-h-7', actions && 'es-h-between')}>
 					<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
 
 					{actions}
