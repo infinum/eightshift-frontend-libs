@@ -1,3 +1,4 @@
+import React from 'react';
 import { arrayMove } from '@dnd-kit/sortable';
 import { useSortable } from '@dnd-kit/sortable';
 import { useDroppable } from '@dnd-kit/core';

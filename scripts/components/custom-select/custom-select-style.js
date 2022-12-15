@@ -97,12 +97,16 @@ export const defaultEightshiftStyles = {
 		fontSize: '90%',
 		padding: '0.2rem 0.25rem',
 		paddingLeft: '0.25rem', // To override the default.
+		display: 'flex',
+		alignItems: 'center',
 	}),
 
 	multiValueRemove: (provided) => ({
 		...provided,
-		paddingLeft: '0.375rem',
-		paddingRight: '0.375rem',
+		paddingLeft: '0.25rem',
+		paddingRight: '0.25rem',
+		paddingTop: '0.25rem',
+		paddingBottom: '0.25rem',
 		borderRadius: '0 0.125rem 0.125rem 0',
 	}),
 

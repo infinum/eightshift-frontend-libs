@@ -4,7 +4,7 @@ import { DndContext } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext } from '@dnd-kit/sortable';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
-import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
+import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator, CustomSelectDefaultMultiValueRemove } from './custom-select-default-components';
 import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './multi-select-components';
 import { customOnChange, getValue } from './shared';
 
@@ -94,7 +94,7 @@ export const MultiSelect = (props) => {
 						components={{
 							MultiValue: getMultiValue(customValueDisplay ?? components.MultiValue),
 							MultiValueContainer: getMultiValueContainer(customValueContainer ?? components.MultiValueContainer),
-							MultiValueRemove: getMultiValueRemove(customValueRemove ?? components.MultiValueRemove),
+							MultiValueRemove: getMultiValueRemove(customValueRemove ?? CustomSelectDefaultMultiValueRemove),
 
 							Option: customMenuOption ?? components.Option,
 
