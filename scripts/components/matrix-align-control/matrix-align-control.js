@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, OptionSelector, PopoverWithTrigger } from '../../../scripts';
+import { icons, OptionSelector, PopoverWithTrigger, classnames } from '../../../scripts';
 import { camelize } from '../../../scripts/helpers';
 import { ucfirst } from '../../../scripts/editor';
 
@@ -86,7 +86,7 @@ export const MatrixAlignControl = (props) => {
 	return (
 		<PopoverWithTrigger
 			additionalCloseActions={() => onChange(currentValue)}
-			contentClass='es-min-w-auto! es-min-h-auto! es-p-1.5!'
+			contentClass='es-p-1'
 			trigger={
 				({ ref, setIsOpen, isOpen }) => {
 					if (type === 'wp') {
@@ -106,7 +106,7 @@ export const MatrixAlignControl = (props) => {
 							icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
 							onClick={() => setIsOpen(!isOpen)}
 							ref={ref}
-							className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalTriggerClasses}`}
+							className={classnames('es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0.75! es-nested-flex-shrink-0', additionalTriggerClasses)}
 						>
 							{label}
 						</Button>
