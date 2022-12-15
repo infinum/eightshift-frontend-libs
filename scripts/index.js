@@ -6,7 +6,7 @@ export {
 	AlignmentToolbar,
 	AlignmentToolbarType,
 } from './components/alignment-toolbar/alignment-toolbar';
-export { AnimatedContentVisibility } from './shared';
+export { AnimatedContentVisibility } from './components/shared';
 export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
 export {
@@ -18,7 +18,7 @@ export {
 	ColorPickerType,
 } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
-export { Control } from './shared';
+export { Control } from './components/shared';
 export {
 	RSOption,
 	RSDropdownIndicator,
