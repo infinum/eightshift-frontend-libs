@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, forwardRef } from 'react';
 import { classnames } from '../helpers';
 import { IconLabel } from './icon-label/icon-label';
 import { Animate, Popover, Button } from '@wordpress/components';
@@ -156,7 +156,7 @@ export const PopoverWithTrigger = (props) => {
  * @param {boolean} [props.isPressed=false]  - If `true`, the button renders as pressed.
  * @param {string} [props.additionalClasses] - Classes passed to the button.
  */
-export const TileButton = (props) => {
+export const TileButton = forwardRef((props, ref) => {
 	const {
 		icon,
 		label,
@@ -165,19 +165,18 @@ export const TileButton = (props) => {
 		isPressed = false,
 
 		additionalClasses,
-
-		...rest
 	} = props;
 
 	return (
 		<Button
-			{...rest}
+			{...props}
+			ref={ref}
 			icon={icon}
-			isPressed={isPressed}
 			onClick={onClick}
+			isPressed={isPressed}
 			className={classnames('es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-0.95 es-p-0.75! es-nested-flex-shrink-0', additionalClasses)}
 		>
 			<span className='es-h-6 es-v-center'>{label}</span>
 		</Button>
 	);
-};
+});
