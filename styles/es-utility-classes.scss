@@ -190,6 +190,7 @@ $es-text-aligns: (
 	'center': 'center',
 	'right': 'right',
 	'justify': 'justify',
+	'stretch' : 'stretch',
 );
 
 $es-general-aligns: (
@@ -206,14 +207,23 @@ $es-general-aligns: (
 $es-opacities: (
 	'0': '0%',
 	'10': '10%',
+	'15': '15%',
 	'20': '20%',
+	'25': '25%',
 	'30': '30%',
+	'35': '35%',
 	'40': '40%',
+	'45': '45%',
 	'50': '50%',
+	'55': '55%',
 	'60': '60%',
+	'65': '65%',
 	'70': '70%',
+	'75': '75%',
 	'80': '80%',
+	'85': '85%',
 	'90': '90%',
+	'95': '95%',
 	'100': '100%',
 );
 
@@ -1212,6 +1222,22 @@ $es-utility-props: (
 	flex-flow: column wrap;
 }
 
+.es-v-stretch {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	gap: 0.5rem;
+}
+
+.es-v-stretch-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	gap: 0.5rem;
+	flex-flow: column wrap;
+}
+
 // Horizontal flex containers with gaps (and optional item wrapping).
 .es-h-spaced {
 	display: flex;
@@ -1286,6 +1312,21 @@ $es-utility-props: (
 	flex-flow: wrap;
 }
 
+.es-h-stretch {
+	display: flex;
+	align-items: center;
+	justify-content: stretch;
+	gap: 0.5rem;
+}
+
+.es-h-stretch-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: stretch;
+	gap: 0.5rem;
+	flex-flow: wrap;
+}
+
 // Horizontal flex containers.
 .es-h-flex {
 	display: flex;
@@ -1350,6 +1391,19 @@ $es-utility-props: (
 	flex-flow: wrap;
 }
 
+.es-h-flex-stretch {
+	display: flex;
+	align-items: center;
+	justify-content: stretch;
+}
+
+.es-h-flex-stretch-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: stretch;
+	flex-flow: wrap;
+}
+
 // Vertical flex containers.
 .es-v-flex {
 	display: flex;
@@ -1393,13 +1447,27 @@ $es-utility-props: (
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 }
 
 .es-v-flex-center-wrap {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-flow: column wrap;
+}
+
+.es-v-flex-stretch {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.es-v-flex-stretch-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
 	flex-flow: column wrap;
 }
 
@@ -1571,6 +1639,18 @@ $es-utility-props: (
 
 .es-flex-col-reverse {
 	flex-direction: column-reverse;
+}
+
+.es-flex-wrap {
+	flex-wrap: wrap;
+}
+
+.es-flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+.es-flex-wrap-reverse {
+	flex-wrap: wrap-reverse;
 }
 
 // New style for default Gutenberg buttons pressed state.
