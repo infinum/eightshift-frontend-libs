@@ -27,6 +27,7 @@ export const MatrixAlignControl = (props) => {
 		onChange,
 		additionalTriggerClasses,
 	} = props;
+	const [currentValue, setCurrentValue] = useState(value);
 
 	const allSizeOptions = [
 		{
@@ -79,10 +80,8 @@ export const MatrixAlignControl = (props) => {
 	// Set icons for (in)active options.
 	const sizeOptions = allSizeOptions.filter(({availableOn}) => availableOn.includes(size)).map((item) => ({
 		...item,
-		icon: item.value === value ? icons.matrixAlignControlDotActive : icons.matrixAlignControlDotInactive,
+		icon: item.value === currentValue ? icons.matrixAlignControlDotActive : icons.matrixAlignControlDotInactive,
 	}));
-
-	const [currentValue, setCurrentValue] = useState(value);
 
 	return (
 		<PopoverWithTrigger
@@ -97,14 +96,14 @@ export const MatrixAlignControl = (props) => {
 								onClick={() => setIsOpen(!isOpen)}
 								ref={ref}
 								label={label}
-								icon={icons[`position${size}${ucfirst(camelize(value))}`]}
+								icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
 							/>
 						);
 					}
 
 					return (
 						<Button
-							icon={icons[`position${size}${ucfirst(camelize(value))}`]}
+							icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
 							onClick={() => setIsOpen(!isOpen)}
 							ref={ref}
 							className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! es-nested-flex-shrink-0 ${additionalTriggerClasses}`}
