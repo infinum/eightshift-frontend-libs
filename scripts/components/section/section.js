@@ -10,7 +10,6 @@ import { IconLabel, Collapsable, FancyDivider, classnames } from '@eightshift/fr
  * @param {React.Component?} [props.subtitle]      - If provided, a subtitle is added to the label.
  * @param {boolean?} [props.showIf]                - If provided, the section is only shown if the condition is `true`.
  * @param {boolean} [props.collapsable=false]      - If `true`, the section is render as a `Collapsable`.
- * @param {boolean} [props.noTopSpacing=false]     - If `true`, the default top spacing is removed (if not `collapsable`).
  * @param {boolean} [props.noBottomSpacing=false]  - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]      - Allows passing through extra classes.
  * @param {string?} [props.additionalLabelClasses] - Allows passing through extra classes to the label.
@@ -25,7 +24,6 @@ export const Section = (props) => {
 		showIf,
 
 		collapsable = false,
-		noTopSpacing = false,
 		noBottomSpacing = false,
 
 		additionalClasses,
@@ -59,7 +57,7 @@ export const Section = (props) => {
 
 	return (
 		<>
-			<FancyDivider label={label} icon={icon} subtitle={subtitle} noTopSpacing={noTopSpacing} additionalClasses={additionalLabelClasses} />
+			<FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={additionalLabelClasses} />
 
 			<div className={classnames(noBottomSpacing ? '' : 'es-mb-5', additionalClasses)}>
 				{children}

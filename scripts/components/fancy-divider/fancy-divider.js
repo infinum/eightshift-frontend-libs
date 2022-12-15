@@ -8,7 +8,7 @@ import { IconLabel, classnames } from '@eightshift/frontend-libs/scripts';
  * @param {React.Component?} [props.icon]         - If provided, icon shown on the divider.
  * @param {string} props.label                    - Label shown on the divider.
  * @param {React.Component?} [props.subtitle]     - If provided, subtitle shown on the divider.
- * @param {boolean} [props.noTopSpacing=false]    - If `true`, the default top spacing is removed.
+ * @param {boolean} [props.hasTopSpacing=false]   - If `true`, top spacing is added.
  * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]     - Allows passing through extra classes.
  */
@@ -18,14 +18,14 @@ export const FancyDivider = (props) => {
 		label,
 		subtitle,
 
-		noTopSpacing = false,
+		hasTopSpacing = false,
 		noBottomSpacing = false,
 
 		additionalClasses,
 	} = props;
 
 	return (
-		<div className={classnames('es-h-spaced es-nested-p-0.75 es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white es-color-cool-gray-600', !noTopSpacing && 'es-mt-3', !noBottomSpacing && 'es-mb-2.5', additionalClasses)}>
+		<div className={classnames('es-h-spaced es-nested-p-0.75 es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white es-color-cool-gray-600', hasTopSpacing && 'es-mt-3', !noBottomSpacing && 'es-mb-2.5', additionalClasses)}>
 			<IconLabel icon={icon} label={label} subtitle={subtitle} standalone additionalClasses='es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white!' />
 
 			<div className='es-w-full es-flex-1 es-h-px es-bg-cool-gray-50'></div>
