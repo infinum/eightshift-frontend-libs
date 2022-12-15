@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, OptionSelector, PopoverWithTrigger, classnames } from '../../../scripts';
+import { icons, OptionSelector, PopoverWithTrigger, TileButton } from '../../../scripts';
 import { camelize } from '../../../scripts/helpers';
 import { ucfirst } from '../../../scripts/editor';
 
@@ -78,7 +78,7 @@ export const MatrixAlignControl = (props) => {
 	];
 
 	// Set icons for (in)active options.
-	const sizeOptions = allSizeOptions.filter(({availableOn}) => availableOn.includes(size)).map((item) => ({
+	const sizeOptions = allSizeOptions.filter(({ availableOn }) => availableOn.includes(size)).map((item) => ({
 		...item,
 		icon: item.value === currentValue ? icons.matrixAlignControlDotActive : icons.matrixAlignControlDotInactive,
 	}));
@@ -102,14 +102,13 @@ export const MatrixAlignControl = (props) => {
 					}
 
 					return (
-						<Button
-							icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
-							onClick={() => setIsOpen(!isOpen)}
+						<TileButton
 							ref={ref}
-							className={classnames('es-button-icon-24 es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0.75! es-nested-flex-shrink-0', additionalTriggerClasses)}
-						>
-							{label}
-						</Button>
+							label={label}
+							onClick={() => setIsOpen(!isOpen)}
+							icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
+							additionalClasses={additionalTriggerClasses}
+						/>
 					);
 				}
 			}
