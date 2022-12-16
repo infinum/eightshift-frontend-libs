@@ -76,7 +76,7 @@
 		"postcss-scss": "^4.0.4",
 		"promisify-child-process": "^4.1.1",
 		"raw-loader": "^4.0.2",
-		"rc-slider": "^9.7.5",
+		"rc-slider": "^10.1.0",
 		"react-html-parser": "^2.0.2",
 		"react-select": "^5.7.0",
 		"regenerator-runtime": "^0.13.9",
