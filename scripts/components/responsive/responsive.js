@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { AnimatedContentVisibility, Control } from '../shared';
 import { classnames, getDefaultBreakpointNames } from '../../helpers';
 import { icons, ucfirst } from '../../editor';
 import { FancyDivider } from '../fancy-divider/fancy-divider';
+import { Control } from '../base-control/base-control';
+import { AnimatedContentVisibility } from '../animated-content-visibility/animated-content-visibility';
 
 /**
  * A component that displays options adjustable across screen sizes.
