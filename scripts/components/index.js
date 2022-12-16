@@ -2,13 +2,13 @@
 
 export { AdvancedColorPicker } from './advanced-color-picker/advanced-color-picker';
 export { AlignmentToolbar, AlignmentToolbarType } from './alignment-toolbar/alignment-toolbar';
-export { AnimatedContentVisibility } from './shared';
+export { AnimatedContentVisibility } from './animated-content-visibility/animated-content-visibility';
 export { AsyncSelect } from './custom-select/async-single-select';
 export { AsyncMultiSelect } from './custom-select/async-multi-select';
 export { ColorPaletteCustom, ColorPaletteCustomLayout } from './color-palette-custom/color-palette-custom';
 export { ColorPickerComponent, ColorPickerType } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
-export { Control } from './shared';
+export { Control } from './base-control/base-control';
 export {
 	RSOption,
 	RSDropdownIndicator,
@@ -16,6 +16,8 @@ export {
 	RSMultiValueRemove,
 	RSMultiValueContainer,
 	RSMultiValueLabel,
+	RSClearIndicator,
+	RSMultiValue,
 } from './custom-select/react-select-component-wrappers';
 export { CustomSlider } from './custom-slider/custom-slider';
 export { CustomRangeSlider } from './custom-slider/custom-range-slider';
@@ -31,7 +33,7 @@ export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
 export { MultiSelect } from './custom-select/multi-select';
 export { OptionSelector } from './option-selector/option-selector';
-export { PopoverWithTrigger } from './shared';
+export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger';
 export { Responsive } from './responsive/responsive';
 export { Section } from './section/section';
 export { Select } from './custom-select/single-select';
@@ -42,6 +44,6 @@ export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simp
 export { SpacingSlider } from './spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, config } from './use-toggle/use-toggle';
-export { TileButton } from './shared';
+export { TileButton } from './tile-button/tile-button';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';

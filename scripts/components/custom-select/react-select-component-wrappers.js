@@ -1,3 +1,4 @@
+import React from 'react';
 import { components } from 'react-select';
 
 /**
@@ -24,6 +25,17 @@ export const RSDropdownIndicator = (props) => (
 */
 export const RSSingleValue = (props) => (
 	<components.SingleValue {...props} />
+);
+
+/**
+ * Custom value display for multi item select.
+ *
+ * (a wrapper for `components.MultiValue` from `react-select`)
+ *
+ * @param {object} props - components.SingleValue props.
+*/
+export const RSMultiValue = (props) => (
+	<components.MultiValue {...props} />
 );
 
 /**
@@ -70,4 +82,13 @@ export const RSMultiValueContainer = (props) => (
 */
 export const RSMultiValueLabel = (props) => (
 	<components.MultiValueLabel {...props} />
+);
+
+/**
+ * Default clear indicator for CustomSelect.
+ *
+ * @param {object} props - components.ClearIndicator props.
+*/
+export const RSClearIndicator = (props) => (
+	<components.ClearIndicator {...props} />
 );

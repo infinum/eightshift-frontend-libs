@@ -3,13 +3,13 @@
 // Components
 export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
 export { AlignmentToolbar, AlignmentToolbarType } from './components/alignment-toolbar/alignment-toolbar';
-export { AnimatedContentVisibility } from './components/shared';
+export { AnimatedContentVisibility } from './components/animated-content-visibility/animated-content-visibility';
 export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
 export { ColorPaletteCustom, ColorPaletteCustomLayout } from './components/color-palette-custom/color-palette-custom';
 export { ColorPickerComponent, ColorPickerType } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
-export { Control } from './components/shared';
+export { Control } from './components/base-control/base-control';
 export {
 	RSOption,
 	RSDropdownIndicator,
@@ -17,6 +17,8 @@ export {
 	RSMultiValueRemove,
 	RSMultiValueContainer,
 	RSMultiValueLabel,
+	RSClearIndicator,
+	RSMultiValue,
 } from './components/custom-select/react-select-component-wrappers';
 export { CustomSlider } from './components/custom-slider/custom-slider';
 export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
@@ -32,7 +34,7 @@ export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { MultiSelect } from './components/custom-select/multi-select';
 export { OptionSelector } from './components/option-selector/option-selector';
-export { PopoverWithTrigger } from './components/shared';
+export { PopoverWithTrigger } from './components/popover-with-trigger/popover-with-trigger';
 export { Responsive } from './components/responsive/responsive';
 export { Section } from './components/section/section';
 export { Select } from './components/custom-select/single-select';
@@ -41,7 +43,7 @@ export { SimpleRepeater } from './components/simple-repeater/simple-repeater';
 export { SimpleRepeaterItem } from './components/simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 export { SpacingSlider } from './components/spacing-slider/spacing-slider';
-export { TileButton } from './components/shared';
+export { TileButton } from './components/tile-button/tile-button';
 export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, config } from './components/use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
