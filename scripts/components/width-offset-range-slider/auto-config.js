@@ -2,17 +2,19 @@ import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst } from '@eights
 
 /**
  *
- * @param {Object} options                            - Generation configuration.
- * @param {string} [options.isFullWidthAttributeName] - Full-width property attribute name.
- * @param {string} options.offsetAttributeName        - Offset property attribute name.
- * @param {string} options.widthAttributeName         - Width property attribute name.
- * @param {Boolean} [options.showFullWidth=false]     - If `true`, the full-width toggle is shown.
- * @param {Number} [options.min=1]                    - Minimum value of the slider.
- * @param {Number} [options.numOfColumns=12]          - Number of columns available to choose from.
- * @param {Object} options.manifest                   - Component/block manifest.
- * @param {Object} options.attributes                 - Component/block attributes object.
- * @param {function} options.setAttributes            - Component/block setAttributes function.
- * @param {string[]?} [options.breakpointNames]       - Breakpoint names to show.
+ * @param {Object} options                               - Generation configuration.
+ * @param {string} [options.isFullWidthAttributeName]    - Full-width property attribute name.
+ * @param {string} options.offsetAttributeName           - Offset property attribute name.
+ * @param {string} options.widthAttributeName            - Width property attribute name.
+ * @param {Boolean} [options.showFullWidth=false]        - If `true`, the full-width toggle is shown.
+ * @param {Boolean} [options.showOffsetAutoToggle=false] - If `true`, the automatic offset toggle is shown.
+ * @param {Boolean} [options.numericValues=false]        - If `true`, the values returned are `Number`s, instead of `string`s. Not compatible with Auto offset toggle.
+ * @param {Number} [options.min=1]                       - Minimum value of the slider.
+ * @param {Number} [options.numOfColumns=12]             - Number of columns available to choose from.
+ * @param {Object} options.manifest                      - Component/block manifest.
+ * @param {Object} options.attributes                    - Component/block attributes object.
+ * @param {function} options.setAttributes               - Component/block setAttributes function.
+ * @param {string[]?} [options.breakpointNames]          - Breakpoint names to show.
  * @returns Configuration object.
  */
 export const generateWidthOffsetRangeSliderConfig = (options) => {
@@ -21,8 +23,10 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 		offsetAttributeName,
 		widthAttributeName,
 		showFullWidth = false,
+		showOffsetAutoToggle=false,
 		min = 1,
 		numOfColumns = 12,
+		numericValues = false,
 		manifest,
 		attributes,
 		setAttributes,
@@ -73,5 +77,7 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 		min: min,
 		totalNumberOfColumns: numOfColumns,
 		fullWidthToggle: showFullWidth,
+		autoOffsetToggle: showOffsetAutoToggle,
+		numericValues: numericValues,
 	};
 };
