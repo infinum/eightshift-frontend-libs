@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, Responsive, getAttrKey, IconLabel, icons, OptionSelector, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, Responsive, getAttrKey, icons, OptionSelector, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A responsive block/component visibility control.
@@ -18,7 +18,7 @@ import { checkAttr, Responsive, getAttrKey, IconLabel, icons, OptionSelector, ge
 export const VisibilityToggleResponsive = (props) => {
 	const {
 		icon = icons.visibility,
-		label=__('Block visibility', 'eightshift-frontend-libs'),
+		label = __('Visibility', 'eightshift-frontend-libs'),
 		additionalClasses,
 		breakpointNames = getDefaultBreakpointNames(),
 		manifest,
@@ -35,8 +35,9 @@ export const VisibilityToggleResponsive = (props) => {
 
 	return (
 		<Responsive
-			label={<IconLabel icon={icon} label={label} />}
-			additionalClasses={`-es-mb-1! ${additionalClasses ?? ''}`}
+			icon={icon}
+			label={label}
+			additionalClasses={additionalClasses}
 			breakpoints={breakpointNames}
 			inheritButton={breakpointNames.map((breakpoint) => {
 				const breakpointAttrName = attrNames[breakpoint];
@@ -55,17 +56,17 @@ export const VisibilityToggleResponsive = (props) => {
 				const breakpointAttrValue = checkAttr(breakpointAttrName, attributes, manifest);
 
 				let options = [
-					{ label: __('Visible', 'eightshift-frontend-libs'), value: 'false', icon: icons.visible },
-					{ label: __('Hidden', 'eightshift-frontend-libs'), value: 'true', icon: icons.hide },
+					{ label: __('Visible', 'eightshift-frontend-libs'), value: 'false', icon: icons.solidRectFilledTransparent },
+					{ label: __('Hidden', 'eightshift-frontend-libs'), value: 'true', icon: icons.emptyRect },
 				];
 
 				return (
 					<OptionSelector
 						key={index}
 						options={options}
-						border='offset'
 						value={breakpointAttrValue?.toString()}
 						onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: typeof breakpointAttrValue === 'boolean' ? value === 'true' : value })}
+						additionalButtonClass='es-v-spaced es-content-center! es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.1!'
 					/>
 				);
 			})}
