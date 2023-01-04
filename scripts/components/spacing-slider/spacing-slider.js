@@ -53,7 +53,6 @@ export const SpacingSlider = (props) => {
 		minMaxStep,
 		defaultValue = 0,
 		resetValue,
-		markSteps = 5,
 
 		processValue = (v) => v,
 		processBeforeSetAttr = (v) => v,
@@ -97,102 +96,48 @@ export const SpacingSlider = (props) => {
 
 				const { min, max, step } = minMaxStep ?? getOption(minMaxStepOptionName, attributes, manifest);
 
-				const numOfMarks = Math.round((max - min) / markSteps);
-				const remainder = ((max - min) % markSteps) === 0 ? 1 : 0;
-
-				const restOfMarks = [...Array((min < 0 ? numOfMarks / 2 : numOfMarks)).keys()]
-					.reduce((original, i) => {
-						return ({
-							...original,
-							[((min < 0 ? 0 : min) + i + remainder) * markSteps]: ((min < 0 ? 0 : min) + i + remainder) * markSteps,
-						});
-					}, {});
-
-				let marks = { ...restOfMarks };
-
-				if (showMarks) {
-					if (min === 0) {
-						marks = {
-							0: 0,
-							...restOfMarks,
-						};
-					}
-
-					if (min > 0 && min < parseInt(Object.keys(restOfMarks)[0])) {
-						marks = {
-							[min]: min,
-							...restOfMarks,
-						};
-					}
-
-					if (max && typeof marks[max] === 'undefined') {
-						marks[max] = max;
-					}
-
-					if (min < 0) {
-						const restOfNegativeMarks = [...Array(numOfMarks / 2).keys()]
-							.reduce((original, i) => {
-								return ({
-									...original,
-									[-1 * ((min < 0 ? 0 : min) + i + remainder) * markSteps]: -1 * ((min < 0 ? 0 : min) + i + remainder) * markSteps,
-								});
-							}, {});
-						marks = {
-							...restOfNegativeMarks,
-							0: 0,
-							...marks,
-						};
-					}
-				}
-
 				return (
-					<div className={index !== 0 ? 'es-mb-4' : 'es-mb-2'} key={index}>
-						<Slider
-							value={processValue(breakpointAttrValue)}
-							onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processBeforeSetAttr(value / (compensateForRemBase10 ? 10 : 1)) })}
-							min={min}
-							max={max}
-							step={step}
-							marks={marks}
-							hasInputField={hasInputField}
-							hasValueDisplay={hasValueDisplay}
-							valueDisplayElement={(<span style={{ '--es-custom-slider-value-display-width': (valueDisplayFormat(max)?.toString()?.trim()?.length ?? 3) }} className='es-custom-slider-current-value'>{valueDisplayFormat(processValue(breakpointAttrValue))}</span>)}
-							defaultValue={defaultValue}
-							hasCompactMarks
-							rightAddition={
-								<>
-									{(showResetButton || showDisableButton) &&
-										<div className='es-v-center es-gap-0! -es-mr-2'>
-											{showResetButton && (typeof resetValue !== 'undefined' || typeof manifestAttributes[breakpointAttrName]?.default !== 'undefined') &&
-												<Button
-													isSmall
-													className='es-button-square-24 es-button-icon-18'
-													icon={icons.reset}
-													showTooltip
-													label={__('Reset to initial value', 'eightshift-frontend-libs')}
-													onClick={() => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processResetValue(resetValue ?? manifestAttributes[breakpointAttrName]?.default) })}
-													disabled={breakpointAttrValue === manifestAttributes[breakpointAttrName]?.default}
-												/>
-											}
+					<Slider
+						key={index}
+						value={processValue(breakpointAttrValue)}
+						onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processBeforeSetAttr(value / (compensateForRemBase10 ? 10 : 1)) })}
+						min={min}
+						max={max}
+						step={step}
+						marks={showMarks}
+						hasInputField={hasInputField}
+						hasValueDisplay={hasValueDisplay}
+						valueDisplayElement={(<span style={{ '--es-custom-slider-value-display-width': (valueDisplayFormat(max)?.toString()?.trim()?.length ?? 3) }} className='es-custom-slider-current-value'>{valueDisplayFormat(processValue(breakpointAttrValue))}</span>)}
+						defaultValue={defaultValue}
+						actions={(!showResetButton && !showDisableButton) ? null :
+							<>
+								{showResetButton && (typeof resetValue !== 'undefined' || typeof manifestAttributes[breakpointAttrName]?.default !== 'undefined') &&
+									<Button
+										isSmall
+										className='es-button-square-24 es-button-icon-18'
+										icon={icons.reset}
+										showTooltip
+										label={__('Reset to initial value', 'eightshift-frontend-libs')}
+										onClick={() => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processResetValue(resetValue ?? manifestAttributes[breakpointAttrName]?.default) })}
+										disabled={breakpointAttrValue === manifestAttributes[breakpointAttrName]?.default}
+									/>
+								}
 
-											{showDisableButton && index === 0 &&
-												<Button
-													isSmall
-													className='es-button-square-24 es-button-icon-18'
-													icon={icons.clear}
-													showTooltip
-													label={__('Clear', 'eightshift-frontend-libs')}
-													onClick={() => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: disableWithUndefined ? undefined : '' })}
-													disabled={typeof breakpointAttrValue === 'undefined' || breakpointAttrValue?.length === 0 || (isNumeric && (isNaN(breakpointAttrValue) || breakpointAttrValue < min || breakpointAttrValue > max))}
-												/>
-											}
-										</div>
-									}
-								</>
-							}
-							{...customProps}
-						/>
-					</div>
+								{showDisableButton && index === 0 &&
+									<Button
+										isSmall
+										className='es-button-square-24 es-button-icon-18'
+										icon={icons.clear}
+										showTooltip
+										label={__('Clear', 'eightshift-frontend-libs')}
+										onClick={() => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: disableWithUndefined ? undefined : '' })}
+										disabled={typeof breakpointAttrValue === 'undefined' || breakpointAttrValue?.length === 0 || (isNumeric && (isNaN(breakpointAttrValue) || breakpointAttrValue < min || breakpointAttrValue > max))}
+									/>
+								}
+							</>
+						}
+						{...customProps}
+					/>
 				);
 			})}
 		</Responsive>
