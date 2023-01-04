@@ -1,12 +1,18 @@
-import { checkAttrResponsive, getOption, getDefaultBreakpointNames, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst } from '@eightshift/frontend-libs/scripts';
 
+/**
+ *
+ * @param {Object} props Generation settings.
+ * @returns Configuration object.
+ */
 export const generateWidthOffsetRangeSliderConfig = (props) => {
 	const {
 		isFullWidthAttributeName,
 		offsetAttributeName,
 		widthAttributeName,
 		showFullWidth,
-		minMaxStepOptionName,
+		min = 1,
+		numOfColumns = 12,
 		manifest,
 		attributes,
 		setAttributes,
@@ -15,8 +21,6 @@ export const generateWidthOffsetRangeSliderConfig = (props) => {
 
 	const widths = checkAttrResponsive(widthAttributeName, attributes, manifest, true);
 	const offsets = checkAttrResponsive(offsetAttributeName, attributes, manifest, true);
-
-	const minMaxStep = getOption(minMaxStepOptionName, attributes, manifest);
 
 	const value = breakpointNames.reduce((all, current) => {
 		let additional = {};
@@ -56,8 +60,8 @@ export const generateWidthOffsetRangeSliderConfig = (props) => {
 
 			setAttributes(newData);
 		},
-		totalNumberOfColumns: minMaxStep.max,
+		min: min,
+		totalNumberOfColumns: numOfColumns,
 		fullWidthToggle: showFullWidth,
-		...minMaxStep,
 	};
 };
