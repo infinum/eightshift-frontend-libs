@@ -151,7 +151,7 @@ export const RangeSlider = (props) => {
 					{inputField &&
 						<Button
 							onClick={() => setInputFieldsVisible(!inputFieldsVisible)}
-							icon={icons.textboxEdit}
+							icon={icons.textBoxEdit}
 							isPressed={inputFieldsVisible}
 							className='es-button-square-28 es-button-icon-22 es-rounded-1! es-slight-button-border'
 							label={inputFieldsVisible ? __('Hide input fields', 'eightshift-frontend-libs') : __('Show input fields', 'eightshift-frontend-libs')}
