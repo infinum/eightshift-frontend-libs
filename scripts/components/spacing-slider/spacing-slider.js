@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { checkAttr, Responsive, CustomSlider, getAttrKey, getOption, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, Responsive, Slider, getAttrKey, getOption, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * A responsive slider to set spacings.
@@ -22,7 +22,7 @@ import { checkAttr, Responsive, CustomSlider, getAttrKey, getOption, IconLabel, 
  * @param {Array<string>?} [props.breakpointNames]             - Breakpoint names to process, by default taken from Global manifest.
  * @param {{min, max, step}} [props.minMaxStep]                - Provides the min, max and step value for the slider.
  * @param {string?} [props.minMaxStepOptionName=attributeName] - If specified, the given name is used to fetch the min/max/step from manifest. By default the same as `attributeName`.
- * @param {any?} [props.defaultValue=0]                        - The `defaultValue` provided to `CustomSlider`, shown when the value is `undefined`.
+ * @param {any?} [props.defaultValue=0]                        - The `defaultValue` provided to `Slider`, shown when the value is `undefined`.
  * @param {number?} [props.markSteps=5]                        - Defines space between steps of marks.
  * @param {any?} [props.resetValue]                            - The value to reset to, if not provided either the manifest responsive default value is used, or if that's not present no reset button is shown.
  * @param {function?} [props.processValue]                     - Processes the value before passing it to the slider.
@@ -147,7 +147,7 @@ export const SpacingSlider = (props) => {
 
 				return (
 					<div className={index !== 0 ? 'es-mb-4' : 'es-mb-2'} key={index}>
-						<CustomSlider
+						<Slider
 							value={processValue(breakpointAttrValue)}
 							onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: processBeforeSetAttr(value / (compensateForRemBase10 ? 10 : 1)) })}
 							min={min}
