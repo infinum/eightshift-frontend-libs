@@ -12,6 +12,8 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		noExpandButton,
 
 		setAttributes,
+
+		noBottomSpacing,
 	} = attributes;
 
 	const checked = checkAttr(attributeName, attributes, manifest);
@@ -24,6 +26,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		noExpandButton: noExpandButton,
 		onChange: (value) => setAttributes({ [getAttrKey(attributeName, attributes, manifest)]: value }),
 		noControls: noControls,
+		noBottomSpacing: noBottomSpacing,
 	};
 };
 
