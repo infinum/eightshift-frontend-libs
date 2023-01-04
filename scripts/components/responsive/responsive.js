@@ -73,7 +73,7 @@ export const Responsive = (props) => {
 
 				return (
 					<Fragment key={index}>
-						<AnimatedContentVisibility showIf={isOpen}>
+						<AnimatedContentVisibility showIf={isOpen} additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}>
 							<FancyDivider icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} />
 
 							{index > 0 && currentInheritButton &&
