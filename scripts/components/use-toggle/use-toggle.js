@@ -5,6 +5,8 @@ import { icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts'
 
 export const generateUseToggleConfig = (attributes, manifest, attributeName) => {
 	const {
+		noControls,
+
 		noLabel,
 		noUseToggle,
 		noExpandButton,
@@ -21,6 +23,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		noUseToggle: noUseToggle,
 		noExpandButton: noExpandButton,
 		onChange: (value) => setAttributes({ [getAttrKey(attributeName, attributes, manifest)]: value }),
+		noControls: noControls,
 	};
 };
 
@@ -28,6 +31,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
  * A component use toggle with collapsable content.
  *
  * @param {object} props                          - UseToggle options.
+ * @param {boolean} [props.noControls=false]      - If `true`, the options are not rendered.
  * @param {string} props.label                    - Usually component name.
  * @param {boolean} props.checked                 - Is the component currently in use.
  * @param {function} props.onChange               - `onChange` handler from the `ToggleSwitch`.
@@ -40,6 +44,8 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
  * @param {React.Component} props.children        - Child items that are shown when expanded.
  */
 export const UseToggle = ({
+	noControls = false,
+
 	label,
 	checked,
 	onChange,
@@ -56,6 +62,10 @@ export const UseToggle = ({
 	children,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	if (noControls) {
+		return null;
+	}
 
 	if (noLabel && noUseToggle && noExpandButton) {
 		return children;
