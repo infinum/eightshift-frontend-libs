@@ -1,7 +1,6 @@
 import React from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons, classnames} from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
-import classnames from 'classnames';
 
 /**
  * Button-based option selector, inspired by WP 5.9.
@@ -55,65 +54,39 @@ export const OptionSelector = (props) => {
 		additionalContainerClass,
 	} = props;
 
-	const buttonClasses = classnames([
-		iconOnly ? 'es-button-square-36' : '',
-		largerIcons ? 'es-button-icon-24' : '',
-		border === 'offset' ? 'es-rounded-0.75!' : '',
-		additionalButtonClass ?? '',
-	]);
+	const buttonClasses = classnames(
+		iconOnly && 'es-button-square-36',
+		largerIcons && 'es-button-icon-24',
+		border === 'offset' && 'es-rounded-0.75!',
+		additionalButtonClass
+	);
 
-	const spacingConfig = {
-		default: {
-			width: 'max-content',
-		},
-		left: {
-			marginRight: 'auto',
-			justifyContent: 'flex-start',
-			width: 'max-content',
-		},
-		center: {
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			justifyContent: 'center',
-			width: 'max-content',
-		},
-		right: {
-			marginLeft: 'auto',
-			justifyContent: 'flex-end',
-			width: 'max-content',
-		},
-		stretch: {
-			justifyContent: 'space-between',
-			width: '100%',
-		},
-		vertical: {
-			flexDirection: 'column',
-			width: '100%',
-		}
-	};
-
-	const borderConfig = {
-		offset: {
-			borderRadius: 5,
-			padding: '0.125rem',
-			border: '1px solid var(--es-admin-cool-gray-300)',
+	const getSpacingConfig = (alignment) => {
+		switch (alignment) {
+			case 'left':
+				return 'es-mr-auto es-content-start es-w-max';
+			case 'center':
+				return 'es-mx-auto es-content-center es-w-max';
+			case 'right':
+				return 'es-ml-auto es-content-center es-w-max';
+			case 'stretch':
+				return 'es-content-between es-w-full';
+			case 'vertical':
+				return 'es-flex-col es-w-full';
+			default:
+				return 'es-w-max';
 		}
 	};
 
 	const control = (
 		<div
-			className={classnames([
-				'es-option-selector',
-				'es-has-v2-gutenberg-button-active-state-inside',
-				!label && !help ? (additionalClass ?? '') : '',
-			])}
-			style={{
-				display: 'flex',
-				flexWrap: allowWrap ? 'wrap' : 'nowrap',
-				maxWidth: '100%',
-				...(spacingConfig[alignment] ?? {}),
-				...(borderConfig[border] ?? {}),
-			}}
+			className={classnames(
+				'es-option-selector es-display-flex es-has-v2-gutenberg-button-active-state-inside es-max-w-full',
+				!label && !help && additionalClass,
+				allowWrap ? 'es-flex-wrap' : 'es-flex-nowrap',
+				border === 'offset' && 'es-border-cool-gray-300 es-p-0.5 es-rounded-1.25',
+				getSpacingConfig(alignment),
+			)}
 		>
 			{options.map((item, i) => {
 				const iconData = icons?.[item?.icon] ?? item?.icon ?? optionLabels?.[i]?.icon;
@@ -193,7 +166,7 @@ export const OptionSelector = (props) => {
 	);
 
 	return (
-		<div className={`es-v-spaced ${noBottomSpacing ? '' : 'es-mb-5'} ${additionalContainerClass ?? ''}`}>
+		<div className={classnames('es-v-spaced', !noBottomSpacing && 'es-mb-5', additionalContainerClass)}>
 			{inlineLabel &&
 				<div className='es-h-between'>
 					{inlineLabel}
