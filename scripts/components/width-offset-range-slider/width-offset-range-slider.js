@@ -71,7 +71,7 @@ export const WidthOffsetRangeSlider = (props) => {
 	const buttonClass = 'es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-icon-18 es-button-no-icon-spacing es-gap-1.5! es-rounded-1! es-h-8! es-px-2!';
 
 	return (
-		<Responsive label={label} icon={icon} noBottomSpacing={noBottomSpacing} additionalClasses={additionalClasses} addSpaceWhenOpen>
+		<Responsive label={label} icon={icon} noBottomSpacing={noBottomSpacing} additionalClasses={additionalClasses}>
 			{breakpointNames.map((breakpoint, index) => {
 				const width = rawWidths[breakpoint];
 				const offset = rawOffsets[breakpoint];
