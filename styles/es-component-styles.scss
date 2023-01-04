@@ -4,6 +4,7 @@
 @import '../scripts/components/advanced-color-picker/advanced-color-picker';
 @import '../scripts/components/custom-slider/custom-slider';
 @import '../scripts/components/link-edit-component/link-edit-component';
+@import '../scripts//components/number-picker/number-picker.scss';
 @import '../scripts/components/help-modal/help-modal';
 @import '../scripts/components/custom-select/custom-select';
 @import '../scripts/components/color-picker-component/color-picker-component';
@@ -18,7 +19,7 @@
 
 :root {
 	// Colors
-	--es-admin-accent-color-default: #194BD4;
+	--es-admin-accent-color-default: #3858E9;
 	--es-admin-pure-white: #FFFFFF;
 	--es-admin-pure-black: #000000;
 	--es-admin-gray-50: #FAFAFA;
