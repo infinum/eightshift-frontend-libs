@@ -16,8 +16,6 @@ export const styleProps = (props, sliderHeight, isRange = false) => {
 		marks = null,
 	} = props;
 
-	const included = !discrete;
-
 	const containerStyle = {
 		height: sliderHeight,
 		background: 'none',
@@ -78,13 +76,14 @@ export const styleProps = (props, sliderHeight, isRange = false) => {
 			return value >= minValue && value <= maxValue ? activeStyle : dotStyle;
 		}
 
+		if (discrete) {
+			return dotStyle;
+		}
+
 		if (value === parseInt(startPoint)) {
 			return activeStyle;
 		}
 
-		if (!included) {
-			return dotStyle;
-		}
 
 		if (value < startPoint) {
 			return value >= props.value ? activeStyle : dotStyle;
