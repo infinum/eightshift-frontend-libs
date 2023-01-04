@@ -19,9 +19,9 @@ export {
 	RSClearIndicator,
 	RSMultiValue,
 } from './custom-select/react-select-component-wrappers';
-export { CustomSlider } from './custom-slider/custom-slider';
-export { CustomRangeSlider } from './custom-slider/custom-range-slider';
-export { CustomSliderStyle, CustomRangeSliderStyle } from './custom-slider/custom-slider-style';
+export { ColumnConfigSlider } from './custom-slider/column-config-slider';
+export { Slider } from './custom-slider/custom-slider';
+export { RangeSlider } from './custom-slider/custom-range-slider';
 export { FancyDivider } from './fancy-divider/fancy-divider';
 export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';
@@ -32,6 +32,7 @@ export { LinkEditComponent } from './link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
 export { MultiSelect } from './custom-select/multi-select';
+export { NumberPicker } from './number-picker/number-picker';
 export { OptionSelector } from './option-selector/option-selector';
 export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger';
 export { Responsive } from './responsive/responsive';

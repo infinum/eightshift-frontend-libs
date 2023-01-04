@@ -20,9 +20,9 @@ export {
 	RSClearIndicator,
 	RSMultiValue,
 } from './components/custom-select/react-select-component-wrappers';
-export { CustomSlider } from './components/custom-slider/custom-slider';
-export { CustomRangeSlider } from './components/custom-slider/custom-range-slider';
-export { CustomSliderStyle, CustomRangeSliderStyle } from './components/custom-slider/custom-slider-style';
+export { ColumnConfigSlider } from './components/custom-slider/column-config-slider';
+export { Slider } from './components/custom-slider/custom-slider';
+export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
@@ -33,6 +33,7 @@ export { LinkEditComponent } from './components/link-edit-component/link-edit-co
 export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { MultiSelect } from './components/custom-select/multi-select';
+export { NumberPicker } from './components/number-picker/number-picker';
 export { OptionSelector } from './components/option-selector/option-selector';
 export { PopoverWithTrigger } from './components/popover-with-trigger/popover-with-trigger';
 export { Responsive } from './components/responsive/responsive';
