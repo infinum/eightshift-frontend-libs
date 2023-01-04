@@ -4,6 +4,27 @@ import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
 
+/**
+ * A modern and customizable custom slider.
+ *
+ * @typedef {null | 'dots' | true | {Number: string} | {Number: {style, label}}} DotStyle
+ * @typedef {'top'|'bottom'|'hidden'} TooltipPosition
+ *
+ * @param {object} props                           - WidthOffsetRangeSlider options.
+ * @param {React.Component?} [props.icon]          - Icon to show next to the label
+ * @param {React.Component?} [props.label]         - Label to show above component.
+ * @param {Object} [props.value]                   - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
+ * @param {function} [props.onChange]              - Function to trigger when the value of is changing.
+ * @param {any} [props.inheritValue]               - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]          - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {boolean} [props.fullWidthToggle=false]  - If `true`, the "Fullwidth" toggle is shown.
+ * @param {boolean} [props.autoOffsetToggle=false] - If `true`, the "Automatic offset" toggle is shown.
+ * @param {any} [props.autoOffsetValue]            - Value that marks automatic offset.
+ * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
+ * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
+ * @param {boolean?} [props.numericValues=false]   - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
+ * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
+ */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
 		icon = icons.positioningWidthGuide,
@@ -28,7 +49,7 @@ export const WidthOffsetRangeSlider = (props) => {
 		totalNumberOfColumns: rawTotalColumns = 12,
 	} = props;
 
-	const stringValues = !numericValues;
+	const stringValues = !numericValues || autoOffsetToggle;
 
 	const breakpointNames = Object.keys(value);
 
