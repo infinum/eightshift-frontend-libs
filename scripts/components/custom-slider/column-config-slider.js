@@ -102,7 +102,7 @@ export const ColumnConfigSlider = (props) => {
 		>
 			<div className='es-v-spaced es-mt-3 es-items-start!'>
 				{additionalControlsAbove &&
-					<div className='es-h-end'>
+					<div className='es-h-end es-w-full'>
 						{additionalControlsAbove}
 					</div>
 				}
@@ -170,7 +170,7 @@ export const ColumnConfigSlider = (props) => {
 				</div>
 
 				{additionalControlsBelow &&
-					<div className='es-h-end'>
+					<div className='es-h-end es-w-full'>
 						{additionalControlsBelow}
 					</div>
 				}
