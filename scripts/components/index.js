@@ -48,3 +48,4 @@ export { UseToggle, config } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
 export { VisibilityToggleResponsive } from './visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
+export { generateWidthOffsetRangeSliderConfig } from './width-offset-range-slider/auto-config';

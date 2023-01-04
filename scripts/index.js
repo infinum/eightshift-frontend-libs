@@ -49,7 +49,7 @@ export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-
 export { UseToggle, config } from './components/use-toggle/use-toggle';
 export { VisibilityToggleResponsive } from './components/visibility-toggle-responsive/visibility-toggle-responsive';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
-
+export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';
 
 // Editor
 export {
