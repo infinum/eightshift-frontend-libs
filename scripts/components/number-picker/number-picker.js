@@ -8,7 +8,7 @@ import { classnames } from '../../helpers';
 /**
  * A simple number picker, built on the Gutenberg `NumberControl`.
  *
- * @param {object} props                           - InlineNotification options.
+ * @param {object} props                           - NumberPicker options.
  * @param {Number} [props.min=0]                   - Minimum allowed value.
  * @param {Number} props.max                       - Maximum allowed value.
  * @param {Number} [props.step=1]                  - Step change.
