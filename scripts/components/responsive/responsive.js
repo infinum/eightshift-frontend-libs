@@ -82,7 +82,7 @@ export const Responsive = (props) => {
 									onClick={currentInheritButton?.callback}
 									className={classnames(
 										'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1 es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
-										currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : 'es-mb-2.5'
+										currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5'
 									)}
 								>
 									{currentInheritButton?.isActive &&
