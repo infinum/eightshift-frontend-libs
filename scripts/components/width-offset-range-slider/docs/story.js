@@ -49,6 +49,19 @@ export const component = () => {
 		},
 	});
 
+	const [value5, setValue5] = useState({
+		large: {
+			width: 8,
+			offset: 1,
+		},
+		desktop: {},
+		tablet: {},
+		mobile: {
+			width: 12,
+			offset: 2,
+		},
+	});
+
 	return (
 		<>
 			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Width & offset responsive slider</h1>
@@ -117,6 +130,21 @@ export const component = () => {
 						inheritCheck={(value) => typeof value === 'undefined'}
 						inheritValue={undefined}
 						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase
+					title='Numeric values'
+					propsUsed={{
+						'numericValues': 'Value that gets set when inherited.',
+					}}
+					additionalPanels={[{ title: 'Current value', content: <pre>{JSON.stringify(value5, null, 2)}</pre> }]}
+				>
+					<WidthOffsetRangeSlider
+						value={value5}
+						onChange={(value) => setValue5(value)}
+						noBottomSpacing
+						numericValues
 					/>
 				</SingleItemShowcase>
 			</div>

@@ -128,7 +128,6 @@ export const ColumnConfigSlider = (props) => {
 							}
 
 							if (noOffsetHandle) {
-
 								onChange([value[0], w]);
 								return;
 							}
@@ -152,7 +151,7 @@ export const ColumnConfigSlider = (props) => {
 
 						pushable={1}
 						draggableTrack
-						allowCross={!noOffsetHandle}
+						noCross={noOffsetHandle}
 
 						handleRender={renderColumnConfigSliderHandle({ value: value, hasFocus: hasFocus, noOffsetHandle: noOffsetHandle, noWidthHandle: noWidthHandle })}
 

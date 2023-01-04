@@ -23,8 +23,12 @@ export const WidthOffsetRangeSlider = (props) => {
 		noBottomSpacing = false,
 		additionalClasses,
 
+		numericValues = false,
+
 		totalNumberOfColumns: rawTotalColumns = 12,
 	} = props;
+
+	const stringValues = !numericValues;
 
 	const breakpointNames = Object.keys(value);
 
@@ -81,13 +85,7 @@ export const WidthOffsetRangeSlider = (props) => {
 				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
 				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
 
-				let displayedWidth = parsedWidth;
-
-				if (!isOffsetInherited && isWidthInherited) {
-					displayedWidth = (parseInt(nearestValidWidth) - parseInt(nearestValidOffset)) + parseInt(parsedOffset);
-				} else if (isOffsetInherited && isWidthInherited) {
-					displayedWidth = parseInt(nearestValidWidth) + parseInt(nearestValidOffset) - 1;
-				}
+				const displayedWidth = parsedWidth + parsedOffset;
 
 				const totalNumberOfColumns = rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
 
@@ -101,12 +99,12 @@ export const WidthOffsetRangeSlider = (props) => {
 							let newValues = {};
 
 							if (isWidthInherited && !isOffsetInherited) {
-								newValues.offset = o;
+								newValues.offset = stringValues ? String(o) : o;
 							} else if (!isWidthInherited && isOffsetInherited || offset === autoOffsetValue) {
-								newValues.width = w;
+								newValues.width = stringValues ? String(w - nearestValidOffset) : w - nearestValidOffset;
 							} else if (!isWidthInherited && !isOffsetInherited) {
-								newValues.width = w;
-								newValues.offset = o;
+								newValues.width = stringValues ? String(w - o) : w - o;
+								newValues.offset = stringValues ? String(o) : o;
 							}
 
 							onChange({
