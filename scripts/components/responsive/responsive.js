@@ -110,7 +110,7 @@ export const Responsive = (props) => {
 							</div>
 						}
 
-						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)} additionalContainerClasses={classnames(isOpen && 'es-mb-3')}>
+						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)} additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}>
 							{child}
 						</AnimatedContentVisibility>
 					</Fragment>
