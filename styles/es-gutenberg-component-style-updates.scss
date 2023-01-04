@@ -76,6 +76,11 @@
 
 // Tweak NumberControl to better fit in.
 .components-number-control {
+	.components-input-control__input {
+		padding: 0 0.5rem !important;
+		font-size: 0.78125rem !important;
+	}
+
 	.components-input-control__backdrop {
 		border-radius: var(--es-component-border-radius-sm) !important;
 		border-color: var(--es-admin-gray-400) !important;
