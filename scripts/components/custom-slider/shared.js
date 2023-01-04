@@ -10,11 +10,9 @@ export const styleProps = (props, sliderHeight, isRange = false) => {
 		activeMarkColor,
 		railColor,
 		discrete = false,
-		startPoint = min,
-
 		min,
 		max,
-
+		startPoint = min,
 		marks = null,
 	} = props;
 
