@@ -14,6 +14,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		setAttributes,
 
 		noBottomSpacing,
+		additionalClasses,
 	} = attributes;
 
 	const checked = checkAttr(attributeName, attributes, manifest);
@@ -27,6 +28,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		onChange: (value) => setAttributes({ [getAttrKey(attributeName, attributes, manifest)]: value }),
 		noControls: noControls,
 		noBottomSpacing: noBottomSpacing,
+		additionalClasses: additionalClasses,
 	};
 };
 
