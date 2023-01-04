@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Button, BaseControl, Animate } from '@wordpress/components';
 import { icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 
-export const config = (attributes, manifest, attributeName) => {
+export const generateUseToggleConfig = (attributes, manifest, attributeName) => {
 	const {
 		noLabel,
 		noUseToggle,
