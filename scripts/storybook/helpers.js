@@ -161,7 +161,7 @@ export const getInnerBlocks = (innerBlocks = [], isVariation = false) => {
  */
 export const SingleItemShowcase = ({ title, propsUsed, demoContainerClass, additionalPanels, children }) => {
 	return (
-		<div className='es-display-flex es-flex-col es-rounded-1 es-shadow-sm es-border-cool-gray-100 es-text-3.25 es-w-80'>
+		<div className='es-display-flex es-flex-col es-rounded-1 es-shadow-sm es-border-cool-gray-100 es-text-3.25 es-w-80' style={{ '--wp-admin-theme-color': 'var(--es-admin-accent-color-default)' }}>
 			<div className='es-px-4 es-py-2.5 es-border-b-cool-gray-100 es-bg-cool-gray-50'>
 				<p className='es-m-0 es-p-0 es-text-3.5 es-font-weight-500'>{typeof title === 'string' ? ReactHtmlParser(title) : title}</p>
 			</div>
