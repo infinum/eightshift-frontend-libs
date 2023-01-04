@@ -15,6 +15,7 @@ import { IconLabel } from '@eightshift/frontend-libs/scripts';
  * @param {React.Component?} [props.help]          - Help to show below the control.
  * @param {React.Component?} [props.children]      - Content to show.
  * @param {string?} [props.additionalClasses]      - Classes to add to the control base.
+ * @param {boolean?} [props.inlineLabel=false]     - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
  * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
  */
 export const Control = (props) => {
@@ -29,6 +30,8 @@ export const Control = (props) => {
 
 		children,
 
+		inlineLabel = false,
+
 		additionalClasses,
 
 		noBottomSpacing = false,
@@ -36,6 +39,30 @@ export const Control = (props) => {
 
 	if (!children) {
 		return null;
+	}
+
+	if (inlineLabel) {
+		return (
+			<div className={classnames(additionalClasses, !noBottomSpacing && 'es-mb-5')}>
+				{label &&
+					<div className={classnames('es-h-between', (icon || subtitle) && 'es-min-h-7')}>
+						<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
+
+						{children}
+					</div>
+				}
+
+				{actions &&
+					<div className='es-h-end es-mt-2'>
+						{actions}
+					</div>
+				}
+
+				{help &&
+					<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
+				}
+			</div>
+		);
 	}
 
 	return (
