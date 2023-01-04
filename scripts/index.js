@@ -28,7 +28,7 @@ export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
 export { IconToggle } from './components/icon-toggle/icon-toggle';
-export { InlineNotification, InlineNotificationType } from './components/inline-notification/inline-notification';
+export { Notification } from './components/inline-notification/inline-notification';
 export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
 export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
