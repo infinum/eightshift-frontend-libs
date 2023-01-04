@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
@@ -20,6 +20,7 @@ import { AnimatedContentVisibility } from '../animated-content-visibility/animat
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
  * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
  * @param {boolean} [props.noBottomSpacing=false]                                - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.addSpaceWhenOpen=false]                               - If `true`, a bit of bottom is added when the control is expanded.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
 export const Responsive = (props) => {
@@ -37,6 +38,7 @@ export const Responsive = (props) => {
 		additionalClasses,
 
 		noBottomSpacing = false,
+		addSpaceWhenOpen = false,
 	} = props;
 
 	const fallbackBreakpointLabels = breakpoints.map((v) => ucfirst(v));
@@ -72,7 +74,7 @@ export const Responsive = (props) => {
 				const currentInheritButton = inheritButton?.at(index);
 
 				return (
-					<>
+					<Fragment key={index}>
 						<AnimatedContentVisibility showIf={isOpen}>
 							<FancyDivider icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} />
 
@@ -102,12 +104,18 @@ export const Responsive = (props) => {
 							}
 						</AnimatedContentVisibility>
 
-						{index === 0 && child}
+						{index === 0 && (!addSpaceWhenOpen || (addSpaceWhenOpen && !isOpen)) && child}
 
-						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}>
+						{index === 0 && addSpaceWhenOpen && isOpen &&
+							<div className='es-mb-3'>
+								{child}
+							</div>
+						}
+
+						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)} additionalContainerClasses={classnames(addSpaceWhenOpen && isOpen && 'es-mb-3')}>
 							{child}
 						</AnimatedContentVisibility>
-					</>
+					</Fragment>
 				);
 			})}
 		</Control>
