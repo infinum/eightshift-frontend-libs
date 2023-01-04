@@ -81,7 +81,7 @@ export const OptionSelector = (props) => {
 	const control = (
 		<div
 			className={classnames(
-				'es-option-selector es-display-flex es-has-v2-gutenberg-button-active-state-inside es-max-w-full',
+				'es-option-selector es-display-flex es-gap-px es-has-v2-gutenberg-button-active-state-inside es-max-w-full',
 				!label && !help && additionalClass,
 				allowWrap ? 'es-flex-wrap' : 'es-flex-nowrap',
 				border === 'offset' && 'es-border-cool-gray-300 es-p-0.5 es-rounded-1.25',
