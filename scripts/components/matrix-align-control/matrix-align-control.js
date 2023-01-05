@@ -119,7 +119,7 @@ export const MatrixAlignControl = (props) => {
 				value={currentValue ?? (size === '3x3' ? 'center center' : 'top left')}
 				border='none'
 				alignment='center'
-				additionalClass={size === '3x3' ? 'es-w-27!' : 'es-w-18!'}
+				additionalClass={size === '3x3' ? 'es-w-28!' : 'es-w-19!'}
 				additionalButtonClass='es-rounded-1!'
 				noBottomSpacing
 				iconOnly
