@@ -11,7 +11,7 @@ export const CustomSelectDefaultDropdownIndicator = (props) => {
 	return (
 		<components.DropdownIndicator {...props}>
 			{React.cloneElement(icons.dropdownCaretAlt, {
-				className: classnames('es-has-animated-y-flip-icon -es-mr-1', props.selectProps.menuIsOpen && 'is-active'),
+				className: classnames('es-animated-y-flip-icon -es-mr-1', props.selectProps.menuIsOpen && 'is-active'),
 			})}
 		</components.DropdownIndicator>
 	);

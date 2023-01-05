@@ -307,6 +307,18 @@ body {
 		}
 	}
 
+	.es-animated-y-flip-icon {
+		transition: {
+			property: transform;
+			timing-function: var(--es-ease-out-back);
+			duration: 0.5s;
+		}
+
+		&.is-active {
+			transform: scaleY(-1);
+		}
+	}
+
 	// Animated inherit icon.
 	.es-animated-inherit-icon {
 		.arrow-top,
