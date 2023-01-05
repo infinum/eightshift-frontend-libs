@@ -32,28 +32,39 @@ export const defaultEightshiftColorScheme = (theme) => {
 // Shared default styles.
 export const defaultEightshiftStyles = {
 	// Dropdown menu.
-	menu: (provided) => {
+	menu: (provided, state) => {
+		let marginStyle = {
+			marginTop: 4,
+		};
+
+		if (state?.placement === 'top') {
+			marginStyle = {
+				marginBottom: 4,
+			};
+		}
+
 		return {
 			...provided,
-			borderTopLeftRadius: 0,
-			borderTopRightRadius: 0,
-			marginTop: 1.5,
+			...marginStyle,
+			zIndex: 9999,
 		};
 	},
 
+	menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+
 	// Main control.
-	control: (provided, state) => ({
-		...provided,
-		'&:hover': {
-			...provided['&:hover'],
-			borderColor: state.theme.colors.neutral50,
-		},
-		borderBottomLeftRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
-		borderBottomRightRadius: state.menuIsOpen ? 0 : state.theme.borderRadius,
-		borderColor: state.theme.colors.neutral40,
-		height: state.isMulti ? provided.height : 36,
-		minHeight: state.isMulti ? provided.minHeight : 36,
-	}),
+	control: (provided, state) => {
+		return {
+			...provided,
+			'&:hover': {
+				...provided['&:hover'],
+				borderColor: state.theme.colors.neutral50,
+			},
+			borderColor: state.theme.colors.neutral40,
+			height: state.isMulti ? provided.height : 36,
+			minHeight: state.isMulti ? provided.minHeight : 36,
+		};
+	},
 
 	// Option in the dropdown menu.
 	option: (provided) => ({
