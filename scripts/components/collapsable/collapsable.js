@@ -28,6 +28,7 @@ export const Collapsable = ({
 			label={label}
 			noBottomSpacing={noBottomSpacing}
 			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
 			actions={
 				<Button
 					onClick={() => setIsOpen(!isOpen)}

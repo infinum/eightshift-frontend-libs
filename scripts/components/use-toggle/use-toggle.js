@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button, BaseControl, Animate } from '@wordpress/components';
-import { icons, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { Button } from '@wordpress/components';
+import { icons, checkAttr, getAttrKey, classnames, AnimatedContentVisibility, Control } from '@eightshift/frontend-libs/scripts';
 
 export const generateUseToggleConfig = (attributes, manifest, attributeName) => {
 	const {
@@ -82,22 +82,18 @@ export const UseToggle = ({
 
 	if (noExpandButton && noUseToggle && !noLabel) {
 		return (
-			<BaseControl className={additionalClasses ?? ''} label={label}>
+			<Control additionalClasses={additionalClasses} label={label} noBottomSpacing={noBottomSpacing}>
 				{children}
-			</BaseControl>
+			</Control>
 		);
 	}
 
-	const bottomSpacingClass = !noBottomSpacing || isOpen ? 'es-mb-5' : 'es-pb-0.25';
-
 	if (noUseToggle && !noLabel && !noExpandButton) {
 		return (
-			<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${bottomSpacingClass} ${additionalClasses ?? ''}`}>
-				<div className='es-h-between es-w-full es-h-7 es-mb-2'>
-					<div>
-						{label}
-					</div>
-
+			<Control
+				label={label}
+				additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
+				actions={
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
 						className={`es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon ${isOpen ? 'is-active es-nested-color-pure-white es-bg-admin-accent' : ''}`}
@@ -106,26 +102,23 @@ export const UseToggle = ({
 						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
 						showTooltip
 					/>
-				</div>
-
-				{isOpen &&
-					<Animate type='slide-in' options={{ origin: 'bottom' }} >
-						{({ className }) => (
-							<div className={className}>
-								{children}
-							</div>
-						)}
-					</Animate>
 				}
-			</div>
+				noBottomSpacing={noBottomSpacing}
+			>
+				<AnimatedContentVisibility showIf={isOpen}>
+					{children}
+				</AnimatedContentVisibility>
+			</Control>
 		);
 	}
 
 	const openCondition = noExpandButton ? checked : checked && isOpen;
 
 	return (
-		<div className={`es-nested-collapsable ${isOpen ? 'is-open' : ''} ${bottomSpacingClass} ${additionalClasses ?? ''}`}>
-			<div className='es-h-between es-w-full es-h-7 es-mb-2'>
+		<Control
+			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalLabelClasses={classnames(noBottomSpacing && !openCondition && 'es-mb-0!')}
+			label={
 				<Button
 					icon={toggleIcon}
 					onClick={() => {
@@ -139,28 +132,22 @@ export const UseToggle = ({
 				>
 					{label}
 				</Button>
-
-				{!noExpandButton &&
-					<Button
-						onClick={() => setIsOpen(!isOpen)}
-						className={`es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon ${isOpen ? 'is-active es-nested-color-pure-white es-bg-admin-accent' : ''}`}
-						icon={isOpen ? icons.caretDownFill : icons.caretDown}
-						disabled={disabled || !checked}
-						label={checked ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
-						showTooltip
-					/>
-				}
-			</div>
-
-			{openCondition &&
-				<Animate type='slide-in' options={{ origin: 'bottom' }} >
-					{({ className }) => (
-						<div className={className}>
-							{children}
-						</div>
-					)}
-				</Animate>
 			}
-		</div>
+			actions={!noExpandButton &&
+				<Button
+					onClick={() => setIsOpen(!isOpen)}
+					className={`es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon ${isOpen ? 'is-active es-nested-color-pure-white es-bg-admin-accent' : ''}`}
+					icon={isOpen ? icons.caretDownFill : icons.caretDown}
+					disabled={disabled || !checked}
+					label={checked ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
+					showTooltip
+				/>
+			}
+			noBottomSpacing={noBottomSpacing}
+		>
+			<AnimatedContentVisibility showIf={openCondition}>
+				{children}
+			</AnimatedContentVisibility>
+		</Control>
 	);
 };
