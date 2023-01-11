@@ -189,7 +189,9 @@ export const SingleItemShowcase = ({ title, propsUsed, demoContainerClass, addit
 			{additionalPanels && additionalPanels.map(({ title, content }, i) => {
 				return (
 					<div key={i} className='es-p-4 es-border-t-cool-gray-100'>
-						<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>{title.toUpperCase()}</p>
+						{title &&
+							<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>{title.toUpperCase()}</p>
+						}
 
 						{content}
 					</div>
