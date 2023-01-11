@@ -82,7 +82,7 @@
 	}
 
 	.components-input-control__backdrop {
-		border-radius: var(--es-component-border-radius-sm) !important;
+		border-radius: var(--es-component-border-radius-md) !important;
 		border-color: var(--es-admin-gray-400) !important;
 
 	}
@@ -96,7 +96,7 @@
 
 // Tweak default text input border radius to better fit in.
 .components-text-control__input {
-	border-radius: var(--es-component-border-radius-sm) !important;
+	border-radius: var(--es-component-border-radius-md) !important;
 }
 
 // Updated Placeholder component styles.
