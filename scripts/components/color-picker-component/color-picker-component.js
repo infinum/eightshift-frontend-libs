@@ -1,84 +1,71 @@
-import React, { useRef } from 'react';
-import { Popover, Button } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import React from 'react';
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, icons } from '../../../scripts';
-import { ColorPaletteCustomLayout } from '../color-palette-custom/color-palette-custom';
-
-/**
- * Determines the color picker type.
- *
- * - `TEXT_COLOR` - displays an icon suitable for text color selection.
- * - `TEXT_HIGHLIGHT_COLOR` - displays an icon suitable for text highlight color selection.
- * - `BACKGROUND_COLOR` - displays an icon suitable for background color selection.
- * - `GENERIC` - displays an generic color selection icon.
- */
-export const ColorPickerType = {
-	TEXT_COLOR: 'textColor',
-	TEXT_HIGHLIGHT_COLOR: 'textHighlight',
-	BACKGROUND_COLOR: 'bgColor',
-	GENERIC: 'generic',
-};
+import { classnames, ColorSwatch, Control, icons, PopoverWithTrigger } from '../../../scripts';
+import { ColorPalette } from '../color-palette-custom/color-palette-custom';
 
 /**
  * Component that allows simple inline color picking while taking up not much space.
  *
- * @param {object} props                                                                              - ColorPickerComponent options.
- * @param {array?} props.colors                                                                       - List of options to display. If not set, all global manifest colors are used.
- * @param {string} props.value                                                                        - Current value (color slug).
- * @param {function} props.onChange                                                                   - Callback that applies the changes.
- * @param {React.Component?} props.label                                                              - Label to represent the control
- * @param {boolean} [props.canReset=true]                                                             - If `true`, a clear/reset button is shown.
- * @param {string} [props.pickerPopupTitle]                                                           - Color picker popup title.
- * @param {string} [props.type=ColorPickerType.GENERIC]                                               - Color picker type (determines the visual style of the picker).
- * @param {string} props.tooltip                                                                      - Tooltip of the picker button (if label not provided).
- * @param {boolean} [props.disabled=false]                                                            - If `true`, control is disabled.
- * @param {boolean} [props.searchable=false]                                                          - If `true`, the list of color can be searched through.
- * @param {boolean} [props.groupShades=true]                                                          - If `true`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
- * @param {boolean?} [props.includeWpBottomSpacing=false]                                             - If `true`, the WP default control spacing will be applied.
- * @param {string?} [props.additionalClasses]                                                         - If provided, the classes are passed to the component.
- * @param {string?} [props.additionalTriggerClasses]                                                  - If provided, the classes are passed to the component's trigger button.
- * @param {ColorPaletteCustomLayout} [props.colorPaletteLayout=ColorPaletteCustomLayout.LIST_TWO_COL] - If provided, sets the layout of the popup color list.
+ * @typedef {'generic'|'textColor'|'textHighlightColor'|'backgroundColor'} PickerType
+ *
+ * @param {object} props                                               - ColorPicker options.
+ * @param {string} props.value                                         - Current value (color slug).
+ * @param {array?} props.colors                                        - List of options to display. If not set, all global manifest colors are used.
+ * @param {function} props.onChange                                    - Callback that applies the changes.
+ * @param {PickerType} [props.type='generic']                          - Color picker type (determines the visual style of the picker).
+ * @param {string} [props.pickerPopupTitle]                            - Color picker popup title.
+ * @param {boolean} [props.noShadeGrouping=false]                      - If `false`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
+ * @param {boolean} [props.disabled=false]                             - If `true`, control is disabled.
+ * @param {boolean} [props.searchable=false]                           - If `true`, the list of color can be searched through.
+ * @param {boolean} [props.canReset=true]                              - If `true`, a clear/reset button is shown.
+ * @param {ColorPaletteLayout} [props.colorPaletteLayout='listTwoCol'] - If provided, sets the layout of the popup color list.
+ * @param {React.Component?} [props.icon]                              - Icon to show next to the label
+ * @param {React.Component?} [props.label]                             - Label to represent the control
+ * @param {React.Component?} [props.help]                              - Help text displayed below the control.
+ * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
+ * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
+ * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
+ * @param {string?} [props.additionalTriggerClasses]                   - If provided, the classes are passed to the component's trigger button.
  */
-export const ColorPickerComponent = ({
-	colors,
-	value,
-	onChange,
-	label,
-	canReset = false,
-	pickerPopupTitle,
-	type = ColorPickerType.GENERIC,
-	tooltip,
-	disabled = false,
-	searachable = false,
-	groupShades = true,
-	includeWpBottomSpacing = false,
-	additionalClasses,
-	additionalTriggerClasses,
-	colorPaletteLayout = ColorPaletteCustomLayout.LIST_TWO_COL,
-}) => {
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+export const ColorPicker = (props) => {
+	const {
+		value,
+		colors,
+		onChange,
+
+		type = 'generic',
+		pickerPopupTitle,
+
+		noShadeGrouping,
+		disabled = false,
+		searchable = false,
+		canReset = false,
+		colorPaletteLayout = 'tiles',
+
+		icon,
+		help,
+		label,
+		tooltip,
+
+		noBottomSpacing,
+		additionalClasses,
+		additionalTriggerClasses,
+	} = props;
 
 	let defaultPopupTitle = __('Pick a color', 'eightshift-frontend-libs');
 
 	switch (type) {
-		case ColorPickerType.BACKGROUND_COLOR:
+		case 'backgroundColor':
 			defaultPopupTitle = __('Background color', 'eightshift-frontend-libs');
 			break;
-		case ColorPickerType.TEXT_COLOR:
+		case 'textColor':
 			defaultPopupTitle = __('Text color', 'eightshift-frontend-libs');
 			break;
-		case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+		case 'textHighlightColor':
 			defaultPopupTitle = __('Text highlight color', 'eightshift-frontend-libs');
 			break;
 	}
-
-	const ref = useRef();
-
-	const openPicker = () => {
-		setIsDropdownOpen(true);
-		return false; // Prevents default behaviour for event.
-	};
 
 	const getTooltipText = () => {
 		if (tooltip) {
@@ -86,11 +73,11 @@ export const ColorPickerComponent = ({
 		}
 
 		switch (type) {
-			case ColorPickerType.BACKGROUND_COLOR:
+			case 'backgroundColor':
 				return __('Background color', 'eightshift-frontend-libs');
-			case ColorPickerType.TEXT_COLOR:
+			case 'textColor':
 				return __('Text color', 'eightshift-frontend-libs');
-			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+			case 'textHighlightColor':
 				return __('Text highlight color', 'eightshift-frontend-libs');
 			default:
 				return __('Color', 'eightshift-frontend-libs');
@@ -99,38 +86,13 @@ export const ColorPickerComponent = ({
 
 	let popupContentWidthClass = 'es-min-w-96!';
 
-	if (colorPaletteLayout === ColorPaletteCustomLayout.LIST) {
+	if (colorPaletteLayout === 'list') {
 		popupContentWidthClass = 'es-min-w-56!';
 	}
 
-	if (colorPaletteLayout === ColorPaletteCustomLayout.DEFAULT) {
+	if (colorPaletteLayout === 'tiles') {
 		popupContentWidthClass = 'es-min-w-64!';
 	}
-
-	const colorPicker = (
-		isDropdownOpen &&
-		<Popover
-			onClose={() => setIsDropdownOpen(false)}
-			anchorRef={ref?.current}
-			noArrow={false}
-		>
-			<div className={`es-popover-content ${popupContentWidthClass}`}>
-				<ColorPaletteCustom
-					label={<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>}
-					colors={colors}
-					value={value}
-					onChange={(value) => {
-						onChange(value);
-					}}
-					clearable={canReset}
-					inline
-					layout={colorPaletteLayout}
-					searachable={searachable}
-					groupShades={groupShades}
-				/>
-			</div>
-		</Popover>
-	);
 
 	const getButtonIcon = () => {
 		let style = {};
@@ -147,16 +109,16 @@ export const ColorPickerComponent = ({
 			};
 		}
 
-		let icon = React.cloneElement(icons.genericColorSwatch, { style });
+		let icon = <ColorSwatch color={value === 'transparent' ? 'transparent' : `var(--global-colors-${value})`} />;
 
 		switch (type) {
-			case ColorPickerType.TEXT_COLOR:
+			case 'textColor':
 				icon = React.cloneElement(icons.textColorSwatch, { style });
 				break;
-			case ColorPickerType.TEXT_HIGHLIGHT_COLOR:
+			case 'textHighlightColor':
 				icon = React.cloneElement(icons.textHighlightColorSwatch, { style });
 				break;
-			case ColorPickerType.BACKGROUND_COLOR:
+			case 'backgroundColor':
 				icon = React.cloneElement(icons.backgroundColorSwatch, { style });
 				break;
 		}
@@ -164,36 +126,45 @@ export const ColorPickerComponent = ({
 		return icon;
 	};
 
-	const triggerButton = (
-		<Button
-			onClick={openPicker}
-			icon={getButtonIcon()}
-			ref={ref}
-			label={getTooltipText()}
-			disabled={disabled}
-			className={`es-button-icon-24 ${additionalTriggerClasses ?? ''}`}
-		/>
-	);
-
-	if (!label) {
-		return (
-			<div className={`${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
-				{triggerButton}
-
-				{colorPicker}
-			</div>
-		);
-	}
-
 	return (
-		<>
-			<div className={`es-h-between ${includeWpBottomSpacing ? 'es-has-wp-field-b-space' : ''} ${additionalClasses ?? ''}`}>
-				<div className='es-label-flex'>{label}</div>
-
-				{triggerButton}
-			</div>
-
-			{colorPicker}
-		</>
+		<Control
+			icon={icon}
+			additionalClasses={additionalClasses}
+			noBottomSpacing={noBottomSpacing}
+			label={label}
+			help={help}
+			inlineLabel
+		>
+			<PopoverWithTrigger
+				contentClass='es-display-flex'
+				trigger={
+					({ ref, setIsOpen, isOpen }) => (
+						<Button
+							ref={ref}
+							onClick={() => setIsOpen(!isOpen)}
+							icon={getButtonIcon()}
+							label={getTooltipText()}
+							className={classnames('es-button-square-30 es-button-icon-24', additionalTriggerClasses)}
+							disabled={disabled}
+						/>
+					)
+				}
+			>
+				<div className={classnames('es-popover-content', popupContentWidthClass)}>
+					<ColorPalette
+						label={<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>}
+						colors={colors}
+						value={value}
+						onChange={onChange}
+						clearable={canReset}
+						layout={colorPaletteLayout}
+						searchable={searchable}
+						noShadeGrouping={noShadeGrouping}
+						noBottomSpacing
+						disabled={disabled}
+					/>
+				</div>
+			</PopoverWithTrigger>
+		</Control>
 	);
 };
