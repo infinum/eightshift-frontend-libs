@@ -3,6 +3,7 @@ import { IconToggle } from '../icon-toggle';
 import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/IconToggle',
@@ -17,99 +18,84 @@ export const component = () => {
 	const [current, setCurrent] = useState(false);
 
 	return (
-		<div style={{width: '20rem'}}>
-			<h4>Regular toggle</h4>
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Toggle</h1>
 
-			<IconToggle
-				icon={icons.width}
-				label='Full width'
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-			/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic toggle'>
+					<IconToggle
+						icon={icons.width}
+						label='Full width'
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<br />
+				<SingleItemShowcase title='Help text'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						help={__('Help text here.', 'eightshift-frontend-libs')}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				help={__('Help text here.', 'eightshift-frontend-libs')}
-			/>
+				<SingleItemShowcase title='Inline help text'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
+						inlineHelp
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<br />
+				<SingleItemShowcase title='Checkbox'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						type='checkbox'
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
-				inlineHelp
-			/>
+				<SingleItemShowcase title='Toggle button'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						type='button'
+					/>
+				</SingleItemShowcase>
 
-			<h4>Checkbox</h4>
+				<SingleItemShowcase title='Toggle icon button'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						type='iconButton'
+					/>
+				</SingleItemShowcase>
 
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				type='checkbox'
-			/>
-
-			<br />
-
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				help={__('Help text here.', 'eightshift-frontend-libs')}
-				type='checkbox'
-			/>
-
-			<br />
-
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
-				type='checkbox'
-				inlineHelp
-			/>
-
-			<h4>Button</h4>
-
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				type='button'
-			/>
-
-			<h4>Icon button</h4>
-
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				type='iconButton'
-			/>
-
-			<h4>Tile button</h4>
-
-			<IconToggle
-				icon={icons.width}
-				label={__('Full width', 'eightshift-frontend-libs')}
-				checked={current}
-				onChange={(value) => setCurrent(value)}
-				type='tileButton'
-			/>
-		</div>
+				<SingleItemShowcase title='Toggle tile button'>
+					<IconToggle
+						icon={icons.width}
+						label={__('Full width', 'eightshift-frontend-libs')}
+						checked={current}
+						onChange={(value) => setCurrent(value)}
+						type='tileButton'
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
 	);
 };

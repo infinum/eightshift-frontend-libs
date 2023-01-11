@@ -1,7 +1,8 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { FancyDivider } from '../fancy-divider';
-import { IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { SingleItemShowcase } from '../../../storybook/helpers';
+import { icons } from '../../../editor';
 
 export default {
 	title: `Options/FancyDivider`,
@@ -12,21 +13,18 @@ export default {
 	},
 };
 
-export const simpleDivider = () => (
+export const component = () => (
 	<>
-		<h4>Regular divider</h4>
-		<FancyDivider label='Divider' />
-		<br />
+		<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Divider</h1>
 
-		<h4>With icon</h4>
-		<FancyDivider label={<IconLabel icon={icons.iconGeneric} label='Divider' />} />
-		<br />
+		<div className='es-display-flex es-flex-wrap es-gap-5!'>
+			<SingleItemShowcase title='Basic divider'>
+				<FancyDivider label='Divider' noBottomSpacing />
+			</SingleItemShowcase>
 
-		<h4>Uppercase text</h4>
-		<FancyDivider label='Divider' lowercase={false} />
-		<br />
-
-		<h4>Uppercase text with icon</h4>
-		<FancyDivider label={<IconLabel icon={icons.iconGeneric} label='Divider' />} lowercase={false} />
+			<SingleItemShowcase title='With icon'>
+				<FancyDivider icon={icons.genericShapesAlt} label='Divider' noBottomSpacing />
+			</SingleItemShowcase>
+		</div>
 	</>
 );
