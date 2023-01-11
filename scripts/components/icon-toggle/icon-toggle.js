@@ -68,7 +68,7 @@ export const IconToggle = ({
 			checked={checked}
 			onChange={onChange}
 			disabled={disabled}
-			help={!inlineHelp && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
+			help={!inlineHelp && help && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
 			label={icon ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
 			className={classnames(noBottomSpacing ? 'es-mb-0!' : 'es-mb-5!', additionalClasses)}
 		/>
