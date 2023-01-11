@@ -6,14 +6,9 @@
 			border: 1px solid var(--es-admin-cool-gray-500) !important;
 			border-radius: 0.25rem !important;
 			width: 100% !important;
-			height: 2.5rem !important;
+			height: 2.25rem !important;
+			padding: 0.5rem;
 		}
-	}
-
-	&__delete-button {
-		position: absolute;
-		top: calc(0.25rem - 0.5px);
-		right: calc(0.25rem - 0.5px);
 	}
 }
 

@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { __experimentalLinkControlSearchInput as LinkControlSearchInput } from '@wordpress/block-editor';
-import { Popover, Button, KeyboardShortcuts, Animate } from '@wordpress/components';
-import { filterURLForDisplay } from '@wordpress/url';
-import { IconLabel, icons, IconToggle } from '../../../scripts';
+import { Button, KeyboardShortcuts } from '@wordpress/components';
+import { AnimatedContentVisibility, Control, IconLabel, icons, IconToggle, truncateMiddle } from '../../../scripts';
 
 /**
  * Options panel component that allows picking an URL in a clean and simple way.
@@ -32,8 +31,9 @@ export const LinkEditComponent = ({
 
 	onChange,
 
-	label = __('URL', 'eightshift-frontend-libs'),
+	label = __('Link', 'eightshift-frontend-libs'),
 	help,
+	actions,
 
 	icon = icons.globe,
 	removeIcon = icons.trash,
@@ -52,10 +52,6 @@ export const LinkEditComponent = ({
 	additionalOptions,
 	additionalOptionTiles,
 }) => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const ref = useRef();
-
 	const hasUrl = url?.trim()?.length > 0;
 	const isAnchor = hasUrl && url?.includes('#');
 	const isInternalAnchor = hasUrl && url?.startsWith('#');
@@ -64,7 +60,7 @@ export const LinkEditComponent = ({
 	const [isEditing, setIsEditing] = useState(false);
 
 	const handleSelectSuggestion = ({ url }) => {
-		onChange({ url: url, isAnchor: url?.includes('#') });
+		onChange({ url: url, isAnchor: url?.includes('#'), newTab: opensInNewTab });
 		setInputValue(url);
 		setIsEditing(false);
 	};
@@ -75,7 +71,7 @@ export const LinkEditComponent = ({
 	};
 
 	const handleAddCustomSuggestion = (newUrl) => {
-		onChange({ url: newUrl, isAnchor: newUrl?.includes('#') });
+		onChange({ url: newUrl, newTab: opensInNewTab, isAnchor: newUrl?.includes('#') });
 		setInputValue(newUrl);
 		setIsEditing(false);
 	};
@@ -86,191 +82,153 @@ export const LinkEditComponent = ({
 		}
 
 		const {
-			isLoading,
 			suggestions,
 			handleSuggestionClick,
 		} = props;
 
-		console.log({ props });
-
 		return (
-			<>
-				{isLoading &&
-					<IconLabel icon={icons.clock} label={__('Loading', 'eightshift-frontend-libs')} additionalClasses='es-mt-3! es-mb-4!' standalone />
-				}
+			<AnimatedContentVisibility showIf={suggestions.length > 0} direction='bottom' additionalContainerClasses='es-v-spaced es-gap-2.5! es-max-h-48 -es-mt-5 es-mb-3 es-rounded-1 es-px-2 es-py-2.5 es-overflow-y-auto es-border-cool-gray-100'>
+				{suggestions.map((suggestion, i) => {
+					const { title, type, url } = suggestion;
 
-				{!isLoading &&
-					<Animate type='slide-in' options={{ origin: 'bottom' }}>
-						{({ className }) => (
-							<div className={`${className} es-v-spaced es-gap-1! es-max-h-44 es-mt-3 es-pb-3 es-px-0.5`} style={{ overflowY: 'auto' }}>
-								{suggestions.map((suggestion, i) => {
-									const { title, type, url } = suggestion;
+					let typeIcon = (<span className='es-p-1 es-rounded-1 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>{type.toUpperCase()}</span>);
 
-									let typeIcon = (<span className='es-p-1 es-rounded-1 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>{type.toUpperCase()}</span>);
+					const isCreateNew = type.toLowerCase() === '__create__';
 
-									const isCreateNew = type.toLowerCase() === '__create__';
+					if (type.toLowerCase() === 'url') {
+						typeIcon = icons.externalLink;
+					} else if (type.toLowerCase() === 'attachment') {
+						typeIcon = icons.file;
+					} else if (type.toLowerCase() === 'category') {
+						typeIcon = icons.layoutAlt;
+					} else if (type.toLowerCase() === 'internal') {
+						typeIcon = icons.anchor;
+					} else if (isCreateNew) {
+						typeIcon = icons.plusCircleFillAlt;
+					}
 
-									if (type.toLowerCase() === 'url') {
-										typeIcon = icons.externalLink;
-									} else if (type.toLowerCase() === 'attachment') {
-										typeIcon = icons.file;
-									} else if (type.toLowerCase() === 'category') {
-										typeIcon = icons.layoutAlt;
-									} else if (type.toLowerCase() === 'internal') {
-										typeIcon = icons.anchor;
-									} else if (isCreateNew) {
-										typeIcon = icons.plusCircleFillAlt;
-									}
-
-									return (
-										<Button key={i} onClick={() => handleSuggestionClick(suggestion)} className='es-rounded-1.5! es-px-2.5! es-h-14!'>
-											<IconLabel
-												icon={<span className='es-w-10 es-display-flex es-items-center es-content-center es-flex-shrink-0'>{typeIcon}</span>}
-												label={title}
-												subtitle={isCreateNew ? __('Click to add', 'eightshift-frontend-libs') : filterURLForDisplay(url, 36)}
-												additionalClasses='es-has-v2-gutenberg-button-active-state es-text-align-left es-flex-row-reverse es-h-between es-w-full es-color-cool-gray-600'
-												addSubtitleGap
-												standalone
-											/>
-										</Button>
-									);
-								})}
-							</div>
-						)}
-					</Animate>
-				}
-			</>
+					return (
+						<Button key={i} onClick={() => handleSuggestionClick(suggestion)} className='es-rounded-0.5! es-p-0! es-h-10!'>
+							<IconLabel
+								icon={<span className='es-w-10 es-display-flex es-items-center es-content-center es-flex-shrink-0'>{typeIcon}</span>}
+								label={truncateMiddle(title, 32)}
+								subtitle={isCreateNew ? __('Click to add', 'eightshift-frontend-libs') : truncateMiddle(url, 32)}
+								additionalClasses='es-text-align-left es-flex-row-reverse es-h-between es-w-full es-color-cool-gray-600'
+								standalone
+							/>
+						</Button>
+					);
+				})}
+			</AnimatedContentVisibility>
 		);
 	};
 
 	return (
-		<>
-			<div className={`es-v-spaced ${noBottomSpacing ? '' : 'es-mb-5'} ${additionalClass ?? ''}`}>
-				<Button
-					onClick={() => setIsOpen(!isOpen)}
-					label={hasUrl ? __('Edit URL', 'eighshift-frontend-libs') : __('Add an URL', 'eightshift-frontend-libs')}
-					className='es-button-icon-24 es-text-align-left es-w-full es-h-11 es-rounded-1.5! es-py-0! es-px-2! es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-400 es-focus-slight-button-border-admin-accent'
-					disabled={disabled}
-					showTooltip
-				>
-					<IconLabel
-						icon={<div className='es-line-h-0' ref={ref}>{url?.length > 0 && url?.includes('#') ? anchorIcon : icon}</div>}
-						subtitle={hasUrl ? filterURLForDisplay(url, 22) : __('Click to add', 'eightshift-frontend-libs')}
-						additionalClasses='es-nested-color-cool-gray-650'
-						label={label}
-						standalone
-					/>
+		<Control
+			label={label}
+			icon={isAnchor ? anchorIcon : icon}
+			help={help}
+			noBottomSpacing={noBottomSpacing}
+			additionalClasses={additionalClass}
+			actions={
+				<>
+					{actions}
 
-					<div className='es-nested-color-cool-gray-400 es-ml-auto es-line-h-0'>
-						{url?.length > 0 ? icons.edit : icons.plusCircle}
-					</div>
-				</Button>
-
-				{help &&
-					<span className='es-text-3 es-color-cool-gray-500'>{help}</span>
-				}
-			</div>
-
-			{isOpen &&
-				<Popover
-					position='bottom center'
-					onClose={() => setIsOpen(false)}
-					anchor={ref?.current}
-					noArrow={false}
-				>
-					<div className={`es-px-4 es-pt-4 ${isEditing && inputValue?.length >= 2 ? '' : 'es-pb-4'} es-w-92`}>
-						<KeyboardShortcuts
-							shortcuts={{
-								'enter': (e) => {
-									if (!e.key.toLowerCase() !== 'enter' || !isEditing) {
-										return;
-									}
-
-									e.preventDefault();
-									e.stopPropagation();
-
-									handleChange(inputValue);
-								}
+					<AnimatedContentVisibility showIf={hasUrl && !noDelete && !disabled} additionalContainerClasses='es-line-h-0'>
+						<Button
+							onClick={() => {
+								setInputValue('');
+								onChange({ url: null, newTab: false, isAnchor: false });
 							}}
-						>
-							<LinkControlSearchInput
-								value={inputValue}
-
-								onChange={handleChange}
-								onSelect={handleSelectSuggestion}
-
-								withCreateSuggestion
-								onCreateSuggestion={handleAddCustomSuggestion}
-								renderSuggestions={(props) => suggestionsRender(props)}
-
-								className='es-link-edit-component__url-field es-m-0-bcf!'
-								placeholder={__('Search or enter URL', 'eightshift-frontend-libs')}
-							>
-								{hasUrl && !noDelete &&
-									<Button
-										onClick={() => {
-											setInputValue('');
-											onChange({ url: null });
-										}}
-										icon={removeIcon}
-										disabled={disabled}
-										className='es-link-edit-component__delete-button es-button-no-outline es-button-icon-24 es-nested-color-red-500 es-rounded-1'
-										label={__('Remove', 'eightshift-frontend-libs')}
-										showTooltip
-									/>
-								}
-							</LinkControlSearchInput>
-						</KeyboardShortcuts>
-					</div>
-
-					{isAnchor && !isInternalAnchor && !isEditing && !hideAnchorNotice &&
-						<div className='es-mx-4 es-mb-4 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
-							<IconLabel
-								icon={icons.globeAnchor}
-								label={__('Anchor link selected', 'eightshift-frontend-libs')}
-								subtitle={__('Links to an element on a page', 'eightshift-frontend-libs')}
-								additionalClasses='es-nested-color-cool-gray-500'
-								standalone
-							/>
-						</div>
-					}
-
-					{isInternalAnchor && !isEditing && !hideAnchorNotice &&
-						<div className='es-mx-4 es-mb-4 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
-							<IconLabel
-								icon={icons.anchorPage}
-								label={__('Internal anchor link selected', 'eightshift-frontend-libs')}
-								subtitle={__('Links to an element on the current page', 'eightshift-frontend-libs')}
-								additionalClasses='es-nested-color-cool-gray-500'
-								standalone
-							/>
-						</div>
-					}
-
-					{(!hideOpensInNewTab || additionalOptionTiles) &&
-						<div className='es-p-4 es-h-spaced es-w-92 es-border-t-gray-400'>
-							{!hideOpensInNewTab &&
-								<IconToggle
-									icon={icons.newTab}
-									label={__('Open in new tab', 'eightshift-frontend-libs')}
-									checked={opensInNewTab}
-									onChange={(value) => onChange({ newTab: value })}
-									type='tileButton'
-									disabled={isEditing}
-								/>
+							icon={removeIcon}
+							disabled={disabled}
+							className='es-button-square-28 es-button-icon-24 es-nested-color-red-500 es-rounded-1'
+							label={__('Remove', 'eightshift-frontend-libs')}
+							showTooltip
+						/>
+					</AnimatedContentVisibility>
+				</>
+			}
+		>
+			{!disabled &&
+				<KeyboardShortcuts
+					shortcuts={{
+						'enter': (e) => {
+							if (!e.key.toLowerCase() !== 'enter' || !isEditing) {
+								return;
 							}
 
-							{additionalOptionTiles}
-						</div>
+							e.preventDefault();
+							e.stopPropagation();
+
+							handleChange(inputValue);
+						}
+					}}
+				>
+					<LinkControlSearchInput
+						value={inputValue}
+
+						onChange={handleChange}
+						onSelect={handleSelectSuggestion}
+
+						withCreateSuggestion
+						onCreateSuggestion={handleAddCustomSuggestion}
+						renderSuggestions={(props) => suggestionsRender(props)}
+
+						className='es-link-edit-component__url-field es-m-0-bcf!'
+						placeholder={__('Search or enter URL', 'eightshift-frontend-libs')}
+					/>
+				</KeyboardShortcuts>
+			}
+
+			{disabled &&
+				<div className='es-h-9 es-rounded-1 es-border-cool-gray-100 es-color-cool-gray-450 es-user-select-none es-h-spaced es-p-2'>
+					<span>{url}</span>
+				</div>
+			}
+
+			<AnimatedContentVisibility showIf={isAnchor && !isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled} additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
+				<IconLabel
+					icon={icons.globeAnchor}
+					label={__('Anchor link selected', 'eightshift-frontend-libs')}
+					subtitle={__('Links to an element on a page', 'eightshift-frontend-libs')}
+					additionalClasses='es-nested-color-cool-gray-500'
+					standalone
+				/>
+			</AnimatedContentVisibility>
+
+			<AnimatedContentVisibility showIf={isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled} additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
+				<IconLabel
+					icon={icons.anchorPage}
+					label={__('Internal anchor link selected', 'eightshift-frontend-libs')}
+					subtitle={__('Links to an element on the current page', 'eightshift-frontend-libs')}
+					additionalClasses='es-nested-color-cool-gray-500'
+					standalone
+				/>
+			</AnimatedContentVisibility>
+
+			{(!hideOpensInNewTab || additionalOptionTiles) && hasUrl && !disabled &&
+				<div className='es-h-spaced-wrap'>
+					{!hideOpensInNewTab &&
+						<IconToggle
+							icon={icons.newTab}
+							label={__('Open in new tab', 'eightshift-frontend-libs')}
+							checked={opensInNewTab}
+							onChange={(value) => onChange({ url: url, newTab: value, isAnchor: isAnchor })}
+							type='tileButton'
+							disabled={isEditing}
+						/>
 					}
 
-					{url?.length > 0 && additionalOptions &&
-						<div className='es-popover-content es-v-start es-w-92 es-border-t-gray-400'>
-							{additionalOptions}
-						</div>
-					}
-				</Popover>
+					{additionalOptionTiles}
+				</div>
 			}
-		</>
+
+			{hasUrl && additionalOptions && !disabled &&
+				<div className='es-v-start'>
+					{additionalOptions}
+				</div>
+			}
+		</Control>
 	);
 };
