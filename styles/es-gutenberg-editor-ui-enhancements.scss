@@ -87,4 +87,11 @@ button[disabled] .block-editor-block-icon.has-colors,
 	}
 }
 
+// Enhance Gutenberg default input control to make it match more with other inputs.
+.components-text-control__input {
+	border-radius: 0.25rem !important;
+	height: 2.25rem !important;
+	padding: 0.5rem;
+}
+
 // stylelint-enable
