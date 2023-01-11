@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
-import { ColorPaletteCustom, icons, OptionSelector, ColorPaletteCustomLayout, ColorSwatch, Control, PopoverWithTrigger, TileButton } from '../../../scripts';
+import { ColorPalette, icons, OptionSelector, ColorSwatch, Control, PopoverWithTrigger, TileButton } from '../../../scripts';
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
@@ -118,12 +118,12 @@ export const AdvancedColorPicker = (props) => {
 
 			<div className='es-min-w-80 es-min-h-80 es-p-4 es-border-l-gray-400'>
 				{type === 'project' && showProjectColor && !disabled &&
-					<ColorPaletteCustom
+					<ColorPalette
 						value={colorProject}
 						colors={typeof colorsProject == 'undefined' ? globalColors : colorsProject}
 						onChange={onChangeProject}
 						searchable
-						layout={ColorPaletteCustomLayout.LIST_TWO_COL}
+						layout='listTwoCol'
 					/>
 				}
 
