@@ -11,7 +11,13 @@ export { dynamicImport } from './dynamic-import';
 export { elementChildrenHeight } from './element-children-height';
 export { escapeString } from './escape-string';
 export { getNavigatorVibrate } from './navigator';
+
 export {
 	truncateMiddle,
 	unescapeHTML,
 } from './text-helpers';
+
+export {
+	luminanceFromHex,
+	luminanceFromRgb,
+} from './color-helpers';

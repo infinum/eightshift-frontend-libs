@@ -4,10 +4,11 @@
 export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
 export { AlignmentToolbar, AlignmentToolbarType } from './components/alignment-toolbar/alignment-toolbar';
 export { AnimatedContentVisibility } from './components/animated-content-visibility/animated-content-visibility';
+export { ColorSwatch } from './components/color-swatch/color-swatch';
 export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
-export { ColorPaletteCustom, ColorPaletteCustomLayout } from './components/color-palette-custom/color-palette-custom';
-export { ColorPickerComponent, ColorPickerType } from './components/color-picker-component/color-picker-component';
+export { ColorPalette } from './components/color-palette-custom/color-palette-custom';
+export { ColorPicker } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
 export { Control } from './components/base-control/base-control';
 export {
@@ -124,3 +125,8 @@ export {
 	truncateMiddle,
 	unescapeHTML
 } from './helpers/text-helpers';
+
+export {
+	luminanceFromHex,
+	luminanceFromRgb,
+} from './helpers/color-helpers';

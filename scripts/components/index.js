@@ -3,10 +3,11 @@
 export { AdvancedColorPicker } from './advanced-color-picker/advanced-color-picker';
 export { AlignmentToolbar, AlignmentToolbarType } from './alignment-toolbar/alignment-toolbar';
 export { AnimatedContentVisibility } from './animated-content-visibility/animated-content-visibility';
+export { ColorSwatch } from './color-swatch/color-swatch';
 export { AsyncSelect } from './custom-select/async-single-select';
 export { AsyncMultiSelect } from './custom-select/async-multi-select';
-export { ColorPaletteCustom, ColorPaletteCustomLayout } from './color-palette-custom/color-palette-custom';
-export { ColorPickerComponent, ColorPickerType } from './color-picker-component/color-picker-component';
+export { ColorPalette } from './color-palette-custom/color-palette-custom';
+export { ColorPicker } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
 export { Control } from './base-control/base-control';
 export {
