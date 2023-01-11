@@ -1,26 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button, Popover, BaseControl, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
-import { ColorPaletteCustom, icons, IconLabel, OptionSelector, ColorPaletteCustomLayout } from '../../../scripts';
+import { Button, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
+import { ColorPaletteCustom, icons, OptionSelector, ColorPaletteCustomLayout, ColorSwatch, Control, PopoverWithTrigger, TileButton } from '../../../scripts';
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
  *
- * @param {object} props                      - AdvancedColorPicker options.
- * @param {string?} props.colorProject        - Currently selected project color.
- * @param {string?} props.colorSolid          - Currently selected solid color.
- * @param {string?} props.colorGradient       - Currently selected gradient.
- * @param {string?} props.type                - Currently selected color type.
- * @param {function} props.onChangeProject    - Function called when the project color is changed.
- * @param {function} props.onChangeSolid      - Function called when the solid color is changed.
- * @param {function} props.onChangeGradient   - Function called when the gradient is changed.
- * @param {function} props.onChangeType       - Function called when the color type is changed.
- * @param {object} props.globalManifest       - Project's `globalManifest`.
- * @param {Array} [props.types]               - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
- * @param {string?} [props.label]             - Label displayed above the control.
- * @param {string?} [props.help]              - Help text displayed below the control.
- * @param {boolean} [props.disabled=false]    - If `true`, control is disabled.
- * @param {string?} [props.additionalClasses] - If passed, the classes are added to the component's `BaseControl`.
+ * @param {object} props                          - AdvancedColorPicker options.
+ * @param {string?} props.colorProject            - Currently selected project color.
+ * @param {string?} props.colorSolid              - Currently selected solid color.
+ * @param {string?} props.colorGradient           - Currently selected gradient.
+ * @param {string?} props.type                    - Currently selected color type.
+ * @param {function} props.onChangeProject        - Function called when the project color is changed.
+ * @param {function} props.onChangeSolid          - Function called when the solid color is changed.
+ * @param {function} props.onChangeGradient       - Function called when the gradient is changed.
+ * @param {function} props.onChangeType           - Function called when the color type is changed.
+ * @param {object} props.globalManifest           - Project's `globalManifest`.
+ * @param {Array} [props.types]                   - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
+ * @param {string?} [props.label]                 - Label displayed above the control.
+ * @param {string?} [props.help]                  - Help text displayed below the control.
+ * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
+ * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
+ * @param {string?} [props.additionalClasses]     - If passed, the classes are added to the component's `BaseControl`.
+ * @param {boolean} [props.isTileButton=false]    - If `true`, the component is rendered as a tile button.
  */
 export const AdvancedColorPicker = (props) => {
 	const {
@@ -44,24 +46,26 @@ export const AdvancedColorPicker = (props) => {
 		onChangeGradient,
 		onChangeType,
 
-		label = <IconLabel icon={icons.backgroundTypeAlt2} label={__('Background', 'eightshift-frontend-libs')} />,
+		icon = icons.imageOverlayAlt2,
+		label = __('Background', 'eightshift-frontend-libs'),
+		noBottomSpacing,
 		help,
 
 		types = [
 			{
 				label: __('None', 'eightshift-frontend-libs'),
 				value: '',
-				icon: icons.none,
+				icon: icons.emptyCircle,
 			},
 			{
 				label: __('Project color', 'eightshift-frontend-libs'),
 				value: 'project',
-				icon: icons.paletteColor,
+				icon: icons.colorAlt,
 			},
 			{
 				label: __('Custom color', 'eightshift-frontend-libs'),
 				value: 'solid',
-				icon: icons.solidColor,
+				icon: icons.solidCircleFilled,
 			},
 			{
 				label: __('Gradient', 'eightshift-frontend-libs'),
@@ -73,124 +77,122 @@ export const AdvancedColorPicker = (props) => {
 		disabled = false,
 
 		additionalClasses,
+
+		isTileButton = false,
 	} = props;
+
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
 	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
 	const showGradient = types.find(({ value }) => value === 'gradient') !== undefined;
 
-	const [isOpen, setIsOpen] = useState(false);
-	const ref = useRef();
-
 	// GradientPicker implemented in WP version 5.9
 	const GradientPickerComponent = GradientPicker ?? GradientPickerOld;
 
-	const getTriggerButtonIcon = () => {
-		let style = {};
+	let color;
 
-		if (type === '') {
-			style = {
-				'--selected-color': 'transparent',
-				'--selected-opacity': '1',
-				gridColumn: 1,
-				gridRow: 1,
-			};
-		} else {
-			let bg = 'transparent';
+	if (type?.length > 0) {
+		color = 'transparent';
 
-			if (type === 'project' && colorProject !== 'transparent') {
-				bg = `var(--global-colors-${colorProject})`;
-			}
-
-			if (type === 'solid') {
-				bg = colorSolid;
-			}
-
-			style = {
-				'--checkerboard-opacity': bg === 'transparent' && type !== 'gradient' ? 1 : 0,
-				'--selected-color': bg,
-				gridColumn: 1,
-				gridRow: 1,
-			};
+		if (type === 'project' && colorProject !== 'transparent') {
+			color = `var(--global-colors-${colorProject})`;
+		} else if (type === 'solid') {
+			color = colorSolid?.hex ?? colorSolid;
+		} else if (type === 'gradient') {
+			color = colorGradient;
 		}
+	}
 
-		return React.cloneElement(icons.genericColorSwatch, { style });
-	};
+	const popoverContent = (
+		<>
+			<div className='es-w-48 es-h-full es-p-4 es-flex-shrink-0'>
+				<OptionSelector
+					value={type}
+					options={types}
+					onChange={((value) => onChangeType(value))}
+					disabled={disabled}
+					alignment='vertical'
+					border='none'
+					noBottomSpacing
+				/>
+			</div>
+
+			<div className='es-min-w-80 es-min-h-80 es-p-4 es-border-l-gray-400'>
+				{type === 'project' && showProjectColor && !disabled &&
+					<ColorPaletteCustom
+						value={colorProject}
+						colors={typeof colorsProject == 'undefined' ? globalColors : colorsProject}
+						onChange={onChangeProject}
+						searchable
+						layout={ColorPaletteCustomLayout.LIST_TWO_COL}
+					/>
+				}
+
+				{type === 'solid' && showSolidColor && !disabled &&
+					<ColorPicker
+						color={colorSolid}
+						onChangeComplete={onChangeSolid}
+						disableAlpha
+					/>
+				}
+
+				{type === 'gradient' && showGradient && !disabled &&
+					<GradientPickerComponent
+						value={colorGradient}
+						onChange={onChangeGradient}
+						gradients={gradients}
+						colors={typeof gradients == 'undefined' ? globalGradients : gradients}
+					/>
+				}
+			</div>
+		</>
+	);
+
+	if (isTileButton) {
+		return (
+			<PopoverWithTrigger
+				contentClass='es-display-flex'
+				trigger={
+					({ ref, setIsOpen, isOpen }) => (
+						<TileButton
+							ref={ref}
+							onClick={() => setIsOpen(!isOpen)}
+							icon={<ColorSwatch color={color} />}
+							label={label}
+							className='es-button-square-30 es-button-icon-24'
+						/>
+					)
+				}
+			>
+				{popoverContent}
+			</PopoverWithTrigger>
+		);
+	}
 
 	return (
-		<BaseControl
-			className={additionalClasses ?? ''}
-			label={
-				<div className='es-h-between'>
-					<div className='es-h-center es-line-h-0'>
-						{label}
-					</div>
-
-					<Button
-						onClick={() => setIsOpen(!isOpen)}
-						icon={<div className='es-adv-color-picker-icon-container'>
-							<div style={{ opacity: type === 'gradient' ? 1 : 0, background: colorGradient }} className='es-adv-color-picker-gradient-icon'></div>
-
-							{getTriggerButtonIcon()}
-						</div>}
-						ref={ref}
-						label={__('Pick a color or gradient', 'eightshift-frontend-libs')}
-						className='es-button-icon-24'
-					/>
-				</div>
-			}
+		<Control
+			icon={icon}
+			additionalClasses={additionalClasses}
+			noBottomSpacing={noBottomSpacing}
+			label={label}
 			help={help}
+			inlineLabel
 		>
-			{isOpen &&
-				<Popover
-					onClose={() => setIsOpen(false)}
-					anchor={ref?.current}
-					noArrow={false}
-					position='middle left'
-				>
-					<div className='es-popover-content es-h-spaced es-gap-6!'>
-						<div className='es-w-48 es-mb-auto'>
-							<OptionSelector
-								value={type}
-								options={types}
-								onChange={((value) => onChangeType(value))}
-								disabled={disabled}
-								border='offset'
-								alignment='vertical'
-							/>
-						</div>
-
-						<div className='es-min-w-80 es-min-h-80 es-mb-auto'>
-							{type === 'project' && showProjectColor && !disabled &&
-								<ColorPaletteCustom
-									value={colorProject}
-									colors={typeof colorsProject == 'undefined' ? globalColors : colorsProject}
-									onChange={onChangeProject}
-									searchable
-									layout={ColorPaletteCustomLayout.LIST_TWO_COL}
-								/>
-							}
-
-							{type === 'solid' && showSolidColor && !disabled &&
-								<ColorPicker
-									color={colorSolid}
-									onChangeComplete={onChangeSolid}
-									disableAlpha
-								/>
-							}
-
-							{type === 'gradient' && showGradient && !disabled &&
-								<GradientPickerComponent
-									value={colorGradient}
-									onChange={onChangeGradient}
-									gradients={gradients}
-									colors={typeof gradients == 'undefined' ? globalGradients : gradients}
-								/>
-							}
-						</div>
-					</div>
-				</Popover>
-			}
-
-		</BaseControl>
+			<PopoverWithTrigger
+				contentClass='es-display-flex'
+				trigger={
+					({ ref, setIsOpen, isOpen }) => (
+						<Button
+							ref={ref}
+							onClick={() => setIsOpen(!isOpen)}
+							icon={<ColorSwatch color={color} />}
+							label={__('Pick a color or gradient', 'eightshift-frontend-libs')}
+							className='es-button-square-30 es-button-icon-24'
+						/>
+					)
+				}
+			>
+				{popoverContent}
+			</PopoverWithTrigger>
+		</Control>
 	);
 };
