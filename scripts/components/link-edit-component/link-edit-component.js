@@ -175,7 +175,7 @@ export const LinkEditComponent = ({
 						onCreateSuggestion={handleAddCustomSuggestion}
 						renderSuggestions={(props) => suggestionsRender(props)}
 
-						className='es-link-edit-component__url-field es-m-0-bcf!'
+						className='es-link-edit-component__url-field es-m-0-bcf! es-p-0!'
 						placeholder={__('Search or enter URL', 'eightshift-frontend-libs')}
 					/>
 				</KeyboardShortcuts>
