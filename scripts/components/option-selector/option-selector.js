@@ -1,14 +1,16 @@
 import React from 'react';
-import { icons, classnames} from '@eightshift/frontend-libs/scripts';
+import { icons, classnames, Control} from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
 
 /**
  * Button-based option selector, inspired by WP 5.9.
  *
  * @param {object} props                                                                       - OptionSelector options.
+ * @param {React.Component?} [props.icon]                                                      - Icon to show next to the label
  * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
  * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
  * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
+ * @param {React.Component?} [props.actions]                                                   - Actions to show to the right of the label.
  * @param {any} [props.value]                                                                  - Current value.
  * @param {function} [props.onChange]                                                          - Function that is called on every value change.
  * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
@@ -27,9 +29,11 @@ import { Button } from '@wordpress/components';
  */
 export const OptionSelector = (props) => {
 	const {
+		icon,
 		help,
 		label,
 		inlineLabel,
+		actions,
 
 		value,
 		onChange,
@@ -166,20 +170,16 @@ export const OptionSelector = (props) => {
 	);
 
 	return (
-		<div className={classnames('es-v-spaced', !noBottomSpacing && 'es-mb-5', additionalContainerClass)}>
-			{inlineLabel &&
-				<div className='es-h-between'>
-					{inlineLabel}
-					{control}
-				</div>
-			}
-
-			{!inlineLabel && label}
-			{!inlineLabel && control}
-
-			{help &&
-				<span className='es-text-3 es-color-cool-gray-500'>{help}</span>
-			}
-		</div>
+		<Control
+			icon={icon}
+			label={label}
+			noBottomSpacing={noBottomSpacing}
+			inlineLabel={inlineLabel}
+			help={help}
+			additionalClasses={additionalContainerClass}
+			actions={actions}
+		>
+			{control}
+		</Control>
 	);
 };

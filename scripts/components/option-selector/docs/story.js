@@ -148,7 +148,7 @@ export const component = () => {
 					options={optionsWithoutIcons}
 					onChange={(v) => setFirst(v)}
 					value={first}
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 				/>
 			</ControlDisplay>
 
@@ -157,11 +157,12 @@ export const component = () => {
 				propsUsed={['inlineLabel']}
 			>
 				<OptionSelector
-					inlineLabel='Size'
+					inlineLabel
+					label='Size'
 					options={optionsWithoutIcons}
 					onChange={(v) => setFirst(v)}
 					value={first}
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 				/>
 			</ControlDisplay>
 
@@ -170,12 +171,13 @@ export const component = () => {
 				propsUsed={['iconOnly', 'inlineLabel']}
 			>
 				<OptionSelector
-					inlineLabel='Size'
+					inlineLabel
+					label='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
 					value={first}
 					iconOnly
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 				/>
 			</ControlDisplay>
 
@@ -185,12 +187,13 @@ export const component = () => {
 				propsUsed={['iconOnly', 'inlineLabel', 'border = inset']}
 			>
 				<OptionSelector
-					inlineLabel='Size'
+					inlineLabel
+					label='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
 					value={first}
 					iconOnly
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 					border='inset'
 				/>
 			</ControlDisplay>
@@ -200,12 +203,13 @@ export const component = () => {
 				propsUsed={['iconOnly', 'inlineLabel', 'border = offset']}
 			>
 				<OptionSelector
-					inlineLabel='Size'
+					inlineLabel
+					label='Size'
 					options={options}
 					onChange={(v) => setFirst(v)}
 					value={first}
 					iconOnly
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 					border='offset'
 				/>
 			</ControlDisplay>
@@ -219,7 +223,7 @@ export const component = () => {
 					options={optionsWithoutIcons2}
 					onChange={(v) => setThird(v)}
 					value={third}
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 					border='offset'
 					alignment='stretch'
 				/>
@@ -234,7 +238,7 @@ export const component = () => {
 					options={options}
 					onChange={(v) => setFirst(v)}
 					value={first}
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 					border='offset'
 					alignment='left'
 					iconOnly
@@ -246,11 +250,12 @@ export const component = () => {
 				propsUsed={['inlineLabel', 'border = offset', 'compactButtons']}
 			>
 				<OptionSelector
-					inlineLabel='Size'
+					inlineLabel
+					label='Size'
 					options={optionsWithoutIcons2}
 					onChange={(v) => setThird(v)}
 					value={third}
-					includeWpBottomSpacing={false}
+					noBottomSpacing
 					border='offset'
 					compactButtons
 				/>
