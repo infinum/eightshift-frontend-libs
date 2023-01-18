@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { icons, ucfirst, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { icons, ucfirst, NumberPicker } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import { Responsive } from '../responsive';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/Responsive',
@@ -22,78 +23,143 @@ const options = {
 	],
 };
 
-export const basicComponent = () => {
+export const component = () => {
 	const [attributes, setAttributes] = useState({
-		demoComponentToggleLarge: '1',
+		demoComponentToggleLarge: 1,
 		demoComponentToggleDesktop: '',
 		demoComponentToggleTablet: '',
-		demoComponentToggleMobile: '0',
+		demoComponentToggleMobile: 0,
+	});
+
+	const [attributes2, setAttributes2] = useState({
+		demoComponentToggleLarge: 1,
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: 0,
+	});
+
+	const [attributes3, setAttributes3] = useState({
+		demoComponentToggleLarge: 1,
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: 0,
 	});
 
 	return (
-		<div className='es-max-w-96'>
-			<Responsive
-				label={__('Basic demo', 'eightshift-frontend-libs')}
-				icon={icons.experiment}
-			>
-				{options.breakpoints.map((breakpoint, index) => {
-					const point = ucfirst(breakpoint);
-					const attr = `demoComponentToggle${point}`;
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Slider</h1>
 
-					return (
-						<IconToggle
-							key={index}
-							icon={icons.wrench}
-							label={__('Demo option 1', 'eightshift-frontend-libs')}
-							checked={attributes[attr] === '1'}
-							onChange={(value) => setAttributes({ ...attributes, [attr]: value === true ? '1' : '0' })} />
-					);
-				})}
-			</Responsive>
-		</div>
-	);
-};
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic component'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						noBottomSpacing
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
 
-export const withInheritButton = () => {
-	const [attributes, setAttributes] = useState({
-		demoComponentToggleLarge: '1',
-		demoComponentToggleDesktop: '',
-		demoComponentToggleTablet: '',
-		demoComponentToggleMobile: '0',
-	});
+							return (
+								<NumberPicker
+									key={index}
+									icon={icons.wrench}
+									label={__('Demo option 1', 'eightshift-frontend-libs')}
+									value={attributes[attr]}
+									onChange={(value) => setAttributes({ ...attributes, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth='4'
+									inlineLabel
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
 
-	return (
-		<div className='es-max-w-96'>
-			<Responsive
-				label={__('Inheritance demo', 'eightshift-frontend-libs')}
-				icon={icons.inherit}
-				inheritButton={options.breakpoints.map((breakpoint) => {
-					const point = ucfirst(breakpoint);
-					const attr = `demoComponentToggle${point}`;
+				<SingleItemShowcase title='Inherit button'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						inheritButton={options.breakpoints.map((breakpoint) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
 
-					return {
-						callback: () => setAttributes({
-							...attributes,
-							[attr]: attributes[attr] === '' ? '0' : '',
-						}),
-						isActive: attributes[attr] === '',
-					};
-				})}
-			>
-				{options.breakpoints.map((breakpoint, index) => {
-					const point = ucfirst(breakpoint);
-					const attr = `demoComponentToggle${point}`;
+							return {
+								callback: () => setAttributes2({
+									...attributes2,
+									[attr]: attributes2[attr] === '' ? '0' : '',
+								}),
+								isActive: attributes2[attr] === '',
+							};
+						})}
+						noBottomSpacing
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
 
-					return (
-						<IconToggle
-							key={index}
-							icon={icons.wrench}
-							label={__('Demo option 1', 'eightshift-frontend-libs')}
-							checked={attributes[attr] === '1'}
-							onChange={(value) => setAttributes({ ...attributes, [attr]: value === true ? '1' : '0' })} />
-					);
-				})}
-			</Responsive>
-		</div>
+							return (
+								<NumberPicker
+									key={index}
+									icon={icons.wrench}
+									label={__('Demo option 1', 'eightshift-frontend-libs')}
+									value={attributes2[attr]}
+									onChange={(value) => setAttributes2({ ...attributes2, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth={4}
+									inlineLabel
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Compact mode'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						inheritButton={options.breakpoints.map((breakpoint) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return {
+								callback: () => setAttributes3({
+									...attributes3,
+									[attr]: attributes3[attr] === '' ? '0' : '',
+								}),
+								isActive: attributes3[attr] === '',
+							};
+						})}
+						noBottomSpacing
+						inline
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return (
+								<NumberPicker
+									key={index}
+									value={attributes3[attr]}
+									onChange={(value) => setAttributes3({ ...attributes3, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth={4}
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
+			</div>
+
+		</>
 	);
 };
