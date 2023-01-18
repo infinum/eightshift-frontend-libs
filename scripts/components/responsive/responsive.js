@@ -15,6 +15,7 @@ import { AnimatedContentVisibility } from '../animated-content-visibility/animat
  * @param {React.Component} props.label                                          - Option label.
  * @param {React.Component?} [props.help]                                        - Optional help text to show below the component.
  * @param {React.Component} props.icon                                           - Option icon.
+ * @param {React.Component?} [props.subtitle]                                    - Subtitle below the label.
  * @param {array} props.children                                                 - Items to show.
  * @param {array<string>} [props.breakpoints]                                    - Breakpoints to show (default: `large`, `desktop`, `tablet` and `mobile`)
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
@@ -28,6 +29,7 @@ export const Responsive = (props) => {
 		label,
 		help,
 		icon,
+		subtitle,
 
 		children = [],
 
@@ -50,6 +52,7 @@ export const Responsive = (props) => {
 			icon={icon}
 			label={label}
 			help={help}
+			subtitle={subtitle}
 			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			noBottomSpacing={noBottomSpacing}
 			actions={
