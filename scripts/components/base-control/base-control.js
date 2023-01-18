@@ -54,6 +54,8 @@ export const Control = (props) => {
 					</div>
 				}
 
+				{!label && children}
+
 				{actions &&
 					<div className='es-h-end es-mt-2'>
 						{actions}
@@ -69,9 +71,11 @@ export const Control = (props) => {
 
 	return (
 		<div className={classnames(additionalClasses, !noBottomSpacing && 'es-mb-5')}>
-			{label &&
+			{(label || actions) &&
 				<div className={classnames('es-mb-2', (icon || subtitle || actions) && 'es-min-h-7', actions && 'es-h-between', additionalLabelClasses)}>
-					<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
+					{label &&
+						<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
+					}
 
 					{actions}
 				</div>
