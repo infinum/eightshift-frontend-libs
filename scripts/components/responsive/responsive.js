@@ -19,6 +19,7 @@ import { AnimatedContentVisibility } from '../animated-content-visibility/animat
  * @param {array<string>} [props.breakpoints]                                    - Breakpoints to show (default: `large`, `desktop`, `tablet` and `mobile`)
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
  * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
+ * @param {boolean} [props.inline=false]                                         - If `true`, the control is rendered inline and the options are more compact. Having label, subtitle, icon or help on the child component is not advised.
  * @param {boolean} [props.noBottomSpacing=false]                                - If `true`, the default bottom spacing is removed.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
@@ -36,8 +37,8 @@ export const Responsive = (props) => {
 		breakpointLabels,
 		additionalClasses,
 
-		noBottomSpacing = false,
 		inline = false,
+		noBottomSpacing = false,
 	} = props;
 
 	const fallbackBreakpointLabels = breakpoints.map((v) => ucfirst(v));
@@ -84,7 +85,8 @@ export const Responsive = (props) => {
 						onClick={currentInheritButton?.callback}
 						className={classnames(
 							'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1! es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
-							currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5'
+							currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5',
+							!inline && index !== children.length - 1 && 'es-mb-2',
 						)}
 					>
 						{currentInheritButton?.isActive &&
@@ -132,8 +134,8 @@ export const Responsive = (props) => {
 
 				return (
 					<Fragment key={index}>
-						<AnimatedContentVisibility showIf={isOpen} additionalContainerClasses={classnames(isOpen && 'es-mb-3')}>
-							<IconLabel icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} standalone />
+						<AnimatedContentVisibility showIf={isOpen}>
+							<IconLabel icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} additionalClasses='es-mb-2' standalone />
 
 							{index > 0 && currentInheritButton && inheritButtonComponent}
 						</AnimatedContentVisibility>
