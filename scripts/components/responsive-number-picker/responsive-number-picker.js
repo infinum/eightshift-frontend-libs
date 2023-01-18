@@ -5,7 +5,7 @@ import { Button } from '@wordpress/components';
 import { classnames } from '../../helpers';
 
 /**
- * A simple NumberPicker that allows changing values between breakpoints.
+ * A simple `NumberPicker` that allows changing values between breakpoints.
  *
  * @param {object} props                           - ResponsiveNumberPicker options.
  * @param {React.Component?} [props.icon]          - Icon to show next to the label
@@ -23,6 +23,7 @@ import { classnames } from '../../helpers';
  * @param {boolean?} [props.stringValues=false]    - If `true`, string values are returned instead of numbers.
  * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
  * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
+ * @param {Object} [props.additionalProps]         - If passed, the provided props are passed to the `NumberPicker`.
  */
 export const ResponsiveNumberPicker = (props) => {
 	const {
@@ -47,6 +48,8 @@ export const ResponsiveNumberPicker = (props) => {
 
 		noBottomSpacing,
 		additionalClasses,
+
+		additionalProps = {},
 	} = props;
 
 	const breakpointNames = Object.keys(value);
@@ -122,6 +125,7 @@ export const ResponsiveNumberPicker = (props) => {
 							min={min}
 							max={max}
 							step={step}
+							{...additionalProps}
 						/>
 
 						{typeof resetButton !== 'undefined' &&

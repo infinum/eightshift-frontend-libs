@@ -1,9 +1,9 @@
 import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst, getOption } from '@eightshift/frontend-libs/scripts';
 
 /**
+ * A generator for `ResponsiveNumberPicker` config from legacy `SpacingSlider` attributes.
  *
- * @param {Object} options                               - Generation configuration.
- *
+ * @param {Object} options                                      - Generation configuration.
  * @param {string} [options.attributeName]                      - Property attribute name.
  * @param {Object} options.attributes                           - Component/block attributes object.
  * @param {function} options.setAttributes                      - Component/block setAttributes function.
