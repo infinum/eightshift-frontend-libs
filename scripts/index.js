@@ -40,13 +40,14 @@ export { PopoverWithTrigger } from './components/popover-with-trigger/popover-wi
 export { Responsive } from './components/responsive/responsive';
 export { ResponsiveNumberPicker } from './components/responsive-number-picker/responsive-number-picker';
 export { generateResponsiveNumberPickerConfig } from './components/responsive-number-picker/auto-config';
+export { ResponsiveSlider } from './components/responsive-slider/responsive-slider';
+export { generateResponsiveSliderConfig } from './components/responsive-slider/auto-config';
 export { Section } from './components/section/section';
 export { Select } from './components/custom-select/single-select';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
 export { SimpleRepeater } from './components/simple-repeater/simple-repeater';
 export { SimpleRepeaterItem } from './components/simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
-export { SpacingSlider } from './components/spacing-slider/spacing-slider';
 export { TileButton } from './components/tile-button/tile-button';
 export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';

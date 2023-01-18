@@ -39,13 +39,14 @@ export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger'
 export { Responsive } from './responsive/responsive';
 export { ResponsiveNumberPicker } from './responsive-number-picker/responsive-number-picker';
 export { generateResponsiveNumberPickerConfig } from './responsive-number-picker/auto-config';
+export { ResponsiveSlider } from './responsive-slider/responsive-slider';
+export { generateResponsiveSliderConfig } from './responsive-slider/auto-config';
 export { Section } from './section/section';
 export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { SimpleRepeater } from './simple-repeater/simple-repeater';
 export { SimpleRepeaterItem } from './simple-repeater/simple-repeater-item';
 export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';
-export { SpacingSlider } from './spacing-slider/spacing-slider';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
