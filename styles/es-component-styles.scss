@@ -376,6 +376,11 @@ body {
 			transition-duration: 25ms !important;
 		}
 	}
+
+	// Slightly thicken ES UI icon border.
+	.es-has-enhanced-contrast-icon :is(circle, ellipse, line, path, polygon, polyline, text, text, textPath, tref, tspan):not([stroke-width]) {
+		stroke-width: 1.25;
+	}
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
