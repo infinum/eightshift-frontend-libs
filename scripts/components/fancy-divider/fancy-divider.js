@@ -26,7 +26,7 @@ export const FancyDivider = (props) => {
 
 	return (
 		<div className={classnames('es-h-spaced es-nested-p-0.75 es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white es-color-cool-gray-600', hasTopSpacing && 'es-mt-3', !noBottomSpacing && 'es-mb-2.5', additionalClasses)}>
-			<IconLabel icon={icon} label={label} subtitle={subtitle} standalone additionalClasses='es-nested-bg-cool-gray-500 es-nested-rounded-1 es-nested-color-pure-white!' />
+			<IconLabel icon={icon} label={label} subtitle={subtitle} standalone additionalClasses='es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white! es-has-enhanced-contrast-icon' />
 
 			<div className='es-w-full es-flex-1 es-h-px es-bg-cool-gray-50'></div>
 		</div>
