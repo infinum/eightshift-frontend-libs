@@ -1,0 +1,147 @@
+import React from 'react';
+import { Responsive, icons, NumberPicker } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { Button } from '@wordpress/components';
+import { classnames } from '../../helpers';
+
+/**
+ * A simple NumberPicker that allows changing values between breakpoints.
+ *
+ * @param {object} props                           - ResponsiveNumberPicker options.
+ * @param {React.Component?} [props.icon]          - Icon to show next to the label
+ * @param {React.Component?} [props.label]         - Label to show above component.
+ * @param {React.Component?} [props.subtitle]      - Subtitle below the label.
+ * @param {React.Component?} [props.help]          - Help to show below the control.
+ * @param {Object} [props.value]                   - Value to use - keys are breakpoint names.
+ * @param {function} [props.onChange]              - Function to trigger when the value of is changing.
+ * @param {Number?} [props.min=0]                  - Minimum allowed value.
+ * @param {Number} [props.max]                     - Maximum allowed value.
+ * @param {Number?} [props.step=1]                 - Step for each change.
+ * @param {any} [props.inheritValue]               - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]          - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {Number?} [props.resetButton]            - If provided, a button to reset to the given value is shown.
+ * @param {boolean?} [props.stringValues=false]    - If `true`, string values are returned instead of numbers.
+ * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
+ * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
+ */
+export const ResponsiveNumberPicker = (props) => {
+	const {
+		icon,
+		label,
+		subtitle,
+		help,
+
+		value,
+		onChange,
+
+		min = 0,
+		max,
+		step = 1,
+
+		inheritValue,
+		inheritCheck = (value) => value === inheritValue,
+
+		resetButton,
+
+		stringValues = false,
+
+		noBottomSpacing,
+		additionalClasses,
+	} = props;
+
+	const breakpointNames = Object.keys(value);
+
+	const rawValues = Object.entries(value).reduce((all, [breakpointName, value]) => ({
+		...all,
+		[breakpointName]: value,
+	}), {});
+
+	const fieldWidth = `${max}`.length + (min < 0 ? 1 : 0);
+
+	return (
+		<Responsive
+			label={label}
+			icon={icon}
+			subtitle={subtitle}
+			help={help}
+			noBottomSpacing={noBottomSpacing}
+			additionalClasses={additionalClasses}
+			inline
+			inheritButton={breakpointNames.map((breakpoint) => {
+				const currentValue = rawValues[breakpoint];
+				const isInherited = inheritCheck(currentValue);
+
+				const defaultValue = stringValues ? `${min}` : min;
+
+				return {
+					callback: () => {
+						onChange({
+							...value,
+							[breakpoint]: isInherited ? defaultValue : inheritValue,
+						});
+					},
+					isActive: isInherited,
+				};
+			})}
+		>
+			{breakpointNames.map((breakpoint, index) => {
+				const currentValue = rawValues[breakpoint];
+
+				const isInherited = inheritCheck(value);
+
+				const getNearest = () => {
+					for (let i = index - 1; i >= 0; i--) {
+						const breakpointName = breakpointNames[i];
+
+						const current = value[breakpointName];
+
+						if (current) {
+							return current;
+						}
+					}
+
+					return inheritValue;
+				};
+
+				const nearestValid = getNearest();
+
+				const parsedValue = parseInt(inheritCheck(currentValue) ? nearestValid : currentValue);
+
+				return (
+					<div className='es-h-spaced' key={index}>
+						<NumberPicker
+							value={parsedValue}
+							onChange={(currentValue) => {
+								onChange({
+									...value,
+									[breakpoint]: stringValues ? `${currentValue}` : currentValue,
+								});
+							}}
+							noBottomSpacing
+							fixedWidth={fieldWidth}
+							min={min}
+							max={max}
+							step={step}
+						/>
+
+						{typeof resetButton !== 'undefined' &&
+							<Button
+								icon={resetButton === 0 ? icons.resetToZero : icons.reset}
+								onClick={() => {
+									onChange({
+										...value,
+										[breakpoint]: stringValues ? `${resetButton}` : resetButton,
+									});
+								}}
+								disabled={parsedValue === resetButton || isInherited}
+								className={classnames('es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!', (parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!')}
+								label={__('Reset', 'eightshift-frontend-libs')}
+								showTooltip
+							/>
+						}
+					</div>
+				);
+			})}
+		</Responsive>
+	);
+};

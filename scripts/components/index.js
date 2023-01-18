@@ -37,6 +37,8 @@ export { NumberPicker } from './number-picker/number-picker';
 export { OptionSelector } from './option-selector/option-selector';
 export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger';
 export { Responsive } from './responsive/responsive';
+export { ResponsiveNumberPicker } from './responsive-number-picker/responsive-number-picker';
+export { generateResponsiveNumberPickerConfig } from './responsive-number-picker/auto-config';
 export { Section } from './section/section';
 export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
