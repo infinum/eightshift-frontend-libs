@@ -86,7 +86,7 @@ export const NumberPicker = (props) => {
 					style={fixedWidth ? { width: `calc(1rem ${min < 0 ? '+ 0.5rem ' : ''} + ${fixedWidth} * 1ch)` } : {}}
 				/>
 
-				<div className='es-display-flex es-flex-col es-h-full'>
+				<div className='es-display-flex es-flex-col es-h-full es-has-enhanced-contrast-icon'>
 					<Button
 						icon={icons.chevronUp}
 						aria-label={__('Increment', 'eightshift-frontend-libs')}
