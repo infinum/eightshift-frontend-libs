@@ -67,9 +67,8 @@ export const NumberPicker = (props) => {
 			inlineLabel={inlineLabel}
 			noBottomSpacing={noBottomSpacing}
 			additionalClasses={classnames('es-number-picker', additionalClasses)}
-
 		>
-			<div className='es-display-flex es-items-center es-h-8'>
+			<div className={classnames('es-display-flex es-items-center es-h-8', label && !inlineLabel && '-es-mt-1')}>
 				<NumberControl
 					min={min}
 					max={max}
