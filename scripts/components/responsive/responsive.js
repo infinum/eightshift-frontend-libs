@@ -57,7 +57,7 @@ export const Responsive = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
-					{inline && <div className={classnames('es-transition-opacity es-pr-1.5 es-mr-1.5 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>{children[0]}</div>}
+					{inline && <div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>{children[0]}</div>}
 
 					<Button
 						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
