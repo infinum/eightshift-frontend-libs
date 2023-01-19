@@ -151,6 +151,7 @@ export const AdvancedColorPicker = (props) => {
 		return (
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
+				position='middle left'
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<TileButton
