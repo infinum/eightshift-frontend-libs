@@ -112,22 +112,7 @@ export const ColorPalette = (props) => {
 			help={help}
 			noBottomSpacing={noBottomSpacing}
 			subtitle={subtitle}
-			actions={
-				!clearable ? actions : (
-					<div className='es-h-spaced'>
-						{actions}
-
-						<Button
-							label={__('Reset', 'eightshift-frontend-libs')}
-							onClick={() => onChange(undefined)}
-							icon={icons.clear}
-							className='es-has-v2-gutenberg-button-active-state es-button-square-24 es-button-icon-22 es-slight-button-border-cool-gray-100 es-hover-slight-button-border-cool-gray-300 es-rounded-1!'
-							disabled={disabled}
-							showTooltip
-						/>
-					</div>
-				)
-			}
+			actions={actions}
 		>
 			{searchable &&
 				<TextControl
@@ -228,7 +213,19 @@ export const ColorPalette = (props) => {
 				</Control>
 			}
 
-
+			{clearable &&
+				<div className='es-mt-3 es-h-end'>
+					<Button
+						label={__('Reset', 'eightshift-frontend-libs')}
+						onClick={() => onChange(undefined)}
+						className={classnames('es-slight-button-border-cool-gray-400 es-rounded-1! es-transition es-px-2.5! es-py-2! es-h-auto!', (disabled || !value) ? 'es-pointer-events-none': 'es-hover-slight-button-border-cool-gray-500')}
+						disabled={disabled || !value}
+						showTooltip
+					>
+						{__('Clear', 'eightshift-frontend-libs')}
+					</Button>
+				</div>
+			}
 		</Control>
 	);
 };
