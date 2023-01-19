@@ -39,7 +39,7 @@ export const Collapsable = ({
 			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
 			actions={
-				<>
+				<div className='es-h-spaced es-gap-1!'>
 					{actions}
 
 					<Button
@@ -49,7 +49,7 @@ export const Collapsable = ({
 						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
 						showTooltip
 					/>
-				</>
+				</div>
 			}
 		>
 			<AnimatedContentVisibility showIf={isOpen}>
