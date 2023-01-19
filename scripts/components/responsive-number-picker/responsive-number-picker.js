@@ -59,7 +59,7 @@ export const ResponsiveNumberPicker = (props) => {
 		[breakpointName]: value,
 	}), {});
 
-	const fieldWidth = `${max}`.length + (min < 0 ? 1 : 0);
+	const fieldWidth = Math.max(`${Math.abs(max)}`.length, `${Math.abs(min)}`.length);
 
 	return (
 		<Responsive
