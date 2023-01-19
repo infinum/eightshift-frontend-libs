@@ -249,6 +249,15 @@ $es-shadows: (
 	'none': '0 0 rgb(0 0 0 / 0)',
 );
 
+$es-vertical-aligns: (
+	'baseline': 'baseline',
+	'top': 'top',
+	'middle': 'middle',
+	'bottom': 'bottom',
+	'sub': 'sub',
+	'text-top': 'text-top',
+);
+
 $es-utility-props: (
 	'border': (
 		'cssProp': 'border',
@@ -1084,6 +1093,15 @@ $es-utility-props: (
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
 		'selectorSuffix': ':active',
+		'valuePrefix': '',
+		'includeNegativeValues': 'false',
+	),
+	'vertical-align': (
+		'cssProp': 'vertical-align',
+		'values': $es-vertical-aligns,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
 		'valuePrefix': '',
 		'includeNegativeValues': 'false',
 	),
