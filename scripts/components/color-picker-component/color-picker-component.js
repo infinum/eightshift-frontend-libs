@@ -8,6 +8,8 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * Component that allows simple inline color picking while taking up not much space.
  *
  * @typedef {'generic'|'textColor'|'textHighlightColor'|'backgroundColor'} PickerType
+ * @typedef {'top' | 'top left' | 'top right' | 'middle' | 'middle left' | 'middle right' | 'bottom' | 'bottom left' | 'bottom right'} AppearOrigin
+ * @typedef {'tiles'|'list'|'listTwoCol'} ColorPaletteLayout
  *
  * @param {object} props                                               - ColorPicker options.
  * @param {string} props.value                                         - Current value (color slug).
@@ -27,6 +29,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
  * @param {string?} [props.additionalTriggerClasses]                   - If provided, the classes are passed to the component's trigger button.
+ * @param {AppearOrigin} [props.popoverPosition='top center']          - Position where the popover appears.
  */
 export const ColorPicker = (props) => {
 	const {
@@ -51,6 +54,8 @@ export const ColorPicker = (props) => {
 		noBottomSpacing,
 		additionalClasses,
 		additionalTriggerClasses,
+
+		popoverPosition,
 	} = props;
 
 	let defaultPopupTitle = __('Pick a color', 'eightshift-frontend-libs');
@@ -137,6 +142,7 @@ export const ColorPicker = (props) => {
 		>
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
+				position={popoverPosition ?? (label ? 'middle right' : 'bottom')}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<Button
