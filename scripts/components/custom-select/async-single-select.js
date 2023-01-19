@@ -3,6 +3,7 @@ import { components } from 'react-select';
 import RSAsyncSelect from 'react-select/async';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator } from './custom-select-default-components';
+import { Control } from '../base-control/base-control';
 
 /**
  * A simple, asynchronously-loading, customizable select menu.
@@ -10,6 +11,9 @@ import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator
  * @param {object} props                                               - AsyncSelect options.
  * @param {string?} [props.label]                                      - Label displayed above the control.
  * @param {string?} [props.help]                                       - Help text displayed below the control.
+ * @param {React.Component?} [props.icon]                              - Icon to show next to the label
+ * @param {React.Component?} [props.subtitle]                          - Subtitle below the label.
+ * @param {React.Component?} [props.actions]                           - Actions to show to the right of the label.
  * @param {boolean|array<{string,string}>} [props.preloadOptions=true] - If `true`, the initial loading is done as soon as the component is loaded. If an array of `{label: '', value: ''}` option is provided, that is loaded immediately, dynamic fetching only happens in search. If `false`, nothing is loaded immediately, until you type to search.
  * @param {callback<Promise<>>?} props.loadOptions                     - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
  * @param {object} props.value                                         - Current value
@@ -24,7 +28,8 @@ import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator
  * @param {React.Component?} [props.customClearIndicator]              - If provided and `noClear` is `false`, replaces the default 'Clear all' button.
  * @param {React.Component?} [props.customMenuOption]                  - If provided, replaces the default item in the dropdown menu (react-select's `components.Option`).
  * @param {React.Component?} [props.customValueDisplay]                - If provided, replaces the default current value display of each selected item (react-select's `components.SingleValue`).
- * @param {boolean} [props.noBottomSpacing=false]                      - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                            - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {function} [props.processLoadedOptions]                      - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label`, `value` keys and `id` keys, additional fields can be added as required.
  * @param {string?} [props.additionalClasses='']                       - If provided, the classes are added to the component container.
  * @param {string?} [props.additionalSelectClasses='']                 - If provided, the classes are added to the Select element itself.
@@ -34,6 +39,9 @@ export const AsyncSelect = (props) => {
 	const {
 		label,
 		help,
+		icon,
+		subtitle,
+		actions,
 
 		preloadOptions = true,
 		loadOptions,
@@ -56,7 +64,8 @@ export const AsyncSelect = (props) => {
 		customMenuOption,
 		customValueDisplay,
 
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		processLoadedOptions = (options) => options,
 
@@ -71,11 +80,16 @@ export const AsyncSelect = (props) => {
 	};
 
 	return (
-		<div className={`${noBottomSpacing ? '' : 'es-mb-5'} ${additionalClasses ?? ''}`}>
-			{label &&
-				<div className='es-mb-2'>{label}</div>
-			}
-
+		<Control
+			label={label}
+			icon={icon}
+			subtitle={subtitle}
+			actions={actions}
+			additionalClasses={additionalClasses}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			help={help}
+		>
 			<RSAsyncSelect
 				loadOptions={customLoadOptions}
 				cacheOptions={!noOptionCaching}
@@ -101,10 +115,6 @@ export const AsyncSelect = (props) => {
 				menuPosition='fixed'
 				{...additionalProps}
 			/>
-
-			{help &&
-				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
-			}
-		</div>
+		</Control>
 	);
 };

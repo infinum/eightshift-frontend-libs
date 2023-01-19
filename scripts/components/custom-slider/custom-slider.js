@@ -25,7 +25,8 @@ import RcSlider from 'rc-slider';
  * @param {React.Component?} [props.label]                 - Label to show above component.
  * @param {React.Component?[]} [props.actions]             - Actions to show to the right of the label.
  * @param {React.Component?} [props.subtitle]              - Subtitle below the label.
- * @param {boolean?} [props.noBottomSpacing=false]         - If `true`, space below the control is removed.
+ * @param {boolean?} [props.noBottomSpacing]               - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]          - If `true`, space below the control is reduced.
  * @param {boolean} [props.reverse=false]                  - If `true`, the slider is displayed in reverse.
  * @param {boolean} [props.disabled=false]                 - If `true`, the component is disabled.
  * @param {DotStyle} [props.marks=null]                    - Marks on the slider. Key represents the value of the slider, value determines what is shown. You can also use an object {label, value} for the displayed value to customize certain marks.  Won't have any effect if `dots` are enabled.
@@ -63,7 +64,8 @@ export const Slider = (props) => {
 		label,
 		actions,
 		subtitle,
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		// Behavior
 		reverse,
@@ -133,6 +135,7 @@ export const Slider = (props) => {
 			label={label}
 			subtitle={subtitle}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClass}
 			actions={(actions || valueDisplay) &&
 				<div className='es-h-spaced es-gap-1.5! es-has-v2-gutenberg-button-active-state-inside'>

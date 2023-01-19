@@ -27,6 +27,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {React.Component?} [props.help]                              - Help text displayed below the control.
  * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
  * @param {string?} [props.additionalTriggerClasses]                   - If provided, the classes are passed to the component's trigger button.
  * @param {AppearOrigin} [props.popoverPosition='top center']          - Position where the popover appears.
@@ -52,6 +53,8 @@ export const ColorPicker = (props) => {
 		tooltip,
 
 		noBottomSpacing,
+		reducedBottomSpacing,
+
 		additionalClasses,
 		additionalTriggerClasses,
 
@@ -136,6 +139,7 @@ export const ColorPicker = (props) => {
 			icon={icon}
 			additionalClasses={additionalClasses}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			label={label}
 			help={help}
 			inlineLabel

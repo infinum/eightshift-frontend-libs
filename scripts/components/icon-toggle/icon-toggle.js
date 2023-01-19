@@ -15,6 +15,7 @@ import { IconLabel, classnames, TileButton } from '../../../scripts';
  * @param {function} props.onChange                                                      - `onChange` handler from the `ToggleSwitch`/`CheckboxControl`.
  * @param {boolean} [props.disabled=false]                                               - If `true`, control is disabled.
  * @param {boolean} [props.noBottomSpacing=false]                                        - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                                        - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                                            - If provided, classes are passed to the underlying component.
  */
 export const IconToggle = ({
@@ -32,6 +33,7 @@ export const IconToggle = ({
 	disabled = false,
 
 	noBottomSpacing = false,
+	reducedBottomSpacing = false,
 
 	additionalClasses,
 }) => {
@@ -63,6 +65,8 @@ export const IconToggle = ({
 
 	const ComponentToRender = (type === 'checkbox') ? CheckboxControl : ToggleControl;
 
+	const bottomSpacingClass = reducedBottomSpacing ? 'es-mb-2!' : 'es-mb-5!';
+
 	return (
 		<ComponentToRender
 			checked={checked}
@@ -70,7 +74,7 @@ export const IconToggle = ({
 			disabled={disabled}
 			help={!inlineHelp && help && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
 			label={icon ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
-			className={classnames(noBottomSpacing ? 'es-mb-0!' : 'es-mb-5!', additionalClasses)}
+			className={classnames(noBottomSpacing ? 'es-mb-0!' : bottomSpacingClass, additionalClasses)}
 		/>
 	);
 };

@@ -44,7 +44,8 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
  * @param {boolean} [props.noLabel=false]         - If `true`, the label is not shown.
  * @param {boolean} [props.noUseToggle=false]     - If `true`, the use toggle is not shown.
  * @param {boolean} [props.noExpandButton=false]  - If `true`, the expand button is not shown.
- * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]       - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the component classes.
  * @param {React.Component} props.children        - Child items that are shown when expanded.
  */
@@ -61,7 +62,8 @@ export const UseToggle = ({
 	noUseToggle = false,
 	noExpandButton = false,
 
-	noBottomSpacing = false,
+	noBottomSpacing,
+	reducedBottomSpacing,
 
 	additionalClasses,
 	children,
@@ -82,7 +84,12 @@ export const UseToggle = ({
 
 	if (noExpandButton && noUseToggle && !noLabel) {
 		return (
-			<Control additionalClasses={additionalClasses} label={label} noBottomSpacing={noBottomSpacing}>
+			<Control
+				label={label}
+				additionalClasses={additionalClasses}
+				noBottomSpacing={noBottomSpacing}
+				reducedBottomSpacing={reducedBottomSpacing}
+			>
 				{children}
 			</Control>
 		);
@@ -104,6 +111,7 @@ export const UseToggle = ({
 					/>
 				}
 				noBottomSpacing={noBottomSpacing}
+				reducedBottomSpacing={reducedBottomSpacing}
 			>
 				<AnimatedContentVisibility showIf={isOpen}>
 					{children}
@@ -144,6 +152,7 @@ export const UseToggle = ({
 				/>
 			}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 		>
 			<AnimatedContentVisibility showIf={openCondition}>
 				{children}

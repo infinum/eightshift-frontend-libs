@@ -16,7 +16,8 @@ import Slider from 'rc-slider';
  * @param {React.Component?} [props.label]                  - Label to show above component.
  * @param {React.Component?} [props.subtitle]               - Subtitle below the label.
  * @param {React.Component?[]} [props.actions]              - Actions to show to the right of the label.
- * @param {boolean?} [props.noBottomSpacing=false]          - If `true`, space below the control is removed.
+ * @param {boolean?} [props.noBottomSpacing]                - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]           - If `true`, space below the control is reduced.
  * @param {boolean} [props.disabled=false]                  - If `true`, the component is disabled.
  * @param {boolean} [props.noWidthHandle=false]             - If `true`, the width handle is not shown.
  * @param {boolean} [props.noOffsetHandle=false]            - If `true`, the offset handle is not shown.
@@ -38,7 +39,8 @@ export const ColumnConfigSlider = (props) => {
 		label,
 		actions,
 		subtitle,
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		// Behavior
 		disabled,
@@ -97,6 +99,7 @@ export const ColumnConfigSlider = (props) => {
 			label={label}
 			subtitle={subtitle}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClass}
 			actions={actions}
 		>

@@ -8,25 +8,26 @@ import { classnames } from '../../helpers';
 /**
  * A simple number picker, built on the Gutenberg `NumberControl`.
  *
- * @param {object} props                           - NumberPicker options.
- * @param {Number} [props.min=0]                   - Minimum allowed value.
- * @param {Number} props.max                       - Maximum allowed value.
- * @param {Number} [props.step=1]                  - Step change.
- * @param {Number} props.value                     - Current value.
- * @param {function} [props.onChange]              - Function called when the value changes.
- * @param {boolean} [props.disabled=false]         - If `true`, the component is disabled.
- * @param {boolean} [props.noDragToChange=false]   - If `true`, the up/down drag to change value is disabled.
- * @param {React.Component?} [props.icon]          - Icon to show next to the label
- * @param {React.Component?} [props.label]         - Label to show above component.
- * @param {React.Component?} [props.subtitle]      - Subtitle below the label.
- * @param {React.Component?} [props.actions]       - Actions to show to the right of the label.
- * @param {React.Component?} [props.help]          - Help to show below the control.
- * @param {React.Component?} [props.children]      - Content to show.
- * @param {string?} [props.additionalClasses]      - Classes to add to the control base.
- * @param {boolean?} [props.inlineLabel=false]     - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
- * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
- * @param {object?} [props.inputField]             - Allows passing raw config data to the `NumberPicker`, e.g. `shiftStep`.
- * @param {Number?} [props.fixedWidth]             - If passed, sets the width of the input field to the provided number of characters. Useful if you have e.g. value from 1 to 1000, but you don't want the input field to change size when on lower values.
+ * @param {object} props                          - NumberPicker options.
+ * @param {Number} [props.min=0]                  - Minimum allowed value.
+ * @param {Number} props.max                      - Maximum allowed value.
+ * @param {Number} [props.step=1]                 - Step change.
+ * @param {Number} props.value                    - Current value.
+ * @param {function} [props.onChange]             - Function called when the value changes.
+ * @param {boolean} [props.disabled=false]        - If `true`, the component is disabled.
+ * @param {boolean} [props.noDragToChange=false]  - If `true`, the up/down drag to change value is disabled.
+ * @param {React.Component?} [props.icon]         - Icon to show next to the label
+ * @param {React.Component?} [props.label]        - Label to show above component.
+ * @param {React.Component?} [props.subtitle]     - Subtitle below the label.
+ * @param {React.Component?} [props.actions]      - Actions to show to the right of the label.
+ * @param {React.Component?} [props.help]         - Help to show below the control.
+ * @param {React.Component?} [props.children]     - Content to show.
+ * @param {string?} [props.additionalClasses]     - Classes to add to the control base.
+ * @param {boolean?} [props.inlineLabel]          - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
+ * @param {boolean?} [props.noBottomSpacing]      - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
+ * @param {object?} [props.inputField]            - Allows passing raw config data to the `NumberPicker`, e.g. `shiftStep`.
+ * @param {Number?} [props.fixedWidth]            - If passed, sets the width of the input field to the provided number of characters. Useful if you have e.g. value from 1 to 1000, but you don't want the input field to change size when on lower values.
  *
  */
 export const NumberPicker = (props) => {
@@ -45,8 +46,9 @@ export const NumberPicker = (props) => {
 		label,
 		actions,
 		subtitle,
-		inlineLabel = false,
-		noBottomSpacing = false,
+		inlineLabel,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		additionalClasses,
 
@@ -66,6 +68,7 @@ export const NumberPicker = (props) => {
 			subtitle={subtitle}
 			inlineLabel={inlineLabel}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={classnames('es-number-picker', additionalClasses)}
 		>
 			<div className={classnames('es-display-flex es-items-center es-h-8', label && !inlineLabel && '-es-mt-1')}>

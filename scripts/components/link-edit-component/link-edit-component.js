@@ -20,7 +20,8 @@ import { AnimatedContentVisibility, Control, IconLabel, icons, IconToggle, trunc
  * @param {boolean} [props.noDelete=false]                        - If `true`, no remove button is shown.
  * @param {boolean} [props.hideOpensInNewTab=false]               - If `true`, the 'Opens in new tab' button is not shown.
  * @param {boolean} [props.hideAnchorNotice=false]                - If `true`, the Anchor link info banner is not shown when an anchor link is selected.
- * @param {boolean} [props.noBottomSpacing=false]                 - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                       - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                 - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClass]                       - If passed, the classes are forwarded to the component.
  * @param {React.Component?} [props.additionalOptions]            - If provided, allows adding options below the option tiles.
  * @param {React.Component?} [props.additionalOptionTiles]        - If provided, allows adding additional option tiles.
@@ -45,7 +46,8 @@ export const LinkEditComponent = ({
 	hideOpensInNewTab = false,
 	hideAnchorNotice = false,
 
-	noBottomSpacing = false,
+	noBottomSpacing,
+	reducedBottomSpacing,
 
 	additionalClass,
 
@@ -129,6 +131,7 @@ export const LinkEditComponent = ({
 			icon={isAnchor ? anchorIcon : icon}
 			help={help}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClass}
 			actions={
 				<>

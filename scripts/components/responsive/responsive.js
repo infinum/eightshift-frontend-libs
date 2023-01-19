@@ -21,7 +21,8 @@ import { AnimatedContentVisibility } from '../animated-content-visibility/animat
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
  * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
  * @param {boolean} [props.inline=false]                                         - If `true`, the control is rendered inline and the options are more compact. Having label, subtitle, icon or help on the child component is not advised.
- * @param {boolean} [props.noBottomSpacing=false]                                - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                                      - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                                - If `true`, space below the control is reduced.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
 export const Responsive = (props) => {
@@ -40,7 +41,9 @@ export const Responsive = (props) => {
 		additionalClasses,
 
 		inline = false,
-		noBottomSpacing = false,
+
+		noBottomSpacing,
+		reducedBottomSpacing,
 	} = props;
 
 	const fallbackBreakpointLabels = breakpoints.map((v) => ucfirst(v));
@@ -55,6 +58,7 @@ export const Responsive = (props) => {
 			subtitle={subtitle}
 			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
 					{inline && <div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>{children[0]}</div>}

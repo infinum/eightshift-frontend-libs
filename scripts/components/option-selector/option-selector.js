@@ -22,7 +22,8 @@ import { Button } from '@wordpress/components';
  * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
  * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
- * @param {boolean} [props.noBottomSpacing=false]                                              - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                                                    - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                                              - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the button container.
  * @param {string?} [props.additionalButtonClass]                                              - If provided, the classes are appended to the selection buttons.
  * @param {string?} [props.additionalContainerClass]                                           - If provided, the classes are appended to the container.
@@ -51,7 +52,8 @@ export const OptionSelector = (props) => {
 		largerIcons = false,
 		compactButtons = false,
 
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		additionalClass,
 		additionalButtonClass,
@@ -174,6 +176,7 @@ export const OptionSelector = (props) => {
 			icon={icon}
 			label={label}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			inlineLabel={inlineLabel}
 			help={help}
 			additionalClasses={additionalContainerClass}

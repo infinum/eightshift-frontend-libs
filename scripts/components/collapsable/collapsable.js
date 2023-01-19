@@ -10,7 +10,8 @@ import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshi
  * @param {React.Component?} [props.icon]             - Icon to show next to the label
  * @param {string} props.label                        - Trigger label.
  * @param {React.Component?} [props.subtitle]         - Subtitle below the label.
- * @param {boolean} [props.noBottomSpacing=false]     - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]           - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]     - If `true`, space below the control is reduced.
  * @param {React.Component} props.children            - Child items that are shown when expanded.
  * @param {string?} [props.additionalClasses]         - If passed, the classes are appended to the component classes.
  * @param {React.Component?} [props.actions]          - Actions to show to the right of the label.
@@ -23,6 +24,7 @@ export const Collapsable = ({
 	subtitle,
 
 	noBottomSpacing,
+	reducedBottomSpacing,
 
 	children,
 	additionalClasses,
@@ -39,6 +41,7 @@ export const Collapsable = ({
 			label={label}
 			subtitle={subtitle}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
 			actions={

@@ -9,7 +9,7 @@ import { IconLabel, classnames } from '@eightshift/frontend-libs/scripts';
  * @param {string} props.label                    - Label shown on the divider.
  * @param {React.Component?} [props.subtitle]     - If provided, subtitle shown on the divider.
  * @param {boolean} [props.hasTopSpacing=false]   - If `true`, top spacing is added.
- * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing=false]       - If `true`, the default bottom spacing is removed.
  * @param {string?} [props.additionalClasses]     - Allows passing through extra classes.
  */
 export const FancyDivider = (props) => {

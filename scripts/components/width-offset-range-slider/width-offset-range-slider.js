@@ -20,7 +20,8 @@ import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
  * @param {boolean} [props.fullWidthToggle=false]  - If `true`, the "Fullwidth" toggle is shown.
  * @param {boolean} [props.autoOffsetToggle=false] - If `true`, the "Automatic offset" toggle is shown.
  * @param {any} [props.autoOffsetValue]            - Value that marks automatic offset.
- * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
+ * @param {boolean?} [props.noBottomSpacing]       - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]  - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
  * @param {boolean?} [props.numericValues=false]   - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
  * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
@@ -41,7 +42,9 @@ export const WidthOffsetRangeSlider = (props) => {
 		autoOffsetToggle = false,
 		autoOffsetValue = 'auto',
 
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
+
 		additionalClasses,
 
 		numericValues = false,
@@ -71,7 +74,13 @@ export const WidthOffsetRangeSlider = (props) => {
 	const buttonClass = 'es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-icon-18 es-button-no-icon-spacing es-gap-1.5! es-rounded-1! es-h-8! es-px-2!';
 
 	return (
-		<Responsive label={label} icon={icon} noBottomSpacing={noBottomSpacing} additionalClasses={additionalClasses}>
+		<Responsive
+			label={label}
+			icon={icon}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			additionalClasses={additionalClasses}
+		>
 			{breakpointNames.map((breakpoint, index) => {
 				const width = rawWidths[breakpoint];
 				const offset = rawOffsets[breakpoint];

@@ -7,6 +7,7 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-select-style';
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator, CustomSelectDefaultMultiValueRemove } from './custom-select-default-components';
 import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './multi-select-components';
+import { Control } from '../base-control/base-control';
 
 /**
  * Multi-select, asynchronously-loading, re-orderable select menu.
@@ -14,6 +15,9 @@ import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValue
  * @param {object} props                                               - AsyncMultiSelect options.
  * @param {string?} [props.label]                                      - Label displayed above the control.
  * @param {string?} [props.help]                                       - Help text displayed below the control.
+ * @param {React.Component?} [props.icon]                              - Icon to show next to the label
+ * @param {React.Component?} [props.subtitle]                          - Subtitle below the label.
+ * @param {React.Component?} [props.actions]                           - Actions to show to the right of the label.
  * @param {boolean|array<{string,string}>} [props.preloadOptions=true] - If `true`, the initial loading is done as soon as the component is loaded. If an array of `{label: '', value: ''}` option is provided, that is loaded immediately, dynamic fetching only happens in search. If `false`, nothing is loaded immediately, until you type to search.
  * @param {callback<Promise<>>?} props.loadOptions                     - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
  * @param {object} props.value                                         - Current value
@@ -30,7 +34,8 @@ import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValue
  * @param {React.Component?} [props.customValueDisplay]                - If provided, replaces the default current value display of each selected item (react-select's `components.MultiValue`).
  * @param {React.Component?} [props.customValueContainer]              - If provided, replaces the default items container component (react-select's `components.MultiValueContainer`).
  * @param {React.Component?} [props.customValueRemove]                 - If provided, replaces the default item remove button (react-select's `components.MultiValueRemove`.
- * @param {boolean} [props.noBottomSpacing=false]                      - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                            - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {function} [props.processLoadedOptions]                      - Allows modifying (filtering, grouping, ...) options output after the items have been dynamically fetched. Please make sure to include `label`, `value` keys and `id` keys, additional fields can be added as required.
  * @param {string?} [props.additionalClasses='']                       - If provided, the classes are added to the component container.
  * @param {string?} [props.additionalSelectClasses='']                 - If provided, the classes are added to the Select element itself.
@@ -40,6 +45,9 @@ export const AsyncMultiSelect = (props) => {
 	const {
 		label,
 		help,
+		icon,
+		subtitle,
+		actions,
 
 		preloadOptions = true,
 		loadOptions,
@@ -65,7 +73,8 @@ export const AsyncMultiSelect = (props) => {
 		customValueRemove,
 		customValueContainer,
 
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		processLoadedOptions = (options) => options,
 
@@ -80,11 +89,16 @@ export const AsyncMultiSelect = (props) => {
 	};
 
 	return (
-		<div className={`${noBottomSpacing ? '' : 'es-mb-5'} ${additionalClasses ?? ''}`}>
-			{label &&
-				<div className='es-mb-2'>{label}</div>
-			}
-
+		<Control
+			label={label}
+			icon={icon}
+			subtitle={subtitle}
+			actions={actions}
+			additionalClasses={additionalClasses}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			help={help}
+		>
 			<DndContext modifiers={[restrictToParentElement]} onDragEnd={getDragEndHandler(onChange, value)}>
 				<SortableContext items={value.map(({ id }) => id)}>
 					<AsyncSelect
@@ -119,10 +133,6 @@ export const AsyncMultiSelect = (props) => {
 					/>
 				</SortableContext>
 			</DndContext>
-
-			{help &&
-				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
-			}
-		</div>
+		</Control>
 	);
 };

@@ -8,19 +8,21 @@ import { icons } from '../../editor/icons/icons';
  *
  * @typedef {'warning'|'error'|'info'|'success'} NotificationType
  *
- * @param {object} props                         - Notification options.
- * @param {string} props.text                    - Notification text.
- * @param {React.Component} [props.iconOverride] - If set, overrides the icon set for the type.
- * @param {string} [props.subtitle]              - Subtitle text.
- * @param {string} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
- * @param {NotificationType} [props.type]        - Help text displayed below the picker.
+ * @param {object} props                          - Notification options.
+ * @param {string} props.text                     - Notification text.
+ * @param {React.Component} [props.iconOverride]  - If set, overrides the icon set for the type.
+ * @param {string} [props.subtitle]               - Subtitle text.
+ * @param {string} [props.noBottomSpacing]        - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
+ * @param {NotificationType} [props.type]         - Help text displayed below the picker.
  */
 export const Notification = ({
 	text,
 	iconOverride,
 	subtitle,
 	type,
-	noBottomSpacing = false,
+	noBottomSpacing,
+	reducedBottomSpacing,
 }) => {
 	let icon, classes, iconColor;
 
@@ -54,6 +56,7 @@ export const Notification = ({
 		<Control
 			additionalClasses={classnames('es-p-2 es-rounded-2', classes)}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 		>
 			<IconLabel icon={iconOverride ?? icon} label={text} subtitle={subtitle} additionalClasses={iconColor} standalone />
 		</Control>

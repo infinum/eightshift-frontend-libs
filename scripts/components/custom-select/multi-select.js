@@ -7,6 +7,7 @@ import { defaultEightshiftColorScheme, defaultEightshiftStyles } from './custom-
 import { CustomSelectDefaultClearIndicator, CustomSelectDefaultDropdownIndicator, CustomSelectDefaultMultiValueRemove } from './custom-select-default-components';
 import { getDragEndHandler, getMultiValue, getMultiValueContainer, getMultiValueRemove } from './multi-select-components';
 import { customOnChange, getValue } from './shared';
+import { Control } from '../base-control/base-control';
 
 /**
  * Multi-select, re-orderable select menu.
@@ -14,6 +15,9 @@ import { customOnChange, getValue } from './shared';
  * @param {object} props                                     - MultiSelect options.
  * @param {string?} [props.label]                            - Label displayed above the control.
  * @param {string?} [props.help]                             - Help text displayed below the control.
+ * @param {React.Component?} [props.icon]                    - Icon to show next to the label
+ * @param {React.Component?} [props.subtitle]                - Subtitle below the label.
+ * @param {React.Component?} [props.actions]                 - Actions to show to the right of the label.
  * @param {array<{string, string}>?} props.options           - Options to choose from. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                               - Current value
  * @param {function} props.onChange                          - Function called when the selection is changed.
@@ -29,7 +33,8 @@ import { customOnChange, getValue } from './shared';
  * @param {React.Component?} [props.customValueDisplay]      - If provided, replaces the default current value display of each selected item (react-select's `components.MultiValue`).
  * @param {React.Component?} [props.customValueContainer]    - If provided, replaces the default items container component (react-select's `components.MultiValueContainer`).
  * @param {React.Component?} [props.customValueRemove]       - If provided, replaces the default item remove button (react-select's `components.MultiValueRemove`.
- * @param {boolean} [props.noBottomSpacing=false]            - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]                  - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]            - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses='']             - If provided, the classes are added to the component container.
  * @param {string?} [props.additionalSelectClasses='']       - If provided, the classes are added to the Select element itself.
  * @param {object?} [props.additionalProps={}]               - If provided, the provided props will be passed to the Select control.
@@ -38,6 +43,9 @@ export const MultiSelect = (props) => {
 	const {
 		label,
 		help,
+		icon,
+		subtitle,
+		actions,
 
 		options,
 		value,
@@ -63,7 +71,8 @@ export const MultiSelect = (props) => {
 		customValueRemove,
 		customValueContainer,
 
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		additionalClasses,
 		additionalSelectClasses,
@@ -71,11 +80,16 @@ export const MultiSelect = (props) => {
 	} = props;
 
 	return (
-		<div className={`${noBottomSpacing ? '' : 'es-mb-5'} ${additionalClasses ?? ''}`}>
-			{label &&
-				<div className='es-mb-2'>{label}</div>
-			}
-
+		<Control
+			label={label}
+			icon={icon}
+			subtitle={subtitle}
+			actions={actions}
+			additionalClasses={additionalClasses}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			help={help}
+		>
 			<DndContext modifiers={[restrictToParentElement]} onDragEnd={getDragEndHandler(onChange, value)}>
 				<SortableContext items={value.map(({ id }) => id)}>
 					<Select
@@ -108,10 +122,6 @@ export const MultiSelect = (props) => {
 					/>
 				</SortableContext>
 			</DndContext>
-
-			{help &&
-				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
-			}
-		</div>
+		</Control>
 	);
 };

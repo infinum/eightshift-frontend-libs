@@ -10,7 +10,8 @@ import { IconLabel, Collapsable, FancyDivider, classnames } from '@eightshift/fr
  * @param {React.Component?} [props.subtitle]      - If provided, a subtitle is added to the label.
  * @param {boolean?} [props.showIf]                - If provided, the section is only shown if the condition is `true`.
  * @param {boolean} [props.collapsable=false]      - If `true`, the section is render as a `Collapsable`.
- * @param {boolean} [props.noBottomSpacing=false]  - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]        - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]  - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]      - Allows passing through extra classes.
  * @param {string?} [props.additionalLabelClasses] - Allows passing through extra classes to the label.
  * @param {React.Component} props.children         - Child items that are shown when expanded.
@@ -24,7 +25,8 @@ export const Section = (props) => {
 		showIf,
 
 		collapsable = false,
-		noBottomSpacing = false,
+		noBottomSpacing,
+		reducedBottomSpacing,
 
 		additionalClasses,
 		additionalLabelClasses,
@@ -49,17 +51,20 @@ export const Section = (props) => {
 					/>
 				}
 				noBottomSpacing={noBottomSpacing}
+				reducedBottomSpacing={reducedBottomSpacing}
 			>
 				{children}
 			</Collapsable>
 		);
 	}
 
+	const bottomSpacingValue = reducedBottomSpacing ? 'es-mb-2' : 'es-mb-5';
+
 	return (
 		<>
 			<FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={additionalLabelClasses} />
 
-			<div className={classnames(noBottomSpacing ? '' : 'es-mb-5', additionalClasses)}>
+			<div className={classnames(!noBottomSpacing && bottomSpacingValue, additionalClasses)}>
 				{children}
 			</div>
 		</>

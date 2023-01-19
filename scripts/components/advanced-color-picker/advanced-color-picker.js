@@ -20,7 +20,8 @@ import { ColorPalette, icons, OptionSelector, ColorSwatch, Control, PopoverWithT
  * @param {string?} [props.label]                 - Label displayed above the control.
  * @param {string?} [props.help]                  - Help text displayed below the control.
  * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
- * @param {boolean} [props.noBottomSpacing=false] - If `true`, the default bottom spacing is removed.
+ * @param {boolean} [props.noBottomSpacing]       - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]     - If passed, the classes are added to the component's `BaseControl`.
  * @param {boolean} [props.isTileButton=false]    - If `true`, the component is rendered as a tile button.
  */
@@ -49,6 +50,7 @@ export const AdvancedColorPicker = (props) => {
 		icon = icons.imageOverlayAlt2,
 		label = __('Background', 'eightshift-frontend-libs'),
 		noBottomSpacing,
+		reducedBottomSpacing,
 		help,
 
 		types = [
@@ -174,6 +176,7 @@ export const AdvancedColorPicker = (props) => {
 			icon={icon}
 			additionalClasses={additionalClasses}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			label={label}
 			help={help}
 			inlineLabel

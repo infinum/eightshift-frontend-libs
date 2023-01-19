@@ -7,23 +7,24 @@ import { classnames } from '../../helpers';
 /**
  * A `Slider` that allows changing values between breakpoints.
  *
- * @param {object} props                           - ResponsiveSlider options.
- * @param {React.Component?} [props.icon]          - Icon to show next to the label
- * @param {React.Component?} [props.label]         - Label to show above component.
- * @param {React.Component?} [props.subtitle]      - Subtitle below the label.
- * @param {React.Component?} [props.help]          - Help to show below the control.
- * @param {Object} [props.value]                   - Value to use - keys are breakpoint names.
- * @param {function} [props.onChange]              - Function to trigger when the value of is changing.
- * @param {Number?} [props.min=0]                  - Minimum allowed value.
- * @param {Number} [props.max]                     - Maximum allowed value.
- * @param {Number?} [props.step=1]                 - Step for each change.
- * @param {any} [props.inheritValue]               - Value that marks something as inherited.
- * @param {function} [props.inheritCheck]          - Function that returns a `boolean`, used to decide whether a value is inherited or not.
- * @param {Number?} [props.resetButton]            - If provided, a button to reset to the given value is shown.
- * @param {boolean?} [props.stringValues=false]    - If `true`, string values are returned instead of numbers.
- * @param {boolean?} [props.noBottomSpacing=false] - If `true`, space below the control is removed.
- * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
- * @param {Object} [props.additionalProps]         - If passed, the provided props are passed to the `Slider`.
+ * @param {object} props                          - ResponsiveSlider options.
+ * @param {React.Component?} [props.icon]         - Icon to show next to the label
+ * @param {React.Component?} [props.label]        - Label to show above component.
+ * @param {React.Component?} [props.subtitle]     - Subtitle below the label.
+ * @param {React.Component?} [props.help]         - Help to show below the control.
+ * @param {Object} [props.value]                  - Value to use - keys are breakpoint names.
+ * @param {function} [props.onChange]             - Function to trigger when the value of is changing.
+ * @param {Number?} [props.min=0]                 - Minimum allowed value.
+ * @param {Number} [props.max]                    - Maximum allowed value.
+ * @param {Number?} [props.step=1]                - Step for each change.
+ * @param {any} [props.inheritValue]              - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]         - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {Number?} [props.resetButton]           - If provided, a button to reset to the given value is shown.
+ * @param {boolean?} [props.stringValues=false]   - If `true`, string values are returned instead of numbers.
+ * @param {boolean?} [props.noBottomSpacing]      - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
+ * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the base control.
+ * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `Slider`.
  */
 export const ResponsiveSlider = (props) => {
 	const {
@@ -47,6 +48,8 @@ export const ResponsiveSlider = (props) => {
 		stringValues = false,
 
 		noBottomSpacing,
+		reducedBottomSpacing,
+
 		additionalClasses,
 
 		additionalProps = {},
@@ -66,6 +69,7 @@ export const ResponsiveSlider = (props) => {
 			subtitle={subtitle}
 			help={help}
 			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClasses}
 			inheritButton={breakpointNames.map((breakpoint) => {
 				const currentValue = rawValues[breakpoint];
