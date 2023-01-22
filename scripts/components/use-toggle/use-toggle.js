@@ -13,6 +13,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 
 		setAttributes,
 
+		reducedBottomSpacing,
 		noBottomSpacing,
 		additionalClasses,
 	} = attributes;
@@ -29,6 +30,7 @@ export const generateUseToggleConfig = (attributes, manifest, attributeName) => 
 		noControls: noControls,
 		noBottomSpacing: noBottomSpacing,
 		additionalClasses: additionalClasses,
+		reducedBottomSpacing: reducedBottomSpacing,
 	};
 };
 
