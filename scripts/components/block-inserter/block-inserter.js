@@ -13,11 +13,13 @@ import { classnames } from '../../helpers';
  * @param {object} props                            - BlockInserter options.
  * @param {React.Component?} [props.clientId]       - Client ID of the block in which the inserter belongs.
  * @param {React.Component?} [props.hasLabel=false] - Client ID of the block in which the inserter belongs.
+ * @param {React.Component?} [props.small=false]    - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
  */
 export const BlockInserter = (props) => {
 	const {
 		clientId,
 		hasLabel = false,
+		small = false,
 	} = props;
 
 	return (
@@ -42,7 +44,7 @@ export const BlockInserter = (props) => {
 						disabled={disabled}
 						label={!hasLabel && labelText}
 						icon={icons.add}
-						className={classnames('es-button-icon-20 es-h-9! es-rounded-1.5! es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650', !hasLabel && 'es-w-9!')}
+						className={classnames('es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650', !hasLabel && !small && 'es-w-9!', small ? 'es-w-7! es-min-w-7! es-rounded-1! es-button-icon-18' : 'es-button-icon-20 es-rounded-1.5! es-h-9!')}
 						showTooltip={!hasLabel}
 					>
 						{hasLabel && <span className='es-color-cool-gray-450'>{labelText}</span>}
