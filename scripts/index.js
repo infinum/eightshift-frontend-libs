@@ -7,6 +7,7 @@ export { AnimatedContentVisibility } from './components/animated-content-visibil
 export { ColorSwatch } from './components/color-swatch/color-swatch';
 export { AsyncSelect } from './components/custom-select/async-single-select';
 export { AsyncMultiSelect } from './components/custom-select/async-multi-select';
+export { BlockInserter } from './components/block-inserter/block-inserter';
 export { ColorPalette } from './components/color-palette-custom/color-palette-custom';
 export { ColorPicker } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
