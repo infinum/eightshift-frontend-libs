@@ -204,7 +204,7 @@ export const LinkEditComponent = ({
 				<IconLabel
 					icon={icons.anchorPage}
 					label={__('Internal anchor link selected', 'eightshift-frontend-libs')}
-					subtitle={__('Links to an element on the current page', 'eightshift-frontend-libs')}
+					subtitle={__('Links to an element on this page', 'eightshift-frontend-libs')}
 					additionalClasses='es-nested-color-cool-gray-500'
 					standalone
 				/>
