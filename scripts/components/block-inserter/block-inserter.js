@@ -44,10 +44,10 @@ export const BlockInserter = (props) => {
 						disabled={disabled}
 						label={!hasLabel && labelText}
 						icon={icons.add}
-						className={classnames('es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650', !hasLabel && !small && 'es-w-9!', small ? 'es-w-7! es-min-w-7! es-rounded-1! es-button-icon-18' : 'es-button-icon-20 es-rounded-1.5! es-h-9!')}
+						className={classnames('es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650', !hasLabel && !small && 'es-w-9!', small ? 'es-h-7! es-w-7! es-min-w-7! es-rounded-1! es-button-icon-18' : 'es-button-icon-20 es-rounded-1.5! es-h-9!')}
 						showTooltip={!hasLabel}
 					>
-						{hasLabel && <span className='es-color-cool-gray-450'>{labelText}</span>}
+						{hasLabel && <span className='es-color-cool-gray-500'>{labelText}</span>}
 					</Button>
 				);
 			}}
