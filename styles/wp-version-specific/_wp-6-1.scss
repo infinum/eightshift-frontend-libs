@@ -63,6 +63,10 @@ body.branch-6-1 {
 	.block-editor-block-list__block .block-list-appender {
 		position: static !important;
 		margin: 0.75rem 0.25rem 0 !important;
+
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
 	}
 }
 // stylelint-enable
