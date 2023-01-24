@@ -52,5 +52,16 @@ body.branch-6-1 {
 		width: 1.25rem !important;
 		height: 1.25rem !important;
 	}
+
+	// Improve block inserter display and positioning.
+	.components-dropdown.block-editor-inserter {
+		display: flex !important;
+		align-items: center;
+		justify-self: center;
+	}
+
+	.block-editor-block-list__block .block-list-appender {
+		position: static !important;
+	}
 }
 // stylelint-enable
