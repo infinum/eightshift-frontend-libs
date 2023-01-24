@@ -3,19 +3,26 @@ import { __, sprintf } from '@wordpress/i18n';
 import { Inserter } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { icons } from '../../editor';
+import { classnames } from '../../helpers';
 
 /**
  * @since 8.0.0
  *
  * A replacement for the default Gutenberg inserter, whose styling can vary between WP versions.
  *
- * @param {object} props                      - BlockInserter options.
- * @param {React.Component?} [props.clientId] - Client ID of the block in which the inserter belongs.
+ * @param {object} props                            - BlockInserter options.
+ * @param {React.Component?} [props.clientId]       - Client ID of the block in which the inserter belongs.
+ * @param {React.Component?} [props.hasLabel=false] - Client ID of the block in which the inserter belongs.
  */
 export const BlockInserter = (props) => {
+	const {
+		clientId,
+		hasLabel = false,
+	} = props;
+
 	return (
 		<Inserter
-			rootClientId={props.clientId}
+			rootClientId={clientId}
 			position='bottom center'
 			isAppender
 
@@ -27,14 +34,19 @@ export const BlockInserter = (props) => {
 					blockTitle
 				} = appenderProps;
 
+				const labelText = hasSingleBlockType ? sprintf(__('Add a %s', 'eightshift-frontend-libs'), blockTitle) : __('Add a block', 'eightshift-frontend-libs');
+
 				return (
 					<Button
 						onClick={onToggle}
 						disabled={disabled}
-						label={hasSingleBlockType ? sprintf(__('Add a %s', 'eightshift-frontend-libs'), blockTitle) : __('Add a block', 'eightshift-frontend-libs')}
+						label={!hasLabel && labelText}
 						icon={icons.add}
-						className='es-button-icon-20 es-h-9! es-w-9! es-rounded-1.5! es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto'
-					/>
+						className={classnames('es-button-icon-20 es-h-9! es-rounded-1.5! es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto', !hasLabel && 'es-w-9!')}
+						showTooltip={!hasLabel}
+					>
+						{hasLabel && labelText}
+					</Button>
 				);
 			}}
 		/>
