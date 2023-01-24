@@ -94,4 +94,9 @@ button[disabled] .block-editor-block-icon.has-colors,
 	padding: 0.5rem;
 }
 
+// Round off the [+] button in-between the blocks a bit.
+.block-editor-inserter__toggle {
+	border-radius: 0.325rem !important;
+}
+
 // stylelint-enable
