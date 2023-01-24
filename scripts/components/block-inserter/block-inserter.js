@@ -9,8 +9,8 @@ import { icons } from '../../editor';
  *
  * A replacement for the default Gutenberg inserter, whose styling can vary between WP versions.
  *
- * @param {object} props                                - BlockInserter options.
- * @param {React.Component?} [props.icon]               - Icon to show next to the label
+ * @param {object} props                      - BlockInserter options.
+ * @param {React.Component?} [props.clientId] - Client ID of the block in which the inserter belongs.
  */
 export const BlockInserter = (props) => {
 	return (
@@ -33,7 +33,7 @@ export const BlockInserter = (props) => {
 						disabled={disabled}
 						label={hasSingleBlockType ? sprintf(__('Add a %s', 'eightshift-frontend-libs'), blockTitle) : __('Add a block', 'eightshift-frontend-libs')}
 						icon={icons.add}
-						className='es-button-icon-20 es-h-9! es-w-9! es-rounded-1.5! es-slight-button-border-cool-gray-400 es-bg-pure-white!'
+						className='es-button-icon-20 es-h-9! es-w-9! es-rounded-1.5! es-slight-button-border-cool-gray-400 es-bg-pure-white! es-mx-auto'
 					/>
 				);
 			}}
