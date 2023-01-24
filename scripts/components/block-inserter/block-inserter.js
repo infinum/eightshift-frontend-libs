@@ -38,7 +38,8 @@ export const BlockInserter = (props) => {
 					blockTitle
 				} = appenderProps;
 
-				const labelText = hasSingleBlockType ? sprintf(__('Add a %s', 'eightshift-frontend-libs'), blockTitle) : __('Add a block', 'eightshift-frontend-libs');
+				const addLabelText = hasLabel ? blockTitle : sprintf(__( 'Add %s', 'eightshift-frontend-libs'), blockTitle);
+				const labelText = hasSingleBlockType ? addLabelText : __('Add a block', 'eightshift-frontend-libs');
 
 				return (
 					<Button
