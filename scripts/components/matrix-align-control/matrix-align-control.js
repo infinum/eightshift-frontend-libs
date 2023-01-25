@@ -115,7 +115,10 @@ export const MatrixAlignControl = (props) => {
 		>
 			<OptionSelector
 				options={sizeOptions}
-				onChange={(value) => setCurrentValue(value)}
+				onChange={(value) => {
+					setCurrentValue(value);
+					onChange(value);
+				}}
 				value={currentValue ?? (size === '3x3' ? 'center center' : 'top left')}
 				border='none'
 				alignment='center'
