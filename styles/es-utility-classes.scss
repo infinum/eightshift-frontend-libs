@@ -1170,25 +1170,29 @@ $es-utility-props: (
 		// Classes for WP BaseControl fields.
 		@if $includeBcfSelectors == 'true' {
 			.es-#{$propShorthand}-#{$size2}-bcf#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
+				.components-base-control__field,
+				.components-base-control__help {
 					#{$propCssName}: #{$valuePrefix} #{$value};
 				}
 			}
 
 			.es-#{$propShorthand}-#{$size2}-bcf\!#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
+				.components-base-control__field,
+				.components-base-control__help {
 					#{$propCssName}: #{$valuePrefix} #{$value} !important;
 				}
 			}
 
 			.-es-#{$propShorthand}-#{$size2}-bcf#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
+				.components-base-control__field,
+				.components-base-control__help {
 					#{$propCssName}: #{$valuePrefix} -#{$value};
 				}
 			}
 
 			.-es-#{$propShorthand}-#{$size2}-bcf\!#{$selectorSuffix} #{$additionalSelector} {
-				.components-base-control__field {
+				.components-base-control__field,
+				.components-base-control__help {
 					#{$propCssName}: #{$valuePrefix} -#{$value} !important;
 				}
 			}
