@@ -37,7 +37,7 @@ module.exports = {
 		'function-whitespace-after': 'always',
 
 		'number-leading-zero': 'always',
-		'number-max-precision': 3,
+		'number-max-precision': 5,
 		'number-no-trailing-zeros': true,
 		'length-zero-no-unit': true,
 
