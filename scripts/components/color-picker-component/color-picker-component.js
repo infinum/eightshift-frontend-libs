@@ -146,7 +146,7 @@ export const ColorPicker = (props) => {
 		>
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
-				position={popoverPosition ?? (label ? 'middle right' : 'bottom')}
+				position={popoverPosition ?? (label ? 'middle right' : 'bottom right')}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<Button

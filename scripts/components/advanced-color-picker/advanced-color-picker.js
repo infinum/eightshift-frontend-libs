@@ -6,24 +6,27 @@ import { ColorPalette, icons, OptionSelector, ColorSwatch, Control, PopoverWithT
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
  *
- * @param {object} props                          - AdvancedColorPicker options.
- * @param {string?} props.colorProject            - Currently selected project color.
- * @param {string?} props.colorSolid              - Currently selected solid color.
- * @param {string?} props.colorGradient           - Currently selected gradient.
- * @param {string?} props.type                    - Currently selected color type.
- * @param {function} props.onChangeProject        - Function called when the project color is changed.
- * @param {function} props.onChangeSolid          - Function called when the solid color is changed.
- * @param {function} props.onChangeGradient       - Function called when the gradient is changed.
- * @param {function} props.onChangeType           - Function called when the color type is changed.
- * @param {object} props.globalManifest           - Project's `globalManifest`.
- * @param {Array} [props.types]                   - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
- * @param {string?} [props.label]                 - Label displayed above the control.
- * @param {string?} [props.help]                  - Help text displayed below the control.
- * @param {boolean} [props.disabled=false]        - If `true`, control is disabled.
- * @param {boolean} [props.noBottomSpacing]       - If `true`, the default bottom spacing is removed.
- * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
- * @param {string?} [props.additionalClasses]     - If passed, the classes are added to the component's `BaseControl`.
- * @param {boolean} [props.isTileButton=false]    - If `true`, the component is rendered as a tile button.
+ * @typedef {'top' | 'top left' | 'top right' | 'middle' | 'middle left' | 'middle right' | 'bottom' | 'bottom left' | 'bottom right'} AppearOrigin
+ *
+ * @param {object} props                                      - AdvancedColorPicker options.
+ * @param {string?} props.colorProject                        - Currently selected project color.
+ * @param {string?} props.colorSolid                          - Currently selected solid color.
+ * @param {string?} props.colorGradient                       - Currently selected gradient.
+ * @param {string?} props.type                                - Currently selected color type.
+ * @param {function} props.onChangeProject                    - Function called when the project color is changed.
+ * @param {function} props.onChangeSolid                      - Function called when the solid color is changed.
+ * @param {function} props.onChangeGradient                   - Function called when the gradient is changed.
+ * @param {function} props.onChangeType                       - Function called when the color type is changed.
+ * @param {object} props.globalManifest                       - Project's `globalManifest`.
+ * @param {Array} [props.types]                               - Types of choices to show. The array should have objects in `{label: '', value: ''}` format. Defaults provide 'nothing', 'solid color', 'project color' and 'gradient' options.
+ * @param {string?} [props.label]                             - Label displayed above the control.
+ * @param {string?} [props.help]                              - Help text displayed below the control.
+ * @param {boolean} [props.disabled=false]                    - If `true`, control is disabled.
+ * @param {boolean} [props.noBottomSpacing]                   - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]             - If `true`, space below the control is reduced.
+ * @param {string?} [props.additionalClasses]                 - If passed, the classes are added to the component's `BaseControl`.
+ * @param {boolean} [props.isTileButton=false]                - If `true`, the component is rendered as a tile button.
+ * @param {AppearOrigin} [props.popoverPosition='top center'] - Position where the popover appears.
  */
 export const AdvancedColorPicker = (props) => {
 	const {
@@ -81,6 +84,8 @@ export const AdvancedColorPicker = (props) => {
 		additionalClasses,
 
 		isTileButton = false,
+
+		popoverPosition,
 	} = props;
 
 	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
@@ -153,7 +158,7 @@ export const AdvancedColorPicker = (props) => {
 		return (
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
-				position='middle left'
+				position={popoverPosition ?? (label ? 'middle right' : 'bottom right')}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<TileButton
