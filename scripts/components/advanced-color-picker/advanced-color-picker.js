@@ -120,6 +120,7 @@ export const AdvancedColorPicker = (props) => {
 					alignment='vertical'
 					border='none'
 					noBottomSpacing
+					additionalButtonClass='es-rounded-1.5!'
 				/>
 			</div>
 
@@ -158,7 +159,7 @@ export const AdvancedColorPicker = (props) => {
 		return (
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
-				position={popoverPosition ?? (label ? 'middle right' : 'bottom right')}
+				position={popoverPosition ?? 'bottom'}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<TileButton
@@ -188,6 +189,7 @@ export const AdvancedColorPicker = (props) => {
 		>
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
+				position={popoverPosition ?? 'middle right'}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<Button
