@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconLabel, Collapsable, FancyDivider, classnames } from '@eightshift/frontend-libs/scripts';
+import { Collapsable, FancyDivider, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Simple section with FancyDivider header.
@@ -42,12 +42,11 @@ export const Section = (props) => {
 		return (
 			<Collapsable
 				label={
-					<IconLabel
-						icon={icon}
+					<FancyDivider
 						label={label}
+						icon={icon}
 						subtitle={subtitle}
-						additionalClasses={classnames('es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white! es-nested-p-0.75 es-color-cool-gray-600 es-has-enhanced-contrast-icon', additionalLabelClasses)}
-						standalone
+						additionalClasses={classnames('es-color-cool-gray-600 es-has-enhanced-contrast-icon es-m-0!', additionalLabelClasses)}
 					/>
 				}
 				noBottomSpacing={noBottomSpacing}
