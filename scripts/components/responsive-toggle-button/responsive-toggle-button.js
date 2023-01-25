@@ -20,7 +20,7 @@ import { classnames } from '../../helpers';
  * @param {boolean?} [props.noBottomSpacing]      - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the base control.
- * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `NumberPicker`.
+ * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `Button`.
  */
 export const ResponsiveToggleButton = (props) => {
 	const {
