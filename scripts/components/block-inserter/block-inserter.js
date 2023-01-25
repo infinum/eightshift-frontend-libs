@@ -50,9 +50,9 @@ export const BlockInserter = (props) => {
 						className={classnames(
 							'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent',
 							'es-border-pure-white es-border-w-2px',
-							'es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650',
+							'es-bg-pure-white! es-mx-auto es-text-3! es-color-cool-gray-650 es-rounded-1.5!',
 							!hasLabel && !small && 'es-w-9!',
-							small ? 'es-h-7! es-w-7! es-min-w-7! es-rounded-1! es-button-icon-18' : 'es-button-icon-20 es-rounded-1.5! es-h-9!',
+							small ? 'es-h-7! es-w-7! es-min-w-7! es-button-icon-18' : 'es-button-icon-20 es-h-9!',
 							additionalClasses,
 						)}
 						showTooltip={!hasLabel}
