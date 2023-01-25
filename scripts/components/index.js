@@ -42,6 +42,8 @@ export { ResponsiveNumberPicker } from './responsive-number-picker/responsive-nu
 export { generateResponsiveNumberPickerConfig } from './responsive-number-picker/auto-config';
 export { ResponsiveSlider } from './responsive-slider/responsive-slider';
 export { generateResponsiveSliderConfig } from './responsive-slider/auto-config';
+export { generateResponsiveToggleButtonConfig } from './responsive-toggle-button/auto-config';
+export { ResponsiveToggleButton } from './responsive-toggle-button/responsive-toggle-button';
 export { Section } from './section/section';
 export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';

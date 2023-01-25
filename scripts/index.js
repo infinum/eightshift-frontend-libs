@@ -43,6 +43,8 @@ export { ResponsiveNumberPicker } from './components/responsive-number-picker/re
 export { generateResponsiveNumberPickerConfig } from './components/responsive-number-picker/auto-config';
 export { ResponsiveSlider } from './components/responsive-slider/responsive-slider';
 export { generateResponsiveSliderConfig } from './components/responsive-slider/auto-config';
+export { generateResponsiveToggleButtonConfig } from './components/responsive-toggle-button/auto-config';
+export { ResponsiveToggleButton } from './components/responsive-toggle-button/responsive-toggle-button';
 export { Section } from './components/section/section';
 export { Select } from './components/custom-select/single-select';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
