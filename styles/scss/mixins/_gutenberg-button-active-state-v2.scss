@@ -1,7 +1,8 @@
-// stylelint-disable declaration-no-important
+// stylelint-disable declaration-no-important, selector-max-specificity
 
 @mixin es-v2-gutenberg-button-active-state {
-	background: linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 255, 255)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
+	background: linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 255, 255)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+	background-color: transparent !important;
 
 	transition: {
 		property: color, background, box-shadow;
@@ -10,24 +11,24 @@
 	};
 
 	&:not(.is-pressed) {
-		color: var(--es-admin-cool-gray-600);
+		color: var(--es-admin-cool-gray-600) !important;
 
 		&:hover {
 			background-color: var(--es-admin-gray-50) !important;
-			color: var(--es-admin-pure-black);
+			color: var(--es-admin-pure-black) !important;
 		}
 	}
 
 	&.is-pressed {
-		background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), inset 0 0 0 1px var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
-		color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), inset 0 0 0 1px var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+		color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
 
-		&:hover,
-		&:hover:not(:disabled) {
-			background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
-			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
-			color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default));
+		&:hover:not(:focus):not(:focus-visible),
+		&:hover:not(:disabled):not(:focus):not(:focus-visible) {
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)) var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+			color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
 		}
 	}
 
@@ -35,6 +36,10 @@
 		&:focus:not(:focus-visible) {
 			box-shadow: inset 0 0 0 0 var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
 			outline: none !important;
+
+			&.is-pressed {
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), inset 0 0 0 1px var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
+			}
 		}
 
 		&:focus-visible {
@@ -44,10 +49,10 @@
 
 	@supports not selector(:focus-visible) {
 		&:focus {
-			outline: none;
+			outline: none !important;
 			box-shadow: inset 0 0 0 2px var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
 		}
 	}
 }
 
-// stylelint-enable declaration-no-important
+// stylelint-enable declaration-no-important, selector-max-specificity
