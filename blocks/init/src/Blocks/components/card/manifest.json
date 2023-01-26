@@ -52,12 +52,31 @@
 		"button": "button"
 	},
 	"variables": {
-		"cardAlign": [
-			{
-				"variable": {
-					"block-card-align": "%value%"
+		"cardAlign": {
+			"left": [
+				{
+					"variable": {
+						"block-card-text-align": "left",
+						"block-card-content-align": "flex-start"
+					}
 				}
-			}
-		]
+			],
+			"center": [
+				{
+					"variable": {
+						"block-card-text-align": "center",
+						"block-card-content-align": "center"
+					}
+				}
+			],
+			"right": [
+				{
+					"variable": {
+						"block-card-text-align": "right",
+						"block-card-content-align": "flex-end"
+					}
+				}
+			]
+		}
 	}
 }

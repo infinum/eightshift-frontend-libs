@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const LogoEditor = (attributes) => {
@@ -20,15 +19,15 @@ export const LogoEditor = (attributes) => {
 	const logoTitle = checkAttr('logoTitle', attributes, manifest);
 	const logoHref = checkAttr('logoHref', attributes, manifest);
 
-	const logoClass = classnames([
+	const logoClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
-	const imgClass = classnames([
+	const imgClass = classnames(
 		selector(componentClass, componentClass, 'img'),
-	]);
+	);
 
 	if (!logoUse) {
 		return null;

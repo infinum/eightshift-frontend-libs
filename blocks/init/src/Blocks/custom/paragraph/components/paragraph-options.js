@@ -18,10 +18,8 @@ export const ParagraphOptions = ({ attributes, setAttributes }) => {
 					<OptionSelector
 						value={paragraphAlign}
 						options={getOption('paragraphAlign', attributes, manifest)}
-						// label={__('Text align', 'eightshift-frontend-libs')}
 						onChange={(value) => setAttributes({ [getAttrKey('paragraphAlign', attributes, manifest)]: value })}
 						noBottomSpacing
-						border='offset'
 						iconOnly
 					/>
 				}

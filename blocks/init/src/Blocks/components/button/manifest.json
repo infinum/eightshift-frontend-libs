@@ -93,20 +93,62 @@
 			}
 		],
 		"buttonColor": [
-			"primary500"
+			"primary500",
+			"black",
+			"white"
 		]
 	},
 	"variables": {
+		"buttonColor": {
+			"black": [
+				{
+					"variable": {
+						"button-fill-background-color": "var(--global-colors-black)",
+						"button-fill-background-color-hover": "var(--global-colors-primary700)",
+						"button-fill-color": "var(--global-colors-white)",
+						"button-fill-border-color": "var(--global-colors-black)",
+						"button-fill-border-color-hover": "var(--global-colors-primary700)",
+						"button-fill-border-color-focus": "transparent",
+						"button-outline-color": "var(--global-colors-black)",
+						"button-outline-color-hover": "var(--global-colors-primary700)",
+						"button-outline-border-color": "var(--global-colors-black)",
+						"button-outline-border-color-hover": "var(--global-colors-primary700)",
+						"button-outline-border-color-focus": "transparent",
+						"button-ghost-color": "var(--global-colors-black)",
+						"button-ghost-color-hover": "var(--global-colors-primary700)"
+					}
+				}
+			],
+			"white": [
+				{
+					"variable": {
+						"button-fill-background-color": "var(--global-colors-white)",
+						"button-fill-background-color-hover": "var(--global-colors-gray100)",
+						"button-fill-color": "var(--global-colors-black)",
+						"button-fill-border-color": "var(--global-colors-white)",
+						"button-fill-border-color-hover": "var(--global-colors-gray100)",
+						"button-fill-border-color-focus": "transparent",
+						"button-outline-color": "var(--global-colors-white)",
+						"button-outline-color-hover": "var(--global-colors-gray100)",
+						"button-outline-border-color": "var(--global-colors-white)",
+						"button-outline-border-color-hover": "var(--global-colors-gray100)",
+						"button-outline-border-color-focus": "transparent",
+						"button-ghost-color": "var(--global-colors-white)",
+						"button-ghost-color-hover": "var(--global-colors-gray100)"
+					}
+				}
+			]
+		},
 		"buttonVariant": {
 			"fill": [
 				{
 					"variable": {
-						"button-background-color": "var(--global-colors-primary500)",
-						"button-background-color-hover": "var(--global-colors-primary700)",
-						"button-color": "var(--global-colors-white)",
-						"button-border": "1px solid var(--global-colors-primary500)",
-						"button-border-hover": "1px solid var(--global-colors-primary700)",
-						"button-border-focus": "1px solid transparent"
+						"button-background-color": "var(--button-fill-background-color, var(--global-colors-primary500))",
+						"button-background-color-hover": "var(--button-fill-background-color-hover, var(--global-colors-primary700))",
+						"button-color": "var(--button-fill-color, var(--global-colors-white))",
+						"button-border": "1px solid var(--button-fill-border-color, var(--global-colors-primary500))",
+						"button-border-hover": "1px solid var(--button-fill-border-color-hover, var(--global-colors-primary700))",
+						"button-border-focus": "1px solid var(--button-fill-border-color-focus, transparent)"
 					}
 				}
 			],
@@ -114,11 +156,11 @@
 				{
 					"variable": {
 						"button-background-color": "transparent",
-						"button-color": "var(--global-colors-primary500)",
-						"button-color-hover": "var(--global-colors-primary700)",
-						"button-border": "1px solid var(--global-colors-primary500)",
-						"button-border-hover": "1px solid var(--global-colors-primary700)",
-						"button-border-focus": "1px solid transparent"
+						"button-color": "var(--button-outline-color, var(--global-colors-primary500))",
+						"button-color-hover": "var(--button-outline-color-hover, var(--global-colors-primary700))",
+						"button-border": "1px solid var(--button-outline-border-color, var(--global-colors-primary500))",
+						"button-border-hover": "1px solid var(--button-outline-border-color-hover, var(--global-colors-primary700))",
+						"button-border-focus": "1px solid var(--button-outline-border-color-focus, transparent)"
 					}
 				}
 			],
@@ -126,8 +168,8 @@
 				{
 					"variable": {
 						"button-background-color": "transparent",
-						"button-color": "var(--global-colors-primary500)",
-						"button-color-hover": "var(--global-colors-primary700)",
+						"button-color": "var(--button-ghost-color, var(--global-colors-primary500))",
+						"button-color-hover": "var(--button-ghost-color-hover, var(--global-colors-primary700))",
 						"button-border": "1px solid transparent"
 					}
 				}

@@ -20,7 +20,6 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 						value={buttonAlign}
 						options={getOption('buttonAlign', attributes, manifest)}
 						onChange={(value) => setAttributes({ [getAttrKey('buttonAlign', attributes, manifest)]: value })}
-						border='offset'
 						iconOnly
 					/>
 				}

@@ -15,7 +15,7 @@
 	],
 	"example": {
 		"attributes": {
-			"wrapperDisable": true,
+			"wrapperNoControls": true,
 			"columnWidthLarge": 4
 		},
 		"innerBlocks": [
@@ -35,7 +35,7 @@
 	},
 	"hasInnerBlocks": true,
 	"attributes": {
-		"wrapperDisable": {
+		"wrapperNoControls": {
 			"type": "boolean",
 			"default": true
 		},

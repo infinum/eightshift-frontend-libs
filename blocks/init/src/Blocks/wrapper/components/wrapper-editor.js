@@ -1,21 +1,20 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { useSelect } from '@wordpress/data';
-import classnames from 'classnames';
-import { checkAttr, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../manifest.json';
 
 export const WrapperEditor = ({ attributes, children }) => {
 	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
 	const wrapperUseInner = checkAttr('wrapperUseInner', attributes, manifest);
-	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
+	const wrapperNoControls = checkAttr('wrapperNoControls', attributes, manifest);
 	const wrapperId = checkAttr('wrapperId', attributes, manifest);
 	const wrapperParentClass = checkAttr('wrapperParentClass', attributes, manifest);
-	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperSimple = checkAttr('wrapperSimple', attributes, manifest);
 	const wrapperGetGridInfo = checkAttr('wrapperGetGridInfo', attributes, manifest);
 	const wrapperIsFullWidthLarge = checkAttr('wrapperIsFullWidthLarge', attributes, manifest, true);
 
-	if (!wrapperUse || wrapperDisable) {
+	if (!wrapperUse || wrapperNoControls) {
 		if (!wrapperParentClass) {
 			return children;
 		}
@@ -35,16 +34,16 @@ export const WrapperEditor = ({ attributes, children }) => {
 	attributes['uniqueWrapperId'] = unique;
 
 	const wrapperMainClass = attributes['componentClass'] || manifest['componentClass'];
-	const wrapperClass = classnames([
+	const wrapperClass = classnames(
 		wrapperMainClass,
-		wrapperUseSimple ? `${wrapperMainClass}--simple` : '',
+		wrapperSimple ? `${wrapperMainClass}--simple` : '',
 		isEditMode ? `${wrapperMainClass}--edit-mode` : '',
 		isEditMode && wrapperIsFullWidthLarge ? `${wrapperMainClass}--edit-mode-fullwidth` : '',
-	]);
+	);
 
-	const wrapperInnerClass = classnames([
+	const wrapperInnerClass = classnames(
 		`${wrapperMainClass}__inner`,
-	]);
+	);
 
 	const reference = useRef(null);
 	const [gridWidth, setGridWidth] = useState([]);
@@ -92,7 +91,7 @@ export const WrapperEditor = ({ attributes, children }) => {
 	const blockName = attributes?.blockName ?? '';
 	const gridGuidesAllowList = ['columns'];
 
-	const shouldHaveGuides = ((attributes?.wrapperUseSimple ?? false) === false && (attributes?.wrapperUse ?? false) === true) || gridGuidesAllowList?.includes(blockName);
+	const shouldHaveGuides = ((attributes?.wrapperSimple ?? false) === false && (attributes?.wrapperUse ?? false) === true) || gridGuidesAllowList?.includes(blockName);
 
 	return (
 		<div ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>

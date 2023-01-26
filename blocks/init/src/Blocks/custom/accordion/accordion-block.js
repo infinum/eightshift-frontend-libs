@@ -14,7 +14,7 @@ export const Accordion = (props) => {
 			props.clientId,
 			{
 				wrapperUse: false,
-				wrapperDisable: true,
+				wrapperNoControls: true,
 			},
 		);
 	});

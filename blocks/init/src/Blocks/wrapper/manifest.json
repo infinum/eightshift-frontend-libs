@@ -9,9 +9,9 @@
 			"wrapperBgColorType": "project",
 			"wrapperBgColorProject": "white",
 			"wrapperUse": true,
-			"wrapperUseSimple": false,
+			"wrapperSimple": false,
 			"wrapperUseShowControl": true,
-			"wrapperDisable": false,
+			"wrapperNoControls": false,
 			"wrapperParentClass": "",
 			"wrapperWidthLarge": 12,
 			"wrapperOffsetLarge": 1,
@@ -37,15 +37,15 @@
 			"type": "boolean",
 			"default": true
 		},
-		"wrapperUseSimpleShowControl": {
+		"wrapperSimpleShowControl": {
 			"type": "boolean",
 			"default": true
 		},
-		"wrapperDisable": {
+		"wrapperNoControls": {
 			"type": "boolean",
 			"default": false
 		},
-		"wrapperUseSimple": {
+		"wrapperSimple": {
 			"type": "boolean",
 			"default": false
 		},
@@ -140,7 +140,7 @@
 
 		"wrapperSpacingBottomLarge": {
 			"type": "integer",
-			"default": 4
+			"default": 40
 		},
 		"wrapperSpacingBottomDesktop": {
 			"type": "integer"
@@ -707,7 +707,7 @@
 				}
 			]
 		},
-		"wrapperUseSimple": {
+		"wrapperSimple": {
 			"true": [
 				{
 					"variable": {
@@ -728,7 +728,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"wrapper-rounded-corners": "calc(var(--base-font-size) * %value%rem)"
+					"wrapper-rounded-corners": "%value%"
 				}
 			}
 		],

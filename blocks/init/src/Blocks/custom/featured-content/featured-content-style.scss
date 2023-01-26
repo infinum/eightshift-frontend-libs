@@ -8,8 +8,13 @@
 	}
 
 	.card-simple {
+		border: 1px solid var(--global-colors-gray200);
+		padding: 1rem;
+		border-radius: 0.5rem;
+
 		&__btn {
 			margin-top: auto;
+			margin-left: auto;
 		}
 	}
 }

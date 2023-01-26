@@ -4,6 +4,6 @@
 
 	display: grid;
 	grid-template-columns: var(--columns-grid-template-columns);
-	column-gap: var(--columns-column-gap, var(--global-grid-gutter));
-	row-gap: var(--columns-row-gap, 0);
+	column-gap: calc(var(--columns-column-gap, 0) * var(--base-font-size) * 0.1rem);
+	row-gap: calc(var(--columns-row-gap, 0) * var(--base-font-size) * 0.1rem);
 }

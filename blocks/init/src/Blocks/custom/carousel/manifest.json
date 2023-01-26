@@ -23,21 +23,21 @@
 			{
 				"name": "eightshift-boilerplate/carousel-item",
 				"attributes": {
-					"wrapperDisable": true,
+					"wrapperNoControls": true,
 					"carouselItemImageUrl": "https://loremflickr.com/400/400"
 				}
 			},
 			{
 				"name": "eightshift-boilerplate/carousel-item",
 				"attributes": {
-					"wrapperDisable": true,
+					"wrapperNoControls": true,
 					"carouselItemImageUrl": "https://loremflickr.com/400/400"
 				}
 			},
 			{
 				"name": "eightshift-boilerplate/carousel-item",
 				"attributes": {
-					"wrapperDisable": true,
+					"wrapperNoControls": true,
 					"carouselItemImageUrl": "https://loremflickr.com/400/400"
 				}
 			}

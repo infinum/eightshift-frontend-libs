@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -29,11 +28,11 @@ export const ParagraphEditor = (attributes) => {
 	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphContent = checkAttr('paragraphContent', attributes, manifest);
 
-	const paragraphClass = classnames([
+	const paragraphClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	if (!paragraphUse) {
 		return null;

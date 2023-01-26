@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import classnames from 'classnames';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, icons } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, icons, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -26,11 +25,11 @@ export const ImageEditor = (attributes) => {
 	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
 	const imageUrl = checkAttr('imageUrl', attributes, manifest);
 
-	const pictureClass = classnames([
+	const pictureClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	const imgClass = classnames([
 		selector(componentClass, componentClass, 'img'),

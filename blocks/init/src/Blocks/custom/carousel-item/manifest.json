@@ -19,7 +19,7 @@
 			"type": "boolean",
 			"default": false
 		},
-		"wrapperDisable": {
+		"wrapperNoControls": {
 			"type": "boolean",
 			"default": true
 		}

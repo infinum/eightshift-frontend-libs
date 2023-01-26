@@ -8,9 +8,9 @@ export const HeadingOptions = (attributes) => {
 	const {
 		setAttributes,
 
-		showHeadingColor = true,
-		showHeadingSize = true,
-		showHeadingFontWeight = true,
+		hideColor = false,
+		hideSize = false,
+		hideFontWeight = false,
 
 		hideHeadingLevel = false,
 
@@ -28,14 +28,14 @@ export const HeadingOptions = (attributes) => {
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'headingUse')}>
 			<Section
-				showIf={showHeadingColor || showHeadingSize || showHeadingFontWeight}
+				showIf={!hideColor || !hideSize || !hideFontWeight}
 				additionalClasses='es-h-spaced'
 				reducedBottomSpacing={additionalControlsBeforeHeadingLevel}
 				noBottomSpacing={!additionalControlsBeforeHeadingLevel && !additionalControls && hideHeadingLevel}
 			>
-				{showHeadingColor &&
+				{!hideColor &&
 					<ColorPicker
-						label={(showHeadingSize && showHeadingFontWeight) ? null : <IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
+						label={(!hideSize && !hideFontWeight) ? null : <IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
 						colors={getOption('headingColor', attributes, manifest, true)}
 						value={headingColor}
 						onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
@@ -46,13 +46,12 @@ export const HeadingOptions = (attributes) => {
 					/>
 				}
 
-				{showHeadingSize &&
+				{!hideSize &&
 					<Select
-						label={(showHeadingColor && showHeadingFontWeight) ? null : <IconLabel icon={icons.textSize} label={__('Font size', 'eightshift-frontend-libs')} />}
 						value={headingSize?.includes('-') ? headingSize.slice(0, headingSize.lastIndexOf('-')) : headingSize}
 						options={fontSizes}
 						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${value}-${fontSizes.find((size) => value.includes(size.value))?.weights?.[0] ?? 'bold'}` })}
-						additionalClasses='es-w-20 es-flex-shrink-0 es-flex-grow-0'
+						additionalSelectClasses='es-w-16'
 						placeholder={__('Size', 'eightshift-frontend-libs')}
 						isClearable={false}
 						isSearchable={false}
@@ -62,14 +61,13 @@ export const HeadingOptions = (attributes) => {
 					/>
 				}
 
-				{showHeadingFontWeight && currentFontSize?.weights?.length > 2 &&
+				{!hideFontWeight && currentFontSize?.weights?.length > 2 &&
 					<Select
 						key={headingSize}
-						label={(showHeadingColor && showHeadingSize) ? null : <IconLabel icon={icons.textSize} label={__('Font weight', 'eightshift-frontend-libs')} />}
 						value={headingSize?.includes('-') ? headingSize.slice(headingSize.lastIndexOf('-') + 1) : headingSize}
 						options={currentFontSize?.weights.map((weight) => ({ label: ucfirst(weight), value: weight }))}
 						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${currentFontSize.value}-${value}` })}
-						additionalClasses='es-min-w-27 es-flex-shrink-0 es-flex-grow-1'
+						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
 						placeholder={__('Weight', 'eightshift-frontend-libs')}
 						isClearable={false}
 						isSearchable={false}
@@ -79,8 +77,7 @@ export const HeadingOptions = (attributes) => {
 					/>
 				}
 
-				{/* {showHeadingFontWeight && currentFontSize?.weights.includes('bold') &&  currentFontSize?.weights?.length === 2 && */}
-				{showHeadingFontWeight && currentFontSize?.weights?.length <= 2 &&
+				{!hideFontWeight && currentFontSize?.weights?.length <= 2 &&
 					<Button
 						isPressed={headingSize.includes('bold')}
 						icon={icons.bold}
@@ -112,9 +109,8 @@ export const HeadingOptions = (attributes) => {
 					value={headingLevel}
 					onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
 					additionalButtonClass='es-button-square-36 es-text-4 es-font-weight-300'
-					border='offset'
-					noBottomSpacing
 					additionalContainerClass='es-max-w-29!'
+					noBottomSpacing
 				/>
 			}
 

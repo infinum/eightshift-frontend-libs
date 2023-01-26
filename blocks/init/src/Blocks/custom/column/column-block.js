@@ -16,7 +16,7 @@ export const Column = (props) => {
 			select,
 			clientId,
 			{
-				wrapperUseSimple: true,
+				wrapperSimple: true,
 				wrapperUseShowControl: false,
 			}
 		);

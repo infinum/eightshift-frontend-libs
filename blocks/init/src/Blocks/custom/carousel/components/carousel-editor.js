@@ -1,7 +1,6 @@
 import React from 'react';
-import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { BlockInserter, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const CarouselEditor = ({ attributes, clientId }) => {
@@ -14,10 +13,11 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 	const carouselIsLoop = checkAttr('carouselIsLoop', attributes, manifest);
 	const carouselShowItems = checkAttr('carouselShowItems', attributes, manifest);
 
-	const carouselClass = classnames([
+	const carouselClass = classnames(
 		blockClass,
 		blockJsClass,
-	]);
+		'es-no-h-inner-blocks-gutenberg-margin'
+	);
 
 	return (
 		<div

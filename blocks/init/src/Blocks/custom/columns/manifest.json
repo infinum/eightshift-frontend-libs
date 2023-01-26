@@ -92,7 +92,7 @@
 
 		"columnsColumnGapLarge": {
 			"type": "number",
-			"default": 2.5
+			"default": 20
 		},
 		"columnsColumnGapDesktop": {
 			"type": "number"
@@ -107,7 +107,7 @@
 
 		"columnsRowGapLarge": {
 			"type": "number",
-			"default": 2.5
+			"default": 20
 		},
 		"columnsRowGapDesktop": {
 			"type": "number"
@@ -119,7 +119,7 @@
 			"type": "number"
 		},
 
-		"wrapperUseSimple": {
+		"wrapperSimple": {
 			"type": "boolean",
 			"default": true
 		},
@@ -143,7 +143,7 @@
 			"type": "boolean",
 			"default": false
 		},
-		"showWrapperDisable":  {
+		"showwrapperNoControls":  {
 			"type": "boolean",
 			"default": false
 		},
@@ -183,7 +183,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-row-gap": "calc(var(--base-font-size) * (%value%rem / 10))"
+					"columns-row-gap": "%value%"
 				}
 			}
 		],
@@ -191,7 +191,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-column-gap": "calc(var(--base-font-size) * (%value%rem / 10))"
+					"columns-column-gap": "%value%"
 				}
 			}
 		]

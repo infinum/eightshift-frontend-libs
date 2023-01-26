@@ -18,10 +18,7 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 					<OptionSelector
 						value={headingAlign}
 						options={getOption('headingAlign', attributes, manifest)}
-						// label={__('Text align', 'eightshift-frontend-libs')}
 						onChange={(value) => setAttributes({ [getAttrKey('headingAlign', attributes, manifest)]: value })}
-						border='offset'
-						// noBottomSpacing
 						iconOnly
 					/>
 				}

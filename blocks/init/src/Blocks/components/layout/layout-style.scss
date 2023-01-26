@@ -5,19 +5,11 @@
 
 	&__wrap {
 		display: grid;
-		column-gap: var(--global-gutters-default, 3rem);
-		row-gap: 6rem;
+		column-gap: var(--global-gutters-default, 2rem);
+		row-gap: 2rem;
 
 		@include media(tablet up) {
-			row-gap: var(--global-gutters-default, 3rem);
-		}
-	}
-
-	&__col > * {
-		margin-bottom: 3rem;
-
-		@include media(tablet up) {
-			margin-bottom: 4rem;
+			row-gap: var(--global-gutters-default, 2rem);
 		}
 	}
 
@@ -39,7 +31,6 @@
 	&[data-layout-type='layout-grid-3'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: 8rem;
 				grid-template-columns: repeat(12, minmax(0, 1fr));
 			}
 
@@ -58,7 +49,6 @@
 	&[data-layout-type='layout-grid-4'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: 8rem;
 				grid-template-columns: repeat(12, minmax(0, 1fr));
 			}
 

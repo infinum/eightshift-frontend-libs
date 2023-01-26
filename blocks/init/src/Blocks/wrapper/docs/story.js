@@ -8,7 +8,7 @@ import { WrapperOptions } from '../components/wrapper-options';
 export default {
 	title: `Wrapper/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
@@ -18,7 +18,7 @@ const props = {
 	attributes: manifest.example.attributes,
 	setAttributes: (val) => {
 		console.log(val);
-	}, 
+	},
 };
 
 const childStyle = {
@@ -70,15 +70,15 @@ const responsiveDifferentLayoutsProps = {
 		wrapperWidthLarge: 12,
 		wrapperOffsetLarge: 3,
 		wrapperIsFullWidthLarge: true,
-	
+
 		wrapperWidthDesktop: 7,
 		wrapperOffsetDesktop: 6,
 		wrapperIsFullWidthDesktop: false,
-	
+
 		wrapperWidthTablet: 13,
 		wrapperOffsetTablet: 3,
 		wrapperIsFullWidthTablet: true,
-		
+
 		wrapperOffsetMobile: 2,
 		wrapperWidthMobile: 6,
 		wrapperIsFullWidthMobile: false
@@ -123,7 +123,7 @@ const responsiveSimpleIsFullWidthProps = {
 	attributes: {
 		...props.attributes,
 		wrapperBackgroundColor: 'bianchi200',
-		wrapperUseSimple: true,
+		wrapperSimple: true,
 		wrapperIsFullWidthLarge: true,
 		wrapperIsFullWidthDesktop: false,
 		wrapperIsFullWidthTablet: true,

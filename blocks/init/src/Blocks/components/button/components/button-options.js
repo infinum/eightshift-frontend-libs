@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, UseToggle, LinkEditComponent, OptionSelector, props, getOptions, Section, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, UseToggle, LinkEditComponent, OptionSelector, props, getOptions, Section, generateUseToggleConfig, ColorPicker } from '@eightshift/frontend-libs/scripts';
 import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 
@@ -13,6 +13,7 @@ export const ButtonOptions = (attributes) => {
 		hideId = false,
 		hideUrl = false,
 		hideVariantPicker = false,
+		hideColorPicker = false,
 
 		additionalControls,
 		additionalControlsSplitArea,
@@ -23,6 +24,7 @@ export const ButtonOptions = (attributes) => {
 	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
 	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
 	const buttonVariant = checkAttr('buttonVariant', attributes, manifest);
+	const buttonColor = checkAttr('buttonColor', attributes, manifest);
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'buttonUse')}>
@@ -40,11 +42,32 @@ export const ButtonOptions = (attributes) => {
 
 			{!hideVariantPicker &&
 				<OptionSelector
-					label={<IconLabel icon={icons.genericShapesAlt} label={__('Type', 'eightshift-frontend-libs')} standalone />}
+					icon={icons.genericShapesAlt}
+					label={__('Type', 'eightshift-frontend-libs')}
 					value={buttonVariant}
 					onChange={(value) => setAttributes({ [getAttrKey('buttonVariant', attributes, manifest)]: value })}
 					options={getOption('buttonVariant', attributes, manifest)}
 					additionalButtonClass='es-v-spaced es-content-center! es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.1!'
+					actions={!hideColorPicker &&
+						<ColorPicker
+							value={buttonColor}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+							options={getOption('buttonColor', attributes, manifest)}
+							colors={getOption('buttonColor', attributes, manifest, true)}
+							noBottomSpacing
+						/>
+					}
+				/>
+			}
+
+			{!hideColorPicker && hideVariantPicker &&
+				<ColorPicker
+					icon={icons.colorAlt}
+					label={__('Color', 'eightshift-frontend-libs')}
+					value={buttonColor}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+					options={getOption('buttonColor', attributes, manifest)}
+					colors={getOption('buttonColor', attributes, manifest, true)}
 				/>
 			}
 

@@ -29,7 +29,7 @@ const IconPickerValueDisplay = ({ children, ...props }) => (
 export const IconOptions = (attributes) => {
 	const {
 		setAttributes,
-		hideSizePicker = true,
+		hideSizePicker = false,
 	} = attributes;
 
 	const iconName = checkAttr('iconName', attributes, manifest);
@@ -37,31 +37,32 @@ export const IconOptions = (attributes) => {
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'iconUse')}>
-			<Select
-				value={iconName}
-				options={getOption('iconName', attributes, manifest)}
-				placeholder={__('Select an icon', 'eightshift-frontend-libs')}
-				customMenuOption={IconPickerOption}
-				customValueDisplay={IconPickerValueDisplay}
-				onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}
-				additionalClasses={hideSizePicker ? '' : 'es-mb-3'}
-				noBottomSpacing
-				simpleValue
-			/>
-
-			{!hideSizePicker &&
+			<div className='es-h-spaced'>
 				<Select
-					label={__('Size', 'eightshift-frontend-libs')}
-					value={iconSize}
-					options={getOption('iconSize', attributes, manifest)}
-					onChange={(value) => setAttributes({ [getAttrKey('iconSize', attributes, manifest)]: value })}
-					additionalClasses='es-max-w-20'
-					border='offset'
-					isSearchable={false}
-					isClearable={false}
+					value={iconName}
+					options={getOption('iconName', attributes, manifest)}
+					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
+					customMenuOption={IconPickerOption}
+					customValueDisplay={IconPickerValueDisplay}
+					onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}
+					additionalClasses='es-flex-grow-1'
+					noBottomSpacing
 					simpleValue
 				/>
-			}
+
+				{!hideSizePicker &&
+					<Select
+						value={iconSize}
+						options={getOption('iconSize', attributes, manifest)}
+						onChange={(value) => setAttributes({ [getAttrKey('iconSize', attributes, manifest)]: value })}
+						additionalSelectClasses='es-max-w-14'
+						additionalClasses='es-flex-shrink-0'
+						noBottomSpacing
+						simpleValue
+						noSearch
+					/>
+				}
+			</div>
 		</UseToggle>
 	);
 };

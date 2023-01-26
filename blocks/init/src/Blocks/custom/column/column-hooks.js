@@ -1,9 +1,9 @@
 import React from 'react';
-import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import globalManifest from '../../manifest.json';
 import manifest from './manifest.json';
+import { classnames } from '@eightshift/frontend-libs/scripts';
 
 const {
 	namespace,
@@ -29,10 +29,10 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 		let updatedProps = {...innerProps};
 
 		if (name === fullBlockName) {
-			const componentClass = classnames([
+			const componentClass = classnames(
 				blockClass,
 				customBlocksName,
-			]);
+			);
 
 			updatedProps = {
 				...innerProps,

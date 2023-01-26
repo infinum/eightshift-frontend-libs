@@ -13,12 +13,12 @@ $manifest = Components::getManifest(__DIR__);
 
 // Used to add or remove wrapper.
 $wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
-$wrapperDisable = Components::checkAttr('wrapperDisable', $attributes, $manifest);
+$wrapperNoControls = Components::checkAttr('wrapperNoControls', $attributes, $manifest);
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
-$wrapperUseSimple = Components::checkAttr('wrapperUseSimple', $attributes, $manifest);
+$wrapperSimple = Components::checkAttr('wrapperSimple', $attributes, $manifest);
 $wrapperUseInner = Components::checkAttr('wrapperUseInner', $attributes, $manifest);
 
-if (! $wrapperUse || $wrapperDisable) {
+if (! $wrapperUse || $wrapperNoControls) {
 	if ($wrapperParentClass) {
 		echo '<div class="' , esc_attr($wrapperParentClass . '__item') , '">
 			<div class="' , esc_attr($wrapperParentClass . '__item-inner') , '">';
@@ -43,7 +43,7 @@ $wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manife
 $wrapperMainClass = $attributes['componentClass'] ?? $manifest['componentClass'];
 $wrapperClass = Components::classnames([
 	$wrapperMainClass,
-	$wrapperUseSimple ? "{$wrapperMainClass}--simple" : '',
+	$wrapperSimple ? "{$wrapperMainClass}--simple" : '',
 ]);
 
 $wrapperInnerClass =  "{$wrapperMainClass}__inner";

@@ -12,6 +12,7 @@ $globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
+
 if (!$headingUse) {
 	return;
 }

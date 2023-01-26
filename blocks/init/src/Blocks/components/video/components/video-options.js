@@ -1,7 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Button, BaseControl, Placeholder, TextControl } from '@wordpress/components';
+import { Button, Placeholder, TextControl } from '@wordpress/components';
 import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, SimpleRepeater, SimpleRepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
@@ -85,19 +85,11 @@ export const VideoOptions = (attributes) => {
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'videoUse')}>
-			<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls}>
-				<Notification
-					type='warning'
-					text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
-					subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
-				/>
-			</AnimatedContentVisibility>
-
 			<AnimatedContentVisibility showIf={hasPoster && !videoControls}>
 				<Notification
 					type='warning'
-					text={__('Video controls disabled', 'eightshift-frontend-libs')}
-					subtitle={__('Poster image might prevent starting video playback.', 'eightshift-frontend-libs')}
+					text={__('Playback controls disabled', 'eightshift-frontend-libs')}
+					subtitle={__('Poster image might prevent users from playing the video', 'eightshift-frontend-libs')}
 				/>
 			</AnimatedContentVisibility>
 
@@ -216,7 +208,6 @@ export const VideoOptions = (attributes) => {
 												setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
 											}}
 											alignment='vertical'
-											border='offset'
 										/>
 
 										<TextControl
@@ -275,9 +266,10 @@ export const VideoOptions = (attributes) => {
 				collapsable
 			>
 				{showVideoPoster &&
-					<BaseControl
-						label={<IconLabel icon={icons.videoPosterImage} label={__('Poster image', 'eightshift-frontend-libs')} subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')} addSubtitleGap standalone />}
-						className='es-image-preview'
+					<Control
+						icon={icons.videoPosterImage}
+						label={__('Poster image', 'eightshift-frontend-libs')}
+						subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')}
 					>
 						{!hasPoster &&
 							<MediaPlaceholder
@@ -290,19 +282,23 @@ export const VideoOptions = (attributes) => {
 						}
 
 						{hasPoster &&
-							<img src={videoPoster} alt='Video poster' />
-						}
+							<div className='es-h-center es-items-end! es-gap-0!'>
+								<img
+									alt={__('Video poster image', 'eightshift-frontend-libs')}
+									src={videoPoster}
+									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+								/>
 
-						{hasPoster &&
-							<Button
-								onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
-								icon={icons.trash}
-								className='es-button-icon-24 es-slight-button-border-cool-gray-300 es-rounded-1 es-nested-color-red-500'
-							>
-								{__('Remove', 'eightshift-frontend-libs')}
-							</Button>
+								<Button
+									icon={icons.trashAlt}
+									label={__('Remove image', 'eightshift-frontend-libs')}
+									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
+									onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
+									showTooltip
+								/>
+							</div>
 						}
-					</BaseControl>
+					</Control>
 				}
 
 				{showVideoPreload &&
@@ -316,6 +312,16 @@ export const VideoOptions = (attributes) => {
 					/>
 				}
 			</Section>
+
+			<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-5'>
+				<Notification
+					type='warning'
+					text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
+					subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
+					iconOverride={icons.a11y}
+					noBottomSpacing
+				/>
+			</AnimatedContentVisibility>
 		</UseToggle >
 	);
 };

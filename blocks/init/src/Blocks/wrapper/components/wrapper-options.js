@@ -53,9 +53,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		noRightSpacingSelector = false,
 	} = attributes;
 
-	const wrapperDisable = checkAttr('wrapperDisable', attributes, manifest);
+	const wrapperNoControls = checkAttr('wrapperNoControls', attributes, manifest);
 
-	if (wrapperDisable) {
+	if (wrapperNoControls) {
 		return null;
 	}
 
@@ -67,9 +67,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
 	const wrapperUseShowControl = checkAttr('wrapperUseShowControl', attributes, manifest);
-	const wrapperUseSimpleShowControl = checkAttr('wrapperUseSimpleShowControl', attributes, manifest);
+	const wrapperSimpleShowControl = checkAttr('wrapperSimpleShowControl', attributes, manifest);
 	const wrapperUseInner = checkAttr('wrapperUseInner', attributes, manifest);
-	const wrapperUseSimple = checkAttr('wrapperUseSimple', attributes, manifest);
+	const wrapperSimple = checkAttr('wrapperSimple', attributes, manifest);
 	const wrapperId = checkAttr('wrapperId', attributes, manifest);
 	const wrapperAnchorId = checkAttr('wrapperAnchorId', attributes, manifest);
 
@@ -108,7 +108,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		}
 	];
 
-	if (wrapperUseSimpleShowControl) {
+	if (wrapperSimpleShowControl) {
 		wrapperUseOptions = [...wrapperUseOptions, {
 			label: __('Spacing only', 'eightshift-frontend-libs'),
 			value: 'simple',
@@ -125,7 +125,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	}
 
 	const getWrapperUseOptionName = () => {
-		if (wrapperUseSimple && wrapperUse) {
+		if (wrapperSimple && wrapperUse) {
 			return 'simple';
 		} else if (wrapperUse) {
 			return 'full';
@@ -150,7 +150,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{label}
 					</div>
 
-					{!wrapperDisable && wrapperUseShowControl &&
+					{!wrapperNoControls && wrapperUseShowControl &&
 						<div className='es-display-flex es-items-center es-gap-1 es-ml-auto es-flex-shrink-0 es-mr-1 es-wrapper-options-copy-paste'>
 							<Button
 								icon={icons.copy}
@@ -181,30 +181,29 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						if (value === 'full') {
 							setAttributes({
 								wrapperUse: true,
-								wrapperUseSimple: false,
+								wrapperSimple: false,
 							});
 						} else if (value === 'simple') {
 							setAttributes({
 								wrapperUse: true,
-								wrapperUseSimple: true,
+								wrapperSimple: true,
 							});
 						} else {
 							setAttributes({
 								wrapperUse: false,
-								wrapperUseSimple: false,
+								wrapperSimple: false,
 							});
 						}
 					}}
 					additionalButtonClass='es-v-spaced es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.75!'
-					noBottomSpacing={!wrapperUse && !wrapperUseSimple}
+					noBottomSpacing={!wrapperUse && !wrapperSimple}
 					alignment='center'
-					border='offset'
 				/>
 			}
 
 			{wrapperUse &&
 				<>
-					{!wrapperUseSimple && wrapperUseInner && showWrapperWidth && showWrapperOffset &&
+					{!wrapperSimple && wrapperUseInner && showWrapperWidth && showWrapperOffset &&
 						<WidthOffsetRangeSlider
 							{...generateWidthOffsetRangeSliderConfig({
 								isFullWidthAttributeName: 'wrapperIsFullWidth',
@@ -347,7 +346,13 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								colorGradient={wrapperBgColorGradient}
 								onChangeProject={(value) => setAttributes({ wrapperBgColorProject: value })}
 								onChangeGradient={(value) => setAttributes({ wrapperBgColorGradient: value })}
-								onChangeType={(value) => setAttributes({ wrapperBgColorType: value })}
+								onChangeType={(value) => {
+									setAttributes({
+										wrapperBgColorType: value,
+										wrapperBgColorGradient: undefined,
+										wrapperBgColorProject: undefined,
+									});
+								}}
 								globalManifest={globalManifest}
 								type={wrapperBgColorType}
 								types={

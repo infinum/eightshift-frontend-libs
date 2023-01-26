@@ -8,14 +8,14 @@
 	grid-template-columns: var(--wrapper-grid-template-columns);
 	column-gap: var(--global-grid-gutter);
 
-	margin-top: calc(var(--wrapper-spacing-top) * var(--base-font-size) * 1rem);
-	margin-bottom: calc(var(--wrapper-spacing-bottom) * var(--base-font-size) * 1rem);
+	margin-top: calc(var(--wrapper-spacing-top) * var(--base-font-size) * 0.1rem);
+	margin-bottom: calc(var(--wrapper-spacing-bottom) * var(--base-font-size) * 0.1rem);
 
-	padding-top: calc(var(--wrapper-spacing-top-in, 0) * var(--base-font-size) * 1rem);
-	padding-bottom: calc(var(--wrapper-spacing-bottom-in, 0) * var(--base-font-size) * 1rem);
+	padding-top: calc(var(--wrapper-spacing-top-in, 0) * var(--base-font-size) * 0.1rem);
+	padding-bottom: calc(var(--wrapper-spacing-bottom-in, 0) * var(--base-font-size) * 0.1rem);
 
-	padding-inline-start: calc(var(--wrapper-spacing-left, 0) * var(--base-font-size) * 1rem);
-	padding-inline-end: calc(var(--wrapper-spacing-right, 0) * var(--base-font-size) * 1rem);
+	padding-inline-start: calc(var(--wrapper-spacing-left, 0) * var(--base-font-size) * 0.1rem);
+	padding-inline-end: calc(var(--wrapper-spacing-right, 0) * var(--base-font-size) * 0.1rem);
 
 	background: var(--wrapper-bg-color-gradient, var(--wrapper-bg-color-project, transparent));
 
@@ -23,7 +23,8 @@
 	border-right: var(--wrapper-divider-right);
 	border-bottom: var(--wrapper-divider-bottom);
 	border-left: var(--wrapper-divider-left);
-	border-radius: var(--wrapper-rounded-corners);
+
+	border-radius: calc(var(--wrapper-rounded-corners, 0) * var(--base-font-size) * 0.1rem);
 
 	overflow-x: var(--wrapper-overflow-x);
 	overflow-y: var(--wrapper-overflow-y);
@@ -38,9 +39,5 @@
 
 	&__inner {
 		grid-column: calc(var(--wrapper-offset) + var(--wrapper-start-offset, 0)) / span calc(var(--wrapper-width) + var(--wrapper-end-offset, 0));
-	}
-
-	&--simple {
-		padding-inline: 0;
 	}
 }
