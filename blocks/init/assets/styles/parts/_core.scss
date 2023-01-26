@@ -1,11 +1,3 @@
-// Fonts.
-@include font-face('DM Sans', 'DMSans-Regular');
-@include font-face('DM Sans', 'DMSans-Italic', 400, italic);
-@include font-face('DM Sans', 'DMSans-Medium', 500);
-@include font-face('DM Sans', 'DMSans-MediumItalic', 500, italic);
-@include font-face('DM Sans', 'DMSans-Bold', 700);
-@include font-face('DM Sans', 'DMSans-BoldItalic', 700, italic);
-
 *,
 *::after,
 *::before {
