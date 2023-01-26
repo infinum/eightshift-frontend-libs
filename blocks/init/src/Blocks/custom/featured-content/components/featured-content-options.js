@@ -3,9 +3,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import {
-	CustomSelect,
 	icons,
-	IconLabel,
 	getAttrKey,
 	IconToggle,
 	checkAttr,
@@ -14,8 +12,12 @@ import {
 	getFetchWpApi,
 	props,
 	getOptions,
-	InlineNotification,
-	InlineNotificationType
+	Notification,
+	Section,
+	Select,
+	AsyncMultiSelect,
+	Control,
+	AnimatedContentVisibility
 } from '@eightshift/frontend-libs/scripts';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
 import manifest from '../manifest.json';
@@ -56,33 +58,32 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 	// Select taxonomy api endpoint based on the selected taxonomy.
 	const getTaxonomyEndpoint = taxonomyOptions.filter((item) => item.value === featuredContentTaxonomy)[0]?.api ?? [];
 
-
 	return (
 		<PanelBody title={__('Featured content', 'eightshift-frontend-libs')}>
-			{(featuredContentUseCurrentTerm || featuredContentExcludeCurrentPost) &&
-				<InlineNotification
-					type={InlineNotificationType.WARNING}
+			<AnimatedContentVisibility showIf={featuredContentUseCurrentTerm || featuredContentExcludeCurrentPost}>
+				<Notification
+					type='warning'
 					text={__('Note', 'eightshift-frontend-libs')}
 					subtitle={__('Editor preview may not show an accurate list of items.')}
 				/>
-			}
+			</AnimatedContentVisibility>
 
-			<LayoutOptions
-				{...props('layout', attributes, {
-					setAttributes,
-					options: getOptions(attributes, manifest),
-				})}
-				showLayoutUse={false}
-			/>
+			<Section icon={icons.layoutAlt3} label={__('Layout', 'eightshift-frontend-libs')}>
+				<LayoutOptions
+					{...props('layout', attributes, {
+						setAttributes,
+						options: getOptions(attributes, manifest),
+					})}
+					noLabel
+					noUseToggle
+					noExpandButton
+				/>
+			</Section>
 
-			<hr />
-
-			{postTypeOptions.length > 0 &&
-				<>
-					<IconLabel icon={icons.multiple} label={__('Item source', 'eightshift-frontend-libs')} additionalClasses='es-mb-3' standalone />
-
-					<CustomSelect
-						label={__('Type', 'eightshift-frontend-libs')}
+			<Section showIf={postTypeOptions.length > 0} icon={icons.filter} label={__('Item source', 'eightshift-frontend-libs')} noBottomSpacing>
+				<Control additionalClasses='es-fifty-fifty-h'>
+					<Select
+						label={__('Kind', 'eightshift-frontend-libs')}
 						value={featuredContentPostType}
 						options={postTypeOptions}
 						onChange={(value) => {
@@ -97,16 +98,23 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 								[getAttrKey('featuredContentPosts', attributes, manifest)]: undefined,
 							});
 						}}
-						additionalClasses='es-inline-input-label-40 es-mb-3!'
-						isClearable={false}
+						noBottomSpacing
 						simpleValue
 					/>
 
 					{taxonomyOption().length > 0 &&
-						<CustomSelect
+						<Select
 							label={__('Taxonomy', 'eightshift-frontend-libs')}
 							value={featuredContentTaxonomy}
-							options={taxonomyOption()}
+							options={
+								[
+									{
+										label: __('All', 'eightshift-frontend-libs'),
+										// value: null,
+									},
+									...taxonomyOption(),
+								]
+							}
 							onChange={(value) => {
 								setUseSpecificPosts(false);
 								setUseSpecificTerms(false);
@@ -118,126 +126,115 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 									[getAttrKey('featuredContentPosts', attributes, manifest)]: undefined,
 								});
 							}}
-							additionalClasses='es-inline-input-label-40 es-mb-3!'
-							isClearable
+							// clearable
 							simpleValue
+							noBottomSpacing
 						/>
 					}
+				</Control>
 
-					<hr />
+				{featuredContentTaxonomy &&
+					<>
+						<IconToggle
+							icon={icons.itemSelect}
+							label={__('Select terms to show', 'eightshift-frontend-libs')}
+							checked={useSpecificTerms}
+							onChange={() => {
+								setUseSpecificTerms(!useSpecificTerms);
+								setAttributes({
+									[getAttrKey('featuredContentTerms', attributes, manifest)]: undefined,
+									[getAttrKey('featuredContentUseCurrentTerm', attributes, manifest)]: false,
+								});
+							}}
+						/>
 
-					{featuredContentTaxonomy &&
-						<>
-							<IconToggle
-								icon={icons.itemSelect}
-								label={__('Manually select taxonomies', 'eightshift-frontend-libs')}
-								checked={useSpecificTerms}
-								onChange={() => {
-									setUseSpecificTerms(!useSpecificTerms);
+						<AnimatedContentVisibility showIf={useSpecificTerms}>
+							<AsyncMultiSelect
+								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
+								value={featuredContentTerms}
+								loadOptions={getFetchWpApi(getTaxonomyEndpoint, { fields: 'id,name' })}
+								onChange={(value) => {
 									setAttributes({
+										[getAttrKey('featuredContentTerms', attributes, manifest)]: value,
+									});
+								}}
+								reFetchOnSearch
+								multiple
+							/>
+						</AnimatedContentVisibility>
+
+						{!useSpecificTerms &&
+							<IconToggle
+								icon={icons.checkCircle}
+								label={__("Use current item's terms", 'eightshift-frontend-libs')}
+								help={__('Best used with posts', 'eightshift-frontend-libs')}
+								inlineHelp
+								checked={featuredContentUseCurrentTerm}
+								onChange={() => {
+									setAttributes({
+										[getAttrKey('featuredContentUseCurrentTerm', attributes, manifest)]: !featuredContentUseCurrentTerm,
 										[getAttrKey('featuredContentTerms', attributes, manifest)]: undefined,
-										[getAttrKey('featuredContentUseCurrentTerm', attributes, manifest)]: false,
 									});
 								}}
 							/>
+						}
+					</>
+				}
 
-							{useSpecificTerms &&
-								<>
-									<CustomSelect
-										help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
-										value={featuredContentTerms}
-										multiple={true}
-										reFetchOnSearch={true}
-										loadOptions={getFetchWpApi(getTaxonomyEndpoint, { fields: 'id,name' })}
-										onChange={(value) => {
-											setAttributes({
-												[getAttrKey('featuredContentTerms', attributes, manifest)]: value,
-											});
-										}}
-									/>
+				{!featuredContentTaxonomy &&
+					<>
+						<IconToggle
+							icon={icons.itemSelect}
+							label={__('Select items to show', 'eightshift-frontend-libs')}
+							checked={useSpecificPosts}
+							onChange={() => {
+								setUseSpecificPosts(!useSpecificPosts);
+								setAttributes({
+									[getAttrKey('featuredContentPosts', attributes, manifest)]: undefined,
+								});
+							}}
+						/>
 
-									<hr />
-								</>
-							}
-
-							{!useSpecificTerms &&
-								<IconToggle
-									icon={icons.checkCircle}
-									label={__('Use current item\'s terms', 'eightshift-frontend-libs')}
-									help={__('Best used with posts', 'eightshift-frontend-libs')}
-									inlineHelp
-									checked={featuredContentUseCurrentTerm}
-									onChange={() => {
-										setAttributes({
-											[getAttrKey('featuredContentUseCurrentTerm', attributes, manifest)]: !featuredContentUseCurrentTerm,
-											[getAttrKey('featuredContentTerms', attributes, manifest)]: undefined,
-										});
-									}}
-								/>
-							}
-						</>
-					}
-
-					{!featuredContentTaxonomy &&
-						<>
-							<IconToggle
-								icon={icons.itemSelect}
-								label={__('Manually select items', 'eightshift-frontend-libs')}
-								checked={useSpecificPosts}
-								onChange={() => {
-									setUseSpecificPosts(!useSpecificPosts);
-									setAttributes({
-										[getAttrKey('featuredContentPosts', attributes, manifest)]: undefined,
-									});
-								}}
+						<AnimatedContentVisibility showIf={useSpecificPosts}>
+							<AsyncMultiSelect
+								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
+								value={featuredContentPosts}
+								loadOptions={getFetchWpApi(getPostTypeEndpoint, { processLabel: ({ title: { rendered: renderedTitle } }) => unescapeHTML(renderedTitle) })}
+								onChange={(value) => setAttributes({ [getAttrKey('featuredContentPosts', attributes, manifest)]: value })}
+								reFetchOnSearch
+								multiple
 							/>
+						</AnimatedContentVisibility>
+					</>
+				}
 
-							{useSpecificPosts &&
-								<>
-									<CustomSelect
-										help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
-										value={featuredContentPosts}
-										multiple={true}
-										reFetchOnSearch={true}
-										loadOptions={getFetchWpApi(getPostTypeEndpoint, { processLabel: ({ title: { rendered: renderedTitle } }) => unescapeHTML(renderedTitle) })}
-										onChange={(value) => setAttributes({ [getAttrKey('featuredContentPosts', attributes, manifest)]: value })}
-									/>
+				<IconToggle
+					icon={icons.excludeItemAlt}
+					label={__('Exclude current', 'eightshift-frontend-libs')}
+					help={__('Best used with posts', 'eightshift-frontend-libs')}
+					checked={featuredContentExcludeCurrentPost}
+					onChange={(value) => setAttributes({ [getAttrKey('featuredContentExcludeCurrentPost', attributes, manifest)]: value })}
+					inlineHelp
+				/>
 
-									<hr />
-								</>
-							}
-						</>
-					}
-				</>
-			}
+				<IconToggle
+					icon={icons.dice}
+					label={__('Randomize order', 'eightshift-frontend-libs')}
+					checked={featuredContentRandomOrder}
+					onChange={(value) => setAttributes({ [getAttrKey('featuredContentRandomOrder', attributes, manifest)]: value })}
+				/>
+			</Section>
 
-			<IconToggle
-				icon={icons.excludeItem}
-				label={__('Exclude current', 'eightshift-frontend-libs')}
-				help={__('Best used with posts', 'eightshift-frontend-libs')}
-				checked={featuredContentExcludeCurrentPost}
-				onChange={(value) => setAttributes({ [getAttrKey('featuredContentExcludeCurrentPost', attributes, manifest)]: value })}
-				inlineHelp
-			/>
-
-			<IconToggle
-				icon={icons.dice}
-				label={__('Randomize order', 'eightshift-frontend-libs')}
-				help={__('Not shown in editor preview', 'eightshift-frontend-libs')}
-				checked={featuredContentRandomOrder}
-				onChange={(value) => setAttributes({ [getAttrKey('featuredContentRandomOrder', attributes, manifest)]: value })}
-				inlineHelp
-			/>
-
-			<hr />
-
-			<LoadMoreOptions
-				{...props('load-more', attributes, {
-					setAttributes,
-					options: getOptions(attributes, manifest),
-				})}
-				label={__('"Load more" button', 'eightshift-frontend-libs')}
-			/>
+			<Section label={__('Other', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+				<LoadMoreOptions
+					{...props('load-more', attributes, {
+						setAttributes,
+						options: getOptions(attributes, manifest),
+					})}
+					label={__('"Load more" button', 'eightshift-frontend-libs')}
+					noBottomSpacing
+				/>
+			</Section>
 		</PanelBody>
 	);
 };

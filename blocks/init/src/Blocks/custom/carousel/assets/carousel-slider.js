@@ -13,7 +13,7 @@ export class CarouselSlider {
 
 	init() {
 		const { breakpoints } = globalManifest.globalVariables;
-		
+
 		const item = this.element;
 
 		const showItems = item?.dataset?.showItems ?? -1;
@@ -21,7 +21,7 @@ export class CarouselSlider {
 
 		new Swiper(item, {
 			loop: loopMode === 'true',
-			slideClass: `${this.blockClass}__item`,
+			slideClass: 'js-block-carousel-item',
 			slidesPerView: 1,
 			spaceBetween: 10,
 			modules: [

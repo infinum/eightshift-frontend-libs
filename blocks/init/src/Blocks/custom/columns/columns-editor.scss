@@ -4,9 +4,27 @@
 	width: 100%;
 
 	& > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		--columns-grid-side-columns: calc(var(--global-grid-side-padding) - var(--global-grid-gutter));
+		--columns-grid-template-columns: var(--columns-grid-side-columns) repeat(var(--global-main-content-width), minmax(0, 1fr)) var(--columns-grid-side-columns);
+
 		display: grid;
 		grid-template-columns: var(--columns-grid-template-columns);
-		column-gap: var(--columns-gutter, var(--global-grid-gutter));
-		row-gap: var(--columns-vertical-spacing, 0);
+		column-gap: var(--columns-column-gap, var(--global-grid-gutter));
+		row-gap: var(--columns-row-gap, 0);
+
+		transition: {
+			property: row-gap, column-gap;
+			timing-function: var(--ease-out-back);
+			duration: 0.4s;
+		}
+
+		& > .block-list-appender {
+			grid-column: 1 / -1;
+			align-self: center;
+			justify-self: center;
+
+			// stylelint-disable-next-line declaration-no-important
+			margin-bottom: 0.75rem !important;
+		}
 	}
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { checkAttr } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter, checkAttr } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
-export const CarouselEditor = ({ attributes }) => {
+export const CarouselEditor = ({ attributes, clientId }) => {
 	const {
 		blockClass,
 		blockJsClass,
@@ -28,6 +28,7 @@ export const CarouselEditor = ({ attributes }) => {
 			<InnerBlocks
 				orientation='horizontal'
 				allowedBlocks={carouselAllowedBlocks}
+				renderAppender={() => <BlockInserter clientId={clientId} />}
 			/>
 		</div>
 	);

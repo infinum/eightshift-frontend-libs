@@ -11,24 +11,18 @@ export const VideoOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Video', 'eightshift-frontend-libs')}>
 			<VideoOptionsComponent
-				{...props('video', attributes, {
-					setAttributes,
-				})}
-				showVideoUse={false}
-				showLabel={false}
-				showExpanderButton={false}
+				{...props('video', attributes, { setAttributes })}
 				additionalControlsDesignLayout={
-					<div className='es-v-center es-gap-1.25! es-rounded-1.0 es-border-cool-gray-100 es-w-17 es-h-17 es-text-3! es-line-h-1'>
-						<div className='es-rounded-0.75 es-border-cool-gray-300 es-line-h-0'>
-							<MatrixAlignControl
-								label={__('Video position', 'eightshift-frontend-libs')}
-								value={videoAlign}
-								onChange={(value) => setAttributes({ [getAttrKey('videoAlign', attributes, manifest)]: value })}
-							/>
-						</div>
-						<span>{__('Position', 'eightshift-frontend-libs')}</span>
-					</div>
+					<MatrixAlignControl
+						label={__('Position', 'eightshift-frontend-libs')}
+						value={videoAlign}
+						onChange={(value) => setAttributes({ [getAttrKey('videoAlign', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
 				}
+				noLabel
+				noUseToggle
+				noExpandButton
 			/>
 		</PanelBody>
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { checkAttr, getAttrKey, getOption, props, SimpleHorizontalSingleSelect } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, props, OptionSelector, icons } from '@eightshift/frontend-libs/scripts';
 import { ButtonOptions as ButtonOptionsComponent } from '../../../components/button/components/button-options';
 import manifest from '../manifest.json';
 
@@ -11,23 +11,22 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Button', 'eightshift-frontend-libs')}>
 			<ButtonOptionsComponent
-				{...props('button', attributes, {
-					setAttributes,
-				})}
-				showLabel={false}
-				showButtonUse={false}
-				showExpanderButton={false}
+				{...props('button', attributes, { setAttributes })}
+
 				additionalControlsSplitArea={
-					<SimpleHorizontalSingleSelect
+					<OptionSelector
+						icon={icons.horizontalAlign}
+						label={__('Alignment', 'eightshift-frontend-libs')}
 						value={buttonAlign}
 						options={getOption('buttonAlign', attributes, manifest)}
-						label={__('Alignment', 'eightshift-frontend-libs')}
 						onChange={(value) => setAttributes({ [getAttrKey('buttonAlign', attributes, manifest)]: value })}
 						border='offset'
 						iconOnly
-						includeWpBottomSpacing={false}
 					/>
 				}
+				noLabel
+				noUseToggle
+				noExpandButton
 			/>
 		</PanelBody>
 	);

@@ -12,46 +12,7 @@
 		"btn",
 		"lists"
 	],
-	"example": {
-		"attributes": {
-			"listsAlign": "left"
-		}
-	},
-	"attributes": {
-		"listsAlign": {
-			"type": "string",
-			"default": "left"
-		}
-	},
-	"options": {
-		"listsAlign": [
-			{
-				"label": "Left",
-				"value": "left",
-				"icon": "textAlignLeft"
-			},
-			{
-				"label": "Center",
-				"value": "center",
-				"icon": "textAlignCenter"
-			},
-			{
-				"label": "Right",
-				"value": "right",
-				"icon": "textAlignRight"
-			}
-		]
-	},
 	"components": {
 		"lists": "lists"
-	},
-	"variables": {
-		"listsAlign": [
-			{
-				"variable": {
-					"block-lists-align": "%value%"
-				}
-			}
-		]
 	}
 }

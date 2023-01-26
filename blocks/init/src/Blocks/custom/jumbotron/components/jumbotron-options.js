@@ -11,8 +11,9 @@ export const JumbotronOptions = ({ attributes, setAttributes }) => {
 				{...props('jumbotron', attributes, {
 					setAttributes,
 				})}
-				showJumbotronUse={false}
-				showLabel={false}
+				noLabel
+				noUseToggle
+				noExpandButton
 			/>
 		</PanelBody>
 	);

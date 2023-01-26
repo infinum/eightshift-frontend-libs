@@ -69,6 +69,10 @@
 				outline: 4px solid var(--global-colors-primary300);
 			}
 		}
+
+		> * {
+			pointer-events: none;
+		}
 	}
 
 	&__icon {

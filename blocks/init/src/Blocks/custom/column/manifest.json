@@ -45,30 +45,31 @@
 		},
 
 		"columnWidthLarge": {
-			"type": "integer",
-			"default": 4
+			"type": "string",
+			"default": "4"
 		},
 		"columnWidthDesktop": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnWidthTablet": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnWidthMobile": {
-			"type": "integer"
+			"type": "string"
 		},
 
 		"columnOffsetLarge": {
-			"type": "integer"
+			"type": "string",
+			"default": "auto"
 		},
 		"columnOffsetDesktop": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnOffsetTablet": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnOffsetMobile": {
-			"type": "integer"
+			"type": "string"
 		},
 
 		"columnHideLarge": {
@@ -177,7 +178,7 @@
 		},
 		"columnOrder": {
 			"min": 1,
-			"max": 16,
+			"max": 100,
 			"step": 1
 		},
 		"columnVerticalAlign": [

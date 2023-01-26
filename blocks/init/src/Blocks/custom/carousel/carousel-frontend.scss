@@ -2,39 +2,52 @@
 
 .block-carousel {
 	width: 100%;
-	position: relative;
 
-	&__item {
-		flex-shrink: 0;
-		transition-property: transform;
-		display: flex;
-	}
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto auto;
+	grid-template-areas: 'images images' 'pagination pagination' 'prev next';
 
-	&__item-inner {
-		display: flex;
-		align-items: center;
-	}
+	gap: 0.5rem;
 
 	// Pagination.
 	&__pagination {
+		grid-area: pagination;
+		justify-self: center;
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		position: absolute;
-		bottom: 2rem !important; // stylelint-disable-line declaration-no-important
-		left: 50% !important; // stylelint-disable-line declaration-no-important
-		transform: translateX(-50%);
+		gap: 0.25rem;
 
 		width: max-content !important; // stylelint-disable-line declaration-no-important
 
-		padding: 0.5rem;
+		padding: 0 0 0.5rem;
 
-		background: rgba(255 255 255 / 0.8);
-		backdrop-filter: blur(10px) saturate(1.5) brightness(1.5);
 		border-radius: 10rem;
 
 		z-index: 1;
+
+		.swiper-pagination-bullet {
+			width: 0.5rem;
+			height: 0.5rem;
+			border: 1px solid currentColor;
+			border-radius: 10rem;
+
+			&:not(.swiper-pagination-bullet-active) {
+				cursor: pointer;
+			}
+
+			transition: {
+				property: background-color;
+				timing-function: ease-out;
+				duration: 0.3s;
+			}
+		}
+
+		.swiper-pagination-bullet-active {
+			background-color: currentColor;
+		}
 	}
 
 	// Navigation buttons.
@@ -45,60 +58,42 @@
 		align-items: center;
 		justify-content: center;
 
-		position: absolute;
-		top: 50%;
-
-		margin: 2rem;
+		margin: 0;
 		padding: 0;
 
-		width: 4rem;
-		height: 4rem;
+		width: 3rem;
+		height: 3rem;
 
-		border: none;
+		background: none;
+
+		border: 1px solid currentColor;
 		border-radius: 10rem;
 
-		background: rgba(255 255 255 / 0.78);
-		backdrop-filter: blur(10px) saturate(150%) brightness(150%);
-
 		cursor: pointer;
-		z-index: 1;
-
-		transform: translateY(-50%) scale(0.9);
-		transform-origin: center center;
 
 		transition: {
-			property: transform;
-			timing-function: ease-out;
+			property: opacity;
+			timing-function: linear;
 			duration: 0.3s;
 		}
 
-		&:not(:disabled):hover {
-			transform: translateY(-50%) scale(1);
-		}
-
 		&:disabled {
-			transform: translateY(-50%) scale(0);
+			opacity: 0.4;
 			pointer-events: none;
 		}
 
 		&--previous {
-			left: 1rem;
+			grid-area: prev;
+			justify-self: flex-end;
 		}
 
 		&--next {
-			right: 1rem;
+			grid-area: next;
+			justify-self: flex-start;
 		}
 	}
 
-	& > * {
-		max-height: 80vh;
-	}
-
-	// Specific block configs.
-	.block-image,
-	.block-image .image .image__img,
-	.block-image .image {
-		height: 100%;
-		width: 100%;
+	> .swiper-wrapper {
+		grid-area: images;
 	}
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { checkAttr, getAttrKey, getOption, props, SimpleHorizontalSingleSelect } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, props, OptionSelector } from '@eightshift/frontend-libs/scripts';
 import { QuoteOptions as QuoteOptionsComponent } from '../../../components/quote/components/quote-options';
 import manifest from './../manifest.json';
 
@@ -14,21 +14,17 @@ export const QuoteOptions = ({ attributes, setAttributes }) => {
 				{...props('quote', attributes, {
 					setAttributes,
 				})}
-				showQuoteUse={false}
-				showLabel={false}
-				showExpanderButton={false}
 				additionalControls={
-					<SimpleHorizontalSingleSelect
+					<OptionSelector
 						value={quoteAlign}
 						options={getOption('quoteAlign', attributes, manifest)}
-						label={__('Text align', 'eightshift-frontend-libs')}
 						onChange={(value) => setAttributes({ [getAttrKey('quoteAlign', attributes, manifest)]: value })}
-						border='offset'
 						iconOnly
-						includeWpBottomSpacing={false}
-						additionalClass='es-mb-4!'
 					/>
 				}
+				noExpandButton
+				noUseToggle
+				noLabel
 			/>
 		</PanelBody>
 	);

@@ -14,21 +14,17 @@ export const ImageOptions = ({ attributes, setAttributes }) => {
 				{...props('image', attributes, {
 					setAttributes,
 				})}
-				showLabel={false}
-				showImageUse={false}
-				showExpanderButton={false}
 				additionalControlsDesignLayout={
-					<div className='es-v-center es-gap-1.25! es-rounded-1.0 es-border-cool-gray-100 es-w-17 es-h-17 es-text-3! es-line-h-1'>
-						<div className='es-rounded-0.75 es-border-cool-gray-300 es-line-h-0'>
-							<MatrixAlignControl
-								label={__('Image position', 'eightshift-frontend-libs')}
-								value={imageAlign}
-								onChange={(value) => setAttributes({ [getAttrKey('imageAlign', attributes, manifest)]: value })}
-							/>
-						</div>
-						<span>{__('Position', 'eightshift-frontend-libs')}</span>
-					</div>
+					<MatrixAlignControl
+						label={__('Position', 'eightshift-frontend-libs')}
+						value={imageAlign}
+						onChange={(value) => setAttributes({ [getAttrKey('imageAlign', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
 				}
+				noLabel
+				noUseToggle
+				noExpandButton
 			/>
 		</PanelBody>
 	);

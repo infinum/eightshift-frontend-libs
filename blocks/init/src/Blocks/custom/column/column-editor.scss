@@ -4,11 +4,20 @@
 	opacity: var(--column-opacity, 1);
 	transform: var(--column-transform);
 
+	margin: 0;
+
 	transition: {
 		// stylelint-disable-next-line declaration-no-important
 		property: opacity, transform !important;
 		timing-function: ease-out, var(--ease-out-back);
 		duration: 0.3s;
+	}
+
+	.block-editor-block-list__layout {
+		& > .block-editor-block-list__block {
+			// stylelint-disable-next-line declaration-no-important
+			margin: 0 !important;
+		}
 	}
 }
 

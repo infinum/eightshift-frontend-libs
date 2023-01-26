@@ -10,11 +10,13 @@ export const AccordionOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Accordion', 'eightshift-frontend-libs')}>
 			<IconToggle
-				icon={icons.dropdown}
-				label={__('Auto-close panels', 'eightshift-frontend-libs')}
+				icon={icons.autoClose}
+				label={__('Close adjacent panels', 'eightshift-frontend-libs')}
+				help={__('when expanding a new one', 'eightshift-frontend-libs')}
 				checked={accordionCloseAdjacent}
 				onChange={(value) => setAttributes({ [getAttrKey('accordionCloseAdjacent', attributes, manifest)]: value })}
-				type='tileButton'
+				noBottomSpacing
+				inlineHelp
 			/>
 		</PanelBody>
 	);

@@ -183,7 +183,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-row-gap": "calc(var(--base-font-size) * %value%rem)"
+					"columns-row-gap": "calc(var(--base-font-size) * (%value%rem / 10))"
 				}
 			}
 		],
@@ -191,7 +191,7 @@
 			{
 				"inverse": true,
 				"variable": {
-					"columns-column-gap": "calc(var(--base-font-size) * %value%rem)"
+					"columns-column-gap": "calc(var(--base-font-size) * (%value%rem / 10))"
 				}
 			}
 		]

@@ -1,0 +1,15 @@
+.block-featured-content {
+	--button-scoped-padding-desktop: 0.5rem 1rem;
+
+	&__load-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 3rem;
+	}
+
+	.card-simple {
+		&__btn {
+			margin-top: auto;
+		}
+	}
+}

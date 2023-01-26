@@ -1,8 +1,7 @@
 import React from 'react';
-import _ from 'lodash';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from "@wordpress/hooks";
+import { addFilter } from '@wordpress/hooks';
 import globalManifest from '../../manifest.json';
 import manifest from './manifest.json';
 
@@ -27,27 +26,24 @@ const parentComponentBlock = createHigherOrderComponent((BlockListBlock) => {
 			},
 		} = innerProps;
 
-		let updatedProps = innerProps;
+		let updatedProps = {...innerProps};
 
 		if (name === fullBlockName) {
 			const componentClass = classnames([
 				blockClass,
 				customBlocksName,
 			]);
-			updatedProps = _.assign(
-				{},
-				innerProps,
-				{
-					className: componentClass,
-				},
-			);
+
+			updatedProps = {
+				...innerProps,
+				className: componentClass,
+			};
 		}
 
 		const dataProps = { 'data-id': clientId };
 
 		return (
-			// columnProps are for WP <= 5.7, wrapperProps are for WP >= 5.8
-			<BlockListBlock {...updatedProps} columnProps={dataProps} wrapperProps={dataProps} />
+			<BlockListBlock {...updatedProps} wrapperProps={dataProps} />
 		);
 	};
 }, 'parentComponentBlock');
