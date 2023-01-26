@@ -381,6 +381,26 @@ body {
 	.es-has-enhanced-contrast-icon :is(circle, rect, ellipse, line, path, polygon, polyline, text, text, textPath, tref, tspan):not([stroke-width]) {
 		stroke-width: 1.25;
 	}
+
+	// Options for remove top/bottom margins from InnerBlocks.
+	.es-no-v-inner-blocks-gutenberg-margin {
+		.block-editor-block-list__layout > .wp-block {
+			&:first-child {
+				margin-top: 0 !important;
+			}
+
+			&:last-child {
+				margin-bottom: 0 !important;
+			}
+		}
+	}
+
+	.es-no-h-inner-blocks-gutenberg-margin {
+		.block-editor-block-list__layout > .wp-block {
+			margin-top: 0 !important;
+			margin-bottom: 0 !important;
+		}
+	}
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
