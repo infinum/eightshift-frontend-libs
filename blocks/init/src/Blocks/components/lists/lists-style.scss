@@ -7,7 +7,7 @@
 .lists {
 	margin: 0;
 	padding-left: 0;
-	color: var(--lists-text-color, var(--lists-color, var(--global-colors-black, currentColor)));
+	color: var(--lists-text-color, var(--global-colors-black, currentColor));
 
 	font-size: var(--lists-font-size, 1rem);
 	font-weight: var(--lists-font-weight);

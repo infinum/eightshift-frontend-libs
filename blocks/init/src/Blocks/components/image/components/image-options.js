@@ -2,61 +2,61 @@ import React from 'react';
 import _ from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { TextControl, Button, BaseControl } from '@wordpress/components';
-import { icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, IconLabel, IconToggle, CollapsableComponentUseToggle, CompactResponsive, getDefaultBreakpointNames, FancyDivider } from '@eightshift/frontend-libs/scripts';
+import { TextControl, Button } from '@wordpress/components';
+import { icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, IconLabel, IconToggle, UseToggle, Responsive, getDefaultBreakpointNames, Section, Control, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		imageShowControls = true,
 
-		showImageUse = true,
-		showLabel = true,
-		showImageUrl = true,
-		showImageAlt = true,
-		showImageFull = true,
-		showImageRoundedCorners = true,
-		showExpanderButton = true,
+		noImagePicker = false,
+		noAltText = false,
+		noFullSizeToggle = false,
+		noRoundedCornersToggle = false,
 
 		additionalControlsBeforeA11y,
 		additionalControlsAfterA11y,
 		additionalControlsDesignLayout,
-
-		hasInsetLabel = false,
 	} = attributes;
 
-	if (!imageShowControls) {
-		return null;
-	}
-
-	const imageUse = checkAttr('imageUse', attributes, manifest);
 	const imageAlt = checkAttr('imageAlt', attributes, manifest);
 	const imageAccept = checkAttr('imageAccept', attributes, manifest);
 	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
 	const imageFull = checkAttr('imageFull', attributes, manifest);
 	const imageRoundedCorners = checkAttr('imageRoundedCorners', attributes, manifest);
 
-	const urlAttrResponsiveValue = checkAttrResponsive(`imageUrl`, attributes, manifest);
+	const imageUrl = checkAttrResponsive(`imageUrl`, attributes, manifest);
+	const breakpoints = getDefaultBreakpointNames();
+
+	if (noImagePicker && !imageUrl[breakpoints[0]]) {
+		return (
+			<Control icon={icons.image} label={__('Image', 'eightshift-frontend-libs')} noBottomSpacing>
+				<MediaPlaceholder
+					labels={{
+						title: __('Add an image', 'eightshift-frontend-libs'),
+						instructions: __('Upload an image or choose one from the Media library'),
+					}}
+					icon={icons.plusCircleFillAlt}
+					accept={imageAccept}
+					allowedTypes={imageAllowedTypes}
+					onSelect={({ url, id }) => {
+						console.log({ url, id });
+						return setAttributes({
+							[getAttrKey('imageUrl', attributes, manifest)]: url,
+							[getAttrKey('imageId', attributes, manifest)]: id,
+						});
+					}}
+				/>
+			</Control>
+		);
+	}
 
 	return (
-		<CollapsableComponentUseToggle
-			label={label}
-			checked={imageUse}
-			onChange={(value) => setAttributes({ [getAttrKey('imageUse', attributes, manifest)]: value })}
-			showUseToggle={showImageUse}
-			showLabel={showLabel}
-			showExpanderButton={showExpanderButton}
-			additionalClasses={hasInsetLabel ? 'has-inset-label' : ''}
-		>
-			{showImageUrl &&
-				<CompactResponsive label={__('Image', 'eightshift-frontend-libs')} icon={icons.imageFile} additionalClasses='es-mb-0-important'>
-					{getDefaultBreakpointNames().map((breakpointName) => {
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
+			{!noImagePicker &&
+				<Responsive label={__('Image', 'eightshift-frontend-libs')} icon={icons.image}>
+					{getDefaultBreakpointNames().map((breakpointName, index) => {
 						let point = ucfirst(breakpointName);
 
 						if (breakpointName === 'large') {
@@ -66,87 +66,89 @@ export const ImageOptions = (attributes) => {
 						const urlAttr = getAttrKey(`imageUrl${point}`, attributes, manifest);
 						const idAttr = getAttrKey(`imageId${point}`, attributes, manifest);
 
-						if (!_.isEmpty(urlAttrResponsiveValue[breakpointName])) {
+						if (!_.isEmpty(imageUrl[breakpointName])) {
 							return (
-								<div className='es-v-end es-image-preview' key={breakpointName}>
-									<img src={urlAttrResponsiveValue[breakpointName]} alt='' />
+								<div className='es-h-center es-items-end! es-gap-0!' key={breakpointName}>
+									<img
+										alt={imageAlt}
+										src={imageUrl[breakpointName]}
+										className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+									/>
+
 									<Button
+										key={index}
+										icon={icons.trashAlt}
+										label={__('Remove image', 'eightshift-frontend-libs')}
+										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 										onClick={() => setAttributes({
 											[urlAttr]: undefined,
 											[idAttr]: undefined,
 										})}
-										icon={icons.trash}
-										className='es-button-icon-24 es-slight-button-border-cool-gray-300 es-rounded-1.0 es-nested-color-red-500'
-									>
-										{__('Remove', 'eightshift-frontend-libs')}
-									</Button>
+										showTooltip
+									/>
 								</div>
 							);
 						}
 
 						return (
 							<MediaPlaceholder
-								icon={icons.image}
+								key={breakpointName}
+								labels={{
+									title: __('Add an image', 'eightshift-frontend-libs'),
+									instructions: __('Upload an image or choose one from the Media library'),
+								}}
+								icon={icons.plusCircleFillAlt}
+								accept={imageAccept}
+								allowedTypes={imageAllowedTypes}
 								onSelect={(value) => setAttributes({
 									[urlAttr]: value.url,
 									[idAttr]: value.id,
 								})}
-								accept={imageAccept}
-								allowedTypes={imageAllowedTypes}
-								key={breakpointName}
 							/>
 						);
 					})}
-				</CompactResponsive>
+				</Responsive>
 			}
 
+			<Section showIf={!noRoundedCornersToggle || !noFullSizeToggle || !additionalControlsDesignLayout} icon={icons.design} label={__('Design & layout', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
+				{!noRoundedCornersToggle &&
+					<IconToggle
+						icon={icons.roundedCorners}
+						label={__('Rounded corners', 'eightshift-frontend-libs')}
+						checked={imageRoundedCorners}
+						onChange={(value) => setAttributes({ [getAttrKey('imageRoundedCorners', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
+				}
 
-			{(showImageRoundedCorners || showImageFull || additionalControlsDesignLayout) &&
-				<BaseControl label={<IconLabel icon={icons.design} label={__('Design & layout', 'eightshift-frontend-libs')} />}>
-					<div className='es-h-spaced-wrap es-mb-4'>
-						{showImageRoundedCorners &&
-							<IconToggle
-								icon={icons.roundedCorners}
-								label={__('Rounded corners', 'eightshift-frontend-libs')}
-								checked={imageRoundedCorners}
-								onChange={(value) => setAttributes({ [getAttrKey('imageRoundedCorners', attributes, manifest)]: value })}
-								type='tileButton'
-							/>
-						}
+				{!noFullSizeToggle &&
+					<IconToggle
+						icon={icons.expandXl}
+						label={__('Fill container', 'eightshift-frontend-libs')}
+						checked={imageFull}
+						onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
+				}
 
-						{showImageFull &&
-							<IconToggle
-								icon={icons.expandXl}
-								label={__('Fill container', 'eightshift-frontend-libs')}
-								checked={imageFull}
-								onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
-								type='tileButton'
-							/>
-						}
-
-						{additionalControlsDesignLayout}
-					</div>
-				</BaseControl>
-			}
+				{additionalControlsDesignLayout}
+			</Section>
 
 			{additionalControlsBeforeA11y}
 
-			{showImageAlt &&
-				<FancyDivider label={<IconLabel icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} />} additionalClasses='es-mt-0 es-mb-2.5' />
-			}
-
-			{showImageAlt &&
+			<Section showIf={!noAltText} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing={!additionalControlsAfterA11y}>
 				<TextControl
 					label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
 					value={imageAlt}
 					onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
 					help={__('Describes the content of the image', 'eightshift-frontend-libs')}
+					className='es-mb-0-bcf! es-mb-0!'
 				/>
-			}
+			</Section>
 
 			{additionalControlsAfterA11y && <hr className='es-mt-0 es-mb-2.5' />}
 
 			{additionalControlsAfterA11y}
-		</CollapsableComponentUseToggle>
+		</UseToggle>
 	);
 };

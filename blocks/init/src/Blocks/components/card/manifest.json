@@ -30,17 +30,17 @@
 			{
 				"label": "Left",
 				"value": "left",
-				"icon": "horizontalAlignLeft"
+				"icon": "textAlignLeft"
 			},
 			{
 				"label": "Center",
 				"value": "center",
-				"icon": "horizontalAlignCenter"
+				"icon": "textAlignCenter"
 			},
 			{
 				"label": "Right",
 				"value": "right",
-				"icon": "horizontalAlignRight"
+				"icon": "textAlignRight"
 			}
 		]
 	},

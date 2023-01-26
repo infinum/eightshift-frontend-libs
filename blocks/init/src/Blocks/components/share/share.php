@@ -40,7 +40,7 @@ $shareItemClass = Components::classnames([
 	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
-$networkNames = array_column($manifest['socialOptions'], 'label', 'value'); // @phpstan-ignore-line
+$networkNames = array_column($manifest['socialOptions'], 'label', 'value');
 ?>
 <div class="<?php echo esc_attr($shareClass); ?>">
 	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>
@@ -54,7 +54,10 @@ $networkNames = array_column($manifest['socialOptions'], 'label', 'value'); // @
 			data-share-title="<?php echo esc_attr($postTitle);?>"
 			class="<?php echo esc_attr($shareItemClass); ?>"
 		>
-			<?php echo esc_html($networkNames[$name]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo esc_html($networkNames[$name]);
+			?>
 		</a>
 		<?php
 	}

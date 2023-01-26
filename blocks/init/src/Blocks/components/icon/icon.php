@@ -37,6 +37,6 @@ $unique = Components::getUnique();
 	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
 	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	$manifest['icons'][$iconName]; // @phpstan-ignore-line
+	$manifest['icons'][$iconName];
 	?>
 </i>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { props, getOptions, SimpleHorizontalSingleSelect, checkAttr, getOption, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { props, getOptions, OptionSelector, checkAttr, getOption, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -16,13 +16,10 @@ export const CardOptions = (attributes) => {
 
 	return (
 		<>
-			<SimpleHorizontalSingleSelect
+			<OptionSelector
 				value={cardAlign}
 				options={getOption('cardAlign', attributes, manifest)}
-				label={__('Alignment', 'eightshift-frontend-libs')}
 				onChange={(value) => setAttributes({ [getAttrKey('cardAlign', attributes, manifest)]: value })}
-				additionalClass='es-mb-5!'
-				border='offset'
 				iconOnly
 			/>
 
@@ -30,6 +27,7 @@ export const CardOptions = (attributes) => {
 				{...props('image', attributes)}
 				showImageUse
 				showLabel
+				reducedBottomSpacing
 			/>
 
 			<HeadingOptions
@@ -37,24 +35,19 @@ export const CardOptions = (attributes) => {
 					options: getOptions(attributes, manifest),
 				})}
 				label={__('Intro', 'eightshift-frontend-libs')}
+				reducedBottomSpacing
 			/>
 
 			<HeadingOptions
-				{...props('heading', attributes, {
-					options: getOptions(attributes, manifest),
-				})}
+				{...props('heading', attributes, { options: getOptions(attributes, manifest) })} reducedBottomSpacing
 			/>
 
 			<ParagraphOptions
-				{...props('paragraph', attributes, {
-					options: getOptions(attributes, manifest),
-				})}
+				{...props('paragraph', attributes, { options: getOptions(attributes, manifest) })} reducedBottomSpacing
 			/>
 
 			<ButtonOptions
-				{...props('button', attributes, {
-					options: getOptions(attributes, manifest),
-				})}
+				{...props('button', attributes, { options: getOptions(attributes, manifest) })} noBottomSpacing
 			/>
 		</>
 	);

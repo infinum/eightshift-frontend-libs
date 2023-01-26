@@ -1,7 +1,7 @@
 .image {
 	$this: &;
 	overflow: hidden;
-	display: block;
+	display: var(--image-display, block);
 
 	width: var(--image-img-width, auto);
 	height: var(--image-img-height, auto);
@@ -10,7 +10,7 @@
 	max-height: var(--image-img-max-height, 100%);
 
 	&__img {
-		display: block;
+		display: var(--image-img-display, block);
 
 		width: var(--image-img-width, auto);
 		height: var(--image-img-height, auto);
@@ -21,5 +21,7 @@
 		object-fit: cover;
 
 		border-radius: var(--image-border-radius, 0);
+
+		aspect-ratio: var(--image-img-aspect-ratio, auto);
 	}
 }

@@ -55,7 +55,7 @@ $imgClass = Components::classnames([
 				continue;
 			}
 
-			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? ''; // @phpstan-ignore-line
+			$breakpointValue = $globalManifest['globalVariables']['breakpoints'][$breakpoint] ?? '';
 
 			if (!$breakpointValue) {
 				continue;

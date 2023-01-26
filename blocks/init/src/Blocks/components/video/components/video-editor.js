@@ -1,9 +1,8 @@
 import React from 'react';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
-import { selector, checkAttr, icons, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, icons, getAttrKey, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoEditor = (attributes) => {
@@ -17,8 +16,7 @@ export const VideoEditor = (attributes) => {
 		additionalClass,
 		setAttributes,
 
-		showVideoUrl = false,
-		showPlaceholder = true,
+		showPlaceholderInsteadOfMediaPicker = false,
 	} = attributes;
 
 	const videoUse = checkAttr('videoUse', attributes, manifest);
@@ -26,11 +24,12 @@ export const VideoEditor = (attributes) => {
 	const videoAccept = checkAttr('videoAccept', attributes, manifest);
 	const videoAllowedTypes = checkAttr('videoAllowedTypes', attributes, manifest);
 
-	const videoClass = classnames([
+	const videoClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+		'es-position-relative',
+	);
 
 	if (!videoUse) {
 		return null;
@@ -40,7 +39,7 @@ export const VideoEditor = (attributes) => {
 
 	return (
 		<>
-			{!hasVideo && showVideoUrl &&
+			{!hasVideo && !showPlaceholderInsteadOfMediaPicker &&
 				<MediaPlaceholder
 					icon={icons.video}
 					onSelect={(value) => setAttributes({
@@ -54,7 +53,7 @@ export const VideoEditor = (attributes) => {
 					}
 					labels={{
 						title: __('Video', 'eightshift-frontend-libs'),
-						instructions: __('Upload a video file or pick one from your media library. You can select multiple video files to have fallbacks with different video formats.', 'eightshift-frontend-libs'),
+						instructions: __('Upload a video file or pick one from your media library.', 'eightshift-frontend-libs'),
 					}}
 					multiple
 					accept={videoAccept}
@@ -62,14 +61,14 @@ export const VideoEditor = (attributes) => {
 				/>
 			}
 
-			{!hasVideo && !showVideoUrl && showPlaceholder &&
+			{!hasVideo && showPlaceholderInsteadOfMediaPicker &&
 				<Placeholder icon={icons.video} label={__('Add a video', 'eightshift-frontend-libs')}>
-					{__('Check the block options in the sidebar', 'eightshift-frontend-libs')}
+					{__('Check the block options', 'eightshift-frontend-libs')}
 				</Placeholder>
 			}
 
 			{hasVideo &&
-				<video className={videoClass} controls muted>
+				<video className={videoClass} muted>
 					{videoUrl.map(({ url, mime }) => <source key={url} src={url} type={mime} />)}
 					<track kind='captions' />
 				</video>

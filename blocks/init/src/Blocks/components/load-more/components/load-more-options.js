@@ -1,45 +1,16 @@
 import React from 'react';
-import { checkAttr, CollapsableComponentUseToggle, getAttrKey, props, getOptions } from '@eightshift/frontend-libs/scripts';
+import { props, getOptions, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 import { ButtonOptions } from '../../button/components/button-options';
 
 export const LoadMoreOptions = (attributes) => {
-	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
-		setAttributes,
-		label = manifestTitle,
-		loadMoreShowControls = true,
-		showLoadMoreUse = true,
-		showLabel = true,
-
-		loadMoreUse = checkAttr('loadMoreUse', attributes, manifest),
-	} = attributes;
-
-	if (!loadMoreShowControls) {
-		return null;
-	}
-
 	return (
-		<CollapsableComponentUseToggle
-			label={label}
-			checked={loadMoreUse}
-			onChange={(value) => setAttributes({ [getAttrKey('loadMoreUse', attributes, manifest)]: value })}
-			showUseToggle={showLoadMoreUse}
-			showLabel={showLabel}
-		>
-			<ButtonOptions
-				{...props('button', attributes, {
-					options: getOptions(attributes, manifest),
-				})}
-				showButtonUse={false}
-				showLabel={false}
-				showExpanderButton={false}
-				showButtonId={false}
-				showButtonUrl={false}
-			/>
-		</CollapsableComponentUseToggle>
+		<ButtonOptions
+			hideId
+			hideUrl
+			label={attributes?.label ?? manifest.title}
+			{...props('button', attributes, { options: getOptions(attributes, manifest) })}
+			{...generateUseToggleConfig(attributes, manifest, 'loadMoreUse')}
+		/>
 	);
 };

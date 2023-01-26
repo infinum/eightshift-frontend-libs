@@ -47,6 +47,8 @@ export const JumbotronEditor = (attributes) => {
 			<ImageEditor
 				{...props('image', attributes, {
 					blockClass: componentClass,
+					imageFull: true,
+					imageRoundedCorners: true,
 				})}
 			/>
 

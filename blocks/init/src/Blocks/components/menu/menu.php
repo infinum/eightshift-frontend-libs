@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use EightshiftBoilerplate\Menu\Menu;
+use Jedan\Menu\Menu;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $use = $attributes['use'] ?? true;
@@ -26,7 +26,7 @@ $parentClasses = Components::classnames([
 	$jsClass ? "js-{$jsClass}" : '',
 ]);
 
-$bemMenu = Menu::bemMenu( // @phpstan-ignore-line will be fixed in the stubs.
+$bemMenu = Menu::bemMenu(
 	$name,
 	$variation,
 	$parentClasses,

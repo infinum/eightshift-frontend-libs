@@ -1,4 +1,11 @@
 .card-simple {
+	--image-display: inline-block;
+	--image-img-display: inline-block;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
 	text-align: var(--block-card-align);
 
 	&__image {

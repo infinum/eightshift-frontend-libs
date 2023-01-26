@@ -1,0 +1,11 @@
+.button-placeholder {
+	opacity: 0.6;
+}
+
+.btn {
+	transition: {
+		property: all;
+		timing-function: ease-out;
+		duration: 0.2s;
+	}
+}

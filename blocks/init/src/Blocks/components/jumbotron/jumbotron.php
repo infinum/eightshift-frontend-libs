@@ -42,8 +42,8 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 		'image',
 		Components::props('image', $attributes, [
 			'blockClass' => $componentClass,
-			'imageUsePlaceholder' => true,
-			'imageBg' => true,
+			'imageFull' => true,
+			'imageRoundedCorners' => true,
 		])
 	);
 	?>
