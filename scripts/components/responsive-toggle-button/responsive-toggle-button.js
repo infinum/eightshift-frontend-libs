@@ -120,7 +120,7 @@ export const ResponsiveToggleButton = (props) => {
 							}}
 							icon={buttonIcon ?? React.cloneElement(icons.toggleOff, {className: classnames('es-animated-toggle-icon', isActive && 'is-checked')})}
 							isPressed={buttonToggleEffect && isActive}
-							className={classnames('es-has-v2-gutenberg-button-active-state es-button-square-32 es-rounded-1! es-h-8! es-px-2!', buttonToggleEffect ? 'es-slight-button-border es-button-icon-24' : 'es-button-icon-30', buttonToggleEffect && isActive && 'is-active')}
+							className={classnames('es-button-square-32 es-rounded-1! es-h-8! es-px-2!', buttonToggleEffect ? 'es-is-v2-gutenberg-button es-button-icon-24' : 'es-has-v2-gutenberg-button-active-state es-button-icon-30', buttonToggleEffect && isActive && 'is-active')}
 
 							{...additionalProps}
 						/>

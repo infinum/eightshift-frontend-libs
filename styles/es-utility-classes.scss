@@ -1753,6 +1753,17 @@ $es-utility-props: (
 	@include es-v2-gutenberg-button-active-state;
 }
 
+.es-has-v2-gutenberg-button-inside > .components-button,
+.es-is-v2-gutenberg-button {
+	@include es-v2-gutenberg-button-active-state(true);
+}
+
+.es-has-v2-gutenberg-input-matched-button-inside > .components-button,
+.es-is-v2-gutenberg-input-matched-button {
+	@include es-v2-gutenberg-button-active-state(matchInput);
+	border-radius: var(--es-component-border-radius-md) !important;
+}
+
 // Button group.
 .es-button-group {
 	display: flex;

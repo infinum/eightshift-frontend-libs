@@ -30,7 +30,7 @@ export const TileButton = forwardRef((props, ref) => {
 			icon={icon}
 			onClick={onClick}
 			isPressed={isPressed}
-			className={classnames('es-button-icon-24 es-slight-button-border-cool-gray-300 es-focus-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-0.95 es-p-0.75! es-nested-flex-shrink-0', additionalClasses)}
+			className={classnames('es-button-icon-24 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-is-v2-gutenberg-button es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-0.95 es-p-0.75! es-nested-flex-shrink-0', additionalClasses)}
 		>
 			<span className='es-h-6 es-v-center'>{label}</span>
 		</Button>
