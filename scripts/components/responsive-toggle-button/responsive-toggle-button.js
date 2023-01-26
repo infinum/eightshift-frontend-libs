@@ -2,25 +2,27 @@ import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
 import { classnames } from '../../helpers';
+import { icons } from '../../editor';
 
 /**
  * A simple toggle button that allows changing values between breakpoints.
  *
- * @param {object} props                          - ResponsiveToggleButton options.
- * @param {React.Component?} [props.icon]         - Icon to show next to the label
- * @param {React.Component?} [props.label]        - Label to show above component.
- * @param {React.Component?} [props.subtitle]     - Subtitle below the label.
- * @param {React.Component?} [props.help]         - Help to show below the control.
- * @param {React.Component?} [props.buttonIcon]   - Icon to show inside the button.
- * @param {Object} [props.value]                  - Value to use - keys are breakpoint names.
- * @param {function} [props.onChange]             - Function to trigger when the value of is changing.
- * @param {any} [props.inheritValue]              - Value that marks something as inherited.
- * @param {function} [props.inheritCheck]         - Function that returns a `boolean`, used to decide whether a value is inherited or not.
- * @param {boolean?} [props.stringValues=false]   - If `true`, string values are returned instead of boolean.
- * @param {boolean?} [props.noBottomSpacing]      - If `true`, space below the control is removed.
- * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
- * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the base control.
- * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `Button`.
+ * @param {object} props                            - ResponsiveToggleButton options.
+ * @param {React.Component?} [props.icon]           - Icon to show next to the label
+ * @param {React.Component?} [props.label]          - Label to show above component.
+ * @param {React.Component?} [props.subtitle]       - Subtitle below the label.
+ * @param {React.Component?} [props.help]           - Help to show below the control.
+ * @param {React.Component?} [props.buttonIcon]     - Icon to show inside the button.
+ * @param {Object} [props.value]                    - Value to use - keys are breakpoint names.
+ * @param {function} [props.onChange]               - Function to trigger when the value of is changing.
+ * @param {any} [props.inheritValue]                - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]           - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {boolean?} [props.stringValues=false]     - If `true`, string values are returned instead of boolean.
+ * @param {boolean?} [props.noBottomSpacing]        - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]   - If `true`, space below the control is reduced.
+ * @param {string?} [props.additionalClasses]       - If passed, the classes are appended to the base control.
+ * @param {Object} [props.additionalProps]          - If passed, the provided props are passed to the `Button`.
+ * @param {Object} [props.buttonToggleEffect=false] - If `true`, the toggle effect on the button itself is shown.
  */
 export const ResponsiveToggleButton = (props) => {
 	const {
@@ -45,6 +47,8 @@ export const ResponsiveToggleButton = (props) => {
 		additionalClasses,
 
 		additionalProps = {},
+
+		buttonToggleEffect = false,
 	} = props;
 
 	const breakpointNames = Object.keys(value);
@@ -114,9 +118,9 @@ export const ResponsiveToggleButton = (props) => {
 									[breakpoint]: stringValues ? `${!(isActive ?? true)}` : !(isActive ?? true),
 								});
 							}}
-							icon={buttonIcon}
-							isPressed={isActive}
-							className={classnames('es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-square-32 es-button-icon-18 es-rounded-1! es-h-8! es-px-2!', isActive && 'is-active')}
+							icon={buttonIcon ?? React.cloneElement(icons.toggleOff, {className: classnames('es-animated-toggle-icon', isActive && 'is-checked')})}
+							isPressed={buttonToggleEffect && isActive}
+							className={classnames('es-has-v2-gutenberg-button-active-state es-button-square-32 es-rounded-1! es-h-8! es-px-2!', buttonToggleEffect ? 'es-slight-button-border es-button-icon-24' : 'es-button-icon-30', buttonToggleEffect && isActive && 'is-active')}
 
 							{...additionalProps}
 						/>
