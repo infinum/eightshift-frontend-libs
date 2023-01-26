@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, OptionSelector, PopoverWithTrigger, TileButton } from '../../../scripts';
+import { Control, icons, OptionSelector, PopoverWithTrigger, TileButton } from '../../../scripts';
 import { camelize } from '../../../scripts/helpers';
 import { ucfirst } from '../../../scripts/editor';
 
@@ -9,13 +9,21 @@ import { ucfirst } from '../../../scripts/editor';
  * A component that can provide a 3x3 or a 2x2 grid of positions to pick from.
  * Replaces the default Gutenberg `AlignmentMatrixControl`/`BlockAlignmentMatrixControl`/`BlockAlignmentMatrixToolbar`.
  *
- * @param {object} props                             - MatrixAlignControl options.
- * @param {'wp'|'tileButton'} [props.type='wp']      - Style of the option trigger. `wp` replicates the default Gutenberg control, `tileButton` shows a regular button that fits with a `tileButton` IconToggle well.
- * @param {'3x3'|'2x2'} [props.size='3x3']           - Defines the matrix size to show. Can be either `3x3` or `2x2`.
- * @param {React.Component?} [props.label]           - Label displayed on the trigger button. (tooltip when style is `wp`, text label below icon when style is `tileButton`)
- * @param {string} props.value                       - Current value.
- * @param {function} [props.onChange]                - Function that is called on every value change.
- * @param {string?} [props.additionalTriggerClasses] - If provided, the classes are appended to the trigger button.
+ * @typedef {'wp'|'tileButton'|'inline'} MatrixAlignControlType
+ * @typedef {'top' | 'top left' | 'top right' | 'middle' | 'middle left' | 'middle right' | 'bottom' | 'bottom left' | 'bottom right'} AppearOrigin
+ *
+ * @param {object} props                                      - MatrixAlignControl options.
+ * @param {MatrixAlignControlType} [props.type='wp']          - Style of the option trigger. `wp` replicates the default Gutenberg control, `tileButton` shows a regular button that fits with a `tileButton` IconToggle well.
+ * @param {'3x3'|'2x2'} [props.size='3x3']                    - Defines the matrix size to show. Can be either `3x3` or `2x2`.
+ * @param {React.Component?} [props.label]                    - Label displayed on the trigger button. (tooltip when style is `wp`, text label below icon when style is `tileButton`)
+ * @param {string} props.value                                - Current value.
+ * @param {function} [props.onChange]                         - Function that is called on every value change.
+ * @param {string?} [props.additionalTriggerClasses]          - If provided, the classes are appended to the trigger button.
+ * @param {React.Component?} [props.icon]                     - Icon to show next to the label
+ * @param {React.Component?} [props.subtitle]                 - Subtitle below the label.
+ * @param {boolean?} [props.noBottomSpacing]                  - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]             - If `true`, space below the control is reduced.
+ * @param {AppearOrigin} [props.popoverPosition='top center'] - Position where the popover appears.
  */
 export const MatrixAlignControl = (props) => {
 	const {
@@ -26,6 +34,13 @@ export const MatrixAlignControl = (props) => {
 		value,
 		onChange,
 		additionalTriggerClasses,
+
+		icon,
+		subtitle,
+		noBottomSpacing,
+		reducedBottomSpacing,
+
+		popoverPosition,
 	} = props;
 	const [currentValue, setCurrentValue] = useState(value);
 
@@ -83,13 +98,14 @@ export const MatrixAlignControl = (props) => {
 		icon: item.value === currentValue ? icons.matrixAlignControlDotActive : icons.matrixAlignControlDotInactive,
 	}));
 
-	return (
+	const mainControl = (
 		<PopoverWithTrigger
 			additionalCloseActions={() => onChange(currentValue)}
 			contentClass='es-p-1'
+			position={popoverPosition ?? (type === 'inline' ? 'middle right' : 'bottom right')}
 			trigger={
 				({ ref, setIsOpen, isOpen }) => {
-					if (type === 'wp') {
+					if (type === 'wp' || type === 'inline') {
 						return (
 							<Button
 								className={additionalTriggerClasses}
@@ -129,4 +145,21 @@ export const MatrixAlignControl = (props) => {
 			/>
 		</PopoverWithTrigger>
 	);
+
+	if (type === 'inline') {
+		return (
+			<Control
+				label={label}
+				icon={icon}
+				subtitle={subtitle}
+				noBottomSpacing={noBottomSpacing}
+				reducedBottomSpacing={reducedBottomSpacing}
+				inlineLabel
+			>
+				{mainControl}
+			</Control>
+		);
+	}
+
+	return mainControl;
 };
