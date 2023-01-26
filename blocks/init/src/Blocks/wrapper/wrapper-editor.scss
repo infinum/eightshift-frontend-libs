@@ -3,8 +3,8 @@
 		opacity: var(--wrapper-display-opacity, 1);
 
 		transition: {
-			property: opacity;
-			timing-function: ease-out;
+			property: opacity, margin, padding, border-radius;
+			timing-function: ease-out, var(--ease-out-back);
 			duration: 0.3s;
 		}
 
@@ -13,8 +13,8 @@
 
 			.wrapper__inner {
 				transition: {
-					property: opacity;
-					timing-function: ease-out;
+					property: opacity, margin, padding, border-radius;
+					timing-function: ease-out, var(--ease-out-back);
 					duration: 0.3s;
 				}
 

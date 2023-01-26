@@ -14,6 +14,9 @@
 	padding-top: calc(var(--wrapper-spacing-top-in, 0) * var(--base-font-size) * 1rem);
 	padding-bottom: calc(var(--wrapper-spacing-bottom-in, 0) * var(--base-font-size) * 1rem);
 
+	padding-inline-start: calc(var(--wrapper-spacing-left, 0) * var(--base-font-size) * 1rem);
+	padding-inline-end: calc(var(--wrapper-spacing-right, 0) * var(--base-font-size) * 1rem);
+
 	background: var(--wrapper-bg-color-gradient, var(--wrapper-bg-color-project, transparent));
 
 	border-top: var(--wrapper-divider-top);

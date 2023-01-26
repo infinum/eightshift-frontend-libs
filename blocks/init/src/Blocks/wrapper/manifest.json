@@ -37,6 +37,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"wrapperUseSimpleShowControl": {
+			"type": "boolean",
+			"default": true
+		},
 		"wrapperDisable": {
 			"type": "boolean",
 			"default": false
@@ -121,7 +125,8 @@
 		},
 
 		"wrapperSpacingTopLarge": {
-			"type": "integer"
+			"type": "integer",
+			"default": 0
 		},
 		"wrapperSpacingTopDesktop": {
 			"type": "integer"
@@ -147,8 +152,37 @@
 			"type": "integer"
 		},
 
-		"wrapperSpacingTopInLarge": {
+		"wrapperSpacingLeftLarge": {
+			"type": "integer",
+			"default": 0
+		},
+		"wrapperSpacingLeftDesktop": {
 			"type": "integer"
+		},
+		"wrapperSpacingLeftTablet": {
+			"type": "integer"
+		},
+		"wrapperSpacingLeftMobile": {
+			"type": "integer"
+		},
+
+		"wrapperSpacingRightLarge": {
+			"type": "integer",
+			"default": 0
+		},
+		"wrapperSpacingRightDesktop": {
+			"type": "integer"
+		},
+		"wrapperSpacingRightTablet": {
+			"type": "integer"
+		},
+		"wrapperSpacingRightMobile": {
+			"type": "integer"
+		},
+
+		"wrapperSpacingTopInLarge": {
+			"type": "integer",
+			"default": 0
 		},
 		"wrapperSpacingTopInDesktop": {
 			"type": "integer"
@@ -161,7 +195,8 @@
 		},
 
 		"wrapperSpacingBottomInLarge": {
-			"type": "integer"
+			"type": "integer",
+			"default": 0
 		},
 		"wrapperSpacingBottomInDesktop": {
 			"type": "integer"
@@ -385,6 +420,18 @@
 			"tablet": "wrapperSpacingBottomTablet",
 			"mobile": "wrapperSpacingBottomMobile"
 		},
+		"wrapperSpacingLeft": {
+			"large": "wrapperSpacingLeftLarge",
+			"desktop": "wrapperSpacingLeftDesktop",
+			"tablet": "wrapperSpacingLeftTablet",
+			"mobile": "wrapperSpacingLeftMobile"
+		},
+		"wrapperSpacingRight": {
+			"large": "wrapperSpacingRightLarge",
+			"desktop": "wrapperSpacingRightDesktop",
+			"tablet": "wrapperSpacingRightTablet",
+			"mobile": "wrapperSpacingRightMobile"
+		},
 		"wrapperSpacingTopIn": {
 			"large": "wrapperSpacingTopInLarge",
 			"desktop": "wrapperSpacingTopInDesktop",
@@ -463,35 +510,7 @@
 		"wrapperBgColorGradient": [
 			{
 				"variable": {
-					"wrapper-bg-color-gradient": "var(--global-gradients-%value%)"
-				}
-			}
-		],
-		"wrapperBgColorGradientBlendMode": [
-			{
-				"variable": {
-					"wrapper-bg-blend-mode": "%value%"
-				}
-			}
-		],
-		"wrapperBgColorGradientRepeat": [
-			{
-				"variable": {
-					"wrapper-bg-repeat": "%value%"
-				}
-			}
-		],
-		"wrapperBgColorGradientPosition": [
-			{
-				"variable": {
-					"wrapper-bg-position": "%value%"
-				}
-			}
-		],
-		"wrapperBgColorGradientSize": [
-			{
-				"variable": {
-					"wrapper-bg-size": "%value%"
+					"wrapper-bg-color-gradient": "%value%"
 				}
 			}
 		],
@@ -535,6 +554,24 @@
 				"inverse": true,
 				"variable": {
 					"wrapper-spacing-bottom": "%value%"
+				}
+			}
+		],
+
+		"wrapperSpacingLeft": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-left": "%value%"
+				}
+			}
+		],
+
+		"wrapperSpacingRight": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-right": "%value%"
 				}
 			}
 		],
