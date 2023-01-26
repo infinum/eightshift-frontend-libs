@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
-use Jedan\Menu\Menu;
+use EightshiftBoilerplate\Menu\Menu;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $use = $attributes['use'] ?? true;
