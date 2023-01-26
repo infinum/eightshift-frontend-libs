@@ -62,9 +62,10 @@ export const Section = (props) => {
 			label={(label || icon) && <FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={classnames('es-w-full', additionalLabelClasses)} />}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
-			additionalClasses={additionalClasses}
 		>
-			{children}
+			<div className={additionalClasses}>
+				{children}
+			</div>
 		</Control>
 	);
 };
