@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapsable, FancyDivider, classnames } from '@eightshift/frontend-libs/scripts';
+import { Collapsable, FancyDivider, Control, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
  * Simple section with FancyDivider header.
@@ -46,7 +46,7 @@ export const Section = (props) => {
 						label={label}
 						icon={icon}
 						subtitle={subtitle}
-						additionalClasses={classnames('es-color-cool-gray-600 es-has-enhanced-contrast-icon es-m-0!', additionalLabelClasses)}
+						additionalClasses={classnames('es-color-cool-gray-600 es-has-enhanced-contrast-icon es-m-0! es-w-full', additionalLabelClasses)}
 					/>
 				}
 				noBottomSpacing={noBottomSpacing}
@@ -57,15 +57,14 @@ export const Section = (props) => {
 		);
 	}
 
-	const bottomSpacingValue = reducedBottomSpacing ? 'es-mb-2' : 'es-mb-5';
-
 	return (
-		<>
-			<FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={additionalLabelClasses} />
-
-			<div className={classnames(!noBottomSpacing && bottomSpacingValue, additionalClasses)}>
-				{children}
-			</div>
-		</>
+		<Control
+			label={(label || icon) && <FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={classnames('es-w-full', additionalLabelClasses)} />}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			additionalClasses={additionalClasses}
+		>
+			{children}
+		</Control>
 	);
 };
