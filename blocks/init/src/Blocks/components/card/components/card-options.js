@@ -31,19 +31,19 @@ export const CardOptions = (attributes) => {
 			/>
 
 			<HeadingOptions
-				{...props('intro', attributes, {
-					options: getOptions(attributes, manifest),
-				})}
+				{...props('intro', attributes, { options: getOptions(attributes, manifest) })}
 				label={__('Intro', 'eightshift-frontend-libs')}
 				reducedBottomSpacing
 			/>
 
 			<HeadingOptions
-				{...props('heading', attributes, { options: getOptions(attributes, manifest) })} reducedBottomSpacing
+				{...props('heading', attributes, { options: getOptions(attributes, manifest) })}
+				reducedBottomSpacing
 			/>
 
 			<ParagraphOptions
-				{...props('paragraph', attributes, { options: getOptions(attributes, manifest) })} reducedBottomSpacing
+				{...props('paragraph', attributes, { options: getOptions(attributes, manifest) })}
+				reducedBottomSpacing
 			/>
 
 			<ButtonOptions

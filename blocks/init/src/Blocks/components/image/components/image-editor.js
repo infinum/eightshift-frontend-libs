@@ -31,10 +31,10 @@ export const ImageEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	);
 
-	const imgClass = classnames([
+	const imgClass = classnames(
 		selector(componentClass, componentClass, 'img'),
 		selector(blockClass, blockClass, `${selectorClass}-img`),
-	]);
+	);
 
 	if (!imageUse) {
 		return null;

@@ -14,7 +14,7 @@ export const ParagraphOptions = ({ attributes, setAttributes }) => {
 				{...props('paragraph', attributes, {
 					setAttributes,
 				})}
-				additionalControlsSplitArea={
+				additionalControls={
 					<OptionSelector
 						value={paragraphAlign}
 						options={getOption('paragraphAlign', attributes, manifest)}

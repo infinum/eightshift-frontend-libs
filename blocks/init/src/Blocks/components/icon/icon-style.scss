@@ -6,7 +6,7 @@
 	color: inherit;
 
 	svg {
-		width: var(--icon-scoped-width, var(--icon-size));
-		height: var(--icon-scoped-height, var(--icon-size));
+		width: var(--icon-scoped-width, var(--icon-size, 1.5rem));
+		height: var(--icon-scoped-height, var(--icon-size, 1.5rem));
 	}
 }

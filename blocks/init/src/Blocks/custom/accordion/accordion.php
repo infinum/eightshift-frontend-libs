@@ -23,9 +23,10 @@ $accordionClass = Components::classnames([
 
 <div
 	class="<?php echo esc_attr($accordionClass); ?>"
-	data-close-adjacent="<?php echo esc_attr($accordionCloseAdjacent ? 'true' : 'false'); ?>">
-	<?php
-	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	echo $innerBlockContent;
-	?>
+	data-close-adjacent="<?php echo esc_attr($accordionCloseAdjacent ? 'true' : 'false'); ?>"
+>
+		<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $innerBlockContent;
+		?>
 </div>

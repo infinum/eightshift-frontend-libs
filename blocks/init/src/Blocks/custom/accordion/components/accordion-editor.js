@@ -1,6 +1,6 @@
 import React from 'react';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { BlockInserter } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter, classnames } from '@eightshift/frontend-libs/scripts';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export const AccordionEditor = ({ attributes, clientId }) => {
 	const {
@@ -8,12 +8,19 @@ export const AccordionEditor = ({ attributes, clientId }) => {
 		blockClass,
 	} = attributes;
 
+	const blockProps = useBlockProps();
+	const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		allowedBlocks: (typeof accordionAllowedBlocks === 'undefined') || accordionAllowedBlocks,
+		renderAppender: () => <BlockInserter clientId={clientId} className='es-mb-4' hasLabel />,
+	});
+
+	const modifiedInnerBlockProps = {
+		...innerBlocksProps,
+		className: classnames(innerBlocksProps.className, blockClass),
+	};
+
 	return (
-		<div className={blockClass}>
-			<InnerBlocks
-				allowedBlocks={(typeof accordionAllowedBlocks === 'undefined') || accordionAllowedBlocks}
-				renderAppender={() => <BlockInserter clientId={clientId} className='es-mb-4' hasLabel />}
-			/>
+		<div {...modifiedInnerBlockProps}>
 		</div>
 	);
 };

@@ -59,10 +59,14 @@ $attributes["uniqueWrapperId"] = $unique;
 	<?php echo esc_attr(($wrapperId) ? 'id=" ' . $wrapperId . '"' : ''); ?>
 	>
 	<?php
-	 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 	?>
 	<?php if ($wrapperAnchorId) { ?>
-		<div class="<?php echo esc_attr("{$wrapperMainClass}__anchor"); ?>" id="<?php echo esc_attr($wrapperAnchorId); ?>"></div>
+		<div
+			class="<?php echo esc_attr("{$wrapperMainClass}__anchor"); ?>"
+			id="<?php echo esc_attr($wrapperAnchorId); ?>"
+		>
+		</div>
 	<?php } ?>
 
 	<?php if ($wrapperUseInner) { ?>

@@ -31,19 +31,17 @@ $logoClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 ]);
 
-$imgClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'img'),
-]);
-
+$imgClass = Components::selector($componentClass, $componentClass, 'img');
 ?>
+
 <a
 	class="<?php echo esc_attr($logoClass); ?>"
 	href="<?php echo esc_url($logoHref); ?>"
 >
 	<img
-	src="<?php echo esc_url($logoSrc); ?>"
-	alt="<?php echo esc_attr($logoAlt); ?>"
-	title="<?php echo esc_attr($logoTitle); ?>"
-	class="<?php echo esc_attr($imgClass); ?>"
+		src="<?php echo esc_url($logoSrc); ?>"
+		alt="<?php echo esc_attr($logoAlt); ?>"
+		title="<?php echo esc_attr($logoTitle); ?>"
+		class="<?php echo esc_attr($imgClass); ?>"
 	/>
 </a>

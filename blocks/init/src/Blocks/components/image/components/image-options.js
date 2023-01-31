@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { TextControl, Button } from '@wordpress/components';
@@ -10,10 +9,10 @@ export const ImageOptions = (attributes) => {
 	const {
 		setAttributes,
 
-		noImagePicker = false,
-		noAltText = false,
-		noFullSizeToggle = false,
-		noRoundedCornersToggle = false,
+		hideImagePicker = false,
+		hideAltText = false,
+		hideFullSizeToggle = false,
+		hideRoundedCornersToggle = false,
 
 		additionalControlsBeforeA11y,
 		additionalControlsAfterA11y,
@@ -29,32 +28,33 @@ export const ImageOptions = (attributes) => {
 	const imageUrl = checkAttrResponsive(`imageUrl`, attributes, manifest);
 	const breakpoints = getDefaultBreakpointNames();
 
-	if (noImagePicker && !imageUrl[breakpoints[0]]) {
+	if (!hideImagePicker && !imageUrl[breakpoints[0]]) {
 		return (
-			<Control icon={icons.image} label={__('Image', 'eightshift-frontend-libs')} noBottomSpacing>
-				<MediaPlaceholder
-					labels={{
-						title: __('Add an image', 'eightshift-frontend-libs'),
-						instructions: __('Upload an image or choose one from the Media library'),
-					}}
-					icon={icons.plusCircleFillAlt}
-					accept={imageAccept}
-					allowedTypes={imageAllowedTypes}
-					onSelect={({ url, id }) => {
-						console.log({ url, id });
-						return setAttributes({
-							[getAttrKey('imageUrl', attributes, manifest)]: url,
-							[getAttrKey('imageId', attributes, manifest)]: id,
-						});
-					}}
-				/>
-			</Control>
+			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
+				<Control icon={icons.image} label={__('Image', 'eightshift-frontend-libs')} additionalLabelClasses='es-h-spaced' noBottomSpacing>
+					<MediaPlaceholder
+						labels={{
+							title: __('Add an image', 'eightshift-frontend-libs'),
+							instructions: __('Upload an image or choose one from the Media library'),
+						}}
+						icon={icons.plusCircleFillAlt}
+						accept={imageAccept}
+						allowedTypes={imageAllowedTypes}
+						onSelect={({ url, id }) => {
+							return setAttributes({
+								[getAttrKey('imageUrl', attributes, manifest)]: url,
+								[getAttrKey('imageId', attributes, manifest)]: id,
+							});
+						}}
+					/>
+				</Control>
+			</UseToggle>
 		);
 	}
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
-			{!noImagePicker &&
+			{!hideImagePicker &&
 				<Responsive label={__('Image', 'eightshift-frontend-libs')} icon={icons.image}>
 					{getDefaultBreakpointNames().map((breakpointName, index) => {
 						let point = ucfirst(breakpointName);
@@ -66,52 +66,38 @@ export const ImageOptions = (attributes) => {
 						const urlAttr = getAttrKey(`imageUrl${point}`, attributes, manifest);
 						const idAttr = getAttrKey(`imageId${point}`, attributes, manifest);
 
-						if (!_.isEmpty(imageUrl[breakpointName])) {
-							return (
-								<div className='es-h-center es-items-end! es-gap-0!' key={breakpointName}>
-									<img
-										alt={imageAlt}
-										src={imageUrl[breakpointName]}
-										className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
-									/>
-
-									<Button
-										key={index}
-										icon={icons.trashAlt}
-										label={__('Remove image', 'eightshift-frontend-libs')}
-										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
-										onClick={() => setAttributes({
-											[urlAttr]: undefined,
-											[idAttr]: undefined,
-										})}
-										showTooltip
-									/>
-								</div>
-							);
-						}
-
 						return (
-							<MediaPlaceholder
-								key={breakpointName}
-								labels={{
-									title: __('Add an image', 'eightshift-frontend-libs'),
-									instructions: __('Upload an image or choose one from the Media library'),
-								}}
-								icon={icons.plusCircleFillAlt}
-								accept={imageAccept}
-								allowedTypes={imageAllowedTypes}
-								onSelect={(value) => setAttributes({
-									[urlAttr]: value.url,
-									[idAttr]: value.id,
-								})}
-							/>
+							<div className='es-h-center es-items-end! es-gap-0!' key={breakpointName}>
+								<img
+									alt={imageAlt}
+									src={imageUrl[breakpointName]}
+									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+								/>
+
+								<Button
+									key={index}
+									icon={icons.trashAlt}
+									label={__('Remove image', 'eightshift-frontend-libs')}
+									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
+									onClick={() => setAttributes({
+										[urlAttr]: undefined,
+										[idAttr]: undefined,
+									})}
+									showTooltip
+								/>
+							</div>
 						);
 					})}
 				</Responsive>
 			}
 
-			<Section showIf={!noRoundedCornersToggle || !noFullSizeToggle || !additionalControlsDesignLayout} icon={icons.design} label={__('Design & layout', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
-				{!noRoundedCornersToggle &&
+			<Section
+				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || !additionalControlsDesignLayout}
+				icon={icons.design}
+				label={__('Design & layout', 'eightshift-frontend-libs')}
+				additionalClasses='es-h-spaced-wrap'
+			>
+				{!hideRoundedCornersToggle &&
 					<IconToggle
 						icon={icons.roundedCorners}
 						label={__('Rounded corners', 'eightshift-frontend-libs')}
@@ -121,7 +107,7 @@ export const ImageOptions = (attributes) => {
 					/>
 				}
 
-				{!noFullSizeToggle &&
+				{!hideFullSizeToggle &&
 					<IconToggle
 						icon={icons.expandXl}
 						label={__('Fill container', 'eightshift-frontend-libs')}
@@ -136,7 +122,7 @@ export const ImageOptions = (attributes) => {
 
 			{additionalControlsBeforeA11y}
 
-			<Section showIf={!noAltText} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing={!additionalControlsAfterA11y}>
+			<Section showIf={!hideAltText} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing={!additionalControlsAfterA11y}>
 				<TextControl
 					label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
 					value={imageAlt}

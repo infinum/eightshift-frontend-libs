@@ -7,6 +7,7 @@
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: auto auto auto;
 	grid-template-areas: 'images images' 'pagination pagination' 'prev next';
+	overflow-x: hidden;
 
 	gap: 0.5rem;
 

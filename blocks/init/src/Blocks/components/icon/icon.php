@@ -34,9 +34,6 @@ $unique = Components::getUnique();
 ?>
 <i class="<?php echo esc_attr($iconClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
-	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	$manifest['icons'][$iconName];
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $manifest['icons'][$iconName];
 	?>
 </i>

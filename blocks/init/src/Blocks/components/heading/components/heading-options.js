@@ -22,8 +22,17 @@ export const HeadingOptions = (attributes) => {
 	const headingSize = checkAttr('headingSize', attributes, manifest);
 	const headingLevel = checkAttr('headingLevel', attributes, manifest);
 
-	const fontSizes = getOption('headingSize', attributes, manifest);
-	const currentFontSize = fontSizes.find((size) => headingSize.includes(size.value));
+	const [fontSize, fontWeight] = checkAttr('headingSize', attributes, manifest)?.split(':') ?? '';
+
+	const fontSizes = getOption('headingSize', attributes, manifest).reduce((all, { label, value, weights }) => ({
+		...all,
+		[value]: {
+			label: label,
+			value: value,
+			weights: weights,
+			weightOptions: weights.map((weight) => ({ label: ucfirst(weight), value: weight })),
+		},
+	}), {});
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'headingUse')}>
@@ -48,47 +57,42 @@ export const HeadingOptions = (attributes) => {
 
 				{!hideSize &&
 					<Select
-						value={headingSize?.includes('-') ? headingSize.slice(0, headingSize.lastIndexOf('-')) : headingSize}
-						options={fontSizes}
-						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${value}-${fontSizes.find((size) => value.includes(size.value))?.weights?.[0] ?? 'bold'}` })}
+						value={fontSize}
+						options={Object.values(fontSizes)}
+						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
 						additionalSelectClasses='es-w-16'
 						placeholder={__('Size', 'eightshift-frontend-libs')}
-						isClearable={false}
-						isSearchable={false}
-						simpleValue
 						noBottomSpacing
-						isCompact
+						simpleValue
+						noSearch
 					/>
 				}
 
-				{!hideFontWeight && currentFontSize?.weights?.length > 2 &&
+				{!hideFontWeight && fontSizes[fontSize]?.weightOptions?.length > 2 &&
 					<Select
-						key={headingSize}
-						value={headingSize?.includes('-') ? headingSize.slice(headingSize.lastIndexOf('-') + 1) : headingSize}
-						options={currentFontSize?.weights.map((weight) => ({ label: ucfirst(weight), value: weight }))}
-						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${currentFontSize.value}-${value}` })}
+						value={fontWeight}
+						options={fontSizes[fontSize]?.weightOptions}
+						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${fontSize}:${value}` })}
 						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
 						placeholder={__('Weight', 'eightshift-frontend-libs')}
-						isClearable={false}
-						isSearchable={false}
-						simpleValue
+						disabled={fontSizes[fontSize]?.weights.length < 2}
 						noBottomSpacing
-						isCompact
+						simpleValue
+						noSearch
 					/>
 				}
 
-				{!hideFontWeight && currentFontSize?.weights?.length <= 2 &&
+				{!hideFontWeight && fontSizes[fontSize]?.weightOptions?.length <= 2 &&
 					<Button
 						isPressed={headingSize.includes('bold')}
 						icon={icons.bold}
 						className='es-button-icon-24 es-is-v2-gutenberg-input-matched-button'
 						onClick={() => {
-							const currentWeight = headingSize?.includes('-') ? headingSize.slice(headingSize.lastIndexOf('-') + 1) : headingSize;
-							const otherWeight = currentFontSize.weights.find((w) => w !== currentWeight);
+							const otherWeight = fontSizes[fontSize]?.weightOptions.map((w) => w.value).find((w) => w !== fontWeight);
 
-							setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${currentFontSize.value}-${otherWeight}` });
+							setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${fontSize}:${otherWeight}` });
 						}}
-						disabled={currentFontSize?.weights?.length < 2}
+						disabled={fontSizes[fontSize]?.weightOptions?.length < 2}
 					/>
 				}
 			</Section>

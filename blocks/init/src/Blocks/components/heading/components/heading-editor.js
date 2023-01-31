@@ -14,9 +14,11 @@ export const HeadingEditor = (attributes) => {
 
 	const {
 		setAttributes,
-		selectorClass = componentClass,
+
 		blockClass,
 		additionalClass,
+		selectorClass = componentClass,
+
 		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 

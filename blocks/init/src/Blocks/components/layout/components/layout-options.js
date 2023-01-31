@@ -11,8 +11,8 @@ export const LayoutOptions = (attributes) => {
 	const {
 		setAttributes,
 
-		showLayoutType = true,
-		showLayoutTotalItems = true,
+		hideType = false,
+		hideMaxItems = false,
 	} = attributes;
 
 	const layoutType = checkAttr('layoutType', attributes, manifest);
@@ -22,7 +22,7 @@ export const LayoutOptions = (attributes) => {
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'layoutUse')}>
-			{showLayoutType &&
+			{!hideType &&
 				<OptionSelector
 					onChange={(value) => setAttributes({
 						[getAttrKey('layoutType', attributes, manifest)]: value,
@@ -36,7 +36,7 @@ export const LayoutOptions = (attributes) => {
 				/>
 			}
 
-			{showLayoutTotalItems &&
+			{!hideMaxItems &&
 				<NumberPicker
 					{...getOption('layoutTotalItems', attributes, manifest)}
 					label={__('Maximum number of items', 'eightshift-frontend-libs')}

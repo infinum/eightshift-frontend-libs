@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Load More component.
+ * Load more button component.
  *
  * @package EightshiftBoilerplate
  */
@@ -43,21 +43,16 @@ $loadMoreClass = Components::classnames([
 
 <div class="<?php echo esc_attr($loadMoreClass); ?>">
 	<?php
-	echo Components::render(
-		'button',
-		Components::props('button', $attributes, [
-			'blockClass' => $componentClass,
-			'additionalClass' => $componentJsClass,
-			'buttonAttrs' => [
-				'data-load-more-type' => $loadMoreType,
-				'data-load-more-id' => $loadMoreId,
-				'data-load-more-query' => $loadMoreQuery,
-				'data-load-more-initial-items' => $loadMoreInitiaItems,
-				'data-load-more-per-page-override' => $loadMorePerPageOverride,
-			]
-		]),
-		'',
-		true
-	);
+	echo Components::render('button', Components::props('button', $attributes, [
+		'blockClass' => $componentClass,
+		'additionalClass' => $componentJsClass,
+		'buttonAttrs' => [
+			'data-load-more-type' => $loadMoreType,
+			'data-load-more-id' => $loadMoreId,
+			'data-load-more-query' => $loadMoreQuery,
+			'data-load-more-initial-items' => $loadMoreInitiaItems,
+			'data-load-more-per-page-override' => $loadMorePerPageOverride,
+		]
+	]), '', true);
 	?>
 </div>

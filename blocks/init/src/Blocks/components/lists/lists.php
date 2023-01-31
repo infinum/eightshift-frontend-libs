@@ -40,12 +40,11 @@ $listsClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+<<?php echo esc_attr($listsOrdered); ?>
+	class="<?php echo esc_attr($listsClass); ?>"
+	data-id="<?php echo esc_attr($unique); ?>"
+>
 	<?php
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
-
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		$listsContent;
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $listsContent;
 	?>
 </<?php echo esc_attr($listsOrdered); ?>>

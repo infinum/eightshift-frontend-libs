@@ -1,5 +1,9 @@
 .block-carousel-item {
 	--image-img-aspect-ratio: 16 / 9;
-	--image-img-width: 64vw;
-	--image-img-height: auto;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	flex-shrink: 0;
 }

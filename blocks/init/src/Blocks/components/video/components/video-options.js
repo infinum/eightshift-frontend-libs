@@ -2,21 +2,21 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Button, Placeholder, TextControl } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, SimpleRepeater, SimpleRepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, SimpleRepeater, SimpleRepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig, Collapsable } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
 	const {
 		setAttributes,
 
-		showVideoUrl = true,
-		showVideoPoster = true,
-		showVideoLoop = true,
-		showVideoAutoplay = true,
-		showVideoControls = true,
-		showVideoMuted = true,
-		showVideoPreload = true,
-		showVideoCaptions = true,
+		hideVideoPicker = false,
+		hidePosterImagePicker = false,
+		hideLoopToggle = false,
+		hideAutoplayToggle = false,
+		hideVideoControlsToggle = false,
+		hideMuteToggle = false,
+		hidePreloadOptions = false,
+		hideCaptions = false,
 
 		additionalControlsDesignLayout,
 	} = attributes;
@@ -52,7 +52,7 @@ export const VideoOptions = (attributes) => {
 	if (!hasVideo) {
 		return (
 			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'videoUse')}>
-				{!showVideoUrl &&
+				{!hideVideoPicker &&
 					<Placeholder
 						icon={icons.help}
 						label={__('No video... yet', 'eightshift-frontend-libs')}
@@ -61,7 +61,7 @@ export const VideoOptions = (attributes) => {
 					</Placeholder>
 				}
 
-				{showVideoUrl &&
+				{!hideVideoPicker &&
 					<MediaPlaceholder
 						icon={icons.videoFile}
 						onSelect={(value) => setAttributes({
@@ -105,40 +105,97 @@ export const VideoOptions = (attributes) => {
 				}
 			</Control>
 
-			<Section showIf={showVideoLoop || showVideoMuted || showVideoAutoplay} icon={icons.playbackOptions} label={__('Playback options', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
-				{showVideoLoop &&
-					<IconToggle
-						icon={icons.loopMode}
-						label={__('Loop', 'eightshift-frontend-libs')}
-						checked={videoLoop}
-						onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
-						type='tileButton'
-					/>
+			<Section
+				showIf={!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle || !hidePosterImagePicker || !hidePreloadOptions}
+				icon={icons.playbackOptions}
+				label={__('Playback options', 'eightshift-frontend-libs')}
+			>
+				{(!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle) &&
+					<div className='es-h-spaced-wrap es-mb-3'>
+						{!hideLoopToggle &&
+							<IconToggle
+								icon={icons.loopMode}
+								label={__('Loop', 'eightshift-frontend-libs')}
+								checked={videoLoop}
+								onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
+
+						{!hideAutoplayToggle &&
+							<IconToggle
+								icon={icons.autoplayAlt}
+								label={__('Autoplay', 'eightshift-frontend-libs')}
+								checked={videoAutoplay}
+								onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
+
+						{!hideMuteToggle &&
+							<IconToggle
+								icon={icons.muteCentered}
+								label={__('Mute', 'eightshift-frontend-libs')}
+								checked={videoMuted}
+								onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
+					</div>
 				}
 
-				{showVideoAutoplay &&
-					<IconToggle
-						icon={icons.autoplayAlt}
-						label={__('Autoplay', 'eightshift-frontend-libs')}
-						checked={videoAutoplay}
-						onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
-						type='tileButton'
-					/>
-				}
+				<Collapsable label={__('Advanced', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+					{!hidePosterImagePicker &&
+						<Control
+							icon={icons.videoPosterImage}
+							label={__('Poster image', 'eightshift-frontend-libs')}
+							subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')}
+						>
+							{!hasPoster &&
+								<MediaPlaceholder
+									labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
+									icon={icons.imageFile}
+									onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
+									accept={'image/*'}
+									allowedTypes={['image']}
+								/>
+							}
 
-				{showVideoMuted &&
-					<IconToggle
-						icon={icons.muteCentered}
-						label={__('Mute', 'eightshift-frontend-libs')}
-						checked={videoMuted}
-						onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
-						type='tileButton'
-					/>
-				}
+							{hasPoster &&
+								<div className='es-h-center es-items-end! es-gap-0!'>
+									<img
+										alt={__('Video poster image', 'eightshift-frontend-libs')}
+										src={videoPoster}
+										className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+									/>
+
+									<Button
+										icon={icons.trashAlt}
+										label={__('Remove image', 'eightshift-frontend-libs')}
+										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
+										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
+										showTooltip
+									/>
+								</div>
+							}
+						</Control>
+					}
+
+					{!hidePreloadOptions &&
+						<OptionSelector
+							label={<IconLabel icon={icons.preload} label={__('Preload', 'eightshift-frontend-libs')} standalone />}
+							value={videoPreload}
+							options={getOption('videoPreload', attributes, manifest)}
+							alignment='vertical'
+							onChange={(value) => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value })}
+							noBottomSpacing
+						/>
+					}
+				</Collapsable>
 			</Section>
 
-			<Section showIf={showVideoControls || additionalControlsDesignLayout} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
-				{showVideoControls &&
+			<Section showIf={!hideVideoControlsToggle || additionalControlsDesignLayout} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
+				{!hideVideoControlsToggle &&
 					<IconToggle
 						icon={icons.videoControls}
 						label={__('Playback controls', 'eightshift-frontend-libs')}
@@ -151,7 +208,7 @@ export const VideoOptions = (attributes) => {
 				{additionalControlsDesignLayout}
 			</Section>
 
-			<Section showIf={showVideoCaptions} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')}>
+			<Section showIf={!hideCaptions} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing>
 				<SimpleRepeater
 					icon={icons.videoSubtitleAlt}
 					label={__('Captions', 'eightshift-frontend-libs')}
@@ -159,6 +216,7 @@ export const VideoOptions = (attributes) => {
 					items={videoSubtitleTracks}
 					attributeName={getAttrKey('videoSubtitleTracks', attributes, manifest)}
 					setAttributes={setAttributes}
+					noBottomSpacing
 				>
 					{videoSubtitleTracks.map((item, index) => {
 						return (
@@ -255,73 +313,17 @@ export const VideoOptions = (attributes) => {
 						);
 					})}
 				</SimpleRepeater>
-			</Section>
 
-			<Section
-				showIf={showVideoPoster || showVideoPreload}
-				icon={icons.tools}
-				label={__('Advanced', 'eightshift-frontend-libs')}
-				subtitle={__('Poster image, preloading', 'eightshift-frontend-libs')}
-				noBottomSpacing
-				collapsable
-			>
-				{showVideoPoster &&
-					<Control
-						icon={icons.videoPosterImage}
-						label={__('Poster image', 'eightshift-frontend-libs')}
-						subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')}
-					>
-						{!hasPoster &&
-							<MediaPlaceholder
-								labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
-								icon={icons.imageFile}
-								onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
-								accept={'image/*'}
-								allowedTypes={['image']}
-							/>
-						}
-
-						{hasPoster &&
-							<div className='es-h-center es-items-end! es-gap-0!'>
-								<img
-									alt={__('Video poster image', 'eightshift-frontend-libs')}
-									src={videoPoster}
-									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
-								/>
-
-								<Button
-									icon={icons.trashAlt}
-									label={__('Remove image', 'eightshift-frontend-libs')}
-									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
-									onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
-									showTooltip
-								/>
-							</div>
-						}
-					</Control>
-				}
-
-				{showVideoPreload &&
-					<OptionSelector
-						label={<IconLabel icon={icons.preload} label={__('Preload', 'eightshift-frontend-libs')} standalone />}
-						value={videoPreload}
-						options={getOption('videoPreload', attributes, manifest)}
-						alignment='vertical'
-						onChange={(value) => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value })}
+				<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-3'>
+					<Notification
+						type='warning'
+						text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
+						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
+						iconOverride={icons.a11yWarning}
 						noBottomSpacing
 					/>
-				}
+				</AnimatedContentVisibility>
 			</Section>
-
-			<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-5'>
-				<Notification
-					type='warning'
-					text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
-					subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
-					iconOverride={icons.a11y}
-					noBottomSpacing
-				/>
-			</AnimatedContentVisibility>
 		</UseToggle >
 	);
 };

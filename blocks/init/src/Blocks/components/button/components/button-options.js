@@ -16,7 +16,6 @@ export const ButtonOptions = (attributes) => {
 		hideColorPicker = false,
 
 		additionalControls,
-		additionalControlsSplitArea,
 	} = attributes;
 
 	const buttonId = checkAttr('buttonId', attributes, manifest);
@@ -71,8 +70,6 @@ export const ButtonOptions = (attributes) => {
 				/>
 			}
 
-			{additionalControlsSplitArea}
-
 			{additionalControls}
 
 			<IconOptions
@@ -80,6 +77,7 @@ export const ButtonOptions = (attributes) => {
 					options: getOptions(attributes, manifest),
 				})}
 				noExpandButton
+				hideSizePicker
 			/>
 
 			<Section showIf={!hideAriaLabel} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} collapsable reducedBottomSpacing>

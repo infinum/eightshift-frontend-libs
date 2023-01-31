@@ -6,7 +6,7 @@
 	"example": {
 		"attributes": {
 			"cardIntroContent": "This is intro",
-			"cardIntroSize": "xs",
+			"cardIntroSize": "h4:bold",
 			"cardIntroColor": "light",
 			"cardAlign": "left"
 		}
@@ -18,11 +18,11 @@
 		},
 		"cardIntroSize": {
 			"type": "string",
-			"default": "h4-medium"
+			"default": "h6:medium"
 		},
 		"cardHeadingSize": {
 			"type": "string",
-			"default": "h3-bold"
+			"default": "h3:bold"
 		}
 	},
 	"options": {

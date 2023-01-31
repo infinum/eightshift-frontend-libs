@@ -11,9 +11,11 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Heading', 'eightshift-frontend-libs')}>
 			<HeadingOptionsComponent
-				{...props('heading', attributes, {
-					setAttributes,
-				})}
+				{...props('heading', attributes, { setAttributes })}
+				noExpandButton
+				noUseToggle
+				noLabel
+
 				additionalControlsBeforeHeadingLevel={
 					<OptionSelector
 						value={headingAlign}
@@ -22,9 +24,6 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 						iconOnly
 					/>
 				}
-				noExpandButton
-				noUseToggle
-				noLabel
 			/>
 		</PanelBody>
 	);

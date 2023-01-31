@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { PanelBody, BaseControl, __experimentalNumberControl as ExperimentalNumberControl, NumberControl as StableNumberControl } from '@wordpress/components';
-import { icons, checkAttr, getAttrKey, IconLabel, IconToggle, getOption, FancyDivider } from '@eightshift/frontend-libs/scripts';
+import { PanelBody, Button } from '@wordpress/components';
+import { icons, checkAttr, getAttrKey, IconToggle, getOption, Control, NumberPicker, AnimatedContentVisibility, Section } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const CarouselOptions = ({ attributes, setAttributes }) => {
@@ -10,40 +10,31 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 	const carouselShowPrevNext = checkAttr('carouselShowPrevNext', attributes, manifest);
 	const carouselShowPagination = checkAttr('carouselShowPagination', attributes, manifest);
 
-	const NumberControl = ExperimentalNumberControl ?? StableNumberControl;
-
 	return (
 		<PanelBody title={__('Carousel', 'eightshift-frontend-libs')}>
-			<BaseControl
-				label={<IconLabel icon={icons.itemLimit} label={__('Slides on screen', 'eightshift-frontend-libs')} standalone />}
-				className='es-inline-input-label-24'
-				help={carouselShowItems === -1 ? __('Works best when items are all same size', 'eightshift-frontend-libs') : ''}
-			>
-				<div className='es-h-end'>
-					{carouselShowItems !== -1 &&
-						<NumberControl
+			<Control className='es-h-between' icon={icons.itemLimit} label={__('Slides on screen', 'eightshift-frontend-libs')} inlineLabel>
+				<div className='es-h-end' >
+					<AnimatedContentVisibility showIf={carouselShowItems > -1}>
+						<NumberPicker
 							{...getOption('carouselItemsToShow', attributes, manifest)}
 							value={carouselShowItems}
 							onChange={(value) => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: value })}
-							isDragEnabled
-							className='es-w-12 es-flex-shrink-0'
-
+							noBottomSpacing
+							fixedWidth={2}
 						/>
-					}
+					</AnimatedContentVisibility>
 
-					<IconToggle
+					<Button
 						icon={icons.automatic}
 						label={__('Automatic', 'eightshift-frontend-libs')}
-						checked={carouselShowItems === -1}
-						onChange={(value) => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: value ? -1 : 1 })}
-						type='iconButton'
+						isPressed={carouselShowItems === -1}
+						onClick={() => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: carouselShowItems === -1 ? 1 : -1 })}
+						className='es-is-v2-gutenberg-input-matched-button es-button-icon-24 es-button-square-32'
 					/>
 				</div>
-			</BaseControl>
+			</Control>
 
-			<FancyDivider label={<IconLabel icon={icons.options} label={__('Behavior & controls', 'eightshift-frontend-libs')} />} additionalClasses='es-mb-2' />
-
-			<div className='es-h-spaced'>
+			<Section icon={icons.options} label={__('Behavior & controls', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced' noBottomSpacing>
 				<IconToggle
 					icon={icons.loopMode}
 					label={__('Loop', 'eightshift-frontend-libs')}
@@ -67,7 +58,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 					onChange={(value) => setAttributes({ [getAttrKey('carouselShowPagination', attributes, manifest)]: value })}
 					type='tileButton'
 				/>
-			</div>
+			</Section>
 		</PanelBody>
 	);
 };

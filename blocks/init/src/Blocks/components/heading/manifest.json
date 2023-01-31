@@ -7,7 +7,7 @@
 		"attributes": {
 			"headingContent": "This is heading",
 			"headingLevel": 2,
-			"headingSize": "regular",
+			"headingSize": "h2:bold",
 			"headingColor": "black",
 			"headingUse": true
 		}
@@ -22,7 +22,7 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "h2-bold"
+			"default": "h2:bold"
 		},
 		"headingColor": {
 			"type": "string",
@@ -81,7 +81,7 @@
 	},
 	"variables": {
 		"headingSize": {
-			"hero-bold": [
+			"hero:bold": [
 				{
 					"variable": {
 						"heading-font-size": "5rem",
@@ -104,7 +104,7 @@
 					}
 				}
 			],
-			"h1-bold": [
+			"h1:bold": [
 				{
 					"variable": {
 						"heading-font-size": "4.5rem",
@@ -128,7 +128,7 @@
 					}
 				}
 			],
-			"h1-medium": [
+			"h1:medium": [
 				{
 					"variable": {
 						"heading-font-size": "4.5rem",
@@ -153,7 +153,7 @@
 					}
 				}
 			],
-			"h2-bold": [
+			"h2:bold": [
 				{
 					"variable": {
 						"heading-font-size": "4rem",
@@ -177,7 +177,7 @@
 					}
 				}
 			],
-			"h2-medium": [
+			"h2:medium": [
 				{
 					"variable": {
 						"heading-font-size": "4rem",
@@ -201,7 +201,7 @@
 					}
 				}
 			],
-			"h3-bold": [
+			"h3:bold": [
 				{
 					"variable": {
 						"heading-font-size": "3rem",
@@ -225,7 +225,7 @@
 					}
 				}
 			],
-			"h3-medium": [
+			"h3:medium": [
 				{
 					"variable": {
 						"heading-font-size": "3rem",
@@ -249,7 +249,7 @@
 					}
 				}
 			],
-			"h4-bold": [
+			"h4:bold": [
 				{
 					"variable": {
 						"heading-font-size": "2.5rem",
@@ -272,7 +272,7 @@
 					}
 				}
 			],
-			"h4-medium": [
+			"h4:medium": [
 				{
 					"variable": {
 						"heading-font-size": "2.5rem",
@@ -295,7 +295,7 @@
 					}
 				}
 			],
-			"h5-bold": [
+			"h5:bold": [
 				{
 					"variable": {
 						"heading-font-size": "2rem",
@@ -317,7 +317,7 @@
 					}
 				}
 			],
-			"h5-medium": [
+			"h5:medium": [
 				{
 					"variable": {
 						"heading-font-size": "2rem",
@@ -339,7 +339,7 @@
 					}
 				}
 			],
-			"h6-bold": [
+			"h6:bold": [
 				{
 					"variable": {
 						"heading-font-size": "1.5rem",
@@ -361,7 +361,7 @@
 					}
 				}
 			],
-			"h6-medium": [
+			"h6:medium": [
 				{
 					"variable": {
 						"heading-font-size": "1.5rem",

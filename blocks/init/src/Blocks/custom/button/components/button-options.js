@@ -13,7 +13,7 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 			<ButtonOptionsComponent
 				{...props('button', attributes, { setAttributes })}
 
-				additionalControlsSplitArea={
+				additionalControls={
 					<OptionSelector
 						icon={icons.horizontalAlign}
 						label={__('Alignment', 'eightshift-frontend-libs')}

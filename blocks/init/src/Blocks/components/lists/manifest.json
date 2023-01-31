@@ -22,7 +22,7 @@
 		},
 		"listsSize": {
 			"type": "string",
-			"default": "body-regular"
+			"default": "body:regular"
 		},
 		"listsColor": {
 			"type": "string",
@@ -99,7 +99,7 @@
 			]
 		},
 		"listsSize": {
-			"h4-bold": [
+			"h4:bold": [
 				{
 					"variable": {
 						"lists-font-size": "2.5rem",
@@ -122,7 +122,7 @@
 					}
 				}
 			],
-			"h4-medium": [
+			"h4:medium": [
 				{
 					"variable": {
 						"lists-font-size": "2.5rem",
@@ -145,7 +145,7 @@
 					}
 				}
 			],
-			"h5-bold": [
+			"h5:bold": [
 				{
 					"variable": {
 						"lists-font-size": "2rem",
@@ -167,7 +167,7 @@
 					}
 				}
 			],
-			"h5-medium": [
+			"h5:medium": [
 				{
 					"variable": {
 						"lists-font-size": "2rem",
@@ -189,7 +189,7 @@
 					}
 				}
 			],
-			"h6-bold": [
+			"h6:bold": [
 				{
 					"variable": {
 						"lists-font-size": "1.5rem",
@@ -211,7 +211,7 @@
 					}
 				}
 			],
-			"h6-medium": [
+			"h6:medium": [
 				{
 					"variable": {
 						"lists-font-size": "1.5rem",
@@ -233,7 +233,7 @@
 					}
 				}
 			],
-			"body-bold": [
+			"body:bold": [
 				{
 					"variable": {
 						"lists-font-size": "1rem",
@@ -254,7 +254,7 @@
 					}
 				}
 			],
-			"body-medium": [
+			"body:medium": [
 				{
 					"variable": {
 						"lists-font-size": "1rem",
@@ -275,7 +275,7 @@
 					}
 				}
 			],
-			"body-regular": [
+			"body:regular": [
 				{
 					"variable": {
 						"lists-font-size": "1rem",
@@ -296,7 +296,7 @@
 					}
 				}
 			],
-			"caption-bold": [
+			"caption:bold": [
 				{
 					"variable": {
 						"lists-font-size": "0.875rem",
@@ -317,7 +317,7 @@
 					}
 				}
 			],
-			"caption-regular": [
+			"caption:regular": [
 				{
 					"variable": {
 						"lists-font-size": "0.875rem",
@@ -338,7 +338,7 @@
 					}
 				}
 			],
-			"info-text-regular": [
+			"info-text:regular": [
 				{
 					"variable": {
 						"lists-font-size": "0.75rem",

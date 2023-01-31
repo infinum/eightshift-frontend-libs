@@ -45,6 +45,9 @@ $unique = Components::getUnique();
 		class="<?php echo esc_attr("{$componentClass}__wrap"); ?>"
 		data-load-more-id="<?php echo esc_attr($layoutLoadMoreId); ?>"
 	>
-		<?php echo Components::ensureString($layoutItems); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+		<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo Components::ensureString($layoutItems);
+		?>
 	</div>
 </<?php echo esc_attr($layoutTag); ?>>

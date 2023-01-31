@@ -25,7 +25,6 @@ export const JumbotronOptions = (attributes) => {
 					value={jumbotronContentPosition}
 					onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
 					type='inline'
-					reducedBottomSpacing
 				/>
 			}
 
