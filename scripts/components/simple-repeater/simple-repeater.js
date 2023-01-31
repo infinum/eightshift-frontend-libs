@@ -5,6 +5,7 @@ import { icons } from '@eightshift/frontend-libs/scripts';
 import { SortableItem } from './sortable-item';
 import { Control } from '../base-control/base-control';
 import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
+import { classnames } from '../../helpers';
 
 import {
 	DndContext,
@@ -21,7 +22,6 @@ import {
 	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-
 
 /**
  * A simple repeater.
@@ -100,7 +100,7 @@ export const SimpleRepeater = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClasses}
-			additionalLabelClasses={additionalLabelClasses}
+			additionalLabelClasses={classnames(additionalLabelClasses, !items?.length && 'es-mb-0!')}
 			actions={
 				<div className='es-h-spaced es-gap-1!'>
 					{actions}
