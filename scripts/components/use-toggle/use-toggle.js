@@ -89,8 +89,8 @@ export const UseToggle = ({
 			<Control
 				label={label}
 				additionalClasses={additionalClasses}
-				noBottomSpacing={noBottomSpacing}
-				reducedBottomSpacing={reducedBottomSpacing}
+				noBottomSpacing={!isOpen && noBottomSpacing}
+				reducedBottomSpacing={!isOpen && reducedBottomSpacing}
 			>
 				{children}
 			</Control>
@@ -112,8 +112,8 @@ export const UseToggle = ({
 						showTooltip
 					/>
 				}
-				noBottomSpacing={noBottomSpacing}
-				reducedBottomSpacing={reducedBottomSpacing}
+				noBottomSpacing={!isOpen && noBottomSpacing}
+				reducedBottomSpacing={!isOpen && reducedBottomSpacing}
 			>
 				<AnimatedContentVisibility showIf={isOpen}>
 					{children}
@@ -153,8 +153,8 @@ export const UseToggle = ({
 					showTooltip
 				/>
 			}
-			noBottomSpacing={noBottomSpacing}
-			reducedBottomSpacing={reducedBottomSpacing}
+			noBottomSpacing={!isOpen && noBottomSpacing}
+			reducedBottomSpacing={!isOpen && reducedBottomSpacing}
 		>
 			<AnimatedContentVisibility showIf={openCondition}>
 				{children}
