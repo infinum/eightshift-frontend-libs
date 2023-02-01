@@ -57,6 +57,35 @@ export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';
 
+// Deprecations.
+export {
+	ColorPaletteCustom,
+	ColorPaletteCustomLayout,
+	ColorPickerComponent,
+	ColorPickerType,
+	CollapsableComponentUseToggle,
+	CompactResponsive,
+	ComponentUseToggle,
+	CustomSelect,
+	CustomSelectCustomOption,
+	CustomSelectCustomValueDisplay,
+	CustomSelectCustomMultipleValueDisplay,
+	CustomSelectCustomMultipleValueDisplayContainer,
+	CustomSelectCustomMultipleValueRemoveButton,
+	CustomSelectCustomDropdownIndicator,
+	CustomSelectStyle,
+	CustomSlider,
+	CustomRangeSlider,
+	CustomSliderStyle,
+	CustomRangeSliderStyle,
+	InlineNotification,
+	InlineNotificationType,
+	OptionPicker,
+	SimpleHorizontalSingleSelect,
+	SpacingSlider,
+	VisibilityToggleResponsive,
+} from './components/deprecations';
+
 // Editor
 export {
 	icons,
