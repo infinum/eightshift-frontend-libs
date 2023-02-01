@@ -14,11 +14,18 @@
 	],
 	"attributes": {
 		"featuredContentPostType": {
-			"type": "string",
-			"default": "post"
+			"type": "object",
+			"default": {
+				"label": "Post",
+				"value": "post",
+				"api": "posts",
+				"taxonomies": [
+					"category"
+				]
+			}
 		},
 		"featuredContentTaxonomy": {
-			"type": "string"
+			"type": "object"
 		},
 		"featuredContentTerms": {
 			"type": "array"
@@ -53,7 +60,7 @@
 				"label": "Post",
 				"value": "post",
 				"api": "posts",
-				"taxonomy": [
+				"taxonomies": [
 					"category"
 				]
 			},

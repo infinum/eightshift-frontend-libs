@@ -21,10 +21,10 @@ foreach ($items as $item) {
 		'card',
 		Components::props('card', [
 				'cardIntroUse' => true,
-				'cardIntroSize' => 'h6-medium',
+				'cardIntroSize' => 'h6:medium',
 				'cardIntroColor' => 'primary500',
 				'cardIntroContent' => get_the_date('M d', $item),
-				'cardHeadingSize' => 'h3-bold',
+				'cardHeadingSize' => 'h3:bold',
 				'cardHeadingContent' => get_the_title($item),
 				'cardParagraphContent' => get_the_excerpt($item),
 				'cardButtonUrl' => get_the_permalink($item),
