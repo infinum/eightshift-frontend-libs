@@ -11,6 +11,7 @@ import { Button } from '@wordpress/components';
  * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
  * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
  * @param {React.Component?} [props.actions]                                                   - Actions to show to the right of the label.
+ * @param {React.Component?} [props.subtitle]                                                  - Subtitle below the label.
  * @param {any} [props.value]                                                                  - Current value.
  * @param {function} [props.onChange]                                                          - Function that is called on every value change.
  * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
@@ -35,6 +36,7 @@ export const OptionSelector = (props) => {
 		label,
 		inlineLabel,
 		actions,
+		subtitle,
 
 		value,
 		onChange,
@@ -181,6 +183,7 @@ export const OptionSelector = (props) => {
 			help={help}
 			additionalClasses={additionalContainerClass}
 			actions={actions}
+			subtitle={subtitle}
 		>
 			{control}
 		</Control>
