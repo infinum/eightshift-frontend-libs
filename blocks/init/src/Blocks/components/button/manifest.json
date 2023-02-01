@@ -80,18 +80,6 @@
 				"icon": "buttonGhost"
 			}
 		],
-		"buttonWidth": [
-			{
-				"label": "Default",
-				"value": "default",
-				"icon": "checkCircle"
-			},
-			{
-				"label": "Block",
-				"value": "block",
-				"icon": "arrowsHorizontal"
-			}
-		],
 		"buttonColor": [
 			"primary500",
 			"black",
@@ -171,41 +159,6 @@
 						"button-color": "var(--button-ghost-color, var(--global-colors-primary500))",
 						"button-color-hover": "var(--button-ghost-color-hover, var(--global-colors-primary700))",
 						"button-border": "1px solid transparent"
-					}
-				}
-			]
-		},
-		"buttonWidth": {
-			"default": [
-				{
-					"variable": {
-						"button-display": "inline-flex",
-						"button-width": "auto"
-					}
-				}
-			],
-			"block": [
-				{
-					"variable": {
-						"button-display": "flex",
-						"button-width": "100%"
-					}
-				}
-			]
-		},
-		"buttonIsLink": {
-			"true": [
-				{
-					"variable": {
-						"button-border-radius": "0",
-						"button-background-color": "transparent",
-						"button-background-color-hover": "transparent",
-						"button-padding-horizontal": "0",
-						"button-padding-vertical": "0",
-						"button-color": "var(--button-color-is-link)",
-						"button-color-hover": "var(--button-color-is-link-hover)",
-						"button-display": "inline-flex",
-						"button-width": "auto"
 					}
 				}
 			]
