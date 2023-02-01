@@ -24,15 +24,11 @@
 		}
 	},
 	"attributes": {
-		"featuredCategoriesQuery": {
-			"type": "object",
-			"default": {
-				"taxonomy": "category",
-				"terms": []
-			},
-			"items": {
-				"type": "object"
-			}
+		"featuredCategoriesTaxonomy": {
+			"type": "object"
+		},
+		"featuredCategoriesManualTerms": {
+			"type": "array"
 		},
 		"featuredCategoriesItemsPerLine": {
 			"type": "integer",
@@ -49,7 +45,11 @@
 	},
 	"allowed": {
 		"taxonomies": [
-			"category"
+			{
+				"label": "Category",
+				"value": "category",
+				"restName": "categories"
+			}
 		]
 	},
 	"options": {

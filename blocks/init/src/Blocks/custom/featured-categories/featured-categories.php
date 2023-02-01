@@ -15,11 +15,13 @@ $blockClass = $attributes['blockClass'] ?? '';
 
 $unique = Components::getUnique();
 
-$featuredCategoriesQuery = Components::checkAttr('featuredCategoriesQuery', $attributes, $manifest);
+$featuredCategoriesTaxonomy = Components::checkAttr('featuredCategoriesTaxonomy', $attributes, $manifest);
+$featuredCategoriesManualTerms = Components::checkAttr('featuredCategoriesManualTerms', $attributes, $manifest);
+
 $featuredCategoriesItemsPerLine = Components::checkAttr('featuredCategoriesItemsPerLine', $attributes, $manifest);
 $featuredCategoriesServerSideRender = Components::checkAttr('featuredCategoriesServerSideRender', $attributes, $manifest);
 
-$taxonomyName = $featuredCategoriesQuery['taxonomy'] ?? '';
+$taxonomyName = $featuredCategoriesTaxonomy['value'];
 
 if (!$taxonomyName) {
 	return;
@@ -31,9 +33,7 @@ if (!$taxonomyName) {
 	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
-
-	$terms = $featuredCategoriesQuery['terms'] ?? [];
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
 	$args = [
 		'hide_empty' => false,
@@ -43,7 +43,7 @@ if (!$taxonomyName) {
 			function ($item) {
 				return $item['value'];
 			},
-			(array)$terms
+			$featuredCategoriesManualTerms
 		),
 	];
 
@@ -61,9 +61,11 @@ if (!$taxonomyName) {
 			'paragraphContent' => is_object($termObject) ? $termObject->description : '', // @phpstan-ignore-line
 			'paragraphUse' => is_object($termObject),
 			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
+			'buttonIconUse' => false,
+			'buttonVariant' => 'outline',
 			'buttonUrl' => get_term_link($termObject),
 			'buttonColor' => 'primary',
-			'headingSize' => 'm',
+			'headingSize' => 'h5:medium',
 		];
 
 		if ($featuredCategoriesServerSideRender) {
@@ -73,7 +75,7 @@ if (!$taxonomyName) {
 		?>
 
 		<li class="<?php echo esc_attr("{$blockClass}__item"); ?>">
-			<?php echo Components::render('card', $cardProps); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo Components::render('card', $cardProps); ?>
 		</li>
 	<?php } ?>
 </ul>
