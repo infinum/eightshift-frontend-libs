@@ -129,7 +129,7 @@ export const SimpleHorizontalSingleSelect = () => <></>;
 export const SpacingSlider = () => <></>;
 
 /**
- * @deprecated since 8.0.0 - Use `ResponsiveToggleButton` with `generateResponsiveToggleButtonConfig` helper instead.
+ * @deprecated since 8.0.0 - Removed, use `ResponsiveToggleButton` with `generateResponsiveToggleButtonConfig` helper instead.
  * Some of the props may have been renamed and/or changed, make sure to check everything!
  */
 export const VisibilityToggleResponsive = () => <></>;

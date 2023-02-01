@@ -20,7 +20,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {boolean} [props.noShadeGrouping=false]                      - If `false`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900).
  * @param {boolean} [props.disabled=false]                             - If `true`, control is disabled.
  * @param {boolean} [props.searchable=false]                           - If `true`, the list of color can be searched through.
- * @param {boolean} [props.canReset=true]                              - If `true`, a clear/reset button is shown.
+ * @param {boolean} [props.canReset=false]                              - If `true`, a clear/reset button is shown.
  * @param {ColorPaletteLayout} [props.colorPaletteLayout='listTwoCol'] - If provided, sets the layout of the popup color list.
  * @param {React.Component?} [props.icon]                              - Icon to show next to the label
  * @param {React.Component?} [props.label]                             - Label to represent the control
