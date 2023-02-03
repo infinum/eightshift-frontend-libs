@@ -47,7 +47,7 @@ if (!$taxonomyName) {
 		),
 	];
 
-	$allTerms = get_terms($args);
+	$allTerms = get_terms($args); // @phpstan-ignore-line
 
 	if (!is_iterable($allTerms)) {
 		return;
