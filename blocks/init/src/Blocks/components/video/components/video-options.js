@@ -2,7 +2,7 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Button, Placeholder, TextControl } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, SimpleRepeater, SimpleRepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig, Collapsable } from '@eightshift/frontend-libs/scripts';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, Repeater, RepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig, Collapsable } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
@@ -209,7 +209,7 @@ export const VideoOptions = (attributes) => {
 			</Section>
 
 			<Section showIf={!hideCaptions} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing>
-				<SimpleRepeater
+				<Repeater
 					icon={icons.videoSubtitleAlt}
 					label={__('Captions', 'eightshift-frontend-libs')}
 
@@ -220,7 +220,7 @@ export const VideoOptions = (attributes) => {
 				>
 					{videoSubtitleTracks.map((item, index) => {
 						return (
-							<SimpleRepeaterItem
+							<RepeaterItem
 								key={item.id}
 								icon={getTrackIcon(item?.kind)}
 								title={item?.label ? sprintf(__('Track %d', 'eightshift-frontend-libs'), index + 1) : <i>{__('New track', 'eightshift-frontend-libs')}</i>}
@@ -309,10 +309,10 @@ export const VideoOptions = (attributes) => {
 										</Button>
 									</>
 								}
-							</SimpleRepeaterItem>
+							</RepeaterItem>
 						);
 					})}
-				</SimpleRepeater>
+				</Repeater>
 
 				<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-3'>
 					<Notification
