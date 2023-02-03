@@ -26,14 +26,14 @@ import {
 /**
  * A simple repeater.
  *
- * @param {object} props                             - SimpleRepeater options.
+ * @param {object} props                             - Repeater options.
  * @param {React.Component?} [props.icon]            - Icon to display above the repeater.
  * @param {React.Component?|string} props.label      - Label to display above the repeater.
  * @param {React.Component?|string} [props.subtitle] - Subtitle to display under the title.
  * @param {array} props.items                        - Array of items to display.
  * @param {string} props.attributeName               - Name of the attribute for items.
  * @param {function} props.setAttributes             - The `setAttributes` callback from component/block attributes.
- * @param {array<SimpleRepeaterItem>} props.children - Child items, mapped from `items`. Contains all the option for child items.
+ * @param {array<RepeaterItem>} props.children - Child items, mapped from `items`. Contains all the option for child items.
  * @param {boolean} [props.noReordering=false]       - If `true`, the items can't be reordered.
  * @param {boolean} [props.noBottomSpacing]          - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]    - If `true`, space below the control is reduced.
@@ -42,7 +42,7 @@ import {
  * @param {string?} [props.additionalClasses]        - Classes to add to the control base.
  * @param {string?} [props.additionalLabelClasses]   - Classes to add to the control label.
  */
-export const SimpleRepeater = (props) => {
+export const Repeater = (props) => {
 	const {
 		icon,
 		label,

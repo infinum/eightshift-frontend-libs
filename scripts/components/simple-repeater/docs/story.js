@@ -2,10 +2,10 @@ import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
 import { TextControl } from '@wordpress/components';
-import { SimpleRepeater, SimpleRepeaterItem, icons } from '@eightshift/frontend-libs/scripts';
+import { Repeater, RepeaterItem, icons } from '@eightshift/frontend-libs/scripts';
 
 export default {
-	title: 'Options/SimpleRepeater',
+	title: 'Options/Repeater',
 	parameters: {
 		docs: {
 			page: readme
@@ -36,7 +36,7 @@ export const basicComponent = () => {
 
 	return (
 		<div className='es-max-w-84'>
-			<SimpleRepeater
+			<Repeater
 			icon={icons.videoSubtitleAlt}
 			label='Captions'
 			items={attributes.videoCaptions}
@@ -44,7 +44,7 @@ export const basicComponent = () => {
 			setAttributes={setAttributes}
 		>
 			{attributes.videoCaptions.map((item, i) => (
-				<SimpleRepeaterItem
+				<RepeaterItem
 					key={i}
 					icon={item?.icon ?? icons.experiment}
 					title={item.title}
@@ -58,9 +58,9 @@ export const basicComponent = () => {
 							setAttributes({videoCaptions: newArray}); // You would use getAttributeKey here.
 						}}
 					/>
-				</SimpleRepeaterItem>
+				</RepeaterItem>
 			))}
-		</SimpleRepeater>
+		</Repeater>
 		</div>
 	);
 };
