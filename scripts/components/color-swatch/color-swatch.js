@@ -19,7 +19,7 @@ export const ColorSwatch = (props) => {
 	if (!color || color?.length < 1) {
 		return (
 			<div
-				className='es-w-6 es-h-6 es-border-cool-gray-450 es-rounded-1 es-bg-pure-white'
+				className='es-position-relative es-w-6 es-h-6 es-border-cool-gray-450 es-rounded-1 es-bg-pure-white'
 				style={{
 					backgroundImage: 'repeating-linear-gradient(-45deg, var(--es-admin-cool-gray-450), var(--es-admin-cool-gray-450) 1px, #ffffff 1px, #ffffff 15px)',
 					boxShadow: 'inset 0 0 0 2px var(--es-admin-pure-white)',
@@ -50,20 +50,18 @@ export const ColorSwatch = (props) => {
 
 	const activeIndicator = (
 		<div
-			className={classnames('es-h-3.5 es-w-3.5 es-h-center es-rounded-full es-bg-pure-white es-transition', hasInvertedIndicator || color === 'transparent' ? 'es-bg-cool-gray-900' : 'es-bg-pure-white es-shadow-inner')}
+			className={classnames('es-w-3.5 es-h-3.5 es-rounded-full es-transition es-border-w-2px', hasInvertedIndicator || color === 'transparent' ? 'es-border-pure-black' : 'es-border-pure-white')}
 			style={{
 				opacity: selected ? 1 : 0,
 				transform: selected ? 'scale(1)' : 'scale(0.75)',
 			}}
-		>
-			<div className={classnames('es-h-1.75 es-w-1.75 es-rounded-full', hasInvertedIndicator || color === 'transparent' ? 'es-bg-pure-white es-shadow-inner' : 'es-bg-cool-gray-900')}></div>
-		</div>
+		></div>
 	);
 
 	if (color === 'transparent') {
 		return (
 			<div
-				className={classnames('es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition', selected ? 'es-rounded-10' : 'es-rounded-1')}
+				className={classnames('es-position-relative es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition', selected ? 'es-rounded-10' : 'es-rounded-1')}
 				style={{
 					'--es-transition-property': 'border-radius',
 					'--es-transition-duration': selected ? '1s' : '0.6s',
@@ -80,7 +78,7 @@ export const ColorSwatch = (props) => {
 
 	return (
 		<div
-			className={classnames('es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition', selected ? 'es-rounded-10' : 'es-rounded-1')}
+			className={classnames('es-position-relative es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition', selected ? 'es-rounded-10' : 'es-rounded-1')}
 			style={{
 				'--es-transition-property': 'border-radius',
 				'--es-transition-duration': selected ? '1s' : '0.6s',
