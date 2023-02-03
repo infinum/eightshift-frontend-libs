@@ -18,7 +18,7 @@ import { Button } from '@wordpress/components';
  * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
  * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
  * @param {'none'|'offset'} [props.border='offset']                                            - Sets the appearance of a border around the buttons.
- * @param {boolean} [props.allowWrap=true]                                                     - If `true` and there is more options then can fit, the buttons will wrap to the row below.
+ * @param {boolean} [props.noWrap=false]                                                       - If `false` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {'default'|'stretch'|'left'|'center'|'right'|'vertical'} [props.alignment='default'] - If `true` and there is more options then can fit, the buttons will wrap to the row below.
  * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
@@ -47,7 +47,7 @@ export const OptionSelector = (props) => {
 		optionLabels,
 
 		border = 'offset',
-		allowWrap = true,
+		noWrap = false,
 		alignment = 'default',
 
 		iconOnly = false,
@@ -91,7 +91,7 @@ export const OptionSelector = (props) => {
 			className={classnames(
 				'es-option-selector es-display-flex es-gap-px es-has-v2-gutenberg-button-active-state-inside es-max-w-full',
 				!label && !help && additionalClass,
-				allowWrap ? 'es-flex-wrap' : 'es-flex-nowrap',
+				noWrap ? 'es-flex-nowrap' : 'es-flex-wrap',
 				border === 'offset' && 'es-border-cool-gray-400 es-p-0.5 es-rounded-1.25',
 				getSpacingConfig(alignment),
 			)}
