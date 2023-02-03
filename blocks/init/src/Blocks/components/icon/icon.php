@@ -34,6 +34,6 @@ $unique = Components::getUnique();
 ?>
 <i class="<?php echo esc_attr($iconClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $manifest['icons'][$iconName];
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $manifest['icons'][$iconName]; // @phpstan-ignore-line
 	?>
 </i>

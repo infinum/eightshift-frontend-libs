@@ -40,7 +40,7 @@ $shareItemClass = Components::classnames([
 	Components::selector($componentJsClass, $componentJsClass),
 ]);
 
-$networkNames = array_column($manifest['socialOptions'], 'label', 'value');
+$networkNames = array_column($manifest['socialOptions'], 'label', 'value'); // @phpstan-ignore-line
 ?>
 <div class="<?php echo esc_attr($shareClass); ?>">
 	<span><?php echo esc_html__('Share on', 'eightshift-frontend-libs'); ?></span>

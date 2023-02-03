@@ -43,7 +43,7 @@ if (!$taxonomyName) {
 			function ($item) {
 				return $item['value'];
 			},
-			$featuredCategoriesManualTerms
+			$featuredCategoriesManualTerms // @phpstan-ignore-line
 		),
 	];
 

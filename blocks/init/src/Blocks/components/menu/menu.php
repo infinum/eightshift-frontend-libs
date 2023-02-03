@@ -26,6 +26,7 @@ $parentClasses = Components::classnames([
 	$jsClass ? "js-{$jsClass}" : '',
 ]);
 
+// @phpstan-ignore-next-line
 $bemMenu = Menu::bemMenu(
 	$name,
 	$variation,

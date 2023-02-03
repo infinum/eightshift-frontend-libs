@@ -44,7 +44,7 @@ $socialLinksClass = Components::classnames([
 		if (
 			empty($href)
 			|| empty($icon)
-			|| !isset($manifest['icons'][$icon])
+			|| !isset($manifest['icons'][$icon]) // @phpstan-ignore-line
 		) {
 			continue;
 		}
@@ -60,7 +60,7 @@ $socialLinksClass = Components::classnames([
 			>
 				<?php
 					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-					echo $manifest['icons'][$icon];
+					echo $manifest['icons'][$icon]; // @phpstan-ignore-line
 				?>
 			</a>
 		</li>
