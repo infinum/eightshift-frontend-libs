@@ -77,7 +77,7 @@ export const NumberPicker = (props) => {
 					max={max}
 					step={step}
 					value={value}
-					onChange={onChange}
+					onChange={(value) => onChange(parseFloat(value))}
 					disabled={disabled}
 					isDragEnabled={!noDragToChange}
 					dragThreshold='20'
