@@ -184,6 +184,7 @@ export const OptionSelector = (props) => {
 			additionalClasses={additionalContainerClass}
 			actions={actions}
 			subtitle={subtitle}
+			additionalLabelClasses={classnames(!inlineLabel && 'es-mb-1!')}
 		>
 			{control}
 		</Control>
