@@ -210,25 +210,26 @@ export const LinkEditComponent = ({
 				/>
 			</AnimatedContentVisibility>
 
-			{(!hideOpensInNewTab || additionalOptionTiles) && hasUrl && !disabled &&
+			{hasUrl && additionalOptionTiles && !disabled &&
 				<div className='es-h-spaced-wrap'>
+					{additionalOptionTiles}
+				</div>
+			}
+
+			{hasUrl && (additionalOptions || !hideOpensInNewTab) && !disabled &&
+				<div className='es-v-spaced'>
 					{!hideOpensInNewTab &&
 						<IconToggle
 							icon={icons.newTab}
 							label={__('Open in new tab', 'eightshift-frontend-libs')}
 							checked={opensInNewTab}
 							onChange={(value) => onChange({ url: url, newTab: value, isAnchor: isAnchor })}
-							type='tileButton'
 							disabled={isEditing}
+							noBottomSpacing={!additionalOptions}
+							additionalClasses='es-mt-1'
 						/>
 					}
 
-					{additionalOptionTiles}
-				</div>
-			}
-
-			{hasUrl && additionalOptions && !disabled &&
-				<div className='es-v-start'>
 					{additionalOptions}
 				</div>
 			}
