@@ -66,6 +66,27 @@ export const ImageOptions = (attributes) => {
 						const urlAttr = getAttrKey(`imageUrl${point}`, attributes, manifest);
 						const idAttr = getAttrKey(`imageId${point}`, attributes, manifest);
 
+						if (!imageUrl[breakpointName]?.length) {
+							return (
+								<MediaPlaceholder
+									key={breakpointName}
+									labels={{
+										title: __('Add an image', 'eightshift-frontend-libs'),
+										instructions: __('Upload an image or choose one from the Media library'),
+									}}
+									icon={icons.plusCircleFillAlt}
+									accept={imageAccept}
+									allowedTypes={imageAllowedTypes}
+									onSelect={({ url, id }) => {
+										return setAttributes({
+											[urlAttr]: url,
+											[idAttr]: id,
+										});
+									}}
+								/>
+							);
+						}
+
 						return (
 							<div className='es-h-center es-items-end! es-gap-0!' key={breakpointName}>
 								<img
