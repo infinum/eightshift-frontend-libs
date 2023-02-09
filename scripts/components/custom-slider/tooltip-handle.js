@@ -116,7 +116,7 @@ const HandleTooltip = (props) => {
 			placement={placement}
 			showArrow={false}
 			overlay={tipFormatter(value)}
-			overlayInnerStyle={{ minHeight: 'auto' }}
+			overlayInnerStyle={{ minHeight: 'auto', minWidth: 'max-content' }}
 			overlayClassName='es-pt-0! es-pb-1.5! es-px-0! es-font-weight-600 es-opacity-100! es-custom-slider__tooltip'
 			ref={tooltipRef}
 			visible={visible}
