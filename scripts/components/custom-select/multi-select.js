@@ -18,6 +18,7 @@ import { Control } from '../base-control/base-control';
  * @param {React.Component?} [props.icon]                    - Icon to show next to the label
  * @param {React.Component?} [props.subtitle]                - Subtitle below the label.
  * @param {React.Component?} [props.actions]                 - Actions to show to the right of the label.
+ * @param {boolean?} [props.inlineLabel]                     - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
  * @param {array<{string, string}>?} props.options           - Options to choose from. Option should be in `{label: '', value: ''}` format.
  * @param {object} props.value                               - Current value
  * @param {function} props.onChange                          - Function called when the selection is changed.
@@ -46,6 +47,7 @@ export const MultiSelect = (props) => {
 		icon,
 		subtitle,
 		actions,
+		inlineLabel,
 
 		options,
 		value,
@@ -89,6 +91,7 @@ export const MultiSelect = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			help={help}
+			inlineLabel={inlineLabel}
 		>
 			<DndContext modifiers={[restrictToParentElement]} onDragEnd={getDragEndHandler(onChange, value)}>
 				<SortableContext items={value.map(({ id }) => id)}>

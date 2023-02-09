@@ -14,6 +14,7 @@ import { Control } from '../base-control/base-control';
  * @param {React.Component?} [props.icon]                              - Icon to show next to the label
  * @param {React.Component?} [props.subtitle]                          - Subtitle below the label.
  * @param {React.Component?} [props.actions]                           - Actions to show to the right of the label.
+ * @param {boolean?} [props.inlineLabel]                               - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
  * @param {boolean|array<{string,string}>} [props.preloadOptions=true] - If `true`, the initial loading is done as soon as the component is loaded. If an array of `{label: '', value: ''}` option is provided, that is loaded immediately, dynamic fetching only happens in search. If `false`, nothing is loaded immediately, until you type to search.
  * @param {callback<Promise<>>?} props.loadOptions                     - An async callback that fetches an array of `{label: '', value: ''}`-formatted items.
  * @param {object} props.value                                         - Current value
@@ -42,6 +43,7 @@ export const AsyncSelect = (props) => {
 		icon,
 		subtitle,
 		actions,
+		inlineLabel,
 
 		preloadOptions = true,
 		loadOptions,
@@ -89,6 +91,7 @@ export const AsyncSelect = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			help={help}
+			inlineLabel={inlineLabel}
 		>
 			<RSAsyncSelect
 				loadOptions={customLoadOptions}
