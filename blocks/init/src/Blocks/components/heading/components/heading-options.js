@@ -114,7 +114,7 @@ export const HeadingOptions = (attributes) => {
 					onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
 					additionalButtonClass='es-button-square-36 es-text-4 es-font-weight-300'
 					additionalContainerClass='es-max-w-29!'
-					noBottomSpacing
+					noBottomSpacing={!additionalControls}
 				/>
 			}
 
