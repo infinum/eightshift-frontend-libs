@@ -31,8 +31,8 @@ export const ListsOptions = (attributes) => {
 	}), {});
 
 	return (
-		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'listsUse')}>
-				<Section showIf={!hideColor || !hideSize || !hideWeight} additionalClasses='es-h-spaced'>
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'listsUse')} noBottomSpacing={hideTypePicker && !additionalControls}>
+			<Section showIf={!hideColor || !hideSize || !hideWeight} additionalClasses='es-h-spaced'>
 				{!hideColor &&
 					<ColorPicker
 						colors={getOption('listsColor', attributes, manifest, true)}
