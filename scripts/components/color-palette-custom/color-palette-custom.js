@@ -20,10 +20,16 @@ import { ColorSwatch } from '../color-swatch/color-swatch';
  * @param {boolean} [props.clearable=false]           - If `true`, the color palette will have a *Clear* button.
  * @param {string?} [props.label]                     - Label displayed above the picker.
  * @param {string?} [props.help]                      - Help text displayed below the picker.
+ * @param {React.Component?} [props.icon]             - Icon to show next to the label
+ * @param {boolean?} [props.noBottomSpacing]          - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]     - If `true`, space below the control is reduced.
+ * @param {boolean?} [props.inlineLabel]              - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
  * @param {ColorPaletteLayout} [props.layout='tiles'] - Determines the layout of the control.
  * @param {boolean} [props.searchable=false]          - If `true`, the list of color can be searched through.
  * @param {boolean} [props.disabled]                  - If `true`, the component can't be interacted with.
  * @param {boolean} [props.noShadeGrouping=false]     - If `false`, color swatches will be grouped if there are 2 or more colors with the same beginning of the name, but different ending (-50, -100, ..., -900 or -10, -20, ..., -90).
+ * @param {React.Component?} [props.subtitle]         - Subtitle below the label.
+ * @param {React.Component?} [props.actions]          - Actions to show to the right of the label.
  */
 export const ColorPalette = (props) => {
 	const {
@@ -34,7 +40,9 @@ export const ColorPalette = (props) => {
 		label,
 		help,
 		icon,
+		reducedBottomSpacing,
 		noBottomSpacing,
+		inlineLabel,
 		layout = 'tiles',
 		searchable = false,
 		disabled,
@@ -110,9 +118,11 @@ export const ColorPalette = (props) => {
 			icon={icon}
 			label={label}
 			help={help}
-			noBottomSpacing={noBottomSpacing}
 			subtitle={subtitle}
 			actions={actions}
+			reducedBottomSpacing={reducedBottomSpacing}
+			noBottomSpacing={noBottomSpacing}
+			inlineLabel={inlineLabel}
 		>
 			{searchable &&
 				<TextControl
