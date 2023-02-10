@@ -196,7 +196,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						}
 					}}
 					additionalButtonClass='es-v-spaced es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.75!'
-					noBottomSpacing={!wrapperUse && !wrapperSimple}
+					noBottomSpacing={getWrapperUseOptionName() === 'off'}
 					alignment='center'
 				/>
 			}
