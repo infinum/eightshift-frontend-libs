@@ -25,6 +25,8 @@ import { classnames } from '../../helpers';
  * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]     - If passed, the classes are appended to the base control.
  * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `NumberPicker`.
+ * @param {function} [props.modifyInput]          - If passed, the input to the `NumberPicker` is modified with this function.
+ * @param {function} [props.modifyOutput]         - If passed, the output from the `NumberPicker` is modified with this function.
  */
 export const ResponsiveNumberPicker = (props) => {
 	const {
@@ -53,6 +55,9 @@ export const ResponsiveNumberPicker = (props) => {
 		additionalClasses,
 
 		additionalProps = {},
+
+		modifyInput,
+		modifyOutput,
 	} = props;
 
 	const breakpointNames = Object.keys(value);
@@ -78,7 +83,8 @@ export const ResponsiveNumberPicker = (props) => {
 				const currentValue = rawValues[breakpoint];
 				const isInherited = inheritCheck(currentValue);
 
-				const defaultValue = stringValues ? `${min}` : min;
+				const rawDefaultValue = stringValues ? `${min}` : min;
+				const defaultValue = modifyInput ? modifyInput(rawDefaultValue) : rawDefaultValue;
 
 				return {
 					callback: () => {
@@ -117,11 +123,12 @@ export const ResponsiveNumberPicker = (props) => {
 				return (
 					<div className='es-h-spaced' key={index}>
 						<NumberPicker
-							value={parsedValue}
+							value={modifyInput ? modifyInput(parsedValue) : parsedValue}
 							onChange={(currentValue) => {
+								const newValue = stringValues ? `${currentValue}` : currentValue;
 								onChange({
 									...value,
-									[breakpoint]: stringValues ? `${currentValue}` : currentValue,
+									[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
 								});
 							}}
 							noBottomSpacing
@@ -136,12 +143,13 @@ export const ResponsiveNumberPicker = (props) => {
 							<Button
 								icon={resetButton === 0 ? icons.resetToZero : icons.reset}
 								onClick={() => {
+									const newValue = stringValues ? `${resetButton}` : resetButton;
 									onChange({
 										...value,
-										[breakpoint]: stringValues ? `${resetButton}` : resetButton,
+										[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
 									});
 								}}
-								disabled={parsedValue === resetButton || isInherited}
+								disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
 								className={classnames('es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!', (parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!')}
 								label={__('Reset', 'eightshift-frontend-libs')}
 								showTooltip
