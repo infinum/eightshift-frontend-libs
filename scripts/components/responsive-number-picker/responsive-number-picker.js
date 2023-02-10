@@ -27,6 +27,7 @@ import { classnames } from '../../helpers';
  * @param {Object} [props.additionalProps]        - If passed, the provided props are passed to the `NumberPicker`.
  * @param {function} [props.modifyInput]          - If passed, the input to the `NumberPicker` is modified with this function.
  * @param {function} [props.modifyOutput]         - If passed, the output from the `NumberPicker` is modified with this function.
+ * @param {Number} [props.responsiveDefaultValue] - If passed, instead of using `min` this value is set when un-inheriting a breakpoint value.
  */
 export const ResponsiveNumberPicker = (props) => {
 	const {
@@ -58,6 +59,8 @@ export const ResponsiveNumberPicker = (props) => {
 
 		modifyInput,
 		modifyOutput,
+
+		responsiveDefaultValue = min,
 	} = props;
 
 	const breakpointNames = Object.keys(value);
@@ -83,7 +86,7 @@ export const ResponsiveNumberPicker = (props) => {
 				const currentValue = rawValues[breakpoint];
 				const isInherited = inheritCheck(currentValue);
 
-				const rawDefaultValue = stringValues ? `${min}` : min;
+				const rawDefaultValue = stringValues ? `${responsiveDefaultValue}` : responsiveDefaultValue;
 				const defaultValue = modifyInput ? modifyInput(rawDefaultValue) : rawDefaultValue;
 
 				return {
