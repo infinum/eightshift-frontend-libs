@@ -100,7 +100,7 @@ export const Repeater = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClasses}
-			additionalLabelClasses={classnames(additionalLabelClasses, !items?.length && 'es-mb-0!')}
+			additionalLabelClasses={classnames(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
 			actions={
 				<div className='es-h-spaced es-gap-1!'>
 					{actions}
