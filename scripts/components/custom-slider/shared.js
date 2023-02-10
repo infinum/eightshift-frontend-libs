@@ -80,7 +80,7 @@ export const styleProps = (props, sliderHeight, isRange = false) => {
 			return dotStyle;
 		}
 
-		if (value === parseInt(startPoint)) {
+		if (value === parseFloat(startPoint)) {
 			return activeStyle;
 		}
 

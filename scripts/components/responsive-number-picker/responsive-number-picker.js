@@ -112,7 +112,7 @@ export const ResponsiveNumberPicker = (props) => {
 
 				const nearestValid = getNearest();
 
-				const parsedValue = parseInt(inheritCheck(currentValue) ? nearestValid : currentValue);
+				const parsedValue = parseFloat(inheritCheck(currentValue) ? nearestValid : currentValue);
 
 				return (
 					<div className='es-h-spaced' key={index}>
