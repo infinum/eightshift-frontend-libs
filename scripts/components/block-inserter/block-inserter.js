@@ -10,11 +10,12 @@ import { classnames } from '../../helpers';
  *
  * A replacement for the default Gutenberg inserter, whose styling can vary between WP versions.
  *
- * @param {object} props                               - BlockInserter options.
- * @param {React.Component?} [props.clientId]          - Client ID of the block in which the inserter belongs.
- * @param {React.Component?} [props.hasLabel=false]    - Client ID of the block in which the inserter belongs.
- * @param {React.Component?} [props.small=false]       - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
- * @param {React.Component?} [props.additionalClasses] - Classes to add to the control base.
+ * @param {object} props                                      - BlockInserter options.
+ * @param {React.Component?} [props.clientId]                 - Client ID of the block in which the inserter belongs.
+ * @param {React.Component?} [props.hasLabel=false]           - Client ID of the block in which the inserter belongs.
+ * @param {React.Component?} [props.small=false]              - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
+ * @param {React.Component?} [props.additionalClasses]        - Classes to add to the control base.
+ * @param {React.Component?} [props.prioritizePatterns=false] - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
  */
 export const BlockInserter = (props) => {
 	const {
@@ -22,13 +23,17 @@ export const BlockInserter = (props) => {
 		hasLabel = false,
 		small = false,
 		additionalClasses,
+		prioritizePatterns = false,
 	} = props;
 
 	return (
 		<Inserter
 			rootClientId={clientId}
 			position='bottom center'
+			prioritizePatterns={prioritizePatterns}
+			__experimentalIsQuick
 			isAppender
+			isQuick
 
 			renderToggle={(appenderProps) => {
 				const {
