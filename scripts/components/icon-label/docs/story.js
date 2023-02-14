@@ -1,8 +1,8 @@
 import React from 'react';
 import { IconLabel } from '../icon-label';
 import { icons } from '@eightshift/frontend-libs/scripts';
-import { __ } from '@wordpress/i18n';
 import readme from './readme.mdx';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/IconLabel',
@@ -16,47 +16,55 @@ export default {
 export const component = () => {
 	return (
 		<>
-			<h4>Regular label</h4>
-			<IconLabel
-				icon={icons.roundedCorners}
-				label={__('Rounded corners', 'eightshift-frontend-libs')}
-				standalone
-			/>
-			<br />
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>IconLabel</h1>
 
-			<h4>With subtitle</h4>
-			<IconLabel
-				icon={icons.layoutAlt3}
-				label={__('Layout', 'eightshift-frontend-libs')}
-				subtitle='3 columns'
-				standalone
-			/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic label'>
+					<IconLabel
+						icon={icons.genericShapesAlt}
+						label='Shapes'
+						standalone
+					/>
+				</SingleItemShowcase>
 
-			<h4>With subtitle and subtitle gap</h4>
-			<IconLabel
-				icon={icons.colorAlt}
-				label={__('Color', 'eightshift-frontend-libs')}
-				subtitle='Orange'
-				standalone
-				addSubtitleGap
-			/>
+				<SingleItemShowcase title='Subtitle'>
+					<IconLabel
+						icon={icons.layoutAlt3}
+						label='Layout'
+						subtitle='3 columns'
+						standalone
+					/>
+				</SingleItemShowcase>
 
-			<br />
-			<small><code>addSubtitleGap</code></small>
-			<br />
-			<br />
-			<small><i>Useful in some complex layouts where default Gutenberg styles would make the gap too small</i></small>
+				<SingleItemShowcase title='Subtitle gap' propsUsed={{ addSubtitleGap: 'Useful in some complex layouts where default Gutenberg styles would make the gap too small' }}>
+					<div className='es-fifty-fifty-h'>
+						<IconLabel
+							icon={icons.colorAlt}
+							label='No gap'
+							subtitle='Subtitle'
+							standalone
+						/>
 
-			<h4>Additional classes</h4>
-			<IconLabel
-				icon={icons.colorAlt}
-				label={__('Color', 'eightshift-frontend-libs')}
-				subtitle='Blue'
-				standalone
-				additionalClasses='es-nested-color-blue-500!'
-			/>
-			<br />
-			<small><code>additionalClasses=&apos;es-nested-color-blue-500!&apos;</code></small>
+						<IconLabel
+							icon={icons.colorAlt}
+							label='With gap'
+							subtitle='Subtitle'
+							standalone
+							addSubtitleGap
+						/>
+					</div>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Custom classes' propsUsed={{ additionalClasses: 'Allows passing custom classes to the label' }}>
+					<IconLabel
+						icon={icons.colorAlt}
+						label='Color'
+						subtitle='Blue'
+						standalone
+						additionalClasses='es-nested-color-blue-500!'
+					/>
+				</SingleItemShowcase>
+			</div>
 		</>
 	);
 };

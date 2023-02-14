@@ -1,48 +1,90 @@
 .btn {
+	color: var(--button-scoped-color, var(--button-color, var(--global-colors-white)));
+	background-color: var(--button-scoped-background-color, var(--button-background-color, var(--global-colors-primary500)));
+
+	border: var(--button-scoped-border, var(--button-border));
+	border-radius: var(--button-scoped-border-radius, 100rem);
+
 	display: var(--button-display, inline-flex);
 	align-items: center;
 	justify-content: center;
+	gap: var(--button-scoped-item-spacing, 0.75rem);
 
-	width: var(--button-width, auto);
+	padding: var(--button-scoped-padding-mobile, 0.5625rem 1rem);
 
-	padding: var(--button-padding-vertical, 0.6rem) var(--button-padding-horizontal, 1.5rem);
-
-	border: none;
-	border-radius: var(--button-border-radius, 5rem);
-
-	opacity: var(--button-opacity, 1);
-	color: var(--button-scoped-color, var(--button-color, var(--global-colors-white)));
-	background-color: var(--button-scoped-background-color, var(--button-background-color, var(--global-colors-primary)));
-
-	text-decoration: none;
-	text-align: center;
+	font-size: 1rem;
+	line-height: 1.39;
 	font-weight: bold;
-	font-size: var(--button-font-size);
-	line-height: var(--button-line-height, 1);
+	text-decoration: none;
 
 	cursor: var(--button-cursor, pointer);
 
+	outline: 0 solid var(--button-scoped-default-outline-color, var(--global-colors-primary300));
+	outline-offset: 0;
+
+	@include media(tablet up) {
+		padding: var(--button-scoped-padding-tablet, 1rem 1.5rem);
+
+		font-size: 1.125rem;
+		line-height: 1.5;
+	}
+
+	@include media(desktop up) {
+		gap: var(--button-scoped-item-spacing-desktop, 1rem);
+		padding: var(--button-scoped-padding-desktop, 1.25rem 2rem);
+	}
+
 	transition: {
-		property: background-color, color, border-color;
+		property: background-color, color, border, box-shadow, outline, opacity;
 		timing-function: ease-out;
-		duration: 0.3s;
+		duration: 0.3s, 0.3s, 0.3s, 0.3s, 0.2s;
 	}
 
 	&:hover {
-		--button-scoped-color: var(--button-color-hover, var(--global-colors-white));
-		--button-scoped-background-color: var(--button-background-color-hover, var(--global-colors-black));
+		--button-scoped-background-color: var(--button-background-color-hover, var(--button-background-color, var(--global-colors-primary700)));
+		--button-scoped-color: var(--button-color-hover, var(--button-color, var(--global-colors-white)));
+		--button-scoped-border: var(--button-border-hover, var(--button-border));
+	}
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+
+		&:focus-visible {
+			--button-scoped-background-color: var(--button-background-color-focus, var(--button-background-color, var(--global-colors-primary700)));
+			--button-scoped-color: var(--button-color-focus, var(--button-color, var(--global-colors-white)));
+			--button-scoped-border: var(--button-border-focus, var(--button-border));
+
+			outline: var(--button-outline-focus, 0.5rem solid var(--global-colors-primary300));
+		}
+	}
+
+	@supports not selector(:focus-visible) {
+		&:focus {
+			--button-scoped-background-color: var(--button-background-color-focus, var(--button-background-color, var(--global-colors-primary700)));
+			--button-scoped-color: var(--button-color-focus, var(--button-color, var(--global-colors-white)));
+			--button-scoped-border: var(--button-border-focus, var(--button-border));
+
+			outline: var(--button-outline-focus, 0.5rem solid var(--global-colors-primary300));
+		}
 	}
 
 	&:disabled {
-		--button-scoped-background-color: var(--global-colors-light);
 		--button-cursor: not-allowed;
+
+		opacity: 0.5;
+		user-select: none;
 	}
 
-	&:focus {
-		outline: {
-			color: var(--button-outline-focus-color, var(--button-scoped-background-color, var(--button-background-color, var(--global-colors-primary))));
-			style: var(--button-outline-focus-style, dotted);
-			width: var(--button-outline-focus-width, 0.25rem);
+	&__icon {
+		--icon-scoped-width: 1rem;
+		--icon-scoped-height: 1rem;
+		--icon-scoped-transition: none;
+
+		@include media(tablet up) {
+			--icon-scoped-width: 1.5rem;
+			--icon-scoped-height: 1.5rem;
 		}
 	}
 }

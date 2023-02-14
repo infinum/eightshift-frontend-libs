@@ -34,17 +34,3 @@
 		}
 	}
 }
-
-.es-custom-select-dropdown-icon {
-	line-height: 0;
-
-	&.is-open {
-		transform: scaleY(-1);
-	}
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.es-custom-select-dropdown-icon {
-		transition: 0.3s transform ease-out;
-	}
-}

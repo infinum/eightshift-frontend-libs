@@ -1,55 +1,68 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { __ } from '@wordpress/i18n';
-import { InlineNotification, InlineNotificationType } from '../inline-notification';
+import { Notification } from '../inline-notification';
+import { SingleItemShowcase } from '../../../storybook/helpers';
+import { icons } from '../../../editor/icons/icons';
 
 export default {
-	title: 'Options/InlineNotification',
+	title: 'Options/Notification',
 	parameters: {
 		docs: {
 			page: readme
 		}
 	},
 };
+
 export const regular = () => {
+	const text = __('This is a notification', 'eightshift-frontend-libs');
+	const subtitle = __('Lorem ipsum dolor sit amet.', 'eightshift-frontend-libs');
+
 	return (
-		<div style={{
-			display: 'flex',
-			flexDirection: 'column',
-			gap: '1rem',
-		}}>
-			<InlineNotification
-				text={__('This is a warning!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.WARNING}
-			/>
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Notification</h1>
 
-			<InlineNotification
-				text={__('This is an error!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.ERROR}
-			/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Notification'>
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						type='warning'
+					/>
 
-			<InlineNotification
-				text={__('This is informational!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.INFO}
-			/>
-			
-			<InlineNotification
-				text={__('This is a warning!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.WARNING}
-				showContrastOutline
-			/>
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						type='error'
+					/>
 
-			<InlineNotification
-				text={__('This is an error!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.ERROR}
-				showContrastOutline
-			/>
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						type='info'
+					/>
 
-			<InlineNotification
-				text={__('This is informational!', 'eightshift-frontend-libs')}
-				type={InlineNotificationType.INFO}
-				showContrastOutline
-			/>
-		</div>
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						type='success'
+					/>
+
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Custom icon'>
+					<Notification
+						text={text}
+						subtitle={subtitle}
+						iconOverride={icons.emptyRect}
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
 	);
 };

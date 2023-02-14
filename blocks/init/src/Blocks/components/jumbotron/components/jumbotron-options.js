@@ -1,5 +1,6 @@
 import React from 'react';
-import { checkAttr, ComponentUseToggle, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
+import { checkAttr, generateUseToggleConfig, getAttrKey, icons, MatrixAlignControl, props, UseToggle } from '@eightshift/frontend-libs/scripts';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';
@@ -8,61 +9,45 @@ import manifest from './../manifest.json';
 
 export const JumbotronOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		jumbotronShowControls = true,
-		showJumbotronUse = false,
-		showLabel = false,
+
+		hideContentPosition = false,
 	} = attributes;
 
-	if (!jumbotronShowControls) {
-		return null;
-	}
-
-	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
+	const jumbotronContentPosition = checkAttr('jumbotronContentPosition', attributes, manifest);
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={jumbotronUse}
-				onChange={(value) => setAttributes({ [getAttrKey('jumbotronUse', attributes, manifest)]: value })}
-				showUseToggle={showJumbotronUse}
-				showLabel={showLabel}
-			/>
-
-			{jumbotronUse &&
-				<>
-					<ImageOptions
-						{...props('image', attributes)}
-						showImageUse
-						showLabel
-					/>
-
-					<HeadingOptions
-						{...props('heading', attributes)}
-						showHeadingUse
-						showLabel
-					/>
-
-					<ParagraphOptions
-						{...props('paragraph', attributes)}
-						showParagraphUse
-						showLabel
-					/>
-
-					<ButtonOptions
-						{...props('button', attributes)}
-						showButtonUse
-						showLabel
-					/>
-				</>
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'jumbotronUse')}>
+			{!hideContentPosition &&
+				<MatrixAlignControl
+					icon={icons.alignHorizontalVertical}
+					label={__('Content position', 'eightshift-frontend-libs')}
+					value={jumbotronContentPosition}
+					onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
+					type='inline'
+				/>
 			}
 
-		</>
+			<ImageOptions
+				{...props('image', attributes)}
+				reducedBottomSpacing
+				noFullSizeToggle
+			/>
+
+			<HeadingOptions
+				{...props('heading', attributes)}
+				reducedBottomSpacing
+			/>
+
+			<ParagraphOptions
+				{...props('paragraph', attributes)}
+				reducedBottomSpacing
+			/>
+
+			<ButtonOptions
+				{...props('button', attributes)}
+				noBottomSpacing
+			/>
+		</UseToggle>
 	);
 };

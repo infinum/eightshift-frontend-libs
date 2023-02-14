@@ -26,6 +26,14 @@ $featuredContentRandomOrder = Components::checkAttr('featuredContentRandomOrder'
 $featuredContentLayoutTotalItems = Components::checkAttr('featuredContentLayoutTotalItems', $attributes, $manifest);
 $featuredContentLoadMoreUse = Components::checkAttr('featuredContentLoadMoreUse', $attributes, $manifest);
 
+if (!empty($featuredContentPostType)) {
+	$featuredContentPostType = $featuredContentPostType['value'];
+}
+
+if (!empty($featuredContentTaxonomy)) {
+	$featuredContentTaxonomy = $featuredContentTaxonomy['value'];
+}
+
 global $post;
 
 $args = [

@@ -1,35 +1,26 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Button, BaseControl, Placeholder, ExternalLink, TextControl, Notice } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, Collapsable, ComponentUseToggle, IconToggle, SimpleVerticalSingleSelect, FancyDivider, CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay } from '@eightshift/frontend-libs/scripts';
+import { Button, Placeholder, TextControl } from '@wordpress/components';
+import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, Repeater, RepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig, Collapsable } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		videoShowControls = true,
 
-		showVideoUse = false,
-		showLabel = false,
-		showVideoUrl = true,
-		showVideoPoster = true,
-		showVideoLoop = true,
-		showVideoAdvanced = true,
-		showVideoAutoplay = true,
-		showVideoControls = true,
-		showVideoMuted = true,
-		showVideoPreload = true,
-		showVideoCaptions = true,
+		hideVideoPicker = false,
+		hidePosterImagePicker = false,
+		hideLoopToggle = false,
+		hideAutoplayToggle = false,
+		hideVideoControlsToggle = false,
+		hideMuteToggle = false,
+		hidePreloadOptions = false,
+		hideCaptions = false,
+
+		additionalControlsDesignLayout,
 	} = attributes;
 
-	const videoUse = checkAttr('videoUse', attributes, manifest);
 	const videoUrl = checkAttr('videoUrl', attributes, manifest);
 	const videoPoster = checkAttr('videoPoster', attributes, manifest);
 	const videoAccept = checkAttr('videoAccept', attributes, manifest);
@@ -41,31 +32,10 @@ export const VideoOptions = (attributes) => {
 	const videoPreload = checkAttr('videoPreload', attributes, manifest);
 	const videoSubtitleTracks = checkAttr('videoSubtitleTracks', attributes, manifest);
 
-	if (!videoShowControls) {
-		return null;
-	}
-
 	const hasVideo = videoUrl?.length > 0;
 	const hasPoster = videoPoster?.length > 0;
 
-	const [showAdvanced, setShowAdvanced] = useState(false);
-
-	const [trackEditOpen, setTrackEditOpen] = useState({});
-
-	const addCaptionItem = () => {
-		const modifiedVideoSubtitleTracks = ([...videoSubtitleTracks, {
-			src: '',
-			kind: '',
-			label: '',
-			srclang: '',
-		}]);
-
-		setAttributes({
-			[getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks
-		});
-	};
-
-	const getTrackIcon = (kind) => {							
+	const getTrackIcon = (kind) => {
 		switch (kind) {
 			case 'subtitles':
 				return icons.videoSubtitle;
@@ -76,361 +46,284 @@ export const VideoOptions = (attributes) => {
 			case 'chapters':
 				return icons.videoChapters;
 		}
-		return icons.warning;
+		return icons.emptyRect;
 	};
 
-	const useToggle = (
-		<ComponentUseToggle
-			label={label}
-			checked={videoUse}
-			onChange={(value) => setAttributes({ [getAttrKey('videoUse', attributes, manifest)]: value })}
-			showUseToggle={showVideoUse}
-			showLabel={showLabel}
-		/>
-	);
+	if (!hasVideo) {
+		return (
+			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'videoUse')}>
+				{!hideVideoPicker &&
+					<Placeholder
+						icon={icons.help}
+						label={__('No video... yet', 'eightshift-frontend-libs')}
+					>
+						{__('Add one in the Block editor', 'eightshift-frontend-libs')}
+					</Placeholder>
+				}
 
-	if (!videoUse) {
-		return useToggle;
+				{!hideVideoPicker &&
+					<MediaPlaceholder
+						icon={icons.videoFile}
+						onSelect={(value) => setAttributes({
+							[getAttrKey('videoUrl', attributes, manifest)]: value.map(({ url, mime, mime_type }) => {
+								return {
+									url,
+									mime: typeof (mime) === 'undefined' ? mime_type : mime,
+								};
+							})
+						})
+						}
+						labels={{ title: __('Add a video', 'eightshift-frontend-libs') }}
+						accept={videoAccept}
+						allowedTypes={videoAllowedTypes}
+						multiple
+					/>
+				}
+			</UseToggle>
+		);
 	}
 
 	return (
-		<>
-			{useToggle}
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'videoUse')}>
+			<AnimatedContentVisibility showIf={hasPoster && !videoControls}>
+				<Notification
+					type='warning'
+					text={__('Playback controls disabled', 'eightshift-frontend-libs')}
+					subtitle={__('Poster image might prevent users from playing the video', 'eightshift-frontend-libs')}
+				/>
+			</AnimatedContentVisibility>
 
-			{!showVideoUrl && hasVideo &&
-				<>
+			<Control additionalClasses='es-display-flex es-content-center'>
+				{videoUrl?.length > 0 &&
 					<Button
-						isSecondary
-						isDestructive
 						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 						icon={icons.trash}
+						className='es-button-icon-24 es-slight-button-border-cool-gray-100 es-hover-slight-button-border-red-500 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-v-center es-content-center! es-h-18 es-w-18 es-gap-1! es-p-1! es-nested-m-0!'
 					>
 						{__('Remove video', 'eightshift-frontend-libs')}
 					</Button>
-					<hr />
-				</>
-			}
+				}
+			</Control>
 
-			{!showVideoUrl && !hasVideo &&
-				<Placeholder
-					icon={icons.help}
-					label={__('No video... yet', 'eightshift-frontend-libs')}
-				>
-					{__('Add one in the Block editor', 'eightshift-frontend-libs')}
-				</Placeholder>
-			}
+			<Section
+				showIf={!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle || !hidePosterImagePicker || !hidePreloadOptions}
+				icon={icons.playbackOptions}
+				label={__('Playback options', 'eightshift-frontend-libs')}
+			>
+				{(!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle) &&
+					<div className='es-h-spaced-wrap es-mb-3'>
+						{!hideLoopToggle &&
+							<IconToggle
+								icon={icons.loopMode}
+								label={__('Loop', 'eightshift-frontend-libs')}
+								checked={videoLoop}
+								onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
 
-			{showVideoUrl &&
-				<BaseControl
-					label={
-						<>
-							<IconLabel icon={icons.video} label={__('Video', 'eightshift-frontend-libs')} />
+						{!hideAutoplayToggle &&
+							<IconToggle
+								icon={icons.autoplayAlt}
+								label={__('Autoplay', 'eightshift-frontend-libs')}
+								checked={videoAutoplay}
+								onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
 
-							{hasVideo &&
-								<Button
-									isSecondary
-									isSmall
-									isDestructive
-									className='es-small-square-icon-button'
-									onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
-									icon={icons.trash}
-									label={__('Remove video', 'eightshift-frontend-libs')}
+						{!hideMuteToggle &&
+							<IconToggle
+								icon={icons.muteCentered}
+								label={__('Mute', 'eightshift-frontend-libs')}
+								checked={videoMuted}
+								onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
+								type='tileButton'
+							/>
+						}
+					</div>
+				}
+
+				<Collapsable label={__('Advanced', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+					{!hidePosterImagePicker &&
+						<Control
+							icon={icons.videoPosterImage}
+							label={__('Poster image', 'eightshift-frontend-libs')}
+							subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')}
+						>
+							{!hasPoster &&
+								<MediaPlaceholder
+									labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
+									icon={icons.imageFile}
+									onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
+									accept={'image/*'}
+									allowedTypes={['image']}
 								/>
 							}
-						</>
-					}
-				>
-					{!hasVideo &&
-						<MediaPlaceholder
-							icon={icons.videoFile}
-							onSelect={(value) => setAttributes({
-								[getAttrKey('videoUrl', attributes, manifest)]: value.map(({ url, mime, mime_type }) => {
-									return {
-										url,
-										mime: typeof (mime) === 'undefined' ? mime_type : mime,
-									};
-								})
-							})
-							}
-							labels={{ title: __('Add a video', 'eightshift-frontend-libs') }}
-							accept={videoAccept}
-							allowedTypes={videoAllowedTypes}
-							multiple
-						/>
-					}
-
-					{hasVideo &&
-						<Placeholder
-							icon={icons.checkCircle}
-							label={__('Video added', 'eightshift-frontend-libs')}
-						>
-							{__('Check the Block editor', 'eightshift-frontend-libs')}
-						</Placeholder>
-					}
-
-				</BaseControl>
-			}
-
-			{showVideoPoster && hasVideo &&
-				<BaseControl
-					label={
-						<>
-							<IconLabel icon={icons.videoPosterImage} label={__('Poster image', 'eightshift-frontend-libs')} />
 
 							{hasPoster &&
-								<Button
-									isSecondary
-									isSmall
-									isDestructive
-									className='es-small-square-icon-button'
-									onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
-									icon={icons.trash}
-									label={__('Remove video poster image', 'eightshift-frontend-libs')}
-								/>
-							}
-						</>
-					}
-					help={__('Visible before the video is played. Make sure to enable the video controls so the video can be started!', 'eightshift-frontend-libs')}
-				>
-					{!hasPoster &&
-						<MediaPlaceholder
-							labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
-							icon={icons.imageFile}
-							onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
-							accept={'image/*'}
-							allowedTypes={['image']}
-						/>
-					}
+								<div className='es-h-center es-items-end! es-gap-0!'>
+									<img
+										alt={__('Video poster image', 'eightshift-frontend-libs')}
+										src={videoPoster}
+										className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+									/>
 
-					{hasPoster &&
-						<img src={videoPoster} alt='Video poster' className='es-ratio-sixteen-nine es-rounded-4' />
-					}
-				</BaseControl>
-			}
-
-			<br />
-
-			{showVideoAdvanced && hasVideo &&
-				<div className='es-flex-between'>
-					<IconLabel icon={icons.options} label={__('Advanced settings', 'eightshift-frontend-libs')} standalone />
-					<Button
-						onClick={() => setShowAdvanced(!showAdvanced)}
-						label={showAdvanced ? __('Hide', 'eightshift-frontend-libs') : __('Show', 'eightshift-frontend-libs')}
-						icon={showAdvanced ? icons.chevronUp : icons.chevronDown}
-						iconSize={24}
-						isSecondary
-					/>
-				</div>
-			}
-
-			{showAdvanced && hasVideo &&
-				<>
-					<br />
-
-					{showVideoLoop &&
-						<IconToggle
-							icon={icons.loopMode}
-							label={__('Loop', 'eightshift-frontend-libs')}
-							checked={videoLoop}
-							onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showVideoAutoplay &&
-						<IconToggle
-							icon={icons.autoplay}
-							label={__('Autoplay', 'eightshift-frontend-libs')}
-							checked={videoAutoplay}
-							onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showVideoControls &&
-						<IconToggle
-							icon={icons.videoControls}
-							label={__('Video controls', 'eightshift-frontend-libs')}
-							checked={videoControls}
-							onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showVideoMuted &&
-						<IconToggle
-							icon={icons.muteCentered}
-							label={__('No sound', 'eightshift-frontend-libs')}
-							checked={videoMuted}
-							onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
-						/>
-					}
-
-
-					{videoAutoplay && !videoMuted && !videoControls &&
-						<Notice 
-							status="warning"
-							isDismissible={false}
-						>
-							{__('This video autoplays with sound and without controls. Reconsider these choices, as they present a challenge to disabled users, cause frustration for all users and might be a violation of WCAG.', 'eightshift-frontend-libs')}
-						</Notice>
-					}
-
-					{showVideoPreload && <br />}
-
-					{showVideoPreload &&
-						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.play} label={__('Preload type', 'eightshift-frontend-libs')} />}
-							options={getOption('videoPreload', attributes, manifest).map(({ label, value, icon: iconName }) => {
-								return {
-									onClick: () => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value }),
-									label,
-									isActive: videoPreload === value,
-									icon: icons[iconName],
-								};
-							})}
-						/>
-					}
-				</>
-			}
-
-			{showVideoCaptions && hasVideo &&
-				<>
-					<FancyDivider label={__('Captions', 'eightshift-frontend-libs')} />
-
-					<div className='es-v-spaced'>
-						{videoSubtitleTracks.map((_, index) => {
-							const trackIcon = getTrackIcon(videoSubtitleTracks[index].kind);
-
-							return (
-								<div className='onefr-auto' key={index}>
-										<Collapsable 
-											label={
-												<IconLabel
-													standalone={true}
-													icon={trackIcon}
-													label={videoSubtitleTracks[index].label.length > 0 ? videoSubtitleTracks[index].label : __('New caption track', 'eightshift-frontend-libs')}
-												/>
-											}
-										>
-										
-											<>
-												{!videoSubtitleTracks[index].src &&
-													<MediaPlaceholder
-														accept={['.vtt', 'text/vtt']}
-														labels = {{
-															title: __('Track file', 'eightshift-frontend-libs'),
-														}}
-														onSelect={
-															(track) => {
-																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
-																modifiedVideoSubtitleTracks[index].src = track.url;
-																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
-															}
-														}
-													>
-														{__('Upload a VTT file containing captions, subtitles, descriptions or chapters for this video', 'eightshift-frontend-libs')}
-													</MediaPlaceholder>
-												}
-
-												{videoSubtitleTracks[index].src &&
-													<>
-														<b>{sprintf(__('Track #%d', 'eightshift-frontend-libs'), index + 1)}</b>
-
-														<hr />
-
-														<ExternalLink href={videoSubtitleTracks[index].src}>
-															{__('Open track file', 'eightshift-frontend-libs')}
-														</ExternalLink>
-
-														<TextControl
-															label={__('Track label', 'eightshift-frontend-libs')}
-															help={__('A user-readable title of the text track, shown to viewers when listing available text tracks', 'eightshift-frontend-libs')}
-															value={videoSubtitleTracks[index].label}
-															onChange={(label) => {
-																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
-																modifiedVideoSubtitleTracks[index].label = label;
-																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
-															}}
-														/>
-
-														<CustomSelect
-															label={__('Track type', 'eightshift-frontend-libs')}
-															value={videoSubtitleTracks[index].kind}
-															options={getOption('videoSubtitleTrackKind', attributes, manifest)}
-															simpleValue={true}
-															onChange={(kind) => {
-																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
-																modifiedVideoSubtitleTracks[index].kind = kind;
-																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
-															}}
-															customOptionComponent = { props => {
-																return (
-																	<CustomSelectCustomOption {...props}>
-																		<span className='es-h-start'>{getTrackIcon(props.value)} {props.label}</span>
-																	</CustomSelectCustomOption>
-																);
-															}}
-															customSingleValueDisplayComponent = { props => {
-																return (
-																	<CustomSelectCustomValueDisplay {...props}>
-																		<span className='es-h-start'>{getTrackIcon(props.children.toLowerCase())} {props.children}</span>
-																	</CustomSelectCustomValueDisplay>
-																);
-															}}
-														/>
-
-														<TextControl
-															label={__('Language code', 'eightshift-frontend-libs')}
-															help={__('An IETF (BCP47) language tag for the language of the track text data. Only required for subtitles.', 'eightshift-frontend-libs')}
-															value={videoSubtitleTracks[index].srclang}
-															onChange={(srclang) => {
-																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
-																modifiedVideoSubtitleTracks[index].srclang = srclang;
-																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
-															}}
-														/>
-
-														<ExternalLink href={'https://en.wikipedia.org/wiki/IETF_language_tag#List_of_major_primary_language_subtags'}>
-															{__('Language tags for major languages', 'eightshift-frontend-libs')}
-														</ExternalLink>
-
-														<br />
-
-														<ExternalLink href={'https://r12a.github.io/app-subtags/'}>
-															{__('Language tags for all languages', 'eightshift-frontend-libs')}
-														</ExternalLink>
-
-														<hr />
-
-														<Button
-															isDestructive
-															isSecondary
-															onClick={() => {
-																const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
-																modifiedVideoSubtitleTracks.splice(index, 1);
-																setTrackEditOpen({...trackEditOpen, [index]: false});
-																setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
-															}}
-															icon={icons.trash}
-														>
-															{__('Remove track', 'eightshift-frontend-libs')}
-														</Button>
-
-													</>
-												}
-											</>
-										</Collapsable>
+									<Button
+										icon={icons.trashAlt}
+										label={__('Remove image', 'eightshift-frontend-libs')}
+										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
+										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
+										showTooltip
+									/>
 								</div>
-							);
-						})}
-					</div>
-					<Button
-						isPrimary
-						icon={icons.add}
-						onClick={addCaptionItem}
-					>
-						{__('Add track', 'eightshift-frontend-libs')}
-					</Button>
-				</>
-			}
-		</>
+							}
+						</Control>
+					}
+
+					{!hidePreloadOptions &&
+						<OptionSelector
+							label={<IconLabel icon={icons.preload} label={__('Preload', 'eightshift-frontend-libs')} standalone />}
+							value={videoPreload}
+							options={getOption('videoPreload', attributes, manifest)}
+							alignment='vertical'
+							onChange={(value) => setAttributes({ [getAttrKey('videoPreload', attributes, manifest)]: value })}
+							noBottomSpacing
+						/>
+					}
+				</Collapsable>
+			</Section>
+
+			<Section showIf={!hideVideoControlsToggle || additionalControlsDesignLayout} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
+				{!hideVideoControlsToggle &&
+					<IconToggle
+						icon={icons.videoControls}
+						label={__('Playback controls', 'eightshift-frontend-libs')}
+						checked={videoControls}
+						onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
+				}
+
+				{additionalControlsDesignLayout}
+			</Section>
+
+			<Section showIf={!hideCaptions} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing>
+				<Repeater
+					icon={icons.videoSubtitleAlt}
+					label={__('Captions', 'eightshift-frontend-libs')}
+
+					items={videoSubtitleTracks}
+					attributeName={getAttrKey('videoSubtitleTracks', attributes, manifest)}
+					setAttributes={setAttributes}
+					noBottomSpacing
+				>
+					{videoSubtitleTracks.map((item, index) => {
+						return (
+							<RepeaterItem
+								key={item.id}
+								icon={getTrackIcon(item?.kind)}
+								title={item?.label ? sprintf(__('Track %d', 'eightshift-frontend-libs'), index + 1) : <i>{__('New track', 'eightshift-frontend-libs')}</i>}
+								subtitle={item?.label}
+								additionalLabelClass={!item?.label ? 'es-nested-color-orange-500!' : ''}
+							>
+								{!videoSubtitleTracks[index].src &&
+									<MediaPlaceholder
+										accept={['.vtt', 'text/vtt']}
+										labels={{ title: __('Track file', 'eightshift-frontend-libs') }}
+										onSelect={
+											(track) => {
+												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+												modifiedVideoSubtitleTracks[index].src = track.url;
+												setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+											}
+										}
+									>
+										{__('Upload a VTT file containing captions, subtitles, descriptions or chapters for this video', 'eightshift-frontend-libs')}
+									</MediaPlaceholder>
+								}
+
+								{videoSubtitleTracks[index].src &&
+									<>
+										<TextControl
+											label={<IconLabel icon={icons.titleGeneric} label={__('Label', 'eightshift-frontend-libs')} />}
+											help={__('Shows in the list of available tracks', 'eightshift-frontend-libs')}
+											value={videoSubtitleTracks[index].label}
+											onChange={(label) => {
+												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+												modifiedVideoSubtitleTracks[index].label = label;
+												setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+											}}
+										/>
+
+										<OptionSelector
+											label={<IconLabel icon={icons.optionListAlt} label={__('Type', 'eightshift-frontend-libs')} />}
+											value={videoSubtitleTracks[index].kind}
+											options={getOption('videoSubtitleTrackKind', attributes, manifest)}
+											onChange={(kind) => {
+												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+												modifiedVideoSubtitleTracks[index].kind = kind;
+												setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+											}}
+											alignment='vertical'
+										/>
+
+										<TextControl
+											label={<IconLabel icon={icons.flag} label={__('Language code', 'eightshift-frontend-libs')} />}
+											help={
+												<>
+													{__('Should follow IETF (BCP47).', 'eightshift-frontend-libs')}
+													{videoSubtitleTracks[index].kind === 'subtitles' && ' ' + __('Required.', 'eightshift-frontend-libs')}
+												</>
+											}
+											value={videoSubtitleTracks[index].srclang}
+											onChange={(srclang) => {
+												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
+												modifiedVideoSubtitleTracks[index].srclang = srclang;
+												setAttributes({ [getAttrKey('videoSubtitleTracks', attributes, manifest)]: modifiedVideoSubtitleTracks });
+											}}
+										/>
+
+										<hr className='es-mt-0!' />
+
+										<span className='es-display-block es-mb-1'>{__('List of language tags', 'eightshift-frontend-libs')}</span>
+
+										<Button
+											href='https://en.wikipedia.org/wiki/IETF_language_tag#List_of_major_primary_language_subtags'
+											target='_blank'
+											rel='external'
+											icon={icons.externalLink}
+											className='es-button-icon-18 es-p-0! es-h-8! es-rounded-0.75!'
+										>
+											{__('Common languages', 'eightshift-frontend-libs')}
+										</Button>
+
+										<Button
+											href='https://r12a.github.io/app-subtags/'
+											target='_blank'
+											rel='external'
+											icon={icons.externalLink}
+											className='es-button-icon-18 es-p-0! es-h-8! es-rounded-0.75!'
+										>
+											{__('All languages', 'eightshift-frontend-libs')}
+										</Button>
+									</>
+								}
+							</RepeaterItem>
+						);
+					})}
+				</Repeater>
+
+				<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-3'>
+					<Notification
+						type='warning'
+						text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
+						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
+						iconOverride={icons.a11yWarning}
+						noBottomSpacing
+					/>
+				</AnimatedContentVisibility>
+			</Section>
+		</UseToggle >
 	);
 };

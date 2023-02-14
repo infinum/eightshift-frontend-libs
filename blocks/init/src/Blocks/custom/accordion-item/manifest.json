@@ -28,6 +28,9 @@
 		]
 	},
 	"attributes": {
+		"accordionItemTriggerContent": {
+			"type": "string"
+		},
 		"accordionItemStartOpen": {
 			"type": "boolean",
 			"default": false

@@ -1,4 +1,4 @@
-# CustomSlider / CustomRangeSlider
+# Slider / RangeSlider
 
 A custom (range) slider made to suit everyone's needs. Meant to replace Gutenberg's `RangeControl` while being less prone to bugs from WP updates and with more (and more stable) features.
 
@@ -9,7 +9,7 @@ It's based on [`rc-slider`](https://slider-react-component.vercel.app/), most of
 ```jsx
 const [sliderValue, setSliderValue] = useState(1);
 
-<CustomSlider
+<Slider
 	label={__('Basic slider', 'eightshift-frontend-libs')}
 	value={sliderValue}
 	onChange={(value) => setSliderValue(value)}
@@ -22,7 +22,7 @@ const [sliderValue, setSliderValue] = useState(1);
 ```jsx
 const [sliderRangeValue, setSliderRangeValue] = useState([1, 2]);
 
-<CustomSlider
+<Slider
 	label={__('Basic slider', 'eightshift-frontend-libs')}
 	value={sliderRangeValue}
 	onChange={(value) => setSliderRangeValue(value)}

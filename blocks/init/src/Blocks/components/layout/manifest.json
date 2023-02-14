@@ -32,24 +32,28 @@
 		"layoutUse": {
 			"type": "boolean",
 			"default": true
+		},
+		"wrapperUse": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"options": {
 		"layoutType": [
 			{
-				"label": "2 col, grid",
+				"label": "2 columns",
 				"value": "layout-grid-2",
-				"icon": "singleItemLeftInset"
+				"icon": "twoColumns"
 			},
 			{
-				"label": "3 col, grid",
+				"label": "3 columns",
 				"value": "layout-grid-3",
-				"icon": "singleItemLeftInset"
+				"icon": "columns"
 			},
 			{
-				"label": "4 col, grid",
+				"label": "4 columns",
 				"value": "layout-grid-4",
-				"icon": "singleItemLeftInset"
+				"icon": "fourColumns"
 			}
 		],
 		"layoutTotalItems": {
@@ -80,5 +84,21 @@
 				}
 			}
 		]
-	}
+	},
+	"variablesCustom": [
+		"--wrapper-spacing-top: initial;",
+		"--wrapper-spacing-bottom: initial;",
+		"--wrapper-spacing-top-in: initial;",
+		"--wrapper-spacing-bottom-in: initial;",
+		"--wrapper-divider-top: initial",
+		"--wrapper-divider-bottom: initial;",
+		"--wrapper-display: initial;",
+		"--wrapper-is-full-width: initial;",
+		"--wrapper-grid-template-columns: initial;",
+		"--wrapper-display-type: initial;",
+		"--wrapper-bg-color-type: initial",
+		"--wrapper-bg-color-project: initial",
+		"--wrapper-bg-color-solid: initial",
+		"--wrapper-bg-color-gradient: initial"
+	]
 }

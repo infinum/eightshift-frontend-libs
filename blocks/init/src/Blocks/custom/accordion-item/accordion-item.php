@@ -50,12 +50,13 @@ $accordionItemClass = Components::classnames([
 		aria-expanded="<?php echo esc_attr($accordionItemStartOpen ? 'true' : 'false'); ?>"
 		id="<?php echo esc_attr($uniqueAccordionTriggerId); ?>"
 	>
-		<?php
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo Components::render('paragraph', Components::props('trigger', $attributes));
-		?>
+		<?php echo Components::render('paragraph', Components::props('trigger', $attributes)); ?>
+
 		<span class="<?php echo esc_attr($accordionItemIconClass); ?>" aria-hidden="true" >
-			<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+			<?php
+			// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+			echo $manifest['resources']['icon'];
+			?>
 		</span>
 	</button>
 

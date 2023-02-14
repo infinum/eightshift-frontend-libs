@@ -6,7 +6,6 @@ import { AccordionEditor } from './components/accordion-editor';
 import { AccordionOptions } from './components/accordion-options';
 
 export const Accordion = (props) => {
-
 	// Set this attributes to all inner blocks once inserted in DOM.
 	useSelect((select) => {
 		overrideInnerBlockAttributes(
@@ -14,10 +13,11 @@ export const Accordion = (props) => {
 			props.clientId,
 			{
 				wrapperUse: false,
-				wrapperDisable: true,
+				wrapperNoControls: true,
 			},
 		);
 	});
+
 	return (
 		<>
 			<InspectorControls>

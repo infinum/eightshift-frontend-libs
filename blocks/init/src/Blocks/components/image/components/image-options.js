@@ -1,127 +1,161 @@
 import React from 'react';
-import _ from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { TextareaControl, BaseControl, Button } from '@wordpress/components';
-import { Responsive, icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, ComponentUseToggle, IconLabel, BlockIcon, IconToggle } from '@eightshift/frontend-libs/scripts';
+import { TextControl, Button } from '@wordpress/components';
+import { icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, IconLabel, IconToggle, UseToggle, Responsive, getDefaultBreakpointNames, Section, Control, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		imageShowControls = true,
 
-		showImageUse = false,
-		showLabel = false,
-		showImageUrl = true,
-		showImageAlt = true,
-		showImageFull = true,
+		hideImagePicker = false,
+		hideAltText = false,
+		hideFullSizeToggle = false,
+		hideRoundedCornersToggle = false,
+
+		additionalControlsBeforeA11y,
+		additionalControlsAfterA11y,
+		additionalControlsDesignLayout,
 	} = attributes;
 
-	if (!imageShowControls) {
-		return null;
-	}
-
-	const imageUse = checkAttr('imageUse', attributes, manifest);
 	const imageAlt = checkAttr('imageAlt', attributes, manifest);
 	const imageAccept = checkAttr('imageAccept', attributes, manifest);
 	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
 	const imageFull = checkAttr('imageFull', attributes, manifest);
+	const imageRoundedCorners = checkAttr('imageRoundedCorners', attributes, manifest);
+
+	const imageUrl = checkAttrResponsive(`imageUrl`, attributes, manifest);
+	const breakpoints = getDefaultBreakpointNames();
+
+	if (!hideImagePicker && !imageUrl[breakpoints[0]]) {
+		return (
+			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
+				<Control icon={icons.image} label={__('Image', 'eightshift-frontend-libs')} additionalLabelClasses='es-h-spaced' noBottomSpacing>
+					<MediaPlaceholder
+						labels={{
+							title: __('Add an image', 'eightshift-frontend-libs'),
+							instructions: __('Upload an image or choose one from the Media library'),
+						}}
+						icon={icons.plusCircleFillAlt}
+						accept={imageAccept}
+						allowedTypes={imageAllowedTypes}
+						onSelect={({ url, id }) => {
+							return setAttributes({
+								[getAttrKey('imageUrl', attributes, manifest)]: url,
+								[getAttrKey('imageId', attributes, manifest)]: id,
+							});
+						}}
+					/>
+				</Control>
+			</UseToggle>
+		);
+	}
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={imageUse}
-				onChange={(value) => setAttributes({ [getAttrKey('imageUse', attributes, manifest)]: value })}
-				showUseToggle={showImageUse}
-				showLabel={showLabel}
-			/>
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
+			{!hideImagePicker &&
+				<Responsive label={__('Image', 'eightshift-frontend-libs')} icon={icons.image}>
+					{getDefaultBreakpointNames().map((breakpointName, index) => {
+						let point = ucfirst(breakpointName);
 
-			{imageUse &&
-				<>
-					{showImageUrl &&
-						<Responsive label={<IconLabel icon={icons.image} label={__('Image source', 'eightshift-frontend-libs')} />}>
-							{Object.keys(checkAttrResponsive('imageUrl', attributes, manifest)).map(function (keyName) {
+						if (breakpointName === 'large') {
+							point = '';
+						}
 
-								let point = ucfirst(keyName);
-								let pointLabel = point;
-								if (point === 'Large') {
-									point = '';
-									pointLabel = __('Default (all screens)', 'eightshift-frontend-libs');
-								}
+						const urlAttr = getAttrKey(`imageUrl${point}`, attributes, manifest);
+						const idAttr = getAttrKey(`imageId${point}`, attributes, manifest);
 
-								const attr = getAttrKey(`imageUrl${point}`, attributes, manifest);
+						if (!imageUrl[breakpointName]?.length) {
+							return (
+								<MediaPlaceholder
+									key={breakpointName}
+									labels={{
+										title: __('Add an image', 'eightshift-frontend-libs'),
+										instructions: __('Upload an image or choose one from the Media library'),
+									}}
+									icon={icons.plusCircleFillAlt}
+									accept={imageAccept}
+									allowedTypes={imageAllowedTypes}
+									onSelect={({ url, id }) => {
+										return setAttributes({
+											[urlAttr]: url,
+											[idAttr]: id,
+										});
+									}}
+								/>
+							);
+						}
 
-								const removeImageButton = (
-									<>
-										{attributes[attr]?.length > 0 &&
-											<Button
-												isSecondary
-												isSmall
-												isDestructive
-												className='es-small-square-icon-button'
-												onClick={() => setAttributes({ [attr]: {} })}
-												icon={icons.trash}
-											/>
-										}
-									</>
-								);
+						return (
+							<div className='es-h-center es-items-end! es-gap-0!' key={breakpointName}>
+								<img
+									alt={imageAlt}
+									src={imageUrl[breakpointName]}
+									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+								/>
 
-								const showPlaceholder = _.isEmpty(attributes[attr]);
-
-								return (
-									<BaseControl
-										key={keyName}
-										label={
-											<>
-												<IconLabel icon={icons[`screen${point.length ? point : 'Large'}`]} label={pointLabel} />
-												{removeImageButton}
-											</>
-										}
-									>
-										{showPlaceholder &&
-											<MediaPlaceholder
-												icon={<BlockIcon iconName='es-image' />}
-												onSelect={(value) => setAttributes({ [attr]: value.url })}
-												accept={imageAccept}
-												allowedTypes={imageAllowedTypes}
-											/>
-										}
-										{!showPlaceholder &&
-											<img src={attributes[attr]} alt='' />
-										}
-									</BaseControl>
-								);
-							})}
-						</Responsive>
-					}
-
-					{showImageAlt &&
-						<TextareaControl
-							label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
-							value={imageAlt}
-							onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showImageFull &&
-						<IconToggle
-							icon={icons.size}
-							label={__('Fill container', 'eightshift-frontend-libs')}
-							help={__('Span the full width of the container and ignore its maximum width', 'eightshift-frontend-libs')}
-							checked={imageFull}
-							onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
-						/>
-					}
-				</>
+								<Button
+									key={index}
+									icon={icons.trashAlt}
+									label={__('Remove image', 'eightshift-frontend-libs')}
+									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
+									onClick={() => setAttributes({
+										[urlAttr]: undefined,
+										[idAttr]: undefined,
+									})}
+									showTooltip
+								/>
+							</div>
+						);
+					})}
+				</Responsive>
 			}
 
-		</>
+			<Section
+				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || !additionalControlsDesignLayout}
+				icon={icons.design}
+				label={__('Design & layout', 'eightshift-frontend-libs')}
+				additionalClasses='es-h-spaced-wrap'
+			>
+				{!hideRoundedCornersToggle &&
+					<IconToggle
+						icon={icons.roundedCorners}
+						label={__('Rounded corners', 'eightshift-frontend-libs')}
+						checked={imageRoundedCorners}
+						onChange={(value) => setAttributes({ [getAttrKey('imageRoundedCorners', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
+				}
+
+				{!hideFullSizeToggle &&
+					<IconToggle
+						icon={icons.expandXl}
+						label={__('Fill container', 'eightshift-frontend-libs')}
+						checked={imageFull}
+						onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
+						type='tileButton'
+					/>
+				}
+
+				{additionalControlsDesignLayout}
+			</Section>
+
+			{additionalControlsBeforeA11y}
+
+			<Section showIf={!hideAltText} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing={!additionalControlsAfterA11y}>
+				<TextControl
+					label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
+					value={imageAlt}
+					onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
+					help={__('Describes the content of the image', 'eightshift-frontend-libs')}
+					className='es-mb-0-bcf! es-mb-0!'
+				/>
+			</Section>
+
+			{additionalControlsAfterA11y && <hr className='es-mt-0 es-mb-2.5' />}
+
+			{additionalControlsAfterA11y}
+		</UseToggle>
 	);
 };

@@ -1,70 +1,64 @@
 import React from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { classnames, Control } from '@eightshift/frontend-libs/scripts';
 import { IconLabel } from '../icon-label/icon-label';
+import { icons } from '../../editor/icons/icons';
 
 /**
- * Type of the inline notification
+ * A simple notification to be used inside the Editor or Options.
  *
- * @param {string} WARNING - An important, but not critical message.
- * @param {string} ERROR   - An urgent and important message.
- * @param {string} INFO    - A message to inform the user.
- * @param {string} SUCCESS - A message to show success.
- */
-export const InlineNotificationType = {
-	WARNING: 'warning',
-	ERROR: 'error',
-	INFO: 'info',
-	SUCCESS: 'success',
-};
-
-/**
- * A simple inline notification to be used inside the Editor or Options.
+ * @typedef {'warning'|'error'|'info'|'success'} NotificationType
  *
- * @param {object} props                                                       - InlineNotification options.
- * @param {string} props.text                                                  - Notification text.
- * @param {string} [props.subtitle]                                            - Notification text.
- * @param {string} [props.removeBottomFieldSpacing=false]                      - Notification text.
- * @param {InlineNotificationType} [props.type=InlineNotificationType.WARNING] - Help text displayed below the picker.
- * @param {boolean} [props.showContrastOutline=false]                          - If `true`, a high-visibility outline is shown around the notification.
+ * @param {object} props                          - Notification options.
+ * @param {string} props.text                     - Notification text.
+ * @param {React.Component} [props.iconOverride]  - If set, overrides the icon set for the type.
+ * @param {string} [props.subtitle]               - Subtitle text.
+ * @param {string} [props.noBottomSpacing]        - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
+ * @param {NotificationType} [props.type]         - Help text displayed below the picker.
  */
-export const InlineNotification = ({
+export const Notification = ({
 	text,
+	iconOverride,
 	subtitle,
-	type = InlineNotificationType.WARNING,
-	showContrastOutline = false,
-	removeBottomFieldSpacing = false,
+	type,
+	noBottomSpacing,
+	reducedBottomSpacing,
 }) => {
-	let icon;
-
-	let iconColor = 'es-nested-color-blue-500!';
+	let icon, classes, iconColor;
 
 	switch (type) {
-		case InlineNotificationType.ERROR:
-			icon = icons.errorCircle;
+		case 'error':
+			icon = icons.errorCircleFillTransparent;
+			classes = 'es-border-red-500';
 			iconColor = 'es-nested-color-red-500!';
 			break;
-		case InlineNotificationType.WARNING:
-			icon = icons.warning;
+		case 'warning':
+			icon = icons.warningFillTransparent;
+			classes = 'es-border-yellow-500';
 			iconColor = 'es-nested-color-yellow-500!';
 			break;
-		case InlineNotificationType.SUCCESS:
-			icon = icons.checkCircle;
+		case 'success':
+			icon = icons.checkCircleFillTransparent;
+			classes = 'es-border-green-500';
 			iconColor = 'es-nested-color-green-500!';
 			break;
-		default:
-			icon = icons.infoCircle;
+		case 'info':
+			icon = icons.infoCircleFillTransparent;
+			classes = 'es-border-blue-500';
+			iconColor = 'es-nested-color-blue-500!';
 			break;
+		default:
+			classes = 'es-border-cool-gray-500';
+			iconColor = 'es-nested-color-cool-gray-500!';
 	}
 
 	return (
-		<div className={classnames([
-			'es-inline-notification-v3 es-p-s es-rounded-s',
-			`es-inline-notification-v3--${type}`,
-			showContrastOutline ? 'es-hi-vis-outline' : '',
-			removeBottomFieldSpacing ? '': 'es-mb-6',
-		])}>
-			<IconLabel icon={icon} label={text} subtitle={subtitle} additionalClasses={iconColor} standalone />
-		</div>
+		<Control
+			additionalClasses={classnames('es-p-2 es-rounded-2', classes)}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+		>
+			<IconLabel icon={iconOverride ?? icon} label={text} subtitle={subtitle} additionalClasses={iconColor} standalone />
+		</Control>
 	);
 };

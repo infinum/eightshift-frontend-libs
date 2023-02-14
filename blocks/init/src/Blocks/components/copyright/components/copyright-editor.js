@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
@@ -19,11 +18,11 @@ export const CopyrightEditor = (attributes) => {
 	const copyrightYear = checkAttr('copyrightYear', attributes, manifest) ?? new Date().getFullYear();
 	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 
-	const copyrightClass = classnames([
+	const copyrightClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	if (!copyrightUse) {
 		return null;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { IconToggle, ComponentUseToggle, checkAttr, getAttrKey, icons } from '@eightshift/frontend-libs/scripts';
+import { IconToggle, checkAttr, getAttrKey, icons, UseToggle } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ModalOptions = (attributes) => {
@@ -26,14 +26,13 @@ export const ModalOptions = (attributes) => {
 	const modalExitButton = checkAttr('modalExitButton', attributes, manifest);
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={modalUse}
-				onChange={(value) => setAttributes({ [getAttrKey('modalUse', attributes, manifest)]: value })}
-				showUseToggle={showModalUse}
-				showLabel={showLabel}
-			/>
+		<UseToggle
+			label={label}
+			checked={modalUse}
+			onChange={(value) => setAttributes({ [getAttrKey('modalUse', attributes, manifest)]: value })}
+			showUseToggle={showModalUse}
+			showLabel={showLabel}
+		>
 
 			{showModalExitButton &&
 				<IconToggle
@@ -43,7 +42,6 @@ export const ModalOptions = (attributes) => {
 					onChange={(value) => setAttributes({ [getAttrKey('modalExitButton', attributes, manifest)]: value })}
 				/>
 			}
-		</>
+		</UseToggle>
 	);
 };
-

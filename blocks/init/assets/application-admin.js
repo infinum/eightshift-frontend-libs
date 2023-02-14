@@ -6,8 +6,8 @@
  * Usage: `WordPress admin screen`.
  */
 
-// Load Styles
+// Load styles
 import './styles/application-admin.scss';
 
-// // Load Scripts
+// Load scripts
 import './scripts/application-admin';

@@ -1,4 +1,4 @@
-import { truncateMiddle, unescapeHTML } from "../../../../scripts/helpers";
+import { truncateMiddle, unescapeHTML } from '../../../../scripts';
 
 test.each([
 	{ inputString: 'Lorem ipsum dolor sit amet.', maxLength: 8, expected: 'Lor...t.' },

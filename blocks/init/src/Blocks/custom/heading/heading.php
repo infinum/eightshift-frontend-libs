@@ -19,11 +19,7 @@ $unique = Components::getUnique();
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
-
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		'heading',
-		Components::props('heading', $attributes)
-	);
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
+	Components::render('heading', Components::props('heading', $attributes));
 	?>
 </div>

@@ -7,7 +7,7 @@
 		"attributes": {
 			"headingContent": "This is heading",
 			"headingLevel": 2,
-			"headingSize": "regular",
+			"headingSize": "h2:bold",
 			"headingColor": "black",
 			"headingUse": true
 		}
@@ -22,7 +22,7 @@
 		},
 		"headingSize": {
 			"type": "string",
-			"default": "regular"
+			"default": "h2:bold"
 		},
 		"headingColor": {
 			"type": "string",
@@ -36,104 +36,350 @@
 	"options": {
 		"headingSize": [
 			{
-				"label": "Tiny (14)",
-				"value": "tiny"
+				"label": "150",
+				"value": "hero",
+				"weights": ["bold"]
 			},
 			{
-				"label": "Small (18)",
-				"value": "small"
+				"label": "120",
+				"value": "h1",
+				"weights": ["bold", "medium"]
+			},
+
+			{
+				"label": "80",
+				"value": "h2",
+				"weights": ["bold", "medium"]
+			},
+
+			{
+				"label": "64",
+				"value": "h3",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Regular (24)",
-				"value": "regular"
+				"label": "32",
+				"value": "h4",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Big (40)",
-				"value": "big"
+				"label": "24",
+				"value": "h5",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Huge (68)",
-				"value": "huge"
+				"label": "18",
+				"value": "h6",
+				"weights": ["bold", "medium"]
 			}
 		],
 		"headingColor": [
-			"primary",
-			"black",
+			"primary500",
 			"white",
-			"green",
-			"ocean",
-			"yellow",
-			"blue",
-			"red",
-			"cream",
-			"mist",
-			"dew",
-			"eightshift"
+			"black"
 		]
 	},
 	"variables": {
 		"headingSize": {
-			"tiny": [
+			"hero:bold": [
 				{
 					"variable": {
-						"heading-font-size": "0.875rem",
-						"heading-line-height": "1"
-					}
-				}
-			],
-			"small": [
-				{
-					"variable": {
-						"heading-font-size": "1.1rem",
-						"heading-line-height": "1"
+						"heading-font-size": "5rem",
+						"heading-line-height": "1.2",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-2px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "1.125rem"
+						"heading-font-size": "7.5rem"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "9.375rem",
+						"heading-line-height": "1"
 					}
 				}
 			],
-			"regular": [
+			"h1:bold": [
 				{
 					"variable": {
-						"heading-font-size": "1rem",
-						"heading-line-height": "1"
+						"heading-font-size": "4.5rem",
+						"heading-line-height": "1.22",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-2px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "1.5rem"
+						"heading-font-size": "6rem",
+						"heading-line-height": "1.12"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "7.5rem",
+						"heading-line-height": "1.05"
 					}
 				}
 			],
-			"big": [
+			"h1:medium": [
+				{
+					"variable": {
+						"heading-font-size": "4.5rem",
+						"heading-line-height": "1.22",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "6rem",
+						"heading-line-height": "1.12",
+						"heading-letter-spacing": "-2px"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "7.5rem",
+						"heading-line-height": "1.05"
+					}
+				}
+			],
+			"h2:bold": [
+				{
+					"variable": {
+						"heading-font-size": "4rem",
+						"heading-line-height": "1.25",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-2px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "4.5rem",
+						"heading-line-height": "1.22"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "5rem",
+						"heading-line-height": "1.2"
+					}
+				}
+			],
+			"h2:medium": [
+				{
+					"variable": {
+						"heading-font-size": "4rem",
+						"heading-line-height": "1.25",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "4.5rem",
+						"heading-line-height": "1.22"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "5rem",
+						"heading-line-height": "1.2"
+					}
+				}
+			],
+			"h3:bold": [
+				{
+					"variable": {
+						"heading-font-size": "3rem",
+						"heading-line-height": "1.04",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-2px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "3.5rem",
+						"heading-line-height": "1.08"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "4rem",
+						"heading-line-height": "1.3"
+					}
+				}
+			],
+			"h3:medium": [
+				{
+					"variable": {
+						"heading-font-size": "3rem",
+						"heading-line-height": "1.04",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "3.5rem",
+						"heading-line-height": "1.08"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-font-size": "4rem",
+						"heading-line-height": "1.3"
+					}
+				}
+			],
+			"h4:bold": [
+				{
+					"variable": {
+						"heading-font-size": "2.5rem",
+						"heading-line-height": "1.4",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "3rem",
+						"heading-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-line-height": "1.35"
+					}
+				}
+			],
+			"h4:medium": [
+				{
+					"variable": {
+						"heading-font-size": "2.5rem",
+						"heading-line-height": "1.4",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-font-size": "3rem",
+						"heading-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-line-height": "1.35"
+					}
+				}
+			],
+			"h5:bold": [
+				{
+					"variable": {
+						"heading-font-size": "2rem",
+						"heading-line-height": "1.39",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-line-height": "1.3"
+					}
+				}
+			],
+			"h5:medium": [
+				{
+					"variable": {
+						"heading-font-size": "2rem",
+						"heading-line-height": "1.39",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"heading-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-line-height": "1.3"
+					}
+				}
+			],
+			"h6:bold": [
 				{
 					"variable": {
 						"heading-font-size": "1.5rem",
-						"heading-line-height": "1"
+						"heading-line-height": "1.35",
+						"heading-font-weight": "bold",
+						"heading-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "2.5rem"
+						"heading-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-letter-spacing": "0"
 					}
 				}
 			],
-			"huge": [
+			"h6:medium": [
 				{
 					"variable": {
 						"heading-font-size": "1.5rem",
-						"heading-line-height": "1"
+						"heading-line-height": "1.35",
+						"heading-font-weight": "500",
+						"heading-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"heading-font-size": "4.25rem"
+						"heading-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"heading-letter-spacing": "0"
 					}
 				}
 			]

@@ -54,7 +54,7 @@ $networkNames = array_column($manifest['socialOptions'], 'label', 'value'); // @
 			data-share-title="<?php echo esc_attr($postTitle);?>"
 			class="<?php echo esc_attr($shareItemClass); ?>"
 		>
-			<?php echo esc_html($networkNames[$name]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo esc_html($networkNames[$name]); ?>
 		</a>
 		<?php
 	}

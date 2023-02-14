@@ -31,46 +31,32 @@ $jumbotronClass = Components::classnames([
 
 $jumbotronContentClass = Components::selector($componentClass, $componentClass, 'content');
 $jumbotronContentWrapClass = Components::selector($componentClass, $componentClass, 'content-wrap');
-
 ?>
 
 <div class="<?php echo esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>" role="region">
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 
-	echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		'image',
-		Components::props('image', $attributes, [
-			'blockClass' => $componentClass,
-			'imageUsePlaceholder' => true,
-			'imageBg' => true,
-		])
-	);
+	echo Components::render('image', Components::props('image', $attributes, [
+		'blockClass' => $componentClass,
+		'imageFull' => true,
+	]));
 	?>
 
 	<div class="<?php echo esc_attr($jumbotronContentClass); ?>">
 		<div class="<?php echo esc_attr($jumbotronContentWrapClass); ?>">
 			<?php
-			echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'heading',
-				Components::props('heading', $attributes, [
-					'blockClass' => $componentClass
-				])
-			),
+			echo Components::render('heading', Components::props('heading', $attributes, [
+				'blockClass' => $componentClass
+			])),
 
-			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'paragraph',
-				Components::props('paragraph', $attributes, [
-					'blockClass' => $componentClass
-				])
-			),
+			Components::render('paragraph', Components::props('paragraph', $attributes, [
+				'blockClass' => $componentClass
+			])),
 
-			Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'button',
-				Components::props('button', $attributes, [
-					'blockClass' => $componentClass
-				])
-			);
+			Components::render('button', Components::props('button', $attributes, [
+				'blockClass' => $componentClass
+			]));
 			?>
 		</div>
 	</div>

@@ -1,0 +1,24 @@
+.es-number-picker {
+	.es-number-picker-input-value {
+		.components-input-control__input {
+			font-variant-numeric: tabular-nums;
+		}
+
+		.components-input-control__backdrop {
+			// stylelint-disable declaration-no-important
+			// border: none !important;
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+			// stylelint-enable declaration-no-important
+		}
+	}
+
+	.components-button > svg {
+		transition: {
+			// stylelint-disable-next-line declaration-no-important
+			property: color, background-color, border-color, text-decoration-color, fill, stroke !important;
+			timing-function: var(--es-ease-out-cubic);
+			duration: 0.3s;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@wordpress/components';
+import { classnames } from '../../helpers';
 
 /**
  * A simple icon-label combo for streamlined components.
@@ -17,11 +18,11 @@ export const IconLabel = (props) => {
 
 	if (subtitle && standalone) {
 		return (
-			<div className={`es-label-flex ${additionalClasses ?? ''}`}>
+			<div className={classnames('es-label-flex', additionalClasses)}>
 				<Icon icon={icon} />
-				<div className={`es-v-spaced ${addSubtitleGap ? 'es-gap-xs-important' : 'es-gap-0-important'}`}>
+				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5')}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
-					{subtitle && <span className='es-decorative-text es-text-smallish-l-em es-flex-shrink-0'>{subtitle}</span>}
+					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
 			</div>
 		);
@@ -31,9 +32,9 @@ export const IconLabel = (props) => {
 		return (
 			<>
 				<Icon icon={icon} />
-				<div className='es-v-spaced es-gap-xs-important'>
+				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5', additionalClasses)}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
-					{subtitle && <span className='es-decorative-text es-text-smallish-l-em es-flex-shrink-0'>{subtitle}</span>}
+					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
 			</>
 		);
@@ -41,7 +42,7 @@ export const IconLabel = (props) => {
 
 	if (standalone) {
 		return (
-			<div className={`es-label-flex ${additionalClasses ?? ''}`}>
+			<div className={classnames('es-label-flex', additionalClasses)}>
 				<Icon icon={icon} />
 				{label}
 			</div>

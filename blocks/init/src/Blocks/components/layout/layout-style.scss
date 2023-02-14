@@ -1,21 +1,15 @@
+// stylelint-disable max-nesting-depth
+
 .layout {
 	$this: &;
 
 	&__wrap {
 		display: grid;
-		column-gap: var(--global-gutters-default);
-		row-gap: 6rem;
+		column-gap: var(--global-gutters-default, 2rem);
+		row-gap: 2rem;
 
 		@include media(tablet up) {
-			row-gap: var(--global-gutters-default);
-		}
-	}
-
-	&__col > * {
-		margin-bottom: 3rem;
-
-		@include media(tablet up) {
-			margin-bottom: 4rem;
+			row-gap: var(--global-gutters-default, 2rem);
 		}
 	}
 
@@ -23,11 +17,11 @@
 		#{$this}__wrap {
 			@include media(tablet up) {
 				row-gap: 10rem;
-				grid-template-columns: repeat(12, 1fr);
+				grid-template-columns: repeat(12, minmax(0, 1fr));
 			}
 
 			> * {
-				@include media(tablet up) { // stylelint-disable-line max-nesting-depth
+				@include media(tablet up) {
 					grid-column-end: span 6;
 				}
 			}
@@ -37,16 +31,15 @@
 	&[data-layout-type='layout-grid-3'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: 8rem;
-				grid-template-columns: repeat(12, 1fr);
+				grid-template-columns: repeat(12, minmax(0, 1fr));
 			}
 
 			> * {
-				@include media(tablet) { // stylelint-disable-line max-nesting-depth
+				@include media(tablet) {
 					grid-column-end: span 6;
 				}
 
-				@include media(desktop up) { // stylelint-disable-line max-nesting-depth
+				@include media(desktop up) {
 					grid-column-end: span 4;
 				}
 			}
@@ -56,19 +49,20 @@
 	&[data-layout-type='layout-grid-4'] {
 		#{$this}__wrap {
 			@include media(tablet up) {
-				row-gap: 8rem;
-				grid-template-columns: repeat(12, 1fr);
+				grid-template-columns: repeat(12, minmax(0, 1fr));
 			}
 
 			> * {
-				@include media(tablet) { // stylelint-disable-line max-nesting-depth
+				@include media(tablet) {
 					grid-column-end: span 6;
 				}
 
-				@include media(desktop up) { // stylelint-disable-line max-nesting-depth
+				@include media(desktop up) {
 					grid-column-end: span 3;
 				}
 			}
 		}
 	}
 }
+
+// stylelint-enable max-nesting-depth

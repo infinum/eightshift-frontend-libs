@@ -12,6 +12,7 @@ export const AccordionItemEditor = ({ attributes, setAttributes }) => {
 	const accordionItemStartOpen = checkAttr('accordionItemStartOpen', attributes, manifest);
 
 	const accordionItemTriggerClass = selector(blockClass, blockClass, 'trigger');
+	const accordionItemIconContainerClass = selector(blockClass, blockClass, 'icon-container');
 	const accordionItemIconClass = selector(blockClass, blockClass, 'icon');
 	const accordionItemPanelClass = selector(blockClass, blockClass, 'panel');
 	const accordionItemContentClass = selector(blockClass, blockClass, 'content');
@@ -20,7 +21,7 @@ export const AccordionItemEditor = ({ attributes, setAttributes }) => {
 
 	return (
 		<div className={blockClass} data-open={open}>
-			<button className={accordionItemTriggerClass} onClick={() => setOpen(!open)}>
+			<div className={accordionItemTriggerClass}>
 				<ParagraphEditor
 					{...props('trigger', attributes, {
 						blockClass: blockClass,
@@ -28,8 +29,10 @@ export const AccordionItemEditor = ({ attributes, setAttributes }) => {
 					})}
 				/>
 
-				<i className={accordionItemIconClass} dangerouslySetInnerHTML={{ __html: manifest.resources.icon }}></i>
-			</button>
+				<button className={accordionItemIconContainerClass} onClick={() => setOpen(!open)}>
+					<i className={accordionItemIconClass} dangerouslySetInnerHTML={{ __html: manifest.resources.icon }}></i>
+				</button>
+			</div>
 
 			<section className={accordionItemPanelClass}>
 				<div className={accordionItemContentClass}>

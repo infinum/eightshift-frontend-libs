@@ -4,24 +4,20 @@
 @import '../scripts/components/advanced-color-picker/advanced-color-picker';
 @import '../scripts/components/custom-slider/custom-slider';
 @import '../scripts/components/link-edit-component/link-edit-component';
+@import '../scripts//components/number-picker/number-picker.scss';
 @import '../scripts/components/help-modal/help-modal';
-@import '../scripts/components/icon-toggle/icon-toggle';
-@import '../scripts/components/component-use-toggle/component-use-toggle';
 @import '../scripts/components/custom-select/custom-select';
 @import '../scripts/components/color-picker-component/color-picker-component';
-@import '../scripts/components/inline-notification/inline-notification';
-@import '../scripts/components/simple-horizontal-single-select/simple-horizontal-single-select';
-@import '../scripts/components/simple-vertical-single-select/simple-vertical-single-select';
 @import '../scripts/components/server-side-render/server-side-render';
-@import '../scripts/components/collapsable-component-use-toggle/collapsable-component-use-toggle';
-@import '../scripts/components/fancy-divider/fancy-divider';
-@import '../scripts/components/collapsable/collapsable';
 @import '../scripts/components/color-palette-custom/color-palette-custom';
-@import '../scripts/components/compact-responsive/compact-responsive';
+@import './es-shared/es-nested-collapsable';
+
+// Animated icons.
+@import './es-animated-icons.scss';
 
 :root {
 	// Colors
-	--es-admin-accent-color-default: #194BD4;
+	--es-admin-accent-color-default: #3858E9;
 	--es-admin-pure-white: #FFFFFF;
 	--es-admin-pure-black: #000000;
 	--es-admin-gray-50: #FAFAFA;
@@ -41,7 +37,7 @@
 	--es-admin-red-500: #CF2E2E;
 	--es-admin-on-red-500: #FFFFFF;
 	--es-admin-yellow-500: #FF6900;
-	--es-admin-on-yellow-500: #212121;
+	--es-admin-on-yellow-500: #FFFFFF;
 	--es-admin-green-500: #4CAF50;
 	--es-admin-on-green-500: #FFFFFF;
 	--es-admin-blue-500: #0693E3;
@@ -63,29 +59,17 @@
 	--es-admin-eightshift-50: #F8FFFF;
 	--es-admin-eightshift-500: #0D3636;
 
+	// Border radii.
+	--es-component-border-radius-sm: 3px;
+	--es-component-border-radius-md: 4px;
+	--es-component-border-radius-lg: 6px;
+	--es-component-border-radius-xl: 9px;
+	--es-component-border-radius-full: 100rem;
+
 	@include es-eases;
 }
 
 body {
-	// Full width button.
-	.custom-full-width-button {
-		width: 100%;
-		justify-content: center;
-	}
-
-	// Custom divider.
-	.custom-divider {
-		width: 100%;
-		height: 1px;
-		background-color: var(--es-admin-custom-divider, var(--es-admin-gray-400));
-		margin: 10px 0;
-	}
-
-	// Highlighted panel
-	.custom-highlighted-panel {
-		background-color: var(--es-admin-custom-highlighted-panel, var(--es-admin-gray-100));
-	}
-
 	// Panel body title with icon in front.
 	// Must have the title wrapped in a <span>!
 	.es-panel-title {
@@ -125,20 +109,6 @@ body {
 		}
 	}
 
-	// Updated Placeholder component styles.
-	.components-placeholder {
-		.es-placeholder-input-flex {
-			display: flex;
-			flex-wrap: nowrap;
-			gap: 0.5rem;
-			width: 100%;
-
-			.components-input-control {
-				max-width: 19rem;
-			}
-		}
-	}
-
 	// Input error text style.
 	.es-input-error {
 		color: var(--es-admin-input-error, var(--es-admin-red-500));
@@ -162,13 +132,13 @@ body {
 	}
 
 	.es-input-matched-slight-button-border {
-		border-radius: 3px;
+		border-radius: var(--es-component-border-radius-md);
 
 		&:not(.is-pressed) {
-			box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 80%);
+			box-shadow: inset 0 0 0 1px var(--es-admin-gray-400);
 
 			&:hover {
-				box-shadow: inset 0 0 0 1px hsl(0deg, 0%, 70%);
+				box-shadow: inset 0 0 0 1px var(--es-admin-cool-gray-500);
 			}
 		}
 	}
@@ -198,13 +168,13 @@ body {
 		gap: 0.5rem;
 
 		svg {
-			height: 1.5rem !important;
-			width: 1.5rem !important;
+			height: 1.5rem;
+			width: 1.5rem;
 			margin: 0 !important;
 			flex-shrink: 0;
 
 			&:not(button svg) {
-				color: var(--es-admin-label-flex-svg, var(--es-admin-cool-gray-650));
+				color: var(--es-admin-label-flex-svg, var(--es-admin-cool-gray-500));
 			}
 		}
 
@@ -308,7 +278,7 @@ body {
 		img {
 			width: 100%;
 			height: auto;
-			border-radius: 0.5rem;
+			border-radius: var(--es-component-border-radius-lg);
 
 			margin-bottom: 0.25rem;
 			border: 1px solid var(--es-admin-cool-gray-400);
@@ -333,6 +303,101 @@ body {
 			svg {
 				transform: scaleY(-1);
 			}
+		}
+	}
+
+	.es-animated-y-flip-icon {
+		transition: {
+			property: transform;
+			timing-function: var(--es-ease-out-back);
+			duration: 0.5s;
+		}
+
+		&.is-active {
+			transform: scaleY(-1);
+		}
+	}
+
+	// Animated inherit icon.
+	.es-animated-inherit-icon {
+		.arrow-top,
+		.arrow-mid,
+		.arrow-btm {
+			transform-origin: center;
+
+			transition: {
+				property: transform, fill-opacity, opacity;
+				timing-function: var(--es-ease-out-back), ease-out, ease-out;
+				duration: 0.5s, 0.3s, 0.3s;
+			}
+		}
+
+		.arrow-btm {
+			fill: currentColor;
+			fill-opacity: 0;
+		}
+
+		&:not(.is-inherited) {
+			&:hover {
+				.arrow-top {
+					transform: translateY(5%);
+				}
+
+				.arrow-btm {
+					transform: translateY(-5%);
+				}
+			}
+		}
+
+		&.is-inherited {
+			.arrow-top {
+				transform: translateY(32.5%);
+
+				opacity: 0;
+			}
+
+			.arrow-mid {
+				opacity: 0;
+			}
+
+			.arrow-btm {
+				fill-opacity: 1;
+				transform: translateY(-37.5%) scale(1.15);
+			}
+		}
+	}
+
+	// A11y improvements.
+	@media (prefers-reduced-motion) {
+		.es-animated-inherit-icon .arrow-top,
+		.es-animated-inherit-icon .arrow-mid,
+		.es-animated-inherit-icon .arrow-btm {
+			transition-duration: 25ms !important;
+		}
+	}
+
+	// Slightly thicken ES UI icon border.
+	.es-has-enhanced-contrast-icon :is(circle, rect, ellipse, line, path, polygon, polyline, text, text, textPath, tref, tspan):not([stroke-width]) {
+		stroke-width: 1.25;
+	}
+
+	// Options for remove top/bottom margins from InnerBlocks.
+	.es-no-v-inner-blocks-gutenberg-margin {
+		.block-editor-block-list__layout > .wp-block {
+			&:first-child {
+				margin-top: 0 !important;
+			}
+
+			&:last-child {
+				margin-bottom: 0 !important;
+			}
+		}
+	}
+
+	.es-no-h-inner-blocks-gutenberg-margin {
+		.block-editor-block-list__layout > .wp-block {
+			margin-top: 0 !important;
+			margin-bottom: 0 !important;
 		}
 	}
 }

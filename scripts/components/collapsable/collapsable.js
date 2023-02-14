@@ -1,63 +1,68 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { BaseControl, Button, Animate } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { Button } from '@wordpress/components';
+import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshift/frontend-libs/scripts';
 
 /**
- * A collapsable container for options, akin to CollapsableComponentUseToggle.
+ * A collapsable container for options.
  *
- * @param {object} props                      - Collapsable options.
- * @param {string} props.label                - Trigger label.
- * @param {boolean} props.startOpen           - If true, the component is expanded by default. Default: false
- * @param {boolean} props.showExpanderIcon    - If true, the expander icon is rendered. Default: true
- * @param {React.Component} props.children    - Child items that are shown when expanded.
- * @param {string?} [props.additionalClasses] - If passed, the classes are appended to the component classes.
+ * @param {object} props                              - Collapsable options.
+ * @param {React.Component?} [props.icon]             - Icon to show next to the label
+ * @param {string} props.label                        - Trigger label.
+ * @param {React.Component?} [props.subtitle]         - Subtitle below the label.
+ * @param {boolean} [props.noBottomSpacing]           - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]     - If `true`, space below the control is reduced.
+ * @param {React.Component} props.children            - Child items that are shown when expanded.
+ * @param {string?} [props.additionalClasses]         - If passed, the classes are appended to the component classes.
+ * @param {React.Component?} [props.actions]          - Actions to show to the right of the label.
+ * @param {boolean} [props.keepActionsOnExpand=false] - If `true`, the actions are kept visible when the component is expanded.
  * @returns
  */
 export const Collapsable = ({
+	icon,
 	label,
-	startOpen = false,
-	showExpanderIcon = true,
+	subtitle,
+
+	noBottomSpacing,
+	reducedBottomSpacing,
+
 	children,
 	additionalClasses,
-}) => {
-	const [isOpen, setIsOpen] = useState(startOpen);
 
-	const componentClasses = classnames([
-		'es-collapsable-v2',
-		isOpen ? 'is-open' : '',
-		additionalClasses ?? '',
-	]);
+	actions,
+
+	keepActionsOnExpand = false,
+}) => {
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<BaseControl className={componentClasses}>
-			<div className='es-collapsable-v2__trigger es-h-between'>
-				{label}
+		<Control
+			icon={icon}
+			label={label}
+			subtitle={subtitle}
+			noBottomSpacing={!isOpen && noBottomSpacing}
+			reducedBottomSpacing={!isOpen && reducedBottomSpacing}
+			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
+			actions={
+				<div className='es-h-spaced es-gap-0!'>
+					<div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', !keepActionsOnExpand && isOpen && 'es-opacity-0')}>
+						{actions}
+					</div>
 
-				{showExpanderIcon &&
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
+						className={classnames('es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1! es-has-animated-y-flip-icon es-pl-0.5!', isOpen && 'is-active es-nested-color-pure-white! es-bg-admin-accent!')}
 						icon={isOpen ? icons.caretDownFill : icons.caretDown}
-						className={classnames([
-							'es-collapsable-v2__expander-button es-button-square-32 es-button-icon-24 es-rounded-full',
-							isOpen ? 'es-nested-color-admin-accent' : '',
-						])}
-						label={isOpen ? __('Show options', 'eightshift-frontend-libs') : __('Hide options', 'eightshift-frontend-libs')}
+						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
 						showTooltip
 					/>
-				}
-			</div>
-
-			{isOpen &&
-				<Animate type='slide-in' options={{ origin: 'bottom' }} >
-					{({ className }) => (
-						<div className={className}>
-							{children}
-						</div>
-					)}
-				</Animate>
+				</div>
 			}
-		</BaseControl>
+		>
+			<AnimatedContentVisibility showIf={isOpen}>
+				{children}
+			</AnimatedContentVisibility>
+		</Control>
 	);
 };

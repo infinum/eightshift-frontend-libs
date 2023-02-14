@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
-import { outputCssVariables, getUnique, props, selector } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, getUnique, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
@@ -21,11 +20,11 @@ export const CardEditor = (attributes) => {
 		additionalClass,
 	} = attributes;
 
-	const cardClass = classnames([
+	const cardClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	return (
 		<div className={cardClass} data-id={unique}>

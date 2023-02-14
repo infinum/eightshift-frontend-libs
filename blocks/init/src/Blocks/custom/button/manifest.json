@@ -23,9 +23,21 @@
 	},
 	"options": {
 		"buttonAlign": [
-			"left",
-			"center",
-			"right"
+			{
+				"label": "Left",
+				"value": "left",
+				"icon": "horizontalAlignLeft"
+			},
+			{
+				"label": "Center",
+				"value": "center",
+				"icon": "horizontalAlignCenter"
+			},
+			{
+				"label": "Right",
+				"value": "right",
+				"icon": "horizontalAlignRight"
+			}
 		]
 	},
 	"variables": {

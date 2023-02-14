@@ -1,0 +1,16 @@
+# UseToggle
+
+A component that allows grouping the component's options into a single (collapsable) area.
+Perfect for base components which can usually clutter up big components.
+
+## Usage
+
+```jsx
+<UseToggle
+	label={__('Button', 'eightshift-frontend-libs')}
+	checked={buttonUse}
+	onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
+>
+	// Block options go here
+</UseToggle/>
+```

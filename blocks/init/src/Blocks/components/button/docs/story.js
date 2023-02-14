@@ -5,7 +5,6 @@ import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
 import { ButtonOptions } from '../components/button-options';
-import { ButtonToolbar } from '../components/button-toolbar';
 
 export default {
 	title: `Components/${manifest.title}`,
@@ -26,10 +25,6 @@ export const options = () => (
 	<ButtonOptions {...props('button', attributes, {
 		options: getOptions(attributes, manifest),
 	})} />
-);
-
-export const toolbar = () => (
-	<ButtonToolbar {...props('button', attributes)} />
 );
 
 export const size = () => (

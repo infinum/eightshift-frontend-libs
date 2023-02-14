@@ -10,6 +10,7 @@
 
 // Globals.
 @import './../../../../assets/styles/parts/shared';
+@import '@eightshift/frontend-libs/styles/scss/normalize';
 
 // Register Wrapper block styles.
 @import './../../wrapper/wrapper-frontend';
@@ -19,3 +20,8 @@
 
 // Find all blocks and require block_name-editor.scss inside it.
 @import './../../custom/*/*-frontend.scss';
+
+// Custom easing function.
+:root {
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

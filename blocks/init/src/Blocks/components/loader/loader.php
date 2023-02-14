@@ -11,6 +11,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 $manifest = Components::getManifest(__DIR__);
 
 $loaderUse = Components::checkAttr('loaderUse', $attributes, $manifest);
+
 if (!$loaderUse) {
 	return;
 }
@@ -28,8 +29,10 @@ $loaderClass = Components::classnames([
 	Components::selector($additionalClass, $additionalClass),
 	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
 ]);
+
+$loaderSpinnerClass = Components::selector($componentClass, $componentClass, 'spinner');
 ?>
 
 <div class="<?php echo esc_attr($loaderClass); ?>">
-	<?php echo $manifest['resources']['loader']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+	<span class="<?php echo esc_attr($loaderSpinnerClass); ?>"></span>
 </div>

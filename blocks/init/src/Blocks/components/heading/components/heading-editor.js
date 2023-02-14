@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -15,20 +14,22 @@ export const HeadingEditor = (attributes) => {
 
 	const {
 		setAttributes,
-		selectorClass = componentClass,
+
 		blockClass,
 		additionalClass,
+		selectorClass = componentClass,
+
 		placeholder = __('Add content', 'eightshift-frontend-libs'),
 	} = attributes;
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingContent = checkAttr('headingContent', attributes, manifest);
 
-	const headingClass = classnames([
+	const headingClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	if (!headingUse) {
 		return null;

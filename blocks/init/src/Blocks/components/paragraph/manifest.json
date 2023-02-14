@@ -17,7 +17,7 @@
 		},
 		"paragraphSize": {
 			"type": "string",
-			"default": "regular"
+			"default": "body:regular"
 		},
 		"paragraphColor": {
 			"type": "string",
@@ -31,115 +31,311 @@
 	"options": {
 		"paragraphSize": [
 			{
-				"label": "Regular (16)",
-				"value": "regular"
+				"label": "48",
+				"value": "h4",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Small (13)",
-				"value": "small"
+				"label": "32",
+				"value": "h5",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Tiny (11)",
-				"value": "tiny"
+				"label": "24",
+				"value": "h6",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Big (40)",
-				"value": "big"
+				"label": "16",
+				"value": "body",
+				"weights": ["bold", "medium", "regular"]
 			},
 			{
-				"label": "Huge (60)",
-				"value": "huge"
+				"label": "14",
+				"value": "caption",
+				"weights": ["bold", "regular"]
+			},
+			{
+				"label": "12",
+				"value": "info-text",
+				"weights": ["regular"]
 			}
 		],
 		"paragraphColor": [
-			"primary",
-			"black",
 			"white",
-			"green",
-			"ocean",
-			"yellow",
-			"blue",
-			"red",
-			"cream",
-			"mist",
-			"dew",
-			"eightshift"
+			"black",
+			"primary500"
 		]
 	},
 	"variables": {
 		"paragraphSize": {
-			"regular": [
+			"h4:bold": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.8rem",
-						"paragraph-line-height": "1"
+						"paragraph-font-size": "2.5rem",
+						"paragraph-line-height": "1.4",
+						"paragraph-font-weight": "bold",
+						"paragraph-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "1rem"
+						"paragraph-font-size": "3rem",
+						"paragraph-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.35"
 					}
 				}
 			],
-			"small": [
+			"h4:medium": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.6rem",
-						"paragraph-line-height": "1"
+						"paragraph-font-size": "2.5rem",
+						"paragraph-line-height": "1.4",
+						"paragraph-font-weight": "500",
+						"paragraph-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "0.8rem"
+						"paragraph-font-size": "3rem",
+						"paragraph-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.35"
 					}
 				}
 			],
-			"tiny": [
+			"h5:bold": [
 				{
 					"variable": {
-						"paragraph-font-size": "0.45rem",
-						"paragraph-line-height": "1"
+						"paragraph-font-size": "2rem",
+						"paragraph-line-height": "1.39",
+						"paragraph-font-weight": "bold",
+						"paragraph-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.3"
 					}
 				}
 			],
-			"big": [
+			"h5:medium": [
+				{
+					"variable": {
+						"paragraph-font-size": "2rem",
+						"paragraph-line-height": "1.39",
+						"paragraph-font-weight": "500",
+						"paragraph-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.3"
+					}
+				}
+			],
+			"h6:bold": [
 				{
 					"variable": {
 						"paragraph-font-size": "1.5rem",
-						"paragraph-line-height": "1"
+						"paragraph-line-height": "1.35",
+						"paragraph-font-weight": "bold",
+						"paragraph-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "2.5rem"
+						"paragraph-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-letter-spacing": "0"
 					}
 				}
 			],
-			"huge": [
+			"h6:medium": [
 				{
 					"variable": {
 						"paragraph-font-size": "1.5rem",
-						"paragraph-line-height": "1"
+						"paragraph-line-height": "1.35",
+						"paragraph-font-weight": "500",
+						"paragraph-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"paragraph-font-size": "4.25rem"
+						"paragraph-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-letter-spacing": "0"
+					}
+				}
+			],
+			"body:bold": [
+				{
+					"variable": {
+						"paragraph-font-size": "1rem",
+						"paragraph-line-height": "1.39",
+						"paragraph-font-weight": "bold"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-letter-spacing": "0"
+					}
+				}
+			],
+			"body:medium": [
+				{
+					"variable": {
+						"paragraph-font-size": "1rem",
+						"paragraph-line-height": "1.39",
+						"paragraph-font-weight": "500"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-letter-spacing": "0"
+					}
+				}
+			],
+			"body:regular": [
+				{
+					"variable": {
+						"paragraph-font-size": "1rem",
+						"paragraph-line-height": "1.39",
+						"paragraph-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-letter-spacing": "0"
+					}
+				}
+			],
+			"caption:bold": [
+				{
+					"variable": {
+						"paragraph-font-size": "0.875rem",
+						"paragraph-line-height": "1.4",
+						"paragraph-font-weight": "bold"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.52"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.5"
+					}
+				}
+			],
+			"caption:regular": [
+				{
+					"variable": {
+						"paragraph-font-size": "0.875rem",
+						"paragraph-line-height": "1.4",
+						"paragraph-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.52"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.5"
+					}
+				}
+			],
+			"info-text:regular": [
+				{
+					"variable": {
+						"paragraph-font-size": "0.75rem",
+						"paragraph-line-height": "1.37",
+						"paragraph-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"paragraph-line-height": "1.55"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"paragraph-line-height": "1.5"
 					}
 				}
 			]
 		},
 		"paragraphColor": {
-			"primary": [
+			"white": [
 				{
 					"variable": {
-						"paragraph-color": "var(--global-colors-primary)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-blue)"
+						"paragraph-color": "var(--global-colors-white)",
+						"paragraph-link-color": "var(--global-colors-primary300)"
 					}
 				}
 			],
@@ -147,98 +343,15 @@
 				{
 					"variable": {
 						"paragraph-color": "var(--global-colors-black)",
-						"paragraph-link-color": "var(--global-colors-primary)",
-						"paragraph-link-color-hover": "var(--global-colors-blue)"
+						"paragraph-link-color": "var(--global-colors-primary500)"
 					}
 				}
 			],
-			"green": [
+			"primary500": [
 				{
 					"variable": {
-						"paragraph-color": "var(--global-colors-green)",
-						"paragraph-link-color": "var(--global-colors-white)",
-						"paragraph-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"ocean": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-ocean)",
-						"paragraph-link-color": "var(--global-colors-white)",
-						"paragraph-link-color-hover": "var(--global-colors-green)"
-					}
-				}
-			],
-			"yellow": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-yellow)",
-						"paragraph-link-color": "var(--global-colors-white)",
-						"paragraph-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"blue": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-blue)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
-					}
-				}
-			],
-			"red": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-red)",
-						"paragraph-link-color": "var(--global-colors-black)",
-						"paragraph-link-color-hover": "var(--global-colors-blue)"
-					}
-				}
-			],
-			"cream": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-cream)",
-						"paragraph-link-color": "var(--global-colors-yellow)",
-						"paragraph-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"white": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-white)",
-						"paragraph-link-color": "var(--global-colors-yellow)",
-						"paragraph-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"eightshift": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-eightshift)",
-						"paragraph-link-color": "var(--global-colors-blue)",
-						"paragraph-link-color-hover": "var(--global-colors-primary)"
-					}
-				}
-			],
-			"dew": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-dew)",
-						"paragraph-link-color": "var(--global-colors-ocean)",
-						"paragraph-link-color-hover": "var(--global-colors-white)"
-					}
-				}
-			],
-			"mist": [
-				{
-					"variable": {
-						"paragraph-color": "var(--global-colors-mist)",
-						"paragraph-link-color": "var(--global-colors-ocean)",
-						"paragraph-link-color-hover": "var(--global-colors-green)"
+						"paragraph-color": "var(--global-colors-primary500)",
+						"paragraph-link-color": "var(--global-colors-primary700)"
 					}
 				}
 			]

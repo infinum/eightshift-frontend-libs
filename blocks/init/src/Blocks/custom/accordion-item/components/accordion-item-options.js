@@ -10,11 +10,11 @@ export const AccordionItemOptions = ({ attributes, setAttributes }) => {
 	return (
 		<PanelBody title={__('Accordion item', 'eightshift-frontend-libs')}>
 			<IconToggle
-				icon={icons.dropdownOpen}
-				label={__('Start open', 'eightshift-frontend-libs')}
+				icon={icons.dropdownClose}
+				label={__('Expanded', 'eightshift-frontend-libs')}
 				checked={accordionItemStartOpen}
 				onChange={(value) => setAttributes({ [getAttrKey('accordionItemStartOpen', attributes, manifest)]: value })}
-				type='tileButton'
+				noBottomSpacing
 			/>
 		</PanelBody>
 	);

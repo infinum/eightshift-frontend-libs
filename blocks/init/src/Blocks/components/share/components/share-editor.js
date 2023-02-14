@@ -1,7 +1,6 @@
 import React from 'react';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ShareEditor = (attributes) => {

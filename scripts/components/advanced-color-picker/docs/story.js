@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import readme from './readme.mdx';
 import { AdvancedColorPicker } from '../advanced-color-picker';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: `Options/AdvancedColorPicker`,
@@ -50,63 +51,70 @@ export const component = () => {
 
 	const { globalVariables: { colors } } = stubGlobalManifest;
 
-	const extractedProjectColor = colors.find(({ slug }) => slug === projectColor);
-
-	const getBackground = () => {
-		switch (type) {
-			case 'project':
-				return extractedProjectColor?.color;
-			case 'solid':
-				return solidColor?.hex;
-			case 'gradient':
-				return gradient;
-			default:
-				return 'transparent';
-		}
-	};
+	const styleColors = colors.reduce((all, { slug, color }) => ({
+		...all,
+		[`--global-colors-${slug}`]: color,
+	}), {});
 
 	return (
-		<>
-			<div style={{
-				width: '3rem',
-				height: '3rem',
-				padding: '1rem',
-				boxShadow: 'inset 0 0 0 1px #FFFFFF, 0 0 0 1px #F0F0F0',
-				background: getBackground(),
-				borderRadius: '6rem',
-				margin: '0 0 1rem 8.5rem'
-			}}></div>
+		<div style={styleColors}>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Advanced color picker</h1>
 
-			<div style={{
-				width: '20rem',
-				padding: '1rem',
-				border: '1px solid #F0F0F0',
-				borderRadius: '6px',
-			}}>
-				<AdvancedColorPicker
-					type={type}
-					colorProject={projectColor}
-					colorSolid={solidColor}
-					colorGradient={gradient}
-					onChangeProject={(value) => {
-						setProjectColor(value);
-						setSolidColor(undefined);
-						setGradient(undefined);
-					}}
-					onChangeSolid={(value) => {
-						setProjectColor(undefined);
-						setSolidColor(value);
-						setGradient(undefined);
-					}}
-					onChangeGradient={(value) => {
-						setProjectColor(undefined);
-						setSolidColor(undefined);
-						setGradient(value);
-					}}
-					onChangeType={(value) => setType(value)}
-					globalManifest={stubGlobalManifest}
-				/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic control'>
+					<AdvancedColorPicker
+						type={type}
+						colorProject={projectColor}
+						colorSolid={solidColor}
+						colorGradient={gradient}
+						onChangeProject={(value) => {
+							setProjectColor(value);
+							setSolidColor(undefined);
+							setGradient(undefined);
+						}}
+						onChangeSolid={(value) => {
+							setProjectColor(undefined);
+							setSolidColor(value);
+							setGradient(undefined);
+						}}
+						onChangeGradient={(value) => {
+							setProjectColor(undefined);
+							setSolidColor(undefined);
+							setGradient(value);
+						}}
+						onChangeType={(value) => setType(value)}
+						globalManifest={stubGlobalManifest}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Tile button'>
+					<AdvancedColorPicker
+						type={type}
+						colorProject={projectColor}
+						colorSolid={solidColor}
+						colorGradient={gradient}
+						onChangeProject={(value) => {
+							setProjectColor(value);
+							setSolidColor(undefined);
+							setGradient(undefined);
+						}}
+						onChangeSolid={(value) => {
+							setProjectColor(undefined);
+							setSolidColor(value);
+							setGradient(undefined);
+						}}
+						onChangeGradient={(value) => {
+							setProjectColor(undefined);
+							setSolidColor(undefined);
+							setGradient(value);
+						}}
+						onChangeType={(value) => setType(value)}
+						globalManifest={stubGlobalManifest}
+						isTileButton
+					/>
+				</SingleItemShowcase>
 			</div>
-		</>
+		</div>
 	);
 };

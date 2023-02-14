@@ -4,7 +4,11 @@ domReady(() => {
 	const selector = '.js-scroll-to-anchor';
 	const elements = document.querySelectorAll(selector);
 
-	[...elements].forEach((element) => {
+	if (!elements.length) {
+		return;
+	}
+
+	elements.forEach((element) => {
 		element.addEventListener('click', (event) => {
 			event.preventDefault();
 			const target = document.querySelector(event.currentTarget.getAttribute('href'));

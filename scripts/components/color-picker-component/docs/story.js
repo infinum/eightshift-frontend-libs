@@ -1,10 +1,11 @@
 import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
-import { ColorPickerComponent, ColorPickerType } from '../color-picker-component';
+import { ColorPicker } from '../color-picker-component';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
-	title: 'Options/ColorPickerComponent',
+	title: 'Options/ColorPicker',
 	parameters: {
 		docs: {
 			page: readme
@@ -12,12 +13,10 @@ export default {
 	},
 };
 
-const maxWidthStyle = {
-	maxWidth: '15rem',
-};
+export const component = () => {
+	const [objData, setObjData] = useState({ color: undefined });
 
-const getPaletteColors = () => (
-	[
+	const colors = [
 		{
 			name: 'Primary 300',
 			slug: 'primary300',
@@ -43,71 +42,48 @@ const getPaletteColors = () => (
 			slug: 'white',
 			color: '#FFFFFF'
 		}
-	]
-);
+	];
 
-export const component = () => {
-	const [objData, setObjData] = useState({ color: undefined });
-
-	return (
-		<div style={maxWidthStyle}>
-			<ColorPickerComponent
-				label='Sample color'
-				colors={getPaletteColors()}
-				value={objData.color}
-				onChange={(value) => setObjData({ color: value })}
-			/>
-
-		</div>
-	);
-};
-
-export const textColor = () => {
-	const [objData, setObjData] = useState({ color: undefined });
+	const commonProps = {
+		colors: colors,
+		label: 'Component',
+		value: objData?.color,
+		onChange: (value) => setObjData({ color: value }),
+		noBottomSpacing: true,
+	};
 
 	return (
-		<div style={maxWidthStyle}>
-			<ColorPickerComponent
-				label='Text color'
-				colors={getPaletteColors()}
-				value={objData.color}
-				onChange={(value) => setObjData({ color: value })}
-				type={ColorPickerType.TEXT_COLOR}
-			/>
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Color swatch</h1>
 
-		</div>
-	);
-};
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Base component'>
+					<ColorPicker
+						{...commonProps}
+					/>
+				</SingleItemShowcase>
 
-export const textHighlightColor = () => {
-	const [objData, setObjData] = useState({ color: undefined });
+				<SingleItemShowcase title='Text color picker'>
+					<ColorPicker
+						{...commonProps}
+						type='textColor'
+					/>
+				</SingleItemShowcase>
 
-	return (
-		<div style={maxWidthStyle}>
-			<ColorPickerComponent
-				label='Text highlight color'
-				colors={getPaletteColors()}
-				value={objData.color}
-				onChange={(value) => setObjData({ color: value })}
-				type={ColorPickerType.TEXT_HIGHLIGHT_COLOR}
-			/>
+				<SingleItemShowcase title='Text highlight color picker'>
+					<ColorPicker
+						{...commonProps}
+						type='textHighlightColor'
+					/>
+				</SingleItemShowcase>
 
-		</div>
-	);
-};
-
-export const backgroundColor = () => {
-	const [objData, setObjData] = useState({ color: undefined });
-
-	return (
-		<div style={maxWidthStyle}>
-			<ColorPickerComponent
-				label='Background color'
-				colors={getPaletteColors()}
-				value={objData.color}
-				onChange={(value) => setObjData({ color: value })}
-				type={ColorPickerType.BACKGROUND_COLOR}
-			/>
-		</div>
+				<SingleItemShowcase title='Background color picker'>
+					<ColorPicker
+						{...commonProps}
+						type='backgroundColor'
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
 	);
 };

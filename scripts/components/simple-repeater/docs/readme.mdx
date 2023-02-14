@@ -1,12 +1,12 @@
-# SimpleRepeater
+# Repeater
 
 A simple repeater that allows showing a list of complex options in a nice way.
 
 ## Usage
 
 To use it:
-1. Import `SimpleRepeater` and `SimpleRepeaterItem` from Frontend Libs
-2. Add the `SimpleRepeater` into the options
+1. Import `Repeater` and `RepeaterItem` from Frontend Libs
+2. Add the `Repeater` into the options
 
 ```jsx
 import { LinkEditComponent } from '@eightshift/frontend-libs/scripts/components';
@@ -24,7 +24,7 @@ export const VideoOptions = (attributes) =>  {
 	return (
 			// ...
 
-			<SimpleRepeater
+			<Repeater
 				icon={icons.videoSubtitleAlt}
 				label={__('Captions', 'eightshift-frontend-libs')}
 				items={videoCaptions}
@@ -32,15 +32,15 @@ export const VideoOptions = (attributes) =>  {
 				setAttributes={setAttributes}
 			>
 				{videoCaptions.map((item) => (
-					<SimpleRepeaterItem
+					<RepeaterItem
 						key={item.id} // id is auto-generated
 						icon={item.icon} // you'll probably have a function to return an icon based on type
 						title={item.title}
 					>
 						// Your options here
-					</SimpleRepeaterItem>
+					</RepeaterItem>
 				))}
-			</SimpleRepeater>
+			</Repeater>
 	)
 }
 ```

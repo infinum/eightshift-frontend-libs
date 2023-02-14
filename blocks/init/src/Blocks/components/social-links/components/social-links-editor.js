@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const SocialLinksEditor = (attributes) => {
@@ -17,11 +16,11 @@ export const SocialLinksEditor = (attributes) => {
 	const socialLinksUse = checkAttr('socialLinksUse', attributes, manifest);
 	const socialLinksItems = checkAttr('socialLinksItems', attributes, manifest);
 
-	const socialLinksClass = classnames([
+	const socialLinksClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	const socialLinksItemClass = selector(componentClass, componentClass, 'item');
 	const socialLinksLinkClass = selector(componentClass, componentClass, 'link');
