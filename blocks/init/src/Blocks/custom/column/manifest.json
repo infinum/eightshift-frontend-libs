@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "column",
 	"title": "Column",
-	"description": "Part of the Columns block.",
+	"description": "A single column.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-column"
