@@ -328,7 +328,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					</Section>
 
 					<Section
-						showIf={(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerColor || showWrapperRoundedCorners)}
+						showIf={(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor || showWrapperRoundedCorners)}
 						icon={icons.design}
 						label={__('Design', 'eightshift-frontend-libs')}
 					>
@@ -374,7 +374,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 										}
 									]
 								}
-
+								noBottomSpacing={!(showWrapperRoundedCorners || showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor)}
 							/>
 						}
 
@@ -389,104 +389,110 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									setAttributes: setAttributes,
 									manifest: manifest,
 								})}
+
+								noBottomSpacing={!(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor)}
 							/>
 						}
 
-						<Collapsable
-							icon={icons.divider}
-							label={__('Divider', 'eightshift-frontend-libs')}
-							subtitle={showWrapperDividerColor && (wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) && !wrapperDividerColor && <span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', 'eightshift-frontend-libs')}</span>}
-							actions={
-								(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
-								(
-									React.cloneElement(icons.dividerStatus, {
-										className: 'es-w-6 es-h-6 es-my-1 es-line-h-0',
-										style: {
-											verticalAlign: 'middle',
-											'--top-opacity': wrapperDividerTopLarge ? 1 : 0,
-											'--right-opacity': wrapperDividerRightLarge ? 1 : 0,
-											'--bottom-opacity': wrapperDividerBottomLarge ? 1 : 0,
-											'--left-opacity': wrapperDividerLeftLarge ? 1 : 0,
-										}
-									})
-								)
-							}
-						>
-							<ColorPicker
-								colors={[{ name: __('None', 'eightshift-frontend-libs'), slug: undefined, color: 'transparent' }, ...dividerColors]}
-								value={wrapperDividerColor}
-								onChange={(value) => setAttributes({ wrapperDividerColor: value })}
-								additionalTriggerClasses='es-p-0! es-button-square-24'
-								pickerPopupTitle={__('Divider color', 'eightshift-frontend-libs')}
-								label={__('Color', 'eightshift-frontend-libs')}
-								icon={icons.colorAlt}
-							/>
-
-							{[
-								showWrapperDividerTop && {
-									label: __('Top', 'eightshift-frontend-libs'),
-									attributeKey: 'wrapperDividerTop',
-									icon: React.cloneElement(icons.dividerSide, { style: { '--top-opacity': 1 } }),
-								},
-								showWrapperDividerRight && {
-									label: __('Right', 'eightshift-frontend-libs'),
-									attributeKey: 'wrapperDividerRight',
-									icon: React.cloneElement(icons.dividerSide, { style: { '--right-opacity': 1 } }),
-								},
-								showWrapperDividerBottom && {
-									label: __('Bottom', 'eightshift-frontend-libs'),
-									attributeKey: 'wrapperDividerBottom',
-									icon: React.cloneElement(icons.dividerSide, { style: { '--bottom-opacity': 1 } }),
-								},
-								showWrapperDividerLeft && {
-									label: __('Left', 'eightshift-frontend-libs'),
-									attributeKey: 'wrapperDividerLeft',
-									icon: React.cloneElement(icons.dividerSide, { style: { '--left-opacity': 1 } }),
+						{(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor) &&
+							<Collapsable
+								icon={icons.divider}
+								label={__('Divider', 'eightshift-frontend-libs')}
+								subtitle={showWrapperDividerColor && (wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) && !wrapperDividerColor && <span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', 'eightshift-frontend-libs')}</span>}
+								actions={
+									(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
+									(
+										React.cloneElement(icons.dividerStatus, {
+											className: 'es-w-6 es-h-6 es-my-1 es-line-h-0',
+											style: {
+												verticalAlign: 'middle',
+												'--top-opacity': wrapperDividerTopLarge ? 1 : 0,
+												'--right-opacity': wrapperDividerRightLarge ? 1 : 0,
+												'--bottom-opacity': wrapperDividerBottomLarge ? 1 : 0,
+												'--left-opacity': wrapperDividerLeftLarge ? 1 : 0,
+											}
+										})
+									)
 								}
-							].filter(Boolean).map(({ label, attributeKey, icon }, i) => {
-								const responsiveAttrValues = checkAttrResponsive(attributeKey, attributes, manifest, true);
-								return (
-									<Responsive
-										key={i}
-										icon={icon}
-										label={label}
-										inline
-										noBottomSpacing
-										additionalClasses={i < 3 ? 'es-mb-2' : ''}
-										inheritButton={breakpointNames.map((breakpoint) => {
-											const attributeValue = responsiveAttrValues[breakpoint];
-											const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+							>
+								{showWrapperDividerColor &&
+									<ColorPicker
+										colors={[{ name: __('None', 'eightshift-frontend-libs'), slug: undefined, color: 'transparent' }, ...dividerColors]}
+										value={wrapperDividerColor}
+										onChange={(value) => setAttributes({ wrapperDividerColor: value })}
+										additionalTriggerClasses='es-p-0! es-button-square-24'
+										pickerPopupTitle={__('Divider color', 'eightshift-frontend-libs')}
+										label={__('Color', 'eightshift-frontend-libs')}
+										icon={icons.colorAlt}
+									/>
+								}
 
-											const isInherited = typeof attributeValue === 'undefined';
+								{[
+									showWrapperDividerTop && {
+										label: __('Top', 'eightshift-frontend-libs'),
+										attributeKey: 'wrapperDividerTop',
+										icon: React.cloneElement(icons.dividerSide, { style: { '--top-opacity': 1 } }),
+									},
+									showWrapperDividerRight && {
+										label: __('Right', 'eightshift-frontend-libs'),
+										attributeKey: 'wrapperDividerRight',
+										icon: React.cloneElement(icons.dividerSide, { style: { '--right-opacity': 1 } }),
+									},
+									showWrapperDividerBottom && {
+										label: __('Bottom', 'eightshift-frontend-libs'),
+										attributeKey: 'wrapperDividerBottom',
+										icon: React.cloneElement(icons.dividerSide, { style: { '--bottom-opacity': 1 } }),
+									},
+									showWrapperDividerLeft && {
+										label: __('Left', 'eightshift-frontend-libs'),
+										attributeKey: 'wrapperDividerLeft',
+										icon: React.cloneElement(icons.dividerSide, { style: { '--left-opacity': 1 } }),
+									}
+								].filter(Boolean).map(({ label, attributeKey, icon }, i) => {
+									const responsiveAttrValues = checkAttrResponsive(attributeKey, attributes, manifest, true);
+									return (
+										<Responsive
+											key={i}
+											icon={icon}
+											label={label}
+											inline
+											noBottomSpacing
+											additionalClasses={i < 3 ? 'es-mb-2' : ''}
+											inheritButton={breakpointNames.map((breakpoint) => {
+												const attributeValue = responsiveAttrValues[breakpoint];
+												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
 
-											return {
-												callback: () => setAttributes({ [attributeName]: attributeValue === undefined ? false : undefined }),
-												isActive: isInherited,
-											};
-										})}
-									>
-										{breakpointNames.map((breakpoint, index) => {
-											const attributeValue = responsiveAttrValues[breakpoint];
-											const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+												const isInherited = typeof attributeValue === 'undefined';
 
-											return (
-												<Button
-													key={index}
-													icon={React.cloneElement(icons.toggleOff, {
-														className: `es-animated-toggle-icon ${attributeValue === true ? 'is-checked' : ''}`
-													})}
-													onClick={() => setAttributes({ [attributeName]: !attributeValue })}
-													className='es-button-square-30 es-button-icon-30'
-													label={attributeValue ? __('On', 'eightshift-frontend-libs') : __('Off', 'eightshift-frontend-libs')}
-													showTooltip
-												/>
-											);
-										})}
-									</Responsive>
-								);
-							})
-							}
-						</Collapsable>
+												return {
+													callback: () => setAttributes({ [attributeName]: attributeValue === undefined ? false : undefined }),
+													isActive: isInherited,
+												};
+											})}
+										>
+											{breakpointNames.map((breakpoint, index) => {
+												const attributeValue = responsiveAttrValues[breakpoint];
+												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+
+												return (
+													<Button
+														key={index}
+														icon={React.cloneElement(icons.toggleOff, {
+															className: `es-animated-toggle-icon ${attributeValue === true ? 'is-checked' : ''}`
+														})}
+														onClick={() => setAttributes({ [attributeName]: !attributeValue })}
+														className='es-button-square-30 es-button-icon-30'
+														label={attributeValue ? __('On', 'eightshift-frontend-libs') : __('Off', 'eightshift-frontend-libs')}
+														showTooltip
+													/>
+												);
+											})}
+										</Responsive>
+									);
+								})
+								}
+							</Collapsable>
+						}
 					</Section>
 
 					<Section
