@@ -24,9 +24,7 @@ $carouselItemClass = Components::classnames([
 
 <div class="<?php echo esc_attr($carouselItemClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
-
-	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo Components::render('image', Components::props('image', $attributes));
+	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
+	Components::render('image', Components::props('image', $attributes));
 	?>
 </div>

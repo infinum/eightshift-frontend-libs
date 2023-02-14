@@ -12,7 +12,7 @@
 	"attributes": {
 		"iconName": {
 			"type": "string",
-			"default": "arrow-right"
+			"default": "forward-arrow"
 		},
 		"iconSize": {
 			"type": "string",

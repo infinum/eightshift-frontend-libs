@@ -62,7 +62,6 @@ $buttonTag = $buttonUrl ? 'a' : 'button';
 ?>
 
 <?php
-	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
 ?>
 
@@ -78,7 +77,6 @@ $buttonTag = $buttonUrl ? 'a' : 'button';
 	?>
 >
 	<?php
-	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
 	echo Components::render('icon', Components::props('icon', $attributes, [
 		'blockClass' => $componentClass,
 	]));

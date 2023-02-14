@@ -521,7 +521,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								label={<IconLabel icon={icons.anchor} label={__('Block Anchor ID', 'eightshift-frontend-libs')} />}
 								value={wrapperAnchorId}
 								onChange={(value) => setAttributes({ wrapperAnchorId: value })}
-								className='es-mb-m-important'
+								className='es-mb-5!'
 							/>
 						}
 
