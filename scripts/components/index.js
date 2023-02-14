@@ -1,7 +1,6 @@
 // All exports are sorted in alphabetical order.
 
 export { AdvancedColorPicker } from './advanced-color-picker/advanced-color-picker';
-export { AlignmentToolbar, AlignmentToolbarType } from './alignment-toolbar/alignment-toolbar';
 export { AnimatedContentVisibility } from './animated-content-visibility/animated-content-visibility';
 export { ColorSwatch } from './color-swatch/color-swatch';
 export { AsyncSelect } from './custom-select/async-single-select';
@@ -25,13 +24,11 @@ export { ColumnConfigSlider } from './custom-slider/column-config-slider';
 export { Slider } from './custom-slider/custom-slider';
 export { RangeSlider } from './custom-slider/custom-range-slider';
 export { FancyDivider } from './fancy-divider/fancy-divider';
-export { HeadingLevel } from './heading-level/heading-level';
 export { HelpModal } from './help-modal/help-modal';
 export { IconLabel } from './icon-label/icon-label';
 export { IconToggle } from './icon-toggle/icon-toggle';
 export { Notification } from './inline-notification/inline-notification';
 export { LinkEditComponent } from './link-edit-component/link-edit-component';
-export { LinkToolbarButton } from './link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
 export { MultiSelect } from './custom-select/multi-select';
 export { NumberPicker } from './number-picker/number-picker';
@@ -49,7 +46,6 @@ export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { Repeater } from './simple-repeater/simple-repeater';
 export { RepeaterItem } from './simple-repeater/simple-repeater-item';
-export { SimpleVerticalSingleSelect } from './simple-vertical-single-select/simple-vertical-single-select';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
@@ -83,4 +79,9 @@ export {
 	SimpleHorizontalSingleSelect,
 	SpacingSlider,
 	VisibilityToggleResponsive,
+	AlignmentToolbar,
+	AlignmentToolbarType,
+	HeadingLevel,
+	LinkToolbarButton,
+	SimpleVerticalSingleSelect,
 } from './deprecations';

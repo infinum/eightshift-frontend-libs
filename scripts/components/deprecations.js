@@ -111,8 +111,7 @@ export const InlineNotification = () => <></>;
 export const InlineNotificationType = {};
 
 /**
- * @deprecated since 8.0.0 - Use `ToolbarOptionPicker` instead.
- * Some of the props may have been renamed and/or changed, make sure to check everything!
+ * @deprecated since 8.0.0 - Removed, use `OptionSelector` inside the block options instead.
  */
 export const OptionPicker = () => <></>;
 
@@ -133,3 +132,28 @@ export const SpacingSlider = () => <></>;
  * Some of the props may have been renamed and/or changed, make sure to check everything!
  */
 export const VisibilityToggleResponsive = () => <></>;
+
+/**
+ * @deprecated since 8.0.0 - Removed.
+*/
+export const AlignmentToolbarType = {};
+
+/**
+ * @deprecated since 8.0.0 - Removed ,use `OptionSelector` in the block options.
+ */
+export const AlignmentToolbar = () => <></>;
+
+/**
+ * @deprecated since 8.0.0 - Removed ,use `OptionSelector` inside the block options instead.
+ */
+export const HeadingLevel = () => <></>;
+
+/**
+ * @deprecated since 8.0.0 - Removed ,use `LinkEditComponent` inside the block options instead.
+ */
+export const LinkToolbarButton = () => <></>;
+
+/**
+ * @deprecated since 8.0.0 - Removed ,use `OptionSelector` with `alignment='vertical'` instead.
+ */
+export const SimpleVerticalSingleSelect = () => <></>;

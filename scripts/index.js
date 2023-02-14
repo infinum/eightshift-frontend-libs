@@ -2,7 +2,6 @@
 
 // Components
 export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
-export { AlignmentToolbar, AlignmentToolbarType } from './components/alignment-toolbar/alignment-toolbar';
 export { AnimatedContentVisibility } from './components/animated-content-visibility/animated-content-visibility';
 export { ColorSwatch } from './components/color-swatch/color-swatch';
 export { AsyncSelect } from './components/custom-select/async-single-select';
@@ -26,13 +25,11 @@ export { ColumnConfigSlider } from './components/custom-slider/column-config-sli
 export { Slider } from './components/custom-slider/custom-slider';
 export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
-export { HeadingLevel } from './components/heading-level/heading-level';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
 export { IconToggle } from './components/icon-toggle/icon-toggle';
 export { Notification } from './components/inline-notification/inline-notification';
 export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
-export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { MultiSelect } from './components/custom-select/multi-select';
 export { NumberPicker } from './components/number-picker/number-picker';
@@ -50,7 +47,6 @@ export { Select } from './components/custom-select/single-select';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
 export { Repeater } from './components/simple-repeater/simple-repeater';
 export { RepeaterItem } from './components/simple-repeater/simple-repeater-item';
-export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
 export { TileButton } from './components/tile-button/tile-button';
 export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';
@@ -84,6 +80,11 @@ export {
 	SimpleHorizontalSingleSelect,
 	SpacingSlider,
 	VisibilityToggleResponsive,
+	AlignmentToolbar,
+	AlignmentToolbarType,
+	HeadingLevel,
+	LinkToolbarButton,
+	SimpleVerticalSingleSelect,
 } from './components/deprecations';
 
 // Editor
