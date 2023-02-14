@@ -1,26 +1,11 @@
 /**
- * Define what props should or should not return on each level of a dependency tree, using the newName to identify 
+ * Define what props should or should not return on each level of a dependency tree, using the newName to identify
  * dependencies.
  *
  * Ideally all blocks from the project should have a top level entry here with
  * their dependency tree and `expected` / `notExpected` attributes and `prefix` defined.
  */
 export const propsOutput = {
-	// Accordion block
-	accordion: {
-		components: {
-			accordion: {
-				expected: [
-					'accordionAccordionContent',
-					'accordionAccordionTitle',
-				],
-				notExpected: [
-					'accordionContent',
-				],
-				prefix: "accordionAccordion"
-			}
-		}
-	},
 	// Mock blockquote block
 	'mock-blockquote': {
 		components: {

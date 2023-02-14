@@ -2,26 +2,26 @@ import { checkAttr } from "../../../../scripts/editor/attributes";
 import { getComponentManifest, getMockComponentManifest } from "../../../helpers/blocks";
 
 it('tests checkAttr returns attributes with prefix', () => {
-	const accordionManifest = getComponentManifest('accordion');
+	const buttonManifest = getComponentManifest('button');
 	const mockAttributes = {
-		componentName: 'accordion',
-		prefix: 'mockAccordionOverride',
-		mockAccordionOverrideContent: 'Some value'
+		componentName: 'button',
+		prefix: 'mockButtonOverride',
+		mockButtonOverrideContent: 'Some value'
 	};
 
-	const accordionContent = checkAttr('accordionContent', mockAttributes, accordionManifest);
-	expect(accordionContent).toBe('Some value');
+	const buttonContent = checkAttr('buttonContent', mockAttributes, buttonManifest);
+	expect(buttonContent).toBe('Some value');
 });
 
 it('tests checkAttr returns exact attribute value when there is no prefix', () => {
-	const accordionManifest = getComponentManifest('accordion');
+	const buttonManifest = getComponentManifest('button');
 	const mockAttributes = {
-		componentName: 'accordion',
-		accordionContent: 'Some value'
+		componentName: 'button',
+		buttonContent: 'Some value'
 	};
 
-	const accordionContent = checkAttr('accordionContent', mockAttributes, accordionManifest);
-	expect(accordionContent).toBe('Some value');
+	const buttonContent = checkAttr('buttonContent', mockAttributes, buttonManifest);
+	expect(buttonContent).toBe('Some value');
 });
 
 it('tests checkAttr returns manifest default when there is nothing provided', () => {
@@ -35,11 +35,11 @@ it('tests checkAttr returns manifest default when there is nothing provided', ()
 });
 
 it('tests checkAttr returns default empty value for a specific type when there is no manifest default', () => {
-	const accordionManifest = getComponentManifest('accordion');
+	const buttonManifest = getComponentManifest('button');
 	const mockAttributes = {
-		componentName: 'accordion',
+		componentName: 'button',
 	};
 
-	const accordionContent = checkAttr('accordionContent', mockAttributes, accordionManifest);
-	expect(accordionContent).toBe('');
+	const buttonContent = checkAttr('buttonContent', mockAttributes, buttonManifest);
+	expect(buttonContent).toBe('');
 });
