@@ -100,6 +100,7 @@ export const defaultEightshiftStyles = {
 		border: `1px solid ${state.theme.colors.neutral10}`,
 		backgroundColor: state.theme.colors.neutral10,
 		cursor: state.isDisabled ? 'none' : 'pointer',
+		maxWidth: '24ch',
 	}),
 
 	// Multi-select value label and remove button.
