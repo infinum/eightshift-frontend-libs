@@ -9,5 +9,4 @@ export {
 	storybookDefaultMocksCategories,
 	storybookDefaultMocksColorPalette,
 	storybookWindowObjects,
-	storybookWpStyles,
 } from './parts';

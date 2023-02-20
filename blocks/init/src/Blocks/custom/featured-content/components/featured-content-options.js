@@ -40,8 +40,6 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 		...getOption('featuredContentTaxonomy', attributes, manifest),
 	];
 
-	console.log({ featuredContentTaxonomy });
-
 	// Set internal store for specific items.
 	const [useSpecificPosts, setUseSpecificPosts] = useState(featuredContentPosts?.length > 0);
 	const [useSpecificTerms, setUseSpecificTerms] = useState(featuredContentTerms?.length > 0);

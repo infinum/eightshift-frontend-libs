@@ -15,7 +15,7 @@ storybookDefaultMocksCategories();
 storybookDefaultMocksColorPalette(globalSettings);
 
 // WP styles.
-storybookWpStyles();
+require('./../styles/storybook.scss');
 
 // Project styles.
 require('./../blocks/init/assets/styles/application.scss');

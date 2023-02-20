@@ -85,19 +85,3 @@ export const storybookWindowObjects = () => {
 	window.wp.wordcount = require('@wordpress/wordcount/build-module');
 	window.wp.icons = require('@wordpress/icons/build-module');
 };
-
-/**
- * Loading styles for block editor.
- *
- * @access public
- *
- * @returns {void}
- */
-export const storybookWpStyles = () => {
-	require('@wordpress/editor/build-style/style-rtl.css');
-	require('@wordpress/editor/build-style/style.css');
-	require('@wordpress/components/build-style/style.css');
-	require('@wordpress/block-editor/build-style/style.css');
-	require('@wordpress/format-library/build-style/style.css');
-	require('@eightshift/frontend-libs/styles/storybook.scss');
-};

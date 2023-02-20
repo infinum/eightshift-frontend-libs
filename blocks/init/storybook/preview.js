@@ -1,6 +1,6 @@
 import { dispatch } from '@wordpress/data';
 import { STORE_NAME } from '@eightshift/frontend-libs/scripts/editor/store';
-import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '@eightshift/frontend-libs/scripts/storybook';
+import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette } from '@eightshift/frontend-libs/scripts/storybook';
 import globalSettings from '../src/Blocks/manifest.json';
 
 // Storybook order is really important because it won't work in any configuration. Be careful when changing stuff here.
@@ -15,7 +15,7 @@ storybookDefaultMocksCategories();
 storybookDefaultMocksColorPalette(globalSettings);
 
 // WP styles.
-storybookWpStyles();
+require('@eightshift/frontend-libs/styles/storybook.scss');
 
 // Project styles.
 require('./../assets/styles/application.scss');
