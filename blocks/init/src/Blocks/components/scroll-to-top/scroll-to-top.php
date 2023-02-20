@@ -30,5 +30,8 @@ $scrollToTopClass = Components::classnames([
 ?>
 
 <button class="<?php echo esc_attr($scrollToTopClass); ?>">
-	<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+	<?php
+	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	echo $manifest['resources']['icon'];
+	?>
 </button>

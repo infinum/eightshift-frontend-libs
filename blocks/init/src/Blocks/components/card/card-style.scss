@@ -1,5 +1,12 @@
 .card-simple {
-	text-align: var(--block-card-align);
+	--image-display: inline-block;
+	--image-img-display: inline-block;
+
+	display: flex;
+	flex-direction: column;
+	align-items: var(--block-card-content-align, flex-start);
+
+	text-align: var(--block-card-text-align);
 
 	&__image {
 		padding-bottom: 1.5rem;

@@ -1,245 +1,254 @@
 import React from 'react';
-import { checkAttrResponsive, CompactResponsive, CustomRangeSlider, CustomRangeSliderStyle, getAttrKey, IconLabel, icons, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
-import { __, _n, sprintf } from '@wordpress/i18n';
+import { Responsive, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
+import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
 
+/**
+ * A modern and customizable custom slider.
+ *
+ * @typedef {null | 'dots' | true | {Number: string} | {Number: {style, label}}} DotStyle
+ * @typedef {'top'|'bottom'|'hidden'} TooltipPosition
+ *
+ * @param {object} props                           - WidthOffsetRangeSlider options.
+ * @param {React.Component?} [props.icon]          - Icon to show next to the label
+ * @param {React.Component?} [props.label]         - Label to show above component.
+ * @param {Object} [props.value]                   - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
+ * @param {function} [props.onChange]              - Function to trigger when the value of is changing.
+ * @param {any} [props.inheritValue]               - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]          - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {boolean} [props.fullWidthToggle=false]  - If `true`, the "Fullwidth" toggle is shown.
+ * @param {boolean} [props.autoOffsetToggle=false] - If `true`, the "Automatic offset" toggle is shown.
+ * @param {any} [props.autoOffsetValue]            - Value that marks automatic offset.
+ * @param {boolean?} [props.noBottomSpacing]       - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]  - If `true`, space below the control is reduced.
+ * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
+ * @param {boolean?} [props.numericValues=false]   - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
+ * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
+ */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
-		breakpointNames = getDefaultBreakpointNames(),
-
-		manifest,
-		attributes,
-		setAttributes,
-
-		icon = icons.positioningGuideAlt,
+		icon = icons.positioningWidthGuide,
 		label = __('Width & offset', 'eightshift-frontend-libs'),
 
-		isFullWidthAttributeName,
-		offsetAttributeName,
-		widthAttributeName,
+		value,
+		onChange,
 
-		showFullWidthToggle = true,
-		includeGutters = false, // Only valid if 'showfullWidthToggle' is false.
-		showOffsetAutoToggle = false,
+		inheritValue,
+		inheritCheck = (value) => value === inheritValue,
 
-		totalNumberOfColumns = 12,
+		fullWidthToggle = false,
+
+		autoOffsetToggle = false,
+		autoOffsetValue = 'auto',
+
+		noBottomSpacing,
+		reducedBottomSpacing,
+
+		additionalClasses,
+
+		numericValues = false,
+
+		totalNumberOfColumns: rawTotalColumns = 12,
 	} = props;
 
-	const {
-		responsiveAttributes: manifestResponsiveAttributes,
-	} = manifest;
+	const stringValues = !numericValues || autoOffsetToggle;
 
-	let isFullWidthCurrent = includeGutters;
-	const offsetCurrent = checkAttrResponsive(offsetAttributeName, attributes, manifest, true);
-	const widthCurrent = checkAttrResponsive(widthAttributeName, attributes, manifest, true);
+	const breakpointNames = Object.keys(value);
 
-	if (showFullWidthToggle) {
-		isFullWidthCurrent = checkAttrResponsive(isFullWidthAttributeName, attributes, manifest, true);
-	}
+	const rawWidths = Object.entries(value).reduce((all, [breakpointName, { width }]) => ({
+		...all,
+		[breakpointName]: width,
+	}), {});
+
+	const rawOffsets = Object.entries(value).reduce((all, [breakpointName, { offset }]) => ({
+		...all,
+		[breakpointName]: offset,
+	}), {});
+
+	const rawFullWidths = fullWidthToggle && Object.entries(value).reduce((all, [breakpointName, { fullWidth }]) => ({
+		...all,
+		[breakpointName]: fullWidth,
+	}), {});
+
+	const buttonClass = 'es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-icon-18 es-button-no-icon-spacing es-gap-1.5! es-rounded-1! es-h-8! es-px-2!';
 
 	return (
-		<CompactResponsive label={<IconLabel icon={icon} label={label} />}>
+		<Responsive
+			label={label}
+			icon={icon}
+			noBottomSpacing={noBottomSpacing}
+			reducedBottomSpacing={reducedBottomSpacing}
+			additionalClasses={additionalClasses}
+		>
 			{breakpointNames.map((breakpoint, index) => {
-				const {
-					[offsetAttributeName]: offsetNames,
-					[widthAttributeName]: widthNames,
-				} = manifestResponsiveAttributes;
+				const width = rawWidths[breakpoint];
+				const offset = rawOffsets[breakpoint];
+				const fullWidth = rawFullWidths?.[breakpoint];
 
-				let isFullWidthNames = undefined;
+				const isWidthInherited = inheritCheck(width);
+				const isOffsetInherited = inheritCheck(offset);
 
-				if (showFullWidthToggle) {
-					isFullWidthNames = manifestResponsiveAttributes[isFullWidthAttributeName];
-				}
+				const getNearest = (attributeName) => {
+					for (let i = index - 1; i >= 0; i--) {
+						const breakpointName = breakpointNames[i];
 
-				let isFullWidthAttr = undefined;
-				const offsetAttr = offsetNames[breakpoint];
-				const widthAttr = widthNames[breakpoint];
+						const current = value[breakpointName][attributeName];
 
-				if (showFullWidthToggle) {
-					isFullWidthAttr = isFullWidthNames[breakpoint];
-				}
+						if (autoOffsetToggle && current === autoOffsetValue) {
+							return 1;
+						}
 
-				const isFullWidth = showFullWidthToggle ? isFullWidthCurrent[breakpoint] : includeGutters;
-				let offset = offsetCurrent[breakpoint];
-				const width = widthCurrent[breakpoint];
-
-				// Cover alternative empty/inherited states.
-				if (offset === '') {
-					offset = undefined;
-				}
-
-				const autoOffsetFactor = index === 0 && showOffsetAutoToggle && typeof offset === 'undefined' ? 1 : undefined;
-
-				let breakpointBeforeIsFullWidth;
-				let breakpointBeforeOffset = breakpointNames[index - 1];
-				let breakpointBeforeWidth = breakpointNames[index - 1];
-
-				if (showFullWidthToggle) {
-					breakpointBeforeIsFullWidth = breakpointNames[index - 1];
-				}
-
-				// If inheriting, find the nearest set value, from mobile up.
-				let isFullWidthInherited = includeGutters;
-				let offsetInherited = offsetCurrent[breakpointBeforeOffset];
-				let widthInherited = widthCurrent[breakpointBeforeWidth];
-
-				if (showFullWidthToggle) {
-					for (let i = index; i >= 0; i--) {
-						breakpointBeforeIsFullWidth = breakpointNames[i];
-						isFullWidthInherited = isFullWidthCurrent[breakpointBeforeIsFullWidth];
-
-						if (typeof isFullWidthInherited !== 'undefined') {
-							break;
+						if (current) {
+							return current;
 						}
 					}
-				}
 
-				for (let i = index; i >= 0; i--) {
-					breakpointBeforeOffset = breakpointNames[i];
-					offsetInherited = offsetCurrent[breakpointBeforeOffset];
+					return inheritValue;
+				};
 
-					if (typeof offsetInherited !== 'undefined') {
-						break;
-					}
-				}
+				const nearestValidFullWidth = getNearest('fullWidth');
+				const nearestValidOffset = getNearest('offset');
+				const nearestValidWidth = getNearest('width');
 
+				const parsedOffset = autoOffsetToggle && (inheritCheck(offset) ? nearestValidOffset : offset) === autoOffsetValue ? 1 : parseInt(inheritCheck(offset) ? nearestValidOffset : offset );
+				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
+				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
 
-				for (let i = index; i >= 0; i--) {
-					breakpointBeforeWidth = breakpointNames[i];
-					widthInherited = widthCurrent[breakpointBeforeWidth];
+				const displayedWidth = parsedWidth + parsedOffset;
 
-					if (typeof widthInherited !== 'undefined') {
-						break;
-					}
-				}
-
-				// The width is 1 extra both for display purposes and how CSS grid works.
-				const maxWidth = ((isFullWidth ?? isFullWidthInherited) || (showFullWidthToggle && includeGutters)) ? (totalNumberOfColumns + 3) : (totalNumberOfColumns + 1);
+				const totalNumberOfColumns = rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
 
 				return (
-					<div className={index === 0 ? 'es-mb-0 es-pb-l' : 'es-has-wp-field-b-space'} key={index}>
-						<div className='es-h-end es-mb-s'>
-							{showFullWidthToggle &&
-								<Button
-									disabled={typeof isFullWidth === 'undefined'}
-									isSmall
-									isPressed={isFullWidth}
-									onClick={() => setAttributes({ [getAttrKey(isFullWidthAttr, attributes, manifest)]: !isFullWidth, })}
-									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
-									icon={icons.columnGuttersLR}
-								>
-									{__('Fullwidth', 'eightshift-frontend-libs')}
-								</Button>
+					<ColumnConfigSlider
+						key={breakpoint}
+						noBottomSpacing={noBottomSpacing}
+						numOfColumns={totalNumberOfColumns}
+						value={[parsedOffset, displayedWidth]}
+						onChange={([o, w]) => {
+							let newValues = {};
+
+							if (isWidthInherited && !isOffsetInherited) {
+								newValues.offset = stringValues ? String(o) : o;
+							} else if (!isWidthInherited && isOffsetInherited) {
+								newValues.width = stringValues ? String(w - nearestValidOffset) : w - nearestValidOffset;
+							} else if (!isWidthInherited && offset === autoOffsetValue) {
+								newValues.width = stringValues ? String(w - 1) : w - 1;
+							} else if (!isWidthInherited && !isOffsetInherited) {
+								newValues.width = stringValues ? String(w - o) : w - o;
+								newValues.offset = stringValues ? String(o) : o;
 							}
 
-							{showOffsetAutoToggle && index === 0 &&
-								<Button
-									isSmall
-									isPressed={typeof offset === 'undefined'}
-									onClick={() => setAttributes({ [getAttrKey(offsetAttr, attributes, manifest)]: typeof offset === 'undefined' ? 1 : undefined })}
-									className='es-slight-button-border es-button-icon-18 es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
-									icon={icons.offsetAuto}
-								>
-									{__('Automatic offset', 'eightshift-frontend-libs')}
-								</Button>
-							}
-						</div>
-
-						<CustomRangeSlider
-							disabled={typeof width === 'undefined' && typeof offset === 'undefined'} // Disable the slider if offset & width are inherited.
-							min={1}
-							max={maxWidth}
-							tooltipFormat={(v) => {
-								if (v === offset) {
-									if (v - 1 === 0) {
-										return __('No offset', 'eightshift-frontend-libs');
-									}
-
-									return sprintf(_n('Offset: %d column', 'Offset: %d columns', v - 1, 'eightshift-frontend-libs'), v - 1);
+							onChange({
+								...value,
+								[breakpoint]: {
+									...value[breakpoint],
+									...newValues,
+								}
+							});
+						}}
+						noWidthHandle={inheritCheck(width)}
+						noOffsetHandle={inheritCheck(offset) || (index === 0 && offset === autoOffsetValue)}
+						additionalControlsAbove={ !((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0)) ? null :
+							<>
+								{fullWidthToggle && (index === 0 || !inheritCheck(fullWidth)) &&
+									<Button
+										isPressed={parsedFullWidth}
+										onClick={() => {
+											onChange({
+												...value,
+												[breakpoint]: {
+													...value[breakpoint],
+													fullWidth: !parsedFullWidth,
+												}
+											});
+										}}
+										className={buttonClass}
+										icon={icons.columnGuttersLR}
+									>
+										{__('Fullwidth', 'eightshift-frontend-libs')}
+									</Button>
 								}
 
-								return sprintf(_n('Width: %d column', 'Width: %d columns', v - 1, 'eightshift-frontend-libs'), v - 1);
-							}}
-							tooltipPlacement='left'
-							value={[(offset ?? offsetInherited ?? autoOffsetFactor ?? 1), Math.min((width ?? widthInherited) + (offset ?? offsetInherited ?? autoOffsetFactor ?? 1), maxWidth)]} // Take the inherited value, if it doesn't exist take the actual value. Limit it all to max width.
-							onChange={([start, endRaw]) => {
-								// Limit the end value.
-								const end = Math.min(endRaw, maxWidth);
-
-								if (offset !== undefined && typeof width === 'undefined') {
-									// If width is inherited just change the offset.
-									setAttributes({ [getAttrKey(offsetAttr, attributes, manifest)]: Math.min(start, maxWidth - widthInherited) });
+								{autoOffsetToggle && index === 0 &&
+									<Button
+										isPressed={offset === autoOffsetValue}
+										onClick={() => {
+											onChange({
+												...value,
+												[breakpoint]: {
+													...value[breakpoint],
+													offset: offset === autoOffsetValue ? 1 : autoOffsetValue,
+												}
+											});
+										}}
+										className={buttonClass}
+										icon={icons.offsetAuto}
+									>
+										{__('Automatic offset', 'eightshift-frontend-libs')}
+									</Button>
 								}
-								else if (width !== undefined && typeof offset === 'undefined') {
-									// If offset is inherited just change the width.
-									setAttributes({ [getAttrKey(widthAttr, attributes, manifest)]: Math.min(end - start, maxWidth) });
-								}
-								else {
-									// If none are inherited, set both.
-									setAttributes({
-										[getAttrKey(offsetAttr, attributes, manifest)]: start,
-										[getAttrKey(widthAttr, attributes, manifest)]: Math.min(end - start, maxWidth),
-									});
-								}
-							}}
-							pushable={1} // Ensures that two points can't be on top of each other...
-							allowCross={false} //  ...or crossed.
-							draggableTrack={width !== undefined && offset !== undefined} // Allow dragging the whole slider if nothing is inherited.
-							sliderStyle={CustomRangeSliderStyle.COLUMN_PICKER}
-							marks={{
-								...[...Array(maxWidth - 1).keys()].reduce((original, i) => ({ ...original, [i + 1]: i + 1 }), {}),
-								[maxWidth + 1]: '',
-							}}
-							className={[
-								// Because we don't want to show line numbers, but column numbers we need to shift everything to the right a bit,
-								// which means some of the lines on the slider will need to be hidden, some will need to have their active styling
-								// disabled and shown as inactive.
-								((showFullWidthToggle && includeGutters) || (isFullWidth ?? isFullWidthInherited)) ? 'rd-slider-mark-offset-fullwidth' : 'rd-slider-mark-offset',
-								(width ?? widthInherited) !== maxWidth ? `rd-slider-mark-ignore-${(offset ?? offsetInherited ?? autoOffsetFactor) + (width ?? widthInherited)}` : '',
-								`rd-slider-line-ignore-${(offset ?? offsetInherited ?? autoOffsetFactor) + (width ?? widthInherited)}`,
-								`rd-slider-line-ignore-${offset ?? offsetInherited ?? autoOffsetFactor}`,
-								typeof width === 'undefined' ? 'rd-no-width-handle' : '',
-								typeof offset === 'undefined' ? 'rd-no-offset-handle' : '',
-							].join(' ')}
-						/>
-
-						{index !== 0 &&
-							<div className='es-h-start es-mt-xl'>
-								<span className='es-h-spaced es-gap-0-important'><IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} /></span>
+							</>
+						}
+						additionalControlsBelow={index === 0 ? null :
+							<div className='es-h-start es-mt-2 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1! es-py-0.5! es-display-flex es-gap-1! es-ml-2.5 es-w-full'>
+								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1 es-nested-color-cool-gray-450!' />
 
 								<Button
-									isSmall
-									isPressed={typeof offset === 'undefined'}
-									onClick={() => setAttributes({ [getAttrKey(offsetAttr, attributes, manifest)]: typeof offset === 'undefined' ? 1 : undefined })}
-									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									isPressed={inheritCheck(offset)}
+									onClick={() => {
+										onChange({
+											...value,
+											[breakpoint]: {
+												...value[breakpoint],
+												offset: inheritCheck(offset) ? parsedOffset : inheritValue,
+											}
+										});
+									}}
+									className={buttonClass}
 								>
 									{__('Offset', 'eightshift-frontend-libs')}
 								</Button>
 
 								<Button
-									isSmall
-									isPressed={typeof width === 'undefined'}
-									onClick={() => setAttributes({ [getAttrKey(widthAttr, attributes, manifest)]: typeof width === 'undefined' ? maxWidth : undefined, })}
-									className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+									isPressed={inheritCheck(width)}
+									onClick={() => {
+
+										onChange({
+											...value,
+											[breakpoint]: {
+												...value[breakpoint],
+												width: inheritCheck(width) ? displayedWidth : inheritValue,
+											}
+										});
+									}}
+									className={buttonClass}
 								>
 									{__('Width', 'eightshift-frontend-libs')}
 								</Button>
 
-								{showFullWidthToggle &&
+								{fullWidthToggle &&
 									<Button
-										isSmall
-										isPressed={typeof isFullWidth === 'undefined'}
-										onClick={() => setAttributes({ [getAttrKey(isFullWidthAttr, attributes, manifest)]: typeof isFullWidth === 'undefined' ? false : undefined })}
-										className='es-slight-button-border es-has-v2-gutenberg-button-active-state es-button-no-icon-spacing es-gap-1.25! es-rounded-1.0 es-h-7! es-px-2!'
+										isPressed={inheritCheck(fullWidth)}
+										onClick={() => {
+											onChange({
+												...value,
+												[breakpoint]: {
+													...value[breakpoint],
+													fullWidth: inheritCheck(fullWidth) ? false : inheritValue,
+												}
+											});
+										}}
+										className={buttonClass}
 									>
 										{__('Fullwidth', 'eightshift-frontend-libs')}
 									</Button>
 								}
 							</div>
 						}
-					</div>
+					/>
 				);
 			})}
-		</CompactResponsive>
+		</Responsive>
 	);
 };

@@ -1,14 +1,14 @@
 {
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
 	"componentName": "lists",
-	"title": "Lists",
+	"title": "List",
 	"componentClass": "lists",
 	"example": {
 		"attributes": {
-			"listsContent": "<li>List Item 1</li><li>List Item 2</li><li>List Item 3</li>",
+			"listsContent": "<li>List item 1</li><li>List item 2</li><li>List item 3</li>",
 			"listsOrdered": "ul",
 			"listsSize": "default",
-			"listsColor": "primary",
+			"listsColor": "primary500",
 			"listsUse": true
 		}
 	},
@@ -22,11 +22,11 @@
 		},
 		"listsSize": {
 			"type": "string",
-			"default": "default"
+			"default": "body:regular"
 		},
 		"listsColor": {
 			"type": "string",
-			"default": "primary"
+			"default": "primary500"
 		},
 		"listsColorOnlyMarker": {
 			"type": "boolean",
@@ -52,203 +52,336 @@
 		],
 		"listsSize": [
 			{
-				"label": "Default (16)",
-				"value": "default"
+				"label": "48",
+				"value": "h4",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Small (13)",
-				"value": "small"
+				"label": "32",
+				"value": "h5",
+				"weights": ["bold", "medium"]
 			},
 			{
-				"label": "Big (32)",
-				"value": "big"
+				"label": "24",
+				"value": "h6",
+				"weights": ["bold", "medium"]
+			},
+			{
+				"label": "16",
+				"value": "body",
+				"weights": ["bold", "medium", "regular"]
+			},
+			{
+				"label": "14",
+				"value": "caption",
+				"weights": ["bold", "regular"]
+			},
+			{
+				"label": "12",
+				"value": "info-text",
+				"weights": ["regular"]
 			}
 		],
 		"listsColor": [
-			"primary",
-			"black",
 			"white",
-			"green",
-			"ocean",
-			"yellow",
-			"blue",
-			"red",
-			"cream",
-			"mist",
-			"dew",
-			"eightshift"
+			"black",
+			"primary500"
 		]
 	},
 	"variables": {
-		"listsSize": {
-			"default": [
+		"listsOrdered": {
+			"ol": [
 				{
 					"variable": {
-						"lists-font-size": "0.8rem",
-						"lists-line-height": "1.5"
+						"lists-style": "nums"
+					}
+				}
+			]
+		},
+		"listsSize": {
+			"h4:bold": [
+				{
+					"variable": {
+						"lists-font-size": "2.5rem",
+						"lists-line-height": "1.4",
+						"lists-font-weight": "bold",
+						"lists-letter-spacing": "-1px"
 					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"lists-font-size": "1rem"
+						"lists-font-size": "3rem",
+						"lists-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.35"
 					}
 				}
 			],
-			"small": [
+			"h4:medium": [
 				{
 					"variable": {
-						"lists-font-size": "0.6rem",
+						"lists-font-size": "2.5rem",
+						"lists-line-height": "1.4",
+						"lists-font-weight": "500",
+						"lists-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-font-size": "3rem",
+						"lists-line-height": "1.42"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.35"
+					}
+				}
+			],
+			"h5:bold": [
+				{
+					"variable": {
+						"lists-font-size": "2rem",
+						"lists-line-height": "1.39",
+						"lists-font-weight": "bold",
+						"lists-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
 						"lists-line-height": "1.3"
 					}
+				}
+			],
+			"h5:medium": [
+				{
+					"variable": {
+						"lists-font-size": "2rem",
+						"lists-line-height": "1.39",
+						"lists-font-weight": "500",
+						"lists-letter-spacing": "-1px"
+					}
 				},
 				{
 					"breakpoint": "tablet",
 					"variable": {
-						"lists-font-size": "0.8rem"
+						"lists-line-height": "1.49"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.3"
 					}
 				}
 			],
-			"big": [
+			"h6:bold": [
 				{
 					"variable": {
-						"lists-font-size": "1.6rem",
+						"lists-font-size": "1.5rem",
+						"lists-line-height": "1.35",
+						"lists-font-weight": "bold",
+						"lists-letter-spacing": "-1px"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
 						"lists-line-height": "1.4"
 					}
 				},
 				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-letter-spacing": "0"
+					}
+				}
+			],
+			"h6:medium": [
+				{
+					"variable": {
+						"lists-font-size": "1.5rem",
+						"lists-line-height": "1.35",
+						"lists-font-weight": "500",
+						"lists-letter-spacing": "-1px"
+					}
+				},
+				{
 					"breakpoint": "tablet",
 					"variable": {
-						"lists-font-size": "2rem"
+						"lists-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-letter-spacing": "0"
+					}
+				}
+			],
+			"body:bold": [
+				{
+					"variable": {
+						"lists-font-size": "1rem",
+						"lists-line-height": "1.39",
+						"lists-font-weight": "bold"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-letter-spacing": "0"
+					}
+				}
+			],
+			"body:medium": [
+				{
+					"variable": {
+						"lists-font-size": "1rem",
+						"lists-line-height": "1.39",
+						"lists-font-weight": "500"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-letter-spacing": "0"
+					}
+				}
+			],
+			"body:regular": [
+				{
+					"variable": {
+						"lists-font-size": "1rem",
+						"lists-line-height": "1.39",
+						"lists-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.4"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-letter-spacing": "0"
+					}
+				}
+			],
+			"caption:bold": [
+				{
+					"variable": {
+						"lists-font-size": "0.875rem",
+						"lists-line-height": "1.4",
+						"lists-font-weight": "bold"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.52"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.5"
+					}
+				}
+			],
+			"caption:regular": [
+				{
+					"variable": {
+						"lists-font-size": "0.875rem",
+						"lists-line-height": "1.4",
+						"lists-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.52"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.5"
+					}
+				}
+			],
+			"info-text:regular": [
+				{
+					"variable": {
+						"lists-font-size": "0.75rem",
+						"lists-line-height": "1.37",
+						"lists-font-weight": "normal"
+					}
+				},
+				{
+					"breakpoint": "tablet",
+					"variable": {
+						"lists-line-height": "1.55"
+					}
+				},
+				{
+					"breakpoint": "desktop",
+					"variable": {
+						"lists-line-height": "1.5"
 					}
 				}
 			]
 		},
 		"listsColor": {
-			"primary": [
+			"white": [
 				{
 					"variable": {
-						"lists-color": "var(--global-colors-primary)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-blue)"
+						"lists-marker-color": "var(--global-colors-white)",
+						"lists-link-color": "var(--global-colors-primary500)"
 					}
 				}
 			],
 			"black": [
 				{
 					"variable": {
-						"lists-color": "var(--global-colors-black)",
-						"lists-link-color": "var(--global-colors-primary)",
-						"lists-link-color-hover": "var(--global-colors-blue)"
+						"lists-marker-color": "var(--global-colors-black)",
+						"lists-link-color": "var(--global-colors-primary500)"
 					}
 				}
 			],
-			"green": [
+			"primary500": [
 				{
 					"variable": {
-						"lists-color": "var(--global-colors-green)",
-						"lists-link-color": "var(--global-colors-white)",
-						"lists-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"ocean": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-ocean)",
-						"lists-link-color": "var(--global-colors-white)",
-						"lists-link-color-hover": "var(--global-colors-green)"
-					}
-				}
-			],
-			"yellow": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-yellow)",
-						"lists-link-color": "var(--global-colors-white)",
-						"lists-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"blue": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-blue)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
-					}
-				}
-			],
-			"red": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-red)",
-						"lists-link-color": "var(--global-colors-black)",
-						"lists-link-color-hover": "var(--global-colors-blue)"
-					}
-				}
-			],
-			"cream": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-cream)",
-						"lists-link-color": "var(--global-colors-yellow)",
-						"lists-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"white": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-white)",
-						"lists-link-color": "var(--global-colors-yellow)",
-						"lists-link-color-hover": "var(--global-colors-ocean)"
-					}
-				}
-			],
-			"eightshift": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-eightshift)",
-						"lists-link-color": "var(--global-colors-blue)",
-						"lists-link-color-hover": "var(--global-colors-primary)"
-					}
-				}
-			],
-			"dew": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-dew)",
-						"lists-link-color": "var(--global-colors-ocean)",
-						"lists-link-color-hover": "var(--global-colors-white)"
-					}
-				}
-			],
-			"mist": [
-				{
-					"variable": {
-						"lists-color": "var(--global-colors-mist)",
-						"lists-link-color": "var(--global-colors-ocean)",
-						"lists-link-color-hover": "var(--global-colors-green)"
-					}
-				}
-			]
-		},
-		"listsColorOnlyMarker": {
-			"false": [
-				{
-					"variable": {
-						"lists-marker-color": "var(--lists-color)",
-						"lists-text-color": "var(--lists-color)"
-					}
-				}
-			],
-			"true": [
-				{
-					"variable": {
-						"lists-marker-color": "var(--lists-color)",
-						"lists-text-color": "currentColor",
-						"lists-link-color": "var(--lists-color)"
+						"lists-marker-color": "var(--global-colors-primary500)",
+						"lists-link-color": "var(--global-colors-black)"
 					}
 				}
 			]

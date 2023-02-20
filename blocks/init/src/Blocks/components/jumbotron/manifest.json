@@ -39,7 +39,8 @@
 				{
 					"variable": {
 						"jumbotron-content-position-horizontal": "center",
-						"jumbotron-content-position-vertical": "flex-start"
+						"jumbotron-content-position-vertical": "flex-start",
+						"jumbotron-text-align": "center"
 					}
 				}
 			],
@@ -63,7 +64,8 @@
 				{
 					"variable": {
 						"jumbotron-content-position-horizontal": "center",
-						"jumbotron-content-position-vertical": "center"
+						"jumbotron-content-position-vertical": "center",
+						"jumbotron-text-align": "center"
 					}
 				}
 			],
@@ -87,7 +89,8 @@
 				{
 					"variable": {
 						"jumbotron-content-position-horizontal": "center",
-						"jumbotron-content-position-vertical": "flex-end"
+						"jumbotron-content-position-vertical": "flex-end",
+						"jumbotron-text-align": "center"
 					}
 				}
 			],

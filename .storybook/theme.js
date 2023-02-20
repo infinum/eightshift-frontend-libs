@@ -6,7 +6,7 @@ export default create({
 	colorSecondary: '#E84E4E',
 	appBg: '#F4F3F0',
 	appBorderRadius: 0,
-	fontBase: '"IBM Plex Sans", sans-serif',
+	fontBase: 'system-ui, sans-serif',
 	textColor: '#0C3636',
 	textInverseColor: '#FFFFFF',
 	brandTitle: ' ',

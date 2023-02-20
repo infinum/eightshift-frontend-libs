@@ -61,7 +61,10 @@ $modalClass = Components::classnames([
 						class="<?php echo esc_attr("{$componentClass}__close-button"); ?>"
 						aria-label="<?php echo esc_attr__('Close modal', 'eightshift-frontend-libs'); ?>"
 					>
-						<?php echo $manifest['resources']['icon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+						<?php
+						// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+						echo $manifest['resources']['icon'];
+						?>
 					</button>
 				</div>
 			<?php } ?>

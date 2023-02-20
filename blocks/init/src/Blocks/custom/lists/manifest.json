@@ -1,7 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "lists",
-	"title": "Lists",
+	"title": "List",
 	"description" : "lists block with custom settings.",
 	"category": "eightshift",
 	"icon": {
@@ -12,34 +12,7 @@
 		"btn",
 		"lists"
 	],
-	"example": {
-		"attributes": {
-			"listsAlign": "left"
-		}
-	},
-	"attributes": {
-		"listsAlign": {
-			"type": "string",
-			"default": "left"
-		}
-	},
-	"options": {
-		"listsAlign": [
-			"left",
-			"center",
-			"right"
-		]
-	},
 	"components": {
 		"lists": "lists"
-	},
-	"variables": {
-		"listsAlign": [
-			{
-				"variable": {
-					"block-lists-align": "%value%"
-				}
-			}
-		]
 	}
 }

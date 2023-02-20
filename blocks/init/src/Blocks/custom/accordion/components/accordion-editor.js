@@ -1,15 +1,26 @@
 import React from 'react';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { props } from '@eightshift/frontend-libs/scripts';
-import { AccordionEditor as AccordionEditorComponent } from '../../../components/accordion/components/accordion-editor';
+import { BlockInserter, classnames } from '@eightshift/frontend-libs/scripts';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-export const AccordionEditor = ({ attributes, setAttributes }) => {
+export const AccordionEditor = ({ attributes, clientId }) => {
+	const {
+		accordionAllowedBlocks,
+		blockClass,
+	} = attributes;
+
+	const blockProps = useBlockProps();
+	const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		allowedBlocks: (typeof accordionAllowedBlocks === 'undefined') || accordionAllowedBlocks,
+		renderAppender: () => <BlockInserter clientId={clientId} className='es-mb-4' hasLabel />,
+	});
+
+	const modifiedInnerBlockProps = {
+		...innerBlocksProps,
+		className: classnames(innerBlocksProps.className, blockClass),
+	};
+
 	return (
-		<AccordionEditorComponent
-			{...props('accordion', attributes, {
-				setAttributes,
-				accordionContent: <InnerBlocks />
-			})}
-		/>
+		<div {...modifiedInnerBlockProps}>
+		</div>
 	);
 };

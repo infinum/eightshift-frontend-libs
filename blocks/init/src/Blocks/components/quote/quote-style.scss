@@ -3,7 +3,9 @@
 
 	&__icon {
 		display: block;
-		margin-bottom: 1rem;
+		margin-bottom: 0.25rem;
+
+		color: var(--global-colors-primary500);
 	}
 
 	&__content {
@@ -18,5 +20,9 @@
 		background-color: var(--global-colors-black);
 		height: 0.05rem;
 		display: inline-block;
+	}
+
+	&__heading {
+		font-style: italic;
 	}
 }

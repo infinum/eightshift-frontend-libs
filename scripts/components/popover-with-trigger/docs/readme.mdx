@@ -1,0 +1,22 @@
+# PopoverWithTrigger
+
+A building block component to make adding `Popover`s triggered with custom elements easy.
+
+## Usage
+
+```jsx
+<PopoverWithTrigger
+	trigger={
+		({ ref, setIsOpen, isOpen }) => (
+			<Button
+				ref={ref}
+				onClick={() => setIsOpen(isOpen)}
+			>
+				Click me
+			</Button>
+		)
+	}
+>
+	This is the popover content.
+</PopoverWithTrigger>
+```

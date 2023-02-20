@@ -21,7 +21,7 @@
 		height: 100%;
 		width: 100%;
 		z-index: 999;
-		background-color: rgba(global-settings(colors, black), 0.5);
+		background-color: rgb(var(--global-colors-black-values) / 0.6);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -36,7 +36,7 @@
 		overflow: auto;
 		position: relative;
 		padding: 1.25rem;
-		background-color: global-settings(colors, white);
+		background-color: var(--global-colors-white);
 		transform: translateY(15%);
 		transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
 	}

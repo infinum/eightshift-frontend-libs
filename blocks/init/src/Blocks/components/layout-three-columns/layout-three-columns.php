@@ -58,11 +58,11 @@ $columnRightClass = Components::classnames([
 		role="<?php echo esc_attr($layoutThreeColumnsAriaRole); ?>"
 	<?php } ?>
 >
-
 		<?php if ($layoutThreeColumnsLeft) { ?>
 			<div class="<?php echo esc_attr($columnLeftClass); ?>">
 				<?php
-					echo Components::ensureString($layoutThreeColumnsLeft); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					echo Components::ensureString($layoutThreeColumnsLeft);
 				?>
 			</div>
 		<?php } ?>
@@ -70,7 +70,8 @@ $columnRightClass = Components::classnames([
 		<?php if ($layoutThreeColumnsCenter) { ?>
 			<div class="<?php echo esc_attr($columnCenterClass); ?>">
 				<?php
-					echo Components::ensureString($layoutThreeColumnsCenter); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					echo Components::ensureString($layoutThreeColumnsCenter);
 				?>
 			</div>
 		<?php } ?>
@@ -78,7 +79,8 @@ $columnRightClass = Components::classnames([
 		<?php if ($layoutThreeColumnsRight) { ?>
 			<div class="<?php echo esc_attr($columnRightClass); ?>">
 				<?php
-					echo Components::ensureString($layoutThreeColumnsRight); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+					echo Components::ensureString($layoutThreeColumnsRight);
 				?>
 			</div>
 		<?php } ?>

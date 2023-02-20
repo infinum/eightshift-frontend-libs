@@ -1,60 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { Icon, ToggleControl, SelectControl, RangeControl } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
-import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { icons, ucfirst, NumberPicker } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import { Responsive } from '../responsive';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/Responsive',
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
-	},
-};
-
-const attributes = {
-	wrapperSpacingBottomLarge: 100,
-	wrapperSpacingBottomDesktop: 50,
-	wrapperSpacingBottomTablet: 30,
-	wrapperSpacingBottomMobile: 10,
-
-	wrapperDividerBottomLarge: true,
-	wrapperDividerBottomDesktop: false,
-	wrapperDividerBottomTablet: false,
-	wrapperDividerBottomMobile: false,
-};
-
-const wrapperSpacingBottom = [
-	attributes.wrapperSpacingBottomLarge,
-	attributes.wrapperSpacingBottomDesktop,
-	attributes.wrapperSpacingBottomTablet,
-	attributes.wrapperSpacingBottomMobile,
-];
-
-const wrapperDividerBottom = [
-	attributes.wrapperDividerBottomLarge,
-	attributes.wrapperDividerBottomDesktop,
-	attributes.wrapperDividerBottomTablet,
-	attributes.wrapperDividerBottomMobile,
-];
-
-const wrapperContainerWidth = [
-	attributes.wrapperContainerWidthLarge,
-	attributes.wrapperContainerWidthDesktop,
-	attributes.wrapperContainerWidthTablet,
-	attributes.wrapperContainerWidthMobile,
-];
-
-const setAttributes = () => {};
-
-const defaults = {
-	sectionSpacing: {
-		min: -300,
-		max: 300,
-		step: 10,
 	},
 };
 
@@ -65,145 +21,145 @@ const options = {
 		'tablet',
 		'mobile',
 	],
-	containerWidths: [
-		{
-			label: 'Not Set',
-			value: '',
-		},
-		{
-			label: 'Default',
-			value: 'default',
-		},
-	],
 };
 
-const reset = {
-	wrapperSpacingBottomLarge: {
-		type: 'int',
-		default: 40,
-	},
-	wrapperSpacingBottomDesktop: {
-		type: 'int',
-	},
-	wrapperSpacingBottomTablet: {
-		type: 'int',
-	},
-	wrapperSpacingBottomMobile: {
-		type: 'int',
-	},
+export const component = () => {
+	const [attributes, setAttributes] = useState({
+		demoComponentToggleLarge: 1,
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: 0,
+	});
 
-	wrapperDividerBottomLarge: {
-		type: 'boolean',
-		default: true,
-	},
-	wrapperDividerBottomDesktop: {
-		type: 'boolean',
-	},
-	wrapperDividerBottomTablet: {
-		type: 'boolean',
-	},
-	wrapperDividerBottomMobile: {
-		type: 'boolean',
-	},
+	const [attributes2, setAttributes2] = useState({
+		demoComponentToggleLarge: 1,
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: 0,
+	});
 
-	wrapperContainerWidthLarge: {
-		type: 'string',
-		default: 'default',
-	},
-	wrapperContainerWidthDesktop: {
-		type: 'string',
-	},
-	wrapperContainerWidthTablet: {
-		type: 'string',
-	},
-	wrapperContainerWidthMobile: {
-		type: 'string',
-	},
+	const [attributes3, setAttributes3] = useState({
+		demoComponentToggleLarge: 1,
+		demoComponentToggleDesktop: '',
+		demoComponentToggleTablet: '',
+		demoComponentToggleMobile: 0,
+	});
+
+	return (
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Slider</h1>
+
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic component'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						noBottomSpacing
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return (
+								<NumberPicker
+									key={index}
+									icon={icons.wrench}
+									label={__('Demo option 1', 'eightshift-frontend-libs')}
+									value={attributes[attr]}
+									onChange={(value) => setAttributes({ ...attributes, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth='4'
+									inlineLabel
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Inherit button'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						inheritButton={options.breakpoints.map((breakpoint) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return {
+								callback: () => setAttributes2({
+									...attributes2,
+									[attr]: attributes2[attr] === '' ? '0' : '',
+								}),
+								isActive: attributes2[attr] === '',
+							};
+						})}
+						noBottomSpacing
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return (
+								<NumberPicker
+									key={index}
+									icon={icons.wrench}
+									label={__('Demo option 1', 'eightshift-frontend-libs')}
+									value={attributes2[attr]}
+									onChange={(value) => setAttributes2({ ...attributes2, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth={4}
+									inlineLabel
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='Compact mode'>
+					<Responsive
+						label='Responsive'
+						icon={icons.emptyRect}
+						inheritButton={options.breakpoints.map((breakpoint) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return {
+								callback: () => setAttributes3({
+									...attributes3,
+									[attr]: attributes3[attr] === '' ? '0' : '',
+								}),
+								isActive: attributes3[attr] === '',
+							};
+						})}
+						noBottomSpacing
+						inline
+					>
+						{options.breakpoints.map((breakpoint, index) => {
+							const point = ucfirst(breakpoint);
+							const attr = `demoComponentToggle${point}`;
+
+							return (
+								<NumberPicker
+									key={index}
+									value={attributes3[attr]}
+									onChange={(value) => setAttributes3({ ...attributes3, [attr]: value })}
+									noBottomSpacing
+									min={0}
+									max={1000}
+									step={10}
+									fixedWidth={4}
+								/>
+							);
+						})}
+					</Responsive>
+				</SingleItemShowcase>
+			</div>
+
+		</>
+	);
 };
-
-export const componentRange = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.spacingBottom} />
-				{__('Spacing Bottom', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperSpacingBottom.map((item, index) => {
-
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperSpacingBottom${point}`;
-
-			return (
-				<Fragment key={index}>
-					<RangeControl
-						label={point}
-						allowReset={true}
-						value={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-						min={defaults.sectionSpacing.min}
-						max={defaults.sectionSpacing.max}
-						step={defaults.sectionSpacing.step}
-						resetFallbackValue={reset[attr]?.default}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);
-
-export const componentToggle = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.dividerBottom} />
-				{__('Divider Bottom', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperDividerBottom.map((item, index) => {
-
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperDividerBottom${point}`;
-
-			return (
-				<Fragment key={index}>
-					<ToggleControl
-						label={point}
-						checked={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);
-
-export const componentSelect = () => (
-	<Responsive
-		label={
-			<Fragment>
-				<Icon icon={icons.containerWidth} />
-				{__('ContainerWidth', 'eightshift-frontend-libs')}
-			</Fragment>
-		}
-	>
-		{wrapperContainerWidth.map((item, index) => {
-
-			const point = ucfirst(options.breakpoints[index]);
-			const attr = `wrapperContainerWidth${point}`;
-
-			return (
-				<Fragment key={index}>
-					<SelectControl
-						label={point}
-						options={options.containerWidths}
-						value={attributes[attr]}
-						onChange={(value) => setAttributes({ [attr]: value })}
-					/>
-				</Fragment>
-			);
-		})}
-	</Responsive>
-);

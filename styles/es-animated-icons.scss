@@ -1,0 +1,29 @@
+// Animated icons
+
+// Use the icon with the name written here and on a parent element add a class of 'es-has-animated-icon'.
+// The animation will happen on hover, focus (focus-visible),
+// or when an 'is-es-icon-animated' class is applied on the parent with the 'es-has-animated-icon' class.
+
+// icons.trashAlt
+.es-has-animated-icon {
+	.es-animated-trash-alt-lid,
+	.es-animated-trash-alt-base {
+		transition: {
+			property: transform;
+			timing-function: var(--es-ease-out-cubic);
+			duration: 0.3s;
+		}
+	}
+
+	&.is-es-icon-animated .es-animated-trash-alt-lid,
+	&:focus-visible .es-animated-trash-alt-lid,
+	&:hover .es-animated-trash-alt-lid {
+		transform: rotate(15deg) translate(1.125px, -1.75px);
+	}
+
+	&.is-es-icon-animated .es-animated-trash-alt-base,
+	&:focus-visible .es-animated-trash-alt-base,
+	&:hover .es-animated-trash-alt-base {
+		transform: translate(0, -2.25px);
+	}
+}

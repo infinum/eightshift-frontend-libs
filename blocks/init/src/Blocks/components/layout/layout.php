@@ -35,16 +35,19 @@ $unique = Components::getUnique();
 
 ?>
 
+<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
 <<?php echo esc_attr($layoutTag); ?>
 	class="<?php echo esc_attr($layoutClass); ?>"
 	data-id="<?php echo esc_attr($unique); ?>"
 	data-layout-type="<?php echo esc_attr($layoutType); ?>"
 >
-	<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
 	<div
 		class="<?php echo esc_attr("{$componentClass}__wrap"); ?>"
 		data-load-more-id="<?php echo esc_attr($layoutLoadMoreId); ?>"
 	>
-		<?php echo Components::ensureString($layoutItems); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+		<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo Components::ensureString($layoutItems);
+		?>
 	</div>
 </<?php echo esc_attr($layoutTag); ?>>

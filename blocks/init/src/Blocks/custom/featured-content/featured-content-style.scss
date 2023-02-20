@@ -1,0 +1,20 @@
+.block-featured-content {
+	--button-scoped-padding-desktop: 0.5rem 1rem;
+
+	&__load-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 3rem;
+	}
+
+	.card-simple {
+		border: 1px solid var(--global-colors-gray200);
+		padding: 1rem;
+		border-radius: 0.5rem;
+
+		&__btn {
+			margin-top: auto;
+			margin-left: auto;
+		}
+	}
+}

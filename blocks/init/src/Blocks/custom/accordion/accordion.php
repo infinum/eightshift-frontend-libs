@@ -10,9 +10,23 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-echo Components::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	'accordion',
-	Components::props('accordion', $attributes, [
-		'accordionAccordionContent' => $innerBlockContent
-	])
-);
+$blockClass = $attributes['blockClass'] ?? '';
+$blockJsClass = $attributes['blockJsClass'] ?? '';
+
+$accordionCloseAdjacent = Components::checkAttr('accordionCloseAdjacent', $attributes, $manifest);
+
+$accordionClass = Components::classnames([
+	$blockClass,
+	$blockJsClass,
+]);
+?>
+
+<div
+	class="<?php echo esc_attr($accordionClass); ?>"
+	data-close-adjacent="<?php echo esc_attr($accordionCloseAdjacent ? 'true' : 'false'); ?>"
+>
+		<?php
+		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo $innerBlockContent;
+		?>
+</div>

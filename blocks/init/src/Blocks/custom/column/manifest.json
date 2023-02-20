@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "column",
 	"title": "Column",
-	"description" : "Column block with custom settings.",
+	"description": "A single column.",
 	"category": "eightshift",
 	"icon": {
 		"src": "es-column"
@@ -15,7 +15,7 @@
 	],
 	"example": {
 		"attributes": {
-			"wrapperDisable": true,
+			"wrapperNoControls": true,
 			"columnWidthLarge": 4
 		},
 		"innerBlocks": [
@@ -35,7 +35,7 @@
 	},
 	"hasInnerBlocks": true,
 	"attributes": {
-		"wrapperDisable": {
+		"wrapperNoControls": {
 			"type": "boolean",
 			"default": true
 		},
@@ -45,47 +45,45 @@
 		},
 
 		"columnWidthLarge": {
-			"type": "integer",
-			"default": 4
+			"type": "string",
+			"default": "4"
 		},
 		"columnWidthDesktop": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnWidthTablet": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnWidthMobile": {
-			"type": "integer"
+			"type": "string"
 		},
 
 		"columnOffsetLarge": {
-			"type": "integer"
+			"type": "string",
+			"default": "auto"
 		},
 		"columnOffsetDesktop": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnOffsetTablet": {
-			"type": "integer"
+			"type": "string"
 		},
 		"columnOffsetMobile": {
-			"type": "integer"
+			"type": "string"
 		},
 
 		"columnHideLarge": {
-			"type": "boolean",
-			"default": false
+			"type": "string",
+			"default": "false"
 		},
 		"columnHideDesktop": {
-			"type": "boolean",
-			"default": false
+			"type": "string"
 		},
 		"columnHideTablet": {
-			"type": "boolean",
-			"default": false
+			"type": "string"
 		},
 		"columnHideMobile": {
-			"type": "boolean",
-			"default": false
+			"type": "string"
 		},
 
 		"columnOrderLarge": {
@@ -169,8 +167,8 @@
 	},
 	"options": {
 		"columnWidth": {
-			"min":  1,
-			"max":  12,
+			"min": 1,
+			"max": 12,
 			"step": 1
 		},
 		"columnOffset": {
@@ -179,44 +177,52 @@
 			"step": 1
 		},
 		"columnOrder": {
-			"min":  1,
-			"max":  20,
+			"min": 1,
+			"max": 100,
 			"step": 1
 		},
 		"columnVerticalAlign": [
 			{
 				"label": "Stretch",
-				"value": "stretch"
+				"value": "stretch",
+				"icon": "verticalAlignStretch"
 			},
 			{
 				"label": "Top",
-				"value": "top"
+				"value": "start",
+				"icon": "verticalAlignTop"
 			},
 			{
 				"label": "Center",
-				"value": "center"
+				"value": "center",
+				"icon": "verticalAlignCenter"
 			},
 			{
 				"label": "Bottom",
-				"value": "bottom"
+				"value": "end",
+				"icon": "verticalAlignBottom"
 			}
 		],
 		"columnHorizontalAlign": [
 			{
 				"label": "Stretch",
-				"value": "stretch"
+				"value": "stretch",
+				"icon": "horizontalAlignStretch"
 			},
 			{
 				"label": "Left",
-				"value": "left"
+				"value": "start",
+				"icon": "horizontalAlignLeft"
 			},
 			{
 				"label": "Center",
-				"value": "center"
+				"value": "center",
+				"icon": "horizontalAlignCenter"
 			},
 			{
 				"label": "Right",
-				"value": "right"
+				"value": "end",
+				"icon": "horizontalAlignRight"
 			}
 		]
 	},
@@ -273,7 +279,7 @@
 					}
 				}
 			],
-			"top": [
+			"start": [
 				{
 					"inverse": true,
 					"variable": {
@@ -289,7 +295,7 @@
 					}
 				}
 			],
-			"bottom": [
+			"end": [
 				{
 					"inverse": true,
 					"variable": {
@@ -308,7 +314,7 @@
 					}
 				}
 			],
-			"left": [
+			"start": [
 				{
 					"inverse": true,
 					"variable": {
@@ -324,7 +330,7 @@
 					}
 				}
 			],
-			"right": [
+			"end": [
 				{
 					"inverse": true,
 					"variable": {
@@ -342,7 +348,7 @@
 					"variable": {
 						"column-display": "flex",
 						"column-opacity": "0.4",
-						"column-transform": "translateY(0.15rem) scale(0.98)"
+						"column-transform": "translateY(0.15rem) scale(0.99)"
 					}
 				}
 			],
@@ -355,5 +361,29 @@
 				}
 			]
 		}
-	}
+	},
+	"variablesCustom": [
+		"--wrapper-bg-color-project: initial;",
+		"--wrapper-bg-color-gradient: initial;",
+		"--wrapper-bg-blend-mode: initial;",
+		"--wrapper-bg-repeat: initial;",
+		"--wrapper-bg-position: initial;",
+		"--wrapper-bg-size: initial;",
+		"--wrapper-divider-color: initial;",
+		"--wrapper-width: initial;",
+		"--wrapper-offset: initial;",
+		"--wrapper-spacing-top: initial;",
+		"--wrapper-spacing-bottom: initial;",
+		"--wrapper-spacing-top-in: initial;",
+		"--wrapper-spacing-bottom-in: initial;",
+		"--wrapper-divider-top: initial;",
+		"--wrapper-divider-bottom: initial;",
+		"--wrapper-divider-left: initial;",
+		"--wrapper-divider-right: initial;",
+		"--wrapper-display: initial;",
+		"--wrapper-is-full-width: initial;",
+		"--wrapper-grid-template-columns: initial;",
+		"--wrapper-display-type: initial;",
+		"--wrapper-rounded-corners: initial;"
+	]
 }

@@ -1,45 +1,50 @@
 import React from 'react';
 import { ToggleControl, CheckboxControl, Button } from '@wordpress/components';
-import { IconLabel } from '../../../scripts';
-import classnames from 'classnames';
+import { IconLabel, classnames, TileButton } from '../../../scripts';
 
 /**
  * Custom toggle control that can render as
  *
  * @param {object} props                                                                 - IconToggle options.
+ * @param {React.Component} props.icon                                                   - Icon to display.
  * @param {string} props.label                                                           - Usually component name.
+ * @param {'toggle'|'checkbox'|'button'|'iconButton'|'tileButton'} [props.type='toggle'] - Kind of toggle to render.
+ * @param {string?} props.help                                                           - Help text to display.
+ * @param {boolean} [props.inlineHelp=false]                                             - If `true` and `help` is provided, the help content is rended below the label, instead of below the component.
  * @param {boolean} props.checked                                                        - Is the component currently in use.
  * @param {function} props.onChange                                                      - `onChange` handler from the `ToggleSwitch`/`CheckboxControl`.
- * @param {React.Component} props.icon                                                   - Icon to display.
- * @param {string?} props.help                                                           - Help text to display.
  * @param {boolean} [props.disabled=false]                                               - If `true`, control is disabled.
- * @param {boolean} [props.isCheckbox=false]                                             - Deprecated, please use `type` instead! - If `true`, the control is rendered as a checkbox.
- * @param {boolean} [props.inlineHelp=false]                                             - If `true` and `help` is provided, the help content is rended below the label, instead of below the component.
+ * @param {boolean} [props.noBottomSpacing=false]                                        - If `true`, the default bottom spacing is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]                                        - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                                            - If provided, classes are passed to the underlying component.
- * @param {'toggle'|'checkbox'|'button'|'iconButton'|'tileButton'} [props.type='toggle'] - Kind of toggle to render.
  */
 export const IconToggle = ({
+	icon,
 	label,
+
+	type = 'toggle',
+
+	help,
+	inlineHelp = false,
+
 	checked,
 	onChange,
-	icon,
-	help,
+
 	disabled = false,
-	isCheckbox = false,
-	inlineHelp = false,
+
+	noBottomSpacing = false,
+	reducedBottomSpacing = false,
+
 	additionalClasses,
-	type = 'toggle',
 }) => {
 	if (type === 'tileButton') {
 		return (
-			<Button
+			<TileButton
 				icon={icon}
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
-				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1.0! es-has-v2-gutenberg-button-active-state es-flex-col es-gap-1.25! es-w-17! es-h-17! es-button-no-icon-spacing es-content-center! es-text-3! es-line-h-1 es-p-0! ${additionalClasses}`}
-			>
-				{label}
-			</Button>
+				label={label}
+			/>
 		);
 	}
 
@@ -51,23 +56,25 @@ export const IconToggle = ({
 				isPressed={checked}
 				label={type === 'iconButton' && label}
 				showTooltip={type === 'iconButton'}
-				className={`es-button-icon-24 es-slight-button-border-cool-gray-300 es-flex-grow-0 es-flex-shrink-0 es-rounded-1.0! es-has-v2-gutenberg-button-active-state ${type === 'iconButton' ? 'es-button-square-36' : ''} ${additionalClasses}`}
+				className={classnames('es-button-icon-24 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-is-v2-gutenberg-button', type === 'iconButton' && 'es-button-square-36', additionalClasses)}
 			>
 				{type === 'button' && label}
 			</Button>
 		);
 	}
 
-	const ComponentToRender = (isCheckbox || type === 'checkbox') ? CheckboxControl : ToggleControl;
+	const ComponentToRender = (type === 'checkbox') ? CheckboxControl : ToggleControl;
+
+	const bottomSpacingClass = reducedBottomSpacing ? 'es-mb-2!' : 'es-mb-5!';
 
 	return (
 		<ComponentToRender
 			checked={checked}
 			onChange={onChange}
 			disabled={disabled}
-			help={!inlineHelp && help}
+			help={!inlineHelp && help && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
 			label={icon ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
-			className={classnames(['es-mb-6 es-icon-toggle-checkbox', help ? 'es-icon-toggle-checkbox--with-help' : '', additionalClasses ?? ''])}
+			className={classnames(noBottomSpacing ? 'es-mb-0!' : bottomSpacingClass, additionalClasses)}
 		/>
 	);
 };

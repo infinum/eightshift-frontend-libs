@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import classnames from 'classnames';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, icons } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, checkAttrResponsive, getAttrKey, outputCssVariables, getUnique, icons, classnames, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -24,18 +23,18 @@ export const ImageEditor = (attributes) => {
 	const imageAlt = checkAttr('imageAlt', attributes, manifest);
 	const imageAccept = checkAttr('imageAccept', attributes, manifest);
 	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
-	const imageUrl = checkAttr('imageUrl', attributes, manifest);
+	const imageUrl = checkAttrResponsive('imageUrl', attributes, manifest);
 
-	const pictureClass = classnames([
+	const pictureClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
-	const imgClass = classnames([
+	const imgClass = classnames(
 		selector(componentClass, componentClass, 'img'),
 		selector(blockClass, blockClass, `${selectorClass}-img`),
-	]);
+	);
 
 	if (!imageUse) {
 		return null;
@@ -56,8 +55,28 @@ export const ImageEditor = (attributes) => {
 
 			{!_.isEmpty(imageUrl) &&
 				<picture className={pictureClass} data-id={unique}>
-					<img className={imgClass} src={imageUrl} alt={imageAlt} />
-				</picture>
+				{getDefaultBreakpointNames().reverse().map((breakpointName) => {
+					if (breakpointName === 'large') {
+						return (
+							<img className={imgClass} src={imageUrl[breakpointName]} alt={imageAlt} key={breakpointName} />
+						);
+					}
+
+					if (imageUrl?.[breakpointName]?.length < 1) {
+						return null;
+					}
+
+					const breakpointWidth = globalManifest?.globalVariables?.breakpoints?.[breakpointName];
+
+					if (!breakpointWidth) {
+						return null;
+					}
+
+					return (
+						<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName}></source>
+					);
+				})}
+			</picture>
 			}
 
 		</>

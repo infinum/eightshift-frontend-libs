@@ -1,0 +1,102 @@
+// stylelint-disable
+
+// Rounded corners in some transient UI pieces to make them look a bit nicer.
+.components-popover__content {
+	border-radius: var(--es-component-border-radius-lg) !important;
+}
+
+.block-editor-inserter__quick-inserter .block-editor-inserter__search {
+	border-top-left-radius: var(--es-component-border-radius-lg);
+	border-top-right-radius: var(--es-component-border-radius-lg);
+}
+
+// Enlarge icon in component menu.
+.components-menu-item__item .block-editor-block-icon {
+	height: 1.75rem !important;
+	width: 1.75rem !important;
+	border-radius: var(--es-component-border-radius-md);
+}
+
+// Enlarge the icons in the toolbar a bit.
+button[disabled] .block-editor-block-icon.has-colors,
+.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon .block-editor-block-icon,
+.block-editor-block-toolbar__block-controls .block-editor-block-switcher .components-dropdown-menu__toggle .block-editor-block-icon {
+	height: 1.75rem !important;
+	width: 1.75rem !important;
+	border-radius: var(--es-component-border-radius-md);
+
+	svg {
+		transform: scale(1.1);
+	}
+}
+
+.components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon svg {
+	min-width: unset !important;
+}
+
+// Enlarge the icons in the Options panel a bit.
+.block-editor-block-card .block-editor-block-icon {
+	height: 2.5rem !important;
+	min-height: 2.5rem !important;
+	max-height: 2.5rem !important;
+	width: 2.5rem !important;
+	min-width: 2.5rem !important;
+	max-width: 2.5rem !important;
+	border-radius: var(--es-component-border-radius-md);
+	flex-shrink: 0;
+	flex-grow: 1;
+
+	svg {
+		transform: scale(1.25);
+	}
+}
+
+// Align WP panels with our arrows.
+.components-panel__body .components-panel__arrow {
+	margin-right: 0.25rem !important;
+}
+
+// Remove margin from placeholder.
+.es-placeholder-no-label-margin .components-placeholder__label {
+	margin: 0;
+}
+
+// Remove Gutenberg button icon spacing.
+.es-button-no-icon-spacing > svg {
+	margin-right: 0 !important;
+}
+
+// Tweak inserter block tiles style (a bit larger icon and a bit rounder backdrop).
+.block-editor-block-types-list__item-icon .block-editor-block-icon svg {
+	transform: scale(1.25);
+}
+
+.block-editor-block-types-list__item-icon {
+	border-radius: var(--es-component-border-radius-md);
+}
+
+// Make Gutenberg button focus state only on :focus-visible (if supported).
+@supports selector(:focus-visible) {
+	.components-button:focus:not(:disabled) {
+		box-shadow: none;
+	}
+
+	.components-button:focus-visible:not(:disabled) {
+		box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+		outline: 3px solid transparent;
+	}
+}
+
+// Enhance Gutenberg default input control to make it match more with other inputs.
+.components-text-control__input {
+	border-radius: 0.25rem !important;
+	height: 2.25rem !important;
+	padding: 0.5rem;
+}
+
+// Round off the [+] button in-between the blocks a bit.
+.block-editor-inserter__toggle {
+	border-radius: 0.325rem !important;
+}
+
+// stylelint-enable

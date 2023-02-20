@@ -9,10 +9,7 @@
  */
 
 // Globals.
-@import './../../../../assets/styles/parts/shared';
-
-// Editor styles overrides.
-@import './editor/editor';
+@import '../../../../assets/styles/parts/utils/shared-variables';
 
 // Register Wrapper block styles.
 @import './../../wrapper/wrapper-editor';

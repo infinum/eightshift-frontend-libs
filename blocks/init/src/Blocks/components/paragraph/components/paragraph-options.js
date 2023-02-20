@@ -1,67 +1,76 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { ColorPaletteCustom, ComponentUseToggle, IconLabel, CustomSelect, checkAttr, getAttrKey, icons, getOption } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, UseToggle, ColorPicker, ucfirst, Select, generateUseToggleConfig, Section } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		paragraphShowControls = true,
 
-		showParagraphUse = false,
-		showLabel = false,
-		showParagraphColor = true,
-		showParagraphSize = true,
+		hideColor = false,
+		hideSize = false,
+		hideWeight = false,
+
+		additionalControls,
 	} = attributes;
 
-	if (!paragraphShowControls) {
-		return null;
-	}
-
-	const paragraphUse = checkAttr('paragraphUse', attributes, manifest);
 	const paragraphColor = checkAttr('paragraphColor', attributes, manifest);
-	const paragraphSize = checkAttr('paragraphSize', attributes, manifest);
+	const [fontSize, fontWeight] = checkAttr('paragraphSize', attributes, manifest)?.split(':') ?? '';
+
+	const fontSizes = getOption('paragraphSize', attributes, manifest).reduce((all, { label, value, weights }) => ({
+		...all,
+		[value]: {
+			label: label,
+			value: value,
+			weights: weights,
+			weightOptions: weights.map((weight) => ({ label: ucfirst(weight), value: weight })),
+		},
+	}), {});
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={paragraphUse}
-				onChange={(value) => setAttributes({ [getAttrKey('paragraphUse', attributes, manifest)]: value })}
-				showUseToggle={showParagraphUse}
-				showLabel={showLabel}
-			/>
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'paragraphUse')}>
+			<Section showIf={!hideColor || !hideSize || !hideWeight} reducedBottomSpacing={additionalControls} noBottomSpacing={!additionalControls} additionalClasses='es-h-spaced'>
+				{!hideColor &&
+					<ColorPicker
+						colors={getOption('paragraphColor', attributes, manifest, true)}
+						value={paragraphColor}
+						onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
+						type='textColor'
+						additionalTriggerClasses='es-slight-button-border-cool-gray-400 es-button-square-36 es-rounded-1!'
+						colorPaletteLayout='list'
+						noBottomSpacing
+					/>
+				}
 
-			{paragraphUse &&
-				<>
-					{showParagraphColor &&
-						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
-							colors={getOption('paragraphColor', attributes, manifest, true)}
-							value={paragraphColor}
-							onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
-						/>
-					}
+				{!hideSize &&
+					<Select
+						value={fontSize}
+						options={Object.values(fontSizes)}
+						onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
+						additionalSelectClasses='es-w-16'
+						placeholder={__('Size', 'eightshift-frontend-libs')}
+						noBottomSpacing
+						simpleValue
+						noSearch
+					/>
+				}
 
-					{showParagraphSize &&
-						<CustomSelect
-							label={<IconLabel icon={icons.textSize} label={__('Text size', 'eightshift-frontend-libs')} />}
-							value={paragraphSize}
-							options={getOption('paragraphSize', attributes, manifest)}
-							onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: value })}
-							isClearable={false}
-							isSearchable={false}
-							simpleValue
-						/>
-					}
-				</>
-			}
+				{!hideWeight &&
+					<Select
+						value={fontWeight}
+						options={fontSizes[fontSize]?.weightOptions}
+						onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: `${fontSize}:${value}` })}
+						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
+						placeholder={__('Weight', 'eightshift-frontend-libs')}
+						disabled={fontSizes[fontSize]?.weights.length < 2}
+						noBottomSpacing
+						simpleValue
+						noSearch
+					/>
+				}
+			</Section>
 
-		</>
+			{additionalControls}
+		</UseToggle>
 	);
 };

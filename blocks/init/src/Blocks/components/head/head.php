@@ -27,7 +27,7 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 <!-- Remove IE's ability to use compatibility mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<!-- Disable phone formatting on safari -->
+<!-- Disable phone formatting on Safari -->
 <meta name="format-detection" content="telephone=no">
 
 <!-- Speed up fetching of external assets -->
@@ -35,7 +35,7 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 <link rel="dns-prefetch" href="//ajax.googleapis.com">
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-<!-- Win phone Meta -->
+<!-- Windows (Phone) Meta -->
 <?php if ($headName ?? '') { ?>
   <meta name="application-name" content="<?php echo esc_attr($headName); ?>" />
 <?php } ?>

@@ -1,18 +1,39 @@
 .loader {
-	--loader-color-1: var(--loader-primary, var(--global-colors-primary, currentColor));
-	--loader-color-2: var(--loader-secondary, var(--global-colors-black, currentColor));
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	svg {
-		height: 5rem;
-		width: 5rem;
+	&__spinner {
+		height: 3rem;
+		width: 3rem;
+		border-radius: 100rem;
+
+		position: relative;
+		animation: esSpinnerRotate 0.8s linear infinite;
+
+		&::before {
+			content: '';
+			box-sizing: border-box;
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			border: var(--loader-thickness, 0.25rem) solid var(--loader-color, var(--global-colors-primary500, currentColor));
+			clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+		}
+
+		&::after {
+			content: '';
+			box-sizing: border-box;
+			position: absolute;
+			inset: 0;
+			border-radius: 50%;
+			border: var(--loader-thickness, 0.25rem) solid var(--loader-color, var(--global-colors-primary500, currentColor));
+			opacity: 0.1;
+		}
 	}
 
 	&--use-overlay {
-		--loader-color-2: var(--global-colors-white);
+		--loader-color: var(--global-colors-white);
 
 		position: absolute;
 		top: 0;
@@ -23,11 +44,17 @@
 
 		z-index: 100;
 
-		background-color: rgba(16 16 16 / 0.9); // stylelint-disable-line alpha-value-notation
+		background-color: rgb(16 16 16 / 0.9);
 		color: var(--global-colors-white);
 
-		@supports (backdrop-filter: blur(10px)) {
-			backdrop-filter: blur(10px);
+		@supports (backdrop-filter: blur(0.25rem)) {
+			backdrop-filter: blur(0.25rem);
 		}
+	}
+}
+
+@keyframes esSpinnerRotate {
+	100% {
+		transform: rotate(360deg);
 	}
 }

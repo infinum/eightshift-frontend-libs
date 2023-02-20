@@ -345,7 +345,7 @@ export const props = (newName, attributes, manual = {}) => {
 
 	const output = {};
 
-	// Check what attributes we need to includes.
+	// Check which attributes we need to include.
 	const includes = [
 		'blockName',
 		'blockClientId',

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import readme from './readme.mdx';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import { CustomSelect, CustomSelectCustomOption, CustomSelectCustomValueDisplay, CustomSelectCustomMultipleValueDisplay, CustomSelectCustomMultipleValueDisplayContainer, CustomSelectCustomMultipleValueRemoveButton } from '../custom-select';
+import { Select, AsyncSelect, MultiSelect, AsyncMultiSelect, RSOption, RSSingleValue, RSMultiValue, RSDropdownIndicator, RSMultiValueRemove, RSClearIndicator, RSMultiValueContainer } from '@eightshift/frontend-libs/scripts';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
-	title: 'Options/Custom Select',
+	title: 'Options/Select',
 	parameters: {
 		docs: {
 			page: readme
@@ -12,48 +12,34 @@ export default {
 	},
 };
 
-const defaultProps = {
-	onChange: () => { },
-	value: 'Color',
-	placeholder: 'Select an item'
-};
-
 const data = [
 	{
 		'label': 'Item 1',
-		'value': 1,
+		'value': 'item-1',
 	},
 	{
 		'label': 'Item 2',
-		'value': 2,
+		'value': 'item-2',
 	},
 	{
 		'label': 'Item 3',
-		'value': 3,
+		'value': 'item-3',
 	},
 	{
 		'label': 'Item 4',
-		'value': 4,
+		'value': 'item-4',
 	},
 	{
 		'label': 'Item 5',
-		'value': 5,
+		'value': 'item-5',
 	},
 	{
 		'label': 'Item 6',
-		'value': 6,
+		'value': 'item-6',
 	},
 ];
 
-const getData = () => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(data);
-		}, 3000);
-	});
-};
-
-const getSearchableData = (inputValue) => {
+const getData = (inputValue) => {
 	const filterData = ({ label }) => label.toLowerCase().includes(inputValue.toLowerCase());
 	return new Promise((resolve) => {
 		setTimeout(() => {
@@ -66,200 +52,423 @@ const getSearchableData = (inputValue) => {
 	});
 };
 
-const CustomPickerOption = props => (
-	<CustomSelectCustomOption {...props}>
+const CustomMenuOption = props => (
+	<RSOption {...props}>
 		<div>
-			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
+			<span role='img' aria-label='checkmark'>✅ &nbsp;</span>
 			<span>{props.label}</span>
 		</div>
-	</CustomSelectCustomOption>
+	</RSOption>
 );
 
-const CustomValueDisplay = ({ children, ...props }) => (
-	<CustomSelectCustomValueDisplay {...props}>
-		<div>
-			<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
-			<span>{children}</span>
-		</div>
-	</CustomSelectCustomValueDisplay>
-);
+const CustomValueDisplay = (props) => {
 
-const CustomMultiValueDisplay = (props) => {
 	return (
-		<CustomSelectCustomMultipleValueDisplay {...props}>
-			<div>
-				<span role='img' aria-label='pointing to the right'>👉 &nbsp;</span>
-				<span>{props.children}</span>
-			</div>
-		</CustomSelectCustomMultipleValueDisplay>
+		<RSSingleValue {...props}>
+			<span className='es-text-3.5 es-px-1 es-py-0.5 es-rounded-1 es-bg-eightshift-500 es-font-weight-600 es-color-pure-white es-display-inline-block'>
+				{parseInt(props.data.value.replace('item-', '')) % 2 !== 0 && '⭐️ '}
+				{props.children}
+			</span>
+		</RSSingleValue>
 	);
 };
 
-const CustomMultiValueDisplayContainer = (props) => {
+const CustomMultiValueDisplay = (props) => {
+	return (
+		<RSMultiValue {...props}>
+			<div>
+				<span>{props.children}</span>
+				<span className='es-font-weight-600'>
+					{parseInt(props.data.value.replace('item-', '')) % 2 !== 0 ? ' (odd)' : ' (even)'}
+				</span>
+			</div>
+		</RSMultiValue>
+	);
+};
+
+const CustomDropdownIndicator = (props) => {
+	return (
+		<RSDropdownIndicator {...props}>
+			<span className='es-text-5 -es-ml-1'>{props.selectProps.menuIsOpen ? '⬆️' : '⬇️'}</span>
+		</RSDropdownIndicator>
+	);
+};
+
+const CustomMultiValueContainer = (props) => {
 	const customProps = {
 		...props,
 		innerProps: {
 			...props.innerProps,
 			style: {
-				backgroundColor: 'yellow',
+				backgroundColor: '#FCFAFF',
+				borderColor: '#610BEF',
 				flexDirection: 'row-reverse',
 				padding: '0.125rem 0.25rem',
-				borderRadius: '100rem',
+				borderRadius: '0.25rem',
 			},
 		}
 	};
 	return (
-		<CustomSelectCustomMultipleValueDisplayContainer {...customProps} />
+		<RSMultiValueContainer {...customProps} />
 	);
 };
 
 const CustomMultiValueRemoveButton = (props) => {
 	return (
-		<CustomSelectCustomMultipleValueRemoveButton {...props}>
-			{icons.trash}
-		</CustomSelectCustomMultipleValueRemoveButton>
+		<RSMultiValueRemove {...props}>
+			❌
+		</RSMultiValueRemove>
 	);
 };
 
-export const SelectSingle = () => {
+const CustomClearIndicator = (props) => {
 	return (
-		<CustomSelect
-			{...defaultProps}
-			label={'Single synchrounous select'}
-			options={data}
-		/>
+		<RSClearIndicator {...props}>
+			<span className='es-text-5'>🚫</span>
+		</RSClearIndicator>
 	);
 };
 
-export const SelectMultiple = () => {
-	return (
-		<CustomSelect
-			{...defaultProps}
-			multiple={true}
-			label={'Multiple synchrounous select'}
-			placeholder={'Select an item'}
-			options={data}
-		/>
-	);
-};
+export const SingleSelect = () => {
+	const [v, setV] = useState();
+	const [v2, setV2] = useState();
 
-export const AsyncSelectSingle = () => {
-	return (
-		<CustomSelect
-			{...defaultProps}
-			label={'Single async select'}
-			options={data}
-			loadOptions={getData}
-		/>
-	);
-};
-
-export const AsyncSelectMultiple = () => {
-	return (
-		<CustomSelect
-			{...defaultProps}
-			multiple={true}
-			label={'Multiple async select'}
-			loadOptions={getData}
-		/>
-	);
-};
-
-export const AsyncSelectMultipleWithRefetch = () => {
-	return (
-		<CustomSelect
-			{...defaultProps}
-			multiple={true}
-			label={'Multiple async select with refetch'}
-			help={'Try searching for \'item\''}
-			loadOptions={getSearchableData}
-			reFetchOnSearch={true}
-		/>
-	);
-};
-
-export const CustomRendering = () => {
 	return (
 		<>
-			<p>Custom dropdown items</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={false}
-				label={'My cool single select menu'}
-				customOptionComponent={CustomPickerOption}
-				options={data}
-			/>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Select</h1>
 
-			<p>Custom value label</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={false}
-				label={'My cool single select menu'}
-				customSingleValueDisplayComponent={CustomValueDisplay}
-				options={data}
-			/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Basic select menu'>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<p>Custom dropdown items and value label</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={false}
-				label={'My cool single select menu'}
-				customOptionComponent={CustomPickerOption}
-				customSingleValueDisplayComponent={CustomValueDisplay}
-				options={data}
-			/>
+				<SingleItemShowcase title='Disable search' propsUsed={{ noSearch: 'Disables the search functionality' }}>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noSearch
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
+				<SingleItemShowcase title='Custom placeholder' propsUsed={{ placeholder: 'Replaces the default placeholder text' }}>
+					<Select
+						label='Pick an item'
+						options={data}
+						placeholder='Pick me, pick me!'
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<p>Custom dropdown items on multi-select menu</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={true}
-				label={'My cool multiple select menu'}
-				customOptionComponent={CustomPickerOption}
-				options={data}
-			/>
+				<SingleItemShowcase title='<i>Clear</i> button' propsUsed={{ clearable: 'Enables clearing of the selected item' }}>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						clearable
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<p>Custom multi-select value display</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={true}
-				label={'Multiple synchrounous select'}
-				placeholder={'Select an item'}
-				options={data}
-				customMultiValueDisplayComponent={CustomMultiValueDisplay}
-			/>
+				<SingleItemShowcase title='Auto-closing' propsUsed={{ closeMenuAfterSelect: 'Closes the menu after selecting an item' }}>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						closeMenuAfterSelect
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-			<p>Custom multi-select value container</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={true}
-				label={'Multiple synchrounous select'}
-				placeholder={'Select an item'}
-				options={data}
-				customMultiValueDisplayContainerComponent={CustomMultiValueDisplayContainer}
-			/>
+				<SingleItemShowcase title='Simple value' propsUsed={{ simpleValue: 'Returns just the value, instead of an object' }} demoContainerClass='es-h-spaced es-gap-6!'>
+					<div className='es-v-spaced es-w-full es-mb-auto'>
+						<Select
+							label='Regular select'
+							onChange={(v) => setV(v)}
+							value={v}
+							options={data}
+							noBottomSpacing
+						/>
 
-			<p>Custom multi-select item remove button</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={true}
-				label={'Multiple synchrounous select'}
-				placeholder={'Select an item'}
-				options={data}
-				customMultiValueRemoveButton={CustomMultiValueRemoveButton}
-			/>
+						<div className='es-mt-3'>
+							<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>VALUE</p>
+							<div className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'>
+								<code style={{ whiteSpace: 'pre-wrap' }}>{`{\n label: '${v?.label ?? ''}',\n value: '${v?.value ?? ''}\n}'`}</code>
+							</div>
+						</div>
+					</div>
 
-			<p>Fully customized multi-select item</p>
-			<CustomSelect
-				{...defaultProps}
-				multiple={true}
-				label={'Multiple synchrounous select'}
-				placeholder={'Select an item'}
-				options={data}
-				customMultiValueRemoveButton={CustomMultiValueRemoveButton}
-				customMultiValueDisplayComponent={CustomMultiValueDisplay}
-				customMultiValueDisplayContainerComponent={CustomMultiValueDisplayContainer}
-			/>
+					<div className='es-v-spaced es-w-full es-mb-auto'>
+						<Select
+							label={<code>simpleValue</code>}
+							onChange={(v) => setV2(v)}
+							value={v2}
+							options={data}
+							simpleValue
+							noBottomSpacing
+						/>
+
+						<div className='es-mt-3'>
+							<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>VALUE</p>
+							<div className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'>
+								<code>{`'${v2 ?? ''}'`}</code>
+							</div>
+						</div>
+					</div>
+				</SingleItemShowcase>
+			</div>
+		</>
+	);
+};
+
+export const AsynchronousSelect = () => {
+	const [v, setV] = useState();
+
+	return (
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Asynchronous Select</h1>
+
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Basic select menu'
+					additionalPanels={[
+						{
+							title: 'Getting dynamic data',
+							content: (
+								<>
+									<p className='es-mt-0 es-mb-2 es-p-0'>A <code>Promise</code> should be passed to the <code>loadOptions</code> property.</p>
+									<p className='es-mt-0 es-mb-0 es-p-0'>The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.</p>
+								</>
+							),
+						},
+						{
+							title: 'Available options',
+							content: <span>All options from <code>Select</code> are available, with the exception of <code>simpleValue</code></span>,
+						}
+					]}
+				>
+					<AsyncSelect
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						loadOptions={getData}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
+	);
+};
+
+export const MultiItemSelect = () => {
+	const [v, setV] = useState([]);
+
+	return (
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Multiple item Select</h1>
+
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Basic select menu'
+					additionalPanels={[
+						{
+							title: 'Available options',
+							content: <span>All options from <code>Select</code> are available</span>
+						}
+					]}
+				>
+					<MultiSelect
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
+	);
+};
+
+export const AsynchronousMultiItemSelect = () => {
+	const [v, setV] = useState([]);
+
+	return (
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Asynchronous multiple item Select</h1>
+
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Basic select menu'
+					additionalPanels={[
+						{
+							title: 'Getting dynamic data',
+							content: (
+								<>
+									<p className='es-mt-0 es-mb-2 es-p-0'>A <code>Promise</code> should be passed to the <code>loadOptions</code> property.</p>
+									<p className='es-mt-0 es-mb-0 es-p-0'>The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.</p>
+								</>
+							),
+						},
+						{
+							title: 'Available options',
+							content: <span>All options from <code>Select</code> are available, with the exception of <code>simpleValue</code></span>,
+						}
+					]}
+				>
+					<AsyncMultiSelect
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						loadOptions={getData}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
+	);
+};
+
+export const Customization = () => {
+	const [v, setV] = useState();
+	const [v2, setV2] = useState([]);
+
+	return (
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Select customization</h1>
+
+			<h2 className='es-mt-0 es-mb-5 es-p-0 es-text-6 es-font-weight-500'>Single & multi-item Select</h2>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Custom dropdown icon'
+					propsUsed={{
+						customDropdownArrow: 'Custom dropdown component, should be wrapped with <code>RSDropdownIndicator</code>.'
+					}}
+				>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noBottomSpacing
+						customDropdownArrow={CustomDropdownIndicator}
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase
+					title='Custom dropdown option'
+					propsUsed={{
+						customMenuOption: 'Custom option component, should be wrapped with <code>RSOption</code>.'
+					}}
+				>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noBottomSpacing
+						customMenuOption={CustomMenuOption}
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase
+					title='Custom "Clear" indicator'
+					propsUsed={{
+						customClearIndicator: 'Custom clear indicator, should be wrapped with <code>RSClearIndicator</code>.'
+					}}
+				>
+					<MultiSelect
+						label='Pick an item'
+						onChange={(v) => setV2(v)}
+						value={v2}
+						options={data}
+						noBottomSpacing
+						clearable
+						customClearIndicator={CustomClearIndicator}
+					/>
+				</SingleItemShowcase>
+			</div>
+
+			<h2 className='es-mt-8 es-mb-5 es-p-0 es-text-6 es-font-weight-500'>Single-item Select only</h2>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Custom value display'
+					propsUsed={{
+						customValueDisplay: 'Custom value display, should be wrapped with <code>RSSingleValue</code>.'
+					}}
+				>
+					<Select
+						label='Pick an item'
+						onChange={(v) => setV(v)}
+						value={v}
+						options={data}
+						noBottomSpacing
+						customValueDisplay={CustomValueDisplay}
+					/>
+				</SingleItemShowcase>
+
+			</div>
+
+			<h2 className='es-mt-8 es-mb-5 es-p-0 es-text-6 es-font-weight-500'>Multi-item Select only</h2>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Custom item remove icon'
+					propsUsed={{
+						customValueRemove: 'Custom value remove, should be wrapped with <code>RSMultiValueRemove</code>.'
+					}}
+				>
+					<MultiSelect
+						label='Pick an item'
+						onChange={(v) => setV2(v)}
+						value={v2}
+						options={data}
+						noBottomSpacing
+						customValueRemove={CustomMultiValueRemoveButton}
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase
+					title='Custom value display'
+					propsUsed={{
+						customValueDisplay: 'Custom value display, should be wrapped with <code>RSMultiValue</code>.'
+					}}
+				>
+					<MultiSelect
+						label='Pick an item'
+						onChange={(v) => setV2(v)}
+						value={v2}
+						options={data}
+						noBottomSpacing
+						customValueDisplay={CustomMultiValueDisplay}
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase
+					title='Custom item container'
+					propsUsed={{
+						customValueContainer: 'Custom item container, should be wrapped with <code>RSMultiValueContainer</code>.'
+					}}
+				>
+					<MultiSelect
+						label='Pick an item'
+						onChange={(v) => setV2(v)}
+						value={v2}
+						options={data}
+						noBottomSpacing
+						customValueContainer={CustomMultiValueContainer}
+					/>
+				</SingleItemShowcase>
+			</div>
 		</>
 	);
 };

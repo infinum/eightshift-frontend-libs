@@ -1,136 +1,101 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-import { ColorPaletteCustom, icons, getOption, checkAttr, getAttrKey, ComponentUseToggle, IconLabel, IconToggle, SimpleVerticalSingleSelect } from '@eightshift/frontend-libs/scripts';
+import { icons, getOption, checkAttr, getAttrKey, IconLabel, UseToggle, LinkEditComponent, OptionSelector, props, getOptions, Section, generateUseToggleConfig, ColorPicker } from '@eightshift/frontend-libs/scripts';
+import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 
 export const ButtonOptions = (attributes) => {
 	const {
-		title: manifestTitle,
-	} = manifest;
-
-	const {
 		setAttributes,
-		label = manifestTitle,
-		buttonShowControls = true,
 
-		showButtonUse = false,
-		showLabel = false,
-		showButtonAriaLabel = true,
-		showButtonColor = true,
-		showButtonSize = true,
-		showButtonWidth = true,
-		showButtonIsAnchor = true,
-		showButtonId = true,
-		showButtonIsLink = true,
+		hideAriaLabel = false,
+		hideId = false,
+		hideUrl = false,
+		hideVariantPicker = false,
+		hideColorPicker = false,
+
+		additionalControls,
 	} = attributes;
 
-	if (!buttonShowControls) {
-		return null;
-	}
-
-	const buttonUse = checkAttr('buttonUse', attributes, manifest);
-	const buttonColor = checkAttr('buttonColor', attributes, manifest);
-	const buttonSize = checkAttr('buttonSize', attributes, manifest);
-	const buttonWidth = checkAttr('buttonWidth', attributes, manifest);
-	const buttonIsAnchor = checkAttr('buttonIsAnchor', attributes, manifest);
 	const buttonId = checkAttr('buttonId', attributes, manifest);
-	const buttonIsLink = checkAttr('buttonIsLink', attributes, manifest);
 	const buttonAriaLabel = checkAttr('buttonAriaLabel', attributes, manifest);
-
-	const sizeOptions = getOption('buttonSize', attributes, manifest).map(({ label, value, icon: iconName }) => {
-		return {
-			onClick: () => setAttributes({
-				[getAttrKey('buttonSize', attributes, manifest)]: value,
-				[getAttrKey('buttonIsLink', attributes, manifest)]: false
-			}),
-			label: label,
-			isActive: buttonSize === value,
-			icon: icons[iconName],
-		};
-	});
-
-	const widthOptions = getOption('buttonWidth', attributes, manifest).map(({ label, value, icon: iconName }) => {
-		return {
-			onClick: () => setAttributes({ [getAttrKey('buttonWidth', attributes, manifest)]: value }),
-			label: label,
-			isActive: buttonWidth === value,
-			icon: icons[iconName],
-		};
-	});
+	const buttonUrl = checkAttr('buttonUrl', attributes, manifest);
+	const buttonIsNewTab = checkAttr('buttonIsNewTab', attributes, manifest);
+	const buttonVariant = checkAttr('buttonVariant', attributes, manifest);
+	const buttonColor = checkAttr('buttonColor', attributes, manifest);
 
 	return (
-		<>
-			<ComponentUseToggle
-				label={label}
-				checked={buttonUse}
-				onChange={(value) => setAttributes({ [getAttrKey('buttonUse', attributes, manifest)]: value })}
-				showUseToggle={showButtonUse}
-				showLabel={showLabel}
-			/>
-
-			{buttonUse &&
-				<>
-					{showButtonColor &&
-						<ColorPaletteCustom
-							label={<IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
-							value={buttonColor}
-							colors={getOption('buttonColor', attributes, manifest, true)}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showButtonIsLink &&
-						<IconToggle
-							icon={icons.link}
-							label={__('Display as link', 'eightshift-frontend-libs')}
-							checked={buttonIsLink}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonIsLink', attributes, manifest)]: value })}
-						/>
-					}
-
-					{showButtonSize && !buttonIsLink &&
-						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.size} label={__('Size', 'eightshift-frontend-libs')} />}
-							options={sizeOptions}
-						/>
-					}
-
-					{showButtonWidth && !buttonIsLink &&
-						<SimpleVerticalSingleSelect
-							label={<IconLabel icon={icons.width} label={__('Width', 'eightshift-frontend-libs')} />}
-							options={widthOptions}
-						/>
-					}
-				
-					{showButtonAriaLabel &&
-						<TextControl
-							label={<IconLabel icon={icons.infoCircle} label={__('ARIA label', 'eightshift-frontend-libs')} />}
-							value={buttonAriaLabel}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
-						/>
-					}
-				
-					{showButtonIsAnchor &&
-						<IconToggle
-							icon={icons.anchor}
-							label={__('Anchor', 'eightshift-frontend-libs')}
-							checked={buttonIsAnchor}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonIsAnchor', attributes, manifest)]: value })}
-							help={__('Make sure to set the URL as an ID of the element you want to target, e.g. #my-block.', 'eightshift-frontend-libs')}
-						/>
-					}
-
-					{showButtonId &&
-						<TextControl
-							label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
-							value={buttonId}
-							onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
-						/>
-					}
-				</>
+		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'buttonUse')}>
+			{!hideUrl &&
+				<LinkEditComponent
+					url={buttonUrl}
+					opensInNewTab={buttonIsNewTab}
+					onChange={({ url, newTab, isAnchor }) => setAttributes({
+						[getAttrKey('buttonUrl', attributes, manifest)]: url,
+						[getAttrKey('buttonIsNewTab', attributes, manifest)]: newTab,
+						[getAttrKey('buttonIsAnchor', attributes, manifest)]: isAnchor ?? false,
+					})}
+				/>
 			}
 
-		</>
+			{!hideVariantPicker &&
+				<OptionSelector
+					icon={icons.genericShapesAlt}
+					label={__('Type', 'eightshift-frontend-libs')}
+					value={buttonVariant}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonVariant', attributes, manifest)]: value })}
+					options={getOption('buttonVariant', attributes, manifest)}
+					additionalButtonClass='es-v-spaced es-content-center! es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.1!'
+					actions={!hideColorPicker &&
+						<ColorPicker
+							value={buttonColor}
+							onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+							options={getOption('buttonColor', attributes, manifest)}
+							colors={getOption('buttonColor', attributes, manifest, true)}
+							noBottomSpacing
+						/>
+					}
+				/>
+			}
+
+			{!hideColorPicker && hideVariantPicker &&
+				<ColorPicker
+					icon={icons.colorAlt}
+					label={__('Color', 'eightshift-frontend-libs')}
+					value={buttonColor}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
+					options={getOption('buttonColor', attributes, manifest)}
+					colors={getOption('buttonColor', attributes, manifest, true)}
+				/>
+			}
+
+			{additionalControls}
+
+			<IconOptions
+				{...props('icon', attributes, {
+					options: getOptions(attributes, manifest),
+				})}
+				noExpandButton
+				hideSizePicker
+			/>
+
+			<Section showIf={!hideAriaLabel} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} collapsable reducedBottomSpacing>
+				<TextControl
+					label={<IconLabel icon={icons.ariaLabel} label={__('ARIA label', 'eightshift-frontend-libs')} />}
+					value={buttonAriaLabel}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
+					help={__('Description of the button.', 'eightshift-frontend-libs')}
+				/>
+			</Section>
+
+			<Section showIf={!hideId} icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} collapsable noBottomSpacing>
+				<TextControl
+					label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
+					value={buttonId}
+					onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
+				/>
+			</Section>
+		</UseToggle>
 	);
 };

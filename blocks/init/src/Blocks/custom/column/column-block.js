@@ -16,7 +16,8 @@ export const Column = (props) => {
 			select,
 			clientId,
 			{
-				wrapperUseSimple: true,
+				wrapperSimple: true,
+				wrapperUseShowControl: false,
 			}
 		);
 		const [parentClientId] = select('core/block-editor').getBlockParents(clientId);

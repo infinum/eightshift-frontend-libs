@@ -1,10 +1,6 @@
-/*
- * Setting up overrides for default editor styles.
- *
-*/
+// Overrides and fixes of default Gutenberg styles.
 
-/* stylelint-disable */
-// Overrides default styles from inline editor.
+// stylelint-disable
 body {
 	.editor-styles-wrapper {
 		font-family: inherit;
@@ -27,12 +23,6 @@ body {
 				&:hover {
 					box-shadow: 0 0 3px var(--es-admin-block-hover-shadow, rgb(0 0 0 / 0.3));
 				}
-			}
-
-			// Removing block spacing.
-			[data-block] {
-				margin-top: 0;
-				margin-bottom: 0;
 			}
 
 			&.block-editor-block-list__block {
@@ -59,82 +49,9 @@ body {
 		}
 	}
 
-	// // Add new block button fix width if it is flex.
-	.block-list-appender {
-		width: 100%;
-	}
-
-	// Spread sidebar default input to full width.
-	.edit-post-sidebar {
-		.block-editor-url-input input[type='text'] {
-			width: 100%;
-		}
-	}
-
 	// Bump edit-post-sidebar__panel-tabs z-index.
 	.edit-post-sidebar__panel-tabs {
 		z-index: 2 !important;
-	}
-
-	// Aligning image and text vertically.
-	.components-base-control {
-		.components-select-control__input[multiple] {
-			min-height: 70px;
-		}
-	}
-
-	// Hack for storybook.
-	.components-range-control__slider {
-		min-width: 1px;
-	}
-
-	.components-panel__body-toggle.components-button .components-panel__arrow {
-		width: 1.5rem;
-		height: 1.5rem;
-	}
-
-	// Adding space between ColorSwatches and label
-	.components-circular-option-picker .components-circular-option-picker__swatches {
-		margin-top: 0.5rem;
-	}
-
-	// Fix label styling and stylize SVGs
-	.components-base-control__label,
-	.components-input-control__label {
-		display: flex !important;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		min-height: 2rem;
-		margin-bottom: 0.3rem;
-		line-height: 1;
-		gap: 0.5rem;
-		border-bottom: 1px solid transparent;
-		transition: 0.3s padding ease-out, 0.3s margin ease-out;
-
-		svg {
-			height: 1.5rem !important;
-			width: 1.5rem !important;
-			margin: 0 !important;
-
-			&:not(button svg) {
-				color: var(--es-admin-components-base-control-svg, var(--es-admin-cool-gray-650));
-			}
-		}
-
-		button {
-			margin-left: auto !important;
-		}
-	}
-
-	.components-toggle-control__label {
-		margin-bottom: 0 !important;
-	}
-
-	.custom-full-width-btn {
-		width: 100%;
-		text-align: center;
-		justify-content: center;
 	}
 
 	// Fix for disabled button icon foregrounds and backgrounds.
@@ -150,57 +67,12 @@ body {
 		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 	}
 
-	// Enlarge the icons in the Options panel a bit.
-	.block-editor-block-card .block-editor-block-icon {
-		height: 2.5rem !important;
-		min-height: 2.5rem !important;
-		max-height: 2.5rem !important;
-		width: 2.5rem !important;
-		min-width: 2.5rem !important;
-		max-width: 2.5rem !important;
-		border-radius: 4px;
-		flex-shrink: 0;
-		flex-grow: 1;
-
-		svg {
-			transform: scale(1.25);
-		}
-	}
-
-	// Enlarge the icons in the toolbar a bit.
-	button[disabled] .block-editor-block-icon.has-colors,
-	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon
-		.block-editor-block-icon,
-	.block-editor-block-toolbar__block-controls
-		.block-editor-block-switcher
-		.components-dropdown-menu__toggle
-		.block-editor-block-icon {
-		height: 1.75rem !important;
-		width: 1.75rem !important;
-		border-radius: 4px;
-
-		svg {
-			transform: scale(1.1);
-		}
-	}
-
-	.components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon svg {
-		min-width: unset !important;
-	}
-
-	// Enlarge icon in component menu.
-	.components-menu-item__item .block-editor-block-icon {
-		height: 1.75rem !important;
-		width: 1.75rem !important;
-		border-radius: 4px;
-	}
-
 	// Fix some toolbar icons not having the right styling.
 	button[disabled].components-button.components-toolbar__control.block-editor-block-switcher__no-switcher-icon.has-icon {
 		.block-editor-block-icon {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
-			border-radius: 4px;
+			border-radius: var(--es-component-border-radius-md);
 
 			svg {
 				width: 1.25rem;
@@ -214,7 +86,7 @@ body {
 		.block-editor-block-icon {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
-			border-radius: 3px;
+			border-radius: var(--es-component-border-radius-md);
 			background-color: var(--es-admin-block-icon-background, transparent) !important;
 			color: var(--es-admin-block-icon-foreground, var(--es-admin-gray-850)) !important;
 
@@ -242,134 +114,6 @@ body {
 		}
 	}
 
-	// Updated Placeholder component styles.
-	.components-placeholder {
-		&__label {
-			i {
-				margin-right: 0.4rem;
-			}
-		}
-
-		&.is-large {
-			box-shadow: inset 0 0 0 1px var(--es-admin-components-placeholder-large-shadow, var(--es-admin-gray-250));
-			border-radius: 4px;
-			min-height: 0;
-
-			.components-placeholder__label {
-				svg {
-					height: 1.5rem;
-					width: 1.5rem;
-				}
-			}
-
-			.components-placeholder__fieldset {
-				width: 100%;
-			}
-		}
-
-		&.is-medium,
-		&.is-small {
-			padding: 1rem;
-			box-shadow: inset 0 0 0 1px var(--es-admin-components-placeholder-large-shadow, var(--es-admin-gray-250));
-			min-height: 0 !important;
-			border-radius: 4px;
-
-			.components-placeholder__label {
-				svg {
-					height: 1.25rem;
-					width: 1.25rem;
-				}
-			}
-
-			.components-placeholder__fieldset {
-				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
-				gap: 0.75rem;
-			}
-
-			.block-editor-media-placeholder__upload-button {
-				margin-bottom: 0 !important;
-			}
-		}
-
-		.es-placeholder-input-flex {
-			display: flex;
-			flex-wrap: nowrap;
-			gap: 0.5rem;
-			width: 100%;
-
-			.components-input-control {
-				max-width: 19rem;
-			}
-		}
-	}
-
-	// Styles for making empty block placeholders visible and usable (especially in Columns).
-	.block-editor-block-list__layout {
-		height: 100%;
-
-		// If it's empty.
-		&:empty {
-			height: 100%;
-			min-height: 4rem;
-			border-radius: 8px;
-			border: 1px dashed var(--es-admin-block-empty-border, var(--es-admin-gray-200));
-		}
-
-		// If it has one child, expand the expander to fill everything.
-		// (aka when empty InnerBlocks is clicked and only has the appender)
-		.block-list-appender.wp-block:only-child {
-			height: 100%;
-
-			.components-dropdown.block-editor-inserter {
-				border-radius: 8px;
-				border: 1px dashed var(--es-admin-block-empty-border, var(--es-admin-gray-200));
-				height: 100%;
-
-				.block-list-appender__toggle.block-editor-button-block-appender {
-					min-height: 4rem;
-					width: 100%;
-					height: 100%;
-					border-radius: 8px;
-				}
-			}
-		}
-
-		// Resize the appender when it's not the only child
-		// to make it easier to hit.
-		.block-list-appender.wp-block:not(:only-child) {
-			.block-list-appender__toggle.block-editor-button-block-appender {
-				width: auto;
-				height: 100%;
-				margin: 0 auto;
-			}
-		}
-	}
-
-	// Resize InnerBlocks container to fit.
-	.block-editor-inner-blocks {
-		height: 100%;
-	}
-
-	// Center the default [+] inserter.
-	.block-editor-inserter {
-		display: flex !important;
-		align-items: center;
-		justify-content: center;
-	}
-
-	// Popover rounded corners.
-	.components-popover__content {
-		border-radius: 6px !important;
-	}
-
-	// Fix for inserter corners looking weird with rounded popovers.
-	.block-editor-inserter__quick-inserter .block-editor-inserter__search {
-		border-top-left-radius: 6px;
-		border-top-right-radius: 6px;
-	}
-
 	// Fix for scrollbar overflow.
 	@supports (scrollbar-gutter: stable) {
 		.interface-interface-skeleton__sidebar {
@@ -381,6 +125,11 @@ body {
 		.interface-interface-skeleton__sidebar {
 			overflow-x: hidden;
 		}
+	}
+
+	// Fix disabled button showing hover state.
+	.components-button[disabled]:hover {
+		color: currentColor !important;
 	}
 
 	// Gutenberg 'Animate' component 'slide-in' animation top/bottom direction polyfill.
@@ -405,164 +154,21 @@ body {
 		}
 	}
 
-	// Fix disabled button showing hover state.
-	.components-button[disabled]:hover {
-		color: currentColor !important;
-	}
-
-	// Align WP panels with our arrows.
-	.components-panel__body .components-panel__arrow {
-		margin-right: 0.25rem !important;
-	}
-
-	// Remove margin from placeholder.
-	.es-placeholder-no-label-margin .components-placeholder__label {
-		margin: 0;
-	}
-
-	// Remove Gutenberg button icon spacing.
-	.es-button-no-icon-spacing > svg {
-		margin-right: 0 !important;
-	}
-
-	// Tweak default text input border radius to better fit in.
-	.components-text-control__input {
-		border-radius: 3px !important;
-	}
-
-	// Tweak NumberControl to better fit in.
-	.components-number-control {
-		.components-input-control__backdrop {
-			border-radius: 3px !important;
-			border-color: hsl(0deg 0% 80%) !important;
-
+	// Slightly widen the sidebar.
+	// Breakpoint is the exact one from Gutenberg.
+	@media (min-width: 782px) {
+		.interface-complementary-area {
+			width: 19rem;
 		}
-
-		&:hover {
-			.components-input-control__backdrop {
-				border-color: hsl(0deg 0% 70%) !important;
-			}
-		}
-	}
-
-	// Make Gutenberg ToggleControl toggle better match libs.
-	.components-form-toggle {
-		&__input {
-			@supports selector(:focus-visible) {
-				&:focus + .components-form-toggle__track {
-					box-shadow: none !important;
-				}
-
-				&:focus:focus-visible + .components-form-toggle__track {
-					box-shadow: 0 0 0 0.275rem rgb(255 255 255 / 0.7), 0 0 0 0.25rem var(--wp-admin-theme-color) !important; // 3px
-					border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
-				}
-			}
-
-			@supports not selector(:focus-visible) {
-				&:focus + .components-form-toggle__track {
-					box-shadow: 0 0 0 0.275rem rgb(255 255 255 / 0.7), 0 0 0 0.25rem var(--wp-admin-theme-color) !important; // 3px
-					border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
-				}
-			}
-		}
-
-		&__track {
-			background-color: rgb(var(--es-admin-cool-gray-500-values) / 0) !important;
-			border: 0.09375rem solid var(--es-admin-cool-gray-500) !important; // 1.5px
-			border-radius: 100rem !important;
-
-			width: 2.21875rem !important; // 35.5px
-			height: 1.25rem !important; // 20px;
-
-			transition: {
-				property: background-color, color, border-color, box-shadow !important;
-				timing-function: ease-out, ease-out, ease-out, var(--es-ease-out-back) !important;
-				duration: 0.3s !important;
-			}
-		}
-
-		&__thumb {
-			width: 0.75rem !important; // 12px
-			height: 0.75rem !important; // 12px
-
-			top: 0.25rem !important; // 5px
-			left: 0.25rem !important; // 5px
-
-			background-color: var(--es-admin-cool-gray-600) !important;
-
-			border: none !important;
-
-			transition: {
-				property: background-color, transform !important;
-				timing-function: ease-out, var(--es-ease-out-back) !important;
-				duration: 0.3s, 0.25s !important;
-			}
-		}
-
-		&:hover {
-			.components-form-toggle__track {
-				border-color: var(--es-admin-cool-gray-600) !important;
-			}
-		}
-
-		&.is-checked {
-			.components-form-toggle__track {
-				background-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
-				border-color: var(--wp-admin-theme-color, var(--es-admin-accent-color-default)) !important;
-			}
-
-			.components-form-toggle__thumb {
-				transform: translateX(0.96875rem) !important; // 15.5px
-				background-color: var(--es-admin-pure-white) !important;
-			}
-		}
-	}
-
-	// Tweak inserter block tiles style (a bit larger icon and a bit rounder backdrop).
-	.block-editor-block-types-list__item-icon .block-editor-block-icon svg {
-		transform: scale(1.25);
-	}
-
-	.block-editor-block-types-list__item-icon {
-		border-radius: 0.25rem;
 	}
 }
 
-// WP 5.9 fixes.
-body.branch-5-9 {
-	// Fix range slider looking broken when markings are enabled.
-	.components-range-control__marks {
-		top: 13px !important;
-	}
-}
+// ES enhancements and Gutenberg component tweaks.
+@import './es-gutenberg-editor-ui-enhancements.scss';
+@import './es-gutenberg-component-style-updates.scss';
 
-// WP 6.1 fixes
-body.branch-6-1 {
-	// Fix label casing.
-	.components-base-control__label {
-		text-transform: none !important;
-		font-size: 0.8125rem !important;
-		font-weight: normal !important;
-	}
-
-	// Fix ToggleControl flex.
-	.components-toggle-control {
-		.components-h-stack {
-			flex-direction: row-reverse !important;
-			align-items: center !important;
-			justify-content: space-between !important;
-		}
-	}
-
-	// Fix block icons being misaligned.
-	.block-editor-block-icon.has-colors svg,
-	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon .block-editor-block-icon svg,
-	.block-editor-block-toolbar__block-controls .block-editor-block-switcher .components-dropdown-menu__toggle .block-editor-block-icon svg {
-		width: 1.25rem !important;
-		height: 1.25rem !important;
-	}
-}
+// WP-version-specific fixes
+@import './wp-version-specific/wp-6-1';
 
 @import './es-utility-classes.scss';
 @import './es-component-styles.scss';

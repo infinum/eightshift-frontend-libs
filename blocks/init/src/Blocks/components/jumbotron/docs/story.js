@@ -5,12 +5,11 @@ import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { JumbotronEditor } from '../components/jumbotron-editor';
 import { JumbotronOptions } from '../components/jumbotron-options';
-import { JumbotronToolbar } from '../components/jumbotron-toolbar';
 
 export default {
 	title: `Components/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
@@ -28,10 +27,6 @@ export const options = () => (
 			options: getOptions(attributes, manifest),
 		})}
 	/>
-);
-
-export const toolbar = () => (
-	<JumbotronToolbar {...props('jumbotron', attributes)} />
 );
 
 const aligns = [

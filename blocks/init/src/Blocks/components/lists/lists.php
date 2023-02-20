@@ -24,13 +24,11 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
-$listsOrdered = Components::checkAttr('listsOrdered', $attributes, $manifest);
+$listsType = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
-$listsOrderedOptions = array_map(function ($option) {
-	return $option['value'];
-}, $manifest['options']['listsOrdered'] ?? []); // @phpstan-ignore-line
+$listsType = array_map(static fn($option) => $option['value'], $manifest['options']['listsOrdered'] ?? []); // @phpstan-ignore-line
 
-if (!in_array($listsOrdered, $listsOrderedOptions, true)) {
+if (!in_array($listsType, $listsType, true)) {
 	return;
 }
 
@@ -42,12 +40,11 @@ $listsClass = Components::classnames([
 
 ?>
 
-<<?php echo esc_attr($listsOrdered); ?> class="<?php echo esc_attr($listsClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
+<<?php echo esc_attr($listsType); ?>
+	class="<?php echo esc_attr($listsClass); ?>"
+	data-id="<?php echo esc_attr($unique); ?>"
+>
 	<?php
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
-
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		$listsContent;
+		echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest), $listsContent;
 	?>
-</<?php echo esc_attr($listsOrdered); ?>>
+</<?php echo esc_attr($listsType); ?>>

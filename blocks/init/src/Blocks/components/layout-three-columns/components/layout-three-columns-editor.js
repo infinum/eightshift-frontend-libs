@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const LayoutThreeColumnsEditor = (attributes) => {
@@ -19,32 +18,32 @@ export const LayoutThreeColumnsEditor = (attributes) => {
 	const layoutThreeColumnsCenter = checkAttr('layoutThreeColumnsCenter', attributes, manifest);
 	const layoutThreeColumnsRight = checkAttr('layoutThreeColumnsRight', attributes, manifest);
 
-	const layoutClass = classnames([
+	const layoutClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
-	const columnLeftClass = classnames([
+	const columnLeftClass = classnames(
 		selector(componentClass, componentClass, 'column'),
 		selector(componentClass, componentClass, 'column'),
 		selector(selectorClass, selectorClass, 'column', 'left'),
 		selector(selectorClass, selectorClass, 'column', 'left'),
-	]);
+	);
 
-	const columnCenterClass = classnames([
+	const columnCenterClass = classnames(
 		selector(componentClass, componentClass, 'column'),
 		selector(componentClass, componentClass, 'column'),
 		selector(selectorClass, selectorClass, 'column', 'center'),
 		selector(selectorClass, selectorClass, 'column', 'center'),
-	]);
+	);
 
-	const columnRightClass = classnames([
+	const columnRightClass = classnames(
 		selector(componentClass, componentClass, 'column'),
 		selector(componentClass, componentClass, 'column'),
 		selector(selectorClass, selectorClass, 'column', 'right'),
 		selector(selectorClass, selectorClass, 'column', 'right'),
-	]);
+	);
 
 	if (!layoutThreeColumnsUse) {
 		return null;

@@ -1,5 +1,3 @@
-/* stylelint-disable-line selector-no-type */
-
 *,
 *::after,
 *::before {
@@ -13,7 +11,8 @@ html {
 body {
 	@include font-smoothing;
 
-	font-family: var(--global-font-family);
+	// Overrides normalize font-family definition.
+	font-family: var(--global-font-family) !important; // stylelint-disable-line declaration-no-important
 	color: var(--global-colors-black);
 	background-color: var(--global-colors-white);
 	position: relative;

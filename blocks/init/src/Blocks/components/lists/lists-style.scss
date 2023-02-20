@@ -1,15 +1,27 @@
+@counter-style nums {
+	system: numeric;
+	symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+	suffix: '  ';
+}
+
 .lists {
 	margin: 0;
 	padding-left: 0;
-	color: var(--lists-text-color, var(--lists-color, var(--global-colors-black, currentColor)));
+	color: var(--lists-text-color, var(--global-colors-black, currentColor));
+
 	font-size: var(--lists-font-size, 1rem);
+	font-weight: var(--lists-font-weight);
 	line-height: var(--lists-line-height, 1.5);
+	letter-spacing: var(--lists-letter-spacing, 0);
 
 	li {
 		margin-left: 1.1rem;
 		overflow-wrap: anywhere;
 
 		&::marker {
+			font-weight: bold;
+			font-variant-numeric: tabular-nums;
+
 			color: var(--lists-marker-color, currentColor);
 		}
 	}
@@ -17,8 +29,8 @@
 	a {
 		cursor: pointer;
 		text-decoration: underline;
-		color: var(--lists-link-color, var(--global-colors-primary, #5555CE));
-		text-decoration-color: var(--lists-link-color, var(--global-colors-primary, #5555CE));
+		color: var(--lists-link-color, var(--global-colors-primary500));
+		text-decoration-color: var(--lists-link-color, var(--global-colors-primary500));
 
 		transition: {
 			property: color;
@@ -27,7 +39,15 @@
 		}
 
 		&:hover {
-			color: var(--lists-link-color-hover, var(--global-colors-yellow, #FFDD48));
+			color: var(--lists-link-color-hover, var(--global-colors-primary500));
 		}
+	}
+}
+
+ol.lists {
+	list-style: decimal;
+
+	@supports (list-style: nums) {
+		list-style: var(--lists-style, decimal);
 	}
 }

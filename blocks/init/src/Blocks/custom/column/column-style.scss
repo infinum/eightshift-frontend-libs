@@ -1,5 +1,5 @@
 .block-column {
-	grid-column: var(--column-offset, auto)/ span var(--column-width, 5);
+	grid-column: var(--column-offset, auto) / span var(--column-width, 5);
 	grid-row: var(--column-row-offset, auto);
 	order: var(--column-order);
 	align-self: var(--column-vertical-align);

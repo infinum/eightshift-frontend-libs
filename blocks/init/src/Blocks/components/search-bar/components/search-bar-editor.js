@@ -1,6 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const SearchBarEditor = (attributes) => {
@@ -29,14 +28,14 @@ export const SearchBarEditor = (attributes) => {
 		selector(additionalClass, additionalClass),
 	);
 
-	const inputClass = classnames([
+	const inputClass = classnames(
 		selector(componentClass, componentClass, 'input'),
-	]);
+	);
 
-	const labelClass = classnames([
+	const labelClass = classnames(
 		selector(componentClass, componentClass, 'label'),
 		selector(! searchBarLabelShow, componentClass, 'label', 'hidden'),
-	]);
+	);
 
 	return (
 		<>

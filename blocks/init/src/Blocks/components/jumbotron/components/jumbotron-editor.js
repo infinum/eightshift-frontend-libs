@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
-import { outputCssVariables, getUnique, props, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, getUnique, props, checkAttr, selector, classnames } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
@@ -22,11 +21,15 @@ export const JumbotronEditor = (attributes) => {
 
 	const jumbotronUse = checkAttr('jumbotronUse', attributes, manifest);
 
-	const jumbotronClass = classnames([
+	if (!jumbotronUse) {
+		return null;
+	}
+
+	const jumbotronClass = classnames(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
-	]);
+	);
 
 	const contentClass = classnames([
 		selector(componentClass, componentClass, 'content'),
@@ -36,10 +39,6 @@ export const JumbotronEditor = (attributes) => {
 		selector(componentClass, componentClass, 'content-wrap'),
 	]);
 
-	if (!jumbotronUse) {
-		return null;
-	}
-
 	return (
 		<div className={jumbotronClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
@@ -47,6 +46,7 @@ export const JumbotronEditor = (attributes) => {
 			<ImageEditor
 				{...props('image', attributes, {
 					blockClass: componentClass,
+					imageFull: true,
 				})}
 			/>
 

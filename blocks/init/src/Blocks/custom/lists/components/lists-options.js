@@ -6,11 +6,14 @@ import { ListsOptions as ListsOptionsComponent } from '../../../components/lists
 
 export const ListsOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Lists', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('List', 'eightshift-frontend-libs')}>
 			<ListsOptionsComponent
 				{...props('lists', attributes, {
 					setAttributes,
 				})}
+				noExpandButton
+				noUseToggle
+				noLabel
 			/>
 		</PanelBody>
 	);

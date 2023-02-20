@@ -14,8 +14,10 @@ export const FeaturedContentEditor = ({ attributes, setAttributes }) => {
 				attributes={{
 					...attributes,
 					featuredContentServerSideRender: true,
+					wrapperUse: false,
 				}}
 			/>
+
 			<LoadMoreEditor
 				{...props('load-more', attributes, {
 					setAttributes,

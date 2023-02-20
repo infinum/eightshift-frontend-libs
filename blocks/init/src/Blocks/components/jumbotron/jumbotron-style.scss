@@ -28,10 +28,14 @@
 
 		margin: 0 auto;
 		padding: 0.75rem var(--global-gutters-default);
+
+		text-align: var(--jumbotron-text-align, left);
 	}
 
 	&__content-wrap {
 		width: max-content;
+
+		padding: 3rem;
 	}
 
 	&__heading {

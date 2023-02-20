@@ -2,6 +2,7 @@ import React from 'react';
 import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
 import { LinkEditComponent } from '../link-edit-component';
+import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/LinkEditComponent',
@@ -12,36 +13,65 @@ export default {
 	},
 };
 
-export const basicComponent = () => {
+export const component = () => {
 	const [objData, setObjData] = useState({
 		url: '',
 		newTab: false,
+		isAnchor: false,
 	});
 
 	return (
-		<LinkEditComponent
-			url={objData.url}
-			opensInNewTab={objData.newTab}
-			setAttributes={setObjData}
-			title={'Dummy component'}
-			urlAttrName='url'
-			isNewTabAttrName='newTab'
-		/>
-	);
-};
+		<>
+			<h1 className='es-mt-0 es-mb-5 es-p-0 es-text-8'>Link picker</h1>
 
-export const withoutNewTabOption = () => {
-	const [objData, setObjData] = useState({
-		url: '',
-	});
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase title='Base picker'>
+					<LinkEditComponent
+						url={objData.url}
+						opensInNewTab={objData.newTab}
+						onChange={({ url, newTab, isAnchor }) => {
+							setObjData({ url, newTab, isAnchor });
+						}}
+						noBottomSpacing
+					/>
+				</SingleItemShowcase>
 
-	return (
-		<LinkEditComponent
-			url={objData.url}
-			setAttributes={setObjData}
-			title={'Dummy component'}
-			urlAttrName='url'
-			showNewTabOption={false}
-		/>
+				<SingleItemShowcase title='No "New tab" option'>
+					<LinkEditComponent
+						url={objData.url}
+						opensInNewTab={objData.newTab}
+						onChange={({ url, newTab, isAnchor }) => {
+							setObjData({ url, newTab, isAnchor });
+						}}
+						noBottomSpacing
+						hideOpensInNewTab
+					/>
+				</SingleItemShowcase>
+
+				<SingleItemShowcase title='No anchor notice'>
+					<LinkEditComponent
+						url={objData.url}
+						opensInNewTab={objData.newTab}
+						onChange={({ url, newTab, isAnchor }) => {
+							setObjData({ url, newTab, isAnchor });
+						}}
+						noBottomSpacing
+						hideAnchorNotice
+					/>
+				</SingleItemShowcase>
+
+					<SingleItemShowcase title='Disabled'>
+					<LinkEditComponent
+						url={objData.url}
+						opensInNewTab={objData.newTab}
+						onChange={({ url, newTab, isAnchor }) => {
+							setObjData({ url, newTab, isAnchor });
+						}}
+						noBottomSpacing
+						disabled
+					/>
+				</SingleItemShowcase>
+			</div>
+		</>
 	);
 };

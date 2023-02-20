@@ -1,7 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "featured-categories",
-	"title": "Featured Categories",
+	"title": "Featured categories",
 	"description" : "Block for selecting and displaying featured categories",
 	"category": "eightshift",
 	"icon": {
@@ -24,15 +24,11 @@
 		}
 	},
 	"attributes": {
-		"featuredCategoriesQuery": {
-			"type": "object",
-			"default": {
-				"taxonomy": "category",
-				"terms": []
-			},
-			"items": {
-				"type": "object"
-			}
+		"featuredCategoriesTaxonomy": {
+			"type": "object"
+		},
+		"featuredCategoriesManualTerms": {
+			"type": "array"
 		},
 		"featuredCategoriesItemsPerLine": {
 			"type": "integer",
@@ -41,11 +37,19 @@
 		"featuredCategoriesServerSideRender": {
 			"type": "boolean",
 			"default": false
+		},
+		"featuredCategoriesPickTaxonomyManually": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"allowed": {
 		"taxonomies": [
-			"category"
+			{
+				"label": "Category",
+				"value": "category",
+				"restName": "categories"
+			}
 		]
 	},
 	"options": {
