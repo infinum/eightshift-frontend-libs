@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.0.0] - 2023-02-21
+
+- This is major release with most of the changes on the components and UX/UI
+
 ## [7.3.0] - 2022-11-09
 
 ### Changed
@@ -647,6 +651,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.3.0...8.0.0
 [7.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.2.0...7.3.0
 [7.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.1.0...7.2.0
 [7.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.0.1...7.1.0
