@@ -1,11 +1,13 @@
 @import '../scripts/components/custom-slider/custom-slider';
 
+// WP styles.
 @import '@wordpress/editor/build-style/style-rtl.css';
 @import '@wordpress/editor/build-style/style.css';
 @import '@wordpress/components/build-style/style.css';
 @import '@wordpress/block-editor/build-style/style.css';
 @import '@wordpress/format-library/build-style/style.css';
 
+// ES components.
 @import './../blocks/init/src/Blocks/assets/styles/application-blocks-editor-components.scss';
 
 // Playground styles.
@@ -44,4 +46,3 @@ $break-small: 600px;
 		padding: 16px;
 	}
 }
-
