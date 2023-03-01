@@ -1,5 +1,5 @@
 import { dispatch } from '@wordpress/data';
-import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette, storybookWpStyles } from '../scripts/storybook';
+import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette } from '../scripts/storybook';
 import globalSettings from '../blocks/init/src/Blocks/manifest.json';
 import { STORE_NAME } from './../scripts/editor/store';
 
