@@ -101,6 +101,7 @@ export const UseToggle = ({
 		return (
 			<Control
 				label={label}
+				additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 				additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
 				actions={
 					<Button

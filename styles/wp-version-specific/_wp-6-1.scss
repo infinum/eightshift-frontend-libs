@@ -69,6 +69,12 @@ body.branch-6-1 {
 		align-items: center !important;
 
 		max-width: 100% !important;
+
+		pointer-events: none !important;
+
+		> * {
+			pointer-events: all;
+		}
 	}
 }
 // stylelint-enable

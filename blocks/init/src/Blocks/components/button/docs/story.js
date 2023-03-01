@@ -1,6 +1,5 @@
 import React from 'react';
-import { Fragment } from '@wordpress/element';
-import { getExample, props, getOptions, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
@@ -9,7 +8,7 @@ import { ButtonOptions } from '../components/button-options';
 export default {
 	title: `Components/${manifest.title}`,
 	parameters: {
-		docs: { 
+		docs: {
 			page: readme
 		}
 	},
