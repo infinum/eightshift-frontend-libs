@@ -44,6 +44,7 @@ export const IconToggle = ({
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
 				label={label}
+				additionalClasses={additionalClasses}
 			/>
 		);
 	}
