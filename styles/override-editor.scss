@@ -62,6 +62,7 @@ body {
 		color: var(--es-admin-block-icon-foreground, var(--es-admin-pure-black)) !important;
 		opacity: 1 !important;
 		aspect-ratio: 1;
+		line-height: 0;
 	}
 
 	.components-button.block-editor-block-switcher__no-switcher-icon:disabled .block-editor-block-icon.has-colors {
@@ -74,11 +75,12 @@ body {
 			height: 1.75rem !important;
 			width: 1.75rem !important;
 			border-radius: var(--es-component-border-radius-md);
+			line-height: 0;
 
 			svg {
 				width: 1.25rem;
 				height: 1.25rem;
-				transform: scale(1.1) translateX(2px);
+				transform: translateX(2px);
 			}
 		}
 	}
@@ -90,11 +92,11 @@ body {
 			border-radius: var(--es-component-border-radius-md);
 			background-color: var(--es-admin-block-icon-background, transparent) !important;
 			color: var(--es-admin-block-icon-foreground, var(--es-admin-gray-850)) !important;
+			line-height: 0;
 
 			svg {
 				width: 1.25rem;
 				height: 1.25rem;
-				transform: scale(1.1);
 			}
 		}
 	}

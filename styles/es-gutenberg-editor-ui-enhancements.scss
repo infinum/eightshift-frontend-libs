@@ -26,10 +26,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 	width: 1.75rem !important;
 	border-radius: var(--es-component-border-radius-md);
 	aspect-ratio: 1;
-
-	svg {
-		transform: scale(1.1);
-	}
 }
 
 .components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon svg {
@@ -53,10 +49,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 	border-radius: var(--es-component-border-radius-md);
 	flex-shrink: 0;
 	flex-grow: 1;
-
-	svg {
-		transform: scale(1.25);
-	}
 }
 
 // Align WP panels with our arrows.
@@ -76,10 +68,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 }
 
 // Tweak inserter block tiles style (a bit larger icon and a bit rounder backdrop).
-.block-editor-block-types-list__item-icon .block-editor-block-icon svg {
-	transform: scale(1.25);
-}
-
 .block-editor-block-types-list__item-icon {
 	border-radius: var(--es-component-border-radius-md);
 }

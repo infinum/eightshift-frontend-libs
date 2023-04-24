@@ -93,12 +93,14 @@ body.branch-6-2 {
 			line-height: 0;
 
 			.block-editor-block-icon {
-				width: fit-content !important;
-				height: fit-content !important;
+				line-height: 0;
 
 				svg {
-					height: 1.75rem !important;
-					width: 1.75rem !important;
+					height: 1.9rem !important;
+					width: 1.9rem !important;
+
+					max-width: 1.9rem !important;
+					max-height: 1.9rem !important;
 				}
 			}
 
