@@ -1,8 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import _ from 'lodash';
-import reactHtmlParser from 'react-html-parser';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { Icon } from '@wordpress/components';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
@@ -507,7 +505,6 @@ export const getIconOptions = (
 		return {
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-			// src: reactHtmlParser(blockIcons[icon.src])[0],
 			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }}></span>,
 		};
 	}
@@ -515,7 +512,7 @@ export const getIconOptions = (
 	return {
 		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 		foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-		src: <span dangerouslySetInnerHTML={{ __html: icon.src }}></span>, // (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
+		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }}></span> : icon.src,
 	};
 };
 
