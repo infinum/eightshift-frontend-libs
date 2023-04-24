@@ -15,6 +15,7 @@
 	height: 1.75rem !important;
 	width: 1.75rem !important;
 	border-radius: var(--es-component-border-radius-md);
+	aspect-ratio: 1;
 }
 
 // Enlarge the icons in the toolbar a bit.
@@ -24,6 +25,7 @@ button[disabled] .block-editor-block-icon.has-colors,
 	height: 1.75rem !important;
 	width: 1.75rem !important;
 	border-radius: var(--es-component-border-radius-md);
+	aspect-ratio: 1;
 
 	svg {
 		transform: scale(1.1);
@@ -32,6 +34,12 @@ button[disabled] .block-editor-block-icon.has-colors,
 
 .components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon svg {
 	min-width: unset !important;
+}
+
+// Fix block icons in list views.
+.block-editor-list-view-block-select-button .block-editor-block-icon {
+	aspect-ratio: 1;
+	border-radius: 0.25rem !important;
 }
 
 // Enlarge the icons in the Options panel a bit.
@@ -98,6 +106,11 @@ button[disabled] .block-editor-block-icon.has-colors,
 // Round off the [+] button in-between the blocks a bit.
 .block-editor-inserter__toggle {
 	border-radius: 0.325rem !important;
+}
+
+// Round the snackbars.
+.components-snackbar {
+	border-radius: 0.5rem !important;
 }
 
 // stylelint-enable

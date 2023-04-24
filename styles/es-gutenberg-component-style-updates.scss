@@ -79,6 +79,10 @@
 	.components-input-control__input {
 		padding: 0 0.5rem !important;
 		font-size: 0.78125rem !important;
+
+		&::placeholder {
+			color: var(--es-admin-cool-gray-400);
+		}
 	}
 
 	.components-input-control__backdrop {
