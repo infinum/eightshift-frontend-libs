@@ -103,14 +103,14 @@ button[disabled] .block-editor-block-icon.has-colors,
 
 // Enlarge inserter block icons.
 .block-editor-block-types-list__list-item .components-button.block-editor-block-types-list__item {
-	span {
-		line-height: 0 !important;
-	}
-
 	.block-editor-block-types-list__item-icon {
-		.block-editor-block-icon {
-			line-height: 0;
+		line-height: 0;
 
+		span {
+			line-height: 0;
+		}
+
+		.block-editor-block-icon {
 			svg {
 				height: 1.9rem !important;
 				width: 1.9rem !important;
