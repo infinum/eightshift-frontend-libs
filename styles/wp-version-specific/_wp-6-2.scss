@@ -86,5 +86,19 @@ body.branch-6-2 {
 	.components-button.block-editor-block-types-list__item:not(:disabled):hover svg {
 		color:currentColor !important;
 	}
+
+	// Improve sidebar block icon.
+	.block-editor-block-inspector .block-editor-block-card {
+		span {
+			line-height: 0;
+		}
+
+		svg {
+			width: 1.875rem !important;
+			height: 1.875rem !important;
+			max-width: 1.875rem;
+			max-height: 1.875rem;
+		}
+	}
 }
 // stylelint-enable
