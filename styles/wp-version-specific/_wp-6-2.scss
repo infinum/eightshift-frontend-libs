@@ -76,5 +76,10 @@ body.branch-6-2 {
 			pointer-events: all;
 		}
 	}
+
+	// Fix NumberPicker margin.
+	.components-base-control.components-input-control.components-number-control {
+		margin-bottom: 0 !important;
+	}
 }
 // stylelint-enable

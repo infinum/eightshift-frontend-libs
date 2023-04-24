@@ -2,11 +2,12 @@
 	.es-number-picker-input-value {
 		.components-input-control__input {
 			font-variant-numeric: tabular-nums;
+
+			min-height: 2rem;
 		}
 
 		.components-input-control__backdrop {
 			// stylelint-disable declaration-no-important
-			// border: none !important;
 			border-top-right-radius: 0 !important;
 			border-bottom-right-radius: 0 !important;
 			// stylelint-enable declaration-no-important
