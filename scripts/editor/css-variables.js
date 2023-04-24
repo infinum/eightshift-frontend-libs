@@ -422,10 +422,10 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 
 	// Prepare final output for testing.
 	const fullOutput = `
-		${output}
-		${manual}
-		${manualEditor}
-	`;
+		${output};
+		${manual};
+		${manualEditor};
+	`.replaceAll(';;', ';');
 
 	// Check if final output is empty and return if empty string if it is.
 	if (_.isEmpty(fullOutput.trim())) {
