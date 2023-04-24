@@ -306,7 +306,8 @@
 			"type": "boolean"
 		},
 		"wrapperIsFullWidthMobile": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 
 		"wrapperHideOverflowHLarge": {
