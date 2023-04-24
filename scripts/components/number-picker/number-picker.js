@@ -87,7 +87,6 @@ export const NumberPicker = (props) => {
 					shiftStep={(typeof inputField === 'object' && inputField?.shiftStep > 0) ? inputField.shiftStep : 10}
 					isShiftStepEnabled
 					spinControls='none'
-					hideHTMLArrows
 					className='es-number-picker-input-value'
 					style={fixedWidth ? { width: `calc(1rem ${min < 0 ? '+ 0.5rem ' : ''} + ${fixedWidth} * 1ch)` } : {}}
 					placeholder={placeholder}
