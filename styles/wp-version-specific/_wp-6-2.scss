@@ -20,8 +20,8 @@ body.branch-6-2 {
 		width: 100%;
 
 		svg {
-			height: 1.5rem;
-			width: 1.5rem;
+			height: 1.25rem;
+			width: 1.25rem;
 			margin: 0;
 
 			flex-shrink: 0;
@@ -49,8 +49,8 @@ body.branch-6-2 {
 	.block-editor-block-icon.has-colors svg,
 	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon .block-editor-block-icon svg,
 	.block-editor-block-toolbar__block-controls .block-editor-block-switcher .components-dropdown-menu__toggle .block-editor-block-icon svg {
-		width: 1.25rem !important;
-		height: 1.25rem !important;
+		width: 1.5rem !important;
+		height: 1.5rem !important;
 	}
 
 	// Improve block inserter display and positioning.
@@ -80,6 +80,29 @@ body.branch-6-2 {
 	// Fix NumberPicker margin.
 	.components-base-control.components-input-control.components-number-control {
 		margin-bottom: 0 !important;
+	}
+
+	// Fix inserter block icons on hover.
+	.components-button.block-editor-block-types-list__item:not(:disabled):hover svg {
+		color:currentColor !important;
+	}
+
+	// Enlarge inserter block icons.
+	.block-editor-block-types-list__list-item .components-button.block-editor-block-types-list__item {
+		.block-editor-block-types-list__item-icon {
+			line-height: 0;
+
+			.block-editor-block-icon {
+				width: fit-content !important;
+				height: fit-content !important;
+
+				svg {
+					height: 1.75rem !important;
+					width: 1.75rem !important;
+				}
+			}
+
+		}
 	}
 }
 // stylelint-enable
