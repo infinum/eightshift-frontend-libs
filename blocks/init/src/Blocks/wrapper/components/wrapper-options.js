@@ -336,7 +336,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<AdvancedColorPicker
 								icon={icons.backgroundType}
 								label={__('Background', 'eightshift-frontend-libs')}
-								colors={backgroundColors}
+								colorsProject={backgroundColors}
 								value={wrapperBgColorProject}
 
 								pickerPopupTitle={__('Background', 'eightshift-frontend-libs')}
