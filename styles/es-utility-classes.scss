@@ -97,6 +97,7 @@ $es-spacings: (
 
 	'max': 'max-content',
 	'min': 'min-content',
+	'fit': 'fit-content',
 
 	'0\\.25': '0.0625rem',
 	'0\\.5': '0.125rem',
@@ -163,6 +164,12 @@ $es-spacings: (
 	'88': '22rem',
 	'92': '23rem',
 	'96': '24rem',
+	'100': '25rem',
+	'104': '26rem',
+	'108': '27rem',
+	'112': '28rem',
+	'116': '29rem',
+	'120': '30rem',
 );
 
 $es-square-button-sizes: (
@@ -202,6 +209,7 @@ $es-general-aligns: (
 	'end': 'flex-end',
 	'between': 'space-between',
 	'around': 'space-around',
+	'baseline': 'baseline',
 );
 
 $es-opacities: (
@@ -1878,6 +1886,26 @@ $es-utility-props: (
 
 .es-cursor-grab {
 	cursor: grab;
+}
+
+.es-aspect-auto {
+	aspect-ratio: auto;
+}
+
+.es-aspect-square {
+	aspect-ratio: 1;
+}
+
+.es-aspect-video {
+	aspect-ratio: 16 / 9;
+}
+
+.es-aspect-portrait {
+	aspect-ratio: 9 / 16;
+}
+
+.es-aspect-cinema {
+	aspect-ratio: 21 / 9;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
