@@ -3,7 +3,8 @@
 		.components-input-control__input {
 			font-variant-numeric: tabular-nums;
 
-			min-height: 2rem;
+			// stylelint-disable-next-line declaration-no-important
+			min-height: 2rem !important;
 		}
 
 		.components-input-control__backdrop {
