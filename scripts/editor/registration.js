@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import reactHtmlParser from 'react-html-parser';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
@@ -506,14 +505,14 @@ export const getIconOptions = (
 		return {
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-			src: reactHtmlParser(blockIcons[icon.src])[0],
+			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }}></span>,
 		};
 	}
 
 	return {
 		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 		foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-		src: (icon.src.includes('<svg')) ? reactHtmlParser(icon.src)[0] : icon.src,
+		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }}></span> : icon.src,
 	};
 };
 
@@ -647,7 +646,7 @@ export const prepareComponentAttributes = (
  * @param {object} wrapperManifest    - `Wrapper` manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} parentManifest     - Block or component (parent) manifest.
- * 
+ *
  * @returns {object} Object of all attributes registered for a specific block.
  *
  * @access private
@@ -709,7 +708,7 @@ export const getAttributes = (
  *
  * @param {object} manifest    - Block/component manifest.
  * @param {string} [parent=''] - Parent component key with stacked parent component names for the final output.
- * 
+ *
  * @returns {object}
  *
  * @access private

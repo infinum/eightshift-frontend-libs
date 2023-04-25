@@ -15,6 +15,7 @@
 	height: 1.75rem !important;
 	width: 1.75rem !important;
 	border-radius: var(--es-component-border-radius-md);
+	aspect-ratio: 1;
 }
 
 // Enlarge the icons in the toolbar a bit.
@@ -24,14 +25,17 @@ button[disabled] .block-editor-block-icon.has-colors,
 	height: 1.75rem !important;
 	width: 1.75rem !important;
 	border-radius: var(--es-component-border-radius-md);
-
-	svg {
-		transform: scale(1.1);
-	}
+	aspect-ratio: 1;
 }
 
 .components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon svg {
 	min-width: unset !important;
+}
+
+// Fix block icons in list views.
+.block-editor-list-view-block-select-button .block-editor-block-icon {
+	aspect-ratio: 1;
+	border-radius: 0.25rem !important;
 }
 
 // Enlarge the icons in the Options panel a bit.
@@ -45,10 +49,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 	border-radius: var(--es-component-border-radius-md);
 	flex-shrink: 0;
 	flex-grow: 1;
-
-	svg {
-		transform: scale(1.25);
-	}
 }
 
 // Align WP panels with our arrows.
@@ -68,10 +68,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 }
 
 // Tweak inserter block tiles style (a bit larger icon and a bit rounder backdrop).
-.block-editor-block-types-list__item-icon .block-editor-block-icon svg {
-	transform: scale(1.25);
-}
-
 .block-editor-block-types-list__item-icon {
 	border-radius: var(--es-component-border-radius-md);
 }
@@ -98,6 +94,33 @@ button[disabled] .block-editor-block-icon.has-colors,
 // Round off the [+] button in-between the blocks a bit.
 .block-editor-inserter__toggle {
 	border-radius: 0.325rem !important;
+}
+
+// Round the snackbars.
+.components-snackbar {
+	border-radius: 0.5rem !important;
+}
+
+// Enlarge inserter block icons.
+.block-editor-block-types-list__list-item .components-button.block-editor-block-types-list__item {
+	.block-editor-block-types-list__item-icon {
+		line-height: 0;
+
+		span {
+			line-height: 0;
+		}
+
+		.block-editor-block-icon {
+			svg {
+				height: 1.9rem !important;
+				width: 1.9rem !important;
+
+				max-width: 1.9rem !important;
+				max-height: 1.9rem !important;
+			}
+		}
+
+	}
 }
 
 // stylelint-enable

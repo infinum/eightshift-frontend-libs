@@ -27,6 +27,7 @@ import { classnames } from '../../helpers';
  * @param {boolean?} [props.noBottomSpacing]      - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {object?} [props.inputField]            - Allows passing raw config data to the `NumberPicker`, e.g. `shiftStep`.
+ * @param {string?} [props.placeholder]           - Placeholder to show inside the NumberPicker.
  * @param {Number?} [props.fixedWidth]            - If passed, sets the width of the input field to the provided number of characters. Useful if you have e.g. value from 1 to 1000, but you don't want the input field to change size when on lower values.
  *
  */
@@ -53,6 +54,8 @@ export const NumberPicker = (props) => {
 		additionalClasses,
 
 		inputField,
+
+		placeholder,
 
 		fixedWidth = null,
 	} = props;
@@ -84,9 +87,10 @@ export const NumberPicker = (props) => {
 					shiftStep={(typeof inputField === 'object' && inputField?.shiftStep > 0) ? inputField.shiftStep : 10}
 					isShiftStepEnabled
 					spinControls='none'
-					hideHTMLArrows
 					className='es-number-picker-input-value'
 					style={fixedWidth ? { width: `calc(1rem ${min < 0 ? '+ 0.5rem ' : ''} + ${fixedWidth} * 1ch)` } : {}}
+					placeholder={placeholder}
+					__nextHasNoMarginBottom
 				/>
 
 				<div className='es-display-flex es-flex-col es-h-full es-has-enhanced-contrast-icon'>

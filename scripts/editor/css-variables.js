@@ -390,18 +390,20 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 			continue;
 		}
 
+		const variableOutput = variable?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`).join('\n');
+
 		if (value === 0) {
 			// No breakpoint outputted.
-			output += `\n .${name}${uniqueSelector}{\n${variable.join('\n')}\n}`;
+			output += `\n .${name}${uniqueSelector}{\n${variableOutput}\n}`;
 		} else {
 			// With breakpoint.
-			output += `\n @media (${type}-width: ${value}px) {\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n}\n}`;
+			output += `\n @media (${type}-width: ${value}px) {\n.${name}${uniqueSelector}{\n${variableOutput}\n}\n}`;
 		}
 	}
 
 	// Output manual output from the array of variables.
 	let manual = '';
-	const variablesCustom = manifest?.variablesCustom;
+	const variablesCustom = manifest?.variablesCustom?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`);
 
 	if (typeof variablesCustom !== 'undefined') {
 		manual = variablesCustom.join(';\n');
@@ -409,7 +411,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 
 	// Output manual editor output from the array of variables.
 	let manualEditor = '';
-	const variablesCustomEditor = manifest?.variablesCustomEditor;
+	const variablesCustomEditor = manifest?.variablesCustomEditor?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`);
 
 	if (typeof variablesCustomEditor !== 'undefined') {
 		manualEditor = variablesCustomEditor.join(';\n');
@@ -946,8 +948,10 @@ export const outputCssVariablesCombinedInner = (styles) => {
 				breakpoints[`${type}---${value}`] = '';
 			}
 
+			const variableOutput = variable?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`).join('\n');
+
 			// Populate breakpoints output.
-			breakpoints[`${type}---${value}`] += `\n.${name}${uniqueSelector}{\n${variable.join('\n')}\n} `;
+			breakpoints[`${type}---${value}`] += `\n.${name}${uniqueSelector}{\n${variableOutput}\n} `;
 		}
 	}
 
@@ -978,6 +982,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 
 	// Add additional style from config settings.
 	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
+
 	let additionalStylesOutput = '';
 	if (typeof additionalStyles !== 'undefined') {
 		additionalStylesOutput = additionalStyles.join(';\n');

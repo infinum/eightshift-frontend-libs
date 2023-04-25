@@ -1,8 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, getOption, UseToggle, RSOption, Select, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, UseToggle, RSOption, Select, generateUseToggleConfig, classnames, RSSingleValue } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
-import { RSSingleValue } from '@eightshift/frontend-libs/scripts/components/custom-select/react-select-component-wrappers';
 
 const {
 	icons: manifestIcons,
@@ -45,7 +44,7 @@ export const IconOptions = (attributes) => {
 					customMenuOption={IconPickerOption}
 					customValueDisplay={IconPickerValueDisplay}
 					onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}
-					additionalClasses='es-flex-grow-1'
+					additionalClasses={classnames('es-flex-grow-1', !hideSizePicker && 'es-max-w-52')}
 					noBottomSpacing
 					simpleValue
 				/>

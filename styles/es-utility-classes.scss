@@ -97,6 +97,7 @@ $es-spacings: (
 
 	'max': 'max-content',
 	'min': 'min-content',
+	'fit': 'fit-content',
 
 	'0\\.25': '0.0625rem',
 	'0\\.5': '0.125rem',
@@ -114,11 +115,17 @@ $es-spacings: (
 	'3\\.5': '0.875rem',
 	'3\\.75': '0.96875rem',
 	'4': '1rem',
+	'4\\.5': '1.125rem',
 	'5': '1.25rem',
+	'5\\.5': '1.375rem',
 	'6': '1.5rem',
+	'6\\.5': '1.625rem',
 	'7': '1.75rem',
+	'7\\.5': '1.875rem',
 	'8': '2rem',
+	'8\\.5': '2.125rem',
 	'9': '2.25rem',
+	'9\\.5': '2.375rem',
 	'10': '2.5rem',
 	'11': '2.75rem',
 	'12': '3rem',
@@ -163,6 +170,12 @@ $es-spacings: (
 	'88': '22rem',
 	'92': '23rem',
 	'96': '24rem',
+	'100': '25rem',
+	'104': '26rem',
+	'108': '27rem',
+	'112': '28rem',
+	'116': '29rem',
+	'120': '30rem',
 );
 
 $es-square-button-sizes: (
@@ -202,6 +215,7 @@ $es-general-aligns: (
 	'end': 'flex-end',
 	'between': 'space-between',
 	'around': 'space-around',
+	'baseline': 'baseline',
 );
 
 $es-opacities: (
@@ -1878,6 +1892,26 @@ $es-utility-props: (
 
 .es-cursor-grab {
 	cursor: grab;
+}
+
+.es-aspect-auto {
+	aspect-ratio: auto;
+}
+
+.es-aspect-square {
+	aspect-ratio: 1;
+}
+
+.es-aspect-video {
+	aspect-ratio: 16 / 9;
+}
+
+.es-aspect-portrait {
+	aspect-ratio: 9 / 16;
+}
+
+.es-aspect-cinema {
+	aspect-ratio: 21 / 9;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

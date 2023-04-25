@@ -44,7 +44,7 @@ export const ImageEditor = (attributes) => {
 		<>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			{_.isEmpty(imageUrl) &&
+			{_.isEmpty(imageUrl['large']) &&
 				<MediaPlaceholder
 					icon={icons.image}
 					onSelect={(value) => setAttributes({ [getAttrKey('imageUrl', attributes, manifest)]: value.url })}
@@ -53,7 +53,7 @@ export const ImageEditor = (attributes) => {
 				/>
 			}
 
-			{!_.isEmpty(imageUrl) &&
+			{!_.isEmpty(imageUrl['large']) &&
 				<picture className={pictureClass} data-id={unique}>
 				{getDefaultBreakpointNames().reverse().map((breakpointName) => {
 					if (breakpointName === 'large') {
