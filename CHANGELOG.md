@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.2.0] - 2023-04-25
+
+### Added
+- added extra tweaks for some built in components (like the snackbar).
+- added some new UI icons, **529** total now!
+
+### Fixed
+- fixed an age-old issue with block registration, where the React HTML parser was screwing up some block icons in the inserter, causing malformed attributes (e.g. `viewbox` instead of `viewBox`).
+- fixed editor CSS variable output (#701).
+
+### Changed
+- fully ready for WordPress 6.2! (including fixes for #712 and #708).
+- `NumberPicker` now has a `placeholder` option.
+- Wrapper fixes for the project colors in the color picker.
+- Wrapper full-width for mobile is now default as `false` (instead of nothing before).
+- expanded utility classes.
+- fixed media placeholder missing in Image (#710).
+- Icon picker shouldn't overflow anymore with some very long labels (#707).
+- Variable for "list type options" and "lists type" have the same name causing premature return.
+- Updated the variable name for viable lists options to differentiate from the list type variable name.
+- **fully updated all Block icons and Forms block icons** (most of icons redrawn from scratch); **183** total (40 of those are Forms block icons)
+
+### Removed
+- removed some unused attributes from Button component (#706).
+
 ## [8.1.0] - 2023-03-01
 
 ## Fixed
@@ -663,6 +688,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.0.0...8.1.0
 [8.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.3.0...8.0.0
 [7.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.2.0...7.3.0
