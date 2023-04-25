@@ -101,5 +101,16 @@ body.branch-6-2 {
 			max-height: 1.875rem;
 		}
 	}
+
+	// Fix buttons with icon & text having extra padding.
+	.components-button.has-icon.has-text {
+		padding-right: 6px; // Default WP value.
+	}
+
+	// Add some line height to the post title.
+	.wp-block-post-title.editor-post-title.editor-post-title__input {
+		line-height: 1.1 !important;
+	}
 }
+
 // stylelint-enable
