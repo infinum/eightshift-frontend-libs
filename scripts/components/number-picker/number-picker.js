@@ -98,7 +98,7 @@ export const NumberPicker = (props) => {
 						icon={icons.chevronUp}
 						aria-label={__('Increment', 'eightshift-frontend-libs')}
 						onClick={() => {
-							if (typeof value === 'undefined') {
+							if (typeof value === 'undefined' || value?.length < 1) {
 								onChange(min);
 								return;
 							}
@@ -112,7 +112,7 @@ export const NumberPicker = (props) => {
 						icon={icons.chevronDown}
 						aria-label={__('Decrement', 'eightshift-frontend-libs')}
 						onClick={() => {
-							if (typeof value === 'undefined') {
+							if (typeof value === 'undefined' || value?.length < 1) {
 								onChange(min);
 								return;
 							}
