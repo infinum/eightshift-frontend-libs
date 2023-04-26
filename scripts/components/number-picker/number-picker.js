@@ -97,14 +97,28 @@ export const NumberPicker = (props) => {
 					<Button
 						icon={icons.chevronUp}
 						aria-label={__('Increment', 'eightshift-frontend-libs')}
-						onClick={() => onChange(Math.min(parseFloat(value) + step), max)}
+						onClick={() => {
+							if (typeof value === 'undefined') {
+								onChange(min);
+								return;
+							}
+
+							onChange(Math.min(parseFloat(value) + step), max);
+						}}
 						className={classnames('es-w-4! es-min-w-4! es-rounded-0! es-rounded-tr-0.75! es-button-icon-10 es-border-y-cool-gray-400! es-border-r-cool-gray-400! es-p-0!', value >= max ? 'es-opacity-100! es-nested-color-cool-gray-100!' : 'es-nested-color-cool-gray-700! es-active-bg-cool-gray-50! es-active-nested-color-admin-accent!')}
 						disabled={disabled || value >= max}
 					/>
 					<Button
 						icon={icons.chevronDown}
 						aria-label={__('Decrement', 'eightshift-frontend-libs')}
-						onClick={() => onChange(Math.max(parseFloat(value) - step, min))}
+						onClick={() => {
+							if (typeof value === 'undefined') {
+								onChange(min);
+								return;
+							}
+
+							onChange(Math.max(parseFloat(value) - step, min));
+						}}
 						className={classnames('es-w-4! es-min-w-4! es-rounded-0! es-rounded-br-0.75! es-button-icon-10 es-border-b-cool-gray-400! es-border-r-cool-gray-400! es-p-0!', value <= min ? 'es-opacity-100! es-nested-color-cool-gray-100!' : 'es-nested-color-cool-gray-700! es-active-bg-cool-gray-50! es-active-nested-color-admin-accent!')}
 						disabled={disabled || value <= min}
 					/>
