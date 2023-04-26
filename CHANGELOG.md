@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.2.1] - 2023-04-26
+
+### Fixed
+- Spinners in NumberPicker will now set the min value if no value is currently present (undefined or empty value).
+- Columns will now hide the full wrapper option.
+
 ## [8.2.0] - 2023-04-25
 
 ### Added
@@ -688,6 +694,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.0...8.2.1
 [8.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.0.0...8.1.0
 [8.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/7.3.0...8.0.0
