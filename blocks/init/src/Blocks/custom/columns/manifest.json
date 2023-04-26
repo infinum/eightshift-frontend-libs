@@ -150,6 +150,15 @@
 		"showWrapperIsFullWidth": {
 			"type": "boolean",
 			"default": false
+		},
+
+		"wrapperUseShowControl": {
+			"type": "boolean",
+			"default": false
+		},
+		"wrapperSimpleShowControl": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"responsiveAttributes": {
