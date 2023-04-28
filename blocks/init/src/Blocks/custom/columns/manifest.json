@@ -207,5 +207,146 @@
 	},
 	"innerBlocksDependency": [
 		"column"
+	],
+	"layoutPresets": [
+		{
+			"name": "1 column",
+			"icon" : "solidRect",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 12,
+						"columnOffsetLarge": 2
+					}
+				}
+			]
+		},
+		{
+			"name": "2 columns",
+			"icon" : "twoColumns",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 6,
+						"columnOffsetLarge": 2
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 6
+					}
+				}
+			]
+		},
+		{
+			"name": "3 columns",
+			"icon" : "columns",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 4,
+						"columnOffsetLarge": 2
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 4
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 4
+					}
+				}
+			]
+		},
+		{
+			"name": "4 columns",
+			"icon" : "fourColumns",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3,
+						"columnOffsetLarge": 2
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3
+					}
+				}
+			]
+		},
+		{
+			"name": "1/3 - 2/3",
+			"icon" : "columns3366",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3,
+						"columnOffsetLarge": 2
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 9
+					}
+				}
+			]
+		},
+		{
+			"name": "2/3 - 1/3",
+			"icon" : "columns6633",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 9,
+						"columnOffsetLarge": 2
+					}
+				},
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 3
+					}
+				}
+			]
+		},
+		{
+			"name": "Full-width column",
+			"icon" : "width",
+			"blocks": [
+				{
+					"name": "eightshift-boilerplate/column",
+					"attributes": {
+						"columnWidthLarge": 14,
+						"columnOffsetLarge": 1
+					}
+				}
+			]
+		}
 	]
 }
