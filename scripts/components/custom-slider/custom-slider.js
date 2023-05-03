@@ -30,6 +30,8 @@ import RcSlider from 'rc-slider';
  * @param {boolean} [props.reverse=false]                  - If `true`, the slider is displayed in reverse.
  * @param {boolean} [props.disabled=false]                 - If `true`, the component is disabled.
  * @param {DotStyle} [props.marks=null]                    - Marks on the slider. Key represents the value of the slider, value determines what is shown. You can also use an object {label, value} for the displayed value to customize certain marks.  Won't have any effect if `dots` are enabled.
+ * @param {function} [props.onBeforeChange]                - Function to trigger when the value of the slider starts changing.
+ * @param {function} [props.onAfterChange]                 - Function to trigger when the value of the slider is changed.
  * @param {string} [props.railColor]                       - Custom rail color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.trackColor]                      - Custom track color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.activeMarkColor]                 - Custom active mark color. Should be a valid value of the CSS `background` property.
@@ -71,6 +73,9 @@ export const Slider = (props) => {
 		reverse,
 		disabled,
 		marks = null,
+
+		onBeforeChange,
+		onAfterChange,
 
 		// Visual customization.
 		handleColor,
@@ -161,6 +166,9 @@ export const Slider = (props) => {
 						startPoint={startPoint}
 						onChange={onChange}
 						included={!discrete}
+
+						onBeforeChange={onBeforeChange}
+						onAfterChange={onAfterChange}
 
 						handleRender={noTooltip ? null : renderHandle({ tooltipPlacement: tooltipPlacement, tooltipFormat: tooltipFormat, hasFocus: hasFocus })}
 
