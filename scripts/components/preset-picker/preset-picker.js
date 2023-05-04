@@ -8,9 +8,9 @@ import { icons } from '../../editor';
  * A picker for presets defined in the manifest, with additional configurable options.
  *
  * @param {object} props                                     - PresetPicker options.
- * @param {Object} options.manifest                          - Component/block manifest.
+ * @param {Object} props.manifest                            - Component/block manifest.
  * @param {string?} [props.configPresetsKey='configPresets'] - The key from manifest used to pull the preset dat afrom.
- * @param {function} options.setAttributes                   - Component/block setAttributes function.
+ * @param {function} props.setAttributes                     - Component/block setAttributes function.
  * @param {boolean?} [props.offButton=false]                 - If provided, shows the "Off" button full-width, above all presets. Data needs to be provided in the form of an object: `{label, icon?, attributes}`.
  * @param {boolean?} [props.showAsCollapsable=false]         - If `true`, the component is rendered as a collapsable dropdown.
  * @param {boolean?} [props.controlOnly=false]               - If `true`, the presets are shown by themselves, without a base control or Collapsable to wrap it.
