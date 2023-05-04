@@ -23,6 +23,7 @@ import {
 	AdvancedColorPicker,
 	generateResponsiveToggleButtonConfig,
 	ResponsiveToggleButton,
+	PresetPicker,
 } from '@eightshift/frontend-libs/scripts';
 
 import manifest from './../manifest.json';
@@ -51,6 +52,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 		noLeftSpacingSelector = false,
 		noRightSpacingSelector = false,
+
+		wrapperHidePresets = false,
+		wrapperPresetNoCollapsable = false,
+		wrapperOnlyPresets = false,
+		wrapperHideDefaultPreset = false,
 	} = attributes;
 
 	const wrapperNoControls = checkAttr('wrapperNoControls', attributes, manifest);
@@ -141,6 +147,35 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 	const breakpointNames = getDefaultBreakpointNames();
 
+	if (wrapperOnlyPresets) {
+		return (
+			<PanelBody
+				title={
+					<div className='es-h-spaced'>
+						{icons.layout}
+						{label}
+					</div>
+				}
+				initialOpen={false}
+			>
+				<PresetPicker
+					manifest={manifest}
+					setAttributes={setAttributes}
+					defaultButton={!wrapperHideDefaultPreset}
+					offButton={{
+						label: __('Just the block', 'eightshift-frontend-libs'),
+						icon: icons.wrapperOffAlt,
+						attributes: {
+							wrapperUse: false,
+							wrapperUseSimple: false,
+						},
+					}}
+					controlOnly
+				/>
+			</PanelBody>
+		);
+	}
+
 	return (
 		<PanelBody initialOpen={isEditMode ?? false}
 			title={
@@ -173,6 +208,15 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 				</div>
 			}
 		>
+			{!wrapperHidePresets &&
+				<PresetPicker
+					manifest={manifest}
+					setAttributes={setAttributes}
+					defaultButton={!wrapperHideDefaultPreset}
+					showAsCollapsable={!wrapperPresetNoCollapsable}
+				/>
+			}
+
 			{wrapperUseOptions?.length > 1 &&
 				<OptionSelector
 					options={wrapperUseOptions}
