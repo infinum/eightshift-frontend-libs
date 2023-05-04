@@ -23,7 +23,7 @@ import RcSlider from 'rc-slider';
  * @param {React.Component?} [props.icon]                  - Icon to show next to the label
  * @param {React.Component?} [props.help]                  - Help to show below the control.
  * @param {React.Component?} [props.label]                 - Label to show above component.
- * @param {React.Component?[]} [props.actions]             - Actions to show to the right of the label.
+ * @param {React.Component[]?} [props.actions]             - Actions to show to the right of the label.
  * @param {React.Component?} [props.subtitle]              - Subtitle below the label.
  * @param {boolean?} [props.noBottomSpacing]               - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing]          - If `true`, space below the control is reduced.
