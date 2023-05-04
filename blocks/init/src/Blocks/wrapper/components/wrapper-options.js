@@ -167,7 +167,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						icon: icons.wrapperOffAlt,
 						attributes: {
 							wrapperUse: false,
-							wrapperUseSimple: false,
+							wrapperSimple: false,
 						},
 					}}
 					controlOnly
