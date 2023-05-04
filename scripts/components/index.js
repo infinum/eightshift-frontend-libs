@@ -34,6 +34,7 @@ export { MultiSelect } from './custom-select/multi-select';
 export { NumberPicker } from './number-picker/number-picker';
 export { OptionSelector } from './option-selector/option-selector';
 export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger';
+export { PresetPicker } from './preset-picker/preset-picker';
 export { Responsive } from './responsive/responsive';
 export { ResponsiveNumberPicker } from './responsive-number-picker/responsive-number-picker';
 export { generateResponsiveNumberPickerConfig } from './responsive-number-picker/auto-config';

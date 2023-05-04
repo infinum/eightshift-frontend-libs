@@ -35,6 +35,7 @@ export { MultiSelect } from './components/custom-select/multi-select';
 export { NumberPicker } from './components/number-picker/number-picker';
 export { OptionSelector } from './components/option-selector/option-selector';
 export { PopoverWithTrigger } from './components/popover-with-trigger/popover-with-trigger';
+export { PresetPicker } from './components/preset-picker/preset-picker';
 export { Responsive } from './components/responsive/responsive';
 export { ResponsiveNumberPicker } from './components/responsive-number-picker/responsive-number-picker';
 export { generateResponsiveNumberPickerConfig } from './components/responsive-number-picker/auto-config';
