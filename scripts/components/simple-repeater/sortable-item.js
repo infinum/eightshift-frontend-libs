@@ -49,9 +49,9 @@ export const SortableItem = (props) => {
 
 	return (
 		<div ref={setNodeRef} style={style} className={classnames([
-			isFirst ? 'es-rounded-tl-1 es-rounded-tr-1' : '',
-			isLast ? 'es-rounded-bl-1 es-rounded-br-1' : '-es-mb-px',
-			showChildren ? 'es-rounded-1! es-border-cool-gray-500' : 'es-border-cool-gray-300',
+			isFirst ? 'es-rounded-tl-1.5 es-rounded-tr-1.5' : '',
+			isLast ? 'es-rounded-bl-1.5 es-rounded-br-1.5' : '-es-mb-px',
+			showChildren ? 'es-rounded-1.5! es-border-cool-gray-500' : 'es-border-cool-gray-300',
 			showChildren && !isFirst && !isLast ? 'es-my-2.5!' : '',
 			showChildren && isFirst && !isLast ? 'es-mb-2.5!' : '',
 			showChildren && !isFirst && isLast ? 'es-mt-2.5!' : '',
