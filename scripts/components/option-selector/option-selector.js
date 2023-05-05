@@ -1,5 +1,5 @@
 import React from 'react';
-import { icons, classnames, Control} from '@eightshift/frontend-libs/scripts';
+import { icons, classnames, Control, IconLabel } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
 
 /**
@@ -15,7 +15,7 @@ import { Button } from '@wordpress/components';
  * @param {any} [props.value]                                                                  - Current value.
  * @param {function} [props.onChange]                                                          - Function that is called on every value change.
  * @param {boolean} [props.disabled=false]                                                     - If `true`, the component will be disabled.
- * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?}
+ * @param {array<string|{label, value, icon, tooltip}>} [props.options]                        - Options to show, either values or objects with {label?, value, icon?, subtitle?}
  * @param {array<{label, value}>?} [props.optionLabels]                                        - If passed, these labels/icons will be used instead the ones provided with `options`. Must be passed when `options` contain just values.
  * @param {'none'|'offset'} [props.border='offset']                                            - Sets the appearance of a border around the buttons.
  * @param {boolean} [props.noWrap=false]                                                       - If `false` and there is more options then can fit, the buttons will wrap to the row below.
@@ -65,7 +65,7 @@ export const OptionSelector = (props) => {
 	const buttonClasses = classnames(
 		iconOnly && 'es-button-square-36',
 		largerIcons && 'es-button-icon-24',
-		border === 'offset' && 'es-rounded-0.75!',
+		border === 'offset' && 'es-rounded-0.75! es-p-1.5!',
 		additionalButtonClass
 	);
 
@@ -110,8 +110,9 @@ export const OptionSelector = (props) => {
 				const label = item?.label ?? optionLabels?.[i]?.label;
 				const current = optionLabels ? item : item?.value;
 				const tooltip = item?.tooltip ?? optionLabels?.[i]?.tooltip ?? item?.label ?? optionLabels?.[i]?.label;
+				const subtitle = item?.subtitle ?? optionLabels?.[i]?.subtitle;
 
-				if (icon && !label) {
+				if (icon && !label && !subtitle) {
 					return (
 						<Button
 							key={i}
@@ -123,7 +124,7 @@ export const OptionSelector = (props) => {
 							className={buttonClasses}
 						/>
 					);
-				} else if (icon && label && iconOnly) {
+				} else if (icon && label && iconOnly && !subtitle) {
 					return (
 						<Button
 							key={i}
@@ -137,7 +138,7 @@ export const OptionSelector = (props) => {
 							className={buttonClasses}
 						/>
 					);
-				} else if (icon && label) {
+				} else if (icon && label && !subtitle) {
 					return (
 						<Button
 							key={i}
@@ -151,6 +152,21 @@ export const OptionSelector = (props) => {
 							className={buttonClasses}
 						>
 							{label}
+						</Button>
+					);
+				} else if (icon && label && subtitle) {
+					return (
+						<Button
+							key={i}
+							onClick={() => onChange(current)}
+							isPressed={value === current}
+							disabled={disabled}
+							isSmall={compactButtons}
+							label={tooltip !== label ? tooltip : null}
+							showTooltip={tooltip !== label}
+							className={buttonClasses}
+						>
+							<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
 						</Button>
 					);
 				}
