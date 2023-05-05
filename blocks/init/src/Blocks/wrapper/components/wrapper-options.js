@@ -1,30 +1,9 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { useSelect } from '@wordpress/data';
+import { useSelect, dispatch } from '@wordpress/data';
 import { Button, PanelBody, TextControl } from '@wordpress/components';
-
-import {
-	checkAttr,
-	checkAttrResponsive,
-	icons,
-	getOption,
-	IconLabel,
-	Responsive,
-	ColorPicker,
-	WidthOffsetRangeSlider,
-	OptionSelector,
-	generateWidthOffsetRangeSliderConfig,
-	getDefaultBreakpointNames,
-	Section,
-	generateResponsiveNumberPickerConfig,
-	ResponsiveNumberPicker,
-	Collapsable,
-	ucfirst,
-	AdvancedColorPicker,
-	generateResponsiveToggleButtonConfig,
-	ResponsiveToggleButton,
-	PresetPicker,
-} from '@eightshift/frontend-libs/scripts';
+import { checkAttr, checkAttrResponsive, icons, getOption, IconLabel, Responsive, ColorPicker, WidthOffsetRangeSlider, OptionSelector, generateWidthOffsetRangeSliderConfig, getDefaultBreakpointNames, Section, generateResponsiveNumberPickerConfig, ResponsiveNumberPicker, Collapsable, ucfirst, AdvancedColorPicker, generateResponsiveToggleButtonConfig, ResponsiveToggleButton, PresetPicker } from '@eightshift/frontend-libs/scripts';
+import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 
 import manifest from './../manifest.json';
 import globalManifest from './../../manifest.json';
@@ -52,11 +31,15 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 		noLeftSpacingSelector = false,
 		noRightSpacingSelector = false,
+		noLeftSpacingInSelector = false,
+		noRightSpacingInSelector = false,
 
 		wrapperHidePresets = false,
 		wrapperPresetNoCollapsable = false,
 		wrapperOnlyPresets = false,
 		wrapperHideDefaultPreset = false,
+
+		blockClientId,
 	} = attributes;
 
 	const wrapperNoControls = checkAttr('wrapperNoControls', attributes, manifest);
@@ -146,6 +129,8 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const wrapperDividerLeftLarge = checkAttr('wrapperDividerLeftLarge', attributes, manifest);
 
 	const breakpointNames = getDefaultBreakpointNames();
+
+	dispatch(WRAPPER_STORE_NAME).setClientId(blockClientId);
 
 	if (wrapperOnlyPresets) {
 		return (
@@ -260,6 +245,9 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								showFullWidth: showWrapperIsFullWidth,
 								numericValues: true,
 							})}
+
+							onBeforeChange={() => dispatch(WRAPPER_STORE_NAME).showPreview()}
+							onAfterChange={() => dispatch(WRAPPER_STORE_NAME).hidePreview()}
 						/>
 					}
 
@@ -298,7 +286,46 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									manifest: manifest,
 									minMaxStepOptionName: 'wrapperSectionSpacing',
 								})}
+								reducedBottomSpacing={!noLeftSpacingInSelector || !noRightSpacingSelector}
 							/>
+						}
+
+						{(!noLeftSpacingInSelector || !noRightSpacingSelector) &&
+							<Collapsable label={__('More', 'eightshift-frontend-libs')} icon={icons.moreH}>
+								{!noLeftSpacingSelector &&
+									<ResponsiveNumberPicker
+										icon={icons.spacingLeft}
+										label={__('Left', 'eightshift-frontend-libs')}
+										resetButton={manifest.attributes.wrapperSpacingLeftLarge.default}
+										reducedBottomSpacing={!noRightSpacingSelector}
+
+										{...generateResponsiveNumberPickerConfig({
+											attributeName: 'wrapperSpacingLeft',
+											attributes: attributes,
+											setAttributes: setAttributes,
+											manifest: manifest,
+											minMaxStepOptionName: 'wrapperSectionSpacing',
+										})}
+									/>
+								}
+
+								{!noRightSpacingSelector &&
+									<ResponsiveNumberPicker
+										icon={icons.spacingRight}
+										label={__('Right', 'eightshift-frontend-libs')}
+										resetButton={manifest.attributes.wrapperSpacingRightLarge.default}
+										noBottomSpacing
+
+										{...generateResponsiveNumberPickerConfig({
+											attributeName: 'wrapperSpacingRight',
+											attributes: attributes,
+											setAttributes: setAttributes,
+											manifest: manifest,
+											minMaxStepOptionName: 'wrapperSectionSpacing',
+										})}
+									/>
+								}
+							</Collapsable>
 						}
 
 						{showWrapperSpacingTopIn &&
@@ -331,44 +358,48 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									manifest: manifest,
 									minMaxStepOptionName: 'wrapperSectionInnerSpacing',
 								})}
+								reducedBottomSpacing={!noLeftSpacingInSelector || !noRightSpacingInSelector}
+								noBottomSpacing={noLeftSpacingInSelector && noRightSpacingInSelector}
 							/>
 						}
 
-						<Collapsable label={__('More', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
-							{!noLeftSpacingSelector &&
-								<ResponsiveNumberPicker
-									icon={icons.spacingLeftIn}
-									label={__('Left', 'eightshift-frontend-libs')}
-									resetButton={manifest.attributes.wrapperSpacingLeftLarge.default}
-									reducedBottomSpacing={!noRightSpacingSelector}
+						{(!noLeftSpacingInSelector || !noRightSpacingInSelector) &&
+							<Collapsable label={__('More', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+								{!noLeftSpacingInSelector &&
+									<ResponsiveNumberPicker
+										icon={icons.spacingLeftIn}
+										label={__('Left inner', 'eightshift-frontend-libs')}
+										resetButton={manifest.attributes.wrapperSpacingLeftInLarge.default}
+										reducedBottomSpacing={!noRightSpacingSelector}
 
-									{...generateResponsiveNumberPickerConfig({
-										attributeName: 'wrapperSpacingLeft',
-										attributes: attributes,
-										setAttributes: setAttributes,
-										manifest: manifest,
-										minMaxStepOptionName: 'wrapperSectionInnerSpacing',
-									})}
-								/>
-							}
+										{...generateResponsiveNumberPickerConfig({
+											attributeName: 'wrapperSpacingLeftIn',
+											attributes: attributes,
+											setAttributes: setAttributes,
+											manifest: manifest,
+											minMaxStepOptionName: 'wrapperSectionInnerSpacing',
+										})}
+									/>
+								}
 
-							{!noRightSpacingSelector &&
-								<ResponsiveNumberPicker
-									icon={icons.spacingRightIn}
-									label={__('Right', 'eightshift-frontend-libs')}
-									resetButton={manifest.attributes.wrapperSpacingRightLarge.default}
-									noBottomSpacing
+								{!noRightSpacingInSelector &&
+									<ResponsiveNumberPicker
+										icon={icons.spacingRightIn}
+										label={__('Right inner', 'eightshift-frontend-libs')}
+										resetButton={manifest.attributes.wrapperSpacingRightInLarge.default}
+										noBottomSpacing
 
-									{...generateResponsiveNumberPickerConfig({
-										attributeName: 'wrapperSpacingRight',
-										attributes: attributes,
-										setAttributes: setAttributes,
-										manifest: manifest,
-										minMaxStepOptionName: 'wrapperSectionInnerSpacing',
-									})}
-								/>
-							}
-						</Collapsable>
+										{...generateResponsiveNumberPickerConfig({
+											attributeName: 'wrapperSpacingRightIn',
+											attributes: attributes,
+											setAttributes: setAttributes,
+											manifest: manifest,
+											minMaxStepOptionName: 'wrapperSectionInnerSpacing',
+										})}
+									/>
+								}
+							</Collapsable>
+						}
 					</Section>
 
 					<Section

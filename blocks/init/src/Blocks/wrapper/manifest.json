@@ -180,6 +180,34 @@
 			"type": "integer"
 		},
 
+		"wrapperSpacingLeftInLarge": {
+			"type": "integer",
+			"default": 0
+		},
+		"wrapperSpacingLeftInDesktop": {
+			"type": "integer"
+		},
+		"wrapperSpacingLeftInTablet": {
+			"type": "integer"
+		},
+		"wrapperSpacingLeftInMobile": {
+			"type": "integer"
+		},
+
+		"wrapperSpacingRightInLarge": {
+			"type": "integer",
+			"default": 0
+		},
+		"wrapperSpacingRightInDesktop": {
+			"type": "integer"
+		},
+		"wrapperSpacingRightInTablet": {
+			"type": "integer"
+		},
+		"wrapperSpacingRightInMobile": {
+			"type": "integer"
+		},
+
 		"wrapperSpacingTopInLarge": {
 			"type": "integer",
 			"default": 0
@@ -433,6 +461,18 @@
 			"tablet": "wrapperSpacingRightTablet",
 			"mobile": "wrapperSpacingRightMobile"
 		},
+		"wrapperSpacingLeftIn": {
+			"large": "wrapperSpacingLeftInLarge",
+			"desktop": "wrapperSpacingLeftInDesktop",
+			"tablet": "wrapperSpacingLeftInTablet",
+			"mobile": "wrapperSpacingLeftInMobile"
+		},
+		"wrapperSpacingRightIn": {
+			"large": "wrapperSpacingRightInLarge",
+			"desktop": "wrapperSpacingRightInDesktop",
+			"tablet": "wrapperSpacingRightInTablet",
+			"mobile": "wrapperSpacingRightInMobile"
+		},
 		"wrapperSpacingTopIn": {
 			"large": "wrapperSpacingTopInLarge",
 			"desktop": "wrapperSpacingTopInDesktop",
@@ -573,6 +613,24 @@
 				"inverse": true,
 				"variable": {
 					"wrapper-spacing-right": "%value%"
+				}
+			}
+		],
+
+		"wrapperSpacingLeftIn": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-left-in": "%value%"
+				}
+			}
+		],
+
+		"wrapperSpacingRightIn": [
+			{
+				"inverse": true,
+				"variable": {
+					"wrapper-spacing-right-in": "%value%"
 				}
 			}
 		],
@@ -775,5 +833,32 @@
 				}
 			]
 		}
-	}
+	},
+	"configPresets": [
+		{
+			"name": "Full-width",
+			"icon" : "width",
+			"attributes": {
+				"wrapperUse": true,
+				"wrapperSimple": false,
+				"wrapperWidthLarge": 14,
+				"wrapperOffsetLarge": 1,
+				"wrapperIsFullWidthLarge": true
+			}
+		},
+		{
+			"name": "Padded & rounded",
+			"icon" : "wrapperSimple",
+			"attributes": {
+				"wrapperUse": true,
+				"wrapperSimple": false,
+				"wrapperBgColorProject": "gray100",
+				"wrapperSpacingTopInLarge": 20,
+				"wrapperSpacingBottomInLarge": 20,
+				"wrapperSpacingLeftInLarge": 20,
+				"wrapperSpacingRightInLarge": 20,
+				"wrapperRoundedCornersLarge": 10
+			}
+		}
+	]
 }
