@@ -67,7 +67,7 @@ export const Control = (props) => {
 				}
 
 				{help &&
-					<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
+					<div className='es-mt-1 es-text-3 es-color-cool-gray-500 es-line-h-1.25'>{help}</div>
 				}
 			</div>
 		);
@@ -88,7 +88,7 @@ export const Control = (props) => {
 			{children}
 
 			{help &&
-				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
+				<div className='es-mt-1 es-text-3 es-color-cool-gray-500 es-line-h-1.25'>{help}</div>
 			}
 		</div>
 	);
