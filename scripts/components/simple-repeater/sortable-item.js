@@ -25,6 +25,7 @@ export const SortableItem = (props) => {
 		additionalLabelClass,
 		noReordering,
 		hideRemove,
+		preIcon,
 	} = props;
 
 	const [showChildren, setShowChildren] = useState(false);
@@ -56,7 +57,9 @@ export const SortableItem = (props) => {
 			showChildren && isFirst && !isLast ? 'es-mb-2.5!' : '',
 			showChildren && !isFirst && isLast ? 'es-mt-2.5!' : '',
 		])}>
-			<div className={`es-pl-2 es-py-1 es-pr-0 es-display-flex es-items-center ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
+			<div className={`es-pl-2 es-py-1 es-pr-0 es-display-flex es-items-center es-gap-1 ${showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'}`} >
+				{preIcon}
+
 				{noReordering && itemLabel}
 
 				{!noReordering &&
@@ -82,9 +85,11 @@ export const SortableItem = (props) => {
 				<Animate type='slide-in' options={{ origin: 'bottom' }} >
 					{({ className }) => (
 						<div className={className}>
-							<div className='es-p-3'>
-								{props.children}
-							</div>
+							{props?.children?.filter(Boolean)?.length > 0 &&
+								<div className='es-p-3'>
+									{props.children}
+								</div>
+							}
 
 							{!hideRemove &&
 								<div className='es-pl-3 es-pr-1 es-py-1.5 es-h-end es-border-t-cool-gray-50'>

@@ -28,9 +28,9 @@ import {
  *
  * @param {object} props                               - Repeater options.
  * @param {React.Component?} [props.icon]              - Icon to display above the repeater.
- * @param {(React.Component?|string)} props.label      - Label to display above the repeater.
- * @param {(React.Component?|string)} [props.subtitle] - Subtitle to display under the title.
- * @param {array} props.items                          - Array of items to display.
+ * @param {(React.Component|string)?} props.label      - Label to display above the repeater.
+ * @param {(React.Component|string)?} [props.subtitle] - Subtitle to display under the title.
+ * @param {any[]} props.items                          - Array of items to display.
  * @param {string} props.attributeName                 - Name of the attribute for items.
  * @param {function} props.setAttributes               - The `setAttributes` callback from component/block attributes.
  * @param {React.Component[]} props.children           - Child items, mapped from `items`. Contains all the option for child items.
@@ -150,6 +150,7 @@ export const Repeater = (props) => {
 							additionalLabelClass={item?.props?.additionalLabelClass}
 							noReordering={noReordering}
 							hideRemove={item?.props?.hideRemove ?? false}
+							preIcon={item?.props?.preIcon}
 						>
 							{item?.props?.children}
 						</SortableItem>
