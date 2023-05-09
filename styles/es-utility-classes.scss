@@ -1914,4 +1914,17 @@ $es-utility-props: (
 	aspect-ratio: 21 / 9;
 }
 
+// Word wrap.
+.es-word-break-all {
+	word-break: break-all;
+}
+
+.es-word-break-keep {
+	word-break: keep-all;
+}
+
+.es-word-break-word {
+	word-break: break-word;
+}
+
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
