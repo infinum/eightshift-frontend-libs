@@ -1,0 +1,25 @@
+import React from 'react';
+import { __ } from '@wordpress/i18n';
+import { Notification, icons, props } from '@eightshift/frontend-libs/scripts';
+import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
+
+export const TableOfContentsEditor = ({ attributes, setAttributes }) => {
+	const {
+		blockClass,
+	} = attributes;
+
+	return (
+		<div className={blockClass}>
+			<ParagraphEditor
+				{...props('paragraph', attributes, { setAttributes })}
+			/>
+
+			<Notification
+				iconOverride={icons.emptyRect}
+				text={__('Entries will show here', 'eightshift-frontend-libs')}
+				additionalClasses='es-border-cool-gray-300!'
+				noBottomSpacing
+			/>
+		</div>
+	);
+};
