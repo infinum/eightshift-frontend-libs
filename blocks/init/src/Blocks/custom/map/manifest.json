@@ -1,0 +1,71 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "map",
+	"title": "Map",
+	"description": "Map",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-map"
+	},
+	"keywords": [
+		"Example Keyword"
+	],
+	"example": {
+		"attributes": {
+			"exampleContent": ""
+		}
+	},
+	"attributes": {
+		"mapLayers": {
+			"type": "array",
+			"default": [
+				{
+					"id": 1,
+					"type": "openStreetMap"
+				}
+			]
+		},
+		"mapInteractions": {
+			"type": "object",
+			"default": {
+				"altShiftDragRotate": true,
+				"onFocusOnly": false,
+				"doubleClickZoom": true,
+				"keyboard": true,
+				"mouseWheelZoom": true,
+				"shiftDragZoom": true,
+				"dragPan": true,
+				"pinchRotate": true,
+				"pinchZoom": true
+			}
+		},
+		"mapControls": {
+			"type": "object",
+			"default": {
+				"attribution": true,
+				"fullScreen": false,
+				"mousePosition": false,
+				"overviewMap": false,
+				"rotate": true,
+				"scaleLine": false,
+				"zoomSlider": false,
+				"zoomToExtent": false,
+				"zoom": true
+			}
+		},
+		"mapCenterLat": {
+			"type": "string"
+		},
+		"mapCenterLon": {
+			"type": "string"
+		},
+		"mapZoom": {
+			"type": "number",
+			"default": 14
+		}
+	},
+	"nodeDependency": [
+		"ol",
+		"ol-mapbox-style"
+	]
+}

@@ -1,0 +1,33 @@
+# Map Block
+
+Block that displays a map with various configurable layers. [OpenLayers](https://openlayers.org/) is used as the base for the map.
+
+Various map layers are supported:
+- OpenStreetMap raster (free)
+- Mapbox vector maps (paid)
+- Mapbox raster maps (paid)
+- Vector maps (based on OpenStreetMap) with Mapbox-compatible styles (e.g. from MapTiler or Mapbox, paid)
+- MapTiler raster maps (XYZ or JSON format, paid)
+- MapTiler raster tiles (XYZ or JSON format, paid)
+- MapTiler vector maps (XYZ, .pbf format, paid)
+- GeoJSON
+
+## Implementation
+
+Open a terminal and type in this command inside your projects root:
+
+```shell
+wp boilerplate use_block --name=map
+```
+
+## Note
+
+When customizing the block, if you want the editor preview to reflect any new settings, make sure to include the changes in `map-components.js`.
+
+## Important
+
+Make sure to install OpenLayers and OpenLayers MapBox styles:
+```shell
+npm install ol
+npm install ol-mapbox-style
+```
