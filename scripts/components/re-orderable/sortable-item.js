@@ -22,13 +22,16 @@ export const SortableItem = (props) => {
 		noReordering,
 		preIcon,
 		postIcon,
+		firstItemClass = '',
+		lastItemClass = '',
+		itemClass,
+		innerClass,
 	} = props;
 
-	const otherTransitions = 'border-radius 0.5s var(--es-ease-out-back), margin 0.35s var(--es-ease-out-back), border-color 0.3s var(--es-ease-out-cubic)';
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
-		transition: transition ? `${transition}, ${otherTransitions}` : otherTransitions,
+		transition: transition,
 	};
 
 	const additionalTriggerProps = noReordering ? {
@@ -42,14 +45,9 @@ export const SortableItem = (props) => {
 		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 	);
 
-	const itemClass = classnames(
-		isFirst && 'es-rounded-tl-1.5 es-rounded-tr-1.5',
-		isLast ? 'es-rounded-bl-1.5 es-rounded-br-1.5' : '-es-mb-px'
-	);
-
 	return (
-		<div ref={setNodeRef} style={style} className={itemClass}>
-			<div className='es-pl-2 es-py-1 es-pr-0 es-display-flex es-items-center es-gap-1 es-border-b-transparent' >
+		<div ref={setNodeRef} style={style} className={classnames(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}>
+			<div className={classnames('es-display-flex es-items-center es-gap-1 es-py-1', innerClass)} >
 				{preIcon}
 
 				{noReordering && itemLabel}

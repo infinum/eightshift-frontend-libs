@@ -37,7 +37,6 @@ import {
  * @param {boolean} [props.noReordering=false]         - If `true`, the items can't be re-ordered.
  * @param {boolean} [props.noBottomSpacing]            - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]      - If `true`, space below the control is reduced.
- * @param {function} [props.handleAdd]                 - Callback for providing custom item adding logic.
  * @param {function} [props.handleItemReorder]         - Callback for providing custom item reordering logic.
  * @param {string?} [props.additionalClasses]          - Classes to add to the control base.
  * @param {string?} [props.additionalLabelClasses]     - Classes to add to the control label.
@@ -46,8 +45,8 @@ export const ReOrderable = (props) => {
 	const {
 		icon,
 		label,
-		subtitle,
 		help,
+		subtitle,
 		actions,
 
 		items,
@@ -131,6 +130,10 @@ export const ReOrderable = (props) => {
 							noReordering={noReordering}
 							preIcon={item?.props?.preIcon}
 							postIcon={item?.props?.postIcon}
+							firstItemClass={item?.props?.firstItemClass}
+							lastItemClass={item?.props?.lastItemClass}
+							itemClass={item?.props?.itemClass}
+							innerClass={item?.props?.innerClass}
 						>
 							{item?.props?.children}
 						</SortableItem>
