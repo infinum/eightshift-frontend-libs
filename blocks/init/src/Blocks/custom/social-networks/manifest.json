@@ -1,0 +1,19 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "social-networks",
+	"title": "Social networks",
+	"description" : "Display links or share to social networks.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-social-share"
+	},
+	"keywords": [
+		"social",
+		"network",
+		"networks",
+		"share"
+	],
+	"components": {
+		"social-networks": "social-networks"
+	}
+}
