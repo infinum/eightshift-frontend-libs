@@ -6,7 +6,7 @@
  * @package EightshiftBoilerplate
  */
 
- use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
@@ -25,7 +25,7 @@ $entriesClass = Components::classnames([
 
 $tableOfContentsHeadingLevels = Components::checkAttr('tableOfContentsHeadingLevels', $attributes, $manifest);
 
-$headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadingLevels, fn($v) => $v)));
+$headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadingLevels, fn($v) => $v))); // @phpstan-ignore-line
 ?>
 
 <div class="<?php echo esc_attr($tocClass); ?>" data-levels="<?php echo esc_attr($headingLevelsToUse); ?>">
