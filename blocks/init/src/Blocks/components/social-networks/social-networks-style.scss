@@ -1,0 +1,39 @@
+.social-networks {
+	$this: &;
+
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	&__link {
+		@extend %link-reset;
+		@extend %button-reset;
+
+		cursor: pointer;
+
+		background: none;
+		color: var(--global-colors-black);
+
+		border: 1px solid var(--global-colors-gray100);
+		border-radius: 0.5rem;
+
+		padding: 0.25rem;
+
+		line-height: 0;
+
+		transition: {
+			property: color;
+			timing-function: ease-out;
+			duration: 0.3s;
+		}
+
+		&:hover {
+			color: var(--global-colors-primary500);
+		}
+
+		svg {
+			width: 1.75rem;
+			height: 1.75rem;
+		}
+	}
+}
