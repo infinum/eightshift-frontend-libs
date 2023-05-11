@@ -1,4 +1,4 @@
-import { registerStore, select, dispatch } from '@wordpress/data';
+import { register, createReduxStore, select, dispatch } from '@wordpress/data';
 
 // Store name defined by build version so we can have multiple themes and plugins.
 export const BUILD_VERSION = process.env.VERSION;
@@ -343,14 +343,11 @@ export const setStore = () => {
 		window['eightshift'] = {};
 	}
 
-	registerStore(
-		STORE_NAME,
-		{
-			selectors,
-			actions,
-			reducer,
-		}
-	);
+	register(createReduxStore(STORE_NAME, {
+		selectors,
+		actions,
+		reducer,
+	}));
 };
 
 /**
