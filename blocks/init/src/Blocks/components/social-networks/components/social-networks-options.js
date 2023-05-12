@@ -6,6 +6,9 @@ import manifest from './../manifest.json';
 export const SocialNetworksOptions = (attributes) => {
 	const {
 		setAttributes,
+
+		hideModeSelector = false,
+		hideNetworkPicker = false,
 	} = attributes;
 
 	const socialNetworksShareMode = checkAttr('socialNetworksShareMode', attributes, manifest);
@@ -24,23 +27,28 @@ export const SocialNetworksOptions = (attributes) => {
 		}
 	];
 
+	const pickerSectionTitle = socialNetworksShareMode ? __('Share targets', 'eightshift-frontend-libs') : __('Social networks', 'eightshift-frontend-libs');
+
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'socialNetworksUse')}>
-			<OptionSelector
-				icon={icons.gears}
-				label={__('Mode', 'eightshift-frontend-libs')}
-				value={socialNetworksShareMode}
-				options={modeOptions}
-				onChange={(value) => setAttributes({
-					[getAttrKey('socialNetworksShareMode', attributes, manifest)]: value,
-					[getAttrKey('socialNetworksNetworks', attributes, manifest)]: socialNetworksNetworks.map((network) => ({ ...network, enabled: false })),
-				})}
-				alignment='vertical'
-			/>
+			{!hideModeSelector &&
+				<OptionSelector
+					icon={icons.gears}
+					label={__('Mode', 'eightshift-frontend-libs')}
+					value={socialNetworksShareMode}
+					options={modeOptions}
+					onChange={(value) => setAttributes({
+						[getAttrKey('socialNetworksShareMode', attributes, manifest)]: value,
+						[getAttrKey('socialNetworksNetworks', attributes, manifest)]: socialNetworksNetworks.map((network) => ({ ...network, enabled: false })),
+					})}
+					alignment='vertical'
+				/>
+			}
 
 			<Section
-				label={socialNetworksShareMode ? __('Share targets', 'eightshift-frontend-libs') : __('Social networks', 'eightshift-frontend-libs')}
-				icon={icons.globe}
+				showIf={!hideNetworkPicker}
+				label={!hideModeSelector && pickerSectionTitle}
+				icon={!hideModeSelector && icons.globe}
 				noBottomSpacing
 			>
 				<ReOrderable

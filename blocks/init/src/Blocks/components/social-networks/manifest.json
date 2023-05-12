@@ -41,7 +41,7 @@
 		},
 		"socialNetworksShareMode": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"socialNetworksUse": {
 			"type": "boolean",
