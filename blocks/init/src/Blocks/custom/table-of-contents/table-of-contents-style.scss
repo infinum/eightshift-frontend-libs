@@ -26,11 +26,7 @@
 			color: var(--global-colors-primary500);
 		}
 
-		&[data-level='2'],
-		&[data-level='3'],
-		&[data-level='4'],
-		&[data-level='5'],
-		&[data-level='6'] {
+		&:not([data-level='1']) {
 			margin-top: -0.5rem;
 
 			&::before {
