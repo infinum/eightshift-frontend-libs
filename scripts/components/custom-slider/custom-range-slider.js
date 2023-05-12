@@ -26,7 +26,7 @@ import { NumberPicker } from '../number-picker/number-picker';
  * @param {React.Component?} [props.icon]                  - Icon to show next to the label
  * @param {React.Component?} [props.help]                  - Help to show below the control.
  * @param {React.Component?} [props.label]                 - Label to show above component.
- * @param {React.Component?[]} [props.actions]             - Actions to show to the right of the label.
+ * @param {React.Component[]?} [props.actions]             - Actions to show to the right of the label.
  * @param {React.Component?} [props.subtitle]              - Subtitle below the label.
  * @param {boolean?} [props.noBottomSpacing]               - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing]          - If `true`, space below the control is reduced.
@@ -36,6 +36,8 @@ import { NumberPicker } from '../number-picker/number-picker';
  * @param {boolean|number} [props.pushable=false]          - If `true`, the handles can push surrounding handles. If set to a number, the number defines the minimum distance between handles.
  * @param {boolean} [props.noCross=false]                  - If `true`, the handles of the ranges are not allowed to cross.
  * @param {boolean} [props.draggableTrack=false]           - If `true`, the track can be dragged to move all of the values together.
+ * @param {function} [props.onBeforeChange]                - Function to trigger when the value of the slider starts changing.
+ * @param {function} [props.onAfterChange]                 - Function to trigger when the value of the slider is changed.
  * @param {string} [props.railColor]                       - Custom rail color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.trackColor]                      - Custom track color. Should be a valid value of the CSS `background` property.
  * @param {string} [props.activeMarkColor]                 - Custom active mark color. Should be a valid value of the CSS `background` property.
@@ -80,6 +82,9 @@ export const RangeSlider = (props) => {
 		pushable = false,
 		noCross = false,
 		draggableTrack = false,
+
+		onBeforeChange,
+		onAfterChange,
 
 		// Visual customization.
 		handleColor,
@@ -232,6 +237,9 @@ export const RangeSlider = (props) => {
 						}}
 
 						{...styleProps(props, sliderHeight, true)}
+
+						onBeforeChange={onBeforeChange}
+						onAfterChange={onAfterChange}
 
 						className={classnames(additionalSliderClass)}
 					/>

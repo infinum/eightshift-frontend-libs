@@ -11,7 +11,10 @@
 			":root {--es-loader-opacity: 1;}"
 		],
 		"useRemBaseSize": false,
-		"useWrapper": true
+		"useWrapper": true,
+		"experiments": {
+			"wrapperDragNDropEditing": false
+		}
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",

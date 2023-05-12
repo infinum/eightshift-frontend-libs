@@ -6,8 +6,8 @@
 }
 
 .block-editor-inserter__quick-inserter .block-editor-inserter__search {
-	border-top-left-radius: var(--es-component-border-radius-lg);
-	border-top-right-radius: var(--es-component-border-radius-lg);
+	border-top-left-radius: var(--es-component-border-radius-lg) !important;
+	border-top-right-radius: var(--es-component-border-radius-lg) !important;
 }
 
 // Enlarge icon in component menu.

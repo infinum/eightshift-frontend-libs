@@ -14,8 +14,11 @@
 	padding-top: calc(var(--wrapper-spacing-top-in, 0) * var(--base-font-size) * 0.1rem);
 	padding-bottom: calc(var(--wrapper-spacing-bottom-in, 0) * var(--base-font-size) * 0.1rem);
 
-	padding-inline-start: calc(var(--wrapper-spacing-left, 0) * var(--base-font-size) * 0.1rem);
-	padding-inline-end: calc(var(--wrapper-spacing-right, 0) * var(--base-font-size) * 0.1rem);
+	padding-inline-start: calc(var(--wrapper-spacing-left-in, 0) * var(--base-font-size) * 0.1rem);
+	padding-inline-end: calc(var(--wrapper-spacing-right-in, 0) * var(--base-font-size) * 0.1rem);
+
+	margin-inline-start: calc(var(--wrapper-spacing-left, 0) * var(--base-font-size) * 0.1rem);
+	margin-inline-end: calc(var(--wrapper-spacing-right, 0) * var(--base-font-size) * 0.1rem);
 
 	background: var(--wrapper-bg-color-gradient, var(--wrapper-bg-color-project, transparent));
 

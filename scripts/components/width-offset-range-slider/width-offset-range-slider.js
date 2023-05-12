@@ -25,6 +25,8 @@ import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
  * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
  * @param {boolean?} [props.numericValues=false]   - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
  * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
+ * @param {function} [props.onBeforeChange]        - Function to trigger when the value of the slider starts changing.
+ * @param {function} [props.onAfterChange]         - Function to trigger when the value of the slider is changed.
  */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
@@ -50,6 +52,9 @@ export const WidthOffsetRangeSlider = (props) => {
 		numericValues = false,
 
 		totalNumberOfColumns: rawTotalColumns = 12,
+
+		onBeforeChange,
+		onAfterChange,
 	} = props;
 
 	const stringValues = !numericValues || autoOffsetToggle;
@@ -246,6 +251,9 @@ export const WidthOffsetRangeSlider = (props) => {
 								}
 							</div>
 						}
+
+						onBeforeChange={onBeforeChange}
+						onAfterChange={onAfterChange}
 					/>
 				);
 			})}

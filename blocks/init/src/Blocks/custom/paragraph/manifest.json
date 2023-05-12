@@ -53,5 +53,11 @@
 				}
 			}
 		]
-	}
+	},
+	"mergeableAttributes": [
+		{
+			"attribute": "paragraphContent",
+			"mergeStrategy": "append"
+		}
+	]
 }

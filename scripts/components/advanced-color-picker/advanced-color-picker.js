@@ -147,8 +147,7 @@ export const AdvancedColorPicker = (props) => {
 					<GradientPickerComponent
 						value={colorGradient}
 						onChange={onChangeGradient}
-						gradients={gradients}
-						colors={typeof gradients == 'undefined' ? globalGradients : gradients}
+						gradients={gradients ?? []}
 					/>
 				}
 			</div>

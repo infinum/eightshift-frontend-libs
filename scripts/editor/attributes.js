@@ -80,8 +80,8 @@ export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId, excl
 		select,
 		clientId,
 		{
-			wrapperUseSimple: true,
-			wrapperUseSimpleShowControl: false,
+			wrapperSimple: true,
+			wrapperSimpleShowControl: false,
 			wrapperUseShowControl: false,
 		},
 		exclude

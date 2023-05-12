@@ -12,7 +12,6 @@ export const ParagraphEditor = (keyProps) => {
 
 	const {
 		blockClass,
-		blockFullName,
 	} = attributes;
 
 	const propsObject = props('paragraph', attributes);
@@ -25,11 +24,11 @@ export const ParagraphEditor = (keyProps) => {
 	 */
 	const splitBlocks = (value) => {
 		if (!value) {
-			return createBlock(blockFullName);
+			return createBlock(`${globalManifest.namespace}/${manifest.blockName}`);
 		}
 
-		return createBlock(blockFullName, {
-			...propsObject,
+		return createBlock(`${globalManifest.namespace}/${manifest.blockName}`, {
+			...attributes,
 			[`${propsObject.prefix}Content`]: value,
 		});
 	};

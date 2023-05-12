@@ -19,6 +19,7 @@ import { IconLabel } from '@eightshift/frontend-libs/scripts';
  * @param {boolean?} [props.inlineLabel=false]          - If `true`, the label is displayed inline with the control. In that case `actions` are shown below the control.
  * @param {boolean?} [props.noBottomSpacing=false]      - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing=false] - If `true`, space below the control is reduced.
+ * @param {function?} [props.wrapChildren]              - If passed (function `(children) => React.Component`), the children are wrapped in the provided element.
  */
 export const Control = (props) => {
 	const {
@@ -39,6 +40,8 @@ export const Control = (props) => {
 
 		noBottomSpacing = false,
 		reducedBottomSpacing = false,
+
+		wrapChildren,
 	} = props;
 
 	if (!children) {
@@ -58,7 +61,8 @@ export const Control = (props) => {
 					</div>
 				}
 
-				{!label && children}
+				{!label && !wrapChildren && children}
+				{!label && wrapChildren && wrapChildren(children)}
 
 				{actions &&
 					<div className='es-h-end es-mt-2'>
@@ -67,7 +71,7 @@ export const Control = (props) => {
 				}
 
 				{help &&
-					<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
+					<div className='es-mt-1 es-text-3 es-color-cool-gray-500 es-line-h-1.25'>{help}</div>
 				}
 			</div>
 		);
@@ -85,10 +89,11 @@ export const Control = (props) => {
 				</div>
 			}
 
-			{children}
+			{!wrapChildren && children}
+			{wrapChildren && wrapChildren(children)}
 
 			{help &&
-				<div className='es-mt-1 es-text-3 es-color-cool-gray-500'>{help}</div>
+				<div className='es-mt-1 es-text-3 es-color-cool-gray-500 es-line-h-1.25'>{help}</div>
 			}
 		</div>
 	);

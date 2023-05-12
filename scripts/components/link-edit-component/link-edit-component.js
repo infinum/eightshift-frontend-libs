@@ -89,7 +89,7 @@ export const LinkEditComponent = ({
 		} = props;
 
 		return (
-			<AnimatedContentVisibility showIf={suggestions.length > 0} direction='bottom' additionalContainerClasses='es-v-spaced es-gap-2.5! es-max-h-48 -es-mt-5 es-mb-3 es-rounded-1 es-px-2 es-py-2.5 es-overflow-y-auto es-border-cool-gray-100'>
+			<AnimatedContentVisibility showIf={suggestions.length > 0} direction='bottom' additionalContainerClasses={'es-v-spaced es-gap-2.5! es-max-h-48 es-my-3 es-rounded-1 es-px-2 es-py-2.5 es-overflow-y-auto es-border-cool-gray-100'}>
 				{suggestions.map((suggestion, i) => {
 					const { title, type, url } = suggestion;
 
@@ -105,6 +105,8 @@ export const LinkEditComponent = ({
 						typeIcon = icons.layoutAlt;
 					} else if (type.toLowerCase() === 'internal') {
 						typeIcon = icons.anchor;
+					} else if (type.toLowerCase() === 'eightshift-forms') {
+						typeIcon = icons.formAlt;
 					} else if (isCreateNew) {
 						typeIcon = icons.plusCircleFillAlt;
 					}
@@ -178,7 +180,7 @@ export const LinkEditComponent = ({
 						onCreateSuggestion={handleAddCustomSuggestion}
 						renderSuggestions={(props) => suggestionsRender(props)}
 
-						className='es-link-edit-component__url-field es-m-0-bcf! es-p-0!'
+						className='es-link-edit-component__url-field es-m-0! es-m-0-bcf! es-p-0!'
 						placeholder={__('Search or enter URL', 'eightshift-frontend-libs')}
 					/>
 				</KeyboardShortcuts>
@@ -211,13 +213,13 @@ export const LinkEditComponent = ({
 			</AnimatedContentVisibility>
 
 			{hasUrl && additionalOptionTiles && !disabled &&
-				<div className='es-h-spaced-wrap'>
+				<div className='es-h-spaced-wrap es-mt-2'>
 					{additionalOptionTiles}
 				</div>
 			}
 
 			{hasUrl && (additionalOptions || !hideOpensInNewTab) && !disabled &&
-				<div className='es-v-spaced'>
+				<div className='es-v-spaced es-mt-2'>
 					{!hideOpensInNewTab &&
 						<IconToggle
 							icon={icons.newTab}
