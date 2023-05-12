@@ -113,7 +113,7 @@ export const ImageOptions = (attributes) => {
 			}
 
 			<Section
-				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || !additionalControlsDesignLayout}
+				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || typeof additionalControlsDesignLayout !== 'undefined'}
 				icon={icons.design}
 				label={__('Design & layout', 'eightshift-frontend-libs')}
 				additionalClasses='es-h-spaced-wrap'
