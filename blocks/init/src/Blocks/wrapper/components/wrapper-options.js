@@ -2,7 +2,28 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { useSelect, dispatch } from '@wordpress/data';
 import { Button, PanelBody, TextControl } from '@wordpress/components';
-import { checkAttr, checkAttrResponsive, icons, getOption, IconLabel, Responsive, ColorPicker, WidthOffsetRangeSlider, OptionSelector, generateWidthOffsetRangeSliderConfig, getDefaultBreakpointNames, Section, generateResponsiveNumberPickerConfig, ResponsiveNumberPicker, Collapsable, ucfirst, AdvancedColorPicker, generateResponsiveToggleButtonConfig, ResponsiveToggleButton, PresetPicker } from '@eightshift/frontend-libs/scripts';
+import {
+	checkAttr,
+	checkAttrResponsive,
+	icons,
+	getOption,
+	IconLabel,
+	Responsive,
+	ColorPicker,
+	WidthOffsetRangeSlider,
+	OptionSelector,
+	generateWidthOffsetRangeSliderConfig,
+	getDefaultBreakpointNames,
+	Section,
+	generateResponsiveNumberPickerConfig,
+	ResponsiveNumberPicker,
+	Collapsable,
+	ucfirst,
+	AdvancedColorPicker,
+	generateResponsiveToggleButtonConfig,
+	ResponsiveToggleButton,
+	PresetPicker,
+} from '@eightshift/frontend-libs/scripts';
 import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 
 import manifest from './../manifest.json';

@@ -96,19 +96,11 @@
 
 		&:first-child::before {
 			left: calc(-1 * var(--global-grid-side-padding) - 1px);
-
-			// border-top-left-radius: 2.5rem;
-			// border-bottom-left-radius: 2.5rem;
-
 			mask-image: linear-gradient(to right, transparent 0%, black 5rem);
 		}
 
 		&:last-child::before {
 			right: calc(-1 * var(--global-grid-side-padding) - 1px);
-
-			// border-top-right-radius: 2.5rem;
-			// border-bottom-right-radius: 2.5rem;
-
 			mask-image: linear-gradient(to left, transparent 0%, black 5rem);
 		}
 	}

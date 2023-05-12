@@ -15,17 +15,17 @@ domReady(async () => {
 
 		const headings = document.querySelectorAll(`.main-content :is(${levelsToUse})`);
 
-		headings.forEach((h) => {
-			h.classList.add(scrollMarginClass);
+		headings.forEach((heading) => {
+			heading.classList.add(scrollMarginClass);
 
 			const entry = document.createElement('button');
 			entry.classList.add(entryClass);
-			entry.innerText = h.innerText;
+			entry.innerText = heading.innerText;
 
-			entry.dataset.level = splitLevelsToUse.findIndex((v) => v === h.tagName.toLowerCase()) + 1;
+			entry.dataset.level = splitLevelsToUse.findIndex((level) => level === heading.tagName.toLowerCase()) + 1;
 
 			entry.addEventListener('click', () => {
-				h.scrollIntoView({
+				heading.scrollIntoView({
 					behavior: 'smooth',
 					block: 'start',
 					inline: 'start',

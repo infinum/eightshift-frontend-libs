@@ -22,7 +22,7 @@ export const WrapperDragNDropEditOptionsComponent = ({ attributes }) => {
 		<PanelBody>
 			<IconToggle
 				icon={icons.experiment}
-				label={__('Drag&drop width/offset editing', 'eightshift-frontend-libs')}
+				label={__('Drag & drop width/offset editing', 'eightshift-frontend-libs')}
 				help={__('Experimental', 'eightshift-frontend-libs')}
 				onChange={() => dispatch(WRAPPER_STORE_NAME).toggleGraphicalEditing()}
 				checked={isGraphicalEditingMode}
@@ -57,9 +57,9 @@ export const WrapperDragNDropEditEditorComponent = ({ attributes, setAttributes,
 					max={globalManifest.globalVariables.maxCols + (wrapperIsFullWidthLarge ? 3 : 1)}
 
 					value={[wrapperOffsetLarge, wrapperOffsetLarge + wrapperWidthLarge]}
-					onChange={([o, w]) => setAttributes({
-						[getAttrKey('wrapperOffsetLarge', attributes, manifest)]: o,
-						[getAttrKey('wrapperWidthLarge', attributes, manifest)]: w - o,
+					onChange={([offset, width]) => setAttributes({
+						[getAttrKey('wrapperOffsetLarge', attributes, manifest)]: offset,
+						[getAttrKey('wrapperWidthLarge', attributes, manifest)]: width - offset,
 					})}
 					noBottomSpacing
 					trackColor='rgb(255 0 255 / 0.15)'
