@@ -43,7 +43,7 @@ export const SortableItem = (props) => {
 		...listeners,
 	};
 
-	const itemLabel = (title?.length > 0 || subtitle?.length > 0 || icon) && (
+	const itemLabel = ((typeof title !== 'string' && title) || (typeof title === 'string' && title?.length > 0) || (typeof subtitle !== 'string' && subtitle) || (typeof subtitle === 'string' && subtitle?.length > 0) || icon) && (
 		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 	);
 
