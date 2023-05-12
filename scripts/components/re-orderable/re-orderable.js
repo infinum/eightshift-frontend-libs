@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { SortableItem } from './sortable-item';
 import { Control } from '../base-control/base-control';
-import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
+import { restrictToVerticalAxis, restrictToHorizontalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 import { classnames } from '../../helpers';
 
 import {
@@ -19,6 +19,7 @@ import {
 	SortableContext,
 	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
+	horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
 /**
@@ -35,6 +36,7 @@ import {
  * @param {function} props.setAttributes               - The `setAttributes` callback from component/block attributes.
  * @param {React.Component[]} props.children           - Child items, mapped from `items`. Contains all the option for child items.
  * @param {boolean} [props.noReordering=false]         - If `true`, the items can't be re-ordered.
+ * @param {boolean} [props.horizontal=false]           - If `true`, the dragging happens in a horizontal direction.
  * @param {boolean} [props.noBottomSpacing]            - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]      - If `true`, space below the control is reduced.
  * @param {function} [props.handleItemReorder]         - Callback for providing custom item reordering logic.
@@ -56,6 +58,7 @@ export const ReOrderable = (props) => {
 		children,
 
 		noReordering = false,
+		horizontal = false,
 
 		noBottomSpacing,
 		reducedBottomSpacing,
@@ -64,6 +67,7 @@ export const ReOrderable = (props) => {
 
 		additionalClasses,
 		additionalLabelClasses,
+		additionalHorizontalContainerClasses = 'es-display-flex es-items-center',
 	} = props;
 
 	const sensors = useSensors(
@@ -100,16 +104,17 @@ export const ReOrderable = (props) => {
 			additionalClasses={additionalClasses}
 			additionalLabelClasses={classnames(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
 			actions={actions}
+			wrapChildren={horizontal ? (children) => <div className={additionalHorizontalContainerClasses}>{children}</div> : null}
 		>
 			<DndContext
 				sensors={sensors}
 				collisionDetection={closestCenter}
 				onDragEnd={handleDragEnd}
-				modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+				modifiers={[(horizontal ? restrictToHorizontalAxis : restrictToVerticalAxis), restrictToParentElement]}
 			>
 				<SortableContext
 					items={items.map(({ id }) => id)}
-					strategy={verticalListSortingStrategy}
+					strategy={horizontal ? horizontalListSortingStrategy : verticalListSortingStrategy}
 				>
 					{children.map((item, i) => (
 						<SortableItem
