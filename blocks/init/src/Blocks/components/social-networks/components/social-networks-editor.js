@@ -12,6 +12,8 @@ export const SocialNetworksEditor = (attributes) => {
 		blockClass,
 		additionalClass,
 		setAttributes,
+
+		noClickToToggleNetwork = false,
 	} = attributes;
 
 	const socialNetworksUse = checkAttr('socialNetworksUse', attributes, manifest);
@@ -41,7 +43,7 @@ export const SocialNetworksEditor = (attributes) => {
 						key={i}
 						className={classnames(linkClass, !network.enabled && 'es-opacity-10')}
 						dangerouslySetInnerHTML={{ __html: manifest.networks[network.id].icon }}
-						onClick={() => {
+						onClick={noClickToToggleNetwork ? null : () => {
 							const newValue = [...socialNetworksNetworks];
 							newValue[i].enabled = !newValue[i].enabled;
 
