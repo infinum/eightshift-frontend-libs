@@ -26,8 +26,10 @@ export const SortableItem = (props) => {
 		lastItemClass = '',
 		itemClass,
 		innerClass,
+		horizontal,
+		horizontalVertical,
+		customGrabHandle,
 	} = props;
-
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
@@ -41,7 +43,7 @@ export const SortableItem = (props) => {
 		...listeners,
 	};
 
-	const itemLabel = (
+	const itemLabel = (title?.length > 0 || subtitle?.length > 0 || icon) && (
 		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 	);
 
@@ -53,12 +55,16 @@ export const SortableItem = (props) => {
 				{noReordering && itemLabel}
 
 				{!noReordering &&
-					<button className='es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! es-cursor-pointer' {...additionalTriggerProps}>
+					<button className={classnames('es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! es-cursor-pointer', !horizontal && !horizontalVertical && 'es-w-full')} {...additionalTriggerProps}>
 						{itemLabel}
 
-						<div className='es-nested-color-cool-gray-400 es-line-h-0'>
-							{icons.reorderGrabberV}
-						</div>
+						{!customGrabHandle &&
+							<div className='es-nested-color-cool-gray-400 es-line-h-0'>
+								{icons.reorderGrabberV}
+							</div>
+						}
+
+						{customGrabHandle}
 					</button>
 				}
 
