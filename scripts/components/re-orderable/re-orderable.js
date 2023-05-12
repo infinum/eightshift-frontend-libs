@@ -7,7 +7,7 @@ import { classnames } from '../../helpers';
 
 import {
 	DndContext,
-	closestCenter,
+	rectIntersection,
 	KeyboardSensor,
 	PointerSensor,
 	useSensor,
@@ -134,7 +134,7 @@ export const ReOrderable = (props) => {
 		>
 			<DndContext
 				sensors={sensors}
-				collisionDetection={closestCenter}
+				collisionDetection={rectIntersection}
 				onDragEnd={handleDragEnd}
 				modifiers={[...modifiers, restrictToParentElement]}
 			>
