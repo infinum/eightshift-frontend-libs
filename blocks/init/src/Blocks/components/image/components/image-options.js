@@ -92,7 +92,7 @@ export const ImageOptions = (attributes) => {
 								<img
 									alt={imageAlt}
 									src={imageUrl[breakpointName]}
-									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2 es-object-scale-down'
 								/>
 
 								<Button
