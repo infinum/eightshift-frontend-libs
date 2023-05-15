@@ -4,6 +4,46 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.3.0] - 2023-05-15
+
+### Bugfixes
+- fixed Advanced color picker crashing when selecting gradient
+- fixed Paragraph block splitting issues and improved merge logic
+- fixed Image block previews for weird aspect ratios
+- fixed various icon sizes throughout the UI, caused by Gutenberg
+
+### New UI components
+- added a highly configurable PresetPicker component
+- ReOrderable component - similar to Repeater, but without the expanding part
+
+### UI component updates
+- new UI and block icons
+- Notification component now supports additionalClasses prop
+- fixed Repeater doc block and cleaned up the code a bit
+- Repeater now has a preIcon slot - for items to the left of the label
+- Slider, RangeSlider and ColumnConfigSlider can now have onBeforeChange and onAfterChange callbacks
+- OptionSelector now supports adding subtitle to its items
+- `Control` now allows wrapping components in a div with a class, if needed
+- fixed `LinkEditComponent` padding being weird in some cases (e.g. in a flyout)
+- `FancyDivider` border has higher contrast now
+
+### New blocks
+- added Map block
+- added Table of contents block
+- removed existing share and social-links components, replaced them with social-networks component and block
+- added Site navigation block
+- added Site footer block
+
+### Block updates
+- added presets to Columns
+- wrapper has a new preview when configuring width and offset
+
+### Experiments
+- added experimental Graphical editing mode to wrapper - enable it through the global manifest
+
+### Misc
+- replaced the deprecated registerStore method for ES stores
+
 ## [8.2.1] - 2023-04-26
 
 ### Fixed
@@ -694,6 +734,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.1...8.3.0
 [8.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.0...8.2.1
 [8.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.0.0...8.1.0
