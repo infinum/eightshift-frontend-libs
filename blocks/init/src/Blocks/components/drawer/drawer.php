@@ -25,19 +25,24 @@ $drawerMenu = Components::checkAttr('drawerMenu', $attributes, $manifest);
 $drawerTrigger = Components::checkAttr('drawerTrigger', $attributes, $manifest);
 
 $drawerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
+	$componentClass,
+	$componentJsClass,
 	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
-	Components::selector($componentJsClass, $componentJsClass),
+	$additionalClass,
 ]);
 
+$drawerInnerClass = Components::selector($componentClass, $componentClass, 'inner');
 ?>
+
 <div
 	class="<?php echo esc_attr($drawerClass); ?>"
 	data-trigger="<?php echo esc_attr($drawerTrigger); ?>"
+	aria-expanded="false"
 >
-	<?php
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo $drawerMenu;
-	?>
+	<div class="<?php echo esc_attr($drawerInnerClass); ?>">
+		<?php
+			// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+			echo $drawerMenu;
+		?>
+	</div>
 </div>

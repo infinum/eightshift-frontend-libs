@@ -1,0 +1,37 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "site-navigation",
+	"title": "Site navigation",
+	"description": "Main site navigation with a logo, links, and mobile menu button.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-navbar"
+	},
+	"keywords": [
+		"site",
+		"navigation",
+		"navbar"
+	],
+	"example": {
+		"attributes": {
+			"siteNavigationLogoUrl": "https://loremflickr.com/200/150"
+		}
+	},
+	"attributes": {
+		"siteNavigationLinks": {
+			"type": "array",
+			"default": []
+		},
+		"wrapperUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"wrapperNoControls": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"components": {
+		"logo": "image"
+	}
+}

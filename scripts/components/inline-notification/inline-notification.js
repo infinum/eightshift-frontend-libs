@@ -15,6 +15,7 @@ import { icons } from '../../editor/icons/icons';
  * @param {string} [props.noBottomSpacing]        - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing] - If `true`, space below the control is reduced.
  * @param {NotificationType} [props.type]         - Help text displayed below the picker.
+ * @param {string?} [props.additionalClasses]     - If provided, the classes are added
  */
 export const Notification = ({
 	text,
@@ -23,6 +24,7 @@ export const Notification = ({
 	type,
 	noBottomSpacing,
 	reducedBottomSpacing,
+	additionalClasses,
 }) => {
 	let icon, classes, iconColor;
 
@@ -54,7 +56,7 @@ export const Notification = ({
 
 	return (
 		<Control
-			additionalClasses={classnames('es-p-2 es-rounded-2', classes)}
+			additionalClasses={classnames('es-p-2 es-rounded-2', classes, additionalClasses)}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 		>

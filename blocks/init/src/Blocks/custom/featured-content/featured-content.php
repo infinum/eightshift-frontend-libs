@@ -57,7 +57,7 @@ if ($featuredContentTaxonomy) {
 			(array)$featuredContentTerms
 		);
 	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender) {
-		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy));
+		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy)); // @phpstan-ignore-line
 
 		if ($currentTerms) {
 			$args['tax_query'][0]['terms'] = [$currentTerms[0]->term_id]; // @phpstan-ignore-line

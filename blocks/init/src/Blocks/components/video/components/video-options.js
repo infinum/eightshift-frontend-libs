@@ -194,7 +194,7 @@ export const VideoOptions = (attributes) => {
 				</Collapsable>
 			</Section>
 
-			<Section showIf={!hideVideoControlsToggle || additionalControlsDesignLayout} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
+			<Section showIf={!hideVideoControlsToggle || typeof additionalControlsDesignLayout !== 'undefined'} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
 				{!hideVideoControlsToggle &&
 					<IconToggle
 						icon={icons.videoControls}

@@ -1,0 +1,8 @@
+@import '~ol/ol.css';
+
+.block-map {
+	aspect-ratio: 16 / 9;
+
+	border-radius: 0.5rem;
+	border: 1px solid var(--global-colors-gray300);
+}

@@ -15,7 +15,7 @@ import Slider from 'rc-slider';
  * @param {React.Component?} [props.help]                   - Help to show below the control.
  * @param {React.Component?} [props.label]                  - Label to show above component.
  * @param {React.Component?} [props.subtitle]               - Subtitle below the label.
- * @param {React.Component?[]} [props.actions]              - Actions to show to the right of the label.
+ * @param {React.Component[]?} [props.actions]              - Actions to show to the right of the label.
  * @param {boolean?} [props.noBottomSpacing]                - If `true`, space below the control is removed.
  * @param {boolean?} [props.reducedBottomSpacing]           - If `true`, space below the control is reduced.
  * @param {boolean} [props.disabled=false]                  - If `true`, the component is disabled.
@@ -24,6 +24,8 @@ import Slider from 'rc-slider';
  * @param {string?} [props.additionalClass]                 - If passed, the classes are appended to the slider.
  * @param {React.Component} [props.additionalControlsAbove] - If passed, the controls are shown above the slider.
  * @param {React.Component} [props.additionalControlsBelow] - If passed, the controls are shown below the slider.
+ * @param {function} [props.onBeforeChange]                 - Function to trigger when the value of the slider starts changing.
+ * @param {function} [props.onAfterChange]                  - Function to trigger when the value of the slider is changed.
  */
 export const ColumnConfigSlider = (props) => {
 	const {
@@ -53,6 +55,9 @@ export const ColumnConfigSlider = (props) => {
 		// Additions.
 		additionalControlsAbove,
 		additionalControlsBelow,
+
+		onBeforeChange,
+		onAfterChange,
 	} = props;
 
 	const max = numOfColumns + 1;
@@ -167,6 +172,9 @@ export const ColumnConfigSlider = (props) => {
 							target.style.removeProperty('--es-custom-slider-handle-shadow');
 							setHasFocus(false);
 						}}
+
+						onBeforeChange={onBeforeChange}
+						onAfterChange={onAfterChange}
 
 						{...columnConfigStyleProps(props, sliderHeight, max)}
 					/>

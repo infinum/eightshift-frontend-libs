@@ -40,7 +40,7 @@ export const HeadingOptions = (attributes) => {
 				showIf={!hideColor || !hideSize || !hideFontWeight}
 				additionalClasses='es-h-spaced'
 				reducedBottomSpacing={additionalControlsBeforeHeadingLevel}
-				noBottomSpacing={!additionalControlsBeforeHeadingLevel && !additionalControls && hideHeadingLevel}
+				noBottomSpacing={!additionalControlsBeforeHeadingLevel && typeof additionalControls === 'undefined' && hideHeadingLevel}
 			>
 				{!hideColor &&
 					<ColorPicker

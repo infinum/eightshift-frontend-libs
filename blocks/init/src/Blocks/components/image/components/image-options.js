@@ -92,7 +92,7 @@ export const ImageOptions = (attributes) => {
 								<img
 									alt={imageAlt}
 									src={imageUrl[breakpointName]}
-									className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
+									className='es-h-26! es-min-w-26 es-max-w-48! es-w-auto es-border-cool-gray-100 es-rounded-2 es-object-scale-down'
 								/>
 
 								<Button
@@ -113,7 +113,7 @@ export const ImageOptions = (attributes) => {
 			}
 
 			<Section
-				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || !additionalControlsDesignLayout}
+				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || typeof additionalControlsDesignLayout !== 'undefined'}
 				icon={icons.design}
 				label={__('Design & layout', 'eightshift-frontend-libs')}
 				additionalClasses='es-h-spaced-wrap'

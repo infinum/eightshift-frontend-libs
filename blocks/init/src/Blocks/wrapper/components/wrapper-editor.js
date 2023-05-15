@@ -1,10 +1,13 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { useSelect } from '@wordpress/data';
 import { checkAttr, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
+import { WrapperDragNDropEditEditorComponent } from '../wrapper-drag-n-drop-editing';
+import { WRAPPER_STORE_NAME } from '../wrapper-stores';
+import { GridGuides } from '../wrapper-grid-guides';
 import manifest from './../manifest.json';
 import globalManifest from './../../manifest.json';
 
-export const WrapperEditor = ({ attributes, children }) => {
+export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
 	const wrapperUseInner = checkAttr('wrapperUseInner', attributes, manifest);
 	const wrapperNoControls = checkAttr('wrapperNoControls', attributes, manifest);
@@ -13,6 +16,13 @@ export const WrapperEditor = ({ attributes, children }) => {
 	const wrapperSimple = checkAttr('wrapperSimple', attributes, manifest);
 	const wrapperGetGridInfo = checkAttr('wrapperGetGridInfo', attributes, manifest);
 	const wrapperIsFullWidthLarge = checkAttr('wrapperIsFullWidthLarge', attributes, manifest, true);
+
+	const wrapperOffsetLarge = checkAttr('wrapperOffsetLarge', attributes, manifest, true);
+	const wrapperWidthLarge = checkAttr('wrapperWidthLarge', attributes, manifest, true);
+
+	const {
+		blockClientId,
+	} = attributes;
 
 	if (!wrapperUse || wrapperNoControls) {
 		if (!wrapperParentClass) {
@@ -28,74 +38,56 @@ export const WrapperEditor = ({ attributes, children }) => {
 		);
 	}
 
-	const isEditMode = useSelect((select) => select('core/block-editor').isNavigationMode());
+	const storeData = useSelect((select) => select(WRAPPER_STORE_NAME).get());
+	const previewVisible = storeData.previewVisible && storeData.currentClientId === blockClientId;
 
 	const unique = useMemo(() => getUnique(), []);
-	attributes['uniqueWrapperId'] = unique;
+	attributes.uniqueWrapperId = unique;
 
 	const wrapperMainClass = attributes['componentClass'] || manifest['componentClass'];
+
 	const wrapperClass = classnames(
 		wrapperMainClass,
-		wrapperSimple ? `${wrapperMainClass}--simple` : '',
-		isEditMode ? `${wrapperMainClass}--edit-mode` : '',
-		isEditMode && wrapperIsFullWidthLarge ? `${wrapperMainClass}--edit-mode-fullwidth` : '',
+		wrapperSimple && `${wrapperMainClass}--simple`,
+		previewVisible && `${wrapperMainClass}--edit-mode`,
+		previewVisible && wrapperIsFullWidthLarge && `${wrapperMainClass}--edit-mode-fullwidth`,
 	);
 
-	const wrapperInnerClass = classnames(
-		`${wrapperMainClass}__inner`,
-	);
+	const wrapperInnerClass = `${wrapperMainClass}__inner`;
 
 	const reference = useRef(null);
 	const [gridWidth, setGridWidth] = useState([]);
 
-	if (wrapperGetGridInfo) {
-		const calculateGridWidth = () => {
-			const [edgeColumn, middleColumn] = getComputedStyle(reference.current).gridTemplateColumns.split(' ');
+	// Additional grid info, if needed.
+	const calculateGridWidth = () => {
+		const [edgeColumn, middleColumn] = getComputedStyle(reference.current).gridTemplateColumns.split(' ');
 
-			setGridWidth({
-				'--wrapper-grid-column-width-edge': edgeColumn,
-				'--wrapper-grid-column-width-middle': middleColumn,
-			});
-		};
-
-		useEffect(() => {
-			calculateGridWidth();
-			window.addEventListener('resize', calculateGridWidth);
-
-			return () => {
-				window.removeEventListener('resize', calculateGridWidth);
-			};
-		}, []); // eslint-disable-line react-hooks/exhaustive-deps
-	}
-
-	const GridGuides = () => {
-		const items = [];
-
-		const maxItems = wrapperIsFullWidthLarge ? 14 : 12;
-
-		for (let i = 1; i <= maxItems; i++) {
-			const itemStyle = {
-				gridColumn: `${wrapperIsFullWidthLarge ? i : i + 1} / span 1`,
-			};
-
-			items.push(<div className={`${wrapperMainClass}__grid-item`} style={itemStyle} key={i}>{i}</div>);
-		}
-
-		return (
-			<div className={`${wrapperMainClass}__grid`}>
-				{items}
-			</div>
-		);
+		setGridWidth({
+			'--wrapper-grid-column-width-edge': edgeColumn,
+			'--wrapper-grid-column-width-middle': middleColumn,
+		});
 	};
 
-	const blockName = attributes?.blockName ?? '';
-	const gridGuidesAllowList = ['columns'];
+	useEffect(() => {
+		if (!wrapperGetGridInfo) {
+			return () => { };
+		}
 
-	const shouldHaveGuides = ((attributes?.wrapperSimple ?? false) === false && (attributes?.wrapperUse ?? false) === true) || gridGuidesAllowList?.includes(blockName);
+		calculateGridWidth();
+		window.addEventListener('resize', calculateGridWidth);
+
+		return () => {
+			window.removeEventListener('resize', calculateGridWidth);
+		};
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>
-			{isEditMode && shouldHaveGuides && <GridGuides />}
+			<GridGuides
+				previewVisible={previewVisible}
+				wrapperIsFullWidthLarge={wrapperIsFullWidthLarge}
+				wrapperMainClass={wrapperMainClass}
+			/>
 
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
@@ -106,6 +98,15 @@ export const WrapperEditor = ({ attributes, children }) => {
 			}
 
 			{!wrapperUseInner && children}
+
+			<WrapperDragNDropEditEditorComponent
+				attributes={attributes}
+				setAttributes={setAttributes}
+				manifest={manifest}
+				wrapperWidthLarge={wrapperWidthLarge}
+				wrapperOffsetLarge={wrapperOffsetLarge}
+				wrapperIsFullWidthLarge={wrapperIsFullWidthLarge}
+			/>
 		</div>
 	);
 };

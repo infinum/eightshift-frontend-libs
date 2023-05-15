@@ -11,16 +11,20 @@
 			":root {--es-loader-opacity: 1;}"
 		],
 		"useRemBaseSize": false,
-		"useWrapper": true
+		"useWrapper": true,
+		"experiments": {
+			"wrapperDragNDropEditing": false
+		}
 	},
 	"globalVariables": {
 		"customBlocksName": "eightshift-block",
 		"mainContentWidth": 12,
 		"maxCols": 12,
 		"baseFont": "'DM Sans'",
+		"navbarHeight": "5rem",
 		"zIndex": {
-			"header": 100,
-			"drawer": 99,
+			"header": 99,
+			"drawer": 100,
 			"overlay": 98
 		},
 		"breakpoints": {

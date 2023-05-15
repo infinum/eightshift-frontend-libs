@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from '@wordpress/components';
 import { classnames } from '../../helpers';
 
 /**
@@ -19,8 +18,8 @@ export const IconLabel = (props) => {
 	if (subtitle && standalone) {
 		return (
 			<div className={classnames('es-label-flex', additionalClasses)}>
-				<Icon icon={icon} />
-				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5')}>
+				{icon}
+				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2 es-items-start', addSubtitleGap && 'es-gap-0.5')}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
@@ -31,7 +30,7 @@ export const IconLabel = (props) => {
 	if (subtitle) {
 		return (
 			<>
-				<Icon icon={icon} />
+				{icon}
 				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5', additionalClasses)}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
@@ -43,7 +42,7 @@ export const IconLabel = (props) => {
 	if (standalone) {
 		return (
 			<div className={classnames('es-label-flex', additionalClasses)}>
-				<Icon icon={icon} />
+				{icon}
 				{label}
 			</div>
 		);
@@ -51,7 +50,7 @@ export const IconLabel = (props) => {
 
 	return (
 		<>
-			<Icon icon={icon} />
+			{icon}
 			{label}
 		</>
 	);
