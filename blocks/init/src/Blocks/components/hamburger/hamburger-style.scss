@@ -81,7 +81,8 @@
 		}
 	}
 
-	&.is-menu-open {
+	// Open state.
+	@mixin es-hamburger-open-state {
 		#{$this}__icon {
 			&--top {
 				transform: rotate(45deg) translate3d(0, 20%, 0) scale3d(1, 1, 1);
@@ -106,6 +107,18 @@
 					transform: rotate(-45deg) translate3d(0, -20%, 0) scale3d(1.125, 1, 1);
 				}
 			}
+		}
+	}
+
+	@supports selector(:has(*)) {
+		body:has(.drawer[aria-expanded='true']) & {
+			@include es-hamburger-open-state;
+		}
+	}
+
+	@supports not selector(:has(*)) {
+		&.is-menu-open {
+			@include es-hamburger-open-state;
 		}
 	}
 }

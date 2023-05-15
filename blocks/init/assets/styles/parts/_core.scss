@@ -18,3 +18,9 @@ body {
 	position: relative;
 	overflow-x: hidden;
 }
+
+// Fix WP admin bar positioning.
+// stylelint-disable-next-line selector-max-specificity
+#wpadminbar {
+	position: fixed;
+}

@@ -1,0 +1,38 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "site-footer",
+	"title": "Site footer",
+	"description": "Footer block with a logo, links, and copyright label.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-card-teaser-alt-2"
+	},
+	"keywords": [
+		"site",
+		"footer"
+	],
+	"example": {
+		"attributes": {
+			"siteFooterLogoUrl": "https://loremflickr.com/200/150"
+		}
+	},
+	"attributes": {
+		"siteFooterLinks": {
+			"type": "array",
+			"default": []
+		},
+		"wrapperUse": {
+			"type": "boolean",
+			"default": false
+		},
+		"wrapperNoControls": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"components": {
+		"logo": "image",
+		"copyright": "paragraph",
+		"socialNetworks": "social-networks"
+	}
+}

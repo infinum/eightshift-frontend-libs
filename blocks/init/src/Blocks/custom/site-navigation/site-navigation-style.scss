@@ -1,0 +1,74 @@
+.block-site-navigation {
+	position: fixed;
+	inset: 0 0 auto 0;
+
+	padding-inline: var(--global-grid-side-padding);
+
+	height: var(--global-navbar-height);
+
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+
+	background-color: rgb(var(--global-colors-white-values) / 0.8);
+	border-bottom: 1px solid rgb(var(--global-colors-gray100-values) / 0);
+
+	backdrop-filter: blur(1.5rem) saturate(1.5) brightness(1.25);
+
+	z-index: var(--global-z-index-header);
+
+	transition: {
+		property: border-color, background-color;
+		timing-function: ease-out;
+		duration: 0.3s;
+	}
+
+	&.is-scrolled {
+		border-bottom-color: var(--global-colors-gray100);
+	}
+
+	&__logo {
+		width: 15rem;
+		max-height: 10rem;
+	}
+
+	&__links {
+		display: none;
+
+		align-items: center;
+		gap: 1.5rem;
+
+		margin-inline-start: auto;
+
+		@include media(desktop up) {
+			display: flex;
+		}
+	}
+
+	&__link {
+		@extend %link-reset;
+
+		letter-spacing: -0.01em;
+		text-underline-offset: 0.1em;
+
+		&:hover {
+			color: var(--global-colors-primary500);
+
+			text-decoration: underline var(--global-colors-primary300);
+		}
+
+		@include media(tablet down) {
+			font-size: 1.75rem;
+		}
+	}
+
+	&__hamburger {
+		margin-inline-start: auto;
+	}
+
+	// Move it out of the way of the admin bar.
+	body.admin-bar & {
+		// stylelint-disable-next-line custom-property-pattern
+		top: var(--wp-admin--admin-bar--height);
+	}
+}
