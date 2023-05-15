@@ -21,10 +21,11 @@
 		"mainContentWidth": 12,
 		"maxCols": 12,
 		"baseFont": "'DM Sans'",
+		"navbarHeight": "5rem",
 		"zIndex": {
-			"overlay": 98,
 			"header": 99,
-			"drawer": 100
+			"drawer": 100,
+			"overlay": 98
 		},
 		"breakpoints": {
 			"mobile": 480,
