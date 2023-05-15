@@ -13,10 +13,10 @@ $manifest = Components::getManifest(__DIR__);
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$siteNavigationLinks = Components::checkAttr('siteNavigationLinks', $attributes, $manifest);
+$siteNavigationLinks = Components::checkAttr('siteNavigationLinks', $attributes, $manifest) ?? [];
 
 if (!empty($siteNavigationLinks)) {
-	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url']));
+	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url'])); // @phpstan-ignore-line
 }
 
 $navbarClass = Components::classnames([
@@ -29,11 +29,13 @@ $linkClass = Components::selector($blockClass, $blockClass, 'link');
 
 $linksToShow = '';
 
-foreach ($siteNavigationLinks as $navbarLink) {
-	$url = esc_url($navbarLink['url']);
-	$text = esc_attr($navbarLink['text']);
+if (!empty($siteNavigationLinks)) {
+	foreach ($siteNavigationLinks as $navbarLink) {
+		$url = esc_url($navbarLink['url']);
+		$text = esc_attr($navbarLink['text']);
 
-	$linksToShow .= "<a class='{$linkClass}' href='{$url}'>{$text}</a>";
+		$linksToShow .= "<a class='{$linkClass}' href='{$url}'>{$text}</a>";
+	}
 }
 ?>
 
