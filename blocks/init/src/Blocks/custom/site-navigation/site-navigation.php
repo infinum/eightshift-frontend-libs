@@ -14,7 +14,10 @@ $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
 $siteNavigationLinks = Components::checkAttr('siteNavigationLinks', $attributes, $manifest);
-$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url']));
+
+if (!empty($siteNavigationLinks)) {
+	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url']));
+}
 
 $navbarClass = Components::classnames([
 	$blockClass,
@@ -42,12 +45,14 @@ foreach ($siteNavigationLinks as $navbarLink) {
 	]));
 	?>
 
-	<div class="<?php echo esc_attr($linksClass); ?>">
-		<?php
-		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo $linksToShow;
-		?>
-	</div>
+	<?php if (!empty($linksToShow)) { ?>
+		<div class="<?php echo esc_attr($linksClass); ?>">
+			<?php
+			// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+			echo $linksToShow;
+			?>
+		</div>
+	<?php } ?>
 
 	<?php
 	echo Components::render('hamburger', [
