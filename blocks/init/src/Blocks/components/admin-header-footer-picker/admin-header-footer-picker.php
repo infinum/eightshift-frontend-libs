@@ -27,9 +27,6 @@ $manifest = Components::getManifest(__DIR__);
 		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 		<form action="options.php" method="post">
 			<?php
-			// Output settings fields.
-			settings_fields(ReusableBlocksHeaderFooter::ADMIN_MENU_SLUG);
-
 			// Output settings sections.
 			do_settings_sections(ReusableBlocksHeaderFooter::ADMIN_MENU_SLUG);
 
