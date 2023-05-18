@@ -17,7 +17,7 @@ $manifest = Components::getManifest(__DIR__);
 	<?php
 	// Show admin messages.
 	if (isset($_GET['settings-updated'])) { // phpcs:ignore
-		add_settings_error(ReusableBlocksHeaderFooter::ADMIN_MESSAGE_SLUG, 'save_success', __('Header and footer set', 'eightshift-frontend-libs'), 'updated');
+		add_settings_error(ReusableBlocksHeaderFooter::ADMIN_MESSAGE_SLUG, 'save_success', __('Settings saved', 'eightshift-frontend-libs'), 'updated');
 	}
 
 	// Render update messages.
