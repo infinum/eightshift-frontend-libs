@@ -1,0 +1,5 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
+	"componentName": "admin-header-footer-picker",
+	"title": "Admin header/footer picker"
+}
