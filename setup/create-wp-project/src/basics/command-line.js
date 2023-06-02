@@ -18,16 +18,16 @@ const checkGitVersion = async () => exec(`git --version`);
 const checkRequirements = async () => {
   const nodeVersion = await checkNodeVersion();
   if (nodeVersion.stderr !== '') process.exit(1);
-  
+
   const composerVersion = await checkComposerVersion();
   if (composerVersion.stderr !== '') process.exit(1);
-  
+
   const wpCliVersion = await checkWPCliVersion();
   if (wpCliVersion.stderr !== '') process.exit(1);
-  
+
   const gitVersion = await checkGitVersion();
   if (gitVersion.stderr !== '') process.exit(1);
-  
+
   return true;
 };
 
@@ -41,6 +41,9 @@ const installNodePackage = async (projectPath, packageToInstall) => exec(`cd "${
 const installComposerDependencies = async (projectPath) => exec(`cd "${projectPath}" && composer install --ignore-platform-reqs`);
 const installComposerPackage = async (projectPath, packageToInstall) => exec(`cd "${projectPath}" && composer require ${packageToInstall} --ignore-platform-reqs`);
 const wpCoreDownload = async (projectPath) => exec(`cd "${projectPath}" && wp core download`);
+const wpThemeActivate = async (themeName) => exec(`wp theme activate ${themeName}`);
+const boilerplateThemeInit = async (themeName) => exec(`cd "${themeName}" && wp boilerplate init theme && npm run build`);
+const initReusableHF = async () => exec('wp boilerplate init header-footer');
 
 module.exports = {
   cloneRepoTo,
@@ -54,4 +57,7 @@ module.exports = {
   installComposerDependencies,
   installComposerPackage,
   wpCoreDownload,
+  wpThemeActivate,
+  boilerplateThemeInit,
+  initReusableHF,
 };

@@ -2,20 +2,23 @@
 const path = require('path');
 
 const {
-  console: {
-    clearConsole,
-    installStep,
-    writeIntro,
-  },
-  argumentOperations: { maybePrompt },
-  commandLine: {
-    cloneRepoTo,
-    checkRequirements,
-    installNodeDependencies,
-    installComposerDependencies,
-  },
-  files: { installPath },
-  misc: { log, variable },
+	console: {
+		clearConsole,
+		installStep,
+		writeIntro,
+	},
+	argumentOperations: { maybePrompt },
+	commandLine: {
+		cloneRepoTo,
+		checkRequirements,
+		installNodeDependencies,
+		installComposerDependencies,
+		wpThemeActivate,
+		boilerplateThemeInit,
+		initReusableHF,
+	},
+	files: { installPath },
+	misc: { log, variable },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
 const { replaceVersionNumbers } = require('../replace-version-numbers');
@@ -28,93 +31,114 @@ exports.desc = 'Setup a new WordPress theme. Should be run inside your theme fol
 exports.builder = scriptArguments;
 
 exports.handler = async (argv) => {
-  await clearConsole();
-  await writeIntro();
-  let step = 1;
+	await clearConsole();
+	await writeIntro();
+	let step = 1;
 
-  // Trigger prompts if any of the required arguments was not set
-  const promptedInfo = await maybePrompt(scriptArguments, argv);
-  // Check if you are in the required folder
-  const requiredPath = await installPath('themes');
-  const projectPath = path.join(requiredPath, promptedInfo.package);
-  const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
-  const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
+	// Trigger prompts if any of the required arguments was not set
+	const promptedInfo = await maybePrompt(scriptArguments, argv);
+	// Check if you are in the required folder
+	const requiredPath = await installPath('themes');
+	const projectPath = path.join(requiredPath, promptedInfo.package);
+	const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
+	const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
 
-  // Check if all requirements are installed 
-  await installStep({
+	// Check if all requirements are installed
+	await installStep({
 		describe: `${step}. Checking requirements`,
 		thisHappens: checkRequirements(),
 	});
 	step++;
 
-  // Clone repo from git with given arguments
-  await installStep({
-    describe: `${step}. Cloning repo`,
-    thisHappens: cloneRepoTo(boilerplateRepoUrl, projectPath, boilerplateRepoBranch),
-  });
-  step++;
+	// Clone repo from git with given arguments
+	await installStep({
+		describe: `${step}. Cloning repo`,
+		thisHappens: cloneRepoTo(boilerplateRepoUrl, projectPath, boilerplateRepoBranch),
+	});
+	step++;
 
-  // Install all node packages as is or overwrite frontend-libs
-  if (argv.eightshiftFrontendLibsBranch) {
-    await installStep({
-      describe: `${step}. Installing modified Node dependencies`,
-      thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
-    });
-  } else {
-    await installStep({
-      describe: `${step}. Installing Node dependencies`,
-      thisHappens: installNodeDependencies(projectPath),
-    });
-  }
-  step++;
+	// Install all node packages as is or overwrite frontend-libs
+	if (argv.eightshiftFrontendLibsBranch) {
+		await installStep({
+			describe: `${step}. Installing modified Node dependencies`,
+			thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
+		});
+	} else {
+		await installStep({
+			describe: `${step}. Installing Node dependencies`,
+			thisHappens: installNodeDependencies(projectPath),
+		});
+	}
+	step++;
 
-  // Replace default theme information with the prompted information
-  await installStep({
-    describe: `${step}. Replacing theme info`,
-    thisHappens: searchReplace(promptedInfo, projectPath),
-  });
-  step++;
+	// Replace default theme information with the prompted information
+	await installStep({
+		describe: `${step}. Replacing theme info`,
+		thisHappens: searchReplace(promptedInfo, projectPath),
+	});
+	step++;
 
-  // Install all composer packages as is or overwrite libs
-  if (argv.eightshiftLibsBranch) {
-    await installStep({
-      describe: `${step}. Installing modified Composer dependencies`,
-      thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch),
-    });
-  } else {
-    await installStep({
-      describe: `${step}. Installing Composer dependencies`,
-      thisHappens: installComposerDependencies(projectPath),
-    });
-  }
-  step++;
+	// Install all composer packages as is or overwrite libs
+	if (argv.eightshiftLibsBranch) {
+		await installStep({
+			describe: `${step}. Installing modified Composer dependencies`,
+			thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch),
+		});
+	} else {
+		await installStep({
+			describe: `${step}. Installing Composer dependencies`,
+			thisHappens: installComposerDependencies(projectPath),
+		});
+	}
+	step++;
 
-  // Remove unused cloned folders and files
-  await installStep({
-    describe: `${step}. Cleaning up`,
-    thisHappens: cleanup(projectPath),
-  });
-  step++;
+	// Remove unused cloned folders and files
+	await installStep({
+		describe: `${step}. Cleaning up`,
+		thisHappens: cleanup(projectPath),
+	});
+	step++;
 
-  // Reset version numbers to 1.0.0
-  await installStep({
-    describe: `${step}. Replacing version numbers`,
-    thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
-  });
-  step++;
+	// Reset version numbers to 1.0.0
+	await installStep({
+		describe: `${step}. Replacing version numbers`,
+		thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
+	});
+	step++;
 
-  // Show success message and exit successfully.
-  log('----------------');
-  log('Success!!!');
-  log('');
-  log('Please do the following steps manually to complete the setup:');
-  log(`1. Activate your new theme by running ${variable(`wp theme activate ${variable(promptedInfo.package)}`)}`);
-  log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
-  log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init theme')} inside your new theme folder.`);
-  log('');
-  log(`Please read the documentation ${variable('https://eightshift.com/')} if you run into any issues or if you have any questions.`);
-  log('');
-  log('Best of luck!');
-  log('----------------');
-  process.exit(0);
+	// Activate theme.
+	await installStep({
+		describe: `${step}. Activating theme`,
+		thisHappens: wpThemeActivate(promptedInfo.package),
+	});
+	step++;
+
+	// Initialize theme.
+	await installStep({
+		describe: `${step}. Initializing theme`,
+		thisHappens: boilerplateThemeInit(promptedInfo.package),
+	});
+	step++;
+
+	// Initialize theme.
+	await installStep({
+		describe: `${step}. Initialize reusable header/footer`,
+		thisHappens: initReusableHF(),
+	});
+	step++;
+
+	// Show success message and exit successfully.
+	log('----------------');
+	log('Success!!!');
+	log('');
+	// log('Please do the following steps manually to complete the setup:');
+	// log(`1. Activate your new theme by running ${variable(`wp theme activate ${variable(promptedInfo.package)}`)}`);
+	// log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
+	// log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init theme')} inside your new theme folder.`);
+	// log('');
+	log(`Please read the documentation ${variable('https://eightshift.com/')} if you run into any issues or if you have any questions.`);
+	log('');
+	log('Best of luck!');
+	log('----------------');
+	process.exit(0);
 };
