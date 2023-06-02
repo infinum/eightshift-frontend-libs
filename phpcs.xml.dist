@@ -7,8 +7,8 @@
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/blocks/init/src/Blocks/custom/dummy/*</exclude-pattern>
-	<exclude-pattern>*/blocks/init/src/Blocks/components/dummy/*</exclude-pattern>
+	<exclude-pattern>*/blocks/init/src/Blocks/custom/_dummy/*</exclude-pattern>
+	<exclude-pattern>*/blocks/init/src/Blocks/components/_dummy/*</exclude-pattern>
 
 	<!-- Additional arguments. -->
 	<arg value="sp"/>

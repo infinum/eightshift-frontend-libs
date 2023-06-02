@@ -4,7 +4,7 @@ import { PanelBody } from '@wordpress/components';
 
 export const %block-name-pascal-case%Options = () => {
 	return (
-		<PanelBody title={__('%block-name-title-case%', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('%block-name-title-case%', '%block-name-kebab-case%')}>
 		</PanelBody>
 	);
 };

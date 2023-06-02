@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
-import manifest from './../manifest.json';
+import manifest from '../manifest.json';
 
 export const %block-name-pascal-case%Editor = ({ attributes, setAttributes }) => {
 	const {
@@ -13,7 +13,7 @@ export const %block-name-pascal-case%Editor = ({ attributes, setAttributes }) =>
 
 	return (
 		<RichText
-			placeholder={__('Add content', 'eightshift-frontend-libs')}
+			placeholder={__('Add content', '%block-name-kebab-case%')}
 			className={blockClass}
 			onChange={(value) => setAttributes({ [getAttrKey('%block-name-camel-case%Content', attributes, manifest)]: value })}
 			value={%block-name-camel-case%Content}

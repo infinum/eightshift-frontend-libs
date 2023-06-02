@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { checkAttr, getAttrKey, getOption, UseToggle, ColorPicker, ucfirst, Select, generateUseToggleConfig, Section } from '@eightshift/frontend-libs/scripts';
-import manifest from '@eightshift/frontend-libs/blocks/init/src/Blocks/components/dummy/manifest.json';
+import manifest from '@eightshift/frontend-libs/blocks/init/src/Blocks/components/%block-name-kebab-case%/manifest.json';
 
 export const %block-name-pascal-case%Options = (attributes) => {
 	const {
@@ -48,7 +48,7 @@ export const %block-name-pascal-case%Options = (attributes) => {
 						options={Object.values(fontSizes)}
 						onChange={(value) => setAttributes({ [getAttrKey('%block-name-camel-case%Size', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
 						additionalSelectClasses='es-w-16'
-						placeholder={__('Size', 'eightshift-frontend-libs')}
+						placeholder={__('Size', '%block-name-kebab-case%')}
 						noBottomSpacing
 						simpleValue
 						noSearch
@@ -61,7 +61,7 @@ export const %block-name-pascal-case%Options = (attributes) => {
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('%block-name-camel-case%Size', attributes, manifest)]: `${fontSize}:${value}` })}
 						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
-						placeholder={__('Weight', 'eightshift-frontend-libs')}
+						placeholder={__('Weight', '%block-name-kebab-case%')}
 						disabled={fontSizes[fontSize]?.weights.length < 2}
 						noBottomSpacing
 						simpleValue

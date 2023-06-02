@@ -22,5 +22,5 @@ parameters:
 		- '/^Parameter #\d+ \(mixed\) of echo cannot be converted to string\.?\s?$/'
 		- '/^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.?\s?$/'
 	excludePaths:
-		- '%currentWorkingDirectory%/blocks/init/src/Blocks/custom/dummy/'
-		- '%currentWorkingDirectory%/blocks/init/src/Blocks/components/dummy/'
+		- '%currentWorkingDirectory%/blocks/init/src/Blocks/custom/_dummy/'
+		- '%currentWorkingDirectory%/blocks/init/src/Blocks/components/_dummy/'

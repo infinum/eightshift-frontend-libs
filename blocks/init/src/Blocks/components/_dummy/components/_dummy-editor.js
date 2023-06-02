@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
-import manifest from '@eightshift/frontend-libs/blocks/init/src/Blocks/components/dummy/manifest.json';
+import manifest from '@eightshift/frontend-libs/blocks/init/src/Blocks/components/%block-name-kebab-case%/manifest.json';
 import globalManifest from '@eightshift/frontend-libs/blocks/init/src/Blocks/manifest.json';
 
 export const %block-name-pascal-case%Editor = (attributes) => {
@@ -17,7 +17,7 @@ export const %block-name-pascal-case%Editor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', '%block-name-kebab-case%'),
 
 		onSplit,
 		mergeBlocks,
