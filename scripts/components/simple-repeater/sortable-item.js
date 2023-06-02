@@ -84,7 +84,7 @@ export const SortableItem = (props) => {
 			</div>
 
 			<AnimatedContentVisibility showIf={showChildren}>
-				{props?.children?.filter(Boolean)?.length > 0 &&
+				{(Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length > 0 : props?.children) &&
 					<div className='es-p-3'>
 						{props.children}
 					</div>
