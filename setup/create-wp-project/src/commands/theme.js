@@ -18,13 +18,15 @@ const {
 		initReusableHF,
 	},
 	files: { installPath },
-	misc: { log, variable },
+	misc: { log },
 } = require('../basics');
 const { searchReplace } = require('../search-replace');
 const { replaceVersionNumbers } = require('../replace-version-numbers');
 const { cleanup } = require('../cleanup');
 const { scriptArguments } = require('../arguments');
 const { installModifiedNodeDependencies, installModifiedComposerDependencies } = require('../dependencies');
+const { alertBox } = require('../basics/misc');
+const chalk = require('chalk');
 
 exports.command = ['*', 'theme'];
 exports.desc = 'Setup a new WordPress theme. Should be run inside your theme folder (wp-content/themes).';
@@ -33,10 +35,14 @@ exports.builder = scriptArguments;
 exports.handler = async (argv) => {
 	await clearConsole();
 	await writeIntro();
-	let step = 1;
 
 	// Trigger prompts if any of the required arguments was not set
 	const promptedInfo = await maybePrompt(scriptArguments, argv);
+
+	log('');
+
+	alertBox("Sit back and relax!\n", 'Setting up theme', 'success', { omitLastLine: true });
+
 	// Check if you are in the required folder
 	const requiredPath = await installPath('themes');
 	const projectPath = path.join(requiredPath, promptedInfo.package);
@@ -45,100 +51,87 @@ exports.handler = async (argv) => {
 
 	// Check if all requirements are installed
 	await installStep({
-		describe: `${step}. Checking requirements`,
+		describe: `Getting ready`,
 		thisHappens: checkRequirements(),
 	});
-	step++;
 
 	// Clone repo from git with given arguments
 	await installStep({
-		describe: `${step}. Cloning repo`,
+		describe: `Cloning the repository`,
 		thisHappens: cloneRepoTo(boilerplateRepoUrl, projectPath, boilerplateRepoBranch),
 	});
-	step++;
 
 	// Install all node packages as is or overwrite frontend-libs
 	if (argv.eightshiftFrontendLibsBranch) {
 		await installStep({
-			describe: `${step}. Installing modified Node dependencies`,
+			describe: `Installing Node packages`,
 			thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
 		});
 	} else {
 		await installStep({
-			describe: `${step}. Installing Node dependencies`,
+			describe: `Installing Node packages`,
 			thisHappens: installNodeDependencies(projectPath),
 		});
 	}
-	step++;
 
 	// Replace default theme information with the prompted information
 	await installStep({
-		describe: `${step}. Replacing theme info`,
+		describe: `Replacing theme info`,
 		thisHappens: searchReplace(promptedInfo, projectPath),
 	});
-	step++;
 
 	// Install all composer packages as is or overwrite libs
 	if (argv.eightshiftLibsBranch) {
 		await installStep({
-			describe: `${step}. Installing modified Composer dependencies`,
+			describe: `Installing Composer packages`,
 			thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch),
 		});
 	} else {
 		await installStep({
-			describe: `${step}. Installing Composer dependencies`,
+			describe: `Installing Composer packages`,
 			thisHappens: installComposerDependencies(projectPath),
 		});
 	}
-	step++;
 
 	// Remove unused cloned folders and files
 	await installStep({
-		describe: `${step}. Cleaning up`,
+		describe: `Cleaning up`,
 		thisHappens: cleanup(projectPath),
 	});
-	step++;
 
 	// Reset version numbers to 1.0.0
 	await installStep({
-		describe: `${step}. Replacing version numbers`,
+		describe: `Replacing version numbers`,
 		thisHappens: replaceVersionNumbers(projectPath, promptedInfo.projectName),
 	});
-	step++;
 
 	// Activate theme.
 	await installStep({
-		describe: `${step}. Activating theme`,
+		describe: `Activating theme`,
 		thisHappens: wpThemeActivate(promptedInfo.package),
 	});
-	step++;
 
 	// Initialize theme.
 	await installStep({
-		describe: `${step}. Initializing theme`,
+		describe: `Initializing theme`,
 		thisHappens: boilerplateThemeInit(promptedInfo.package),
 	});
-	step++;
 
-	// Initialize theme.
+	// Initialize reusable header/footer.
 	await installStep({
-		describe: `${step}. Initialize reusable header/footer`,
+		describe: `Setting up header and footer`,
 		thisHappens: initReusableHF(),
 	});
-	step++;
 
 	// Show success message and exit successfully.
-	log('----------------');
-	log('Success!!!');
-	log('');
-	// log('Please do the following steps manually to complete the setup:');
-	// log(`1. Activate your new theme by running ${variable(`wp theme activate ${variable(promptedInfo.package)}`)}`);
-	// log(`2. Run ${variable('wp boilerplate --help')} to see what's possible using our WP-CLI commands.`);
-	// log(`3. If you can't decide what to do, we recommend running ${variable('wp boilerplate init theme')} inside your new theme folder.`);
-	// log('');
-	log(`Please read the documentation ${variable('https://eightshift.com/')} if you run into any issues or if you have any questions.`);
-	log('');
-	log('Best of luck!');
-	log('----------------');
+	alertBox([
+		'',
+		'Theme has been set up, activated and is ready to use.',
+		'',
+		`Check the documentation at ${chalk.underline('eightshift.com')} if you want to learn more, have any questions, or run into any issues.`,
+		'',
+		'Have fun!',
+	].join("\n"), "\n...done!", 'success', { omitFirstLine: true });
+
 	process.exit(0);
 };
