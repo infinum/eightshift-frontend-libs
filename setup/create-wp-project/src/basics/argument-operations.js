@@ -27,7 +27,7 @@ const summary = async (answers) => {
 
 			return [chalk.gray(summaryLabel[key]), answers[key], ''].join("\n");
 		}),
-	].join("\n"), 'Summary', 'info-bright');
+	].join("\n"), 'Summary');
 
 	const { confirmSummary } = await inquirer.prompt({
 		name: 'confirmSummary',
