@@ -17,7 +17,7 @@ const alertBox = (msg, title, type = 'info', config = {}) => {
 			return bold ? chalk.green.bold(input) : chalk.green(input);
 		} else if (type === 'info-bright') {
 			autoTitle = 'Info';
-			return bold ? chalk.cyanBright.bold(input) : chalk.cyanBright(input);
+			return bold ? chalk.blueBright.bold(input) : chalk.blueBright(input);
 		}
 
 		autoTitle = 'Info';
