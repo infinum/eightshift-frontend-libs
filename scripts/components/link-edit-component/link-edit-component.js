@@ -68,6 +68,10 @@ export const LinkEditComponent = ({
 	};
 
 	const handleChange = (newUrl) => {
+		if (newUrl?.length < 1) {
+			onChange({ url: null, isAnchor: false });
+		}
+
 		setInputValue(newUrl);
 		setIsEditing(true);
 	};
