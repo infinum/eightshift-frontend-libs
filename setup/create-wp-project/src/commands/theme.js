@@ -15,7 +15,7 @@ const {
 		installComposerDependencies,
 		wpThemeActivate,
 		boilerplateThemeInit,
-		initReusableHF,
+		initReusableHeaderFooter,
 	},
 	files: { installPath },
 	misc: { log },
@@ -120,7 +120,7 @@ exports.handler = async (argv) => {
 	// Initialize reusable header/footer.
 	await installStep({
 		describe: `Setting up header and footer`,
-		thisHappens: initReusableHF(),
+		thisHappens: initReusableHeaderFooter(),
 	});
 
 	// Show success message and exit successfully.

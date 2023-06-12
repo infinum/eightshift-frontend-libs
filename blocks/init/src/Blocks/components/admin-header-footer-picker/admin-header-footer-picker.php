@@ -34,7 +34,7 @@ $manifest = Components::getManifest(__DIR__);
 			do_settings_sections(ReusableBlocksHeaderFooter::ADMIN_MENU_SLUG);
 
 			// Render save button.
-			submit_button(__('Save', 'twentythree'));
+			submit_button(__('Save', 'eightshift-frontend-libs'));
 			?>
 		</form>
 	</div>

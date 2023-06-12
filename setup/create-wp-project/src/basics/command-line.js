@@ -43,7 +43,7 @@ const installComposerPackage = async (projectPath, packageToInstall) => exec(`cd
 const wpCoreDownload = async (projectPath) => exec(`cd "${projectPath}" && wp core download`);
 const wpThemeActivate = async (themeName) => exec(`wp theme activate ${themeName}`);
 const boilerplateThemeInit = async (themeName) => exec(`cd "${themeName}" && wp boilerplate init theme && npm run build`);
-const initReusableHF = async () => exec('wp boilerplate init header-footer');
+const initReusableHeaderFooter = async () => exec('wp boilerplate init header-footer');
 
 module.exports = {
   cloneRepoTo,
@@ -59,5 +59,5 @@ module.exports = {
   wpCoreDownload,
   wpThemeActivate,
   boilerplateThemeInit,
-  initReusableHF,
+  initReusableHeaderFooter,
 };
