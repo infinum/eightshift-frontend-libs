@@ -56,7 +56,7 @@ $attributes["uniqueWrapperId"] = $unique;
 <div
 	class="<?php echo esc_attr($wrapperClass); ?>"
 	data-id="<?php echo esc_attr($unique); ?>"
-	<?php echo esc_attr(($wrapperId) ? 'id=" ' . $wrapperId . '"' : ''); ?>
+	<?php echo $wrapperId ? 'id="' . esc_attr($wrapperId) . '"' : ''; ?>
 	>
 	<?php
 	 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
