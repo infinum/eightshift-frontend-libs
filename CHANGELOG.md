@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.0] - 2023-06-13
+
+### Removed
+- removed `menu` component, as it's not needed anymore.
+- removed `layout-three-columns` as it's not used anywhere anymore.
+
+### Added
+- added `admin-header-footer-picker` component (renders the settings page).
+- totally revamped theme and plugin setups visually.
+- theme setup is now fully hands-off and automatic (including `init theme`, `npm install`, `theme activate` and setting up reusable header/footer).
+- "Site navigation" and "Site footer" block, to enable making use of WP menus a history.
+
+### Changed
+- updated the default theme logo to the new ES DevKit one.
+- drawer component, so it better integrates with the new blocks, and also uses way less JS (especially if the browser supports the `:has()` selector).
+
+### Fixed
+- fixed #726 (bug with Repeater).
+- fixed `LinkEditComponent` not clearing properly when there's no text inside in some cases.
+
 ## [8.3.0] - 2023-05-15
 
 ### Bugfixes
@@ -734,6 +754,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.3.0...8.4.0
 [8.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.1...8.3.0
 [8.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.0...8.2.1
 [8.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.1.0...8.2.0
