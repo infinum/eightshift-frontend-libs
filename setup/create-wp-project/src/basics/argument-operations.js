@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
-const { log, label, variable, error } = require('./misc');
+const { log, error, alertBox } = require('./misc');
 const { eightshiftForbiddenKeywords } = require('./variables');
+const chalk = require('chalk');
 
 /**
  * Output a summary for all user-provided answers and ask for a confirmation.
@@ -8,34 +9,59 @@ const { eightshiftForbiddenKeywords } = require('./variables');
  * @param  {array} answers Array of user-provided answers.
  * @return {bool}
  */
-const summary = async(answers) => {
-  log('');
-  log(label('Summary: '));
-  Object.keys(answers).forEach((key) => {
-    log(`- ${key}: ${variable(answers[key])}`);
-  });
-  
-  // Write out all the requirements needed to run the script without any errors
-  log('');
-  log(label('Requirements: '));
-  log('Please check if you have installed these packages before you start the setup:');
-  log(`${variable('1.')} Node.js - LTS`);
-  log(`- check by running: ${variable('node -v')}`);
-  log(`${variable('2.')} Composer - LTS`);
-  log(`- check by running: ${variable('composer -v')}`);
-  log(`${variable('3.')} WP-CLI`);
-  log(`- check by running: ${variable('wp --info')}`);
-  log(`${variable('4.')} Git`);
-  log(`- check by running: ${variable('git --version')}`);
-  log('');
-  
-  const { confirmSummary } = await inquirer.prompt({
-    name: 'confirmSummary',
-    type: 'confirm',
-    message: 'Please confirm that everything looks good!',
-  });
+const summary = async (answers) => {
+	const summaryLabel = {
+		projectName: 'Project name',
+		url: 'Development URL',
+		description: 'Description',
+		package: 'Package name',
+		namespace: 'Namespace',
+	};
 
-  return confirmSummary;
+	alertBox([
+		'',
+		...Object.keys(answers).map((key, i, arr) => {
+			if (i === arr.length - 1) {
+				return [chalk.gray(summaryLabel[key]), answers[key]].join("\n");
+			}
+
+			return [chalk.gray(summaryLabel[key]), answers[key], ''].join("\n");
+		}),
+	].join("\n"), 'Summary');
+
+	const { confirmSummary } = await inquirer.prompt({
+		name: 'confirmSummary',
+		type: 'confirm',
+		message: 'Looks good?',
+	});
+
+	return confirmSummary;
+};
+/**
+ * Output a requirements message and ask if everything is ready.
+ *
+ * @return {bool}
+ */
+const requirementCheck = async () => {
+	alertBox([
+		'Before we continue, please check that you have these dependencies set up and ready to go:',
+		' ',
+		'- Node (LTS recommended)',
+		`${chalk.gray('  Check with')} ${chalk.gray.underline('node -v')}`,
+		'- Composer (LTS recommended)',
+		`${chalk.gray('  Check with')} ${chalk.gray.underline('composer -V')}`,
+		'- WP CLI', `${chalk.gray('  Check with')} ${chalk.gray.underline('wp --info')}`,
+		'- Git',
+		`${chalk.gray('  Check with')} ${chalk.gray.underline('git --version')}`
+	].join("\n"), 'Requirements');
+
+	const { confirmSummary } = await inquirer.prompt({
+		name: 'confirmSummary',
+		type: 'confirm',
+		message: 'Dependencies ready?',
+	});
+
+	return confirmSummary;
 };
 
 /**
@@ -45,69 +71,75 @@ const summary = async(answers) => {
  * @param  {array} argv            Array of CLI arguments.
  * @return {array}
  */
-const maybePrompt = async(scriptArguments, argv) => {
-  let answers = {};
-  let confirm = false;
-  let prompted = false;
-  let mustPrompt = false;
-  const argsArray = Object.keys(scriptArguments);
-  
-  do {
-    for (let i = 0; i < argsArray.length - 1; i++) {
-      const argName = argsArray[i];
+const maybePrompt = async (scriptArguments, argv) => {
+	let answers = {};
+	let confirm = false;
+	let prompted = false;
+	let mustPrompt = false;
+	const argsArray = Object.keys(scriptArguments);
 
-      if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
-        const argument = {
-          ...scriptArguments[argName],
-          message: scriptArguments[argName].describe,
-        };
+	do {
+		for (let i = 0; i < argsArray.length - 1; i++) {
+			const argName = argsArray[i];
 
-        // Use what's provided from CLI, prompt or build the arguments, depending
-        // on their settings.
-        if (argument.skipPrompt) {
-          continue;
-        } else if (typeof(argv[argName]) === "undefined" && argument.buildFrom) {
-          const { how, name } = argument.buildFrom;
-          answers = { ...answers, [argument.name]: how(answers[name]) };
-        } else {
+			if (Object.prototype.hasOwnProperty.call(scriptArguments, argName)) {
+				const argument = {
+					...scriptArguments[argName],
+					message: scriptArguments[argName].describe,
+				};
 
-          // If argument is provided from CLI use that, otherwise prompt.
-          const answer = argv[argName] && !mustPrompt ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
+				// Use what's provided from CLI, prompt or build the arguments, depending on their settings.
+				if (argument.skipPrompt) {
+					continue;
+				} else if (typeof (argv[argName]) === "undefined" && argument.buildFrom) {
+					const { how, name } = argument.buildFrom;
+					answers = { ...answers, [argument.name]: how(answers[name]) };
+				} else {
 
-          if (typeof (argv[argName]) === "undefined") {
-            prompted = true;
-          }
+					// If argument is provided from CLI use that, otherwise prompt.
+					const answer = argv[argName] && !mustPrompt ? { [argName]: argv[argName] } : await inquirer.prompt(argument);
 
-          // Check if the project name matches a forbidden keyword.
-          if (argName === 'projectName' && !projectNameValidator(answer[argName], false)) {
-            error(`Project name '${answer.projectName}' is forbidden. Choose a different name.`);
-            mustPrompt = true;
-            i--;
-            continue;
-          } else {
-            mustPrompt = false;
-          }
+					if (typeof (argv[argName]) === "undefined") {
+						prompted = true;
+					}
 
-          answers = { ...answers, ...answer };
-        }
-      }
-    }
+					// Check if the project name matches a forbidden keyword.
+					if (argName === 'projectName' && !projectNameValidator(answer[argName], false)) {
+						error(`Project name '${answer.projectName}' cannot be used. Choose a different name.`);
+						mustPrompt = true;
+						i--;
+						continue;
+					} else {
+						mustPrompt = false;
+					}
 
-    // Skip summary if noSummary argument is provided
-    if (!argv.noSummary) {
-      confirm = await summary(answers);
+					answers = { ...answers, ...answer };
+				}
+			}
+		}
 
-      if (!confirm && prompted === false) {
-        process.exit(0);
-      }
+		// Skip summary if noSummary argument is provided
+		if (!argv.noSummary) {
+			confirm = await summary(answers);
 
-      log('');
-    } else {
-      confirm = true;
-    }
-  } while (confirm !== true);
+			if (!confirm && prompted === false) {
+				process.exit(0);
+			}
 
-  return answers;
+			log('');
+		} else {
+			confirm = true;
+		}
+	} while (confirm !== true);
+
+	const requirementsValid = await requirementCheck(answers);
+
+	if (!requirementsValid) {
+		alertBox('Install/update the dependencies, check versions, and run the script again.', 'Requirements not met', 'error');
+		process.exit(0);
+	}
+
+	return answers;
 };
 
 /**
@@ -116,14 +148,14 @@ const maybePrompt = async(scriptArguments, argv) => {
  * @param  {string} prompt Answer to prompted y/n question
  * @return {bool}
  */
-const promptToBool = async(prompt) => {
-  const lwrPrompt = prompt.toLowerCase();
+const promptToBool = async (prompt) => {
+	const lwrPrompt = prompt.toLowerCase();
 
-  return lwrPrompt === 'y' ||
-    lwrPrompt === 'yes' ||
-    lwrPrompt === '1' ||
-    lwrPrompt === 'confirm' ||
-    lwrPrompt === 'i do';
+	return lwrPrompt === 'y' ||
+		lwrPrompt === 'yes' ||
+		lwrPrompt === '1' ||
+		lwrPrompt === 'confirm' ||
+		lwrPrompt === 'i do';
 };
 
 /**
@@ -134,7 +166,7 @@ const promptToBool = async(prompt) => {
  */
 const projectNameValidator = (input) => {
 	if (eightshiftForbiddenKeywords.find((word) => word === input)) {
-    return false;
+		return false;
 	}
 	return true;
 };
@@ -143,4 +175,5 @@ module.exports = {
 	maybePrompt,
 	promptToBool,
 	projectNameValidator,
+	requirementCheck,
 };

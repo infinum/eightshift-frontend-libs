@@ -57,50 +57,62 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 								innerClass={linkClass}
 								title={link?.text?.length > 0 ? link.text : <i>{__('New link', 'eightshift-frontend-libs')}</i>}
 								preIcon={
-									<PopoverWithTrigger
-										trigger={({ ref, setIsOpen, isOpen }) => (
-											<button
-												ref={ref}
-												onClick={() => setIsOpen(!isOpen)}
-												className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
-											>
-												{icons.editOptions}
-											</button>
-										)}
-										contentClass='es-popover-content es-w-88'
-									>
-										<TextControl
-											label={__('Link text', 'eightshift-frontend-libs')}
-											value={link?.text}
-											onChange={(value) => {
-												const newValue = [...siteFooterLinks];
-												newValue[i].text = value;
-
+									<div className='es-display-flex'>
+										<button
+											onClick={() => {
+												const newValue = [...siteFooterLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
 											}}
-										/>
+											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
+										>
+											{icons.trash}
+										</button>
 
-										<LinkEditComponent
-											label={__('URL', 'eightshift-frontend-libs')}
-											url={link?.url}
-											opensInNewTab={link?.newTab}
-											onChange={({ url, newTab }) => {
-												const newValue = [...siteFooterLinks];
+										<PopoverWithTrigger
+											trigger={({ ref, setIsOpen, isOpen }) => (
+												<button
+													ref={ref}
+													onClick={() => setIsOpen(!isOpen)}
+													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
+												>
+													{icons.editOptions}
+												</button>
+											)}
+											contentClass='es-popover-content es-w-88'
+										>
+											<TextControl
+												label={__('Link text', 'eightshift-frontend-libs')}
+												value={link?.text}
+												onChange={(value) => {
+													const newValue = [...siteFooterLinks];
+													newValue[i].text = value;
 
-												if (typeof url !== 'undefined') {
-													newValue[i].url = url;
-												}
+													setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
+												}}
+											/>
 
-												if (typeof newTab !== 'undefined') {
-													newValue[i].newTab = newTab;
-												}
+											<LinkEditComponent
+												label={__('URL', 'eightshift-frontend-libs')}
+												url={link?.url}
+												opensInNewTab={link?.newTab}
+												onChange={({ url, newTab }) => {
+													const newValue = [...siteFooterLinks];
 
-												setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
-											}}
-											hideAnchorNotice
-											noBottomSpacing
-										/>
-									</PopoverWithTrigger>
+													if (typeof url !== 'undefined') {
+														newValue[i].url = url;
+													}
+
+													if (typeof newTab !== 'undefined') {
+														newValue[i].newTab = newTab;
+													}
+
+													setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
+												}}
+												hideAnchorNotice
+												noBottomSpacing
+											/>
+										</PopoverWithTrigger>
+									</div>
 								}
 								key={link?.id}
 							/>

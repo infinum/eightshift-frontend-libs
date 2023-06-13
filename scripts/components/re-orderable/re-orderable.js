@@ -168,9 +168,7 @@ export const ReOrderable = (props) => {
 							horizontal={horizontal}
 							horizontalVertical={horizontalVertical}
 							customGrabHandle={customGrabHandle}
-						>
-							{item?.props?.children}
-						</SortableItem>
+						/>
 					))}
 				</SortableContext>
 			</DndContext>
