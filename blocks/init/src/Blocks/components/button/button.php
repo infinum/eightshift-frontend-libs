@@ -71,7 +71,7 @@ $buttonTag = $buttonUrl ? 'a' : 'button';
 	<?php
 	foreach ($buttonAttrs as $key => $value) {
 		if (!empty($key) && !empty($value)) {
-			echo wp_kses_post("{$key}=" . $value . " ");
+			echo wp_kses_post("{$key}=\"$value\"");
 		}
 	}
 	?>
