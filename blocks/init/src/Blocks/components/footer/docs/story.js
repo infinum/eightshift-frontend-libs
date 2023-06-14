@@ -1,7 +1,6 @@
 import React from 'react';
 import readme from './readme.mdx';
 import manifest from '../manifest.json';
-import { LayoutThreeColumnsEditor } from '../../layout-three-columns/components/layout-three-columns-editor';
 import { editor as CopyrightEditor } from '../../copyright/docs/story';
 
 export default {
@@ -14,14 +13,15 @@ export default {
 };
 
 export const editor = () => (
-	<LayoutThreeColumnsEditor
-		selectorClass={manifest.componentClass}
-		layoutThreeColumnsLeft={[
-			<CopyrightEditor key={'copyright'} />,
-		]}
-		layoutThreeColumnsCenter={[
-		]}
-		layoutThreeColumnsRight={[
-		]}
-	/>
+	<div></div>
+	// <LayoutThreeColumnsEditor
+	// 	selectorClass={manifest.componentClass}
+	// 	layoutThreeColumnsLeft={[
+	// 		<CopyrightEditor key={'copyright'} />,
+	// 	]}
+	// 	layoutThreeColumnsCenter={[
+	// 	]}
+	// 	layoutThreeColumnsRight={[
+	// 	]}
+	// />
 );

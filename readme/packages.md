@@ -7,6 +7,10 @@ This is a document explaining what each `package.json` package is used for.
 * @babel/cli - Adds terminal commands for babel.
 * @babel/eslint-parser - JS Parser for babel.
 * @babel/eslint-plugin - JS Parser for babel plugin.
+* @dnd-kit/core - Modern helper for creating re-orderable react components
+* @dnd-kit/modifiers - Modern helper for creating re-orderable react components
+* @dnd-kit/sortable - Modern helper for creating re-orderable react components
+* @dnd-kit/utilities - Modern helper for creating re-orderable react components
 * @infinumjs/eslint-config-react-js - Adds JS linter config.
 * @wordpress/api-fetch - WP package for api fetch.
 * @wordpress/dependency-extraction-webpack-plugin - Allows Webpack to read all @wordpress packages as external dependency.
@@ -37,9 +41,9 @@ This is a document explaining what each `package.json` package is used for.
 * promisify-child-process - Async child process library used in project setup.
 * raw-loader - Webpack loader used for files.
 * rc-slider - React slider component used in our components.
+* rc-tooltip - React tooltip component used in our components.
 * react-html-parser - Utility for converting HTML strings into React components.
 * react-select - Select component for React.
-* react-sortable-hoc - Sortable component for React.
 * regenerator-runtime - Used for Core-js polyfill.
 * sass - A pure JavaScript implementation of Sass
 * sass-loader - Webpack loader used for sass.
@@ -66,6 +70,10 @@ This is a document explaining what each `package.json` package is used for.
 * gh-pages - Terminal GH pages lib for deployment to GH pages.
 * jest - Jest testing lib.
 * jest-environment-jsdom - Package used for tests to provide enviroment.
+* micromodal - Modal component used in the project here only for storybook.
+* ol - Map component used in the project here only for storybook.
+* ol-mapbox-style - Map component used in the project here only for storybook.
 * react-test-renderer - This package provides an experimental React renderer that can be used to render React components to pure JavaScript objects.
 * replace-in-file - A simple utility to quickly replace text in one or more files or globs.
 * sassdoc - Sass docs library.
+* swiper - Swiper component used in the project here only for storybook.
