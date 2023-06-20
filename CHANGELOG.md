@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.1] - 2023-06-20
+
+### Changed
+- updating random Id generator to output 8 rather than 32 characters.
+
 ## [8.4.0] - 2023-06-13
 
 ### Removed
@@ -754,6 +759,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.0...8.4.1
 [8.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.3.0...8.4.0
 [8.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.1...8.3.0
 [8.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.0...8.2.1
