@@ -272,11 +272,11 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
  *
  * Output:
  * ```js
- * 891273981374b98127419287
+ * mg2shbh9
  * ```
  */
 export const getUnique = () => {
-	return require('crypto').randomBytes(16).toString('hex');
+	return (Math.random() + 1).toString(36).substring(4);
 };
 
 // ------------------------------------------------------------------------------
