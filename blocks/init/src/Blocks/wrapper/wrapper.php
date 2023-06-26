@@ -38,6 +38,7 @@ if (! $wrapperUse || $wrapperNoControls) {
 	return;
 }
 
+$wrapperTag = Components::checkAttr('wrapperTag', $attributes, $manifest);
 $wrapperId = Components::checkAttr('wrapperId', $attributes, $manifest);
 $wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manifest);
 $wrapperMainClass = $attributes['componentClass'] ?? $manifest['componentClass'];
@@ -53,7 +54,7 @@ $attributes["uniqueWrapperId"] = $unique;
 
 ?>
 
-<div
+<<?php echo esc_attr($wrapperTag); ?>
 	class="<?php echo esc_attr($wrapperClass); ?>"
 	data-id="<?php echo esc_attr($unique); ?>"
 	<?php echo $wrapperId ? 'id="' . esc_attr($wrapperId) . '"' : ''; ?>
@@ -88,4 +89,4 @@ $attributes["uniqueWrapperId"] = $unique;
 		);
 	}
 	?>
-</div>
+</<?php echo esc_attr($wrapperTag); ?>>

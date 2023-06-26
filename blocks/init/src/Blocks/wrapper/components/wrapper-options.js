@@ -37,6 +37,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		showWrapperBgColorPicker = true,
 		showWrapperWidth = true,
 		showWrapperOffset = true,
+		showWrapperTag = true,
 		showWrapperSpacingTop = true,
 		showWrapperSpacingBottom = true,
 		showWrapperSpacingTopIn = true,
@@ -73,6 +74,8 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const dividerColors = getOption('wrapperDividerColor', attributes, manifest, true);
 	const backgroundColors = getOption('wrapperBgColorProject', attributes, manifest, true);
 
+	const wrapperTagOptions = getOption('wrapperTag', attributes, manifest);
+
 	const isEditMode = useSelect((select) => select('core/block-editor').isNavigationMode());
 
 	const wrapperUse = checkAttr('wrapperUse', attributes, manifest);
@@ -82,6 +85,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const wrapperSimple = checkAttr('wrapperSimple', attributes, manifest);
 	const wrapperId = checkAttr('wrapperId', attributes, manifest);
 	const wrapperAnchorId = checkAttr('wrapperAnchorId', attributes, manifest);
+	const wrapperTag = checkAttr('wrapperTag', attributes, manifest);
 
 	const wrapperBgColorType = checkAttr('wrapperBgColorType', attributes, manifest);
 	const wrapperBgColorProject = checkAttr('wrapperBgColorProject', attributes, manifest);
@@ -271,6 +275,21 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							onAfterChange={() => dispatch(WRAPPER_STORE_NAME).hidePreview()}
 						/>
 					}
+
+					<Section
+						icon={icons.code}
+						label={__('Wrapper tag', 'eightshift-frontend-libs')}
+						showIf={showWrapperTag}
+					>
+						<OptionSelector
+							options={wrapperTagOptions}
+							value={wrapperTag}
+							onChange={(value) => setAttributes({ wrapperTag: value })}
+							additionalButtonClass='es-v-spaced es-w-16 es-text-3 es-content-center'
+							noBottomSpacing={getWrapperUseOptionName() === 'off'}
+							alignment='center'
+						/>
+					</Section>
 
 					<Section
 						icon={icons.ruler}
