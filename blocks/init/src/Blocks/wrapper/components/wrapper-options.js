@@ -276,20 +276,17 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						/>
 					}
 
-					<Section
-						icon={icons.code}
-						label={__('Wrapper tag', 'eightshift-frontend-libs')}
-						showIf={showWrapperTag}
-					>
+					{wrapperUse && showWrapperTag &&
 						<OptionSelector
+							label={__('Wrapper tag', 'eightshift-frontend-libs')}
+							icon={icons.code}
 							options={wrapperTagOptions}
 							value={wrapperTag}
 							onChange={(value) => setAttributes({ wrapperTag: value })}
 							additionalButtonClass='es-v-spaced es-w-16 es-text-3 es-content-center'
-							noBottomSpacing={getWrapperUseOptionName() === 'off'}
 							alignment='center'
 						/>
-					</Section>
+					}
 
 					<Section
 						icon={icons.ruler}
