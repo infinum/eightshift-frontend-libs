@@ -20,7 +20,7 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 	const wrapperOffsetLarge = checkAttr('wrapperOffsetLarge', attributes, manifest, true);
 	const wrapperWidthLarge = checkAttr('wrapperWidthLarge', attributes, manifest, true);
 
-	// First letter for WrapperTag is capitalized on purpose. That way it can be used as a dynamic tag.
+	// First letter of WrapperTag variable is capitalized on purpose. That way it can be used as a dynamic tag.
 	const WrapperTag = checkAttr('wrapperTag', attributes, manifest);
 
 	const {
