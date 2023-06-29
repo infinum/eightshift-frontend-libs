@@ -71,6 +71,11 @@
 			"default": false
 		},
 
+		"wrapperTag": {
+			"type": "string",
+			"default": "div"
+		},
+
 		"wrapperBgColorType": {
 			"type": "string",
 			"default": "project"
@@ -402,6 +407,24 @@
 			"fullMax": 14,
 			"step": 1
 		},
+		"wrapperTag": [
+			{
+				"value": "div",
+				"label": "<div>"
+			},
+			{
+				"value": "section",
+				"label": "<section>"
+			},
+			{
+				"value": "aside",
+				"label": "<aside>"
+			},
+			{
+				"value": "article",
+				"label": "<article>"
+			}
+		],
 		"breakpoints": [
 			"large",
 			"desktop",

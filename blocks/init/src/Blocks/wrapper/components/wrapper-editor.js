@@ -20,6 +20,9 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 	const wrapperOffsetLarge = checkAttr('wrapperOffsetLarge', attributes, manifest, true);
 	const wrapperWidthLarge = checkAttr('wrapperWidthLarge', attributes, manifest, true);
 
+	// First letter of WrapperTag variable is capitalized on purpose. That way it can be used as a dynamic tag.
+	const WrapperTag = checkAttr('wrapperTag', attributes, manifest);
+
 	const {
 		blockClientId,
 	} = attributes;
@@ -82,7 +85,7 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
-		<div ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>
+		<WrapperTag ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>
 			<GridGuides
 				previewVisible={previewVisible}
 				wrapperIsFullWidthLarge={wrapperIsFullWidthLarge}
@@ -107,6 +110,6 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 				wrapperOffsetLarge={wrapperOffsetLarge}
 				wrapperIsFullWidthLarge={wrapperIsFullWidthLarge}
 			/>
-		</div>
+		</WrapperTag>
 	);
 };
