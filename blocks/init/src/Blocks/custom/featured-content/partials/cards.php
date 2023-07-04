@@ -32,7 +32,6 @@ foreach ($items as $item) {
 				'cardButtonVariant' => 'buttonOutline',
 				'cardButtonIconUse' => false,
 				'cardImageUrl' => get_the_post_thumbnail_url($item, 'large'),
-				'blockSsr' => $attributes['blockSsr'],
 		]),
 		'',
 		true

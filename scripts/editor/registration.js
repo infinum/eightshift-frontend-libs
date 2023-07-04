@@ -784,6 +784,7 @@ export const registerVariation = (
 	}
 
 	// Set full examples list.
+	variationManifest['example'].viewportWidth = 800;
 	variationManifest['example'].attributes = {
 		...parentBlockManifest?.example?.attributes,
 		...variationManifest['attributes'],
@@ -850,6 +851,7 @@ export const registerBlock = (
 	}
 
 	// Set full examples list.
+	blockManifest['example'].viewportWidth = 800;
 	blockManifest['example'].attributes = {
 		...exampleAttributes,
 		...getExample('', blockManifest),
