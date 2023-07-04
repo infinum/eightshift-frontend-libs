@@ -42,3 +42,8 @@
 		@error 'ERROR: $global-config variable doesnt exist!';
 	}
 }
+
+// Short alias.
+@function globalC($key) {
+	@return global-config($key);
+}

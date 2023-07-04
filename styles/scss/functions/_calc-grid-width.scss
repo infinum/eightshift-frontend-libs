@@ -21,3 +21,8 @@
 @function calc-grid-width($cols: $base-col-number) {
 	@return percentage(math.div($cols, $base-col-number));
 }
+
+// Short alias.
+@function calcGW($cols: $base-col-number) {
+	@return calc-grid-width($cols: $base-col-number);
+}

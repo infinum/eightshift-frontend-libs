@@ -6,58 +6,65 @@ import { subscribe, select } from '@wordpress/data';
 /* global YoastSEO */
 
 /**
- * Searches all blocks and component manifests and returns attributes that have `"seo": "true"` set.
- * Attributes with this key will be passed as custom data to YoastSEO's analysis. 
+ * Attributes with this key will be passed as custom data to YoastSEO's analysis.
  * See https://developer.yoast.com/customization/yoast-seo/adding-custom-data-analysis for more info.
- *
- * Usage:
- * ```js
- * import { yoastSeo } from '@eightshift/frontend-libs/scripts/editor';
- *
- * yoastSeo();
- * ```
  */
 export const yoastSeo = () => {
 	domReady(() => {
 		// Bailout if plugin is missing.
-		if (typeof YoastSEO !== 'undefined' && typeof YoastSEO?.app !== 'undefined') {
-
-			// Check if data is available from the state.
-			let isDataAvailable = false;
-
-			// Subscribe to changes.
-			subscribe(
-				// Small debounce for more optimisations in loading.
-				_.debounce(() => {
-					// Get the new current post when ready.
-					const currentPost = select('core/editor').getCurrentPost();
-
-					// Stop subscription when currentPost is available.
-					if (!_.isEmpty(currentPost) && !isDataAvailable) {
-						isDataAvailable = true;
-
-						// Find API url for single item.
-						const apiUrl = currentPost['_links']['wp:action-unfiltered-html'][0]['href'];
-
-						if (typeof apiUrl !== 'undefined') {
-							// Fetch content from the api with only content data in it.
-							apiFetch({
-								url: `${apiUrl}?_fields=content`,
-								method: 'GET',
-							}).then((response) => {
-
-								const content = response?.content?.rendered;
-
-								// Add Seo plugin updates for the new content.
-								if (typeof content !== 'undefined' ) {
-									YoastSEO.app.registerPlugin('EightshiftCustomSeo', {status: 'ready'});
-									YoastSEO.app.registerModification('content', () => content, 'EightshiftCustomSeo', 5);
-								}
-							});
-						}
-					}
-				}, 50)
-			);
+		if (typeof YoastSEO === 'undefined' && typeof YoastSEO?.app === 'undefined') {
+			return;
 		}
-	});
+
+		// Local variable content, used to update Yoast modifications.
+		let content = '';
+		let isDataAvailable = false;
+
+		YoastSEO.app.registerPlugin('EightshiftCustomSeo', { status: 'ready' });
+		YoastSEO.app.registerModification('content', () => content, 'EightshiftCustomSeo', 5);
+
+		// Subscribe to changes.
+		subscribe(
+			// Small debounce for more optimisations in loading.
+			_.debounce(() => {
+				// Filter only when saved or autosaved.
+				const isSavingPost = wp.data.select('core/editor').isSavingPost();
+				const isAutosavingPost = wp.data.select('core/editor').isAutosavingPost();
+
+				// Get the new current post when ready.
+				const currentPost = select('core/editor').getCurrentPost();
+
+				// Filter subscribes. Check only if post is saving, autosaving or initial load.
+				if (_.isEmpty(currentPost) || (isDataAvailable && !isSavingPost && !isAutosavingPost)) {
+					return;
+				}
+
+				isDataAvailable = true;
+
+				// Find API url for single item.
+				const apiUrl = currentPost['_links']['wp:action-publish'][0].href;
+
+				if (typeof apiUrl === 'undefined') {
+					return;
+				}
+
+				// Fetch content from the api with only content data in it.
+				apiFetch({
+					url: `${apiUrl}?_fields=content`,
+					method: 'GET',
+				}).then((response) => {
+					const fetchedContent = response?.content?.rendered;
+
+					if (typeof content === 'undefined' && fetchedContent === content) {
+						return;
+					}
+					// Updating global variable content.
+					content = fetchedContent;
+					// Refreshing Yoast input.
+					YoastSEO.app.pluggable.refresh();
+				});
+			}, 50)
+		);
+	}
+	);
 };

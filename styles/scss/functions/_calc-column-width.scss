@@ -21,3 +21,8 @@
 @function calc-column-width($cols: $base-col-number) {
 	@return math.div(100, $cols) + 0%;
 }
+
+// Short alias.
+@function calcCW($cols: $base-col-number) {
+	@return calc-column-width($cols: $base-col-number);
+}

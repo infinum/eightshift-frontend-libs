@@ -41,3 +41,8 @@
 		@error 'ERROR: $global-settings variable doesnt exist!';
 	}
 }
+
+// Short alias.
+@function globalS($keys...) {
+	@return global-settings($keys...);
+}

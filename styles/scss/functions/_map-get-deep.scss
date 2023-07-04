@@ -41,3 +41,8 @@
 
 	@return $value;
 }
+
+// Short alias.
+@function mapGD($map, $keys...) {
+	@return map-get-deep($map, $keys...);
+}
