@@ -11,6 +11,9 @@ module.exports = (options) => {
 		path: options.config.outputPath,
 		publicPath: options.config.publicPath,
 
+		// This clean will remove the build folder on every start of the build process.
+		clean: true,
+
 		// If you are using the multiple webpack builds with dynamic import you must provide different name here in order to avoid collision.
 		library: '[name]',
 	};
