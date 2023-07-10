@@ -27,7 +27,6 @@ export const FeaturedCategoriesEditor = ({ attributes }) => {
 					...attributes,
 					wrapperUse: false,
 					featuredCategoriesServerSideRender: true,
-					blockSsr: true,
 				}
 			}
 		/>

@@ -21,7 +21,6 @@ $featuredContentTerms = Components::checkAttr('featuredContentTerms', $attribute
 $featuredContentPosts = Components::checkAttr('featuredContentPosts', $attributes, $manifest);
 $featuredContentExcludeCurrentPost = Components::checkAttr('featuredContentExcludeCurrentPost', $attributes, $manifest);
 $featuredContentUseCurrentTerm = Components::checkAttr('featuredContentUseCurrentTerm', $attributes, $manifest);
-$featuredContentServerSideRender = Components::checkAttr('featuredContentServerSideRender', $attributes, $manifest);
 $featuredContentRandomOrder = Components::checkAttr('featuredContentRandomOrder', $attributes, $manifest);
 $featuredContentLayoutTotalItems = Components::checkAttr('featuredContentLayoutTotalItems', $attributes, $manifest);
 $featuredContentLoadMoreUse = Components::checkAttr('featuredContentLoadMoreUse', $attributes, $manifest);
@@ -56,7 +55,7 @@ if ($featuredContentTaxonomy) {
 			},
 			(array)$featuredContentTerms
 		);
-	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post && !$featuredContentServerSideRender) {
+	} elseif ($featuredContentUseCurrentTerm && $post instanceof WP_Post) {
 		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy)); // @phpstan-ignore-line
 
 		if ($currentTerms) {
@@ -118,7 +117,6 @@ $loadMoreId = "{$blockName}-{$unique}";
 		'cards',
 		[
 			'items' => $mainQuery->posts,
-			'blockSsr' => $featuredContentServerSideRender,
 		]
 	);
 
@@ -128,24 +126,21 @@ $loadMoreId = "{$blockName}-{$unique}";
 			'blockClass' => $blockClass,
 			'layoutItems' => $cards,
 			'layoutLoadMoreId' => $loadMoreId,
-			'blockSsr' => $featuredContentServerSideRender,
 		]),
 		'',
 		true
 	);
 
-	if (!$featuredContentServerSideRender) {
-		echo Components::render(
-			'load-more',
-			Components::props('loadMore', $attributes, [
-				'loadMoreInitiaItems' => wp_json_encode($mainQuery->posts),
-				'loadMoreQuery' => wp_json_encode($args),
-				'loadMoreId' => $loadMoreId,
-				'loadMoreType' => $blockName,
-			]),
-			'',
-			true
-		);
-	}
+	echo Components::render(
+		'load-more',
+		Components::props('loadMore', $attributes, [
+			'loadMoreInitiaItems' => wp_json_encode($mainQuery->posts),
+			'loadMoreQuery' => wp_json_encode($args),
+			'loadMoreId' => $loadMoreId,
+			'loadMoreType' => $blockName,
+		]),
+		'',
+		true
+	);
 	?>
 </div>

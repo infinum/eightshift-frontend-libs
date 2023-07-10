@@ -43,3 +43,8 @@
 @function line-height($pixels, $context: $base-font-size) {
 	@return #{math.div(strip-unit($pixels), strip-unit($context))};
 }
+
+// Short alias.
+@function lh($pixels, $context: $base-font-size) {
+	@return line-height($pixels, $context: $base-font-size);
+}

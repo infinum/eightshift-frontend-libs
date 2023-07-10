@@ -38,3 +38,8 @@
 		@error 'ERROR: Specified index does not exist in map #{$map}, with value: #{$key}';
 	}
 }
+
+// Short alias.
+@function mapGS($map, $key) {
+	@return map-get-strict($map, $key);
+}

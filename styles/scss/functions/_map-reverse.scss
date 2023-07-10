@@ -50,3 +50,8 @@
 
 	@return $result;
 }
+
+// Short alias.
+@function mapR($map) {
+	@return map-reverse($map);
+}

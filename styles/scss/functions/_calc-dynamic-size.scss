@@ -31,3 +31,8 @@
 
 	@return calc(#{$ratio} * 100vw + #{$factor});
 }
+
+// Short alias.
+@function calcDS($min-size, $max-size, $min-width: tablet, $max-width: desktop) {
+	@return calc-dynamic-size($min-size, $max-size, $min-width: tablet, $max-width: desktop);
+}

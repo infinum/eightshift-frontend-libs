@@ -99,7 +99,6 @@ foreach ($items as $item) {
 				'cardButtonUrl' => get_the_permalink($item),
 				'cardButtonContent' => __('View More', 'eightshift-boilerplate'),
 				'cardImageUrl' => \get_the_post_thumbnail_url($item, 'large'),
-				'blockSsr' => $attributes['blockSsr'],
 			],
 		),
 		'',
@@ -130,7 +129,6 @@ foreach ($items as $item) {
 					'cards',
 					[
 						'items' => $response,
-						'blockSsr' => true,
 					]
 				);
 			default:
