@@ -4,18 +4,21 @@ import apiFetch from '@wordpress/api-fetch';
 /**
  * Returns the fetch callback function for getting data from WP API.
  *
+ * @typedef {'post_title'|'post_content'|'post_excerpt'} SearchParam
+ *
  * @param {string} endpoint     Endpoint to fetch from (usually post type or taxonomy).
  * @param {object} [options={}] Additional options for fine tunning.
  *
- * @param {function} options.processId              Function that allows custom id processing.
- * @param {function} options.processLabel           Function that allows custom select option label processing.
- * @param {function} options.processMetadata        Function that allows modifying output data (e.g. for adding metadata for grouping inside a CustomSelect).
- * @param {integer}  [options.perPage=30]           Define max perPage items to fetch.
- * @param {string}   [options.routePrefix='wp/v2']  Define if using custom or native WP routes.
- * @param {object}   [options.additionalParam={}]   Define additional query params to fetch.
- * @param {string}   [options.cacheTime='86400000'] Define amount of time the cache is stored in seconds. Default 1 day
- * @param {fields}   [options.fields='id,title']    Fields to return for optimized response.
- * @param {fields}   [options.noCache=false]        If `true`, bypasses cache when fetching items.
+ * @param {function} options.processId                        Function that allows custom id processing.
+ * @param {function} options.processLabel                     Function that allows custom select option label processing.
+ * @param {function} options.processMetadata                  Function that allows modifying output data (e.g. for adding metadata for grouping inside a CustomSelect).
+ * @param {integer}  [options.perPage=30]                     Define max perPage items to fetch.
+ * @param {string}   [options.routePrefix='wp/v2']            Define if using custom or native WP routes.
+ * @param {object}   [options.additionalParam={}]             Define additional query params to fetch.
+ * @param {string}   [options.cacheTime='86400000']           Define amount of time the cache is stored in seconds. Default 1 day
+ * @param {fields}   [options.fields='id,title']              Fields to return for optimized response.
+ * @param {fields}   [options.noCache=false]                  If `true`, bypasses cache when fetching items.
+ * @param {SearchParam|SearchParam[]} [options.searchColumns] If passed, allows specifying the search scope.
  *
  * @returns Callback function that can be passed to CustomSelect loadOptions
  *
@@ -42,6 +45,7 @@ export function getFetchWpApi(endpoint, options = {}) {
 		cacheTime = '86400000', // One day.
 		fields = 'id,title',
 		noCache = false,
+		searchColumns,
 	} = options;
 
 	/**
@@ -60,6 +64,10 @@ export function getFetchWpApi(endpoint, options = {}) {
 		// Add fields in the params for optimisations.
 		if (fields?.length > 0) {
 			params['_fields'] = fields;
+		}
+
+		if (searchColumns?.length > 0) {
+			params['search_columns'] = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
 		}
 
 		// Fetch fresh if you are searching something.
