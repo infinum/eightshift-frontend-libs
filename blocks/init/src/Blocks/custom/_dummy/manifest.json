@@ -1,0 +1,23 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "%block-name-kebab-case%",
+	"title": "%block-name-title-case%",
+	"description" : "%block-name-title-case% Block Description",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-example"
+	},
+	"keywords": [
+		"%block-name-title-case% Keyword"
+	],
+	"example": {
+		"attributes": {
+			"%block-name-camel-case%Content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam est id semper aliquet. Aenean accumsan lacus justo, a lacinia turpis semper condimentum."
+		}
+	},
+	"attributes": {
+		"%block-name-camel-case%Content": {
+			"type": "string"
+		}
+	}
+}

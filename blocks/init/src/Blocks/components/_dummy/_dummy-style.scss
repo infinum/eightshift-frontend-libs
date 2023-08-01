@@ -1,0 +1,28 @@
+.%block-name-kebab-case% {
+	font-size: var(--%block-name-kebab-case%-font-size, 1rem);
+	font-weight: var(--%block-name-kebab-case%-font-weight);
+	line-height: var(--%block-name-kebab-case%-line-height, 1.5);
+	letter-spacing: var(--%block-name-kebab-case%-letter-spacing, 0);
+
+	color: var(--%block-name-kebab-case%-color, var(--global-colors-black, currentColor));
+
+	margin: 0;
+	overflow-wrap: anywhere;
+
+	a {
+		cursor: pointer;
+		text-decoration: underline;
+		color: var(--%block-name-kebab-case%-link-color, var(--global-colors-primary500, #5555CE));
+		text-decoration-color: var(--%block-name-kebab-case%-link-color, var(--global-colors-primary500, #5555CE));
+
+		transition: {
+			property: color;
+			timing-function: ease-in;
+			duration: 0.3s;
+		}
+
+		&:hover {
+			color: var(--%block-name-kebab-case%-link-color-hover, var(--global-colors-primary500, #FFDD48));
+		}
+	}
+}
