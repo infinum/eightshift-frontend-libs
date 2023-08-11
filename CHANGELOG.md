@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.2] - 2023-08-11
+
+### Added
+- support for WP 6.3.
+- added 11 new UI icons and 1 new block icon.
+
+### Changed
+- `fetchWpApi` now has a `searchColumns` param to enable further filtering.
+- `Site footer` and `Site navbar` now use a simpler mechanism for ID generation, removing the dependency for `window.crypto` (which doesn't work in non-HTTPS environemnts).
+- `Repeater` and `ReOrderable` will now auto-regenerate all item IDs if a conflict is found.
+- `PopoverWithTrigger` now supports external closing from within the popover content.
+
 ## [8.4.1] - 2023-06-20
 
 ### Changed
@@ -759,6 +771,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.1...8.4.2
 [8.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.0...8.4.1
 [8.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.3.0...8.4.0
 [8.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.2.1...8.3.0
