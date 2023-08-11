@@ -7,4 +7,4 @@ assignees: iruzevic
 
 ---
 
-Thank you for your interest in our project! We value your ideas and feedback. Please provide detailed information regarding your feature request.
+<!-- Thank you for your interest in our project! We value your ideas and feedback. Please provide detailed information regarding your feature request. -->
