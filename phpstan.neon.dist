@@ -21,3 +21,4 @@ parameters:
 		- "/^Cannot access offset '[\\w_]+' on mixed\\.?\\s?$/"
 		- '/^Parameter #\d+ \(mixed\) of echo cannot be converted to string\.?\s?$/'
 		- '/^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.?\s?$/'
+		- '/^Access to constant [A-Z_]+ on an unknown class EightshiftBoilerplate\\AdminMenus\\ReusableBlocksHeaderFooter\.$/'
