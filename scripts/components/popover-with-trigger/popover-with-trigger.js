@@ -11,6 +11,7 @@ import { Popover } from '@wordpress/components';
  * @param {React.Component} props.trigger                     - Trigger element. *Needs to return a React component!* `{ ref, setIsOpen, isOpen }` is passed as props. Use `setIsOpen(true)` to open the modal. Attach the `ref` to some place inside the trigger to make sure the positioning is correct.
  * @param {React.Component?} props.children                   - Popover contents.
  * @param {function?} [props.additionalCloseActions]          - If provided, will be run before the popover closes.
+ * @param {boolean} [props.allowCloseFromChildren=false]      - If `true`, child items are injected with a `popoverClose` prop that closes the popover when called.
  * @returns
  */
 export const PopoverWithTrigger = (props) => {
@@ -24,6 +25,8 @@ export const PopoverWithTrigger = (props) => {
 		children,
 
 		additionalCloseActions,
+
+		allowCloseFromChildren = false,
 	} = props;
 
 	const ref = useRef();
@@ -46,7 +49,9 @@ export const PopoverWithTrigger = (props) => {
 					position={position}
 				>
 					<div className={contentClass}>
-						{children}
+						{!allowCloseFromChildren && children}
+
+						{allowCloseFromChildren && children.map((child) => ({ ...child, props: { ...child.props, popoverClose: () => setIsOpen(false) } }))}
 					</div>
 				</Popover>
 			}

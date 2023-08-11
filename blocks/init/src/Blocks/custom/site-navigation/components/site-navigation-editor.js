@@ -101,7 +101,6 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 							/>
 						);
 					})}
-
 				</ReOrderable>
 
 				<Button
@@ -109,7 +108,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 					className='es-button-square-28 es-button-icon-24'
 					onClick={() => {
 						setAttributes({
-							[getAttrKey('siteNavigationLinks', attributes, manifest)]: [...siteNavigationLinks, { id: crypto.randomUUID(), url: '', text: '', newTab: false }],
+							[getAttrKey('siteNavigationLinks', attributes, manifest)]: [...siteNavigationLinks, { id: (siteNavigationLinks?.length ?? 0) + 1, url: '', text: '', newTab: false }],
 						});
 					}}
 				/>

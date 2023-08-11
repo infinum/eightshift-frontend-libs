@@ -91,6 +91,15 @@ export const Repeater = (props) => {
 		}
 	};
 
+	// Check for duplicates and reassign IDs if needed.
+	const allIds = items?.map(({ id }) => id) ?? [];
+	const hasDuplicates = (input) => (new Set(input))?.size !== input?.length;
+
+	if (hasDuplicates(allIds) && items?.length > 0) {
+		const newItems = [...items].map((item, index) => ({ ...item, id: index + 1 }));
+		setAttributes({ [attributeName]: newItems });
+	}
+
 	return (
 		<Control
 			icon={icon}

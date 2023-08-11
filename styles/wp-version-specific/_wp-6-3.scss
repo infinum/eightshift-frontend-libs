@@ -1,0 +1,116 @@
+// stylelint-disable
+
+// WP 6.3 fixes
+body.branch-6-3 {
+	// Fix label casing.
+	.components-base-control__label {
+		text-transform: inherit !important;
+		font-size: inherit !important;
+		font-weight: inherit !important;
+	}
+
+	// Fix label styling and stylize SVGs
+	.components-base-control__label,
+	.components-input-control__label {
+		display: flex;
+		align-items: center;
+		gap: var(--es-gutenberg-base-control-label-gap, 0.5rem);
+
+		margin: var(--es-gutenberg-base-control-label-margin, 0 0 0.5rem);
+		width: 100%;
+
+		svg {
+			height: 1.5rem;
+			width: 1.5rem;
+			margin: 0;
+
+			flex-shrink: 0;
+
+			&:not(button svg) {
+				color: var(--es-admin-components-base-control-svg, var(--es-admin-cool-gray-500));
+			}
+		}
+
+		button {
+			margin-left: auto !important;
+		}
+	}
+
+	// Fix ToggleControl flex.
+	.components-toggle-control {
+		.components-h-stack {
+			flex-direction: row-reverse !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+		}
+	}
+
+	// Fix block icons being misaligned.
+	.block-editor-block-icon.has-colors svg,
+	.components-button.components-toolbar-button.block-editor-block-parent-selector__button.has-icon .block-editor-block-icon svg,
+	.block-editor-block-toolbar__block-controls .block-editor-block-switcher .components-dropdown-menu__toggle .block-editor-block-icon svg {
+		width: 1.25rem !important;
+		height: 1.25rem !important;
+	}
+
+	// Improve block inserter display and positioning.
+	.components-dropdown.block-editor-inserter {
+		display: flex !important;
+		align-items: center;
+		justify-self: center;
+	}
+
+	.block-editor-block-list__block .block-list-appender {
+		position: static !important;
+		margin: 0.75rem 0.25rem 0 !important;
+
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+
+		max-width: 100% !important;
+
+		pointer-events: none !important;
+
+		> * {
+			pointer-events: all;
+		}
+	}
+
+	// Fix NumberPicker margin.
+	.components-base-control.components-input-control.components-number-control {
+		margin-bottom: 0 !important;
+	}
+
+	// Fix inserter block icons on hover.
+	.components-button.block-editor-block-types-list__item:not(:disabled):hover svg {
+		color:currentColor !important;
+	}
+
+	// Improve sidebar block icon.
+	.block-editor-inserter__preview-container .block-editor-block-card,
+	.block-editor-block-inspector .block-editor-block-card {
+		span {
+			line-height: 0;
+		}
+
+		svg {
+			width: 1.875rem !important;
+			height: 1.875rem !important;
+			max-width: 1.875rem;
+			max-height: 1.875rem;
+		}
+	}
+
+	// Fix buttons with icon & text having extra padding.
+	.components-button.has-icon.has-text {
+		padding-right: 6px; // Default WP value.
+	}
+
+	// Add some line height to the post title.
+	.wp-block-post-title.editor-post-title.editor-post-title__input {
+		line-height: 1.1 !important;
+	}
+}
+
+// stylelint-enable

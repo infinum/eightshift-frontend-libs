@@ -10,7 +10,7 @@ A building block component to make adding `Popover`s triggered with custom eleme
 		({ ref, setIsOpen, isOpen }) => (
 			<Button
 				ref={ref}
-				onClick={() => setIsOpen(isOpen)}
+				onClick={() => setIsOpen(!isOpen)}
 			>
 				Click me
 			</Button>
@@ -19,4 +19,30 @@ A building block component to make adding `Popover`s triggered with custom eleme
 >
 	This is the popover content.
 </PopoverWithTrigger>
+```
+
+### Allowing closing the `Popover` from its child items
+
+To allow closing the popover from within the child items, add the `allowCloseFromChildren` prop.
+This will inject every child item with a `popoverClose` prop that refers to the function that closes the popover.
+
+If using built-in Gutenberg components, you might need to make a custom component to wrap around the built-in one and handle the `popoverClose` for you.
+
+```jsx
+const CustomButton = (props) => {
+	const { popoverClose, onClick } = props;
+
+	const modifiedProps = {
+		...props,
+		onClick: (e) => {
+			if (popoverClose) {
+				popoverClose();
+			}
+
+			onClick(e);
+		},
+	};
+
+	return <Button {...modifiedProps} />;
+};
 ```

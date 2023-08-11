@@ -126,7 +126,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 					className='es-button-square-28 es-button-icon-24'
 					onClick={() => {
 						setAttributes({
-							[getAttrKey('siteFooterLinks', attributes, manifest)]: [...siteFooterLinks, { id: crypto.randomUUID(), url: '', text: '', newTab: false }],
+							[getAttrKey('siteFooterLinks', attributes, manifest)]: [...siteFooterLinks, { id: (siteFooterLinks?.length ?? 0) + 1, url: '', text: '', newTab: false }],
 						});
 					}}
 				/>
