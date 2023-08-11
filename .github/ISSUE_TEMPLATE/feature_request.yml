@@ -1,9 +1,0 @@
-name: Feature request
-description: Suggest an idea for this project
-labels: feature request
-assignees: iruzevic
-body:
-    - type: markdown
-      attributes:
-          value: |
-             Thank you for your interest in our project! We value your ideas and feedback. Please provide detailed information regarding your feature request.

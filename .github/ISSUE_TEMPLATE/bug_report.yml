@@ -1,9 +1,0 @@
-name: Bug report
-description: Create a report to help us improve
-labels: bug
-assignees: iruzevic
-body:
-    - type: markdown
-      attributes:
-          value: |
-              Thank you for your interest in our project and for reporting a bug. To help us improve, please provide a link to a live example or clear steps to reproduce the bug. If applicable, include relevant code and a screenshot or screen recording. Additionally, please provide details about your environment, such as the PHP version, OS, library versions, etc.
