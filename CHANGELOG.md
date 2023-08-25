@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.3] - 2023-08-25
+
+### Added
+- added missing import for WP6.3 styles
+- Repeater now supports disabling the "Add" button via `disableItemAdd` and providing a custom one via `customAddButton`
+
 ## [8.4.2] - 2023-08-11
 
 ### Added
@@ -771,6 +777,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.3]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.2...8.4.3
 [8.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.1...8.4.2
 [8.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.0...8.4.1
 [8.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.3.0...8.4.0
