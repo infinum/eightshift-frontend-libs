@@ -41,6 +41,8 @@ import {
  * @param {function} [props.handleItemReorder]         - Callback for providing custom item reordering logic.
  * @param {string?} [props.additionalClasses]          - Classes to add to the control base.
  * @param {string?} [props.additionalLabelClasses]     - Classes to add to the control label.
+ * @param {boolean} [props.disableItemAdd=false]       - If `true`, the Add button is disabled.
+ * @param {function} [props.customAddButton]           - If passed, a provided custom function will render the add button instead of the default one.
  */
 export const Repeater = (props) => {
 	const {
@@ -66,6 +68,9 @@ export const Repeater = (props) => {
 
 		additionalClasses,
 		additionalLabelClasses,
+
+		disableItemAdd = false,
+		customAddButton,
 	} = props;
 
 	const sensors = useSensors(
@@ -100,6 +105,16 @@ export const Repeater = (props) => {
 		setAttributes({ [attributeName]: newItems });
 	}
 
+	const handleAddButtonClick = () => {
+		const itemBase = { id: (items?.length ?? 0) + 1 };
+
+		if (handleAdd) {
+			handleAdd(itemBase);
+		} else {
+			setAttributes({ [attributeName]: [...items, itemBase] });
+		}
+	};
+
 	return (
 		<Control
 			icon={icon}
@@ -114,20 +129,17 @@ export const Repeater = (props) => {
 				<div className='es-h-spaced es-gap-1!'>
 					{actions}
 
-					<Button
-						onClick={() => {
-							const itemBase = { id: (items?.length ?? 0) + 1 };
+					{!customAddButton &&
+						<Button
+							onClick={handleAddButtonClick}
+							icon={icons.plusCircle}
+							className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1'
+							label={__('Add item', 'eightshift-frontend-libs')}
+							disabled={disableItemAdd}
+						/>
+					}
 
-							if (handleAdd) {
-								handleAdd(itemBase);
-							} else {
-								setAttributes({ [attributeName]: [...items, itemBase] });
-							}
-						}}
-						icon={icons.plusCircle}
-						className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1'
-						label={__('Add item', 'eightshift-frontend-libs')}
-					/>
+					{customAddButton && customAddButton({ disabled: disableItemAdd, onClick: handleAddButtonClick })}
 				</div>
 			}
 		>
