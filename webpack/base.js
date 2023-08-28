@@ -86,7 +86,7 @@ module.exports = (options) => {
 	// Module for Images.
 	if (!options.overrides.includes('images')) {
 		module.rules.push({
-			test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+			test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/i,
 			exclude: [/fonts/, /node_modules/],
 			use: 'file-loader?name=[name].[ext]',
 		});
