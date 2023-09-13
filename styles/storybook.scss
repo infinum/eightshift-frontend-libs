@@ -1,3 +1,4 @@
+@import url('https://use.typekit.net/lnc7ppz.css');
 @import '../scripts/components/custom-slider/custom-slider';
 
 // WP styles.
@@ -10,8 +11,47 @@
 // ES components.
 @import './../blocks/init/src/Blocks/assets/styles/application-blocks-editor-components.scss';
 
+// Docs
+:root {
+	--es-sb-font-family: 'neue-haas-grotesk-text', 'Inter', system-ui, sans-serif;
+}
+
+// stylelint-disable declaration-no-important
+
+.sbdocs {
+	font-family: var(--es-sb-font-family) !important;
+}
+
+.sbdocs-content {
+	.sbdocs-h1,
+	.sbdocs-h2,
+	.sbdocs-h3,
+	.sbdocs-h4,
+	.sbdocs-h5,
+	.sbdocs-h6,
+	.sbdocs-p {
+		font-family: var(--es-sb-font-family) !important;
+	}
+
+	.sbdocs-h1 {
+		font-weight: 600;
+	}
+
+	.sbdocs-h2 {
+		font-weight: 500;
+	}
+
+	.docblock-source {
+		box-shadow: none !important;
+	}
+
+	.sbdocs-p a {
+		color: rgb(216 38 44) !important;
+	}
+}
+
 // Playground styles.
-$sidebar-width: 280px;
+$sidebar-width: 20rem;
 $light-gray-500: #E2E4E7;
 $break-small: 600px;
 

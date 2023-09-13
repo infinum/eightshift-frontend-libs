@@ -1944,4 +1944,21 @@ $es-utility-props: (
 	object-fit: scale-down;
 }
 
+// Text-transform.
+.es-uppercase {
+	text-transform: uppercase;
+}
+
+.es-normal-text {
+	text-transform: none;
+}
+
+.es-lowercase {
+	text-transform: lowercase;
+}
+
+.es-capitalize {
+	text-transform: capitalize;
+}
+
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

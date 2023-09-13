@@ -2,14 +2,15 @@ import { create } from '@storybook/theming/create';
 
 export default create({
 	base: 'light',
-	colorPrimary: '#0C3636',
-	colorSecondary: '#E84E4E',
-	appBg: '#F4F3F0',
+	colorPrimary: '#D8262C',
+	colorSecondary: '#D8262C',
+	appBg: '#FFFFFF',
 	appBorderRadius: 0,
-	fontBase: 'system-ui, sans-serif',
-	textColor: '#0C3636',
+	fontBase: '"neue-haas-grotesk-text", "Inter", system-ui, sans-serif',
+	textColor: '#000000',
 	textInverseColor: '#FFFFFF',
 	brandTitle: ' ',
 	brandUrl: '#',
 	brandImage: '',
+	inputBorderRadius: 2,
 });
