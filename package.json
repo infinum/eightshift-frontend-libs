@@ -78,6 +78,8 @@
 		"raw-loader": "^4.0.2",
 		"rc-slider": "^10.1.0",
 		"rc-tooltip": "^5.2.2",
+		"react-colorful": "^5.6.1",
+		"react-gcolor-picker": "^1.3.0",
 		"react-html-parser": "^2.0.2",
 		"react-select": "^5.7.0",
 		"regenerator-runtime": "^0.13.9",

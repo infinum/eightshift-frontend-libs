@@ -1,7 +1,9 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button, ColorPicker, GradientPicker, __experimentalGradientPicker as GradientPickerOld } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { ColorPalette, icons, OptionSelector, ColorSwatch, Control, PopoverWithTrigger, TileButton } from '../../../scripts';
+import { HexColorPicker, HexColorInput } from 'react-colorful';
+import ReactGPicker from 'react-gcolor-picker';
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
@@ -92,9 +94,6 @@ export const AdvancedColorPicker = (props) => {
 	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
 	const showGradient = types.find(({ value }) => value === 'gradient') !== undefined;
 
-	// GradientPicker implemented in WP version 5.9
-	const GradientPickerComponent = GradientPicker ?? GradientPickerOld;
-
 	let color;
 
 	if (type?.length > 0) {
@@ -103,7 +102,7 @@ export const AdvancedColorPicker = (props) => {
 		if (type === 'project' && colorProject !== 'transparent') {
 			color = `var(--global-colors-${colorProject})`;
 		} else if (type === 'solid') {
-			color = colorSolid?.hex ?? colorSolid;
+			color = colorSolid;
 		} else if (type === 'gradient') {
 			color = colorGradient;
 		}
@@ -136,19 +135,32 @@ export const AdvancedColorPicker = (props) => {
 				}
 
 				{type === 'solid' && showSolidColor && !disabled &&
-					<ColorPicker
-						color={colorSolid}
-						onChangeComplete={onChangeSolid}
-						disableAlpha
-					/>
+					<div className='es-v-spaced es-items-center es-content-center es-h-full es-w-full'>
+						<HexColorPicker
+							color={colorSolid}
+							onChange={(value) => onChangeSolid(value)}
+						/>
+
+						<HexColorInput
+							prefixed
+							color={colorSolid}
+							onChange={(value) => onChangeSolid(value)}
+							className='es-solid-color-picker-hex-input es-w-20 es-p-2 es-rounded-1.5 es-border-cool-gray-300 es-text-3 es-uppercase'
+						/>
+					</div>
 				}
 
 				{type === 'gradient' && showGradient && !disabled &&
-					<GradientPickerComponent
-						value={colorGradient}
-						onChange={onChangeGradient}
-						gradients={gradients ?? []}
-					/>
+					<div className='es-gradient-picker-container es-h-112 es-h-center'>
+						<ReactGPicker
+							value={colorGradient}
+							onChange={(value) => onChangeGradient(value)}
+							gradient
+							solid={false}
+							showAlpha={false}
+							defaultColors={gradients.map(({ gradient }) => gradient)}
+						/>
+					</div>
 				}
 			</div>
 		</>
