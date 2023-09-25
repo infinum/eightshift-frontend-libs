@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.6] - 2023-09-25
+
+### Added
+- a couple of new icons
+
+### Changed
+- fixed duplicate label on `LinkEditComponent`
+- tweaked some Gutenberg components to have (more) rounded corners, so it matches better with everything else
+- updated RC slider and fixed issue with `ColumnConfigSlider` being offset
+
 ## [8.4.5] - 2023-09-13
 
 ### Added
@@ -192,7 +202,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ## [7.0.1] - 2022-08-01
 
-### Changed 
+### Changed
 - Fixing tests.
 - Updating create setup process to show requirements and forbidden words.
 - Updated Github actions.
