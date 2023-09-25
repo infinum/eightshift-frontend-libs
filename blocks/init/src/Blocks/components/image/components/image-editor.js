@@ -1,7 +1,17 @@
 import React, { useMemo } from 'react';
 import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { selector, checkAttr, checkAttrResponsive, getAttrKey, outputCssVariables, getUnique, icons, classnames, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import {
+	selector,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	outputCssVariables,
+	getUnique,
+	icons,
+	classnames,
+	getDefaultBreakpointNames,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -55,28 +65,28 @@ export const ImageEditor = (attributes) => {
 
 			{!_.isEmpty(imageUrl['large']) &&
 				<picture className={pictureClass} data-id={unique}>
-				{getDefaultBreakpointNames().reverse().map((breakpointName) => {
-					if (breakpointName === 'large') {
+					{getDefaultBreakpointNames().reverse().map((breakpointName) => {
+						if (breakpointName === 'large') {
+							return (
+								<img className={imgClass} src={imageUrl[breakpointName]} alt={imageAlt} key={breakpointName} />
+							);
+						}
+
+						if (imageUrl?.[breakpointName]?.length < 1) {
+							return null;
+						}
+
+						const breakpointWidth = globalManifest?.globalVariables?.breakpoints?.[breakpointName];
+
+						if (!breakpointWidth) {
+							return null;
+						}
+
 						return (
-							<img className={imgClass} src={imageUrl[breakpointName]} alt={imageAlt} key={breakpointName} />
+							<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName}></source>
 						);
-					}
-
-					if (imageUrl?.[breakpointName]?.length < 1) {
-						return null;
-					}
-
-					const breakpointWidth = globalManifest?.globalVariables?.breakpoints?.[breakpointName];
-
-					if (!breakpointWidth) {
-						return null;
-					}
-
-					return (
-						<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName}></source>
-					);
-				})}
-			</picture>
+					})}
+				</picture>
 			}
 
 		</>

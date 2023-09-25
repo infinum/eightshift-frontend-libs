@@ -1,6 +1,17 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, UseToggle, generateUseToggleConfig, Section, IconToggle, OptionSelector, icons, ReOrderable, ReOrderableItem } from '@eightshift/frontend-libs/scripts';
+import {
+	checkAttr,
+	getAttrKey,
+	UseToggle,
+	generateUseToggleConfig,
+	Section,
+	IconToggle,
+	OptionSelector,
+	icons,
+	ReOrderable,
+	ReOrderableItem,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const SocialNetworksOptions = (attributes) => {
@@ -57,27 +68,29 @@ export const SocialNetworksOptions = (attributes) => {
 					setAttributes={setAttributes}
 					noBottomSpacing
 				>
-					{socialNetworksNetworks.filter(({ id }) => socialNetworksShareMode ? manifest.networks[id]?.shareUrl?.length > 0 : manifest.networks[id]?.url?.length > 0).map((item, i) => {
-						return (
-							<ReOrderableItem
-								key={item?.id}
-								icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }}></div>}
-								title={manifest?.networks?.[item.id]?.title}
-								postIcon={
-									<IconToggle
-										checked={socialNetworksNetworks[i].enabled}
-										onChange={(value) => {
-											const newValue = [...socialNetworksNetworks];
-											newValue[i].enabled = value;
+					{socialNetworksNetworks.filter(({ id }) =>
+						socialNetworksShareMode ? manifest.networks[id]?.shareUrl?.length > 0 : manifest.networks[id]?.url?.length > 0)
+						.map((item, i) => {
+							return (
+								<ReOrderableItem
+									key={item?.id}
+									icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }}></div>}
+									title={manifest?.networks?.[item.id]?.title}
+									postIcon={
+										<IconToggle
+											checked={socialNetworksNetworks[i].enabled}
+											onChange={(value) => {
+												const newValue = [...socialNetworksNetworks];
+												newValue[i].enabled = value;
 
-											setAttributes({ [getAttrKey('socialNetworksNetworks', attributes, manifest)]: newValue });
-										}}
-										noBottomSpacing
-									/>
-								}
-							/>
-						);
-					})}
+												setAttributes({ [getAttrKey('socialNetworksNetworks', attributes, manifest)]: newValue });
+											}}
+											noBottomSpacing
+										/>
+									}
+								/>
+							);
+						})}
 				</ReOrderable>
 			</Section>
 		</UseToggle>

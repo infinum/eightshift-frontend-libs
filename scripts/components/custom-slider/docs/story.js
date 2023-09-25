@@ -75,6 +75,7 @@ export const slider = () => {
 						value={value}
 						onChange={(value) => setValue(value)}
 						valueDisplay
+						// eslint-disable-next-line max-len
 						valueDisplayElement={<span style={{ color: 'purple', fontFamily: 'serif', fontWeight: 'bold', fontSize: '1rem' }}><small>Value:</small> {value}</span>}
 					/>
 				</SingleItemShowcase>

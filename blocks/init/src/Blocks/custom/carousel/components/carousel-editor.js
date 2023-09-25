@@ -27,7 +27,12 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 			</div>
 
 			<AnimatedContentVisibility showIf={carouselIsLoop} additionalContainerClasses='es-position-absolute es-top-4 es-left-4 es-pointer-events-none'>
-				<IconLabel icon={icons.loopMode} label={__('Loop', 'eightshift-frontend-libs')} additionalClasses='es-bg-pure-white es-p-2 es-rounded-2' standalone />
+				<IconLabel
+					icon={icons.loopMode}
+					label={__('Loop', 'eightshift-frontend-libs')}
+					additionalClasses='es-bg-pure-white es-p-2 es-rounded-2'
+					standalone
+				/>
 			</AnimatedContentVisibility>
 
 			<AnimatedContentVisibility showIf={carouselShowPagination} additionalContainerClasses='es-h-spaced es-content-center -es-mt-4 es-mb-2'>
@@ -38,8 +43,14 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 			</AnimatedContentVisibility>
 
 			<AnimatedContentVisibility showIf={carouselShowPrevNext} additionalContainerClasses='es-h-spaced es-content-center es-mt-4 es-mb-2'>
-				<i className='es-h-12 es-w-12 es-display-flex es-items-center es-content-center es-rounded-full es-border-pure-black' dangerouslySetInnerHTML={{ __html: manifest.resources.prevIcon }}></i>
-				<i className='es-h-12 es-w-12 es-display-flex es-items-center es-content-center es-rounded-full es-border-pure-black' dangerouslySetInnerHTML={{ __html: manifest.resources.nextIcon }}></i>
+				<i
+					className='es-h-12 es-w-12 es-display-flex es-items-center es-content-center es-rounded-full es-border-pure-black'
+					dangerouslySetInnerHTML={{ __html: manifest.resources.prevIcon }}
+				/>
+				<i
+					className='es-h-12 es-w-12 es-display-flex es-items-center es-content-center es-rounded-full es-border-pure-black'
+					dangerouslySetInnerHTML={{ __html: manifest.resources.nextIcon }}
+				/>
 			</AnimatedContentVisibility>
 		</div>
 	);

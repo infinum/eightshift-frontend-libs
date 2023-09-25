@@ -44,7 +44,13 @@ export const SortableItem = (props) => {
 	};
 
 	const itemLabel = (
-		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={classnames('es-nested-color-cool-gray-650', additionalLabelClass)} standalone />
+		<IconLabel
+			icon={icon}
+			label={title}
+			subtitle={subtitle}
+			additionalClasses={classnames('es-nested-color-cool-gray-650', additionalLabelClass)}
+			standalone
+		/>
 	);
 
 	return (
@@ -56,14 +62,20 @@ export const SortableItem = (props) => {
 			showChildren && isFirst && !isLast && 'es-mb-2.5!',
 			showChildren && !isFirst && isLast && 'es-mt-2.5!',
 		)}>
-			<div className={classnames('es-pl-2 es-py-1 es-pr-0 es-display-flex es-items-center es-gap-1', showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent')} >
+			<div className={classnames(
+				'es-pl-2 es-py-1 es-pr-0 es-display-flex es-items-center es-gap-1',
+				showChildren ? 'es-border-b-cool-gray-50' : 'es-border-b-transparent'
+			)} >
 				{preIcon}
 
 				{noReordering && itemLabel}
 
 				{!noReordering &&
 					<button
-						className={classnames('es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current!', showChildren ? 'es-pointer-events-none' : 'es-cursor-pointer')}
+						className={classnames(
+							'es-w-full es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current!',
+							showChildren ? 'es-pointer-events-none' : 'es-cursor-pointer'
+						)}
 						{...additionalTriggerProps}
 					>
 						{itemLabel}
@@ -78,7 +90,10 @@ export const SortableItem = (props) => {
 
 				<Button
 					icon={showChildren ? icons.caretDownFill : icons.caretDown}
-					className={classnames('es-button-icon-24 es-has-animated-y-flip-icon es-rounded-1 es-flex-shrink-0', showChildren ? 'is-active es-nested-color-admin-accent' : 'es-nested-color-cool-gray-700')}
+					className={classnames(
+						'es-button-icon-24 es-has-animated-y-flip-icon es-rounded-1 es-flex-shrink-0',
+						showChildren ? 'is-active es-nested-color-admin-accent' : 'es-nested-color-cool-gray-700'
+					)}
 					onClick={() => setShowChildren(!showChildren)}
 				/>
 			</div>

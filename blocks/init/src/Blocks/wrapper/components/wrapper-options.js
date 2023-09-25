@@ -440,6 +440,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					</Section>
 
 					<Section
+						// eslint-disable-next-line max-len
 						showIf={(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor || showWrapperRoundedCorners)}
 						icon={icons.design}
 						label={__('Design', 'eightshift-frontend-libs')}
@@ -486,6 +487,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 										}
 									]
 								}
+								// eslint-disable-next-line max-len
 								noBottomSpacing={!(showWrapperRoundedCorners || showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor)}
 							/>
 						}
@@ -502,6 +504,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									manifest: manifest,
 								})}
 
+								// eslint-disable-next-line max-len
 								noBottomSpacing={!(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor)}
 							/>
 						}
@@ -510,7 +513,12 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							<Collapsable
 								icon={icons.divider}
 								label={__('Divider', 'eightshift-frontend-libs')}
-								subtitle={showWrapperDividerColor && (wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) && !wrapperDividerColor && <span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', 'eightshift-frontend-libs')}</span>}
+								subtitle={
+									showWrapperDividerColor &&
+									(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
+									!wrapperDividerColor &&
+									<span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', 'eightshift-frontend-libs')}</span>
+								}
 								actions={
 									(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
 									(

@@ -175,7 +175,11 @@ export const ColorPalette = (props) => {
 										<button
 											label={name}
 											onClick={() => onChange(slug)}
-											className={classnames('es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-p-2px! es-m-0', value === slug ? 'es-rounded-full!' : 'es-rounded-1.5!')}
+											className={classnames(
+												// eslint-disable-next-line max-len
+												'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-p-2px! es-m-0',
+												value === slug ? 'es-rounded-full!' : 'es-rounded-1.5!',
+											)}
 											disabled={disabled}
 											style={{
 												background: 'none',
@@ -195,7 +199,11 @@ export const ColorPalette = (props) => {
 			})}
 
 			{filteredColors?.generic?.length > 0 &&
-				<Control label={Object?.keys(filteredColors)?.length > 1 && __('Other colors', 'eightshift-frontend-libs')} additionalLabelClasses='es-mb-1.5!' noBottomSpacing>
+				<Control
+					label={Object?.keys(filteredColors)?.length > 1 && __('Other colors', 'eightshift-frontend-libs')}
+					additionalLabelClasses='es-mb-1.5!'
+					noBottomSpacing
+				>
 					<div className={layoutClasses}>
 						{filteredColors.generic.map(({ name, slug, color }, i) => {
 							return (
@@ -203,7 +211,11 @@ export const ColorPalette = (props) => {
 									<button
 										label={name}
 										onClick={() => onChange(slug)}
-										className={classnames('es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-m-0 es-p-2px!', detailView && 'es-w-max es-h-spaced', value === slug && !detailView ? 'es-rounded-full!' : 'es-rounded-1.5!')}
+										className={classnames(
+											'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-m-0 es-p-2px!',
+											detailView && 'es-w-max es-h-spaced',
+											value === slug && !detailView ? 'es-rounded-full!' : 'es-rounded-1.5!',
+										)}
 										disabled={disabled}
 										style={{
 											background: 'none',
@@ -228,7 +240,10 @@ export const ColorPalette = (props) => {
 					<Button
 						label={__('Reset', 'eightshift-frontend-libs')}
 						onClick={() => onChange(undefined)}
-						className={classnames('es-slight-button-border-cool-gray-400 es-rounded-1! es-transition es-px-2.5! es-py-2! es-h-auto!', (disabled || !value) ? 'es-pointer-events-none': 'es-hover-slight-button-border-cool-gray-500')}
+						className={classnames(
+							'es-slight-button-border-cool-gray-400 es-rounded-1! es-transition es-px-2.5! es-py-2! es-h-auto!',
+							(disabled || !value) ? 'es-pointer-events-none' : 'es-hover-slight-button-border-cool-gray-500'
+						)}
 						disabled={disabled || !value}
 						showTooltip
 					>

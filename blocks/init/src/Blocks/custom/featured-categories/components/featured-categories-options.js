@@ -1,7 +1,19 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { icons, checkAttr, getAttrKey, IconToggle, getOption, Select, NumberPicker, getFetchWpApi, AsyncMultiSelect, Section, unescapeHTML } from '@eightshift/frontend-libs/scripts';
+import {
+	icons,
+	checkAttr,
+	getAttrKey,
+	IconToggle,
+	getOption,
+	Select,
+	NumberPicker,
+	getFetchWpApi,
+	AsyncMultiSelect,
+	Section,
+	unescapeHTML,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {

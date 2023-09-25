@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import readme from './readme.mdx';
-import { Select, AsyncSelect, MultiSelect, AsyncMultiSelect, RSOption, RSSingleValue, RSMultiValue, RSDropdownIndicator, RSMultiValueRemove, RSClearIndicator, RSMultiValueContainer } from '@eightshift/frontend-libs/scripts';
+import {
+	Select,
+	AsyncSelect,
+	MultiSelect,
+	AsyncMultiSelect,
+	RSOption,
+	RSSingleValue,
+	RSMultiValue,
+	RSDropdownIndicator,
+	RSMultiValueRemove,
+	RSClearIndicator,
+	RSMultiValueContainer,
+} from '@eightshift/frontend-libs/scripts';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
@@ -190,7 +202,11 @@ export const SingleSelect = () => {
 					/>
 				</SingleItemShowcase>
 
-				<SingleItemShowcase title='Simple value' propsUsed={{ simpleValue: 'Returns just the value, instead of an object' }} demoContainerClass='es-h-spaced es-gap-6!'>
+				<SingleItemShowcase
+					title='Simple value'
+					propsUsed={{ simpleValue: 'Returns just the value, instead of an object' }}
+					demoContainerClass='es-h-spaced es-gap-6!'
+				>
 					<div className='es-v-spaced es-w-full es-mb-auto'>
 						<Select
 							label='Regular select'
@@ -202,7 +218,10 @@ export const SingleSelect = () => {
 
 						<div className='es-mt-3'>
 							<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>VALUE</p>
-							<div className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'>
+							<div
+								// eslint-disable-next-line max-len
+								className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'
+							>
 								<code style={{ whiteSpace: 'pre-wrap' }}>{`{\n label: '${v?.label ?? ''}',\n value: '${v?.value ?? ''}\n}'`}</code>
 							</div>
 						</div>
@@ -220,7 +239,10 @@ export const SingleSelect = () => {
 
 						<div className='es-mt-3'>
 							<p className='es-mt-0 es-mb-2 es-font-weight-500 es-text-3 es-color-cool-gray-500'>VALUE</p>
-							<div className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'>
+							<div
+								// eslint-disable-next-line max-len
+								className='es-shadow-inner es-rounded-1 es-p-2 es-border-cool-gray-50 es-text-2.75 es-color-cool-gray-600 es-bg-gray-50 es-line-h-1.5 es-h-20'
+							>
 								<code>{`'${v2 ?? ''}'`}</code>
 							</div>
 						</div>
@@ -246,8 +268,13 @@ export const AsynchronousSelect = () => {
 							title: 'Getting dynamic data',
 							content: (
 								<>
-									<p className='es-mt-0 es-mb-2 es-p-0'>A <code>Promise</code> should be passed to the <code>loadOptions</code> property.</p>
-									<p className='es-mt-0 es-mb-0 es-p-0'>The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.</p>
+									<p className='es-mt-0 es-mb-2 es-p-0'>
+										A <code>Promise</code> should be passed to the <code>loadOptions</code> property.
+									</p>
+
+									<p className='es-mt-0 es-mb-0 es-p-0'>
+										The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.
+									</p>
 								</>
 							),
 						},
@@ -315,8 +342,12 @@ export const AsynchronousMultiItemSelect = () => {
 							title: 'Getting dynamic data',
 							content: (
 								<>
-									<p className='es-mt-0 es-mb-2 es-p-0'>A <code>Promise</code> should be passed to the <code>loadOptions</code> property.</p>
-									<p className='es-mt-0 es-mb-0 es-p-0'>The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.</p>
+									<p className='es-mt-0 es-mb-2 es-p-0'>
+										A <code>Promise</code> should be passed to the <code>loadOptions</code> property.
+									</p>
+									<p className='es-mt-0 es-mb-0 es-p-0'>
+										The callback should return an array with objects containing <code>label</code> and <code>value</code> keys.
+									</p>
 								</>
 							),
 						},

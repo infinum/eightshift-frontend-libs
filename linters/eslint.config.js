@@ -22,8 +22,9 @@ module.exports = {
 		'max-len': [
 			'error',
 			{
-				'code': 160,
-				'tabWidth': 4
+				code: 160,
+				tabWidth: 4,
+				ignoreComments: true,
 			}
 		],
 		'padding-line-between-statements': 0,

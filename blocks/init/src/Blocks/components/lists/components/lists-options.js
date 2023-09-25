@@ -1,6 +1,17 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { getOption, checkAttr, getAttrKey, OptionSelector, UseToggle, ColorPicker, ucfirst, Select, generateUseToggleConfig, Section } from '@eightshift/frontend-libs/scripts';
+import {
+	getOption,
+	checkAttr,
+	getAttrKey,
+	OptionSelector,
+	UseToggle,
+	ColorPicker,
+	ucfirst,
+	Select,
+	generateUseToggleConfig,
+	Section,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
@@ -49,7 +60,9 @@ export const ListsOptions = (attributes) => {
 					<Select
 						value={fontSize}
 						options={Object.values(fontSizes)}
-						onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
+						onChange={(value) => setAttributes({
+							[getAttrKey('listsSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
+						})}
 						additionalSelectClasses='es-w-16'
 						placeholder={__('Size', 'eightshift-frontend-libs')}
 						noBottomSpacing

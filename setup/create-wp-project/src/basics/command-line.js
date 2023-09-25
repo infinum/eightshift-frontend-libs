@@ -16,29 +16,30 @@ const checkGitVersion = async () => exec(`git --version`);
 
 // Go trough every requirement and check for errors. If there are any errors script will fail
 const checkRequirements = async () => {
-  const nodeVersion = await checkNodeVersion();
-  if (nodeVersion.stderr !== '') process.exit(1);
+	const nodeVersion = await checkNodeVersion();
+	if (nodeVersion.stderr !== '') process.exit(1);
 
-  const composerVersion = await checkComposerVersion();
-  if (composerVersion.stderr !== '') process.exit(1);
+	const composerVersion = await checkComposerVersion();
+	if (composerVersion.stderr !== '') process.exit(1);
 
-  const wpCliVersion = await checkWPCliVersion();
-  if (wpCliVersion.stderr !== '') process.exit(1);
+	const wpCliVersion = await checkWPCliVersion();
+	if (wpCliVersion.stderr !== '') process.exit(1);
 
-  const gitVersion = await checkGitVersion();
-  if (gitVersion.stderr !== '') process.exit(1);
+	const gitVersion = await checkGitVersion();
+	if (gitVersion.stderr !== '') process.exit(1);
 
-  return true;
+	return true;
 };
 
 const cloneRepoTo = async (repo, folderName, branch = '') => {
-  const repoCommand = branch.length ? `-b ${branch} ${repo}` : repo;
-  const command = `git clone ${repoCommand} "${folderName}"`;
-  return exec(command, { timeout: cloneTimeout });
+	const repoCommand = branch.length ? `-b ${branch} ${repo}` : repo;
+	const command = `git clone ${repoCommand} "${folderName}"`;
+	return exec(command, { timeout: cloneTimeout });
 };
 const installNodeDependencies = async (projectPath) => exec(`cd "${projectPath}" && npm install`);
 const installNodePackage = async (projectPath, packageToInstall) => exec(`cd "${projectPath}" && npm install ${packageToInstall}`);
 const installComposerDependencies = async (projectPath) => exec(`cd "${projectPath}" && composer install --ignore-platform-reqs`);
+// eslint-disable-next-line max-len
 const installComposerPackage = async (projectPath, packageToInstall) => exec(`cd "${projectPath}" && composer require ${packageToInstall} --ignore-platform-reqs`);
 const wpCoreDownload = async (projectPath) => exec(`cd "${projectPath}" && wp core download`);
 const wpThemeActivate = async (themeName) => exec(`wp theme activate ${themeName}`);
@@ -46,18 +47,18 @@ const boilerplateThemeInit = async (themeName) => exec(`cd "${themeName}" && wp 
 const initReusableHeaderFooter = async () => exec('wp boilerplate init header-footer');
 
 module.exports = {
-  cloneRepoTo,
-  checkRequirements,
-  checkNodeVersion,
-  checkComposerVersion,
-  checkWPCliVersion,
-  checkGitVersion,
-  installNodeDependencies,
-  installNodePackage,
-  installComposerDependencies,
-  installComposerPackage,
-  wpCoreDownload,
-  wpThemeActivate,
-  boilerplateThemeInit,
-  initReusableHeaderFooter,
+	cloneRepoTo,
+	checkRequirements,
+	checkNodeVersion,
+	checkComposerVersion,
+	checkWPCliVersion,
+	checkGitVersion,
+	installNodeDependencies,
+	installNodePackage,
+	installComposerDependencies,
+	installComposerPackage,
+	wpCoreDownload,
+	wpThemeActivate,
+	boilerplateThemeInit,
+	initReusableHeaderFooter,
 };

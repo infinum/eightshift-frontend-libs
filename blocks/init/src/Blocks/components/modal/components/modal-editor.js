@@ -52,8 +52,7 @@ export const ModalEditor = (attributes) => {
 								aria-label={__('Close modal', 'eightshift-frontend-libs')}
 								dangerouslySetInnerHTML={{ __html: icon }}
 								onClick={onClick}
-							>
-							</button>
+							/>
 						</div>
 					}
 					<div className={modalContentClass}>

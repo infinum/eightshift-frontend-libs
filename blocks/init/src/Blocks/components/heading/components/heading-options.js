@@ -1,7 +1,20 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, UseToggle, OptionSelector, ucfirst, Select, ColorPicker, Section, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
+import {
+	icons,
+	getOption,
+	checkAttr,
+	getAttrKey,
+	IconLabel,
+	UseToggle,
+	OptionSelector,
+	ucfirst,
+	Select,
+	ColorPicker,
+	Section,
+	generateUseToggleConfig,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
@@ -59,7 +72,9 @@ export const HeadingOptions = (attributes) => {
 					<Select
 						value={fontSize}
 						options={Object.values(fontSizes)}
-						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
+						onChange={(value) => setAttributes({
+							[getAttrKey('headingSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
+						})}
 						additionalSelectClasses='es-w-16'
 						placeholder={__('Size', 'eightshift-frontend-libs')}
 						noBottomSpacing

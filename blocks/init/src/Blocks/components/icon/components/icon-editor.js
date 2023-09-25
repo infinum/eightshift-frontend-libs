@@ -33,7 +33,7 @@ export const IconEditor = (attributes) => {
 	return (
 		<>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
-			<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }} data-id={unique}></i>
+			<i className={iconClass} dangerouslySetInnerHTML={{ __html: manifestIcons[iconName] }} data-id={unique} />
 		</>
 	);
 };

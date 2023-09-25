@@ -1,7 +1,18 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, TextControl } from '@wordpress/components';
-import { LinkEditComponent, PopoverWithTrigger, ReOrderable, ReOrderableItem, checkAttr, classnames, getAttrKey, icons, props, selector } from '@eightshift/frontend-libs/scripts';
+import {
+	LinkEditComponent,
+	PopoverWithTrigger,
+	ReOrderable,
+	ReOrderableItem,
+	checkAttr,
+	classnames,
+	getAttrKey,
+	icons,
+	props,
+	selector,
+} from '@eightshift/frontend-libs/scripts';
 import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { SocialNetworksEditor } from '../../../components/social-networks/components/social-networks-editor';
@@ -13,7 +24,11 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	const linksClass = selector(blockClass, blockClass, 'links');
-	const linkClass = classnames(selector(blockClass, blockClass, 'link'), 'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2');
+
+	const linkClass = classnames(
+		selector(blockClass, blockClass, 'link'),
+		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
+	);
 
 	const siteFooterLinks = checkAttr('siteFooterLinks', attributes, manifest);
 
@@ -63,6 +78,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 												const newValue = [...siteFooterLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
 											}}
+											// eslint-disable-next-line max-len
 											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 										>
 											{icons.trash}
@@ -73,6 +89,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 												<button
 													ref={ref}
 													onClick={() => setIsOpen(!isOpen)}
+													// eslint-disable-next-line max-len
 													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 												>
 													{icons.editOptions}
@@ -126,7 +143,15 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 					className='es-button-square-28 es-button-icon-24'
 					onClick={() => {
 						setAttributes({
-							[getAttrKey('siteFooterLinks', attributes, manifest)]: [...siteFooterLinks, { id: (siteFooterLinks?.length ?? 0) + 1, url: '', text: '', newTab: false }],
+							[getAttrKey('siteFooterLinks', attributes, manifest)]: [
+								...siteFooterLinks,
+								{
+									id: (siteFooterLinks?.length ?? 0) + 1,
+									url: '',
+									text: '',
+									newTab: false,
+								}
+							],
 						});
 					}}
 				/>

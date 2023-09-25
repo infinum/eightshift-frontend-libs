@@ -121,6 +121,7 @@ module.exports = (options) => {
 					loader: 'sass-loader',
 					options: {
 						implementation: require("sass"),
+						// eslint-disable-next-line max-len
 						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},

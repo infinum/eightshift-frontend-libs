@@ -2,7 +2,24 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Button, Placeholder, TextControl } from '@wordpress/components';
-import { getOption, checkAttr, getAttrKey, IconLabel, icons, IconToggle, UseToggle, OptionSelector, Notification, Repeater, RepeaterItem, Section, Control, AnimatedContentVisibility, generateUseToggleConfig, Collapsable } from '@eightshift/frontend-libs/scripts';
+import {
+	getOption,
+	checkAttr,
+	getAttrKey,
+	IconLabel,
+	icons,
+	IconToggle,
+	UseToggle,
+	OptionSelector,
+	Notification,
+	Repeater,
+	RepeaterItem,
+	Section,
+	Control,
+	AnimatedContentVisibility,
+	generateUseToggleConfig,
+	Collapsable,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
@@ -98,6 +115,7 @@ export const VideoOptions = (attributes) => {
 					<Button
 						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 						icon={icons.trash}
+						// eslint-disable-next-line max-len
 						className='es-button-icon-24 es-slight-button-border-cool-gray-100 es-hover-slight-button-border-red-500 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-v-center es-content-center! es-h-18 es-w-18 es-gap-1! es-p-1! es-nested-m-0!'
 					>
 						{__('Remove video', 'eightshift-frontend-libs')}
@@ -172,6 +190,7 @@ export const VideoOptions = (attributes) => {
 									<Button
 										icon={icons.trashAlt}
 										label={__('Remove image', 'eightshift-frontend-libs')}
+										// eslint-disable-next-line max-len
 										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
 										showTooltip
@@ -194,7 +213,12 @@ export const VideoOptions = (attributes) => {
 				</Collapsable>
 			</Section>
 
-			<Section showIf={!hideVideoControlsToggle || typeof additionalControlsDesignLayout !== 'undefined'} icon={icons.design} label={__('Design & functionality', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced-wrap'>
+			<Section
+				showIf={!hideVideoControlsToggle || typeof additionalControlsDesignLayout !== 'undefined'}
+				icon={icons.design}
+				label={__('Design & functionality', 'eightshift-frontend-libs')}
+				additionalClasses='es-h-spaced-wrap'
+			>
 				{!hideVideoControlsToggle &&
 					<IconToggle
 						icon={icons.videoControls}
@@ -223,7 +247,11 @@ export const VideoOptions = (attributes) => {
 							<RepeaterItem
 								key={item.id}
 								icon={getTrackIcon(item?.kind)}
-								title={item?.label ? sprintf(__('Track %d', 'eightshift-frontend-libs'), index + 1) : <i>{__('New track', 'eightshift-frontend-libs')}</i>}
+								title={
+									item?.label
+										? sprintf(__('Track %d', 'eightshift-frontend-libs'), index + 1)
+										: <i>{__('New track', 'eightshift-frontend-libs')}</i>
+								}
 								subtitle={item?.label}
 								additionalLabelClass={!item?.label ? 'es-nested-color-orange-500!' : ''}
 							>
@@ -239,7 +267,7 @@ export const VideoOptions = (attributes) => {
 											}
 										}
 									>
-										{__('Upload a VTT file containing captions, subtitles, descriptions or chapters for this video', 'eightshift-frontend-libs')}
+										{__('Upload a VTT file containing captions, subtitles, descriptions or chapters', 'eightshift-frontend-libs')}
 									</MediaPlaceholder>
 								}
 
@@ -318,6 +346,7 @@ export const VideoOptions = (attributes) => {
 					<Notification
 						type='warning'
 						text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
+						// eslint-disable-next-line max-len
 						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
 						iconOverride={icons.a11yWarning}
 						noBottomSpacing

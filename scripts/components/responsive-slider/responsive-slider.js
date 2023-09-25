@@ -149,7 +149,11 @@ export const ResponsiveSlider = (props) => {
 										});
 									}}
 									disabled={parsedValue === resetButton || isInherited}
-									className={classnames('es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!', (parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!')}
+									className={classnames(
+										// eslint-disable-next-line max-len
+										'es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!',
+										(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'
+									)}
 									label={__('Reset', 'eightshift-frontend-libs')}
 									showTooltip
 								/>

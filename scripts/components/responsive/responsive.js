@@ -61,12 +61,21 @@ export const Responsive = (props) => {
 			reducedBottomSpacing={reducedBottomSpacing}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
-					{inline && <div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>{children[0]}</div>}
+					{inline &&
+						<div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>
+							{children[0]}
+						</div>
+					}
 
 					<Button
+						// eslint-disable-next-line max-len
 						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
 						onClick={() => setIsOpen(!isOpen)}
-						className={classnames('es-transition-colors es-button-icon-24 es-rounded-1! es-h-7! es-py-0! es-pr-0.5!', inline ? 'es-pl-0.5!' : 'es-pl-1!', isOpen && 'es-nested-color-pure-white! es-bg-admin-accent!')}
+						className={classnames(
+							'es-transition-colors es-button-icon-24 es-rounded-1! es-h-7! es-py-0! es-pr-0.5!',
+							inline ? 'es-pl-0.5!' : 'es-pl-1!',
+							isOpen && 'es-nested-color-pure-white! es-bg-admin-accent!'
+						)}
 						showTooltip
 					>
 						{!inline && icons.responsiveOverridesAlt}
@@ -91,6 +100,7 @@ export const Responsive = (props) => {
 						icon={icons.inherit}
 						onClick={currentInheritButton?.callback}
 						className={classnames(
+							// eslint-disable-next-line max-len
 							'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1! es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
 							currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5',
 							!inline && (index !== children.length - 1 || !currentInheritButton?.isActive) && 'es-mb-2',
@@ -98,7 +108,10 @@ export const Responsive = (props) => {
 					>
 						{currentInheritButton?.isActive &&
 							<span className='es-text-3 es-color-cool-gray-600'>
-								{ReactHtmlParser(sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))}
+								{
+									// eslint-disable-next-line max-len
+									ReactHtmlParser(sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))
+								}
 								<br />
 								<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
 							</span>
@@ -106,7 +119,10 @@ export const Responsive = (props) => {
 
 						{!currentInheritButton?.isActive &&
 							<span className='es-color-cool-gray-600'>
-								{ReactHtmlParser(sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))}
+								{
+									// eslint-disable-next-line max-len
+									ReactHtmlParser(sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))
+								}
 							</span>
 						}
 					</Button>
@@ -118,7 +134,11 @@ export const Responsive = (props) => {
 					}
 
 					return (
-						<AnimatedContentVisibility showIf={isOpen} additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')} key={index}>
+						<AnimatedContentVisibility
+							showIf={isOpen}
+							additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}
+							key={index}
+						>
 							<Control
 								icon={breakpointIcon}
 								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
@@ -142,7 +162,12 @@ export const Responsive = (props) => {
 				return (
 					<Fragment key={index}>
 						<AnimatedContentVisibility showIf={isOpen}>
-							<IconLabel icon={breakpointIcon} label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel} additionalClasses='es-mb-2' standalone />
+							<IconLabel
+								icon={breakpointIcon}
+								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
+								additionalClasses='es-mb-2'
+								standalone
+							/>
 
 							{index > 0 && currentInheritButton && inheritButtonComponent}
 						</AnimatedContentVisibility>
@@ -155,7 +180,10 @@ export const Responsive = (props) => {
 							</div>
 						}
 
-						<AnimatedContentVisibility showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)} additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}>
+						<AnimatedContentVisibility
+							showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}
+							additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}
+						>
 							{child}
 						</AnimatedContentVisibility>
 					</Fragment>

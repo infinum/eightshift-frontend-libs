@@ -24,6 +24,7 @@ const IconsOutput = (props) => {
 
 	const [search, setSearch] = useState('');
 
+	// eslint-disable-next-line max-len
 	let filteredIcons = search.length > 0 ? Object.entries(providedIcons).filter(([key]) => key.toLowerCase().includes(search.toLowerCase())) : Object.entries(providedIcons);
 
 	return (
@@ -73,7 +74,7 @@ const IconsOutput = (props) => {
 							}}
 						>
 							{isJsxSvg && value}
-							{!isJsxSvg && <div dangerouslySetInnerHTML={{ __html: value }}></div>}
+							{!isJsxSvg && <div dangerouslySetInnerHTML={{ __html: value }} />}
 						</div>
 						<span
 							style={{
@@ -146,7 +147,11 @@ export const AnimatedIcons = () => {
 
 			<br />
 			<br />
-			<small><span><code>es-has-animated-y-flip-icon</code> (+ <code>is-active</code></span>), <code>caretUp</code> (<code>caretUpFill</code> when toggled) icon shown here</small>
+			<small>
+				<span>
+					<code>es-has-animated-y-flip-icon</code> (+ <code>is-active</code></span>), <code>caretUp</code>
+					(<code>caretUpFill</code> when toggled) icon shown here
+				</small>
 
 			<br />
 			<br />

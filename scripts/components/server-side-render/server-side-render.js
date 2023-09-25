@@ -30,8 +30,8 @@ const Loader = () => {
 	return (
 		<div className="es-ssr-spinner-overlay">
 			<svg className="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
-				<circle className="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" strokeWidth="6"></circle>
-				<circle className="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" strokeWidth="3"></circle>
+				<circle className="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" strokeWidth="6" />
+				<circle className="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" strokeWidth="3" />
 			</svg>
 		</div>
 	);
@@ -119,8 +119,8 @@ export class ServerSideRender extends Component {
 		const spinner = `
 				<div class="es-ssr-spinner-overlay">
 					<svg class="es-ssr-spinner-overlay__spinner" viewBox="0 0 50 50">
-						<circle class="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle>
-						<circle class="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+						<circle class="es-ssr-spinner-overlay__spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="6" />
+						<circle class="es-ssr-spinner-overlay__spinner-path-2" cx="25" cy="25" r="20" fill="none" stroke-width="3" />
 					</svg>
 				</div>
 			`;

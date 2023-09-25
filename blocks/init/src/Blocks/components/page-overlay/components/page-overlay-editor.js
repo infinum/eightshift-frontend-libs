@@ -26,6 +26,6 @@ export const PageOverlayEditor = (attributes) => {
 	}
 
 	return (
-		<div className={overlayClass}></div>
+		<div className={overlayClass} />
 	);
 };

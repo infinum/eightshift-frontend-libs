@@ -1,7 +1,18 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, TextControl } from '@wordpress/components';
-import { LinkEditComponent, PopoverWithTrigger, ReOrderable, ReOrderableItem, checkAttr, classnames, getAttrKey, icons, props, selector } from '@eightshift/frontend-libs/scripts';
+import {
+	LinkEditComponent,
+	PopoverWithTrigger,
+	ReOrderable,
+	ReOrderableItem,
+	checkAttr,
+	classnames,
+	getAttrKey,
+	icons,
+	props,
+	selector,
+} from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import manifest from '../manifest.json';
 
@@ -11,7 +22,11 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	const linksClass = selector(blockClass, blockClass, 'links');
-	const linkClass = classnames(selector(blockClass, blockClass, 'link'), 'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2');
+
+	const linkClass = classnames(selector(
+		blockClass, blockClass, 'link'),
+		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
+	);
 
 	const siteNavigationLinks = checkAttr('siteNavigationLinks', attributes, manifest);
 
@@ -46,6 +61,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												const newValue = [...siteNavigationLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteNavigationLinks', attributes, manifest)]: newValue });
 											}}
+											// eslint-disable-next-line max-len
 											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 										>
 											{icons.trash}
@@ -56,6 +72,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												<button
 													ref={ref}
 													onClick={() => setIsOpen(!isOpen)}
+													// eslint-disable-next-line max-len
 													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 												>
 													{icons.editOptions}
@@ -108,7 +125,14 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 					className='es-button-square-28 es-button-icon-24'
 					onClick={() => {
 						setAttributes({
-							[getAttrKey('siteNavigationLinks', attributes, manifest)]: [...siteNavigationLinks, { id: (siteNavigationLinks?.length ?? 0) + 1, url: '', text: '', newTab: false }],
+							[getAttrKey('siteNavigationLinks', attributes, manifest)]: [
+								...siteNavigationLinks,
+								{
+									id: (siteNavigationLinks?.length ?? 0) + 1,
+									url: '',
+									text: '',
+									newTab: false,
+								}],
 						});
 					}}
 				/>

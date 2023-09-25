@@ -28,7 +28,7 @@ export const ScrollToTopEditor = (attributes) => {
 
 	return (
 		<button className={scrollClass}>
-			<i dangerouslySetInnerHTML={{ __html: manifestResources.icon }}></i>
+			<i dangerouslySetInnerHTML={{ __html: manifestResources.icon }} />
 		</button>
 	);
 };
