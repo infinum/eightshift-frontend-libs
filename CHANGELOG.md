@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.5] - 2023-09-13
+
+### Added
+- a couple of new icons.
+- a couple of new text casing utility classes.
+
+### Changed
+- **Storybook was re-styled** a bit to make it fit bitter into eightshift.com (had to use overrides, as there's no official way, should be relatively stable with updates).
+- **SASS docs were restyled** to make them fit better into eightshift.com.
+- `AdvancedColorPicker` now uses 3rd party components for solid color and gradient pickers, removing the Gutenberg dependency and breaking changes they often make (fixes #746).
+
 ## [8.4.4] - 2023-08-28
 
 ### Changed
@@ -785,6 +796,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.5]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.4...8.4.5
 [8.4.4]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.3...8.4.4
 [8.4.3]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.2...8.4.3
 [8.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.1...8.4.2
