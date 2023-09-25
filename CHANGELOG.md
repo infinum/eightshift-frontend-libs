@@ -806,6 +806,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.6]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.5...8.4.6
 [8.4.5]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.4...8.4.5
 [8.4.4]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.3...8.4.4
 [8.4.3]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.2...8.4.3
