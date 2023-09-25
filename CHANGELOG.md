@@ -13,6 +13,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - fixed duplicate label on `LinkEditComponent`
 - tweaked some Gutenberg components to have (more) rounded corners, so it matches better with everything else
 - updated RC slider and fixed issue with `ColumnConfigSlider` being offset
+- tweaked the ESLint config
 
 ## [8.4.5] - 2023-09-13
 
