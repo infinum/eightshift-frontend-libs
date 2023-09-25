@@ -1,6 +1,3 @@
 {
-	"extends": "./linters/eslint.config.js",
-	"rules": {
-		"max-len": 0
-	}
+	"extends": "./linters/eslint.config.js"
 }
