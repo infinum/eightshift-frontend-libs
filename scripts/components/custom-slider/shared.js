@@ -130,8 +130,8 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		borderBottomLeftRadius: props.value[0] === 1 ? 5 : 2,
 		borderTopRightRadius: props.value[1] === numColumns ? 5 : 2,
 		borderBottomRightRadius: props.value[1] === numColumns ? 5 : 2,
-		height: 44,
-		top: 6,
+		height: 34,
+		top: 11,
 		cursor: 'pointer',
 	};
 
@@ -143,6 +143,9 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		top: 5,
 		left: -1,
 		boxShadow: '0 0 0 1px var(--es-admin-cool-gray-300)',
+		zIndex: -1,
+		backgroundOrigin: 'border-box',
+		backgroundRepeat: 'no-repeat',
 	};
 
 	const dotStyle = (value) => {
