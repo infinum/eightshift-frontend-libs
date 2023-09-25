@@ -35,10 +35,12 @@ function getConfig(
 	}
 
 	if (typeof proxyUrl === 'undefined') {
+		// eslint-disable-next-line max-len
 		throw Error('proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com');
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
+		// eslint-disable-next-line max-len
 		throw Error('projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate');
 	}
 

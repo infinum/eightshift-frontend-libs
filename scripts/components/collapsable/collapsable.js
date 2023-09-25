@@ -46,13 +46,19 @@ export const Collapsable = ({
 			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
-					<div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', !keepActionsOnExpand && isOpen && 'es-opacity-0')}>
+					<div className={classnames(
+						'es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100',
+						!keepActionsOnExpand && isOpen && 'es-opacity-0'
+					)}>
 						{actions}
 					</div>
 
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
-						className={classnames('es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1! es-has-animated-y-flip-icon es-pl-0.5!', isOpen && 'is-active es-nested-color-pure-white! es-bg-admin-accent!')}
+						className={classnames(
+							'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1! es-has-animated-y-flip-icon es-pl-0.5!',
+							isOpen && 'is-active es-nested-color-pure-white! es-bg-admin-accent!'
+						)}
 						icon={isOpen ? icons.caretDownFill : icons.caretDown}
 						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
 						showTooltip

@@ -444,7 +444,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	}
 
 	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}}></style>;
+	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}} />;
 };
 
 /**

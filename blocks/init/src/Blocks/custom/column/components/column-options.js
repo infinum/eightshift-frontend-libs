@@ -1,7 +1,25 @@
 import React, { Fragment } from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { icons, getAttrKey, getOption, IconLabel, Responsive, OptionSelector, checkAttr, WidthOffsetRangeSlider, generateWidthOffsetRangeSliderConfig, getDefaultBreakpointNames, NumberPicker, AnimatedContentVisibility, Section, Control, Notification, generateResponsiveToggleButtonConfig, ResponsiveToggleButton } from '@eightshift/frontend-libs/scripts';
+import {
+	icons,
+	getAttrKey,
+	getOption,
+	IconLabel,
+	Responsive,
+	OptionSelector,
+	checkAttr,
+	WidthOffsetRangeSlider,
+	generateWidthOffsetRangeSliderConfig,
+	getDefaultBreakpointNames,
+	NumberPicker,
+	AnimatedContentVisibility,
+	Section,
+	Control,
+	Notification,
+	generateResponsiveToggleButtonConfig,
+	ResponsiveToggleButton,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {
@@ -131,7 +149,10 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 										<OptionSelector
 											options={options}
 											value={isAuto}
-											onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: value ? undefined : 1 })}
+											onChange={(value) => setAttributes({
+												[getAttrKey(breakpointAttrName, attributes, manifest)]: value ? undefined : 1,
+											})}
+											// eslint-disable-next-line max-len
 											additionalButtonClass='es-v-spaced es-content-center! es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.1!'
 											noBottomSpacing
 										/>

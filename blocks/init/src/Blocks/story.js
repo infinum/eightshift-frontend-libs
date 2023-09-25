@@ -29,15 +29,17 @@ export const colors = () => {
 					textAlign: 'center',
 					height: '50px',
 					marginBottom: '10px',
-				}}></div>
-					{label}
-					<div style={{
-						color: '#525E6C',
-						fontSize: '13px',
-						marginTop: '5px'
-					}}>
+				}} />
+
+				{label}
+
+				<div style={{
+					color: '#525E6C',
+					fontSize: '13px',
+					marginTop: '5px'
+				}}>
 					{color}
-					</div>
+				</div>
 			</div>
 		);
 	};

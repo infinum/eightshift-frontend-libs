@@ -51,7 +51,7 @@ export const QuoteEditor = (attributes) => {
 					/>
 				</blockquote>
 
-				{quoteAuthorUse && <div className={quoteSeparator}></div>}
+				{quoteAuthorUse && <div className={quoteSeparator} />}
 
 				<figcaption className={quoteCaptionClass}>
 					<ParagraphEditor

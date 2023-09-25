@@ -40,7 +40,7 @@ export const HelpModal = (props) => {
 					}
 
 					{description &&
-						<p dangerouslySetInnerHTML={{__html: __(description, 'eightshift-frontend-libs')}}></p>
+						<p dangerouslySetInnerHTML={{__html: __(description, 'eightshift-frontend-libs')}} />
 					}
 				</div>
 			</div>
@@ -48,7 +48,7 @@ export const HelpModal = (props) => {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<Button
 				icon={icons.help}
 				label={buttonLabel}
@@ -65,7 +65,7 @@ export const HelpModal = (props) => {
 					title={modalLabel}
 					onRequestClose={() => setIsOpen(false)}
 				>
-					<Fragment>
+					<>
 						{helperMessages[type] && helperMessages[type].map((item, index) => {
 							return ( item.show &&
 								<Fragment key={index}>
@@ -73,9 +73,9 @@ export const HelpModal = (props) => {
 								</Fragment>
 							);
 						})}
-					</Fragment>
+					</>
 				</Modal>
 			)}
-		</Fragment>
+		</>
 	);
 };

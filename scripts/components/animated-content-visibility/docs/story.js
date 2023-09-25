@@ -28,7 +28,11 @@ export const component = () => {
 					additionalPanels={[{
 						title: 'Actions',
 						content: (
-							<Button onClick={() => setVisible(!visible)} className='es-w-14 es-content-center es-rounded-1.5! es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-hover-color-cool-gray-800!'>
+							<Button
+								onClick={() => setVisible(!visible)}
+								// eslint-disable-next-line max-len
+								className='es-w-14 es-content-center es-rounded-1.5! es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-hover-color-cool-gray-800!'
+							>
 								{visible ? 'Hide' : 'Show'}
 							</Button>
 						),

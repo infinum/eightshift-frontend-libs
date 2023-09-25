@@ -28,6 +28,6 @@ export const LoaderEditor = (attributes) => {
 	}
 
 	return (
-		<div className={loaderClass} dangerouslySetInnerHTML={{ __html: manifest.resources.loader }}></div>
+		<div className={loaderClass} dangerouslySetInnerHTML={{ __html: manifest.resources.loader }} />
 	);
 };

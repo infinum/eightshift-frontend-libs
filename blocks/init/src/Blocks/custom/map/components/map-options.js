@@ -2,7 +2,22 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, TextControl, Button } from '@wordpress/components';
 import { MediaPlaceholder } from '@wordpress/block-editor';
-import { Collapsable, Control, IconLabel, IconToggle, Notification, NumberPicker, OptionSelector, Repeater, RepeaterItem, Section, checkAttr, getAttrKey, icons, truncateMiddle } from '@eightshift/frontend-libs/scripts';
+import {
+	Collapsable,
+	Control,
+	IconLabel,
+	IconToggle,
+	Notification,
+	NumberPicker,
+	OptionSelector,
+	Repeater,
+	RepeaterItem,
+	Section,
+	checkAttr,
+	getAttrKey,
+	icons,
+	truncateMiddle,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from '../manifest.json';
 
 export const MapOptions = ({ attributes, setAttributes }) => {
@@ -15,13 +30,34 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 	const mapControls = checkAttr('mapControls', attributes, manifest);
 
 	const layerTypes = {
-		openStreetMap: { icon: icons.mapLayer, title: __('OpenStreetMap', 'eightshift-frontend-libs') },
-		vectorJson: { icon: icons.mapLayerJson, title: __('Vector map', 'eightshift-frontend-libs'), subtitle: __('with JSON styles', 'eightshift-frontend-libs') },
-		mapBoxVector: { icon: icons.mapLayerVector, title: __('Mapbox map', 'eightshift-frontend-libs'), subtitle: __('Vector tiles', 'eightshift-frontend-libs') },
-		mapBoxRaster: { icon: icons.mapLayerRaster, title: __('Mapbox map', 'eightshift-frontend-libs'), subtitle: __('Raster tiles', 'eightshift-frontend-libs') },
-		mapTilerVector: { icon: icons.mapLayerVector, title: __('MapTiler tiles', 'eightshift-frontend-libs'), subtitle: __('Vector - XYZ (PBF)', 'eightshift-frontend-libs') },
-		mapTilerRasterXyz: { icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'), subtitle: __('Raster - XYZ', 'eightshift-frontend-libs') },
-		mapTilerRasterJson: { icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'), subtitle: __('Raster - JSON', 'eightshift-frontend-libs') },
+		openStreetMap: {
+			icon: icons.mapLayer,
+			title: __('OpenStreetMap', 'eightshift-frontend-libs'),
+		},
+		vectorJson: {
+			icon: icons.mapLayerJson, title: __('Vector map', 'eightshift-frontend-libs'),
+			subtitle: __('with JSON styles', 'eightshift-frontend-libs'),
+		},
+		mapBoxVector: {
+			icon: icons.mapLayerVector, title: __('Mapbox map', 'eightshift-frontend-libs'),
+			subtitle: __('Vector tiles', 'eightshift-frontend-libs'),
+		},
+		mapBoxRaster: {
+			icon: icons.mapLayerRaster, title: __('Mapbox map', 'eightshift-frontend-libs'),
+			subtitle: __('Raster tiles', 'eightshift-frontend-libs'),
+		},
+		mapTilerVector: {
+			icon: icons.mapLayerVector, title: __('MapTiler tiles', 'eightshift-frontend-libs'),
+			subtitle: __('Vector - XYZ (PBF)', 'eightshift-frontend-libs'),
+		},
+		mapTilerRasterXyz: {
+			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'),
+			subtitle: __('Raster - XYZ', 'eightshift-frontend-libs'),
+		},
+		mapTilerRasterJson: {
+			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'),
+			subtitle: __('Raster - JSON', 'eightshift-frontend-libs'),
+		},
 		geoJson: { icon: icons.fileMetadata, title: __('GeoJSON', 'eightshift-frontend-libs') },
 	};
 
@@ -68,12 +104,21 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 					setAttributes={setAttributes}
 				>
 					{mapLayers.map((layer, index) => {
+						// eslint-disable-next-line max-len
+						const needsApiKey = ['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type);
+						// eslint-disable-next-line max-len
+						const hasMapStyleOptions = ['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type);
+
 						return (
 							<RepeaterItem
 								key={layer.id}
 								icon={layer?.type ? layerTypes?.[layer?.type]?.icon ?? icons.mapLayer : icons.layerOff}
 								title={layerTypes?.[layer?.type]?.title ?? __('New layer', 'eightshift-frontend-libs')}
-								subtitle={layer?.type === 'geoJson' ? truncateMiddle(layer?.geoJsonUrl?.slice(layer?.geoJsonUrl?.lastIndexOf('/') + 1) ?? '', 20) : layerTypes?.[layer?.type]?.subtitle}
+								subtitle={
+									layer?.type === 'geoJson'
+										? truncateMiddle(layer?.geoJsonUrl?.slice(layer?.geoJsonUrl?.lastIndexOf('/') + 1) ?? '', 20)
+										: layerTypes?.[layer?.type]?.subtitle
+								}
 								preIcon={
 									layer?.type?.length < 1 ? icons.dummySpacer : (
 										<Button
@@ -83,6 +128,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												modifiedData[index].hidden = !modifiedData[index].hidden;
 												setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
 											}}
+											// eslint-disable-next-line max-len
 											className='es-mr-1 es-button-square-20 es-button-icon-16 es-rounded-1 es-border-cool-gray-300 es-hover-border-cool-gray-300 es-focus-border-transparent es-transition-colors'
 											label={mapLayers[index]?.hidden ? __('Show', 'eightshift-frontend-libs') : __('Hide', 'eightshift-frontend-libs')}
 											showTooltip
@@ -93,7 +139,12 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 								{!layer?.type &&
 									<OptionSelector
 										label={__('Layer type', 'eightshift-frontend-libs')}
-										options={Object.entries(layerTypes).map(([value, { icon, title, subtitle }]) => ({ value: value, label: title, icon: icon, subtitle: subtitle }))}
+										options={Object.entries(layerTypes).map(([value, { icon, title, subtitle }]) => ({
+											value: value,
+											label: title,
+											icon: icon,
+											subtitle: subtitle,
+										}))}
 										onChange={(value) => {
 											const modifiedData = [...mapLayers];
 											modifiedData[index].type = value;
@@ -104,7 +155,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 									/>
 								}
 
-								{['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type) &&
+								{needsApiKey &&
 									<TextControl
 										label={<IconLabel icon={icons.key} label={__('API key', 'eightshift-frontend-libs')} />}
 										value={mapLayers[index]?.apiKey}
@@ -116,7 +167,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 									/>
 								}
 
-								{['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type) &&
+								{hasMapStyleOptions &&
 									<TextControl
 										label={<IconLabel icon={icons.color} label={__('Map style', 'eightshift-frontend-libs')} />}
 										value={mapLayers[index]?.styleUrl}
@@ -127,15 +178,29 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 										}}
 										help={
 											<>
-												{!layer?.type?.startsWith('mapBox') && __('Copy the full style URL from MapTiler. Keep the API key inside the URL.', 'eightshift-frontend-libs')}
-												{layer?.type === 'mapBoxVector' && __('Copy the full style URL from Mapbox.', 'eightshift-frontend-libs')}
-												{layer?.type === 'mapBoxRaster' && __('Copy the full style URL from Mapbox or a Mapbox-compatible source. Keep the access token inside the URL.', 'eightshift-frontend-libs')}
+												{!layer?.type?.startsWith('mapBox') &&
+													__('Copy the full style URL from MapTiler. Keep the API key inside the URL.', 'eightshift-frontend-libs')
+												}
+
+												{layer?.type === 'mapBoxVector' &&
+													__('Copy the full style URL from Mapbox.', 'eightshift-frontend-libs')
+												}
+
+												{layer?.type === 'mapBoxRaster' &&
+													// eslint-disable-next-line max-len
+													__('Copy the full style URL from Mapbox or a Mapbox-compatible source. Keep the access token inside the URL.', 'eightshift-frontend-libs')
+												}
+
 												<br />
 												<br />
 
 												{['mapBoxRaster', 'mapTilerVector', 'mapTilerRasterXyz'].includes(layer?.type) &&
 													<>
-														<code className='es-bg-transparent es-p-0 es-text-3'>{'{z}/{x}/{y}'}</code> {__("should be left as they are in the URL; they're needed for the map to work properly.", 'eightshift-frontend-libs')}
+														<code className='es-bg-transparent es-p-0 es-text-3'>{'{z}/{x}/{y}'}</code>
+														{
+															// eslint-disable-next-line max-len
+															__("should be left as they are in the URL; they're needed for the map to work properly.", 'eightshift-frontend-libs')
+														}
 														<br />
 														<br />
 													</>
@@ -144,7 +209,9 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												{__('Example', 'eightshift-frontend-libs')}:
 												<br />
 												<span className='es-word-break-all'>
-													{['mapTilerRasterJson', 'vectorJson'].includes(layer?.type) && 'https://api.maptiler.com/maps/{styleName}/tiles.json?key={apiKey}'}
+													{['mapTilerRasterJson', 'vectorJson'].includes(layer?.type) &&
+														'https://api.maptiler.com/maps/{styleName}/tiles.json?key={apiKey}'
+													}
 
 													{layer?.type === 'mapTilerVector' && 'https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key={apiKey}'}
 
@@ -156,9 +223,13 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 														</>
 													}
 
-													{layer?.type === 'mapBoxRaster' && 'https://api.mapbox.com/v4/{tilesetId}/{z}/{x}/{y}[@2x].{imageFormat}?acess_token={apiKey}'}
+													{layer?.type === 'mapBoxRaster' &&
+														'https://api.mapbox.com/v4/{tilesetId}/{z}/{x}/{y}[@2x].{imageFormat}?acess_token={apiKey}'
+													}
 
-													{layer?.type === 'mapTilerRasterXyz' && 'https://api.maptiler.com/maps/{styleName}/{z}/{x}/{y}.png?key={apiKey}'}
+													{layer?.type === 'mapTilerRasterXyz' &&
+														'https://api.maptiler.com/maps/{styleName}/{z}/{x}/{y}.png?key={apiKey}'
+													}
 												</span>
 											</>
 										}
@@ -185,7 +256,11 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 									<div className='es-h-between'>
 										<IconLabel
 											icon={icons.file}
-											label={<code className='es-word-break-all es-bg-transparent es-p-0 es-text-2.75!'>{layer.geoJsonUrl.slice(layer.geoJsonUrl.lastIndexOf('/') + 1)}</code>}
+											label={
+												<code className='es-word-break-all es-bg-transparent es-p-0 es-text-2.75!'>
+													{layer.geoJsonUrl.slice(layer.geoJsonUrl.lastIndexOf('/') + 1)}
+												</code>
+											}
 											additionalClasses='es-flex-shrink-1'
 											standalone
 										/>
@@ -196,6 +271,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												delete modifiedData[index].geoJsonUrl;
 												setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
 											}}
+											// eslint-disable-next-line max-len
 											className='es-button-icon-24 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-admin-accent es-rounded-1.5 es-nested-color-cool-gray-650'
 										>
 											{__('Replace', 'eightshift-frontend-libs')}
@@ -341,7 +417,13 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 						}}
 					/>
 
-					<IconLabel icon={icons.rotateRight} label={__('Rotate', 'eightshift-frontend-libs')} additionalClasses='es-mb-1.5 es-font-weight-500' standalone />
+					<IconLabel
+						icon={icons.rotateRight}
+						label={__('Rotate', 'eightshift-frontend-libs')}
+						additionalClasses='es-mb-1.5 es-font-weight-500'
+						standalone
+					/>
+
 					<IconToggle
 						icon={icons.dummySpacer}
 						label={__('Alt+Shift and drag to rotate', 'eightshift-frontend-libs')}

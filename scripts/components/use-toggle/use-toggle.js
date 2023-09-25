@@ -106,7 +106,10 @@ export const UseToggle = ({
 				actions={
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
-						className={`es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon ${isOpen ? 'is-active es-nested-color-pure-white es-bg-admin-accent' : ''}`}
+						className={classnames(
+							'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon',
+							isOpen && 'is-active es-nested-color-pure-white es-bg-admin-accent'
+						)}
 						icon={isOpen ? icons.caretDownFill : icons.caretDown}
 						disabled={disabled || !checked}
 						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
@@ -137,7 +140,11 @@ export const UseToggle = ({
 						setIsOpen(false);
 					}}
 					disabled={disabled}
-					className={classnames('es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2 es-nested-m-0! es-max-w-60 es-text-align-left', checked && 'is-checked')}
+					className={classnames(
+						// eslint-disable-next-line max-len
+						'es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2 es-nested-m-0! es-max-w-60 es-text-align-left',
+						checked && 'is-checked'
+					)}
 					label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
 					showTooltip
 				>
@@ -147,7 +154,10 @@ export const UseToggle = ({
 			actions={!noExpandButton &&
 				<Button
 					onClick={() => setIsOpen(!isOpen)}
-					className={`es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon ${isOpen ? 'is-active es-nested-color-pure-white es-bg-admin-accent' : ''}`}
+					className={classnames(
+						'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon',
+						isOpen && 'is-active es-nested-color-pure-white es-bg-admin-accent'
+					)}
 					icon={isOpen ? icons.caretDownFill : icons.caretDown}
 					disabled={disabled || !checked}
 					label={checked ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}

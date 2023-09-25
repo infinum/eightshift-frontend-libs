@@ -123,4 +123,23 @@ button[disabled] .block-editor-block-icon.has-colors,
 	}
 }
 
+// Make top and side Gutenberg controls look a bit nicer and more consistent.
+.edit-post-header,
+.edit-post-sidebar {
+	.components-button:not(.edit-post-fullscreen-mode-close):not(.components-panel__body > .components-button) {
+		border-radius: 0.275rem !important;
+	}
+
+	.components-select-control,
+	.components-combobox-control__suggestions-container,
+	.components-checkbox-control__input {
+		border-radius: 0.25rem !important;
+	}
+
+	.components-input-control__label {
+		text-transform: none !important;
+		font-weight: 400 !important;
+	}
+}
+
 // stylelint-enable

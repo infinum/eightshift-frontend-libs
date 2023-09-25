@@ -93,11 +93,20 @@ export const LinkEditComponent = ({
 		} = props;
 
 		return (
-			<AnimatedContentVisibility showIf={suggestions.length > 0} direction='bottom' additionalContainerClasses={'es-v-spaced es-gap-2.5! es-max-h-48 es-my-3 es-rounded-1 es-px-2 es-py-2.5 es-overflow-y-auto es-border-cool-gray-100'}>
+			<AnimatedContentVisibility
+				showIf={suggestions.length > 0}
+				direction='bottom'
+				// eslint-disable-next-line max-len
+				additionalContainerClasses='es-v-spaced es-gap-2.5! es-max-h-48 es-my-3 es-rounded-1 es-px-2 es-py-2.5 es-overflow-y-auto es-border-cool-gray-100'
+			>
 				{suggestions.map((suggestion, i) => {
 					const { title, type, url } = suggestion;
 
-					let typeIcon = (<span className='es-p-1 es-rounded-1 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>{type.toUpperCase()}</span>);
+					let typeIcon = (
+						<span className='es-p-1 es-rounded-1 es-bg-cool-gray-500 es-color-pure-white es-text-2.5 es-font-weight-600'>
+							{type.toUpperCase()}
+						</span>
+					);
 
 					const isCreateNew = type.toLowerCase() === '__create__';
 
@@ -196,7 +205,10 @@ export const LinkEditComponent = ({
 				</div>
 			}
 
-			<AnimatedContentVisibility showIf={isAnchor && !isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled} additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
+			<AnimatedContentVisibility
+				showIf={isAnchor && !isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled}
+				additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'
+			>
 				<IconLabel
 					icon={icons.globeAnchor}
 					label={__('Anchor link selected', 'eightshift-frontend-libs')}
@@ -206,7 +218,10 @@ export const LinkEditComponent = ({
 				/>
 			</AnimatedContentVisibility>
 
-			<AnimatedContentVisibility showIf={isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled} additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'>
+			<AnimatedContentVisibility
+				showIf={isInternalAnchor && !isEditing && !hideAnchorNotice && !disabled}
+				additionalContainerClasses='es-mb-2 es-p-3 es-bg-cool-gray-50 es-rounded-1.5'
+			>
 				<IconLabel
 					icon={icons.anchorPage}
 					label={__('Internal anchor link selected', 'eightshift-frontend-libs')}

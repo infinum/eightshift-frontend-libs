@@ -23,7 +23,16 @@ export const GridGuides = ({ previewVisible, wrapperIsFullWidthLarge, wrapperMai
 			label = icons.arrowsRight;
 		}
 
-		items.push(<div className={`${wrapperMainClass}__grid-item es-button-icon-32`} style={itemStyle} key={i}><span>{label}</span><span>{label}</span></div>);
+		items.push(
+			<div
+				className={`${wrapperMainClass}__grid-item es-button-icon-32`}
+				style={itemStyle}
+				key={i}
+			>
+				<span>{label}</span>
+				<span>{label}</span>
+			</div>
+		);
 	}
 
 	return (

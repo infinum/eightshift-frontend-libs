@@ -10,6 +10,11 @@
 			padding: 0.5rem !important;
 			margin: 0 !important;
 		}
+
+		// Hide Gutenberg label.
+		> .components-base-control__field > .components-base-control__label {
+			display: none;
+		}
 	}
 }
 

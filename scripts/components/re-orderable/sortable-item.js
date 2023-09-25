@@ -43,6 +43,7 @@ export const SortableItem = (props) => {
 		...listeners,
 	};
 
+	// eslint-disable-next-line max-len
 	const itemLabel = ((typeof title !== 'string' && title) || (typeof title === 'string' && title?.length > 0) || (typeof subtitle !== 'string' && subtitle) || (typeof subtitle === 'string' && subtitle?.length > 0) || icon) && (
 		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 	);
@@ -55,7 +56,14 @@ export const SortableItem = (props) => {
 				{noReordering && itemLabel}
 
 				{!noReordering &&
-					<button className={classnames('es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! es-cursor-pointer', !horizontal && !horizontalVertical && 'es-w-full')} {...additionalTriggerProps}>
+					<button
+						className={
+							classnames(
+								'es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! es-cursor-pointer',
+								!horizontal && !horizontalVertical && 'es-w-full'
+							)}
+						{...additionalTriggerProps}
+					>
 						{itemLabel}
 
 						{!customGrabHandle &&

@@ -1,7 +1,21 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-import { icons, getOption, checkAttr, getAttrKey, IconLabel, UseToggle, LinkEditComponent, OptionSelector, props, getOptions, Section, generateUseToggleConfig, ColorPicker } from '@eightshift/frontend-libs/scripts';
+import {
+	icons,
+	getOption,
+	checkAttr,
+	getAttrKey,
+	IconLabel,
+	UseToggle,
+	LinkEditComponent,
+	OptionSelector,
+	props,
+	getOptions,
+	Section,
+	generateUseToggleConfig,
+	ColorPicker,
+} from '@eightshift/frontend-libs/scripts';
 import { IconOptions } from '../../icon/components/icon-options';
 import manifest from './../manifest.json';
 

@@ -49,8 +49,7 @@ export const SocialNetworksEditor = (attributes) => {
 
 							setAttributes({ [getAttrKey('socialNetworksNetworks', attributes, manifest)]: newValue });
 						}}
-					>
-					</button>
+					/>
 				);
 			})}
 		</div>

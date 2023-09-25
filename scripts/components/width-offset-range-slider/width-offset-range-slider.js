@@ -76,6 +76,7 @@ export const WidthOffsetRangeSlider = (props) => {
 		[breakpointName]: fullWidth,
 	}), {});
 
+	// eslint-disable-next-line max-len
 	const buttonClass = 'es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-icon-18 es-button-no-icon-spacing es-gap-1.5! es-rounded-1! es-h-8! es-px-2!';
 
 	return (
@@ -116,7 +117,8 @@ export const WidthOffsetRangeSlider = (props) => {
 				const nearestValidOffset = getNearest('offset');
 				const nearestValidWidth = getNearest('width');
 
-				const parsedOffset = autoOffsetToggle && (inheritCheck(offset) ? nearestValidOffset : offset) === autoOffsetValue ? 1 : parseInt(inheritCheck(offset) ? nearestValidOffset : offset );
+				// eslint-disable-next-line max-len
+				const parsedOffset = autoOffsetToggle && (inheritCheck(offset) ? nearestValidOffset : offset) === autoOffsetValue ? 1 : parseInt(inheritCheck(offset) ? nearestValidOffset : offset);
 				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
 				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
 
@@ -154,7 +156,8 @@ export const WidthOffsetRangeSlider = (props) => {
 						}}
 						noWidthHandle={inheritCheck(width)}
 						noOffsetHandle={inheritCheck(offset) || (index === 0 && offset === autoOffsetValue)}
-						additionalControlsAbove={ !((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0)) ? null :
+						// eslint-disable-next-line max-len
+						additionalControlsAbove={!((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0)) ? null :
 							<>
 								{fullWidthToggle && (index === 0 || !inheritCheck(fullWidth)) &&
 									<Button
@@ -196,8 +199,16 @@ export const WidthOffsetRangeSlider = (props) => {
 							</>
 						}
 						additionalControlsBelow={index === 0 ? null :
-							<div className='es-h-start es-mt-2 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1! es-py-0.5! es-display-flex es-gap-1! es-ml-2.5 es-w-full'>
-								<IconLabel icon={icons.inherit} label={__('Inherit', 'eightshift-frontend-libs')} standalone additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1 es-nested-color-cool-gray-450!' />
+							<div
+								// eslint-disable-next-line max-len
+								className='es-h-start es-mt-2 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1! es-py-0.5! es-display-flex es-gap-1! es-ml-2.5 es-w-full'
+							>
+								<IconLabel
+									icon={icons.inherit}
+									label={__('Inherit', 'eightshift-frontend-libs')}
+									additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1 es-nested-color-cool-gray-450!'
+									standalone
+								/>
 
 								<Button
 									isPressed={inheritCheck(offset)}

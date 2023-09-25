@@ -27,6 +27,7 @@ export const component = () => {
 									<Button
 										ref={ref}
 										onClick={() => setIsOpen(!isOpen)}
+										// eslint-disable-next-line max-len
 										className='es-w-14 es-content-center es-rounded-1.5! es-slight-button-border-cool-gray-300 es-hover-slight-button-border-cool-gray-500 es-hover-color-cool-gray-800!'
 									>
 										Open

@@ -161,9 +161,15 @@ export const ColumnConfigSlider = (props) => {
 						draggableTrack
 						noCross={noOffsetHandle}
 
-						handleRender={renderColumnConfigSliderHandle({ value: value, hasFocus: hasFocus, noOffsetHandle: noOffsetHandle, noWidthHandle: noWidthHandle })}
+						handleRender={renderColumnConfigSliderHandle({
+							value: value,
+							hasFocus: hasFocus,
+							noOffsetHandle: noOffsetHandle,
+							noWidthHandle: noWidthHandle,
+						})}
 
 						onFocus={({ target }) => {
+							// eslint-disable-next-line max-len
 							target.style.setProperty('--es-custom-slider-handle-shadow', '0 0 0 1px white, 0 0 0 4px rgb(255 255 255 / 0.8), 0 0 0 4px var(--wp-admin-theme-color, var(--es-admin-accent-color-default))');
 							setHasFocus(true);
 						}}

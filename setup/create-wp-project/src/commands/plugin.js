@@ -43,6 +43,7 @@ exports.handler = async (argv) => {
 
 	await installStep({
 		describe: `Cloning the repository`,
+		// eslint-disable-next-line max-len
 		thisHappens: cloneRepoTo('https://github.com/infinum/eightshift-boilerplate-plugin', projectPath, argv.eightshiftBoilerplateBranch ? argv.eightshiftBoilerplateBranch : ''),
 	});
 

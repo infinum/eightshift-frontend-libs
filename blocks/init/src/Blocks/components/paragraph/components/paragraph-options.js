@@ -29,7 +29,12 @@ export const ParagraphOptions = (attributes) => {
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'paragraphUse')}>
-			<Section showIf={!hideColor || !hideSize || !hideWeight} reducedBottomSpacing={additionalControls} noBottomSpacing={!additionalControls} additionalClasses='es-h-spaced'>
+			<Section
+				showIf={!hideColor || !hideSize || !hideWeight}
+				reducedBottomSpacing={additionalControls}
+				noBottomSpacing={!additionalControls}
+				additionalClasses='es-h-spaced'
+			>
 				{!hideColor &&
 					<ColorPicker
 						colors={getOption('paragraphColor', attributes, manifest, true)}
@@ -46,7 +51,9 @@ export const ParagraphOptions = (attributes) => {
 					<Select
 						value={fontSize}
 						options={Object.values(fontSizes)}
-						onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}` })}
+						onChange={(value) => setAttributes({
+							[getAttrKey('paragraphSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
+						})}
 						additionalSelectClasses='es-w-16'
 						placeholder={__('Size', 'eightshift-frontend-libs')}
 						noBottomSpacing

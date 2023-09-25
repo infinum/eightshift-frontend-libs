@@ -20,7 +20,6 @@ export const AccordionEditor = ({ attributes, clientId }) => {
 	};
 
 	return (
-		<div {...modifiedInnerBlockProps}>
-		</div>
+		<div {...modifiedInnerBlockProps}/>
 	);
 };

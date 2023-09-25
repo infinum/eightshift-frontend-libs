@@ -68,6 +68,7 @@ export const PresetPicker = (props) => {
 				<Button
 					icon={offButton?.icon ?? icons.none}
 					onClick={() => setAttributes(offButton.attributes)}
+					// eslint-disable-next-line max-len
 					className='es-h-start es-mx-0! es-mt-0! es-mb-1! es-nested-w-7 es-nested-h-7 es-h-auto es-w-full es-h-10 es-rounded-1.5 es-border es-border-cool-gray-100 es-hover-border-cool-gray-400 es-transition es-nested-m-0! es-text-align-left es-line-h-1 es-button-icon-24'
 				>
 					{offButton?.label}
@@ -79,6 +80,7 @@ export const PresetPicker = (props) => {
 					<Button
 						icon={defaultButton?.icon ?? icons.checkCircle}
 						onClick={() => setAttributes(defaultButton?.attributes ?? defaultManifestAttributes)}
+						// eslint-disable-next-line max-len
 						className='es-h-start es-m-0! es-nested-w-7 es-nested-h-7 es-h-auto es-w-full es-h-10 es-rounded-1.5 es-border es-border-cool-gray-100 es-hover-border-cool-gray-400 es-transition es-nested-m-0! es-text-align-left es-line-h-1 es-button-icon-24'
 					>
 						{defaultButton?.label ?? __('Default', 'eightshift-frontend-libs')}
@@ -89,7 +91,12 @@ export const PresetPicker = (props) => {
 					<Button
 						key={i}
 						icon={icons?.[presetIcon] ?? icons.genericShapesAlt}
-						onClick={() => setAttributes(excludeDefaultsFromPresets && defaultManifestAttributes ? presetAttrs : { ...defaultManifestAttributes, ...presetAttrs })}
+						onClick={() => setAttributes(
+							excludeDefaultsFromPresets && defaultManifestAttributes
+								? presetAttrs
+								: { ...defaultManifestAttributes, ...presetAttrs }
+						)}
+						// eslint-disable-next-line max-len
 						className='es-h-start es-m-0! es-nested-w-7 es-nested-h-7 es-h-auto es-w-full es-h-10 es-rounded-1.5 es-border es-border-cool-gray-100 es-hover-border-cool-gray-400 es-transition es-nested-m-0! es-text-align-left es-line-h-1 es-button-icon-24'
 					>
 						{presetName}

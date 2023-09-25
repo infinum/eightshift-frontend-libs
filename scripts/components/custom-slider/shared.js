@@ -130,8 +130,8 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		borderBottomLeftRadius: props.value[0] === 1 ? 5 : 2,
 		borderTopRightRadius: props.value[1] === numColumns ? 5 : 2,
 		borderBottomRightRadius: props.value[1] === numColumns ? 5 : 2,
-		height: 44,
-		top: 6,
+		height: 34,
+		top: 11,
 		cursor: 'pointer',
 	};
 
@@ -143,6 +143,9 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		top: 5,
 		left: -1,
 		boxShadow: '0 0 0 1px var(--es-admin-cool-gray-300)',
+		zIndex: -1,
+		backgroundOrigin: 'border-box',
+		backgroundRepeat: 'no-repeat',
 	};
 
 	const dotStyle = (value) => {
@@ -221,7 +224,13 @@ export const getMarkers = (min, max, segments = 5, isNegative = false, flipped =
 		letterSpacing: '-0.01em',
 	};
 
-	output[min * multiplier] = { style: { ...baseStyle, transform: flipped ? 'translateX(calc(-100% + 2px))' : 'translateX(-1px)', textAlign: 'left' }, label: `${prefix}${min}` };
+	output[min * multiplier] = {
+		style: {
+			...baseStyle,
+			transform: flipped ? 'translateX(calc(-100% + 2px))' : 'translateX(-1px)', textAlign: 'left'
+		},
+		label: `${prefix}${min}`,
+	};
 
 	for (let i = calculatedStep; i < max; i += calculatedStep) {
 		if (max <= 10 || i - min > 1) {
@@ -229,7 +238,14 @@ export const getMarkers = (min, max, segments = 5, isNegative = false, flipped =
 		}
 	}
 
-	output[max * multiplier] = { style: { ...baseStyle, transform: flipped ? 'translateX(-1px)' : 'translateX(calc(-100% + 2px))', textAlign: 'right' }, label: `${prefix}${max}` };
+	output[max * multiplier] = {
+		style: {
+			...baseStyle,
+			transform: flipped ? 'translateX(-1px)' : 'translateX(calc(-100% + 2px))',
+			textAlign: 'right',
+		},
+		label: `${prefix}${max}`,
+	};
 
 	return output;
 };

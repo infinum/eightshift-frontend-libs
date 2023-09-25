@@ -95,6 +95,7 @@ export const Slider = (props) => {
 		inputField = false,
 
 		valueDisplay = false,
+		// eslint-disable-next-line max-len
 		valueDisplayElement = (<span className='es-custom-slider-current-value es-display-inline-block es-p-1 es-rounded-1 es-border-cool-gray-100 es-bg-cool-gray-50 es-shadow-inner es-color-cool-gray-600 es-font-weight-500'>{value}</span>),
 	} = props;
 
@@ -199,6 +200,7 @@ export const Slider = (props) => {
 								return splitInput2[0].trim();
 							};
 
+							// eslint-disable-next-line max-len
 							target.style.setProperty('--es-custom-slider-handle-shadow', `0 0 0 1px white, 0 0 0 4px rgb(255 255 255 / 0.8), 0 0 0 4px ${calculateHandleColor(handleColor)}`);
 							setHasFocus(true);
 						}}

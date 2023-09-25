@@ -30,7 +30,7 @@ export const AccordionItemEditor = ({ attributes, setAttributes }) => {
 				/>
 
 				<button className={accordionItemIconContainerClass} onClick={() => setOpen(!open)}>
-					<i className={accordionItemIconClass} dangerouslySetInnerHTML={{ __html: manifest.resources.icon }}></i>
+					<i className={accordionItemIconClass} dangerouslySetInnerHTML={{ __html: manifest.resources.icon }} />
 				</button>
 			</div>
 

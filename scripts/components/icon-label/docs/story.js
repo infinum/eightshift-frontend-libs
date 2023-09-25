@@ -36,7 +36,10 @@ export const component = () => {
 					/>
 				</SingleItemShowcase>
 
-				<SingleItemShowcase title='Subtitle gap' propsUsed={{ addSubtitleGap: 'Useful in some complex layouts where default Gutenberg styles would make the gap too small' }}>
+				<SingleItemShowcase
+					title='Subtitle gap'
+					propsUsed={{ addSubtitleGap: 'Useful in some complex layouts where default Gutenberg styles would make the gap too small' }}
+				>
 					<div className='es-fifty-fifty-h'>
 						<IconLabel
 							icon={icons.colorAlt}

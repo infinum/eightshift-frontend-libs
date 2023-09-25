@@ -2,7 +2,21 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { TextControl, Button } from '@wordpress/components';
-import { icons, ucfirst, checkAttr, checkAttrResponsive, getAttrKey, IconLabel, IconToggle, UseToggle, Responsive, getDefaultBreakpointNames, Section, Control, generateUseToggleConfig } from '@eightshift/frontend-libs/scripts';
+import {
+	icons,
+	ucfirst,
+	checkAttr,
+	checkAttrResponsive,
+	getAttrKey,
+	IconLabel,
+	IconToggle,
+	UseToggle,
+	Responsive,
+	getDefaultBreakpointNames,
+	Section,
+	Control,
+	generateUseToggleConfig,
+} from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
@@ -99,6 +113,7 @@ export const ImageOptions = (attributes) => {
 									key={index}
 									icon={icons.trashAlt}
 									label={__('Remove image', 'eightshift-frontend-libs')}
+									// eslint-disable-next-line max-len
 									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 									onClick={() => setAttributes({
 										[urlAttr]: undefined,
@@ -143,7 +158,12 @@ export const ImageOptions = (attributes) => {
 
 			{additionalControlsBeforeA11y}
 
-			<Section showIf={!hideAltText} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing={!additionalControlsAfterA11y}>
+			<Section
+				showIf={!hideAltText}
+				icon={icons.a11y}
+				label={__('Accessibility', 'eightshift-frontend-libs')}
+				noBottomSpacing={!additionalControlsAfterA11y}
+			>
 				<TextControl
 					label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
 					value={imageAlt}

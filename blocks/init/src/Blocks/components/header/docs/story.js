@@ -1,8 +1,6 @@
 import React from 'react';
 import readme from './readme.mdx';
 import manifest from './../manifest.json';
-import { editor as HamburgerEditor } from '../../hamburger/docs/story';
-import { editor as LogoEditor } from '../../logo/docs/story';
 
 export default {
 	title: `Components/${manifest.title}`,
@@ -14,7 +12,7 @@ export default {
 };
 
 export const editor = () => (
-	<div></div>
+	<div />
 	// <LayoutThreeColumnsEditor
 	// 	selectorClass={'header'}
 	// 	layoutThreeColumnsLeft={[

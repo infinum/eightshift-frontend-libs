@@ -104,6 +104,7 @@ const writeIntro = async () => {
 	const emptyBar = chalk.dim(`│${' '.repeat(76)}│`);
 	const midBar = chalk.dim(`├${'─'.repeat(76)}┤`);
 
+	// eslint-disable-next-line max-len
 	const processFiglet = (input) => input.split("\n").filter((line) => line.trim().length > 0).map((line) => `${chalk.dim('│')}  ${line.trim().padEnd(74, ' ')}${chalk.dim('│')}`).join("\n");
 	const processRedFiglet = (input) => input.map((line) => `${chalk.dim('│')}  ${chalk.redBright(line.padEnd(74, ' '))}${chalk.dim('│')}`).join("\n");
 	const processLine = (input) => `${chalk.dim('│')}  ${input.trim().padEnd(74, ' ')}${chalk.dim('│')}`;
@@ -114,6 +115,7 @@ const writeIntro = async () => {
 	const esText = processFiglet(figlet.textSync('Eightshift', figletOpts));
 	const devKitText = processFiglet(figlet.textSync('DevKit', figletOpts));
 
+	// eslint-disable-next-line max-len
 	console.log([topBar, emptyBar, infinumLogo, emptyBar, esText, emptyBar, devKitText, emptyBar, midBar, emptyBar, processLine('Thank you for using Eightshift DevKit!'), emptyBar, bottomBar, ''].join("\n"));
 };
 

@@ -25,6 +25,7 @@ const alertBox = (msg, title, type = 'info', config = {}) => {
 	const omitLastLine = config?.omitLastLine ?? false;
 
 	const formattedMsg = msg.split("\n").map((line) => `${colorText('│')}${chalk.reset()} ${line.trim().replace("\n", '')}`);
+	// eslint-disable-next-line max-len
 	const formattedTitle = (title ?? autoTitle).length > 0 ? (title ?? autoTitle).split("\n").map((line) => `${colorText('│')}${chalk.reset()} ${colorText(line.trim().replace("\n", ''), true)}`) : [];
 
 	const alertBody = [

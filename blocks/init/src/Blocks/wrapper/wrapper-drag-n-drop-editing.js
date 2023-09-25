@@ -33,7 +33,9 @@ export const WrapperDragNDropEditOptionsComponent = ({ attributes }) => {
 	);
 };
 
-export const WrapperDragNDropEditEditorComponent = ({ attributes, setAttributes, manifest, wrapperWidthLarge, wrapperOffsetLarge, wrapperIsFullWidthLarge }) => {
+export const WrapperDragNDropEditEditorComponent = (props) => {
+	const { attributes, setAttributes, manifest, wrapperWidthLarge, wrapperOffsetLarge, wrapperIsFullWidthLarge } = props;
+
 	if (!globalManifest.config.experiments.wrapperDragNDropEditing) {
 		return null;
 	}
@@ -50,8 +52,22 @@ export const WrapperDragNDropEditEditorComponent = ({ attributes, setAttributes,
 	}
 
 	return (
-		<div style={{ position: 'absolute', inset: '0', display: 'grid', gridTemplateColumns: 'var(--wrapper-grid-template-columns)', columnGap: 'var(--global-grid-gutter)', marginTop: '-0.5rem', alignItems: 'center' }}>
-			<div style={{ gridColumn: wrapperIsFullWidthLarge ? `1 / span ${globalManifest.globalVariables.maxCols + 2}` : `2 / span ${globalManifest.globalVariables.maxCols}`, gridRow: 1 }}>
+		<div
+			style={{
+				position: 'absolute',
+				inset: '0',
+				display: 'grid',
+				gridTemplateColumns: 'var(--wrapper-grid-template-columns)',
+				columnGap: 'var(--global-grid-gutter)',
+				marginTop: '-0.5rem',
+				alignItems: 'center',
+			}}>
+			<div style={{
+				gridColumn: wrapperIsFullWidthLarge
+					? `1 / span ${globalManifest.globalVariables.maxCols + 2}`
+					: `2 / span ${globalManifest.globalVariables.maxCols}`,
+				gridRow: 1,
+			}}>
 				<RangeSlider
 					min={1}
 					max={globalManifest.globalVariables.maxCols + (wrapperIsFullWidthLarge ? 3 : 1)}

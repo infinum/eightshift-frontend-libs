@@ -59,7 +59,14 @@ export const Section = (props) => {
 
 	return (
 		<Control
-			label={(label || icon) && <FancyDivider label={label} icon={icon} subtitle={subtitle} additionalClasses={classnames('es-w-full', additionalLabelClasses)} />}
+			label={(label || icon) &&
+				<FancyDivider
+					label={label}
+					icon={icon}
+					subtitle={subtitle}
+					additionalClasses={classnames('es-w-full', additionalLabelClasses)}
+				/>
+			}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalLabelClasses='es-mb-0!'
