@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.4.7] - 2023-09-28
+
+### Added
+- a couple of new icons
+- a custom `label` option for the `BlockInserter`
+
+### Changed
+- incorrect rounded corners in `NumberPicker` spinner buttons
+
 ## [8.4.6] - 2023-09-25
 
 ### Added
@@ -807,6 +816,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.4.7]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.6...8.4.7
 [8.4.6]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.5...8.4.6
 [8.4.5]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.4...8.4.5
 [8.4.4]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.3...8.4.4
