@@ -16,6 +16,7 @@ import { classnames } from '../../helpers';
  * @param {React.Component?} [props.small=false]              - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
  * @param {React.Component?} [props.additionalClasses]        - Classes to add to the control base.
  * @param {React.Component?} [props.prioritizePatterns=false] - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
+ * @param {React.Component?} [props.customLabel]              - If provided, the label will be used instead of the default one.
  */
 export const BlockInserter = (props) => {
 	const {
@@ -24,6 +25,7 @@ export const BlockInserter = (props) => {
 		small = false,
 		additionalClasses,
 		prioritizePatterns = false,
+		customLabel,
 	} = props;
 
 	return (
@@ -44,7 +46,7 @@ export const BlockInserter = (props) => {
 				} = appenderProps;
 
 				const addLabelText = hasLabel ? blockTitle : sprintf(__( 'Add %s', 'eightshift-frontend-libs'), blockTitle);
-				const labelText = hasSingleBlockType ? addLabelText : __('Add a block', 'eightshift-frontend-libs');
+				const labelText = customLabel ?? (hasSingleBlockType ? addLabelText : __('Add a block', 'eightshift-frontend-libs'));
 
 				return (
 					<Button
