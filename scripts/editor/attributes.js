@@ -21,7 +21,8 @@ import _ from 'lodash';
  *     select,
  *     props.clientId,
  *     {
- *       wrapperDisable: true,
+ *       wrapperUse: false,
+ *       wrapperNoControls: true,
  *     }
  *   );
  * });
