@@ -1,5 +1,5 @@
 {
-	"active": true,
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
 	"blockName": "featured-content",
 	"title": "Featured content",
 	"description" : "Block for selecting and displaying featured content",
