@@ -15,6 +15,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - SASSDoc and Storybook sidebars are now blue
 - fixed RC Slider ColumnConfigSlider background
 - tweaked Gutenberg UI enhancements control roundness
+- `PopoverWithTrigger` can now have classes passed to the outer/main popover as well
 
 ## [8.4.7] - 2023-09-28
 
