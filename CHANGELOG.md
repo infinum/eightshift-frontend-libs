@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.5.0] - 2023-10-17
+
+### Added
+- a couple of new icons
+- a couple of new utility classes (z-index, isolation, border: none)
+- new `Menu` component (together with `MenuItem` and `MenuSeparator`)
+
+### Changed
+- SASSDoc and Storybook sidebars are now blue
+- fixed RC Slider ColumnConfigSlider background
+- tweaked Gutenberg UI enhancements control roundness
+
 ## [8.4.7] - 2023-09-28
 
 ### Added
@@ -816,6 +828,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.7...8.5.0
 [8.4.7]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.6...8.4.7
 [8.4.6]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.5...8.4.6
 [8.4.5]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.4...8.4.5
