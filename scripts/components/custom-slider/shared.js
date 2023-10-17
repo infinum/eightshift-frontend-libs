@@ -133,6 +133,9 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		height: 34,
 		top: 11,
 		cursor: 'pointer',
+		zIndex: -1,
+		backgroundOrigin: 'border-box',
+		backgroundRepeat: 'no-repeat',
 	};
 
 	const railStyle = {
@@ -143,9 +146,6 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		top: 5,
 		left: -1,
 		boxShadow: '0 0 0 1px var(--es-admin-cool-gray-300)',
-		zIndex: -1,
-		backgroundOrigin: 'border-box',
-		backgroundRepeat: 'no-repeat',
 	};
 
 	const dotStyle = (value) => {
