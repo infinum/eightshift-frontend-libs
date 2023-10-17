@@ -5,6 +5,7 @@ import { Popover } from '@wordpress/components';
  * @typedef {'top' | 'top left' | 'top right' | 'middle' | 'middle left' | 'middle right' | 'bottom' | 'bottom left' | 'bottom right'} AppearOrigin
  *
  * @param {object} props                                      - PopoverWithTrigger options.
+ * @param {string?} [props.popoverClass]                      - Class applied to the main (outer) popover.
  * @param {string?} [props.contentClass='es-popover-content'] - Class applied to inner popover content.
  * @param {AppearOrigin} [props.position='top center']        - Position where the popover appears.
  * @param {boolean?} [props.noArrow=false]                    - If `true`, the popover doesn't render an arrow pointing to the trigger element.
@@ -16,6 +17,7 @@ import { Popover } from '@wordpress/components';
  */
 export const PopoverWithTrigger = (props) => {
 	const {
+		popoverClass,
 		contentClass = 'es-popover-content',
 		position = 'top center',
 
@@ -47,6 +49,7 @@ export const PopoverWithTrigger = (props) => {
 					anchor={ref?.current}
 					noArrow={noArrow}
 					position={position}
+					className={popoverClass}
 				>
 					<div className={contentClass}>
 						{!allowCloseFromChildren && children}

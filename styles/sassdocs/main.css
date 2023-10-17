@@ -69,6 +69,7 @@ a:hover,
 	overflow-x: hidden;
 	padding: 2rem;
 
+	background-color: var(--global-colors-gray-100);
 	border-right: 1px solid var(--global-colors-gray-200);
 
 	height: 100vh;
@@ -160,9 +161,6 @@ a:hover,
 		gap: 4rem;
 	}
 }
-
-
-
 
 .item__heading {
 	font-size: 1.5rem;

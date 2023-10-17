@@ -272,6 +272,24 @@ $es-vertical-aligns: (
 	'text-top': 'text-top',
 );
 
+$es-z-indexes: (
+	'1': '1',
+	'2': '2',
+	'3': '3',
+	'4': '4',
+	'5': '5',
+	'10': '10',
+	'20': '20',
+	'30': '30',
+	'40': '40',
+	'50': '50',
+	'100': '100',
+	'200': '200',
+	'500': '500',
+	'1000': '1000',
+	'999999': '999999',
+);
+
 $es-utility-props: (
 	'border': (
 		'cssProp': 'border',
@@ -1119,9 +1137,22 @@ $es-utility-props: (
 		'valuePrefix': '',
 		'includeNegativeValues': 'false',
 	),
+	'z': (
+		'cssProp': 'z-index',
+		'values': $es-z-indexes,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': '',
+		'valuePrefix': '',
+		'includeNegativeValues': 'true',
+	),
 );
 
 // Additional borders (default).
+.es-border-none {
+	border: none;
+}
+
 .es-border {
 	border: 1px solid currentColor;
 }
@@ -1959,6 +1990,20 @@ $es-utility-props: (
 
 .es-capitalize {
 	text-transform: capitalize;
+}
+
+// Z-index.
+.es-z-auto {
+	z-index: auto;
+}
+
+// Isolation.
+.es-isolate {
+	isolation: isolate;
+}
+
+.es-isolate-auto {
+	isolation: auto;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
