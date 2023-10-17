@@ -45,7 +45,31 @@ export const component = () => {
 						</Menu>
 					</div>
 				</SingleItemShowcase>
-			</div>
+
+				<SingleItemShowcase title='Menu with icon'>
+					<div className='es-h-spaced'>
+						<Menu icon={icons.moreH}>
+							<MenuItem icon={icons.dummySpacer} label='Disabled item' disabled />
+							<MenuItem icon={icons.componentGeneric} label='Disabled item with icon' disabled />
+							<MenuSeparator />
+							<MenuItem icon={icons.componentGeneric} label='Lorem' onClick={() => console.log('"Lorem" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Ipsum' onClick={() => console.log('"Ipsum" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Dolor' onClick={() => console.log('"Dolor" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Sit amet...' onClick={() => console.log('"Sit amet..." clicked')} />
+						</Menu>
+
+						<Menu icon={icons.add}>
+							<MenuItem icon={icons.dummySpacer} label='Disabled item' disabled />
+							<MenuItem icon={icons.componentGeneric} label='Disabled item with icon' disabled />
+							<MenuSeparator />
+							<MenuItem icon={icons.componentGeneric} label='Lorem' onClick={() => console.log('"Lorem" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Ipsum' onClick={() => console.log('"Ipsum" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Dolor' onClick={() => console.log('"Dolor" clicked')} />
+							<MenuItem icon={icons.componentGeneric} label='Sit amet...' onClick={() => console.log('"Sit amet..." clicked')} />
+						</Menu>
+					</div>
+				</SingleItemShowcase >
+			</div >
 		</>
 	);
 };
