@@ -66,6 +66,16 @@ export const component = () => {
 							<MenuItem icon={icons.componentGeneric} label='Ipsum' onClick={() => console.log('"Ipsum" clicked')} />
 							<MenuItem icon={icons.componentGeneric} label='Dolor' onClick={() => console.log('"Dolor" clicked')} />
 							<MenuItem icon={icons.componentGeneric} label='Sit amet...' onClick={() => console.log('"Sit amet..." clicked')} />
+							<MenuSeparator />
+							<Menu icon={icons.experiment} label='Sub-menu' isSubmenu>
+								<MenuItem icon={icons.dummySpacer} label='Disabled item' disabled />
+								<MenuItem icon={icons.componentGeneric} label='Disabled item with icon' disabled />
+								<MenuSeparator />
+								<MenuItem icon={icons.componentGeneric} label='Lorem' onClick={() => console.log('"Lorem" clicked')} />
+								<MenuItem icon={icons.componentGeneric} label='Ipsum' onClick={() => console.log('"Ipsum" clicked')} />
+								<MenuItem icon={icons.componentGeneric} label='Dolor' onClick={() => console.log('"Dolor" clicked')} />
+								<MenuItem icon={icons.componentGeneric} label='Sit amet...' onClick={() => console.log('"Sit amet..." clicked')} />
+							</Menu>
 						</Menu>
 					</div>
 				</SingleItemShowcase >
