@@ -3,7 +3,7 @@
 import domReady from '@wordpress/dom-ready';
 import manifest from './../manifest.json';
 
-domReady(() => {
+domReady(async () => {
 	const {
 		componentJsClass,
 	} = manifest;
@@ -11,14 +11,14 @@ domReady(() => {
 	const selectors = `.${componentJsClass}`;
 	const elements = document.querySelectorAll(selectors);
 
-	if (elements.length) {
-		import('./load-more').then(({ LoadMore }) => {
-			const loadMore = new LoadMore({
-				triggerElements: elements,
-				restUrl: esBlocksLocalization?.loadMoreRestUrl ?? '',
-			});
-
-			loadMore.init();
-		});
+	if (!elements.length) {
+		return;
 	}
+	
+	const { LoadMore } = await import('./load-more');
+
+	new LoadMore({
+		triggerElements: elements,
+		restUrl: esBlocksLocalization?.loadMoreRestUrl ?? '',
+	}).init();
 });
