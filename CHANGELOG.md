@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.6.0] - 2023-10-23
+
+### Fixed
+- Block registration issue with WooCommerce combination.
+
 ## [8.5.0] - 2023-10-17
 
 ### Added
@@ -829,6 +834,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.5.0...8.6.0
 [8.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.7...8.5.0
 [8.4.7]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.6...8.4.7
 [8.4.6]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.5...8.4.6
