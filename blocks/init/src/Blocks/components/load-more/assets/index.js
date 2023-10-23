@@ -11,12 +11,14 @@ domReady(async () => {
 	const selectors = `.${componentJsClass}`;
 	const elements = document.querySelectorAll(selectors);
 
+	if (!elements.length) {
+		return;
+	}
+	
 	const { LoadMore } = await import('./load-more');
 
-	const loadMore = new LoadMore({
+	new LoadMore({
 		triggerElements: elements,
 		restUrl: esBlocksLocalization?.loadMoreRestUrl ?? '',
-	});
-
-	loadMore.init();
+	}).init();
 });
