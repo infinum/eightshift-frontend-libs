@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './store';
@@ -20,24 +19,28 @@ import { STORE_NAME } from './store';
 
 		// Update only our blocks.
 		if (name.split('/')[0] === select(STORE_NAME).getSettingsNamespace()) {
-			updatedProps = _.assign(
-				{},
-				innerProps,
-				{
+			updatedProps = {
+				...innerProps,
+				...{
 					// Assign clientId to our internal attribute used for inline css variables.
-					attributes: _.assign({}, innerProps.attributes, {
+					attributes: {
+						...innerProps?.attributes,
 						blockClientId: clientId,
-					}),
+					},
 					block: {
-						attributes: _.assign({}, innerProps.block.attributes, {
-							blockClientId: clientId,
-						}),
+						...innerProps?.block,
+						...{
+							attributes: {
+								...innerProps?.block?.attributes,
+								blockClientId: clientId,
+							},
+						},
 					},
 
 					// Add className to block defined by our project.
 					className: select(STORE_NAME).getSettingsGlobalVariablesCustomBlockName(),
 				}
-			);
+			};
 		}
 		return <BlockListBlock {...updatedProps} />;
 	};
