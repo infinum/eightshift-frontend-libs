@@ -17,6 +17,12 @@ $wrapperNoControls = Components::checkAttr('wrapperNoControls', $attributes, $ma
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $wrapperSimple = Components::checkAttr('wrapperSimple', $attributes, $manifest);
 $wrapperUseInner = Components::checkAttr('wrapperUseInner', $attributes, $manifest);
+$wrapperManualContent = Components::checkAttr('wrapperManualContent', $attributes, $manifest);
+
+// Used to provide manual content using render method.
+if (!isset($innerBlockContent) || !$innerBlockContent) {
+	$innerBlockContent = $wrapperManualContent;
+}
 
 if (! $wrapperUse || $wrapperNoControls) {
 	if ($wrapperParentClass) {

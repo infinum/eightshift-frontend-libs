@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [8.6.2] - 2023-10-24
+
+### Added
+- `wrapper` corrections to be used using the `render` method as a standalone component.
+
+### Changed
+- cleaned up the `Load more` JS logic
+
 ## [8.6.1] - 2023-10-23
 
 ### Fixed
@@ -839,6 +847,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[8.6.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.1...8.6.2
 [8.6.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.0...8.6.1
 [8.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.5.0...8.6.0
 [8.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.4.7...8.5.0
