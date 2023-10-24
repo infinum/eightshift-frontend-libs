@@ -9,6 +9,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Added
 - `wrapper` corrections to be used using the `render` method as a standalone component.
 
+### Changed
+- cleaned up the `Load more` JS logic
+
 ## [8.6.1] - 2023-10-23
 
 ### Fixed
