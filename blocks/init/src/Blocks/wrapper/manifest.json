@@ -55,6 +55,9 @@
 		"uniqueWrapperId": {
 			"type": "string"
 		},
+		"wrapperManualContent": {
+			"type": "string"
+		},
 
 		"wrapperId": {
 			"type": "string"
