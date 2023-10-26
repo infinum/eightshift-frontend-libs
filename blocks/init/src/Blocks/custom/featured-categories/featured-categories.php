@@ -43,11 +43,11 @@ if (!$taxonomyName) {
 			function ($item) {
 				return $item['value'];
 			},
-			$featuredCategoriesManualTerms // @phpstan-ignore-line
+			$featuredCategoriesManualTerms
 		),
 	];
 
-	$allTerms = get_terms($args); // @phpstan-ignore-line
+	$allTerms = get_terms($args);
 
 	if (!is_iterable($allTerms)) {
 		return;
