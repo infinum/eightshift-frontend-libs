@@ -30,6 +30,10 @@ After the script is finished, please follow the instructions provided by the set
 
 All additional steps after the initial setup are done using WP_CLI commands, so please make sure that you have WP-CLI set and ready to use.
 
+To make sure you use the latest version of npx command you can add `@latest` flag to the command:
+
+`npx create-wp-project@latest`
+
 ## Specify version to create
 
 If you want to specify a version of Eightshift Libs or Frontend Libs to use, you can use add two additional attributes to this command to specify a branch or release to use:
