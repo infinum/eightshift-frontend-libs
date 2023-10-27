@@ -50,7 +50,7 @@ const requirementCheck = async () => {
 		`${chalk.gray('  Check with')} ${chalk.gray.underline('node -v')}`,
 		'- Composer (LTS recommended)',
 		`${chalk.gray('  Check with')} ${chalk.gray.underline('composer -V')}`,
-		'- WP CLI', `${chalk.gray('  Check with')} ${chalk.gray.underline('wp --info')}`,
+		'- WP CLI (2.9.0+)', `${chalk.gray('  Check with')} ${chalk.gray.underline('wp --info')}`,
 		'- Git',
 		`${chalk.gray('  Check with')} ${chalk.gray.underline('git --version')}`
 	].join("\n"), 'Requirements');
