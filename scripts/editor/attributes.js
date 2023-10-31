@@ -155,9 +155,9 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 	// Bailout if key is missing.
 	if (typeof manifestKey === 'undefined') {
 		if ('blockName' in manifest) {
-			throw Error(`${key} key does not exist in the ${manifest.blockName} block manifest.${tipOutput} Please check your implementation.`);
+			throw Error(`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`);
 		} else {
-			throw Error(`${key} key does not exist in the ${manifest.componentName} component manifest.${tipOutput} Please check your implementation.`);
+			throw Error(`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`);
 		}
 	}
 
