@@ -25,7 +25,7 @@ $entriesClass = Components::classnames([
 
 $tableOfContentsHeadingLevels = Components::checkAttr('tableOfContentsHeadingLevels', $attributes, $manifest);
 
-$headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadingLevels, fn($v) => $v))); // @phpstan-ignore-line
+$headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadingLevels, fn($v) => $v)));
 ?>
 
 <div class="<?php echo esc_attr($tocClass); ?>" data-levels="<?php echo esc_attr($headingLevelsToUse); ?>">

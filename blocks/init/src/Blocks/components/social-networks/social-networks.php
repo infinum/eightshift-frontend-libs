@@ -26,11 +26,11 @@ foreach ($socialNetworksNetworks as $network) {
 		continue;
 	}
 
-	if (!$socialNetworksShareMode && !isset($manifest['networks'][$network['id']]['url'])) { // @phpstan-ignore-line
+	if (!$socialNetworksShareMode && !isset($manifest['networks'][$network['id']]['url'])) {
 		continue;
 	}
 
-	if ($socialNetworksShareMode && !isset($manifest['networks'][$network['id']]['shareUrl'])) { // @phpstan-ignore-line
+	if ($socialNetworksShareMode && !isset($manifest['networks'][$network['id']]['shareUrl'])) {
 		continue;
 	}
 
@@ -64,21 +64,21 @@ $itemClass = Components::classnames([
 	<?php
 	if ($socialNetworksShareMode) {
 		foreach ($networksToShow as $networkName) {
-			$shareUrl = $manifest['networks'][$networkName]['shareUrl'] ?? ''; // @phpstan-ignore-line
-			$shareUrl = str_replace('POST_TITLE', get_the_title(), $shareUrl); // @phpstan-ignore-line
-			$shareUrl = str_replace('POST_URL', get_the_permalink(), $shareUrl); // @phpstan-ignore-line
-			$shareUrl = str_replace('POST_FEATURED_IMAGE', get_the_post_thumbnail_url(get_the_ID(), 'large'), $shareUrl); // @phpstan-ignore-line
+			$shareUrl = $manifest['networks'][$networkName]['shareUrl'] ?? '';
+			$shareUrl = str_replace('POST_TITLE', get_the_title(), $shareUrl);
+			$shareUrl = str_replace('POST_URL', get_the_permalink(), $shareUrl);
+			$shareUrl = str_replace('POST_FEATURED_IMAGE', get_the_post_thumbnail_url(get_the_ID(), 'large'), $shareUrl);
 			?>
 			<button
 				class="<?php echo esc_html($itemClass); ?>"
 				data-network="<?php echo esc_attr($networkName); ?>"
-				data-share-url="<?php echo esc_url($shareUrl); ?>" <?php // @phpstan-ignore-line ?>
+				data-share-url="<?php echo esc_url($shareUrl); ?>" <?php ?>
 				data-page-title="<?php echo esc_attr(get_the_title()); ?>"
-				data-page-url="<?php echo esc_url(get_the_permalink()); ?>" <?php // @phpstan-ignore-line ?>
+				data-page-url="<?php echo esc_url(get_the_permalink()); ?>" <?php ?>
 			>
 				<?php
 				// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-				echo $manifest['networks'][$networkName]['icon'] ?? ''; // @phpstan-ignore-line
+				echo $manifest['networks'][$networkName]['icon'] ?? '';
 				?>
 			</button>
 		<?php }
@@ -87,14 +87,14 @@ $itemClass = Components::classnames([
 			?>
 			<a
 				class="<?php echo esc_html($itemClass); ?>"
-				href="<?php echo esc_url($manifest['networks'][$networkName]['url'] ?? ''); ?>" <?php // @phpstan-ignore-line ?>
-				title="<?php echo esc_attr($manifest['networks'][$networkName]['title'] ?? ''); ?>" <?php // @phpstan-ignore-line ?>
+				href="<?php echo esc_url($manifest['networks'][$networkName]['url'] ?? ''); ?>" <?php ?>
+				title="<?php echo esc_attr($manifest['networks'][$networkName]['title'] ?? ''); ?>" <?php ?>
 				target="_blank"
 				rel="noreferrer noopener"
 			>
 				<?php
 				// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-				echo $manifest['networks'][$networkName]['icon'] ?? ''; // @phpstan-ignore-line
+				echo $manifest['networks'][$networkName]['icon'] ?? '';
 				?>
 			</a>
 			<?php
