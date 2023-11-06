@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.0.0] - 2023-11-06
+
+This is a major release that includes PHP8+ support. We tested it on the PHP 8.2.12 version.
+
+### Added
+- Better copy for checkAttr helper if key is missing.
+
+### Updated
+- Composer packages.
+- Composer command names.
+- Npx command readme.
+
+### Removed
+- Unnecessary standards and ignoring lines.
+- Storybook support for local project.
+
 ## [8.6.2] - 2023-10-24
 
 ### Added
@@ -847,6 +863,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.2...9.0.0
 [8.6.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.1...8.6.2
 [8.6.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.0...8.6.1
 [8.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.5.0...8.6.0

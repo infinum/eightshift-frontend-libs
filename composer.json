@@ -24,7 +24,7 @@
 		"source": "https://github.com/infinum/eightshift-frontend-libs"
 	},
 	"require": {
-		"php": ">=7.4",
+		"php": "^7.4 || >=8.0",
 		"ext-json": "*"
 	},
 	"require-dev": {
@@ -32,7 +32,7 @@
 		"infinum/eightshift-coding-standards": "2.0.0-beta",
 		"infinum/eightshift-libs-stubs": "^0.7.0",
 		"php-stubs/wordpress-stubs": "^6.3",
-		"szepeviktor/phpstan-wordpress": "^1.1.7"
+		"szepeviktor/phpstan-wordpress": "^1.3"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
