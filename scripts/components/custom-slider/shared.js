@@ -125,7 +125,8 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 	};
 
 	const trackStyle = {
-		background: disabled ? 'var(--es-admin-cool-gray-100)' : 'linear-gradient(135deg, var(--es-admin-cool-gray-200), var(--es-admin-cool-gray-400))',
+		backgroundColor: 'none !important',
+		background: 'linear-gradient(135deg, var(--es-admin-cool-gray-200), var(--es-admin-cool-gray-400))',
 		borderTopLeftRadius: props.value[0] === 1 ? 5 : 2,
 		borderBottomLeftRadius: props.value[0] === 1 ? 5 : 2,
 		borderTopRightRadius: props.value[1] === numColumns ? 5 : 2,
@@ -133,9 +134,12 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 		height: 34,
 		top: 11,
 		cursor: 'pointer',
-		zIndex: -1,
+		zIndex: 0,
 		backgroundOrigin: 'border-box',
 		backgroundRepeat: 'no-repeat',
+		backgroundClip: 'border-box',
+		opacity: disabled ? 0.5 : 1,
+		borderRadius: 4,
 	};
 
 	const railStyle = {
@@ -164,6 +168,7 @@ export const columnConfigStyleProps = (props, sliderHeight, numColumns) => {
 			bottom: -39,
 			opacity: disabled ? 0 : 1,
 			borderRadius: 2,
+			zIndex: 1,
 		};
 
 		const activeStyle = {
