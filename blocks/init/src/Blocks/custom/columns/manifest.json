@@ -216,8 +216,8 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 12,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "12",
+						"columnOffsetLarge": "2"
 					}
 				}
 			]
@@ -229,14 +229,14 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 6,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "6",
+						"columnOffsetLarge": "2"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 6
+						"columnWidthLarge": "6"
 					}
 				}
 			]
@@ -248,20 +248,20 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 4,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "4",
+						"columnOffsetLarge": "2"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 4
+						"columnWidthLarge": "4"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 4
+						"columnWidthLarge": "4"
 					}
 				}
 			]
@@ -273,26 +273,26 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "3",
+						"columnOffsetLarge": "2"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3
+						"columnWidthLarge": "3"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3
+						"columnWidthLarge": "3"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3
+						"columnWidthLarge": "3"
 					}
 				}
 			]
@@ -304,14 +304,14 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "3",
+						"columnOffsetLarge": "2"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 9
+						"columnWidthLarge": "9"
 					}
 				}
 			]
@@ -323,14 +323,14 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 9,
-						"columnOffsetLarge": 2
+						"columnWidthLarge": "9",
+						"columnOffsetLarge": "2"
 					}
 				},
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 3
+						"columnWidthLarge": "3"
 					}
 				}
 			]
@@ -342,8 +342,8 @@
 				{
 					"name": "eightshift-boilerplate/column",
 					"attributes": {
-						"columnWidthLarge": 14,
-						"columnOffsetLarge": 1
+						"columnWidthLarge": "14",
+						"columnOffsetLarge": "1"
 					}
 				}
 			]
