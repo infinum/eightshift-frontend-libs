@@ -1,5 +1,6 @@
 import { OSM, Vector as VectorSource, VectorTile as VectorTileSource, XYZ, TileJSON } from 'ol/source';
-import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer, MapboxVector } from 'ol/layer';
+import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer } from 'ol/layer';
+import { MapboxVectorLayer } from 'ol-mapbox-style';
 import OLVectorTileLayer from 'ol/layer/VectorTile';
 import { MVT, GeoJSON } from 'ol/format';
 
@@ -14,6 +15,10 @@ import OLZoomToExtent from 'ol/control/ZoomToExtent.js';
 import OLZoom from 'ol/control/Zoom.js';
 
 import { applyStyle as OLMBStyleApply } from 'ol-mapbox-style';
+
+import { Style, Fill, Stroke, Icon } from 'ol/style';
+
+import manifest from '../manifest.json';
 
 export const processMapInteraction = (type, options = {}) => {
 	switch (type) {
@@ -66,7 +71,7 @@ export const processMapLayer = (layer) => {
 				return null;
 			}
 
-			return new MapboxVector({
+			return new MapboxVectorLayer({
 				styleUrl: layer?.styleUrl,
 				accessToken: layer?.apiKey,
 			});
@@ -121,6 +126,32 @@ export const processMapLayer = (layer) => {
 					format: new GeoJSON(),
 					url: layer?.geoJsonUrl,
 				}),
+				// Stylize GeoJSON features based on type.
+				style: (feature, resolution) => {
+					const name = feature.getGeometry().getType();
+
+					if (name === 'Point') {
+						return new Style({
+							image: new Icon({
+								src: manifest.resources.markerIcon,
+								scale: 2 / Math.pow(resolution, 1 / 4),
+								displacement: [0, 15 / Math.pow(resolution, 1 / 4)],
+							})
+						});
+					}
+
+					return new Style({
+						fill: new Fill({
+							color: 'rgb(58 102 168 / 0.25)',
+						}),
+						stroke: new Stroke({
+							color: '#3A66A8',
+							lineJoin: 'round',
+							lineCap: 'round',
+							width: 2.5,
+						}),
+					});
+				},
 			});
 	}
 

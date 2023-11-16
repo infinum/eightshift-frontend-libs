@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { dispatch, select } from '@wordpress/data';
@@ -840,7 +841,12 @@ export const registerBlock = (
 	// Set full attributes list.
 	const attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
 
-	blockManifest['attributes'] = attributes;
+	blockManifest['attributes'] = {
+		metadata: {
+			type: 'object'
+		},
+		...attributes,
+	};
 
 	// Set full example list.
 	if (typeof blockManifest['example'] === 'undefined') {
@@ -870,6 +876,23 @@ export const registerBlock = (
 			edit: getEditCallback(blockComponent, wrapperComponent),
 			save: getSaveCallback(blockManifest),
 			merge: getMergeCallback(blockManifest),
+
+			// WP 6.4+ Block renaming support
+			__experimentalBlockRenaming: true,
+			__experimentalLabel: (attributes, { context }) => {
+				const customName = attributes?.metadata?.name ?? fullBlockName;
+
+				if (context === 'list-view') {
+					return customName;
+				}
+
+				if (context === 'accessibility') {
+					const { content } = attributes;
+					return !content || content?.length === 0 ? __('Empty', 'eightshift-frontend-libs') : content;
+				}
+
+				return fullBlockName;
+			},
 		},
 	};
 };

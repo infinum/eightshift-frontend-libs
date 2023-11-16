@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "9.0.0",
+	"version": "9.1.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -113,8 +113,8 @@
 		"jest": "^28.1.2",
 		"jest-environment-jsdom": "^28.1.2",
 		"micromodal": "^0.4.10",
-		"ol": "^7.4.0",
-		"ol-mapbox-style": "^10.6.0",
+		"ol": "^8.2.0",
+		"ol-mapbox-style": "^12.1.0",
 		"react-test-renderer": "^18.2.0",
 		"replace-in-file": "^6.3.5",
 		"sassdoc": "^2.7.4",
