@@ -17,10 +17,6 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Improved default GeoJSON styles in Map block
 - Carousel now works with the latest version of Swiper (11.0.4 at the time of publishing)
 
-### Removed
-- Unnecessary standards and ignoring lines.
-- Storybook support for local project.
-
 ## [9.0.0] - 2023-11-06
 
 This is a major release that includes PHP8+ support. We tested it on the PHP 8.2.12 version.
