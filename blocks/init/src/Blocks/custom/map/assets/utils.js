@@ -1,5 +1,6 @@
 import { OSM, Vector as VectorSource, VectorTile as VectorTileSource, XYZ, TileJSON } from 'ol/source';
-import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer, MapboxVector } from 'ol/layer';
+import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer } from 'ol/layer';
+import { MapboxVectorLayer } from 'ol-mapbox-style';
 import OLVectorTileLayer from 'ol/layer/VectorTile';
 import { MVT, GeoJSON } from 'ol/format';
 
@@ -66,7 +67,7 @@ export const processMapLayer = (layer) => {
 				return null;
 			}
 
-			return new MapboxVector({
+			return new MapboxVectorLayer({
 				styleUrl: layer?.styleUrl,
 				accessToken: layer?.apiKey,
 			});

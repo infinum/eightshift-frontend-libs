@@ -65,7 +65,7 @@
 		}
 	},
 	"nodeDependency": [
-		"ol",
-		"ol-mapbox-style"
+		"ol@8",
+		"ol-mapbox-style@12"
 	]
 }

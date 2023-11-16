@@ -4,7 +4,8 @@
 import React, { createContext, useRef, useState, useEffect, useContext } from 'react';
 import { Map as OLMap, View } from 'ol/index.js';
 import { OSM, Vector as VectorSource, VectorTile as VectorTileSource, XYZ, TileJSON, } from 'ol/source';
-import { Tile as OLTileLayer, Vector as OLVectorLayer, VectorTile as OLVectorTile, MapboxVector } from 'ol/layer';
+import { Tile as OLTileLayer, Vector as OLVectorLayer, VectorTile as OLVectorTile } from 'ol/layer';
+import { MapboxVectorLayer } from 'ol-mapbox-style';
 import OLVectorTileLayer from 'ol/layer/VectorTile';
 import { useGeographic } from 'ol/proj';
 import { MVT, GeoJSON } from 'ol/format';
@@ -98,7 +99,7 @@ export const MapLayer = (props) => {
 
 		switch (type) {
 			case 'mapboxVector':
-				tileLayer = new MapboxVector({
+				tileLayer = new MapboxVectorLayer({
 					styleUrl,
 					accessToken,
 				});
