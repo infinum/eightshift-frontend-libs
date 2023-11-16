@@ -7,9 +7,11 @@ import {
 	Control,
 	IconLabel,
 	IconToggle,
+	Menu,
+	MenuItem,
+	MenuSeparator,
 	Notification,
 	NumberPicker,
-	OptionSelector,
 	Repeater,
 	RepeaterItem,
 	Section,
@@ -33,10 +35,12 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 		openStreetMap: {
 			icon: icons.mapLayer,
 			title: __('OpenStreetMap', 'eightshift-frontend-libs'),
+			hasSeparator: true,
 		},
 		vectorJson: {
 			icon: icons.mapLayerJson, title: __('Vector map', 'eightshift-frontend-libs'),
 			subtitle: __('with JSON styles', 'eightshift-frontend-libs'),
+			hasSeparator: true,
 		},
 		mapBoxVector: {
 			icon: icons.mapLayerVector, title: __('Mapbox map', 'eightshift-frontend-libs'),
@@ -45,6 +49,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 		mapBoxRaster: {
 			icon: icons.mapLayerRaster, title: __('Mapbox map', 'eightshift-frontend-libs'),
 			subtitle: __('Raster tiles', 'eightshift-frontend-libs'),
+			hasSeparator: true,
 		},
 		mapTilerVector: {
 			icon: icons.mapLayerVector, title: __('MapTiler tiles', 'eightshift-frontend-libs'),
@@ -57,6 +62,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 		mapTilerRasterJson: {
 			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'),
 			subtitle: __('Raster - JSON', 'eightshift-frontend-libs'),
+			hasSeparator: true,
 		},
 		geoJson: { icon: icons.fileMetadata, title: __('GeoJSON', 'eightshift-frontend-libs') },
 	};
@@ -102,6 +108,38 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 					items={mapLayers}
 					attributeName={getAttrKey('mapLayers', attributes, manifest)}
 					setAttributes={setAttributes}
+
+					customAddButton={({ disabled }) => (
+						<Menu
+							buttonClass='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1'
+							icon={icons.plusCircle}
+							disabled={disabled}
+						>
+							{Object.entries(layerTypes).map(([value, { icon, title, subtitle, hasSeparator }], index) => {
+								return (
+									<>
+										<MenuItem
+											key={index}
+											icon={icon}
+											label={<IconLabel label={title} subtitle={subtitle} standalone />}
+											additionalClass='es-content-start!'
+											onClick={() => {
+												const modifiedData = [...mapLayers];
+												modifiedData.push({
+													id: modifiedData.length + 1,
+													type: value,
+													hidden: false,
+												});
+												setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
+											}}
+										/>
+
+										{hasSeparator && <MenuSeparator />}
+									</>
+								);
+							})}
+						</Menu>
+					)}
 				>
 					{mapLayers.map((layer, index) => {
 						// eslint-disable-next-line max-len
@@ -137,21 +175,10 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 								}
 							>
 								{!layer?.type &&
-									<OptionSelector
-										label={__('Layer type', 'eightshift-frontend-libs')}
-										options={Object.entries(layerTypes).map(([value, { icon, title, subtitle }]) => ({
-											value: value,
-											label: title,
-											icon: icon,
-											subtitle: subtitle,
-										}))}
-										onChange={(value) => {
-											const modifiedData = [...mapLayers];
-											modifiedData[index].type = value;
-											setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
-										}}
-										alignment='vertical'
-										noBottomSpacing
+									<Notification
+										type='error'
+										text={__('Error', 'eightshift-frontend-libs')}
+										subtitle={__('Layer type is missing, please remove the layer and add a new one.', 'eightshift-frontend-libs')}
 									/>
 								}
 
