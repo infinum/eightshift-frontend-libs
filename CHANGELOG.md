@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.1.0] - 2023-11-16
+
+### Added
+- New block icon (*Search field*)
+- Support for Gutenberg block renaming (requires WordPress 6.4.x or newer)
+
+### Updated
+- Improved support for WordPress 6.4.x
+- Map block now works with the latest version of OpenLayers (8.1.0 at the time of publishing)
+- Map block has a better layer adder
+- Improved default GeoJSON styles in Map block
+
+### Removed
+- Unnecessary standards and ignoring lines.
+- Storybook support for local project.
+
 ## [9.0.0] - 2023-11-06
 
 This is a major release that includes PHP8+ support. We tested it on the PHP 8.2.12 version.
@@ -863,6 +879,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.2...9.0.0
 [8.6.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.1...8.6.2
 [8.6.1]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.0...8.6.1
