@@ -15,6 +15,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Map block now works with the latest version of OpenLayers (8.1.0 at the time of publishing)
 - Map block has a better layer adder
 - Improved default GeoJSON styles in Map block
+- Carousel now works with the latest version of Swiper (11.0.4 at the time of publishing)
 
 ### Removed
 - Unnecessary standards and ignoring lines.
