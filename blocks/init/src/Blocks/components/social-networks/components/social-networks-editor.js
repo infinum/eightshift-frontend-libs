@@ -25,7 +25,7 @@ export const SocialNetworksEditor = (attributes) => {
 	const socialNetworksShareMode = checkAttr('socialNetworksShareMode', attributes, manifest);
 	const socialNetworksNetworks = checkAttr('socialNetworksNetworks', attributes, manifest);
 	const socialNetworksNetworksFiltered = socialNetworksNetworks
-		.filter(({ id }) => socialNetworksShareMode ? manifest.networks[id]?.shareUrl?.length > 0 : manifest.networks[id]?.url?.length > 0);
+		.filter(({ id }) => socialNetworksShareMode ? manifest.networks?.[id]?.shareUrl?.length > 0 : manifest.networks?.[id]?.url?.length > 0);
 
 	const socialNetworksClasses = classnames(
 		componentClass,
