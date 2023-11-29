@@ -24,6 +24,8 @@ export const SocialNetworksOptions = (attributes) => {
 
 	const socialNetworksShareMode = checkAttr('socialNetworksShareMode', attributes, manifest);
 	const socialNetworksNetworks = checkAttr('socialNetworksNetworks', attributes, manifest);
+	const socialNetworksNetworksFiltered = socialNetworksNetworks
+		.filter(({ id }) => socialNetworksShareMode ? manifest.networks?.[id]?.shareUrl?.length > 0 : manifest.networks?.[id]?.url?.length > 0);
 
 	const modeOptions = [
 		{
@@ -63,24 +65,23 @@ export const SocialNetworksOptions = (attributes) => {
 				noBottomSpacing
 			>
 				<ReOrderable
-					items={socialNetworksNetworks}
+					items={socialNetworksNetworksFiltered}
 					attributeName={getAttrKey('socialNetworksNetworks', attributes, manifest)}
 					setAttributes={setAttributes}
 					noBottomSpacing
 				>
-					{socialNetworksNetworks.filter(({ id }) =>
-						socialNetworksShareMode ? manifest.networks[id]?.shareUrl?.length > 0 : manifest.networks[id]?.url?.length > 0)
+					{socialNetworksNetworksFiltered
 						.map((item, i) => {
 							return (
 								<ReOrderableItem
 									key={item?.id}
-									icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }}></div>}
+									icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }} />}
 									title={manifest?.networks?.[item.id]?.title}
 									postIcon={
 										<IconToggle
-											checked={socialNetworksNetworks[i].enabled}
+											checked={socialNetworksNetworksFiltered[i].enabled}
 											onChange={(value) => {
-												const newValue = [...socialNetworksNetworks];
+												const newValue = [...socialNetworksNetworksFiltered];
 												newValue[i].enabled = value;
 
 												setAttributes({ [getAttrKey('socialNetworksNetworks', attributes, manifest)]: newValue });
