@@ -22,7 +22,10 @@ export const SocialNetworksEditor = (attributes) => {
 		return null;
 	}
 
+	const socialNetworksShareMode = checkAttr('socialNetworksShareMode', attributes, manifest);
 	const socialNetworksNetworks = checkAttr('socialNetworksNetworks', attributes, manifest);
+	const socialNetworksNetworksFiltered = socialNetworksNetworks
+		.filter(({ id }) => socialNetworksShareMode ? manifest.networks[id]?.shareUrl?.length > 0 : manifest.networks[id]?.url?.length > 0);
 
 	const socialNetworksClasses = classnames(
 		componentClass,
@@ -37,14 +40,14 @@ export const SocialNetworksEditor = (attributes) => {
 
 	return (
 		<div className={socialNetworksClasses}>
-			{socialNetworksNetworks.map((network, i) => {
+			{socialNetworksNetworksFiltered.map((network, i) => {
 				return (
 					<button
 						key={i}
 						className={classnames(linkClass, !network.enabled && 'es-opacity-10')}
 						dangerouslySetInnerHTML={{ __html: manifest.networks[network.id].icon }}
 						onClick={noClickToToggleNetwork ? null : () => {
-							const newValue = [...socialNetworksNetworks];
+							const newValue = [...socialNetworksNetworksFiltered];
 							newValue[i].enabled = !newValue[i].enabled;
 
 							setAttributes({ [getAttrKey('socialNetworksNetworks', attributes, manifest)]: newValue });
