@@ -59,7 +59,7 @@ if ($featuredContentTaxonomy) {
 		$currentTerms = get_the_terms($post->ID, strval($featuredContentTaxonomy));
 
 		if ($currentTerms) {
-			$args['tax_query'][0]['terms'] = [$currentTerms[0]->term_id];
+			$args['tax_query'][0]['terms'] = wp_list_pluck($currentTerms, 'term_id');
 		}
 	} else {
 		$args['tax_query'][0]['operator'] = 'NOT IN'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
