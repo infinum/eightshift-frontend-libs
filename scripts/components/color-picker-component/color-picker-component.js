@@ -31,6 +31,9 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
  * @param {string?} [props.additionalTriggerClasses]                   - If provided, the classes are passed to the component's trigger button.
  * @param {AppearOrigin} [props.popoverPosition='top center']          - Position where the popover appears.
+ * @param {React.Component?} [props.buttonIconOverride]                - If provided, overrides the default trigger button icon.
+ * @param {object?} [props.additionalButtonArgs]                       - Allows passing additional arguments to the trigger button.
+ * @param {object?} [props.additionalColorPaletteArgs]                 - Allows passing additional arguments to the color palette component.
  */
 export const ColorPicker = (props) => {
 	const {
@@ -59,6 +62,10 @@ export const ColorPicker = (props) => {
 		additionalTriggerClasses,
 
 		popoverPosition,
+
+		buttonIconOverride,
+		additionalButtonArgs,
+		additionalColorPaletteArgs,
 	} = props;
 
 	let defaultPopupTitle = __('Pick a color', 'eightshift-frontend-libs');
@@ -127,7 +134,7 @@ export const ColorPicker = (props) => {
 				icon = React.cloneElement(icons.textHighlightColorSwatch, { style });
 				break;
 			case 'backgroundColor':
-				icon = React.cloneElement(icons.backgroundColorSwatch, { style });
+				icon = React.cloneElement(icons.colorFillSwatch, { style });
 				break;
 		}
 
@@ -152,10 +159,11 @@ export const ColorPicker = (props) => {
 						<Button
 							ref={ref}
 							onClick={() => setIsOpen(!isOpen)}
-							icon={getButtonIcon()}
+							icon={buttonIconOverride ?? getButtonIcon()}
 							label={getTooltipText()}
 							className={classnames('es-button-square-30 es-button-icon-24', additionalTriggerClasses)}
 							disabled={disabled}
+							{...additionalButtonArgs}
 						/>
 					)
 				}
@@ -170,8 +178,9 @@ export const ColorPicker = (props) => {
 						layout={colorPaletteLayout}
 						searchable={searchable}
 						noShadeGrouping={noShadeGrouping}
-						noBottomSpacing
 						disabled={disabled}
+						noBottomSpacing
+						{...additionalColorPaletteArgs}
 					/>
 				</div>
 			</PopoverWithTrigger>
