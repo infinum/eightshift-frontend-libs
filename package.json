@@ -102,11 +102,8 @@
 		}
 	},
 	"devDependencies": {
-		"storybook": "^7.6.4",
 		"@babel/preset-env": "^7.23.6",
 		"@babel/preset-react": "^7.23.3",
-		"@emotion/is-prop-valid": "0.8.8",
-		"@emotion/memoize": "0.7.4",
 		"@jest/globals": "^29.7.0",
 		"@storybook/addon-a11y": "^7.6.4",
 		"@storybook/addon-essentials": "^7.6.4",
@@ -191,6 +188,7 @@
 		"react-test-renderer": "^18.2.0",
 		"replace-in-file": "^7.0.2",
 		"sassdoc": "^2.7.4",
+		"storybook": "^7.6.4",
 		"swiper": "^11.0.5"
 	},
 	"sideEffects": false

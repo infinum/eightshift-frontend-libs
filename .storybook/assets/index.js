@@ -329,6 +329,7 @@ export const SingleItemShowcase = ({ title, propsUsed, demoContainerClass, addit
 export const getStoryDescStyles = () => {
 	return {
 		doc: 'sbdocs es-border-b-cool-gray-100 es-mb-10 es-p-7 es-bg-cool-gray-50 es-line-h-1.5',
+		docClean: 'sbdocs es-p-7 es-line-h-1.5',
 		docHidden: 'sbdocs__hidden',
 		h1: 'es-mt-0 es-font-weight-600 es-mb-2',
 		h3: 'es-mt-6 es-font-weight-600 es-mb-2',
@@ -336,7 +337,7 @@ export const getStoryDescStyles = () => {
 		ul: 'es-text-4 es-mt-0 es-mb-2',
 		pSmall: 'es-text-3 es-mt-0 es-mb-2',
 		ulSmall: 'es-text-3 es-mt-0 es-mb-2',
-		code: 'es-border-cool-gray-100 es-text-3.5 es-p-5 es-bg-cool-gray-50 es-rounded-1.5 es-display-block',
+		code: 'es-border-cool-gray-100 es-text-3.5 es-p-2 es-bg-cool-gray-50 es-rounded-1.5 es-display-block es-mb-2',
 		exp: 'es-text-3 es-m-0 es-color-cool-gray-400',
 	}
 };

@@ -30,7 +30,7 @@ export const options = () => (
 
 export const usage = () => {
 	return (
-		<div className={style.doc}>
+		<div className={style.docClean}>
 			<h1 className={style.h1}>Dependency</h1>
 
 			<p className={style.p}>Load more component must be implemented in some other component because it can't work by itself.

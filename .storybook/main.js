@@ -4,15 +4,9 @@ module.exports = {
 		'./../blocks/init/src/Blocks/custom/**/docs/story.js',
 		'./../blocks/init/src/Blocks/components/**/docs/story.js',
 		'./../blocks/init/src/Blocks/variations/**/docs/story.js',
-
-
-		// './../blocks/init/src/Blocks/variations/**/docs/story.js',
-		// './../blocks/init/src/Blocks/wrapper/**/docs/story.js',
-		// './../blocks/init/src/Blocks/readme.mdx',
-		// './../scripts/components/**/story.js',
-		// './../scripts/components/**/readme.mdx',
-		// './../scripts/editor/icons/story.js',
-		// './../scripts/editor/icons/readme.mdx',
+		'./../blocks/init/src/Blocks/wrapper/docs/story.js',
+		'./../scripts/components/**/story.js',
+		'./../scripts/editor/icons/story.js',
 	],
 	addons: [
 		'@storybook/addon-essentials',

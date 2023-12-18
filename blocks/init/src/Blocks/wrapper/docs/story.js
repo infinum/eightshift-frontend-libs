@@ -3,7 +3,7 @@ import globalManifest from './../../manifest.json';
 import manifest from './../manifest.json';
 import { WrapperEditor } from '../components/wrapper-editor';
 import { WrapperOptions } from '../components/wrapper-options';
-import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
+import { GetStoryComponentDescription } from './../../../../../../.storybook/assets';
 
 export default {
 	title: 'Wrapper/Wrapper',

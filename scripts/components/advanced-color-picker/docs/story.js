@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { AdvancedColorPicker } from '../advanced-color-picker';
 import { SingleItemShowcase } from '../../../../.storybook/assets';
 
@@ -35,8 +34,6 @@ const stubGlobalManifest = {
 		]
 	}
 };
-
-
 
 export const component = () => {
 	const [type, setType] = useState('project');

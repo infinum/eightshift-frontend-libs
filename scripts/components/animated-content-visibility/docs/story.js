@@ -8,7 +8,6 @@ export default {
 	title: 'Options/AnimatedContentVisibility',
 };
 
-
 export const component = () => {
 	const [visible, setVisible] = useState(true);
 

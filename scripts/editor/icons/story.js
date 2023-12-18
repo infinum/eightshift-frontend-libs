@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; // eslint-disable-line
 import { Button } from '@wordpress/components';
 import { icons, illustrations, blockIcons } from '@eightshift/frontend-libs/scripts';
-
+import { getStoryDescStyles, reformatCode } from '../../../.storybook/assets';
 
 export default {
 	title: 'Editor/Icons',
@@ -163,5 +163,78 @@ export const AnimatedIcons = () => {
 			<br />
 			<small><span><code>es-animated-toggle-icon</code> (+ <code>is-checked</code></span>)</small>
 		</>
+	);
+};
+
+export const Usage = () => {
+	const style = getStoryDescStyles();
+
+	return (
+		<div className={style.docClean}>
+			<h1 className={style.h1}>Editor icons</h1>
+			<p className={style.p}>
+				We created a bunch of custom icons to make everything look better and to enhance the editing experience.
+			</p>
+			<p className={style.p}>
+				These icons are designed to be used in different places inside the Block Editor.
+			</p>
+
+			<h3 className={style.h3}>Block icons</h3>
+			<p className={style.p}>
+				These icons are used to easily identify a block. They can be seen in the block picker, in the block toolbar and in the options panel.
+			</p>
+
+			<p className={style.p}>
+				To use them, find the `icon` key in the block manifest, and to its `src` key assign a value that represents the icon's name.
+			</p>
+			<p className={style.p}>
+				For example:
+			</p>
+			<code className={style.code}>
+				<pre>
+					{reformatCode(`
+						{
+							"blockName": "my-block",
+							...
+							"icon": {
+								"src": "es-example"
+							},
+						}
+					`)}
+				</pre>
+			</code>
+
+			<h3 className={style.h3}>UI icons</h3>
+			<p className={style.p}>
+				These icons are used inside the user interface of the editor, mostly besides labels in the Options panel.
+			</p>
+
+			<p className={style.p}>
+				To use them, import them from eighshift-frontend-libs:
+			</p>
+			<code className={style.code}>
+				<pre>
+					{reformatCode(`
+						import { icons } from '@eightshift/frontend-libs/scripts';
+					`)}
+				</pre>
+			</code>
+
+			<p className={style.p}>
+				Then you can use them, for example in an `Icon` component from WP core:
+			</p>
+			<code className={style.code}>
+				<pre>
+					{reformatCode(`
+						<Icon icon={icons.color} />
+					`)}
+				</pre>
+			</code>
+
+			<h3 className={style.h3}>Helper illustrations</h3>
+			<p className={style.p}>
+				These icons are used in the modal helper component to provide a better understanding of what each custom functionality does, for example in the Wrapper, Columns, etc.
+			</p>
+		</div>
 	);
 };
