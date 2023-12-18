@@ -12,6 +12,7 @@ This is a document explaining what each `package.json` package is used for.
 * @dnd-kit/sortable - Modern helper for creating re-orderable react components
 * @dnd-kit/utilities - Modern helper for creating re-orderable react components
 * @infinumjs/eslint-config-react-js - Adds JS linter config.
+* @mdx-js/loader - Webpack loader for MDX files.
 * @wordpress/api-fetch - WP package for api fetch.
 * @wordpress/dependency-extraction-webpack-plugin - Allows Webpack to read all @wordpress packages as external dependency.
 * @wordpress/dom-ready - WP package to load JS when dom is ready.
@@ -42,12 +43,13 @@ This is a document explaining what each `package.json` package is used for.
 * raw-loader - Webpack loader used for files.
 * rc-slider - React slider component used in our components.
 * rc-tooltip - React tooltip component used in our components.
+* react-colorful - is a tiny color picker component for React apps.
+* react-gcolor-picker - A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more.
 * react-html-parser - Utility for converting HTML strings into React components.
 * react-select - Select component for React.
 * regenerator-runtime - Used for Core-js polyfill.
 * sass - A pure JavaScript implementation of Sass
 * sass-loader - Webpack loader used for sass.
-* storybook - Storybook library used in projects.
 * stream-browserify - Used in combination with crypto.
 * style-loader - Webpack loader used for styles.
 * stylelint - Css linter.
@@ -60,9 +62,10 @@ This is a document explaining what each `package.json` package is used for.
 
 ## Dev dependencies
 
+* storybook - Storybook library.
 * @babel/preset-env - Is a smart preset that allows you to use the latest JavaScript without needing to micromanage.
 * @babel/preset-react - Babel preset for React.
-* @eightshift/storybook - Our storybook used for frontend libs.
+* @emotion - 
 * @jest/globals - Jest testing globals.
 * babel-jest - Jest testing Babel preset.
 * chalk - Terminal coloring library. Used in project setup.

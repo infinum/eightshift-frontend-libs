@@ -1,7 +1,6 @@
 import { dispatch } from '@wordpress/data';
-import { storybookWindowObjects, storybookDefaultMocksCategories, storybookDefaultMocksColorPalette } from '../scripts/storybook';
-import globalSettings from '../blocks/init/src/Blocks/manifest.json';
 import { STORE_NAME } from './../scripts/editor/store';
+import { storybookDefaultMocksCategories, storybookWindowObjects, storybookDefaultMocksColorPalette } from './assets';
 
 // Storybook import order is really important because it won't work in any configuration. Be careful when changing stuff here.
 
@@ -12,10 +11,10 @@ storybookWindowObjects();
 storybookDefaultMocksCategories();
 
 // Set default color palette.
-storybookDefaultMocksColorPalette(globalSettings);
+storybookDefaultMocksColorPalette();
 
 // WP styles.
-require('./../styles/storybook.scss');
+require('./storybook.scss');
 
 // Project styles.
 require('./../blocks/init/assets/styles/application.scss');

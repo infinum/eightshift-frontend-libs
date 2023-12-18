@@ -1,18 +1,9 @@
 import React from 'react';
-import { Gutenberg, blockDetails } from '@eightshift/frontend-libs/scripts/storybook';
-import manifest from '../manifest.json';
-import globalManifest from '../../../manifest.json';
-import readme from './readme.mdx';
+import manifest from './../manifest.json';
+import { Gutenberg } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Variations/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Variations/Card Simple',
 };
 
-export const block = () => (
-	<Gutenberg props={blockDetails(manifest, globalManifest, true)} />
-);
+export const block = () => <Gutenberg manifest={manifest} isVariation={true} />;

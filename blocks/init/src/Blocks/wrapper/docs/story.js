@@ -1,17 +1,12 @@
 import React from 'react';
 import globalManifest from './../../manifest.json';
 import manifest from './../manifest.json';
-import readme from './readme.mdx';
 import { WrapperEditor } from '../components/wrapper-editor';
 import { WrapperOptions } from '../components/wrapper-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Wrapper/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Wrapper/Wrapper',
 };
 
 const props = {
@@ -132,10 +127,12 @@ const responsiveSimpleIsFullWidthProps = {
 };
 
 export const responsiveWidth = () => (
-	<WrapperEditor
-		{...responsiveWidthProps}
-		children={<div style={childStyle}>This is wrapper children content.</div>}
-	/>
+	<GetStoryComponentDescription manifest={manifest}>
+		<WrapperEditor
+			{...responsiveWidthProps}
+			children={<div style={childStyle}>This is wrapper children content.</div>}
+		/>
+	</GetStoryComponentDescription>
 );
 
 export const responsiveOffset = () => (

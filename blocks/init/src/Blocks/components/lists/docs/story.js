@@ -1,36 +1,35 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ListsEditor } from '../components/lists-editor';
 import { ListsOptions } from '../components/lists-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Lists',
 };
 
 const attributes = getExample('lists', manifest);
 
 export const editor = () => (
-	<ListsEditor {...props('lists', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<ListsEditor {...props('lists', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<ListsOptions
-		{...props('lists', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
+	<GetStoryComponentDescription manifest={manifest}>
+		<ListsOptions
+			{...props('lists', attributes, {
+				options: getOptions(attributes, manifest),
+			})}
+		/>
+	</GetStoryComponentDescription>
 );
 
 export const size = () => (
-	<Fragment>
+	<>
 		{manifest.options.listsSize.map((values, index) => (
 			<Fragment key={index}>
 				<ListsEditor
@@ -42,11 +41,11 @@ export const size = () => (
 				<br /><br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );
 
 export const color = () => (
-	<Fragment>
+	<>
 		{manifest.options.listsColor.map((values, index) => (
 			<Fragment key={index}>
 				<ListsEditor
@@ -58,11 +57,11 @@ export const color = () => (
 				<br /><br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );
 
 export const colorOnlyMarkers = () => (
-	<Fragment>
+	<>
 		{manifest.options.listsColor.map((values, index) => (
 			<Fragment key={index}>
 				<ListsEditor
@@ -75,5 +74,5 @@ export const colorOnlyMarkers = () => (
 				<br /><br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );

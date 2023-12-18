@@ -19,36 +19,47 @@
 // stylelint-disable declaration-no-important
 
 .sbdocs {
+	$this: &;
 	font-family: var(--es-sb-font-family) !important;
-}
+	margin-left: -1rem;
+	margin-right: -1rem;
+	margin-top: -2.25rem;
 
-.sbdocs-content {
-	.sbdocs-h1,
-	.sbdocs-h2,
-	.sbdocs-h3,
-	.sbdocs-h4,
-	.sbdocs-h5,
-	.sbdocs-h6,
-	.sbdocs-p {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
 		font-family: var(--es-sb-font-family) !important;
 	}
 
-	.sbdocs-h1 {
-		font-weight: 600;
-	}
-
-	.sbdocs-h2 {
-		font-weight: 500;
+	pre {
+		overflow-y: hidden;
+		margin: 0;
 	}
 
 	.docblock-source {
 		box-shadow: none !important;
 	}
 
-	.sbdocs-p a {
+	a {
 		color: rgb(216 38 44) !important;
 	}
+
+	&__hidden {
+		// height: 0;
+		overflow: hidden;
+	}
+
+	&:hover {
+		#{$this}__hidden {
+			height: auto;
+		}
+	}
 }
+
 
 // Playground styles.
 $sidebar-width: 20rem;

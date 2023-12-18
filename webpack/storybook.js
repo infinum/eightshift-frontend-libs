@@ -36,6 +36,16 @@ module.exports = (
 		],
 	});
 
+	config.module.rules.push({
+		test: /\.mdx?$/,
+		exclude: /node_modules/,
+		use: [
+			{
+				loader: 'raw-loader',
+			}
+		]
+	});
+
 	// Add include/exclude paths to all loaders.
 	config.module.rules.map((item) => {
 		item.exclude = /node_modules\/(?!(@eightshift|@wordpress)\/).*/;

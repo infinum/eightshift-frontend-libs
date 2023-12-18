@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@wordpress/components';
 import { AnimatedContentVisibility } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/AnimatedContentVisibility',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 

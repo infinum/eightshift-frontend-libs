@@ -1,32 +1,31 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { JumbotronEditor } from '../components/jumbotron-editor';
 import { JumbotronOptions } from '../components/jumbotron-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Jumbotron',
 };
 
 const attributes = getExample('jumbotron', manifest);
 
 export const editor = () => (
-	<JumbotronEditor {...props('jumbotron', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<JumbotronEditor {...props('jumbotron', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<JumbotronOptions
-		{...props('jumbotron', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
+	<GetStoryComponentDescription manifest={manifest}>
+		<JumbotronOptions
+			{...props('jumbotron', attributes, {
+				options: getOptions(attributes, manifest),
+			})}
+		/>
+	</GetStoryComponentDescription>
 );
 
 const aligns = [
@@ -42,7 +41,7 @@ const aligns = [
 ];
 
 export const contentAlign = () => (
-	<div>
+	<GetStoryComponentDescription manifest={manifest}>
 		{aligns.map((values, index) => (
 			<Fragment key={index}>
 				<JumbotronEditor
@@ -53,5 +52,5 @@ export const contentAlign = () => (
 				<br />
 			</Fragment>
 		))}
-	</div>
+	</GetStoryComponentDescription>
 );

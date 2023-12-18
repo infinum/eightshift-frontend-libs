@@ -1,16 +1,11 @@
 import React, {useState} from 'react';
-import readme from './readme.mdx';
+
 import { NumberPicker } from '../number-picker';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 import { icons } from '../../../editor';
 
 export default {
 	title: 'Options/NumberPicker',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const regular = () => {

@@ -1,36 +1,35 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { Fragment } from '@wordpress/element';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ParagraphEditor } from '../components/paragraph-editor';
 import { ParagraphOptions } from '../components/paragraph-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Paragraph',
 };
 
 const attributes = getExample('paragraph', manifest);
 
 export const editor = () => (
-	<ParagraphEditor {...props('paragraph', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<ParagraphEditor {...props('paragraph', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<ParagraphOptions
-		{...props('paragraph', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
+	<GetStoryComponentDescription manifest={manifest}>
+		<ParagraphOptions
+			{...props('paragraph', attributes, {
+				options: getOptions(attributes, manifest),
+			})}
+		/>
+	</GetStoryComponentDescription>
 );
 
 export const size = () => (
-	<Fragment>
+	<>
 		{manifest.options.paragraphSize.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
@@ -42,11 +41,11 @@ export const size = () => (
 				<br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );
 
 export const color = () => (
-	<Fragment>
+	<>
 		{manifest.options.paragraphColor.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
@@ -58,10 +57,10 @@ export const color = () => (
 				<br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );
 export const colorWithLink = () => (
-	<Fragment>
+	<>
 		{manifest.options.paragraphColor.map((values, index) => (
 			<Fragment key={index}>
 				<ParagraphEditor
@@ -73,5 +72,5 @@ export const colorWithLink = () => (
 				<br />
 			</Fragment>
 		))}
-	</Fragment>
+	</>
 );

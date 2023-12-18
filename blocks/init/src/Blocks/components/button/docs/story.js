@@ -1,27 +1,26 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
 import { ButtonOptions } from '../components/button-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Button',
 };
 
 const attributes = getExample('button', manifest);
 
 export const editor = () => (
-	<ButtonEditor {...props('button', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<ButtonEditor {...props('button', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<ButtonOptions {...props('button', attributes, {
-		options: getOptions(attributes, manifest),
-	})} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<ButtonOptions {...props('button', attributes, {
+			options: getOptions(attributes, manifest),
+		})} />
+	</GetStoryComponentDescription>
 );

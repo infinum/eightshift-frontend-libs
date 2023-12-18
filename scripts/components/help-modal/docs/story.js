@@ -1,15 +1,10 @@
 import React from 'react';
-import readme from './readme.mdx';
+
 import { HelpModal } from '../help-modal';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/HelpModal',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const props = {};

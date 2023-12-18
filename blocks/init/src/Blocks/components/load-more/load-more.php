@@ -22,7 +22,7 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$loadMoreInitiaItems = Components::checkAttr('loadMoreInitiaItems', $attributes, $manifest, $componentName);
+$loadMoreInitialItems = Components::checkAttr('loadMoreInitialItems', $attributes, $manifest, $componentName);
 $loadMoreQuery = Components::checkAttr('loadMoreQuery', $attributes, $manifest, $componentName);
 $loadMoreId = Components::checkAttr('loadMoreId', $attributes, $manifest, $componentName);
 $loadMoreType = Components::checkAttr('loadMoreType', $attributes, $manifest, $componentName);
@@ -50,7 +50,7 @@ $loadMoreClass = Components::classnames([
 			'data-load-more-type' => $loadMoreType,
 			'data-load-more-id' => $loadMoreId,
 			'data-load-more-query' => $loadMoreQuery,
-			'data-load-more-initial-items' => $loadMoreInitiaItems,
+			'data-load-more-initial-items' => $loadMoreInitialItems,
 			'data-load-more-per-page-override' => $loadMorePerPageOverride,
 		]
 	]), '', true);

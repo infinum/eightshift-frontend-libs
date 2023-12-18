@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
+
 import {
 	Select,
 	AsyncSelect,
@@ -13,15 +13,10 @@ import {
 	RSClearIndicator,
 	RSMultiValueContainer,
 } from '@eightshift/frontend-libs/scripts';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/Select',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const data = [

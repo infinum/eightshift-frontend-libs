@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { PresetPicker } from '../preset-picker';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 import { icons } from '../../../editor';
 
 export default {
 	title: 'Options/PresetPicker',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

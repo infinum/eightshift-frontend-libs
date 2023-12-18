@@ -1,15 +1,10 @@
 import React from 'react';
 import { ColorSwatch } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/ColorSwatch',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

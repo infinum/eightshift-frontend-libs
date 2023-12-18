@@ -5,7 +5,7 @@
 	"componentClass": "logo",
 	"example": {
 		"attributes": {
-			"logoSrc": "https://eightshift.com/img/eightshift-dev-kit-logo.svg",
+			"logoSrc": "https://eightshift.com/img/logo.svg",
 			"logoAlt": "Eightshift Development Kit",
 			"logoTitle": "Eightshift Development Kit",
 			"logoHref": "https://eightshift.com/",

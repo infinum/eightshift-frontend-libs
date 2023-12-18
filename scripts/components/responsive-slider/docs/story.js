@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { ResponsiveSlider } from '../responsive-slider';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 import { icons } from '../../../editor';
 
 export default {
 	title: 'Options/ResponsiveSlider',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

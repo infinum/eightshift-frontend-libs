@@ -1,12 +1,10 @@
-/** @jsx jsx */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import { jsx } from '@emotion/react';
 import { Fragment } from '@wordpress/element';
 import manifest from './manifest.json';
 
 export default {
-	title: `Global`,
+	title: 'General/Colors',
 };
 
 export const colors = () => {

@@ -1,20 +1,17 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LoaderEditor } from '../components/loader-editor';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Loader',
 };
 
 const attributes = getExample('loader', manifest);
 
 export const editor = () => (
-	<LoaderEditor {...props('loader', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<LoaderEditor {...props('loader', attributes)} />
+	</GetStoryComponentDescription>
 );

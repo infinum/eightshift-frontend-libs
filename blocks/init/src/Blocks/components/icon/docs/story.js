@@ -1,33 +1,30 @@
-/** @jsx jsx */
 import React from 'react'; // eslint-disable-line
-import { jsx } from '@emotion/react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { IconEditor } from '../components/icon-editor';
 import { IconOptions } from '../components/icon-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Icon',
 };
 
 const attributes = getExample('icon', manifest);
 
 export const editor = () => (
-	<IconEditor {...props('icon', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<IconEditor {...props('icon', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<IconOptions
-		{...props('icon', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
+	<GetStoryComponentDescription manifest={manifest}>
+		<IconOptions
+			{...props('icon', attributes, {
+				options: getOptions(attributes, manifest),
+			})}
+		/>
+	</GetStoryComponentDescription>
 );
 
 export const icons = () => (

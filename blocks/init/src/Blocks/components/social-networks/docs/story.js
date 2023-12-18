@@ -1,25 +1,24 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { SocialNetworksEditor } from '../components/social-networks-editor';
 import { SocialNetworksOptions } from '../components/social-networks-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Social Networks',
 };
 
 const attributes = getExample('socialLinks', manifest);
 
 export const editor = () => (
-	<SocialNetworksEditor {...props('socialNetworks', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<SocialNetworksEditor {...props('socialNetworks', attributes)} />
+	</GetStoryComponentDescription>
 );
 
 export const options = () => (
-	<SocialNetworksOptions {...props('socialNetworks', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<SocialNetworksOptions {...props('socialNetworks', attributes)} />
+	</GetStoryComponentDescription>
 );

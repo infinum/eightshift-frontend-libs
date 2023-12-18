@@ -134,7 +134,7 @@ $loadMoreId = "{$blockName}-{$unique}";
 	echo Components::render(
 		'load-more',
 		Components::props('loadMore', $attributes, [
-			'loadMoreInitiaItems' => wp_json_encode($mainQuery->posts),
+			'loadMoreInitialItems' => wp_json_encode($mainQuery->posts),
 			'loadMoreQuery' => wp_json_encode($args),
 			'loadMoreId' => $loadMoreId,
 			'loadMoreType' => $blockName,

@@ -1,20 +1,17 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { LogoEditor } from '../components/logo-editor';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Logo',
 };
 
 const attributes = getExample('logo', manifest);
 
 export const editor = () => (
-	<LogoEditor {...props('logo', attributes)} />
-);
+	<GetStoryComponentDescription manifest={manifest}>
+		<LogoEditor {...props('logo', attributes)} />
+	</GetStoryComponentDescription>
+	);

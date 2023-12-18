@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { WidthOffsetRangeSlider } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/WidthOffsetRangeSlider',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

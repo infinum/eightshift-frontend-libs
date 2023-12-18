@@ -1,16 +1,13 @@
 import React from 'react';
-import readme from './readme.mdx';
 import manifest from '../manifest.json';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Tracking Before Body End',
 };
 
 export const editor = () => (
-	<div>{`Component - ${manifest.title} - Please check readme`}</div>
+	<GetStoryComponentDescription manifest={manifest}>
+		<div>{`Component - ${manifest.title} - Please check readme`}</div>
+	</GetStoryComponentDescription>
 );

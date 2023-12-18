@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from '@wordpress/components';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { DrawerEditor } from '../components/drawer-editor';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Drawer',
 };
 
 const attributes = getExample('drawer', manifest);
 
-const drawerDemo = (position) => {
+const DrawerDemo = ({position}) => {
 	const [open, setOpen] = useState(false);
-
 
 	const containerStyle = {
 		height: '90vh',
@@ -66,7 +60,23 @@ const drawerDemo = (position) => {
 	);
 };
 
-export const Left = () => drawerDemo('left');
-export const Right = () => drawerDemo('right');
-export const Top = () => drawerDemo('top');
-export const Behind = () => drawerDemo('behind');
+export const Left = () => (
+	<GetStoryComponentDescription manifest={manifest}>
+		<DrawerDemo position='left' />
+	</GetStoryComponentDescription>
+);
+export const Right = () => (
+	<GetStoryComponentDescription manifest={manifest}>
+		<DrawerDemo position='right' />
+	</GetStoryComponentDescription>
+);
+export const Top = () => (
+	<GetStoryComponentDescription manifest={manifest}>
+		<DrawerDemo position='top' />
+	</GetStoryComponentDescription>
+);
+export const Behind = () => (
+	<GetStoryComponentDescription manifest={manifest}>
+		<DrawerDemo position='behind' />
+	</GetStoryComponentDescription>
+);

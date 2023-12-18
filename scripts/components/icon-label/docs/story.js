@@ -1,16 +1,11 @@
 import React from 'react';
 import { IconLabel } from '../icon-label';
 import { icons } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/IconLabel',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

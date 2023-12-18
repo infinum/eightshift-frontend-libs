@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
+
 import { MatrixAlignControl } from '../matrix-align-control';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 
 export default {
 	title: 'Options/MatrixAlignControl',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 

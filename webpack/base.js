@@ -67,7 +67,7 @@ module.exports = (options) => {
 		rules: [],
 	};
 
-	// Module for JS and JSX.
+	// Module for JS and JSX.
 	if (!options.overrides.includes('js')) {
 		module.rules.push({
 			test: /\.(js|jsx)$/,
@@ -83,7 +83,7 @@ module.exports = (options) => {
 		});
 	}
 
-	// Module for Images.
+	// Module for Images.
 	if (!options.overrides.includes('images')) {
 		module.rules.push({
 			test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/i,
@@ -92,7 +92,7 @@ module.exports = (options) => {
 		});
 	}
 
-	// Module for Fonts.
+	// Module for Fonts.
 	if (!options.overrides.includes('fonts')) {
 		module.rules.push({
 			test: /\.(eot|otf|ttf|woff|woff2|svg)$/,
@@ -101,7 +101,7 @@ module.exports = (options) => {
 		});
 	}
 
-	// Module for Scss.
+	// Module for Scss.
 	if (!options.overrides.includes('scss')) {
 		module.rules.push({
 			test: /\.scss$/,
@@ -129,6 +129,19 @@ module.exports = (options) => {
 					loader: 'import-glob-loader',
 				},
 			],
+		});
+	}
+
+	// Module for Mdx.
+	if (!options.overrides.includes('mdx')) {
+		module.rules.push({
+			test: /\.mdx?$/,
+			exclude: /node_modules/,
+			use: [
+				{
+					loader: '@mdx-js/loader',
+				}
+			]
 		});
 	}
 

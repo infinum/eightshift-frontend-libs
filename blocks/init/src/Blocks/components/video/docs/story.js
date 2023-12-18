@@ -1,28 +1,27 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { VideoEditor } from '../components/video-editor';
 import { VideoOptions } from '../components/video-options';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Video',
 };
 
 const attributes = getExample('video', manifest);
 
 export const editor = () => (
-	<VideoEditor {...props('video', attributes)} />
+	<GetStoryComponentDescription manifest={manifest}>
+		<VideoEditor {...props('video', attributes)} />
+	</GetStoryComponentDescription>
 );
 export const options = () => (
-	<VideoOptions
+	<GetStoryComponentDescription manifest={manifest}>
+		<VideoOptions
 		{...props('video', attributes, {
-			options: getOptions(attributes, manifest),
-		})}
-	/>
+				options: getOptions(attributes, manifest),
+			})}
+		/>
+	</GetStoryComponentDescription>
 );

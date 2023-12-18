@@ -1,16 +1,11 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { PageOverlayEditor } from '../components/page-overlay-editor';
+import { GetStoryComponentDescription } from '../../../../../../../.storybook/assets';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Page Overlay',
 };
 
 const attributes = getExample('pageOverlay', manifest);
@@ -21,6 +16,10 @@ export const editor = () => {
 	open();
 
 	return (
-		<PageOverlayEditor {...props('pageOverlay', attributes)} />
+		<GetStoryComponentDescription manifest={manifest}>
+			<div className='es-position-relative es-h-100'>
+				<PageOverlayEditor {...props('pageOverlay', attributes)} />
+			</div>
+		</GetStoryComponentDescription>
 	);
 };

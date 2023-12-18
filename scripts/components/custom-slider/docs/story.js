@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
+
 import { Slider } from '../custom-slider';
 import { RangeSlider } from '../custom-range-slider';
 import { icons } from '@eightshift/frontend-libs/scripts';
-import { SingleItemShowcase } from '../../../storybook/helpers';
+import { SingleItemShowcase } from './../../../../.storybook/assets';
 import { ColumnConfigSlider } from '../column-config-slider';
 
 export default {
 	title: 'Options/Slider',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const baseSliderProps = {
