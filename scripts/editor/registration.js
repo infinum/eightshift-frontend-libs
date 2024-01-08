@@ -509,14 +509,14 @@ export const getIconOptions = (
 		return {
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }}></span>,
+			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }} />,
 		};
 	}
 
 	return {
 		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 		foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }}></span> : icon.src,
+		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }} /> : icon.src,
 	};
 };
 

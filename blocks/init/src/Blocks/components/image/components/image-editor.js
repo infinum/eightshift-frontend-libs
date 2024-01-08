@@ -83,7 +83,7 @@ export const ImageEditor = (attributes) => {
 						}
 
 						return (
-							<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName}></source>
+							<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName} />
 						);
 					})}
 				</picture>

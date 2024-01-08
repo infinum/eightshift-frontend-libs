@@ -33,8 +33,7 @@ export const BlockIcon = (props) => {
 		<i
 			dangerouslySetInnerHTML={{ __html: blockIcons[iconName] }}
 			style={{ lineHeight: 0 }}
-		>
-		</i>
+		/>
 	);
 };
 

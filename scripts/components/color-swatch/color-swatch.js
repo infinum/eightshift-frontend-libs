@@ -25,8 +25,7 @@ export const ColorSwatch = (props) => {
 					backgroundImage: 'repeating-linear-gradient(-45deg, var(--es-admin-cool-gray-450), var(--es-admin-cool-gray-450) 1px, #ffffff 1px, #ffffff 15px)',
 					boxShadow: 'inset 0 0 0 2px var(--es-admin-pure-white)',
 				}}
-			>
-			</div>
+			/>
 		);
 	}
 

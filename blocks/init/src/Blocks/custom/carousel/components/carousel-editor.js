@@ -23,8 +23,7 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 
 	return (
 		<div className={carouselClass}>
-			<div {...innerBlocksProps}>
-			</div>
+			<div {...innerBlocksProps} />
 
 			<AnimatedContentVisibility showIf={carouselIsLoop} additionalContainerClasses='es-position-absolute es-top-4 es-left-4 es-pointer-events-none'>
 				<IconLabel
@@ -36,10 +35,10 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 			</AnimatedContentVisibility>
 
 			<AnimatedContentVisibility showIf={carouselShowPagination} additionalContainerClasses='es-h-spaced es-content-center -es-mt-4 es-mb-2'>
-				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full es-bg-pure-black'></div>
-				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full'></div>
-				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full'></div>
-				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full'></div>
+				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full es-bg-pure-black' />
+				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full' />
+				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full' />
+				<div className='es-w-2 es-h-2 es-border-pure-black es-rounded-full' />
 			</AnimatedContentVisibility>
 
 			<AnimatedContentVisibility showIf={carouselShowPrevNext} additionalContainerClasses='es-h-spaced es-content-center es-mt-4 es-mb-2'>

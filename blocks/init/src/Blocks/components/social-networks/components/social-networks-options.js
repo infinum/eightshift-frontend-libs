@@ -74,7 +74,7 @@ export const SocialNetworksOptions = (attributes) => {
 							return (
 								<ReOrderableItem
 									key={item?.id}
-									icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }}></div>}
+									icon={<div className='es-line-h-0' dangerouslySetInnerHTML={{ __html: manifest?.networks?.[item.id]?.icon }} />}
 									title={manifest?.networks?.[item.id]?.title}
 									postIcon={
 										<IconToggle

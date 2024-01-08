@@ -103,7 +103,7 @@ export const OptionSelector = (props) => {
 
 				if (iconData && typeof iconData === 'string' && (iconData?.startsWith('<svg') ?? false)) {
 					icon = (
-						<i className='es-line-h-0 es-display-contents' dangerouslySetInnerHTML={{ __html: iconData }}></i>
+						<i className='es-line-h-0 es-display-contents' dangerouslySetInnerHTML={{ __html: iconData }} />
 					);
 				}
 

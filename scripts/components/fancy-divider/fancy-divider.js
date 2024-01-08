@@ -39,7 +39,7 @@ export const FancyDivider = (props) => {
 				additionalClasses='es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white! es-has-enhanced-contrast-icon'
 			/>
 
-			<div className='es-w-full es-flex-1 es-h-px es-bg-cool-gray-100'></div>
+			<div className='es-w-full es-flex-1 es-h-px es-bg-cool-gray-100' />
 		</div>
 	);
 };
