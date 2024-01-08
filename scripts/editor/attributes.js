@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { camelCase, has, isEmpty, lowerFirst, upperFirst } from '../helpers';
 
 /**
  * Sets attributes on all `innerBlocks`. This value will be stored in the Block editor store and set to a block.
@@ -264,7 +264,7 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	}
 
 	// Bailout if attribute keys is missing.
-	if (!_.has(responsiveAttributes, keyName)) {
+	if (!has(responsiveAttributes, keyName)) {
 		throw Error(`It looks like you are missing ${keyName} key in your manifest responsiveAttributes object.`);
 	}
 
@@ -305,7 +305,7 @@ export const getAttrKey = (key, attributes, manifest) => {
 
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
-	return key.replace(_.camelCase(manifest.componentName), attributes.prefix);
+	return key.replace(camelCase(manifest.componentName), attributes.prefix);
 };
 
 /**
@@ -373,13 +373,13 @@ export const props = (newName, attributes, manual = {}) => {
 	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
 
 	// Populate prefix key for recursive checks of attribute names.
-	const prefix = (typeof attributes.prefix === 'undefined') ? _.camelCase(blockName) : attributes['prefix'];
+	const prefix = (typeof attributes.prefix === 'undefined') ? camelCase(blockName) : attributes['prefix'];
 
 	// Set component prefix.
-	if ( prefix === '' ) {
-		output['prefix'] = _.camelCase(newName);
+	if (prefix === '') {
+		output['prefix'] = camelCase(newName);
 	} else {
-		output['prefix'] = `${prefix}${_.upperFirst(_.camelCase(newName))}`;
+		output['prefix'] = `${prefix}${upperFirst(camelCase(newName))}`;
 	}
 
 	// Iterate over attributes.
@@ -387,35 +387,35 @@ export const props = (newName, attributes, manual = {}) => {
 
 		// Includes attributes from iteration.
 		if (includes.includes(key)) {
-			Object.assign(output, {[key]: value});
+			Object.assign(output, { [key]: value });
 			continue;
 		}
 
 		// If attribute starts with the prefix key leave it in the object if not remove it.
 		if (key.startsWith(output['prefix'])) {
-			Object.assign(output, {[key]: value});
+			Object.assign(output, { [key]: value });
 		}
 	}
 
 	// Check if you have manual object and prepare the attribute keys and merge them with the original attributes for output.
-	if (!_.isEmpty(manual)) {
+	if (!isEmpty(manual)) {
 		// Iterate manual attributes.
 		for (let [key, value] of Object.entries(manual)) {
 
 			// Includes attributes from iteration.
 			if (includes.includes(key)) {
-				Object.assign(output, {[key]: value});
+				Object.assign(output, { [key]: value });
 				continue;
 			}
 
 			// Remove the current component name from the attribute name.
-			const newKey = key.replace(`${_.lowerFirst(_.camelCase(newName))}`, '');
+			const newKey = key.replace(`${lowerFirst(camelCase(newName))}`, '');
 
 			// Remove the old key.
 			delete manual[key];
 
 			// // Add new key to the output with prepared attribute name.
-			Object.assign(manual, {[`${output['prefix']}${newKey}`]: value});
+			Object.assign(manual, { [`${output['prefix']}${newKey}`]: value });
 		}
 
 		// Merge manual and output objects to one.

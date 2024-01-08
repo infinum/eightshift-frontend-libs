@@ -1,8 +1,8 @@
 import React from 'react';
-import _ from 'lodash';
 import { subscribe, select, dispatch } from '@wordpress/data';
 import { getAttrKey } from './attributes';
 import { STORE_NAME } from './store';
+import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helpers';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -95,9 +95,9 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-dis
 	let output = '';
 
 	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
-		const itemKeyInner = _.kebabCase(itemKey);
+		const itemKeyInner = kebabCase(itemKey);
 
-		if (_.isObject(itemValue)) {
+		if (isObject(itemValue)) {
 			output += globalInner(itemValue, itemKeyInner);
 		} else {
 			output += `--global-${itemKeyInner}: ${itemValue};\n`;
@@ -297,7 +297,7 @@ export const outputCssVariablesInline = () => {
 	// Subscribe to changes in state.
 	subscribe(
 		// Add some debounce for optimizations.
-		_.debounce(() => {
+		debounce(() => {
 			// Check if style has changed.
 			const hasStylesUpdated = select(STORE_NAME).hasStylesUpdated();
 
@@ -430,7 +430,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	`;
 
 	// Check if final output is empty and return if empty string if it is.
-	if (_.isEmpty(fullOutput.trim())) {
+	if (isEmpty(fullOutput.trim())) {
 		return '';
 	}
 
@@ -521,8 +521,8 @@ export const globalInner = (itemValues, itemKey) => {
 	let output = '';
 
 	for (const [key, value] of Object.entries(itemValues)) {
-		const innerKey = _.kebabCase(key);
-		const itemInnerKey = _.kebabCase(itemKey);
+		const innerKey = kebabCase(key);
+		const itemInnerKey = kebabCase(itemKey);
 
 		const {
 			slug,
@@ -598,7 +598,7 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
 
 			// If responsive attribute doesn't exist in variables object, skip it.
-			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
+			if (!responsiveAttributeName || isEmpty(variables[responsiveAttributeName])) {
 				return responsiveAttributesVariables;
 			}
 
@@ -795,7 +795,7 @@ export const variablesInner = (variables, attributeValue) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
-	if (typeof attributeValue === 'undefined' || !_.isPlainObject(variables)) {
+	if (typeof attributeValue === 'undefined' || !isPlainObject(variables)) {
 		return output;
 	}
 
@@ -809,12 +809,12 @@ export const variablesInner = (variables, attributeValue) => {
 		}
 
 		// Bailout if value is empty or undefined.
-		if (value === 'undefined' || _.isEmpty(value)) {
+		if (value === 'undefined' || isEmpty(value)) {
 			continue;
 		}
 
 		// Output the custom CSS variable by adding the attribute key + custom object key.
-		output.push(`--${_.kebabCase(variableKey)}: ${value};`);
+		output.push(`--${kebabCase(variableKey)}: ${value};`);
 	}
 
 	return output;
