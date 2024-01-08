@@ -9,6 +9,17 @@ export { throttle } from './throttle';
 export { device } from './devices';
 export { dynamicImport } from './dynamic-import';
 export { elementChildrenHeight } from './element-children-height';
+export {
+	camelCase,
+	isEmpty,
+	lowerFirst,
+	upperFirst,
+	has,
+	isPlainObject,
+	isObject,
+	kebabCase,
+	isEqual,
+} from './es-dash';
 export { escapeString } from './escape-string';
 export { getNavigatorVibrate } from './navigator';
 
