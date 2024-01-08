@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import { classnames } from '../helpers/classnames';
 
 /**
  * Returns BEM selector for html class and check if Condition part is set.
@@ -94,4 +94,3 @@ export const responsiveSelectors = (items, selector, parent, useModifier = true)
 
 	return classnames(output);
 };
-
