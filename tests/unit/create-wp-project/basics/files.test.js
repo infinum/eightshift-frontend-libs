@@ -4,7 +4,7 @@
  * @group unit
  */
 import path from 'path';
-import { deleteAsync as del } from 'del';
+const del = require('del');
 import {
 	existsSync,
 	writeFileSync,

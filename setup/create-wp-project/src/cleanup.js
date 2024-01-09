@@ -1,4 +1,4 @@
-import { deleteAsync as del } from 'del';
+const del = require('del');
 const { join } = require('path');
 
 const cleanup = async (projectPath) => {

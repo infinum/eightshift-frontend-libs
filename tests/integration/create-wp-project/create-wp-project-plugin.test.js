@@ -5,7 +5,7 @@
  */
 import { exec } from 'promisify-child-process';
 import { ensureDir } from 'fs-extra';
-import { deleteAsync as del } from 'del';
+const del = require('del');
 
 const { log } = console;
 const timeout = 360000; // in ms
