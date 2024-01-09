@@ -22,7 +22,7 @@ import justHas from 'just-has';
  * camelCase(null) // => null
  * ```
  */
-export const camelCase = (input) => justCamelCase(input);
+export const camelCase = (input) => justCamelCase(input ?? '');
 
 /**
  * Returns a PascalCase-formatted string.
@@ -39,7 +39,7 @@ export const camelCase = (input) => justCamelCase(input);
  * pascalCase(null) // => null
  * ```
  */
-export const pascalCase = (input) => justPascalCase(input);
+export const pascalCase = (input) => justPascalCase(input ?? '');
 
 /**
  * Returns a snake_case-formatted string.
@@ -56,7 +56,7 @@ export const pascalCase = (input) => justPascalCase(input);
  * snakeCase(null) // => null
  * ```
  */
-export const snakeCase = (input) => justSnakeCase(input);
+export const snakeCase = (input) => justSnakeCase(input ?? '');
 
 /**
  * Returns a kebab-case-formatted string.
@@ -72,7 +72,7 @@ export const snakeCase = (input) => justSnakeCase(input);
  * kebabCase('New super Test-title') // => 'new-super-test-title'
  * ```
  */
-export const kebabCase = (input) => justKebabCase(input);
+export const kebabCase = (input) => justKebabCase(input ?? '');
 
 /**
  * Checks if value is an empty object or collection.
