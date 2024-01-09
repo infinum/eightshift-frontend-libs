@@ -1,4 +1,11 @@
-// Lodash replacements for more complex functions.
+// Very lightweight Lodash replacements - from https://github.com/angus-c/just.
+import justKebabCase from 'just-kebab-case';
+import justCamelCase from 'just-camel-case';
+import justPascalCase from 'just-pascal-case';
+import justSnakeCase from 'just-snake-case';
+
+import justIsEmpty from 'just-is-empty';
+import justHas from 'just-has';
 
 /**
  * Returns a camelCase-formatted string.
@@ -15,22 +22,62 @@
  * camelCase(null) // => null
  * ```
  */
-export const camelCase = (input) => {
-	if (!input) {
-		return null;
-	}
+export const camelCase = (input) => justCamelCase(input);
 
-	const string = input?.toLowerCase()?.replace(/(?:(^.)|([-_\s]+.))/g, (match) => match?.charAt(match.length - 1)?.toUpperCase());
+/**
+ * Returns a PascalCase-formatted string.
+ *
+ * @param {string} input - String to convert.
+ *
+ * @access public
+ *
+ * @return {string} *PascalCase*-formatted string.
+ *
+ * Usage:
+ * ```js
+ * pascalCase('New super Test-title') // => 'NewSuperTestTitle'
+ * pascalCase(null) // => null
+ * ```
+ */
+export const pascalCase = (input) => justPascalCase(input);
 
-	return string?.charAt(0)?.toLowerCase() + string?.substring(1);
-};
+/**
+ * Returns a snake_case-formatted string.
+ *
+ * @param {string} input - String to convert.
+ *
+ * @access public
+ *
+ * @return {string} *snake_case*-formatted string.
+ *
+ * Usage:
+ * ```js
+ * snakeCase('New super Test-title') // => 'NewSuperTestTitle'
+ * snakeCase(null) // => null
+ * ```
+ */
+export const snakeCase = (input) => justSnakeCase(input);
 
-// Source: https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
+/**
+ * Returns a kebab-case-formatted string.
+ *
+ * @param {string} input - String to convert.
+ *
+ * @access public
+ *
+ * @return {string} *kebab-case*-formatted string.
+ *
+ * Usage:
+ * ```js
+ * kebabCase('New super Test-title') // => 'new-super-test-title'
+ * ```
+ */
+export const kebabCase = (input) => justKebabCase(input);
 
 /**
  * Checks if value is an empty object or collection.
  *
- * @param {*} obj
+ * @param {*} input - Value to check.
  *
  * @returns true if the object is empty, false otherwise.
  *
@@ -43,7 +90,7 @@ export const camelCase = (input) => {
  * isEmpty([1, 2, 3]) // => false
  * ```
  */
-export const isEmpty = (obj) => [Object, Array].includes((obj || {}).constructor) && !Object.entries((obj || {})).length;
+export const isEmpty = (input) => justIsEmpty(input);
 
 /**
  * Returns the string with its first character converted to lowercase.
@@ -90,15 +137,7 @@ export const upperFirst = (string) => string ? string.charAt(0).toUpperCase() + 
  * ```
  *
  */
-export const has = (obj, key) => {
-	const keyParts = key.split('.');
-
-	return Boolean(obj) && (
-		keyParts.length > 1
-			? has(obj[key.split('.')[0]], keyParts.slice(1).join('.'))
-			: hasOwnProperty.call(obj, key)
-	);
-};
+export const has = (obj, key) => justHas(obj, key);
 
 /*
  * Checks if value is a plain object, that is, an object created by the Object constructor or one with a `[[Prototype]]` of `null`.
@@ -154,24 +193,6 @@ export const isPlainObject = (value) => {
  * ```
  */
 export const isObject = (input) => input instanceof Object;
-
-const kebabCaseRegex = /([0-9]+|([A-Z][a-z]+)|[a-z]+|([A-Z]+)(?![a-z]))/g;
-
-/**
- * Returns a kebab-case-formatted string.
- *
- * @param {string} input - String to convert.
- *
- * @access public
- *
- * @return {string} *kebab-case*-formatted string.
- *
- * Usage:
- * ```js
- * kebabCase('New super Test-title') // => 'new-super-test-title'
- * ```
- */
-export const kebabCase = (input) => (String(input ?? '').match(kebabCaseRegex) || []).map(x => x.toLowerCase()).join('-');
 
 // Basic implementation, should cover most usual cases.
 // Source: https://gist.github.com/jsjain/a2ba5d40f20e19f734a53c0aad937fbb
