@@ -115,7 +115,9 @@
 		"react-test-renderer": "^18.2.0",
 		"replace-in-file": "^7.1.0",
 		"sassdoc": "^2.7.4",
-		"swiper": "^11.0.5"
+		"swiper": "^11.0.5",
+		"rc-slider": "^10.5.0",
+		"rc-tooltip": "^6.1.3"
 	},
 	"sideEffects": false,
 	"lint-staged": {
