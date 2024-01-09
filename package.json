@@ -69,6 +69,7 @@
 		"file-loader": "^6.2.0",
 		"husky": "^8.0.3",
 		"import-glob-loader": "^1.1.0",
+		"lint-staged": "^15.2.0",
 		"media-blender": "^2.1.0",
 		"mini-css-extract-plugin": "^2.7.6",
 		"postcss": "^8.4.33",
@@ -97,11 +98,6 @@
 		"webpack-manifest-plugin": "^5.0.0",
 		"webpack-merge": "^5.10.0"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run lint"
-		}
-	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.23.7",
 		"@babel/preset-react": "^7.23.3",
@@ -120,5 +116,17 @@
 		"sassdoc": "^2.7.4",
 		"swiper": "^11.0.5"
 	},
-	"sideEffects": false
+	"sideEffects": false,
+	"lint-staged": {
+		"*.scss": [
+			"npm run lintStyle"
+		],
+		"*.js": [
+			"npm run lintJs"
+		],
+		"*.php": [
+			"composer standards:check",
+			"composer analyze"
+		]
+	}
 }
