@@ -8,12 +8,13 @@ import {
 	getAttrKey,
 	IconLabel,
 	UseToggle,
-	OptionSelector,
 	ucfirst,
 	Select,
 	ColorPicker,
 	Section,
 	generateUseToggleConfig,
+	Menu,
+	MenuItem,
 } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
@@ -28,7 +29,6 @@ export const HeadingOptions = (attributes) => {
 		hideHeadingLevel = false,
 
 		additionalControls,
-		additionalControlsBeforeHeadingLevel,
 	} = attributes;
 
 	const headingColor = checkAttr('headingColor', attributes, manifest);
@@ -47,13 +47,22 @@ export const HeadingOptions = (attributes) => {
 		},
 	}), {});
 
+	const headingLevels = [
+		{ label: 'H1', tooltip: __('Heading 1', 'eightshift-frontend-libs'), value: 1 },
+		{ label: 'H2', tooltip: __('Heading 2', 'eightshift-frontend-libs'), value: 2 },
+		{ label: 'H3', tooltip: __('Heading 3', 'eightshift-frontend-libs'), value: 3 },
+		{ label: 'H4', tooltip: __('Heading 4', 'eightshift-frontend-libs'), value: 4 },
+		{ label: 'H5', tooltip: __('Heading 5', 'eightshift-frontend-libs'), value: 5 },
+		{ label: 'H6', tooltip: __('Heading 6', 'eightshift-frontend-libs'), value: 6 },
+	];
+
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'headingUse')}>
 			<Section
-				showIf={!hideColor || !hideSize || !hideFontWeight}
+				showIf={!hideColor || !hideSize || !hideFontWeight || !hideFontWeight}
 				additionalClasses='es-h-spaced'
-				reducedBottomSpacing={additionalControlsBeforeHeadingLevel}
-				noBottomSpacing={!additionalControlsBeforeHeadingLevel && typeof additionalControls === 'undefined' && hideHeadingLevel}
+				reducedBottomSpacing={additionalControls}
+				noBottomSpacing={typeof additionalControls === 'undefined'}
 			>
 				{!hideColor &&
 					<ColorPicker
@@ -62,9 +71,9 @@ export const HeadingOptions = (attributes) => {
 						value={headingColor}
 						onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 						type='textColor'
-						additionalTriggerClasses='es-slight-button-border-cool-gray-400 es-button-square-36 es-rounded-1!'
 						colorPaletteLayout='list'
 						noBottomSpacing
+						border
 					/>
 				}
 
@@ -110,28 +119,27 @@ export const HeadingOptions = (attributes) => {
 						disabled={fontSizes[fontSize]?.weightOptions?.length < 2}
 					/>
 				}
+
+				{!hideHeadingLevel &&
+					<Menu
+						icon={<span className='es-text-5 es-tabular-nums'>H{headingLevel}</span>}
+						tooltip={__('Heading level', 'eightshift-frontend-libs')}
+						additionalClass='es-button-square-38 es-is-v2-gutenberg-input-matched-button'
+					>
+						{headingLevels.map(({ tooltip, value }) => {
+							return (
+								<MenuItem
+									key={value}
+									label={tooltip}
+									icon={headingLevel === value ? icons.check : icons.dummySpacer}
+									onClick={() => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
+									additionalClass='es-nested-p-1'
+								/>
+							);
+						})}
+					</Menu>
+				}
 			</Section>
-
-			{additionalControlsBeforeHeadingLevel}
-
-			{!hideHeadingLevel &&
-				<OptionSelector
-					label={__('Heading level', 'eightshift-frontend-libs')}
-					options={[
-						{ label: 'H1', tooltip: __('Heading 1', 'eightshift-frontend-libs'), value: 1 },
-						{ label: 'H2', tooltip: __('Heading 2', 'eightshift-frontend-libs'), value: 2 },
-						{ label: 'H3', tooltip: __('Heading 3', 'eightshift-frontend-libs'), value: 3 },
-						{ label: 'H4', tooltip: __('Heading 4', 'eightshift-frontend-libs'), value: 4 },
-						{ label: 'H5', tooltip: __('Heading 5', 'eightshift-frontend-libs'), value: 5 },
-						{ label: 'H6', tooltip: __('Heading 6', 'eightshift-frontend-libs'), value: 6 },
-					]}
-					value={headingLevel}
-					onChange={(value) => setAttributes({ [getAttrKey('headingLevel', attributes, manifest)]: value })}
-					additionalButtonClass='es-button-square-36 es-text-4 es-font-weight-300'
-					additionalContainerClass='es-max-w-29!'
-					noBottomSpacing={!additionalControls}
-				/>
-			}
 
 			{additionalControls}
 		</UseToggle>

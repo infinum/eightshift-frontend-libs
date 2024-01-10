@@ -21,6 +21,7 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 						value={headingAlign}
 						options={getOption('headingAlign', attributes, manifest)}
 						onChange={(value) => setAttributes({ [getAttrKey('headingAlign', attributes, manifest)]: value })}
+						noBottomSpacing
 						iconOnly
 					/>
 				}
