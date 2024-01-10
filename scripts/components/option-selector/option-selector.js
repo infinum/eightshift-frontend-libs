@@ -23,6 +23,7 @@ import { Button } from '@wordpress/components';
  * @param {boolean} [props.iconOnly=false]                                                     - If `true`, the buttons will only contain icons. If a label is also passed, it will be used for the button tooltip.
  * @param {boolean} [props.largerIcons=false]                                                  - If `true`, the icons inside of buttons are rendered larger.
  * @param {boolean} [props.compactButtons=false]                                               - If `true`, the buttons are rendered smaller
+ * @param {boolean} [props.labelOnlyOnActive=false]                                            - If `true`, the label is shown only on the active item.
  * @param {boolean} [props.noBottomSpacing]                                                    - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]                                              - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClass]                                                    - If provided, the classes are appended to the button container.
@@ -53,6 +54,7 @@ export const OptionSelector = (props) => {
 		iconOnly = false,
 		largerIcons = false,
 		compactButtons = false,
+		labelOnlyOnActive = false,
 
 		noBottomSpacing,
 		reducedBottomSpacing,
@@ -120,11 +122,11 @@ export const OptionSelector = (props) => {
 							isPressed={value === current}
 							icon={icon}
 							disabled={disabled}
-							isSmall={compactButtons}
+							size={compactButtons ? 'small' : 'default'}
 							className={buttonClasses}
 						/>
 					);
-				} else if (icon && label && iconOnly && !subtitle) {
+				} else if (icon && label && (iconOnly || (labelOnlyOnActive && value !== current)) && !subtitle) {
 					return (
 						<Button
 							key={i}
@@ -146,7 +148,7 @@ export const OptionSelector = (props) => {
 							isPressed={value === current}
 							icon={icon}
 							disabled={disabled}
-							isSmall={compactButtons}
+							size={compactButtons ? 'small' : 'default'}
 							label={tooltip !== label ? tooltip : null}
 							showTooltip={tooltip !== label}
 							className={buttonClasses}
@@ -161,7 +163,7 @@ export const OptionSelector = (props) => {
 							onClick={() => onChange(current)}
 							isPressed={value === current}
 							disabled={disabled}
-							isSmall={compactButtons}
+							size={compactButtons ? 'small' : 'default'}
 							label={tooltip !== label ? tooltip : null}
 							showTooltip={tooltip !== label}
 							className={buttonClasses}
@@ -177,7 +179,7 @@ export const OptionSelector = (props) => {
 						onClick={() => onChange(current)}
 						isPressed={value === current}
 						disabled={disabled}
-						isSmall={compactButtons}
+						size={compactButtons ? 'small' : 'default'}
 						label={tooltip !== label ? tooltip : null}
 						showTooltip={tooltip !== label}
 						className={buttonClasses}

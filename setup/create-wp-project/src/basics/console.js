@@ -117,6 +117,7 @@ const writeIntro = async () => {
 
 	// eslint-disable-next-line max-len
 	console.log([topBar, emptyBar, infinumLogo, emptyBar, esText, emptyBar, devKitText, emptyBar, midBar, emptyBar, processLine('Thank you for using Eightshift DevKit!'), emptyBar, bottomBar, ''].join("\n"));
+	console.log('inDEV');
 };
 
 module.exports = {

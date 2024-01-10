@@ -177,8 +177,7 @@ export const ColorPalette = (props) => {
 											onClick={() => onChange(slug)}
 											className={classnames(
 												// eslint-disable-next-line max-len
-												'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-p-2px! es-m-0',
-												value === slug ? 'es-rounded-full!' : 'es-rounded-1.5!',
+												'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-p-2px! es-m-0 es-rounded-1.5!',
 											)}
 											disabled={disabled}
 											style={{
@@ -188,7 +187,7 @@ export const ColorPalette = (props) => {
 												'--es-transition-duration': value === slug ? '0.6s, 0.3s, 0.3s' : '1s, 0.3s, 0.3s',
 											}}
 										>
-											<ColorSwatch color={color} selected={value === slug} />
+											<ColorSwatch color={color} selected={value === slug} larger />
 										</button>
 									</Tooltip>
 								);
@@ -212,9 +211,9 @@ export const ColorPalette = (props) => {
 										label={name}
 										onClick={() => onChange(slug)}
 										className={classnames(
-											'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-m-0 es-p-2px!',
+											// eslint-disable-next-line max-len
+											'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-m-0 es-p-2px! es-rounded-1.5!',
 											detailView && 'es-w-max es-h-spaced',
-											value === slug && !detailView ? 'es-rounded-full!' : 'es-rounded-1.5!',
 										)}
 										disabled={disabled}
 										style={{
@@ -224,7 +223,7 @@ export const ColorPalette = (props) => {
 											'--es-transition-duration': value === slug ? '0.6s, 0.3s, 0.3s' : '1s, 0.3s, 0.3s',
 										}}
 									>
-										<ColorSwatch color={color} selected={value === slug} />
+										<ColorSwatch color={color} selected={value === slug} larger />
 
 										{detailView && name}
 									</button>

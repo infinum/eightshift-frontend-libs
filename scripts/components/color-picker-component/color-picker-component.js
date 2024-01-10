@@ -26,6 +26,8 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {React.Component?} [props.label]                             - Label to represent the control
  * @param {React.Component?} [props.help]                              - Help text displayed below the control.
  * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
+ * @param {string} [props.expanded=false]                              - If `true`, the control is rendered in an expanded form.
+ * @param {string} [props.border=false]                                - If `true`, the control is rendered with a border.
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
@@ -54,6 +56,8 @@ export const ColorPicker = (props) => {
 		help,
 		label,
 		tooltip,
+		expanded = false,
+		border = false,
 
 		noBottomSpacing,
 		reducedBottomSpacing,
@@ -99,16 +103,6 @@ export const ColorPicker = (props) => {
 		}
 	};
 
-	let popupContentWidthClass = 'es-min-w-96!';
-
-	if (colorPaletteLayout === 'list') {
-		popupContentWidthClass = 'es-min-w-56!';
-	}
-
-	if (colorPaletteLayout === 'tiles') {
-		popupContentWidthClass = 'es-min-w-64!';
-	}
-
 	const getButtonIcon = () => {
 		let style = {};
 
@@ -124,7 +118,7 @@ export const ColorPicker = (props) => {
 			};
 		}
 
-		let icon = <ColorSwatch color={value === 'transparent' ? 'transparent' : `var(--global-colors-${value})`} />;
+		let icon = <ColorSwatch color={currentColor?.color} />;
 
 		switch (type) {
 			case 'textColor':
@@ -141,6 +135,8 @@ export const ColorPicker = (props) => {
 		return icon;
 	};
 
+	const currentColor = colors?.find(({ slug }) => slug === value);
+
 	return (
 		<Control
 			icon={icon}
@@ -149,11 +145,11 @@ export const ColorPicker = (props) => {
 			reducedBottomSpacing={reducedBottomSpacing}
 			label={label}
 			help={help}
-			inlineLabel
+			inlineLabel={!expanded}
 		>
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
-				position={popoverPosition ?? (label ? 'middle right' : 'bottom right')}
+				position={popoverPosition ?? (label ? 'bottom left' : 'bottom right')}
 				trigger={
 					({ ref, setIsOpen, isOpen }) => (
 						<Button
@@ -161,27 +157,71 @@ export const ColorPicker = (props) => {
 							onClick={() => setIsOpen(!isOpen)}
 							icon={buttonIconOverride ?? getButtonIcon()}
 							label={getTooltipText()}
-							className={classnames('es-button-square-30 es-button-icon-24', additionalTriggerClasses)}
+							className={classnames(
+								'es-button-icon-24 es-rounded-1.25!',
+								expanded ? 'es-p-1.5! es-w-full' : 'es-button-square-38',
+								(border || expanded) && 'es-slight-button-border-cool-gray-400',
+								additionalTriggerClasses
+							)}
 							disabled={disabled}
 							{...additionalButtonArgs}
-						/>
+						>
+							{expanded && (colors?.find(({ slug }) => slug === value)?.name ?? __('Color', 'eightshift-frontend-libs'))}
+						</Button>
 					)
 				}
+				allowCloseFromChildren
+				noArrow
 			>
-				<div className={classnames('es-popover-content', popupContentWidthClass)}>
-					<ColorPalette
-						label={<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>}
-						colors={colors}
-						value={value}
-						onChange={onChange}
-						clearable={canReset}
-						layout={colorPaletteLayout}
-						searchable={searchable}
-						noShadeGrouping={noShadeGrouping}
-						disabled={disabled}
-						noBottomSpacing
-						{...additionalColorPaletteArgs}
-					/>
+				<div className='es-min-w-96!'>
+					<div className='es-h-between es-p-3'>
+						<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>
+
+						<Button
+							className='es-button-square-24 es-button-icon-18'
+							icon={icons.clear}
+							esClosesModalOnClick
+						/>
+					</div>
+
+					<div className='es-h-spaced es-px-3 es-pb-3 es-mb-3 es-border-b-cool-gray-300 es-w-full'>
+						<ColorSwatch color={currentColor?.color ?? 'transparent'} additionalClasses='es-w-24 es-h-12 es-rounded-1.5!' />
+						<div className='es-v-spaced es-gap-1!'>
+							<span className='es-text-3 es-font-weight-600 es-line-h-1!'>
+								{currentColor?.name ?? __('Select a color', 'eightshift-frontend-libs')}
+							</span>
+
+							{currentColor?.color &&
+								<span className='es-text-2! es-color-cool-gray-420 es-line-h-1!'>{currentColor?.color}</span>
+							}
+						</div>
+					</div>
+
+					<div className={classnames('es-px-3', !canReset && 'es-pb-3')}>
+						<ColorPalette
+							colors={colors}
+							value={value}
+							onChange={onChange}
+							layout={colorPaletteLayout}
+							searchable={searchable}
+							noShadeGrouping={noShadeGrouping}
+							disabled={disabled}
+							noBottomSpacing
+							{...additionalColorPaletteArgs}
+						/>
+					</div>
+
+					{canReset &&
+						<div className='es-p-1 es-mt-3 es-border-t-cool-gray-300'>
+							<Button
+								disabled={disabled}
+								onClick={() => onChange(undefined)}
+								className='es-w-full es-h-center es-h-10 es-hover-bg-cool-gray-50 es-rounded-1.5! es-transition-colors'
+							>
+								{__('Clear', 'eightshift-frontend-libs')}
+							</Button>
+						</div>
+					}
 				</div>
 			</PopoverWithTrigger>
 		</Control>
