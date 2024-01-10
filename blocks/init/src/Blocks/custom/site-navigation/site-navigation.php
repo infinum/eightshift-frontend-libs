@@ -16,7 +16,7 @@ $blockJsClass = $attributes['blockJsClass'] ?? '';
 $siteNavigationLinks = Components::checkAttr('siteNavigationLinks', $attributes, $manifest) ?? [];
 
 if (!empty($siteNavigationLinks)) {
-	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url']));
+	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url'])); // @phpstan-ignore-line
 }
 
 $navbarClass = Components::classnames([
