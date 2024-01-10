@@ -15,11 +15,12 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 
 				additionalControls={
 					<OptionSelector
-						icon={icons.horizontalAlign}
+						icon={icons.position3x3Empty}
 						label={__('Alignment', 'eightshift-frontend-libs')}
 						value={buttonAlign}
 						options={getOption('buttonAlign', attributes, manifest)}
 						onChange={(value) => setAttributes({ [getAttrKey('buttonAlign', attributes, manifest)]: value })}
+						inlineLabel
 						iconOnly
 					/>
 				}

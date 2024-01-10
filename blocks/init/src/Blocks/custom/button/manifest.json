@@ -26,17 +26,17 @@
 			{
 				"label": "Left",
 				"value": "left",
-				"icon": "horizontalAlignLeft"
+				"icon": "positionHStart"
 			},
 			{
 				"label": "Center",
 				"value": "center",
-				"icon": "horizontalAlignCenter"
+				"icon": "positionHCenter"
 			},
 			{
 				"label": "Right",
 				"value": "right",
-				"icon": "horizontalAlignRight"
+				"icon": "positionHEnd"
 			}
 		]
 	},

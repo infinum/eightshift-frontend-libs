@@ -1,6 +1,5 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
 import {
 	icons,
 	getOption,
@@ -32,7 +31,6 @@ export const HeadingOptions = (attributes) => {
 	} = attributes;
 
 	const headingColor = checkAttr('headingColor', attributes, manifest);
-	const headingSize = checkAttr('headingSize', attributes, manifest);
 	const headingLevel = checkAttr('headingLevel', attributes, manifest);
 
 	const [fontSize, fontWeight] = checkAttr('headingSize', attributes, manifest)?.split(':') ?? '';
@@ -92,39 +90,24 @@ export const HeadingOptions = (attributes) => {
 					/>
 				}
 
-				{!hideFontWeight && fontSizes[fontSize]?.weightOptions?.length > 2 &&
+				{!hideFontWeight && fontSizes[fontSize]?.weightOptions?.length > 0 &&
 					<Select
 						value={fontWeight}
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${fontSize}:${value}` })}
-						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
+						additionalSelectClasses='es-w-22 es-flex-shrink-0 es-flex-grow-1'
 						placeholder={__('Weight', 'eightshift-frontend-libs')}
-						disabled={fontSizes[fontSize]?.weights.length < 2}
 						noBottomSpacing
 						simpleValue
 						noSearch
 					/>
 				}
 
-				{!hideFontWeight && fontSizes[fontSize]?.weightOptions?.length <= 2 &&
-					<Button
-						isPressed={headingSize.includes('bold')}
-						icon={icons.bold}
-						className='es-button-icon-24 es-is-v2-gutenberg-input-matched-button'
-						onClick={() => {
-							const otherWeight = fontSizes[fontSize]?.weightOptions.map((w) => w.value).find((w) => w !== fontWeight);
-
-							setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${fontSize}:${otherWeight}` });
-						}}
-						disabled={fontSizes[fontSize]?.weightOptions?.length < 2}
-					/>
-				}
-
 				{!hideHeadingLevel &&
 					<Menu
-						icon={<span className='es-text-5 es-tabular-nums'>H{headingLevel}</span>}
+						icon={<span className='es-text-4.5 es-font-weight-300 es-tabular-nums'>H{headingLevel}</span>}
 						tooltip={__('Heading level', 'eightshift-frontend-libs')}
-						additionalClass='es-button-square-38 es-is-v2-gutenberg-input-matched-button'
+						additionalClass='es-button-square-36 es-is-v2-gutenberg-input-matched-button'
 					>
 						{headingLevels.map(({ tooltip, value }) => {
 							return (
