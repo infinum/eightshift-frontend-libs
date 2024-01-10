@@ -142,7 +142,7 @@ export const UseToggle = ({
 					disabled={disabled}
 					className={classnames(
 						// eslint-disable-next-line max-len
-						'es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2 es-nested-m-0! es-max-w-60 es-text-align-left',
+						'es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2! es-nested-m-0! es-max-w-60 es-text-align-left',
 						checked && 'is-checked'
 					)}
 					label={checked ? __('Disable', 'eightshift-frontend-libs') : __('Enable', 'eightshift-frontend-libs')}
