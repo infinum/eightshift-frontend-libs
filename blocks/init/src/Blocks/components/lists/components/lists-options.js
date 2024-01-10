@@ -51,7 +51,6 @@ export const ListsOptions = (attributes) => {
 						onChange={(value) => setAttributes({ [getAttrKey('listsColor', attributes, manifest)]: value })}
 						type='textColor'
 						additionalTriggerClasses='es-slight-button-border-cool-gray-400 es-button-square-36 es-rounded-1!'
-						colorPaletteLayout='list'
 						noBottomSpacing
 					/>
 				}

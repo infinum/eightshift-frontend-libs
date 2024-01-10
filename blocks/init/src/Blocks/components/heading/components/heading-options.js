@@ -69,7 +69,6 @@ export const HeadingOptions = (attributes) => {
 						value={headingColor}
 						onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
 						type='textColor'
-						colorPaletteLayout='list'
 						noBottomSpacing
 						border
 					/>
