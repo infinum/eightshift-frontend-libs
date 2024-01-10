@@ -155,7 +155,11 @@ export const AdvancedColorPicker = (props) => {
 				{type === 'project' && showProjectColor && !disabled &&
 					<>
 						<div className='es-h-spaced es-pb-3 es-w-full'>
-							<ColorSwatch color={currentColor?.color ?? 'transparent'} additionalClasses='es-w-24 es-h-12 es-rounded-1.5!' />
+							<ColorSwatch
+								color={currentColor?.color ?? 'es-undefined'}
+								additionalClasses='es-w-24 es-h-12 es-rounded-1.5!'
+							/>
+
 							<div className='es-v-spaced es-gap-1!'>
 								<span className='es-text-3.5 es-font-weight-500 es-line-h-1!'>
 									{currentColor?.name ?? __('Select a color', 'eightshift-frontend-libs')}

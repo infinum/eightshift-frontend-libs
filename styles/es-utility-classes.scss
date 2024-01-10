@@ -2017,4 +2017,16 @@ $es-utility-props: (
 	visibility: hidden;
 }
 
+// Special backgrounds.
+.es-dots-background {
+	background-color: var(--dot-background, var(--es-admin-pure-white));
+
+	background-image:
+		radial-gradient(var(--dot-color, var(--es-admin-cool-gray-450)) 1px, transparent 1px),
+		radial-gradient(var(--dot-color, var(--es-admin-cool-gray-450)) 1px, var(--dot-background, var(--es-admin-pure-white)) 0.5px);
+
+	background-size: 10px 10px;
+	background-position: 2px 0, 7px 5px;
+}
+
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth

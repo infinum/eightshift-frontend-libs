@@ -191,13 +191,17 @@ export const ColorPicker = (props) => {
 					</div>
 
 					<div className='es-h-spaced es-px-3 es-pb-3 es-mb-3 es-border-b-cool-gray-300 es-w-full'>
-						<ColorSwatch color={currentColor?.color ?? 'transparent'} additionalClasses='es-w-24 es-h-12 es-rounded-1.5!' />
+						<ColorSwatch
+							color={currentColor?.color ?? 'es-undefined'}
+							additionalClasses='es-w-24 es-h-12 es-rounded-1.5!'
+						/>
+
 						<div className='es-v-spaced es-gap-1!'>
 							<span className='es-text-3.5 es-font-weight-500 es-line-h-1!'>
 								{currentColor?.name ?? __('Select a color', 'eightshift-frontend-libs')}
 							</span>
 
-							{currentColor?.color &&
+							{currentColor?.color && currentColor?.color?.startsWith('#') &&
 								<span className='es-text-3 es-color-cool-gray-400 es-line-h-1'>{currentColor?.color}</span>
 							}
 						</div>

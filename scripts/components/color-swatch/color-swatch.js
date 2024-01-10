@@ -20,6 +20,21 @@ export const ColorSwatch = (props) => {
 		additionalClasses,
 	} = props;
 
+	if (color === 'es-undefined') {
+		return (
+			<div
+				className={classnames(
+					'es-position-relative es-border-cool-gray-450 es-rounded-1 es-dots-background',
+					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
+					additionalClasses
+				)}
+				style={{
+					boxShadow: 'inset 0 0 0 2px var(--es-admin-pure-white)',
+				}}
+			/>
+		);
+	}
+
 	if (!color || color?.length < 1) {
 		return (
 			<div
