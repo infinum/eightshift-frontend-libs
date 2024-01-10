@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.2.0] - 2024-01-10
+
+### Added
+- 8 new UI icons
+- 1 new block icon
+- new `lodash` function replacements
+- `ColorPicker` has new configuration options available: `expanded`, `border`, `inlineLabel`
+- `OptionSelector` has a new `labelOnlyOnActive` configuration option
+- `PopoverWithTrigger` got a new prop injection functionality to simplify external popover closing (via `allowCloseFromChildren` on the Popover, and `esClosesModalOnClick` on any element child)
+- `.es-tabular-nums`, `.es-hidden` (`visibility: hidden`) and `es-dots-background` (dotted background) utility classes have been added
+
+### Updated
+- Project will now only lint staged files
+- All of the dependencies have been updated to the latest versions
+- Stylelint rules have been cleaned up, and previous rules have been reintroduced from a different package, due to changes in Stylelint
+- Updated some of the current helpers to use new, lightweight implementations
+- Fixed some linter errors
+- Fixed a bug within Quote block where an attribute was missing
+- `AdvancedColorPicker` has a new design
+- Fixed a bug with gradient picker inside `AdvancedColorPicker`
+- `ColorPalette` has a new design
+- `ColorPicker` has a refreshed design
+- `ColorSwatch` has a new design and its performance was optimized a bit
+- `ColorSwatch` has a new swatch for "undefined" colors, so the empty state looks nicer (if `es-undefined` is passed as a color value)
+- Heading, Paragraph, Video, and Button blocks/components have had their options tweaked
+- Fixed wrong gap in `UseToggle` with the only toggle and label visible
+
+### Removed
+- `lodash` is no longer used in the project
+
 ## [9.1.0] - 2023-11-16
 
 ### Added
@@ -876,6 +906,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.1.0...9.2.0
 [9.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.2...9.0.0
 [8.6.2]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.1...8.6.2
