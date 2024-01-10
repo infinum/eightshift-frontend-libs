@@ -134,8 +134,7 @@
 			"npm run lintJs"
 		],
 		"*.php": [
-			"composer standards:check",
-			"composer analyze"
+			"composer test"
 		]
 	}
 }

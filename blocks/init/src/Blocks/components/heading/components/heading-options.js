@@ -57,7 +57,7 @@ export const HeadingOptions = (attributes) => {
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'headingUse')}>
 			<Section
-				showIf={!hideColor || !hideSize || !hideFontWeight || !hideFontWeight}
+				showIf={!hideColor || !hideSize || !hideFontWeight}
 				additionalClasses='es-h-spaced'
 				reducedBottomSpacing={additionalControls}
 				noBottomSpacing={typeof additionalControls === 'undefined'}
