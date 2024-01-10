@@ -162,13 +162,15 @@ export { dynamicImport } from './helpers/dynamic-import';
 export { elementChildrenHeight } from './helpers/element-children-height';
 export {
 	camelCase,
+	pascalCase,
+	snakeCase,
+	kebabCase,
 	isEmpty,
 	lowerFirst,
 	upperFirst,
 	has,
 	isPlainObject,
 	isObject,
-	kebabCase,
 	isEqual,
 } from './helpers/es-dash';
 export { escapeString } from './helpers/escape-string';

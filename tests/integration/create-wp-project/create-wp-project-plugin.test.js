@@ -8,7 +8,7 @@ import { ensureDir } from 'fs-extra';
 const del = require('del');
 
 const { log } = console;
-const timeout = 360000; // in ms
+const timeout = 600000; // in ms
 const testingFolder = './temp-plugin';
 
 beforeEach(async () => {

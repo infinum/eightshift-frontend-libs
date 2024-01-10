@@ -1,8 +1,6 @@
 // Very lightweight Lodash replacements - from https://github.com/angus-c/just.
 import justKebabCase from 'just-kebab-case';
 import justCamelCase from 'just-camel-case';
-import justPascalCase from 'just-pascal-case';
-import justSnakeCase from 'just-snake-case';
 
 import justIsEmpty from 'just-is-empty';
 import justHas from 'just-has';
@@ -19,10 +17,10 @@ import justHas from 'just-has';
  * Usage:
  * ```js
  * camelCase('New super Test-title') // => 'newSuperTestTitle'
- * camelCase(null) // => null
+ * camelCase(null) // => ''
  * ```
  */
-export const camelCase = (input) => justCamelCase(input ?? '');
+export const camelCase = (input) => lowerFirst(justCamelCase(input ?? ''));
 
 /**
  * Returns a PascalCase-formatted string.
@@ -36,10 +34,10 @@ export const camelCase = (input) => justCamelCase(input ?? '');
  * Usage:
  * ```js
  * pascalCase('New super Test-title') // => 'NewSuperTestTitle'
- * pascalCase(null) // => null
+ * pascalCase(null) // => ''
  * ```
  */
-export const pascalCase = (input) => justPascalCase(input ?? '');
+export const pascalCase = (input) => upperFirst(justCamelCase(input ?? ''));
 
 /**
  * Returns a snake_case-formatted string.
@@ -52,11 +50,11 @@ export const pascalCase = (input) => justPascalCase(input ?? '');
  *
  * Usage:
  * ```js
- * snakeCase('New super Test-title') // => 'NewSuperTestTitle'
- * snakeCase(null) // => null
+ * snakeCase('New super Test-title') // => 'new_super_test_title'
+ * snakeCase(null) // => ''
  * ```
  */
-export const snakeCase = (input) => justSnakeCase(input ?? '');
+export const snakeCase = (input) => kebabCase(input ?? '').replaceAll('-', '_');
 
 /**
  * Returns a kebab-case-formatted string.
@@ -70,6 +68,7 @@ export const snakeCase = (input) => justSnakeCase(input ?? '');
  * Usage:
  * ```js
  * kebabCase('New super Test-title') // => 'new-super-test-title'
+ * kebabCase(null) // => ''
  * ```
  */
 export const kebabCase = (input) => justKebabCase(input ?? '');

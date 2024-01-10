@@ -4,7 +4,6 @@
  * @group unit
  */
 
-
 const { scriptArguments } = require('../../../../setup/create-wp-project/src/arguments');
 
 const {
@@ -30,7 +29,7 @@ describe('Create wp project prompts will pass', () => {
 		expect(projectNameValidator('final')).not.toBe(true);
 	});
 
-	test('Url argument will be the same as entered.', async () => {
+	test('URL argument will be the same as entered.', async () => {
 		const data = await maybePrompt(scriptArguments, testArguments);
 
 		expect(data.url).toBe(testArguments.url);
@@ -94,4 +93,3 @@ describe('Create wp project prompts will pass', () => {
 		expect(data.package).toBe('test-theme');
 	});
 })
-

@@ -11,13 +11,15 @@ export { dynamicImport } from './dynamic-import';
 export { elementChildrenHeight } from './element-children-height';
 export {
 	camelCase,
+	pascalCase,
+	snakeCase,
+	kebabCase,
 	isEmpty,
 	lowerFirst,
 	upperFirst,
 	has,
 	isPlainObject,
 	isObject,
-	kebabCase,
 	isEqual,
 } from './es-dash';
 export { escapeString } from './escape-string';
