@@ -28,6 +28,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
  * @param {string} [props.expanded=false]                              - If `true`, the control is rendered in an expanded form.
  * @param {string} [props.border=false]                                - If `true`, the control is rendered with a border.
+ * @param {string} [props.inlineLabel=false]                           - If `true`, the control is rendered inline.
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.
@@ -58,6 +59,7 @@ export const ColorPicker = (props) => {
 		tooltip,
 		expanded = false,
 		border = false,
+		inlineLabel = false,
 
 		noBottomSpacing,
 		reducedBottomSpacing,
@@ -145,7 +147,7 @@ export const ColorPicker = (props) => {
 			reducedBottomSpacing={reducedBottomSpacing}
 			label={label}
 			help={help}
-			inlineLabel={!expanded}
+			inlineLabel={!expanded || inlineLabel}
 		>
 			<PopoverWithTrigger
 				contentClass='es-display-flex'
@@ -159,7 +161,10 @@ export const ColorPicker = (props) => {
 							label={getTooltipText()}
 							className={classnames(
 								'es-button-icon-24 es-rounded-1.25!',
-								expanded ? 'es-p-1.5! es-w-full' : 'es-button-square-38',
+								expanded && 'es-p-1.5!',
+								expanded && !inlineLabel && 'es-w-full',
+								expanded && inlineLabel && 'es-w-29 es-text-3',
+								!expanded && 'es-button-square-36',
 								(border || expanded) && 'es-slight-button-border-cool-gray-400',
 								additionalTriggerClasses
 							)}
@@ -168,6 +173,7 @@ export const ColorPicker = (props) => {
 						>
 							{expanded && (colors?.find(({ slug }) => slug === value)?.name ?? __('Color', 'eightshift-frontend-libs'))}
 						</Button>
+
 					)
 				}
 				allowCloseFromChildren
@@ -187,12 +193,12 @@ export const ColorPicker = (props) => {
 					<div className='es-h-spaced es-px-3 es-pb-3 es-mb-3 es-border-b-cool-gray-300 es-w-full'>
 						<ColorSwatch color={currentColor?.color ?? 'transparent'} additionalClasses='es-w-24 es-h-12 es-rounded-1.5!' />
 						<div className='es-v-spaced es-gap-1!'>
-							<span className='es-text-3 es-font-weight-600 es-line-h-1!'>
+							<span className='es-text-3.5 es-font-weight-500 es-line-h-1!'>
 								{currentColor?.name ?? __('Select a color', 'eightshift-frontend-libs')}
 							</span>
 
 							{currentColor?.color &&
-								<span className='es-text-2! es-color-cool-gray-420 es-line-h-1!'>{currentColor?.color}</span>
+								<span className='es-text-3 es-color-cool-gray-400 es-line-h-1'>{currentColor?.color}</span>
 							}
 						</div>
 					</div>

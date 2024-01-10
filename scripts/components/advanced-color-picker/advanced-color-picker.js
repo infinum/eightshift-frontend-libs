@@ -157,12 +157,12 @@ export const AdvancedColorPicker = (props) => {
 						<div className='es-h-spaced es-pb-3 es-w-full'>
 							<ColorSwatch color={currentColor?.color ?? 'transparent'} additionalClasses='es-w-24 es-h-12 es-rounded-1.5!' />
 							<div className='es-v-spaced es-gap-1!'>
-								<span className='es-text-3 es-font-weight-600 es-line-h-1!'>
+								<span className='es-text-3.5 es-font-weight-500 es-line-h-1!'>
 									{currentColor?.name ?? __('Select a color', 'eightshift-frontend-libs')}
 								</span>
 
 								{currentColor?.color &&
-									<span className='es-text-2! es-color-cool-gray-420 es-line-h-1!'>{currentColor?.color}</span>
+									<span className='es-text-3 es-color-cool-gray-400 es-line-h-1'>{currentColor?.color}</span>
 								}
 							</div>
 						</div>
