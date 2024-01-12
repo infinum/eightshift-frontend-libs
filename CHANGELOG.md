@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [9.2.0] - 2024-01-10
+## [9.2.0] - 2024-01-15
 
 ### Added
-- 8 new UI icons
+- 12 new UI icons
 - 1 new block icon
 - new `lodash` function replacements
 - `ColorPicker` has new configuration options available: `expanded`, `border`, `inlineLabel`
@@ -30,6 +30,8 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `ColorSwatch` has a new swatch for "undefined" colors, so the empty state looks nicer (if `es-undefined` is passed as a color value)
 - Heading, Paragraph, Video, and Button blocks/components have had their options tweaked
 - Fixed wrong gap in `UseToggle` with the only toggle and label visible
+- `getPaletteColors()` helper now returns from the built-in FE libs stores, instead of WP colors
+- Fixed tests
 
 ### Removed
 - `lodash` is no longer used in the project
