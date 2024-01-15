@@ -6,27 +6,49 @@ import { classnames, luminanceFromRgb } from '../../helpers';
  *
  * A simple color swatch to show a color, gradient, transparent (checkerboard) or none.
  *
- * @param {object} props                   - ColorSwatch options.
- * @param {string?} [props.color]          - Color to show. Can be either `null`/empty for "nothing" icon, `transparent` to show a checkerboard, or anything that can be sent to the css `background` property.
- * @param {boolean} [props.selected=false] - If `true`, the color is selected.
+ * @param {object} props                      - ColorSwatch options.
+ * @param {string?} [props.color]             - Color to show. Can be either `null`/empty for "nothing" icon, `transparent` to show a checkerboard, or anything that can be sent to the css `background` property.
+ * @param {boolean} [props.selected=false]    - If `true`, the color is selected.
+ * @param {boolean} [props.larger=false]      - If `true`, the swatch is rendered a bit larger.
+ * @param {boolean} [props.additionalClasses] - Additional classes to pass through to the swatch.
  */
 export const ColorSwatch = (props) => {
 	const {
 		color,
 		selected = false,
+		larger = false,
+		additionalClasses,
 	} = props;
+
+	if (color === 'es-undefined') {
+		return (
+			<div
+				className={classnames(
+					'es-position-relative es-border-cool-gray-450 es-rounded-1 es-dots-background',
+					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
+					additionalClasses
+				)}
+				style={{
+					boxShadow: 'inset 0 0 0 2px var(--es-admin-pure-white)',
+				}}
+			/>
+		);
+	}
 
 	if (!color || color?.length < 1) {
 		return (
 			<div
-				className='es-position-relative es-w-6 es-h-6 es-border-cool-gray-450 es-rounded-1 es-bg-pure-white'
+				className={classnames(
+					'es-position-relative es-border-cool-gray-450 es-rounded-1 es-bg-pure-white',
+					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
+					additionalClasses
+				)}
 				style={{
 					// eslint-disable-next-line max-len
 					backgroundImage: 'repeating-linear-gradient(-45deg, var(--es-admin-cool-gray-450), var(--es-admin-cool-gray-450) 1px, #ffffff 1px, #ffffff 15px)',
 					boxShadow: 'inset 0 0 0 2px var(--es-admin-pure-white)',
 				}}
-			>
-			</div>
+			/>
 		);
 	}
 
@@ -52,13 +74,11 @@ export const ColorSwatch = (props) => {
 	const activeIndicator = (
 		<div
 			className={classnames(
-				'es-w-3.5 es-h-3.5 es-rounded-full es-transition es-border-w-2px',
-				hasInvertedIndicator || color === 'transparent' ? 'es-border-pure-black' : 'es-border-pure-white'
+				'es-rounded-full es-transition',
+				larger ? 'es-w-3.5 es-h-3.5' : 'es-w-3 es-h-3',
+				selected ? 'es-opacity-100' : 'es-opacity-0',
+				hasInvertedIndicator || color === 'transparent' ? 'es-bg-pure-black' : 'es-bg-pure-white'
 			)}
-			style={{
-				opacity: selected ? 1 : 0,
-				transform: selected ? 'scale(1)' : 'scale(0.75)',
-			}}
 		/>
 	);
 
@@ -66,12 +86,11 @@ export const ColorSwatch = (props) => {
 		return (
 			<div
 				className={classnames(
-					'es-position-relative es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition',
-					selected ? 'es-rounded-10' : 'es-rounded-1'
+					'es-position-relative es-h-center es-border-cool-gray-450 es-transition es-rounded-1',
+					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
+					additionalClasses
 				)}
 				style={{
-					'--es-transition-property': 'border-radius',
-					'--es-transition-duration': selected ? '1s' : '0.6s',
 					backgroundColor: '#ffffff',
 					// eslint-disable-next-line max-len
 					backgroundImage: 'repeating-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), repeating-linear-gradient(45deg, #ccc 25%, #ffffff 25%, #ffffff 75%, #ccc 75%, #ccc)',
@@ -87,12 +106,11 @@ export const ColorSwatch = (props) => {
 	return (
 		<div
 			className={classnames(
-				'es-position-relative es-w-6 es-h-6 es-h-center es-border-cool-gray-450 es-custom-transition',
-				selected ? 'es-rounded-10' : 'es-rounded-1'
+				'es-position-relative es-h-center es-border-cool-gray-450 es-transition es-rounded-1',
+				larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
+				additionalClasses
 			)}
 			style={{
-				'--es-transition-property': 'border-radius',
-				'--es-transition-duration': selected ? '1s' : '0.6s',
 				background: color,
 			}}
 			ref={ref}

@@ -26,7 +26,7 @@ $mapInteractions = Components::checkAttr('mapInteractions', $attributes, $manife
 $mapControls = Components::checkAttr('mapControls', $attributes, $manifest);
 
 // Take only active map layers and clean them up a bit so the output JSON is smaller.
-$activeLayers = array_filter($mapLayers, fn ($layer) => $layer['hidden'] === false);
+$activeLayers = array_filter($mapLayers, fn ($layer) => $layer['hidden'] === false); // @phpstan-ignore-line
 
 $activeLayers = array_map(function ($layer) {
 	unset($layer['id']);

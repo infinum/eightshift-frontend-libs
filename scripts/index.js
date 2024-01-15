@@ -160,6 +160,19 @@ export { throttle } from './helpers/throttle';
 export { device } from './helpers/devices';
 export { dynamicImport } from './helpers/dynamic-import';
 export { elementChildrenHeight } from './helpers/element-children-height';
+export {
+	camelCase,
+	pascalCase,
+	snakeCase,
+	kebabCase,
+	isEmpty,
+	lowerFirst,
+	upperFirst,
+	has,
+	isPlainObject,
+	isObject,
+	isEqual,
+} from './helpers/es-dash';
 export { escapeString } from './helpers/escape-string';
 export { getNavigatorVibrate } from './helpers/navigator';
 export {

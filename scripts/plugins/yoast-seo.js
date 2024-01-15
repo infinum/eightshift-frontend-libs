@@ -1,7 +1,7 @@
 import domReady from '@wordpress/dom-ready';
-import _ from 'lodash';
 import apiFetch from '@wordpress/api-fetch';
 import { subscribe, select } from '@wordpress/data';
+import { debounce, isEmpty } from '../helpers';
 
 /* global YoastSEO */
 
@@ -26,7 +26,7 @@ export const yoastSeo = () => {
 		// Subscribe to changes.
 		subscribe(
 			// Small debounce for more optimisations in loading.
-			_.debounce(() => {
+			debounce(() => {
 				// Filter only when saved or autosaved.
 				const isSavingPost = wp.data.select('core/editor').isSavingPost();
 				const isAutosavingPost = wp.data.select('core/editor').isAutosavingPost();
@@ -35,7 +35,7 @@ export const yoastSeo = () => {
 				const currentPost = select('core/editor').getCurrentPost();
 
 				// Filter subscribes. Check only if post is saving, autosaving or initial load.
-				if (_.isEmpty(currentPost) || (isDataAvailable && !isSavingPost && !isAutosavingPost)) {
+				if (isEmpty(currentPost) || (isDataAvailable && !isSavingPost && !isAutosavingPost)) {
 					return;
 				}
 

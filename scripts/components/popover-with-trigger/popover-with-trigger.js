@@ -35,6 +35,71 @@ export const PopoverWithTrigger = (props) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 
+	// Recursively processes child items to inject the closing prop or onClick handler.
+	const processChildItems = (rawItems) => {
+		let items = rawItems;
+
+		// If it's a single child, place it in array, so the processing is unified.
+		if (!Array.isArray(rawItems)) {
+			items = [rawItems];
+		}
+
+		const processed = items.filter(Boolean).map((child) => {
+			// If current child is not an object, bailout.
+			if (typeof child !== 'object') {
+				return child;
+			}
+
+			// If current child doesn't have 'props', bailout.
+			if (!('props' in child)) {
+				return child;
+			}
+
+			let newChildren = child?.props?.children;
+
+			// If children are an array, process them as well.
+			if (Array.isArray(child?.props?.children)) {
+				newChildren = processChildItems(child.props.children);
+			}
+
+			// If 'esClosesModalOnClick' is set, override the onClick listener.
+			if (Object.keys(child.props).includes('esClosesModalOnClick')) {
+				return ({
+					...child,
+					props: {
+						...child.props,
+						children: newChildren,
+						onClick: (e) => {
+							setIsOpen(false);
+
+							if ('props' in child) {
+								if ('onClick' in child.props) {
+									child.props.onClick(e);
+								}
+							}
+						}
+					}
+				});
+			}
+
+			// Otherwise, inject the 'popoverClose' function.
+			return ({
+				...child,
+				props: {
+					...child.props,
+					children: newChildren,
+					popoverClose: () => setIsOpen(false)
+				}
+			});
+		});
+
+		if (!Array.isArray(rawItems)) {
+			return processed[0];
+		}
+
+		return processed;
+	};
+
 	return (
 		<>
 			{isOpen &&
@@ -54,7 +119,7 @@ export const PopoverWithTrigger = (props) => {
 					<div className={contentClass}>
 						{!allowCloseFromChildren && children}
 
-						{allowCloseFromChildren && children.map((child) => ({ ...child, props: { ...child.props, popoverClose: () => setIsOpen(false) } }))}
+						{allowCloseFromChildren && processChildItems(children)}
 					</div>
 				</Popover>
 			}

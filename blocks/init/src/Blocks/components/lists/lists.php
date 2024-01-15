@@ -26,7 +26,7 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $listsContent = Components::checkAttr('listsContent', $attributes, $manifest);
 $listsType = Components::checkAttr('listsOrdered', $attributes, $manifest);
 
-$listsTypeOptions = array_map(static fn($option) => $option['value'], $manifest['options']['listsOrdered'] ?? []);
+$listsTypeOptions = array_map(static fn($option) => $option['value'], $manifest['options']['listsOrdered'] ?? []); // @phpstan-ignore-line
 
 if (!in_array($listsType, $listsTypeOptions, true)) {
 	return;

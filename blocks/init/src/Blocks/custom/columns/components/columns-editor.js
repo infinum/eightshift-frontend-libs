@@ -61,9 +61,9 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 						</div>
 
 						<div className='es-h-spaced es-my-2'>
-							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full'></div>
+							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full' />
 							<span>{__('or', 'eightshift-frontend-libs')}</span>
-							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full'></div>
+							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full' />
 						</div>
 
 						<Button

@@ -69,7 +69,7 @@ export const VideoOptions = (attributes) => {
 	if (!hasVideo) {
 		return (
 			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'videoUse')}>
-				{!hideVideoPicker &&
+				{hideVideoPicker &&
 					<Placeholder
 						icon={icons.help}
 						label={__('No video... yet', 'eightshift-frontend-libs')}

@@ -1,6 +1,6 @@
-import _ from 'lodash';
 import { getPaletteColors } from './colors';
 import { getAttrKey } from './attributes';
+import { lowerFirst, camelCase } from '../helpers';
 
 /**
  * Provides the ability to override component options from the parent block/component.
@@ -143,7 +143,7 @@ export const getOptions = (attributes = {}, manifest = {}) => {
 	const prefix = (typeof attributes['prefix'] === 'undefined') ? '' : attributes['prefix'];
 
 	for (const [key, value] of Object.entries(optionsManifest)) {
-		const newKey = key.replace(`${_.lowerFirst(_.camelCase(componentName))}`, '');
+		const newKey = key.replace(`${lowerFirst(camelCase(componentName))}`, '');
 
 		output[`${prefix}${newKey}`] = value;
 	}

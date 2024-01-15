@@ -6,6 +6,11 @@ const label = (msg) => chalk.green(msg);
 const variable = (msg) => chalk.cyan(msg);
 
 const alertBox = (msg, title, type = 'info', config = {}) => {
+	// If in a test environment, skip the prompt.
+	if (typeof jest !== 'undefined') {
+		return `[${type.toUpperCase()}] ${title}: ${msg}`;
+	}
+
 	let autoTitle = '';
 
 	const colorText = (input, bold = false) => {

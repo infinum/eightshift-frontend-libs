@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
@@ -9,6 +8,7 @@ import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
 import { blockIcons } from './icons/icons';
 import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
+import { camelCase, kebabCase, lowerFirst, upperFirst } from '../helpers';
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
  * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
@@ -509,14 +509,14 @@ export const getIconOptions = (
 		return {
 			background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 			foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }}></span>,
+			src: <span dangerouslySetInnerHTML={{ __html: blockIcons[icon.src] }} />,
 		};
 	}
 
 	return {
 		background: (typeof icon.background === 'undefined') ? backgroundGlobal : icon.background,
 		foreground: (typeof icon.foreground === 'undefined') ? foregroundGlobal : icon.foreground,
-		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }}></span> : icon.src,
+		src: icon.src.includes('<svg') ? <span dangerouslySetInnerHTML={{ __html: icon.src }} /> : icon.src,
 	};
 };
 
@@ -546,7 +546,7 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 	}
 
 	// Prepare parent case.
-	const newParent = _.camelCase(parent);
+	const newParent = camelCase(parent);
 
 	// Iterate each attribute and attach parent prefixes.
 	for (const [componentAttribute] of Object.entries(componentAttributes)) {
@@ -560,14 +560,14 @@ export const prepareComponentAttribute = (manifest, newName, realName, isExample
 
 		// Check if current attribute is used strip component prefix from attribute and replace it with parent prefix.
 		if (currentAttributes) {
-			attribute = componentAttribute.replace(`${_.lowerFirst(_.camelCase(realName))}`, '');
+			attribute = componentAttribute.replace(`${lowerFirst(camelCase(realName))}`, '');
 		}
 
 		// Wrapper attributes that should not be modified.
 		const isWrapperAttribute = attribute.startsWith('wrapper') || attribute.startsWith('showWrapper');
 
 		// Determine if parent is empty and if parent name is the same as component/block name and skip wrapper attributes.
-		let attributeName = isWrapperAttribute ? attribute : `${newParent}${_.upperFirst(attribute)}`;
+		let attributeName = isWrapperAttribute ? attribute : `${newParent}${upperFirst(attribute)}`;
 
 		// Output new attribute names.
 		output[attributeName] = componentAttributes[componentAttribute];
@@ -610,7 +610,7 @@ export const prepareComponentAttributes = (
 	for (let [newComponentName, realComponentName] of Object.entries(components)) {
 
 		// Filter components real name.
-		const [component] = componentsManifest.filter((item) => item.componentName === _.kebabCase(realComponentName));
+		const [component] = componentsManifest.filter((item) => item.componentName === kebabCase(realComponentName));
 
 		// Bailout if component doesn't exist.
 		if (!component) {
@@ -623,7 +623,7 @@ export const prepareComponentAttributes = (
 		// If component has more components do recursive loop.
 		if (component?.components) {
 			// eslint-disable-next-line max-len
-			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${_.upperFirst(_.camelCase(newComponentName))}`);
+			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${upperFirst(camelCase(newComponentName))}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.
 			outputAttributes = prepareComponentAttribute(component, newComponentName, realComponentName, isExample, newParent);

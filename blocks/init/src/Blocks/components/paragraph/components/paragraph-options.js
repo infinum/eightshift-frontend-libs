@@ -41,9 +41,8 @@ export const ParagraphOptions = (attributes) => {
 						value={paragraphColor}
 						onChange={(value) => setAttributes({ [getAttrKey('paragraphColor', attributes, manifest)]: value })}
 						type='textColor'
-						additionalTriggerClasses='es-slight-button-border-cool-gray-400 es-button-square-36 es-rounded-1!'
-						colorPaletteLayout='list'
 						noBottomSpacing
+						border
 					/>
 				}
 
@@ -62,14 +61,13 @@ export const ParagraphOptions = (attributes) => {
 					/>
 				}
 
-				{!hideWeight &&
+				{!hideWeight && fontSizes[fontSize]?.weightOptions?.length > 0 &&
 					<Select
 						value={fontWeight}
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: `${fontSize}:${value}` })}
-						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
+						additionalSelectClasses='es-w-22 es-flex-shrink-0 es-flex-grow-1'
 						placeholder={__('Weight', 'eightshift-frontend-libs')}
-						disabled={fontSizes[fontSize]?.weights.length < 2}
 						noBottomSpacing
 						simpleValue
 						noSearch

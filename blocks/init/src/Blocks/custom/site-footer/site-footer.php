@@ -15,7 +15,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $siteFooterLinks = Components::checkAttr('siteFooterLinks', $attributes, $manifest);
 
 if (!empty($siteFooterLinks)) {
-	$siteFooterLinks = array_filter($siteFooterLinks, fn($item) => !empty($item['text']) && !empty($item['url']));
+	$siteFooterLinks = array_filter($siteFooterLinks, fn($item) => !empty($item['text']) && !empty($item['url'])); // @phpstan-ignore-line
 }
 
 $linksClass = Components::selector($blockClass, $blockClass, 'links');

@@ -4,7 +4,6 @@
  * External dependencies
  */
 import React from 'react';
-import _ from 'lodash';
 import { icons } from '@eightshift/frontend-libs/scripts';
 
 /**
@@ -17,6 +16,7 @@ import { addQueryArgs } from '@wordpress/url';
 import { Placeholder } from '@wordpress/components';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from '../../editor/store';
+import { debounce, isEqual } from '../../helpers';
 
 export function rendererPath(block, attributes = null, urlQueryArgs = {}) {
 	return addQueryArgs(`/wp/v2/block-renderer/${block}`, {
@@ -58,7 +58,7 @@ export class ServerSideRender extends Component {
 		this.fetch(this.props);
 		// Only debounce once the initial fetch occurs to ensure that the first
 		// renders show data as soon as possible.
-		this.fetch = _.debounce(this.fetch, 500);
+		this.fetch = debounce(this.fetch, 500);
 	}
 
 	componentWillUnmount() {
@@ -66,7 +66,7 @@ export class ServerSideRender extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (!_.isEqual(prevProps, this.props)) {
+		if (!isEqual(prevProps, this.props)) {
 			this.fetch(this.props);
 		}
 	}

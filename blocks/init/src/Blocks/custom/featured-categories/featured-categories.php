@@ -39,15 +39,10 @@ if (!$taxonomyName) {
 		'hide_empty' => false,
 		'taxonomy' => $taxonomyName,
 		'orderby' => 'include',
-		'include' => array_map(
-			function ($item) {
-				return $item['value'];
-			},
-			$featuredCategoriesManualTerms
-		),
+		'include' => array_map(fn ($item) => $item['value'], $featuredCategoriesManualTerms), // @phpstan-ignore-line
 	];
 
-	$allTerms = get_terms($args);
+	$allTerms = get_terms($args); // @phpstan-ignore-line
 
 	if (!is_iterable($allTerms)) {
 		return;

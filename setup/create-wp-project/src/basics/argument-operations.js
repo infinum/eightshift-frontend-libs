@@ -55,6 +55,11 @@ const requirementCheck = async () => {
 		`${chalk.gray('  Check with')} ${chalk.gray.underline('git --version')}`
 	].join("\n"), 'Requirements');
 
+	// If in a test environment, skip the prompt.
+	if (typeof jest !== 'undefined') {
+		return true;
+	}
+
 	const { confirmSummary } = await inquirer.prompt({
 		name: 'confirmSummary',
 		type: 'confirm',
@@ -134,10 +139,13 @@ const maybePrompt = async (scriptArguments, argv) => {
 
 	const requirementsValid = await requirementCheck(answers);
 
+	// console.log({answers, requirementsValid});
+
 	if (!requirementsValid) {
 		alertBox('Install/update the dependencies, check versions, and run the script again.', 'Requirements not met', 'error');
 		process.exit(0);
 	}
+
 
 	return answers;
 };

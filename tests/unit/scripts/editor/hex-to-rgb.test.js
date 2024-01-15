@@ -1,4 +1,4 @@
-import { hexToRgb } from "../../../../scripts/editor/css-variables";
+import { hexToRgb } from '../../../../scripts/editor/css-variables';
 
 test.each([
 	{input: '', expected: '0 0 0'},

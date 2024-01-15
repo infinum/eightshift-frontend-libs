@@ -1,3 +1,5 @@
+import justDebounceIt from 'just-debounce-it';
+
 /**
  * Debounces the provided function.
  * For more information, check [this blog post](https://davidwalsh.name/javascript-debounce-function).
@@ -16,15 +18,4 @@
  * }, 250);
  * ```
  */
-export function debounce(func, wait = 250) {
-	let timeout;
-
-	return function(...args) {
-		const later = () => {
-			timeout = null;
-			func.apply(this, args);
-		};
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-	};
-}
+export const debounce = (func, wait = 250) => justDebounceIt(func, wait);

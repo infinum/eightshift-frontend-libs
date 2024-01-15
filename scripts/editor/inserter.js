@@ -1,6 +1,6 @@
-import _ from 'lodash';
 import { dispatch, select } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
+import { isEmpty } from '../helpers';
 
 /**
  * Development inserter made to insert one or multiple blocks in the dom using console.
@@ -44,7 +44,7 @@ export const inserter = () => {
 			reset = this.reset
 		) {
 
-			if (_.isEmpty(namespace)) {
+			if (isEmpty(namespace)) {
 				throw Error('Must provide namespace for this method.');
 			}
 
@@ -70,7 +70,7 @@ export const inserter = () => {
 			reset = this.reset,
 		) {
 
-			if (_.isEmpty(name)) {
+			if (isEmpty(name)) {
 				throw Error('Must provide full block name for this method. Example eightshift-boilerplate/card.');
 			}
 
@@ -208,7 +208,7 @@ const buildBlocks = (blocks) => {
 
 		let innerBlocksOutput = [];
 
-		if (!_.isEmpty(innerBlocks)) {
+		if (!isEmpty(innerBlocks)) {
 			innerBlocksOutput = createBlock( name, attributes, buildBlocks(innerBlocks));
 		} else {
 			innerBlocksOutput = createBlock( name, attributes, innerBlocks);

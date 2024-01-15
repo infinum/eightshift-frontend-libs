@@ -1,3 +1,5 @@
+import justThrottle from 'just-throttle';
+
 /**
  * Separated implementation of throttle functionality due to additional parameter in implementation.
  *
@@ -9,26 +11,4 @@
  *
  * @return {function} Throttled callback.
  */
-export function throttle(func, wait = 250, after = false) {
-	let timeout;
-	let lock = after;
-
-	return function(...args) {
-		clearTimeout(timeout);
-		if (!lock) {
-			lock = true;
-
-			if (!after) {
-				func.apply(this, args);
-			}
-		}
-
-		timeout = setTimeout(() => {
-			lock = false;
-
-			if (after) {
-				func.apply(this, args);
-			}
-		}, wait);
-	};
-}
+export const throttle = (func, wait = 250, after = false) => justThrottle(func, wait, { leading: !after, trailing: after });

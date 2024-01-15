@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import _ from 'lodash';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import {
+	isEmpty,
 	selector,
 	checkAttr,
 	checkAttrResponsive,
@@ -54,7 +54,7 @@ export const ImageEditor = (attributes) => {
 		<>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}
 
-			{_.isEmpty(imageUrl['large']) &&
+			{isEmpty(imageUrl['large']) &&
 				<MediaPlaceholder
 					icon={icons.image}
 					onSelect={(value) => setAttributes({ [getAttrKey('imageUrl', attributes, manifest)]: value.url })}
@@ -63,7 +63,7 @@ export const ImageEditor = (attributes) => {
 				/>
 			}
 
-			{!_.isEmpty(imageUrl['large']) &&
+			{!isEmpty(imageUrl['large']) &&
 				<picture className={pictureClass} data-id={unique}>
 					{getDefaultBreakpointNames().reverse().map((breakpointName) => {
 						if (breakpointName === 'large') {
@@ -83,7 +83,7 @@ export const ImageEditor = (attributes) => {
 						}
 
 						return (
-							<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName}></source>
+							<source srcSet={imageUrl[breakpointName]} media={`(max-width: ${breakpointWidth}px)`} key={breakpointName} />
 						);
 					})}
 				</picture>
