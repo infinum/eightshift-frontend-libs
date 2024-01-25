@@ -14,14 +14,11 @@ body {
 		.#{global-settings(customBlocksName)} {
 			&.wp-block {
 				max-width: 100%;
-				transition: {
-					property: box-shadow;
-					timing-function: ease-in;
-					duration: 0.15s;
-				}
 
 				&:hover {
-					box-shadow: 0 0 3px var(--es-admin-block-hover-shadow, rgb(0 0 0 / 0.3));
+					outline: 1px dotted var(--es-admin-block-hover-shadow, rgb(0 0 0 / 0.1));
+					outline-offset: 0.25rem;
+					border-radius: 0.125rem;
 				}
 			}
 

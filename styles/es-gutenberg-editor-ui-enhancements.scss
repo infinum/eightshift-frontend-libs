@@ -32,11 +32,6 @@ button[disabled] .block-editor-block-icon.has-colors,
 	min-width: unset !important;
 }
 
-// Fix block icons in list views.
-.block-editor-list-view-block-select-button .block-editor-block-icon {
-	aspect-ratio: 1;
-	border-radius: 0.25rem !important;
-}
 
 // Enlarge the icons in the Options panel a bit.
 .block-editor-block-card .block-editor-block-icon {
@@ -148,6 +143,16 @@ button[disabled] .block-editor-block-icon.has-colors,
 
 	.components-input-control__label {
 		margin-block-end: 0 !important;
+	}
+}
+
+// Remove color from List view block icons and fix offset.
+.edit-post-editor__list-view-container .block-editor-list-view-leaf .block-editor-block-icon {
+	color: currentColor !important;
+	background-color: transparent !important;
+
+	> span {
+		line-height: 0 !important;
 	}
 }
 

@@ -880,7 +880,7 @@ export const registerBlock = (
 			// WP 6.4+ Block renaming support
 			__experimentalBlockRenaming: true,
 			__experimentalLabel: (attributes, { context }) => {
-				const customName = attributes?.metadata?.name ?? fullBlockName;
+				const customName = attributes?.metadata?.name ?? blockManifest?.title ?? fullBlockName;
 
 				if (context === 'list-view') {
 					return customName;
