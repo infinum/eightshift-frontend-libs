@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.2.1] - 2024-01-25
+
+### Added
+- 17 new UI icons
+
+### Updated
+- Tweaked some of the default Gutenberg style overrides
+- Fixed default block names in WP 6.4
+
 ## [9.2.0] - 2024-01-15
 
 ### Added
@@ -908,6 +917,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.0...9.2.1
 [9.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.1.0...9.2.0
 [9.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/8.6.2...9.0.0
