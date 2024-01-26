@@ -2,8 +2,8 @@ import React from 'react';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
+import { blockIcons } from '../helpers/block-icons';
 import reactHtmlParser from 'react-html-parser';
-import { blockIcons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
 
 /**
  * Filter array of JS paths and get the correct edit components.

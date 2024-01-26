@@ -1,4 +1,4 @@
-import { classnames } from '@eightshift/frontend-libs/scripts'
+import { classnames } from './es-dash';
 
 /**
  * Create responsive selectors used for responsive attributes.

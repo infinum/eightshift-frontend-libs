@@ -1,4 +1,4 @@
-import { ucfirst } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '../helpers';
 
 /**
  * This method is used when attributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
@@ -42,7 +42,7 @@ const multiplePropsActions = (setAttributes, attributes, key, propsAttributes) =
 				for (const propName in attributes[key][propType]) {
 					if (Object.prototype.hasOwnProperty.call(attributes[key][propType], propName)) {
 
-						output[`onChange${ucfirst(key)}${ucfirst(propName)}`] = function (value) {
+						output[`onChange${upperFirst(key)}${upperFirst(propName)}`] = function (value) {
 							setAttributes({
 								[key]: {
 									...propsAttributes[key],
@@ -74,7 +74,7 @@ const singlePropsAction = (setAttributes, key) => {
 
 	// Set output as a object key with anonymous function callback.
 	// Keys name must be written in uppercase.
-	output[`onChange${ucfirst(key)}`] = function (value) {
+	output[`onChange${upperFirst(key)}`] = function (value) {
 		setAttributes({
 			[key]: value,
 		});
@@ -113,7 +113,7 @@ const mediaPropsAction = (setAttributes, key) => {
 
 	// Set output as an object key with anonymous function callback.
 	// Keys name must be written in uppercase.
-	output[`onChange${ucfirst(key)}`] = function(value) {
+	output[`onChange${upperFirst(key)}`] = function(value) {
 		setAttributes({
 			[key]: {
 				id: value.id,

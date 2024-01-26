@@ -1,4 +1,4 @@
-import { camelCase, isEqual, pascalCase } from '@eightshift/frontend-libs/scripts'
+import { camelCase, isEqual, pascalCase } from '../helpers';
 
 /**
  * Provides ability to override component options from the parent block/component

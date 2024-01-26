@@ -1,4 +1,4 @@
-import { kebabCase, has, isEmpty, isObject, isPlainObject } from '@eightshift/frontend-libs/scripts'
+import { kebabCase, has, isEmpty, isObject, isPlainObject } from '../helpers';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
