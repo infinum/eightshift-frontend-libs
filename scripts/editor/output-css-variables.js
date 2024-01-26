@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { kebabCase, has, isEmpty, isObject, isPlainObject } from '@eightshift/frontend-libs/scripts'
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -11,14 +11,14 @@ export const outputCssVariablesGlobal = (globalManifest) => {
 
 	let output = '';
 
-	if (!globalManifest || !_.has(globalManifest, 'globalVariables')) {
+	if (!globalManifest || !('globalVariables' in globalManifest)) {
 		return output;
 	}
 
 	for (const [itemKey, itemValue] of Object.entries(globalManifest['globalVariables'])) {
-		const itemKeyInner = _.kebabCase(itemKey);
+		const itemKeyInner = kebabCase(itemKey);
 
-		if (_.isObject(itemValue)) {
+		if (isObject(itemValue)) {
 			output += globalInner(itemValue, itemKeyInner);
 		} else {
 			output += `--global-${itemKeyInner}: ${itemValue};\n`;
@@ -50,8 +50,8 @@ export const globalInner = (itemValues, itemKey) => {
 	let output = '';
 
 	for (const [key, value] of Object.entries(itemValues)) {
-		const innerKey = _.kebabCase(key);
-		const itemInnerKey = _.kebabCase(itemKey);
+		const innerKey = kebabCase(key);
+		const itemInnerKey = kebabCase(itemKey);
 
 		switch (itemInnerKey) {
 			case 'colors':
@@ -110,7 +110,7 @@ const setupResponsiveVariables = (responsiveAttributes, variables) => {
 		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
 
 			// If responsive attribute doesn't exist in variables object, skip it.
-			if (!responsiveAttributeName || _.isEmpty(variables[responsiveAttributeName])) {
+			if (!responsiveAttributeName || isEmpty(variables[responsiveAttributeName])) {
 				return responsiveAttributesVariables;
 			}
 
@@ -225,7 +225,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	let output = '';
 
 	// Bailout if global breakpoints are missing.
-	if (!_.has(globalManifest, 'globalVariables') || !_.has(globalManifest.globalVariables, 'breakpoints')) {
+	if (!has(globalManifest, 'globalVariables') || !has(globalManifest.globalVariables, 'breakpoints')) {
 		return '';
 	}
 
@@ -235,7 +235,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	}
 
 	// Bailout if manifest is missing variables key.
-	if (!_.has(manifest, 'variables')) {
+	if (!has(manifest, 'variables')) {
 		return '';
 	}
 
@@ -287,14 +287,14 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 
 		// If breakpoint value is 0 then don't wrap the media query around it.
 		if (value === 0) {
-			if (!_.isEmpty(variable)) {
+			if (!isEmpty(variable)) {
 				output += `.${name}[data-id='${unique}'] {
 					${variable.join('\n')}
 					}
 				`;
 			}
 		} else {
-			if (!_.isEmpty(variable)) {
+			if (!isEmpty(variable)) {
 				output += `@media (${type}-width: ${value}px) {
 						.${name}[data-id='${unique}'] {
 							${variable.join('\n')}
@@ -306,8 +306,8 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	});
 
 	// Output manual output from the array of variables.
-	const manual = _.has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
-	const manualEditor = _.has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
+	const manual = has(manifest, 'variablesCustom') ? manifest['variablesCustom'].join(';\n') : '';
+	const manualEditor = has(manifest, 'variablesCustomEditor') ? manifest['variablesCustomEditor'].join(';\n') : '';
 
 	// Prepare final output for testing.
 	const fullOutput = `
@@ -317,7 +317,7 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest)
 	`;
 
 	// Check if final output is empty and remove if it is.
-	if (_.isEmpty(fullOutput.trim())) {
+	if (isEmpty(fullOutput.trim())) {
 		return '';
 	}
 
@@ -406,7 +406,7 @@ export const prepareVariableData = (globalBreakpoints) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object.
-	if (!_.isPlainObject(variables)) {
+	if (!isPlainObject(variables)) {
 		return output;
 	}
 
@@ -420,12 +420,12 @@ export const prepareVariableData = (globalBreakpoints) => {
 		}
 
 		// Bailout if attribute value is empty or undefined, used to unset/reset value.
-		if (value === 'undefined' || _.isEmpty(value)) {
+		if (value === 'undefined' || isEmpty(value)) {
 			continue;
 		}
 
 		// Output the custom CSS variable by adding the attribute key + custom object key.
-		output.push(`--${_.kebabCase(variableKey)}: ${value};`);
+		output.push(`--${kebabCase(variableKey)}: ${value};`);
 	}
 
 	return output;

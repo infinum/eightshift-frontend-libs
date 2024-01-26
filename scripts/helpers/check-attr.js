@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 /**
  * Check if attribute exist in attributes list and add default value if not.
  *
@@ -14,7 +12,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 
 	if (Object.prototype.hasOwnProperty.call(attributes, key)) {
 		return attributes[key];
-	} 
+	}
 
 	const manifestKey = manifest.attributes[key];
 
@@ -65,7 +63,7 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllowed = false) => {
 	const output = {};
 
-	if (! _.has(manifest, 'responsiveAttributes')) {
+	if (!('responsiveAttributes' in manifest)) {
 		if (typeof manifest['blockName'] === 'undefined') {
 			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`);
 		} else {
@@ -73,13 +71,13 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 		}
 	}
 
-	if (!_.has(manifest.responsiveAttributes, keyName)) {
+	if (!(keyName in manifest.responsiveAttributes)) {
 		throw Error(`It looks like you are missing ${keyName} key in your manifest responsiveAttributes object.`);
 	}
 
 	for (const [key, value] of Object.entries(manifest.responsiveAttributes[keyName])) {
 		output[key] = checkAttr(value, attributes, manifest, undefinedAllowed);
 	}
-	
+
 	return output;
 };

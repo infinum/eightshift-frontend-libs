@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
@@ -7,7 +5,7 @@ import _ from 'lodash';
  * @param {string}  realName        - *Old* key to use, usually the name of the block/component.
  * @param {string}  newName         - *New* key to use to rename attributes.
  * @param {boolean} [isBlock=false] - Determines if the helper is used on a block or a component.
- * 
+ *
  * @returns object
  */
 export const props = (attributes, realName, newName = '', isBlock = false) => {
@@ -37,7 +35,7 @@ export const props = (attributes, realName, newName = '', isBlock = false) => {
 	dependency.push(newNameInternal);
 
 	// If you have multiple components just use one.
-	dependency = _.uniq(dependency);
+	dependency = [...new Set(dependency)];
 
 	// Populate componentName for usage in setAttributes.
 	output['componentName'] = newNameInternal;

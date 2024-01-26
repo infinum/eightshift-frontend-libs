@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
@@ -621,7 +620,7 @@ export const buildDependencyBlocksTree = (blocks, components) => {
 	const output = {};
 
 	blocks.forEach((item) => {
-		output[item.blockName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
+		output[item.blockName] = [...new Set(buildDependencyComponentsInnerTree(item.components, components))];
 	});
 
 	return output;
@@ -638,7 +637,7 @@ export const buildDependencyComponentsTree = (components) => {
 	const output = {};
 
 	components.forEach((item) => {
-		output[item.componentName] = _.uniq(buildDependencyComponentsInnerTree(item.components, components));
+		output[item.componentName] = [...new Set(buildDependencyComponentsInnerTree(item.components, components))];
 	});
 
 	return output;
@@ -668,7 +667,7 @@ export const buildDependencyComponentsInnerTree = (componentsList, components) =
 		}
 	}
 
-	return _.flattenDeep(output);
+	return output.flat(100);
 };
 
 /**

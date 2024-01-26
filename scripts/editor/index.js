@@ -9,11 +9,6 @@ export {
 	outputCssVariables,
 	getUnique
 } from './output-css-variables';
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes
-} from './override-inner-block-attributes';
-export { pasteInto } from './paste-handler';
 export { props } from './props';
 export {
 	getAttributes,
@@ -23,4 +18,3 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './register-blocks';
-export { ucfirst } from './ucfirst';

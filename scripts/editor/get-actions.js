@@ -1,4 +1,4 @@
-import { ucfirst } from './ucfirst';
+import { ucfirst } from '@eightshift/frontend-libs/scripts';
 
 /**
  * This method is used when attributes have property type `object` with any number of values, eg. `content`, `url`, `type` etc.
