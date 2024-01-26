@@ -13,11 +13,6 @@ export { getOptions } from './editor/get-options';
 export { getOptionColors } from './editor/get-option-colors';
 export { getPaletteColors } from './editor/get-palette-colors';
 export {
-	lockIfUndefined,
-	lockPostEditing,
-	unlockPostEditing,
-} from './editor/lock-editing';
-export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	getUnique

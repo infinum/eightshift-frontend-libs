@@ -12,11 +12,6 @@ export { getOptions } from './get-options';
 export { getOptionColors } from './get-option-colors';
 export { getPaletteColors } from './get-palette-colors';
 export {
-	lockIfUndefined,
-	lockPostEditing,
-	unlockPostEditing,
-} from './lock-editing';
-export {
 	outputCssVariablesGlobal,
 	outputCssVariables,
 	getUnique
