@@ -1,12 +1,10 @@
-import { useSelect } from '@wordpress/data';
-
 /**
  * Use this hook to read editor-color-palette colors directly from WP built in store.
  *
  * Requires WP => 5.3
  */
-export const getPaletteColors = () => useSelect((select) => {
-	const settings = select('core/block-editor').getSettings();
+export const getPaletteColors = () => {
+	const settings = wp.data.select('core/block-editor').getSettings();
 	return settings.colors.reduce(
 		(obj, item) => ({
 			...obj,
@@ -14,4 +12,4 @@ export const getPaletteColors = () => useSelect((select) => {
 		}),
 		{}
 	);
-});
+}
