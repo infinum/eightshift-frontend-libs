@@ -1,35 +1,5 @@
 // All exports are sorted in alphabetical order.
 
-// Components
-export { AdvancedColorPicker } from './components/advanced-color-picker/advanced-color-picker';
-export {
-	AlignmentToolbar,
-	AlignmentToolbarType
-} from './components/alignment-toolbar/alignment-toolbar';
-export { ColorPaletteCustom } from './components/color-palette-custom/color-palette-custom';
-export {
-	ColorPickerComponent,
-	ColorPickerType
-} from './components/color-picker-component/color-picker-component';
-export { CollapsableComponentUseToggle } from './components/collapsable-component-use-toggle/collapsable-component-use-toggle';
-export { ComponentUseToggle } from './components/component-use-toggle/component-use-toggle';
-export { CustomSelect } from './components/custom-select/custom-select';
-export { HeadingLevel } from './components/heading-level/heading-level';
-export { HelpModal } from './components/help-modal/help-modal';
-export { IconLabel } from './components/icon-label/icon-label';
-export { IconToggle } from './components/icon-toggle/icon-toggle';
-export {
-	InlineNotification,
-	InlineNotificationType
-} from './components/inline-notification/inline-notification';
-export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
-export { LinkToolbarButton } from './components/link-toolbar-button/link-toolbar-button';
-export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
-export { OptionPicker } from './components/option-picker/option-picker';
-export { Responsive } from './components/responsive/responsive';
-export { ServerSideRender } from './components/server-side-render/server-side-render';
-export { SimpleVerticalSingleSelect } from './components/simple-vertical-single-select/simple-vertical-single-select';
-
 // Editor
 export {
 	icons,
