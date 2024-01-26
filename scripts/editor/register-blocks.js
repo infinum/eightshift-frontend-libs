@@ -4,7 +4,7 @@ import { registerBlockType, registerBlockVariation } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createElement } from '@wordpress/element';
 import reactHtmlParser from 'react-html-parser';
-import { blockIcons } from './icons/icons';
+import { blockIcons } from '@eightshift/frontend-libs/scripts/editor/icons/icons';
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -68,7 +68,7 @@ export const getBlockGenericComponent = (blockName, paths, fileName) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string?}
  */
 export const getNamespace = (globalManifest, blockManifest) => {
@@ -80,7 +80,7 @@ export const getNamespace = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string}
  */
 export const getFullBlockName = (globalManifest, blockManifest) => {
@@ -92,7 +92,7 @@ export const getFullBlockName = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {string}
  */
 export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
@@ -103,7 +103,7 @@ export const getFullBlockNameVariation = (globalManifest, blockManifest) => {
  * Return save function based on hasInnerBlocks option of block.
  *
  * @param {object} blockManifest - Block manifest.
- * 
+ *
  * @returns {function} Save callback.
  */
 export const getSaveCallback = (blockManifest) => {
@@ -200,7 +200,7 @@ export const getEditCallback = (Component, Wrapper) => (props) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {object}
  */
 export const getIconOptions = (globalManifest, blockManifest) => {
@@ -239,7 +239,7 @@ export const getIconOptions = (globalManifest, blockManifest) => {
  *
  * @param {object} globalManifest - Global manifest.
  * @param {object} blockManifest  - Block manifest.
- * 
+ *
  * @returns {object}
  */
 export const getSharedAttributes = (globalManifest, blockManifest) => {
@@ -275,7 +275,7 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
  * @param {string} realComponentName - React component name defined in the component manifest.
  * @param {string} newComponentName  - New component name to search and replace the original.
  * @param {string} [key=attributes]  - Type of output, can be: `attributes` or `example`.
- * 
+ *
  * @returns {object}
  */
 export const prepareComponentAttribute = (component, realComponentName, newComponentName, key = 'attributes') => {
@@ -319,7 +319,7 @@ export const prepareComponentAttribute = (component, realComponentName, newCompo
  * @param {string} blockName                       - Full block name.
  * @param {string} [key=attributes]                - Type of output, can be: `attributes` or `example`.
  * @param {string} [parentAttributeName=undefined] - Parent component attribute from which to determine if the name has changed in the parent component.
- * 
+ *
  * @returns {object}
  */
 export const prepareComponentAttributes = (componentsManifest, blockManifest, blockName, key = 'attributes', parentAttributeName = undefined) => {
@@ -381,7 +381,7 @@ export const prepareComponentAttributes = (componentsManifest, blockManifest, bl
  * @param {object} wrapperManifest    - `Wrapper` manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} blockManifest      - Block manifest.
- * 
+ *
  * @returns {object}
  */
 export const getAttributes = (globalManifest, wrapperManifest, componentsManifest, blockManifest) => {
@@ -412,7 +412,7 @@ export const getAttributes = (globalManifest, wrapperManifest, componentsManifes
  * @param {object} globalManifest     - Global manifest.
  * @param {object} componentsManifest - Component manifest to iterate through.
  * @param {object} blockManifest      - Block manifest.
- * 
+ *
  * @returns {object}
  */
 export const getExample = (globalManifest, componentsManifest, blockManifest) => {

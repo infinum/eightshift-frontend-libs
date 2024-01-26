@@ -1,13 +1,6 @@
 // All exports are sorted in alphabetical order.
 
 // Editor
-export {
-	icons,
-	illustrations,
-	blockIcons,
-	BlockIcon
-} from './editor/icons/icons';
-export { getFetchWpApi } from './editor/fetch-wp-api';
 export { getActions } from './editor/get-actions';
 export { getOptions } from './editor/get-options';
 export { getOptionColors } from './editor/get-option-colors';
