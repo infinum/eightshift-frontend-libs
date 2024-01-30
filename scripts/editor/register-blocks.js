@@ -247,6 +247,9 @@ export const getSharedAttributes = (globalManifest, blockManifest) => {
 	} = blockManifest;
 
 	return {
+		metadata: {
+			type: 'object',
+		},
 		blockName: {
 			type: 'string',
 			default: blockName,
@@ -499,6 +502,23 @@ export const registerBlock = (
 			edit: getEditCallback(blockComponent, wrapperComponent),
 			save: getSaveCallback(blockManifest),
 			merge: getMergeCallback(blockManifest),
+
+			// WP 6.4+ Block renaming support
+			__experimentalBlockRenaming: true,
+			__experimentalLabel: (attributes, { context }) => {
+				const customName = attributes?.metadata?.name ?? blockManifest?.title ?? fullBlockName;
+
+				if (context === 'list-view') {
+					return customName;
+				}
+
+				if (context === 'accessibility') {
+					const { content } = attributes;
+					return !content || content?.length === 0 ? __('Empty', 'eightshift-frontend-libs') : content;
+				}
+
+				return fullBlockName;
+			},
 		},
 	};
 };

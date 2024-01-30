@@ -4,7 +4,12 @@
  * Requires WP => 5.3
  */
 export const getPaletteColors = () => {
-	const settings = wp.data.select('core/block-editor').getSettings();
+	const settings = wp?.data?.select?.('core/block-editor')?.getSettings();
+
+	if (!settings) {
+		return {};
+	}
+
 	return settings.colors.reduce(
 		(obj, item) => ({
 			...obj,
