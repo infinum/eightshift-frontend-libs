@@ -1,21 +1,23 @@
+import React from 'react';
 import { dispatch } from '@wordpress/data';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 
 /**
  * Given a block's client ID and an attribute key, locks post saving in Gutenberg.
- * A lock is created under the name undefined-lock-[blockClientId]-[attributeKey], 
+ * A lock is created under the name undefined-lock-[blockClientId]-[attributeKey],
  * meaning that a lock can be created for each attribute key of each block.
  * Multiple locks can be present and all of them have to be removed before saving is unlocked.
- * 
+ *
  * @param {string} blockClientId A block's client ID
  * @param {string} attributeKey The attribute key
  *
  * @access public
  *
  * @returns {void}
- * 
+ *
  * Usage:
  * ```js
- * lockPostEditing(clientId, getAttrKey('headingContent', attributes, manifest), value); 
+ * lockPostEditing(clientId, getAttrKey('headingContent', attributes, manifest), value);
  * ```
  */
 export const lockPostEditing = (blockClientId, attributeKey) => {
@@ -34,7 +36,7 @@ export const lockPostEditing = (blockClientId, attributeKey) => {
  * @access public
  *
  * @returns {void}
- * 
+ *
  * Usage:
  * ```js
  * unlockPostEditing(clientId, getAttrKey('headingContent', attributes, manifest), value);
@@ -47,7 +49,7 @@ export const unlockPostEditing = (blockClientId, attributeKey) => {
 /**
  * Given a block's client ID, attribute key and new value, creates a lock, locks post saving in Gutenberg
  * if the value is undefined, null or an empty string and unlocks that attribute's lock otherwise.
- * 
+ *
  * A lock is created under the name undefined-lock-[blockClientId]-[attributeKey],
  * meaning that a lock can be created for each attribute key of each block.
  * Multiple locks can be present and all of them have to be removed before saving is unlocked.
@@ -58,7 +60,7 @@ export const unlockPostEditing = (blockClientId, attributeKey) => {
  * @access public
  *
  * @returns {void}
- * 
+ *
  * Usage:
  * ```js
  * onChange={(value) => {
@@ -73,4 +75,45 @@ export const lockIfUndefined = (blockClientId, attributeKey, value) => {
 		return;
 	}
 	unlockPostEditing(blockClientId, attributeKey);
+};
+
+/**
+ * Initialize the block context with all necessary data
+ *
+ * @param {*} props                        - Props to be passed to the component via the context
+ * @param {React.Component?} props.options - Options component
+ * @param {React.Component?} props.toolbar - Toolbar component
+ * @param {React.Component?} props.editor  - Editor component
+ *
+ * @access public
+ * @since 9.3.0
+ *
+ * @returns React.Component
+ */
+export const GutenbergBlock = (props) => {
+	const {
+		options: OptionsComponent,
+		toolbar: ToolbarComponent,
+		editor: EditorComponent,
+	} = props;
+
+	return (
+		<>
+			{OptionsComponent &&
+				<InspectorControls>
+					<OptionsComponent {...props} />
+				</InspectorControls>
+			}
+
+			{ToolbarComponent &&
+				<BlockControls>
+					<ToolbarComponent {...props} />
+				</BlockControls>
+			}
+
+			{EditorComponent &&
+				<EditorComponent {...props} />
+			}
+		</>
+	);
 };
