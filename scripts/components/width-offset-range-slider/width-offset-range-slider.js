@@ -10,23 +10,24 @@ import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
  * @typedef {null | 'dots' | true | {Number: string} | {Number: {style, label}}} DotStyle
  * @typedef {'top'|'bottom'|'hidden'} TooltipPosition
  *
- * @param {object} props                           - WidthOffsetRangeSlider options.
- * @param {React.Component?} [props.icon]          - Icon to show next to the label
- * @param {React.Component?} [props.label]         - Label to show above component.
- * @param {Object} [props.value]                   - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
- * @param {function} [props.onChange]              - Function to trigger when the value of is changing.
- * @param {any} [props.inheritValue]               - Value that marks something as inherited.
- * @param {function} [props.inheritCheck]          - Function that returns a `boolean`, used to decide whether a value is inherited or not.
- * @param {boolean} [props.fullWidthToggle=false]  - If `true`, the "Fullwidth" toggle is shown.
- * @param {boolean} [props.autoOffsetToggle=false] - If `true`, the "Automatic offset" toggle is shown.
- * @param {any} [props.autoOffsetValue]            - Value that marks automatic offset.
- * @param {boolean?} [props.noBottomSpacing]       - If `true`, space below the control is removed.
- * @param {boolean?} [props.reducedBottomSpacing]  - If `true`, space below the control is reduced.
- * @param {string?} [props.additionalClasses]      - If passed, the classes are appended to the base control.
- * @param {boolean?} [props.numericValues=false]   - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
- * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
- * @param {function} [props.onBeforeChange]        - Function to trigger when the value of the slider starts changing.
- * @param {function} [props.onAfterChange]         - Function to trigger when the value of the slider is changed.
+ * @param {object} props                            - WidthOffsetRangeSlider options.
+ * @param {React.Component?} [props.icon]           - Icon to show next to the label
+ * @param {React.Component?} [props.label]          - Label to show above component.
+ * @param {Object} [props.value]                    - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
+ * @param {function} [props.onChange]               - Function to trigger when the value of is changing.
+ * @param {any} [props.inheritValue]                - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck]           - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {boolean} [props.fullWidthToggle=false]   - If `true`, the "Fullwidth" toggle is shown.
+ * @param {boolean} [props.autoOffsetToggle=false]  - If `true`, the "Automatic offset" toggle is shown.
+ * @param {any} [props.autoOffsetValue]             - Value that marks automatic offset.
+ * @param {boolean?} [props.noBottomSpacing]        - If `true`, space below the control is removed.
+ * @param {boolean?} [props.reducedBottomSpacing]   - If `true`, space below the control is reduced.
+ * @param {string?} [props.additionalClasses]       - If passed, the classes are appended to the base control.
+ * @param {boolean?} [props.numericValues=false]    - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
+ * @param {Number} [props.totalNumberOfColumns=12]  - Available number of columns to show.
+ * @param {function} [props.onBeforeChange]         - Function to trigger when the value of the slider starts changing.
+ * @param {function} [props.onAfterChange]          - Function to trigger when the value of the slider is changed.
+ * @param {int|string} [props.colAutoStartOverride] - If passed, overrides the auto-calculated value of the automatic column start offset.
  */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
@@ -55,6 +56,8 @@ export const WidthOffsetRangeSlider = (props) => {
 
 		onBeforeChange,
 		onAfterChange,
+
+		colAutoStartOverride,
 	} = props;
 
 	const stringValues = !numericValues || autoOffsetToggle;
@@ -95,6 +98,8 @@ export const WidthOffsetRangeSlider = (props) => {
 				const isWidthInherited = inheritCheck(width);
 				const isOffsetInherited = inheritCheck(offset);
 
+				const autoStartOffset = colAutoStartOverride ?? 1;
+
 				const getNearest = (attributeName) => {
 					for (let i = index - 1; i >= 0; i--) {
 						const breakpointName = breakpointNames[i];
@@ -102,7 +107,7 @@ export const WidthOffsetRangeSlider = (props) => {
 						const current = value[breakpointName][attributeName];
 
 						if (autoOffsetToggle && current === autoOffsetValue) {
-							return 1;
+							return autoStartOffset;
 						}
 
 						if (current) {
@@ -117,8 +122,9 @@ export const WidthOffsetRangeSlider = (props) => {
 				const nearestValidOffset = getNearest('offset');
 				const nearestValidWidth = getNearest('width');
 
-				// eslint-disable-next-line max-len
-				const parsedOffset = autoOffsetToggle && (inheritCheck(offset) ? nearestValidOffset : offset) === autoOffsetValue ? 1 : parseInt(inheritCheck(offset) ? nearestValidOffset : offset);
+				const offsetValue = inheritCheck(offset) ? nearestValidOffset : offset;
+				const parsedOffset = (autoOffsetToggle && offsetValue === autoOffsetValue) ? autoStartOffset : parseInt(offsetValue);
+
 				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
 				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
 
@@ -140,7 +146,12 @@ export const WidthOffsetRangeSlider = (props) => {
 							} else if (!isWidthInherited && isOffsetInherited) {
 								newValues.width = stringValues ? String(w - nearestValidOffset) : w - nearestValidOffset;
 							} else if (!isWidthInherited && offset === autoOffsetValue) {
-								newValues.width = stringValues ? String(w - 1) : w - 1;
+								const newWidth = w - autoStartOffset;
+
+								if (newWidth > 0) {
+									newValues.width = stringValues ? String(newWidth) : newWidth;
+								}
+
 							} else if (!isWidthInherited && !isOffsetInherited) {
 								newValues.width = stringValues ? String(w - o) : w - o;
 								newValues.offset = stringValues ? String(o) : o;
