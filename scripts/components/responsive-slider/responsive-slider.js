@@ -28,6 +28,7 @@ import { classnames } from '../../helpers';
  * @param {function} [props.modifyInput]          - If passed, the input to the `NumberPicker` is modified with this function.
  * @param {function} [props.modifyOutput]         - If passed, the output from the `NumberPicker` is modified with this function.
  * @param {Number} [props.responsiveDefaultValue] - If passed, instead of using `min` this value is set when un-inheriting a breakpoint value.
+ * @param {boolean?} [props.noInputField=false]   - If `true`, the input field next to the slider is disabled.
  */
 export const ResponsiveSlider = (props) => {
 	const {
@@ -61,6 +62,8 @@ export const ResponsiveSlider = (props) => {
 		modifyOutput,
 
 		responsiveDefaultValue = min,
+
+		noInputField = false,
 	} = props;
 
 	const breakpointNames = Object.keys(value);
@@ -132,7 +135,7 @@ export const ResponsiveSlider = (props) => {
 								});
 							}}
 							marks
-							inputField
+							inputField={!noInputField}
 							noBottomSpacing
 							min={min}
 							max={max}
