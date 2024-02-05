@@ -1,18 +1,12 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import { Fragment } from '@wordpress/element';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ParagraphEditor } from '../components/paragraph-editor';
 import { ParagraphOptions } from '../components/paragraph-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Paragraph',
 };
 
 const attributes = getExample('paragraph', manifest);
@@ -35,8 +29,8 @@ export const size = () => (
 			<Fragment key={index}>
 				<ParagraphEditor
 					{...props('paragraph', attributes, {
-						paragraphContent: values.label, 
-						paragraphSize: values.value, 
+						paragraphContent: values.label,
+						paragraphSize: values.value,
 					})}
 				/>
 				<br />

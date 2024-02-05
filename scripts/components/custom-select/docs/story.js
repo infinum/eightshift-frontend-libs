@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import {
 	Select,
 	AsyncSelect,
@@ -17,11 +16,6 @@ import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/Select',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const data = [

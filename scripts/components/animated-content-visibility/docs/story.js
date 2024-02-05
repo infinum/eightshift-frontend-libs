@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@wordpress/components';
 import { AnimatedContentVisibility } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/AnimatedContentVisibility',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
-
 
 export const component = () => {
 	const [visible, setVisible] = useState(true);

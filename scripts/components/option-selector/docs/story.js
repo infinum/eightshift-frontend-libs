@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { icons, ucfirst } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import { OptionSelector } from '../option-selector';
 
 export default {
 	title: 'Options/OptionSelector',
-	parameters: {
-		docs: {
-			page: readme,
-		}
-	},
 };
 
 const ControlDisplay = (props) => {

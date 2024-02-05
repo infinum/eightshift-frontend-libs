@@ -3,15 +3,9 @@ import React, { useState } from 'react'; // eslint-disable-line
 import { jsx } from '@emotion/react';
 import { Button } from '@wordpress/components';
 import { icons, illustrations, blockIcons } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 
 export default {
 	title: 'Editor/Icons',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const IconsOutput = (props) => {

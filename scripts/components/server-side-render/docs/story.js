@@ -1,14 +1,8 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { ServerSideRender } from '../server-side-render';
 
 export default {
 	title: 'Options/ServerSideRender',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const defaultProps = {

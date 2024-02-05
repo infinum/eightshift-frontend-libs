@@ -1,5 +1,4 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { getExample, props } from '@eightshift/frontend-libs/scripts/editor';
 import { LayoutEditor } from '../components/layout-editor';
 import { CardEditor } from '../../card/components/card-editor';
@@ -7,12 +6,7 @@ import cardManifest from './../../card/manifest.json';
 import manifest from './../manifest.json';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Layout',
 };
 
 const card = getExample('card', cardManifest);

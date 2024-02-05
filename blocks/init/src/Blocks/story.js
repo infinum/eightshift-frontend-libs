@@ -1,66 +1,36 @@
 /** @jsx jsx */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { __ } from '@wordpress/i18n';
 import { jsx } from '@emotion/react';
-import { Fragment } from '@wordpress/element';
+import { ColorSwatch } from '@eightshift/frontend-libs/scripts';
 import manifest from './manifest.json';
 
 export default {
-	title: `Global`,
+	title: 'Global',
 };
 
 export const colors = () => {
-
-	const Color = (props) => {
-		const {
-			label,
-			color
-		} = props;
-
-		return (
-			<div style={{
-				color: '#111111',
-				fontSize: '13px',
-				textTransform: 'uppercase',
-				fontWeight: 'bold'
-			}}>
-				<div style={{
-					backgroundColor: color,
-					textAlign: 'center',
-					height: '50px',
-					marginBottom: '10px',
-				}} />
-
-				{label}
-
-				<div style={{
-					color: '#525E6C',
-					fontSize: '13px',
-					marginTop: '5px'
-				}}>
-					{color}
-				</div>
-			</div>
-		);
-	};
-
 	return (
-		<>
-			<div style={{
-				display: 'grid',
-				gridGap: '10px',
-				marginBottom: '80px',
-				gridTemplateColumns: 'repeat(3, 1fr)'
-			}}>
-				{manifest.globalVariables.colors.map((value) => (
-					<Fragment key={value.slug}>
-						<Color
-							label={value.name}
-							color={value.color}
-						/>
-					</Fragment>
-				))}
-			</div>
-		</>
+		<div className='es-v-spaced'>
+			{manifest.globalVariables.colors.map(({ slug, name, color }) => (
+				<div className='es-h-spaced es-pb-3 es-w-full' key={slug}>
+					<ColorSwatch
+						color={color ?? 'es-undefined'}
+						additionalClasses='es-w-24 es-h-12 es-rounded-1.5!'
+					/>
+
+					<div className='es-v-spaced es-gap-1!'>
+						<span className='es-text-3.5 es-font-weight-500 es-line-h-1!'>
+							{name ?? __('Select a color', 'eightshift-frontend-libs')}
+						</span>
+
+						{color &&
+							<span className='es-text-3 es-color-cool-gray-400 es-line-h-1'>{color}</span>
+						}
+					</div>
+				</div>
+			))}
+		</div>
 	);
 };

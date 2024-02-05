@@ -1,5 +1,4 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { __ } from '@wordpress/i18n';
 import { Notification } from '../inline-notification';
 import { SingleItemShowcase } from '../../../storybook/helpers';
@@ -7,11 +6,6 @@ import { icons } from '../../../editor/icons/icons';
 
 export default {
 	title: 'Options/Notification',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const regular = () => {

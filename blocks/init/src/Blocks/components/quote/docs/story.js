@@ -1,17 +1,11 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { QuoteEditor } from '../components/quote-editor';
 import { QuoteOptions } from '../components/quote-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Quote',
 };
 
 const attributes = getExample('quote', manifest);

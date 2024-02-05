@@ -1,16 +1,10 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { PageOverlayEditor } from '../components/page-overlay-editor';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Page overlay',
 };
 
 const attributes = getExample('pageOverlay', manifest);

@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@wordpress/components';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { DrawerEditor } from '../components/drawer-editor';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Drawer',
 };
 
 const attributes = getExample('drawer', manifest);

@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import { AdvancedColorPicker } from '../advanced-color-picker';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
-	title: `Options/AdvancedColorPicker`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Options/AdvancedColorPicker',
 };
 
 const stubGlobalManifest = {

@@ -1,18 +1,12 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { JumbotronEditor } from '../components/jumbotron-editor';
 import { JumbotronOptions } from '../components/jumbotron-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Jumbotron',
 };
 
 const attributes = getExample('jumbotron', manifest);

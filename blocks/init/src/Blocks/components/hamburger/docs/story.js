@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
 import { HamburgerEditor } from '../components/hamburger-editor';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Hamburger',
 };
 
 const attributes = getExample('hamburger', manifest);

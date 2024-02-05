@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { PresetPicker } from '../preset-picker';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 import { icons } from '../../../editor';
 
 export default {
 	title: 'Options/PresetPicker',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {
@@ -109,7 +103,7 @@ export const component = () => {
 						manifest={fakeManifest}
 						setAttributes={setState}
 						noBottomSpacing
-						defaultButton={{ label: 'DefaultLabel', icon: icons.genericShapesAlt, attributes: {color: 'green', content: 'rst'} }}
+						defaultButton={{ label: 'DefaultLabel', icon: icons.genericShapesAlt, attributes: { color: 'green', content: 'rst' } }}
 					/>
 				</SingleItemShowcase>
 
@@ -122,7 +116,7 @@ export const component = () => {
 						manifest={fakeManifest}
 						setAttributes={setState}
 						noBottomSpacing
-						offButton={{ label: 'OffLabel', icon: icons.toggleOff, attributes: {color: 'magenta', content: 'off'} }}
+						offButton={{ label: 'OffLabel', icon: icons.toggleOff, attributes: { color: 'magenta', content: 'off' } }}
 					/>
 				</SingleItemShowcase>
 			</div>

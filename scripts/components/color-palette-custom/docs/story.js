@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import { ColorPalette } from '../color-palette-custom';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 import { icons } from '../../../editor';
 
 export default {
 	title: 'Options/ColorPalette',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

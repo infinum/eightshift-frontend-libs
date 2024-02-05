@@ -1,14 +1,8 @@
 import React from 'react';
 import { Collapsable } from '../collapsable';
-import readme from './readme.mdx';
 
 export default {
 	title: 'Options/Collapsable',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

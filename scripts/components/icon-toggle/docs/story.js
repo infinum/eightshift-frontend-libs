@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { IconToggle } from '../icon-toggle';
 import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/IconToggle',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

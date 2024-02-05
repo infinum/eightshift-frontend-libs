@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { icons, ucfirst, NumberPicker } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import { Responsive } from '../responsive';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/Responsive',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const options = {
