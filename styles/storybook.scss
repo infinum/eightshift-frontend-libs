@@ -16,27 +16,73 @@
 	--es-sb-font-family: 'neue-haas-grotesk-text', 'Inter', system-ui, sans-serif;
 }
 
-// stylelint-disable declaration-no-important
+// stylelint-disable declaration-no-important, selector-max-specificity
 
 .sbdocs {
 	font-family: var(--es-sb-font-family) !important;
 }
 
 .sbdocs-content {
+	--color-black: #111111;
+	--color-white: #FFFFFF;
+	--color-infinum: #D8262C;
+	--color-grey-100: #F5F9FF;
+	--color-grey-200: #E4EBF5;
+	--color-grey-200-values: 228 235 245;
+	--color-grey-300: #C4CEDE;
+	--color-grey-400: #929EB2;
+	--color-grey-500: #525E6C;
+	--color-olive-90: #193528;
+	--color-olive-70: #2B5643;
+	--color-olive-30: #5A8772;
+	--color-olive-10: #9DBAAC;
+	--color-sky-90: #262944;
+	--color-sky-70: #333A69;
+	--color-sky-30: #6479C3;
+	--color-sky-10: #A8B8E6;
+	--color-violet-90: #3F253D;
+	--color-violet-70: #5C3B5E;
+	--color-violet-30: #916794;
+	--color-violet-10: #C2B6D3;
+	--color-sand-90: #634B36;
+	--color-sand-70: #9E7956;
+	--color-sand-30: #D9A866;
+	--color-sand-10: #EACAA0;
+	--color-candy-90: #5B1921;
+	--color-candy-70: #7A2935;
+	--color-candy-30: #D8555F;
+	--color-candy-10: #E2B5B5;
+	--color-earth-90: #3D3D31;
+	--color-earth-70: #565240;
+	--color-earth-30: #7A7665;
+	--color-earth-10: #B1AFA3;
+
 	.sbdocs-h1,
 	.sbdocs-h2,
 	.sbdocs-h3,
 	.sbdocs-h4,
 	.sbdocs-h5,
 	.sbdocs-h6,
-	.sbdocs-p {
+	.sbdocs-p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	li,
+	a,
+	button {
 		font-family: var(--es-sb-font-family) !important;
 	}
 
+	h1,
 	.sbdocs-h1 {
 		font-weight: 600;
 	}
 
+	h2,
 	.sbdocs-h2 {
 		font-weight: 500;
 	}
@@ -45,9 +91,130 @@
 		box-shadow: none !important;
 	}
 
-	.sbdocs-p a {
+	.sbdocs-p a,
+	a {
 		color: rgb(216 38 44) !important;
+		text-underline-offset: 0.15em;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
+
+	.prismjs {
+		background-color: var(--color-grey-100) !important;
+		font-weight: 500;
+
+		.theme-code-block-highlighted-line {
+			background-color: rgb(var(--color-grey-200-values) / 0.6) !important;
+		}
+
+		.token {
+			color: var(--color-black) !important;
+		}
+
+		.token.boolean,
+		.token.constant,
+		.token.deleted,
+		.token.number,
+		.token.literal-property,
+		.token.symbol,
+		.token.tag,
+		.token.parameter {
+			color: var(--color-sand-30) !important;
+		}
+
+		.token.punctuation,
+		.token.property:not(.literal-property),
+		.token.property-access,
+		.token.plain,
+		.token.script,
+		.token.maybe-class-name,
+		.token.content,
+		.token.front-matter,
+		.token.language-php,
+		.token.imports,
+		.token.unit {
+			color: var(--color-grey-500) !important;
+		}
+
+		.token.namespace {
+			opacity: 0.7;
+		}
+
+		.token.attr-name,
+		.token.builtin,
+		.token.char,
+		.token.inserted,
+		.token.selector,
+		.token.string {
+			color: var(--color-olive-30) !important;
+		}
+
+		.language-css .token.string,
+		.style .token.string,
+		.token.entity,
+		.token.operator,
+		.token.url {
+			color: var(--color-sand-90) !important;
+			background-color: rgb(255 255 255 / 0.05) !important;
+		}
+
+		.token.atrule,
+		.token.attr-value,
+		.token.keyword,
+		.token.color {
+			color: var(--color-sky-30) !important;
+		}
+
+		.token.class-name,
+		.token.function {
+			color: var(--color-sand-70) !important;
+		}
+
+		.token.function-variable {
+			color: var(--color-sand-30) !important;
+		}
+
+		.token.important,
+		.token.regex,
+		.token.variable {
+			color: var(--color-sand-30) !important;
+		}
+
+		.token.bold,
+		.token.important {
+			font-weight: bold !important;
+		}
+
+		.token.entity {
+			cursor: help !important;
+		}
+
+		.token.cdata,
+		.token.comment,
+		.token.doctype,
+		.token.prolog,
+		.token.plain-text {
+			color: var(--color-grey-500) !important;
+		}
+	}
+}
+
+.sbdocs-wrapper {
+	padding: 3rem !important;
+}
+
+// Storybook font size override.
+body.sb-show-main,
+body.sb-show-main input {
+	font-size: 13px !important;
+}
+
+// Width limit for option panels.
+// Not the best detection, but works fine for now.
+body.sb-show-main:has(.es-label-flex, .components-panel__body):not(:has(#storybook-root > h1:first-child)) {
+	width: 22rem !important;
 }
 
 // Playground styles.
