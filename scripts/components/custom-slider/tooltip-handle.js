@@ -97,7 +97,9 @@ const HandleTooltip = (props) => {
 
 	function keepAlign() {
 		rafRef.current = raf(() => {
-			tooltipRef.current?.forcePopupAlign();
+			if (tooltipRef.current && tooltipRef.current.forcePopupAlign) {
+				tooltipRef.current?.forcePopupAlign();
+			}
 		});
 	}
 
