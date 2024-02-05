@@ -28,7 +28,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
  * @param {string} [props.expanded=false]                              - If `true`, the control is rendered in an expanded form.
  * @param {string} [props.border=false]                                - If `true`, the control is rendered with a border.
- * @param {string} [props.inlineLabel=false]                           - If `true`, the control is rendered inline.
+ * @param {boolean?} [props.inlineLabel=false]                         - If `true`, the control is rendered inline.
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                          - If provided, the classes are appended to the control container.

@@ -9,7 +9,7 @@ import { Button } from '@wordpress/components';
  * @param {React.Component?} [props.icon]                                                      - Icon to show next to the label
  * @param {React.Component?} [props.help]                                                      - Help text displayed below the control.
  * @param {React.Component?} [props.label]                                                     - Label displayed above the control.
- * @param {React.Component?} [props.inlineLabel]                                               - Label displayed inline with the control.
+ * @param {boolean?} [props.inlineLabel]                                                       - Label displayed inline with the control.
  * @param {React.Component?} [props.actions]                                                   - Actions to show to the right of the label.
  * @param {React.Component?} [props.subtitle]                                                  - Subtitle below the label.
  * @param {any} [props.value]                                                                  - Current value.
