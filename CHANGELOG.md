@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.3.0] - 2024-02-06
+
+### Added
+- 59 new UI icons
+- New `GutenbergBlock` helper component, to streamline `-block.js` files
+- New `bem` helper to enable less code for selectors that don't need the more advanced conditions
+
+### Updated
+- Updated 18 UI icons
+- Fixed JSDoc `inlineLabel` prop types within `OptionSelector` and `ColorPallete`
+- Fixed `disabled` prop not working within certain variants of `IconToggle`
+- Fixed WP 6.4 block names in certain places (e.g. breadcrumbs in Editor)
+- Fixed readme for `ResponsiveSlider`
+- `WidthOffsetRangeSlider` now has a `colAutoStartOverride` prop
+- `WidthOffsetRangeSlider` will behave better when using AUTO offset
+
 ## [9.2.1] - 2024-01-25
 
 ### Added
