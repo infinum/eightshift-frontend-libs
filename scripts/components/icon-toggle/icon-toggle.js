@@ -44,6 +44,7 @@ export const IconToggle = ({
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
 				label={label}
+				disabled={disabled}
 				additionalClasses={additionalClasses}
 			/>
 		);
@@ -56,6 +57,7 @@ export const IconToggle = ({
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
 				label={type === 'iconButton' && label}
+				disabled={disabled}
 				showTooltip={type === 'iconButton'}
 				className={classnames(
 					'es-button-icon-24 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-is-v2-gutenberg-button',
