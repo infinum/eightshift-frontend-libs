@@ -20,6 +20,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `WidthOffsetRangeSlider` now has a `colAutoStartOverride` prop
 - `WidthOffsetRangeSlider` will behave better when using AUTO offset
 
+### Important
+**Minimum required Node version is now 18!**
+
 ## [9.2.1] - 2024-01-25
 
 ### Added
