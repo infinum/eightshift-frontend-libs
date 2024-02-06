@@ -1,12 +1,12 @@
-Hi there! Thanks for helping out in improving our Eightshift Frontend Libs.
+Hi there! Thanks for helping out in improving our Eightshift Frontend Libs Compat.
 
 ## Reporting an issue
 
-If you are not sure how something works be sure to read our [documentation](https://infinum.github.io/eightshift-docs/). If you found a bug in the code, please [open an issue](https://github.com/infinum/eightshift-frontend-libs/issues) and follow the instructions in the issue template.
+If you are not sure how something works be sure to read our [documentation](https://infinum.github.io/eightshift-docs/). If you found a bug in the code, please [open an issue](https://github.com/infinum/eightshift-frontend-libs-compat/issues) and follow the instructions in the issue template.
 
 ## Contributing patches and new features
 
-If you found a bug and want to fix it, or you want to add some new and cool feature, [fork](https://github.com/infinum/eightshift-frontend-libs) our repository, then create a `feature` branch from the `master` branch. For instance `feature/some-bug-fix` or `feature/some-cool-new-feature`.
+If you found a bug and want to fix it, or you want to add some new and cool feature, [fork](https://github.com/infinum/eightshift-frontend-libs-compat) our repository, then create a `feature` branch from the `master` branch. For instance `feature/some-bug-fix` or `feature/some-cool-new-feature`.
 
 Once you've coded things up, be sure you check that your code is following our [coding standards](https://github.com/infinum/eightshift-coding-standards). Also test that your code isn't breaking anything :)
 

@@ -1,12 +1,12 @@
 
-# Change Log for the Eightshift Frontend Libs Lite
+# Change Log for the Eightshift Frontend Libs Compat
 All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [4.1.0] - 2022-02-23
+## [1.0.0] - 2024-02-06
 
-Experimental! Initial release.
+Initial release.
 
 
-[Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
+[Unreleased]: https://github.com/infinum/eightshift-frontend-libs-compat/compare/master...HEAD

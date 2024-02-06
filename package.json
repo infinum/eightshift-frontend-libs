@@ -1,7 +1,7 @@
 {
-	"name": "@eightshift/frontend-libs-lite",
-	"version": "4.1.0-experimental",
-	"description": "EXPERIMENTAL! A collection of useful frontend utility modules. powered by Eightshift",
+	"name": "@eightshift/frontend-libs-compat",
+	"version": "1.0.0",
+	"description": "A small set of functions to preserve compatibility in projects using older Frontend Libs versions, while allowing new versions of Frontend Libs to be used alongside.",
 	"author": {
 		"name": "Eightshift team",
 		"email": "team@eightshift.com",
@@ -9,7 +9,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/infinum/eightshift-frontend-libs.git"
+		"url": "git+https://github.com/infinum/eightshift-frontend-libs-compat.git"
 	},
 	"keywords": [
 		"frontend",
@@ -24,12 +24,12 @@
 		"compat"
 	],
 	"bugs": {
-		"url": "https://github.com/infinum/eightshift-frontend-libs/issues"
+		"url": "https://github.com/infinum/eightshift-frontend-libs-compat/issues"
 	},
-	"homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
+	"homepage": "https://github.com/infinum/eightshift-frontend-libs-compat#readme",
 	"license": "MIT",
 	"dependencies": {
-		"@wordpress/block-editor": "^12.18.1",
+		"@wordpress/block-editor": "12.18.2",
 		"@wordpress/blocks": "^12.27.1",
 		"@wordpress/element": "^5.27.0",
 		"just-camel-case": "^6.2.0",
