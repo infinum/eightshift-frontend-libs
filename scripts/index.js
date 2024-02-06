@@ -21,7 +21,6 @@ export {
 } from './editor/register-blocks';
 
 // Helpers
-export { dynamicImport } from './helpers/dynamic-import';
 export { responsiveSelectors } from './helpers/responsive-selectors';
 export { selector } from './helpers/selector';
 export {
