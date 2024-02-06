@@ -1297,7 +1297,8 @@ $es-utility-props: (
 // A11y high-visibility outline.
 // Note: could override any current drop shadows!
 // Please don't change the default colors, they should be hardcoded in this case!
-.es-hi-vis-outline {
+.es-hi-vis-outline,
+.es-focus-hi-vis-outline:focus {
 	box-shadow: 0 0 0 1px var(--es-admin-hi-vis-outline-1, #FFFFFF), 0 0 0 2px var(--es-admin-hi-vis-outline-2, #111111);
 }
 
@@ -2027,6 +2028,15 @@ $es-utility-props: (
 
 	background-size: 10px 10px;
 	background-position: 2px 0, 7px 5px;
+}
+
+// Outline disable.
+.es-outline-none {
+	outline: none;
+}
+
+.es-outline-none\! {
+	outline: none !important;
 }
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
