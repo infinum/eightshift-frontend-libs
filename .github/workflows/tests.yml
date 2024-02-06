@@ -25,12 +25,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ '16' ]
+        node: [ '18' ]
         allowed_failure: [ false ]
         include:
           # Test against latest Node version, but allow it to fail.
           # We need success only on LTS versions.
-          - node: '18'
+          - node: '20'
             allowed_failure: true
 
     steps:
@@ -60,4 +60,3 @@ jobs:
           flags: unittests
           name: frontend-libs-codecov
           fail_ci_if_error: true
-
