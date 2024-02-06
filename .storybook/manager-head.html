@@ -89,13 +89,13 @@
 		margin-bottom: 1px !important;
 	}
 
-	.sidebar-subheading~.sidebar-item {
+	.sidebar-subheading ~ .sidebar-item {
 		margin-left: 1rem !important;
 		width: calc(100% - 2rem) !important;
 	}
 
 	/* Separate :has so it doesn't break on Firefox */
-	.sidebar-subheading~div:has(.sidebar-item) {
+	.sidebar-subheading ~ div:has(.sidebar-item) {
 		margin-left: 1rem !important;
 		width: calc(100% - 2rem) !important;
 	}
@@ -127,31 +127,31 @@
 	}
 
 	/* Remove main container shadow. */
-	div[role='main']>div {
+	div[role='main'] > div {
 		box-shadow: none !important;
 	}
 
 	/* Top tabs container "Canvas" / "Docs" */
-	div[role='main']>div>div>.os-host .os-content>div>div>div {
+	div[role='main'] > div > div > .os-host .os-content > div > div > div {
 		display: flex !important;
 		align-items: center !important;
 		gap: 0.25rem !important;
 		margin: 0 !important;
 	}
 
-	div[role='main']>div>div>.os-host .os-content>div>div {
+	div[role='main'] > div > div > .os-host .os-content > div > div {
 		margin: 0 1rem !important;
 	}
 
 	/* Center top tabs */
-	div[role='main']>div>div>.os-host .os-content>div {
+	div[role='main'] > div > div > .os-host .os-content > div {
 		display: flex !important;
 		align-items: center !important;
 		justify-content: center !important;
 	}
 
 	/* Top tabs button */
-	div[role='main']>div>div>.os-host .os-content>div>div>div>a button {
+	div[role='main'] > div > div > .os-host .os-content > div > div > div > a button {
 		font-weight: 500 !important;
 		border-radius: 0.125rem !important;
 		border-bottom-width: 2px !important;
