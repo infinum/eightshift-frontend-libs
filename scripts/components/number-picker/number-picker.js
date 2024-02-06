@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button, __experimentalNumberControl as ExperimentalNumberControl, NumberControl as StableNumberControl } from '@wordpress/components';
+import { Button, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { Control } from '../base-control/base-control';
 import { icons } from '../../editor/icons/icons';
 import { classnames } from '../../helpers';
@@ -59,8 +59,6 @@ export const NumberPicker = (props) => {
 
 		fixedWidth = null,
 	} = props;
-
-	const NumberControl = ExperimentalNumberControl ?? StableNumberControl;
 
 	return (
 		<Control
