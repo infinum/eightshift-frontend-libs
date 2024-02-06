@@ -1,18 +1,12 @@
 import React from 'react';
 import { Fragment } from '@wordpress/element';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { HeadingEditor } from '../components/heading-editor';
 import { HeadingOptions } from '../components/heading-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Heading',
 };
 
 const attributes = getExample('heading', manifest);

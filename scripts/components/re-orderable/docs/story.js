@@ -1,16 +1,10 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
 import { TextControl } from '@wordpress/components';
 import { ReOrderable, ReOrderableItem, icons } from '@eightshift/frontend-libs/scripts';
 
 export default {
 	title: 'Options/ReOrderable',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const basicComponent = () => {

@@ -1,17 +1,11 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
-import manifest from './../manifest.json';
+import manifest from '../manifest.json';
 import { ButtonEditor } from '../components/button-editor';
 import { ButtonOptions } from '../components/button-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Button',
 };
 
 const attributes = getExample('button', manifest);

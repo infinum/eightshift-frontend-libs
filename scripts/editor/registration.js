@@ -882,8 +882,8 @@ export const registerBlock = (
 			__experimentalLabel: (attributes, { context }) => {
 				const customName = attributes?.metadata?.name ?? blockManifest?.title ?? fullBlockName;
 
-				if (context === 'list-view') {
-					return customName;
+				if (context === 'visual' && customName !== blockManifest?.title) {
+					return `${customName} (${blockManifest?.title})`;
 				}
 
 				if (context === 'accessibility') {
@@ -891,7 +891,7 @@ export const registerBlock = (
 					return !content || content?.length === 0 ? __('Empty', 'eightshift-frontend-libs') : content;
 				}
 
-				return fullBlockName;
+				return customName;
 			},
 		},
 	};

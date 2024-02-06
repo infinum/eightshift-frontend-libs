@@ -94,3 +94,33 @@ export const responsiveSelectors = (items, selector, parent, useModifier = true)
 
 	return classnames(output);
 };
+
+/**
+ * Returns a BEM selector based on the provided block, element, and modifier classes.
+ *
+ * @param {string} block - The block class name.
+ * @param {string?} [element] - The element class name (optional).
+ * @param {string?} [modifier] - The modifier class name (optional).
+ *
+ * @access public
+ * @since 9.3.0
+ *
+ * @returns {string|null} The BEM selector, or null if `block` is missing.
+ */
+export const bem = (block, element, modifier) => {
+	if (block?.length < 1) {
+		return null;
+	}
+
+	let output = block;
+
+	if (element?.length > 0) {
+		output += `__${element}`;
+	}
+
+	if (modifier?.length > 0) {
+		output += `--${modifier}`;
+	}
+
+	return output;
+};

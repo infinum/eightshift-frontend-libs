@@ -1,16 +1,10 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { FancyDivider } from '../fancy-divider';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 import { icons } from '../../../editor';
 
 export default {
-	title: `Options/FancyDivider`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Options/FancyDivider',
 };
 
 export const component = () => (

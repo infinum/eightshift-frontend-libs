@@ -44,6 +44,7 @@ export const IconToggle = ({
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
 				label={label}
+				disabled={disabled}
 				additionalClasses={additionalClasses}
 			/>
 		);
@@ -56,6 +57,7 @@ export const IconToggle = ({
 				onClick={() => onChange(!checked)}
 				isPressed={checked}
 				label={type === 'iconButton' && label}
+				disabled={disabled}
 				showTooltip={type === 'iconButton'}
 				className={classnames(
 					'es-button-icon-24 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-is-v2-gutenberg-button',
@@ -78,7 +80,7 @@ export const IconToggle = ({
 			onChange={onChange}
 			disabled={disabled}
 			help={!inlineHelp && help && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
-			label={icon ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
+			label={(icon && type !== 'checkbox') ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
 			className={classnames(noBottomSpacing ? 'es-mb-0!' : bottomSpacingClass, additionalClasses)}
 		/>
 	);

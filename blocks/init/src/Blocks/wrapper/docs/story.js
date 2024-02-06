@@ -1,17 +1,11 @@
 import React from 'react';
 import globalManifest from './../../manifest.json';
 import manifest from './../manifest.json';
-import readme from './readme.mdx';
 import { WrapperEditor } from '../components/wrapper-editor';
 import { WrapperOptions } from '../components/wrapper-options';
 
 export default {
-	title: `Wrapper/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Wrapper',
 };
 
 const props = {

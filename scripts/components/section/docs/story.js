@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import { Section } from '../section';
 import { icons } from '@eightshift/frontend-libs/scripts';
 
 export default {
-	title: `Options/Section`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Options/Section',
 };
 
 export const simpleDivider = () => {

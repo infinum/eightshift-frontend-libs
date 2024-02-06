@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from '@wordpress/components';
 import { getExample, getOptions, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { ModalEditor } from '../components/modal-editor';
 import { ModalOptions } from '../components/modal-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Modal',
 };
 
 const attributes = getExample('modal', manifest);

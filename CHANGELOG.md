@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.3.0] - 2024-02-06
+
+### Added
+- 59 new UI icons
+- New `GutenbergBlock` helper component, to streamline `-block.js` files
+- New `bem` helper to enable less code for selectors that don't need the more advanced conditions
+
+### Updated
+- Updated 18 UI icons
+- Fixed JSDoc `inlineLabel` prop types within `OptionSelector` and `ColorPallete`
+- Fixed `disabled` prop not working within certain variants of `IconToggle`
+- Fixed WP 6.4 block names in certain places (e.g. breadcrumbs in Editor)
+- Fixed readme for `ResponsiveSlider`
+- `WidthOffsetRangeSlider` now has a `colAutoStartOverride` prop
+- `WidthOffsetRangeSlider` will behave better when using AUTO offset
+
+### Storybook
+- Cleaned up Storybook majorly and migrated it to 7.x
+
+### Important
+**Minimum required Node version is now 18!**
+
 ## [9.2.1] - 2024-01-25
 
 ### Added
@@ -917,6 +939,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.1...9.3.0
 [9.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.0...9.2.1
 [9.2.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.1.0...9.2.0
 [9.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.0.0...9.1.0

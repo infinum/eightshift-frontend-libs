@@ -1,3 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import * as ComponentData from './story.js';
+
+<Meta of={ComponentData} name='About' />
+
 # Wrapper Component
 
 The wrapper is a parent component that you can use inside your block. When you register a block in the `manifest.json` file you can specify if you want to use the wrapper or not by setting `wrapperUse` key to true/false option (default is true).

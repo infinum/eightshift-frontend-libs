@@ -1,17 +1,10 @@
-/** @jsx jsx */
 import React, { useState } from 'react'; // eslint-disable-line
-import { jsx } from '@emotion/react';
 import { Button } from '@wordpress/components';
-import { icons, illustrations, blockIcons } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
+import { SingleItemShowcase } from '../../storybook/helpers';
+import { icons, blockIcons, AnimatedContentVisibility, classnames } from '@eightshift/frontend-libs/scripts';
 
 export default {
 	title: 'Editor/Icons',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const IconsOutput = (props) => {
@@ -19,7 +12,6 @@ const IconsOutput = (props) => {
 		label,
 		icons: providedIcons,
 		isJsxSvg = true,
-		blockIcons = false,
 	} = props;
 
 	const [search, setSearch] = useState('');
@@ -29,64 +21,43 @@ const IconsOutput = (props) => {
 
 	return (
 		<>
-			<h4>{label}</h4>
+			<div className='es-h-between es-mb-5'>
+				<h1 className='es-m-0 es-p-0 es-text-8'>{label}</h1>
 
-			<input type='search' placeholder='Search' className='es-mb-4' value={search} onChange={(e) => setSearch(e?.target?.value ?? '')} />
+				<input
+					type='search'
+					placeholder='Search icons'
+					className='es-border-cool-gray-400 es-px-2 es-py-1.5 es-rounded-1 es-outline-none es-focus-hi-vis-outline'
+					value={search}
+					onChange={(e) => setSearch(e?.target?.value ?? '')}
+				/>
+			</div>
 
-			{filteredIcons.length < 1 &&
-				<div className='es-mt-5 es-font-size-5 es-v-center es-max-w-72 es-nested-w-10 es-nested-h-10 es-nested-color-admin-accent'>
+			<AnimatedContentVisibility showIf={filteredIcons?.length < 1}>
+				<div className='es-mt-5 es-mx-auto es-font-size-5 es-v-center es-max-w-72 es-nested-w-10 es-nested-h-10 es-nested-color-admin-accent'>
 					{icons.searchEmpty}
-					<i>No results</i>
+					<span>No results</span>
 				</div>
-			}
+			</AnimatedContentVisibility>
 
-
-			<div
-				style={{
-					display: 'grid',
-					gridTemplateColumns: 'repeat(auto-fill, 14rem)',
-					gridAutoRows: 'auto',
-					gap: '0.5rem',
-				}}
-			>
-				{filteredIcons.map(([key, value], index) => (
-					<div
-						style={{
-							display: 'grid',
-							gridTemplateRows: '1fr auto',
-							alignItems: 'center',
-							justifyItems: 'center',
-							padding: '0.75rem 1rem',
-						}}
-						key={index}>
-						<div
-							style={{
-								marginBottom: '1rem',
-								color: blockIcons ? '#FFF' : '#3858E9',
-								backgroundColor: blockIcons ? '#3858E9' : 'transparent',
-								transform: 'scale(1.5)',
-								minWidth: '1.75rem',
-								minHeight: '1.75rem',
-								borderRadius: '0.25rem',
-								display: 'grid',
-								placeItems: 'center',
-								lineHeight: 0,
+			<div className='es-h-spaced-wrap'>
+				{filteredIcons.map(([key, value], index) => {
+					return (
+						<Button
+							key={index}
+							icon={isJsxSvg ? value : <div dangerouslySetInnerHTML={{ __html: value }} />}
+							showTooltip
+							label={key}
+							className='es-w-24! es-h-24! es-nested-w-7! es-nested-h-7! es-slight-button-border'
+							onClick={() => {
+								navigator.clipboard.writeText(key).then(
+									() => console.log('Copied to clipboard!'),
+									() => console.log('Error copying to clipboard.')
+								);
 							}}
-						>
-							{isJsxSvg && value}
-							{!isJsxSvg && <div dangerouslySetInnerHTML={{ __html: value }} />}
-						</div>
-						<span
-							style={{
-								fontSize: '0.75rem',
-								textAlign: 'center',
-								fontFamily: 'monospace',
-							}}
-						>
-							{key}
-						</span>
-					</div>
-				))}
+						/>
+					);
+				})}
 			</div>
 		</>
 	);
@@ -94,10 +65,6 @@ const IconsOutput = (props) => {
 
 export const UIIcons = () => (
 	<IconsOutput label={'UI icons'} icons={icons} />
-);
-
-export const HelperIllustrations = () => (
-	<IconsOutput label={'Helper illustrations'} icons={illustrations} />
 );
 
 export const BlockIcons = () => (
@@ -109,66 +76,83 @@ export const AnimatedIcons = () => {
 	const [btn2, setBtn2] = useState(false);
 	const [btn3, setBtn3] = useState(false);
 	const [btn4, setBtn4] = useState(false);
+	const [btn5, setBtn5] = useState(false);
 
 	return (
 		<>
-			<h4>Inherit arrow</h4>
+			<h1 className='es-mt-0 es-mb-1 es-p-0 es-text-8'>Animated icons</h1>
+			<p className='es-mt-0 es-mb-5 es-color-cool-gray-500'>Micro-interactions help improve spatial awareness of users, while adding visual delight.</p>
 
-			<Button
-				className={`es-compact-responsive-inherit-button es-button-icon-24 es-button-square-36 es-slight-button-border ${btn1 ? 'is-inherited' : ''}`}
-				icon={icons.inherit}
-				onClick={() => setBtn1(!btn1)}
-			/>
+			<div className='es-display-flex es-flex-wrap es-gap-5!'>
+				<SingleItemShowcase
+					title='Inherit arrow'
+					additionalPanels={[
+						{
+							title: 'How to use',
+							content: <span><code>es-animated-inherit-icon</code><br />(+ <code>is-inherited</code>)</span>,
+						}
+					]}
+				>
+					<Button
+						className={classnames('es-animated-inherit-icon es-button-icon-24 es-button-square-36 es-slight-button-border', btn1 && 'is-inherited')}
+						icon={icons.inherit}
+						onClick={() => setBtn1(!btn1)}
+					/>
+				</SingleItemShowcase>
 
-			<br />
-			<br />
-			<small><span><code>es-compact-responsive-inherit-button</code> (+ <code>is-inherited</code></span>)</small>
+				<SingleItemShowcase
+					title='Y-flip animation'
+					additionalPanels={[
+						{
+							title: 'How to use',
+							content: <span><code>es-has-animated-y-flip-icon</code><br />(+ <code>is-active</code>)</span>,
+						},
+						{
+							title: 'Note',
+							content: 'The icon needs to be in SVG format, inlined.',
+						}
+					]}
+				>
+					<div className='es-h-spaced'>
+						<Button
+							className={classnames('es-has-animated-y-flip-icon es-button-icon-24 es-button-square-36 es-slight-button-border', btn2 && 'is-active')}
+							icon={icons.caretUp}
+							onClick={() => setBtn2(!btn2)}
+						/>
 
-			<h4>Y-flip animation</h4>
+						<Button
+							className={classnames('es-has-animated-y-flip-icon es-button-icon-24 es-button-square-36 es-slight-button-border', btn3 && 'is-active')}
+							icon={btn3 ? icons.caretDownFill : icons.caretDown}
+							onClick={() => setBtn3(!btn3)}
+						/>
 
-			<Button
-				className={`es-has-animated-y-flip-icon es-button-icon-24 es-button-square-36 es-slight-button-border ${btn2 ? 'is-active' : ''}`}
-				icon={icons.caretUp}
-				onClick={() => setBtn2(!btn2)}
-			/>
+						<Button
+							className={classnames(
+								'es-has-animated-y-flip-icon es-button-icon-24 es-button-square-36 es-slight-button-border',
+								btn4 && 'is-active es-color-green-500!'
+							)}
+							icon={btn4 ? icons.solidCircleGradient : icons.emptyCircle}
+							onClick={() => setBtn4(!btn4)}
+						/>
+					</div>
+				</SingleItemShowcase>
 
-			<br />
-			<br />
-			<small><span><code>es-has-animated-y-flip-icon</code> (+ <code>is-active</code></span>), <code>caretUp</code> icon shown here</small>
-
-			<br />
-			<br />
-
-			<Button
-				className={`es-has-animated-y-flip-icon es-button-icon-24 es-button-square-36 es-slight-button-border ${btn3 ? 'is-active' : ''}`}
-				icon={btn3 ? icons.caretUp : icons.caretUpFill}
-				onClick={() => setBtn3(!btn3)}
-			/>
-
-			<br />
-			<br />
-			<small>
-				<span>
-					<code>es-has-animated-y-flip-icon</code> (+ <code>is-active</code></span>), <code>caretUp</code>
-					(<code>caretUpFill</code> when toggled) icon shown here
-				</small>
-
-			<br />
-			<br />
-
-			<b>Note: </b> needs an <small><code>svg</code></small> child!
-
-			<h4>Animated toggle</h4>
-
-			<Button
-				className={`es-animated-toggle-icon es-button-icon-24 es-button-square-36 es-slight-button-border ${btn4 ? 'is-checked' : ''}`}
-				icon={icons.toggleOff}
-				onClick={() => setBtn4(!btn4)}
-			/>
-
-			<br />
-			<br />
-			<small><span><code>es-animated-toggle-icon</code> (+ <code>is-checked</code></span>)</small>
+				<SingleItemShowcase
+					title='Animated toggle'
+					additionalPanels={[
+						{
+							title: 'How to use',
+							content: <span><code>es-animated-toggle-icon</code><br />(+ <code>is-checked</code>)</span>,
+						}
+					]}
+				>
+					<Button
+						className={classnames('es-animated-toggle-icon es-button-icon-24 es-button-square-36 es-slight-button-border', btn5 && 'is-checked')}
+						icon={icons.toggleOff}
+						onClick={() => setBtn5(!btn5)}
+					/>
+				</SingleItemShowcase>
+			</div>
 		</>
 	);
 };

@@ -1,15 +1,9 @@
 import React from 'react';
 import { Control, icons } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/Control',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

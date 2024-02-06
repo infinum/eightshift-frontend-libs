@@ -1,7 +1,8 @@
 // stylelint-disable
 
 // WP 6.4 fixes
-body.branch-6-4 {
+body.branch-6-4,
+body.sb-main-padded {
 	// Fix label casing.
 	.components-base-control__label {
 		text-transform: inherit !important;

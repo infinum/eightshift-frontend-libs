@@ -1,17 +1,11 @@
 import React from 'react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { CardEditor } from '../components/card-editor';
 import { CardOptions } from '../components/card-options';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
+	title: 'Components/Card',
 };
 
 const attributes = getExample('card', manifest);

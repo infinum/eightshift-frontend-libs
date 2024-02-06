@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { IconToggle } from '../icon-toggle';
 import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/IconToggle',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {
@@ -24,8 +18,8 @@ export const component = () => {
 			<div className='es-display-flex es-flex-wrap es-gap-5!'>
 				<SingleItemShowcase title='Basic toggle'>
 					<IconToggle
-						icon={icons.width}
-						label='Full width'
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						noBottomSpacing
@@ -34,8 +28,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Help text'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						help={__('Help text here.', 'eightshift-frontend-libs')}
@@ -45,8 +39,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Inline help text'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						help={__('Help text here (inline help).', 'eightshift-frontend-libs')}
@@ -57,8 +51,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Checkbox'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						type='checkbox'
@@ -68,8 +62,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Toggle button'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						type='button'
@@ -78,8 +72,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Toggle icon button'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						type='iconButton'
@@ -88,8 +82,8 @@ export const component = () => {
 
 				<SingleItemShowcase title='Toggle tile button'>
 					<IconToggle
-						icon={icons.width}
-						label={__('Full width', 'eightshift-frontend-libs')}
+						icon={icons.fullMaxShield}
+						label='Full max'
 						checked={current}
 						onChange={(value) => setCurrent(value)}
 						type='tileButton'

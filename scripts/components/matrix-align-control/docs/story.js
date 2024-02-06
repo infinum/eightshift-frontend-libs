@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import readme from './readme.mdx';
 import { MatrixAlignControl } from '../matrix-align-control';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/MatrixAlignControl',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
-
 
 export const component = () => {
 	const [align, setAlign] = useState('center center');

@@ -1,14 +1,8 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { ToolbarOptionPicker } from '../toolbar-option-picker';
 
 export default {
 	title: 'Options/ToolbarOptionPicker',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 const demoOptions = [

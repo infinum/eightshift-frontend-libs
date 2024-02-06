@@ -23,6 +23,7 @@ export {
 	getUnique,
 } from './css-variables';
 export {
+	GutenbergBlock,
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
@@ -44,6 +45,7 @@ export {
 	registerVariations,
 } from './registration';
 export {
+	bem,
 	selector,
 	responsiveSelectors,
 } from './selectors';

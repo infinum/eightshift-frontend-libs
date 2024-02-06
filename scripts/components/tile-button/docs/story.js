@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { icons, TileButton } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/TileButton',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

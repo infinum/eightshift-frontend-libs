@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { UseToggle } from '../use-toggle';
-import readme from './readme.mdx';
 
 export default {
 	title: 'Options/UseToggle',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

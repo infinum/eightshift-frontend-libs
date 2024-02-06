@@ -117,6 +117,7 @@ export {
 	getUnique,
 } from './editor/css-variables';
 export {
+	GutenbergBlock,
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
@@ -138,6 +139,7 @@ export {
 	registerVariations,
 } from './editor/registration';
 export {
+	bem,
 	selector,
 	responsiveSelectors,
 } from './editor/selectors';

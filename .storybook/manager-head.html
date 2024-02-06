@@ -68,6 +68,22 @@
 		margin-left: 0.5rem !important;
 	}
 
+	.sidebar-item > a {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.sidebar-item[data-nodetype='document'] > a {
+		padding-left: 1em !important;
+		gap: calc(0.25rem + 0.2em) !important;
+	}
+
+	.sidebar-item[aria-expanded='true'] + .sidebar-item[data-nodetype='document'] > a {
+		padding-left: 2.6em !important;
+		gap: calc(0.25rem + 0.2em) !important;
+	}
+
 	.sidebar-item,
 	.sidebar-subheading {
 		margin-bottom: 1px !important;
@@ -149,5 +165,9 @@
 		top: 0 !important;
 		width: auto !important;
 		height: auto !important;
+	}
+
+	#storybook-root {
+		font-size: 13px;
 	}
 </style>

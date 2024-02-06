@@ -1,23 +1,23 @@
-# SpacingSlider
+import { Meta } from '@storybook/blocks';
+import * as ComponentData from './story.js';
 
-A simple component for picking mutually exclusive options.
+<Meta of={ComponentData} name='About' />
+
+# ResponsiveSlider
+
+A `Slider` that allows changing values between breakpoints.
 
 ## Usage
 
 ```jsx
-<SimpleVerticalSingleSelect
-	label='abc'
-	options={options}
+<ResponsiveSlider
+	value={value}
+	onChange={(value) => setValue(value)}
+	min={0}
+	max={50}
+	step={1}
+	noBottomSpacing={true}
+	icon={icons.emptyRect}
+	label='Option name'
 />
-```
-
-Each option should be in this format:
-
-```js
-{
-	onClick: () => console.info('Clicked!'),
-	icon: icons.large, // Optional
-	label: 'Large',
-	isActive: myBoolean,
-}
 ```

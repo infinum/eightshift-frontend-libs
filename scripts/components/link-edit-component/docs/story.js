@@ -1,16 +1,10 @@
 import React from 'react';
-import readme from './readme.mdx';
 import { useState } from '@wordpress/element';
 import { LinkEditComponent } from '../link-edit-component';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
 	title: 'Options/LinkEditComponent',
-	parameters: {
-		docs: {
-			page: readme
-		}
-	},
 };
 
 export const component = () => {

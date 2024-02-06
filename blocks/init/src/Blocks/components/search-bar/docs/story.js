@@ -1,16 +1,10 @@
 import React from 'react';
 import { getExample, props } from '@eightshift/frontend-libs/scripts';
-import readme from './readme.mdx';
 import manifest from './../manifest.json';
 import { SearchBarEditor } from '../components/search-bar-editor';
 
 export default {
-	title: `Components/${manifest.title}`,
-	parameters: {
-		docs: { 
-			page: readme
-		}
-	},
+	title: 'Components/Search bar',
 };
 
 const attributes = getExample('searchBar', manifest);
