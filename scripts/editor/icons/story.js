@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useState } from 'react'; // eslint-disable-line
-import { jsx } from '@emotion/react';
 import { Button } from '@wordpress/components';
 import { SingleItemShowcase } from '../../storybook/helpers';
 import { icons, blockIcons, AnimatedContentVisibility, classnames } from '@eightshift/frontend-libs/scripts';

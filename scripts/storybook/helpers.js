@@ -91,6 +91,11 @@ export const Gutenberg = ({ props }) => {
 						value={blocks}
 						onInput={updateBlocks}
 						onChange={updateBlocks}
+						settings={{
+							__unstableIsPreviewMode: false,
+							alignWide: false,
+							autosaveInterval: 10000000,
+						}}
 					>
 						<div className="playground__sidebar">
 							<BlockInspector />

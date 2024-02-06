@@ -1,8 +1,6 @@
-/** @jsx jsx */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { jsx } from '@emotion/react';
 import { ColorSwatch } from '@eightshift/frontend-libs/scripts';
 import manifest from './manifest.json';
 

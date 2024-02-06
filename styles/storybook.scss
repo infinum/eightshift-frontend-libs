@@ -213,7 +213,8 @@ body.sb-show-main input {
 
 // Width limit for option panels.
 // Not the best detection, but works fine for now.
-body.sb-show-main:has(.es-label-flex, .components-panel__body):not(:has(#storybook-root > h1:first-child)) {
+// stylelint-disable-next-line selector-not-notation
+body.sb-show-main:has(.es-label-flex, .components-panel__body):not(:has(#storybook-root > h1:first-child)):not(:has(.playground)) {
 	width: 22rem !important;
 }
 

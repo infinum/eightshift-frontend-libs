@@ -26,14 +26,7 @@ const config = {
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs',
 	],
-	framework: {
-		name: '@storybook/react-webpack5',
-		options: {
-			builder: {
-				useSWC: true,
-			},
-		},
-	},
+	framework: '@storybook/react-webpack5',
 	docs: {
 		autodocs: false,
 	},

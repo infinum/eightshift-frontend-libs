@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React from 'react'; // eslint-disable-line
-import { jsx } from '@emotion/react';
 import { getExample, props, getOptions } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 import { IconEditor } from '../components/icon-editor';
