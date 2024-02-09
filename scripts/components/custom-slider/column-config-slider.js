@@ -79,8 +79,6 @@ export const ColumnConfigSlider = (props) => {
 	}, []);
 
 	const columnLabels = [...Array(max - 1).keys()].reduce((all, current) => {
-		const labelWidth = `${current + 1}`.length > 1 ? '-2.5ch' : '-2.25ch';
-
 		return {
 			...all,
 			[current + 2]: {
@@ -89,7 +87,7 @@ export const ColumnConfigSlider = (props) => {
 					color: 'var(--es-admin-gray-500)',
 					letterSpacing: '-0.01em',
 					top: 36,
-					transform: `translateX(${labelWidth})`,
+					// transform: `translateX(${labelWidth})`,
 					userSelect: 'none',
 				},
 				label: current + 1,
@@ -181,6 +179,8 @@ export const ColumnConfigSlider = (props) => {
 
 						onBeforeChange={onBeforeChange}
 						onAfterChange={onAfterChange}
+
+						className='es-col-config-slider'
 
 						{...columnConfigStyleProps(props, sliderHeight, max)}
 					/>

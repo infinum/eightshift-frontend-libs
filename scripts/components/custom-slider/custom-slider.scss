@@ -18,3 +18,32 @@
 
 	letter-spacing: -0.025em;
 }
+
+// stylelint-disable declaration-no-important
+.es-col-config-slider {
+	height: 52px !important;
+	background: none !important;
+	padding: 0 !important;
+
+	.rc-slider-mark-text {
+		transform: translateX(0) !important;
+		position: static !important;
+	}
+
+	.rc-slider-mark {
+		display: grid;
+		grid-auto-columns: 1fr;
+		grid-auto-flow: column;
+		place-items: center;
+		top: 22px;
+		pointer-events: none !important;
+	}
+
+	.rc-slider-dot {
+		bottom: -44px !important;
+	}
+
+	.rc-slider-handle {
+		margin-top: 16px !important;
+	}
+}
