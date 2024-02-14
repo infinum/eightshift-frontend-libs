@@ -21,13 +21,14 @@
 
 // stylelint-disable declaration-no-important
 .es-col-config-slider {
-	height: 52px !important;
+	height: 46px !important;
 	background: none !important;
 	padding: 0 !important;
 
 	.rc-slider-mark-text {
 		transform: translateX(0) !important;
 		position: static !important;
+		line-height: 0 !important;
 	}
 
 	.rc-slider-mark {
@@ -35,15 +36,29 @@
 		grid-auto-columns: 1fr;
 		grid-auto-flow: column;
 		place-items: center;
-		top: 22px;
+		top: 0 !important;
 		pointer-events: none !important;
+		height: 100%;
+		line-height: 0;
 	}
 
 	.rc-slider-dot {
-		bottom: -44px !important;
+		bottom: -43px !important;
 	}
 
 	.rc-slider-handle {
-		margin-top: 16px !important;
+		margin-top: 12px !important;
+	}
+
+	.rc-slider-step {
+		height: 0 !important;
+	}
+
+	.rc-slider-rail {
+		top: 0 !important;
+	}
+
+	.rc-slider-track {
+		top: 6px !important;
 	}
 }
