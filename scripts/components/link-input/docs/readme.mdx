@@ -3,7 +3,7 @@ import * as ComponentData from './story.js';
 
 <Meta of={ComponentData} name='About' />
 
-# LinkEditComponent
+# LinkInput
 
 A inline URL editor that looks nice and fits into the other Gutenberg and Eightshift controls.
 
@@ -23,11 +23,10 @@ export const ButtonOptions = (attributes) =>  {
 	return (
 			// ...
 
-			<LinkEditComponent
+			<LinkInput
 				url={buttonUrl}
 				opensInNewTab={buttonOpensInNewTab}
 				setAttributes={setAttributes}
-				anchorRef={ref}
 				title={label}
 				urlAttrName={getAttrKey('buttonUrl', attributes, manifest)}
 				isNewTabAttrName={getAttrKey('buttonOpensInNewTab', attributes, manifest)}

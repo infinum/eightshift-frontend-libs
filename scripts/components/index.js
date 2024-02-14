@@ -28,7 +28,7 @@ export { HelpModal } from './help-modal/help-modal';
 export { IconLabel } from './icon-label/icon-label';
 export { IconToggle } from './icon-toggle/icon-toggle';
 export { Notification } from './inline-notification/inline-notification';
-export { LinkEditComponent } from './link-edit-component/link-edit-component';
+export { LinkInput, LinkEditComponent } from './link-input/link-input';
 export { MatrixAlignControl } from './matrix-align-control/matrix-align-control';
 export { Menu } from './menu/menu';
 export { MenuItem } from './menu/menu-item';

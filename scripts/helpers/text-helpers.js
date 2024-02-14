@@ -61,3 +61,37 @@ export const truncateMiddle = (input, maxLength, separator = '...') => {
 * ```
 */
 export const unescapeHTML = (input = '') => (new DOMParser().parseFromString(input, 'text/html')).documentElement.textContent;
+
+/**
+ * Limits the string to the maximum length and adds the provided separator in case the string is longer.
+ *
+ * @param {string} input             - String to slice.
+ * @param {number} maxLength         - Maximum allowed string length.
+ * @param {string} [separator='...'] - Separator to insert.
+ *
+ * @access public
+ *
+ * @returns {string|Error} Truncated string or error if separator length exceeds maxLength.
+ *
+ * Usage:
+ * ```js
+ * truncate('Hello this is a string', 13); // => "Hello this..."
+ * ```
+ */
+export const truncate = (input, maxLength, separator = '...') => {
+	// If the string is shorter than maxLength, just return it.
+	if (input?.length <= maxLength) {
+		return input;
+	}
+
+	// Return error if separator would prevent any characters from the word showing.
+	if (separator.length + 1 > maxLength) {
+		throw new Error('Separator length exceeds the passed maximum length, string wouldn\'t be visible.');
+	}
+
+	// Split the string.
+	const maxStringLength = maxLength - separator.length;
+	const leftPart = input.slice(0, maxStringLength).trim();
+
+	return `${leftPart}${separator}`;
+};

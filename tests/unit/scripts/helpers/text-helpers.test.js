@@ -1,15 +1,28 @@
-import { truncateMiddle, unescapeHTML } from '../../../../scripts/helpers/text-helpers';
+import { truncate, truncateMiddle, unescapeHTML } from '../../../../scripts/helpers/text-helpers';
 
 test.each([
 	{ inputString: 'Lorem ipsum dolor sit amet.', maxLength: 8, expected: 'Lor...t.' },
 	{ inputString: 'Lorem', maxLength: 8, expected: 'Lorem' },
 	{ inputString: 'Lorem ipsum dolor', maxLength: 10, inputSeparator: ':', expected: 'Lorem:olor' },
 	{ inputString: 'Lorem ipsum dolor sit amet.', inputSeparator: '........', maxLength: 8, shouldError: true },
-])('tests hextToRgb returns a valid value %s', ({ inputString, maxLength, inputSeparator, expected, shouldError = false }) => {
+])('tests truncateMiddle returns a valid value %s', ({ inputString, maxLength, inputSeparator, expected, shouldError = false }) => {
 	if (shouldError) {
 		expect(() => truncateMiddle(inputString, maxLength, inputSeparator)).toThrow();
 	} else {
 		expect(truncateMiddle(inputString, maxLength, inputSeparator)).toBe(expected);
+	}
+});
+
+test.each([
+	{ inputString: 'Lorem ipsum dolor sit amet.', maxLength: 8, expected: 'Lorem...' },
+	{ inputString: 'Lorem', maxLength: 8, expected: 'Lorem' },
+	{ inputString: 'Lorem ipsum dolor', maxLength: 10, inputSeparator: ':', expected: 'Lorem ips:' },
+	{ inputString: 'Lorem ipsum dolor sit amet.', inputSeparator: '........', maxLength: 8, shouldError: true },
+])('tests truncate returns a valid value %s', ({ inputString, maxLength, inputSeparator, expected, shouldError = false }) => {
+	if (shouldError) {
+		expect(() => truncate(inputString, maxLength, inputSeparator)).toThrow();
+	} else {
+		expect(truncate(inputString, maxLength, inputSeparator)).toBe(expected);
 	}
 });
 
