@@ -178,6 +178,7 @@ export {
 export { escapeString } from './helpers/escape-string';
 export { getNavigatorVibrate } from './helpers/navigator';
 export {
+	truncate,
 	truncateMiddle,
 	unescapeHTML
 } from './helpers/text-helpers';

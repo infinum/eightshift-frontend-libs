@@ -26,6 +26,7 @@ export { escapeString } from './escape-string';
 export { getNavigatorVibrate } from './navigator';
 
 export {
+	truncate,
 	truncateMiddle,
 	unescapeHTML,
 } from './text-helpers';
