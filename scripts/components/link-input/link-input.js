@@ -11,8 +11,7 @@ import {
 	getFetchWpApi,
 	unescapeHTML,
 	debounce,
-	classnames,
-	upperFirst,
+	truncate,
 } from '@eightshift/frontend-libs/scripts';
 
 /**
@@ -144,7 +143,6 @@ export const LinkInput = ({
 					icon={icons.anchorPage}
 					label={__('Internal anchor link selected', 'eightshift-frontend-libs')}
 					subtitle={__('Links to an element on this page', 'eightshift-frontend-libs')}
-					// additionalClasses='es-nested-color-cool-gray-500'
 					standalone
 				/>
 			);
@@ -155,7 +153,6 @@ export const LinkInput = ({
 				icon={icons.anchor}
 				label={__('Anchor link selected', 'eightshift-frontend-libs')}
 				subtitle={__('Links to an element on a page', 'eightshift-frontend-libs')}
-				// additionalClasses='es-nested-color-cool-gray-500'
 				standalone
 			/>
 		);
@@ -174,10 +171,7 @@ export const LinkInput = ({
 			>
 				<div
 					ref={inputContainerRef}
-					className={classnames(
-						'es-h-spaced es-gap-0.75! es-py-0.75 es-px-1 es-rounded-1 es-border-cool-gray-400 es-h-9',
-						// (hasUrl && (additionalOptions || additionalOptionTiles || !hideOpensInNewTab)) && 'es-mb-2',
-					)}
+					className='es-h-spaced es-gap-0.75! es-py-0.75 es-px-1 es-rounded-1 es-border-cool-gray-400 es-h-9'
 				>
 					<input
 						type='url'
@@ -251,11 +245,7 @@ export const LinkInput = ({
 							{!isLoadingSuggestions && shownSuggestions?.length > 0 && shownSuggestions.map((suggestion, i) => {
 								const { label: title, value: url, metadata: { subtype } } = suggestion;
 
-								let typeIcon = (
-									<span className='es-px-0.75 es-py-0.5 es-rounded-1 es-border-cool-gray-300 es-color-cool-gray-650 es-text-2.5 es-font-weight-500'>
-										{upperFirst(subtype)}
-									</span>
-								);
+								let typeIcon = icons.file;
 
 								if (subtype.toLowerCase() === 'url') {
 									typeIcon = icons.externalLink;
@@ -267,8 +257,6 @@ export const LinkInput = ({
 									typeIcon = icons.anchor;
 								} else if (subtype.toLowerCase() === 'eightshift-forms') {
 									typeIcon = icons.formAlt;
-								} else if (subtype.toLowerCase() === 'page') {
-									typeIcon = icons.file;
 								}
 
 								if (suggestionTypeIconOverride) {
@@ -280,12 +268,11 @@ export const LinkInput = ({
 								}
 
 								return (
-									<Button key={i} onClick={() => handleCommitUrl(url, true)} className='es-rounded-0.5! es-p-0! es-h-10! es-w-full'>
+									<Button key={i} onClick={() => handleCommitUrl(url, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
 										<IconLabel
-											icon={<span className='es-w-9 es-display-flex es-items-center es-content-center es-flex-shrink-0'>{typeIcon}</span>}
-											label={truncateMiddle(title, 32)}
-											subtitle={truncateMiddle(url.replace(location.origin, '').replace(/\/$/, ''), 36)}
-											additionalClasses='es-text-align-left es-gap-1.5!'
+											icon={typeIcon}
+											label={truncate(title, 32)}
+											subtitle={truncateMiddle(url.replace(location.origin, '').replace(/\/$/, ''), 32)}
 											addSubtitleGap
 											standalone
 										/>
@@ -297,16 +284,11 @@ export const LinkInput = ({
 								<>
 									<hr className='es-mx-0 es-my-2' />
 
-									<Button onClick={() => handleCommitUrl(inputValue, true)} className='es-rounded-0.5! es-p-0! es-h-10! es-w-full'>
+									<Button onClick={() => handleCommitUrl(inputValue, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
 										<IconLabel
-											icon={
-												<span className='es-w-9 es-display-flex es-items-center es-content-center es-flex-shrink-0'>
-													{inputValue.includes('#') ? icons.globeAnchor : icons.textWrite}
-												</span>
-											}
+											icon={inputValue.includes('#') ? icons.globeAnchor : icons.textWrite}
 											label={__('Text you entered', 'eightshift-frontend-libs')}
-											subtitle={inputValue}
-											additionalClasses='es-text-align-left es-gap-1.5!'
+											subtitle={`"${truncate(inputValue, 32)}"`}
 											addSubtitleGap
 											standalone
 										/>
@@ -351,10 +333,3 @@ export const LinkInput = ({
 		</>
 	);
 };
-
-/**
- * Link picker.
- *
- * @deprecated since 9.4.0 - renamed to `LinkInput`
- */
-export const LinkEditComponent = (props) => <LinkInput {...props} />;
