@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.4.0] - 2024-02-14
+
+### Added
+- `truncate` text helper to make strings of limited width easier
+
+### Updated
+- `ColumnConfigSlider` has a bit cleaner and more compact styling
+- Updated 1 UI icon
+- Added 21 new UI icons
+- Updated default Gutenberg tooltip style
+- `LinkEditComponent` is now `LinkInput`, but the previous name will also work (for now).
+- `LinkInput` has been reworked from the ground up, with better layout and nicer UX.
+- Updated dependencies
+- Tweaked component names in `Select` controls readmes
+
 ## [9.3.1] - 2024-02-06
 
 ### Updated
@@ -944,6 +959,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.3.1...9.4.0
 [9.3.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.3.0...9.3.1
 [9.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.1...9.3.0
 [9.2.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.0...9.2.1
