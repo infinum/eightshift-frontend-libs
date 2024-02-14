@@ -149,7 +149,7 @@ export const AlignmentToolbar = () => <></>;
 export const HeadingLevel = () => <></>;
 
 /**
- * @deprecated since 8.0.0 - Removed ,use `LinkEditComponent` inside the block options instead.
+ * @deprecated since 8.0.0 - Removed ,use `LinkInput` inside the block options instead.
  */
 export const LinkToolbarButton = () => <></>;
 

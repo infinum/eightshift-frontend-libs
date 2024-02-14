@@ -8,7 +8,7 @@ import {
 	getAttrKey,
 	IconLabel,
 	UseToggle,
-	LinkEditComponent,
+	LinkInput,
 	OptionSelector,
 	props,
 	getOptions,
@@ -42,7 +42,7 @@ export const ButtonOptions = (attributes) => {
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'buttonUse')}>
 			{!hideUrl &&
-				<LinkEditComponent
+				<LinkInput
 					url={buttonUrl}
 					opensInNewTab={buttonIsNewTab}
 					onChange={({ url, newTab, isAnchor }) => setAttributes({

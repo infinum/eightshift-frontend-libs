@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from '@wordpress/element';
-import { LinkEditComponent } from '../link-edit-component';
+import { LinkInput } from '../link-input';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
-	title: 'Options/LinkEditComponent',
+	title: 'Options/LinkInput',
 };
 
 export const component = () => {
@@ -20,7 +20,7 @@ export const component = () => {
 
 			<div className='es-display-flex es-flex-wrap es-gap-5!'>
 				<SingleItemShowcase title='Base picker'>
-					<LinkEditComponent
+					<LinkInput
 						url={objData.url}
 						opensInNewTab={objData.newTab}
 						onChange={({ url, newTab, isAnchor }) => {
@@ -31,7 +31,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='No "New tab" option'>
-					<LinkEditComponent
+					<LinkInput
 						url={objData.url}
 						opensInNewTab={objData.newTab}
 						onChange={({ url, newTab, isAnchor }) => {
@@ -43,7 +43,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='No anchor notice'>
-					<LinkEditComponent
+					<LinkInput
 						url={objData.url}
 						opensInNewTab={objData.newTab}
 						onChange={({ url, newTab, isAnchor }) => {
@@ -55,7 +55,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 					<SingleItemShowcase title='Disabled'>
-					<LinkEditComponent
+					<LinkInput
 						url={objData.url}
 						opensInNewTab={objData.newTab}
 						onChange={({ url, newTab, isAnchor }) => {

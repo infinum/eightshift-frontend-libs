@@ -29,7 +29,7 @@ export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
 export { IconToggle } from './components/icon-toggle/icon-toggle';
 export { Notification } from './components/inline-notification/inline-notification';
-export { LinkEditComponent } from './components/link-edit-component/link-edit-component';
+export { LinkInput, LinkEditComponent } from './components/link-input/link-input';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { Menu } from './components/menu/menu';
 export { MenuItem } from './components/menu/menu-item';

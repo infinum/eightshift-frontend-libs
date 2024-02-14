@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, TextControl } from '@wordpress/components';
 import {
-	LinkEditComponent,
+	LinkInput,
 	PopoverWithTrigger,
 	ReOrderable,
 	ReOrderableItem,
@@ -91,7 +91,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												}}
 											/>
 
-											<LinkEditComponent
+											<LinkInput
 												label={__('URL', 'eightshift-frontend-libs')}
 												url={link?.url}
 												opensInNewTab={link?.newTab}
