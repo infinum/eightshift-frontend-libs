@@ -87,7 +87,6 @@ export const ColumnConfigSlider = (props) => {
 					color: 'var(--es-admin-gray-500)',
 					letterSpacing: '-0.01em',
 					top: 36,
-					// transform: `translateX(${labelWidth})`,
 					userSelect: 'none',
 				},
 				label: current + 1,
