@@ -20,36 +20,33 @@ Your IDE will display all the properties, together with their descriptions.
 
 ### Async single item
 ```jsx
-<CustomSelect
+<AsyncSelect
 	loadOptions={getData}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={false}
 	label={__('My label', 'eigthshift-frontend-libs')}
 />
 ```
 
 ### Synchronous single item
 ```jsx
-<CustomSelect
+<Select
 	options={things}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={false}
 	label={__('My label', 'eigthshift-frontend-libs')}
 />
 ```
 
 ### Synchronous single item - simple value (`SelectControl` replacement)
 ```jsx
-<CustomSelect
+<Select
 	options={things}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={false}
 	label={__('My label', 'eigthshift-frontend-libs')}
 	simpleValue
 />
@@ -57,12 +54,11 @@ Your IDE will display all the properties, together with their descriptions.
 
 ### Async single item with modified output
 ```jsx
-<CustomSelect
+<AsyncSelect
 	loadOptions={getFetchWpApi(getPostTypeEndpoint, {fields: 'id,title,type', processMetadata: ({ type }) => type })}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={false}
 	label={__('My label', 'eigthshift-frontend-libs')}
 	filterAsyncOptions={(options) => {
 		if (!Array.isArray(options)) {
@@ -80,24 +76,22 @@ Your IDE will display all the properties, together with their descriptions.
 
 ### Async multiple items
 ```jsx
-<CustomSelect
+<AsyncMultiSelect
 	loadOptions={getData}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={true}
 	label={__('My label', 'eigthshift-frontend-libs')}
 />
 ```
 
 ### Synchronous multiple items
 ```jsx
-<CustomSelect
+<MutliSelect
 	options={things}
 	placeholder={__('Select a single item', 'eigthshift-frontend-libs')}
 	value={myValue}
 	onChange={(value) => setAttributes({ myValue: value })}
-	multiple={true}
 	label={__('My label', 'eigthshift-frontend-libs')}
 />
 ```
@@ -106,9 +100,9 @@ Your IDE will display all the properties, together with their descriptions.
 
 It's easy as 1-2-3!
 
-### 1) Import `react-select` components
+### 1) Import select components
 ```jsx
-import { components } from 'react-select';
+import { RSOption, RSSingleValue } from '@eightshift/frontend-libs/scripts';
 ```
 
 ### 2) Create your custom component
@@ -118,9 +112,9 @@ import { components } from 'react-select';
 ```jsx
 const CustomPickerOption = props => {
 	return (
-		<components.Option {...props}>
+		<RSOption {...props}>
 			<span>👉 {props.label}</span>
-		</components.Option>
+		</RSOption>
 	);
 };
 ```
@@ -132,9 +126,9 @@ Use `props.label` to get the current item's label and `props.value` for the valu
 
 ```jsx
 const CustomValueDisplay = ({ children, ...props }) => (
-	<components.SingleValue {...props}>
+	<RSSingleValue {...props}>
 		<span>👉 {children}</span>
-	</components.SingleValue>
+	</RSSingleValue>
 );
 ```
 
@@ -145,8 +139,8 @@ Use `props.data.label` or `children` to get the current item's label and `props.
 ```jsx
 <CustomSelect
 	// ...
-	customOptionComponent={IconPickerOption}
-	customSingleValueDisplayComponent={IconPickerValueDisplay}
+	customValueDisplay={CustomValueDisplay}
+	customMenuOption={CustomMenuOption}
 	// ...
 />
 ```
