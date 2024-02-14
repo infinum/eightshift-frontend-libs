@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo, useCallback } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Button, Tooltip, Popover, Spinner } from '@wordpress/components';
+import { select } from '@wordpress/data';
 import {
 	AnimatedContentVisibility,
 	Control,
@@ -12,6 +13,7 @@ import {
 	unescapeHTML,
 	debounce,
 	truncate,
+	STORE_NAME,
 } from '@eightshift/frontend-libs/scripts';
 
 /**
@@ -37,6 +39,7 @@ import {
  * @param {React.Component?} [props.additionalOptions]            - If provided, allows adding options below the option tiles.
  * @param {React.Component?} [props.additionalOptionTiles]        - If provided, allows adding additional option tiles.
  * @param {callback} [props.suggestionTypeIconOverride]           - Allows overriding the default icon for the suggestion type, e.g. when using CPTs. Callback should be in the format: `(type) => icon or React component`.
+ * @param {callback} [props.fetchSuggestions]                     - Allows overriding the default function for fetching suggestions. Callback should be in the format: `(searchTerm) => Promise`.
  *
  * @since 9.4.0
  */
@@ -69,6 +72,8 @@ export const LinkInput = ({
 	additionalOptionTiles,
 
 	suggestionTypeIconOverride,
+
+	fetchSuggestions,
 }) => {
 	const hasUrl = url?.trim()?.length > 0;
 	const isAnchor = hasUrl && url?.includes('#');
@@ -82,12 +87,14 @@ export const LinkInput = ({
 	const inputContainerRef = useRef();
 	const inputRef = useRef();
 
+	const { config: { linkInputCptIconOverrides } } = select(STORE_NAME).getSettings();
+
 	const showSuggestionPanel = useCallback(async (searchTerm) => {
 		setSuggestionsVisible(true);
 
 		setIsLoadingSuggestions(true);
 
-		const fetchFunction = getFetchWpApi('search', {
+		const fetchFunction = fetchSuggestions ?? getFetchWpApi('search', {
 			processId: ({ url }) => url,
 			processLabel: ({ title }) => unescapeHTML(title),
 			processMetadata: ({ type, subtype }) => ({ type, subtype }),
@@ -101,12 +108,14 @@ export const LinkInput = ({
 			searchColumns: 'post_title',
 			fields: 'id,title,type,subtype,url',
 		});
+
 		const items = await fetchFunction();
 
 		setIsLoadingSuggestions(false);
 		setShownSuggestions(items);
-	}, []);
-	const debouncedShowSuggestionPanel = useMemo(() => debounce(showSuggestionPanel, 1000), [showSuggestionPanel]);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+	const debouncedShowSuggestionPanel = useMemo(() => debounce(showSuggestionPanel, 250), [showSuggestionPanel]);
 
 	const handleCommitUrl = (url, blurInput = false) => {
 		onChange({ url: url, isAnchor: url?.includes('#'), newTab: opensInNewTab });
@@ -259,6 +268,14 @@ export const LinkInput = ({
 									typeIcon = icons.formAlt;
 								}
 
+								if (linkInputCptIconOverrides) {
+									const overrideIcon = linkInputCptIconOverrides?.[subtype];
+
+									if (overrideIcon && overrideIcon in icons) {
+										typeIcon = icons?.[overrideIcon];
+									}
+								}
+
 								if (suggestionTypeIconOverride) {
 									const overrideIcon = suggestionTypeIconOverride(subtype);
 
@@ -333,3 +350,10 @@ export const LinkInput = ({
 		</>
 	);
 };
+
+/**
+ * Link picker.
+ *
+ * @deprecated since 9.4.0 - renamed to `LinkInput`
+ */
+export const LinkEditComponent = (props) => <LinkInput {...props} />;
