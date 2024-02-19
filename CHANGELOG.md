@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.4.1] - 2024-02-19
+
+### Updated
+- Dependency updates
+
 ## [9.4.0] - 2024-02-14
 
 ### Added
@@ -959,6 +964,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.0...9.4.1
 [9.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.3.1...9.4.0
 [9.3.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.3.0...9.3.1
 [9.3.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.2.1...9.3.0
