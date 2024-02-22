@@ -893,6 +893,9 @@ export const registerBlock = (
 
 				return customName;
 			},
+			supports: {
+				__experimentalMetadata: true,
+			},
 		},
 	};
 };

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.5.0] - 2024-02-21
+
+### Updated
+- Fixed block renaming (due to recent Gutenberg changes)
+- `LinkInput` should now pop the suggestion panel only when focused into the input field
+- Fixed typo in `MultiSelect` story
+
+## [9.4.2] - 2024-02-21
+
+### Updated
+- `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
+
+## [9.4.1] - 2024-02-19
+
+### Updated
+- Dependency updates
+
 ## [9.4.2] - 2024-02-21
 
 ### Updated
@@ -969,6 +986,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.2...9.5.0
 [9.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.1...9.4.2
 [9.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.0...9.4.1
 [9.4.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.3.1...9.4.0

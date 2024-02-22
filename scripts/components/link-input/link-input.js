@@ -110,6 +110,10 @@ export const LinkInput = ({
 		}
 
 		const fetchSuggestionData = async () => {
+			if (document?.activeElement !== inputRef?.current) {
+				return;
+			}
+
 			if (!suggestionsVisible) {
 				setSuggestionFocusMessageVisible(true);
 			}
@@ -353,9 +357,8 @@ export const LinkInput = ({
 								<div className='es-m-1.5'>
 									{suggestionFocusMessageVisible &&
 										<IconLabel
-											icon={
 											// eslint-disable-next-line max-len
-											<span className='es-text-align-center es-py-0.25 es-bg-cool-gray-100 es-color-cool-gray-450 es-rounded-1 es-user-select-none es-text-2.75 es-w-6'>Tab</span>}
+											icon={<span className='es-text-align-center es-py-0.25 es-bg-cool-gray-100 es-color-cool-gray-450 es-rounded-1 es-user-select-none es-text-2.75 es-w-6'>Tab</span>}
 											label={__('Focus on suggestions', 'eightshift-frontend-libs')}
 											additionalClasses='es-mb-1'
 											standalone
