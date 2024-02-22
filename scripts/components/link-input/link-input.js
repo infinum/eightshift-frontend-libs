@@ -1,5 +1,6 @@
-import React, { useState, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
+import { useDebounce } from '@uidotdev/usehooks';
 import { Button, Tooltip, Popover, Spinner } from '@wordpress/components';
 import { select } from '@wordpress/data';
 import {
@@ -11,7 +12,6 @@ import {
 	truncateMiddle,
 	getFetchWpApi,
 	unescapeHTML,
-	debounce,
 	truncate,
 	STORE_NAME,
 } from '@eightshift/frontend-libs/scripts';
@@ -40,6 +40,7 @@ import {
  * @param {React.Component?} [props.additionalOptionTiles]        - If provided, allows adding additional option tiles.
  * @param {callback} [props.suggestionTypeIconOverride]           - Allows overriding the default icon for the suggestion type, e.g. when using CPTs. Callback should be in the format: `(type) => icon or React component`.
  * @param {callback} [props.fetchSuggestions]                     - Allows overriding the default function for fetching suggestions. Callback should be in the format: `(searchTerm) => Promise`.
+ * @param {int} [props.inputDebounceDelay=500]                    - Allows overriding the default debounce delay for the input. Default is 500ms.
  *
  * @since 9.4.0
  */
@@ -74,6 +75,8 @@ export const LinkInput = ({
 	suggestionTypeIconOverride,
 
 	fetchSuggestions,
+
+	inputDebounceDelay = 300,
 }) => {
 	const hasUrl = url?.trim()?.length > 0;
 	const isAnchor = hasUrl && url?.includes('#');
@@ -83,47 +86,73 @@ export const LinkInput = ({
 	const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
 	const [shownSuggestions, setShownSuggestions] = useState([]);
 	const [suggestionsVisible, setSuggestionsVisible] = useState(false);
+	const [suggestionFocusMessageVisible, setSuggestionFocusMessageVisible] = useState(false);
+
+	const debouncedInputValue = useDebounce(inputValue, inputDebounceDelay);
 
 	const inputContainerRef = useRef();
 	const inputRef = useRef();
+	const suggestionPopoverRef = useRef();
 
 	const { config: { linkInputCptIconOverrides } } = select(STORE_NAME).getSettings();
 
-	const showSuggestionPanel = useCallback(async (searchTerm) => {
-		setSuggestionsVisible(true);
+	useEffect(() => {
+		const newUrl = debouncedInputValue;
 
-		setIsLoadingSuggestions(true);
+		// eslint-disable-next-line max-len
+		if (newUrl?.startsWith('#') || newUrl?.startsWith(':') || newUrl?.startsWith('mailto:') || newUrl?.startsWith('tel:') || newUrl?.startsWith('http://') || newUrl?.startsWith('https://')) {
+			setSuggestionsVisible(false);
+			onChange({ url: newUrl, isAnchor: newUrl?.includes('#'), newTab: opensInNewTab });
+			return;
+		} else if (newUrl?.length < 3) {
+			setSuggestionsVisible(false);
+			return;
+		}
 
-		const fetchFunction = fetchSuggestions ?? getFetchWpApi('search', {
-			processId: ({ url }) => url,
-			processLabel: ({ title }) => unescapeHTML(title),
-			processMetadata: ({ type, subtype }) => ({ type, subtype }),
-			additionalParam: {
-				search: searchTerm,
-				type: 'post',
-				_locale: 'user',
-				per_page: 5,
-			},
-			noCache: true,
-			searchColumns: 'post_title',
-			fields: 'id,title,type,subtype,url',
-		});
+		const fetchSuggestionData = async () => {
+			if (!suggestionsVisible) {
+				setSuggestionFocusMessageVisible(true);
+			}
 
-		const items = await fetchFunction();
+			setSuggestionsVisible(true);
+			setIsLoadingSuggestions(true);
 
-		setIsLoadingSuggestions(false);
-		setShownSuggestions(items);
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+			const fetchFunction = fetchSuggestions ?? getFetchWpApi('search', {
+				processId: ({ url }) => url,
+				processLabel: ({ title }) => unescapeHTML(title),
+				processMetadata: ({ type, subtype }) => ({ type, subtype }),
+				additionalParam: {
+					search: debouncedInputValue,
+					type: 'post',
+					_locale: 'user',
+					per_page: 5,
+				},
+				noCache: true,
+				searchColumns: 'post_title',
+				fields: 'id,title,type,subtype,url',
+			});
 
-	const debouncedShowSuggestionPanel = useMemo(() => debounce(showSuggestionPanel, 250), [showSuggestionPanel]);
+			const items = await fetchFunction();
 
-	const handleCommitUrl = (url, blurInput = false) => {
+			setIsLoadingSuggestions(false);
+			setShownSuggestions(items);
+		};
+
+		fetchSuggestionData();
+	}, [debouncedInputValue]); // eslint-disable-line react-hooks/exhaustive-deps
+
+	const closeSuggestionPanel = () => {
+		setSuggestionsVisible(false);
+		setSuggestionFocusMessageVisible(true);
+		inputRef?.current?.focus();
+	};
+
+	const handleCommitUrl = (url, closeSuggestions = false) => {
 		onChange({ url: url, isAnchor: url?.includes('#'), newTab: opensInNewTab });
 		setInputValue(url);
 
-		if (blurInput) {
-			setSuggestionsVisible(false);
-			inputRef?.current?.blur();
+		if (closeSuggestions) {
+			closeSuggestionPanel();
 		}
 	};
 
@@ -133,16 +162,6 @@ export const LinkInput = ({
 		}
 
 		setInputValue(newUrl);
-
-		// eslint-disable-next-line max-len
-		if (newUrl?.startsWith('#') || newUrl?.startsWith(':') || newUrl?.startsWith('mailto:') || newUrl?.startsWith('tel:') || newUrl?.startsWith('http://') || newUrl?.startsWith('https://')) {
-			setSuggestionsVisible(false);
-			onChange({ url: newUrl, isAnchor: newUrl?.includes('#'), newTab: opensInNewTab });
-		} else if (newUrl?.length < 3) {
-			setSuggestionsVisible(false);
-		} else {
-			debouncedShowSuggestionPanel(newUrl);
-		}
 	};
 
 	const AnchorTooltip = () => {
@@ -190,7 +209,13 @@ export const LinkInput = ({
 						placeholder={__('Search or enter URL', 'eightshift-frontend-libs')}
 						onKeyDown={(e) => {
 							if (e.key === 'Enter') {
-								handleCommitUrl(e?.target?.value);
+								handleCommitUrl(e?.target?.value, true);
+							}
+
+							if (suggestionsVisible && ['ArrowDown', 'Tab'].includes(e.key)) {
+								e.preventDefault();
+								setSuggestionFocusMessageVisible(false);
+								suggestionPopoverRef?.current?.querySelector('.components-button')?.focus();
 							}
 						}}
 						onBlur={(e) => handleCommitUrl(e?.target?.value)}
@@ -228,90 +253,122 @@ export const LinkInput = ({
 						resize={false}
 						offset={4}
 						position='bottom'
-						onClose={() => setSuggestionsVisible(false)}
-						onFocusOutside={() => setSuggestionsVisible(false)}
-						focusOnMount
+						onClose={() => closeSuggestionPanel()}
+						onFocusOutside={() => closeSuggestionPanel()}
+						ref={suggestionPopoverRef}
+						focusOnMount={suggestionFocusMessageVisible ? false : 'firstElement'}
+						constrainTabbing
 					>
-						<div className='es-w-68 es-p-1.5 es-border-cool-gray-100'>
+						<div className='es-w-68 es-border-cool-gray-100'>
 							{isLoadingSuggestions &&
-								<IconLabel
-									icon={<span className='es-w-9 es-display-flex es-items-center es-content-center es-flex-shrink-0'><Spinner width='24' height='24' /></span>}
-									label={__('Fetching suggestions', 'eightshift-frontend-libs')}
-									additionalClasses='es-text-align-left es-gap-1.5! es-w-full es-h-10'
-									standalone
-								/>
+								<div className='es-m-1.5'>
+									<IconLabel
+										icon={<Spinner width='24' height='24' />}
+										label={__('Fetching suggestions', 'eightshift-frontend-libs')}
+										additionalClasses='es-text-align-left es-gap-1.5! es-w-full es-h-10'
+										standalone
+									/>
+								</div>
 							}
 
 							{!isLoadingSuggestions && shownSuggestions.length < 1 &&
-								<IconLabel
-									icon={<span className='es-w-9 es-display-flex es-items-center es-content-center es-flex-shrink-0'>{icons.searchEmpty}</span>}
-									label={sprintf(__('No results found for %s', 'eightshift-frontend-libs'), inputValue)}
-									additionalClasses='es-text-align-left es-gap-1.5! es-w-full es-h-10'
-									standalone
-								/>
+								<div className='es-m-1.5'>
+									<IconLabel
+										icon={icons.searchEmpty}
+										label={sprintf(__('No results found for "%s"', 'eightshift-frontend-libs'), inputValue)}
+										additionalClasses='es-text-align-left es-gap-1.5! es-w-full es-h-10'
+										standalone
+									/>
+								</div>
 							}
 
-							{!isLoadingSuggestions && shownSuggestions?.length > 0 && shownSuggestions.map((suggestion, i) => {
-								const { label: title, value: url, metadata: { subtype } } = suggestion;
+							{!isLoadingSuggestions && shownSuggestions?.length > 0 &&
+								<div className='es-m-1.5'>
+									{shownSuggestions.map((suggestion, i) => {
+										const { label: title, value: url, metadata: { subtype } } = suggestion;
 
-								let typeIcon = icons.file;
+										let typeIcon = icons.file;
 
-								if (subtype.toLowerCase() === 'url') {
-									typeIcon = icons.externalLink;
-								} else if (subtype.toLowerCase() === 'attachment') {
-									typeIcon = icons.file;
-								} else if (subtype.toLowerCase() === 'category') {
-									typeIcon = icons.layoutAlt;
-								} else if (subtype.toLowerCase() === 'internal') {
-									typeIcon = icons.anchor;
-								} else if (subtype.toLowerCase() === 'eightshift-forms') {
-									typeIcon = icons.formAlt;
-								}
+										if (subtype.toLowerCase() === 'url') {
+											typeIcon = icons.externalLink;
+										} else if (subtype.toLowerCase() === 'attachment') {
+											typeIcon = icons.file;
+										} else if (subtype.toLowerCase() === 'category') {
+											typeIcon = icons.layoutAlt;
+										} else if (subtype.toLowerCase() === 'internal') {
+											typeIcon = icons.anchor;
+										} else if (subtype.toLowerCase() === 'eightshift-forms') {
+											typeIcon = icons.formAlt;
+										}
 
-								if (linkInputCptIconOverrides) {
-									const overrideIcon = linkInputCptIconOverrides?.[subtype];
+										if (linkInputCptIconOverrides) {
+											const overrideIcon = linkInputCptIconOverrides?.[subtype];
 
-									if (overrideIcon && overrideIcon in icons) {
-										typeIcon = icons?.[overrideIcon];
-									}
-								}
+											if (overrideIcon && overrideIcon in icons) {
+												typeIcon = icons?.[overrideIcon];
+											}
+										}
 
-								if (suggestionTypeIconOverride) {
-									const overrideIcon = suggestionTypeIconOverride(subtype);
+										if (suggestionTypeIconOverride) {
+											const overrideIcon = suggestionTypeIconOverride(subtype);
 
-									if (overrideIcon) {
-										typeIcon = overrideIcon;
-									}
-								}
+											if (overrideIcon) {
+												typeIcon = overrideIcon;
+											}
+										}
 
-								return (
-									<Button key={i} onClick={() => handleCommitUrl(url, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
-										<IconLabel
-											icon={typeIcon}
-											label={truncate(title, 32)}
-											subtitle={truncateMiddle(url.replace(location.origin, '').replace(/\/$/, ''), 32)}
-											addSubtitleGap
-											standalone
-										/>
-									</Button>
-								);
-							})}
-
-							{!isLoadingSuggestions &&
-								<>
-									<hr className='es-mx-0 es-my-2' />
-
-									<Button onClick={() => handleCommitUrl(inputValue, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
-										<IconLabel
-											icon={inputValue.includes('#') ? icons.globeAnchor : icons.textWrite}
-											label={__('Text you entered', 'eightshift-frontend-libs')}
-											subtitle={`"${truncate(inputValue, 32)}"`}
-											addSubtitleGap
-											standalone
-										/>
-									</Button>
-								</>
+										return (
+											<Button key={i} onClick={() => handleCommitUrl(url, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
+												<IconLabel
+													icon={typeIcon}
+													label={truncate(title, 32)}
+													subtitle={truncateMiddle(url.replace(location.origin, '').replace(/\/$/, ''), 32)}
+													addSubtitleGap
+													standalone
+												/>
+											</Button>
+										);
+									})}
+								</div>
 							}
+
+
+							<hr className='es-m-0' />
+
+							<div className='es-m-1.5'>
+								<Button onClick={() => handleCommitUrl(inputValue, true)} className='es-rounded-0.5! es-p-0! es-w-full es-h-10!'>
+									<IconLabel
+										icon={inputValue.includes('#') ? icons.globeAnchor : icons.lineBreak}
+										label={__('Text you entered', 'eightshift-frontend-libs')}
+										subtitle={__('Enter to commit', 'eightshift-frontend-libs')}
+										addSubtitleGap
+										standalone
+									/>
+								</Button>
+							</div>
+
+							<>
+								<hr className='es-m-0' />
+
+								<div className='es-m-1.5'>
+									{suggestionFocusMessageVisible &&
+										<IconLabel
+											icon={
+											// eslint-disable-next-line max-len
+											<span className='es-text-align-center es-py-0.25 es-bg-cool-gray-100 es-color-cool-gray-450 es-rounded-1 es-user-select-none es-text-2.75 es-w-6'>Tab</span>}
+											label={__('Focus on suggestions', 'eightshift-frontend-libs')}
+											additionalClasses='es-mb-1'
+											standalone
+										/>
+									}
+									<IconLabel
+										// eslint-disable-next-line max-len
+										icon={<span className='es-text-align-center es-py-0.25 es-bg-cool-gray-100 es-color-cool-gray-450 es-rounded-1 es-user-select-none es-text-2.75 es-w-6'>Esc</span>}
+										label={__('Close suggestions panel', 'eightshift-frontend-libs')}
+										standalone
+									/>
+								</div>
+							</>
 						</div>
 					</Popover>
 				}
