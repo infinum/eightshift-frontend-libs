@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "9.4.1",
+	"version": "9.4.2",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -50,6 +50,7 @@
 		"@dnd-kit/utilities": "^3.2.2",
 		"@infinumjs/eslint-config-react-js": "^3.5.0",
 		"@stylistic/stylelint-plugin": "^2.1.0",
+		"@uidotdev/usehooks": "^2.4.1",
 		"@wordpress/api-fetch": "^6.48.0",
 		"@wordpress/block-editor": "^12.19.1",
 		"@wordpress/dependency-extraction-webpack-plugin": "^5.2.0",
