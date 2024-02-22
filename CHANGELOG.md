@@ -21,6 +21,16 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Updated
 - Dependency updates
 
+## [9.4.2] - 2024-02-21
+
+### Updated
+- `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
+
+## [9.4.1] - 2024-02-19
+
+### Updated
+- Dependency updates
+
 ## [9.4.0] - 2024-02-14
 
 ### Added
