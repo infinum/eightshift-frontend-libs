@@ -17,7 +17,6 @@ import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshi
  * @param {React.Component?} [props.actions]          - Actions to show to the right of the label.
  * @param {boolean} [props.keepActionsOnExpand=false] - If `true`, the actions are kept visible when the component is expanded.
  * @param {boolean} [props.disabled=false]            - If `true`, the expand button is disabled.
- * @returns
  */
 export const Collapsable = ({
 	icon,
