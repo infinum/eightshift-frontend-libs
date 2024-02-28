@@ -37,6 +37,10 @@ export const Collapsable = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
+	if (disabled && isOpen) {
+		setIsOpen(false);
+	}
+
 	return (
 		<Control
 			icon={icon}
