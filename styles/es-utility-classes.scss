@@ -1253,19 +1253,9 @@ $es-utility-props: (
 		inline-size: #{$value};
 	}
 
-	.-es-size-#{$name} {
-		block-size: -#{$value};
-		inline-size: -#{$value};
-	}
-
 	.es-size-#{$name}\! {
 		block-size: #{$value} !important;
 		inline-size: #{$value} !important;
-	}
-
-	.-es-size-#{$name}\! {
-		block-size: -#{$value} !important;
-		inline-size: -#{$value} !important;
 	}
 
 	.es-min-size-#{$name} {
@@ -1284,6 +1274,37 @@ $es-utility-props: (
 	}
 
 	.es-max-size-#{$name}\! {
+		max-block-size: #{$value} !important;
+		max-inline-size: #{$value} !important;
+	}
+
+	// 'nested' variants
+	.es-nested-size-#{$name} svg {
+		block-size: #{$value};
+		inline-size: #{$value};
+	}
+
+	.es-nested-size-#{$name}\! svg {
+		block-size: #{$value} !important;
+		inline-size: #{$value} !important;
+	}
+
+	.es-min-size-#{$name} svg {
+		min-block-size: #{$value};
+		min-inline-size: #{$value};
+	}
+
+	.es-min-size-#{$name}\! svg {
+		min-block-size: #{$value} !important;
+		min-inline-size: #{$value} !important;
+	}
+
+	.es-max-size-#{$name} svg {
+		max-block-size: #{$value};
+		max-inline-size: #{$value};
+	}
+
+	.es-max-size-#{$name}\! svg {
 		max-block-size: #{$value} !important;
 		max-inline-size: #{$value} !important;
 	}
