@@ -16,7 +16,7 @@ import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshi
  * @param {string?} [props.additionalClasses]         - If passed, the classes are appended to the component classes.
  * @param {React.Component?} [props.actions]          - Actions to show to the right of the label.
  * @param {boolean} [props.keepActionsOnExpand=false] - If `true`, the actions are kept visible when the component is expanded.
- * @param {boolean} [props.disabled=false]            - If `true`, the expand button is disabled.
+ * @returns
  */
 export const Collapsable = ({
 	icon,
@@ -32,14 +32,8 @@ export const Collapsable = ({
 	actions,
 
 	keepActionsOnExpand = false,
-
-	disabled = false,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
-
-	if (disabled && isOpen) {
-		setIsOpen(false);
-	}
 
 	return (
 		<Control
@@ -66,8 +60,7 @@ export const Collapsable = ({
 							isOpen && 'is-active es-nested-color-pure-white! es-bg-admin-accent!'
 						)}
 						icon={isOpen ? icons.caretDownFill : icons.caretDown}
-						label={isOpen ? __('Close', 'eightshift-frontend-libs') : __('Expand', 'eightshift-frontend-libs')}
-						disabled={disabled}
+						label={isOpen ? __('Hide options', 'eightshift-frontend-libs') : __('Show options', 'eightshift-frontend-libs')}
 						showTooltip
 					/>
 				</div>

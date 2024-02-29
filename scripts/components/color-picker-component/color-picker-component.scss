@@ -1,0 +1,13 @@
+// Inner color picker container.
+.es-color-picker-component__inner-container {
+	padding: 0.5rem 1rem;
+}
+
+// Current color button icon.
+.es-color-picker-component__current-swatch {
+	pointer-events: none;
+	height: 1.15rem;
+	width: 1.15rem;
+	border-radius: 1.5rem;
+	box-shadow: 0 0 0 1px var(--es-admin-pure-white), 0 0 0 2px var(--es-admin-gray-700);
+}

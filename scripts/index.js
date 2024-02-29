@@ -27,7 +27,7 @@ export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
 export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
-export { Toggle, IconToggle } from './components/toggle/toggle';
+export { IconToggle } from './components/icon-toggle/icon-toggle';
 export { Notification } from './components/inline-notification/inline-notification';
 export { LinkInput, LinkEditComponent } from './components/link-input/link-input';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
