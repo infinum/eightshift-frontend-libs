@@ -15,9 +15,6 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Updated
 - `NumberPicker` has been completely updated visually
 - `ResponsiveNumberPicker` now better visually integrates the reset button
-- Fixed block renaming (due to recent Gutenberg changes)
-- `LinkInput` should now pop the suggestion panel only when focused into the input field
-- Fixed typo in `MultiSelect` story
 - Tweaked Gutenberg override classes for `NumberControl` so they don't override FE libs `NumberPicker`
 - Utility classes now use logical properties for paddings, margins, borders, widths, and heights
 - `IconToggle` is now `Toggle`, but the previous name will also work (for now)
