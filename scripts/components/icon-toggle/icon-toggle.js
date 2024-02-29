@@ -1,11 +1,11 @@
 import React from 'react';
 import { ToggleControl, CheckboxControl, Button } from '@wordpress/components';
-import { IconLabel, classnames, TileButton } from '../..';
+import { IconLabel, classnames, TileButton } from '../../../scripts';
 
 /**
- * Custom toggle control.
+ * Custom toggle control that can render as
  *
- * @param {object} props                                                                 - `Toggle` options.
+ * @param {object} props                                                                 - IconToggle options.
  * @param {React.Component} props.icon                                                   - Icon to display.
  * @param {string} props.label                                                           - Usually component name.
  * @param {'toggle'|'checkbox'|'button'|'iconButton'|'tileButton'} [props.type='toggle'] - Kind of toggle to render.
@@ -18,7 +18,7 @@ import { IconLabel, classnames, TileButton } from '../..';
  * @param {boolean?} [props.reducedBottomSpacing]                                        - If `true`, space below the control is reduced.
  * @param {string?} [props.additionalClasses]                                            - If provided, classes are passed to the underlying component.
  */
-export const Toggle = ({
+export const IconToggle = ({
 	icon,
 	label,
 
@@ -85,10 +85,3 @@ export const Toggle = ({
 		/>
 	);
 };
-
-/**
- * Custom toggle control.
- *
- * @deprecated since 9.5.0 - renamed to `Toggle`
- */
-export const IconToggle = (props) => <Toggle {...props} />;

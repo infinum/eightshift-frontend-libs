@@ -4,26 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [9.5.0] - 2024-02-29
-
-### Added
-- New `es-size`, `es-min-size`, and `es-max-size` (+ `-nested` variants) utility classes for setting height and width at once
-- New `prefix`, `suffix`, `extraButton`, and `noExtraButtonSeparator` props in `NumberPicker`
-- `Collapsable` now has a `disabled` prop to disable the expand/collapse button
-- 1 new UI icon
+## [9.5.0] - 2024-02-21
 
 ### Updated
-- `NumberPicker` has been completely updated visually
-- `ResponsiveNumberPicker` now better visually integrates the reset button
 - Fixed block renaming (due to recent Gutenberg changes)
 - `LinkInput` should now pop the suggestion panel only when focused into the input field
 - Fixed typo in `MultiSelect` story
-- Tweaked Gutenberg override classes for `NumberControl` so they don't override FE libs `NumberPicker`
-- Utility classes now use logical properties for paddings, margins, borders, widths, and heights
-- `IconToggle` is now `Toggle`, but the previous name will also work (for now)
-- Refreshed 3 UI icons
-- Updated dependencies
-- `ColorPicker` now has a slot for additional controls
 
 ## [9.4.2] - 2024-02-21
 

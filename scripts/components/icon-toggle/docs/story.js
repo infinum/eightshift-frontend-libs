@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Toggle } from '../toggle';
+import { IconToggle } from '../icon-toggle';
 import { icons } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import { SingleItemShowcase } from '../../../storybook/helpers';
 
 export default {
-	title: 'Options/Toggle',
+	title: 'Options/IconToggle',
 };
 
 export const component = () => {
@@ -17,7 +17,7 @@ export const component = () => {
 
 			<div className='es-display-flex es-flex-wrap es-gap-5!'>
 				<SingleItemShowcase title='Basic toggle'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -27,7 +27,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Help text'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -38,7 +38,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Inline help text'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -50,7 +50,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Checkbox'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -61,7 +61,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Toggle button'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -71,7 +71,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Toggle icon button'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}
@@ -81,7 +81,7 @@ export const component = () => {
 				</SingleItemShowcase>
 
 				<SingleItemShowcase title='Toggle tile button'>
-					<Toggle
+					<IconToggle
 						icon={icons.fullMaxShield}
 						label='Full max'
 						checked={current}

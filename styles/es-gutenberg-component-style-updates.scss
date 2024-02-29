@@ -75,7 +75,7 @@
 }
 
 // Tweak NumberControl to better fit in.
-.components-number-control:not(.es-number-picker .components-number-control) {
+.components-number-control {
 	.components-input-control__input {
 		padding: 0 0.5rem !important;
 		font-size: 0.78125rem !important;

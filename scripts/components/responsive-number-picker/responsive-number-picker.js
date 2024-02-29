@@ -120,25 +120,29 @@ export const ResponsiveNumberPicker = (props) => {
 				};
 
 				const nearestValid = getNearest();
+
 				const parsedValue = parseFloat(inheritCheck(currentValue) ? nearestValid : currentValue);
 
 				return (
-					<NumberPicker
-						key={index}
-						value={modifyInput ? modifyInput(parsedValue) : parsedValue}
-						onChange={(currentValue) => {
-							const newValue = stringValues ? `${currentValue}` : currentValue;
-							onChange({
-								...value,
-								[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
-							});
-						}}
-						noBottomSpacing
-						fixedWidth={fieldWidth}
-						min={min}
-						max={max}
-						step={step}
-						extraButton={typeof resetButton !== 'undefined' &&
+					<div className='es-h-spaced' key={index}>
+						<NumberPicker
+							value={modifyInput ? modifyInput(parsedValue) : parsedValue}
+							onChange={(currentValue) => {
+								const newValue = stringValues ? `${currentValue}` : currentValue;
+								onChange({
+									...value,
+									[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
+								});
+							}}
+							noBottomSpacing
+							fixedWidth={fieldWidth}
+							min={min}
+							max={max}
+							step={step}
+							{...additionalProps}
+						/>
+
+						{typeof resetButton !== 'undefined' &&
 							<Button
 								icon={resetButton === 0 ? icons.resetToZero : icons.reset}
 								onClick={() => {
@@ -151,15 +155,14 @@ export const ResponsiveNumberPicker = (props) => {
 								disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
 								className={classnames(
 									// eslint-disable-next-line max-len
-									'es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition',
+									'es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!',
 									(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'
 								)}
 								label={__('Reset', 'eightshift-frontend-libs')}
 								showTooltip
 							/>
 						}
-						{...additionalProps}
-					/>
+					</div>
 				);
 			})}
 		</Responsive>
