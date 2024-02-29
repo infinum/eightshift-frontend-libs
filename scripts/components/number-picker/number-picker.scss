@@ -7,29 +7,31 @@
 	}
 
 	.es-number-picker-input {
-		.components-input-control__backdrop {
-			display: none !important;
-		}
+		.components-input-control {
+			&__backdrop {
+				display: none !important;
+			}
 
-		.components-input-control__container {
-			border: none !important;
-			box-shadow: none !important;
-			background: none !important;
+			&__container {
+				border: none !important;
+				box-shadow: none !important;
+				background: none !important;
 
-			min-height: auto !important;
-		}
+				min-height: auto !important;
+			}
 
-		.components-input-control__input {
-			appearance: none;
+			&__input {
+				appearance: none;
 
-			margin: 0 !important;
-			padding: 0 !important;
-			min-height: auto !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				min-height: auto !important;
 
-			border: none !important;
-			box-shadow: none !important;
+				border: none !important;
+				box-shadow: none !important;
 
-			width: var(--es-number-input-width) !important;
+				width: var(--es-number-input-width) !important;
+			}
 		}
 	}
 }
