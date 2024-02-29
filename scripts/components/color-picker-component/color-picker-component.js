@@ -37,6 +37,7 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {React.Component?} [props.buttonIconOverride]                - If provided, overrides the default trigger button icon.
  * @param {object?} [props.additionalButtonArgs]                       - Allows passing additional arguments to the trigger button.
  * @param {object?} [props.additionalColorPaletteArgs]                 - Allows passing additional arguments to the color palette component.
+ * @param {React.Component?} [props.additionalControls]                - Allows passing custom controls to the bottom of ColorPicker's popover.
  */
 export const ColorPicker = (props) => {
 	const {
@@ -72,6 +73,8 @@ export const ColorPicker = (props) => {
 		buttonIconOverride,
 		additionalButtonArgs,
 		additionalColorPaletteArgs,
+
+		additionalControls,
 	} = props;
 
 	let defaultPopupTitle = __('Pick a color', 'eightshift-frontend-libs');
@@ -179,8 +182,8 @@ export const ColorPicker = (props) => {
 				allowCloseFromChildren
 				noArrow
 			>
-				<div className='es-min-w-96!'>
-					<div className='es-h-between es-p-3'>
+				<div className='es-min-w-84!'>
+					<div className='es-h-between es-p-2'>
 						<h4 className='es-m-0'>{pickerPopupTitle ?? defaultPopupTitle}</h4>
 
 						<Button
@@ -190,7 +193,7 @@ export const ColorPicker = (props) => {
 						/>
 					</div>
 
-					<div className='es-h-spaced es-px-3 es-pb-3 es-mb-3 es-border-b-cool-gray-300 es-w-full'>
+					<div className='es-h-spaced es-px-2 es-pb-2 es-mb-2 es-border-b-cool-gray-300 es-w-full'>
 						<ColorSwatch
 							color={currentColor?.color ?? 'es-undefined'}
 							additionalClasses='es-w-24 es-h-12 es-rounded-1.5!'
@@ -207,7 +210,7 @@ export const ColorPicker = (props) => {
 						</div>
 					</div>
 
-					<div className={classnames('es-px-3', !canReset && 'es-pb-3')}>
+					<div className={classnames('es-px-2', !canReset && 'es-pb-2')}>
 						<ColorPalette
 							colors={colors}
 							value={value}
@@ -221,8 +224,14 @@ export const ColorPicker = (props) => {
 						/>
 					</div>
 
+					{additionalControls &&
+						<div className='es-p-2 es-mt-2 es-border-t-cool-gray-300'>
+							{additionalControls}
+						</div>
+					}
+
 					{canReset &&
-						<div className='es-p-1 es-mt-3 es-border-t-cool-gray-300'>
+						<div className='es-p-1 es-mt-2 es-border-t-cool-gray-300'>
 							<Button
 								disabled={disabled}
 								onClick={() => onChange(undefined)}
