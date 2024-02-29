@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [9.5.0] - 2024-02-29
+## [9.6.0] - 2024-02-29
 
 ### Added
 - New `es-size`, `es-min-size`, and `es-max-size` (+ `-nested` variants) utility classes for setting height and width at once
@@ -15,15 +15,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Updated
 - `NumberPicker` has been completely updated visually
 - `ResponsiveNumberPicker` now better visually integrates the reset button
-- Fixed block renaming (due to recent Gutenberg changes)
-- `LinkInput` should now pop the suggestion panel only when focused into the input field
-- Fixed typo in `MultiSelect` story
 - Tweaked Gutenberg override classes for `NumberControl` so they don't override FE libs `NumberPicker`
 - Utility classes now use logical properties for paddings, margins, borders, widths, and heights
 - `IconToggle` is now `Toggle`, but the previous name will also work (for now)
 - Refreshed 3 UI icons
 - Updated dependencies
 - `ColorPicker` now has a slot for additional controls
+
+## [9.5.0] - 2024-02-21
+
+### Updated
+- Fixed block renaming (due to recent Gutenberg changes)
+- `LinkInput` should now pop the suggestion panel only when focused into the input field
+- Fixed typo in `MultiSelect` story
 
 ## [9.4.2] - 2024-02-21
 
@@ -1000,6 +1004,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.5.0...9.6.0
 [9.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.2...9.5.0
 [9.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.1...9.4.2
 [9.4.1]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.0...9.4.1
