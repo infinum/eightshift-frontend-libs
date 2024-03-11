@@ -43,11 +43,10 @@ export const Menu = (props) => {
 
 	let buttonClassname = classnames(
 		// eslint-disable-next-line max-len
-		'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent',
+		'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent es-nested-size-5',
 		// eslint-disable-next-line max-len
-		'es-nested-m-0! es-gap-1.25! es-bg-pure-white! es-text-3.25! es-color-cool-gray-650 es-rounded-1.5! es-flex-shrink-0',
-		'es-button-icon-20',
-		!label && 'es-button-square-36',
+		'es-nested-m-0! es-gap-1.25! es-bg-pure-white es-text-3.25! es-color-cool-gray-650 es-rounded-1.5! es-flex-shrink-0 es-min-w-auto!',
+		!label && 'es-size-9',
 		label && 'es-px-2.5!',
 		additionalClass,
 	);

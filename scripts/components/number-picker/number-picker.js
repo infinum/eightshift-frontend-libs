@@ -72,7 +72,16 @@ export const NumberPicker = (props) => {
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={classnames('es-number-picker', additionalClasses)}
 		>
-			<div className={classnames('es-display-flex es-items-center es-h-8', label && !inlineLabel && '-es-mt-1')}>
+			<div
+				className={classnames(
+					// eslint-disable-next-line max-len
+					'es-number-picker-container es-display-flex es-items-center es-gap-0.25 es-h-9 es-border-cool-gray-400 es-rounded-1.5 es-py-0.5 es-pl-1.5 es-pr-0.5 es-transition es-w-fit',
+					label && !inlineLabel && '-es-mt-1'
+				)}
+				style={{ '--es-number-input-width': `calc(${min < 0 ? '0.75ch + ' : ''}${fixedWidth ?? max?.toString()?.length} * 1ch)` }}
+			>
+				{prefix && <span className={classnames('es-mr-0.5', prefixClass ?? prefixSuffixDefaultClass)}>{prefix}</span>}
+
 				<NumberControl
 					min={min}
 					max={max}

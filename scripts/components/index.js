@@ -50,8 +50,8 @@ export { ResponsiveToggleButton } from './responsive-toggle-button/responsive-to
 export { Section } from './section/section';
 export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
-export { Repeater } from './simple-repeater/simple-repeater';
-export { RepeaterItem } from './simple-repeater/simple-repeater-item';
+export { Repeater } from './repeater/repeater';
+export { RepeaterItem } from './repeater/repeater-item';
 export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
