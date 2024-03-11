@@ -92,10 +92,10 @@ export const NumberPicker = (props) => {
 			<div
 				className={classnames(
 					// eslint-disable-next-line max-len
-					'es-number-picker-container es-display-flex es-items-center es-gap-0.25 es-h-9 es-border-cool-gray-400 es-rounded-1.5 es-py-0.5 es-pl-1.5 es-pr-0.5 es-transition',
+					'es-number-picker-container es-display-flex es-items-center es-gap-0.25 es-h-9 es-border-cool-gray-400 es-rounded-1.5 es-py-0.5 es-pl-1.5 es-pr-0.5 es-transition es-w-fit',
 					label && !inlineLabel && '-es-mt-1'
 				)}
-				style={fixedWidth && { '--es-number-input-width': `calc(${min < 0 ? '0.75ch + ' : ''}${fixedWidth} * 1ch)` }}
+				style={{ '--es-number-input-width': `calc(${min < 0 ? '0.75ch + ' : ''}${fixedWidth ?? max?.toString()?.length} * 1ch)` }}
 			>
 				{prefix && <span className={classnames('es-mr-0.5', prefixClass ?? prefixSuffixDefaultClass)}>{prefix}</span>}
 
