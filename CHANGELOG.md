@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [9.7.0] - 2024-03-08
+
+### Added
+- 1 UI icon, 9 block icons.
+
+### Updated
+- Fixed default `NumberPicker` sizing
+- Tweaked some of the default `Menu` trigger button classes.
+- Reworked the look of `Repeater`.
+- Moved the delete button of a repeater item into an inline menu, with a slot for more options.
+- Tweaked `ReOrderable` so the drag handle is the only place the item can be moved. This alleviates issues with interactive controls within the item.
+- Updated dependencies.
+
 ## [9.6.0] - 2024-02-29
 
 ### Added
@@ -1004,6 +1017,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[9.7.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.6.0...9.7.0
 [9.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.5.0...9.6.0
 [9.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.2...9.5.0
 [9.4.2]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.1...9.4.2

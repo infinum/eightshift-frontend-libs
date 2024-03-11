@@ -51,8 +51,8 @@ export { ResponsiveToggleButton } from './components/responsive-toggle-button/re
 export { Section } from './components/section/section';
 export { Select } from './components/custom-select/single-select';
 export { ServerSideRender } from './components/server-side-render/server-side-render';
-export { Repeater } from './components/simple-repeater/simple-repeater';
-export { RepeaterItem } from './components/simple-repeater/simple-repeater-item';
+export { Repeater } from './components/repeater/repeater';
+export { RepeaterItem } from './components/repeater/repeater-item';
 export { TileButton } from './components/tile-button/tile-button';
 export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';

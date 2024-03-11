@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { icons } from '@eightshift/frontend-libs/scripts';
@@ -80,9 +80,7 @@ export const Repeater = (props) => {
 		})
 	);
 
-	const handleDragEnd = (event) => {
-		const { active, over } = event;
-
+	const handleDragEnd = ({ active, over }) => {
 		if (active.id !== over.id && items) {
 			const mappedItems = items.map(({ id }) => id);
 			const oldIndex = mappedItems?.indexOf(active.id) ?? -1;
@@ -94,6 +92,8 @@ export const Repeater = (props) => {
 				setAttributes({ [attributeName]: arrayMove([...items], oldIndex, newIndex) });
 			}
 		}
+
+		setActive(null);
 	};
 
 	// Check for duplicates and reassign IDs if needed.
@@ -115,6 +115,8 @@ export const Repeater = (props) => {
 		}
 	};
 
+	const [active, setActive] = useState(null);
+
 	return (
 		<Control
 			icon={icon}
@@ -126,7 +128,7 @@ export const Repeater = (props) => {
 			additionalClasses={additionalClasses}
 			additionalLabelClasses={classnames(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
 			actions={
-				<div className='es-h-spaced es-gap-1!'>
+				<div className='es-h-spaced es-gap-1.5!'>
 					{actions}
 
 					{!customAddButton &&
@@ -146,6 +148,8 @@ export const Repeater = (props) => {
 			<DndContext
 				sensors={sensors}
 				collisionDetection={closestCenter}
+				onDragStart={({ active }) => setActive(active)}
+				onDragCancel={() => setActive(null)}
 				onDragEnd={handleDragEnd}
 				modifiers={[restrictToVerticalAxis, restrictToParentElement]}
 			>
@@ -153,29 +157,34 @@ export const Repeater = (props) => {
 					items={items.map(({ id }) => id)}
 					strategy={verticalListSortingStrategy}
 				>
-					{children.map((item, i) => (
-						<SortableItem
-							key={items?.[i]?.id}
-							id={items?.[i]?.id}
-							icon={item?.props?.icon}
-							title={item?.props?.title ?? __('New item', 'eightshift-frontend-libs')}
-							subtitle={item?.props?.subtitle}
-							onRemove={item?.props?.onRemove ?? (
-								() => {
-									const newArray = [...items].filter((_, index) => index !== i);
-									setAttributes({ [attributeName]: newArray });
-								}
-							)}
-							isFirst={i === 0}
-							isLast={i === items?.length - 1}
-							additionalLabelClass={item?.props?.additionalLabelClass}
-							noReordering={noReordering}
-							hideRemove={item?.props?.hideRemove ?? false}
-							preIcon={item?.props?.preIcon}
-						>
-							{item?.props?.children}
-						</SortableItem>
-					))}
+					<div className='es-v-spaced es-gap-1!'>
+						{children.map((item, i) => (
+							<SortableItem
+								key={items?.[i]?.id}
+								id={items?.[i]?.id}
+								icon={item?.props?.icon}
+								title={item?.props?.title ?? __('New item', 'eightshift-frontend-libs')}
+								subtitle={item?.props?.subtitle}
+								onRemove={item?.props?.onRemove ?? (
+									() => {
+										const newArray = [...items].filter((_, index) => index !== i);
+										setAttributes({ [attributeName]: newArray });
+									}
+								)}
+								isActive={items?.[i]?.id === active?.id}
+								isFirst={i === 0}
+								isLast={i === items?.length - 1}
+								isOnly={items?.length === 1}
+								additionalLabelClass={item?.props?.additionalLabelClass}
+								noReordering={noReordering}
+								hideRemove={item?.props?.hideRemove ?? false}
+								additionalMenuOptions={item?.props?.additionalMenuOptions}
+								preIcon={item?.props?.preIcon}
+							>
+								{item?.props?.children}
+							</SortableItem>
+						))}
+					</div>
 				</SortableContext>
 			</DndContext>
 		</Control>
