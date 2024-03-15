@@ -32,7 +32,7 @@ This is a document explaining what each `package.json` package is used for.
 * eslint-plugin-react-hooks - Package used for linting JS.
 * file-loader - Webpack loaded used for images and files.
 * husky - Package used for linting code on git commands.
-* import-glob-loader - Webpack loader used for putting regex in css import.
+* import-glob - Webpack loader used for putting regex in css import.
 * media-blender - Package used for providing media queries.
 * mini-css-extract-plugin - Webpack plugin extracts CSS into separate files.
 * postcss - package for getting postcss options.
