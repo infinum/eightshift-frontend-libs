@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [10.0.0] - 2024-03-15
+
+### Removed
+- Storybook is no longer part of Frontend Libs (Potentially breaking!)
+
+### Updated
+- Updated dependencies
+- Replaced `import-glob-loader` with `import-glob`, as the previous package was abandoned
+- Fixed `NumberPicker` spinners in Firefox
+
 ## [9.7.0] - 2024-03-08
 
 ### Added
@@ -1017,6 +1027,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[10.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.7.0...10.0.0
 [9.7.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.6.0...9.7.0
 [9.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.5.0...9.6.0
 [9.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.2...9.5.0
