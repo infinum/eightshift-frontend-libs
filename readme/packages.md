@@ -42,7 +42,6 @@ This is a document explaining what each `package.json` package is used for.
 * raw-loader - Webpack loader used for files.
 * rc-slider - React slider component used in our components.
 * rc-tooltip - React tooltip component used in our components.
-* react-html-parser - Utility for converting HTML strings into React components.
 * react-select - Select component for React.
 * regenerator-runtime - Used for Core-js polyfill.
 * sass - A pure JavaScript implementation of Sass
