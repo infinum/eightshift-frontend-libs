@@ -9,6 +9,9 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Removed
 - Storybook is no longer part of Frontend Libs (Potentially breaking!)
 
+### Added
+- 1 new utility class: `focus-slight-button-border-wp` (as WP really likes using the `:focus` state, instead of `:focus-visible`)
+
 ### Updated
 - Updated dependencies
 - Replaced `import-glob-loader` with `import-glob`, as the previous package was abandoned
