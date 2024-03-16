@@ -65,8 +65,8 @@ export const PopoverWithTrigger = (props) => {
 				newChildren = processChildItems(child.props.children);
 			}
 
-			// If 'esClosesModalOnClick' is set, override the onClick listener.
-			if (Object.keys(child.props).includes('esClosesModalOnClick')) {
+			// If 'esClosesModalOnClick' or 'data-es-popover-close' is set, override the onClick listener.
+			if (Object.keys(child.props).includes('esClosesModalOnClick') || Object.keys(child.props).includes('data-es-popover-close')) {
 				return ({
 					...child,
 					props: {
