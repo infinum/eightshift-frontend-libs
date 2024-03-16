@@ -58,12 +58,7 @@ export const PopoverWithTrigger = (props) => {
 				return child;
 			}
 
-			let newChildren = child?.props?.children;
-
-			// If children are an array, process them as well.
-			if (Array.isArray(child?.props?.children)) {
-				newChildren = processChildItems(child.props.children);
-			}
+			const processedChildren = processChildItems(child?.props?.children);
 
 			// If 'esClosesModalOnClick' or 'data-es-popover-close' is set, override the onClick listener.
 			if (Object.keys(child.props).includes('esClosesModalOnClick') || Object.keys(child.props).includes('data-es-popover-close')) {
@@ -71,7 +66,7 @@ export const PopoverWithTrigger = (props) => {
 					...child,
 					props: {
 						...child.props,
-						children: newChildren,
+						children: processedChildren,
 						onClick: (e) => {
 							setIsOpen(false);
 
@@ -90,7 +85,7 @@ export const PopoverWithTrigger = (props) => {
 				...child,
 				props: {
 					...child.props,
-					children: newChildren,
+					children: processedChildren,
 					popoverClose: () => setIsOpen(false)
 				}
 			});
