@@ -91,6 +91,7 @@ export const Menu = (props) => {
 			contentClass={classnames('es-p-1 es-v-spaced es-gap-2px! es-min-w-48', popoverAdditionalClass)}
 			position='bottom right'
 			noArrow
+			additionalPopoverProps={isSubmenu && { offset: { mainAxis: -36 } }}
 			{...popoverProps}
 		>
 			{children}

@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [10.0.0] - 2024-03-18
+
+### Removed
+- Storybook is no longer part of Frontend Libs (Potentially breaking!)
+
+### Added
+- 1 new utility class: `focus-slight-button-border-wp` (as WP really likes using the `:focus` state, instead of `:focus-visible`)
+- `additionalPopoverProps` prop in `PopoverWithTrigger` for passing custom props
+- `data-es-popover-close` can now also close `PopoverWithTrigger` externally
+
+### Updated
+- Updated dependencies
+- Replaced `import-glob-loader` with `import-glob`, as the previous package was abandoned
+- Fixed `NumberPicker` spinners in Firefox
+- Fixed wrong types in doc blocks (`ColorPicker`)
+- Fixed `LinkInput` `fetchSuggestion` not working properly
+- Tweaked `Menu` submenu style
+- Fixed `PopoverWithTrigger` external closing prop passthrough
+
 ## [9.7.0] - 2024-03-08
 
 ### Added
@@ -1017,6 +1036,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[10.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.7.0...10.0.0
 [9.7.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.6.0...9.7.0
 [9.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.5.0...9.6.0
 [9.5.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.4.2...9.5.0

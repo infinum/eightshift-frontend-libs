@@ -922,6 +922,15 @@ $es-utility-props: (
 		'valuePrefix': 'inset 0 0 0 2px',
 		'includeNegativeValues': 'false',
 	),
+	'focus-slight-button-border-wp': (
+		'cssProp': 'box-shadow',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': ':focus',
+		'valuePrefix': 'inset 0 0 0 2px',
+		'includeNegativeValues': 'false',
+	),
 	'active-slight-button-border': (
 		'cssProp': 'box-shadow',
 		'values': $es-colors,

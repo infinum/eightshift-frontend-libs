@@ -126,7 +126,7 @@ module.exports = (options) => {
 					},
 				},
 				{
-					loader: 'import-glob-loader',
+					loader: 'import-glob',
 				},
 			],
 		});

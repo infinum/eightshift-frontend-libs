@@ -31,6 +31,13 @@
 				box-shadow: none !important;
 
 				width: var(--es-number-input-width) !important;
+
+				// Special case for Firefox, as it keeps ignoring appearance none on input[type=number]
+				// stylelint-disable-next-line max-nesting-depth
+				@supports (-moz-appearance: textfield) {
+					// stylelint-disable-next-line property-no-vendor-prefix
+					-moz-appearance: textfield;
+				}
 			}
 		}
 	}

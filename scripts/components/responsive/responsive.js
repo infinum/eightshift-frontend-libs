@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import ReactHtmlParser from 'react-html-parser';
 import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { classnames, getDefaultBreakpointNames } from '../../helpers';
@@ -108,10 +107,12 @@ export const Responsive = (props) => {
 					>
 						{currentInheritButton?.isActive &&
 							<span className='es-text-3 es-color-cool-gray-600'>
-								{
-									// eslint-disable-next-line max-len
-									ReactHtmlParser(sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))
-								}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel)
+									}}
+								/>
+
 								<br />
 								<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
 							</span>
@@ -119,10 +120,11 @@ export const Responsive = (props) => {
 
 						{!currentInheritButton?.isActive &&
 							<span className='es-color-cool-gray-600'>
-								{
-									// eslint-disable-next-line max-len
-									ReactHtmlParser(sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel))
-								}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel)
+									}}
+								/>
 							</span>
 						}
 					</Button>
