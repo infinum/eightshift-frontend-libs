@@ -4,13 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [11.0.0] - 2024-04-22
+## [11.0.0] - 2024-04-23
 
 ### Updated
 - Support for WordPress 6.5
 - Fixed rounding errors with `NumberPicker`
 - Updated dependencies
 - Fixed missing props for custom Wrapper
+- Tweaked `Repeater` style a bit
+- Reworked `AnimatedContentVisibility` to use Framer Motion instead of Gutenberg `Animation` component for better performance
 
 ### Removed
 - WP style overrides for WordPress < 6.3
