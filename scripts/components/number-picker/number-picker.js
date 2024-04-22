@@ -111,7 +111,7 @@ export const NumberPicker = (props) => {
 					max={max}
 					step={step}
 					value={value}
-					onChange={(value) => onChange(Number.isInteger(step) ? round(value, roundToDecimals) : parseInt(value))}
+					onChange={(value) => onChange(Number.isInteger(step) ? parseInt(value) : round(value, roundToDecimals))}
 					disabled={disabled}
 					isDragEnabled={!noDragToChange}
 					dragThreshold='20'
@@ -131,12 +131,12 @@ export const NumberPicker = (props) => {
 						aria-label={__('Increment', 'eightshift-frontend-libs')}
 						onClick={() => {
 							if (typeof value === 'undefined' || value?.length < 1) {
-								onChange(Number.isInteger(step) ? round(min, roundToDecimals) : min);
+								onChange(Number.isInteger(step) ? parseInt(min) : round(min, roundToDecimals));
 								return;
 							}
 
-							const value = Math.min(parseFloat(value) + step, max);
-							onChange(Number.isInteger(step) ? round(value, roundToDecimals) : parseInt(value));
+							const parsedValue = Math.min(parseFloat(value) + step, max);
+							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
 						className={classnames(spinnerButtonClass, !(disabled || value >= max) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value >= max}
@@ -146,12 +146,12 @@ export const NumberPicker = (props) => {
 						aria-label={__('Decrement', 'eightshift-frontend-libs')}
 						onClick={() => {
 							if (typeof value === 'undefined' || value?.length < 1) {
-								onChange(Number.isInteger(step) ? round(min, roundToDecimals) : min);
+								onChange(Number.isInteger(step) ? parseInt(min) : round(min, roundToDecimals));
 								return;
 							}
 
-							const value = Math.max(parseFloat(value) - step, min);
-							onChange(Number.isInteger(step) ? round(value, roundToDecimals) : parseInt(value));
+							const parsedValue = Math.max(parseFloat(value) - step, min);
+							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
 						className={classnames(spinnerButtonClass, !(disabled || value <= min) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value <= min}
