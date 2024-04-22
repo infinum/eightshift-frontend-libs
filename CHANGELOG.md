@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [11.0.0] - 2024-04-22
+
+### Updated
+- Support for WordPress 6.5
+- Fixed rounding errors with `NumberPicker`
+- Updated dependencies
+- Fixed missing props for custom Wrapper
+
+### Removed
+- WP style overrides for WordPress < 6.3
+
+### Important
+**Minimum required Node version is now 20!**
+
 ## [10.0.0] - 2024-03-18
 
 ### Removed
@@ -1036,6 +1050,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[11.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/10.0.0...11.0.0
 [10.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.7.0...10.0.0
 [9.7.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.6.0...9.7.0
 [9.6.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.5.0...9.6.0
