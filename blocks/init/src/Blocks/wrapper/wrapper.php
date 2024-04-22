@@ -49,6 +49,7 @@ if (! $wrapperUse || $wrapperNoControls) {
 	return;
 }
 
+$wrapperTag = Components::checkAttr('wrapperTag', $attributes, $manifest);
 $wrapperId = Components::checkAttr('wrapperId', $attributes, $manifest);
 $wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manifest);
 $wrapperMainClass = $attributes['componentClass'] ?? $manifest['componentClass'];
