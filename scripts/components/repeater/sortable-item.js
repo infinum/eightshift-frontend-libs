@@ -26,6 +26,9 @@ export const SortableItem = (props) => {
 		hideRemove,
 		additionalMenuOptions,
 		preIcon,
+		additionalItemContainerClass,
+		additionalLabelContainerClass,
+		noLeftInset = false,
 	} = props;
 
 	const [showChildren, setShowChildren] = useState(false);
@@ -62,8 +65,9 @@ export const SortableItem = (props) => {
 			!showChildren && !isActive && 'es-shadow-sm',
 			showChildren && !isActive && 'es-shadow-md',
 			isActive && 'es-shadow-lg es-z-10',
+			additionalLabelContainerClass,
 		)}>
-			<div className='es-display-flex es-items-center es-p-1'>
+			<div className={classnames('es-display-flex es-items-center es-py-1.5 es-pr-1.5', !noLeftInset && 'es-pl-2.5', additionalItemContainerClass)}>
 				{preIcon}
 
 				{itemLabel}
@@ -111,13 +115,13 @@ export const SortableItem = (props) => {
 				}
 			</div>
 
-			<AnimatedContentVisibility showIf={showChildren}>
-				{(Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length > 0 : props?.children) &&
+			{(Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length > 0 : props?.children) &&
+				<AnimatedContentVisibility showIf={showChildren}>
 					<div className='es-p-2 es-border-t-cool-gray-100'>
 						{props.children}
 					</div>
-				}
-			</AnimatedContentVisibility>
+				</AnimatedContentVisibility>
+			}
 		</div>
 	);
 };
