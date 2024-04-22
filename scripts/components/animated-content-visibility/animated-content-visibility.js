@@ -23,7 +23,7 @@ export const AnimatedContentVisibility = (props) => {
 			{showIf &&
 				<motion.div
 					initial={{
-						y: -4,
+						y: -8,
 						scaleY: 0.95,
 						opacity: 0,
 						transformOrigin: 'top center',
@@ -36,11 +36,10 @@ export const AnimatedContentVisibility = (props) => {
 							type: 'spring',
 							stiffness: 260,
 							damping: 20,
-							duration: 0.85,
 						},
 					}}
 					exit={{
-						y: -4,
+						y: -8,
 						scaleY: 0.95,
 						opacity: 0,
 						transition: {
