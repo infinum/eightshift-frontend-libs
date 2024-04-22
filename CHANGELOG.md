@@ -13,6 +13,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Fixed missing props for custom Wrapper
 - Tweaked `Repeater` style a bit
 - Reworked `AnimatedContentVisibility` to use Framer Motion instead of Gutenberg `Animation` component for better performance
+- Fixed extra line break in Responsive label
 
 ### Removed
 - WP style overrides for WordPress < 6.3

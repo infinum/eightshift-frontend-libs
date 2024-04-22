@@ -112,8 +112,6 @@ export const Responsive = (props) => {
 										__html: sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel)
 									}}
 								/>
-
-								<br />
 								<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
 							</span>
 						}
