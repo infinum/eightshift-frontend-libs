@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { SortableItem } from './sortable-item';
 import { Control } from '../base-control/base-control';
@@ -101,6 +101,8 @@ export const ReOrderable = (props) => {
 				setAttributes({ [attributeName]: arrayMove([...items], oldIndex, newIndex) });
 			}
 		}
+
+		setActive(null);
 	};
 
 	let strategyToUse = verticalListSortingStrategy;
@@ -128,6 +130,8 @@ export const ReOrderable = (props) => {
 		setAttributes({ [attributeName]: newItems });
 	}
 
+	const [active, setActive] = useState(null);
+
 	return (
 		<Control
 			icon={icon}
@@ -144,6 +148,8 @@ export const ReOrderable = (props) => {
 			<DndContext
 				sensors={sensors}
 				collisionDetection={rectIntersection}
+				onDragStart={({ active }) => setActive(active)}
+				onDragCancel={() => setActive(null)}
 				onDragEnd={handleDragEnd}
 				modifiers={[...modifiers, restrictToParentElement]}
 			>
@@ -164,6 +170,7 @@ export const ReOrderable = (props) => {
 									setAttributes({ [attributeName]: newArray });
 								}
 							)}
+							isActive={items?.[i]?.id === active?.id}
 							isFirst={i === 0}
 							isLast={i === items?.length - 1}
 							additionalLabelClass={item?.props?.additionalLabelClass}

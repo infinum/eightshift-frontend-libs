@@ -26,8 +26,8 @@ import { ColorPalette } from '../color-palette-custom/color-palette-custom';
  * @param {React.Component?} [props.label]                             - Label to represent the control
  * @param {React.Component?} [props.help]                              - Help text displayed below the control.
  * @param {string} [props.tooltip]                                     - Tooltip of the picker button (if label not provided).
- * @param {string} [props.expanded=false]                              - If `true`, the control is rendered in an expanded form.
- * @param {string} [props.border=false]                                - If `true`, the control is rendered with a border.
+ * @param {boolean} [props.expanded=false]                             - If `true`, the control is rendered in an expanded form.
+ * @param {boolean} [props.border=false]                               - If `true`, the control is rendered with a border.
  * @param {boolean?} [props.inlineLabel=false]                         - If `true`, the control is rendered inline.
  * @param {boolean?} [props.noBottomSpacing]                           - If `true`, the default bottom spacing is removed.
  * @param {boolean?} [props.reducedBottomSpacing]                      - If `true`, space below the control is reduced.

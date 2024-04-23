@@ -16,6 +16,7 @@ export const SortableItem = (props) => {
 		icon,
 		title,
 		subtitle,
+		isActive,
 		isFirst,
 		isLast,
 		additionalLabelClass,
@@ -39,8 +40,8 @@ export const SortableItem = (props) => {
 	const additionalTriggerProps = noReordering ? {
 		disabled: 'disabled',
 	} : {
-		...attributes,
 		...listeners,
+		...attributes,
 	};
 
 	// eslint-disable-next-line max-len
@@ -50,30 +51,26 @@ export const SortableItem = (props) => {
 
 	return (
 		<div ref={setNodeRef} style={style} className={classnames(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}>
-			<div className={classnames('es-display-flex es-items-center es-gap-1 es-py-1', innerClass)} >
+			<div className={classnames('es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition', isActive && 'es-bg-cool-gray-50', innerClass)} >
 				{preIcon}
 
 				{noReordering && itemLabel}
 
 				{!noReordering &&
-					<button
-						className={
-							classnames(
-								'es-button-reset es-text-align-left es-h-between es-user-select-none es-color-current! es-cursor-pointer',
-								!horizontal && !horizontalVertical && 'es-w-full'
-							)}
-						{...additionalTriggerProps}
-					>
+					<div className={classnames('es-text-align-left es-h-between', !horizontal && !horizontalVertical && 'es-w-full')}>
 						{itemLabel}
 
-						{!customGrabHandle &&
-							<div className='es-nested-color-cool-gray-400 es-line-h-0'>
-								{icons.reorderGrabberV}
-							</div>
-						}
-
-						{customGrabHandle}
-					</button>
+						<button
+							className={classnames(
+								'es-button-reset',
+								!customGrabHandle && 'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition',
+								!customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!'
+							)}
+							{...additionalTriggerProps}
+						>
+							{customGrabHandle ?? icons.reorderGrabberV}
+						</button>
+					</div>
 				}
 
 				{postIcon}

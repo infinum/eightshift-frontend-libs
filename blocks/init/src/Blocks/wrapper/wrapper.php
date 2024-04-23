@@ -17,6 +17,7 @@ $wrapperNoControls = Components::checkAttr('wrapperNoControls', $attributes, $ma
 $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
 $wrapperSimple = Components::checkAttr('wrapperSimple', $attributes, $manifest);
 $wrapperUseInner = Components::checkAttr('wrapperUseInner', $attributes, $manifest);
+$wrapperOnlyOutput = Components::checkAttr('wrapperOnlyOutput', $attributes, $manifest);
 $wrapperManualContent = Components::checkAttr('wrapperManualContent', $attributes, $manifest);
 
 // Used to provide manual content using render method.
@@ -30,11 +31,15 @@ if (! $wrapperUse || $wrapperNoControls) {
 			<div class="' , esc_attr($wrapperParentClass . '__item-inner') , '">';
 	}
 
-	$this->renderWrapperView(
-		$templatePath,
-		$attributes,
-		$innerBlockContent
-	);
+	if ($wrapperOnlyOutput) {
+		echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+	} else {
+		$this->renderWrapperView(
+			$templatePath,
+			$attributes,
+			$innerBlockContent
+		);
+	}
 
 	if ($wrapperParentClass) {
 			echo '</div>
@@ -79,20 +84,28 @@ $attributes["uniqueWrapperId"] = $unique;
 	<?php if ($wrapperUseInner) { ?>
 		<div class="<?php echo esc_attr($wrapperInnerClass); ?>">
 			<?php
+			if ($wrapperOnlyOutput) {
+				echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+			} else {
 				$this->renderWrapperView(
 					$templatePath,
 					$attributes,
 					$innerBlockContent
 				);
+			}
 			?>
 		</div>
 		<?php
 	} else {
-		$this->renderWrapperView(
-			$templatePath,
-			$attributes,
-			$innerBlockContent
-		);
+		if ($wrapperOnlyOutput) {
+			echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		} else {
+			$this->renderWrapperView(
+				$templatePath,
+				$attributes,
+				$innerBlockContent
+			);
+		}
 	}
 	?>
 </<?php echo esc_attr($wrapperTag); ?>>

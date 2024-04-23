@@ -15,12 +15,39 @@
 		}
 	}
 
-	.components-button > svg {
-		transition: {
-			// stylelint-disable-next-line declaration-no-important
-			property: color, background-color, border-color, text-decoration-color, fill, stroke !important;
-			timing-function: var(--es-ease-out-cubic);
-			duration: 0.3s;
+	.es-number-picker-input {
+		.components-input-control {
+			&__backdrop {
+				display: none !important;
+			}
+
+			&__container {
+				border: none !important;
+				box-shadow: none !important;
+				background: none !important;
+
+				min-height: auto !important;
+			}
+
+			&__input {
+				appearance: none;
+
+				margin: 0 !important;
+				padding: 0 !important;
+				min-height: auto !important;
+
+				border: none !important;
+				box-shadow: none !important;
+
+				width: var(--es-number-input-width) !important;
+
+				// Special case for Firefox, as it keeps ignoring appearance none on input[type=number]
+				// stylelint-disable-next-line max-nesting-depth
+				@supports (-moz-appearance: textfield) {
+					// stylelint-disable-next-line property-no-vendor-prefix
+					-moz-appearance: textfield;
+				}
+			}
 		}
 	}
 }

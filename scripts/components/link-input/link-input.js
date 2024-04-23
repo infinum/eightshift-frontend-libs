@@ -121,22 +121,26 @@ export const LinkInput = ({
 			setSuggestionsVisible(true);
 			setIsLoadingSuggestions(true);
 
-			const fetchFunction = fetchSuggestions ?? getFetchWpApi('search', {
-				processId: ({ url }) => url,
-				processLabel: ({ title }) => unescapeHTML(title),
-				processMetadata: ({ type, subtype }) => ({ type, subtype }),
-				additionalParam: {
-					search: debouncedInputValue,
-					type: 'post',
-					_locale: 'user',
-					per_page: 5,
-				},
-				noCache: true,
-				searchColumns: 'post_title',
-				fields: 'id,title,type,subtype,url',
-			});
+			let items;
 
-			const items = await fetchFunction();
+			if (fetchSuggestions) {
+				items = await fetchSuggestions(debouncedInputValue);
+			} else {
+				items = await getFetchWpApi('search', {
+					processId: ({ url }) => url,
+					processLabel: ({ title }) => unescapeHTML(title),
+					processMetadata: ({ type, subtype }) => ({ type, subtype }),
+					additionalParam: {
+						search: debouncedInputValue,
+						type: 'post',
+						_locale: 'user',
+						per_page: 5,
+					},
+					noCache: true,
+					searchColumns: 'post_title',
+					fields: 'id,title,type,subtype,url',
+				})();
+			}
 
 			setIsLoadingSuggestions(false);
 			setShownSuggestions(items);

@@ -1,5 +1,3 @@
 .es-submenu-popover {
-	// stylelint-disable-next-line declaration-no-important
-	left: calc(100% - 0.25rem) !important;
-	translate: 0 -2.25rem;
+	translate: calc(100% - 0.5rem) 0;
 }
