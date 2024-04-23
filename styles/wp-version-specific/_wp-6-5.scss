@@ -1,7 +1,8 @@
 // stylelint-disable
 
-// WP 6.1 fixes
-body.branch-6-1 {
+// WP 6.5 fixes
+body.branch-6-5,
+body.sb-main-padded {
 	// Fix label casing.
 	.components-base-control__label {
 		text-transform: inherit !important;
@@ -76,5 +77,41 @@ body.branch-6-1 {
 			pointer-events: all;
 		}
 	}
+
+	// Fix NumberPicker margin.
+	.components-base-control.components-input-control.components-number-control {
+		margin-bottom: 0 !important;
+	}
+
+	// Fix inserter block icons on hover.
+	.components-button.block-editor-block-types-list__item:not(:disabled):hover svg {
+		color:currentColor !important;
+	}
+
+	// Improve sidebar block icon.
+	.block-editor-inserter__preview-container .block-editor-block-card,
+	.block-editor-block-inspector .block-editor-block-card {
+		span {
+			line-height: 0;
+		}
+
+		svg {
+			width: 1.875rem !important;
+			height: 1.875rem !important;
+			max-width: 1.875rem;
+			max-height: 1.875rem;
+		}
+	}
+
+	// Fix buttons with icon & text having extra padding.
+	.components-button.has-icon.has-text {
+		padding-right: 6px; // Default WP value.
+	}
+
+	// Add some line height to the post title.
+	.wp-block-post-title.editor-post-title.editor-post-title__input {
+		line-height: 1.1 !important;
+	}
 }
+
 // stylelint-enable
