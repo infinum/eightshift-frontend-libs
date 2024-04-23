@@ -81,6 +81,9 @@ export const NumberPicker = (props) => {
 		roundToDecimals = 2,
 	} = props;
 
+	const spinnerButtonClass = 'es-w-4! es-h-3! es-min-w-4! es-rounded-1! es-button-icon-12 es-p-0! es-hover-bg-cool-gray-100! es-transition';
+	const prefixSuffixDefaultClass = 'es-user-select-none es-color-cool-gray-450';
+
 	return (
 		<Control
 			icon={icon}
@@ -115,15 +118,16 @@ export const NumberPicker = (props) => {
 					shiftStep={(typeof inputField === 'object' && inputField?.shiftStep > 0) ? inputField.shiftStep : 10}
 					isShiftStepEnabled
 					spinControls='none'
-					className='es-number-picker-input-value'
-					style={fixedWidth ? { width: `calc(1rem ${min < 0 ? '+ 0.5rem ' : ''} + ${fixedWidth} * 1ch)` } : {}}
+					className='es-number-picker-input es-m-0-bcf! es-p-0-bcf! es-m-0! es-p-0! es-border-none!'
 					placeholder={placeholder}
 					__nextHasNoMarginBottom
 				/>
 
-				<div className='es-display-flex es-flex-col es-h-full es-has-enhanced-contrast-icon'>
+				{suffix && <span className={classnames('es-mr-0.5', suffixClass ?? prefixSuffixDefaultClass)}>{suffix}</span>}
+
+				<div className='es-display-flex es-flex-col'>
 					<Button
-						icon={icons.chevronUp}
+						icon={icons.caretUpFill}
 						aria-label={__('Increment', 'eightshift-frontend-libs')}
 						onClick={() => {
 							if (typeof value === 'undefined' || value?.length < 1) {
@@ -134,17 +138,11 @@ export const NumberPicker = (props) => {
 							const parsedValue = Math.min(parseFloat(value) + step, max);
 							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
-						className={classnames(
-							// eslint-disable-next-line max-len
-							'es-w-4! es-min-w-4! es-rounded-0! es-rounded-tr-0.75! es-button-icon-10 es-border-y-cool-gray-400! es-border-r-cool-gray-400! es-p-0!',
-							value >= max
-								? 'es-opacity-100! es-nested-color-cool-gray-100!'
-								: 'es-nested-color-cool-gray-700! es-active-bg-cool-gray-50! es-active-nested-color-admin-accent!'
-						)}
+						className={classnames(spinnerButtonClass, !(disabled || value >= max) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value >= max}
 					/>
 					<Button
-						icon={icons.chevronDown}
+						icon={icons.caretDownFill}
 						aria-label={__('Decrement', 'eightshift-frontend-libs')}
 						onClick={() => {
 							if (typeof value === 'undefined' || value?.length < 1) {
@@ -155,16 +153,20 @@ export const NumberPicker = (props) => {
 							const parsedValue = Math.max(parseFloat(value) - step, min);
 							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
-						className={classnames(
-							// eslint-disable-next-line max-len
-							'es-w-4! es-min-w-4! es-rounded-0! es-rounded-br-0.75! es-button-icon-10 es-border-b-cool-gray-400! es-border-r-cool-gray-400! es-p-0!',
-							value <= min
-								? 'es-opacity-100! es-nested-color-cool-gray-100!'
-								: 'es-nested-color-cool-gray-700! es-active-bg-cool-gray-50! es-active-nested-color-admin-accent!'
-						)}
+						className={classnames(spinnerButtonClass, !(disabled || value <= min) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value <= min}
 					/>
 				</div>
+
+				{extraButton && !noExtraButtonSeparator &&
+					<div className='es-w-px es-h-9 -es-my-1 es-ml-0.5 es-bg-cool-gray-400' />
+				}
+
+				{extraButton &&
+					<div className='es-h-spaced es-px-0.5'>
+						{extraButton}
+					</div>
+				}
 			</div>
 		</Control>
 	);
