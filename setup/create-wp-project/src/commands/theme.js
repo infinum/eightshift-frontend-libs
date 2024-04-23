@@ -36,6 +36,15 @@ exports.handler = async (argv) => {
 	await clearConsole();
 	await writeIntro();
 
+	// Check if you are in the required folder.
+	const { path: requiredPath, isCorrectFolder } = await installPath('themes');
+
+	if (!isCorrectFolder) {
+			console.log(chalk.red('Error: You must run this script from the "themes" directory.'));
+			process.exit(1);
+	}
+
+
 	// Trigger prompts if any of the required arguments was not set
 	const promptedInfo = await maybePrompt(scriptArguments, argv);
 
@@ -44,7 +53,6 @@ exports.handler = async (argv) => {
 	alertBox("Sit back and relax!\n", 'Setting up theme', 'success', { omitLastLine: true });
 
 	// Check if you are in the required folder
-	const requiredPath = await installPath('themes');
 	const projectPath = path.join(requiredPath, promptedInfo.package);
 	const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
 	const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
