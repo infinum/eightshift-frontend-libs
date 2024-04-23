@@ -3,7 +3,7 @@
  *
  */
 
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-v3-webpack-plugin');
 
 // Define developmentConfig setup.
 module.exports = (options) => {

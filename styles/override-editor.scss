@@ -168,10 +168,9 @@ body {
 @import './es-gutenberg-component-style-updates.scss';
 
 // WP-version-specific fixes
-@import './wp-version-specific/wp-6-1';
-@import './wp-version-specific/wp-6-2';
 @import './wp-version-specific/wp-6-3';
 @import './wp-version-specific/wp-6-4';
+@import './wp-version-specific/wp-6-5';
 
 @import './es-utility-classes.scss';
 @import './es-component-styles.scss';

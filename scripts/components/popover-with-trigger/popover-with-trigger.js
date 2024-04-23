@@ -13,6 +13,7 @@ import { Popover } from '@wordpress/components';
  * @param {React.Component?} props.children                   - Popover contents.
  * @param {function?} [props.additionalCloseActions]          - If provided, will be run before the popover closes.
  * @param {boolean} [props.allowCloseFromChildren=false]      - If `true`, child items are injected with a `popoverClose` prop that closes the popover when called.
+ * @param {object?} [props.additionalPopoverProps]            - If passed, the props are passed to the Popover component.
  * @returns
  */
 export const PopoverWithTrigger = (props) => {
@@ -29,6 +30,8 @@ export const PopoverWithTrigger = (props) => {
 		additionalCloseActions,
 
 		allowCloseFromChildren = false,
+
+		additionalPopoverProps,
 	} = props;
 
 	const ref = useRef();
@@ -55,20 +58,15 @@ export const PopoverWithTrigger = (props) => {
 				return child;
 			}
 
-			let newChildren = child?.props?.children;
+			const processedChildren = processChildItems(child?.props?.children);
 
-			// If children are an array, process them as well.
-			if (Array.isArray(child?.props?.children)) {
-				newChildren = processChildItems(child.props.children);
-			}
-
-			// If 'esClosesModalOnClick' is set, override the onClick listener.
-			if (Object.keys(child.props).includes('esClosesModalOnClick')) {
+			// If 'esClosesModalOnClick' or 'data-es-popover-close' is set, override the onClick listener.
+			if (Object.keys(child.props).includes('esClosesModalOnClick') || Object.keys(child.props).includes('data-es-popover-close')) {
 				return ({
 					...child,
 					props: {
 						...child.props,
-						children: newChildren,
+						children: processedChildren,
 						onClick: (e) => {
 							setIsOpen(false);
 
@@ -87,7 +85,7 @@ export const PopoverWithTrigger = (props) => {
 				...child,
 				props: {
 					...child.props,
-					children: newChildren,
+					children: processedChildren,
 					popoverClose: () => setIsOpen(false)
 				}
 			});
@@ -115,6 +113,7 @@ export const PopoverWithTrigger = (props) => {
 					noArrow={noArrow}
 					position={position}
 					className={popoverClass}
+					{...additionalPopoverProps}
 				>
 					<div className={contentClass}>
 						{!allowCloseFromChildren && children}

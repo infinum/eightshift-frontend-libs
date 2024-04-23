@@ -320,7 +320,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'border-t': (
-		'cssProp': 'border-top',
+		'cssProp': 'border-block-start',
 		'values': $es-colors,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -329,7 +329,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'border-b': (
-		'cssProp': 'border-bottom',
+		'cssProp': 'border-block-end',
 		'values': $es-colors,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -338,7 +338,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'border-l': (
-		'cssProp': 'border-left',
+		'cssProp': 'border-inline-start',
 		'values': $es-colors,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -347,7 +347,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'border-r': (
-		'cssProp': 'border-right',
+		'cssProp': 'border-inline-end',
 		'values': $es-colors,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -392,7 +392,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'mt': (
-		'cssProp': 'margin-top',
+		'cssProp': 'margin-block-start',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -401,7 +401,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'mb': (
-		'cssProp': 'margin-bottom',
+		'cssProp': 'margin-block-end',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -410,7 +410,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'ml': (
-		'cssProp': 'margin-left',
+		'cssProp': 'margin-inline-start',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -419,7 +419,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'mr': (
-		'cssProp': 'margin-right',
+		'cssProp': 'margin-inline-end',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -455,7 +455,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'pt': (
-		'cssProp': 'padding-top',
+		'cssProp': 'padding-block-start',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -464,7 +464,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'pb': (
-		'cssProp': 'padding-bottom',
+		'cssProp': 'padding-block-end',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -473,7 +473,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'pl': (
-		'cssProp': 'padding-left',
+		'cssProp': 'padding-inline-start',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -482,7 +482,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'pr': (
-		'cssProp': 'padding-right',
+		'cssProp': 'padding-inline-end',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -500,7 +500,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'w': (
-		'cssProp': 'width',
+		'cssProp': 'inline-size',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -509,7 +509,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'true',
 	),
 	'h': (
-		'cssProp': 'height',
+		'cssProp': 'block-size',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'true',
@@ -626,7 +626,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'rounded-tl': (
-		'cssProp': 'border-top-left-radius',
+		'cssProp': 'border-start-start-radius',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -635,7 +635,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'rounded-tr': (
-		'cssProp': 'border-top-right-radius',
+		'cssProp': 'border-start-end-radius',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -644,7 +644,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'rounded-bl': (
-		'cssProp': 'border-bottom-left-radius',
+		'cssProp': 'border-end-start-radius',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -653,7 +653,7 @@ $es-utility-props: (
 		'includeNegativeValues': 'false',
 	),
 	'rounded-br': (
-		'cssProp': 'border-bottom-right-radius',
+		'cssProp': 'border-end-end-radius',
 		'values': $es-spacings,
 		'additionalSelector': '',
 		'includeBcfSelectors': 'false',
@@ -922,6 +922,15 @@ $es-utility-props: (
 		'valuePrefix': 'inset 0 0 0 2px',
 		'includeNegativeValues': 'false',
 	),
+	'focus-slight-button-border-wp': (
+		'cssProp': 'box-shadow',
+		'values': $es-colors,
+		'additionalSelector': '',
+		'includeBcfSelectors': 'false',
+		'selectorSuffix': ':focus',
+		'valuePrefix': 'inset 0 0 0 2px',
+		'includeNegativeValues': 'false',
+	),
 	'active-slight-button-border': (
 		'cssProp': 'box-shadow',
 		'values': $es-colors,
@@ -1159,19 +1168,19 @@ $es-utility-props: (
 }
 
 .es-border-t {
-	border-top: 1px solid currentColor;
+	border-block-start: 1px solid currentColor;
 }
 
 .es-border-b {
-	border-bottom: 1px solid currentColor;
+	border-block-end: 1px solid currentColor;
 }
 
 .es-border-l {
-	border-left: 1px solid currentColor;
+	border-inline-start: 1px solid currentColor;
 }
 
 .es-border-r {
-	border-right: 1px solid currentColor;
+	border-inline-end: 1px solid currentColor;
 }
 
 .es-border-x {
@@ -1246,6 +1255,70 @@ $es-utility-props: (
 	}
 }
 
+// Special 'size' utility class (w + h).
+@each $name, $value in $es-spacings {
+	.es-size-#{$name} {
+		block-size: #{$value};
+		inline-size: #{$value};
+	}
+
+	.es-size-#{$name}\! {
+		block-size: #{$value} !important;
+		inline-size: #{$value} !important;
+	}
+
+	.es-min-size-#{$name} {
+		min-block-size: #{$value};
+		min-inline-size: #{$value};
+	}
+
+	.es-min-size-#{$name}\! {
+		min-block-size: #{$value} !important;
+		min-inline-size: #{$value} !important;
+	}
+
+	.es-max-size-#{$name} {
+		max-block-size: #{$value};
+		max-inline-size: #{$value};
+	}
+
+	.es-max-size-#{$name}\! {
+		max-block-size: #{$value} !important;
+		max-inline-size: #{$value} !important;
+	}
+
+	// 'nested' variants
+	.es-nested-size-#{$name} svg {
+		block-size: #{$value};
+		inline-size: #{$value};
+	}
+
+	.es-nested-size-#{$name}\! svg {
+		block-size: #{$value} !important;
+		inline-size: #{$value} !important;
+	}
+
+	.es-min-size-#{$name} svg {
+		min-block-size: #{$value};
+		min-inline-size: #{$value};
+	}
+
+	.es-min-size-#{$name}\! svg {
+		min-block-size: #{$value} !important;
+		min-inline-size: #{$value} !important;
+	}
+
+	.es-max-size-#{$name} svg {
+		max-block-size: #{$value};
+		max-inline-size: #{$value};
+	}
+
+	.es-max-size-#{$name}\! svg {
+		max-block-size: #{$value} !important;
+		max-inline-size: #{$value} !important;
+	}
+}
+
 @each $size, $value in $es-square-button-sizes {
 	.es-button-square-#{$size} {
 		width: #{$value} !important;
@@ -1282,16 +1355,15 @@ $es-utility-props: (
 
 // Default WP field spacing.
 .es-has-wp-field-v-space {
-	margin-top: 1.5rem;
-	margin-bottom: 1.5rem;
+	margin-block: 1.5rem;
 }
 
 .es-has-wp-field-b-space {
-	margin-bottom: 1.5rem;
+	margin-block-end: 1.5rem;
 }
 
 .es-has-wp-field-t-space {
-	margin-top: 1.5rem;
+	margin-block-start: 1.5rem;
 }
 
 // A11y high-visibility outline.
@@ -1614,10 +1686,10 @@ $es-utility-props: (
 
 // Helper to disable default Gutenberg field spacing (e.g. for inlining input fields).
 .es-no-field-spacing {
-	margin-bottom: 0 !important;
+	margin-block-end: 0 !important;
 
 	.components-base-control__field {
-		margin-bottom: 0 !important;
+		margin-block-end: 0 !important;
 	}
 }
 
