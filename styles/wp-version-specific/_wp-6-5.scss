@@ -91,7 +91,24 @@ body.sb-main-padded {
 	// Improve sidebar block icon.
 	.block-editor-inserter__preview-container .block-editor-block-card,
 	.block-editor-block-inspector .block-editor-block-card {
-		span {
+		align-items: center;
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		&__title {
+			padding: 0 !important;
+		}
+
+		&__description {
+			margin-top: 0 !important;
+		}
+
+		// Align icon properly.
+		.block-editor-block-icon > span {
 			line-height: 0;
 		}
 
