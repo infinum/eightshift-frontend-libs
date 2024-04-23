@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [11.0.1] - 2024-04-23
+
+### Updated
+- Fixed block editor sidebar block display with long labels
+
 ## [11.0.0] - 2024-04-23
 
 ### Updated
@@ -1053,6 +1058,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[11.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/11.0.0...11.0.1
 [11.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/10.0.0...11.0.0
 [10.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.7.0...10.0.0
 [9.7.0]: https://github.com/infinum/eightshift-frontend-libs/compare/9.6.0...9.7.0
