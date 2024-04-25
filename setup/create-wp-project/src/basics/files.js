@@ -13,15 +13,15 @@ const installPath = async (requiredFolder = 'themes') => {
   const currentPath = path.join(process.cwd());
   const currentDirName = path.basename(currentPath);
 
-	if (currentDirName === requiredFolder) {
-			return { path: currentPath, isCorrectFolder: true };
-	}
+  if (currentDirName === requiredFolder) {
+    return currentPath;
+  }
 
   const requiredPath = (currentDirName === 'wp-content') ?
     `${currentPath}/${requiredFolder}` :
     `${currentPath}/wp-content/${requiredFolder}`;
 
-	return { path: requiredPath, isCorrectFolder: false };
+  return requiredPath;
 };
 
 /**

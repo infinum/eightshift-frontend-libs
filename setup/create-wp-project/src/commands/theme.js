@@ -36,14 +36,38 @@ exports.handler = async (argv) => {
 	await clearConsole();
 	await writeIntro();
 
-	// Check if you are in the required folder.
-	const { path: requiredPath, isCorrectFolder } = await installPath('themes');
+	const fs = require('fs');
 
-	if (!isCorrectFolder) {
-			console.log(chalk.red('Error: You must run this script from the "themes" directory.'));
-			process.exit(1);
+	const findProjectRoot = (currentDir) => {
+		if (!currentDir || currentDir === '/') {
+			// Reached the root without finding wp-config.php
+			return null;
+		}
+
+		const wpConfigPath = path.join(currentDir, 'wp-config.php');
+		const wpConfigExists = fs.existsSync(wpConfigPath);
+
+		if (wpConfigExists) {
+			// Found wp-config.php, return the current directory as the project root
+			return currentDir;
+		}
+
+		// Move up one directory level and continue the search
+		const parentDir = path.dirname(currentDir);
+		return findProjectRoot(parentDir);
+	};
+
+	// Find the root directory of the WordPress project
+	const rootDir = findProjectRoot(process.cwd());
+
+	if (!rootDir) {
+		console.error('Unable to find project root.');
+		process.exit(1);
 	}
 
+	// Now you have the root directory, you can navigate to the themes folder relative to it
+	const themesDir = path.join(rootDir, 'wp-content', 'themes');
+	process.chdir(themesDir);
 
 	// Trigger prompts if any of the required arguments was not set
 	const promptedInfo = await maybePrompt(scriptArguments, argv);
@@ -53,6 +77,7 @@ exports.handler = async (argv) => {
 	alertBox("Sit back and relax!\n", 'Setting up theme', 'success', { omitLastLine: true });
 
 	// Check if you are in the required folder
+	const requiredPath = await installPath('themes');
 	const projectPath = path.join(requiredPath, promptedInfo.package);
 	const boilerplateRepoUrl = argv.eightshiftBoilerplateRepo ?? 'https://github.com/infinum/eightshift-boilerplate.git';
 	const boilerplateRepoBranch = argv.eightshiftBoilerplateBranch ?? '';
