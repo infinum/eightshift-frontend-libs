@@ -65,7 +65,7 @@ exports.handler = async (argv) => {
 		process.exit(1);
 	}
 
-	// Now you have the root directory, you can navigate to the themes folder relative to it
+	// The root directory, navigate to the themes folder
 	const themesDir = path.join(rootDir, 'wp-content', 'themes');
 	process.chdir(themesDir);
 
