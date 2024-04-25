@@ -24,6 +24,7 @@ const { scriptArguments } = require('../arguments');
 const { installModifiedComposerDependencies, installModifiedNodeDependencies } = require('../dependencies');
 const { alertBox } = require('../basics/misc');
 const chalk = require('chalk');
+const { navigateToDirectory } = require('../navigate-to-directory');
 
 exports.command = 'plugin';
 exports.desc = 'Setup a new WordPress plugin. Should be run inside your plugins folder (wp-content/plugins).';
@@ -36,6 +37,9 @@ exports.handler = async (argv) => {
 	const promptedInfo = await maybePrompt(scriptArguments, argv);
 	const requiredPath = await installPath('plugins');
 	const projectPath = path.join(requiredPath, promptedInfo.package);
+
+	// Navigate to the plugins directory
+	navigateToDirectory('plugins');
 
 	log('');
 
