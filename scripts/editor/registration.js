@@ -58,8 +58,8 @@ export const registerBlocks = (
 	overridesComponentPath = null,
 ) => {
 
-	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
-	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
+	const componentsManifest = componentsManifestPath ? componentsManifestPath.keys().map(componentsManifestPath) : [];
+	const blocksManifests = blocksManifestPath ? blocksManifestPath.keys().map(blocksManifestPath): [];
 
 	// Set all store values.
 	setStore();
