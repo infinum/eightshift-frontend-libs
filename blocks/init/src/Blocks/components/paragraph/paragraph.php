@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest);
@@ -36,7 +35,7 @@ $paragraphClass = Components::classnames([
 ]);
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); ?>
+<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
 
 <p class="<?php echo esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php

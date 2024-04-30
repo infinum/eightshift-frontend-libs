@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
@@ -33,7 +32,7 @@ if (!$taxonomyName) {
 	data-id="<?php echo esc_attr($unique); ?>"
 >
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
 	$args = [
 		'hide_empty' => false,

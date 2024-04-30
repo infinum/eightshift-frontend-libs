@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $quoteUse = Components::checkAttr('quoteUse', $attributes, $manifest);

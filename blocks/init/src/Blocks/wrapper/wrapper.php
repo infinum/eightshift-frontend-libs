@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 1));
 $manifest = Components::getManifest(__DIR__);
 
 // Used to add or remove wrapper.
@@ -71,7 +70,7 @@ $attributes["uniqueWrapperId"] = $unique;
 	<?php echo $wrapperId ? 'id="' . esc_attr($wrapperId) . '"' : ''; ?>
 	>
 	<?php
-	 echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	 echo Components::outputCssVariables($attributes, $manifest, $unique);
 	?>
 	<?php if ($wrapperAnchorId) { ?>
 		<div

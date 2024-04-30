@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $buttonUse = Components::checkAttr('buttonUse', $attributes, $manifest);
@@ -62,7 +61,7 @@ $buttonTag = $buttonUrl ? 'a' : 'button';
 ?>
 
 <?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	echo Components::outputCssVariables($attributes, $manifest, $unique);
 ?>
 
 <?php // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>

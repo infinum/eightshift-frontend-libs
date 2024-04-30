@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $headFavicon = Components::checkAttr('headFavicon', $attributes, $manifest);
@@ -54,4 +53,4 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 
 
 <?php
-echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+echo Components::outputCssVariablesGlobal(); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

@@ -8,7 +8,6 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
 $manifest = Components::getManifest(__DIR__);
 
 $jumbotronUse = Components::checkAttr('jumbotronUse', $attributes, $manifest);
@@ -35,7 +34,7 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 
 <div class="<?php echo esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>" role="region">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
 	echo Components::render('image', Components::props('image', $attributes, [
 		'blockClass' => $componentClass,
