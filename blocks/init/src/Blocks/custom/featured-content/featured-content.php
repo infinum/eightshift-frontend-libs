@@ -111,13 +111,14 @@ $loadMoreId = "{$blockName}-{$unique}";
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
-	$cards = Components::renderPartial(
-		'block',
-		$blockName,
+	$cards = Components::render(
 		'cards',
 		[
 			'items' => $mainQuery->posts,
-		]
+		],
+		'blocks',
+		false,
+		"{$blockName}/partials"
 	);
 
 	echo Components::render(
