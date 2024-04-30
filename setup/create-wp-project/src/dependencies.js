@@ -1,18 +1,18 @@
 const { installNodePackage, installComposerPackage } = require('./basics/command-line');
 
 const eightshiftLibsName = '';
-const eightshiftLibsRepo = 'infinum/eightshift-libs';
+const defaultEightshiftLibsRepo = 'infinum/eightshift-libs';
 const eightshiftFrontendLibsRepo = 'infinum/eightshift-frontend-libs';
 const eightshiftFrontendLibsRepoUrl = 'https://github.com/infinum/eightshift-frontend-libs';
 
 /**
- * Check if we need to modify dependencies (if user passed an alternative branch for any dependency
+ * Check if we need to modify dependencies (if user passed an alternative branch or repo for any dependency
  * as argument)
  *
  * @param {object} argv List of CLI arguments.
  */
 const areDependenciesModified = (argv) => {
-  return argv.eightshiftLibsBranch || argv.eightshiftFrontendLibsBranch;
+  return argv.eightshiftLibsBranch || argv.eightshiftFrontendLibsBranch || argv.eightshiftLibsRepo;
 };
 
 /**
@@ -26,12 +26,14 @@ const installModifiedNodeDependencies = async (projectPath, branch) => {
 };
 
 /**
- * Installs composer packages and modifies the libs to a specific branch.
+ * Installs composer packages and modifies the libs to a specific branch or repo.
  *
  * @param {string} projectPath Path to the project.
  * @param {array} branch Name of the branch to pull from.
+ * @param {string} repo Custom repository to use if provided.
  */
-const installModifiedComposerDependencies = async (projectPath, branch) => {
+const installModifiedComposerDependencies = async (projectPath, branch, repo) => {
+  const eightshiftLibsRepo = repo || defaultEightshiftLibsRepo;
   return installComposerPackage(projectPath, `${eightshiftLibsRepo}:dev-${branch}`);
 };
 

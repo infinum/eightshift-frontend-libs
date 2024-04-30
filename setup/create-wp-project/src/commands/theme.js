@@ -84,7 +84,7 @@ exports.handler = async (argv) => {
 	if (argv.eightshiftLibsBranch) {
 		await installStep({
 			describe: `Installing Composer packages`,
-			thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch),
+			thisHappens: installModifiedComposerDependencies(projectPath, argv.eightshiftLibsBranch, argv.eightshiftLibsRepo),
 		});
 	} else {
 		await installStep({

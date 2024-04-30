@@ -36,11 +36,13 @@ To make sure you use the latest version of npx command you can add `@latest` fla
 
 ## Specify version to create
 
-If you want to specify a version of Eightshift Libs or Frontend Libs to use, you can use add two additional attributes to this command to specify a branch or release to use:
+If you want to specify a version of Eightshift Libs, Frontend Libs or repository to use, you can use add two additional attributes to this command to specify a branch, release or repository to use:
 
 ```
+--eightshiftLibsRepo
 --eightshiftLibsBranch
 --eightshiftFrontendLibsBranch
+
 ```
 
 Example:
@@ -54,6 +56,12 @@ You can also specify the version of the create-wp-project script like this:
 
 ```
 npx create-wp-project@2.0.12 --eightshiftLibsBranch="release/6.0.0" --eightshiftFrontendLibsBranch="develop"
+```
+
+You can also specify the repo of the create-wp-project script like this:
+
+```
+npx create-wp-project --eightshiftLibsRepo="https://github.com/example-repository/eightshift-libs.git"
 ```
 
 

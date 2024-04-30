@@ -55,6 +55,13 @@ const scriptArguments = {
 		type: 'text',
 		skipPrompt: true,
 	},
+	eightshiftLibsRepo: {
+		name: 'eightshiftLibsRepo',
+		describe: 'Custom repository URL for the eightshift-libs (e.g., github.com/user/eightshift-libs).',
+		type: 'text',
+		// default: 'infinum/eightshift-libs', // Setting default to ensure backward compatibility
+		skipPrompt: true,
+	},
 	eightshiftLibsBranch: {
 		name: 'eightshiftLibsBranch',
 		describe: 'Use this to override which infinum/eightshift-libs version is loaded (mainly used for testing).',
