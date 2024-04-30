@@ -17,32 +17,18 @@ $wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $
 $wrapperSimple = Components::checkAttr('wrapperSimple', $attributes, $manifest);
 $wrapperUseInner = Components::checkAttr('wrapperUseInner', $attributes, $manifest);
 $wrapperOnlyOutput = Components::checkAttr('wrapperOnlyOutput', $attributes, $manifest);
-$wrapperManualContent = Components::checkAttr('wrapperManualContent', $attributes, $manifest);
-
-// Used to provide manual content using render method.
-if (!isset($innerBlockContent) || !$innerBlockContent) {
-	$innerBlockContent = $wrapperManualContent;
-}
 
 if (! $wrapperUse || $wrapperNoControls) {
 	if ($wrapperParentClass) {
-		echo '<div class="' , esc_attr($wrapperParentClass . '__item') , '">
-			<div class="' , esc_attr($wrapperParentClass . '__item-inner') , '">';
-	}
-
-	if ($wrapperOnlyOutput) {
-		echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+		echo '
+			<div class="' , esc_attr($wrapperParentClass . '__item') , '">
+				<div class="' , esc_attr($wrapperParentClass . '__item-inner') , '">
+				' . $renderContent . '
+				</div>
+			</div>
+		';
 	} else {
-		$this->renderWrapperView(
-			$templatePath,
-			$attributes,
-			$innerBlockContent
-		);
-	}
-
-	if ($wrapperParentClass) {
-			echo '</div>
-		</div>';
+		echo $renderContent; // phpcs:ignore Eightshift.Security.ComponentsEscapeOutput.OutputNotEscaped
 	}
 
 	return;
@@ -82,29 +68,11 @@ $attributes["uniqueWrapperId"] = $unique;
 
 	<?php if ($wrapperUseInner) { ?>
 		<div class="<?php echo esc_attr($wrapperInnerClass); ?>">
-			<?php
-			if ($wrapperOnlyOutput) {
-				echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-			} else {
-				$this->renderWrapperView(
-					$templatePath,
-					$attributes,
-					$innerBlockContent
-				);
-			}
-			?>
+			<?php echo $renderContent; // phpcs:ignore Eightshift.Security.ComponentsEscapeOutput.OutputNotEscaped ?>
 		</div>
 		<?php
 	} else {
-		if ($wrapperOnlyOutput) {
-			echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		} else {
-			$this->renderWrapperView(
-				$templatePath,
-				$attributes,
-				$innerBlockContent
-			);
-		}
+		echo $renderContent; // phpcs:ignore Eightshift.Security.ComponentsEscapeOutput.OutputNotEscaped
 	}
 	?>
 </<?php echo esc_attr($wrapperTag); ?>>
