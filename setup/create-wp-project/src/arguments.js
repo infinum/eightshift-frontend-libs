@@ -59,7 +59,7 @@ const scriptArguments = {
 		name: 'eightshiftLibsRepo',
 		describe: 'Custom repository URL for the eightshift-libs (e.g., github.com/user/eightshift-libs).',
 		type: 'text',
-		// default: 'infinum/eightshift-libs', // Setting default to ensure backward compatibility
+		default: 'infinum/eightshift-libs', // Setting default to ensure backward compatibility
 		skipPrompt: true,
 	},
 	eightshiftLibsBranch: {
