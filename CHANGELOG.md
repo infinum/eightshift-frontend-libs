@@ -8,8 +8,6 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 Dependant to [Eightshift-libs@8.0.0](https://github.com/infinum/eightshift-libs/releases/tag/8.0.0)
 
-### Added
-
 ### Changed
 - All `Components::getManifest` to `Components::getManifestByDir` method.
 - All `Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest)` to `Components::outputCssVariables($attributes, $manifest, $unique)`.
