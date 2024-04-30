@@ -139,7 +139,7 @@ $loadMoreId = "{$blockName}-{$unique}";
 			'loadMoreId' => $loadMoreId,
 			'loadMoreType' => $blockName,
 		]),
-		'',
+		'components',
 		true
 	);
 	?>

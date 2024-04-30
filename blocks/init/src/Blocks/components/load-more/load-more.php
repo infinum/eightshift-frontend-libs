@@ -53,6 +53,6 @@ $loadMoreClass = Components::classnames([
 			'data-load-more-initial-items' => $loadMoreInitiaItems,
 			'data-load-more-per-page-override' => $loadMorePerPageOverride,
 		]
-	]), '', true);
+	]), 'components', true);
 	?>
 </div>
