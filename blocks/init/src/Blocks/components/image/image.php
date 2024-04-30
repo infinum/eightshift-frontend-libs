@@ -9,7 +9,7 @@
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getSettings();
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getManifestByDir(__DIR__);
 
 $imageUse = Components::checkAttr('imageUse', $attributes, $manifest) ?? false;
 $imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);

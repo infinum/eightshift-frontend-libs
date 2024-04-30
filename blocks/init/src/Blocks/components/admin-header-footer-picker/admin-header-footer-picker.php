@@ -9,7 +9,7 @@
 use EightshiftBoilerplate\AdminMenus\ReusableBlocksHeaderFooter;
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getManifestByDir(__DIR__);
 ?>
 
 <div class="wrap">
