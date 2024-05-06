@@ -8,8 +8,8 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$globalManifest = Components::getSettings();
+$manifest = Components::getManifestByDir(__DIR__);
 
 $imageUse = Components::checkAttr('imageUse', $attributes, $manifest) ?? false;
 $imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
@@ -42,7 +42,7 @@ $imgClass = Components::classnames([
 <picture class="<?php echo esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	echo Components::outputCssVariables($attributes, $manifest, $unique);
 	?>
 
 	<?php foreach (array_reverse($imageUrl) as $breakpoint => $item) { ?>

@@ -8,8 +8,7 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getManifestByDir(__DIR__);
 
 $headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
 
@@ -40,7 +39,7 @@ $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 $unique = Components::getUnique();
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest); ?>
+<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
 
 <<?php echo esc_attr($headingLevel); ?> class="<?php echo esc_attr($headingClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php

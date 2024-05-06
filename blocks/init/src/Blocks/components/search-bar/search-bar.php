@@ -8,7 +8,7 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getManifestByDir(__DIR__);
 
 $searchBarUse = Components::checkAttr('searchBarUse', $attributes, $manifest);
 if (!$searchBarUse) {

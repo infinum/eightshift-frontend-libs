@@ -8,7 +8,7 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Components::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockName = $attributes['blockName'] ?? '';
@@ -111,13 +111,14 @@ $loadMoreId = "{$blockName}-{$unique}";
 	<?php
 	echo Components::outputCssVariables($attributes, $manifest, $unique);
 
-	$cards = Components::renderPartial(
-		'block',
-		$blockName,
+	$cards = Components::render(
 		'cards',
 		[
 			'items' => $mainQuery->posts,
-		]
+		],
+		'blocks',
+		false,
+		"{$blockName}/partials"
 	);
 
 	echo Components::render(
@@ -139,7 +140,7 @@ $loadMoreId = "{$blockName}-{$unique}";
 			'loadMoreId' => $loadMoreId,
 			'loadMoreType' => $blockName,
 		]),
-		'',
+		'components',
 		true
 	);
 	?>

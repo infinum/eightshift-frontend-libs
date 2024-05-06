@@ -33,7 +33,7 @@ foreach ($items as $item) {
 				'cardButtonIconUse' => false,
 				'cardImageUrl' => get_the_post_thumbnail_url($item, 'large'),
 		]),
-		'',
+		'components',
 		true
 	);
 }

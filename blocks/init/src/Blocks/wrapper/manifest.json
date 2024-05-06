@@ -55,9 +55,6 @@
 		"uniqueWrapperId": {
 			"type": "string"
 		},
-		"wrapperManualContent": {
-			"type": "string"
-		},
 		"wrapperOnlyOutput": {
 			"type": "boolean",
 			"default": false
