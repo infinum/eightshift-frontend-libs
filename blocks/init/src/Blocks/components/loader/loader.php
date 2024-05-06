@@ -3,14 +3,14 @@
 /**
  * Template for the Loader Component view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$loaderUse = Components::checkAttr('loaderUse', $attributes, $manifest);
+$loaderUse = Helpers::checkAttr('loaderUse', $attributes, $manifest);
 
 if (!$loaderUse) {
 	return;
@@ -21,16 +21,16 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$loaderUseOverlay = Components::checkAttr('loaderUseOverlay', $attributes, $manifest);
+$loaderUseOverlay = Helpers::checkAttr('loaderUseOverlay', $attributes, $manifest);
 
-$loaderClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
-	Components::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
+$loaderClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
+	Helpers::selector($loaderUseOverlay, $componentClass, '', 'use-overlay'),
 ]);
 
-$loaderSpinnerClass = Components::selector($componentClass, $componentClass, 'spinner');
+$loaderSpinnerClass = Helpers::selector($componentClass, $componentClass, 'spinner');
 ?>
 
 <div class="<?php echo esc_attr($loaderClass); ?>">

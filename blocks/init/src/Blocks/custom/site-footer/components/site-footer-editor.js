@@ -13,7 +13,7 @@ import {
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
-import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
+import { CopyrightEditor } from '../../../components/copyright/components/copyright-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { SocialNetworksEditor } from '../../../components/social-networks/components/social-networks-editor';
 import manifest from '../manifest.json';
@@ -42,7 +42,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 				})}
 			/>
 
-			<ParagraphEditor
+			<CopyrightEditor
 				{...props('copyright', attributes, {
 					blockClass: blockClass,
 					selectorClass: 'copyright',
@@ -70,7 +70,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 						return (
 							<ReOrderableItem
 								innerClass={linkClass}
-								title={link?.text?.length > 0 ? link.text : <i>{__('New link', 'eightshift-frontend-libs')}</i>}
+								title={link?.text?.length > 0 ? link.text : <i>{__('New link', '%g_textdomain%')}</i>}
 								preIcon={
 									<div className='es-display-flex'>
 										<button
@@ -98,7 +98,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 											contentClass='es-popover-content es-w-88'
 										>
 											<TextControl
-												label={__('Link text', 'eightshift-frontend-libs')}
+												label={__('Link text', '%g_textdomain%')}
 												value={link?.text}
 												onChange={(value) => {
 													const newValue = [...siteFooterLinks];
@@ -109,7 +109,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 											/>
 
 											<LinkInput
-												label={__('URL', 'eightshift-frontend-libs')}
+												label={__('URL', '%g_textdomain%')}
 												url={link?.url}
 												opensInNewTab={link?.newTab}
 												onChange={({ url, newTab }) => {

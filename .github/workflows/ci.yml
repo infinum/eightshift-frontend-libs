@@ -1,7 +1,6 @@
-name: Continuous integration checks
+name: Continuous Integration
 
 on:
-  # Run on PRs and pushes, only on significant changes.
   push:
     branches:
       - develop
@@ -12,105 +11,21 @@ on:
     paths-ignore:
       - '**.md'
 
-# Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   lint:
-    name: File linting on Node v${{ matrix.node }}
-    runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allowed_failure }}
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [ '18' ]
-        allowed_failure: [ false ]
-        include:
-          # Test against latest Node version, but allow it to fail.
-          # We need success only on LTS versions.
-          - node: '20'
-            allowed_failure: true
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set Node.js version
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install node packages
-        run: npm install
-
-      - name: Run linters
-        run: npm run lint
-
-  phpcs:
-    name: PHPCS check on PHP ${{ matrix.php }}
+    name: Lint assets JS and CSS using Node version - ${{ matrix.node }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.2' ]
-
+        node: [ 'latest' ]
     steps:
-      # Checkout repository
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      # Setup PHP versions, run checks
-      - name: PHP setup
-        uses: shivammathur/setup-php@v2
+      - name: Lint assets
+        uses: infinum/eightshift-deploy-actions-public/.github/actions/lint-assets@main
         with:
-          php-version: ${{ matrix.php }}
-          coverage: none
-          tools: cs2pr
-
-      # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          dependency-versions: highest
-
-      - name: Check coding standards using PHPCS
-        continue-on-error: true
-        run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}- --report-full --report-checkstyle=./phpcs-report.xml
-
-      - name: Show PHPCS results in PR
-        run: cs2pr ./phpcs-report.xml
-
-  phpstan:
-    name: PHPStan check
-    runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allowed_failure }}
-    strategy:
-      fail-fast: false
-      matrix:
-        php: [ '8.2' ]
-        allowed_failure: [ true ]
-
-    steps:
-      # Checkout repository
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      # Setup PHP versions, run checks
-      - name: PHP setup
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          coverage: none
-
-      # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          dependency-versions: highest
-
-      - name: Check code consistency using PHPStan
-        run: composer test:types
+          NODE_VERSION: ${{ matrix.node }}
+          PROJECT_PATH: '/'

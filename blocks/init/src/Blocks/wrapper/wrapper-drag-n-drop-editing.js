@@ -22,8 +22,8 @@ export const WrapperDragNDropEditOptionsComponent = ({ attributes }) => {
 		<PanelBody>
 			<IconToggle
 				icon={icons.experiment}
-				label={__('Drag & drop width/offset editing', 'eightshift-frontend-libs')}
-				help={__('Experimental', 'eightshift-frontend-libs')}
+				label={__('Drag & drop width/offset editing', '%g_textdomain%')}
+				help={__('Experimental', '%g_textdomain%')}
 				onChange={() => dispatch(WRAPPER_STORE_NAME).toggleGraphicalEditing()}
 				checked={isGraphicalEditingMode}
 				noBottomSpacing

@@ -24,19 +24,19 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 	const featuredCategoriesManualTerms = checkAttr('featuredCategoriesManualTerms', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Featured categories', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured categories', '%g_textdomain%')}>
 			<NumberPicker
 				icon={icons.itemLimit}
-				label={__('Items per row', 'eightshift-frontend-libs')}
+				label={__('Items per row', '%g_textdomain%')}
 				{...getOption('featuredCategoriesItemsPerLine', attributes, manifest)}
 				value={featuredCategoriesItemsPerLine}
 				onChange={(value) => setAttributes({ [getAttrKey('featuredCategoriesItemsPerLine', attributes, manifest)]: value })}
 				inlineLabel
 			/>
 
-			<Section icon={icons.filter} label={__('Item source', 'eightshift-frontend-libs')}>
+			<Section icon={icons.filter} label={__('Item source', '%g_textdomain%')}>
 				<Select
-					label={__('Taxonomy', 'eightshift-frontend-libs')}
+					label={__('Taxonomy', '%g_textdomain%')}
 					value={featuredCategoriesTaxonomy}
 					options={manifest.allowed.taxonomies}
 					onChange={(value) => setAttributes({ [getAttrKey('featuredCategoriesTaxonomy', attributes, manifest)]: value })}
@@ -47,7 +47,7 @@ export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {
 			<Section showIf={featuredCategoriesTaxonomy} noBottomSpacing>
 				<IconToggle
 					icon={icons.itemSelect}
-					label={__('Manually select terms', 'eightshift-frontend-libs')}
+					label={__('Manually select terms', '%g_textdomain%')}
 					checked={featuredCategoriesPickTaxonomyManually}
 					onChange={(value) => {
 						let attributesToUpdate = { [getAttrKey('featuredCategoriesPickTaxonomyManually', attributes, manifest)]: value };

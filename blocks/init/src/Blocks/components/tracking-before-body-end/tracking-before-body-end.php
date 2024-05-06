@@ -3,7 +3,7 @@
 /**
  * Tracking codes Before body end
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
 // Add Before body end hooks here.

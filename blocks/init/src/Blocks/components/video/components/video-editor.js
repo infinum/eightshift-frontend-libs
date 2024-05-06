@@ -52,8 +52,8 @@ export const VideoEditor = (attributes) => {
 					})
 					}
 					labels={{
-						title: __('Video', 'eightshift-frontend-libs'),
-						instructions: __('Upload a video file or pick one from your media library.', 'eightshift-frontend-libs'),
+						title: __('Video', '%g_textdomain%'),
+						instructions: __('Upload a video file or pick one from your media library.', '%g_textdomain%'),
 					}}
 					multiple
 					accept={videoAccept}
@@ -62,8 +62,8 @@ export const VideoEditor = (attributes) => {
 			}
 
 			{!hasVideo && showPlaceholderInsteadOfMediaPicker &&
-				<Placeholder icon={icons.video} label={__('Add a video', 'eightshift-frontend-libs')}>
-					{__('Check the block options', 'eightshift-frontend-libs')}
+				<Placeholder icon={icons.video} label={__('Add a video', '%g_textdomain%')}>
+					{__('Check the block options', '%g_textdomain%')}
 				</Placeholder>
 			}
 

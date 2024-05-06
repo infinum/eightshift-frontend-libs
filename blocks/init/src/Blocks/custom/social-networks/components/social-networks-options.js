@@ -6,7 +6,7 @@ import { SocialNetworksOptions as OptionsComponent } from '../../../components/s
 
 export const SocialNetworksOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Social networks', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Social networks', '%g_textdomain%')}>
 			<OptionsComponent
 				{...props('socialNetworks', attributes, { setAttributes })}
 				noExpandButton

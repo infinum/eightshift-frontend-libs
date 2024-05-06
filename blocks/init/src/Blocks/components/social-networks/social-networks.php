@@ -3,21 +3,21 @@
 /**
  * Social networks component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
- use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+ use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$socialNetworksUse = Components::checkAttr('socialNetworksUse', $attributes, $manifest);
+$socialNetworksUse = Helpers::checkAttr('socialNetworksUse', $attributes, $manifest);
 
 if (!$socialNetworksUse) {
 	return;
 }
 
-$socialNetworksNetworks = Components::checkAttr('socialNetworksNetworks', $attributes, $manifest);
-$socialNetworksShareMode = Components::checkAttr('socialNetworksShareMode', $attributes, $manifest);
+$socialNetworksNetworks = Helpers::checkAttr('socialNetworksNetworks', $attributes, $manifest);
+$socialNetworksShareMode = Helpers::checkAttr('socialNetworksShareMode', $attributes, $manifest);
 
 $networksToShow = [];
 
@@ -47,15 +47,15 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$socialLinksClass = Components::classnames([
+$socialLinksClass = Helpers::classnames([
 	$componentClass,
 	$socialNetworksShareMode ? $componentJsClass : '',
-	Components::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
 	$additionalClass,
 ]);
 
-$itemClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'link'),
+$itemClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass, 'link'),
 	$socialNetworksShareMode ? "{$componentJsClass}-link" : '',
 ]);
 

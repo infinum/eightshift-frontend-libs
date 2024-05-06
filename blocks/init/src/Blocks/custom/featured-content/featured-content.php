@@ -3,27 +3,27 @@
 /**
  * Template for the Featured Content view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockName = $attributes['blockName'] ?? '';
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
-$featuredContentPostType = Components::checkAttr('featuredContentPostType', $attributes, $manifest);
-$featuredContentTaxonomy = Components::checkAttr('featuredContentTaxonomy', $attributes, $manifest);
-$featuredContentTerms = Components::checkAttr('featuredContentTerms', $attributes, $manifest);
-$featuredContentPosts = Components::checkAttr('featuredContentPosts', $attributes, $manifest);
-$featuredContentExcludeCurrentPost = Components::checkAttr('featuredContentExcludeCurrentPost', $attributes, $manifest);
-$featuredContentUseCurrentTerm = Components::checkAttr('featuredContentUseCurrentTerm', $attributes, $manifest);
-$featuredContentRandomOrder = Components::checkAttr('featuredContentRandomOrder', $attributes, $manifest);
-$featuredContentLayoutTotalItems = Components::checkAttr('featuredContentLayoutTotalItems', $attributes, $manifest);
-$featuredContentLoadMoreUse = Components::checkAttr('featuredContentLoadMoreUse', $attributes, $manifest);
+$featuredContentPostType = Helpers::checkAttr('featuredContentPostType', $attributes, $manifest);
+$featuredContentTaxonomy = Helpers::checkAttr('featuredContentTaxonomy', $attributes, $manifest);
+$featuredContentTerms = Helpers::checkAttr('featuredContentTerms', $attributes, $manifest);
+$featuredContentPosts = Helpers::checkAttr('featuredContentPosts', $attributes, $manifest);
+$featuredContentExcludeCurrentPost = Helpers::checkAttr('featuredContentExcludeCurrentPost', $attributes, $manifest);
+$featuredContentUseCurrentTerm = Helpers::checkAttr('featuredContentUseCurrentTerm', $attributes, $manifest);
+$featuredContentRandomOrder = Helpers::checkAttr('featuredContentRandomOrder', $attributes, $manifest);
+$featuredContentLayoutTotalItems = Helpers::checkAttr('featuredContentLayoutTotalItems', $attributes, $manifest);
+$featuredContentLoadMoreUse = Helpers::checkAttr('featuredContentLoadMoreUse', $attributes, $manifest);
 
 if (!empty($featuredContentPostType)) {
 	$featuredContentPostType = $featuredContentPostType['value'];
@@ -109,20 +109,21 @@ $loadMoreId = "{$blockName}-{$unique}";
 	aria-live="polite"
 >
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique);
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique);
 
-	$cards = Components::renderPartial(
-		'block',
-		$blockName,
+	$cards = Helpers::render(
 		'cards',
 		[
 			'items' => $mainQuery->posts,
-		]
+		],
+		'blocks',
+		false,
+		"{$blockName}/partials"
 	);
 
-	echo Components::render(
+	echo Helpers::render(
 		'layout',
-		Components::props('layout', $attributes, [
+		Helpers::props('layout', $attributes, [
 			'blockClass' => $blockClass,
 			'layoutItems' => $cards,
 			'layoutLoadMoreId' => $loadMoreId,
@@ -131,15 +132,15 @@ $loadMoreId = "{$blockName}-{$unique}";
 		true
 	);
 
-	echo Components::render(
+	echo Helpers::render(
 		'load-more',
-		Components::props('loadMore', $attributes, [
+		Helpers::props('loadMore', $attributes, [
 			'loadMoreInitiaItems' => wp_json_encode($mainQuery->posts),
 			'loadMoreQuery' => wp_json_encode($args),
 			'loadMoreId' => $loadMoreId,
 			'loadMoreType' => $blockName,
 		]),
-		'',
+		'components',
 		true
 	);
 	?>

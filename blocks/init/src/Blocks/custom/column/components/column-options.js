@@ -31,7 +31,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 	} = manifest;
 
 	return (
-		<PanelBody title={__('Column', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Column', '%g_textdomain%')}>
 			<WidthOffsetRangeSlider
 				{...generateWidthOffsetRangeSliderConfig({
 					offsetAttributeName: 'columnOffset',
@@ -46,9 +46,9 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				})}
 			/>
 
-			<Section icon={icons.alignHorizontalVerticalAlt} label={__('Alignment', 'eightshift-frontend-libs')}>
+			<Section icon={icons.alignHorizontalVerticalAlt} label={__('Alignment', '%g_textdomain%')}>
 				<Responsive
-					label={__('Horizontal', 'eightshift-frontend-libs')}
+					label={__('Horizontal', '%g_textdomain%')}
 					inheritButton={Object.values(columnHorizontalAlign).map((responsiveAttribute) => {
 						const isInherited = checkAttr(responsiveAttribute, attributes, manifest, true) === undefined;
 
@@ -71,7 +71,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				</Responsive>
 
 				<Responsive
-					label={__('Vertical', 'eightshift-frontend-libs')}
+					label={__('Vertical', '%g_textdomain%')}
 					inheritButton={Object.values(columnVerticalAlign).map((responsiveAttribute) => {
 						const isInherited = checkAttr(responsiveAttribute, attributes, manifest, true) === undefined;
 
@@ -94,7 +94,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 				</Responsive>
 			</Section>
 
-			<Section icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} noBottomSpacing>
+			<Section icon={icons.tools} label={__('Advanced', '%g_textdomain%')} noBottomSpacing>
 				<ResponsiveToggleButton
 					{...generateResponsiveToggleButtonConfig({
 						attributeName: 'columnHide',
@@ -102,12 +102,12 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						setAttributes: setAttributes,
 						manifest: manifest,
 					})}
-					label={__('Hide', 'eightshift-frontend-libs')}
+					label={__('Hide', '%g_textdomain%')}
 					icon={icons.hide}
 				/>
 
 				<Responsive
-					label={<IconLabel icon={icons.order} label={__('Order', 'eightshift-frontend-libs')} />}
+					label={<IconLabel icon={icons.order} label={__('Order', '%g_textdomain%')} />}
 					inheritButton={getDefaultBreakpointNames().map((breakpoint) => {
 						const { columnOrder: attrNames } = manifest.responsiveAttributes;
 						const breakpointAttrName = attrNames[breakpoint];
@@ -131,8 +131,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 						const isAuto = typeof breakpointAttrValue === 'undefined' || breakpointAttrValue?.length === 0;
 
 						let options = [
-							{ label: __('Auto', 'eightshift-frontend-libs'), value: true, icon: icons.automatic },
-							{ label: __('Manual', 'eightshift-frontend-libs'), value: false, icon: icons.pointerHand },
+							{ label: __('Auto', '%g_textdomain%'), value: true, icon: icons.automatic },
+							{ label: __('Manual', '%g_textdomain%'), value: false, icon: icons.pointerHand },
 						];
 
 						return (
@@ -140,8 +140,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 								<Control
 									help={
 										isAuto
-											? __('Follows the order of elements in the editor', 'eightshift-frontend-libs')
-											: __('Forces column order, independent of the element order in the editor', 'eightshift-frontend-libs')
+											? __('Follows the order of elements in the editor', '%g_textdomain%')
+											: __('Forces column order, independent of the element order in the editor', '%g_textdomain%')
 									}
 									noBottomSpacing
 								>
@@ -159,7 +159,7 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 
 										<AnimatedContentVisibility showIf={!isAuto}>
 											<NumberPicker
-												label={__('Position', 'eightshift-frontend-libs')}
+												label={__('Position', '%g_textdomain%')}
 												value={breakpointAttrValue}
 												onChange={(value) => setAttributes({ [getAttrKey(breakpointAttrName, attributes, manifest)]: value })}
 												min={1}
@@ -175,8 +175,8 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 								<AnimatedContentVisibility showIf={!isAuto && index === 0} additionalContainerClasses='es-mt-2'>
 									<Notification
 										type='info'
-										text={__('Note', 'eightshift-frontend-libs')}
-										subtitle={__('Make sure to set the order all other columns in the same Columns block', 'eightshift-frontend-libs')}
+										text={__('Note', '%g_textdomain%')}
+										subtitle={__('Make sure to set the order all other columns in the same Columns block', '%g_textdomain%')}
 										noBottomSpacing
 									/>
 								</AnimatedContentVisibility>

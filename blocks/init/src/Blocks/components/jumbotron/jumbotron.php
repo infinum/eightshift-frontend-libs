@@ -3,15 +3,14 @@
 /**
  * Template for the Jumbotron Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$jumbotronUse = Components::checkAttr('jumbotronUse', $attributes, $manifest);
+$jumbotronUse = Helpers::checkAttr('jumbotronUse', $attributes, $manifest);
 if (!$jumbotronUse) {
 	return;
 }
@@ -21,23 +20,23 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
-$jumbotronClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$jumbotronClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$jumbotronContentClass = Components::selector($componentClass, $componentClass, 'content');
-$jumbotronContentWrapClass = Components::selector($componentClass, $componentClass, 'content-wrap');
+$jumbotronContentClass = Helpers::selector($componentClass, $componentClass, 'content');
+$jumbotronContentWrapClass = Helpers::selector($componentClass, $componentClass, 'content-wrap');
 ?>
 
 <div class="<?php echo esc_attr($jumbotronClass); ?>" data-id="<?php echo esc_attr($unique); ?>" role="region">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest);
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique);
 
-	echo Components::render('image', Components::props('image', $attributes, [
+	echo Helpers::render('image', Helpers::props('image', $attributes, [
 		'blockClass' => $componentClass,
 		'imageFull' => true,
 	]));
@@ -46,15 +45,15 @@ $jumbotronContentWrapClass = Components::selector($componentClass, $componentCla
 	<div class="<?php echo esc_attr($jumbotronContentClass); ?>">
 		<div class="<?php echo esc_attr($jumbotronContentWrapClass); ?>">
 			<?php
-			echo Components::render('heading', Components::props('heading', $attributes, [
+			echo Helpers::render('heading', Helpers::props('heading', $attributes, [
 				'blockClass' => $componentClass
 			])),
 
-			Components::render('paragraph', Components::props('paragraph', $attributes, [
+			Helpers::render('paragraph', Helpers::props('paragraph', $attributes, [
 				'blockClass' => $componentClass
 			])),
 
-			Components::render('button', Components::props('button', $attributes, [
+			Helpers::render('button', Helpers::props('button', $attributes, [
 				'blockClass' => $componentClass
 			]));
 			?>

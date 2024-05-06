@@ -95,7 +95,7 @@ module.exports = (options) => {
 	// Module for Fonts.
 	if (!options.overrides.includes('fonts')) {
 		module.rules.push({
-			test: /\.(eot|otf|ttf|woff|woff2|svg)$/,
+			test: /\.(eot|otf|ttf|woff|woff2)$/,
 			exclude: [/images/, /node_modules/],
 			use: 'file-loader?name=[name].[ext]',
 		});
@@ -134,10 +134,6 @@ module.exports = (options) => {
 
 	const resolve = {
 		symlinks: false,
-		fallback: {
-			crypto: require.resolve("crypto-browserify"),
-			stream: require.resolve("stream-browserify"),
-		}
 	};
 
 	return {

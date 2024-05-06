@@ -3,11 +3,11 @@
 /**
  * Template for the Jumbotron Block view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-echo Components::render('jumbotron', Components::props('jumbotron', $attributes));
+echo Helpers::render('jumbotron', Helpers::props('jumbotron', $attributes));

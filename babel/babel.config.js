@@ -1,5 +1,5 @@
-module.exports = api => {
-	const isTest = api.env('test');
+module.exports = (api) => {
+	api.cache(true);
 
 	return {
 		presets: [
@@ -8,7 +8,7 @@ module.exports = api => {
 				{
 					useBuiltIns: 'usage',
 					corejs: '3',
-					modules: isTest ? 'auto' : false,
+					modules: false,
 				},
 			],
 			['@babel/preset-react'],

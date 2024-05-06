@@ -3,7 +3,7 @@
 /**
  * Template for the Group block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
 $blockClass = $attributes['blockClass'] ?? '';
@@ -13,6 +13,6 @@ $blockClass = $attributes['blockClass'] ?? '';
 <div class="<?php echo esc_attr($blockClass); ?>">
 	<?php
 	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	echo $innerBlockContent;
+	echo $renderContent;
 	?>
 </div>

@@ -18,7 +18,7 @@ export const QuoteOptions = (attributes) => {
 				{...props('paragraph', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
-				label={__('Quote text', 'eightshift-frontend-libs')}
+				label={__('Quote text', '%g_textdomain%')}
 				noExpandButton
 				noUseToggle
 			/>
@@ -27,7 +27,7 @@ export const QuoteOptions = (attributes) => {
 				{...props('author', attributes, {
 					options: getOptions(attributes, manifest),
 				})}
-				label={__('Author', 'eightshift-frontend-libs')}
+				label={__('Author', '%g_textdomain%')}
 				noExpandButton
 			/>
 

@@ -3,19 +3,19 @@
 /**
  * Template for the Accordion Block view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$accordionCloseAdjacent = Components::checkAttr('accordionCloseAdjacent', $attributes, $manifest);
+$accordionCloseAdjacent = Helpers::checkAttr('accordionCloseAdjacent', $attributes, $manifest);
 
-$accordionClass = Components::classnames([
+$accordionClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
@@ -27,6 +27,6 @@ $accordionClass = Components::classnames([
 >
 		<?php
 		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo $innerBlockContent;
+		echo $renderContent;
 		?>
 </div>

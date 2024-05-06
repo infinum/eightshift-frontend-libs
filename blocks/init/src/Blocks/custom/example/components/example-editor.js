@@ -13,7 +13,7 @@ export const ExampleEditor = ({ attributes, setAttributes }) => {
 
 	return (
 		<RichText
-			placeholder={__('Add content', 'eightshift-frontend-libs')}
+			placeholder={__('Add content', '%g_textdomain%')}
 			className={blockClass}
 			onChange={(value) => setAttributes({ [getAttrKey('exampleContent', attributes, manifest)]: value })}
 			value={exampleContent}

@@ -3,16 +3,16 @@
 /**
  * Template for the Example Block view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$exampleContent = Components::checkAttr('exampleContent', $attributes, $manifest);
+$exampleContent = Helpers::checkAttr('exampleContent', $attributes, $manifest);
 
 ?>
 

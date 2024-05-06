@@ -21,7 +21,7 @@ export const JumbotronOptions = (attributes) => {
 			{!hideContentPosition &&
 				<MatrixAlignControl
 					icon={icons.alignHorizontalVertical}
-					label={__('Content position', 'eightshift-frontend-libs')}
+					label={__('Content position', '%g_textdomain%')}
 					value={jumbotronContentPosition}
 					onChange={(value) => setAttributes({ [getAttrKey('jumbotronContentPosition', attributes, manifest)]: value })}
 					type='inline'

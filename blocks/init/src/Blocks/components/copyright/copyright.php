@@ -3,14 +3,14 @@
 /**
  * Copyright component responsible for rendering site's copyright.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
+$copyrightUse = Helpers::checkAttr('copyrightUse', $attributes, $manifest);
 if (!$copyrightUse) {
 	return;
 }
@@ -20,17 +20,16 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
-$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
-$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
+$copyrightYear = date('Y');
+$copyrightContent = Helpers::checkAttr('copyrightContent', $attributes, $manifest);
 
-$copyrightClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$copyrightClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
 ?>
 <div class="<?php echo esc_attr($copyrightClass); ?>">
-	<?php echo esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
+	<?php echo esc_html("&copy;{$copyrightYear} | {$copyrightContent}"); ?>
 </div>

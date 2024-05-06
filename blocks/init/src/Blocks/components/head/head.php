@@ -3,17 +3,16 @@
 /**
  * Head section for meta data
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$headFavicon = Components::checkAttr('headFavicon', $attributes, $manifest);
-$headCharset = Components::checkAttr('headCharset', $attributes, $manifest);
-$headName = Components::checkAttr('headName', $attributes, $manifest);
+$headFavicon = Helpers::checkAttr('headFavicon', $attributes, $manifest);
+$headCharset = Helpers::checkAttr('headCharset', $attributes, $manifest);
+$headName = Helpers::checkAttr('headName', $attributes, $manifest);
 
 ?>
 
@@ -54,4 +53,4 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 
 
 <?php
-echo Components::outputCssVariablesGlobal($globalManifest); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+echo Helpers::outputCssVariablesGlobal(); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

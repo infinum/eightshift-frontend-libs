@@ -3,21 +3,20 @@
 /**
  * Template for the Admin header/footer picker settings screen.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplate\AdminMenus\ReusableBlocksHeaderFooter;
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace%\AdminMenus\ReusableBlocksHeaderFooter;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 ?>
 
 <div class="wrap">
 	<?php
 	// Show admin messages.
 	if (isset($_GET['settings-updated'])) { // phpcs:ignore
-		add_settings_error(ReusableBlocksHeaderFooter::ADMIN_MESSAGE_SLUG, 'save_success', __('Settings saved', 'eightshift-frontend-libs'), 'updated');
+		add_settings_error(ReusableBlocksHeaderFooter::ADMIN_MESSAGE_SLUG, 'save_success', __('Settings saved', '%g_textdomain%'), 'updated');
 	}
 
 	// Render update messages.
@@ -34,7 +33,7 @@ $manifest = Components::getManifest(__DIR__);
 			do_settings_sections(ReusableBlocksHeaderFooter::ADMIN_MENU_SLUG);
 
 			// Render save button.
-			submit_button(__('Save', 'eightshift-frontend-libs'));
+			submit_button(__('Save', '%g_textdomain%'));
 			?>
 		</form>
 	</div>

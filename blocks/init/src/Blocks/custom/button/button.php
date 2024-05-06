@@ -3,23 +3,22 @@
 /**
  * Template for the Button Block view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Components::getManifest(dirname(__DIR__, 2));
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest),
-	Components::render('button', Components::props('button', $attributes));
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique),
+	Helpers::render('button', Helpers::props('button', $attributes));
 	?>
 </div>

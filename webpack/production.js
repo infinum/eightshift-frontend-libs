@@ -24,27 +24,23 @@ module.exports = (options) => {
 	if (!options.overrides.includes('terserPlugin')) {
 		optimization.minimizer.push(new TerserPlugin({
 			parallel: true,
+			minify: TerserPlugin.swcMinify,
 			terserOptions: {
+				compress: {
+					drop_console: true,
+					passes: 2,
+				},
 				format: {
 					comments: false,
 				},
 			},
-			extractComments: false,
 		}));
 	}
 
 	if (!options.overrides.includes('cssMinimizerPlugin')) {
 		optimization.minimizer.push(new CssMinimizerPlugin({
-			minimizerOptions: {
-				preset: [
-					'default',
-					{
-						discardComments: {
-							removeAll: true,
-						},
-					},
-				],
-			},
+			parallel: true,
+			minify: CssMinimizerPlugin.cssoMinify,
 		}));
 	}
 

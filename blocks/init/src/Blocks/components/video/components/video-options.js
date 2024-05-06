@@ -72,9 +72,9 @@ export const VideoOptions = (attributes) => {
 				{hideVideoPicker &&
 					<Placeholder
 						icon={icons.help}
-						label={__('No video... yet', 'eightshift-frontend-libs')}
+						label={__('No video... yet', '%g_textdomain%')}
 					>
-						{__('Add one in the Block editor', 'eightshift-frontend-libs')}
+						{__('Add one in the Block editor', '%g_textdomain%')}
 					</Placeholder>
 				}
 
@@ -90,7 +90,7 @@ export const VideoOptions = (attributes) => {
 							})
 						})
 						}
-						labels={{ title: __('Add a video', 'eightshift-frontend-libs') }}
+						labels={{ title: __('Add a video', '%g_textdomain%') }}
 						accept={videoAccept}
 						allowedTypes={videoAllowedTypes}
 						multiple
@@ -105,8 +105,8 @@ export const VideoOptions = (attributes) => {
 			<AnimatedContentVisibility showIf={hasPoster && !videoControls}>
 				<Notification
 					type='warning'
-					text={__('Playback controls disabled', 'eightshift-frontend-libs')}
-					subtitle={__('Poster image might prevent users from playing the video', 'eightshift-frontend-libs')}
+					text={__('Playback controls disabled', '%g_textdomain%')}
+					subtitle={__('Poster image might prevent users from playing the video', '%g_textdomain%')}
 				/>
 			</AnimatedContentVisibility>
 
@@ -118,7 +118,7 @@ export const VideoOptions = (attributes) => {
 						// eslint-disable-next-line max-len
 						className='es-button-icon-24 es-slight-button-border-cool-gray-100 es-hover-slight-button-border-red-500 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-v-center es-content-center! es-h-18 es-w-18 es-gap-1! es-p-1! es-nested-m-0!'
 					>
-						{__('Remove video', 'eightshift-frontend-libs')}
+						{__('Remove video', '%g_textdomain%')}
 					</Button>
 				}
 			</Control>
@@ -126,14 +126,14 @@ export const VideoOptions = (attributes) => {
 			<Section
 				showIf={!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle || !hidePosterImagePicker || !hidePreloadOptions}
 				icon={icons.playbackOptions}
-				label={__('Playback options', 'eightshift-frontend-libs')}
+				label={__('Playback options', '%g_textdomain%')}
 			>
 				{(!hideLoopToggle || !hideMuteToggle || !hideAutoplayToggle) &&
 					<div className='es-h-spaced-wrap es-mb-3'>
 						{!hideLoopToggle &&
 							<IconToggle
 								icon={icons.loopMode}
-								label={__('Loop', 'eightshift-frontend-libs')}
+								label={__('Loop', '%g_textdomain%')}
 								checked={videoLoop}
 								onChange={(value) => setAttributes({ [getAttrKey('videoLoop', attributes, manifest)]: value })}
 								type='tileButton'
@@ -143,7 +143,7 @@ export const VideoOptions = (attributes) => {
 						{!hideAutoplayToggle &&
 							<IconToggle
 								icon={icons.autoplayAlt}
-								label={__('Autoplay', 'eightshift-frontend-libs')}
+								label={__('Autoplay', '%g_textdomain%')}
 								checked={videoAutoplay}
 								onChange={(value) => setAttributes({ [getAttrKey('videoAutoplay', attributes, manifest)]: value })}
 								type='tileButton'
@@ -153,7 +153,7 @@ export const VideoOptions = (attributes) => {
 						{!hideMuteToggle &&
 							<IconToggle
 								icon={icons.muteCentered}
-								label={__('Mute', 'eightshift-frontend-libs')}
+								label={__('Mute', '%g_textdomain%')}
 								checked={videoMuted}
 								onChange={(value) => setAttributes({ [getAttrKey('videoMuted', attributes, manifest)]: value })}
 								type='tileButton'
@@ -162,16 +162,16 @@ export const VideoOptions = (attributes) => {
 					</div>
 				}
 
-				<Collapsable label={__('Advanced', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+				<Collapsable label={__('Advanced', '%g_textdomain%')} icon={icons.moreH} noBottomSpacing>
 					{!hidePosterImagePicker &&
 						<Control
 							icon={icons.videoPosterImage}
-							label={__('Poster image', 'eightshift-frontend-libs')}
-							subtitle={__('Visible before the video is played', 'eightshift-frontend-libs')}
+							label={__('Poster image', '%g_textdomain%')}
+							subtitle={__('Visible before the video is played', '%g_textdomain%')}
 						>
 							{!hasPoster &&
 								<MediaPlaceholder
-									labels={{ title: __('Add an image', 'eightshift-frontend-libs') }}
+									labels={{ title: __('Add an image', '%g_textdomain%') }}
 									icon={icons.imageFile}
 									onSelect={(value) => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: value.url })}
 									accept={'image/*'}
@@ -182,14 +182,14 @@ export const VideoOptions = (attributes) => {
 							{hasPoster &&
 								<div className='es-h-center es-items-end! es-gap-0!'>
 									<img
-										alt={__('Video poster image', 'eightshift-frontend-libs')}
+										alt={__('Video poster image', '%g_textdomain%')}
 										src={videoPoster}
 										className='es-h-26! es-min-w-26 es-w-auto es-border-cool-gray-100 es-rounded-2'
 									/>
 
 									<Button
 										icon={icons.trashAlt}
-										label={__('Remove image', 'eightshift-frontend-libs')}
+										label={__('Remove image', '%g_textdomain%')}
 										// eslint-disable-next-line max-len
 										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
@@ -202,7 +202,7 @@ export const VideoOptions = (attributes) => {
 
 					{!hidePreloadOptions &&
 						<OptionSelector
-							label={<IconLabel icon={icons.preload} label={__('Preload', 'eightshift-frontend-libs')} standalone />}
+							label={<IconLabel icon={icons.preload} label={__('Preload', '%g_textdomain%')} standalone />}
 							value={videoPreload}
 							options={getOption('videoPreload', attributes, manifest)}
 							alignment='vertical'
@@ -216,13 +216,13 @@ export const VideoOptions = (attributes) => {
 			<Section
 				showIf={!hideVideoControlsToggle || typeof additionalControlsDesignLayout !== 'undefined'}
 				icon={icons.design}
-				label={__('Design & functionality', 'eightshift-frontend-libs')}
+				label={__('Design & functionality', '%g_textdomain%')}
 				additionalClasses='es-h-spaced-wrap'
 			>
 				{!hideVideoControlsToggle &&
 					<IconToggle
 						icon={icons.videoControls}
-						label={__('Playback controls', 'eightshift-frontend-libs')}
+						label={__('Playback controls', '%g_textdomain%')}
 						checked={videoControls}
 						onChange={(value) => setAttributes({ [getAttrKey('videoControls', attributes, manifest)]: value })}
 						type='tileButton'
@@ -232,10 +232,10 @@ export const VideoOptions = (attributes) => {
 				{additionalControlsDesignLayout}
 			</Section>
 
-			<Section showIf={!hideCaptions} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} noBottomSpacing>
+			<Section showIf={!hideCaptions} icon={icons.a11y} label={__('Accessibility', '%g_textdomain%')} noBottomSpacing>
 				<Repeater
 					icon={icons.videoSubtitleAlt}
-					label={__('Captions', 'eightshift-frontend-libs')}
+					label={__('Captions', '%g_textdomain%')}
 
 					items={videoSubtitleTracks}
 					attributeName={getAttrKey('videoSubtitleTracks', attributes, manifest)}
@@ -249,8 +249,8 @@ export const VideoOptions = (attributes) => {
 								icon={getTrackIcon(item?.kind)}
 								title={
 									item?.label
-										? sprintf(__('Track %d', 'eightshift-frontend-libs'), index + 1)
-										: <i>{__('New track', 'eightshift-frontend-libs')}</i>
+										? sprintf(__('Track %d', '%g_textdomain%'), index + 1)
+										: <i>{__('New track', '%g_textdomain%')}</i>
 								}
 								subtitle={item?.label}
 								additionalLabelClass={!item?.label ? 'es-nested-color-orange-500!' : ''}
@@ -258,7 +258,7 @@ export const VideoOptions = (attributes) => {
 								{!videoSubtitleTracks[index].src &&
 									<MediaPlaceholder
 										accept={['.vtt', 'text/vtt']}
-										labels={{ title: __('Track file', 'eightshift-frontend-libs') }}
+										labels={{ title: __('Track file', '%g_textdomain%') }}
 										onSelect={
 											(track) => {
 												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
@@ -267,15 +267,15 @@ export const VideoOptions = (attributes) => {
 											}
 										}
 									>
-										{__('Upload a VTT file containing captions, subtitles, descriptions or chapters', 'eightshift-frontend-libs')}
+										{__('Upload a VTT file containing captions, subtitles, descriptions or chapters', '%g_textdomain%')}
 									</MediaPlaceholder>
 								}
 
 								{videoSubtitleTracks[index].src &&
 									<>
 										<TextControl
-											label={<IconLabel icon={icons.titleGeneric} label={__('Label', 'eightshift-frontend-libs')} />}
-											help={__('Shows in the list of available tracks', 'eightshift-frontend-libs')}
+											label={<IconLabel icon={icons.titleGeneric} label={__('Label', '%g_textdomain%')} />}
+											help={__('Shows in the list of available tracks', '%g_textdomain%')}
 											value={videoSubtitleTracks[index].label}
 											onChange={(label) => {
 												const modifiedVideoSubtitleTracks = [...videoSubtitleTracks];
@@ -285,7 +285,7 @@ export const VideoOptions = (attributes) => {
 										/>
 
 										<OptionSelector
-											label={<IconLabel icon={icons.optionListAlt} label={__('Type', 'eightshift-frontend-libs')} />}
+											label={<IconLabel icon={icons.optionListAlt} label={__('Type', '%g_textdomain%')} />}
 											value={videoSubtitleTracks[index].kind}
 											options={getOption('videoSubtitleTrackKind', attributes, manifest)}
 											onChange={(kind) => {
@@ -297,11 +297,11 @@ export const VideoOptions = (attributes) => {
 										/>
 
 										<TextControl
-											label={<IconLabel icon={icons.flag} label={__('Language code', 'eightshift-frontend-libs')} />}
+											label={<IconLabel icon={icons.flag} label={__('Language code', '%g_textdomain%')} />}
 											help={
 												<>
-													{__('Should follow IETF (BCP47).', 'eightshift-frontend-libs')}
-													{videoSubtitleTracks[index].kind === 'subtitles' && ' ' + __('Required.', 'eightshift-frontend-libs')}
+													{__('Should follow IETF (BCP47).', '%g_textdomain%')}
+													{videoSubtitleTracks[index].kind === 'subtitles' && ' ' + __('Required.', '%g_textdomain%')}
 												</>
 											}
 											value={videoSubtitleTracks[index].srclang}
@@ -314,7 +314,7 @@ export const VideoOptions = (attributes) => {
 
 										<hr className='es-mt-0!' />
 
-										<span className='es-display-block es-mb-1'>{__('List of language tags', 'eightshift-frontend-libs')}</span>
+										<span className='es-display-block es-mb-1'>{__('List of language tags', '%g_textdomain%')}</span>
 
 										<Button
 											href='https://en.wikipedia.org/wiki/IETF_language_tag#List_of_major_primary_language_subtags'
@@ -323,7 +323,7 @@ export const VideoOptions = (attributes) => {
 											icon={icons.externalLink}
 											className='es-button-icon-18 es-p-0! es-h-8! es-rounded-0.75!'
 										>
-											{__('Common languages', 'eightshift-frontend-libs')}
+											{__('Common languages', '%g_textdomain%')}
 										</Button>
 
 										<Button
@@ -333,7 +333,7 @@ export const VideoOptions = (attributes) => {
 											icon={icons.externalLink}
 											className='es-button-icon-18 es-p-0! es-h-8! es-rounded-0.75!'
 										>
-											{__('All languages', 'eightshift-frontend-libs')}
+											{__('All languages', '%g_textdomain%')}
 										</Button>
 									</>
 								}
@@ -345,9 +345,9 @@ export const VideoOptions = (attributes) => {
 				<AnimatedContentVisibility showIf={videoAutoplay && !videoMuted && !videoControls} additionalContainerClasses='es-mt-3'>
 					<Notification
 						type='warning'
-						text={__('Video plays automatically, with sound, and without controls', 'eightshift-frontend-libs')}
+						text={__('Video plays automatically, with sound, and without controls', '%g_textdomain%')}
 						// eslint-disable-next-line max-len
-						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', 'eightshift-frontend-libs')}
+						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', '%g_textdomain%')}
 						iconOverride={icons.a11yWarning}
 						noBottomSpacing
 					/>

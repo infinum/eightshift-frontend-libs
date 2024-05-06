@@ -18,7 +18,7 @@ export const ButtonEditor = (attributes) => {
 		selectorClass = componentClass,
 		additionalClass,
 		blockClass,
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', '%g_textdomain%'),
 	} = attributes;
 
 	const buttonContent = checkAttr('buttonContent', attributes, manifest);

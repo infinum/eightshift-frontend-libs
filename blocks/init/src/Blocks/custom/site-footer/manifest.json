@@ -32,7 +32,7 @@
 	},
 	"components": {
 		"logo": "image",
-		"copyright": "paragraph",
+		"copyright": "copyright",
 		"socialNetworks": "social-networks"
 	}
 }

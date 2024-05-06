@@ -56,7 +56,7 @@ export const ButtonOptions = (attributes) => {
 			{!hideVariantPicker &&
 				<OptionSelector
 					icon={icons.genericShapesAlt}
-					label={__('Style', 'eightshift-frontend-libs')}
+					label={__('Style', '%g_textdomain%')}
 					value={buttonVariant}
 					onChange={(value) => setAttributes({ [getAttrKey('buttonVariant', attributes, manifest)]: value })}
 					options={getOption('buttonVariant', attributes, manifest)}
@@ -69,12 +69,12 @@ export const ButtonOptions = (attributes) => {
 			{!hideColorPicker &&
 				<ColorPicker
 					icon={icons.colorAlt}
-					label={__('Color', 'eightshift-frontend-libs')}
+					label={__('Color', '%g_textdomain%')}
 					value={buttonColor}
 					onChange={(value) => setAttributes({ [getAttrKey('buttonColor', attributes, manifest)]: value })}
 					options={getOption('buttonColor', attributes, manifest)}
 					colors={getOption('buttonColor', attributes, manifest, true)}
-					tooltip={__('Color', 'eightshift-frontend-libs')}
+					tooltip={__('Color', '%g_textdomain%')}
 					inlineLabel
 					expanded
 					border
@@ -91,18 +91,18 @@ export const ButtonOptions = (attributes) => {
 				hideSizePicker
 			/>
 
-			<Section showIf={!hideAriaLabel} icon={icons.a11y} label={__('Accessibility', 'eightshift-frontend-libs')} collapsable reducedBottomSpacing>
+			<Section showIf={!hideAriaLabel} icon={icons.a11y} label={__('Accessibility', '%g_textdomain%')} collapsable reducedBottomSpacing>
 				<TextControl
-					label={<IconLabel icon={icons.ariaLabel} label={__('ARIA label', 'eightshift-frontend-libs')} />}
+					label={<IconLabel icon={icons.ariaLabel} label={__('ARIA label', '%g_textdomain%')} />}
 					value={buttonAriaLabel}
 					onChange={(value) => setAttributes({ [getAttrKey('buttonAriaLabel', attributes, manifest)]: value })}
-					help={__('Description of the button.', 'eightshift-frontend-libs')}
+					help={__('Description of the button.', '%g_textdomain%')}
 				/>
 			</Section>
 
-			<Section showIf={!hideId} icon={icons.tools} label={__('Advanced', 'eightshift-frontend-libs')} collapsable noBottomSpacing>
+			<Section showIf={!hideId} icon={icons.tools} label={__('Advanced', '%g_textdomain%')} collapsable noBottomSpacing>
 				<TextControl
-					label={<IconLabel icon={icons.id} label={__('Unique identifier', 'eightshift-frontend-libs')} />}
+					label={<IconLabel icon={icons.id} label={__('Unique identifier', '%g_textdomain%')} />}
 					value={buttonId}
 					onChange={(value) => setAttributes({ [getAttrKey('buttonId', attributes, manifest)]: value })}
 				/>

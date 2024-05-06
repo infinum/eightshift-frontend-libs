@@ -3,29 +3,29 @@
 /**
  * Template for the Site navigation block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$siteNavigationLinks = Components::checkAttr('siteNavigationLinks', $attributes, $manifest) ?? [];
+$siteNavigationLinks = Helpers::checkAttr('siteNavigationLinks', $attributes, $manifest) ?? [];
 
 if (!empty($siteNavigationLinks)) {
 	$siteNavigationLinks = array_filter($siteNavigationLinks, fn($item) => !empty($item['text']) && !empty($item['url'])); // @phpstan-ignore-line
 }
 
-$navbarClass = Components::classnames([
+$navbarClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
 
-$linksClass = Components::selector($blockClass, $blockClass, 'links');
-$linkClass = Components::selector($blockClass, $blockClass, 'link');
+$linksClass = Helpers::selector($blockClass, $blockClass, 'links');
+$linkClass = Helpers::selector($blockClass, $blockClass, 'link');
 
 $linksToShow = '';
 
@@ -41,7 +41,7 @@ if (!empty($siteNavigationLinks)) {
 
 <nav class="<?php echo esc_attr($navbarClass); ?>">
 	<?php
-	echo Components::render('image', Components::props('logo', $attributes, [
+	echo Helpers::render('image', Helpers::props('logo', $attributes, [
 		'blockClass' => $blockClass,
 		'selectorClass' => 'logo',
 	]));
@@ -57,14 +57,14 @@ if (!empty($siteNavigationLinks)) {
 	<?php } ?>
 
 	<?php
-	echo Components::render('hamburger', [
+	echo Helpers::render('hamburger', [
 		'blockClass' => $blockClass,
 	]);
 	?>
 </nav>
 
 <?php
-echo Components::render('drawer', [
+echo Helpers::render('drawer', [
 	'drawerTrigger' => 'js-hamburger',
 	'drawerMenu' => $linksToShow,
 ]);

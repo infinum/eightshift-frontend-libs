@@ -6,10 +6,10 @@ import manifest from './../manifest.json';
 
 export const ColumnsOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Columns', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Columns', '%g_textdomain%')}>
 			<ResponsiveNumberPicker
 				icon={icons.gutter}
-				label={__('Column gap', 'eightshift-frontend-libs')}
+				label={__('Column gap', '%g_textdomain%')}
 				resetButton={0}
 
 				{...generateResponsiveNumberPickerConfig({
@@ -22,7 +22,7 @@ export const ColumnsOptions = ({ attributes, setAttributes }) => {
 
 			<ResponsiveNumberPicker
 				icon={icons.verticalSpacing}
-				label={__('Row gap', 'eightshift-frontend-libs')}
+				label={__('Row gap', '%g_textdomain%')}
 				resetButton={0}
 				noBottomSpacing
 

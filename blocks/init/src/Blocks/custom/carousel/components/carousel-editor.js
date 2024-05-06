@@ -28,7 +28,7 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 			<AnimatedContentVisibility showIf={carouselIsLoop} additionalContainerClasses='es-position-absolute es-top-4 es-left-4 es-pointer-events-none'>
 				<IconLabel
 					icon={icons.loopMode}
-					label={__('Loop', 'eightshift-frontend-libs')}
+					label={__('Loop', '%g_textdomain%')}
 					additionalClasses='es-bg-pure-white es-p-2 es-rounded-2'
 					standalone
 				/>
