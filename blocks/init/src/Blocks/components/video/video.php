@@ -3,10 +3,10 @@
 /**
  * Template for the Video Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];

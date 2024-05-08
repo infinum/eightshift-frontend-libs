@@ -16,7 +16,7 @@ export const TableOfContentsEditor = ({ attributes, setAttributes }) => {
 
 			<Notification
 				iconOverride={icons.emptyRect}
-				text={__('Entries will show here', 'eightshift-frontend-libs')}
+				text={__('Entries will show here', '%g_textdomain%')}
 				additionalClasses='es-border-cool-gray-300!'
 				noBottomSpacing
 			/>

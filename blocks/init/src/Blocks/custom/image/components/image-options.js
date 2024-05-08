@@ -9,14 +9,14 @@ export const ImageOptions = ({ attributes, setAttributes }) => {
 	const imageAlign = checkAttr('imageAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Image', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Image', '%g_textdomain%')}>
 			<ImageOptionsComponent
 				{...props('image', attributes, {
 					setAttributes,
 				})}
 				additionalControlsDesignLayout={
 					<MatrixAlignControl
-						label={__('Position', 'eightshift-frontend-libs')}
+						label={__('Position', '%g_textdomain%')}
 						value={imageAlign}
 						onChange={(value) => setAttributes({ [getAttrKey('imageAlign', attributes, manifest)]: value })}
 						type='tileButton'

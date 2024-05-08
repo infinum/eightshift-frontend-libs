@@ -32,7 +32,7 @@ export const CardOptions = (attributes) => {
 
 			<HeadingOptions
 				{...props('intro', attributes, { options: getOptions(attributes, manifest) })}
-				label={__('Intro', 'eightshift-frontend-libs')}
+				label={__('Intro', '%g_textdomain%')}
 				reducedBottomSpacing
 			/>
 

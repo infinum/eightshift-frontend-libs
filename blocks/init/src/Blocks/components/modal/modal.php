@@ -3,10 +3,10 @@
 /**
  * Template for the Modal Component.
  *
- * @package EightshiftBoilerplate.
+ * @package %g_namespace%.
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 
@@ -58,7 +58,7 @@ $modalClass = Components::classnames([
 					<button
 						<?php echo esc_attr("data-{$componentJsToggleClass}-close"); ?>
 						class="<?php echo esc_attr("{$componentClass}__close-button"); ?>"
-						aria-label="<?php echo esc_attr__('Close modal', 'eightshift-frontend-libs'); ?>"
+						aria-label="<?php echo esc_attr__('Close modal', '%g_textdomain%'); ?>"
 					>
 						<?php
 						// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

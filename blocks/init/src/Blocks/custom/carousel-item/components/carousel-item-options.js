@@ -6,7 +6,7 @@ import { ImageOptions } from '../../../components/image/components/image-options
 
 export const CarouselItemOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Carousel item', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Carousel item', '%g_textdomain%')}>
 			<ImageOptions
 				{...props('image', attributes, { setAttributes })}
 				noLabel

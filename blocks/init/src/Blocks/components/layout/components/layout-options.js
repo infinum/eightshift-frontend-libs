@@ -40,7 +40,7 @@ export const LayoutOptions = (attributes) => {
 			{!hideMaxItems &&
 				<NumberPicker
 					{...getOption('layoutTotalItems', attributes, manifest)}
-					label={__('Maximum number of items', 'eightshift-frontend-libs')}
+					label={__('Maximum number of items', '%g_textdomain%')}
 					value={layoutTotalItems}
 					onChange={(value) => setAttributes({ [getAttrKey('layoutTotalItems', attributes, manifest)]: value })}
 					isDragEnabled

@@ -46,12 +46,12 @@ export const HeadingOptions = (attributes) => {
 	}), {});
 
 	const headingLevels = [
-		{ label: 'H1', tooltip: __('Heading 1', 'eightshift-frontend-libs'), value: 1 },
-		{ label: 'H2', tooltip: __('Heading 2', 'eightshift-frontend-libs'), value: 2 },
-		{ label: 'H3', tooltip: __('Heading 3', 'eightshift-frontend-libs'), value: 3 },
-		{ label: 'H4', tooltip: __('Heading 4', 'eightshift-frontend-libs'), value: 4 },
-		{ label: 'H5', tooltip: __('Heading 5', 'eightshift-frontend-libs'), value: 5 },
-		{ label: 'H6', tooltip: __('Heading 6', 'eightshift-frontend-libs'), value: 6 },
+		{ label: 'H1', tooltip: __('Heading 1', '%g_textdomain%'), value: 1 },
+		{ label: 'H2', tooltip: __('Heading 2', '%g_textdomain%'), value: 2 },
+		{ label: 'H3', tooltip: __('Heading 3', '%g_textdomain%'), value: 3 },
+		{ label: 'H4', tooltip: __('Heading 4', '%g_textdomain%'), value: 4 },
+		{ label: 'H5', tooltip: __('Heading 5', '%g_textdomain%'), value: 5 },
+		{ label: 'H6', tooltip: __('Heading 6', '%g_textdomain%'), value: 6 },
 	];
 
 	return (
@@ -64,7 +64,7 @@ export const HeadingOptions = (attributes) => {
 			>
 				{!hideColor &&
 					<ColorPicker
-						label={(!hideSize && !hideFontWeight) ? null : <IconLabel icon={icons.color} label={__('Color', 'eightshift-frontend-libs')} />}
+						label={(!hideSize && !hideFontWeight) ? null : <IconLabel icon={icons.color} label={__('Color', '%g_textdomain%')} />}
 						colors={getOption('headingColor', attributes, manifest, true)}
 						value={headingColor}
 						onChange={(value) => setAttributes({ [getAttrKey('headingColor', attributes, manifest)]: value })}
@@ -82,7 +82,7 @@ export const HeadingOptions = (attributes) => {
 							[getAttrKey('headingSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
 						})}
 						additionalSelectClasses='es-w-16'
-						placeholder={__('Size', 'eightshift-frontend-libs')}
+						placeholder={__('Size', '%g_textdomain%')}
 						noBottomSpacing
 						simpleValue
 						noSearch
@@ -95,7 +95,7 @@ export const HeadingOptions = (attributes) => {
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('headingSize', attributes, manifest)]: `${fontSize}:${value}` })}
 						additionalSelectClasses='es-w-22 es-flex-shrink-0 es-flex-grow-1'
-						placeholder={__('Weight', 'eightshift-frontend-libs')}
+						placeholder={__('Weight', '%g_textdomain%')}
 						noBottomSpacing
 						simpleValue
 						noSearch
@@ -105,7 +105,7 @@ export const HeadingOptions = (attributes) => {
 				{!hideHeadingLevel &&
 					<Menu
 						icon={<span className='es-text-4.5 es-font-weight-300 es-tabular-nums'>H{headingLevel}</span>}
-						tooltip={__('Heading level', 'eightshift-frontend-libs')}
+						tooltip={__('Heading level', '%g_textdomain%')}
 						additionalClass='es-button-square-36 es-is-v2-gutenberg-input-matched-button'
 					>
 						{headingLevels.map(({ tooltip, value }) => {

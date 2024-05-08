@@ -3,10 +3,10 @@
 /**
  * Template for the Featured Categories view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 
@@ -54,7 +54,7 @@ if (!$taxonomyName) {
 			'headingContent' => is_object($termObject) ? $termObject->name : '',
 			'paragraphContent' => is_object($termObject) ? $termObject->description : '',
 			'paragraphUse' => is_object($termObject),
-			'buttonContent' => __('See posts', 'eightshift-frontend-libs'),
+			'buttonContent' => __('See posts', '%g_textdomain%'),
 			'buttonIconUse' => false,
 			'buttonVariant' => 'outline',
 			'buttonUrl' => get_term_link($termObject),

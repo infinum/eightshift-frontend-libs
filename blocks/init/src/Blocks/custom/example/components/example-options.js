@@ -4,8 +4,8 @@ import { PanelBody } from '@wordpress/components';
 
 export const ExampleOptions = () => {
 	return (
-		<PanelBody title={__('Example', 'eightshift-frontend-libs')}>
-			<span>{__('Add your options here', 'eightshift-frontend-libs')}</span>
+		<PanelBody title={__('Example', '%g_textdomain%')}>
+			<span>{__('Add your options here', '%g_textdomain%')}</span>
 		</PanelBody>
 	);
 };

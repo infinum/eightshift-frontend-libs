@@ -54,7 +54,7 @@ export const ParagraphOptions = (attributes) => {
 							[getAttrKey('paragraphSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
 						})}
 						additionalSelectClasses='es-w-16'
-						placeholder={__('Size', 'eightshift-frontend-libs')}
+						placeholder={__('Size', '%g_textdomain%')}
 						noBottomSpacing
 						simpleValue
 						noSearch
@@ -67,7 +67,7 @@ export const ParagraphOptions = (attributes) => {
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('paragraphSize', attributes, manifest)]: `${fontSize}:${value}` })}
 						additionalSelectClasses='es-w-22 es-flex-shrink-0 es-flex-grow-1'
-						placeholder={__('Weight', 'eightshift-frontend-libs')}
+						placeholder={__('Weight', '%g_textdomain%')}
 						noBottomSpacing
 						simpleValue
 						noSearch

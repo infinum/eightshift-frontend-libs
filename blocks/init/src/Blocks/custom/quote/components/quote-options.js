@@ -9,7 +9,7 @@ export const QuoteOptions = ({ attributes, setAttributes }) => {
 	const quoteAlign = checkAttr('quoteAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Quote', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Quote', '%g_textdomain%')}>
 			<QuoteOptionsComponent
 				{...props('quote', attributes, {
 					setAttributes,

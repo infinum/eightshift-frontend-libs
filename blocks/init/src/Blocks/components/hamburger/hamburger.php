@@ -3,10 +3,10 @@
 /**
  * Template for the Hamburger component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 
@@ -17,7 +17,7 @@ if (!$hamburgerUse) {
 
 $hamburgerLabel = Components::checkAttr('hamburgerLabel', $attributes, $manifest);
 if (!$hamburgerLabel) {
-	$hamburgerLabel = __('Menu', 'eightshift-frontend-libs');
+	$hamburgerLabel = __('Menu', '%g_textdomain%');
 }
 
 $componentClass = $manifest['componentClass'] ?? '';

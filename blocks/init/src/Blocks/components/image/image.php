@@ -3,10 +3,10 @@
 /**
  * Template for the Image Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $globalManifest = Components::getSettings();
 $manifest = Components::getManifestByDir(__DIR__);

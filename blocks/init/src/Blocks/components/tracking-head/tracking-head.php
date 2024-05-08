@@ -3,7 +3,7 @@
 /**
  * Tracking codes in Head
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
  // Adding Code here.

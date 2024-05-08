@@ -3,10 +3,10 @@
 /**
  * Template for the Carousel Block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 
@@ -52,10 +52,10 @@ $paginationClass = Components::classnames([
 	</div>
 
 	<?php if ($carouselShowPrevNext) { ?>
-		<button class="<?php echo esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', 'eightshift-frontend-libs'); ?>">
+		<button class="<?php echo esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', '%g_textdomain%'); ?>">
 			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
-		<button class="<?php echo esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', 'eightshift-frontend-libs'); ?>">
+		<button class="<?php echo esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', '%g_textdomain%'); ?>">
 			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
 	<?php } ?>

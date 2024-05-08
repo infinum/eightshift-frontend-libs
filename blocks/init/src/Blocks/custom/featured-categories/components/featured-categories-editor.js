@@ -14,7 +14,7 @@ export const FeaturedCategoriesEditor = ({ attributes }) => {
 		return (
 			<Notification
 				type='info'
-				text={__('No taxonomy selected', 'eightshift-frontend-libs')}
+				text={__('No taxonomy selected', '%g_textdomain%')}
 			/>
 		);
 	}

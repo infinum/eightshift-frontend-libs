@@ -9,14 +9,14 @@ export const ButtonOptions = ({ attributes, setAttributes }) => {
 	const buttonAlign = checkAttr('buttonAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Button', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Button', '%g_textdomain%')}>
 			<ButtonOptionsComponent
 				{...props('button', attributes, { setAttributes })}
 
 				additionalControls={
 					<OptionSelector
 						icon={icons.position3x3Empty}
-						label={__('Alignment', 'eightshift-frontend-libs')}
+						label={__('Alignment', '%g_textdomain%')}
 						value={buttonAlign}
 						options={getOption('buttonAlign', attributes, manifest)}
 						onChange={(value) => setAttributes({ [getAttrKey('buttonAlign', attributes, manifest)]: value })}

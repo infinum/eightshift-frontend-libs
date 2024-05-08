@@ -3,10 +3,10 @@
 /**
  * Template for the Featured Content view - Card content map from ID.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $items = $attributes['items'] ?? [];
 
@@ -28,7 +28,7 @@ foreach ($items as $item) {
 				'cardHeadingContent' => get_the_title($item),
 				'cardParagraphContent' => get_the_excerpt($item),
 				'cardButtonUrl' => get_the_permalink($item),
-				'cardButtonContent' => __('Read', 'eightshift-frontend-libs'),
+				'cardButtonContent' => __('Read', '%g_textdomain%'),
 				'cardButtonVariant' => 'buttonOutline',
 				'cardButtonIconUse' => false,
 				'cardImageUrl' => get_the_post_thumbnail_url($item, 'large'),

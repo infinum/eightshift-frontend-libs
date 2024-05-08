@@ -9,16 +9,16 @@ export const TableOfContentsOptions = ({ attributes, setAttributes }) => {
 	const tableOfContentsHeadingLevels = checkAttr('tableOfContentsHeadingLevels', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Table of contents', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Table of contents', '%g_textdomain%')}>
 
-			<Control icon={icons.headingLevelAlt} label={__('Heading levels to include', 'eightshift-frontend-libs')}>
+			<Control icon={icons.headingLevelAlt} label={__('Heading levels to include', '%g_textdomain%')}>
 				{Object.keys(tableOfContentsHeadingLevels).map((level, i, arr) => {
 					return (
 						<IconToggle
 							key={i}
 							checked={tableOfContentsHeadingLevels[level]}
 							icon={icons.dummySpacer}
-							label={level.replace('h', __('Heading', 'eightshift-frontend-libs') + ' ')}
+							label={level.replace('h', __('Heading', '%g_textdomain%') + ' ')}
 							onChange={(value) => {
 								const newValue = { ...tableOfContentsHeadingLevels };
 								newValue[level] = value;
@@ -34,7 +34,7 @@ export const TableOfContentsOptions = ({ attributes, setAttributes }) => {
 
 			<ParagraphOptions
 				{...props('paragraph', attributes, { setAttributes })}
-				label={__('Caption', 'eightshift-frontend-libs')}
+				label={__('Caption', '%g_textdomain%')}
 				noBottomSpacing
 			/>
 		</PanelBody>

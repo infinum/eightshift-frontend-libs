@@ -3,10 +3,10 @@
 /**
  * Template for the Skip Link component view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
 
@@ -32,5 +32,5 @@ $skipLinkTarget = Components::checkAttr('skipLinkTarget', $attributes, $manifest
 	href="<?php echo esc_url($skipLinkTarget); ?>"
 	class="<?php echo esc_attr($skipLinkClasses); ?>"
 >
-	<?php echo esc_html__('Skip to main content', 'eightshift-frontend-libs'); ?>
+	<?php echo esc_html__('Skip to main content', '%g_textdomain%'); ?>
 </a>

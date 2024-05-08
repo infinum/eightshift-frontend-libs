@@ -32,7 +32,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 	const featuredContentExcludeCurrentPost = checkAttr('featuredContentExcludeCurrentPost', attributes, manifest);
 	const featuredContentRandomOrder = checkAttr('featuredContentRandomOrder', attributes, manifest);
 
-	const allGenericOption = { label: __('All', 'eightshift-frontend-libs'), value: '_all' };
+	const allGenericOption = { label: __('All', '%g_textdomain%'), value: '_all' };
 
 	const postTypeOptions = getOption('featuredContentPostType', attributes, manifest);
 	const taxonomyOptions = [
@@ -45,16 +45,16 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 	const [useSpecificTerms, setUseSpecificTerms] = useState(featuredContentTerms?.length > 0);
 
 	return (
-		<PanelBody title={__('Featured content', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Featured content', '%g_textdomain%')}>
 			<AnimatedContentVisibility showIf={featuredContentUseCurrentTerm || featuredContentExcludeCurrentPost}>
 				<Notification
 					type='warning'
-					text={__('Note', 'eightshift-frontend-libs')}
+					text={__('Note', '%g_textdomain%')}
 					subtitle={__('Editor preview may not show an accurate list of items.')}
 				/>
 			</AnimatedContentVisibility>
 
-			<Section icon={icons.layoutAlt3} label={__('Layout', 'eightshift-frontend-libs')}>
+			<Section icon={icons.layoutAlt3} label={__('Layout', '%g_textdomain%')}>
 				<LayoutOptions
 					{...props('layout', attributes, {
 						setAttributes,
@@ -66,10 +66,10 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 				/>
 			</Section>
 
-			<Section showIf={postTypeOptions.length > 0} icon={icons.filter} label={__('Item source', 'eightshift-frontend-libs')} noBottomSpacing>
+			<Section showIf={postTypeOptions.length > 0} icon={icons.filter} label={__('Item source', '%g_textdomain%')} noBottomSpacing>
 				<Control additionalClasses='es-fifty-fifty-h'>
 					<Select
-						label={__('Kind', 'eightshift-frontend-libs')}
+						label={__('Kind', '%g_textdomain%')}
 						value={featuredContentPostType}
 						options={postTypeOptions}
 						onChange={(value) => {
@@ -89,7 +89,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 					{featuredContentPostType?.taxonomies?.length > 0 &&
 						<Select
-							label={__('Taxonomy', 'eightshift-frontend-libs')}
+							label={__('Taxonomy', '%g_textdomain%')}
 							value={featuredContentTaxonomy ?? allGenericOption}
 							options={taxonomyOptions}
 							onChange={(value) => {
@@ -104,7 +104,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 								});
 							}}
 
-							// placeholder={__('All', 'eightshift-frontend-libs')}
+							// placeholder={__('All', '%g_textdomain%')}
 							noBottomSpacing
 						/>
 					}
@@ -115,7 +115,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						{!featuredContentUseCurrentTerm &&
 							<IconToggle
 								icon={icons.itemSelect}
-								label={__('Select terms to show', 'eightshift-frontend-libs')}
+								label={__('Select terms to show', '%g_textdomain%')}
 								checked={useSpecificTerms}
 								onChange={() => {
 									setUseSpecificTerms(!useSpecificTerms);
@@ -132,7 +132,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 							<AsyncMultiSelect
 								key={featuredContentTaxonomy?.value}
 								// eslint-disable-next-line max-len
-								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
+								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentTerms}
 								loadOptions={getFetchWpApi(featuredContentTaxonomy?.api, {
 									fields: 'id,name',
@@ -148,8 +148,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						{!useSpecificTerms &&
 							<IconToggle
 								icon={icons.checkCircle}
-								label={__("Use current item's terms", 'eightshift-frontend-libs')}
-								help={__('Best used with posts', 'eightshift-frontend-libs')}
+								label={__("Use current item's terms", '%g_textdomain%')}
+								help={__('Best used with posts', '%g_textdomain%')}
 								inlineHelp
 								checked={featuredContentUseCurrentTerm}
 								onChange={() => {
@@ -168,7 +168,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						{!featuredContentExcludeCurrentPost &&
 							<IconToggle
 								icon={icons.itemSelect}
-								label={__('Select items to show', 'eightshift-frontend-libs')}
+								label={__('Select items to show', '%g_textdomain%')}
 								checked={useSpecificPosts}
 								onChange={() => {
 									setUseSpecificPosts(!useSpecificPosts);
@@ -184,7 +184,7 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 							<AsyncMultiSelect
 								key={featuredContentPostType.value}
 								// eslint-disable-next-line max-len
-								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', 'eightshift-frontend-libs')}
+								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentPosts}
 								loadOptions={getFetchWpApi(featuredContentPostType?.api, {
 									processLabel: ({ title: { rendered } }) => unescapeHTML(rendered),
@@ -200,8 +200,8 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 				{!useSpecificPosts &&
 					<IconToggle
 						icon={icons.excludeItemAlt}
-						label={__('Exclude current', 'eightshift-frontend-libs')}
-						help={__('Best used with posts', 'eightshift-frontend-libs')}
+						label={__('Exclude current', '%g_textdomain%')}
+						help={__('Best used with posts', '%g_textdomain%')}
 						checked={featuredContentExcludeCurrentPost}
 						onChange={(value) => setAttributes({ [getAttrKey('featuredContentExcludeCurrentPost', attributes, manifest)]: value })}
 						inlineHelp
@@ -210,19 +210,19 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 
 				<IconToggle
 					icon={icons.dice}
-					label={__('Randomize order', 'eightshift-frontend-libs')}
+					label={__('Randomize order', '%g_textdomain%')}
 					checked={featuredContentRandomOrder}
 					onChange={(value) => setAttributes({ [getAttrKey('featuredContentRandomOrder', attributes, manifest)]: value })}
 				/>
 			</Section>
 
-			<Section label={__('Other', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+			<Section label={__('Other', '%g_textdomain%')} icon={icons.moreH} noBottomSpacing>
 				<LoadMoreOptions
 					{...props('load-more', attributes, {
 						setAttributes,
 						options: getOptions(attributes, manifest),
 					})}
-					label={__('"Load more" button', 'eightshift-frontend-libs')}
+					label={__('"Load more" button', '%g_textdomain%')}
 					noBottomSpacing
 				/>
 			</Section>
