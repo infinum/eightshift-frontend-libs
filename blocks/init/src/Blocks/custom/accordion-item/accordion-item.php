@@ -6,33 +6,33 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$uniqueAccordionId = Components::getUnique();
-$uniqueAccordionTriggerId = Components::getUnique();
+$uniqueAccordionId = Helpers::getUnique();
+$uniqueAccordionTriggerId = Helpers::getUnique();
 
-$accordionItemIconClass = Components::selector($blockClass, $blockClass, 'icon');
-$accordionItemContentClass = Components::selector($blockClass, $blockClass, 'content');
+$accordionItemIconClass = Helpers::selector($blockClass, $blockClass, 'icon');
+$accordionItemContentClass = Helpers::selector($blockClass, $blockClass, 'content');
 
-$accordionItemTriggerClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'trigger'),
+$accordionItemTriggerClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'trigger'),
 	"{$blockJsClass}-trigger",
 ]);
 
-$accordionItemPanelClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'panel'),
+$accordionItemPanelClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'panel'),
 	"{$blockJsClass}-panel",
 ]);
 
-$accordionItemStartOpen = Components::checkAttr('accordionItemStartOpen', $attributes, $manifest);
-$accordionItemTriggerContent = Components::checkAttr('accordionItemTriggerContent', $attributes, $manifest);
+$accordionItemStartOpen = Helpers::checkAttr('accordionItemStartOpen', $attributes, $manifest);
+$accordionItemTriggerContent = Helpers::checkAttr('accordionItemTriggerContent', $attributes, $manifest);
 
-$accordionItemClass = Components::classnames([
+$accordionItemClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
@@ -49,7 +49,7 @@ $accordionItemClass = Components::classnames([
 		aria-expanded="<?php echo esc_attr($accordionItemStartOpen ? 'true' : 'false'); ?>"
 		id="<?php echo esc_attr($uniqueAccordionTriggerId); ?>"
 	>
-		<?php echo Components::render('paragraph', Components::props('trigger', $attributes)); ?>
+		<?php echo Helpers::render('paragraph', Helpers::props('trigger', $attributes)); ?>
 
 		<span class="<?php echo esc_attr($accordionItemIconClass); ?>" aria-hidden="true" >
 			<?php

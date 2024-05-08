@@ -6,13 +6,13 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$headFavicon = Components::checkAttr('headFavicon', $attributes, $manifest);
-$headCharset = Components::checkAttr('headCharset', $attributes, $manifest);
-$headName = Components::checkAttr('headName', $attributes, $manifest);
+$headFavicon = Helpers::checkAttr('headFavicon', $attributes, $manifest);
+$headCharset = Helpers::checkAttr('headCharset', $attributes, $manifest);
+$headName = Helpers::checkAttr('headName', $attributes, $manifest);
 
 ?>
 
@@ -53,4 +53,4 @@ $headName = Components::checkAttr('headName', $attributes, $manifest);
 
 
 <?php
-echo Components::outputCssVariablesGlobal(); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
+echo Helpers::outputCssVariablesGlobal(); // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

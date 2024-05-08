@@ -6,18 +6,18 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique),
-	Components::render('quote', Components::props('quote', $attributes));
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique),
+	Helpers::render('quote', Helpers::props('quote', $attributes));
 	?>
 </div>

@@ -6,11 +6,11 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
+$copyrightUse = Helpers::checkAttr('copyrightUse', $attributes, $manifest);
 if (!$copyrightUse) {
 	return;
 }
@@ -20,14 +20,14 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
-$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
-$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
+$copyrightBy = Helpers::checkAttr('copyrightBy', $attributes, $manifest);
+$copyrightYear = Helpers::checkAttr('copyrightYear', $attributes, $manifest);
+$copyrightContent = Helpers::checkAttr('copyrightContent', $attributes, $manifest);
 
-$copyrightClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$copyrightClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
 ?>

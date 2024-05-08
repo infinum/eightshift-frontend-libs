@@ -6,11 +6,11 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$pageOverlayUse = Components::checkAttr('pageOverlayUse', $attributes, $manifest);
+$pageOverlayUse = Helpers::checkAttr('pageOverlayUse', $attributes, $manifest);
 if (!$pageOverlayUse) {
 	return;
 }
@@ -21,11 +21,11 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 
-$overlayClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
-	Components::selector($componentJsClass, $componentJsClass),
+$overlayClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
+	Helpers::selector($componentJsClass, $componentJsClass),
 ]);
 
 ?>

@@ -6,39 +6,39 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $manifest['blockJsClass'] ?? $attributes['blockJsClass'] ?? '';
 
-$carouselIsLoop = Components::checkAttr('carouselIsLoop', $attributes, $manifest);
-$carouselShowItems = Components::checkAttr('carouselShowItems', $attributes, $manifest);
-$carouselShowPrevNext = Components::checkAttr('carouselShowPrevNext', $attributes, $manifest);
-$carouselShowPagination = Components::checkAttr('carouselShowPagination', $attributes, $manifest);
+$carouselIsLoop = Helpers::checkAttr('carouselIsLoop', $attributes, $manifest);
+$carouselShowItems = Helpers::checkAttr('carouselShowItems', $attributes, $manifest);
+$carouselShowPrevNext = Helpers::checkAttr('carouselShowPrevNext', $attributes, $manifest);
+$carouselShowPagination = Helpers::checkAttr('carouselShowPagination', $attributes, $manifest);
 
-$carouselClass = Components::classnames([
+$carouselClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 	'swiper',
 ]);
 
-$prevButtonClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'button'),
-	Components::selector($blockClass, $blockClass, 'button', 'previous'),
-	Components::selector($blockJsClass, "{$blockJsClass}-prev-arrow"),
+$prevButtonClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'button'),
+	Helpers::selector($blockClass, $blockClass, 'button', 'previous'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-prev-arrow"),
 ]);
 
-$nextButtonClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'button'),
-	Components::selector($blockClass, $blockClass, 'button', 'next'),
-	Components::selector($blockJsClass, "{$blockJsClass}-next-arrow"),
+$nextButtonClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'button'),
+	Helpers::selector($blockClass, $blockClass, 'button', 'next'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-next-arrow"),
 ]);
 
-$paginationClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'pagination'),
-	Components::selector($blockJsClass, "{$blockJsClass}-pagination"),
+$paginationClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'pagination'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-pagination"),
 ]);
 ?>
 

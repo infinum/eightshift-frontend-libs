@@ -6,7 +6,7 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
 $items = $attributes['items'] ?? [];
 
@@ -17,9 +17,9 @@ if (!$items) {
 }
 
 foreach ($items as $item) {
-	echo Components::render(
+	echo Helpers::render(
 		'card',
-		Components::props('card', [
+		Helpers::props('card', [
 				'cardIntroUse' => true,
 				'cardIntroSize' => 'h6:medium',
 				'cardIntroColor' => 'primary500',

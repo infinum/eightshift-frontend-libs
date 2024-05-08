@@ -6,11 +6,11 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$logoUse = Components::checkAttr('logoUse', $attributes, $manifest);
+$logoUse = Helpers::checkAttr('logoUse', $attributes, $manifest);
 if (!$logoUse) {
 	return;
 }
@@ -20,18 +20,18 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$logoSrc = Components::checkAttr('logoSrc', $attributes, $manifest);
-$logoAlt = Components::checkAttr('logoAlt', $attributes, $manifest);
-$logoTitle = Components::checkAttr('logoTitle', $attributes, $manifest);
-$logoHref = Components::checkAttr('logoHref', $attributes, $manifest);
+$logoSrc = Helpers::checkAttr('logoSrc', $attributes, $manifest);
+$logoAlt = Helpers::checkAttr('logoAlt', $attributes, $manifest);
+$logoTitle = Helpers::checkAttr('logoTitle', $attributes, $manifest);
+$logoHref = Helpers::checkAttr('logoHref', $attributes, $manifest);
 
-$logoClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$logoClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$imgClass = Components::selector($componentClass, $componentClass, 'img');
+$imgClass = Helpers::selector($componentClass, $componentClass, 'img');
 ?>
 
 <a

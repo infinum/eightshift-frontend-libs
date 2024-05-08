@@ -6,16 +6,16 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$accordionCloseAdjacent = Components::checkAttr('accordionCloseAdjacent', $attributes, $manifest);
+$accordionCloseAdjacent = Helpers::checkAttr('accordionCloseAdjacent', $attributes, $manifest);
 
-$accordionClass = Components::classnames([
+$accordionClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);

@@ -6,24 +6,24 @@
  * @package %g_namespace%
  */
 
- use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+ use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$mapClasses = Components::classnames([
+$mapClasses = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
 
-$mapLayers = Components::checkAttr('mapLayers', $attributes, $manifest);
-$mapCenterLat = Components::checkAttr('mapCenterLat', $attributes, $manifest);
-$mapCenterLon = Components::checkAttr('mapCenterLon', $attributes, $manifest);
-$mapZoom = Components::checkAttr('mapZoom', $attributes, $manifest);
-$mapInteractions = Components::checkAttr('mapInteractions', $attributes, $manifest);
-$mapControls = Components::checkAttr('mapControls', $attributes, $manifest);
+$mapLayers = Helpers::checkAttr('mapLayers', $attributes, $manifest);
+$mapCenterLat = Helpers::checkAttr('mapCenterLat', $attributes, $manifest);
+$mapCenterLon = Helpers::checkAttr('mapCenterLon', $attributes, $manifest);
+$mapZoom = Helpers::checkAttr('mapZoom', $attributes, $manifest);
+$mapInteractions = Helpers::checkAttr('mapInteractions', $attributes, $manifest);
+$mapControls = Helpers::checkAttr('mapControls', $attributes, $manifest);
 
 // Take only active map layers and clean them up a bit so the output JSON is smaller.
 $activeLayers = array_filter($mapLayers, fn ($layer) => $layer['hidden'] === false); // @phpstan-ignore-line

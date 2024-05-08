@@ -6,36 +6,36 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$paragraphUse = Components::checkAttr('paragraphUse', $attributes, $manifest);
+$paragraphUse = Helpers::checkAttr('paragraphUse', $attributes, $manifest);
 if (!$paragraphUse) {
 	return;
 }
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$paragraphContent = Components::checkAttr('paragraphContent', $attributes, $manifest);
+$paragraphContent = Helpers::checkAttr('paragraphContent', $attributes, $manifest);
 
 if (!$paragraphContent) {
 	return;
 }
 
-$paragraphClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$paragraphClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
+<?php echo Helpers::outputCssVariables($attributes, $manifest, $unique); ?>
 
 <p class="<?php echo esc_attr($paragraphClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php

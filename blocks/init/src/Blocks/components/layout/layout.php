@@ -6,11 +6,11 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$layoutUse = Components::checkAttr('layoutUse', $attributes, $manifest);
+$layoutUse = Helpers::checkAttr('layoutUse', $attributes, $manifest);
 if (!$layoutUse) {
 	return;
 }
@@ -20,22 +20,22 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$layoutItems = Components::checkAttr('layoutItems', $attributes, $manifest);
-$layoutTag = Components::checkAttr('layoutTag', $attributes, $manifest);
-$layoutType = Components::checkAttr('layoutType', $attributes, $manifest);
-$layoutLoadMoreId = Components::checkAttr('layoutLoadMoreId', $attributes, $manifest);
+$layoutItems = Helpers::checkAttr('layoutItems', $attributes, $manifest);
+$layoutTag = Helpers::checkAttr('layoutTag', $attributes, $manifest);
+$layoutType = Helpers::checkAttr('layoutType', $attributes, $manifest);
+$layoutLoadMoreId = Helpers::checkAttr('layoutLoadMoreId', $attributes, $manifest);
 
-$layoutClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$layoutClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
+<?php echo Helpers::outputCssVariables($attributes, $manifest, $unique); ?>
 <<?php echo esc_attr($layoutTag); ?>
 	class="<?php echo esc_attr($layoutClass); ?>"
 	data-id="<?php echo esc_attr($unique); ?>"
@@ -47,7 +47,7 @@ $unique = Components::getUnique();
 	>
 		<?php
 		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo Components::ensureString($layoutItems);
+		echo Helpers::ensureString($layoutItems);
 		?>
 	</div>
 </<?php echo esc_attr($layoutTag); ?>>

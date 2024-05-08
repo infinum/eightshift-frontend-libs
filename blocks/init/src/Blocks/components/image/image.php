@@ -6,43 +6,43 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Components::getSettings();
-$manifest = Components::getManifestByDir(__DIR__);
+$globalManifest = Helpers::getSettings();
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$imageUse = Components::checkAttr('imageUse', $attributes, $manifest) ?? false;
-$imageUrl = Components::checkAttrResponsive('imageUrl', $attributes, $manifest);
+$imageUse = Helpers::checkAttr('imageUse', $attributes, $manifest) ?? false;
+$imageUrl = Helpers::checkAttrResponsive('imageUrl', $attributes, $manifest);
 
 if (!$imageUse || !isset($imageUrl['large']) || empty($imageUrl['large'])) {
 	return;
 }
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$imageAlt = Components::checkAttr('imageAlt', $attributes, $manifest) ?? '';
+$imageAlt = Helpers::checkAttr('imageAlt', $attributes, $manifest) ?? '';
 
-$pictureClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$pictureClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$imgClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'img'),
-	Components::selector($blockClass, $blockClass, "{$selectorClass}-img"),
+$imgClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass, 'img'),
+	Helpers::selector($blockClass, $blockClass, "{$selectorClass}-img"),
 ]);
 ?>
 
 <picture class="<?php echo esc_attr($pictureClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique);
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique);
 	?>
 
 	<?php foreach (array_reverse($imageUrl) as $breakpoint => $item) { ?>

@@ -6,16 +6,16 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 
-$carouselItemClass = Components::classnames([
+$carouselItemClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
@@ -23,7 +23,7 @@ $carouselItemClass = Components::classnames([
 
 <div class="<?php echo esc_attr($carouselItemClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique),
-	Components::render('image', Components::props('image', $attributes));
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique),
+	Helpers::render('image', Helpers::props('image', $attributes));
 	?>
 </div>

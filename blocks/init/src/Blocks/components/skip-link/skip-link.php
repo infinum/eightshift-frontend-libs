@@ -6,11 +6,11 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$skipLinkUse = Components::checkAttr('skipLinkUse', $attributes, $manifest);
+$skipLinkUse = Helpers::checkAttr('skipLinkUse', $attributes, $manifest);
 if (!$skipLinkUse) {
 	return;
 }
@@ -20,13 +20,13 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$skipLinkClasses = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$skipLinkClasses = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$skipLinkTarget = Components::checkAttr('skipLinkTarget', $attributes, $manifest);
+$skipLinkTarget = Helpers::checkAttr('skipLinkTarget', $attributes, $manifest);
 ?>
 <a
 	href="<?php echo esc_url($skipLinkTarget); ?>"

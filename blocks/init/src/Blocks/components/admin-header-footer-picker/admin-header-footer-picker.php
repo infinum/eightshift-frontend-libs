@@ -7,9 +7,9 @@
  */
 
 use %g_namespace%\AdminMenus\ReusableBlocksHeaderFooter;
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 ?>
 
 <div class="wrap">

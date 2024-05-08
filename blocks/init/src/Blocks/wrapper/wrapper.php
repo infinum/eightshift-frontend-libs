@@ -6,17 +6,17 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 // Used to add or remove wrapper.
-$wrapperUse = Components::checkAttr('wrapperUse', $attributes, $manifest);
-$wrapperNoControls = Components::checkAttr('wrapperNoControls', $attributes, $manifest);
-$wrapperParentClass = Components::checkAttr('wrapperParentClass', $attributes, $manifest);
-$wrapperSimple = Components::checkAttr('wrapperSimple', $attributes, $manifest);
-$wrapperUseInner = Components::checkAttr('wrapperUseInner', $attributes, $manifest);
-$wrapperOnlyOutput = Components::checkAttr('wrapperOnlyOutput', $attributes, $manifest);
+$wrapperUse = Helpers::checkAttr('wrapperUse', $attributes, $manifest);
+$wrapperNoControls = Helpers::checkAttr('wrapperNoControls', $attributes, $manifest);
+$wrapperParentClass = Helpers::checkAttr('wrapperParentClass', $attributes, $manifest);
+$wrapperSimple = Helpers::checkAttr('wrapperSimple', $attributes, $manifest);
+$wrapperUseInner = Helpers::checkAttr('wrapperUseInner', $attributes, $manifest);
+$wrapperOnlyOutput = Helpers::checkAttr('wrapperOnlyOutput', $attributes, $manifest);
 
 if (! $wrapperUse || $wrapperNoControls) {
 	if ($wrapperParentClass) {
@@ -34,18 +34,18 @@ if (! $wrapperUse || $wrapperNoControls) {
 	return;
 }
 
-$wrapperTag = Components::checkAttr('wrapperTag', $attributes, $manifest);
-$wrapperId = Components::checkAttr('wrapperId', $attributes, $manifest);
-$wrapperAnchorId = Components::checkAttr('wrapperAnchorId', $attributes, $manifest);
+$wrapperTag = Helpers::checkAttr('wrapperTag', $attributes, $manifest);
+$wrapperId = Helpers::checkAttr('wrapperId', $attributes, $manifest);
+$wrapperAnchorId = Helpers::checkAttr('wrapperAnchorId', $attributes, $manifest);
 $wrapperMainClass = $attributes['componentClass'] ?? $manifest['componentClass'];
-$wrapperClass = Components::classnames([
+$wrapperClass = Helpers::classnames([
 	$wrapperMainClass,
 	$wrapperSimple ? "{$wrapperMainClass}--simple" : '',
 ]);
 
 $wrapperInnerClass =  "{$wrapperMainClass}__inner";
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 $attributes["uniqueWrapperId"] = $unique;
 
 ?>
@@ -56,7 +56,7 @@ $attributes["uniqueWrapperId"] = $unique;
 	<?php echo $wrapperId ? 'id="' . esc_attr($wrapperId) . '"' : ''; ?>
 	>
 	<?php
-	 echo Components::outputCssVariables($attributes, $manifest, $unique);
+	 echo Helpers::outputCssVariables($attributes, $manifest, $unique);
 	?>
 	<?php if ($wrapperAnchorId) { ?>
 		<div

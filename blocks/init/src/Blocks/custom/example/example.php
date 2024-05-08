@@ -6,13 +6,13 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
-$exampleContent = Components::checkAttr('exampleContent', $attributes, $manifest);
+$exampleContent = Helpers::checkAttr('exampleContent', $attributes, $manifest);
 
 ?>
 

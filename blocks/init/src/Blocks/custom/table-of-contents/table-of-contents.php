@@ -6,24 +6,24 @@
  * @package %g_namespace%
  */
 
-use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $attributes['blockJsClass'] ?? '';
 
-$tocClass = Components::classnames([
+$tocClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 ]);
 
-$entriesClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'entries'),
+$entriesClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'entries'),
 	"{$blockJsClass}-entries",
 ]);
 
-$tableOfContentsHeadingLevels = Components::checkAttr('tableOfContentsHeadingLevels', $attributes, $manifest);
+$tableOfContentsHeadingLevels = Helpers::checkAttr('tableOfContentsHeadingLevels', $attributes, $manifest);
 
 $headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadingLevels, fn($v) => $v))); // @phpstan-ignore-line
 ?>
@@ -31,6 +31,6 @@ $headingLevelsToUse = implode(',', array_keys(array_filter($tableOfContentsHeadi
 <div class="<?php echo esc_attr($tocClass); ?>" data-levels="<?php echo esc_attr($headingLevelsToUse); ?>">
 	<?php
 	// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-	echo Components::render('paragraph', Components::props('paragraph', $attributes));
+	echo Helpers::render('paragraph', Helpers::props('paragraph', $attributes));
 	?>
 </div>
