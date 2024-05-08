@@ -1,8 +1,0 @@
-{
-	"componentName": "mock-blockquote",
-	"title": "mock blockquote",
-	"componentClass": "blockquote",
-	"components": {
-		"blockquote": "mock-card"
-	}
-}

@@ -3,9 +3,9 @@
 /**
  * Template for the Card Block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-echo Components::render('card', Components::props('card', $attributes));
+echo Helpers::render('card', Helpers::props('card', $attributes));

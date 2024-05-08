@@ -3,14 +3,14 @@
 /**
  * Mobile menu as drawer
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$drawerUse = Components::checkAttr('drawerUse', $attributes, $manifest);
+$drawerUse = Helpers::checkAttr('drawerUse', $attributes, $manifest);
 if (!$drawerUse) {
 	return;
 }
@@ -21,17 +21,17 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 
-$drawerMenu = Components::checkAttr('drawerMenu', $attributes, $manifest);
-$drawerTrigger = Components::checkAttr('drawerTrigger', $attributes, $manifest);
+$drawerMenu = Helpers::checkAttr('drawerMenu', $attributes, $manifest);
+$drawerTrigger = Helpers::checkAttr('drawerTrigger', $attributes, $manifest);
 
-$drawerClass = Components::classnames([
+$drawerClass = Helpers::classnames([
 	$componentClass,
 	$componentJsClass,
-	Components::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
 	$additionalClass,
 ]);
 
-$drawerInnerClass = Components::selector($componentClass, $componentClass, 'inner');
+$drawerInnerClass = Helpers::selector($componentClass, $componentClass, 'inner');
 ?>
 
 <div

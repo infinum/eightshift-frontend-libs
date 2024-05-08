@@ -31,7 +31,7 @@ import globalManifest from './../../manifest.json';
 
 export const WrapperOptions = ({ attributes, setAttributes }) => {
 	const {
-		label = __('Spacing & layout', 'eightshift-frontend-libs'),
+		label = __('Spacing & layout', '%g_textdomain%'),
 		showWrapperId = true,
 		showWrapperAnchorId = true,
 		showWrapperBgColorPicker = true,
@@ -116,7 +116,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 	let wrapperUseOptions = [
 		{
-			label: __('Just the block', 'eightshift-frontend-libs'),
+			label: __('Just the block', '%g_textdomain%'),
 			value: 'off',
 			icon: icons.wrapperOffAlt,
 		}
@@ -124,7 +124,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 	if (wrapperSimpleShowControl) {
 		wrapperUseOptions = [...wrapperUseOptions, {
-			label: __('Spacing only', 'eightshift-frontend-libs'),
+			label: __('Spacing only', '%g_textdomain%'),
 			value: 'simple',
 			icon: icons.wrapperSimpleAlt,
 		}];
@@ -132,7 +132,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 	if (wrapperUseShowControl) {
 		wrapperUseOptions = [...wrapperUseOptions, {
-			label: __('Spacing & layout', 'eightshift-frontend-libs'),
+			label: __('Spacing & layout', '%g_textdomain%'),
 			value: 'full',
 			icon: icons.wrapperAlt,
 		}];
@@ -173,7 +173,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					setAttributes={setAttributes}
 					defaultButton={!wrapperHideDefaultPreset}
 					offButton={{
-						label: __('Just the block', 'eightshift-frontend-libs'),
+						label: __('Just the block', '%g_textdomain%'),
 						icon: icons.wrapperOffAlt,
 						attributes: {
 							wrapperUse: false,
@@ -201,7 +201,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								icon={icons.copy}
 								onClick={copyAttributes}
 								className='es-button-icon-24 es-button-square-24 es-rounded-0.75!'
-								label={__('Copy configuration', 'eightshift-frontend-libs')}
+								label={__('Copy configuration', '%g_textdomain%')}
 								showTooltip
 							/>
 
@@ -210,7 +210,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								onClick={pasteAttributes}
 								disabled={!localStorage?.getItem('esCopiedWrapperAttributes')}
 								className='es-button-icon-24 es-button-square-24 es-rounded-0.75!'
-								label={__('Paste configuration', 'eightshift-frontend-libs')}
+								label={__('Paste configuration', '%g_textdomain%')}
 								showTooltip
 							/>
 						</div>
@@ -278,7 +278,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 					{wrapperUse && showWrapperTag &&
 						<OptionSelector
-							label={__('Wrapper tag', 'eightshift-frontend-libs')}
+							label={__('Wrapper tag', '%g_textdomain%')}
 							icon={icons.code}
 							options={wrapperTagOptions}
 							value={wrapperTag}
@@ -290,13 +290,13 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 					<Section
 						icon={icons.ruler}
-						label={__('Spacing', 'eightshift-frontend-libs')}
+						label={__('Spacing', '%g_textdomain%')}
 						showIf={showWrapperSpacingTop || showWrapperSpacingBottom || showWrapperSpacingTopIn || showWrapperSpacingBottomIn}
 					>
 						{showWrapperSpacingTop &&
 							<ResponsiveNumberPicker
 								icon={icons.spacingTop}
-								label={__('Top', 'eightshift-frontend-libs')}
+								label={__('Top', '%g_textdomain%')}
 								resetButton={manifest.attributes.wrapperSpacingTopLarge.default}
 								reducedBottomSpacing
 
@@ -313,7 +313,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{showWrapperSpacingBottom &&
 							<ResponsiveNumberPicker
 								icon={icons.spacingBottom}
-								label={__('Bottom', 'eightshift-frontend-libs')}
+								label={__('Bottom', '%g_textdomain%')}
 								resetButton={manifest.attributes.wrapperSpacingBottomLarge.default}
 
 								{...generateResponsiveNumberPickerConfig({
@@ -328,11 +328,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						}
 
 						{(!noLeftSpacingInSelector || !noRightSpacingSelector) &&
-							<Collapsable label={__('More', 'eightshift-frontend-libs')} icon={icons.moreH}>
+							<Collapsable label={__('More', '%g_textdomain%')} icon={icons.moreH}>
 								{!noLeftSpacingSelector &&
 									<ResponsiveNumberPicker
 										icon={icons.spacingLeft}
-										label={__('Left', 'eightshift-frontend-libs')}
+										label={__('Left', '%g_textdomain%')}
 										resetButton={manifest.attributes.wrapperSpacingLeftLarge.default}
 										reducedBottomSpacing={!noRightSpacingSelector}
 
@@ -349,7 +349,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								{!noRightSpacingSelector &&
 									<ResponsiveNumberPicker
 										icon={icons.spacingRight}
-										label={__('Right', 'eightshift-frontend-libs')}
+										label={__('Right', '%g_textdomain%')}
 										resetButton={manifest.attributes.wrapperSpacingRightLarge.default}
 										noBottomSpacing
 
@@ -368,7 +368,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{showWrapperSpacingTopIn &&
 							<ResponsiveNumberPicker
 								icon={icons.spacingTopIn}
-								label={__('Top inner', 'eightshift-frontend-libs')}
+								label={__('Top inner', '%g_textdomain%')}
 								resetButton={manifest.attributes.wrapperSpacingTopInLarge.default}
 								reducedBottomSpacing
 
@@ -385,7 +385,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{showWrapperSpacingBottomIn &&
 							<ResponsiveNumberPicker
 								icon={icons.spacingBottomIn}
-								label={__('Bottom inner', 'eightshift-frontend-libs')}
+								label={__('Bottom inner', '%g_textdomain%')}
 								resetButton={manifest.attributes.wrapperSpacingBottomInLarge.default}
 
 								{...generateResponsiveNumberPickerConfig({
@@ -401,11 +401,11 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						}
 
 						{(!noLeftSpacingInSelector || !noRightSpacingInSelector) &&
-							<Collapsable label={__('More', 'eightshift-frontend-libs')} icon={icons.moreH} noBottomSpacing>
+							<Collapsable label={__('More', '%g_textdomain%')} icon={icons.moreH} noBottomSpacing>
 								{!noLeftSpacingInSelector &&
 									<ResponsiveNumberPicker
 										icon={icons.spacingLeftIn}
-										label={__('Left inner', 'eightshift-frontend-libs')}
+										label={__('Left inner', '%g_textdomain%')}
 										resetButton={manifest.attributes.wrapperSpacingLeftInLarge.default}
 										reducedBottomSpacing={!noRightSpacingSelector}
 
@@ -422,7 +422,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								{!noRightSpacingInSelector &&
 									<ResponsiveNumberPicker
 										icon={icons.spacingRightIn}
-										label={__('Right inner', 'eightshift-frontend-libs')}
+										label={__('Right inner', '%g_textdomain%')}
 										resetButton={manifest.attributes.wrapperSpacingRightInLarge.default}
 										noBottomSpacing
 
@@ -443,16 +443,16 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						// eslint-disable-next-line max-len
 						showIf={(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor || showWrapperRoundedCorners)}
 						icon={icons.design}
-						label={__('Design', 'eightshift-frontend-libs')}
+						label={__('Design', '%g_textdomain%')}
 					>
 						{showWrapperBgColorPicker &&
 							<AdvancedColorPicker
 								icon={icons.backgroundType}
-								label={__('Background', 'eightshift-frontend-libs')}
+								label={__('Background', '%g_textdomain%')}
 								colorsProject={backgroundColors}
 								value={wrapperBgColorProject}
 
-								pickerPopupTitle={__('Background', 'eightshift-frontend-libs')}
+								pickerPopupTitle={__('Background', '%g_textdomain%')}
 								groupShades
 								canReset
 								colorProject={wrapperBgColorProject}
@@ -471,17 +471,17 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 								types={
 									[
 										{
-											label: __('None', 'eightshift-frontend-libs'),
+											label: __('None', '%g_textdomain%'),
 											value: '',
 											icon: icons.emptyCircle,
 										},
 										{
-											label: __('Project color', 'eightshift-frontend-libs'),
+											label: __('Project color', '%g_textdomain%'),
 											value: 'project',
 											icon: icons.colorAlt,
 										},
 										{
-											label: __('Gradient', 'eightshift-frontend-libs'),
+											label: __('Gradient', '%g_textdomain%'),
 											value: 'gradient',
 											icon: icons.gradient,
 										}
@@ -495,7 +495,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{showWrapperRoundedCorners &&
 							<ResponsiveNumberPicker
 								icon={icons.roundedCorners}
-								label={__('Rounded corners', 'eightshift-frontend-libs')}
+								label={__('Rounded corners', '%g_textdomain%')}
 
 								{...generateResponsiveNumberPickerConfig({
 									attributeName: 'wrapperRoundedCorners',
@@ -512,12 +512,12 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 						{(showWrapperDividerTop || showWrapperDividerBottom || showWrapperDividerLeft || showWrapperDividerRight || showWrapperDividerColor) &&
 							<Collapsable
 								icon={icons.divider}
-								label={__('Divider', 'eightshift-frontend-libs')}
+								label={__('Divider', '%g_textdomain%')}
 								subtitle={
 									showWrapperDividerColor &&
 									(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
 									!wrapperDividerColor &&
-									<span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', 'eightshift-frontend-libs')}</span>
+									<span className='es-color-yellow-500 es-font-weight-500'>{__('Color not set!', '%g_textdomain%')}</span>
 								}
 								actions={
 									(wrapperDividerTopLarge || wrapperDividerRightLarge || wrapperDividerBottomLarge || wrapperDividerLeftLarge) &&
@@ -537,34 +537,34 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 							>
 								{showWrapperDividerColor &&
 									<ColorPicker
-										colors={[{ name: __('None', 'eightshift-frontend-libs'), slug: undefined, color: 'transparent' }, ...dividerColors]}
+										colors={[{ name: __('None', '%g_textdomain%'), slug: undefined, color: 'transparent' }, ...dividerColors]}
 										value={wrapperDividerColor}
 										onChange={(value) => setAttributes({ wrapperDividerColor: value })}
 										additionalTriggerClasses='es-p-0! es-button-square-24'
-										pickerPopupTitle={__('Divider color', 'eightshift-frontend-libs')}
-										label={__('Color', 'eightshift-frontend-libs')}
+										pickerPopupTitle={__('Divider color', '%g_textdomain%')}
+										label={__('Color', '%g_textdomain%')}
 										icon={icons.colorAlt}
 									/>
 								}
 
 								{[
 									showWrapperDividerTop && {
-										label: __('Top', 'eightshift-frontend-libs'),
+										label: __('Top', '%g_textdomain%'),
 										attributeKey: 'wrapperDividerTop',
 										icon: React.cloneElement(icons.dividerSide, { style: { '--top-opacity': 1 } }),
 									},
 									showWrapperDividerRight && {
-										label: __('Right', 'eightshift-frontend-libs'),
+										label: __('Right', '%g_textdomain%'),
 										attributeKey: 'wrapperDividerRight',
 										icon: React.cloneElement(icons.dividerSide, { style: { '--right-opacity': 1 } }),
 									},
 									showWrapperDividerBottom && {
-										label: __('Bottom', 'eightshift-frontend-libs'),
+										label: __('Bottom', '%g_textdomain%'),
 										attributeKey: 'wrapperDividerBottom',
 										icon: React.cloneElement(icons.dividerSide, { style: { '--bottom-opacity': 1 } }),
 									},
 									showWrapperDividerLeft && {
-										label: __('Left', 'eightshift-frontend-libs'),
+										label: __('Left', '%g_textdomain%'),
 										attributeKey: 'wrapperDividerLeft',
 										icon: React.cloneElement(icons.dividerSide, { style: { '--left-opacity': 1 } }),
 									}
@@ -602,7 +602,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 														})}
 														onClick={() => setAttributes({ [attributeName]: !attributeValue })}
 														className='es-button-square-30 es-button-icon-30'
-														label={attributeValue ? __('On', 'eightshift-frontend-libs') : __('Off', 'eightshift-frontend-libs')}
+														label={attributeValue ? __('On', '%g_textdomain%') : __('Off', '%g_textdomain%')}
 														showTooltip
 													/>
 												);
@@ -618,8 +618,8 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 					<Section
 						showIf={(showWrapperAnchorId || showWrapperId || showWrapperHide)}
 						icon={icons.tools}
-						label={__('Advanced', 'eightshift-frontend-libs')}
-						subtitle={__('Visibility, anchor, ID', 'eightshift-frontend-libs')}
+						label={__('Advanced', '%g_textdomain%')}
+						subtitle={__('Visibility, anchor, ID', '%g_textdomain%')}
 						noBottomSpacing
 						collapsable
 					>
@@ -631,14 +631,14 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									setAttributes: setAttributes,
 									manifest: manifest,
 								})}
-								label={__('Hide', 'eightshift-frontend-libs')}
+								label={__('Hide', '%g_textdomain%')}
 								icon={icons.hide}
 							/>
 						}
 
 						{showWrapperAnchorId &&
 							<TextControl
-								label={<IconLabel icon={icons.anchor} label={__('Block Anchor ID', 'eightshift-frontend-libs')} />}
+								label={<IconLabel icon={icons.anchor} label={__('Block Anchor ID', '%g_textdomain%')} />}
 								value={wrapperAnchorId}
 								onChange={(value) => setAttributes({ wrapperAnchorId: value })}
 								className='es-mb-5!'
@@ -647,7 +647,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 
 						{showWrapperId &&
 							<TextControl
-								label={<IconLabel icon={icons.id} label={__('Block unique identifier', 'eightshift-frontend-libs')} />}
+								label={<IconLabel icon={icons.id} label={__('Block unique identifier', '%g_textdomain%')} />}
 								value={wrapperId}
 								onChange={(value) => setAttributes({ wrapperId: value })}
 							/>

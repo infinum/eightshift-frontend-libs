@@ -3,14 +3,14 @@
 /**
  * Template for the Icon Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$iconUse = Components::checkAttr('iconUse', $attributes, $manifest);
+$iconUse = Helpers::checkAttr('iconUse', $attributes, $manifest);
 
 if (!$iconUse) {
 	return;
@@ -21,18 +21,18 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$iconName = Components::checkAttr('iconName', $attributes, $manifest);
+$iconName = Helpers::checkAttr('iconName', $attributes, $manifest);
 
-$iconClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$iconClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 ?>
 <i class="<?php echo esc_attr($iconClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique), $manifest['icons'][$iconName]; // @phpstan-ignore-line
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique), $manifest['icons'][$iconName]; // @phpstan-ignore-line
 	?>
 </i>

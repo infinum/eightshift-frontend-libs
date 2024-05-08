@@ -3,14 +3,14 @@
 /**
  * Template for the Modal Component.
  *
- * @package EightshiftBoilerplate.
+ * @package %g_namespace%.
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$modalUse = Components::checkAttr('modalUse', $attributes, $manifest);
+$modalUse = Helpers::checkAttr('modalUse', $attributes, $manifest);
 
 if (!$modalUse) {
 	return;
@@ -23,15 +23,15 @@ $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 $componentJsToggleClass = $manifest['componentJsToggleClass'] ?? '';
 
-$modalExitButton = Components::checkAttr('modalExitButton', $attributes, $manifest);
-$modalContent = Components::checkAttr('modalContent', $attributes, $manifest);
-$modalId = Components::checkAttr('modalId', $attributes, $manifest);
+$modalExitButton = Helpers::checkAttr('modalExitButton', $attributes, $manifest);
+$modalContent = Helpers::checkAttr('modalContent', $attributes, $manifest);
+$modalId = Helpers::checkAttr('modalId', $attributes, $manifest);
 
-$modalClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
-	Components::selector($componentJsClass, $componentJsClass),
+$modalClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
+	Helpers::selector($componentJsClass, $componentJsClass),
 ]);
 
 ?>
@@ -58,7 +58,7 @@ $modalClass = Components::classnames([
 					<button
 						<?php echo esc_attr("data-{$componentJsToggleClass}-close"); ?>
 						class="<?php echo esc_attr("{$componentClass}__close-button"); ?>"
-						aria-label="<?php echo esc_attr__('Close modal', 'eightshift-frontend-libs'); ?>"
+						aria-label="<?php echo esc_attr__('Close modal', '%g_textdomain%'); ?>"
 					>
 						<?php
 						// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped

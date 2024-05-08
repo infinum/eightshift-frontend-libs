@@ -9,12 +9,12 @@ export const VideoOptions = ({ attributes, setAttributes }) => {
 	const videoAlign = checkAttr('videoAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Video', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Video', '%g_textdomain%')}>
 			<VideoOptionsComponent
 				{...props('video', attributes, { setAttributes })}
 				additionalControlsDesignLayout={
 					<MatrixAlignControl
-						label={__('Position', 'eightshift-frontend-libs')}
+						label={__('Position', '%g_textdomain%')}
 						value={videoAlign}
 						onChange={(value) => setAttributes({ [getAttrKey('videoAlign', attributes, manifest)]: value })}
 						type='tileButton'

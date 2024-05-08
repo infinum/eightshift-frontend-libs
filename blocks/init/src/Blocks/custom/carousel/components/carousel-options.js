@@ -21,8 +21,8 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 	const carouselShowPagination = checkAttr('carouselShowPagination', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Carousel', 'eightshift-frontend-libs')}>
-			<Control className='es-h-between' icon={icons.itemLimit} label={__('Slides on screen', 'eightshift-frontend-libs')} inlineLabel>
+		<PanelBody title={__('Carousel', '%g_textdomain%')}>
+			<Control className='es-h-between' icon={icons.itemLimit} label={__('Slides on screen', '%g_textdomain%')} inlineLabel>
 				<div className='es-h-end' >
 					<AnimatedContentVisibility showIf={carouselShowItems > -1}>
 						<NumberPicker
@@ -36,7 +36,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 
 					<Button
 						icon={icons.automatic}
-						label={__('Automatic', 'eightshift-frontend-libs')}
+						label={__('Automatic', '%g_textdomain%')}
 						isPressed={carouselShowItems === -1}
 						onClick={() => setAttributes({ [getAttrKey('carouselShowItems', attributes, manifest)]: carouselShowItems === -1 ? 1 : -1 })}
 						className='es-is-v2-gutenberg-input-matched-button es-button-icon-24 es-button-square-32'
@@ -44,10 +44,10 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 				</div>
 			</Control>
 
-			<Section icon={icons.options} label={__('Behavior & controls', 'eightshift-frontend-libs')} additionalClasses='es-h-spaced' noBottomSpacing>
+			<Section icon={icons.options} label={__('Behavior & controls', '%g_textdomain%')} additionalClasses='es-h-spaced' noBottomSpacing>
 				<IconToggle
 					icon={icons.loopMode}
-					label={__('Loop', 'eightshift-frontend-libs')}
+					label={__('Loop', '%g_textdomain%')}
 					checked={carouselIsLoop}
 					onChange={(value) => setAttributes({ [getAttrKey('carouselIsLoop', attributes, manifest)]: value })}
 					type='tileButton'
@@ -55,7 +55,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 
 				<IconToggle
 					icon={icons.navigationButtons}
-					label={__('Navigation', 'eightshift-frontend-libs')}
+					label={__('Navigation', '%g_textdomain%')}
 					checked={carouselShowPrevNext}
 					onChange={(value) => setAttributes({ [getAttrKey('carouselShowPrevNext', attributes, manifest)]: value })}
 					type='tileButton'
@@ -63,7 +63,7 @@ export const CarouselOptions = ({ attributes, setAttributes }) => {
 
 				<IconToggle
 					icon={icons.pagination}
-					label={__('Pagination', 'eightshift-frontend-libs')}
+					label={__('Pagination', '%g_textdomain%')}
 					checked={carouselShowPagination}
 					onChange={(value) => setAttributes({ [getAttrKey('carouselShowPagination', attributes, manifest)]: value })}
 					type='tileButton'

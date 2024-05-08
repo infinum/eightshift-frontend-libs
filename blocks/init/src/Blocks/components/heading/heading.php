@@ -3,14 +3,14 @@
 /**
  * Template for the Heading Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$headingUse = Components::checkAttr('headingUse', $attributes, $manifest);
+$headingUse = Helpers::checkAttr('headingUse', $attributes, $manifest);
 
 if (!$headingUse) {
 	return;
@@ -21,25 +21,25 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$headingContent = Components::checkAttr('headingContent', $attributes, $manifest);
-$headingLevel = Components::checkAttr('headingLevel', $attributes, $manifest);
+$headingContent = Helpers::checkAttr('headingContent', $attributes, $manifest);
+$headingLevel = Helpers::checkAttr('headingLevel', $attributes, $manifest);
 
 if (!$headingContent) {
 	return;
 }
 
-$headingClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$headingClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
 $headingLevel = $headingLevel ? "h{$headingLevel}" : 'h2';
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 ?>
 
-<?php echo Components::outputCssVariables($attributes, $manifest, $unique); ?>
+<?php echo Helpers::outputCssVariables($attributes, $manifest, $unique); ?>
 
 <<?php echo esc_attr($headingLevel); ?> class="<?php echo esc_attr($headingClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php

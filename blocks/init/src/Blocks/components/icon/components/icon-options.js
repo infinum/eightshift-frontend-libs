@@ -56,7 +56,7 @@ export const IconOptions = (attributes) => {
 				<Select
 					value={iconName}
 					options={getOption('iconName', attributes, manifest)}
-					placeholder={__('Select an icon', 'eightshift-frontend-libs')}
+					placeholder={__('Select an icon', '%g_textdomain%')}
 					customMenuOption={IconPickerOption}
 					customValueDisplay={IconPickerValueDisplay}
 					onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}

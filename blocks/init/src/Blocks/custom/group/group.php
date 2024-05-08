@@ -3,7 +3,7 @@
 /**
  * Template for the Group block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
 $blockClass = $attributes['blockClass'] ?? '';

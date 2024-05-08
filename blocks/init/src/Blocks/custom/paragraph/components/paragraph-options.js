@@ -9,7 +9,7 @@ export const ParagraphOptions = ({ attributes, setAttributes }) => {
 	const paragraphAlign = checkAttr('paragraphAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Paragraph', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Paragraph', '%g_textdomain%')}>
 			<ParagraphOptionsComponent
 				{...props('paragraph', attributes, {
 					setAttributes,

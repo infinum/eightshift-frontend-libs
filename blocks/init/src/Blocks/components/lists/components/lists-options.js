@@ -63,7 +63,7 @@ export const ListsOptions = (attributes) => {
 							[getAttrKey('listsSize', attributes, manifest)]: `${value}:${fontSizes[value]?.weights[0] ?? 'bold'}`,
 						})}
 						additionalSelectClasses='es-w-16'
-						placeholder={__('Size', 'eightshift-frontend-libs')}
+						placeholder={__('Size', '%g_textdomain%')}
 						noBottomSpacing
 						simpleValue
 						noSearch
@@ -76,7 +76,7 @@ export const ListsOptions = (attributes) => {
 						options={fontSizes[fontSize]?.weightOptions}
 						onChange={(value) => setAttributes({ [getAttrKey('listsSize', attributes, manifest)]: `${fontSize}:${value}` })}
 						additionalSelectClasses='es-min-w-20 es-flex-shrink-0 es-flex-grow-1'
-						placeholder={__('Weight', 'eightshift-frontend-libs')}
+						placeholder={__('Weight', '%g_textdomain%')}
 						disabled={fontSizes[fontSize]?.weights.length < 2}
 						noBottomSpacing
 						simpleValue
@@ -87,7 +87,7 @@ export const ListsOptions = (attributes) => {
 
 			{!hideTypePicker &&
 				<OptionSelector
-					label={__('Type', 'eightshift-frontend-libs')}
+					label={__('Type', '%g_textdomain%')}
 					value={listsOrdered}
 					options={getOption('listsOrdered', attributes, manifest)}
 					onChange={(value) => setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: value })}

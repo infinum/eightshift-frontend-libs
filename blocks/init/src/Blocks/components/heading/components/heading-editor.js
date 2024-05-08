@@ -19,7 +19,7 @@ export const HeadingEditor = (attributes) => {
 		additionalClass,
 		selectorClass = componentClass,
 
-		placeholder = __('Add content', 'eightshift-frontend-libs'),
+		placeholder = __('Add content', '%g_textdomain%'),
 	} = attributes;
 
 	const headingUse = checkAttr('headingUse', attributes, manifest);

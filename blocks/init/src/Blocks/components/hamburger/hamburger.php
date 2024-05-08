@@ -3,21 +3,21 @@
 /**
  * Template for the Hamburger component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$hamburgerUse = Components::checkAttr('hamburgerUse', $attributes, $manifest);
+$hamburgerUse = Helpers::checkAttr('hamburgerUse', $attributes, $manifest);
 if (!$hamburgerUse) {
 	return;
 }
 
-$hamburgerLabel = Components::checkAttr('hamburgerLabel', $attributes, $manifest);
+$hamburgerLabel = Helpers::checkAttr('hamburgerLabel', $attributes, $manifest);
 if (!$hamburgerLabel) {
-	$hamburgerLabel = __('Menu', 'eightshift-frontend-libs');
+	$hamburgerLabel = __('Menu', '%g_textdomain%');
 }
 
 $componentClass = $manifest['componentClass'] ?? '';
@@ -26,18 +26,18 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 $componentJsClass = $manifest['componentJsClass'] ?? '';
 
-$hamburgerClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
-	Components::selector($componentJsClass, $componentJsClass),
+$hamburgerClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
+	Helpers::selector($componentJsClass, $componentJsClass),
 ]);
 
-$iconClass = Components::selector($componentClass, $componentClass, 'icon');
-$iconBorderClass = Components::selector($componentClass, $componentClass, 'icon', 'border');
-$iconTopClass = Components::selector($componentClass, $componentClass, 'icon', 'top');
-$iconMidClass = Components::selector($componentClass, $componentClass, 'icon', 'mid');
-$iconBtmClass = Components::selector($componentClass, $componentClass, 'icon', 'btm');
+$iconClass = Helpers::selector($componentClass, $componentClass, 'icon');
+$iconBorderClass = Helpers::selector($componentClass, $componentClass, 'icon', 'border');
+$iconTopClass = Helpers::selector($componentClass, $componentClass, 'icon', 'top');
+$iconMidClass = Helpers::selector($componentClass, $componentClass, 'icon', 'mid');
+$iconBtmClass = Helpers::selector($componentClass, $componentClass, 'icon', 'btm');
 ?>
 
 <button class="<?php echo esc_attr($hamburgerClass); ?>" aria-label="<?php echo esc_attr($hamburgerLabel); ?>">

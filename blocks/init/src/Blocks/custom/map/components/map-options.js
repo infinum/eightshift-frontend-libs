@@ -34,53 +34,53 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 	const layerTypes = {
 		openStreetMap: {
 			icon: icons.mapLayer,
-			title: __('OpenStreetMap', 'eightshift-frontend-libs'),
+			title: __('OpenStreetMap', '%g_textdomain%'),
 			hasSeparator: true,
 		},
 		vectorJson: {
-			icon: icons.mapLayerJson, title: __('Vector map', 'eightshift-frontend-libs'),
-			subtitle: __('with JSON styles', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerJson, title: __('Vector map', '%g_textdomain%'),
+			subtitle: __('with JSON styles', '%g_textdomain%'),
 			hasSeparator: true,
 		},
 		mapBoxVector: {
-			icon: icons.mapLayerVector, title: __('Mapbox map', 'eightshift-frontend-libs'),
-			subtitle: __('Vector tiles', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerVector, title: __('Mapbox map', '%g_textdomain%'),
+			subtitle: __('Vector tiles', '%g_textdomain%'),
 		},
 		mapBoxRaster: {
-			icon: icons.mapLayerRaster, title: __('Mapbox map', 'eightshift-frontend-libs'),
-			subtitle: __('Raster tiles', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerRaster, title: __('Mapbox map', '%g_textdomain%'),
+			subtitle: __('Raster tiles', '%g_textdomain%'),
 			hasSeparator: true,
 		},
 		mapTilerVector: {
-			icon: icons.mapLayerVector, title: __('MapTiler tiles', 'eightshift-frontend-libs'),
-			subtitle: __('Vector - XYZ (PBF)', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerVector, title: __('MapTiler tiles', '%g_textdomain%'),
+			subtitle: __('Vector - XYZ (PBF)', '%g_textdomain%'),
 		},
 		mapTilerRasterXyz: {
-			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'),
-			subtitle: __('Raster - XYZ', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', '%g_textdomain%'),
+			subtitle: __('Raster - XYZ', '%g_textdomain%'),
 		},
 		mapTilerRasterJson: {
-			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', 'eightshift-frontend-libs'),
-			subtitle: __('Raster - JSON', 'eightshift-frontend-libs'),
+			icon: icons.mapLayerRaster, title: __('MapTiler map/tiles', '%g_textdomain%'),
+			subtitle: __('Raster - JSON', '%g_textdomain%'),
 			hasSeparator: true,
 		},
-		geoJson: { icon: icons.fileMetadata, title: __('GeoJSON', 'eightshift-frontend-libs') },
+		geoJson: { icon: icons.fileMetadata, title: __('GeoJSON', '%g_textdomain%') },
 	};
 
 	return (
-		<PanelBody title={__('Map', 'eightshift-frontend-libs')}>
-			<Section icon={icons.play} label={__('Initial view', 'eightshift-frontend-libs')}>
-				<Control icon={icons.alignHorizontalVerticalAlt} label={__('Center point', 'eightshift-frontend-libs')} additionalLabelClasses='es-mb-1!'>
+		<PanelBody title={__('Map', '%g_textdomain%')}>
+			<Section icon={icons.play} label={__('Initial view', '%g_textdomain%')}>
+				<Control icon={icons.alignHorizontalVerticalAlt} label={__('Center point', '%g_textdomain%')} additionalLabelClasses='es-mb-1!'>
 					<div className='es-fifty-fifty-h'>
 						<TextControl
-							label={__('Lat', 'eightshift-frontend-libs')}
+							label={__('Lat', '%g_textdomain%')}
 							value={mapCenterLat}
 							onChange={(value) => setAttributes({ [getAttrKey('mapCenterLat', attributes, manifest)]: value })}
 							className='es-m-0! es-m-0-bcf!'
 						/>
 
 						<TextControl
-							label={__('Lon', 'eightshift-frontend-libs')}
+							label={__('Lon', '%g_textdomain%')}
 							value={mapCenterLon}
 							onChange={(value) => setAttributes({ [getAttrKey('mapCenterLon', attributes, manifest)]: value })}
 							className='es-m-0! es-m-0-bcf!'
@@ -90,7 +90,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 				<NumberPicker
 					icon={icons.search}
-					label={__('Zoom', 'eightshift-frontend-libs')}
+					label={__('Zoom', '%g_textdomain%')}
 					value={mapZoom}
 					onChange={(value) => setAttributes({ [getAttrKey('mapZoom', attributes, manifest)]: value })}
 					min={1}
@@ -100,10 +100,10 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 				/>
 			</Section>
 
-			<Section icon={icons.options} label={__('Configuration', 'eightshift-frontend-libs')} noBottomSpacing>
+			<Section icon={icons.options} label={__('Configuration', '%g_textdomain%')} noBottomSpacing>
 				<Repeater
 					icon={icons.layers}
-					label={__('Layers', 'eightshift-frontend-libs')}
+					label={__('Layers', '%g_textdomain%')}
 
 					items={mapLayers}
 					attributeName={getAttrKey('mapLayers', attributes, manifest)}
@@ -151,7 +151,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 							<RepeaterItem
 								key={layer.id}
 								icon={layer?.type ? layerTypes?.[layer?.type]?.icon ?? icons.mapLayer : icons.layerOff}
-								title={layerTypes?.[layer?.type]?.title ?? __('New layer', 'eightshift-frontend-libs')}
+								title={layerTypes?.[layer?.type]?.title ?? __('New layer', '%g_textdomain%')}
 								subtitle={
 									layer?.type === 'geoJson'
 										? truncateMiddle(layer?.geoJsonUrl?.slice(layer?.geoJsonUrl?.lastIndexOf('/') + 1) ?? '', 20)
@@ -168,7 +168,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 											}}
 											// eslint-disable-next-line max-len
 											className='es-mr-1 es-button-square-20 es-button-icon-16 es-rounded-1 es-border-cool-gray-300 es-hover-border-cool-gray-300 es-focus-border-transparent es-transition-colors'
-											label={mapLayers[index]?.hidden ? __('Show', 'eightshift-frontend-libs') : __('Hide', 'eightshift-frontend-libs')}
+											label={mapLayers[index]?.hidden ? __('Show', '%g_textdomain%') : __('Hide', '%g_textdomain%')}
 											showTooltip
 										/>
 									)
@@ -177,14 +177,14 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 								{!layer?.type &&
 									<Notification
 										type='error'
-										text={__('Error', 'eightshift-frontend-libs')}
-										subtitle={__('Layer type is missing, please remove the layer and add a new one.', 'eightshift-frontend-libs')}
+										text={__('Error', '%g_textdomain%')}
+										subtitle={__('Layer type is missing, please remove the layer and add a new one.', '%g_textdomain%')}
 									/>
 								}
 
 								{needsApiKey &&
 									<TextControl
-										label={<IconLabel icon={icons.key} label={__('API key', 'eightshift-frontend-libs')} />}
+										label={<IconLabel icon={icons.key} label={__('API key', '%g_textdomain%')} />}
 										value={mapLayers[index]?.apiKey}
 										onChange={(value) => {
 											const modifiedData = [...mapLayers];
@@ -196,7 +196,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 								{hasMapStyleOptions &&
 									<TextControl
-										label={<IconLabel icon={icons.color} label={__('Map style', 'eightshift-frontend-libs')} />}
+										label={<IconLabel icon={icons.color} label={__('Map style', '%g_textdomain%')} />}
 										value={mapLayers[index]?.styleUrl}
 										onChange={(value) => {
 											const modifiedData = [...mapLayers];
@@ -206,16 +206,16 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 										help={
 											<>
 												{!layer?.type?.startsWith('mapBox') &&
-													__('Copy the full style URL from MapTiler. Keep the API key inside the URL.', 'eightshift-frontend-libs')
+													__('Copy the full style URL from MapTiler. Keep the API key inside the URL.', '%g_textdomain%')
 												}
 
 												{layer?.type === 'mapBoxVector' &&
-													__('Copy the full style URL from Mapbox.', 'eightshift-frontend-libs')
+													__('Copy the full style URL from Mapbox.', '%g_textdomain%')
 												}
 
 												{layer?.type === 'mapBoxRaster' &&
 													// eslint-disable-next-line max-len
-													__('Copy the full style URL from Mapbox or a Mapbox-compatible source. Keep the access token inside the URL.', 'eightshift-frontend-libs')
+													__('Copy the full style URL from Mapbox or a Mapbox-compatible source. Keep the access token inside the URL.', '%g_textdomain%')
 												}
 
 												<br />
@@ -226,14 +226,14 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 														<code className='es-bg-transparent es-p-0 es-text-3'>{'{z}/{x}/{y}'}</code>
 														{
 															// eslint-disable-next-line max-len
-															__("should be left as they are in the URL; they're needed for the map to work properly.", 'eightshift-frontend-libs')
+															__("should be left as they are in the URL; they're needed for the map to work properly.", '%g_textdomain%')
 														}
 														<br />
 														<br />
 													</>
 												}
 
-												{__('Example', 'eightshift-frontend-libs')}:
+												{__('Example', '%g_textdomain%')}:
 												<br />
 												<span className='es-word-break-all'>
 													{['mapTilerRasterJson', 'vectorJson'].includes(layer?.type) &&
@@ -268,7 +268,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 									<MediaPlaceholder
 										icon={icons.file}
 										accept={['.json', '.geojson']}
-										labels={{ title: __('GeoJSON file', 'eightshift-frontend-libs') }}
+										labels={{ title: __('GeoJSON file', '%g_textdomain%') }}
 										onSelect={
 											(file) => {
 												const modifiedData = [...mapLayers];
@@ -301,7 +301,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 											// eslint-disable-next-line max-len
 											className='es-button-icon-24 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-admin-accent es-rounded-1.5 es-nested-color-cool-gray-650'
 										>
-											{__('Replace', 'eightshift-frontend-libs')}
+											{__('Replace', '%g_textdomain%')}
 										</Button>
 									</div>
 								}
@@ -310,10 +310,10 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 					})}
 				</Repeater>
 
-				<Collapsable label={__('Controls', 'eightshift-frontend-libs')} icon={icons.buttonOutline}>
+				<Collapsable label={__('Controls', '%g_textdomain%')} icon={icons.buttonOutline}>
 					<IconToggle
 						icon={icons.tag}
-						label={__('Attribution', 'eightshift-frontend-libs')}
+						label={__('Attribution', '%g_textdomain%')}
 						checked={mapControls.attribution}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -325,7 +325,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.expandXl}
-						label={__('Full screen', 'eightshift-frontend-libs')}
+						label={__('Full screen', '%g_textdomain%')}
 						checked={mapControls.fullScreen}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -337,7 +337,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.mouseCursor}
-						label={__('Pointer position', 'eightshift-frontend-libs')}
+						label={__('Pointer position', '%g_textdomain%')}
 						checked={mapControls.mousePosition}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -349,7 +349,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.mapPin}
-						label={__('Minimap', 'eightshift-frontend-libs')}
+						label={__('Minimap', '%g_textdomain%')}
 						checked={mapControls.overviewMap}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -361,7 +361,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.rotateLeft}
-						label={__('Reset rotation', 'eightshift-frontend-libs')}
+						label={__('Reset rotation', '%g_textdomain%')}
 						checked={mapControls.rotate}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -373,7 +373,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.ruler}
-						label={__('Map scale', 'eightshift-frontend-libs')}
+						label={__('Map scale', '%g_textdomain%')}
 						checked={mapControls.scaleLine}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -383,11 +383,11 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 						}}
 					/>
 
-					<IconLabel icon={icons.search} label={__('Zoom', 'eightshift-frontend-libs')} additionalClasses='es-mb-1.5 es-font-weight-500' standalone />
+					<IconLabel icon={icons.search} label={__('Zoom', '%g_textdomain%')} additionalClasses='es-mb-1.5 es-font-weight-500' standalone />
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Slider', 'eightshift-frontend-libs')}
+						label={__('Slider', '%g_textdomain%')}
 						checked={mapControls.zoomSlider}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -400,7 +400,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Buttons', 'eightshift-frontend-libs')}
+						label={__('Buttons', '%g_textdomain%')}
 						checked={mapControls.zoom}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -413,7 +413,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('To extent', 'eightshift-frontend-libs')}
+						label={__('To extent', '%g_textdomain%')}
 						checked={mapControls.zoomToExtent}
 						onChange={(value) => {
 							const newValue = { ...mapControls };
@@ -425,16 +425,16 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<Notification
 						type='info'
-						text={__('Note', 'eightshift-frontend-libs')}
-						subtitle={__('Some of the options might not be reflected in the editor', 'eightshift-frontend-libs')}
+						text={__('Note', '%g_textdomain%')}
+						subtitle={__('Some of the options might not be reflected in the editor', '%g_textdomain%')}
 						noBottomSpacing
 					/>
 				</Collapsable>
 
-				<Collapsable label={__('Interactions', 'eightshift-frontend-libs')} icon={icons.pointerHand} noBottomSpacing>
+				<Collapsable label={__('Interactions', '%g_textdomain%')} icon={icons.pointerHand} noBottomSpacing>
 					<IconToggle
 						icon={icons.focus}
-						label={__('Only when map is focused', 'eightshift-frontend-libs')}
+						label={__('Only when map is focused', '%g_textdomain%')}
 						checked={mapInteractions.onFocusOnly}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -446,14 +446,14 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconLabel
 						icon={icons.rotateRight}
-						label={__('Rotate', 'eightshift-frontend-libs')}
+						label={__('Rotate', '%g_textdomain%')}
 						additionalClasses='es-mb-1.5 es-font-weight-500'
 						standalone
 					/>
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Alt+Shift and drag to rotate', 'eightshift-frontend-libs')}
+						label={__('Alt+Shift and drag to rotate', '%g_textdomain%')}
 						checked={mapInteractions.altShiftDragRotate}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -466,7 +466,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Pinch to rotate', 'eightshift-frontend-libs')}
+						label={__('Pinch to rotate', '%g_textdomain%')}
 						checked={mapInteractions.pinchRotate}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -476,10 +476,10 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 						}}
 					/>
 
-					<IconLabel icon={icons.search} label={__('Zoom', 'eightshift-frontend-libs')} additionalClasses='es-mb-1.5 es-font-weight-500' standalone />
+					<IconLabel icon={icons.search} label={__('Zoom', '%g_textdomain%')} additionalClasses='es-mb-1.5 es-font-weight-500' standalone />
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Double-click to zoom', 'eightshift-frontend-libs')}
+						label={__('Double-click to zoom', '%g_textdomain%')}
 						checked={mapInteractions.doubleClickZoom}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -492,7 +492,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Zoom with mousewheel', 'eightshift-frontend-libs')}
+						label={__('Zoom with mousewheel', '%g_textdomain%')}
 						checked={mapInteractions.mouseWheelZoom}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -505,7 +505,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Shift and drag to zoom', 'eightshift-frontend-libs')}
+						label={__('Shift and drag to zoom', '%g_textdomain%')}
 						checked={mapInteractions.shiftDragZoom}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -518,7 +518,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.dummySpacer}
-						label={__('Pinch to zoom', 'eightshift-frontend-libs')}
+						label={__('Pinch to zoom', '%g_textdomain%')}
 						checked={mapInteractions.pinchZoom}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -531,7 +531,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<NumberPicker
 						icon={icons.dummySpacer}
-						label={__('Animation duration (ms)', 'eightshift-frontend-libs')}
+						label={__('Animation duration (ms)', '%g_textdomain%')}
 						value={mapInteractions.zoomDuration}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -547,7 +547,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<NumberPicker
 						icon={icons.dummySpacer}
-						label={__('Zoom-in step', 'eightshift-frontend-libs')}
+						label={__('Zoom-in step', '%g_textdomain%')}
 						value={mapInteractions.zoomDelta}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -562,7 +562,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.keyboard}
-						label={__('Keyboard interactions', 'eightshift-frontend-libs')}
+						label={__('Keyboard interactions', '%g_textdomain%')}
 						checked={mapInteractions.keyboard}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -574,7 +574,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<IconToggle
 						icon={icons.cursorMove}
-						label={__('Drag to move map', 'eightshift-frontend-libs')}
+						label={__('Drag to move map', '%g_textdomain%')}
 						checked={mapInteractions.dragPan}
 						onChange={(value) => {
 							const newValue = { ...mapInteractions };
@@ -586,8 +586,8 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 
 					<Notification
 						type='info'
-						text={__('Note', 'eightshift-frontend-libs')}
-						subtitle={__('Some of the options might not be reflected in the editor', 'eightshift-frontend-libs')}
+						text={__('Note', '%g_textdomain%')}
+						subtitle={__('Some of the options might not be reflected in the editor', '%g_textdomain%')}
 						noBottomSpacing
 					/>
 				</Collapsable>

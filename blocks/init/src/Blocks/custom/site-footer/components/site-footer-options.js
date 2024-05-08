@@ -7,10 +7,10 @@ import { SocialNetworksOptions } from '../../../components/social-networks/compo
 
 export const SiteFooterOptions = ({ attributes, setAttributes }) => {
 	return (
-		<PanelBody title={__('Site navigation', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Site navigation', '%g_textdomain%')}>
 			<ImageOptions
 				{...props('logo', attributes, { setAttributes })}
-				label={__('Logo', 'eightshift-frontend-libs')}
+				label={__('Logo', '%g_textdomain%')}
 				hideRoundedCornersToggle
 				hideFullSizeToggle
 				reducedBottomSpacing

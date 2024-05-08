@@ -35,7 +35,7 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 				>
 					<div className='es-v-spaced es-w-full'>
 						<h4 className='es-my-1! es-mx-0! es-text-5 es-font-weight-500 es-color-pure-black'>
-							{__('Common layouts', 'eightshift-frontend-libs')}
+							{__('Common layouts', '%g_textdomain%')}
 						</h4>
 
 						<div className='es-h-spaced-wrap es-gap-2!'>
@@ -62,7 +62,7 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 
 						<div className='es-h-spaced es-my-2'>
 							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full' />
-							<span>{__('or', 'eightshift-frontend-libs')}</span>
+							<span>{__('or', '%g_textdomain%')}</span>
 							<div className='es-h-px es-w-full es-bg-cool-gray-100 es-rounded-full' />
 						</div>
 
@@ -78,7 +78,7 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 							className={'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent es-nested-m-0! es-gap-1.25! es-bg-pure-white! es-mx-auto es-text-3.25! es-color-cool-gray-650 es-rounded-1.5! es-flex-shrink-0'}
 							icon={icons.wrench}
 						>
-							{__('Custom layout', 'eightshift-frontend-libs')}
+							{__('Custom layout', '%g_textdomain%')}
 						</Button>
 					</div>
 				</Placeholder>

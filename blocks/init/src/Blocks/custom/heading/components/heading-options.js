@@ -9,7 +9,7 @@ export const HeadingOptions = ({ attributes, setAttributes }) => {
 	const headingAlign = checkAttr('headingAlign', attributes, manifest);
 
 	return (
-		<PanelBody title={__('Heading', 'eightshift-frontend-libs')}>
+		<PanelBody title={__('Heading', '%g_textdomain%')}>
 			<HeadingOptionsComponent
 				{...props('heading', attributes, { setAttributes })}
 				noExpandButton

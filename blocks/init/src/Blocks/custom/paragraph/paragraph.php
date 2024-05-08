@@ -3,12 +3,12 @@
 /**
  * Template for the Paragraph Block view.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $paragraphParagraphUse = $attributes['paragraphParagraphUse'] ?? true;
@@ -17,12 +17,12 @@ if (!$paragraphParagraphUse) {
 	return;
 }
 
-$unique = Components::getUnique();
+$unique = Helpers::getUnique();
 ?>
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Components::outputCssVariables($attributes, $manifest, $unique),
-	Components::render('paragraph', Components::props('paragraph', $attributes));
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique),
+	Helpers::render('paragraph', Helpers::props('paragraph', $attributes));
 	?>
 </div>

@@ -29,25 +29,25 @@ export const SocialNetworksOptions = (attributes) => {
 
 	const modeOptions = [
 		{
-			label: __('Link to social networks', 'eightshift-frontend-libs'),
+			label: __('Link to social networks', '%g_textdomain%'),
 			icon: icons.link,
 			value: false,
 		},
 		{
-			label: __('Share to social networks', 'eightshift-frontend-libs'),
+			label: __('Share to social networks', '%g_textdomain%'),
 			icon: icons.share,
 			value: true,
 		}
 	];
 
-	const pickerSectionTitle = socialNetworksShareMode ? __('Share targets', 'eightshift-frontend-libs') : __('Social networks', 'eightshift-frontend-libs');
+	const pickerSectionTitle = socialNetworksShareMode ? __('Share targets', '%g_textdomain%') : __('Social networks', '%g_textdomain%');
 
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'socialNetworksUse')}>
 			{!hideModeSelector &&
 				<OptionSelector
 					icon={icons.gears}
-					label={__('Mode', 'eightshift-frontend-libs')}
+					label={__('Mode', '%g_textdomain%')}
 					value={socialNetworksShareMode}
 					options={modeOptions}
 					onChange={(value) => setAttributes({

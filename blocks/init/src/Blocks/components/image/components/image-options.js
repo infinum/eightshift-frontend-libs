@@ -45,10 +45,10 @@ export const ImageOptions = (attributes) => {
 	if (!hideImagePicker && !imageUrl[breakpoints[0]]) {
 		return (
 			<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
-				<Control icon={icons.image} label={__('Image', 'eightshift-frontend-libs')} additionalLabelClasses='es-h-spaced' noBottomSpacing>
+				<Control icon={icons.image} label={__('Image', '%g_textdomain%')} additionalLabelClasses='es-h-spaced' noBottomSpacing>
 					<MediaPlaceholder
 						labels={{
-							title: __('Add an image', 'eightshift-frontend-libs'),
+							title: __('Add an image', '%g_textdomain%'),
 							instructions: __('Upload an image or choose one from the Media library'),
 						}}
 						icon={icons.plusCircleFillAlt}
@@ -69,7 +69,7 @@ export const ImageOptions = (attributes) => {
 	return (
 		<UseToggle {...generateUseToggleConfig(attributes, manifest, 'imageUse')}>
 			{!hideImagePicker &&
-				<Responsive label={__('Image', 'eightshift-frontend-libs')} icon={icons.image}>
+				<Responsive label={__('Image', '%g_textdomain%')} icon={icons.image}>
 					{getDefaultBreakpointNames().map((breakpointName, index) => {
 						let point = ucfirst(breakpointName);
 
@@ -85,7 +85,7 @@ export const ImageOptions = (attributes) => {
 								<MediaPlaceholder
 									key={breakpointName}
 									labels={{
-										title: __('Add an image', 'eightshift-frontend-libs'),
+										title: __('Add an image', '%g_textdomain%'),
 										instructions: __('Upload an image or choose one from the Media library'),
 									}}
 									icon={icons.plusCircleFillAlt}
@@ -112,7 +112,7 @@ export const ImageOptions = (attributes) => {
 								<Button
 									key={index}
 									icon={icons.trashAlt}
-									label={__('Remove image', 'eightshift-frontend-libs')}
+									label={__('Remove image', '%g_textdomain%')}
 									// eslint-disable-next-line max-len
 									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 									onClick={() => setAttributes({
@@ -130,13 +130,13 @@ export const ImageOptions = (attributes) => {
 			<Section
 				showIf={!hideRoundedCornersToggle || !hideFullSizeToggle || typeof additionalControlsDesignLayout !== 'undefined'}
 				icon={icons.design}
-				label={__('Design & layout', 'eightshift-frontend-libs')}
+				label={__('Design & layout', '%g_textdomain%')}
 				additionalClasses='es-h-spaced-wrap'
 			>
 				{!hideRoundedCornersToggle &&
 					<IconToggle
 						icon={icons.roundedCorners}
-						label={__('Rounded corners', 'eightshift-frontend-libs')}
+						label={__('Rounded corners', '%g_textdomain%')}
 						checked={imageRoundedCorners}
 						onChange={(value) => setAttributes({ [getAttrKey('imageRoundedCorners', attributes, manifest)]: value })}
 						type='tileButton'
@@ -146,7 +146,7 @@ export const ImageOptions = (attributes) => {
 				{!hideFullSizeToggle &&
 					<IconToggle
 						icon={icons.expandXl}
-						label={__('Fill container', 'eightshift-frontend-libs')}
+						label={__('Fill container', '%g_textdomain%')}
 						checked={imageFull}
 						onChange={(value) => setAttributes({ [getAttrKey('imageFull', attributes, manifest)]: value })}
 						type='tileButton'
@@ -161,14 +161,14 @@ export const ImageOptions = (attributes) => {
 			<Section
 				showIf={!hideAltText}
 				icon={icons.a11y}
-				label={__('Accessibility', 'eightshift-frontend-libs')}
+				label={__('Accessibility', '%g_textdomain%')}
 				noBottomSpacing={!additionalControlsAfterA11y}
 			>
 				<TextControl
-					label={<IconLabel icon={icons.altText} label={__('Alt text', 'eightshift-frontend-libs')} />}
+					label={<IconLabel icon={icons.altText} label={__('Alt text', '%g_textdomain%')} />}
 					value={imageAlt}
 					onChange={(value) => setAttributes({ [getAttrKey('imageAlt', attributes, manifest)]: value })}
-					help={__('Describes the content of the image', 'eightshift-frontend-libs')}
+					help={__('Describes the content of the image', '%g_textdomain%')}
 					className='es-mb-0-bcf! es-mb-0!'
 				/>
 			</Section>

@@ -3,14 +3,14 @@
 /**
  * Search Bar form
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
-$searchBarUse = Components::checkAttr('searchBarUse', $attributes, $manifest);
+$searchBarUse = Helpers::checkAttr('searchBarUse', $attributes, $manifest);
 if (!$searchBarUse) {
 	return;
 }
@@ -20,27 +20,27 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$searchBarMethod = Components::checkAttr('searchBarMethod', $attributes, $manifest);
-$searchBarPostType = Components::checkAttr('searchBarPostType', $attributes, $manifest);
-$searchBarAction = Components::checkAttr('searchBarAction', $attributes, $manifest);
-$searchBarPlaceholder = Components::checkAttr('searchBarPlaceholder', $attributes, $manifest);
-$searchBarId = Components::checkAttr('searchBarId', $attributes, $manifest);
-$searchBarLabel = Components::checkAttr('searchBarLabel', $attributes, $manifest);
-$searchBarLabelShow = Components::checkAttr('searchBarLabelShow', $attributes, $manifest);
+$searchBarMethod = Helpers::checkAttr('searchBarMethod', $attributes, $manifest);
+$searchBarPostType = Helpers::checkAttr('searchBarPostType', $attributes, $manifest);
+$searchBarAction = Helpers::checkAttr('searchBarAction', $attributes, $manifest);
+$searchBarPlaceholder = Helpers::checkAttr('searchBarPlaceholder', $attributes, $manifest);
+$searchBarId = Helpers::checkAttr('searchBarId', $attributes, $manifest);
+$searchBarLabel = Helpers::checkAttr('searchBarLabel', $attributes, $manifest);
+$searchBarLabelShow = Helpers::checkAttr('searchBarLabelShow', $attributes, $manifest);
 
-$searchClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$searchClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$inputClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'input'),
+$inputClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass, 'input'),
 ]);
 
-$labelClass = Components::classnames([
-	Components::selector($componentClass, $componentClass, 'label'),
-	Components::selector(!$searchBarLabelShow, $componentClass, 'label', 'hidden'),
+$labelClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass, 'label'),
+	Helpers::selector(!$searchBarLabelShow, $componentClass, 'label', 'hidden'),
 ]);
 
 ?>

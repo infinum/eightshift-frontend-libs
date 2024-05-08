@@ -37,7 +37,7 @@ export const ModalOptions = (attributes) => {
 			{showModalExitButton &&
 				<IconToggle
 					icon={icons.hide}
-					label={__('Display exit button', 'eightshift-frontend-libs')}
+					label={__('Display exit button', '%g_textdomain%')}
 					checked={modalExitButton}
 					onChange={(value) => setAttributes({ [getAttrKey('modalExitButton', attributes, manifest)]: value })}
 				/>

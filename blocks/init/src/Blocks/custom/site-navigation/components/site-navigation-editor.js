@@ -53,7 +53,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 						return (
 							<ReOrderableItem
 								innerClass={linkClass}
-								title={link?.text?.length > 0 ? link.text : <i>{__('New link', 'eightshift-frontend-libs')}</i>}
+								title={link?.text?.length > 0 ? link.text : <i>{__('New link', '%g_textdomain%')}</i>}
 								preIcon={
 									<div className='es-display-flex'>
 										<button
@@ -81,7 +81,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 											contentClass='es-popover-content es-w-88'
 										>
 											<TextControl
-												label={__('Link text', 'eightshift-frontend-libs')}
+												label={__('Link text', '%g_textdomain%')}
 												value={link?.text}
 												onChange={(value) => {
 													const newValue = [...siteNavigationLinks];
@@ -92,7 +92,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 											/>
 
 											<LinkInput
-												label={__('URL', 'eightshift-frontend-libs')}
+												label={__('URL', '%g_textdomain%')}
 												url={link?.url}
 												opensInNewTab={link?.newTab}
 												onChange={({ url, newTab }) => {

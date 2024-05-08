@@ -3,15 +3,15 @@
 /**
  * Template for the Video Component.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 $componentName = $attributes['componentName'] ?? $manifest['componentName'];
 
-$videoUse = Components::checkAttr('videoUse', $attributes, $manifest);
+$videoUse = Helpers::checkAttr('videoUse', $attributes, $manifest);
 
 if (!$videoUse) {
 	return;
@@ -22,22 +22,22 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$videoUrl = (array) Components::checkAttr('videoUrl', $attributes, $manifest) ?? []; // @phpstan-ignore-line
-$videoPoster = Components::checkAttr('videoPoster', $attributes, $manifest);
-$videoLoop = Components::checkAttr('videoLoop', $attributes, $manifest);
-$videoAutoplay = Components::checkAttr('videoAutoplay', $attributes, $manifest);
-$videoControls = Components::checkAttr('videoControls', $attributes, $manifest);
-$videoMuted = Components::checkAttr('videoMuted', $attributes, $manifest);
-$videoPreload = Components::checkAttr('videoPreload', $attributes, $manifest);
-$videoSubtitleTracks = Components::checkAttr('videoSubtitleTracks', $attributes, $manifest) ?? [];
+$videoUrl = (array) Helpers::checkAttr('videoUrl', $attributes, $manifest) ?? []; // @phpstan-ignore-line
+$videoPoster = Helpers::checkAttr('videoPoster', $attributes, $manifest);
+$videoLoop = Helpers::checkAttr('videoLoop', $attributes, $manifest);
+$videoAutoplay = Helpers::checkAttr('videoAutoplay', $attributes, $manifest);
+$videoControls = Helpers::checkAttr('videoControls', $attributes, $manifest);
+$videoMuted = Helpers::checkAttr('videoMuted', $attributes, $manifest);
+$videoPreload = Helpers::checkAttr('videoPreload', $attributes, $manifest);
+$videoSubtitleTracks = Helpers::checkAttr('videoSubtitleTracks', $attributes, $manifest) ?? [];
 
-$videoClass = Components::classnames([
-	Components::selector($componentClass, $componentClass),
-	Components::selector($blockClass, $blockClass, $selectorClass),
-	Components::selector($additionalClass, $additionalClass),
+$videoClass = Helpers::classnames([
+	Helpers::selector($componentClass, $componentClass),
+	Helpers::selector($blockClass, $blockClass, $selectorClass),
+	Helpers::selector($additionalClass, $additionalClass),
 ]);
 
-$additionalAttributes = Components::classnames([
+$additionalAttributes = Helpers::classnames([
 	$videoLoop ? 'loop' : '',
 	$videoAutoplay ? 'autoplay playsinline' : '',
 	$videoControls ? 'controls' : '',

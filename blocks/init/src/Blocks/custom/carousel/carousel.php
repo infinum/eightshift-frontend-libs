@@ -3,42 +3,42 @@
 /**
  * Template for the Carousel Block.
  *
- * @package EightshiftBoilerplate
+ * @package %g_namespace%
  */
 
-use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 $blockJsClass = $manifest['blockJsClass'] ?? $attributes['blockJsClass'] ?? '';
 
-$carouselIsLoop = Components::checkAttr('carouselIsLoop', $attributes, $manifest);
-$carouselShowItems = Components::checkAttr('carouselShowItems', $attributes, $manifest);
-$carouselShowPrevNext = Components::checkAttr('carouselShowPrevNext', $attributes, $manifest);
-$carouselShowPagination = Components::checkAttr('carouselShowPagination', $attributes, $manifest);
+$carouselIsLoop = Helpers::checkAttr('carouselIsLoop', $attributes, $manifest);
+$carouselShowItems = Helpers::checkAttr('carouselShowItems', $attributes, $manifest);
+$carouselShowPrevNext = Helpers::checkAttr('carouselShowPrevNext', $attributes, $manifest);
+$carouselShowPagination = Helpers::checkAttr('carouselShowPagination', $attributes, $manifest);
 
-$carouselClass = Components::classnames([
+$carouselClass = Helpers::classnames([
 	$blockClass,
 	$blockJsClass,
 	'swiper',
 ]);
 
-$prevButtonClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'button'),
-	Components::selector($blockClass, $blockClass, 'button', 'previous'),
-	Components::selector($blockJsClass, "{$blockJsClass}-prev-arrow"),
+$prevButtonClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'button'),
+	Helpers::selector($blockClass, $blockClass, 'button', 'previous'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-prev-arrow"),
 ]);
 
-$nextButtonClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'button'),
-	Components::selector($blockClass, $blockClass, 'button', 'next'),
-	Components::selector($blockJsClass, "{$blockJsClass}-next-arrow"),
+$nextButtonClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'button'),
+	Helpers::selector($blockClass, $blockClass, 'button', 'next'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-next-arrow"),
 ]);
 
-$paginationClass = Components::classnames([
-	Components::selector($blockClass, $blockClass, 'pagination'),
-	Components::selector($blockJsClass, "{$blockJsClass}-pagination"),
+$paginationClass = Helpers::classnames([
+	Helpers::selector($blockClass, $blockClass, 'pagination'),
+	Helpers::selector($blockJsClass, "{$blockJsClass}-pagination"),
 ]);
 ?>
 
@@ -52,10 +52,10 @@ $paginationClass = Components::classnames([
 	</div>
 
 	<?php if ($carouselShowPrevNext) { ?>
-		<button class="<?php echo esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', 'eightshift-frontend-libs'); ?>">
+		<button class="<?php echo esc_attr($prevButtonClass); ?>" aria-label="<?php echo esc_attr__('Previous slide', '%g_textdomain%'); ?>">
 			<?php echo $manifest['resources']['prevIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
-		<button class="<?php echo esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', 'eightshift-frontend-libs'); ?>">
+		<button class="<?php echo esc_attr($nextButtonClass); ?>" aria-label="<?php echo esc_attr__('Next slide', '%g_textdomain%'); ?>">
 			<?php echo $manifest['resources']['nextIcon']; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 		</button>
 	<?php } ?>
