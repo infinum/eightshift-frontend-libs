@@ -6,7 +6,7 @@
  * @package %g_namespace%
  */
 
-use EightshiftBoilerplate\AdminMenus\ReusableBlocksHeaderFooter;
+use %g_namespace%\AdminMenus\ReusableBlocksHeaderFooter;
 use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifestByDir(__DIR__);
