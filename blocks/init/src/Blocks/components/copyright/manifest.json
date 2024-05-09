@@ -6,23 +6,16 @@
 	"example": {
 		"attributes": {
 			"copyrightBy": "Eightshift",
-			"copyrightContent": "Made with ❤️ by Team Eightshift",
+			"copyrightTypographyContent": "Made with ❤️ by Team Eightshift",
 			"copyrightUse": true
 		}
 	},
 	"attributes": {
-		"copyrightBy": {
+		"copyrightTypographyContent": {
 			"type": "string"
-		},
-		"copyrightYear": {
-			"type": "string"
-		},
-		"copyrightContent": {
-			"type": "string"
-		},
-		"copyrightUse": {
-			"type": "boolean",
-			"default": true
 		}
+	},
+	"components": {
+		"typography": "typography"
 	}
 }

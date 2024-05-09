@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, classnames, props } from '@eightshift/frontend-libs/scripts';
+import { TypographyEditor } from '../../typography/components/typography-editor';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
@@ -13,10 +14,8 @@ export const CopyrightEditor = (attributes) => {
 		additionalClass,
 	} = attributes;
 
-	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
-	const copyrightBy = checkAttr('copyrightBy', attributes, manifest);
-	const copyrightYear = checkAttr('copyrightYear', attributes, manifest) ?? new Date().getFullYear();
-	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
+	const copyrightUse = checkAttr('copyrightTypographyUse', attributes, manifest);
+	const copyrightYear = new Date().getFullYear();
 
 	const copyrightClass = classnames(
 		selector(componentClass, componentClass),
@@ -30,7 +29,9 @@ export const CopyrightEditor = (attributes) => {
 
 	return (
 		<div className={copyrightClass}>
-			&copy; {copyrightBy} {copyrightYear} - {copyrightContent}
+			&copy;{copyrightYear} | <TypographyEditor
+				{...props('typography', attributes)}
+			/>
 		</div>
 	);
 };

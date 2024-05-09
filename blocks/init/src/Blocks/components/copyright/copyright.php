@@ -8,9 +8,9 @@
 
 use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
-$manifest = Components::getManifestByDir(__DIR__);
+$manifest = Components::getManifest(__DIR__);
 
-$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
+$copyrightUse = Components::checkAttr('copyrightTypographyUse', $attributes, $manifest);
 if (!$copyrightUse) {
 	return;
 }
@@ -20,9 +20,8 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$copyrightBy = Components::checkAttr('copyrightBy', $attributes, $manifest);
-$copyrightYear = Components::checkAttr('copyrightYear', $attributes, $manifest);
-$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
+$copyrightYear = date('Y');
+$copyrightContent = Components::checkAttr('copyrightTypographyContent', $attributes, $manifest);
 
 $copyrightClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),
@@ -32,5 +31,5 @@ $copyrightClass = Components::classnames([
 
 ?>
 <div class="<?php echo esc_attr($copyrightClass); ?>">
-	<?php echo esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
+	<?php echo esc_html("&copy;{$copyrightYear} | {$copyrightContent}"); ?>
 </div>
