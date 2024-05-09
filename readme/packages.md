@@ -62,13 +62,9 @@ This is a document explaining what each `package.json` package is used for.
 * @babel/preset-env - Is a smart preset that allows you to use the latest JavaScript without needing to micromanage.
 * @babel/preset-react - Babel preset for React.
 * @eightshift/storybook - Our storybook used for frontend libs.
-* @jest/globals - Jest testing globals.
-* babel-jest - Jest testing Babel preset.
 * chalk - Terminal coloring library. Used in project setup.
 * del - Terminal delete library. Used in project setup.
 * gh-pages - Terminal GH pages lib for deployment to GH pages.
-* jest - Jest testing lib.
-* jest-environment-jsdom - Package used for tests to provide enviroment.
 * micromodal - Modal component used in the project here only for storybook.
 * ol - Map component used in the project here only for storybook.
 * ol-mapbox-style - Map component used in the project here only for storybook.
