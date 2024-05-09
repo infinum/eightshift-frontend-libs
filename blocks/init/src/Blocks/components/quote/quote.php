@@ -16,6 +16,8 @@ if (!$quoteUse) {
 	return;
 }
 
+$unique = Components::getUnique();
+
 $componentClass = $manifest['componentClass'] ?? '';
 $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
@@ -34,7 +36,7 @@ $quoteCaptionClass = Components::selector($componentClass, $componentClass, 'cap
 $quoteAuthorUse = Components::checkAttr('quoteAuthorUse', $attributes, $manifest);
 ?>
 
-<figure class="<?php echo esc_attr($quoteClass); ?>">
+<figure class="<?php echo esc_attr($quoteClass); ?>" role="figure" aria-describedby="caption-<?php echo esc_attr($unique); ?>">
 	<?php
 	echo Components::render('icon', Components::props('icon', $attributes, [
 		'blockClass' => $componentClass
@@ -52,7 +54,7 @@ $quoteAuthorUse = Components::checkAttr('quoteAuthorUse', $attributes, $manifest
 	<?php if ($quoteAuthorUse) { ?>
 		<div class="<?php echo esc_attr($quoteSeparatorClass); ?>"></div>
 
-		<figcaption class="<?php echo esc_attr($quoteCaptionClass); ?>">
+		<figcaption class="<?php echo esc_attr($quoteCaptionClass); ?>" id="caption-<?php echo esc_attr($unique); ?>">
 			<?php
 			echo Components::render('paragraph', Components::props('author', $attributes, [
 				'blockClass' => $componentClass
