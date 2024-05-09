@@ -65,7 +65,7 @@ exports.handler = async (argv) => {
 	if (argv.eightshiftFrontendLibsBranch) {
 		await installStep({
 			describe: `Installing Node packages`,
-			thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch),
+			thisHappens: installModifiedNodeDependencies(projectPath, argv.eightshiftFrontendLibsBranch, argv.eightshiftFrontendLibsRepoUrl),
 		});
 	} else {
 		await installStep({

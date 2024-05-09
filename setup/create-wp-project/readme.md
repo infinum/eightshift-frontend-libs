@@ -42,6 +42,7 @@ If you want to specify a version of Eightshift Libs, Frontend Libs or repository
 --eightshiftLibsRepo
 --eightshiftLibsBranch
 --eightshiftFrontendLibsBranch
+--eightshiftFrontendLibsUrl
 
 ```
 
@@ -62,6 +63,12 @@ You can also specify the repo of the create-wp-project script like this:
 
 ```
 npx create-wp-project --eightshiftLibsRepo="https://github.com/example-repository/eightshift-libs.git"
+```
+
+You can also specify the repo of the create-wp-project script like this:
+
+```
+npx create-wp-project -eightshiftFrontendLibsBranch="develop" --eightshiftFrontendLibsRepoUrl="https://github.com/example-repository/eightshift-frontend-libs.git"
 ```
 
 

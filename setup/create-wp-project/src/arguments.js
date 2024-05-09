@@ -74,6 +74,13 @@ const scriptArguments = {
 		type: 'text',
 		skipPrompt: true,
 	},
+	eightshiftFrontendLibsRepoUrl: {
+		name: 'eightshiftFrontendLibsRepoUrl',
+		describe: 'Custom repository URL for the eightshift-frontend-libs (e.g., github.com/user/eightshift-frontend-libs).',
+		type: 'text',
+		default: 'infinum/eightshift-frontend-libs', // Setting default to ensure backward compatibility
+		skipPrompt: true,
+	},
 };
 
 module.exports = {
