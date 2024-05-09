@@ -1,6 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames, props } from '@eightshift/frontend-libs/scripts';
-import { TypographyEditor } from '../../typography/components/typography-editor';
+import { RichText } from '@wordpress/block-editor';
+import { selector, checkAttr, classnames, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
@@ -12,9 +12,11 @@ export const CopyrightEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
+		setAttributes
 	} = attributes;
 
-	const copyrightUse = checkAttr('copyrightTypographyUse', attributes, manifest);
+	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
+	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 	const copyrightYear = new Date().getFullYear();
 
 	const copyrightClass = classnames(
@@ -29,8 +31,11 @@ export const CopyrightEditor = (attributes) => {
 
 	return (
 		<div className={copyrightClass}>
-			&copy;{copyrightYear} | <TypographyEditor
-				{...props('typography', attributes)}
+			&copy;{copyrightYear} | <RichText
+				value={copyrightContent}
+				onChange={(value) => setAttributes({ [getAttrKey('copyrightContent', attributes, manifest)]: value })}
+				keepPlaceholderOnFocus
+				allowedFormats={[]}
 			/>
 		</div>
 	);

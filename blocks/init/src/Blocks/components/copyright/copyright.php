@@ -10,7 +10,7 @@ use EightshiftBoilerplateVendor\EightshiftLibs\Helpers\Components;
 
 $manifest = Components::getManifest(__DIR__);
 
-$copyrightUse = Components::checkAttr('copyrightTypographyUse', $attributes, $manifest);
+$copyrightUse = Components::checkAttr('copyrightUse', $attributes, $manifest);
 if (!$copyrightUse) {
 	return;
 }
@@ -21,7 +21,7 @@ $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
 $copyrightYear = date('Y');
-$copyrightContent = Components::checkAttr('copyrightTypographyContent', $attributes, $manifest);
+$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
 
 $copyrightClass = Components::classnames([
 	Components::selector($componentClass, $componentClass),

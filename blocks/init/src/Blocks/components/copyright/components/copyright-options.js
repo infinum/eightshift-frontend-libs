@@ -8,13 +8,13 @@ export const CopyrightOptions = (attributes) => {
 		setAttributes
 	} = attributes;
 
-	const copyrightTypographyUse = checkAttr('copyrightTypographyUse', attributes, manifest);
+	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
 
 	return (
 		<Toggle
 			label={__('Copyright', 'eightshift-frontend-libs')}
-			checked={copyrightTypographyUse}
-			onChange={(value) => setAttributes({ [getAttrKey('copyrightTypographyUse', attributes, manifest)]: value })}
+			checked={copyrightUse}
+			onChange={(value) => setAttributes({ [getAttrKey('copyrightUse', attributes, manifest)]: value })}
 			reducedBottomSpacing
 		/>
 	);
