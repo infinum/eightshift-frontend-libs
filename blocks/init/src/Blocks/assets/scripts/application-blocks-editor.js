@@ -23,24 +23,44 @@ import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
 import globalSettings from '../../manifest.json';
 
+const safelyRequireContext = (basePath, searchSubdirectories, regularExpression) => {
+	try {
+		return require.context(basePath, searchSubdirectories, regularExpression);
+	} catch (error) {
+		console.warn(`No files found at ${basePath} with pattern ${regularExpression}`);
+		return { keys: () => [] }; // Mimic the structure of require.context with an empty result.
+	}
+};
+
+// Usage for safely importing contexts.
+const componentsManifestPath = safelyRequireContext('./../../components', true, /manifest.json$/);
+const blocksManifestPath = safelyRequireContext('./../../custom', true, /manifest.json$/);
+const blocksEditComponentPath = safelyRequireContext('./../../custom', true, /-block.js$/);
+const hooksComponentPath = safelyRequireContext('./../../custom', true, /-hooks.js$/);
+const transformsComponentPath = safelyRequireContext('./../../custom', true, /-transforms.js$/);
+const deprecationsComponentPath = safelyRequireContext('./../../custom', true, /-deprecations.js$/);
+const overridesComponentPath = safelyRequireContext('./../../custom', true, /-overrides.js$/);
+const variationsManifestPath = safelyRequireContext('./../../variations', true, /manifest.json$/);
+const variationsOverridesPath = safelyRequireContext('./../../variations', true, /overrides.json$/);
+
 registerBlocks(
 	globalSettings,
 	Wrapper,
 	WrapperManifest,
-	require.context('./../../components', true, /manifest.json$/),
-	require.context('./../../custom', true, /manifest.json$/),
-	require.context('./../../custom', true, /-block.js$/),
-	require.context('./../../custom', true, /-hooks.js$/),
-	require.context('./../../custom', true, /-transforms.js$/),
-	require.context('./../../custom', true, /-deprecations.js$/),
-	require.context('./../../custom', true, /-overrides.js$/),
+	componentsManifestPath,
+	blocksManifestPath,
+	blocksEditComponentPath,
+	hooksComponentPath,
+	transformsComponentPath,
+	deprecationsComponentPath,
+	overridesComponentPath,
 );
 
 registerVariations(
 	globalSettings,
-	require.context('./../../variations', true, /manifest.json$/),
-	require.context('./../../custom', true, /manifest.json$/),
-	require.context('./../../variations', true, /overrides.json$/),
+	variationsManifestPath,
+	blocksManifestPath,
+	variationsOverridesPath,
 );
 
 // Output global css variables.
