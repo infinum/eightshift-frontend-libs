@@ -36,7 +36,7 @@ $quoteCaptionClass = Components::selector($componentClass, $componentClass, 'cap
 $quoteAuthorUse = Components::checkAttr('quoteAuthorUse', $attributes, $manifest);
 ?>
 
-<figure class="<?php echo esc_attr($quoteClass); ?>" role="figure" aria-describedby="caption-<?php echo esc_attr($unique); ?>">
+<figure class="<?php echo esc_attr($quoteClass); ?>" role="presentation" aria-describedby="caption-<?php echo esc_attr($unique); ?>">
 	<?php
 	echo Components::render('icon', Components::props('icon', $attributes, [
 		'blockClass' => $componentClass
