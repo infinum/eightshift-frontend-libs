@@ -23,11 +23,19 @@ import { Wrapper } from '../../wrapper/wrapper';
 import WrapperManifest from '../../wrapper/manifest.json';
 import globalSettings from '../../manifest.json';
 
+const safeRequireContext = (path, deep, filter) => {
+	try {
+		return require.context(path, deep, filter);
+	} catch (error) {
+		return null;
+	}
+};
+
 registerBlocks(
 	globalSettings,
 	Wrapper,
 	WrapperManifest,
-	require.context('./../../components', true, /manifest.json$/),
+	safeRequireContext('./../../components', true, /manifest.json$/),
 	require.context('./../../custom', true, /manifest.json$/),
 	require.context('./../../custom', true, /-block.js$/),
 	require.context('./../../custom', true, /-hooks.js$/),
