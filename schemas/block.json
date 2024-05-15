@@ -231,7 +231,7 @@
 		},
 		"hasInnerBlocks": {
 			"type": "boolean",
-			"description": "If the hasInnerBlocks key is set to true, the block's save method for inner blocks will be used. This method is used when the block has InnerBlocks. In the PHP view file, you will have the $innerBlockContent variable available. Default: false."
+			"description": "If the hasInnerBlocks key is set to true, the block's save method for inner blocks will be used. This method is used when the block has InnerBlocks. In the PHP view file, you will have the $renderContent variable available. Default: false."
 		},
 		"components": {
 			"type": "object",

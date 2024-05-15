@@ -27,6 +27,6 @@ $accordionClass = Helpers::classnames([
 >
 		<?php
 		// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-		echo $innerBlockContent;
+		echo $renderContent;
 		?>
 </div>

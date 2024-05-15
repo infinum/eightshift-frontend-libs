@@ -16,6 +16,6 @@ $unique = Helpers::getUnique();
 
 <div class="<?php echo esc_attr($blockClass); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	<?php
-	echo Helpers::outputCssVariables($attributes, $manifest, $unique), $innerBlockContent;
+	echo Helpers::outputCssVariables($attributes, $manifest, $unique), $renderContent;
 	?>
 </div>

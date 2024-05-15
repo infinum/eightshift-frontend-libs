@@ -69,7 +69,7 @@ $accordionItemClass = Helpers::classnames([
 		<div class="<?php echo esc_attr($accordionItemContentClass); ?>">
 			<?php
 				// phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped
-				echo $innerBlockContent;
+				echo $renderContent;
 			?>
 		</div>
 	</div>

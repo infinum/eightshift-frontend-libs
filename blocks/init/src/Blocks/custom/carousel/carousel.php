@@ -48,7 +48,7 @@ $paginationClass = Helpers::classnames([
 	data-show-items="<?php echo esc_attr($carouselShowItems); ?>"
 >
 	<div class="swiper-wrapper">
-		<?php echo $innerBlockContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
+		<?php echo $renderContent; // phpcs:ignore Eightshift.Security.ComponentsEscape.OutputNotEscaped ?>
 	</div>
 
 	<?php if ($carouselShowPrevNext) { ?>
