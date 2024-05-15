@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { RichText } from '@wordpress/block-editor';
+import { selector, checkAttr, classnames, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
@@ -11,12 +12,12 @@ export const CopyrightEditor = (attributes) => {
 		selectorClass = componentClass,
 		blockClass,
 		additionalClass,
+		setAttributes
 	} = attributes;
 
 	const copyrightUse = checkAttr('copyrightUse', attributes, manifest);
-	const copyrightBy = checkAttr('copyrightBy', attributes, manifest);
-	const copyrightYear = checkAttr('copyrightYear', attributes, manifest) ?? new Date().getFullYear();
 	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
+	const copyrightYear = new Date().getFullYear();
 
 	const copyrightClass = classnames(
 		selector(componentClass, componentClass),
@@ -30,7 +31,12 @@ export const CopyrightEditor = (attributes) => {
 
 	return (
 		<div className={copyrightClass}>
-			&copy; {copyrightBy} {copyrightYear} - {copyrightContent}
+			&copy;{copyrightYear} | <RichText
+				value={copyrightContent}
+				onChange={(value) => setAttributes({ [getAttrKey('copyrightContent', attributes, manifest)]: value })}
+				keepPlaceholderOnFocus
+				allowedFormats={[]}
+			/>
 		</div>
 	);
 };
