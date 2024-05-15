@@ -20,9 +20,8 @@ $additionalClass = $attributes['additionalClass'] ?? '';
 $blockClass = $attributes['blockClass'] ?? '';
 $selectorClass = $attributes['selectorClass'] ?? $componentClass;
 
-$copyrightBy = Helpers::checkAttr('copyrightBy', $attributes, $manifest);
-$copyrightYear = Helpers::checkAttr('copyrightYear', $attributes, $manifest);
-$copyrightContent = Helpers::checkAttr('copyrightContent', $attributes, $manifest);
+$copyrightYear = date('Y');
+$copyrightContent = Components::checkAttr('copyrightContent', $attributes, $manifest);
 
 $copyrightClass = Helpers::classnames([
 	Helpers::selector($componentClass, $componentClass),
@@ -32,5 +31,5 @@ $copyrightClass = Helpers::classnames([
 
 ?>
 <div class="<?php echo esc_attr($copyrightClass); ?>">
-	<?php echo esc_html("&copy; {$copyrightBy} {$copyrightYear} - {$copyrightContent}"); ?>
+	<?php echo esc_html("&copy;{$copyrightYear} | {$copyrightContent}"); ?>
 </div>

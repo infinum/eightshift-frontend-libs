@@ -33,7 +33,7 @@ $quoteCaptionClass = Helpers::selector($componentClass, $componentClass, 'captio
 $quoteAuthorUse = Helpers::checkAttr('quoteAuthorUse', $attributes, $manifest);
 ?>
 
-<figure class="<?php echo esc_attr($quoteClass); ?>">
+<figure class="<?php echo esc_attr($quoteClass); ?>" role="presentation">
 	<?php
 	echo Helpers::render('icon', Helpers::props('icon', $attributes, [
 		'blockClass' => $componentClass
@@ -51,7 +51,7 @@ $quoteAuthorUse = Helpers::checkAttr('quoteAuthorUse', $attributes, $manifest);
 	<?php if ($quoteAuthorUse) { ?>
 		<div class="<?php echo esc_attr($quoteSeparatorClass); ?>"></div>
 
-		<figcaption class="<?php echo esc_attr($quoteCaptionClass); ?>">
+		<figcaption class="<?php echo esc_attr($quoteCaptionClass); ?>" role="presentation">
 			<?php
 			echo Helpers::render('paragraph', Helpers::props('author', $attributes, [
 				'blockClass' => $componentClass

@@ -48,7 +48,7 @@ $linkClass = Helpers::selector($blockClass, $blockClass, 'link');
 	echo Helpers::render('social-networks', Helpers::props('socialNetworks', $attributes, [
 		'blockClass' => $blockClass,
 	])),
-	Helpers::render('paragraph', Helpers::props('copyright', $attributes, [
+	Components::render('copyright', Components::props('copyright', $attributes, [
 		'blockClass' => $blockClass,
 		'selectorClass' => 'copyright',
 	]));

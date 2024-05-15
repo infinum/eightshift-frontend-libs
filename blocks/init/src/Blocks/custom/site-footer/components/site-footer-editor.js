@@ -42,7 +42,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 				})}
 			/>
 
-			<ParagraphEditor
+			<CopyrightEditor
 				{...props('copyright', attributes, {
 					blockClass: blockClass,
 					selectorClass: 'copyright',
