@@ -28,3 +28,4 @@ jobs:
         uses: infinum/eightshift-deploy-actions-public/.github/actions/lint-assets@main
         with:
           NODE_VERSION: ${{ matrix.node }}
+          PROJECT_PATH: '/'
