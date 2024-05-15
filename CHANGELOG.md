@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
-## [12.0.0] - TBA
+## [12.0.0]
 
 Dependant to [Eightshift-libs@8.0.0](https://github.com/infinum/eightshift-libs/releases/tag/8.0.0)
 
