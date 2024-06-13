@@ -46,34 +46,6 @@ $allow = Helpers::classnames([
 ]);
 
 $embedAllowFullScreen = $embedAllowFullScreen ? 'allowfullscreen' : '';
-
-/**
- * YouTube provider
- *
- * The link
- *   https://www.youtube.com/watch?v=dQw4w9WgXcQ
- * will be transformed to
- *   https://www.youtube.com/embed/dQw4w9WgXcQ .
- */
-if (strpos($embedUrl, 'https://www.youtube.com/watch?v=') !== false) {
-	$embedUrl = str_replace('watch?v=', 'embed/', $embedUrl);
-}
-
-/**
- * Vimeo provider
- *
- * The link
- *   https://vimeo.com/642263700
- * will be transformed to
- *   https://player.vimeo.com/video/642263700 .
- */
-if (strpos($embedUrl, 'https://vimeo.com') !== false) {
-	preg_match_all('/https:\/\/vimeo\.com\/(\d+)/', $embedUrl, $matches);
-
-	$videoId = $matches[1][0] ?? '';
-	$embedUrl = "https://player.vimeo.com/video/{$videoId}";
-}
-
 ?>
 
 <div class="<?php echo esc_attr($embedClass); ?>">
