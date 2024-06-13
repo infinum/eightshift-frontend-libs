@@ -8,7 +8,7 @@
 
  use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$manifest = Helpers::getManifest(__DIR__);
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $embedUse = Helpers::checkAttr('embedUse', $attributes, $manifest);
 if (!$embedUse) {
