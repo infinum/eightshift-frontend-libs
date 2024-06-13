@@ -52,7 +52,7 @@ export const EmbedOptions = (attributes) => {
 					{showEmbedUrl && (
 						<>
 							<TextControl
-								label={__('URL', '%g_textdomain%')}
+								label={__('Embed URL', '%g_textdomain%')}
 								value={embedUrl}
 								onChange={(value) => setAttributes({ [getAttrKey('embedUrl', attributes, manifest)]: value })}
 								help={__('Video link format ex: https://www.youtube.com/embed/VIDEO_ID', '%g_textdomain%')}
