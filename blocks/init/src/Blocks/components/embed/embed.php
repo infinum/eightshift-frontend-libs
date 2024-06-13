@@ -29,9 +29,9 @@ $embedPictureInPicture = Helpers::checkAttr('embedPictureInPicture', $attributes
 $embedAllowFullScreen = Helpers::checkAttr('embedAllowFullScreen', $attributes, $manifest);
 
 $embedClass = Helpers::classnames([
-	Helpers::selector($componentClass, $componentClass),
+	$componentClass,
 	Helpers::selector($blockClass, $blockClass, $selectorClass),
-	Helpers::selector($additionalClass, $additionalClass),
+	$additionalClass, $additionalClass,
 ]);
 
 $embedIframeClass = Helpers::classnames([
