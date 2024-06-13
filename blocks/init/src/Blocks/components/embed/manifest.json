@@ -1,0 +1,43 @@
+{
+	"componentName": "embed",
+	"title": "Embed",
+	"componentClass": "embed",
+	"example": {
+		"attributes": {
+			"embedUrl": "https://www.youtube.com/embed/owmGwDsOzm8",
+			"embedAutoplay": true,
+			"embedEncryptedMedia": true,
+			"embedPictureInPicture": true,
+			"embedAllowFullScreen": true,
+			"embedUse": true
+		}
+	},
+	"attributes": {
+		"embedUrl": {
+			"type": "string"
+		},
+		"embedTitle": {
+			"type": "string"
+		},
+		"embedAutoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"embedEncryptedMedia": {
+			"type": "boolean",
+			"default": true
+		},
+		"embedPictureInPicture": {
+			"type": "boolean",
+			"default": true
+		},
+		"embedAllowFullScreen": {
+			"type": "boolean",
+			"default": true
+		},
+		"embedUse": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}
