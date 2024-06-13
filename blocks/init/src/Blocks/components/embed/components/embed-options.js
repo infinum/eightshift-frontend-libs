@@ -21,7 +21,6 @@ export const EmbedOptions = (attributes) => {
 		showEmbedUse = true,
 		showEmbedUrl = true,
 		showEmbedTitle = true,
-		showEmbedAdvanced = true,
 		showEmbedAutoplay = true,
 		showEmbedEncryptedMedia = true,
 		showEmbedPictureInPicture = true,
@@ -62,7 +61,6 @@ export const EmbedOptions = (attributes) => {
 								type="warning"
 								text={__('Please pay attention so everything is GDPR compliant', '%g_textdomain%')}
 								iconOverride={icons.a11yWarning}
-								noBottomSpacing
 							/>
 						</>
 					)}
@@ -76,48 +74,43 @@ export const EmbedOptions = (attributes) => {
 						/>
 					)}
 
-					<br />
+					<Section
+						label={__('Permissons', '%g_textdomain%')}
+						collapsable
+						reducedBottomSpacing
+					>
+						{showEmbedAutoplay && (
+							<UseToggle
+								label={__('Autoplay', '%g_textdomain%')}
+								checked={embedAutoplay}
+								onChange={(value) => setAttributes({ [getAttrKey('embedAutoplay', attributes, manifest)]: value })}
+							/>
+						)}
 
-					{showEmbedAdvanced && (
-						<Section
-							icon={icons.plusCircleFillAlt}
-							label={__('Advanced options', '%g_textdomain%')}
-							collapsable
-							reducedBottomSpacing
-						>
-							{showEmbedAutoplay && (
-								<UseToggle
-									label={__('Autoplay', '%g_textdomain%')}
-									checked={embedAutoplay}
-									onChange={(value) => setAttributes({ [getAttrKey('embedAutoplay', attributes, manifest)]: value })}
-								/>
-							)}
+						{showEmbedEncryptedMedia && (
+							<UseToggle
+								label={__('Encrypted Media', '%g_textdomain%')}
+								checked={embedEncryptedMedia}
+								onChange={(value) => setAttributes({ [getAttrKey('embedEncryptedMedia', attributes, manifest)]: value })}
+							/>
+						)}
 
-							{showEmbedEncryptedMedia && (
-								<UseToggle
-									label={__('Encrypted Media', '%g_textdomain%')}
-									checked={embedEncryptedMedia}
-									onChange={(value) => setAttributes({ [getAttrKey('embedEncryptedMedia', attributes, manifest)]: value })}
-								/>
-							)}
+						{showEmbedPictureInPicture && (
+							<UseToggle
+								label={__('Picture in picture', '%g_textdomain%')}
+								checked={embedPictureInPicture}
+								onChange={(value) => setAttributes({ [getAttrKey('embedPictureInPicture', attributes, manifest)]: value })}
+							/>
+						)}
 
-							{showEmbedPictureInPicture && (
-								<UseToggle
-									label={__('Picture in picture', '%g_textdomain%')}
-									checked={embedPictureInPicture}
-									onChange={(value) => setAttributes({ [getAttrKey('embedPictureInPicture', attributes, manifest)]: value })}
-								/>
-							)}
-
-							{showEmbedAllowFullScreen && (
-								<UseToggle
-									label={__('Allow full screen', '%g_textdomain%')}
-									checked={embedAllowFullScreen}
-									onChange={(value) => setAttributes({ [getAttrKey('embedAllowFullScreen', attributes, manifest)]: value })}
-								/>
-							)}
-						</Section>
-					)}
+						{showEmbedAllowFullScreen && (
+							<UseToggle
+								label={__('Allow full screen', '%g_textdomain%')}
+								checked={embedAllowFullScreen}
+								onChange={(value) => setAttributes({ [getAttrKey('embedAllowFullScreen', attributes, manifest)]: value })}
+							/>
+						)}
+					</Section>
 				</>
 			)}
 		</UseToggle>
