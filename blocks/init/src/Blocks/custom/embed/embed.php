@@ -8,8 +8,8 @@
 
  use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
-$globalManifest = Helpers::getManifest(dirname(__DIR__, 2));
-$manifest = Helpers::getManifest(__DIR__);
+$globalManifest = Helpers::getSettings();
+$manifest = Helpers::getManifestByDir(__DIR__);
 
 $blockClass = $attributes['blockClass'] ?? '';
 
