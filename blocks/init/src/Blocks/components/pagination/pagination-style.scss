@@ -67,15 +67,15 @@
 		text-decoration: none;
 
 		&:hover {
-			color: var(--global-colors-blue-hover);
+			color: var(--global-colors-primary700);
 		}
 	}
 
 	.current {
-		color: var(--global-colors-white);
+		color: var(--global-colors-primary500);
 
 		span {
-			--pagination-scoped-background-color: var(--global-colors-blue);
+			--pagination-scoped-background-color: var(--global-colors-primary500);
 			--pagination-scoped-color: var(--global-colors-white);
 		}
 	}
