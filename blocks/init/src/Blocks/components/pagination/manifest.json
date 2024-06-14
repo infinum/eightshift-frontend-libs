@@ -27,12 +27,6 @@
 		"paginationIconName": {
 			"type": "string",
 			"default": "chevron-right"
-		},
-		"paginationCurrentPage": {
-			"type": "integer"
-		},
-		"paginationMaxPages": {
-			"type": "integer"
 		}
 	}
 }

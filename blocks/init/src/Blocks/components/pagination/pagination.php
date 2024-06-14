@@ -38,28 +38,17 @@ $icon = Helpers::render(
 		'iconName' => $paginationIconName,
 	])
 );
-
-$paginationCustomQueryArgs = [];
-if (!empty($paginationCurrentPage) && !empty($paginationMaxPages)) {
-	$paginationCustomQueryArgs = [
-		'current' => (int)$paginationCurrentPage,
-		'total' => (int)$paginationMaxPages,
-	];
-}
 ?>
 
 <div class="<?php echo esc_attr($navigationClass); ?>">
 	<?php
 	echo paginate_links(
-		array_merge(
 			[
 				'before_page_number' => '<span>',
 				'after_page_number' => '</span>',
 				'prev_text' => '<span>' . $icon . __('Previous', '%g_textdomain%') . '</span>',
 				'next_text' => '<span>' . __('Next', '%g_textdomain%') . $icon . '</span>',
-			],
-			$paginationCustomQueryArgs
-		)
+			]
 	);
 	?>
 </div>
