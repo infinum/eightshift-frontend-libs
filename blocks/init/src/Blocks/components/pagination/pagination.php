@@ -58,7 +58,7 @@ if (!empty($paginationCurrentPage) && !empty($paginationMaxPages)) {
 				'prev_text' => '<span>' . $icon . __('Previous', '%g_textdomain%') . '</span>',
 				'next_text' => '<span>' . __('Next', '%g_textdomain%') . $icon . '</span>',
 			],
-
+			$paginationCustomQueryArgs
 		)
 	);
 	?>
