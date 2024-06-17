@@ -3,10 +3,10 @@
 /**
  * Template for the Pagination Component.
  *
- * @package embed.
+ * @package %g_namespace%
  */
 
- use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
+use %g_namespace_vendor_prefix%\EightshiftLibs\Helpers\Helpers;
 
 $manifest = Helpers::getManifestByDir(__DIR__);
 
