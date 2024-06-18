@@ -1,0 +1,233 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "lottie",
+	"title": "Lottie",
+	"description": "Lottie block with custom settings.",
+	"category": "eightshift",
+	"blockClass": "lottie",
+	"blockJsClass": "js-lottie",
+	"icon": {
+		"src": "es-lottie"
+	},
+	"keywords": [
+		"Lottie",
+		"Animation",
+		"Block Lottie"
+	],
+	"example": {
+		"attributes": {
+			"lottieUrl": "lottie.json"
+		}
+	},
+	"attributes": {
+		"lottieUse": {
+			"type": "boolean",
+			"default": true
+		},
+		"lottieUrlLarge": {
+			"type": "string"
+		},
+		"lottieUrlDesktop": {
+			"type": "string"
+		},
+		"lottieUrlTablet": {
+			"type": "string"
+		},
+		"lottieUrlMobile": {
+			"type": "string"
+		},
+
+		"lottieAspectRatioLarge": {
+			"type": "number"
+		},
+		"lottieAspectRatioDesktop": {
+			"type": "number"
+		},
+		"lottieAspectRatioTablet": {
+			"type": "number"
+		},
+		"lottieAspectRatioMobile": {
+			"type": "number"
+		},
+
+		"lottieNameLarge": {
+			"type": "string"
+		},
+		"lottieNameDesktop": {
+			"type": "string"
+		},
+		"lottieNameTablet": {
+			"type": "string"
+		},
+		"lottieNameMobile": {
+			"type": "string"
+		},
+
+		"lottieTrigger": {
+			"type": "string"
+		},
+		"lottieTriggerLarge": {
+			"type": "string",
+			"default": "autoPlay"
+		},
+		"lottieTriggerDesktop": {
+			"type": "string"
+		},
+		"lottieTriggerTablet": {
+			"type": "string"
+		},
+		"lottieTriggerMobile": {
+			"type": "string"
+		},
+
+		"lottieLoopLarge": {
+			"type": "boolean",
+			"default": false
+		},
+		"lottieLoopDesktop": {
+			"type": "boolean"
+		},
+		"lottieLoopTablet": {
+			"type": "boolean"
+		},
+		"lottieLoopMobile": {
+			"type": "boolean"
+		},
+
+		"lottieElementOffsetFactorLarge": {
+			"type": "number",
+			"default": 0.5
+		},
+		"lottieElementOffsetFactorDesktop": {
+			"type": "number"
+		},
+		"lottieElementOffsetFactorTablet": {
+			"type": "number"
+		},
+		"lottieElementOffsetFactorMobile": {
+			"type": "number"
+		},
+
+		"lottieViewportOffsetFactorLarge": {
+			"type": "number",
+			"default": 1
+		},
+		"lottieViewportOffsetFactorDesktop": {
+			"type": "number"
+		},
+		"lottieViewportOffsetFactorTablet": {
+			"type": "number"
+		},
+		"lottieViewportOffsetFactorMobile": {
+			"type": "number"
+		},
+
+		"lottieTimelineOffsetFactorLarge": {
+			"type": "number",
+			"default": 1
+		},
+		"lottieTimelineOffsetFactorDesktop": {
+			"type": "number"
+		},
+		"lottieTimelineOffsetFactorTablet": {
+			"type": "number"
+		},
+		"lottieTimelineOffsetFactorMobile": {
+			"type": "number"
+		}
+	},
+	"responsiveAttributes": {
+		"lottieUrl": {
+			"large": "lottieUrlLarge",
+			"desktop": "lottieUrlDesktop",
+			"tablet": "lottieUrlTablet",
+			"mobile": "lottieUrlMobile"
+		},
+		"lottieAspectRatio": {
+			"large": "lottieAspectRatioLarge",
+			"desktop": "lottieAspectRatioDesktop",
+			"tablet": "lottieAspectRatioTablet",
+			"mobile": "lottieAspectRatioMobile"
+		},
+		"lottieName": {
+			"large": "lottieNameLarge",
+			"desktop": "lottieNameDesktop",
+			"tablet": "lottieNameTablet",
+			"mobile": "lottieNameMobile"
+		},
+		"lottieLoop": {
+			"large": "lottieLoopLarge",
+			"desktop": "lottieLoopDesktop",
+			"tablet": "lottieLoopTablet",
+			"mobile": "lottieLoopMobile"
+		},
+		"lottieElementOffsetFactor": {
+			"large": "lottieElementOffsetFactorLarge",
+			"desktop": "lottieElementOffsetFactorDesktop",
+			"tablet": "lottieElementOffsetFactorTablet",
+			"mobile": "lottieElementOffsetFactorMobile"
+		},
+		"lottieViewportOffsetFactor": {
+			"large": "lottieViewportOffsetFactorLarge",
+			"desktop": "lottieViewportOffsetFactorDesktop",
+			"tablet": "lottieViewportOffsetFactorTablet",
+			"mobile": "lottieViewportOffsetFactorMobile"
+		},
+		"lottieTimelineOffsetFactor": {
+			"large": "lottieTimelineOffsetFactorLarge",
+			"desktop": "lottieTimelineOffsetFactorDesktop",
+			"tablet": "lottieTimelineOffsetFactorTablet",
+			"mobile": "lottieTimelineOffsetFactorMobile"
+		},
+		"lottieTrigger": {
+			"large": "lottieTriggerLarge",
+			"desktop": "lottieTriggerDesktop",
+			"tablet": "lottieTriggerTablet",
+			"mobile": "lottieTriggerMobile"
+		}
+	},
+	"options": {
+		"lottieElementOffsetFactor": {
+			"min": 0,
+			"max": 1,
+			"step": 0.01
+		},
+		"lottieViewportOffsetFactor": {
+			"min": 0,
+			"max": 1,
+			"step": 0.01
+		},
+		"lottieTimelineOffsetFactor": {
+			"min": 0,
+			"max": 1,
+			"step": 0.01
+		},
+		"lottieTrigger": [
+			{
+				"label": "Inherit",
+				"value": "",
+				"icon": "arrowUp"
+			},
+			{
+				"label": "Autoplay",
+				"value": "autoPlay",
+				"icon": "autoplay"
+			},
+			{
+				"label": "Scroll-based",
+				"value": "scroll",
+				"icon": "mouseWheel"
+			}
+		]
+	},
+	"variables": {
+		"lottieAspectRatio": [
+			{
+				"inverse": true,
+				"variable": {
+					"lottieAspectRatio": "%value%%"
+				}
+			}
+		]
+	}
+}
