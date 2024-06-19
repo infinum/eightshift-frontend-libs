@@ -40,8 +40,8 @@ if (!$lottieUse || $isLottieUrlEmpty) {
 }
 
 $lottieClasses = Helpers::classnames([
-	Helpers::selector($blockClass, $blockClass),
-	Helpers::selector($blockJsClass, $blockJsClass),
+	$blockClass,
+	$blockJsClass,
 	Helpers::selector($blockClass, $blockClass, 'lottie'),
 	Helpers::selector($blockJsClass, "{$blockJsClass}-lottie"),
 ]);
