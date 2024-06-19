@@ -29,41 +29,13 @@
 		}
 	}
 
-	.page-numbers {
-		display: none;
-
-		@include media(tablet up) {
-			display: block;
-		}
-	}
-
-	.prev,
-	.next {
-		display: block;
-		font-weight: 600;
-
-		&__icon {
-			margin-inline-start: calc(var(--base-font-size) * 1rem);
-		}
-	}
-
-	.prev {
-		margin-inline-end: calc(var(--base-font-size) * 5rem);
-
-		&__icon {
+	&__prev {
+		.icon{
 			transform: rotate(180deg);
 		}
 	}
 
-	.next {
-		margin-inline-start: auto;
-
-		@include media(tablet up) {
-			margin-inline-start: calc(var(--base-font-size) * 5rem);
-		}
-	}
-
-	a {
+	&__link{
 		text-decoration: none;
 
 		&:hover {

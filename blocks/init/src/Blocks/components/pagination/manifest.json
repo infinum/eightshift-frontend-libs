@@ -3,30 +3,7 @@
 	"componentName": "pagination",
 	"title": "Pagination",
 	"componentClass": "pagination",
-	"example": {
-		"attributes": {
-			"paginationUse": true
-		}
-	},
 	"components": {
 		"icon": "icon"
-	},
-	"attributes": {
-		"paginationUse": {
-			"type": "boolean",
-			"default": true
-		},
-		"paginationIconColor": {
-			"type": "string",
-			"default": "black"
-		},
-		"paginationIconSize": {
-			"type": "string",
-			"default": "2.4"
-		},
-		"paginationIconName": {
-			"type": "string",
-			"default": "chevron-right"
-		}
 	}
 }
