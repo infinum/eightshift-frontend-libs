@@ -25,7 +25,7 @@
 	},
 	"scripts": {
 		"lintStyle": "stylelint **/*.scss",
-		"lintJs": "eslint blocks/ webpack/ scripts/ babel/ linters/",
+		"lintJs": "eslint blocks/ webpack/ scripts/ linters/",
 		"lint": "npm run lintJs && npm run lintStyle",
 		"prepare": "husky"
 	},
