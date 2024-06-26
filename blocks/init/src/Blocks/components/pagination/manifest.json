@@ -1,0 +1,9 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/component.json",
+	"componentName": "pagination",
+	"title": "Pagination",
+	"componentClass": "pagination",
+	"components": {
+		"icon": "icon"
+	}
+}
