@@ -1,0 +1,12 @@
+.block-embed {
+	display: flex;
+	flex-direction: column;
+
+	align-items: var(--block-embed-align-vertical, center);
+	justify-content: var(--block-embed-align-horizontal, center);
+}
+
+/** Add style to WP core embed block **/
+.wp-block-embed__wrapper {
+	overflow-wrap: break-word;
+}
