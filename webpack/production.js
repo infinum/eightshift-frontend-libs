@@ -5,8 +5,6 @@
 
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const { browserslistToTargets } = require('lightningcss');
-const browserslist = require('browserslist');
 
 module.exports = (options) => {
 
@@ -42,10 +40,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('cssMinimizerPlugin')) {
 		optimization.minimizer.push(new CssMinimizerPlugin({
 			parallel: true,
-			minify: CssMinimizerPlugin.lightningCssMinify,
-			minimizerOptions: {
-				targets: browserslistToTargets(browserslist('>= 0.25%'))
-			},
+			minify: CssMinimizerPlugin.cssoMinify,
 		}));
 	}
 
