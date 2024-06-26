@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "12.1.0",
+	"version": "12.1.1",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -72,6 +72,7 @@
 		"just-is-empty": "^3.4.1",
 		"just-kebab-case": "^4.2.0",
 		"just-throttle": "^4.2.0",
+		"lightningcss": "^1.25.1",
 		"media-blender": "^2.1.0",
 		"mini-css-extract-plugin": "^2.9.0",
 		"postcss": "^8.4.38",
