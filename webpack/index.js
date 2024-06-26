@@ -38,14 +38,12 @@ module.exports = (mode, optionsData = {}) => {
 	const outputDefault = merge(project, base);
 
 	// Output development setup by default.
-	let output;
+	const development = {
+		devtool: false,
+		watchOptions: {
+			ignored: '**/node_modules',
+		},
+	};
 
-	// Output production setup if mode is set inside package.json.
-	if (mode === 'production') {
-		output = merge(outputDefault, production);
-	} else {
-		output = outputDefault;
-	}
-
-	return output;
+	return merge(outputDefault, mode === 'production' ? production : development);
 };
