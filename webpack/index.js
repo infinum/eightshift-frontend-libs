@@ -18,7 +18,6 @@ module.exports = (mode, optionsData = {}) => {
 	// Append project config using getConfig helper.
 	options.config = getConfig(
 		optionsData.config.projectDir,
-		optionsData.config.projectUrl,
 		optionsData.config.projectPath,
 		optionsData.config.assetsPath,
 		optionsData.config.blocksAssetsPath,

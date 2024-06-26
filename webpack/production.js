@@ -5,8 +5,8 @@
 
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-import { browserslistToTargets } from 'lightningcss';
-import browserslist from 'browserslist';
+const { browserslistToTargets } = require('lightningcss');
+const browserslist = require('browserslist');
 
 module.exports = (options) => {
 
