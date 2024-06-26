@@ -10,33 +10,24 @@ const fs = require('fs');
  * Generate all paths required for Webpack build to work.
  *
  * @param {string} projectDir Current project directory absolute path.
- * @param {string} proxyUrl Used for providing browsersync functionality.
  * @param {string} projectPathConfig Project path relative to project root.
  * @param {string} assetsPathConfig Assets path after projectPath location.
  * @param {string} blocksAssetsPathConfig Path of the block assets.
  * @param {string} outputPathConfig Public output path after projectPath location.
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
- * @param {boolean} useSsl Change configuration if you have local ssl certificate, generally used only for BrowserSync.
  *
  */
 function getConfig(
 	projectDir,
-	proxyUrl,
 	projectPathConfig,
 	assetsPathConfig = 'assets',
 	blocksAssetsPathConfig = 'src/Blocks/assets',
 	outputPathConfig = 'public',
 	blocksManifestSettingsPath = 'src/Blocks/manifest.json',
-	useSsl = false,
 ) {
 
 	if (typeof projectDir === 'undefined') {
 		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
-	}
-
-	if (typeof proxyUrl === 'undefined') {
-		// eslint-disable-next-line max-len
-		throw Error('proxyUrl parameter is empty, please provide. This key represents: Development Url for providing browsersync functionality. For example: dev.boilerplate.com');
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
@@ -55,7 +46,6 @@ function getConfig(
 	const absolutePath = `${projectDir}`;
 
 	return {
-		proxyUrl,
 		absolutePath,
 
 		// Output files absolute location.
@@ -72,8 +62,6 @@ function getConfig(
 		applicationBlocksFrontendEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-frontend.js'),
 
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
-
-		useSsl,
 	};
 }
 

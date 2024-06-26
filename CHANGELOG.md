@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [12.1.0]
+
+### Changed
+- Webpack config to use swc for JS compilation.
+
+### Removed
+- Babel config folder as we are using swc now.
+- Webpack browser sync as it is not used anymore.
+
 ## [12.0.0]
 
 ### Changed
@@ -1066,6 +1075,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[12.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/12.0.0...12.1.0
 [12.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/11.0.1...12.0.0
 [11.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/11.0.0...11.0.1
 [11.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/10.0.0...11.0.0

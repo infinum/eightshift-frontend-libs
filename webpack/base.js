@@ -67,23 +67,20 @@ module.exports = (options) => {
 		rules: [],
 	};
 
-	// Module for JS and JSX.
+	// Module for JS and JSX.
 	if (!options.overrides.includes('js')) {
 		module.rules.push({
 			test: /\.(js|jsx)$/,
 			exclude: /node_modules[\\/](?!@eightshift)/,
 			use: [
 				{
-					loader: 'babel-loader',
-					options: {
-						cacheDirectory: true,
-					},
+					loader: 'swc-loader',
 				},
 			],
 		});
 	}
 
-	// Module for Images.
+	// Module for Images.
 	if (!options.overrides.includes('images')) {
 		module.rules.push({
 			test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/i,
@@ -92,16 +89,16 @@ module.exports = (options) => {
 		});
 	}
 
-	// Module for Fonts.
+	// Module for Fonts.
 	if (!options.overrides.includes('fonts')) {
 		module.rules.push({
-			test: /\.(eot|otf|ttf|woff|woff2)$/,
+			test: /\.(otf|ttf|woff2)$/,
 			exclude: [/images/, /node_modules/],
 			use: 'file-loader?name=[name].[ext]',
 		});
 	}
 
-	// Module for Scss.
+	// Module for Scss.
 	if (!options.overrides.includes('scss')) {
 		module.rules.push({
 			test: /\.scss$/,

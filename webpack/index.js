@@ -24,7 +24,6 @@ module.exports = (mode, optionsData = {}) => {
 		optionsData.config.blocksAssetsPath,
 		optionsData.config.outputPath,
 		optionsData.config.blocksManifestSettingsPath,
-		optionsData.config.useSsl,
 	);
 
 	options.config.mode = mode;
@@ -33,7 +32,6 @@ module.exports = (mode, optionsData = {}) => {
 	// Get all webpack partials.
 	const base = require('./base')(options);
 	const project = require('./project')(options);
-	const development = require('./development')(options);
 	const production = require('./production')(options);
 
 	// Default output that is going to be merged in any env.
@@ -46,7 +44,7 @@ module.exports = (mode, optionsData = {}) => {
 	if (mode === 'production') {
 		output = merge(outputDefault, production);
 	} else {
-		output = merge(outputDefault, development);
+		output = outputDefaultx;
 	}
 
 	return output;

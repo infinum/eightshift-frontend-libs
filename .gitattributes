@@ -5,7 +5,6 @@
 # https://blog.madewithlove.be/post/gitattributes/
 #
 /.github export-ignore
-/.storybook export-ignore
 /docs export-ignore
 /documentation export-ignore
 /package export-ignore
