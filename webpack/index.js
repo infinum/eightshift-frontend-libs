@@ -44,7 +44,7 @@ module.exports = (mode, optionsData = {}) => {
 	if (mode === 'production') {
 		output = merge(outputDefault, production);
 	} else {
-		output = outputDefaultx;
+		output = outputDefault;
 	}
 
 	return output;
