@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [12.1.5]
+
+### Removed
+- Removed BrowserSync dependencies.
+- Removed Babel dependencies.
+
+### Changed
+- Updated ES lint config and added required dependencies for a new setup.
+
 ## [12.1.4]
 
 ### Fixed
