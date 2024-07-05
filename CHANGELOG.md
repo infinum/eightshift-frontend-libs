@@ -1104,6 +1104,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[12.1.5]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.4...12.1.5
 [12.1.4]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.3...12.1.4
 [12.1.3]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.2...12.1.3
 [12.1.2]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.1...12.1.2
