@@ -154,35 +154,8 @@ export { ucfirst } from './editor/utility';
 
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';
-export { camelize } from './helpers/camelize';
-export { classnames } from './helpers/classnames';
 export { cookies } from './helpers/cookies';
-export { debounce } from './helpers/debounce';
-export { throttle } from './helpers/throttle';
-export { device } from './helpers/devices';
 export { dynamicImport } from './helpers/dynamic-import';
-export { elementChildrenHeight } from './helpers/element-children-height';
-export {
-	camelCase,
-	pascalCase,
-	snakeCase,
-	kebabCase,
-	isEmpty,
-	lowerFirst,
-	upperFirst,
-	has,
-	isPlainObject,
-	isObject,
-	isEqual,
-} from './helpers/es-dash';
-export { escapeString } from './helpers/escape-string';
-export { getNavigatorVibrate } from './helpers/navigator';
-export {
-	truncate,
-	truncateMiddle,
-	unescapeHTML
-} from './helpers/text-helpers';
-
 export {
 	luminanceFromHex,
 	luminanceFromRgb,
