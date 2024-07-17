@@ -94,12 +94,6 @@ export {
 } from './components/deprecations';
 
 // Editor
-export {
-	icons,
-	illustrations,
-	blockIcons,
-	BlockIcon
-} from './editor/icons/icons';
 export { getActions } from './editor/actions';
 export {
 	overrideInnerBlockAttributes,

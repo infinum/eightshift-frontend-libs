@@ -1,11 +1,5 @@
 // All exports are sorted in alphabetical order.
 
-export {
-	icons,
-	illustrations,
-	blockIcons,
-	BlockIcon
-} from './icons/icons';
 export { getActions } from './actions';
 export {
 	overrideInnerBlockAttributes,
