@@ -1,19 +1,5 @@
 // stylelint-disable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
 
-@import './es-keyframes';
-@import '../scripts/components/advanced-color-picker/advanced-color-picker';
-@import '../scripts/components/custom-slider/custom-slider';
-@import '../scripts//components/menu/es-menu.scss';
-@import '../scripts//components/number-picker/number-picker.scss';
-@import '../scripts/components/help-modal/help-modal';
-@import '../scripts/components/custom-select/custom-select';
-@import '../scripts/components/server-side-render/server-side-render';
-@import '../scripts/components/color-palette-custom/color-palette-custom';
-@import './es-shared/es-nested-collapsable';
-
-// Animated icons.
-@import './es-animated-icons.scss';
-
 :root {
 	// Colors
 	--es-admin-accent-color-default: #3858E9;
@@ -426,5 +412,36 @@ body {
 		}
 	}
 }
+
+// Animated icons
+
+// Use the icon with the name written here and on a parent element add a class of 'es-has-animated-icon'.
+// The animation will happen on hover, focus (focus-visible),
+// or when an 'is-es-icon-animated' class is applied on the parent with the 'es-has-animated-icon' class.
+
+// icons.trashAlt
+.es-has-animated-icon {
+	.es-animated-trash-alt-lid,
+	.es-animated-trash-alt-base {
+		transition: {
+			property: transform;
+			timing-function: var(--es-ease-out-cubic);
+			duration: 0.3s;
+		}
+	}
+
+	&.is-es-icon-animated .es-animated-trash-alt-lid,
+	&:focus-visible .es-animated-trash-alt-lid,
+	&:hover .es-animated-trash-alt-lid {
+		transform: rotate(15deg) translate(1.125px, -1.75px);
+	}
+
+	&.is-es-icon-animated .es-animated-trash-alt-base,
+	&:focus-visible .es-animated-trash-alt-base,
+	&:hover .es-animated-trash-alt-base {
+		transform: translate(0, -2.25px);
+	}
+}
+
 
 // stylelint-enable number-max-precision, selector-max-specificity, declaration-no-important, max-nesting-depth
