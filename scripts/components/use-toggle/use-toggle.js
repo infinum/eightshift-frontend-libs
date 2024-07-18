@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, checkAttr, getAttrKey, classnames, AnimatedContentVisibility, Control } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, AnimatedContentVisibility, Control } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 export const generateUseToggleConfig = (attributes, manifest, attributeName) => {
 	const {
@@ -101,12 +103,12 @@ export const UseToggle = ({
 		return (
 			<Control
 				label={label}
-				additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
-				additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
+				additionalClasses={clsx('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+				additionalLabelClasses={clsx(noBottomSpacing && !isOpen && 'es-mb-0!')}
 				actions={
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
-						className={classnames(
+						className={clsx(
 							'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon',
 							isOpen && 'is-active es-nested-color-pure-white es-bg-admin-accent'
 						)}
@@ -130,8 +132,8 @@ export const UseToggle = ({
 
 	return (
 		<Control
-			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
-			additionalLabelClasses={classnames(noBottomSpacing && !openCondition && 'es-mb-0!')}
+			additionalClasses={clsx('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalLabelClasses={clsx(noBottomSpacing && !openCondition && 'es-mb-0!')}
 			label={
 				<Button
 					icon={toggleIcon}
@@ -140,7 +142,7 @@ export const UseToggle = ({
 						setIsOpen(false);
 					}}
 					disabled={disabled}
-					className={classnames(
+					className={clsx(
 						// eslint-disable-next-line max-len
 						'es-full-color-toggle es-button-icon-24 es-animated-toggle-icon es-p-0! es-flex-shrink-0 es-h-auto! es-gap-2! es-nested-m-0! es-max-w-60 es-text-align-left',
 						checked && 'is-checked'
@@ -154,7 +156,7 @@ export const UseToggle = ({
 			actions={!noExpandButton &&
 				<Button
 					onClick={() => setIsOpen(!isOpen)}
-					className={classnames(
+					className={clsx(
 						'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1.5 es-has-animated-y-flip-icon',
 						isOpen && 'is-active es-nested-color-pure-white es-bg-admin-accent'
 					)}

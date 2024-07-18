@@ -1,8 +1,9 @@
 import React from 'react';
-import { Responsive, icons, Slider } from '@eightshift/frontend-libs/scripts';
+import { Responsive, Slider } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { classnames } from '../../helpers';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A `Slider` that allows changing values between breakpoints.
@@ -152,7 +153,7 @@ export const ResponsiveSlider = (props) => {
 										});
 									}}
 									disabled={parsedValue === resetButton || isInherited}
-									className={classnames(
+									className={clsx(
 										// eslint-disable-next-line max-len
 										'es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!',
 										(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'

@@ -2,13 +2,13 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { Control } from '../base-control/base-control';
-import { classnames } from '../../helpers';
 import { renderHandle } from './tooltip-handle';
 import { generateMarkers, styleProps } from './shared';
-import { icons } from '../../editor/icons/icons';
+import { icons } from '@eightshift/ui-components/icons';
 import { AnimatedContentVisibility } from '../animated-content-visibility/animated-content-visibility';
 import Slider from 'rc-slider';
 import { NumberPicker } from '../number-picker/number-picker';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A modern and customizable custom range slider.
@@ -180,7 +180,7 @@ export const RangeSlider = (props) => {
 				</div>
 			}
 		>
-			<div className={classnames('es-h-between es-gap-3! es-mt-3', marks && 'es-items-start!')}>
+			<div className={clsx('es-h-between es-gap-3! es-mt-3', marks && 'es-items-start!')}>
 				{leftAddition}
 
 				<div ref={ref} className='es-flex-1'>

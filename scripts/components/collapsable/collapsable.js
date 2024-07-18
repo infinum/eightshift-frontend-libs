@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons, AnimatedContentVisibility, Control, classnames } from '@eightshift/frontend-libs/scripts';
+import { AnimatedContentVisibility, Control } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A collapsable container for options.
@@ -48,11 +50,11 @@ export const Collapsable = ({
 			subtitle={subtitle}
 			noBottomSpacing={!isOpen && noBottomSpacing}
 			reducedBottomSpacing={!isOpen && reducedBottomSpacing}
-			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
-			additionalLabelClasses={classnames(noBottomSpacing && !isOpen && 'es-mb-0!')}
+			additionalClasses={clsx('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalLabelClasses={clsx(noBottomSpacing && !isOpen && 'es-mb-0!')}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
-					<div className={classnames(
+					<div className={clsx(
 						'es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100',
 						!keepActionsOnExpand && isOpen && 'es-opacity-0'
 					)}>
@@ -61,7 +63,7 @@ export const Collapsable = ({
 
 					<Button
 						onClick={() => setIsOpen(!isOpen)}
-						className={classnames(
+						className={clsx(
 							'es-transition-colors es-button-square-28 es-button-icon-24 es-rounded-1! es-has-animated-y-flip-icon es-pl-0.5!',
 							isOpen && 'is-active es-nested-color-pure-white! es-bg-admin-accent!'
 						)}

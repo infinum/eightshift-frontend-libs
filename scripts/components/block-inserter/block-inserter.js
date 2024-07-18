@@ -2,8 +2,8 @@ import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Inserter } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
-import { icons } from '../../editor';
-import { classnames } from '../../helpers';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * @since 8.0.0
@@ -54,7 +54,7 @@ export const BlockInserter = (props) => {
 						disabled={disabled}
 						label={!hasLabel && labelText}
 						icon={icons.add}
-						className={classnames(
+						className={clsx(
 							// eslint-disable-next-line max-len
 							'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent',
 							'es-nested-m-0! es-gap-1.25! es-bg-pure-white! es-mx-auto es-text-3.25! es-color-cool-gray-650 es-rounded-1.5! es-flex-shrink-0',

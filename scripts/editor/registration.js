@@ -6,7 +6,7 @@ import { dispatch, select } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
-import { blockIcons } from './icons/icons';
+import { blockIcons } from '@eightshift/ui-components/icons';
 import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
 import { camelCase, kebabCase, lowerFirst, upperFirst } from '../helpers';
 /**

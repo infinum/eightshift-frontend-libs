@@ -1,6 +1,7 @@
 import React from 'react';
 import { components } from 'react-select';
-import { icons, classnames } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Default dropdown indicator for CustomSelect.
@@ -11,7 +12,7 @@ export const CustomSelectDefaultDropdownIndicator = (props) => {
 	return (
 		<components.DropdownIndicator {...props}>
 			{React.cloneElement(icons.dropdownCaretAlt, {
-				className: classnames('es-animated-y-flip-icon -es-mr-1', props.selectProps.menuIsOpen && 'is-active'),
+				className: clsx('es-animated-y-flip-icon -es-mr-1', props.selectProps.menuIsOpen && 'is-active'),
 			})}
 		</components.DropdownIndicator>
 	);

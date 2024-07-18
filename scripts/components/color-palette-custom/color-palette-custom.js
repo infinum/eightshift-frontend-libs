@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, TextControl, Tooltip } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
-import classnames from 'classnames';
+import { icons } from '@eightshift/ui-components/icons';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './../../editor/store';
 import { Control } from '../base-control/base-control';
 import { ColorSwatch } from '../color-swatch/color-swatch';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Modified version of WordPress's `ColorPalette` which saves values as color names/slugs instead of hex codes.
@@ -175,7 +175,7 @@ export const ColorPalette = (props) => {
 										<button
 											label={name}
 											onClick={() => onChange(slug)}
-											className={classnames(
+											className={clsx(
 												// eslint-disable-next-line max-len
 												'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-p-2px! es-m-0 es-rounded-1.5!',
 											)}
@@ -210,7 +210,7 @@ export const ColorPalette = (props) => {
 									<button
 										label={name}
 										onClick={() => onChange(slug)}
-										className={classnames(
+										className={clsx(
 											// eslint-disable-next-line max-len
 											'es-border-w-0 es-focus-slight-button-border-admin-accent es-custom-transition es-cursor-pointer es-m-0 es-p-2px! es-rounded-1.5!',
 											detailView && 'es-w-max es-h-spaced',
@@ -239,7 +239,7 @@ export const ColorPalette = (props) => {
 					<Button
 						label={__('Reset', 'eightshift-frontend-libs')}
 						onClick={() => onChange(undefined)}
-						className={classnames(
+						className={clsx(
 							'es-slight-button-border-cool-gray-400 es-rounded-1! es-transition es-px-2.5! es-py-2! es-h-auto!',
 							(disabled || !value) ? 'es-pointer-events-none' : 'es-hover-slight-button-border-cool-gray-500'
 						)}

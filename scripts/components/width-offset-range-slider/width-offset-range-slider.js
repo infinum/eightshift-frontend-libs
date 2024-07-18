@@ -1,5 +1,6 @@
 import React from 'react';
-import { Responsive, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { Responsive, IconLabel } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { ColumnConfigSlider } from '../custom-slider/column-config-slider';

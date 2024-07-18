@@ -4,7 +4,7 @@
  * External dependencies
  */
 import React from 'react';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 
 /**
  * WordPress dependencies

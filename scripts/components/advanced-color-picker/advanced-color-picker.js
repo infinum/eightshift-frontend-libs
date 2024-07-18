@@ -1,9 +1,11 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { ColorPalette, icons, OptionSelector, ColorSwatch, Control, PopoverWithTrigger, TileButton, classnames } from '../../../scripts';
+import { ColorPalette, OptionSelector, ColorSwatch, Control, PopoverWithTrigger, TileButton } from '../../../scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 import ReactGPicker from 'react-gcolor-picker';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A flexible color picker that allows choice between project colors, custom solid colors or gradients.
@@ -141,7 +143,7 @@ export const AdvancedColorPicker = (props) => {
 				/>
 			</div>
 
-			<div className={classnames(
+			<div className={clsx(
 				'es-min-w-80 es-min-h-112 es-p-3',
 				type === '' && 'es-v-center es-nested-w-12 es-nested-h-12 es-nested-color-cool-gray-400'
 			)}>

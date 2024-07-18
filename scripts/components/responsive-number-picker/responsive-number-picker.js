@@ -1,5 +1,6 @@
 import React from 'react';
-import { Responsive, icons, NumberPicker } from '@eightshift/frontend-libs/scripts';
+import { Responsive, NumberPicker } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { classnames } from '../../helpers';

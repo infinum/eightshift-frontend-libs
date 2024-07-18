@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { classnames, ColorSwatch, Control, icons, PopoverWithTrigger } from '../../../scripts';
+import { ColorSwatch, Control, PopoverWithTrigger } from '../../../scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { ColorPalette } from '../color-palette-custom/color-palette-custom';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Component that allows simple inline color picking while taking up not much space.
@@ -162,7 +164,7 @@ export const ColorPicker = (props) => {
 							onClick={() => setIsOpen(!isOpen)}
 							icon={buttonIconOverride ?? getButtonIcon()}
 							label={getTooltipText()}
-							className={classnames(
+							className={clsx(
 								'es-button-icon-24 es-rounded-1.25!',
 								expanded && 'es-p-1.5!',
 								expanded && !inlineLabel && 'es-w-full',
@@ -210,7 +212,7 @@ export const ColorPicker = (props) => {
 						</div>
 					</div>
 
-					<div className={classnames('es-px-2', !canReset && 'es-pb-2')}>
+					<div className={clsx('es-px-2', !canReset && 'es-pb-2')}>
 						<ColorPalette
 							colors={colors}
 							value={value}
