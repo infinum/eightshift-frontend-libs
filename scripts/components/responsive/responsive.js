@@ -6,7 +6,7 @@ import { IconLabel } from '../icon-label/icon-label';
 import { Control } from '../base-control/base-control';
 import { AnimatedContentVisibility } from '../animated-content-visibility/animated-content-visibility';
 import { icons } from '@eightshift/ui-components/icons';
-import { upperFirst } from '@eightshift/ui-components/utilities';
+import { clsx, upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * A component that displays options adjustable across screen sizes.
