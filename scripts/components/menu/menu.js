@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@wordpress/components';
-import { classnames } from '../../helpers';
 import { PopoverWithTrigger, icons } from '../../../scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * @since 8.5.0
@@ -41,7 +41,7 @@ export const Menu = (props) => {
 		children,
 	} = props;
 
-	let buttonClassname = classnames(
+	let buttonClassname = clsx(
 		// eslint-disable-next-line max-len
 		'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent es-nested-size-5',
 		// eslint-disable-next-line max-len
@@ -52,7 +52,7 @@ export const Menu = (props) => {
 	);
 
 	if (isSubmenu) {
-		buttonClassname = classnames(
+		buttonClassname = clsx(
 			'es-rounded-1.5 es-gap-1.5! es-transition-colors es-min-w-max! es-nested-m-0!',
 			!disabled && 'es-hover-color-current! es-hover-bg-cool-gray-50 es-nested-color-cool-gray-450',
 			disabled && 'es-nested-color-cool-gray-200',
@@ -88,7 +88,7 @@ export const Menu = (props) => {
 					{innerContent}
 				</Button>
 			)}
-			contentClass={classnames('es-p-1 es-v-spaced es-gap-2px! es-min-w-48', popoverAdditionalClass)}
+			contentClass={clsx('es-p-1 es-v-spaced es-gap-2px! es-min-w-48', popoverAdditionalClass)}
 			position='bottom right'
 			noArrow
 			additionalPopoverProps={isSubmenu && { offset: { mainAxis: -36 } }}

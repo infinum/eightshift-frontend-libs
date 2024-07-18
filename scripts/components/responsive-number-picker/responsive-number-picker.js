@@ -3,7 +3,7 @@ import { Responsive, NumberPicker } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { classnames } from '../../helpers';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple `NumberPicker` that allows changing values between breakpoints.
@@ -150,7 +150,7 @@ export const ResponsiveNumberPicker = (props) => {
 									});
 								}}
 								disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
-								className={classnames(
+								className={clsx(
 									// eslint-disable-next-line max-len
 									'es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition',
 									(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@wordpress/components';
-import { classnames } from '../../helpers';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * @since 8.5.0
@@ -31,7 +31,7 @@ export const MenuItem = (props) => {
 		<Button
 			icon={icon}
 			onClick={onClick}
-			className={classnames(
+			className={clsx(
 				'es-rounded-1.5 es-gap-1.5! es-transition-colors es-min-w-max! es-nested-m-0!',
 				!disabled && 'es-hover-color-current! es-hover-bg-cool-gray-50 es-nested-color-cool-gray-450',
 				disabled && 'es-nested-color-cool-gray-200',

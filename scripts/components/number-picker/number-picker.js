@@ -2,8 +2,8 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { Control } from '../base-control/base-control';
-import { icons } from '../../editor/icons/icons';
-import { classnames } from '../../helpers';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 const round = (value, decimals) => {
 	return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
@@ -94,17 +94,17 @@ export const NumberPicker = (props) => {
 			inlineLabel={inlineLabel}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
-			additionalClasses={classnames('es-number-picker', additionalClasses)}
+			additionalClasses={clsx('es-number-picker', additionalClasses)}
 		>
 			<div
-				className={classnames(
+				className={clsx(
 					// eslint-disable-next-line max-len
 					'es-number-picker-container es-display-flex es-items-center es-gap-0.25 es-h-9 es-border-cool-gray-400 es-rounded-1.5 es-py-0.5 es-pl-1.5 es-pr-0.5 es-transition es-w-fit',
 					label && !inlineLabel && '-es-mt-1'
 				)}
 				style={{ '--es-number-input-width': `calc(${min < 0 ? '0.75ch + ' : ''}${fixedWidth ?? max?.toString()?.length} * 1ch)` }}
 			>
-				{prefix && <span className={classnames('es-mr-0.5', prefixClass ?? prefixSuffixDefaultClass)}>{prefix}</span>}
+				{prefix && <span className={clsx('es-mr-0.5', prefixClass ?? prefixSuffixDefaultClass)}>{prefix}</span>}
 
 				<NumberControl
 					min={min}
@@ -123,7 +123,7 @@ export const NumberPicker = (props) => {
 					__nextHasNoMarginBottom
 				/>
 
-				{suffix && <span className={classnames('es-mr-0.5', suffixClass ?? prefixSuffixDefaultClass)}>{suffix}</span>}
+				{suffix && <span className={clsx('es-mr-0.5', suffixClass ?? prefixSuffixDefaultClass)}>{suffix}</span>}
 
 				<div className='es-display-flex es-flex-col'>
 					<Button
@@ -138,7 +138,7 @@ export const NumberPicker = (props) => {
 							const parsedValue = Math.min(parseFloat(value) + step, max);
 							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
-						className={classnames(spinnerButtonClass, !(disabled || value >= max) && 'es-nested-color-cool-gray-500')}
+						className={clsx(spinnerButtonClass, !(disabled || value >= max) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value >= max}
 					/>
 					<Button
@@ -153,7 +153,7 @@ export const NumberPicker = (props) => {
 							const parsedValue = Math.max(parseFloat(value) - step, min);
 							onChange(Number.isInteger(step) ? parseInt(parsedValue) : round(parsedValue, roundToDecimals));
 						}}
-						className={classnames(spinnerButtonClass, !(disabled || value <= min) && 'es-nested-color-cool-gray-500')}
+						className={clsx(spinnerButtonClass, !(disabled || value <= min) && 'es-nested-color-cool-gray-500')}
 						disabled={disabled || value <= min}
 					/>
 				</div>

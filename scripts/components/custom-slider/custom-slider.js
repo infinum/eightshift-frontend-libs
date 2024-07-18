@@ -1,10 +1,10 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Control } from '../base-control/base-control';
-import { classnames } from '../../helpers';
 import { renderHandle } from './tooltip-handle';
 import { generateMarkers, styleProps } from './shared';
 import { NumberPicker } from '../number-picker/number-picker';
 import RcSlider from 'rc-slider';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A modern and customizable custom slider.
@@ -150,7 +150,7 @@ export const Slider = (props) => {
 				</div>
 			}
 		>
-			<div className={classnames('es-h-between es-gap-3! es-mt-3', marks && 'es-items-start!')}>
+			<div className={clsx('es-h-between es-gap-3! es-mt-3', marks && 'es-items-start!')}>
 				{leftAddition}
 
 				<div ref={ref} className='es-flex-1'>
@@ -212,7 +212,7 @@ export const Slider = (props) => {
 
 						{...styleProps(props, sliderHeight)}
 
-						className={classnames(additionalSliderClass)}
+						className={clsx(additionalSliderClass)}
 					/>
 				</div>
 

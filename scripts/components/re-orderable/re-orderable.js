@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { SortableItem } from './sortable-item';
 import { Control } from '../base-control/base-control';
 import { restrictToVerticalAxis, restrictToHorizontalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
-import { classnames } from '../../helpers';
 
 import {
 	DndContext,
@@ -22,6 +21,7 @@ import {
 	horizontalListSortingStrategy,
 	rectSortingStrategy,
 } from '@dnd-kit/sortable';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple re-orderable list.
@@ -141,7 +141,7 @@ export const ReOrderable = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClasses}
-			additionalLabelClasses={classnames(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
+			additionalLabelClasses={clsx(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
 			actions={actions}
 			wrapChildren={wrapChildren}
 		>

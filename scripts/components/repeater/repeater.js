@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { SortableItem } from './sortable-item';
 import { Control } from '../base-control/base-control';
 import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
-import { classnames } from '../../helpers';
 
 import {
 	DndContext,
@@ -22,6 +21,7 @@ import {
 	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple repeater.
@@ -126,7 +126,7 @@ export const Repeater = (props) => {
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			additionalClasses={additionalClasses}
-			additionalLabelClasses={classnames(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
+			additionalLabelClasses={clsx(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
 			actions={
 				<div className='es-h-spaced es-gap-1.5!'>
 					{actions}

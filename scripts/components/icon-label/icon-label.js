@@ -1,5 +1,5 @@
+import { clsx } from '@eightshift/ui-components/utilities';
 import React from 'react';
-import { classnames } from '../../helpers';
 
 /**
  * A simple icon-label combo for streamlined components.
@@ -17,9 +17,9 @@ export const IconLabel = (props) => {
 
 	if (subtitle && standalone) {
 		return (
-			<div className={classnames('es-label-flex', additionalClasses)}>
+			<div className={clsx('es-label-flex', additionalClasses)}>
 				{icon}
-				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2 es-items-start', addSubtitleGap && 'es-gap-0.5')}>
+				<div className={clsx('es-display-flex es-flex-col es-line-h-1.2 es-items-start', addSubtitleGap && 'es-gap-0.5')}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
@@ -31,7 +31,7 @@ export const IconLabel = (props) => {
 		return (
 			<>
 				{icon}
-				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5', additionalClasses)}>
+				<div className={clsx('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5', additionalClasses)}>
 					{label && <span className='es-flex-shrink-0'>{label}</span>}
 					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
 				</div>
@@ -41,7 +41,7 @@ export const IconLabel = (props) => {
 
 	if (standalone) {
 		return (
-			<div className={classnames('es-label-flex', additionalClasses)}>
+			<div className={clsx('es-label-flex', additionalClasses)}>
 				{icon}
 				{label}
 			</div>

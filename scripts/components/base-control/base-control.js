@@ -1,6 +1,6 @@
 import React from 'react';
-import { classnames } from '../../helpers';
 import { IconLabel } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * @since 8.0.0
@@ -52,9 +52,9 @@ export const Control = (props) => {
 
 	if (inlineLabel) {
 		return (
-			<div className={classnames(additionalClasses, !noBottomSpacing && bottomSpacingClass)}>
+			<div className={clsx(additionalClasses, !noBottomSpacing && bottomSpacingClass)}>
 				{label &&
-					<div className={classnames('es-h-between', (icon || subtitle) && 'es-min-h-7')}>
+					<div className={clsx('es-h-between', (icon || subtitle) && 'es-min-h-7')}>
 						<IconLabel icon={icon} label={label} subtitle={subtitle} standalone />
 
 						{children}
@@ -78,9 +78,9 @@ export const Control = (props) => {
 	}
 
 	return (
-		<div className={classnames(additionalClasses, !noBottomSpacing && bottomSpacingClass)}>
+		<div className={clsx(additionalClasses, !noBottomSpacing && bottomSpacingClass)}>
 			{(label || actions) &&
-				<div className={classnames(
+				<div className={clsx(
 					!inlineLabel && 'es-mb-2', (icon || subtitle || actions) && 'es-min-h-7', actions && 'es-h-between',
 					additionalLabelClasses,
 				)}>
