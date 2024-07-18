@@ -40,6 +40,7 @@
 		"@stylistic/eslint-plugin-js": "^2.3.0",
 		"@stylistic/stylelint-plugin": "^2.1.2",
 		"@swc/core": "^1.6.13",
+		"@uidotdev/usehooks": "^2.4.1",
 		"@wordpress/api-fetch": "^7.3.0",
 		"@wordpress/block-editor": "^13.3.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^5.9.0",
