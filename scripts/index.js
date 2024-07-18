@@ -25,7 +25,6 @@ export { ColumnConfigSlider } from './components/custom-slider/column-config-sli
 export { Slider } from './components/custom-slider/custom-slider';
 export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
-export { HelpModal } from './components/help-modal/help-modal';
 export { IconLabel } from './components/icon-label/icon-label';
 export { Toggle, IconToggle } from './components/toggle/toggle';
 export { Notification } from './components/inline-notification/inline-notification';
