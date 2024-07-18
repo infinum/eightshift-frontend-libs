@@ -1,4 +1,4 @@
-import { unescapeHTML } from '../helpers/text-helpers';
+import { unescapeHTML } from '@eightshift/ui-components/utilities';
 import apiFetch from '@wordpress/api-fetch';
 
 /**

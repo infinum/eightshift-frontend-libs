@@ -1,4 +1,4 @@
-import { camelCase, has, isEmpty, lowerFirst, upperFirst } from '../helpers';
+import { camelCase, has, isEmpty, lowerFirst, upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * Sets attributes on all `innerBlocks`. This value will be stored in the Block editor store and set to a block.

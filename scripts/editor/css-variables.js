@@ -2,7 +2,7 @@ import React from 'react';
 import { subscribe, select, dispatch } from '@wordpress/data';
 import { getAttrKey } from './attributes';
 import { STORE_NAME } from './store';
-import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helpers';
+import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '@eightshift/ui-components/utilities';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.

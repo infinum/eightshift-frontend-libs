@@ -1,7 +1,7 @@
 import domReady from '@wordpress/dom-ready';
 import apiFetch from '@wordpress/api-fetch';
 import { subscribe, select } from '@wordpress/data';
-import { debounce, isEmpty } from '../helpers';
+import { debounce, isEmpty } from '@eightshift/ui-components/utilities';
 
 /* global YoastSEO */
 

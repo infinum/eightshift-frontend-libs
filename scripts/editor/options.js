@@ -1,6 +1,6 @@
 import { getPaletteColors } from './colors';
 import { getAttrKey } from './attributes';
-import { lowerFirst, camelCase } from '../helpers';
+import { lowerFirst, camelCase } from '@eightshift/ui-components/utilities';
 
 /**
  * Provides the ability to override component options from the parent block/component.

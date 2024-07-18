@@ -8,7 +8,7 @@ import { createElement } from '@wordpress/element';
 import { getUnique } from './css-variables';
 import { blockIcons } from '@eightshift/ui-components/icons';
 import { STORE_NAME, setStoreGlobalWindow, setStore, setConfigFlags } from './store';
-import { camelCase, kebabCase, lowerFirst, upperFirst } from '../helpers';
+import { camelCase, kebabCase, lowerFirst, upperFirst } from '@eightshift/ui-components/utilities';
 /**
  * Register all Block Editor blocks using WP `registerBlockType` method.
  * Due to restrictions in dynamic import using dynamic names all blocks are registered using `require.context`.
