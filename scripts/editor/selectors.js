@@ -1,4 +1,4 @@
-import { classnames } from '../helpers/classnames';
+import { clsx } from "@eightshift/ui-components/utilities";
 
 /**
  * Returns BEM selector for html class and check if Condition part is set.
@@ -92,7 +92,7 @@ export const responsiveSelectors = (items, selector, parent, useModifier = true)
 		}
 	}
 
-	return classnames(output);
+	return clsx(output);
 };
 
 /**
