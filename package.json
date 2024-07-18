@@ -44,6 +44,7 @@
 		"@wordpress/block-editor": "^13.3.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^5.9.0",
 		"@wordpress/dom-ready": "^4.3.0",
+		"@wordpress/server-side-render": "^5.2.0",
 		"autoprefixer": "^10.4.19",
 		"clean-webpack-plugin": "^4.0.0",
 		"core-js": "^3.37.1",
