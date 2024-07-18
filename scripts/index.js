@@ -94,7 +94,6 @@ export {
 } from './components/deprecations';
 
 // Editor
-export { getActions } from './editor/actions';
 export {
 	overrideInnerBlockAttributes,
 	overrideInnerBlockSimpleWrapperAttributes,
