@@ -1,5 +1,6 @@
 import React from 'react';
-import { IconLabel, classnames } from '@eightshift/frontend-libs/scripts';
+import { IconLabel } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple <hr /> replacement that draws text and an optional icon.
@@ -25,12 +26,14 @@ export const FancyDivider = (props) => {
 	} = props;
 
 	return (
-		<div className={classnames(
-			'es-h-spaced es-nested-p-0.75 es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white es-color-cool-gray-600',
-			hasTopSpacing && 'es-mt-3',
-			!noBottomSpacing && 'es-mb-2.5',
-			additionalClasses
-		)}>
+		<div
+			className={clsx(
+				'es-h-spaced es-nested-p-0.75 es-nested-bg-cool-gray-450 es-nested-rounded-1 es-nested-color-pure-white es-color-cool-gray-600',
+				hasTopSpacing && 'es-mt-3',
+				!noBottomSpacing && 'es-mb-2.5',
+				additionalClasses
+			)}
+		>
 			<IconLabel
 				icon={icon}
 				label={label}

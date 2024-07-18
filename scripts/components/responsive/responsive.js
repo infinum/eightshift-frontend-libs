@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { classnames, getDefaultBreakpointNames } from '../../helpers';
-import { icons, ucfirst } from '../../editor';
+import { getDefaultBreakpointNames } from '../../helpers';
 import { IconLabel } from '../icon-label/icon-label';
 import { Control } from '../base-control/base-control';
 import { AnimatedContentVisibility } from '../animated-content-visibility/animated-content-visibility';
+import { icons } from '@eightshift/ui-components/icons';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * A component that displays options adjustable across screen sizes.
@@ -45,7 +46,7 @@ export const Responsive = (props) => {
 		reducedBottomSpacing,
 	} = props;
 
-	const fallbackBreakpointLabels = breakpoints.map((v) => ucfirst(v));
+	const fallbackBreakpointLabels = breakpoints.map((v) => upperFirst(v));
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -55,13 +56,13 @@ export const Responsive = (props) => {
 			label={label}
 			help={help}
 			subtitle={subtitle}
-			additionalClasses={classnames('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
+			additionalClasses={clsx('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 			actions={
 				<div className='es-h-spaced es-gap-0!'>
 					{inline &&
-						<div className={classnames('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>
+						<div className={clsx('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>
 							{children[0]}
 						</div>
 					}
@@ -70,7 +71,7 @@ export const Responsive = (props) => {
 						// eslint-disable-next-line max-len
 						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
 						onClick={() => setIsOpen(!isOpen)}
-						className={classnames(
+						className={clsx(
 							'es-transition-colors es-button-icon-24 es-rounded-1! es-h-7! es-py-0! es-pr-0.5!',
 							inline ? 'es-pl-0.5!' : 'es-pl-1!',
 							isOpen && 'es-nested-color-pure-white! es-bg-admin-accent!'
@@ -85,12 +86,12 @@ export const Responsive = (props) => {
 					</Button>
 				</div>
 			}
-			additionalLabelClasses={classnames(!isOpen && inline && 'es-mb-0!')}
+			additionalLabelClasses={clsx(!isOpen && inline && 'es-mb-0!')}
 		>
 			{children.map((child, index) => {
 				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
 				const previousBreakpointLabel = index === 0 ? '' : breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1);
-				const breakpointIcon = icons[`screen${ucfirst(breakpoints[index])}`];
+				const breakpointIcon = icons[`screen${upperFirst(breakpoints[index])}`];
 
 				const currentInheritButton = inheritButton?.at(index);
 
@@ -98,7 +99,7 @@ export const Responsive = (props) => {
 					<Button
 						icon={icons.inherit}
 						onClick={currentInheritButton?.callback}
-						className={classnames(
+						className={clsx(
 							// eslint-disable-next-line max-len
 							'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1! es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
 							currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5',
@@ -136,7 +137,7 @@ export const Responsive = (props) => {
 					return (
 						<AnimatedContentVisibility
 							showIf={isOpen}
-							additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}
+							additionalContainerClasses={clsx(isOpen && index !== children.length - 1 && 'es-mb-3')}
 							key={index}
 						>
 							<Control
@@ -182,7 +183,7 @@ export const Responsive = (props) => {
 
 						<AnimatedContentVisibility
 							showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}
-							additionalContainerClasses={classnames(isOpen && index !== children.length - 1 && 'es-mb-3')}
+							additionalContainerClasses={clsx(isOpen && index !== children.length - 1 && 'es-mb-3')}
 						>
 							{child}
 						</AnimatedContentVisibility>

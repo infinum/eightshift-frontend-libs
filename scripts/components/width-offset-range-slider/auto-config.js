@@ -1,4 +1,5 @@
-import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { checkAttrResponsive, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  *
@@ -61,13 +62,13 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 				let additional = {};
 
 				if (showFullWidth) {
-					additional = { [`${isFullWidthAttributeName}${ucfirst(breakpoint)}`]: attrs.fullWidth, };
+					additional = { [`${isFullWidthAttributeName}${upperFirst(breakpoint)}`]: attrs.fullWidth, };
 				}
 
 				return {
 					...all,
-					[`${widthAttributeName}${ucfirst(breakpoint)}`]: attrs.width,
-					[`${offsetAttributeName}${ucfirst(breakpoint)}`]: attrs.offset,
+					[`${widthAttributeName}${upperFirst(breakpoint)}`]: attrs.width,
+					[`${offsetAttributeName}${upperFirst(breakpoint)}`]: attrs.offset,
 					...additional,
 				};
 			}, {});

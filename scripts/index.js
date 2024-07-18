@@ -143,7 +143,7 @@ export {
 	setStoreGlobalWindow,
 	setConfigFlags,
 } from './editor/store';
-export { ucfirst } from './editor/utility';
+
 
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';

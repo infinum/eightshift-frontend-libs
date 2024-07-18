@@ -1,4 +1,5 @@
-import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst } from '@eightshift/frontend-libs/scripts';
+import { checkAttrResponsive, getDefaultBreakpointNames } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * A generator for `ResponsiveToggleButton` config from legacy `VisibilityToggleResponsive` attributes.
@@ -37,7 +38,7 @@ export const generateResponsiveToggleButtonConfig = (options) => {
 			const newData = Object.entries(value).reduce((all, [breakpoint, currentValue]) => {
 				return {
 					...all,
-					[`${attributeName}${ucfirst(breakpoint)}`]: currentValue,
+					[`${attributeName}${upperFirst(breakpoint)}`]: currentValue,
 				};
 			}, {});
 

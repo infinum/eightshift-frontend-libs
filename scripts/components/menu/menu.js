@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from '@wordpress/components';
-import { PopoverWithTrigger, icons } from '../../../scripts';
+import { PopoverWithTrigger } from '../../../scripts';
 import { clsx } from '@eightshift/ui-components/utilities';
+import { icons } from '@eightshift/ui-components/icons';
 
 /**
  * @since 8.5.0

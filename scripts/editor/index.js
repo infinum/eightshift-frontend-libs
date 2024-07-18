@@ -49,4 +49,3 @@ export {
 	setStoreGlobalWindow,
 	setConfigFlags,
 } from './store';
-export { ucfirst } from './utility';

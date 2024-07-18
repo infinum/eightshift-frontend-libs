@@ -1,6 +1,8 @@
 import React from 'react';
-import { icons, classnames, Control, IconLabel } from '@eightshift/frontend-libs/scripts';
+import { Control, IconLabel } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Button-based option selector, inspired by WP 5.9.
@@ -64,7 +66,7 @@ export const OptionSelector = (props) => {
 		additionalContainerClass,
 	} = props;
 
-	const buttonClasses = classnames(
+	const buttonClasses = clsx(
 		iconOnly && 'es-button-square-36',
 		largerIcons && 'es-button-icon-24',
 		border === 'offset' && 'es-rounded-0.75! es-p-1.5!',
@@ -90,7 +92,7 @@ export const OptionSelector = (props) => {
 
 	const control = (
 		<div
-			className={classnames(
+			className={clsx(
 				'es-option-selector es-display-flex es-gap-px es-has-v2-gutenberg-button-active-state-inside es-max-w-full',
 				!label && !help && additionalClass,
 				noWrap ? 'es-flex-nowrap' : 'es-flex-wrap',
@@ -202,7 +204,7 @@ export const OptionSelector = (props) => {
 			additionalClasses={additionalContainerClass}
 			actions={actions}
 			subtitle={subtitle}
-			additionalLabelClasses={classnames(!inlineLabel && 'es-mb-1!')}
+			additionalLabelClasses={clsx(!inlineLabel && 'es-mb-1!')}
 		>
 			{control}
 		</Control>

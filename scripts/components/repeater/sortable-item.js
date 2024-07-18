@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { IconLabel, icons, classnames, AnimatedContentVisibility, Menu, MenuItem } from '@eightshift/frontend-libs/scripts';
+import { IconLabel, AnimatedContentVisibility, Menu, MenuItem } from '@eightshift/frontend-libs/scripts';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
 	const {
@@ -52,7 +54,7 @@ export const SortableItem = (props) => {
 			icon={icon}
 			label={title}
 			subtitle={subtitle}
-			additionalClasses={classnames('es-nested-color-cool-gray-650', additionalLabelClass)}
+			additionalClasses={clsx('es-nested-color-cool-gray-650', additionalLabelClass)}
 			standalone
 		/>
 	);
@@ -60,14 +62,14 @@ export const SortableItem = (props) => {
 	const expandDisabled = Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length < 1 : !props?.children;
 
 	return (
-		<div ref={setNodeRef} style={style} className={classnames(
+		<div ref={setNodeRef} style={style} className={clsx(
 			'es-bg-pure-white es-border-cool-gray-100 es-rounded-2 es-transition es-min-h-10',
 			!showChildren && !isActive && 'es-shadow-sm',
 			showChildren && !isActive && 'es-shadow-md',
 			isActive && 'es-shadow-lg es-z-10',
 			additionalLabelContainerClass,
 		)}>
-			<div className={classnames('es-display-flex es-items-center es-py-1.5 es-pr-1.5', !noLeftInset && 'es-pl-2.5', additionalItemContainerClass)}>
+			<div className={clsx('es-display-flex es-items-center es-py-1.5 es-pr-1.5', !noLeftInset && 'es-pl-2.5', additionalItemContainerClass)}>
 				{preIcon}
 
 				{itemLabel}
@@ -76,7 +78,7 @@ export const SortableItem = (props) => {
 
 				{!expandDisabled &&
 					<Button
-						className={classnames(
+						className={clsx(
 							// eslint-disable-next-line max-len
 							'es-button-reset es-nested-size-6! es-w-6! es-h-7! es-min-w-auto! es-p-0! es-transition es-has-animated-y-flip-icon es-rounded-1! es-nested-flex-shrink-0',
 							showChildren && 'is-active es-nested-color-admin-accent!'
@@ -103,7 +105,7 @@ export const SortableItem = (props) => {
 				{!noReordering &&
 					<Button
 						{...additionalTriggerProps}
-						className={classnames(
+						className={clsx(
 							// eslint-disable-next-line max-len
 							'es-flex-shrink-0 es-button-reset es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-p-0! es-h-7 es-w-5 es-nested-size-5 es-h-center es-rounded-1 es-transition es-min-w-auto! -es-mx-1 es-nested-flex-shrink-0',
 							isActive && !(isOnly || showChildren) && 'es-color-admin-accent!',

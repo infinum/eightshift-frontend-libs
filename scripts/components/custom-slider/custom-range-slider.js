@@ -247,7 +247,7 @@ export const RangeSlider = (props) => {
 						onBeforeChange={onBeforeChange}
 						onAfterChange={onAfterChange}
 
-						className={classnames(additionalSliderClass)}
+						className={clsx(additionalSliderClass)}
 					/>
 				</div>
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { classnames, Control } from '@eightshift/frontend-libs/scripts';
+import { Control } from '@eightshift/frontend-libs/scripts';
 import { IconLabel } from '../icon-label/icon-label';
-import { icons } from '../../editor/icons/icons';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple notification to be used inside the Editor or Options.
@@ -56,7 +57,7 @@ export const Notification = ({
 
 	return (
 		<Control
-			additionalClasses={classnames('es-p-2 es-rounded-2', classes, additionalClasses)}
+			additionalClasses={clsx('es-p-2 es-rounded-2', classes, additionalClasses)}
 			noBottomSpacing={noBottomSpacing}
 			reducedBottomSpacing={reducedBottomSpacing}
 		>

@@ -1,4 +1,5 @@
-import { checkAttrResponsive, getDefaultBreakpointNames, ucfirst, getOption } from '@eightshift/frontend-libs/scripts';
+import { checkAttrResponsive, getDefaultBreakpointNames, getOption } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * A generator for `ResponsiveSlider` config from legacy `SpacingSlider` attributes.
@@ -40,7 +41,7 @@ export const generateResponsiveSliderConfig = (options) => {
 			const newData = Object.entries(value).reduce((all, [breakpoint, currentValue]) => {
 				return {
 					...all,
-					[`${attributeName}${ucfirst(breakpoint)}`]: currentValue,
+					[`${attributeName}${upperFirst(breakpoint)}`]: currentValue,
 				};
 			}, {});
 

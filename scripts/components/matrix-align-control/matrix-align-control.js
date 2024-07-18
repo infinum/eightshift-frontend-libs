@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { Control, icons, OptionSelector, PopoverWithTrigger, TileButton } from '../../../scripts';
-import { camelize } from '../../../scripts/helpers';
-import { ucfirst } from '../../../scripts/editor';
+import { Control, OptionSelector, PopoverWithTrigger, TileButton } from '../../../scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { camelCase, upperFirst } from '@eightshift/ui-components/utilities';
 
 /**
  * A component that can provide a 3x3 or a 2x2 grid of positions to pick from.
@@ -112,7 +112,7 @@ export const MatrixAlignControl = (props) => {
 								onClick={() => setIsOpen(!isOpen)}
 								ref={ref}
 								label={label}
-								icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
+								icon={icons[`position${size}${upperFirst(camelCase(currentValue))}`]}
 							/>
 						);
 					}
@@ -122,7 +122,7 @@ export const MatrixAlignControl = (props) => {
 							ref={ref}
 							label={label}
 							onClick={() => setIsOpen(!isOpen)}
-							icon={icons[`position${size}${ucfirst(camelize(currentValue))}`]}
+							icon={icons[`position${size}${upperFirst(camelCase(currentValue))}`]}
 							additionalClasses={additionalTriggerClasses}
 						/>
 					);

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { classnames, luminanceFromRgb } from '../../helpers';
+import { luminanceFromRgb } from '../../helpers';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * @since 8.0.0
@@ -23,7 +24,7 @@ export const ColorSwatch = (props) => {
 	if (color === 'es-undefined') {
 		return (
 			<div
-				className={classnames(
+				className={clsx(
 					'es-position-relative es-border-cool-gray-450 es-rounded-1 es-dots-background',
 					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
 					additionalClasses
@@ -38,7 +39,7 @@ export const ColorSwatch = (props) => {
 	if (!color || color?.length < 1) {
 		return (
 			<div
-				className={classnames(
+				className={clsx(
 					'es-position-relative es-border-cool-gray-450 es-rounded-1 es-bg-pure-white',
 					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
 					additionalClasses
@@ -73,7 +74,7 @@ export const ColorSwatch = (props) => {
 
 	const activeIndicator = (
 		<div
-			className={classnames(
+			className={clsx(
 				'es-rounded-full es-transition',
 				larger ? 'es-w-3.5 es-h-3.5' : 'es-w-3 es-h-3',
 				selected ? 'es-opacity-100' : 'es-opacity-0',
@@ -85,7 +86,7 @@ export const ColorSwatch = (props) => {
 	if (color === 'transparent') {
 		return (
 			<div
-				className={classnames(
+				className={clsx(
 					'es-position-relative es-h-center es-border-cool-gray-450 es-transition es-rounded-1',
 					larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
 					additionalClasses
@@ -105,7 +106,7 @@ export const ColorSwatch = (props) => {
 
 	return (
 		<div
-			className={classnames(
+			className={clsx(
 				'es-position-relative es-h-center es-border-cool-gray-450 es-transition es-rounded-1',
 				larger ? 'es-w-7 es-h-7' : 'es-w-6 es-h-6',
 				additionalClasses

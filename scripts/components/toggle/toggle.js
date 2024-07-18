@@ -1,6 +1,7 @@
 import React from 'react';
 import { ToggleControl, CheckboxControl, Button } from '@wordpress/components';
-import { IconLabel, classnames, TileButton } from '../..';
+import { IconLabel, TileButton } from '../..';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Custom toggle control.
@@ -59,7 +60,7 @@ export const Toggle = ({
 				label={type === 'iconButton' && label}
 				disabled={disabled}
 				showTooltip={type === 'iconButton'}
-				className={classnames(
+				className={clsx(
 					'es-button-icon-24 es-flex-grow-0 es-flex-shrink-0 es-rounded-1! es-is-v2-gutenberg-button',
 					type === 'iconButton' && 'es-button-square-36',
 					additionalClasses,
@@ -81,7 +82,7 @@ export const Toggle = ({
 			disabled={disabled}
 			help={!inlineHelp && help && <span className='es-text-3 es-color-cool-gray-450 -es-mt-1.5! es-display-block'>{help}</span>}
 			label={(icon && type !== 'checkbox') ? (<IconLabel icon={icon} label={label} subtitle={inlineHelp && help} standalone />) : label}
-			className={classnames(noBottomSpacing ? 'es-mb-0!' : bottomSpacingClass, additionalClasses)}
+			className={clsx(noBottomSpacing ? 'es-mb-0!' : bottomSpacingClass, additionalClasses)}
 		/>
 	);
 };

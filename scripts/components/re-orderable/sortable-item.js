@@ -1,7 +1,9 @@
 import React from 'react';
-import { IconLabel, icons, classnames } from '@eightshift/frontend-libs/scripts';
+import { IconLabel } from '@eightshift/frontend-libs/scripts';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
 	const {
@@ -50,18 +52,18 @@ export const SortableItem = (props) => {
 	);
 
 	return (
-		<div ref={setNodeRef} style={style} className={classnames(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}>
-			<div className={classnames('es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition', isActive && 'es-bg-cool-gray-50', innerClass)} >
+		<div ref={setNodeRef} style={style} className={clsx(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}>
+			<div className={clsx('es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition', isActive && 'es-bg-cool-gray-50', innerClass)} >
 				{preIcon}
 
 				{noReordering && itemLabel}
 
 				{!noReordering &&
-					<div className={classnames('es-text-align-left es-h-between', !horizontal && !horizontalVertical && 'es-w-full')}>
+					<div className={clsx('es-text-align-left es-h-between', !horizontal && !horizontalVertical && 'es-w-full')}>
 						{itemLabel}
 
 						<button
-							className={classnames(
+							className={clsx(
 								'es-button-reset',
 								!customGrabHandle && 'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition',
 								!customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!'

@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { Collapsable, Control } from '../../components';
-import { icons } from '../../editor';
+import { icons } from '@eightshift/ui-components/icons';
 
 /**
  * A picker for presets defined in the manifest, with additional configurable options.

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Collapsable, FancyDivider, Control, classnames } from '@eightshift/frontend-libs/scripts';
+import { Collapsable, FancyDivider, Control } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Simple section with FancyDivider header.
@@ -46,7 +47,7 @@ export const Section = (props) => {
 						label={label}
 						icon={icon}
 						subtitle={subtitle}
-						additionalClasses={classnames('es-color-cool-gray-600 es-has-enhanced-contrast-icon es-m-0! es-w-full', additionalLabelClasses)}
+						additionalClasses={clsx('es-color-cool-gray-600 es-has-enhanced-contrast-icon es-m-0! es-w-full', additionalLabelClasses)}
 					/>
 				}
 				noBottomSpacing={noBottomSpacing}
@@ -64,7 +65,7 @@ export const Section = (props) => {
 					label={label}
 					icon={icon}
 					subtitle={subtitle}
-					additionalClasses={classnames('es-w-full', additionalLabelClasses)}
+					additionalClasses={clsx('es-w-full', additionalLabelClasses)}
 				/>
 			}
 			noBottomSpacing={noBottomSpacing}
