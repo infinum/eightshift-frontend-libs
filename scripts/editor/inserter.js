@@ -1,6 +1,6 @@
 import { dispatch, select } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
-import { isEmpty } from '../helpers';
+import { isEmpty } from '@eightshift/ui-components/utilities';
 
 /**
  * Development inserter made to insert one or multiple blocks in the dom using console.
