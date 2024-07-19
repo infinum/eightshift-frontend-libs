@@ -10,16 +10,6 @@ export { ColorPalette } from './color-palette-custom/color-palette-custom';
 export { ColorPicker } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
 export { Control } from './base-control/base-control';
-export {
-	RSOption,
-	RSDropdownIndicator,
-	RSSingleValue,
-	RSMultiValueRemove,
-	RSMultiValueContainer,
-	RSMultiValueLabel,
-	RSClearIndicator,
-	RSMultiValue,
-} from './custom-select/react-select-component-wrappers';
 export { ColumnConfigSlider } from './custom-slider/column-config-slider';
 export { Slider } from './custom-slider/custom-slider';
 export { RangeSlider } from './custom-slider/custom-range-slider';

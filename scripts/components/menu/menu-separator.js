@@ -1,10 +1,13 @@
 import React from 'react';
+import { MenuSeparator as EsUicMenuSeparator } from '@eightshift/ui-components';
 
 /**
  * @since 8.5.0
  *
+ * @deprecated Use `MenuSeparator` from `@eightshift/ui-components` instead.
+ *
  * A simple menu separator.
  */
 export const MenuSeparator = () => (
-	<hr className='es-my-0.5 -es-mx-1 es-bg-cool-gray-200! es-h-px es-border-none' />
+	<EsUicMenuSeparator />
 );
