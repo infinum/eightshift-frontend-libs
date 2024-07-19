@@ -4,6 +4,7 @@ import {
 	Toggle,
 	TriggeredPopover,
 } from '@eightshift/ui-components';
+import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
 
 /**
