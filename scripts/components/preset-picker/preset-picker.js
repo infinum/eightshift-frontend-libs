@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
-import { Menu } from '@eightshift/ui-components';
+import { Button } from '@eightshift/ui-components';
 
 /**
  * A picker for presets defined in the manifest, with additional configurable options.
@@ -131,9 +131,6 @@ export const PresetPicker = (props) => {
 			label={label}
 			icon={icon}
 			help={help}
-
-			reducedBottomSpacing={reducedBottomSpacing}
-			noBottomSpacing={noBottomSpacing}
 		>
 			{presetsContent}
 		</Control>
