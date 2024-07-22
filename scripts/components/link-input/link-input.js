@@ -6,7 +6,7 @@ import {
 } from '@eightshift/ui-components';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
-import { wpSearchRoute } from '../../editor';
+import { wpSearchRoute } from '@eightshift/frontend-libs/scripts';
 
 /**
  * @deprecated Use `LinkInput` from `@eightshift/ui-components` instead. Make sure to include the new tab toggle separately, if needed!
@@ -58,7 +58,7 @@ export const LinkInput = ({
 
 	suggestionTypeIconOverride,
 
-	fetchSuggestions,
+	fetchSuggestions = wpSearchRoute,
 
 	inputDebounceDelay = 300,
 }) => {
@@ -91,7 +91,7 @@ export const LinkInput = ({
 				disabled={disabled}
 				className={additionalClass}
 				suggestionTypeIconOverride={suggestionTypeIconOverride}
-				fetchSuggestions={fetchSuggestions ?? wpSearchRoute}
+				fetchSuggestions={fetchSuggestions}
 				inputDebounceDelay={inputDebounceDelay}
 			/>
 			{!hideOpensInNewTab && (
