@@ -95,6 +95,8 @@ export const LinkInput = ({
 			/>
 			{!hideOpensInNewTab && (
 				<Toggle
+					icon={icons.newTab}
+					label={__('Open in new tab', 'eightshift-frontend-libs')}
 					checked={opensInNewTab}
 					onChange={(value) =>
 						onChange({ url: url, newTab: value, isAnchor: url?.includes('#') })

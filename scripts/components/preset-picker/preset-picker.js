@@ -1,8 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
-import { Collapsable, Control } from '../../components';
 import { icons } from '@eightshift/ui-components/icons';
+import { Menu } from '@eightshift/ui-components';
 
 /**
  * A picker for presets defined in the manifest, with additional configurable options.
@@ -19,8 +18,6 @@ import { icons } from '@eightshift/ui-components/icons';
  * @param {React.Component?} [props.label='Presets']          - Label of the component.
  * @param {React.Component?} [props.help]                     - Help text to explain that presets will override the current settings. Can be disabled by setting it to `false`.
  * @param {boolean?} [props.defaultButton=false]              - If `true`, the "Default" button is shown. It pulls the defaults from manifest, but can be customized by sending an object (`{label?, icon?, attributes}`) instead of `true`.
- * @param {boolean?} [props.noBottomSpacing=false]            - If `true`, space below the control is removed.
- * @param {boolean?} [props.reducedBottomSpacing=false]       - If `true`, space below the control is reduced.
  */
 export const PresetPicker = (props) => {
 	const {
