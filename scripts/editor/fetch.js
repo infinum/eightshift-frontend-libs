@@ -241,10 +241,10 @@ export const wpSearchRoute = fetchFromWpRest('search', {
 	processId: ({ url }) => url,
 	labelProp: 'title',
 	processMetadata: ({ type, subtype }) => ({ type, subtype }),
+	perPage: 5,
 	additionalParam: {
 		type: 'post',
 		_locale: 'user',
-		per_page: 5,
 	},
 	noCache: true,
 	searchColumns: 'post_title',
