@@ -6,7 +6,7 @@ import {
 } from '@eightshift/ui-components';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
-import { wpSearchRoute } from '@eightshift/frontend-libs/scripts';
+import { wpSearchRoute } from '../../editor';
 
 /**
  * @deprecated Use `LinkInput` from `@eightshift/ui-components` instead. Make sure to include the new tab toggle separately, if needed!
