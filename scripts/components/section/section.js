@@ -52,7 +52,7 @@ export const Section = (props) => {
 	return (
 		<>
 			<Spacer
-				label={label}
+				text={label}
 				icon={icon}
 				subtitle={subtitle}
 				className={additionalLabelClasses}

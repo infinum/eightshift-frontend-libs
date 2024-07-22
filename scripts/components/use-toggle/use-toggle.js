@@ -46,6 +46,7 @@ export const generateUseToggleConfig = (
  *
  * @param {object} props                          - UseToggle options.
  * @param {boolean} [props.noControls=false]      - If `true`, the options are not rendered.
+ * @param {JSX.Element} props.icon                - Icon to represent the component.
  * @param {string} props.label                    - Usually component name.
  * @param {boolean} props.checked                 - Is the component currently in use.
  * @param {function} props.onChange               - `onChange` handler from the `ToggleSwitch`.
@@ -59,6 +60,7 @@ export const generateUseToggleConfig = (
 export const UseToggle = ({
 	noControls = false,
 
+	icon,
 	label,
 	checked,
 	onChange,
@@ -79,7 +81,7 @@ export const UseToggle = ({
 	return (
 		<ComponentToggle
 			label={label}
-			icon={null}
+			icon={icon}
 			useComponent={checked}
 			onChange={onChange}
 			controlOnly={noLabel && noUseToggle && noExpandButton}
