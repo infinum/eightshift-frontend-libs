@@ -20,6 +20,7 @@ export {
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
+	getResponsiveLegacyData,
 } from './editor';
 export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './fetch';
 export { inserter } from './inserter';

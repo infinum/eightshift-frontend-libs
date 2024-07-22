@@ -21,7 +21,9 @@ import { InspectorControls, BlockControls } from '@wordpress/block-editor';
  * ```
  */
 export const lockPostEditing = (blockClientId, attributeKey) => {
-	dispatch('core/editor').lockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	dispatch('core/editor').lockPostSaving(
+		`undefined-lock-${blockClientId}-${attributeKey}`
+	);
 };
 
 /**
@@ -43,7 +45,9 @@ export const lockPostEditing = (blockClientId, attributeKey) => {
  * ```
  */
 export const unlockPostEditing = (blockClientId, attributeKey) => {
-	dispatch('core/editor').unlockPostSaving(`undefined-lock-${blockClientId}-${attributeKey}`);
+	dispatch('core/editor').unlockPostSaving(
+		`undefined-lock-${blockClientId}-${attributeKey}`
+	);
 };
 
 /**
@@ -99,21 +103,48 @@ export const GutenbergBlock = (props) => {
 
 	return (
 		<>
-			{OptionsComponent &&
+			{OptionsComponent && (
 				<InspectorControls>
 					<OptionsComponent {...props} />
 				</InspectorControls>
-			}
+			)}
 
-			{ToolbarComponent &&
+			{ToolbarComponent && (
 				<BlockControls>
 					<ToolbarComponent {...props} />
 				</BlockControls>
-			}
+			)}
 
-			{EditorComponent &&
-				<EditorComponent {...props} />
-			}
+			{EditorComponent && <EditorComponent {...props} />}
 		</>
 	);
 };
+
+/**
+ * Get the data for `ResponsiveLegacy` from Eightshift UI components.
+ *
+ * @param {Object} responsiveAttr - Responsive attribute data, usually from `manifest.responsiveAttributes`.
+ * @param {Object} attributes - Component/block attributes.
+ * @param {Object} manifest - Component/block manifest.
+ * @param {function} setAttributes - The `setAttributes` function.
+ *
+ * @access public
+ * @since 13.0.0
+ *
+ * @returns Object
+ */
+export const getResponsiveLegacyData = (
+	responsiveAttr,
+	attributes,
+	manifest,
+	setAttributes
+) => ({
+	attribute: Object.fromEntries(
+		Object.entries(responsiveAttr).map(([breakpoint, attrName]) => [
+			breakpoint,
+			getAttrKey(attrName, attributes, manifest),
+		])
+	),
+	value: attributes,
+	onChange: (attributeName, value) => setAttributes({ [attributeName]: value }),
+});
