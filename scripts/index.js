@@ -43,7 +43,6 @@ export { ServerSideRender } from './components/server-side-render/server-side-re
 export { Repeater } from './components/repeater/repeater';
 export { RepeaterItem } from './components/repeater/repeater-item';
 export { TileButton } from './components/tile-button/tile-button';
-export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';

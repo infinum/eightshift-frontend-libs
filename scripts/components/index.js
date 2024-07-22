@@ -41,7 +41,6 @@ export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { Repeater } from './repeater/repeater';
 export { RepeaterItem } from './repeater/repeater-item';
-export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';
