@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
-import { Button } from '@eightshift/ui-components';
+import { BaseControl, Button, Expandable } from '@eightshift/ui-components';
 
 /**
  * A picker for presets defined in the manifest, with additional configurable options.
@@ -25,7 +25,6 @@ export const PresetPicker = (props) => {
 		configPresetsKey = 'configPresets',
 		setAttributes,
 
-		showAsCollapsable = false,
 		controlOnly = false,
 
 		excludeDefaultsFromPresets = false,
@@ -36,9 +35,6 @@ export const PresetPicker = (props) => {
 
 		offButton = false,
 		defaultButton = false,
-
-		noBottomSpacing,
-		reducedBottomSpacing,
 	} = props;
 
 	if (manifest?.[configPresetsKey]?.length < 1) {
@@ -107,32 +103,13 @@ export const PresetPicker = (props) => {
 		return presetsContent;
 	}
 
-	if (showAsCollapsable) {
-		return (
-			<Collapsable
-				label={label}
-				icon={icon}
-				reducedBottomSpacing={reducedBottomSpacing}
-				noBottomSpacing={noBottomSpacing}
-			>
-				<Control
-					help={help}
-					noBottomSpacing
-				>
-					{presetsContent}
-				</Control>
-
-			</Collapsable>
-		);
-	}
-
 	return (
-		<Control
+		<BaseControl
 			label={label}
 			icon={icon}
 			help={help}
 		>
 			{presetsContent}
-		</Control>
+		</BaseControl>
 	);
 };
