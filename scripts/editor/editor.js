@@ -1,6 +1,7 @@
 import React from 'react';
 import { dispatch } from '@wordpress/data';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { getAttrKey } from './attributes';
 
 /**
  * Given a block's client ID and an attribute key, locks post saving in Gutenberg.
