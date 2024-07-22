@@ -1,4 +1,5 @@
-import { unescapeHTML } from '@eightshift/ui-components/utilities';
+import { truncate, unescapeHTML } from '@eightshift/ui-components/utilities';
+import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
 /**
