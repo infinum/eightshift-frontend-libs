@@ -1,5 +1,6 @@
 import React from 'react';
 import { Expandable, Spacer } from '@eightshift/ui-components';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Simple section with FancyDivider header.
@@ -58,7 +59,7 @@ export const Section = (props) => {
 				className={additionalLabelClasses}
 				border
 			/>
-			<div className={additionalClasses}>{children}</div>
+			<div className={clsx('es-uic-space-y-2.5' ,additionalClasses)}>{children}</div>
 		</>
 	);
 };
