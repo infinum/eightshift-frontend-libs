@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
+import { Button, BaseControl } from '@eightshift/ui-components';
 import { icons } from '@eightshift/ui-components/icons';
 import { SortableItem } from './sortable-item';
-import { Control } from '../base-control/base-control';
 import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
 import {
@@ -21,7 +20,6 @@ import {
 	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple repeater.
@@ -35,8 +33,6 @@ import { clsx } from '@eightshift/ui-components/utilities';
  * @param {function} props.setAttributes               - The `setAttributes` callback from component/block attributes.
  * @param {React.Component[]} props.children           - Child items, mapped from `items`. Contains all the option for child items.
  * @param {boolean} [props.noReordering=false]         - If `true`, the items can't be reordered.
- * @param {boolean} [props.noBottomSpacing]            - If `true`, the default bottom spacing is removed.
- * @param {boolean?} [props.reducedBottomSpacing]      - If `true`, space below the control is reduced.
  * @param {function} [props.handleAdd]                 - Callback for providing custom item adding logic.
  * @param {function} [props.handleItemReorder]         - Callback for providing custom item reordering logic.
  * @param {string?} [props.additionalClasses]          - Classes to add to the control base.
@@ -59,9 +55,6 @@ export const Repeater = (props) => {
 		children,
 
 		noReordering = false,
-
-		noBottomSpacing,
-		reducedBottomSpacing,
 
 		handleAdd,
 		handleItemReorder,
@@ -118,31 +111,30 @@ export const Repeater = (props) => {
 	const [active, setActive] = useState(null);
 
 	return (
-		<Control
+		<BaseControl
 			icon={icon}
 			label={label}
 			subtitle={subtitle}
 			help={help}
-			noBottomSpacing={noBottomSpacing}
-			reducedBottomSpacing={reducedBottomSpacing}
-			additionalClasses={additionalClasses}
-			additionalLabelClasses={clsx(additionalLabelClasses, items?.length < 1 && 'es-mb-0!')}
+			className={additionalClasses}
+			labelClassName={additionalLabelClasses}
 			actions={
-				<div className='es-h-spaced es-gap-1.5!'>
+				<>
 					{actions}
 
 					{!customAddButton &&
 						<Button
-							onClick={handleAddButtonClick}
-							icon={icons.plusCircle}
-							className='es-button-square-28 es-button-icon-24 es-nested-color-cool-gray-650 es-rounded-1'
-							label={__('Add item', 'eightshift-frontend-libs')}
+							onPress={handleAddButtonClick}
+							icon={icons.add}
+							size='small'
+							aria-label={__('Add item', 'eightshift-frontend-libs')}
+							tooltip={__('Add item', 'eightshift-frontend-libs')}
 							disabled={disableItemAdd}
 						/>
 					}
 
 					{customAddButton && customAddButton({ disabled: disableItemAdd, onClick: handleAddButtonClick })}
-				</div>
+				</>
 			}
 		>
 			<DndContext
@@ -157,7 +149,7 @@ export const Repeater = (props) => {
 					items={items.map(({ id }) => id)}
 					strategy={verticalListSortingStrategy}
 				>
-					<div className='es-v-spaced es-gap-1!'>
+					<div>
 						{children.map((item, i) => (
 							<SortableItem
 								key={items?.[i]?.id}
@@ -187,6 +179,6 @@ export const Repeater = (props) => {
 					</div>
 				</SortableContext>
 			</DndContext>
-		</Control>
+		</BaseControl>
 	);
 };
