@@ -103,6 +103,7 @@ export {
 	lockPostEditing,
 	unlockPostEditing,
 	getResponsiveLegacyData,
+	generateOptionsFromValue,
 } from './editor/editor';
 export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './editor/fetch';
 export { inserter } from './editor/inserter';

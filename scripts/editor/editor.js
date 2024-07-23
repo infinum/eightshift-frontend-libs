@@ -1,7 +1,7 @@
 import React from 'react';
 import { dispatch } from '@wordpress/data';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
-import { getAttrKey } from './attributes';
+import { checkAttrResponsive, getAttrKey } from './attributes';
 
 /**
  * Given a block's client ID and an attribute key, locks post saving in Gutenberg.
@@ -149,3 +149,24 @@ export const getResponsiveLegacyData = (
 	value: attributes,
 	onChange: (attributeName, value) => setAttributes({ [attributeName]: value }),
 });
+
+/**
+ * Generates an `options` value for use in `ResponsiveLegacy` from Eightshift UI components.
+ * This value is shown in the responsive previews.
+ *
+ * @param {string} attrName - Attribute name
+ * @param {Object} attributes - Component/block attributes.
+ * @param {Object} manifest - Component/block manifest.
+ * @param {function} getLabel - Provide a function (`(value: any) => output: string`) if you want to change a value that's output.
+ *
+ * @access public
+ * @since 13.0.0
+ *
+ * @returns Object
+ */
+export const generateOptionsFromValue = (attrName, attributes, manifest, getLabel = (v) => v) => {
+	return Object.entries(checkAttrResponsive(attrName, attributes, manifest)).map(([breakpoint, innerValue]) => ({
+		value: innerValue,
+		label: getLabel(innerValue, breakpoint),
+	}));
+};

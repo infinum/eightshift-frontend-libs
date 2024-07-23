@@ -21,6 +21,7 @@ export {
 	lockPostEditing,
 	unlockPostEditing,
 	getResponsiveLegacyData,
+	generateOptionsFromValue,
 } from './editor';
 export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './fetch';
 export { inserter } from './inserter';
