@@ -1,12 +1,15 @@
 import React, { useState, Fragment } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
 import { getDefaultBreakpointNames } from '../../helpers';
-import { IconLabel } from '../icon-label/icon-label';
-import { Control } from '../base-control/base-control';
-import { AnimatedContentVisibility } from '../animated-content-visibility/animated-content-visibility';
 import { icons } from '@eightshift/ui-components/icons';
 import { clsx, upperFirst } from '@eightshift/ui-components/utilities';
+import {
+	AnimatedVisibility,
+	BaseControl,
+	Button,
+	RichLabel,
+	ToggleButton,
+} from '@eightshift/ui-components';
 
 /**
  * A component that displays options adjustable across screen sizes.
@@ -21,8 +24,6 @@ import { clsx, upperFirst } from '@eightshift/ui-components/utilities';
  * @param {array<string>} [props.breakpointLabels]                               - If provided, labels for breakpoints will use the provided names instead of using the breakpoint name itself.
  * @param {string?} [props.additionalClasses]                                    - If provided, passes additional classes through to the component.
  * @param {boolean} [props.inline=false]                                         - If `true`, the control is rendered inline and the options are more compact. Having label, subtitle, icon or help on the child component is not advised.
- * @param {boolean} [props.noBottomSpacing]                                      - If `true`, the default bottom spacing is removed.
- * @param {boolean?} [props.reducedBottomSpacing]                                - If `true`, space below the control is reduced.
  * @param {array<{callback: function, isActive: boolean}>} [props.inheritButton] - If provided, an 'Inherit' button is shown on each breakpoint except the first one. For each breakpoint a `callback` function (function that sets/unsets the "inherit" value, usually `undefined`) and a `isActive` flag (`true` if inheriting from parent) need to be provided.
  */
 export const Responsive = (props) => {
@@ -41,9 +42,6 @@ export const Responsive = (props) => {
 		additionalClasses,
 
 		inline = false,
-
-		noBottomSpacing,
-		reducedBottomSpacing,
 	} = props;
 
 	const fallbackBreakpointLabels = breakpoints.map((v) => upperFirst(v));
@@ -51,46 +49,45 @@ export const Responsive = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<Control
+		<BaseControl
 			icon={icon}
 			label={label}
 			help={help}
 			subtitle={subtitle}
-			additionalClasses={clsx('es-nested-collapsable', isOpen && 'is-open', additionalClasses)}
-			noBottomSpacing={noBottomSpacing}
-			reducedBottomSpacing={reducedBottomSpacing}
+			className={additionalClasses}
 			actions={
-				<div className='es-h-spaced es-gap-0!'>
-					{inline &&
-						<div className={clsx('es-transition-opacity es-pr-2.5 es-mr-1 es-border-r-cool-gray-100', isOpen && 'es-opacity-0')}>
+				<>
+					{inline && (
+						<AnimatedVisibility visible={!open} transition='scaleFade'>
 							{children[0]}
-						</div>
-					}
+						</AnimatedVisibility>
+					)}
 
-					<Button
-						// eslint-disable-next-line max-len
-						label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
-						onClick={() => setIsOpen(!isOpen)}
-						className={clsx(
-							'es-transition-colors es-button-icon-24 es-rounded-1! es-h-7! es-py-0! es-pr-0.5!',
-							inline ? 'es-pl-0.5!' : 'es-pl-1!',
-							isOpen && 'es-nested-color-pure-white! es-bg-admin-accent!'
-						)}
-						showTooltip
-					>
-						{!inline && icons.responsiveOverridesAlt}
-
-						<div className={`es-button-icon-24 es-h-flex es-has-animated-y-flip-icon ${isOpen ? 'is-active' : ''}`}>
-							{isOpen ? icons.caretDownFill : icons.caretDown}
-						</div>
-					</Button>
-				</div>
+					<ToggleButton
+						aria-label={
+							isOpen
+								? __('Close responsive overrides', 'eightshift-frontend-libs')
+								: __('Open responsive overrides', 'eightshift-frontend-libs')
+						}
+						tooltip={
+							isOpen
+								? __('Close responsive overrides', 'eightshift-frontend-libs')
+								: __('Open responsive overrides', 'eightshift-frontend-libs')
+						}
+						onChange={setIsOpen}
+						icon={icons.responsiveOverridesAlt}
+					/>
+				</>
 			}
-			additionalLabelClasses={clsx(!isOpen && inline && 'es-mb-0!')}
 		>
 			{children.map((child, index) => {
-				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
-				const previousBreakpointLabel = index === 0 ? '' : breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1);
+				const breakpointLabel =
+					breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
+				const previousBreakpointLabel =
+					index === 0
+						? ''
+						: breakpointLabels?.at(index - 1) ??
+						  fallbackBreakpointLabels.at(index - 1);
 				const breakpointIcon = icons[`screen${upperFirst(breakpoints[index])}`];
 
 				const currentInheritButton = inheritButton?.at(index);
@@ -98,34 +95,42 @@ export const Responsive = (props) => {
 				const inheritButtonComponent = (
 					<Button
 						icon={icons.inherit}
-						onClick={currentInheritButton?.callback}
-						className={clsx(
-							// eslint-disable-next-line max-len
-							'es-animated-inherit-icon es-transition-colors es-text-align-left es-nested-m-0! es-gap-1 es-rounded-1! es-py-0 es-px-1 es-h-10 es-mx-0 -es-mt-0.5 es-w-full es-border-cool-gray-200 es-hover-border-cool-gray-400',
-							currentInheritButton?.isActive ? 'is-inherited es-nested-color-admin-accent es-mb-0' : '-es-mb-0.5',
-							!inline && (index !== children.length - 1 || !currentInheritButton?.isActive) && 'es-mb-2',
-						)}
+						onPress={currentInheritButton?.callback}
+						className='es-uic-w-full'
+						size='large'
 					>
-						{currentInheritButton?.isActive &&
-							<span className='es-text-3 es-color-cool-gray-600'>
-								<div
-									dangerouslySetInnerHTML={{
-										__html: sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel)
-									}}
-								/>
-								<span className='es-text-2.5 es-color-cool-gray-450'>{__('Click to set value ', 'eightshift-frontend-libs')}</span>
-							</span>
-						}
+						{currentInheritButton?.isActive && (
+							<RichLabel
+								label={
+									<div
+										dangerouslySetInnerHTML={{
+											__html: sprintf(
+												__(
+													'Using value from <span class="es-font-weight-600">%s</span>',
+													'eightshift-frontend-libs'
+												),
+												previousBreakpointLabel
+											),
+										}}
+									/>
+								}
+								subtitle={__('Click to set value ', 'eightshift-frontend-libs')}
+							/>
+						)}
 
-						{!currentInheritButton?.isActive &&
-							<span className='es-color-cool-gray-600'>
-								<div
-									dangerouslySetInnerHTML={{
-										__html: sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel)
-									}}
-								/>
-							</span>
-						}
+						{!currentInheritButton?.isActive && (
+							<div
+								dangerouslySetInnerHTML={{
+									__html: sprintf(
+										__(
+											'Use value from <span class="es-font-weight-600">%s</span>',
+											'eightshift-frontend-libs'
+										),
+										previousBreakpointLabel
+									),
+								}}
+							/>
+						)}
 					</Button>
 				);
 
@@ -135,61 +140,83 @@ export const Responsive = (props) => {
 					}
 
 					return (
-						<AnimatedContentVisibility
-							showIf={isOpen}
-							additionalContainerClasses={clsx(isOpen && index !== children.length - 1 && 'es-mb-3')}
+						<AnimatedVisibility
+							visible={isOpen}
+							className={clsx(
+								isOpen && index !== children.length - 1 && 'es-uic-mb-2'
+							)}
 							key={index}
 						>
-							<Control
+							<BaseControl
 								icon={breakpointIcon}
-								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
-								noBottomSpacing
-								actions={index > 0 &&
-									<div className='es-min-h-8'>
-										<AnimatedContentVisibility showIf={currentInheritButton ? !currentInheritButton.isActive : true}>
+								label={
+									index === 0
+										? sprintf(
+												__('%s (default)', 'eightshift-frontend-libs'),
+												breakpointLabel
+										  )
+										: breakpointLabel
+								}
+								actions={
+									index > 0 && (
+										<AnimatedVisibility
+											visible={
+												currentInheritButton
+													? !currentInheritButton.isActive
+													: true
+											}
+										>
 											{child}
-										</AnimatedContentVisibility>
-									</div>
+										</AnimatedVisibility>
+									)
 								}
 								inlineLabel={index === 0}
 							>
 								{index === 0 && child}
 								{index > 0 && currentInheritButton && inheritButtonComponent}
-							</Control>
-						</AnimatedContentVisibility>
+							</BaseControl>
+						</AnimatedVisibility>
 					);
 				}
 
 				return (
 					<Fragment key={index}>
-						<AnimatedContentVisibility showIf={isOpen}>
-							<IconLabel
+						<AnimatedVisibility visible={isOpen}>
+							<RichLabel
 								icon={breakpointIcon}
-								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
-								additionalClasses='es-mb-2'
-								standalone
+								label={
+									index === 0
+										? sprintf(
+												__('%s (default)', 'eightshift-frontend-libs'),
+												breakpointLabel
+										  )
+										: breakpointLabel
+								}
+								className='es-uic-mb-2'
 							/>
 
 							{index > 0 && currentInheritButton && inheritButtonComponent}
-						</AnimatedContentVisibility>
+						</AnimatedVisibility>
 
 						{index === 0 && !isOpen && child}
 
-						{index === 0 && isOpen &&
-							<div className='es-mb-3'>
-								{child}
-							</div>
-						}
+						{index === 0 && isOpen && <div className=''>{child}</div>}
 
-						<AnimatedContentVisibility
-							showIf={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}
-							additionalContainerClasses={clsx(isOpen && index !== children.length - 1 && 'es-mb-3')}
+						<AnimatedVisibility
+							visible={
+								index > 0 &&
+								isOpen &&
+								(currentInheritButton ? !currentInheritButton.isActive : true)
+							}
+							className={clsx(
+								isOpen && index !== children.length - 1 && 'es-uic-mb-2'
+							)}
 						>
 							{child}
-						</AnimatedContentVisibility>
+						</AnimatedVisibility>
 					</Fragment>
 				);
 			})}
-		</Control>
+		</BaseControl>
 	);
 };
