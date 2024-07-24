@@ -5,13 +5,7 @@ import { icons } from '@eightshift/ui-components/icons';
 import { ManageFileButton } from './file-picker';
 
 const MediaButton = (props) => {
-	return (
-		<ManageFileButton
-			{...props}
-			kind='image'
-			allowedTypes={['image']}
-		/>
-	);
+	return <ManageFileButton {...props} kind='image' />;
 };
 
 /**
@@ -25,7 +19,9 @@ const MediaButton = (props) => {
  * @property {string} props.imageUrl - URL of the currently selected image.
  * @property {boolean} [props.noDelete] - If `true`, the delete button will be hidden.
  * @property {boolean} [props.noUpload] - If `true`, the upload button will be hidden.
- * @param {ImagePlaceholderImageMode} [props.imageMode='cover'] - Determines inner image display mode.
+ * @property {ImagePlaceholderImageMode} [props.imageMode='cover'] - Determines inner image display mode.
+ * @property {boolean} [props.hidden] - If `true`, the component will be hidden.
+ * @property {string[]} [props.allowedTypes=['image']] - Determines types of files which are allowed to be uploaded.
  *
  * @returns {JSX.Element} The MediaPicker component.
  *
@@ -41,23 +37,34 @@ const MediaButton = (props) => {
  *
  */
 export const MediaPicker = (props) => {
-	const { onChange, imageId, imageAlt, imageUrl, noDelete, noUpload, imageMode } = props;
+	const {
+		onChange,
+		imageId,
+		imageAlt,
+		imageUrl,
+		noDelete,
+		noUpload,
+		imageMode,
+		hidden,
+		allowedTypes = ['image'],
+	} = props;
+
+	if (hidden) {
+		return null;
+	}
 
 	return (
 		<HStack noWrap>
-			<ImagePlaceholder
-				url={imageUrl}
-				alt={imageAlt}
-				imageMode={imageMode}
-			/>
+			<ImagePlaceholder url={imageUrl} alt={imageAlt} imageMode={imageMode} />
 
 			{!imageUrl && (
 				<>
-					<MediaButton onChange={onChange} />
+					<MediaButton onChange={onChange} allowedTypes={allowedTypes} />
 					{!noUpload && (
 						<MediaButton
 							onChange={onChange}
 							type='upload'
+							allowedTypes={allowedTypes}
 							compact
 						/>
 					)}
@@ -70,6 +77,7 @@ export const MediaPicker = (props) => {
 						type='replace'
 						onChange={onChange}
 						imageId={imageId}
+						allowedTypes={allowedTypes}
 					/>
 					{!noDelete && (
 						<Button
