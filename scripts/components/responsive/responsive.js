@@ -58,7 +58,7 @@ export const Responsive = (props) => {
 			actions={
 				<>
 					{inline && (
-						<AnimatedVisibility visible={!open} transition='scaleFade'>
+						<AnimatedVisibility visible={!isOpen} transition='scaleFade'>
 							{children[0]}
 						</AnimatedVisibility>
 					)}
