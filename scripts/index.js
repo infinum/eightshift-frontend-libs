@@ -15,10 +15,18 @@ export { ColumnConfigSlider } from './components/custom-slider/column-config-sli
 export { Slider } from './components/custom-slider/custom-slider';
 export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
+export {
+	FileSelector,
+	ManageFileButton,
+} from './components/file-pickers/file-picker';
+export { MediaPicker } from './components/file-pickers/media-picker';
 export { IconLabel } from './components/icon-label/icon-label';
 export { Toggle, IconToggle } from './components/toggle/toggle';
 export { Notification } from './components/inline-notification/inline-notification';
-export { LinkInput, LinkEditComponent } from './components/link-input/link-input';
+export {
+	LinkInput,
+	LinkEditComponent,
+} from './components/link-input/link-input';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { Menu } from './components/menu/menu';
 export { MenuItem } from './components/menu/menu-item';
@@ -26,6 +34,7 @@ export { MenuSeparator } from './components/menu/menu-separator';
 export { MultiSelect } from './components/custom-select/multi-select';
 export { NumberPicker } from './components/number-picker/number-picker';
 export { OptionSelector } from './components/option-selector/option-selector';
+export { PickerPlaceholder } from './components/picker-placeholder/picker-placeholder';
 export { PopoverWithTrigger } from './components/popover-with-trigger/popover-with-trigger';
 export { PresetPicker } from './components/preset-picker/preset-picker';
 export { ReOrderable } from './components/re-orderable/re-orderable';
@@ -43,7 +52,10 @@ export { ServerSideRender } from './components/server-side-render/server-side-re
 export { Repeater } from './components/repeater/repeater';
 export { RepeaterItem } from './components/repeater/repeater-item';
 export { TileButton } from './components/tile-button/tile-button';
-export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';
+export {
+	UseToggle,
+	generateUseToggleConfig,
+} from './components/use-toggle/use-toggle';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';
 
@@ -107,11 +119,7 @@ export {
 } from './editor/editor';
 export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './editor/fetch';
 export { inserter } from './editor/inserter';
-export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './editor/options';
+export { getOption, getOptionColors, getOptions } from './editor/options';
 export { pasteInto } from './editor/paste-handler';
 export {
 	getAttributes,
@@ -121,11 +129,7 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './editor/registration';
-export {
-	bem,
-	selector,
-	responsiveSelectors,
-} from './editor/selectors';
+export { bem, selector, responsiveSelectors } from './editor/selectors';
 export {
 	STORE_NAME,
 	BUILD_VERSION,
@@ -134,12 +138,8 @@ export {
 	setConfigFlags,
 } from './editor/store';
 
-
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';
 export { cookies } from './helpers/cookies';
 export { dynamicImport } from './helpers/dynamic-import';
-export {
-	luminanceFromHex,
-	luminanceFromRgb,
-} from './helpers/color-helpers';
+export { luminanceFromHex, luminanceFromRgb } from './helpers/color-helpers';
