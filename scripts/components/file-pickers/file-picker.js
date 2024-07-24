@@ -20,7 +20,7 @@ import { icons } from '@eightshift/ui-components/icons';
  * @returns {JSX.Element} The ManageFileButton component.
  *
  * @typedef {'browse' | 'upload' | 'replace'} ManageFileButtonType
- * @typedef {'file' | 'image' | 'video' | 'subtitle' | 'geoJson' | 'custom'} ManageFileButtonKind
+ * @typedef {'file' | 'image' | 'video' | 'subtitle' | 'geoJson' | 'lottie' | 'custom'} ManageFileButtonKind
  *
  * @example
  * <ManageFileButton />
@@ -111,6 +111,18 @@ export const ManageFileButton = (props) => {
 				replace: __('Select a new GeoJSON file', 'eightshift-frontend-libs-tailwind'),
 			},
 		},
+		lottie: {
+			buttonTooltip: {
+				browse: __('Select a Lottie animation', 'eightshift-frontend-libs-tailwind'),
+				upload: __('Upload a Lottie animation', 'eightshift-frontend-libs-tailwind'),
+				replace: __('Replace Lottie animation', 'eightshift-frontend-libs-tailwind'),
+			},
+			modalTitle: {
+				browse: __('Select a Lottie animation', 'eightshift-frontend-libs-tailwind'),
+				upload: __('Upload a Lottie animation', 'eightshift-frontend-libs-tailwind'),
+				replace: __('Select a new Lottie animation', 'eightshift-frontend-libs-tailwind'),
+			},
+		},
 		custom: {
 			buttonTooltip: labels?.buttonTooltip,
 			buttonLabel: labels?.buttonLabel,
@@ -162,7 +174,7 @@ export const ManageFileButton = (props) => {
  *
  * @returns {JSX.Element} The FileSelector component.
  *
- * @typedef {'file' | 'image' | 'video' | 'subtitle' | 'geoJson' | 'custom'} FileKind
+ * @typedef {'file' | 'image' | 'video' | 'subtitle' | 'geoJson' | 'lottie' | 'custom'} FileKind
  *
  * @example
  * <FileSelector
@@ -189,6 +201,7 @@ export const FileSelector = (props) => {
 		video: __('Remove video', 'eightshift-frontend-libs-tailwind'),
 		subtitle: __('Remove subtitle file', 'eightshift-frontend-libs-tailwind'),
 		geoJson: __('Remove GeoJSON file', 'eightshift-frontend-libs-tailwind'),
+		lottie: __('Remove Lottie animation', 'eightshift-frontend-libs-tailwind'),
 		custom: labels?.removeTooltip,
 	};
 
@@ -197,6 +210,7 @@ export const FileSelector = (props) => {
 		video: icons.videoFile,
 		subtitle: icons.closedCaptions,
 		geoJson: icons.fileMetadata,
+		lottie: icons.animationFile,
 		custom: labels?.removeIcon,
 	};
 
