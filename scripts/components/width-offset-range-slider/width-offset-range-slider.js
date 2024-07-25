@@ -31,6 +31,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
  * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
  * @param {function} [props.onAfterChange] - Function to trigger when the value of the slider is changed.
  * @param {int|string} [props.colAutoStartOverride] - If passed, overrides the auto-calculated value of the automatic column start offset.
+ * @param {boolean} [props.showOuterAsGutter] - If `true`, the outer columns are displayed with a special icons instead of the column numbers. Other numbers are offset by 1.
  */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
@@ -57,6 +58,8 @@ export const WidthOffsetRangeSlider = (props) => {
 		onAfterChange,
 
 		colAutoStartOverride,
+
+		showOuterAsGutter,
 	} = props;
 
 	const stringValues = !numericValues || autoOffsetToggle;
@@ -204,7 +207,7 @@ export const WidthOffsetRangeSlider = (props) => {
 							key={breakpoint}
 							columns={totalNumberOfColumns}
 							value={[parsedOffset, displayedWidth]}
-							showOuterAsGutter={parsedFullWidth}
+							showOuterAsGutter={showOuterAsGutter ?? parsedFullWidth}
 							onChange={([o, w]) => {
 								let newValues = {};
 
