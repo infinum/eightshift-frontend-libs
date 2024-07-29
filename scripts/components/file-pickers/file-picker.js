@@ -9,13 +9,13 @@ import { icons } from '@eightshift/ui-components/icons';
  *
  * @component
  * @param {Object} props - Component props.
- * @property {ManageFileButtonType} [props.type] - The type of the button (browse, upload, replace).
- * @property {Function} props.onChange - Function that handles the change event.
- * @property {string} [props.currentId] - ID of the currently selected item. Used for the 'replace' type, to mark the currently selected item.
- * @property {boolean} [props.compact] - Whether the button is compact (icon-only).
- * @property {string[]} props.allowedTypes - Determines types of files which are allowed to be uploaded.
- * @property {ManageFileButtonKind} [props.kind] - The kind of file to manage. Controls labels and icons on the buttons.
- * @property {Object} [props.labels] - Custom UI labels for the buttons. Applies only if `kind` is set to `custom`.
+ * @param {ManageFileButtonType} [props.type] - The type of the button (browse, upload, replace).
+ * @param {Function} props.onChange - Function that handles the change event.
+ * @param {string} [props.currentId] - ID of the currently selected item. Used for the 'replace' type, to mark the currently selected item.
+ * @param {boolean} [props.compact] - Whether the button is compact (icon-only).
+ * @param {string[]} props.allowedTypes - Determines types of files which are allowed to be uploaded.
+ * @param {ManageFileButtonKind} [props.kind] - The kind of file to manage. Controls labels and icons on the buttons.
+ * @param {Object} [props.labels] - Custom UI labels for the buttons. Applies only if `kind` is set to `custom`.
  *
  * @returns {JSX.Element} The ManageFileButton component.
  *
@@ -163,14 +163,14 @@ export const ManageFileButton = (props) => {
  *
  * @component
  * @param {Object} props - Component props.
- * @property {Function} props.onChange - The function that handles the change event.
- * @property {string} props.fileId - ID of the currently selected file. Used to mark the currently selected item when replacing the file.
- * @property {string} props.fileName - URL of the currently selected image.
- * @property {boolean} [props.noDelete] - If `true`, the delete button will be hidden.
- * @property {boolean} [props.noUpload] - If `true`, the upload button will be hidden.
- * @property {string[]} props.allowedTypes - Determines types of files which are allowed to be uploaded.
- * @property {FileKind} [props.kind] - The kind of file to manage.
- * @property {Object} [props.labels] - Custom UI labels for the buttons. Applies only if `kind` is set to `custom`.
+ * @param {Function} props.onChange - The function that handles the change event.
+ * @param {string} props.fileId - ID of the currently selected file. Used to mark the currently selected item when replacing the file.
+ * @param {string} props.fileName - URL of the currently selected image.
+ * @param {boolean} [props.noDelete] - If `true`, the delete button will be hidden.
+ * @param {boolean} [props.noUpload] - If `true`, the upload button will be hidden.
+ * @param {string[]} props.allowedTypes - Determines types of files which are allowed to be uploaded.
+ * @param {FileKind} [props.kind] - The kind of file to manage.
+ * @param {Object} [props.labels] - Custom UI labels for the buttons. Applies only if `kind` is set to `custom`.
  *
  * @returns {JSX.Element} The FileSelector component.
  *
