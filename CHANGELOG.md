@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [12.1.6]
+
+### Added
+- optional domain argument to the `setCookie` helper so the cookie domain can be set.
+
 ## [12.1.5]
 
 ### Removed
@@ -1104,6 +1109,7 @@ Follow this migration script in order for you project to work correctly with the
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
 
+[12.1.6]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.5...12.1.6
 [12.1.5]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.4...12.1.5
 [12.1.4]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.3...12.1.4
 [12.1.3]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.2...12.1.3
