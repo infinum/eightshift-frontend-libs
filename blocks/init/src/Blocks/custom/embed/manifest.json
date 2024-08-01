@@ -1,0 +1,18 @@
+{
+	"$schema": "https://raw.githubusercontent.com/infinum/eightshift-frontend-libs/develop/schemas/block.json",
+	"blockName": "embed",
+	"title": "Embed",
+	"description" : "embed block with custom settings.",
+	"category": "eightshift",
+	"icon": {
+		"src": "es-video"
+	},
+	"keywords": [
+		"embed",
+		"picture",
+		"img"
+	],
+	"components": {
+		"embed": "embed"
+	}
+}
