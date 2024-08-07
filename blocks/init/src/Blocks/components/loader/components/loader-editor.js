@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const LoaderEditor = (attributes) => {
@@ -16,7 +17,7 @@ export const LoaderEditor = (attributes) => {
 	const loaderUse = checkAttr('loaderUse', attributes, manifest);
 	const loaderUseOverlay = checkAttr('loaderUseOverlay', attributes, manifest);
 
-	const loaderClass = classnames(
+	const loaderClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const ScrollToTopEditor = (attributes) => {
@@ -16,7 +17,7 @@ export const ScrollToTopEditor = (attributes) => {
 
 	const scrollToTopUse = checkAttr('scrollToTopUse', attributes, manifest);
 
-	const scrollClass = classnames(
+	const scrollClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

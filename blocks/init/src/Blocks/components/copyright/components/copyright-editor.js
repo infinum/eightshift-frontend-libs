@@ -1,6 +1,7 @@
 import React from 'react';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, classnames, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const CopyrightEditor = (attributes) => {
@@ -19,7 +20,7 @@ export const CopyrightEditor = (attributes) => {
 	const copyrightContent = checkAttr('copyrightContent', attributes, manifest);
 	const copyrightYear = new Date().getFullYear();
 
-	const copyrightClass = classnames(
+	const copyrightClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

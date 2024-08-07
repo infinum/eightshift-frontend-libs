@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const HamburgerEditor = (attributes) => {
@@ -17,7 +18,7 @@ export const HamburgerEditor = (attributes) => {
 
 	const hamburgerUse = checkAttr('hamburgerUse', attributes, manifest);
 
-	const hamburgerClass = classnames(
+	const hamburgerClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

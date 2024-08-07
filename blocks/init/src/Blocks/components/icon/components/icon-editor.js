@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { selector, checkAttr, getUnique, outputCssVariables, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -20,7 +21,7 @@ export const IconEditor = (attributes) => {
 	const iconUse = checkAttr('iconUse', attributes, manifest);
 	const iconName = checkAttr('iconName', attributes, manifest);
 
-	const iconClass = classnames(
+	const iconClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props, checkAttr, selector, classnames } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, getUnique, props, checkAttr, selector } from '@eightshift/frontend-libs/scripts';
 import { ImageEditor } from '../../image/components/image-editor';
 import { HeadingEditor } from '../../heading/components/heading-editor';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import { ButtonEditor } from '../../button/components/button-editor';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -25,19 +26,15 @@ export const JumbotronEditor = (attributes) => {
 		return null;
 	}
 
-	const jumbotronClass = classnames(
+	const jumbotronClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
 	);
 
-	const contentClass = classnames([
-		selector(componentClass, componentClass, 'content'),
-	]);
+	const contentClass = selector(componentClass, componentClass, 'content');
 
-	const contentWrapClass = classnames([
-		selector(componentClass, componentClass, 'content-wrap'),
-	]);
+	const contentWrapClass = selector(componentClass, componentClass, 'content-wrap');
 
 	return (
 		<div className={jumbotronClass} data-id={unique}>

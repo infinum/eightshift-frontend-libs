@@ -9,9 +9,9 @@ import {
 	outputCssVariables,
 	getUnique,
 	icons,
-	classnames,
 	getDefaultBreakpointNames,
 } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -35,13 +35,13 @@ export const ImageEditor = (attributes) => {
 	const imageAllowedTypes = checkAttr('imageAllowedTypes', attributes, manifest);
 	const imageUrl = checkAttrResponsive('imageUrl', attributes, manifest);
 
-	const pictureClass = classnames(
+	const pictureClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),
 	);
 
-	const imgClass = classnames(
+	const imgClass = clsx(
 		selector(componentClass, componentClass, 'img'),
 		selector(blockClass, blockClass, `${selectorClass}-img`),
 	);

@@ -8,9 +8,9 @@ import {
 	RSOption,
 	Select,
 	generateUseToggleConfig,
-	classnames,
 	RSSingleValue,
 } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 const {
@@ -60,7 +60,7 @@ export const IconOptions = (attributes) => {
 					customMenuOption={IconPickerOption}
 					customValueDisplay={IconPickerValueDisplay}
 					onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}
-					additionalClasses={classnames('es-flex-grow-1', !hideSizePicker && 'es-max-w-52')}
+					additionalClasses={clsx('es-flex-grow-1', !hideSizePicker && 'es-max-w-52')}
 					noBottomSpacing
 					simpleValue
 				/>

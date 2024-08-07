@@ -7,7 +7,6 @@ import {
 	ReOrderable,
 	ReOrderableItem,
 	checkAttr,
-	classnames,
 	getAttrKey,
 	icons,
 	props,
@@ -16,6 +15,7 @@ import {
 import { CopyrightEditor } from '../../../components/copyright/components/copyright-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { SocialNetworksEditor } from '../../../components/social-networks/components/social-networks-editor';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 
 export const SiteFooterEditor = ({ attributes, setAttributes }) => {
@@ -25,7 +25,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 
 	const linksClass = selector(blockClass, blockClass, 'links');
 
-	const linkClass = classnames(
+	const linkClass = clsx(
 		selector(blockClass, blockClass, 'link'),
 		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
 	);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { checkAttr, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, props, selector } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { ParagraphEditor } from '../../paragraph/components/paragraph-editor';
 import { IconEditor } from '../../icon/components/icon-editor';
 import manifest from './../manifest.json';
@@ -22,7 +23,7 @@ export const QuoteEditor = (attributes) => {
 		additionalClass,
 	} = attributes;
 
-	const quoteClass = classnames(
+	const quoteClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

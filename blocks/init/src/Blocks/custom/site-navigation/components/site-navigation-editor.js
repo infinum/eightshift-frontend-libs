@@ -7,12 +7,12 @@ import {
 	ReOrderable,
 	ReOrderableItem,
 	checkAttr,
-	classnames,
 	getAttrKey,
 	icons,
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import manifest from '../manifest.json';
 
@@ -23,7 +23,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 
 	const linksClass = selector(blockClass, blockClass, 'links');
 
-	const linkClass = classnames(selector(
+	const linkClass = clsx(selector(
 		blockClass, blockClass, 'link'),
 		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
 	);

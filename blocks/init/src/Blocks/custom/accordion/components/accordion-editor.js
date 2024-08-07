@@ -1,6 +1,7 @@
 import React from 'react';
-import { BlockInserter, classnames } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter } from '@eightshift/frontend-libs/scripts';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 export const AccordionEditor = ({ attributes, clientId }) => {
 	const {
@@ -16,7 +17,7 @@ export const AccordionEditor = ({ attributes, clientId }) => {
 
 	const modifiedInnerBlockProps = {
 		...innerBlocksProps,
-		className: classnames(innerBlocksProps.className, blockClass),
+		className: clsx(innerBlocksProps.className, blockClass),
 	};
 
 	return (
