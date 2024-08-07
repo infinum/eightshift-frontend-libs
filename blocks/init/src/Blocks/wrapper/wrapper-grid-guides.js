@@ -19,6 +19,7 @@ export const GridGuides = ({ previewVisible, wrapperIsFullWidthLarge, wrapperMai
 		if (wrapperIsFullWidthLarge && i === 1) {
 			label = icons.arrowsLeft;
 		}
+
 		if (wrapperIsFullWidthLarge && i === maxItems) {
 			label = icons.arrowsRight;
 		}

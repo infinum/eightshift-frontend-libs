@@ -82,7 +82,7 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 		return () => {
 			window.removeEventListener('resize', calculateGridWidth);
 		};
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<WrapperTag ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>

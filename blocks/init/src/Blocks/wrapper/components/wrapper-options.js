@@ -101,6 +101,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		const copiedWrapperAttributes = Object.keys(attributes).filter((key) => key.includes('wrapper'))
 			.reduce((cur, key) => {
 				cur[key] = attributes[key];
+
 				return cur;
 			}, {});
 
@@ -570,6 +571,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 								].filter(Boolean).map(({ label, attributeKey, icon }, i) => {
 									const responsiveAttrValues = checkAttrResponsive(attributeKey, attributes, manifest, true);
+
 									return (
 										<Responsive
 											key={i}

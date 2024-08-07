@@ -433,7 +433,6 @@ export const getMergeCallback = (blockManifest) => {
 						outputObject[attribute] = `${calculatedValue}${receiverUnit}`;
 						break;
 					}
-					/* eslint-enable no-case-declarations */
 					default: {
 						// "useSourceAttribute" is default
 						outputObject[attribute] = receiver[attribute] ?? '';
@@ -849,6 +848,7 @@ export const registerBlock = (
 
 	// Find all attributes that have default value and output that to example.
 	const exampleAttributes = {};
+
 	for (const [key, value] of Object.entries(attributes)) {
 		if (value?.default) {
 			exampleAttributes[key] = value.default;
@@ -882,6 +882,7 @@ export const registerBlock = (
 
 				if (context === 'accessibility') {
 					const { content } = attributes;
+
 					return !content || content?.length === 0 ? __('Empty', 'eightshift-frontend-libs') : content;
 				}
 

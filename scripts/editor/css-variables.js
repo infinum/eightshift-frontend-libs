@@ -309,12 +309,12 @@ export const outputCssVariablesInline = () => {
 	);
 
 	// Find current tree with all inner blocks and all reusable blocks.
-	let currentStateBlocks = select('core/block-editor').__unstableGetClientIdsTree();
+	let currentStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
 
 	// Subscribe to changes in state.
 	subscribe(() => {
 		// Find updated state of blocks after render.
-		const newStateBlocks = select('core/block-editor').__unstableGetClientIdsTree();
+		const newStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
 
 		// Make changes only if blocks changed.
 		if (newStateBlocks !== currentStateBlocks) {
@@ -486,6 +486,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 
 	// Output manual output from the array of variables.
 	const variablesCustom = manifest?.variablesCustom;
+
 	if (typeof variablesCustom !== 'undefined') {
 		styles.variables.push({
 			type: 'min',
@@ -496,6 +497,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 
 	// Output manual editor output from the array of variables.
 	const variablesCustomEditor = manifest?.variablesCustomEditor;
+
 	if (typeof variablesCustomEditor !== 'undefined') {
 		styles.variables.push({
 			type: 'min',
@@ -618,6 +620,7 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 							breakpointIndex,
 							numberOfBreakpoints
 						);
+
 						return {
 							...responsiveAttribute,
 							[breakpointVariableName]: breakpointVariables,
@@ -702,6 +705,7 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 			});
 		});
 	}
+
 	return data;
 };
 
@@ -984,6 +988,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
 
 	let additionalStylesOutput = '';
+
 	if (typeof additionalStyles !== 'undefined') {
 		additionalStylesOutput = additionalStyles.join(';\n');
 	}
@@ -997,6 +1002,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	// Process styles.
 	output = processCssVarsRemBaseSize(output);
 	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
+
 	if (!styleTag) {
 		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {

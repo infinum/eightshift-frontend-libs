@@ -61,7 +61,6 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												const newValue = [...siteNavigationLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteNavigationLinks', attributes, manifest)]: newValue });
 											}}
-											// eslint-disable-next-line max-len
 											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 										>
 											{icons.trash}
@@ -72,7 +71,6 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												<button
 													ref={ref}
 													onClick={() => setIsOpen(!isOpen)}
-													// eslint-disable-next-line max-len
 													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 												>
 													{icons.editOptions}

@@ -33,7 +33,6 @@ export class MapController {
 			layers: parsedLayers.map((layer) => processMapLayer(layer)),
 			view: view,
 			interactions: OLDefaultInteractions(parsedInteractions).getArray(),
-			// eslint-disable-next-line no-unused-vars
 			controls: Object.entries(parsedControls).filter(([_, v]) => v === true).map(([name]) => processMapInteraction(name)),
 		});
 

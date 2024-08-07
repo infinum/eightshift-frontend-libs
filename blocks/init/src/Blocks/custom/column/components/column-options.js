@@ -152,7 +152,6 @@ export const ColumnOptions = ({ attributes, setAttributes }) => {
 											onChange={(value) => setAttributes({
 												[getAttrKey(breakpointAttrName, attributes, manifest)]: value ? undefined : 1,
 											})}
-											// eslint-disable-next-line max-len
 											additionalButtonClass='es-v-spaced es-content-center! es-nested-m-0! es-h-16 es-w-16 es-nested-flex-shrink-0 es-text-3 es-gap-0.1!'
 											noBottomSpacing
 										/>

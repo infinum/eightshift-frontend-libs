@@ -26,6 +26,7 @@ export const ListsEditor = (attributes) => {
 
 	const listsOrderedOptions = getOption('listsOrdered', attributes, manifest).map(option => option.value);
 	const listsDefault = manifest.attributes.listsOrdered.default;
+
 	if (!listsOrderedOptions.includes(listsOrdered)) {
 		setAttributes({ [getAttrKey('listsOrdered', attributes, manifest)]: listsDefault }); // Resets the attribute to the default value if invalid value set.
 	}
@@ -56,6 +57,5 @@ export const ListsEditor = (attributes) => {
 				data-id={unique}
 			/>
 		</>
-
 	);
 };

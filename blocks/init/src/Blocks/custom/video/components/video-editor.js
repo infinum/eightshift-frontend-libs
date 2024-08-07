@@ -10,6 +10,7 @@ export const VideoEditor = ({ attributes, setAttributes }) => {
 	const {
 		blockClass,
 	} = attributes;
+
 	return (
 		<div className={blockClass} data-id={unique}>
 			{outputCssVariables(attributes, manifest, unique, globalManifest)}

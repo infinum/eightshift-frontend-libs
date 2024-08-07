@@ -131,7 +131,6 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<AnimatedContentVisibility showIf={useSpecificTerms && !featuredContentUseCurrentTerm}>
 							<AsyncMultiSelect
 								key={featuredContentTaxonomy?.value}
-								// eslint-disable-next-line max-len
 								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentTerms}
 								loadOptions={getFetchWpApi(featuredContentTaxonomy?.api, {
@@ -183,7 +182,6 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<AnimatedContentVisibility showIf={useSpecificPosts && !featuredContentExcludeCurrentPost}>
 							<AsyncMultiSelect
 								key={featuredContentPostType.value}
-								// eslint-disable-next-line max-len
 								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentPosts}
 								loadOptions={getFetchWpApi(featuredContentPostType?.api, {
