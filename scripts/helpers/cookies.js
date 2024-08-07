@@ -20,16 +20,22 @@ export const cookies = {
 	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/');
 	 * ```
 	 */
-	setCookie(key, value, time, path) {
+	setCookie(key, value, time, path, domain) {
 		const expires = new Date();
 		expires.setTime(expires.getTime() + (time));
+		
 		let pathValue = '';
+		let domainValue = '';
 
 		if (typeof path !== 'undefined') {
-			pathValue = `path=${path};`;
+			pathValue = `;path=${path}`;
 		}
 
-		document.cookie = `${key}=${value};${pathValue}expires=${expires.toUTCString()}`;
+		if (typeof domain !== 'undefined') {
+			domainValue = `;domain=${domain}`;
+		}
+
+		document.cookie = `${key}=${value}${pathValue}${domainValue};expires=${expires.toUTCString()}`;
 	},
 
 	/**
