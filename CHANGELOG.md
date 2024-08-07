@@ -66,8 +66,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Updated
 
 - CSS reset so it has parity with Tailwind's _Preflight_.
-- Components with ES UI components as a base:
-  - `AdvancedColorPicker`
+- Most components to use ES UIC components **as a fallback until they're replaced**.
 
 ## [12.1.6]
 
