@@ -7,7 +7,6 @@ import {
 	IconToggle,
 	checkAttr,
 	getOption,
-	unescapeHTML,
 	getFetchWpApi,
 	props,
 	getOptions,
@@ -19,6 +18,7 @@ import {
 	AnimatedContentVisibility
 } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
+import { unescapeHTML } from '@eightshift/ui-components/utilities';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
 import { LoadMoreOptions } from '../../../components/load-more/components/load-more-options';
 import manifest from '../manifest.json';

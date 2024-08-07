@@ -11,9 +11,9 @@ import {
 	getFetchWpApi,
 	AsyncMultiSelect,
 	Section,
-	unescapeHTML,
 } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
+import { unescapeHTML } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {

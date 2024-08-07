@@ -17,9 +17,9 @@ import {
 	Section,
 	checkAttr,
 	getAttrKey,
-	truncateMiddle,
 } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
+import { truncateMiddle } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 
 export const MapOptions = ({ attributes, setAttributes }) => {

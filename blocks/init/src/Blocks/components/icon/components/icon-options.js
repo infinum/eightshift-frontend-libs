@@ -5,19 +5,16 @@ import {
 	getAttrKey,
 	getOption,
 	UseToggle,
-	RSOption,
 	Select,
 	generateUseToggleConfig,
-	RSSingleValue,
 } from '@eightshift/frontend-libs/scripts';
 import { clsx } from '@eightshift/ui-components/utilities';
+import { RSOption, RSSingleValue } from '@eightshift/ui-components';
 import manifest from './../manifest.json';
 
-const {
-	icons: manifestIcons,
-} = manifest;
+const { icons: manifestIcons } = manifest;
 
-const IconPickerOption = props => (
+const IconPickerOption = (props) => (
 	<RSOption {...props}>
 		<div className='es-h-spaced es-gap-2.5!'>
 			<i
@@ -42,10 +39,7 @@ const IconPickerValueDisplay = ({ children, ...props }) => (
 );
 
 export const IconOptions = (attributes) => {
-	const {
-		setAttributes,
-		hideSizePicker = false,
-	} = attributes;
+	const { setAttributes, hideSizePicker = false } = attributes;
 
 	const iconName = checkAttr('iconName', attributes, manifest);
 	const iconSize = checkAttr('iconSize', attributes, manifest);
@@ -59,24 +53,35 @@ export const IconOptions = (attributes) => {
 					placeholder={__('Select an icon', '%g_textdomain%')}
 					customMenuOption={IconPickerOption}
 					customValueDisplay={IconPickerValueDisplay}
-					onChange={(value) => setAttributes({ [getAttrKey('iconName', attributes, manifest)]: value })}
-					additionalClasses={clsx('es-flex-grow-1', !hideSizePicker && 'es-max-w-52')}
+					onChange={(value) =>
+						setAttributes({
+							[getAttrKey('iconName', attributes, manifest)]: value,
+						})
+					}
+					additionalClasses={clsx(
+						'es-flex-grow-1',
+						!hideSizePicker && 'es-max-w-52'
+					)}
 					noBottomSpacing
 					simpleValue
 				/>
 
-				{!hideSizePicker &&
+				{!hideSizePicker && (
 					<Select
 						value={iconSize}
 						options={getOption('iconSize', attributes, manifest)}
-						onChange={(value) => setAttributes({ [getAttrKey('iconSize', attributes, manifest)]: value })}
+						onChange={(value) =>
+							setAttributes({
+								[getAttrKey('iconSize', attributes, manifest)]: value,
+							})
+						}
 						additionalSelectClasses='es-max-w-14'
 						additionalClasses='es-flex-shrink-0'
 						noBottomSpacing
 						simpleValue
 						noSearch
 					/>
-				}
+				)}
 			</div>
 		</UseToggle>
 	);
