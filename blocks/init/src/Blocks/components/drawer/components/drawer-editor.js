@@ -1,5 +1,6 @@
 import React from 'react';
-import { checkAttr, selector, classnames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const DrawerEditor = (attributes) => {
@@ -19,7 +20,7 @@ export const DrawerEditor = (attributes) => {
 	const drawerTrigger = checkAttr('drawerTrigger', attributes, manifest);
 	const drawerPosition = checkAttr('drawerPosition', attributes, manifest);
 
-	const drawerClass = classnames(
+	const drawerClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

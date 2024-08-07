@@ -1,6 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, getAttrKey, getOption, UseToggle, ColorPicker, ucfirst, Select, generateUseToggleConfig, Section } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, UseToggle, ColorPicker, Select, generateUseToggleConfig, Section } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const ParagraphOptions = (attributes) => {
@@ -23,7 +24,7 @@ export const ParagraphOptions = (attributes) => {
 			label: label,
 			value: value,
 			weights: weights,
-			weightOptions: weights.map((weight) => ({ label: ucfirst(weight), value: weight })),
+			weightOptions: weights.map((weight) => ({ label: upperFirst(weight), value: weight })),
 		},
 	}), {});
 

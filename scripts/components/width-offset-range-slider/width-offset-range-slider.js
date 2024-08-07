@@ -1,8 +1,14 @@
 import React from 'react';
-import { Responsive, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { Responsive } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
-import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
+import {
+	BaseControl,
+	HStack,
+	ToggleButton,
+	ColumnConfigSlider,
+} from '@eightshift/ui-components';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A modern and customizable custom slider.
@@ -10,24 +16,22 @@ import { ColumnConfigSlider } from '../custom-slider/column-config-slider';
  * @typedef {null | 'dots' | true | {Number: string} | {Number: {style, label}}} DotStyle
  * @typedef {'top'|'bottom'|'hidden'} TooltipPosition
  *
- * @param {object} props                            - WidthOffsetRangeSlider options.
- * @param {React.Component?} [props.icon]           - Icon to show next to the label
- * @param {React.Component?} [props.label]          - Label to show above component.
- * @param {Object} [props.value]                    - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
- * @param {function} [props.onChange]               - Function to trigger when the value of is changing.
- * @param {any} [props.inheritValue]                - Value that marks something as inherited.
- * @param {function} [props.inheritCheck]           - Function that returns a `boolean`, used to decide whether a value is inherited or not.
- * @param {boolean} [props.fullWidthToggle=false]   - If `true`, the "Fullwidth" toggle is shown.
- * @param {boolean} [props.autoOffsetToggle=false]  - If `true`, the "Automatic offset" toggle is shown.
- * @param {any} [props.autoOffsetValue]             - Value that marks automatic offset.
- * @param {boolean?} [props.noBottomSpacing]        - If `true`, space below the control is removed.
- * @param {boolean?} [props.reducedBottomSpacing]   - If `true`, space below the control is reduced.
- * @param {string?} [props.additionalClasses]       - If passed, the classes are appended to the base control.
- * @param {boolean?} [props.numericValues=false]    - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
- * @param {Number} [props.totalNumberOfColumns=12]  - Available number of columns to show.
- * @param {function} [props.onBeforeChange]         - Function to trigger when the value of the slider starts changing.
- * @param {function} [props.onAfterChange]          - Function to trigger when the value of the slider is changed.
+ * @param {object} props - WidthOffsetRangeSlider options.
+ * @param {React.Component?} [props.icon] - Icon to show next to the label
+ * @param {React.Component?} [props.label] - Label to show above component.
+ * @param {Object} [props.value] - Value to use - keys are breakpoint names, values are `width`, `offset`, `fullWidth`.
+ * @param {function} [props.onChange] - Function to trigger when the value of is changing.
+ * @param {any} [props.inheritValue] - Value that marks something as inherited.
+ * @param {function} [props.inheritCheck] - Function that returns a `boolean`, used to decide whether a value is inherited or not.
+ * @param {boolean} [props.fullWidthToggle=false] - If `true`, the "Fullwidth" toggle is shown.
+ * @param {boolean} [props.autoOffsetToggle=false] - If `true`, the "Automatic offset" toggle is shown.
+ * @param {any} [props.autoOffsetValue] - Value that marks automatic offset.
+ * @param {string?} [props.additionalClasses] - If passed, the classes are appended to the base control.
+ * @param {boolean?} [props.numericValues=false] - If `true`, numeric values are returned instead of strings. Not compatible with `autoOffsetToggle`.
+ * @param {Number} [props.totalNumberOfColumns=12] - Available number of columns to show.
+ * @param {function} [props.onAfterChange] - Function to trigger when the value of the slider is changed.
  * @param {int|string} [props.colAutoStartOverride] - If passed, overrides the auto-calculated value of the automatic column start offset.
+ * @param {boolean} [props.showOuterAsGutter] - If `true`, the outer columns are displayed with a special icons instead of the column numbers. Other numbers are offset by 1.
  */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
@@ -45,51 +49,51 @@ export const WidthOffsetRangeSlider = (props) => {
 		autoOffsetToggle = false,
 		autoOffsetValue = 'auto',
 
-		noBottomSpacing,
-		reducedBottomSpacing,
-
 		additionalClasses,
 
 		numericValues = false,
 
 		totalNumberOfColumns: rawTotalColumns = 12,
 
-		onBeforeChange,
 		onAfterChange,
 
 		colAutoStartOverride,
+
+		showOuterAsGutter,
 	} = props;
 
 	const stringValues = !numericValues || autoOffsetToggle;
 
 	const breakpointNames = Object.keys(value);
 
-	const rawWidths = Object.entries(value).reduce((all, [breakpointName, { width }]) => ({
-		...all,
-		[breakpointName]: width,
-	}), {});
+	const rawWidths = Object.entries(value).reduce(
+		(all, [breakpointName, { width }]) => ({
+			...all,
+			[breakpointName]: width,
+		}),
+		{}
+	);
 
-	const rawOffsets = Object.entries(value).reduce((all, [breakpointName, { offset }]) => ({
-		...all,
-		[breakpointName]: offset,
-	}), {});
+	const rawOffsets = Object.entries(value).reduce(
+		(all, [breakpointName, { offset }]) => ({
+			...all,
+			[breakpointName]: offset,
+		}),
+		{}
+	);
 
-	const rawFullWidths = fullWidthToggle && Object.entries(value).reduce((all, [breakpointName, { fullWidth }]) => ({
-		...all,
-		[breakpointName]: fullWidth,
-	}), {});
-
-	// eslint-disable-next-line max-len
-	const buttonClass = 'es-has-v2-gutenberg-button-active-state es-slight-button-border es-button-icon-18 es-button-no-icon-spacing es-gap-1.5! es-rounded-1! es-h-8! es-px-2!';
+	const rawFullWidths =
+		fullWidthToggle &&
+		Object.entries(value).reduce(
+			(all, [breakpointName, { fullWidth }]) => ({
+				...all,
+				[breakpointName]: fullWidth,
+			}),
+			{}
+		);
 
 	return (
-		<Responsive
-			label={label}
-			icon={icon}
-			noBottomSpacing={noBottomSpacing}
-			reducedBottomSpacing={reducedBottomSpacing}
-			additionalClasses={additionalClasses}
-		>
+		<Responsive label={label} icon={icon} additionalClasses={additionalClasses}>
 			{breakpointNames.map((breakpoint, index) => {
 				const width = rawWidths[breakpoint];
 				const offset = rawOffsets[breakpoint];
@@ -123,160 +127,190 @@ export const WidthOffsetRangeSlider = (props) => {
 				const nearestValidWidth = getNearest('width');
 
 				const offsetValue = inheritCheck(offset) ? nearestValidOffset : offset;
-				const parsedOffset = (autoOffsetToggle && offsetValue === autoOffsetValue) ? autoStartOffset : parseInt(offsetValue);
+				const parsedOffset =
+					autoOffsetToggle && offsetValue === autoOffsetValue
+						? autoStartOffset
+						: parseInt(offsetValue);
 
-				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
-				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
+				const parsedWidth = parseInt(
+					inheritCheck(width) ? nearestValidWidth : width
+				);
+				const parsedFullWidth = inheritCheck(fullWidth)
+					? nearestValidFullWidth
+					: fullWidth;
 
-				const displayedWidth = parsedWidth + parsedOffset;
+				const displayedWidth = parsedWidth + parsedOffset - 1;
 
-				const totalNumberOfColumns = rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
+				const totalNumberOfColumns =
+					rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
 
 				return (
-					<ColumnConfigSlider
-						key={breakpoint}
-						noBottomSpacing={noBottomSpacing}
-						numOfColumns={totalNumberOfColumns}
-						value={[parsedOffset, displayedWidth]}
-						onChange={([o, w]) => {
-							let newValues = {};
-
-							if (isWidthInherited && !isOffsetInherited) {
-								newValues.offset = stringValues ? String(o) : o;
-							} else if (!isWidthInherited && isOffsetInherited) {
-								newValues.width = stringValues ? String(w - nearestValidOffset) : w - nearestValidOffset;
-							} else if (!isWidthInherited && offset === autoOffsetValue) {
-								const newWidth = w - autoStartOffset;
-
-								if (newWidth > 0) {
-									newValues.width = stringValues ? String(newWidth) : newWidth;
-								}
-
-							} else if (!isWidthInherited && !isOffsetInherited) {
-								newValues.width = stringValues ? String(w - o) : w - o;
-								newValues.offset = stringValues ? String(o) : o;
+					<>
+						<HStack
+							hidden={
+								!(
+									(fullWidthToggle &&
+										(index === 0 || !inheritCheck(fullWidth))) ||
+									(autoOffsetToggle && index === 0)
+								)
 							}
-
-							onChange({
-								...value,
-								[breakpoint]: {
-									...value[breakpoint],
-									...newValues,
+							className='es-uic-mb-1'
+						>
+							<ToggleButton
+								hidden={
+									!(
+										fullWidthToggle &&
+										(index === 0 || !inheritCheck(fullWidth))
+									)
 								}
-							});
-						}}
-						noWidthHandle={inheritCheck(width)}
-						noOffsetHandle={inheritCheck(offset) || (index === 0 && offset === autoOffsetValue)}
-						// eslint-disable-next-line max-len
-						additionalControlsAbove={!((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0)) ? null :
-							<>
-								{fullWidthToggle && (index === 0 || !inheritCheck(fullWidth)) &&
-									<Button
-										isPressed={parsedFullWidth}
-										onClick={() => {
-											onChange({
-												...value,
-												[breakpoint]: {
-													...value[breakpoint],
-													fullWidth: !parsedFullWidth,
-												}
-											});
-										}}
-										className={buttonClass}
-										icon={icons.columnGuttersLR}
-									>
-										{__('Fullwidth', 'eightshift-frontend-libs')}
-									</Button>
-								}
-
-								{autoOffsetToggle && index === 0 &&
-									<Button
-										isPressed={offset === autoOffsetValue}
-										onClick={() => {
-											onChange({
-												...value,
-												[breakpoint]: {
-													...value[breakpoint],
-													offset: offset === autoOffsetValue ? 1 : autoOffsetValue,
-												}
-											});
-										}}
-										className={buttonClass}
-										icon={icons.offsetAuto}
-									>
-										{__('Automatic offset', 'eightshift-frontend-libs')}
-									</Button>
-								}
-							</>
-						}
-						additionalControlsBelow={index === 0 ? null :
-							<div
-								// eslint-disable-next-line max-len
-								className='es-h-start es-mt-2 es-border es-border-color-cool-gray-100 es-rounded-1.5 es-px-1! es-py-0.5! es-display-flex es-gap-1! es-ml-2.5 es-w-full'
+								selected={parsedFullWidth}
+								onChange={(value) => {
+									onChange({
+										...value,
+										[breakpoint]: {
+											...value[breakpoint],
+											fullWidth: value,
+										},
+									});
+								}}
+								size='small'
+								className='es-uic-ml-auto'
 							>
-								<IconLabel
-									icon={icons.inherit}
-									label={__('Inherit', 'eightshift-frontend-libs')}
-									additionalClasses='es-gap-0.25! es-mr-auto es-text-3! -es-ml-4 es-bg-pure-white es-py-1 es-nested-color-cool-gray-450!'
-									standalone
-								/>
+								{__('Full-width', 'eightshift-frontend-libs')}
+							</ToggleButton>
 
-								<Button
-									isPressed={inheritCheck(offset)}
-									onClick={() => {
+							<ToggleButton
+								hidden={!(autoOffsetToggle && index === 0)}
+								selected={offset === autoOffsetValue}
+								onChange={() => {
+									onChange({
+										...value,
+										[breakpoint]: {
+											...value[breakpoint],
+											offset: offset === autoOffsetValue ? 1 : autoOffsetValue,
+										},
+									});
+								}}
+								size='small'
+								className={clsx(
+									!(
+										fullWidthToggle &&
+										(index === 0 || !inheritCheck(fullWidth))
+									) && 'es-uic-ml-auto'
+								)}
+							>
+								{__('Automatic offset', 'eightshift-frontend-libs')}
+							</ToggleButton>
+						</HStack>
+
+						<ColumnConfigSlider
+							key={breakpoint}
+							columns={totalNumberOfColumns}
+							value={[parsedOffset, displayedWidth]}
+							showOuterAsGutter={showOuterAsGutter ?? parsedFullWidth}
+							onChange={([o, w]) => {
+								let newValues = {};
+
+								if (isWidthInherited && !isOffsetInherited) {
+									newValues.offset = stringValues ? String(o) : o;
+								} else if (!isWidthInherited && isOffsetInherited) {
+									newValues.width = stringValues
+										? String(w - nearestValidOffset + 1)
+										: w - nearestValidOffset + 1;
+								} else if (!isWidthInherited && offset === autoOffsetValue) {
+									const newWidth = w - autoStartOffset;
+
+									if (newWidth > 0) {
+										newValues.width = stringValues
+											? String(newWidth)
+											: newWidth;
+									}
+								} else if (!isWidthInherited && !isOffsetInherited) {
+									newValues.width = stringValues ? String(w - o) : w - o + 1;
+									newValues.offset = stringValues ? String(o) : o;
+								}
+
+								onChange({
+									...value,
+									[breakpoint]: {
+										...value[breakpoint],
+										...newValues,
+									},
+								});
+							}}
+							disableWidth={inheritCheck(width)}
+							disableOffset={
+								inheritCheck(offset) ||
+								(index === 0 && offset === autoOffsetValue)
+							}
+							onChangeEnd={onAfterChange}
+						/>
+
+						<BaseControl
+							hidden={index === 0}
+							icon={icons.inherit}
+							label={__('Inherit', 'eightshift-frontend-libs')}
+							className='es-uic-mt-2 es-uic-mb-2 es-uic-ml-auto es-uic-w-fit'
+							inline
+						>
+							<HStack className='es-uic-ml-1'>
+								<ToggleButton
+									selected={inheritCheck(offset)}
+									onChange={() => {
 										onChange({
 											...value,
 											[breakpoint]: {
 												...value[breakpoint],
-												offset: inheritCheck(offset) ? parsedOffset : inheritValue,
-											}
+												offset: inheritCheck(offset)
+													? parsedOffset
+													: inheritValue,
+											},
 										});
 									}}
-									className={buttonClass}
+									size='small'
 								>
 									{__('Offset', 'eightshift-frontend-libs')}
-								</Button>
+								</ToggleButton>
 
-								<Button
-									isPressed={inheritCheck(width)}
-									onClick={() => {
-
+								<ToggleButton
+									selected={inheritCheck(width)}
+									onChange={() => {
 										onChange({
 											...value,
 											[breakpoint]: {
 												...value[breakpoint],
-												width: inheritCheck(width) ? displayedWidth : inheritValue,
-											}
+												width: inheritCheck(width)
+													? displayedWidth
+													: inheritValue,
+											},
 										});
 									}}
-									className={buttonClass}
+									size='small'
 								>
 									{__('Width', 'eightshift-frontend-libs')}
-								</Button>
+								</ToggleButton>
 
-								{fullWidthToggle &&
-									<Button
-										isPressed={inheritCheck(fullWidth)}
-										onClick={() => {
-											onChange({
-												...value,
-												[breakpoint]: {
-													...value[breakpoint],
-													fullWidth: inheritCheck(fullWidth) ? false : inheritValue,
-												}
-											});
-										}}
-										className={buttonClass}
-									>
-										{__('Fullwidth', 'eightshift-frontend-libs')}
-									</Button>
-								}
-							</div>
-						}
-
-						onBeforeChange={onBeforeChange}
-						onAfterChange={onAfterChange}
-					/>
+								<ToggleButton
+									hidden={!fullWidthToggle}
+									selected={inheritCheck(fullWidth)}
+									onChange={() => {
+										onChange({
+											...value,
+											[breakpoint]: {
+												...value[breakpoint],
+												fullWidth: inheritCheck(fullWidth)
+													? false
+													: inheritValue,
+											},
+										});
+									}}
+									size='small'
+								>
+									{__('Fullwidth', 'eightshift-frontend-libs')}
+								</ToggleButton>
+							</HStack>
+						</BaseControl>
+					</>
 				);
 			})}
 		</Responsive>

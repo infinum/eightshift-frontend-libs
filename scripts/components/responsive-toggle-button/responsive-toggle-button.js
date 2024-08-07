@@ -1,8 +1,8 @@
 import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
-import { classnames } from '../../helpers';
-import { icons } from '../../editor';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * A simple toggle button that allows changing values between breakpoints.
@@ -119,12 +119,11 @@ export const ResponsiveToggleButton = (props) => {
 								});
 							}}
 							icon={buttonIcon ?? React.cloneElement(icons.toggleOff, {
-								className: classnames('es-animated-toggle-icon', isActive && 'is-checked')
+								className: clsx('es-animated-toggle-icon', isActive && 'is-checked')
 							})}
 							isPressed={buttonToggleEffect && isActive}
-							className={classnames(
+							className={clsx(
 								'es-button-square-32 es-rounded-1! es-h-8! es-px-2!',
-								// eslint-disable-next-line max-len
 								buttonToggleEffect ? 'es-is-v2-gutenberg-button es-button-icon-24' : 'es-has-v2-gutenberg-button-active-state es-button-icon-30',
 								buttonToggleEffect && isActive && 'is-active'
 							)}

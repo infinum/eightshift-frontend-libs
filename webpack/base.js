@@ -54,7 +54,7 @@ module.exports = (options) => {
 	if (!options.overrides.includes('dependencyExtractionWebpackPlugin')) {
 		plugins.push(new DependencyExtractionWebpackPlugin({
 			outputFormat: 'json',
-			requestToExternal: function (request) { // eslint-disable-line consistent-return
+			requestToExternal: function (request) {
 				if (request === '@wordpress/dom-ready') {
 					return '';
 				}
@@ -118,7 +118,6 @@ module.exports = (options) => {
 					loader: 'sass-loader',
 					options: {
 						implementation: require("sass"),
-						// eslint-disable-next-line max-len
 						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},

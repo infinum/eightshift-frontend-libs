@@ -52,6 +52,7 @@ export const cookies = {
 	 */
 	getCookie(key) {
 		const keyValue = document.cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
+
 		return keyValue ? keyValue[2] : null;
 	},
 	setHalfDay() {

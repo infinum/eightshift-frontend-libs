@@ -1,6 +1,7 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { useSelect } from '@wordpress/data';
-import { checkAttr, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { WrapperDragNDropEditEditorComponent } from '../wrapper-drag-n-drop-editing';
 import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 import { GridGuides } from '../wrapper-grid-guides';
@@ -49,7 +50,7 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 
 	const wrapperMainClass = attributes['componentClass'] || manifest['componentClass'];
 
-	const wrapperClass = classnames(
+	const wrapperClass = clsx(
 		wrapperMainClass,
 		wrapperSimple && `${wrapperMainClass}--simple`,
 		previewVisible && `${wrapperMainClass}--edit-mode`,
@@ -82,7 +83,7 @@ export const WrapperEditor = ({ attributes, setAttributes, children }) => {
 		return () => {
 			window.removeEventListener('resize', calculateGridWidth);
 		};
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<WrapperTag ref={reference} style={gridWidth} className={wrapperClass} data-id={unique} id={wrapperId}>

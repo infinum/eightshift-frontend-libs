@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const PageOverlayEditor = (attributes) => {
@@ -15,7 +16,7 @@ export const PageOverlayEditor = (attributes) => {
 
 	const pageOverlayUse = checkAttr('pageOverlayUse', attributes, manifest);
 
-	const overlayClass = classnames(
+	const overlayClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

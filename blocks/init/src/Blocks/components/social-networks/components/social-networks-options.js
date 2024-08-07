@@ -8,10 +8,10 @@ import {
 	Section,
 	IconToggle,
 	OptionSelector,
-	icons,
 	ReOrderable,
 	ReOrderableItem,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from './../manifest.json';
 
 export const SocialNetworksOptions = (attributes) => {

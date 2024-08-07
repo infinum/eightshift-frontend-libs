@@ -1,6 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Notification, icons, props } from '@eightshift/frontend-libs/scripts';
+import { Notification, props } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { ParagraphEditor } from '../../../components/paragraph/components/paragraph-editor';
 
 export const TableOfContentsEditor = ({ attributes, setAttributes }) => {

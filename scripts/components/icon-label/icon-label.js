@@ -1,57 +1,26 @@
 import React from 'react';
-import { classnames } from '../../helpers';
+import { RichLabel } from '@eightshift/ui-components';
 
 /**
+ * @deprecated Use `RichLabel` from `@eightshift/ui-components` instead.
+ *
  * A simple icon-label combo for streamlined components.
  *
- * @param {object} props                         - IconLabel options.
- * @param {React.Component} props.label          - Label to display.
- * @param {React.Component} props.icon           - Icon to display.
- * @param {React.Component?} [props.subtitle]    - Label to display.
- * @param {boolean} [props.standalone=false]     - If `true` label is wrapped in div so it can be used by itself.
- * @param {boolean} [props.additionalClasses]    - If set and `standalone`, provided classes will be passed to the component.
- * @param {boolean} [props.addSubtitleGap=false] - If `true`, a slight gap between the subtitle and the label is added.
+ * @param {object} props - IconLabel options.
+ * @param {React.Component} props.label - Label to display.
+ * @param {React.Component} props.icon - Icon to display.
+ * @param {React.Component?} [props.subtitle] - Label to display.
+ * @param {boolean} [props.additionalClasses] - If set and `standalone`, provided classes will be passed to the component.
  */
 export const IconLabel = (props) => {
-	const { label, icon, subtitle, standalone = false, additionalClasses, addSubtitleGap = false } = props;
-
-	if (subtitle && standalone) {
-		return (
-			<div className={classnames('es-label-flex', additionalClasses)}>
-				{icon}
-				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2 es-items-start', addSubtitleGap && 'es-gap-0.5')}>
-					{label && <span className='es-flex-shrink-0'>{label}</span>}
-					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
-				</div>
-			</div>
-		);
-	}
-
-	if (subtitle) {
-		return (
-			<>
-				{icon}
-				<div className={classnames('es-display-flex es-flex-col es-line-h-1.2', addSubtitleGap && 'es-gap-0.5', additionalClasses)}>
-					{label && <span className='es-flex-shrink-0'>{label}</span>}
-					{subtitle && <span className='es-flex-shrink-0 es-text-3 es-color-cool-gray-450'>{subtitle}</span>}
-				</div>
-			</>
-		);
-	}
-
-	if (standalone) {
-		return (
-			<div className={classnames('es-label-flex', additionalClasses)}>
-				{icon}
-				{label}
-			</div>
-		);
-	}
+	const { label, icon, subtitle, additionalClasses } = props;
 
 	return (
-		<>
-			{icon}
-			{label}
-		</>
+		<RichLabel
+			icon={icon}
+			label={label}
+			subtitle={subtitle}
+			className={additionalClasses}
+		/>
 	);
 };

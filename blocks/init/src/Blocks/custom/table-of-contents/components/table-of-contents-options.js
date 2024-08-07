@@ -1,7 +1,8 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { Control, IconToggle, checkAttr, getAttrKey, icons, props } from '@eightshift/frontend-libs/scripts';
+import { Control, IconToggle, checkAttr, getAttrKey, props } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { ParagraphOptions } from '../../../components/paragraph/components/paragraph-options';
 import manifest from '../manifest.json';
 

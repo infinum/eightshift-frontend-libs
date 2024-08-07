@@ -17,9 +17,9 @@ import {
 	Section,
 	checkAttr,
 	getAttrKey,
-	icons,
-	truncateMiddle,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { truncateMiddle } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 
 export const MapOptions = ({ attributes, setAttributes }) => {
@@ -142,9 +142,7 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 					)}
 				>
 					{mapLayers.map((layer, index) => {
-						// eslint-disable-next-line max-len
 						const needsApiKey = ['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type);
-						// eslint-disable-next-line max-len
 						const hasMapStyleOptions = ['mapBoxVector', 'mapBoxRaster', 'mapTilerVector', 'vectorJson', 'mapTilerRasterXyz', 'mapTilerRasterJson'].includes(layer?.type);
 
 						return (
@@ -166,7 +164,6 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												modifiedData[index].hidden = !modifiedData[index].hidden;
 												setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
 											}}
-											// eslint-disable-next-line max-len
 											className='es-mr-1 es-button-square-20 es-button-icon-16 es-rounded-1 es-border-cool-gray-300 es-hover-border-cool-gray-300 es-focus-border-transparent es-transition-colors'
 											label={mapLayers[index]?.hidden ? __('Show', '%g_textdomain%') : __('Hide', '%g_textdomain%')}
 											showTooltip
@@ -214,7 +211,6 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												}
 
 												{layer?.type === 'mapBoxRaster' &&
-													// eslint-disable-next-line max-len
 													__('Copy the full style URL from Mapbox or a Mapbox-compatible source. Keep the access token inside the URL.', '%g_textdomain%')
 												}
 
@@ -225,7 +221,6 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 													<>
 														<code className='es-bg-transparent es-p-0 es-text-3'>{'{z}/{x}/{y}'}</code>
 														{
-															// eslint-disable-next-line max-len
 															__("should be left as they are in the URL; they're needed for the map to work properly.", '%g_textdomain%')
 														}
 														<br />
@@ -298,7 +293,6 @@ export const MapOptions = ({ attributes, setAttributes }) => {
 												delete modifiedData[index].geoJsonUrl;
 												setAttributes({ [getAttrKey('mapLayers', attributes, manifest)]: modifiedData });
 											}}
-											// eslint-disable-next-line max-len
 											className='es-button-icon-24 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-admin-accent es-rounded-1.5 es-nested-color-cool-gray-650'
 										>
 											{__('Replace', '%g_textdomain%')}

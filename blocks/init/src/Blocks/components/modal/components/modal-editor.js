@@ -1,6 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, selector, classnames } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, selector } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const ModalEditor = (attributes) => {
@@ -29,7 +30,7 @@ export const ModalEditor = (attributes) => {
 	const modalContent = checkAttr('modalContent', attributes, manifest);
 	const modalId = checkAttr('modalId', attributes, manifest);
 
-	const modalClass = classnames(
+	const modalClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

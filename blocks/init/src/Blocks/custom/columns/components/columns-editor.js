@@ -4,7 +4,8 @@ import { Placeholder, Button } from '@wordpress/components';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { useSelect, dispatch } from '@wordpress/data';
-import { BlockIcon, BlockInserter, getUnique, icons, outputCssVariables } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter, getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts';
+import { icons, BlockIcon } from '@eightshift/ui-components/icons';
 import globalManifest from './../../../manifest.json';
 import manifest from './../manifest.json';
 
@@ -43,7 +44,6 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 								return (
 									<Button
 										key={index}
-										// eslint-disable-next-line max-len
 										className='es-v-spaced es-content-center! es-m-0! es-nested-w-8 es-nested-h-8 es-h-auto es-w-32 es-h-24 es-rounded-1.5 es-border es-border-cool-gray-100 es-hover-border-cool-gray-400 es-transition es-nested-m-0!'
 										onClick={() => {
 											const blocksToInsert = blockData.map(({ name: blockName, attributes: blockAttrs }) => {
@@ -74,7 +74,6 @@ export const ColumnsEditor = ({ attributes, clientId }) => {
 
 								dispatch('core/block-editor').insertBlock(column, 0, clientId);
 							}}
-							// eslint-disable-next-line max-len
 							className={'es-slight-button-border-cool-gray-400 es-hover-slight-button-border-admin-accent es-active-slight-button-border-admin-accent es-focus-slight-button-border-admin-accent es-nested-m-0! es-gap-1.25! es-bg-pure-white! es-mx-auto es-text-3.25! es-color-cool-gray-650 es-rounded-1.5! es-flex-shrink-0'}
 							icon={icons.wrench}
 						>

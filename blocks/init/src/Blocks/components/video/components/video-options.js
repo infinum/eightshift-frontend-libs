@@ -7,7 +7,6 @@ import {
 	checkAttr,
 	getAttrKey,
 	IconLabel,
-	icons,
 	IconToggle,
 	UseToggle,
 	OptionSelector,
@@ -20,6 +19,7 @@ import {
 	generateUseToggleConfig,
 	Collapsable,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from '../manifest.json';
 
 export const VideoOptions = (attributes) => {
@@ -63,6 +63,7 @@ export const VideoOptions = (attributes) => {
 			case 'chapters':
 				return icons.videoChapters;
 		}
+
 		return icons.emptyRect;
 	};
 
@@ -115,7 +116,6 @@ export const VideoOptions = (attributes) => {
 					<Button
 						onClick={() => setAttributes({ [getAttrKey('videoUrl', attributes, manifest)]: [] })}
 						icon={icons.trash}
-						// eslint-disable-next-line max-len
 						className='es-button-icon-24 es-slight-button-border-cool-gray-100 es-hover-slight-button-border-red-500 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-v-center es-content-center! es-h-18 es-w-18 es-gap-1! es-p-1! es-nested-m-0!'
 					>
 						{__('Remove video', '%g_textdomain%')}
@@ -190,7 +190,6 @@ export const VideoOptions = (attributes) => {
 									<Button
 										icon={icons.trashAlt}
 										label={__('Remove image', '%g_textdomain%')}
-										// eslint-disable-next-line max-len
 										className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 										onClick={() => setAttributes({ [getAttrKey('videoPoster', attributes, manifest)]: {} })}
 										showTooltip
@@ -346,7 +345,6 @@ export const VideoOptions = (attributes) => {
 					<Notification
 						type='warning'
 						text={__('Video plays automatically, with sound, and without controls', '%g_textdomain%')}
-						// eslint-disable-next-line max-len
 						subtitle={__('This will bother most users and is an accessibility issue. Consider changing some of the options.', '%g_textdomain%')}
 						iconOverride={icons.a11yWarning}
 						noBottomSpacing

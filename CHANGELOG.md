@@ -1,8 +1,72 @@
-
 # Change Log for the Eightshift Frontend Libs
+
 All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
+
+## [13.0.0]
+
+> [!NOTE]
+> Big update, breaking changes ahead!
+> Check the v12 to v13 migration guide for more details.
+
+### Removed
+
+- Most helpers (either relocated to ES UI components or deprecated).
+- Icons and icon-related components.
+- Removed some SCSS placeholders:
+  - `%absolute-center`
+  - `%bg-image`
+  - `%clearfix`
+  - `%site-padding`
+  - `%site-padding-correction`
+  - `%link-transition`
+  - `%heading-reset`
+  - `%paragraph-reset`
+  - `%dl-reset`
+- Removed some SCSS functions:
+  - `calc-column-width` / `calcCW`
+  - `calc-dynamic-size` / `calcDS`
+  - `calc-grid-width` / `calcGW`
+  - `line-height` / `lh`
+  - `em`
+- Removed some SCSS mixins:
+  - `flex-container`
+  - `box-sizing` (replace with `box-sizing`, if no arguments were specified, the default is `border-box`)
+  - `column-offset-modifiers`
+  - `flex-column-width-modifiers`
+  - `flex-column-width`
+  - `flex-grid-width-modifiers`
+  - `flex-grid-width`
+  - `flex-horizontal-align-modifiers`
+  - `flex-vertical-align-modifiers`
+  - `text-align-modifiers`
+  - `stretch`
+  - `placeholder`
+  - `inline-font-colors`
+  - `grid-offset-modifiers`
+  - `font-smoothing`
+  - `custom-bullets`
+  - `link-modifiers`
+  - `link`
+  - `modifiers-deep`
+  - `modifiers-range`
+  - `modifiers`
+  - `responsive-modifiers`
+  - `responsive-selectors-visibility`
+  - `responsive-selectors`
+  - `responsive`
+  - `for-each-attribute`
+  - `es-eases`
+- Removed keyframes definitions.
+- Removed `multiplePropsActions`, `singlePropsAction`, `mediaPropsAction`, `getActions` functions (from editor scripts)
+- Removed some components:
+  - `HelpModal`
+
+### Updated
+
+- CSS reset so it has parity with Tailwind's _Preflight_.
+- Most components to use ES UIC components **as a fallback until they're replaced**.
 
 ## [12.1.6]
 
@@ -12,44 +76,53 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [12.1.5]
 
 ### Removed
+
 - Removed BrowserSync dependencies.
 - Removed Babel dependencies.
 
 ### Changed
+
 - Updated ES lint config and added required dependencies for a new setup.
 
 ## [12.1.4]
 
 ### Fixed
+
 - Reverting css builder to cssoMinify
 
 ## [12.1.3]
 
 ### Fixed
+
 - Additional fixes for Webpack and adding missing packages.
 
 ## [12.1.2]
 
 ### Fixed
+
 - Added missing package for Webpack.
 
 ## [12.1.1]
 
 ### Fixed
+
 - Added missing package.
 
 ## [12.1.0]
 
 ### Changed
+
 - Webpack config to use swc for JS compilation.
 
 ### Removed
+
 - Babel config folder as we are using swc now.
 - Webpack browser sync as it is not used anymore.
 
 ## [12.0.0]
 
 ### Changed
+
 - All `Components::getManifest` to `Components::getManifestByDir` method.
 - All `Components::outputCssVariables($attributes, $manifest, $unique, $globalManifest)` to `Components::outputCssVariables($attributes, $manifest, $unique)`.
 - All `renderPartial` to `render` method.
@@ -58,11 +131,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [11.0.1] - 2024-04-23
 
 ### Updated
+
 - Fixed block editor sidebar block display with long labels
 
 ## [11.0.0] - 2024-04-23
 
 ### Updated
+
 - Support for WordPress 6.5
 - Fixed rounding errors with `NumberPicker`
 - Updated dependencies
@@ -72,22 +147,27 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Fixed extra line break in Responsive label
 
 ### Removed
+
 - WP style overrides for WordPress < 6.3
 
 ### Important
+
 **Minimum required Node version is now 20!**
 
 ## [10.0.0] - 2024-03-18
 
 ### Removed
+
 - Storybook is no longer part of Frontend Libs (Potentially breaking!)
 
 ### Added
+
 - 1 new utility class: `focus-slight-button-border-wp` (as WP really likes using the `:focus` state, instead of `:focus-visible`)
 - `additionalPopoverProps` prop in `PopoverWithTrigger` for passing custom props
 - `data-es-popover-close` can now also close `PopoverWithTrigger` externally
 
 ### Updated
+
 - Updated dependencies
 - Replaced `import-glob-loader` with `import-glob`, as the previous package was abandoned
 - Fixed `NumberPicker` spinners in Firefox
@@ -99,9 +179,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [9.7.0] - 2024-03-08
 
 ### Added
+
 - 1 UI icon, 9 block icons.
 
 ### Updated
+
 - Fixed default `NumberPicker` sizing
 - Tweaked some of the default `Menu` trigger button classes.
 - Reworked the look of `Repeater`.
@@ -112,12 +194,14 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [9.6.0] - 2024-02-29
 
 ### Added
+
 - New `es-size`, `es-min-size`, and `es-max-size` (+ `-nested` variants) utility classes for setting height and width at once
 - New `prefix`, `suffix`, `extraButton`, and `noExtraButtonSeparator` props in `NumberPicker`
 - `Collapsable` now has a `disabled` prop to disable the expand/collapse button
 - 1 new UI icon
 
 ### Updated
+
 - `NumberPicker` has been completely updated visually
 - `ResponsiveNumberPicker` now better visually integrates the reset button
 - Tweaked Gutenberg override classes for `NumberControl` so they don't override FE libs `NumberPicker`
@@ -130,6 +214,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [9.5.0] - 2024-02-21
 
 ### Updated
+
 - Fixed block renaming (due to recent Gutenberg changes)
 - `LinkInput` should now pop the suggestion panel only when focused into the input field
 - Fixed typo in `MultiSelect` story
@@ -137,29 +222,35 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [9.4.2] - 2024-02-21
 
 ### Updated
+
 - `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
 
 ## [9.4.1] - 2024-02-19
 
 ### Updated
+
 - Dependency updates
 
 ## [9.4.2] - 2024-02-21
 
 ### Updated
+
 - `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
 
 ## [9.4.1] - 2024-02-19
 
 ### Updated
+
 - Dependency updates
 
 ## [9.4.0] - 2024-02-14
 
 ### Added
+
 - `truncate` text helper to make strings of limited width easier
 
 ### Updated
+
 - `ColumnConfigSlider` has a bit cleaner and more compact styling
 - Updated 1 UI icon
 - Added 21 new UI icons
@@ -172,16 +263,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [9.3.1] - 2024-02-06
 
 ### Updated
+
 - Move `@babel/preset-react` to dependencies (from devDependencies)
 
 ## [9.3.0] - 2024-02-06
 
 ### Added
+
 - 59 new UI icons
 - New `GutenbergBlock` helper component, to streamline `-block.js` files
 - New `bem` helper to enable less code for selectors that don't need the more advanced conditions
 
 ### Updated
+
 - Updated 18 UI icons
 - Fixed JSDoc `inlineLabel` prop types within `OptionSelector` and `ColorPallete`
 - Fixed `disabled` prop not working within certain variants of `IconToggle`
@@ -191,23 +285,28 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `WidthOffsetRangeSlider` will behave better when using AUTO offset
 
 ### Storybook
+
 - Cleaned up Storybook majorly and migrated it to 7.x
 
 ### Important
+
 **Minimum required Node version is now 18!**
 
 ## [9.2.1] - 2024-01-25
 
 ### Added
+
 - 17 new UI icons
 
 ### Updated
+
 - Tweaked some of the default Gutenberg style overrides
 - Fixed default block names in WP 6.4
 
 ## [9.2.0] - 2024-01-15
 
 ### Added
+
 - 12 new UI icons
 - 1 new block icon
 - new `lodash` function replacements
@@ -217,6 +316,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `.es-tabular-nums`, `.es-hidden` (`visibility: hidden`) and `es-dots-background` (dotted background) utility classes have been added
 
 ### Updated
+
 - Project will now only lint staged files
 - All of the dependencies have been updated to the latest versions
 - Stylelint rules have been cleaned up, and previous rules have been reintroduced from a different package, due to changes in Stylelint
@@ -235,15 +335,18 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Fixed tests
 
 ### Removed
+
 - `lodash` is no longer used in the project
 
 ## [9.1.0] - 2023-11-16
 
 ### Added
-- New block icon (*Search field*)
+
+- New block icon (_Search field_)
 - Support for Gutenberg block renaming (requires WordPress 6.4.x or newer)
 
 ### Updated
+
 - Improved support for WordPress 6.4.x
 - Map block now works with the latest version of OpenLayers (8.1.0 at the time of publishing)
 - Map block has a better layer adder
@@ -255,43 +358,52 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 This is a major release that includes PHP8+ support. We tested it on the PHP 8.2.12 version.
 
 ### Added
+
 - Better copy for checkAttr helper if key is missing.
 
 ### Updated
+
 - Composer packages.
 - Composer command names.
 - Npx command readme.
 
 ### Removed
+
 - Unnecessary standards and ignoring lines.
 - Storybook support for local project.
 
 ## [8.6.2] - 2023-10-24
 
 ### Added
+
 - `wrapper` corrections to be used using the `render` method as a standalone component.
 
 ### Changed
+
 - cleaned up the `Load more` JS logic
 
 ## [8.6.1] - 2023-10-23
 
 ### Fixed
+
 - Wrong release number.
 
 ## [8.6.0] - 2023-10-23
 
 ### Fixed
+
 - Block registration issue with WooCommerce combination.
 
 ## [8.5.0] - 2023-10-17
 
 ### Added
+
 - a couple of new icons
 - a couple of new utility classes (z-index, isolation, border: none)
 - new `Menu` component (together with `MenuItem` and `MenuSeparator`)
 
 ### Changed
+
 - SASSDoc and Storybook sidebars are now blue
 - fixed RC Slider ColumnConfigSlider background
 - tweaked Gutenberg UI enhancements control roundness
@@ -300,18 +412,22 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [8.4.7] - 2023-09-28
 
 ### Added
+
 - a couple of new icons
 - a custom `label` option for the `BlockInserter`
 
 ### Changed
+
 - incorrect rounded corners in `NumberPicker` spinner buttons
 
 ## [8.4.6] - 2023-09-25
 
 ### Added
+
 - a couple of new icons
 
 ### Changed
+
 - fixed duplicate label on `LinkEditComponent`
 - tweaked some Gutenberg components to have (more) rounded corners, so it matches better with everything else
 - updated RC slider and fixed issue with `ColumnConfigSlider` being offset
@@ -320,10 +436,12 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [8.4.5] - 2023-09-13
 
 ### Added
+
 - a couple of new icons.
 - a couple of new text casing utility classes.
 
 ### Changed
+
 - **Storybook was re-styled** a bit to make it fit bitter into eightshift.com (had to use overrides, as there's no official way, should be relatively stable with updates).
 - **SASS docs were restyled** to make them fit better into eightshift.com.
 - `AdvancedColorPicker` now uses 3rd party components for solid color and gradient pickers, removing the Gutenberg dependency and breaking changes they often make (fixes #746).
@@ -331,24 +449,29 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [8.4.4] - 2023-08-28
 
 ### Changed
+
 - Es-lint rule to ignore max length.
 
 ### Added
+
 - WebPack loaded will not parse webP images also.
 
 ## [8.4.3] - 2023-08-25
 
 ### Added
+
 - added missing import for WP6.3 styles
 - Repeater now supports disabling the "Add" button via `disableItemAdd` and providing a custom one via `customAddButton`
 
 ## [8.4.2] - 2023-08-11
 
 ### Added
+
 - support for WP 6.3.
 - added 11 new UI icons and 1 new block icon.
 
 ### Changed
+
 - `fetchWpApi` now has a `searchColumns` param to enable further filtering.
 - `Site footer` and `Site navbar` now use a simpler mechanism for ID generation, removing the dependency for `window.crypto` (which doesn't work in non-HTTPS environemnts).
 - `Repeater` and `ReOrderable` will now auto-regenerate all item IDs if a conflict is found.
@@ -357,41 +480,49 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [8.4.1] - 2023-06-20
 
 ### Changed
+
 - updating random Id generator to output 8 rather than 32 characters.
 
 ## [8.4.0] - 2023-06-13
 
 ### Removed
+
 - removed `menu` component, as it's not needed anymore.
 - removed `layout-three-columns` as it's not used anywhere anymore.
 
 ### Added
+
 - added `admin-header-footer-picker` component (renders the settings page).
 - totally revamped theme and plugin setups visually.
 - theme setup is now fully hands-off and automatic (including `init theme`, `npm install`, `theme activate` and setting up reusable header/footer).
 - "Site navigation" and "Site footer" block, to enable making use of WP menus a history.
 
 ### Changed
+
 - updated the default theme logo to the new ES DevKit one.
 - drawer component, so it better integrates with the new blocks, and also uses way less JS (especially if the browser supports the `:has()` selector).
 
 ### Fixed
+
 - fixed #726 (bug with Repeater).
 - fixed `LinkEditComponent` not clearing properly when there's no text inside in some cases.
 
 ## [8.3.0] - 2023-05-15
 
 ### Bugfixes
+
 - fixed Advanced color picker crashing when selecting gradient
 - fixed Paragraph block splitting issues and improved merge logic
 - fixed Image block previews for weird aspect ratios
 - fixed various icon sizes throughout the UI, caused by Gutenberg
 
 ### New UI components
+
 - added a highly configurable PresetPicker component
 - ReOrderable component - similar to Repeater, but without the expanding part
 
 ### UI component updates
+
 - new UI and block icons
 - Notification component now supports additionalClasses prop
 - fixed Repeater doc block and cleaned up the code a bit
@@ -403,6 +534,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - `FancyDivider` border has higher contrast now
 
 ### New blocks
+
 - added Map block
 - added Table of contents block
 - removed existing share and social-links components, replaced them with social-networks component and block
@@ -410,32 +542,39 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - added Site footer block
 
 ### Block updates
+
 - added presets to Columns
 - wrapper has a new preview when configuring width and offset
 
 ### Experiments
+
 - added experimental Graphical editing mode to wrapper - enable it through the global manifest
 
 ### Misc
+
 - replaced the deprecated registerStore method for ES stores
 
 ## [8.2.1] - 2023-04-26
 
 ### Fixed
+
 - Spinners in NumberPicker will now set the min value if no value is currently present (undefined or empty value).
 - Columns will now hide the full wrapper option.
 
 ## [8.2.0] - 2023-04-25
 
 ### Added
+
 - added extra tweaks for some built in components (like the snackbar).
 - added some new UI icons, **529** total now!
 
 ### Fixed
+
 - fixed an age-old issue with block registration, where the React HTML parser was screwing up some block icons in the inserter, causing malformed attributes (e.g. `viewbox` instead of `viewBox`).
 - fixed editor CSS variable output (#701).
 
 ### Changed
+
 - fully ready for WordPress 6.2! (including fixes for #712 and #708).
 - `NumberPicker` now has a `placeholder` option.
 - Wrapper fixes for the project colors in the color picker.
@@ -448,18 +587,22 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - **fully updated all Block icons and Forms block icons** (most of icons redrawn from scratch); **183** total (40 of those are Forms block icons)
 
 ### Removed
+
 - removed some unused attributes from Button component (#706).
 
 ## [8.1.0] - 2023-03-01
 
 ## Fixed
+
 - UseToggle missing expanded outline when only label and expand button are visible.
 - default WP appender not allowing clicks around it.
 
 ## Added
+
 - 2 new icons.
 
 ## Changes
+
 - IconToggle with tileIcon style can now have its additionalClasses passed through.
 
 ## [8.0.0] - 2023-02-21
@@ -469,6 +612,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [7.3.0] - 2022-11-09
 
 ### Changed
+
 - reverted WP 6.1 `BaseControl label` casing.
 - fixed `IconToggle` and `ToggleControl` changes due to the new internal structure.
 - slightly tweaked `SimpleHorizontalSingleSelect` styling.
@@ -480,9 +624,11 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [7.2.0] - 2022-10-04
 
 ### Added
+
 - new flag in the manifest for `innerBlocksDependency` that will tell the WP-CLI about items dependency.
 
 ### Fixed
+
 - tweaked Gutenberg's` NumberControl` style to better match our components.
 - added new icons.
 - `CustomSelect` can now have custom props passed (e.g., if you need to selectively disable some options or need any feature from React Select that we didn't have an abstraction for).
@@ -492,32 +638,38 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - rename the paragraph components inside the quote component to `quote` and `attribution` for better distinction.
 
 ### Removed
+
 - duplicated normalize imports on block assets.
 - double import of `@wordpress/components` statement in the advanced color picker component.
 
 ## [7.1.0] - 2022-09-06
 
 ### Changed
+
 - facelift for all components and a bunch of new components. All details can be seen [here](https://github.com/infinum/eightshift-frontend-libs/pull/661)
 
 ### Fixed
+
 - advanced-color-picker component double import.
 
 ## [7.0.1] - 2022-08-01
 
 ### Changed
+
 - Fixing tests.
 - Updating create setup process to show requirements and forbidden words.
 - Updated Github actions.
 - Override editor to fix broken inserter position.
 
 ### Added
+
 - Tag in readme for codecov.
 - Added tests coverage.
 
 ## [7.0.0] - 2022-07-11
 
 ### Changed
+
 - Updated Webpack to v5 and all packages.
 - Updated block featured-content to use load-more.
 - Stylelint config.
@@ -525,6 +677,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Eslint config.
 
 ### Added
+
 - New component layout.
 - New component load-more.
 - Corrections for the new create-project setup.
@@ -534,29 +687,35 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - New frontend entrypoint file for blocks/components.
 
 ### Fixed
+
 - Issues regarding dart-sass.
 
 ### Removed
+
 - normalize.scss package and replaced it with our version.
 
 ## [6.2.0] - 2022-06-03
 
 ### Added
+
 - New block icons.
 - Breakpoints map to style to be able to use manifest breakpoints.
 - Option to use rem based fonts on frontend and in editor. Used for fluid design.
 
 ### Fixed
+
 - Safari bug on hamburger menu.
 
 ## [6.1.0] - 2022-05-19
 
 ### Fixed:
+
 - refactored `unescapeHTML` to work way more reliably.
 - readme and doc comment for `Responsive` are now correct.
 - `Collapsable`, `CollapsableComponentUseToggle` and `CompactResponsive` are now smarter with outline indentation and nesting.
 
 ### Changed:
+
 - additional/custom classes can be passed to more components now (`CollapsableComponentUseToggle`, `SimpleHorizontalSingleSelect`, `CustomSlider`, `CustomRangeSlider` ).
 - added new utility classes for display, aligns, flexbox, ...
 - added new sizes for utility classes.
@@ -571,16 +730,19 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [6.0.5] - 2022-05-11
 
 ### Fixed:
+
 - classNames style issue fixed.
 
 ## [6.0.4] - 2022-05-11
 
 ### Fixed:
+
 - classNames issue on fancy divider and compact responsive components.
 
 ## [6.0.3] - 2022-05-09
 
 ### Changed:
+
 - sassdocs build style.
 - all internal components now uses internal links and not alias.
 - all internal components now uses css variables that can be overriden from the project.
@@ -600,6 +762,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - `AdvancedColorPicker` has been fully refactored to make it look nicer and more compact.
 
 ### Added:
+
 - added new icons and update some existing ones.
 - added new utility classes.
 
@@ -618,9 +781,10 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [6.0.2] - 2022-05-02
 
 ### Fixed:
+
 - internal components now use relative paths for internal imports (instead of `@eightshfit/frontend-libs/scripts`).
 - `CustomSelect` and `Custom(Range)Slider` have been partly refactored and should be more performant now.
-- `CompactResposnive` now has an option to hide the default breakpoint indicators; this now allows the old `Responsive` to render the new component without any breaking changes 🎉  (you should still take your time and remove the breakpoint labels and switch to `CompactResponsive`, though 😄 ).
+- `CompactResposnive` now has an option to hide the default breakpoint indicators; this now allows the old `Responsive` to render the new component without any breaking changes 🎉 (you should still take your time and remove the breakpoint labels and switch to `CompactResponsive`, though 😄 ).
 - `CustomSelect` has an `additionalClasses` param now.
 - `ColorPickerComponent`/`ColorPalleteCustom` now have an improved sorting logic - single color shades won't get their own group; also the grouping functionality is toggleable now.
 - `ColorPickerComponent` has its missing `searachable` prop readded 😅 .
@@ -633,6 +797,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [6.0.1] - 2022-04-21
 
 ### Fixed
+
 - Blocks correct order of store registration.
 
 ## [6.0.0] - 2022-04-19
@@ -643,44 +808,54 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [5.0.3] - 2022-01-26
 
 ### Added
+
 - GH Actions optimization
   - Added concurrency that will cancel previous workflow runs for the same branch that have not yet completed.
 
 ### Updated
+
 - Added new icons
 
 ### Fixed
+
 - Linter fixes - missing semicolon
 
 ## [5.0.2] - 2021-09-13
 
 ### Fixed
+
 - Hotfix for missing package and broken build.
 
 ## [5.0.1] - 2021-09-13
 
 ### Added
+
 - New babel config to silence warnings for plugin-proposal-private-property-in-object.
 - New modal component.
 - New blockquote block.
 
 ### Changed
+
 - OverrideInnerBlockAttributes helper now supports exclude prop.
 
 ### Fixed
+
 - Phpstan issues.
 - Blocks not rendering in the storybook.
 
 ## [5.0.0] - 2021-08-16
+
 - Major braking changes do to updates on css variables, and helpers.
 
 ## [4.0.8] - 2022-01-26
 
 ### Added
+
 - Added 11 new components and a couple of new helpers from Frontend Libs 5.x and 6.x
 - Added top-level imports for components, helpers and scripts
 
 ### Changed
+
 - Updated `ColorPalleteCustom`, `CustomSelect`, `HeadingLevel`, `LinkToolbarButton`, `OptionPicker`, `Responsive` and `ServerSideRender`
 - Updated UI and block icons
 - Update `override-editor` styles
@@ -688,39 +863,48 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [4.0.7] - 2021-07-22
 
 ### Changed
+
 - Fix for webpack cache issue.
 
 ## [4.0.6] - 2021-07-15
 
 ### Changed
+
 - Minor backend changes.
 
 ## [4.0.5] - 2021-02-04
 
 ### Changed
+
 - DependencyExtractionWebpackPlugin added config to json file as dependency tree.
 
 ### Added
+
 - New config for webpack to use https in browserSync
 
 ## [4.0.4] - 2021-02-03
 
 ### Added
+
 - Vertical align to column block.
 - Implemented new icons set for component, blocks and helper modal.
 - YoastSeo plugin helper to be able to process content for analysis.
 - Image component added alt option.
+
 ### Changed
+
 - Better documentation for helper modal.
 - Cleanup for documentation.
 
 ## [4.0.3] - 2021-01-26
 
 ### Added
+
 - Camelize helper.
 - GetOptionsColor helper.
 
 ### Fixed
+
 - Component image stretching issue with align.
 - Component column offset not working.
 - Component column order not working.
@@ -728,20 +912,24 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Component columns vertical align was not working.
 
 ### Changed
+
 - Wrapper, Paragraph, Lists, Link, Heading, Button component to a new GetOptionsColor helper.
 
 ## [4.0.2] - 2021-01-15
 
 ### Removed
+
 - Removed package-lock.json
 - Removed composer.lock
 - Removed version number from composer.json
 
 ### Added
+
 - New Jumbotron block.
 - New Jumbotron component.
 
 ### Changed
+
 - Image component align in 9 position
 - Image component wrap semantic class.
 - Link component wrap semantic class.
@@ -753,23 +941,29 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ## [4.0.1] - 2021-01-13
 
 ### Added
+
 - New Inline font color mixin.
 - @babel/plugin-proposal-class-properties package in Babel config.
 
 ### Changed
+
 - Wrap selector for components: Button, Image, Link.
 
 ### Fixed
+
 - Missing Browser sync package.
 - Not working @wordpress/dom-ready package loaded from Webpack.
 
 ## [4.0.0] - 2021-01-05
+
 MAYOR BREAKING CHANGES
 
 - You should not try to update from version 3 to 4 because they are not compatible.
+
 ## [3.5.0] - 2020-06-03
 
 ### Added
+
 - Option to create block variations from manifest.json.
 - Removing `blockName-icons.js` file and added ability to add SVG icon from `manifest.json`.
 - Changed `columns` and `column` block icon to manifest.
@@ -778,17 +972,20 @@ MAYOR BREAKING CHANGES
 - Variation example for `grid` block.
 
 ### Changed
+
 - Fixes on columns block.
 - Optimization on block and variation registration.
 - Changed `application-block-editor.js` file for a new setup.
 - How storybook handles variations.
 
 ### Breaking change
+
 - Update your `application-block-editor.js` [file](https://github.com/infinum/eightshift-frontend-libs/blob/develop/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) for a new setup.
 
 ## [3.4.0] - 2020-05-28
 
 ### Changed
+
 - Changed the file name for `transforms.js` to `blockName-transforms.js`.
 - Changed the file name for `icons` to blockName-icons.js.
 - Storybook is now loading example data the same as in the native/core blocks.
@@ -800,17 +997,20 @@ MAYOR BREAKING CHANGES
 - Converted `withWrapper` method to jsx.
 
 ### Added
+
 - Hooks specific file in blocks.
 - Variation specific file in blocks.
 
 ## [3.3.0] - 2020-05-15
 
 ### Added
+
 - Wrapped new attributes: `wrapperUse`, `wrapperUseShowControl`, `wrapperUseSimple`, `wrapperUseSimpleShowControl`, `wrapperDisable`.
 - All packages from WP core for the latest build.
 - Github Actions for testing.
 
 ### Changed
+
 - Fixing storybook and example field inside manifest.
 - Structural changes on all blocks.
 - Converted all wrapper attributes to objects.
@@ -823,99 +1023,109 @@ MAYOR BREAKING CHANGES
 - If attribute is type `object` it will now automatically build actions for each key in `manifest.json`.
 
 ### Removed
+
 - Cards Grid block.
 - Cards List block.
 
 ## [3.2.2] - 2020-05-15
 
 ### Added
-* New block Columns.
-* New block Column.
-* New responsive-selectors helper to turndown the boilerplate code.
-* Has wrapper as na option in wrapper component.
-* Wrapper option to sass modifiers-deep and modifiers mixin.
+
+- New block Columns.
+- New block Column.
+- New responsive-selectors helper to turndown the boilerplate code.
+- Has wrapper as na option in wrapper component.
+- Wrapper option to sass modifiers-deep and modifiers mixin.
 
 ### Changed
-* Storybook changes for the new setup.
-* Changes on wrapper component to have object attributes.
+
+- Storybook changes for the new setup.
+- Changes on wrapper component to have object attributes.
 
 ## [3.2.1] - 2020-05-13
 
 ### Added
-* Option to add [transforms](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#transforms-optional) inside manifest.json file.
-* Option to add custom [svg](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#icon-optional) icon inside manifest.json file.
-* Featured Posts - block that enables selecting specific posts to display on page
-* `font-face` - mixin for generating `@font-face` definitions
+
+- Option to add [transforms](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#transforms-optional) inside manifest.json file.
+- Option to add custom [svg](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#icon-optional) icon inside manifest.json file.
+- Featured Posts - block that enables selecting specific posts to display on page
+- `font-face` - mixin for generating `@font-face` definitions
 
 ### Fixed
-* Fixed issue #96 - Plugin name / description now correctly renamed during setup
-* Fixed issue #116 - Copy storybook during setup
-* Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
+
+- Fixed issue #96 - Plugin name / description now correctly renamed during setup
+- Fixed issue #116 - Copy storybook during setup
+- Eightshift Boilerplate asci-art split into two lines to better break on narrow terminals
 
 ### Changed
-* Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
 
+- Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
 
 ## [3.2.0] - 2020-05-06
 
 ### Breaking change
+
 There has been some breaking changes in this release.
 Follow this migration script in order for you project to work correctly with the new changes.
 
-* We have removed all Webpack aliases, to fix this search and replace this strings inside you project:
-	* `import 'EightshiftBlocksWhatwgFetch'`                                 -----> `import 'whatwg-fetch'`
-	* `import Swiper from 'EightshiftBlocksSwiper'`                          -----> `import Swiper from 'swiper'`
-	* `import 'EightshiftBlocksSwiperIE'`                                    -----> `import 'swiper/js/swiper.min'`
-	* `import 'EightshiftBlocksBabelPolyfill'`                               -----> `import '@babel/polyfill'`
-	* `import 'EightshiftBlocksAutoprefixer'`                                -----> `import 'autoprefixer'`
-	* `@import 'EightshiftBlocksNormalize'`                                  -----> `@import 'normalize-scss'`
-	* `@import 'EightshiftBlocksMediaBlender'`                               -----> `@import 'media-blender'`
-	* `@import 'EightshiftBlocksSwiperStyle'`                                -----> `@import '~swiper/swiper.scss'`
-	* `import { dynamicImport } from 'EightshiftBlocksDynamicImport'`        -----> `import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers'`
-	* `import { registerBlocks } from 'EightshiftBlocksRegisterBlocks'`      -----> `import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor'`
-	* `import { ucfirst } from 'EightshiftBlocksUcfirst'`                    -----> `import { ucfirst } from '@eightshift/frontend-libs/scripts/editor'`
-	* `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
-	* `import { getActions } from 'EightshiftBlocksGetActions'`              -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
-	* `import { ... } from 'EightshiftBlocksUtilityHelpersPath/...'`         -----> `import { ... } from '@eightshift/frontend-libs/scripts/helpers'`
-	* `@import 'EightshiftFrontendLibs'`                                     -----> `@import '@eightshift/frontend-libs/styles/index.scss'`
-	* `@import 'EightshiftEditorStyleOverride'`                              -----> `@import '@eightshift/frontend-libs/styles/override-editor.scss'`
-	* `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette'` -----> `import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components'`
-	* `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'`       -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
-* Storybook scripts and helpers have been moved and restructured. To fix this just recopy all Storybook config files in your project. Files can be found [here](https://github.com/infinum/eightshift-frontend-libs/tree/master/blocks/init/storybook).
+- We have removed all Webpack aliases, to fix this search and replace this strings inside you project:
+  - `import 'EightshiftBlocksWhatwgFetch'` -----> `import 'whatwg-fetch'`
+  - `import Swiper from 'EightshiftBlocksSwiper'` -----> `import Swiper from 'swiper'`
+  - `import 'EightshiftBlocksSwiperIE'` -----> `import 'swiper/js/swiper.min'`
+  - `import 'EightshiftBlocksBabelPolyfill'` -----> `import '@babel/polyfill'`
+  - `import 'EightshiftBlocksAutoprefixer'` -----> `import 'autoprefixer'`
+  - `@import 'EightshiftBlocksNormalize'` -----> `@import 'normalize-scss'`
+  - `@import 'EightshiftBlocksMediaBlender'` -----> `@import 'media-blender'`
+  - `@import 'EightshiftBlocksSwiperStyle'` -----> `@import '~swiper/swiper.scss'`
+  - `import { dynamicImport } from 'EightshiftBlocksDynamicImport'` -----> `import { dynamicImport } from '@eightshift/frontend-libs/scripts/helpers'`
+  - `import { registerBlocks } from 'EightshiftBlocksRegisterBlocks'` -----> `import { registerBlocks } from '@eightshift/frontend-libs/scripts/editor'`
+  - `import { ucfirst } from 'EightshiftBlocksUcfirst'` -----> `import { ucfirst } from '@eightshift/frontend-libs/scripts/editor'`
+  - `import { getActions } from 'EightshiftBlocksGetActions'` -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+  - `import { getActions } from 'EightshiftBlocksGetActions'` -----> `import { getActions } from '@eightshift/frontend-libs/scripts/editor'`
+  - `import { ... } from 'EightshiftBlocksUtilityHelpersPath/...'` -----> `import { ... } from '@eightshift/frontend-libs/scripts/helpers'`
+  - `@import 'EightshiftFrontendLibs'` -----> `@import '@eightshift/frontend-libs/styles/index.scss'`
+  - `@import 'EightshiftEditorStyleOverride'` -----> `@import '@eightshift/frontend-libs/styles/override-editor.scss'`
+  - `import { ColorPaletteCustom } from 'EightshiftComponentColorPalette'` -----> `import { ColorPaletteCustom } from '@eightshift/frontend-libs/scripts/components'`
+  - `import { HeadingLevel } from 'EightshiftComponentHeadingLevel'` -----> `import { HeadingLevel } from '@eightshift/frontend-libs/scripts/components'`
+- Storybook scripts and helpers have been moved and restructured. To fix this just recopy all Storybook config files in your project. Files can be found [here](https://github.com/infinum/eightshift-frontend-libs/tree/master/blocks/init/storybook).
 
 ### Added
-* Missing registerBlocks import.
-* Scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link.
-* Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
-* Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist.
-* Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in).
-* Better vertical / horizontal centering (more `flex`, less `height`, proper justifying).
-* Removed some `height: 100%` which made styling links difficult and coupled to header / footer height.
-* `page-overlay` added to script init project.
-* `editor-color-palette` - Modified the `ColorPaletteCustom` component to get colors by default from WordPress's global store.
-* `editor-color-palette` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper).
-* `editor-color-palette` - Added a helper (using React hooks) for reading colors from WordPress's global store.
-* Added docs for `editor-color-palette`.
+
+- Missing registerBlocks import.
+- Scroll-to-target component that has two options: target element to scroll to and text of the scroll-to link.
+- Fixed a bug with centering where logo wouldn't be quite centered on mobile - seemingly due to having `flex-basis` set to auto. Setting it to any other value (such as `1px`) fixed the issue.
+- Fixed a bug where `drawer` wouldn't work if `page-overlay` did not exist.
+- Added support for `behind` and `top` drawers / mobile menus (slide from top or fade in).
+- Better vertical / horizontal centering (more `flex`, less `height`, proper justifying).
+- Removed some `height: 100%` which made styling links difficult and coupled to header / footer height.
+- `page-overlay` added to script init project.
+- `editor-color-palette` - Modified the `ColorPaletteCustom` component to get colors by default from WordPress's global store.
+- `editor-color-palette` - Modified all uses of `ColorPaletteCustom` component to not override default colors (except for wrapper).
+- `editor-color-palette` - Added a helper (using React hooks) for reading colors from WordPress's global store.
+- Added docs for `editor-color-palette`.
 
 ### Changed
+
 - js loader to be able to handle components from the lib
 
 ## [3.1.1] - 2020-03-05
 
 ### Fixed
-* Wrong namespace in components helpers.
-* Removing unnecessary map keys for components style.
-* Fixing drawer styles.
-* Fixing menu styles.
-* Loading z-index from external map.
-* Fixing typo translate3D to translate3d.
-* Removing display: inline-block;
-* Fixing logo styles.
-* Fixing broken scroll to top method.
+
+- Wrong namespace in components helpers.
+- Removing unnecessary map keys for components style.
+- Fixing drawer styles.
+- Fixing menu styles.
+- Loading z-index from external map.
+- Fixing typo translate3D to translate3d.
+- Removing display: inline-block;
+- Fixing logo styles.
+- Fixing broken scroll to top method.
 
 ## [3.1.0] - 2020-03-04
 
 ### Added
+
 - Added copying of components used by header & footer
 - Added `.travis.yml`.
 - Added integration test for setting up a plugin using `npx create-wp-project plugin`.
@@ -937,32 +1147,38 @@ Follow this migration script in order for you project to work correctly with the
 - Added 2 possible modifiers to menu for media-specific display property.
 
 ### Changed
+
 - Moved all tests from `create-wp-project` to `eightshift-frontend-libs`.
 - Refactoring stories to simpler setup.
 - Linting fixes.
 - Removed jQuery from scroll-to-top component and carousel.
 
 ### Removed
+
 - Removed hardcoded media-specific display properties
 
 ## [3.0.11] - 2020-01-29
 
 ### Changed
+
 - Reverting override styles.
 
 ## [3.0.10] - 2020-01-29
 
 ### Changed
+
 - Fixed externals import.
 
 ## [3.0.9] - 2020-01-29
 
 ### Changed
+
 - Fixed lodash import.
 
 ## [3.0.8] - 2020-01-29
 
 ### Changed
+
 - Added align support full to block registration
 - Added align full as default align for wrapper
 - Removed some of editor style overrides.
@@ -971,14 +1187,17 @@ Follow this migration script in order for you project to work correctly with the
 ## [3.0.7] - 2020-01-27
 
 ### Changed
+
 - Searched and replaced all instances of Eightshift with Eightshift.
 
 ## [3.0.6] - 2020-01-27
 
 ### Removed
+
 - Removing docs to new repository
 
 ### Changed
+
 - Fixing options to include storybook inside a project.
 
 ## [3.0.4] - 2020-01-23
@@ -994,12 +1213,14 @@ Follow this migration script in order for you project to work correctly with the
 ## [3.0.3] - 2020-01-16
 
 ### Added
+
 - Added new divider block.
 - Added blocksAssetsPathConfig also as a default value in Webpack helper.
 - Added assetsPath and outputPath to default values in Webpack helper.
 - Added option to not load webpack entrypoint file if it doesn't exist.
 
 ### Changed
+
 - Changed setup script for boilerplate.
 - Changed Webpack overrides key from object to array.
 - Changed CleanWebpackPlugin option to fix removing items in watch mode.
@@ -1008,6 +1229,7 @@ Follow this migration script in order for you project to work correctly with the
 - Changed setup script new structure.
 
 ### Moved
+
 - Decoupled normal assets from blocks for extra flexibility.
 - Moved all src/blocks/layout/... to src/blocks/components.
 - Moved initial blocks setup to a separate folder.
@@ -1015,6 +1237,7 @@ Follow this migration script in order for you project to work correctly with the
 ## [3.0.2] - 2019-12-19
 
 ### Changed
+
 - Fixing Scss build process
 - Updating webpack config
 - Updating readme and docs
@@ -1022,6 +1245,7 @@ Follow this migration script in order for you project to work correctly with the
 ## [3.0.1] - 2019-12-19
 
 ### Changed
+
 - Added option to override any Webpack build options
 - Removed postcss
 - Changed readme docs for Webpack
@@ -1032,6 +1256,7 @@ Follow this migration script in order for you project to work correctly with the
 ## [3.0.0] - 2019-12-18
 
 ### Added
+
 - Installed `sassdoc`
 - Added `npm run build-sassdoc` script which builds `sassdoc` (generated file: `sassdoc/index.html`)
 - Added `.gitattributes`
@@ -1048,43 +1273,52 @@ Follow this migration script in order for you project to work correctly with the
 ## [2.0.7] - 2019-11-28
 
 ### Added
+
 - Changelog for `2.0.6`
 
 ## [2.0.6] - 2019-11-28
 
 ### Added
+
 - `%visually-hidden` placeholder - hide an element visually without preventing element rendering (like `display: none;` does) and without hiding from accessibility tools - [reference](https://www.w3.org/WAI/tutorials/forms/labels/#hiding-the-label-element)
 
 ## [2.0.5] - 2019-11-13
 
 ### Changed
+
 - Changing block get actions method to fix a bug.
 
 ## [2.0.4] - 2019-11-12
 
 ### Changed
+
 - Changing block get actions method to incorporate objects and media.
 
 ### Added
+
 - Blocks Storybook preparations
 
 ## [2.0.3] - 2019-11-12
 
 ### Changed
+
 - Changing postcss setup.
 
 ### Removed
+
 - Classnames package from package.json.
 
 ## [2.0.2] - 2019-11-06
 
 ### Added
+
 - Fixing readme logo image.
 - Fixing Wrapper block spacing.
 
 ## [2.0.1] - 2019-11-06
 
 ### Added
+
 - Rename script for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate).
 - Logo and Gif animation.
 
@@ -1108,7 +1342,7 @@ Follow this migration script in order for you project to work correctly with the
 - Initial tagged release.
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
-
+[13.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.6...13.0.0
 [12.1.6]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.5...12.1.6
 [12.1.5]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.4...12.1.5
 [12.1.4]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.3...12.1.4

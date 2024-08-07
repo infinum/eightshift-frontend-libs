@@ -1,7 +1,8 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { checkAttr, getAttrKey, getOption, props, OptionSelector, icons } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, getAttrKey, getOption, props, OptionSelector } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { ButtonOptions as ButtonOptionsComponent } from '../../../components/button/components/button-options';
 import manifest from '../manifest.json';
 

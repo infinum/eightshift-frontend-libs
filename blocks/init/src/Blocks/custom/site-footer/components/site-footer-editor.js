@@ -7,15 +7,15 @@ import {
 	ReOrderable,
 	ReOrderableItem,
 	checkAttr,
-	classnames,
 	getAttrKey,
-	icons,
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
 import { CopyrightEditor } from '../../../components/copyright/components/copyright-editor';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { SocialNetworksEditor } from '../../../components/social-networks/components/social-networks-editor';
+import { clsx } from '@eightshift/ui-components/utilities';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from '../manifest.json';
 
 export const SiteFooterEditor = ({ attributes, setAttributes }) => {
@@ -25,7 +25,7 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 
 	const linksClass = selector(blockClass, blockClass, 'links');
 
-	const linkClass = classnames(
+	const linkClass = clsx(
 		selector(blockClass, blockClass, 'link'),
 		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
 	);
@@ -78,7 +78,6 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 												const newValue = [...siteFooterLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteFooterLinks', attributes, manifest)]: newValue });
 											}}
-											// eslint-disable-next-line max-len
 											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 										>
 											{icons.trash}
@@ -89,7 +88,6 @@ export const SiteFooterEditor = ({ attributes, setAttributes }) => {
 												<button
 													ref={ref}
 													onClick={() => setIsOpen(!isOpen)}
-													// eslint-disable-next-line max-len
 													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 												>
 													{icons.editOptions}

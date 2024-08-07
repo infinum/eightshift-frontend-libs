@@ -7,12 +7,12 @@ import {
 	ReOrderable,
 	ReOrderableItem,
 	checkAttr,
-	classnames,
 	getAttrKey,
-	icons,
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import manifest from '../manifest.json';
 
@@ -23,7 +23,7 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 
 	const linksClass = selector(blockClass, blockClass, 'links');
 
-	const linkClass = classnames(selector(
+	const linkClass = clsx(selector(
 		blockClass, blockClass, 'link'),
 		'es-border-cool-gray-100 es-cursor-pointer es-bg-none es-pl-2 es-pr-1.25 es-py-1 es-rounded-2',
 	);
@@ -61,7 +61,6 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												const newValue = [...siteNavigationLinks].filter((_, index) => index !== i);
 												setAttributes({ [getAttrKey('siteNavigationLinks', attributes, manifest)]: newValue });
 											}}
-											// eslint-disable-next-line max-len
 											className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 										>
 											{icons.trash}
@@ -72,7 +71,6 @@ export const SiteNavigationEditor = ({ attributes, setAttributes }) => {
 												<button
 													ref={ref}
 													onClick={() => setIsOpen(!isOpen)}
-													// eslint-disable-next-line max-len
 													className='es-button-reset es-bg-transparent es-cursor-pointer es-color-cool-gray-650 es-hover-color-admin-accent es-mr-1 es-line-h-0'
 												>
 													{icons.editOptions}

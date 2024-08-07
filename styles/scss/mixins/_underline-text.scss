@@ -98,6 +98,12 @@
 ///  }
 /// ```
 
+@mixin for-each-attribute($map) {
+	@each $key, $value in $map {
+		#{$key}: #{$value};
+	}
+}
+
 @mixin underline-text($thickness: 10%, $duration: 0.5s, $timing-function: cubic-bezier(0.79, 0.01, 0.22, 0.99), $color: currentColor, $wrapper: false, $element: '.underline-text', $state: 'hover') {
 	$thickness: 100% - $thickness;
 

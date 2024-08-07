@@ -10,21 +10,12 @@ export { ColorPalette } from './color-palette-custom/color-palette-custom';
 export { ColorPicker } from './color-picker-component/color-picker-component';
 export { Collapsable } from './collapsable/collapsable';
 export { Control } from './base-control/base-control';
-export {
-	RSOption,
-	RSDropdownIndicator,
-	RSSingleValue,
-	RSMultiValueRemove,
-	RSMultiValueContainer,
-	RSMultiValueLabel,
-	RSClearIndicator,
-	RSMultiValue,
-} from './custom-select/react-select-component-wrappers';
 export { ColumnConfigSlider } from './custom-slider/column-config-slider';
 export { Slider } from './custom-slider/custom-slider';
 export { RangeSlider } from './custom-slider/custom-range-slider';
 export { FancyDivider } from './fancy-divider/fancy-divider';
-export { HelpModal } from './help-modal/help-modal';
+export { FileSelector, ManageFileButton } from './file-pickers/file-picker';
+export { MediaPicker } from './file-pickers/media-picker';
 export { IconLabel } from './icon-label/icon-label';
 export { Toggle, IconToggle } from './toggle/toggle';
 export { Notification } from './inline-notification/inline-notification';
@@ -36,6 +27,7 @@ export { MenuSeparator } from './menu/menu-separator';
 export { MultiSelect } from './custom-select/multi-select';
 export { NumberPicker } from './number-picker/number-picker';
 export { OptionSelector } from './option-selector/option-selector';
+export { PickerPlaceholder } from './picker-placeholder/picker-placeholder';
 export { PopoverWithTrigger } from './popover-with-trigger/popover-with-trigger';
 export { PresetPicker } from './preset-picker/preset-picker';
 export { ReOrderable } from './re-orderable/re-orderable';
@@ -52,7 +44,6 @@ export { Select } from './custom-select/single-select';
 export { ServerSideRender } from './server-side-render/server-side-render';
 export { Repeater } from './repeater/repeater';
 export { RepeaterItem } from './repeater/repeater-item';
-export { ToolbarOptionPicker } from './toolbar-option-picker/toolbar-option-picker';
 export { UseToggle, generateUseToggleConfig } from './use-toggle/use-toggle';
 export { TileButton } from './tile-button/tile-button';
 export { WidthOffsetRangeSlider } from './width-offset-range-slider/width-offset-range-slider';

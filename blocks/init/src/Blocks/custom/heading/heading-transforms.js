@@ -10,10 +10,12 @@ export const transforms = {
 			blocks: [`${manifest.namespace}/${manifestParagraph.blockName}`],
 			transform: (attributes) => {
 				let headingAttributes = {};
+
 				for (const attribute in attributes) {
 					if (attribute.startsWith('block')) {
 						continue;
 					}
+
 					const attrKey = attribute.replace('paragraph', 'heading').replace('Paragraph', 'Heading');
 					headingAttributes[attrKey] = attributes[attribute];
 				}

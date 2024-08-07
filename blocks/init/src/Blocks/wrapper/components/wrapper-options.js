@@ -5,7 +5,6 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 import {
 	checkAttr,
 	checkAttrResponsive,
-	icons,
 	getOption,
 	IconLabel,
 	Responsive,
@@ -18,12 +17,13 @@ import {
 	generateResponsiveNumberPickerConfig,
 	ResponsiveNumberPicker,
 	Collapsable,
-	ucfirst,
 	AdvancedColorPicker,
 	generateResponsiveToggleButtonConfig,
 	ResponsiveToggleButton,
 	PresetPicker,
 } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
+import { icons } from '@eightshift/ui-components/icons';
 import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 
 import manifest from './../manifest.json';
@@ -101,6 +101,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 		const copiedWrapperAttributes = Object.keys(attributes).filter((key) => key.includes('wrapper'))
 			.reduce((cur, key) => {
 				cur[key] = attributes[key];
+
 				return cur;
 			}, {});
 
@@ -570,6 +571,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 									}
 								].filter(Boolean).map(({ label, attributeKey, icon }, i) => {
 									const responsiveAttrValues = checkAttrResponsive(attributeKey, attributes, manifest, true);
+
 									return (
 										<Responsive
 											key={i}
@@ -580,7 +582,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											additionalClasses={i < 3 ? 'es-mb-2' : ''}
 											inheritButton={breakpointNames.map((breakpoint) => {
 												const attributeValue = responsiveAttrValues[breakpoint];
-												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+												const attributeName = `${attributeKey}${upperFirst(breakpoint)}`;
 
 												const isInherited = typeof attributeValue === 'undefined';
 
@@ -592,7 +594,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 										>
 											{breakpointNames.map((breakpoint, index) => {
 												const attributeValue = responsiveAttrValues[breakpoint];
-												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+												const attributeName = `${attributeKey}${upperFirst(breakpoint)}`;
 
 												return (
 													<Button

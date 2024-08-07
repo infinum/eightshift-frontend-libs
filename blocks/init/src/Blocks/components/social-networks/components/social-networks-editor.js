@@ -1,5 +1,6 @@
 import React from 'react';
-import { selector, checkAttr, classnames, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 
 export const SocialNetworksEditor = (attributes) => {
@@ -27,13 +28,13 @@ export const SocialNetworksEditor = (attributes) => {
 	const socialNetworksNetworksFiltered = socialNetworksNetworks
 		.filter(({ id }) => socialNetworksShareMode ? manifest.networks?.[id]?.shareUrl?.length > 0 : manifest.networks?.[id]?.url?.length > 0);
 
-	const socialNetworksClasses = classnames(
+	const socialNetworksClasses = clsx(
 		componentClass,
 		selector(blockClass, blockClass, selectorClass),
 		additionalClass,
 	);
 
-	const linkClass = classnames(
+	const linkClass = clsx(
 		selector(componentClass, componentClass, 'link'),
 		'es-line-h-0 es-transition-opacity',
 	);
@@ -44,7 +45,7 @@ export const SocialNetworksEditor = (attributes) => {
 				return (
 					<button
 						key={i}
-						className={classnames(linkClass, !network.enabled && 'es-opacity-10')}
+						className={clsx(linkClass, !network.enabled && 'es-opacity-10')}
 						dangerouslySetInnerHTML={{ __html: manifest.networks[network.id].icon }}
 						onClick={noClickToToggleNetwork ? null : () => {
 							const newValue = [...socialNetworksNetworksFiltered];

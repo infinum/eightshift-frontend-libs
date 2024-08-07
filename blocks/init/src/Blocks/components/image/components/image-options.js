@@ -3,8 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { TextControl, Button } from '@wordpress/components';
 import {
-	icons,
-	ucfirst,
 	checkAttr,
 	checkAttrResponsive,
 	getAttrKey,
@@ -17,6 +15,8 @@ import {
 	Control,
 	generateUseToggleConfig,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
@@ -71,7 +71,7 @@ export const ImageOptions = (attributes) => {
 			{!hideImagePicker &&
 				<Responsive label={__('Image', '%g_textdomain%')} icon={icons.image}>
 					{getDefaultBreakpointNames().map((breakpointName, index) => {
-						let point = ucfirst(breakpointName);
+						let point = upperFirst(breakpointName);
 
 						if (breakpointName === 'large') {
 							point = '';
@@ -113,7 +113,6 @@ export const ImageOptions = (attributes) => {
 									key={index}
 									icon={icons.trashAlt}
 									label={__('Remove image', '%g_textdomain%')}
-									// eslint-disable-next-line max-len
 									className='es-button-square-36 es-button-icon-26 es-border-cool-gray-100 es-hover-border-cool-gray-200 es-hover-color-red-500 es-rounded-1 es-nested-color-red-500 es-bg-pure-white es-shadow-sm es-hover-shadow-md -es-ml-4 -es-mb-2 es-has-animated-icon'
 									onClick={() => setAttributes({
 										[urlAttr]: undefined,

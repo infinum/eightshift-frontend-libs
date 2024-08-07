@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { outputCssVariables, getUnique, props, selector, classnames } from '@eightshift/frontend-libs/scripts';
+import { outputCssVariables, getUnique, props, selector } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { ButtonEditor } from '../../../components/button/components/button-editor';
 import manifest from './../manifest.json';
 
@@ -17,7 +18,7 @@ export const LoadMoreEditor = (attributes) => {
 		blockClass,
 	} = attributes;
 
-	const loadMoreClass = classnames(
+	const loadMoreClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

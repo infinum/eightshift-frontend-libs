@@ -1,5 +1,7 @@
 import React from 'react';
-import { AnimatedContentVisibility, BlockInserter, checkAttr, classnames, IconLabel, icons } from '@eightshift/frontend-libs/scripts';
+import { AnimatedContentVisibility, BlockInserter, checkAttr, IconLabel } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { clsx } from '@eightshift/ui-components/utilities';
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import manifest from '../manifest.json';
@@ -12,7 +14,7 @@ export const CarouselEditor = ({ attributes, clientId }) => {
 	const carouselShowPrevNext = checkAttr('carouselShowPrevNext', attributes, manifest);
 	const carouselShowPagination = checkAttr('carouselShowPagination', attributes, manifest);
 
-	const carouselClass = classnames(blockClass, 'es-position-relative es-no-h-inner-blocks-gutenberg-margin');
+	const carouselClass = clsx(blockClass, 'es-position-relative es-no-h-inner-blocks-gutenberg-margin');
 
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {

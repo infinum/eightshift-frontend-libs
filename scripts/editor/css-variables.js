@@ -2,7 +2,7 @@ import React from 'react';
 import { subscribe, select, dispatch } from '@wordpress/data';
 import { getAttrKey } from './attributes';
 import { STORE_NAME } from './store';
-import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helpers';
+import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '@eightshift/ui-components/utilities';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -91,7 +91,7 @@ import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helper
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-disable-line no-unused-vars
+export const outputCssVariablesGlobal = (globalManifest = {}) => {
 	let output = '';
 
 	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
@@ -146,7 +146,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-dis
  * outputCssVariables(attributes, manifest, unique);
  * ```
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => { // eslint-disable-line no-unused-vars
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
 
 	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
 
@@ -486,6 +486,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 
 	// Output manual output from the array of variables.
 	const variablesCustom = manifest?.variablesCustom;
+
 	if (typeof variablesCustom !== 'undefined') {
 		styles.variables.push({
 			type: 'min',
@@ -496,6 +497,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 
 	// Output manual editor output from the array of variables.
 	const variablesCustomEditor = manifest?.variablesCustomEditor;
+
 	if (typeof variablesCustomEditor !== 'undefined') {
 		styles.variables.push({
 			type: 'min',
@@ -618,6 +620,7 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 							breakpointIndex,
 							numberOfBreakpoints
 						);
+
 						return {
 							...responsiveAttribute,
 							[breakpointVariableName]: breakpointVariables,
@@ -702,6 +705,7 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 			});
 		});
 	}
+
 	return data;
 };
 
@@ -984,6 +988,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
 
 	let additionalStylesOutput = '';
+
 	if (typeof additionalStyles !== 'undefined') {
 		additionalStylesOutput = additionalStyles.join(';\n');
 	}
@@ -997,6 +1002,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	// Process styles.
 	output = processCssVarsRemBaseSize(output);
 	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
+
 	if (!styleTag) {
 		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {

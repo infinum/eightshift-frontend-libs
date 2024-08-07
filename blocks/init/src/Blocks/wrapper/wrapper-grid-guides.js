@@ -1,4 +1,4 @@
-import { icons } from "@eightshift/frontend-libs/scripts";
+import { icons } from '@eightshift/ui-components/icons';
 
 export const GridGuides = ({ previewVisible, wrapperIsFullWidthLarge, wrapperMainClass }) => {
 	if (!previewVisible) {
@@ -19,6 +19,7 @@ export const GridGuides = ({ previewVisible, wrapperIsFullWidthLarge, wrapperMai
 		if (wrapperIsFullWidthLarge && i === 1) {
 			label = icons.arrowsLeft;
 		}
+
 		if (wrapperIsFullWidthLarge && i === maxItems) {
 			label = icons.arrowsRight;
 		}

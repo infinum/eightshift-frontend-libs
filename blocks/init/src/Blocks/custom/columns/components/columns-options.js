@@ -1,7 +1,8 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
-import { generateResponsiveNumberPickerConfig, icons, ResponsiveNumberPicker } from '@eightshift/frontend-libs/scripts';
+import { generateResponsiveNumberPickerConfig, ResponsiveNumberPicker } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from './../manifest.json';
 
 export const ColumnsOptions = ({ attributes, setAttributes }) => {

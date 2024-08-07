@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
-import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique, classnames } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey, outputCssVariables, getUnique } from '@eightshift/frontend-libs/scripts';
+import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 
@@ -25,7 +26,7 @@ export const HeadingEditor = (attributes) => {
 	const headingUse = checkAttr('headingUse', attributes, manifest);
 	const headingContent = checkAttr('headingContent', attributes, manifest);
 
-	const headingClass = classnames(
+	const headingClass = clsx(
 		selector(componentClass, componentClass),
 		selector(blockClass, blockClass, selectorClass),
 		selector(additionalClass, additionalClass),

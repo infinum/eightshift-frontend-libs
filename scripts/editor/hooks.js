@@ -42,6 +42,7 @@ import { STORE_NAME } from './store';
 				}
 			};
 		}
+
 		return <BlockListBlock {...updatedProps} />;
 	};
 }, 'blocksFilterHook');

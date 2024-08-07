@@ -1,13 +1,6 @@
 // All exports are sorted in alphabetical order.
 
 export {
-	icons,
-	illustrations,
-	blockIcons,
-	BlockIcon
-} from './icons/icons';
-export { getActions } from './actions';
-export {
 	overrideInnerBlockAttributes,
 	overrideInnerBlockSimpleWrapperAttributes,
 	checkAttr,
@@ -27,14 +20,12 @@ export {
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
+	getResponsiveLegacyData,
+	generateOptionsFromValue,
 } from './editor';
-export { getFetchWpApi } from './fetch';
+export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './fetch';
 export { inserter } from './inserter';
-export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './options';
+export { getOption, getOptionColors, getOptions } from './options';
 export { pasteInto } from './paste-handler';
 export {
 	getAttributes,
@@ -44,11 +35,7 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './registration';
-export {
-	bem,
-	selector,
-	responsiveSelectors,
-} from './selectors';
+export { bem, selector, responsiveSelectors } from './selectors';
 export {
 	STORE_NAME,
 	BUILD_VERSION,
@@ -56,4 +43,3 @@ export {
 	setStoreGlobalWindow,
 	setConfigFlags,
 } from './store';
-export { ucfirst } from './utility';

@@ -3,12 +3,10 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import {
-	icons,
 	getAttrKey,
 	IconToggle,
 	checkAttr,
 	getOption,
-	unescapeHTML,
 	getFetchWpApi,
 	props,
 	getOptions,
@@ -19,6 +17,8 @@ import {
 	Control,
 	AnimatedContentVisibility
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
+import { unescapeHTML } from '@eightshift/ui-components/utilities';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
 import { LoadMoreOptions } from '../../../components/load-more/components/load-more-options';
 import manifest from '../manifest.json';
@@ -131,7 +131,6 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<AnimatedContentVisibility showIf={useSpecificTerms && !featuredContentUseCurrentTerm}>
 							<AsyncMultiSelect
 								key={featuredContentTaxonomy?.value}
-								// eslint-disable-next-line max-len
 								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentTerms}
 								loadOptions={getFetchWpApi(featuredContentTaxonomy?.api, {
@@ -183,7 +182,6 @@ export const FeaturedContentOptions = ({ attributes, setAttributes }) => {
 						<AnimatedContentVisibility showIf={useSpecificPosts && !featuredContentExcludeCurrentPost}>
 							<AsyncMultiSelect
 								key={featuredContentPostType.value}
-								// eslint-disable-next-line max-len
 								help={__('Newest 30 items are shown, others can be selected by searching. If blank, all items are shown.', '%g_textdomain%')}
 								value={featuredContentPosts}
 								loadOptions={getFetchWpApi(featuredContentPostType?.api, {

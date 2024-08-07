@@ -11,25 +11,22 @@ export { ColorPalette } from './components/color-palette-custom/color-palette-cu
 export { ColorPicker } from './components/color-picker-component/color-picker-component';
 export { Collapsable } from './components/collapsable/collapsable';
 export { Control } from './components/base-control/base-control';
-export {
-	RSOption,
-	RSDropdownIndicator,
-	RSSingleValue,
-	RSMultiValueRemove,
-	RSMultiValueContainer,
-	RSMultiValueLabel,
-	RSClearIndicator,
-	RSMultiValue,
-} from './components/custom-select/react-select-component-wrappers';
 export { ColumnConfigSlider } from './components/custom-slider/column-config-slider';
 export { Slider } from './components/custom-slider/custom-slider';
 export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
-export { HelpModal } from './components/help-modal/help-modal';
+export {
+	FileSelector,
+	ManageFileButton,
+} from './components/file-pickers/file-picker';
+export { MediaPicker } from './components/file-pickers/media-picker';
 export { IconLabel } from './components/icon-label/icon-label';
 export { Toggle, IconToggle } from './components/toggle/toggle';
 export { Notification } from './components/inline-notification/inline-notification';
-export { LinkInput, LinkEditComponent } from './components/link-input/link-input';
+export {
+	LinkInput,
+	LinkEditComponent,
+} from './components/link-input/link-input';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { Menu } from './components/menu/menu';
 export { MenuItem } from './components/menu/menu-item';
@@ -37,6 +34,7 @@ export { MenuSeparator } from './components/menu/menu-separator';
 export { MultiSelect } from './components/custom-select/multi-select';
 export { NumberPicker } from './components/number-picker/number-picker';
 export { OptionSelector } from './components/option-selector/option-selector';
+export { PickerPlaceholder } from './components/picker-placeholder/picker-placeholder';
 export { PopoverWithTrigger } from './components/popover-with-trigger/popover-with-trigger';
 export { PresetPicker } from './components/preset-picker/preset-picker';
 export { ReOrderable } from './components/re-orderable/re-orderable';
@@ -54,8 +52,10 @@ export { ServerSideRender } from './components/server-side-render/server-side-re
 export { Repeater } from './components/repeater/repeater';
 export { RepeaterItem } from './components/repeater/repeater-item';
 export { TileButton } from './components/tile-button/tile-button';
-export { ToolbarOptionPicker } from './components/toolbar-option-picker/toolbar-option-picker';
-export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';
+export {
+	UseToggle,
+	generateUseToggleConfig,
+} from './components/use-toggle/use-toggle';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';
 
@@ -95,13 +95,6 @@ export {
 
 // Editor
 export {
-	icons,
-	illustrations,
-	blockIcons,
-	BlockIcon
-} from './editor/icons/icons';
-export { getActions } from './editor/actions';
-export {
 	overrideInnerBlockAttributes,
 	overrideInnerBlockSimpleWrapperAttributes,
 	checkAttr,
@@ -121,14 +114,12 @@ export {
 	lockIfUndefined,
 	lockPostEditing,
 	unlockPostEditing,
+	getResponsiveLegacyData,
+	generateOptionsFromValue,
 } from './editor/editor';
-export { getFetchWpApi } from './editor/fetch';
+export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './editor/fetch';
 export { inserter } from './editor/inserter';
-export {
-	getOption,
-	getOptionColors,
-	getOptions
-} from './editor/options';
+export { getOption, getOptionColors, getOptions } from './editor/options';
 export { pasteInto } from './editor/paste-handler';
 export {
 	getAttributes,
@@ -138,11 +129,7 @@ export {
 	registerBlocks,
 	registerVariations,
 } from './editor/registration';
-export {
-	bem,
-	selector,
-	responsiveSelectors,
-} from './editor/selectors';
+export { bem, selector, responsiveSelectors } from './editor/selectors';
 export {
 	STORE_NAME,
 	BUILD_VERSION,
@@ -150,40 +137,9 @@ export {
 	setStoreGlobalWindow,
 	setConfigFlags,
 } from './editor/store';
-export { ucfirst } from './editor/utility';
 
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';
-export { camelize } from './helpers/camelize';
-export { classnames } from './helpers/classnames';
 export { cookies } from './helpers/cookies';
-export { debounce } from './helpers/debounce';
-export { throttle } from './helpers/throttle';
-export { device } from './helpers/devices';
 export { dynamicImport } from './helpers/dynamic-import';
-export { elementChildrenHeight } from './helpers/element-children-height';
-export {
-	camelCase,
-	pascalCase,
-	snakeCase,
-	kebabCase,
-	isEmpty,
-	lowerFirst,
-	upperFirst,
-	has,
-	isPlainObject,
-	isObject,
-	isEqual,
-} from './helpers/es-dash';
-export { escapeString } from './helpers/escape-string';
-export { getNavigatorVibrate } from './helpers/navigator';
-export {
-	truncate,
-	truncateMiddle,
-	unescapeHTML
-} from './helpers/text-helpers';
-
-export {
-	luminanceFromHex,
-	luminanceFromRgb,
-} from './helpers/color-helpers';
+export { luminanceFromHex, luminanceFromRgb } from './helpers/color-helpers';
