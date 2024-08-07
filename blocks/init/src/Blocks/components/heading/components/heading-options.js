@@ -6,7 +6,6 @@ import {
 	getAttrKey,
 	IconLabel,
 	UseToggle,
-	ucfirst,
 	Select,
 	ColorPicker,
 	Section,
@@ -15,6 +14,7 @@ import {
 	MenuItem,
 } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const HeadingOptions = (attributes) => {
@@ -41,7 +41,7 @@ export const HeadingOptions = (attributes) => {
 			label: label,
 			value: value,
 			weights: weights,
-			weightOptions: weights.map((weight) => ({ label: ucfirst(weight), value: weight })),
+			weightOptions: weights.map((weight) => ({ label: upperFirst(weight), value: weight })),
 		},
 	}), {});
 

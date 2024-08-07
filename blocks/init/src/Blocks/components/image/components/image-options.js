@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { TextControl, Button } from '@wordpress/components';
 import {
-	ucfirst,
 	checkAttr,
 	checkAttrResponsive,
 	getAttrKey,
@@ -17,6 +16,7 @@ import {
 	generateUseToggleConfig,
 } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import manifest from './../manifest.json';
 
 export const ImageOptions = (attributes) => {
@@ -71,7 +71,7 @@ export const ImageOptions = (attributes) => {
 			{!hideImagePicker &&
 				<Responsive label={__('Image', '%g_textdomain%')} icon={icons.image}>
 					{getDefaultBreakpointNames().map((breakpointName, index) => {
-						let point = ucfirst(breakpointName);
+						let point = upperFirst(breakpointName);
 
 						if (breakpointName === 'large') {
 							point = '';

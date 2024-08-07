@@ -7,11 +7,11 @@ import {
 	OptionSelector,
 	UseToggle,
 	ColorPicker,
-	ucfirst,
 	Select,
 	generateUseToggleConfig,
 	Section,
 } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 
 export const ListsOptions = (attributes) => {
@@ -37,7 +37,7 @@ export const ListsOptions = (attributes) => {
 			label: label,
 			value: value,
 			weights: weights,
-			weightOptions: weights.map((weight) => ({ label: ucfirst(weight), value: weight })),
+			weightOptions: weights.map((weight) => ({ label: upperFirst(weight), value: weight })),
 		},
 	}), {});
 

@@ -17,12 +17,12 @@ import {
 	generateResponsiveNumberPickerConfig,
 	ResponsiveNumberPicker,
 	Collapsable,
-	ucfirst,
 	AdvancedColorPicker,
 	generateResponsiveToggleButtonConfig,
 	ResponsiveToggleButton,
 	PresetPicker,
 } from '@eightshift/frontend-libs/scripts';
+import { upperFirst } from '@eightshift/ui-components/utilities';
 import { icons } from '@eightshift/ui-components/icons';
 import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 
@@ -582,7 +582,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 											additionalClasses={i < 3 ? 'es-mb-2' : ''}
 											inheritButton={breakpointNames.map((breakpoint) => {
 												const attributeValue = responsiveAttrValues[breakpoint];
-												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+												const attributeName = `${attributeKey}${upperFirst(breakpoint)}`;
 
 												const isInherited = typeof attributeValue === 'undefined';
 
@@ -594,7 +594,7 @@ export const WrapperOptions = ({ attributes, setAttributes }) => {
 										>
 											{breakpointNames.map((breakpoint, index) => {
 												const attributeValue = responsiveAttrValues[breakpoint];
-												const attributeName = `${attributeKey}${ucfirst(breakpoint)}`;
+												const attributeName = `${attributeKey}${upperFirst(breakpoint)}`;
 
 												return (
 													<Button
