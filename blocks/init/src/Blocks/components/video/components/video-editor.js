@@ -2,7 +2,8 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 import { Placeholder } from '@wordpress/components';
-import { selector, checkAttr, icons, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { selector, checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 import manifest from '../manifest.json';
 

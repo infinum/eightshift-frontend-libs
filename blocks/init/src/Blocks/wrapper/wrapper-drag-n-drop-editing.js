@@ -2,7 +2,8 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { useSelect, dispatch } from '@wordpress/data';
 import { PanelBody } from '@wordpress/components';
-import { IconToggle, RangeSlider, getAttrKey, icons } from '@eightshift/frontend-libs/scripts';
+import { IconToggle, RangeSlider, getAttrKey } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { WRAPPER_STORE_NAME } from './wrapper-stores';
 import globalManifest from '../manifest.json';
 

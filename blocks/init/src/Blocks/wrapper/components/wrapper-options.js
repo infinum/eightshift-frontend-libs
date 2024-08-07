@@ -5,7 +5,6 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 import {
 	checkAttr,
 	checkAttrResponsive,
-	icons,
 	getOption,
 	IconLabel,
 	Responsive,
@@ -24,6 +23,7 @@ import {
 	ResponsiveToggleButton,
 	PresetPicker,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { WRAPPER_STORE_NAME } from '../wrapper-stores';
 
 import manifest from './../manifest.json';

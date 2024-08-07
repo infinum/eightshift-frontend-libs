@@ -8,10 +8,10 @@ import {
 	getAttrKey,
 	outputCssVariables,
 	getUnique,
-	icons,
 	getDefaultBreakpointNames,
 } from '@eightshift/frontend-libs/scripts';
 import { clsx } from '@eightshift/ui-components/utilities';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from './../manifest.json';
 import globalManifest from './../../../manifest.json';
 

@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import {
-	icons,
 	getAttrKey,
 	getOption,
 	IconLabel,
@@ -20,6 +19,7 @@ import {
 	generateResponsiveToggleButtonConfig,
 	ResponsiveToggleButton,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from './../manifest.json';
 
 export const ColumnOptions = ({ attributes, setAttributes }) => {

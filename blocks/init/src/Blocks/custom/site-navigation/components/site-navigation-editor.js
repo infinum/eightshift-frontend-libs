@@ -8,10 +8,10 @@ import {
 	ReOrderableItem,
 	checkAttr,
 	getAttrKey,
-	icons,
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import manifest from '../manifest.json';

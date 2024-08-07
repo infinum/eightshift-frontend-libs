@@ -4,7 +4,8 @@ import { Placeholder, Button } from '@wordpress/components';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { useSelect, dispatch } from '@wordpress/data';
-import { BlockIcon, BlockInserter, getUnique, icons, outputCssVariables } from '@eightshift/frontend-libs/scripts';
+import { BlockInserter, getUnique, outputCssVariables } from '@eightshift/frontend-libs/scripts';
+import { icons, BlockIcon } from '@eightshift/ui-components/icons';
 import globalManifest from './../../../manifest.json';
 import manifest from './../manifest.json';
 

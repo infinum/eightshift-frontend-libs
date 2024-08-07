@@ -3,7 +3,6 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import {
-	icons,
 	getAttrKey,
 	IconToggle,
 	checkAttr,
@@ -19,6 +18,7 @@ import {
 	Control,
 	AnimatedContentVisibility
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { LayoutOptions } from './../../../components/layout/components/layout-options';
 import { LoadMoreOptions } from '../../../components/load-more/components/load-more-options';
 import manifest from '../manifest.json';

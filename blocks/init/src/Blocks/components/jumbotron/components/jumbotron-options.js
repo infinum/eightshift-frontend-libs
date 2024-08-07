@@ -1,6 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { checkAttr, generateUseToggleConfig, getAttrKey, icons, MatrixAlignControl, props, UseToggle } from '@eightshift/frontend-libs/scripts';
+import { checkAttr, generateUseToggleConfig, getAttrKey, MatrixAlignControl, props, UseToggle } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import { ImageOptions } from '../../image/components/image-options';
 import { HeadingOptions } from '../../heading/components/heading-options';
 import { ParagraphOptions } from '../../paragraph/components/paragraph-options';

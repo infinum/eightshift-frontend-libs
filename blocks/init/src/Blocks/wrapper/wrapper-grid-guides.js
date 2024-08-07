@@ -1,4 +1,4 @@
-import { icons } from "@eightshift/frontend-libs/scripts";
+import { icons } from '@eightshift/ui-components/icons';
 
 export const GridGuides = ({ previewVisible, wrapperIsFullWidthLarge, wrapperMainClass }) => {
 	if (!previewVisible) {

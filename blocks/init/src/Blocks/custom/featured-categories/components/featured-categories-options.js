@@ -2,7 +2,6 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { PanelBody } from '@wordpress/components';
 import {
-	icons,
 	checkAttr,
 	getAttrKey,
 	IconToggle,
@@ -14,6 +13,7 @@ import {
 	Section,
 	unescapeHTML,
 } from '@eightshift/frontend-libs/scripts';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from './../manifest.json';
 
 export const FeaturedCategoriesOptions = ({ attributes, setAttributes }) => {

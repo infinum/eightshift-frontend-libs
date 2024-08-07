@@ -8,7 +8,6 @@ import {
 	ReOrderableItem,
 	checkAttr,
 	getAttrKey,
-	icons,
 	props,
 	selector,
 } from '@eightshift/frontend-libs/scripts';
@@ -16,6 +15,7 @@ import { CopyrightEditor } from '../../../components/copyright/components/copyri
 import { ImageEditor } from '../../../components/image/components/image-editor';
 import { SocialNetworksEditor } from '../../../components/social-networks/components/social-networks-editor';
 import { clsx } from '@eightshift/ui-components/utilities';
+import { icons } from '@eightshift/ui-components/icons';
 import manifest from '../manifest.json';
 
 export const SiteFooterEditor = ({ attributes, setAttributes }) => {
