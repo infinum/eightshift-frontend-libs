@@ -117,7 +117,7 @@ export const registerBlocks = (
 				const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
 				if (blockOverridesComponent !== null) {
-					blockManifest = Object.assign(blockManifest, blockOverridesComponent); // eslint-disable-line no-param-reassign
+					blockManifest = Object.assign(blockManifest, blockOverridesComponent);
 				}
 			}
 
@@ -154,7 +154,6 @@ export const registerBlocks = (
 								...deprecation.newAttributes(attributes),
 							};
 						},
-						// eslint-disable-next-line max-len
 						isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
 						save: blockDetails.options.save,
 					};
@@ -234,7 +233,7 @@ export const registerVariations = (
 				const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 				if (blockOverridesComponent !== null) {
-					variationManifest = Object.assign(variationManifest, blockOverridesComponent);// eslint-disable-line no-param-reassign
+					variationManifest = Object.assign(variationManifest, blockOverridesComponent);
 				}
 			}
 
@@ -278,7 +277,6 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
 
 	// If edit component is missing throw and error.
 	if (typeof editComponent === 'undefined') {
-		// eslint-disable-next-line max-len
 		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
 	}
 
@@ -287,7 +285,6 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
 
 	// If edit component callback is missing throw and error.
 	if (typeof editCallback === 'undefined') {
-		// eslint-disable-next-line max-len
 		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
 	}
 
@@ -424,7 +421,6 @@ export const getMergeCallback = (blockManifest) => {
 						outputObject[attribute] = parseFloat(receiver[attribute] ?? '0') + parseFloat(merger[attribute] ?? '0');
 						break;
 					}
-					/* eslint-disable no-case-declarations */
 					case "addNumericPixelValue": {
 						// Remove numbers
 						const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
@@ -614,7 +610,6 @@ export const prepareComponentAttributes = (
 
 		// Bailout if component doesn't exist.
 		if (!component) {
-			// eslint-disable-next-line max-len
 			throw Error(`Component specified in "${name}" manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 		}
 
@@ -622,7 +617,6 @@ export const prepareComponentAttributes = (
 
 		// If component has more components do recursive loop.
 		if (component?.components) {
-			// eslint-disable-next-line max-len
 			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${upperFirst(camelCase(newComponentName))}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.

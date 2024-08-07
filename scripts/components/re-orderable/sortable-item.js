@@ -46,7 +46,6 @@ export const SortableItem = (props) => {
 		...attributes,
 	};
 
-	// eslint-disable-next-line max-len
 	const itemLabel = ((typeof title !== 'string' && title) || (typeof title === 'string' && title?.length > 0) || (typeof subtitle !== 'string' && subtitle) || (typeof subtitle === 'string' && subtitle?.length > 0) || icon) && (
 		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
 	);

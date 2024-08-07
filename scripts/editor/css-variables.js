@@ -91,7 +91,7 @@ import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '@eightshi
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-disable-line no-unused-vars
+export const outputCssVariablesGlobal = (globalManifest = {}) => {
 	let output = '';
 
 	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
@@ -146,7 +146,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => { // eslint-dis
  * outputCssVariables(attributes, manifest, unique);
  * ```
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => { // eslint-disable-line no-unused-vars
+export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
 
 	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
 
@@ -309,12 +309,12 @@ export const outputCssVariablesInline = () => {
 	);
 
 	// Find current tree with all inner blocks and all reusable blocks.
-	let currentStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
+	let currentStateBlocks = select('core/block-editor').__unstableGetClientIdsTree();
 
 	// Subscribe to changes in state.
 	subscribe(() => {
 		// Find updated state of blocks after render.
-		const newStateBlocks = select('core/block-editor').__unstableGetClientIdsTree(); // eslint-disable-line no-underscore-dangle
+		const newStateBlocks = select('core/block-editor').__unstableGetClientIdsTree();
 
 		// Make changes only if blocks changed.
 		if (newStateBlocks !== currentStateBlocks) {

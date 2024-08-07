@@ -124,7 +124,6 @@ export const ResponsiveToggleButton = (props) => {
 							isPressed={buttonToggleEffect && isActive}
 							className={clsx(
 								'es-button-square-32 es-rounded-1! es-h-8! es-px-2!',
-								// eslint-disable-next-line max-len
 								buttonToggleEffect ? 'es-is-v2-gutenberg-button es-button-icon-24' : 'es-has-v2-gutenberg-button-active-state es-button-icon-30',
 								buttonToggleEffect && isActive && 'is-active'
 							)}
