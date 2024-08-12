@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
-import { ComponentToggle } from '@eightshift/ui-components';
+import { ComponentToggle, Spacer } from '@eightshift/ui-components';
 
 export const generateUseToggleConfig = (
 	attributes,
@@ -76,6 +76,16 @@ export const UseToggle = ({
 }) => {
 	if (noControls) {
 		return null;
+	}
+
+	if (noUseToggle && noExpandButton && !noLabel) {
+		return (
+			<>
+				<Spacer size='s' />
+				<Spacer icon={icon} text={label} />
+				{children}
+			</>
+		);
 	}
 
 	return (

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-	Checkbox,
-	ToggleButton,
-	Toggle as EsUicToggle,
-} from '@eightshift/ui-components';
+import { Checkbox, Toggle as EsUicToggle } from '@eightshift/ui-components';
 
 /**
  * Custom toggle control.
@@ -35,22 +31,6 @@ export const Toggle = ({
 
 	additionalClasses,
 }) => {
-	if (type === 'button' || type === 'iconButton' || type === 'tileButton') {
-		return (
-			<ToggleButton
-				icon={icon}
-				onChange={onChange}
-				selected={checked}
-				disabled={disabled}
-				tooltip={type === 'iconButton' && label}
-				aria-label={type === 'iconButton' && label}
-				className={additionalClasses}
-			>
-				{(type === 'button' || type === 'tileButton') && label}
-			</ToggleButton>
-		);
-	}
-
 	if (type === 'checkbox') {
 		return (
 			<Checkbox
