@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [13.0.3]
+
+### Changed
+- Fixed bug in `WidthOffsetRangeSlider`.
+
 ## [13.0.2]
 
 ### Changed
@@ -1353,6 +1358,7 @@ Follow this migration script in order for you project to work correctly with the
 - Initial tagged release.
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
+[13.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.2...13.0.3
 [13.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.1...13.0.2
 [13.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.0...13.0.1
 [13.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/12.1.6...13.0.0

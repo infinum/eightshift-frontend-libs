@@ -54,7 +54,7 @@ export const Responsive = (props) => {
 			label={label}
 			help={help}
 			subtitle={subtitle}
-			className={clsx('es-uic-space-y-2' ,additionalClasses)}
+			className={clsx('es-uic-space-y-2', additionalClasses)}
 			actions={
 				<>
 					{inline && (
