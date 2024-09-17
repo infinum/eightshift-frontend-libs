@@ -207,7 +207,7 @@ export const WidthOffsetRangeSlider = (props) => {
 							key={breakpoint}
 							aria-label={__('Width & offset', 'eightshift-frontend-libs')}
 							columns={totalNumberOfColumns}
-							value={[parsedOffset, displayedWidth]}
+							value={isWidthInherited && !isOffsetInherited ? [parsedOffset, parsedOffset + 1] : [parsedOffset, displayedWidth]}
 							showOuterAsGutter={showOuterAsGutter ?? parsedFullWidth}
 							onChange={([o, w]) => {
 								let newValues = {};
@@ -219,7 +219,7 @@ export const WidthOffsetRangeSlider = (props) => {
 										? String(w - nearestValidOffset + 1)
 										: w - nearestValidOffset + 1;
 								} else if (!isWidthInherited && offset === autoOffsetValue) {
-									const newWidth = w - autoStartOffset;
+									const newWidth = w - autoStartOffset + 1;
 
 									if (newWidth > 0) {
 										newValues.width = stringValues
