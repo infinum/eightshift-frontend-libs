@@ -219,7 +219,7 @@ export const WidthOffsetRangeSlider = (props) => {
 										? String(w - nearestValidOffset + 1)
 										: w - nearestValidOffset + 1;
 								} else if (!isWidthInherited && offset === autoOffsetValue) {
-									const newWidth = w - autoStartOffset;
+									const newWidth = w - autoStartOffset + 1;
 
 									if (newWidth > 0) {
 										newValues.width = stringValues
