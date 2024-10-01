@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "13.0.5",
+	"version": "13.0.6",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -36,9 +36,9 @@
 		"@dnd-kit/modifiers": "^7.0.0",
 		"@dnd-kit/sortable": "^8.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
-		"@eightshift/ui-components": "^1.6.0",
+		"@eightshift/ui-components": "^1.6.1",
 		"@stylistic/eslint-plugin-js": "^2.8.0",
-		"@stylistic/stylelint-plugin": "^3.0.1",
+		"@stylistic/stylelint-plugin": "^3.1.0",
 		"@swc/core": "^1.7.28",
 		"@uidotdev/usehooks": "^2.4.1",
 		"@wordpress/api-fetch": "^7.8.0",
@@ -64,7 +64,7 @@
 		"promisify-child-process": "^4.1.2",
 		"raw-loader": "^4.0.2",
 		"regenerator-runtime": "^0.14.1",
-		"sass": "^1.79.3",
+		"sass": "^1.79.4",
 		"sass-loader": "^16.0.2",
 		"style-loader": "^4.0.0",
 		"stylelint": "^16.9.0",
