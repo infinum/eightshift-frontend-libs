@@ -4,35 +4,47 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [13.0.7]
+
+### Replaced
+
+- Replaced `__unstableGetClientIdsTree` with `getBlocks` from state as it is deprecated.
+
 ## [13.0.6]
 
 ### Changed
+
 - Updated dependencies.
 
 ## [13.0.5]
 
 ### Changed
+
 - Updated dependencies.
 
 ## [13.0.4]
 
 ### Changed
+
 - Tweaked auto offset calculation in `WidthOffsetRangeSlider`.
 
 ## [13.0.3]
 
 ### Changed
+
 - Fixed bug in `WidthOffsetRangeSlider`.
 
 ## [13.0.2]
 
 ### Changed
+
 - Updated dependencies.
 - Updated default ESLint config.
 
 ## [13.0.1]
 
 ### Changed
+
 - Updated a couple of fallbacks for old FE libs components.
 
 ## [13.0.0]
@@ -102,6 +114,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [12.1.6]
 
 ### Added
+
 - optional domain argument to the `setCookie` helper so the cookie domain can be set.
 
 ## [12.1.5]
@@ -159,13 +172,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - All `renderPartial` to `render` method.
 - Wrapper changes `$this->renderWrapperView` to `echo $renderContent;`.
 
-## [11.0.1] - 2024-04-23
+## [11.0.1]
 
 ### Updated
 
 - Fixed block editor sidebar block display with long labels
 
-## [11.0.0] - 2024-04-23
+## [11.0.0]
 
 ### Updated
 
@@ -185,7 +198,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 **Minimum required Node version is now 20!**
 
-## [10.0.0] - 2024-03-18
+## [10.0.0]
 
 ### Removed
 
@@ -207,7 +220,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Tweaked `Menu` submenu style
 - Fixed `PopoverWithTrigger` external closing prop passthrough
 
-## [9.7.0] - 2024-03-08
+## [9.7.0]
 
 ### Added
 
@@ -222,7 +235,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Tweaked `ReOrderable` so the drag handle is the only place the item can be moved. This alleviates issues with interactive controls within the item.
 - Updated dependencies.
 
-## [9.6.0] - 2024-02-29
+## [9.6.0]
 
 ### Added
 
@@ -242,7 +255,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Updated dependencies
 - `ColorPicker` now has a slot for additional controls
 
-## [9.5.0] - 2024-02-21
+## [9.5.0]
 
 ### Updated
 
@@ -250,31 +263,31 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - `LinkInput` should now pop the suggestion panel only when focused into the input field
 - Fixed typo in `MultiSelect` story
 
-## [9.4.2] - 2024-02-21
+## [9.4.2]
 
 ### Updated
 
 - `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
 
-## [9.4.1] - 2024-02-19
+## [9.4.1]
 
 ### Updated
 
 - Dependency updates
 
-## [9.4.2] - 2024-02-21
+## [9.4.2]
 
 ### Updated
 
 - `LinkInput` should handle input debouncing better, and the delay is now configurable via the `inputDebounceDelay` prop
 
-## [9.4.1] - 2024-02-19
+## [9.4.1]
 
 ### Updated
 
 - Dependency updates
 
-## [9.4.0] - 2024-02-14
+## [9.4.0]
 
 ### Added
 
@@ -291,13 +304,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Updated dependencies
 - Tweaked component names in `Select` controls readmes
 
-## [9.3.1] - 2024-02-06
+## [9.3.1]
 
 ### Updated
 
 - Move `@babel/preset-react` to dependencies (from devDependencies)
 
-## [9.3.0] - 2024-02-06
+## [9.3.0]
 
 ### Added
 
@@ -323,7 +336,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 **Minimum required Node version is now 18!**
 
-## [9.2.1] - 2024-01-25
+## [9.2.1]
 
 ### Added
 
@@ -334,7 +347,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Tweaked some of the default Gutenberg style overrides
 - Fixed default block names in WP 6.4
 
-## [9.2.0] - 2024-01-15
+## [9.2.0]
 
 ### Added
 
@@ -369,7 +382,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 - `lodash` is no longer used in the project
 
-## [9.1.0] - 2023-11-16
+## [9.1.0]
 
 ### Added
 
@@ -384,7 +397,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 - Improved default GeoJSON styles in Map block
 - Carousel now works with the latest version of Swiper (11.0.4 at the time of publishing)
 
-## [9.0.0] - 2023-11-06
+## [9.0.0]
 
 This is a major release that includes PHP8+ support. We tested it on the PHP 8.2.12 version.
 
@@ -403,7 +416,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Unnecessary standards and ignoring lines.
 - Storybook support for local project.
 
-## [8.6.2] - 2023-10-24
+## [8.6.2]
 
 ### Added
 
@@ -413,19 +426,19 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - cleaned up the `Load more` JS logic
 
-## [8.6.1] - 2023-10-23
+## [8.6.1]
 
 ### Fixed
 
 - Wrong release number.
 
-## [8.6.0] - 2023-10-23
+## [8.6.0]
 
 ### Fixed
 
 - Block registration issue with WooCommerce combination.
 
-## [8.5.0] - 2023-10-17
+## [8.5.0]
 
 ### Added
 
@@ -440,7 +453,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - tweaked Gutenberg UI enhancements control roundness
 - `PopoverWithTrigger` can now have classes passed to the outer/main popover as well
 
-## [8.4.7] - 2023-09-28
+## [8.4.7]
 
 ### Added
 
@@ -451,7 +464,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - incorrect rounded corners in `NumberPicker` spinner buttons
 
-## [8.4.6] - 2023-09-25
+## [8.4.6]
 
 ### Added
 
@@ -464,7 +477,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - updated RC slider and fixed issue with `ColumnConfigSlider` being offset
 - tweaked the ESLint config
 
-## [8.4.5] - 2023-09-13
+## [8.4.5]
 
 ### Added
 
@@ -477,7 +490,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - **SASS docs were restyled** to make them fit better into eightshift.com.
 - `AdvancedColorPicker` now uses 3rd party components for solid color and gradient pickers, removing the Gutenberg dependency and breaking changes they often make (fixes #746).
 
-## [8.4.4] - 2023-08-28
+## [8.4.4]
 
 ### Changed
 
@@ -487,14 +500,14 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - WebPack loaded will not parse webP images also.
 
-## [8.4.3] - 2023-08-25
+## [8.4.3]
 
 ### Added
 
 - added missing import for WP6.3 styles
 - Repeater now supports disabling the "Add" button via `disableItemAdd` and providing a custom one via `customAddButton`
 
-## [8.4.2] - 2023-08-11
+## [8.4.2]
 
 ### Added
 
@@ -508,13 +521,13 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - `Repeater` and `ReOrderable` will now auto-regenerate all item IDs if a conflict is found.
 - `PopoverWithTrigger` now supports external closing from within the popover content.
 
-## [8.4.1] - 2023-06-20
+## [8.4.1]
 
 ### Changed
 
 - updating random Id generator to output 8 rather than 32 characters.
 
-## [8.4.0] - 2023-06-13
+## [8.4.0]
 
 ### Removed
 
@@ -538,7 +551,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - fixed #726 (bug with Repeater).
 - fixed `LinkEditComponent` not clearing properly when there's no text inside in some cases.
 
-## [8.3.0] - 2023-05-15
+## [8.3.0]
 
 ### Bugfixes
 
@@ -585,14 +598,14 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - replaced the deprecated registerStore method for ES stores
 
-## [8.2.1] - 2023-04-26
+## [8.2.1]
 
 ### Fixed
 
 - Spinners in NumberPicker will now set the min value if no value is currently present (undefined or empty value).
 - Columns will now hide the full wrapper option.
 
-## [8.2.0] - 2023-04-25
+## [8.2.0]
 
 ### Added
 
@@ -621,7 +634,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - removed some unused attributes from Button component (#706).
 
-## [8.1.0] - 2023-03-01
+## [8.1.0]
 
 ## Fixed
 
@@ -636,11 +649,11 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - IconToggle with tileIcon style can now have its additionalClasses passed through.
 
-## [8.0.0] - 2023-02-21
+## [8.0.0]
 
 - This is major release with most of the changes on the components and UX/UI
 
-## [7.3.0] - 2022-11-09
+## [7.3.0]
 
 ### Changed
 
@@ -652,7 +665,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - added new icons.
 - fixed weird icon alignments in pickers and inserter.
 
-## [7.2.0] - 2022-10-04
+## [7.2.0]
 
 ### Added
 
@@ -673,7 +686,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - duplicated normalize imports on block assets.
 - double import of `@wordpress/components` statement in the advanced color picker component.
 
-## [7.1.0] - 2022-09-06
+## [7.1.0]
 
 ### Changed
 
@@ -683,7 +696,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - advanced-color-picker component double import.
 
-## [7.0.1] - 2022-08-01
+## [7.0.1]
 
 ### Changed
 
@@ -697,7 +710,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Tag in readme for codecov.
 - Added tests coverage.
 
-## [7.0.0] - 2022-07-11
+## [7.0.0]
 
 ### Changed
 
@@ -725,7 +738,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - normalize.scss package and replaced it with our version.
 
-## [6.2.0] - 2022-06-03
+## [6.2.0]
 
 ### Added
 
@@ -737,7 +750,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - Safari bug on hamburger menu.
 
-## [6.1.0] - 2022-05-19
+## [6.1.0]
 
 ### Fixed:
 
@@ -758,19 +771,19 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - `IconLabel` has a subtitle gap option now.
 - added new icons.
 
-## [6.0.5] - 2022-05-11
+## [6.0.5]
 
 ### Fixed:
 
 - classNames style issue fixed.
 
-## [6.0.4] - 2022-05-11
+## [6.0.4]
 
 ### Fixed:
 
 - classNames issue on fancy divider and compact responsive components.
 
-## [6.0.3] - 2022-05-09
+## [6.0.3]
 
 ### Changed:
 
@@ -809,7 +822,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 ![image](https://user-images.githubusercontent.com/77000136/166936740-bb8eb73f-25ea-4c78-80c2-18fd04f78f35.png)
 ![image](https://user-images.githubusercontent.com/77000136/166936793-fbaeb2d9-be8e-4787-8954-272088fd8565.png)
 
-## [6.0.2] - 2022-05-02
+## [6.0.2]
 
 ### Fixed:
 
@@ -825,18 +838,18 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - a couple of style fixes and utility classes were added.
 - add `GradientPicker` component with fallback for versions prior to 5.9
 
-## [6.0.1] - 2022-04-21
+## [6.0.1]
 
 ### Fixed
 
 - Blocks correct order of store registration.
 
-## [6.0.0] - 2022-04-19
+## [6.0.0]
 
 - Major braking changes do to updates on css variables, and helpers and updating min PHP version to 7.4.
 - Full change log can be checked on Github [releases](https://github.com/infinum/eightshift-frontend-libs/releases/tag/6.0.0).
 
-## [5.0.3] - 2022-01-26
+## [5.0.3]
 
 ### Added
 
@@ -851,13 +864,13 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - Linter fixes - missing semicolon
 
-## [5.0.2] - 2021-09-13
+## [5.0.2]
 
 ### Fixed
 
 - Hotfix for missing package and broken build.
 
-## [5.0.1] - 2021-09-13
+## [5.0.1]
 
 ### Added
 
@@ -874,11 +887,11 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Phpstan issues.
 - Blocks not rendering in the storybook.
 
-## [5.0.0] - 2021-08-16
+## [5.0.0]
 
 - Major braking changes do to updates on css variables, and helpers.
 
-## [4.0.8] - 2022-01-26
+## [4.0.8]
 
 ### Added
 
@@ -891,19 +904,19 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Updated UI and block icons
 - Update `override-editor` styles
 
-## [4.0.7] - 2021-07-22
+## [4.0.7]
 
 ### Changed
 
 - Fix for webpack cache issue.
 
-## [4.0.6] - 2021-07-15
+## [4.0.6]
 
 ### Changed
 
 - Minor backend changes.
 
-## [4.0.5] - 2021-02-04
+## [4.0.5]
 
 ### Changed
 
@@ -913,7 +926,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - New config for webpack to use https in browserSync
 
-## [4.0.4] - 2021-02-03
+## [4.0.4]
 
 ### Added
 
@@ -927,7 +940,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Better documentation for helper modal.
 - Cleanup for documentation.
 
-## [4.0.3] - 2021-01-26
+## [4.0.3]
 
 ### Added
 
@@ -946,7 +959,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 
 - Wrapper, Paragraph, Lists, Link, Heading, Button component to a new GetOptionsColor helper.
 
-## [4.0.2] - 2021-01-15
+## [4.0.2]
 
 ### Removed
 
@@ -969,7 +982,7 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Babel config changes.
 - Video Component hotfix.
 
-## [4.0.1] - 2021-01-13
+## [4.0.1]
 
 ### Added
 
@@ -985,13 +998,13 @@ This is a major release that includes PHP8+ support. We tested it on the PHP 8.2
 - Missing Browser sync package.
 - Not working @wordpress/dom-ready package loaded from Webpack.
 
-## [4.0.0] - 2021-01-05
+## [4.0.0]
 
 MAYOR BREAKING CHANGES
 
 - You should not try to update from version 3 to 4 because they are not compatible.
 
-## [3.5.0] - 2020-06-03
+## [3.5.0]
 
 ### Added
 
@@ -1013,7 +1026,7 @@ MAYOR BREAKING CHANGES
 
 - Update your `application-block-editor.js` [file](https://github.com/infinum/eightshift-frontend-libs/blob/develop/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) for a new setup.
 
-## [3.4.0] - 2020-05-28
+## [3.4.0]
 
 ### Changed
 
@@ -1032,7 +1045,7 @@ MAYOR BREAKING CHANGES
 - Hooks specific file in blocks.
 - Variation specific file in blocks.
 
-## [3.3.0] - 2020-05-15
+## [3.3.0]
 
 ### Added
 
@@ -1058,7 +1071,7 @@ MAYOR BREAKING CHANGES
 - Cards Grid block.
 - Cards List block.
 
-## [3.2.2] - 2020-05-15
+## [3.2.2]
 
 ### Added
 
@@ -1073,7 +1086,7 @@ MAYOR BREAKING CHANGES
 - Storybook changes for the new setup.
 - Changes on wrapper component to have object attributes.
 
-## [3.2.1] - 2020-05-13
+## [3.2.1]
 
 ### Added
 
@@ -1092,7 +1105,7 @@ MAYOR BREAKING CHANGES
 
 - Adding transforms and custom svg icon is optional. To enable this options in your existing project you need change registerBlocks method inside [application-blocks-editor.js](https://github.com/infinum/eightshift-frontend-libs/blob/master/blocks/init/src/blocks/assets/scripts/application-blocks-editor.js) file.
 
-## [3.2.0] - 2020-05-06
+## [3.2.0]
 
 ### Breaking change
 
@@ -1139,7 +1152,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - js loader to be able to handle components from the lib
 
-## [3.1.1] - 2020-03-05
+## [3.1.1]
 
 ### Fixed
 
@@ -1153,7 +1166,7 @@ Follow this migration script in order for you project to work correctly with the
 - Fixing logo styles.
 - Fixing broken scroll to top method.
 
-## [3.1.0] - 2020-03-04
+## [3.1.0]
 
 ### Added
 
@@ -1188,25 +1201,25 @@ Follow this migration script in order for you project to work correctly with the
 
 - Removed hardcoded media-specific display properties
 
-## [3.0.11] - 2020-01-29
+## [3.0.11]
 
 ### Changed
 
 - Reverting override styles.
 
-## [3.0.10] - 2020-01-29
+## [3.0.10]
 
 ### Changed
 
 - Fixed externals import.
 
-## [3.0.9] - 2020-01-29
+## [3.0.9]
 
 ### Changed
 
 - Fixed lodash import.
 
-## [3.0.8] - 2020-01-29
+## [3.0.8]
 
 ### Changed
 
@@ -1215,13 +1228,13 @@ Follow this migration script in order for you project to work correctly with the
 - Removed some of editor style overrides.
 - Adding wrapper default align style.
 
-## [3.0.7] - 2020-01-27
+## [3.0.7]
 
 ### Changed
 
 - Searched and replaced all instances of Eightshift with Eightshift.
 
-## [3.0.6] - 2020-01-27
+## [3.0.6]
 
 ### Removed
 
@@ -1231,7 +1244,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Fixing options to include storybook inside a project.
 
-## [3.0.4] - 2020-01-23
+## [3.0.4]
 
 ### Added
 
@@ -1241,7 +1254,7 @@ Follow this migration script in order for you project to work correctly with the
 - Updating documentation
 - updating packages and fixing vulnerabilities
 
-## [3.0.3] - 2020-01-16
+## [3.0.3]
 
 ### Added
 
@@ -1265,7 +1278,7 @@ Follow this migration script in order for you project to work correctly with the
 - Moved all src/blocks/layout/... to src/blocks/components.
 - Moved initial blocks setup to a separate folder.
 
-## [3.0.2] - 2019-12-19
+## [3.0.2]
 
 ### Changed
 
@@ -1273,7 +1286,7 @@ Follow this migration script in order for you project to work correctly with the
 - Updating webpack config
 - Updating readme and docs
 
-## [3.0.1] - 2019-12-19
+## [3.0.1]
 
 ### Changed
 
@@ -1284,7 +1297,7 @@ Follow this migration script in order for you project to work correctly with the
 - Removing unnecessary packages
 - Optimizations for storybook
 
-## [3.0.0] - 2019-12-18
+## [3.0.0]
 
 ### Added
 
@@ -1301,25 +1314,25 @@ Follow this migration script in order for you project to work correctly with the
 - Merged multipleProps and media props from @tihomirselak
 - Blocks refactor
 
-## [2.0.7] - 2019-11-28
+## [2.0.7]
 
 ### Added
 
 - Changelog for `2.0.6`
 
-## [2.0.6] - 2019-11-28
+## [2.0.6]
 
 ### Added
 
 - `%visually-hidden` placeholder - hide an element visually without preventing element rendering (like `display: none;` does) and without hiding from accessibility tools - [reference](https://www.w3.org/WAI/tutorials/forms/labels/#hiding-the-label-element)
 
-## [2.0.5] - 2019-11-13
+## [2.0.5]
 
 ### Changed
 
 - Changing block get actions method to fix a bug.
 
-## [2.0.4] - 2019-11-12
+## [2.0.4]
 
 ### Changed
 
@@ -1329,7 +1342,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Blocks Storybook preparations
 
-## [2.0.3] - 2019-11-12
+## [2.0.3]
 
 ### Changed
 
@@ -1339,40 +1352,41 @@ Follow this migration script in order for you project to work correctly with the
 
 - Classnames package from package.json.
 
-## [2.0.2] - 2019-11-06
+## [2.0.2]
 
 ### Added
 
 - Fixing readme logo image.
 - Fixing Wrapper block spacing.
 
-## [2.0.1] - 2019-11-06
+## [2.0.1]
 
 ### Added
 
 - Rename script for [Eightshift Boilerplate](https://github.com/infinum/eightshift-boilerplate).
 - Logo and Gif animation.
 
-## [2.0.0] - 2019-11-04
+## [2.0.0]
 
 - Complete refactor on project organization.
 - Moving, Babel, Webpack, linters config from boilerplate to eightshift-frontend-libs.
 - Adding blocks init and blocks example.
 - Creating components to reuse on blocks project.
 
-## [1.0.19] - 2019-09-18
+## [1.0.19]
 
 - Adding new column-offset-modifiers mixin
 
-## [1.0.18] - 2019-08-01
+## [1.0.18]
 
 - Apply suggestions from code review
 
-## [1.0.17] - 2019-07-19
+## [1.0.17]
 
 - Initial tagged release.
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
+[13.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.6...13.0.7
 [13.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.5...13.0.6
 [13.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.4...13.0.5
 [13.0.4]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.3...13.0.4
