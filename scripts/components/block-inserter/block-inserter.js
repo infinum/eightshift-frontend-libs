@@ -1,6 +1,7 @@
 import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Inserter } from '@wordpress/block-editor';
+import { useSuspenseSelect } from '@wordpress/data';
 import { Button } from '@eightshift/ui-components';
 import { icons } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
@@ -15,6 +16,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
  * @param {boolean} [props.small] - If `true`, the button's size is reduced, perfect for added visual separation in hierarchical InnerBlocks.
  * @param {string} [props.className] - Additional classes to add to the control base.
  * @param {boolean} [props.prioritizePatterns] - Whether to show patterns before blocks in the inserter.
+ * @param {boolean} [props.alwaysVisible=false] - If `true`, the inserter is always visible, regardless of whether the block is selected.
  * @param {boolean} [props.hidden] - If `true`, the component is not rendered.
  *
  * @returns {JSX.Element} The BlockInserter component.
@@ -25,9 +27,23 @@ import { clsx } from '@eightshift/ui-components/utilities';
  * @preserve
  */
 export const BlockInserter = (props) => {
-	const { clientId, label, small = false, className, prioritizePatterns = false, hidden } = props;
+	const {
+		clientId,
+		label,
+		small = false,
+		className,
+		prioritizePatterns = false,
+		alwaysVisible = false,
+		hidden,
+	} = props;
+
+	const currentBlockClientId = useSuspenseSelect((select) => select('core/block-editor')?.getSelectedBlockClientId());
 
 	if (hidden) {
+		return null;
+	}
+
+	if (!alwaysVisible && currentBlockClientId !== clientId) {
 		return null;
 	}
 
@@ -44,7 +60,10 @@ export const BlockInserter = (props) => {
 				let labelText = label;
 
 				if (label === true) {
-					labelText = sprintf(__('Add %s', 'eightshift-frontend-libs'), hasSingleBlockType ? blockTitle : __('a block', 'eightshift-frontend-libs'));
+					labelText = sprintf(
+						__('Add %s', 'eightshift-frontend-libs'),
+						hasSingleBlockType ? blockTitle : __('a block', 'eightshift-frontend-libs'),
+					);
 				}
 
 				return (
