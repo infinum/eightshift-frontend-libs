@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [13.0.8]
+
+### Changed
+- Updated dependencies.
+- `BlockInserter` is now only visible when the block it's assigned to is selected. This behavior can be changed by setting `alwaysVisible`.
+
 ## [13.0.7]
 
 ### Replaced
@@ -1386,6 +1392,7 @@ Follow this migration script in order for you project to work correctly with the
 - Initial tagged release.
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
+[13.0.8]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.7...13.0.8
 [13.0.7]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.6...13.0.7
 [13.0.6]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.5...13.0.6
 [13.0.5]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.4...13.0.5
