@@ -20,7 +20,7 @@ export const cookies = {
 	 *
 	 * Usage:
 	 * ```js
-	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/');
+	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/', '.example.com', true, 'Strict');
 	 * ```
 	 */
 	setCookie(key, value, time, path, domain, secure = false, sameSite = 'Lax') {
