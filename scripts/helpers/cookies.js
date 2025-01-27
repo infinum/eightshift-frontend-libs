@@ -10,20 +10,23 @@ export const cookies = {
 	 * @param {string} value - Cookie value.
 	 * @param {number} time  - Number denoting the expiration of the cookie.
 	 * @param {string} path  - URL path that must exist in the requested URL in order to send the Cookie header.
+	 * @param {string} domain  - Domain name of the server that set the cookie.
+	 * @param {boolean} secure - A secure cookie is only sent to the server with an encrypted request over the HTTPS protocol.
+	 * @param {string} sameSite - A SameSite cookie prevents the browser from sending this cookie along with cross-site requests
 	 *
 	 * @access public
 	 *
-	 * @returns {void}
+	 * @returns {boolean}
 	 *
 	 * Usage:
 	 * ```js
 	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/');
 	 * ```
 	 */
-	setCookie(key, value, time, path, domain) {
+	setCookie(key, value, time, path, domain, secure = false, sameSite = 'Lax') {
 		const expires = new Date();
 		expires.setTime(expires.getTime() + (time));
-		
+
 		let pathValue = '';
 		let domainValue = '';
 
@@ -35,7 +38,24 @@ export const cookies = {
 			domainValue = `;domain=${domain}`;
 		}
 
-		document.cookie = `${key}=${value}${pathValue}${domainValue};expires=${expires.toUTCString()}`;
+		const cookieParts = [
+			`${key}=${value}`,
+			`expires=${expires.toUTCString()}`,
+			`secure=${secure}`,
+			`SameSite=${sameSite}`,
+			pathValue,
+			domainValue,
+		];
+
+		try {
+			document.cookie = cookieParts.join('; ');
+
+			return true;
+		} catch (e) {
+			console.error("Failed to set cookie:", e);
+
+			return false;
+		}
 	},
 
 	/**
