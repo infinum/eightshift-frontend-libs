@@ -25,37 +25,25 @@ export const cookies = {
 	 */
 	setCookie(key, value, time, path, domain, secure = true, sameSite = 'Lax') {
 		const expires = new Date();
-		expires.setTime(expires.getTime() + (time));
+		expires.setTime(expires.getTime() + time);
 
-		let pathValue = '';
-		let domainValue = '';
-
-		if (typeof path !== 'undefined') {
-			pathValue = `;path=${path}`;
-		}
-
-		if (typeof domain !== 'undefined') {
-			domainValue = `;domain=${domain}`;
-		}
-
-		const cookieParts = [
-			`${key}=${value}`,
-			`expires=${expires.toUTCString()}`,
-			`SameSite=${sameSite}`,
-			pathValue,
-			domainValue,
-		];
-
-		if (secure) {
-			cookieParts.push('Secure');
-		}
+		const cookieParts = {
+			value: `${key}=${value}`,
+			expires: `expires=${expires.toUTCString()}`,
+			sameSite: `SameSite=${sameSite}`,
+			path: path ? `path=${path}` : '',
+			domain: domain ? `domain=${domain}` : '',
+			secure: secure ? 'Secure' : '',
+		};
 
 		try {
-			document.cookie = cookieParts.join('; ');
+			document.cookie = Object.values(cookieParts)
+			.filter(Boolean)
+			.join('; ');
 
 			return true;
 		} catch (e) {
-			console.error("Failed to set cookie:", e);
+			console.error('Failed to set cookie:', e);
 
 			return false;
 		}
