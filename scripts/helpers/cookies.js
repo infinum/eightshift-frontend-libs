@@ -23,7 +23,7 @@ export const cookies = {
 	 * cookies.setCookie('gdpr', '2', cookies.setOneDay(), '/', '.example.com', true, 'Strict');
 	 * ```
 	 */
-	setCookie(key, value, time, path, domain, secure = false, sameSite = 'Lax') {
+	setCookie(key, value, time, path, domain, secure = true, sameSite = 'Lax') {
 		const expires = new Date();
 		expires.setTime(expires.getTime() + (time));
 
@@ -41,11 +41,14 @@ export const cookies = {
 		const cookieParts = [
 			`${key}=${value}`,
 			`expires=${expires.toUTCString()}`,
-			`secure=${secure}`,
 			`SameSite=${sameSite}`,
 			pathValue,
 			domainValue,
 		];
+
+		if (secure) {
+			cookieParts.push('Secure');
+		}
 
 		try {
 			document.cookie = cookieParts.join('; ');
