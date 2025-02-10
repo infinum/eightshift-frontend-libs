@@ -9,6 +9,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ### Added
 
 - `supports` key to the blocks registration process.
+- Add Secure and SameSite parameters as options to JS cookie method.
 
 ## [13.0.8]
 
