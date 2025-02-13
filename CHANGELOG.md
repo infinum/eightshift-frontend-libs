@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [13.0.11]
+
+### Fixed
+- option to set css variables to other attribute values in the `outputCssVariables` method on inner components.
+
 ## [13.0.10]
 
 ### Added
@@ -1404,6 +1409,7 @@ Follow this migration script in order for you project to work correctly with the
 - Initial tagged release.
 
 [Unreleased]: https://github.com/infinum/eightshift-frontend-libs/compare/master...HEAD
+[13.0.11]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.10...13.0.11
 [13.0.10]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.9...13.0.10
 [13.0.9]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.8...13.0.9
 [13.0.8]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.7...13.0.8
