@@ -2,7 +2,7 @@ import React from 'react';
 import { subscribe, select, dispatch } from '@wordpress/data';
 import { getAttrKey } from './attributes';
 import { STORE_NAME } from './store';
-import { debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helpers';
+import { camelCase, debounce, isEmpty, isObject, isPlainObject, kebabCase } from '../helpers';
 
 /**
  * Get Global manifest.json and return global variables as CSS variables.
@@ -692,7 +692,7 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 				if (item.name === breakpoint && item.type === type) {
 
 					// Merge data variables with the new variables array.
-					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue, attributes));
+					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue, attributes, manifest));
 
 					// Exit.
 					return true;
@@ -787,12 +787,13 @@ export const prepareVariableData = (globalBreakpoints) => {
  * @param {array} variables      - Array of variables of CSS variables.
  * @param {mixed} attributeValue - Original attribute value used in magic variable.
  * @param {object} attributes     - Attributes fetched from manifest.
+ * @param {array} manifest        - Component/block manifest data.
  *
  * @access private
  *
  * @returns {array}
  */
-export const variablesInner = (variables, attributeValue, attributes) => {
+export const variablesInner = (variables, attributeValue, attributes, manifest) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -810,8 +811,14 @@ export const variablesInner = (variables, attributeValue, attributes) => {
 		}
 
 		for (const [attrKey, attrValue] of Object.entries(attributes)) {
-			if (variableValue.includes(`%attr-${attrKey}%`)) {
-				value = variableValue.replace(`%attr-${attrKey}%`, attrValue);
+			let key = attrKey;
+
+			if (attributes?.prefix) {
+				key = key.replace(attributes.prefix, camelCase(manifest.componentName));
+			}
+
+			if (variableValue.includes(`%attr-${key}%`)) {
+				value = variableValue.replace(`%attr-${key}%`, attrValue);
 			}
 		}
 
