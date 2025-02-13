@@ -695,7 +695,7 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 				if (item.name === breakpoint && item.type === type) {
 
 					// Merge data variables with the new variables array.
-					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue));
+					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue, attributes));
 
 					// Exit.
 					return true;
@@ -790,12 +790,13 @@ export const prepareVariableData = (globalBreakpoints) => {
  *
  * @param {array} variables      - Array of variables of CSS variables.
  * @param {mixed} attributeValue - Original attribute value used in magic variable.
+ * @param {object} attributes     - Attributes fetched from manifest.
  *
  * @access private
  *
  * @returns {array}
  */
-export const variablesInner = (variables, attributeValue) => {
+export const variablesInner = (variables, attributeValue, attributes) => {
 	let output = [];
 
 	// Bailout if provided variables is not an object or if attribute value is empty or undefined, used to unset/reset value..
@@ -810,6 +811,12 @@ export const variablesInner = (variables, attributeValue) => {
 		// If value contains magic variable swap that variable with original attribute value.
 		if (variableValue.includes('%value%')) {
 			value = variableValue.replace('%value%', attributeValue);
+		}
+
+		for (const [attrKey, attrValue] of Object.entries(attributes)) {
+			if (variableValue.includes(`%attr-${attrKey}%`)) {
+				value = variableValue.replace(`%attr-${attrKey}%`, attrValue);
+			}
 		}
 
 		// Bailout if value is empty or undefined.
