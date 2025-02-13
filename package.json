@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "13.0.9",
+	"version": "13.0.11",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
