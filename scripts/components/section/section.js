@@ -59,7 +59,7 @@ export const Section = (props) => {
 				className={additionalLabelClasses}
 				border
 			/>
-			<div className={clsx('es-uic-space-y-2.5' ,additionalClasses)}>{children}</div>
+			<div className={clsx('es:space-y-2.5' ,additionalClasses)}>{children}</div>
 		</>
 	);
 };

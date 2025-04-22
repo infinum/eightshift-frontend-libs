@@ -60,14 +60,14 @@ export const PickerPlaceholder = (props) => {
 	}
 
 	return (
-		<div className='es-uic-font-sans es-uic-border-gray-200 es-uic-mx-auto es-uic-grid es-uic-max-w-72 es-uic-grid-cols-2 es-uic-gap-1.5 es-uic-rounded-lg es-uic-border es-uic-p-3 es-uic-text-xs es-uic-shadow-lg'>
+		<div className='es:font-sans es:border-gray-200 es:mx-auto es:grid es:max-w-72 es:grid-cols-2 es:gap-1.5 es:rounded-lg es:border es:p-3 es:text-xs es:shadow-lg'>
 			<RichLabel
 				icon={icon}
 				label={title}
 				className='col-span-2 mb-2 select-none font-medium !text-gray-400'
 			/>
 
-			<span className='es-uic-col-span-2 es-uic-select-none es-uic-justify-self-center'>{presetsHeading}</span>
+			<span className='es:col-span-2 es:select-none es:justify-self-center'>{presetsHeading}</span>
 
 			{presets.map(({ name, icon, blocks: blockData, attributes: attrsToSet }, index) => {
 				return (
@@ -90,9 +90,9 @@ export const PickerPlaceholder = (props) => {
 
 			{inserter && (
 				<>
-					<span className='es-uic-col-span-2 es-uic-select-none es-uic-justify-self-center'>{__('or', 'fe-libs-tailwind')}</span>
+					<span className='es:col-span-2 es:select-none es:justify-self-center'>{__('or', 'fe-libs-tailwind')}</span>
 
-					<div className='es-uic-col-span-2 es-uic-justify-self-center'>
+					<div className='es:col-span-2 es:justify-self-center'>
 						{inserter}
 
 						{inserter === true && (

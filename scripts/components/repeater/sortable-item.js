@@ -59,12 +59,12 @@ export const SortableItem = (props) => {
 				disabled={expandDisabled}
 				className={additionalLabelContainerClass}
 				actions={
-					<div className='es-uic-flex es-uic-items-center'>
+					<div className='es:flex es:items-center'>
 						<GutenbergButton
 							{...additionalTriggerProps}
 							className={clsx(
-								'[&>svg]:es-uic-size-5 es-uic-min-w-5 es-uic-w-5',
-								isOnly ? 'es-uic-hidden' : 'es-uic-opacity-50',
+								'[&>svg]:es:size-5 es:min-w-5 es:w-5',
+								isOnly ? 'es:hidden' : 'es:opacity-50',
 							)}
 							size='small'
 							icon={icons.reorderGrabberV}

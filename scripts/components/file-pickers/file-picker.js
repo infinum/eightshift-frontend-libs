@@ -222,7 +222,7 @@ export const FileSelector = (props) => {
 			>
 				<HStack
 					noWrap
-					className='es-uic-pl-1'
+					className='es:pl-1'
 				>
 					<ManageFileButton {...commonManageFileButtonProps} />
 					{!noUpload && (
