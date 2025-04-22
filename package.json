@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "13.0.11",
+	"version": "14.0.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -36,7 +36,7 @@
 		"@dnd-kit/modifiers": "^7.0.0",
 		"@dnd-kit/sortable": "^8.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
-		"@eightshift/ui-components": "^1.7.0",
+		"@eightshift/ui-components": "^3.0.1",
 		"@stylistic/eslint-plugin-js": "^2.10.1",
 		"@stylistic/stylelint-plugin": "^3.1.1",
 		"@swc/core": "^1.9.1",

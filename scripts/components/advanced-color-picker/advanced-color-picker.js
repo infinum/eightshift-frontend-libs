@@ -134,7 +134,7 @@ export const AdvancedColorPicker = (props) => {
 				{type === 'gradient' && showGradient && !disabled && (
 					<TriggeredPopover
 						triggerButtonIcon={<ColorSwatch gradient={colorGradient} />}
-						className='es-uic-min-w-72 es-uic-p-2'
+						className='es:min-w-72 es:p-2'
 					>
 						<GradientEditor
 							value={
@@ -148,7 +148,7 @@ export const AdvancedColorPicker = (props) => {
 							<>
 								<Spacer
 									text={__('Presets', 'eightshift-frontend-libs')}
-									className='es-uic-mt-3'
+									className='es:mt-3'
 									border
 								/>
 								<HStack>

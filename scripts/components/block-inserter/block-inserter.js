@@ -72,7 +72,7 @@ export const BlockInserter = (props) => {
 						disabled={disabled}
 						icon={icons.add}
 						size={small ? 'small' : 'default'}
-						className={clsx(className, 'es-uic-font-sans')}
+						className={clsx(className, 'es:font-sans')}
 					>
 						{labelText}
 					</Button>
