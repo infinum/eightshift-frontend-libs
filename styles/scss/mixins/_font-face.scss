@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 /// Mixin that creates `@font-face` definitions. This mixin should ideally be included in a separate SCSS partial and relatively 'early' in SCSS structure.
 ///
 /// @param {string} $name - Name of the font family.
@@ -42,7 +44,7 @@
 	$src: null;
 
 	@each $ext in $exts {
-		$src: append($src, url('#{$path}.#{$ext}') format('#{$ext}'), comma);
+		$src: list.append($src, url('#{$path}.#{$ext}') format('#{$ext}'), comma);
 	}
 
 	@font-face {

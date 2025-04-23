@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 /// Returns an item from map. Function behaves the same as native `map-get()` but it adds additional error handling
 /// when trying to get undefined keys.
 ///
@@ -31,8 +33,8 @@
 /// }
 
 @function map-get-strict($map, $key) {
-	@if map-has-key($map, $key) {
-		@return map-get($map, $key);
+	@if map.has-key($map, $key) {
+		@return map.get($map, $key);
 	}
 	@else {
 		@error 'ERROR: Specified index does not exist in map #{$map}, with value: #{$key}';
@@ -41,5 +43,5 @@
 
 // Short alias.
 @function mapGS($map, $key) {
-	@return map-get-strict($map, $key);
+	@return map.get-strict($map, $key);
 }
