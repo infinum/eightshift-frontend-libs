@@ -8,6 +8,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 ### Changed
 - Updated dependencies
+- Modified built-in mixins to use new SCSS functions
 
 ## [14.0.0]
 

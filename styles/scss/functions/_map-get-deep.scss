@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 /// Returns an item from map that is nested multiple times.
 ///
 /// ### Map
@@ -31,8 +33,8 @@
 	$value: $map;
 
 	@each $key in $keys {
-		@if map-has-key($value, $key) {
-			$value: map-get($value, $key);
+		@if map.has-key($value, $key) {
+			$value: map.get($value, $key);
 		}
 		@else {
 			@error 'ERROR: Specified index does not exist in map #{$map}, with value: #{$key}';
