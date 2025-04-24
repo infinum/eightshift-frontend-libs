@@ -15,20 +15,14 @@ import { upperFirst } from '@eightshift/ui-components/utilities';
  * @returns Configuration object.
  */
 export const generateResponsiveToggleButtonConfig = (options) => {
-	const {
-		attributeName,
-		attributes,
-		setAttributes,
-		manifest,
-		breakpointNames = getDefaultBreakpointNames(),
-	} = options;
+	const { attributeName, attributes, setAttributes, manifest, breakpointNames = getDefaultBreakpointNames() } = options;
 
 	const values = checkAttrResponsive(attributeName, attributes, manifest, true);
 
 	const value = breakpointNames.reduce((all, current) => {
 		return {
 			...all,
-			[current]: values[current]
+			[current]: values[current],
 		};
 	}, {});
 

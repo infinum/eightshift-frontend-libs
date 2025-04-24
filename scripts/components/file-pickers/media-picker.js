@@ -5,7 +5,12 @@ import { icons } from '@eightshift/ui-components/icons';
 import { ManageFileButton } from './file-picker';
 
 const MediaButton = (props) => {
-	return <ManageFileButton {...props} kind='image' />;
+	return (
+		<ManageFileButton
+			{...props}
+			kind='image'
+		/>
+	);
 };
 
 /**
@@ -56,12 +61,22 @@ export const MediaPicker = (props) => {
 	}
 
 	return (
-		<HStack className={className} noWrap>
-			<ImagePlaceholder url={imageUrl} alt={imageAlt} imageMode={imageMode} />
+		<HStack
+			className={className}
+			noWrap
+		>
+			<ImagePlaceholder
+				url={imageUrl}
+				alt={imageAlt}
+				imageMode={imageMode}
+			/>
 
 			{!imageUrl && (
 				<>
-					<MediaButton onChange={onChange} allowedTypes={allowedTypes} />
+					<MediaButton
+						onChange={onChange}
+						allowedTypes={allowedTypes}
+					/>
 					{!noUpload && (
 						<MediaButton
 							onChange={onChange}

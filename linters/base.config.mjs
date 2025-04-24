@@ -1,6 +1,7 @@
 // import react from 'eslint-plugin-react';
 // import reactHooks from 'eslint-plugin-react-hooks';
 import stylistic from '@stylistic/eslint-plugin-js';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 
 export default [
@@ -76,4 +77,5 @@ export default [
 		// 	},
 		// },
 	},
+	eslintPluginPrettierRecommended,
 ];

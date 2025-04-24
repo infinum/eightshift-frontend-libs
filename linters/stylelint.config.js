@@ -1,11 +1,6 @@
 module.exports = {
-	plugins: [
-		'@stylistic/stylelint-plugin'
-	],
-	extends: [
-		'stylelint-config-standard',
-		'stylelint-config-standard-scss'
-	],
+	plugins: ['@stylistic/stylelint-plugin'],
+	extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
 	rules: {
 		// Stylistic rules.
 		'@stylistic/indentation': 'tab',
@@ -70,13 +65,15 @@ module.exports = {
 
 		// Standard rules.
 		'comment-empty-line-before': [
-			'always', {
+			'always',
+			{
 				ignore: ['stylelint-commands', 'after-comment'],
 			},
 		],
 
 		'rule-empty-line-before': [
-			'always', {
+			'always',
+			{
 				except: ['first-nested'],
 				ignore: ['after-comment'],
 			},
@@ -113,13 +110,11 @@ module.exports = {
 		'declaration-block-no-duplicate-properties': true,
 		'declaration-block-no-shorthand-property-overrides': true,
 		'declaration-block-single-line-max-declarations': 1,
-		"declaration-block-no-redundant-longhand-properties": [
+		'declaration-block-no-redundant-longhand-properties': [
 			true,
 			{
-				"ignoreShorthands": [
-					"grid-template"
-				]
-			}
+				ignoreShorthands: ['grid-template'],
+			},
 		],
 
 		'block-no-empty': true,
@@ -139,6 +134,11 @@ module.exports = {
 		'no-unknown-animations': true,
 
 		'keyframes-name-pattern': null,
+		'selector-class-pattern': null,
+		'no-descending-specificity': null,
+
+		'import-notation': null,
+
 		'scss/at-function-pattern': null,
 		'scss/dollar-variable-pattern': null,
 		'scss/at-import-partial-extension': null,
@@ -149,9 +149,5 @@ module.exports = {
 		'scss/at-else-closing-brace-newline-after': null,
 		'scss/at-else-closing-brace-space-after': null,
 		'scss/at-if-no-null': null,
-		'selector-class-pattern': null,
-		'no-descending-specificity': null,
-
-		'import-notation': null,
 	},
 };

@@ -26,7 +26,7 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 		offsetAttributeName,
 		widthAttributeName,
 		showFullWidth = false,
-		showOffsetAutoToggle=false,
+		showOffsetAutoToggle = false,
 		min = 1,
 		numOfColumns = 12,
 		numericValues = false,
@@ -39,7 +39,6 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 
 	const widths = checkAttrResponsive(widthAttributeName, attributes, manifest, true);
 	const offsets = checkAttrResponsive(offsetAttributeName, attributes, manifest, true);
-
 
 	const value = breakpointNames.reduce((all, current) => {
 		let additional = {};
@@ -55,7 +54,7 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 				width: widths[current],
 				offset: offsets[current],
 				...additional,
-			}
+			},
 		};
 	}, {});
 
@@ -66,7 +65,7 @@ export const generateWidthOffsetRangeSliderConfig = (options) => {
 				let additional = {};
 
 				if (showFullWidth) {
-					additional = { [`${isFullWidthAttributeName}${upperFirst(breakpoint)}`]: attrs.fullWidth, };
+					additional = { [`${isFullWidthAttributeName}${upperFirst(breakpoint)}`]: attrs.fullWidth };
 				}
 
 				const output = {};

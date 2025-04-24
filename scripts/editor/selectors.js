@@ -1,4 +1,4 @@
-import { clsx } from "@eightshift/ui-components/utilities";
+import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
  * Returns BEM selector for html class and check if Condition part is set.

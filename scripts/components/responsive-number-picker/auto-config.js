@@ -29,11 +29,11 @@ export const generateResponsiveNumberPickerConfig = (options) => {
 	const value = breakpointNames.reduce((all, current) => {
 		return {
 			...all,
-			[current]: values[current]
+			[current]: values[current],
 		};
 	}, {});
 
-	const { min, max, step } =  getOption(minMaxStepOptionName, attributes, manifest);
+	const { min, max, step } = getOption(minMaxStepOptionName, attributes, manifest);
 
 	return {
 		value: value,

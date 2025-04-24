@@ -8,13 +8,7 @@ import { icons } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-	} = useSortable({ id: props.id });
+	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
 
 	const {
 		icon,
@@ -34,12 +28,14 @@ export const SortableItem = (props) => {
 		transition: transition,
 	};
 
-	const additionalTriggerProps = noReordering ? {
-		disabled: 'disabled',
-	} : {
-		...attributes,
-		...listeners,
-	};
+	const additionalTriggerProps = noReordering
+		? {
+				disabled: 'disabled',
+			}
+		: {
+				...attributes,
+				...listeners,
+			};
 
 	const itemLabel = (
 		<RichLabel
@@ -49,10 +45,15 @@ export const SortableItem = (props) => {
 		/>
 	);
 
-	const expandDisabled = Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length < 1 : !props?.children;
+	const expandDisabled = Array.isArray(props?.children)
+		? props?.children?.filter(Boolean)?.length < 1
+		: !props?.children;
 
 	return (
-		<div ref={setNodeRef} style={style}>
+		<div
+			ref={setNodeRef}
+			style={style}
+		>
 			<Expandable
 				icon={preIcon}
 				label={itemLabel}
@@ -62,10 +63,7 @@ export const SortableItem = (props) => {
 					<div className='es:flex es:items-center'>
 						<GutenbergButton
 							{...additionalTriggerProps}
-							className={clsx(
-								'[&>svg]:es:size-5 es:min-w-5 es:w-5',
-								isOnly ? 'es:hidden' : 'es:opacity-50',
-							)}
+							className={clsx('[&>svg]:es:size-5 es:min-w-5 es:w-5', isOnly ? 'es:hidden' : 'es:opacity-50')}
 							size='small'
 							icon={icons.reorderGrabberV}
 							disabled={noReordering}
@@ -76,11 +74,14 @@ export const SortableItem = (props) => {
 							triggerIcon={icons.hamburgerMenu}
 							triggerProps={{ size: 'small', type: 'ghost' }}
 						>
-							{!hideRemove &&
-								<MenuItem icon={icons.trash} onClick={onRemove}>
+							{!hideRemove && (
+								<MenuItem
+									icon={icons.trash}
+									onClick={onRemove}
+								>
 									{__('Remove', 'eightshift-frontend-libs')}
 								</MenuItem>
-							}
+							)}
 
 							{additionalMenuOptions}
 						</Menu>

@@ -2,12 +2,7 @@ import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
 import { icons } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
-import {
-	BaseControl,
-	HStack,
-	ToggleButton,
-	ColumnConfigSlider,
-} from '@eightshift/ui-components';
+import { BaseControl, HStack, ToggleButton, ColumnConfigSlider } from '@eightshift/ui-components';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
@@ -71,7 +66,7 @@ export const WidthOffsetRangeSlider = (props) => {
 			...all,
 			[breakpointName]: width,
 		}),
-		{}
+		{},
 	);
 
 	const rawOffsets = Object.entries(value).reduce(
@@ -79,7 +74,7 @@ export const WidthOffsetRangeSlider = (props) => {
 			...all,
 			[breakpointName]: offset,
 		}),
-		{}
+		{},
 	);
 
 	const rawFullWidths =
@@ -89,11 +84,15 @@ export const WidthOffsetRangeSlider = (props) => {
 				...all,
 				[breakpointName]: fullWidth,
 			}),
-			{}
+			{},
 		);
 
 	return (
-		<Responsive label={label} icon={icon} additionalClasses={additionalClasses}>
+		<Responsive
+			label={label}
+			icon={icon}
+			additionalClasses={additionalClasses}
+		>
 			{breakpointNames.map((breakpoint, index) => {
 				const width = rawWidths[breakpoint];
 				const offset = rawOffsets[breakpoint];
@@ -128,41 +127,25 @@ export const WidthOffsetRangeSlider = (props) => {
 
 				const offsetValue = inheritCheck(offset) ? nearestValidOffset : offset;
 				const parsedOffset =
-					autoOffsetToggle && offsetValue === autoOffsetValue
-						? autoStartOffset
-						: parseInt(offsetValue);
+					autoOffsetToggle && offsetValue === autoOffsetValue ? autoStartOffset : parseInt(offsetValue);
 
-				const parsedWidth = parseInt(
-					inheritCheck(width) ? nearestValidWidth : width
-				);
-				const parsedFullWidth = inheritCheck(fullWidth)
-					? nearestValidFullWidth
-					: fullWidth;
+				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
+				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
 
 				const displayedWidth = parsedWidth + parsedOffset - 1;
 
-				const totalNumberOfColumns =
-					rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
+				const totalNumberOfColumns = rawTotalColumns + (parsedFullWidth === true ? 2 : 0);
 
 				return (
 					<>
 						<HStack
 							hidden={
-								!(
-									(fullWidthToggle &&
-										(index === 0 || !inheritCheck(fullWidth))) ||
-									(autoOffsetToggle && index === 0)
-								)
+								!((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0))
 							}
 							className='es:mb-1'
 						>
 							<ToggleButton
-								hidden={
-									!(
-										fullWidthToggle &&
-										(index === 0 || !inheritCheck(fullWidth))
-									)
-								}
+								hidden={!(fullWidthToggle && (index === 0 || !inheritCheck(fullWidth)))}
 								selected={parsedFullWidth}
 								onChange={(value) => {
 									onChange({
@@ -192,12 +175,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									});
 								}}
 								size='small'
-								className={clsx(
-									!(
-										fullWidthToggle &&
-										(index === 0 || !inheritCheck(fullWidth))
-									) && 'es:ml-auto'
-								)}
+								className={clsx(!(fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) && 'es:ml-auto')}
 							>
 								{__('Automatic offset', 'eightshift-frontend-libs')}
 							</ToggleButton>
@@ -207,7 +185,11 @@ export const WidthOffsetRangeSlider = (props) => {
 							key={breakpoint}
 							aria-label={__('Width & offset', 'eightshift-frontend-libs')}
 							columns={totalNumberOfColumns}
-							value={isWidthInherited && !isOffsetInherited ? [parsedOffset, parsedOffset + 1] : [parsedOffset, displayedWidth]}
+							value={
+								isWidthInherited && !isOffsetInherited
+									? [parsedOffset, parsedOffset + 1]
+									: [parsedOffset, displayedWidth]
+							}
 							showOuterAsGutter={showOuterAsGutter ?? parsedFullWidth}
 							onChange={([o, w]) => {
 								let newValues = {};
@@ -215,21 +197,15 @@ export const WidthOffsetRangeSlider = (props) => {
 								if (isWidthInherited && !isOffsetInherited) {
 									newValues.offset = stringValues ? String(o) : o;
 								} else if (!isWidthInherited && isOffsetInherited) {
-									newValues.width = stringValues
-										? String(w - nearestValidOffset + 1)
-										: w - nearestValidOffset + 1;
+									newValues.width = stringValues ? String(w - nearestValidOffset + 1) : w - nearestValidOffset + 1;
 								} else if (!isWidthInherited && offset === autoOffsetValue) {
 									const newWidth = w - autoStartOffset + 1;
 
 									if (newWidth > 0) {
-										newValues.width = stringValues
-											? String(newWidth)
-											: newWidth;
+										newValues.width = stringValues ? String(newWidth) : newWidth;
 									}
 								} else if (!isWidthInherited && !isOffsetInherited) {
-									newValues.width = stringValues
-										? String(w - o + 1)
-										: w - o + 1;
+									newValues.width = stringValues ? String(w - o + 1) : w - o + 1;
 									newValues.offset = stringValues ? String(o) : o;
 								}
 
@@ -242,10 +218,7 @@ export const WidthOffsetRangeSlider = (props) => {
 								});
 							}}
 							disableWidth={inheritCheck(width)}
-							disableOffset={
-								inheritCheck(offset) ||
-								(index === 0 && offset === autoOffsetValue)
-							}
+							disableOffset={inheritCheck(offset) || (index === 0 && offset === autoOffsetValue)}
 							onChangeEnd={onAfterChange}
 						/>
 
@@ -264,9 +237,7 @@ export const WidthOffsetRangeSlider = (props) => {
 											...value,
 											[breakpoint]: {
 												...value[breakpoint],
-												offset: inheritCheck(offset)
-													? parsedOffset
-													: inheritValue,
+												offset: inheritCheck(offset) ? parsedOffset : inheritValue,
 											},
 										});
 									}}
@@ -282,9 +253,7 @@ export const WidthOffsetRangeSlider = (props) => {
 											...value,
 											[breakpoint]: {
 												...value[breakpoint],
-												width: inheritCheck(width)
-													? displayedWidth
-													: inheritValue,
+												width: inheritCheck(width) ? displayedWidth : inheritValue,
 											},
 										});
 									}}
@@ -301,9 +270,7 @@ export const WidthOffsetRangeSlider = (props) => {
 											...value,
 											[breakpoint]: {
 												...value[breakpoint],
-												fullWidth: inheritCheck(fullWidth)
-													? false
-													: inheritValue,
+												fullWidth: inheritCheck(fullWidth) ? false : inheritValue,
 											},
 										});
 									}}

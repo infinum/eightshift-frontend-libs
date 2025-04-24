@@ -6,13 +6,7 @@ import { icons } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-	} = useSortable({ id: props.id });
+	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
 
 	const {
 		icon,
@@ -39,40 +33,63 @@ export const SortableItem = (props) => {
 		transition: transition,
 	};
 
-	const additionalTriggerProps = noReordering ? {
-		disabled: 'disabled',
-	} : {
-		...listeners,
-		...attributes,
-	};
+	const additionalTriggerProps = noReordering
+		? {
+				disabled: 'disabled',
+			}
+		: {
+				...listeners,
+				...attributes,
+			};
 
-	const itemLabel = ((typeof title !== 'string' && title) || (typeof title === 'string' && title?.length > 0) || (typeof subtitle !== 'string' && subtitle) || (typeof subtitle === 'string' && subtitle?.length > 0) || icon) && (
-		<IconLabel icon={icon} label={title} subtitle={subtitle} additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`} standalone />
+	const itemLabel = ((typeof title !== 'string' && title) ||
+		(typeof title === 'string' && title?.length > 0) ||
+		(typeof subtitle !== 'string' && subtitle) ||
+		(typeof subtitle === 'string' && subtitle?.length > 0) ||
+		icon) && (
+		<IconLabel
+			icon={icon}
+			label={title}
+			subtitle={subtitle}
+			additionalClasses={`es-nested-color-cool-gray-650 ${additionalLabelClass ?? ''}`}
+			standalone
+		/>
 	);
 
 	return (
-		<div ref={setNodeRef} style={style} className={clsx(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}>
-			<div className={clsx('es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition', isActive && 'es-bg-cool-gray-50', innerClass)} >
+		<div
+			ref={setNodeRef}
+			style={style}
+			className={clsx(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}
+		>
+			<div
+				className={clsx(
+					'es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition',
+					isActive && 'es-bg-cool-gray-50',
+					innerClass,
+				)}
+			>
 				{preIcon}
 
 				{noReordering && itemLabel}
 
-				{!noReordering &&
+				{!noReordering && (
 					<div className={clsx('es-text-align-left es-h-between', !horizontal && !horizontalVertical && 'es-w-full')}>
 						{itemLabel}
 
 						<button
 							className={clsx(
 								'es-button-reset',
-								!customGrabHandle && 'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition',
-								!customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!'
+								!customGrabHandle &&
+									'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition',
+								!customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!',
 							)}
 							{...additionalTriggerProps}
 						>
 							{customGrabHandle ?? icons.reorderGrabberV}
 						</button>
 					</div>
-				}
+				)}
 
 				{postIcon}
 			</div>

@@ -1,9 +1,0 @@
-.image {
-	&__img {
-		transition: {
-			property: border-radius, width, height;
-			timing-function: var(--ease-out-back);
-			duration: 0.5s;
-		}
-	}
-}

@@ -2,7 +2,6 @@
  * Helper to set and unset cookies.
  */
 export const cookies = {
-
 	/**
 	 * Set a cookie value
 	 *
@@ -37,9 +36,7 @@ export const cookies = {
 		};
 
 		try {
-			document.cookie = Object.values(cookieParts)
-			.filter(Boolean)
-			.join('; ');
+			document.cookie = Object.values(cookieParts).filter(Boolean).join('; ');
 
 			return true;
 		} catch (e) {

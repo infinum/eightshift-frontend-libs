@@ -69,10 +69,13 @@ export const ResponsiveSlider = (props) => {
 
 	const breakpointNames = Object.keys(value);
 
-	const rawValues = Object.entries(value).reduce((all, [breakpointName, value]) => ({
-		...all,
-		[breakpointName]: value,
-	}), {});
+	const rawValues = Object.entries(value).reduce(
+		(all, [breakpointName, value]) => ({
+			...all,
+			[breakpointName]: value,
+		}),
+		{},
+	);
 
 	return (
 		<Responsive
@@ -125,7 +128,10 @@ export const ResponsiveSlider = (props) => {
 				const parsedValue = parseFloat(inheritCheck(currentValue) ? nearestValid : currentValue);
 
 				return (
-					<div className='es-h-spaced' key={index}>
+					<div
+						className='es-h-spaced'
+						key={index}
+					>
 						<Slider
 							value={modifyInput ? modifyInput(parsedValue) : parsedValue}
 							onChange={(currentValue) => {
@@ -142,24 +148,27 @@ export const ResponsiveSlider = (props) => {
 							max={max}
 							step={step}
 							additionalClass='es-w-full'
-							rightAddition={typeof resetButton !== 'undefined' &&
-								<Button
-									icon={resetButton === 0 ? icons.resetToZero : icons.reset}
-									onClick={() => {
-										const newValue = stringValues ? `${resetButton}` : resetButton;
-										onChange({
-											...value,
-											[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
-										});
-									}}
-									disabled={parsedValue === resetButton || isInherited}
-									className={clsx(
-										'es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!',
-										(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'
-									)}
-									label={__('Reset', 'eightshift-frontend-libs')}
-									showTooltip
-								/>
+							rightAddition={
+								typeof resetButton !== 'undefined' && (
+									<Button
+										icon={resetButton === 0 ? icons.resetToZero : icons.reset}
+										onClick={() => {
+											const newValue = stringValues ? `${resetButton}` : resetButton;
+											onChange({
+												...value,
+												[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
+											});
+										}}
+										disabled={parsedValue === resetButton || isInherited}
+										className={clsx(
+											'es-button-square-32 es-button-icon-24 es-slight-button-border-cool-gray-400 es-hover-slight-button-border-cool-gray-500 es-rounded-1! es-flex-shrink-0!',
+											(parsedValue === resetButton || isInherited) &&
+												'es-pointer-events-none es-nested-color-cool-gray-400!',
+										)}
+										label={__('Reset', 'eightshift-frontend-libs')}
+										showTooltip
+									/>
+								)
 							}
 							{...additionalProps}
 						/>

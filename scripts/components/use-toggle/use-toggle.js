@@ -3,11 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import { ComponentToggle, Spacer } from '@eightshift/ui-components';
 
-export const generateUseToggleConfig = (
-	attributes,
-	manifest,
-	attributeName
-) => {
+export const generateUseToggleConfig = (attributes, manifest, attributeName) => {
 	const {
 		noControls,
 
@@ -82,7 +78,10 @@ export const UseToggle = ({
 		return (
 			<>
 				<Spacer size='s' />
-				<Spacer icon={icon} text={label} />
+				<Spacer
+					icon={icon}
+					text={label}
+				/>
 				{children}
 			</>
 		);

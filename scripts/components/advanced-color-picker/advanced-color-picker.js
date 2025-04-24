@@ -86,12 +86,9 @@ export const AdvancedColorPicker = (props) => {
 		className,
 	} = props;
 
-	const showProjectColor =
-		types.find(({ value }) => value === 'project') !== undefined;
-	const showSolidColor =
-		types.find(({ value }) => value === 'solid') !== undefined;
-	const showGradient =
-		types.find(({ value }) => value === 'gradient') !== undefined;
+	const showProjectColor = types.find(({ value }) => value === 'project') !== undefined;
+	const showSolidColor = types.find(({ value }) => value === 'solid') !== undefined;
+	const showGradient = types.find(({ value }) => value === 'gradient') !== undefined;
 
 	return (
 		<BaseControl
@@ -113,17 +110,13 @@ export const AdvancedColorPicker = (props) => {
 				{type === 'project' && showProjectColor && !disabled && (
 					<ColorPicker
 						value={colorProject}
-						colors={
-							typeof colorsProject == 'undefined' ? globalColors : colorsProject
-						}
+						colors={typeof colorsProject == 'undefined' ? globalColors : colorsProject}
 						onChange={onChangeProject}
 					/>
 				)}
 
 				{type === 'solid' && showSolidColor && !disabled && (
-					<TriggeredPopover
-						triggerButtonIcon={<ColorSwatch color={colorSolid} />}
-					>
+					<TriggeredPopover triggerButtonIcon={<ColorSwatch color={colorSolid} />}>
 						<SolidColorPicker
 							color={colorSolid}
 							onChange={(value) => onChangeSolid(value)}
@@ -137,10 +130,7 @@ export const AdvancedColorPicker = (props) => {
 						className='es:min-w-72 es:p-2'
 					>
 						<GradientEditor
-							value={
-								colorGradient ??
-								'linear-gradient(to right, #000000 0%, #ffffff 100%)'
-							}
+							value={colorGradient ?? 'linear-gradient(to right, #000000 0%, #ffffff 100%)'}
 							onChange={(value) => onChangeGradient(value)}
 						/>
 

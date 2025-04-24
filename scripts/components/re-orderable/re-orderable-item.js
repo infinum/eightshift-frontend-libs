@@ -1,4 +1,3 @@
-
 /**
  * A re-orderable item.
  *
@@ -16,9 +15,5 @@
  * @param {string?} [props.innerClass]                  - Class(es) to apply to the inner element.
  */
 export const ReOrderableItem = (props) => {
-	return (
-		<div {...props}>
-			{props.children}
-		</div>
-	);
+	return <div {...props}>{props.children}</div>;
 };

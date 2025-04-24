@@ -34,10 +34,7 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
 	const block = getBlock(clientId);
 
 	block.innerBlocks.map((item) => {
-		const {
-			attributes,
-			name,
-		} = item;
+		const { attributes, name } = item;
 
 		if (!exclude.includes(name)) {
 			for (const attribute in attributesObject) {
@@ -85,7 +82,7 @@ export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId, excl
 			wrapperSimpleShowControl: false,
 			wrapperUseShowControl: false,
 		},
-		exclude
+		exclude,
 	);
 };
 
@@ -114,7 +111,7 @@ export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId, excl
  *       "type": "boolean"
  *     },
  *   },
-*    "buttonContent": {
+ *    "buttonContent": {
  *       "type": "string"
  *     },
  *   }
@@ -134,7 +131,6 @@ export const overrideInnerBlockSimpleWrapperAttributes = (select, clientId, excl
  * ```
  */
 export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) => {
-
 	// Get the correct key for the check in the attributes object.
 	const newKey = getAttrKey(key, attributes, manifest);
 
@@ -149,15 +145,20 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 	let tipOutput = '';
 
 	if ('components' in manifest) {
-		tipOutput = ' If you are using additional components, check if you used the correct block/component prefix in your attribute name.';
+		tipOutput =
+			' If you are using additional components, check if you used the correct block/component prefix in your attribute name.';
 	}
 
 	// Bailout if key is missing.
 	if (typeof manifestKey === 'undefined') {
 		if ('blockName' in manifest) {
-			throw Error(`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`);
+			throw Error(
+				`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`,
+			);
 		} else {
-			throw Error(`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`);
+			throw Error(
+				`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`,
+			);
 		}
 	}
 
@@ -202,53 +203,53 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
  *
  * @returns {mixed}
  *
-* Manifest:
-	* ```js
-	* {
-	*   "attributes": {
-	*     "headingContentSpacingLarge": {
-	*       "type": "integer",
-	*       "default": 10,
-	*     },
-	*     "headingContentSpacingDesktop": {
-	*       "type": "integer",
-	*       "default": 5,
-	*     },
-	*     "headingContentSpacingTablet": {
-	*       "type": "integer",
-	*       "default": 3,
-	*     },
-	*     "headingContentSpacingMobile": {
-	*       "type": "integer",
-	*       "default": 1,
-	*     }
-	*   },
-	*   "responsiveAttributes": {
-	*     "headingContentSpacing": {
-	*       "large": "headingContentSpacingLarge",
-	*       "desktop": "headingContentSpacingDesktop",
-	*       "tablet": "headingContentSpacingTablet",
-	*       "mobile": "headingContentSpacingMobile"
-	*     }
-	*   }
-	* }
-	* ```
-	*
-	* Usage:
-	* ```js
-	* checkAttrResponsive('headingContentSpacing', attributes, manifest);
-	* ```
-	*
-	* Output:
-	* ```js
-	* [
-	*   large: 10,
-	*   desktop: 5,
-	*   tablet: 3,
-	*   mobile: 1,
-	* ]
-	* ```
-	*/
+ * Manifest:
+ * ```js
+ * {
+ *   "attributes": {
+ *     "headingContentSpacingLarge": {
+ *       "type": "integer",
+ *       "default": 10,
+ *     },
+ *     "headingContentSpacingDesktop": {
+ *       "type": "integer",
+ *       "default": 5,
+ *     },
+ *     "headingContentSpacingTablet": {
+ *       "type": "integer",
+ *       "default": 3,
+ *     },
+ *     "headingContentSpacingMobile": {
+ *       "type": "integer",
+ *       "default": 1,
+ *     }
+ *   },
+ *   "responsiveAttributes": {
+ *     "headingContentSpacing": {
+ *       "large": "headingContentSpacingLarge",
+ *       "desktop": "headingContentSpacingDesktop",
+ *       "tablet": "headingContentSpacingTablet",
+ *       "mobile": "headingContentSpacingMobile"
+ *     }
+ *   }
+ * }
+ * ```
+ *
+ * Usage:
+ * ```js
+ * checkAttrResponsive('headingContentSpacing', attributes, manifest);
+ * ```
+ *
+ * Output:
+ * ```js
+ * [
+ *   large: 10,
+ *   desktop: 5,
+ *   tablet: 3,
+ *   mobile: 1,
+ * ]
+ * ```
+ */
 export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllowed = false) => {
 	const output = {};
 
@@ -257,9 +258,13 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 
 	if (typeof responsiveAttributes === 'undefined') {
 		if (typeof manifest['blockName'] === 'undefined') {
-			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`);
+			throw Error(
+				`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
+			);
 		} else {
-			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`);
+			throw Error(
+				`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`,
+			);
 		}
 	}
 
@@ -349,7 +354,6 @@ export const getAttrKey = (key, attributes, manifest) => {
  * Additional keys that are passed are defined in the includes array.
  */
 export const props = (newName, attributes, manual = {}) => {
-
 	const output = {};
 
 	// Check which attributes we need to include.
@@ -373,7 +377,7 @@ export const props = (newName, attributes, manual = {}) => {
 	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
 
 	// Populate prefix key for recursive checks of attribute names.
-	const prefix = (typeof attributes.prefix === 'undefined') ? camelCase(blockName) : attributes['prefix'];
+	const prefix = typeof attributes.prefix === 'undefined' ? camelCase(blockName) : attributes['prefix'];
 
 	// Set component prefix.
 	if (prefix === '') {
@@ -384,7 +388,6 @@ export const props = (newName, attributes, manual = {}) => {
 
 	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
-
 		// Includes attributes from iteration.
 		if (includes.includes(key)) {
 			Object.assign(output, { [key]: value });
@@ -401,7 +404,6 @@ export const props = (newName, attributes, manual = {}) => {
 	if (!isEmpty(manual)) {
 		// Iterate manual attributes.
 		for (let [key, value] of Object.entries(manual)) {
-
 			// Includes attributes from iteration.
 			if (includes.includes(key)) {
 				Object.assign(output, { [key]: value });
