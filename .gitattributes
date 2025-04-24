@@ -1,6 +1,5 @@
 /.github export-ignore
 /.husky export-ignore
-/linters export-ignore
 /schemas export-ignore
 
 /.gitattributes export-ignore
