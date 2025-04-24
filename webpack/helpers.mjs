@@ -175,7 +175,7 @@ function convertJsonToSass(
 	let data = {};
 
 	if (fs.existsSync(path)) {
-		data = require(path);
+		data = path.dirname(path);
 	}
 
 	if (
