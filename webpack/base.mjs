@@ -4,7 +4,7 @@
  */
 
 import webpack from 'webpack';
-import sass from 'sass';
+import * as sass from 'sass'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import { convertJsonToSass } from './helpers.mjs';

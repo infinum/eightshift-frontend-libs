@@ -168,14 +168,14 @@ function convertJsonToSassMapInner(data, key) {
  * @return string Sass variable
  */
 function convertJsonToSass(
-	path,
+	srcPath,
 	propertyName = "globalVariables",
 	variableName = "global-variables"
 ) {
 	let data = {};
 
-	if (fs.existsSync(path)) {
-		data = path.resolve(path);
+	if (fs.existsSync(srcPath)) {
+		data = JSON.parse(fs.readFileSync(srcPath));
 	}
 
 	if (
