@@ -53,10 +53,13 @@ export const ResponsiveToggleButton = (props) => {
 
 	const breakpointNames = Object.keys(value);
 
-	const rawValues = Object.entries(value).reduce((all, [breakpointName, value]) => ({
-		...all,
-		[breakpointName]: value,
-	}), {});
+	const rawValues = Object.entries(value).reduce(
+		(all, [breakpointName, value]) => ({
+			...all,
+			[breakpointName]: value,
+		}),
+		{},
+	);
 
 	return (
 		<Responsive
@@ -109,7 +112,10 @@ export const ResponsiveToggleButton = (props) => {
 				const isActive = `${parsedValue}` === 'true';
 
 				return (
-					<div className='es-h-spaced' key={index}>
+					<div
+						className='es-h-spaced'
+						key={index}
+					>
 						<Button
 							value={parsedValue}
 							onClick={() => {
@@ -118,16 +124,20 @@ export const ResponsiveToggleButton = (props) => {
 									[breakpoint]: stringValues ? `${!(isActive ?? true)}` : !(isActive ?? true),
 								});
 							}}
-							icon={buttonIcon ?? React.cloneElement(icons.toggleOff, {
-								className: clsx('es-animated-toggle-icon', isActive && 'is-checked')
-							})}
+							icon={
+								buttonIcon ??
+								React.cloneElement(icons.toggleOff, {
+									className: clsx('es-animated-toggle-icon', isActive && 'is-checked'),
+								})
+							}
 							isPressed={buttonToggleEffect && isActive}
 							className={clsx(
 								'es-button-square-32 es-rounded-1! es-h-8! es-px-2!',
-								buttonToggleEffect ? 'es-is-v2-gutenberg-button es-button-icon-24' : 'es-has-v2-gutenberg-button-active-state es-button-icon-30',
-								buttonToggleEffect && isActive && 'is-active'
+								buttonToggleEffect
+									? 'es-is-v2-gutenberg-button es-button-icon-24'
+									: 'es-has-v2-gutenberg-button-active-state es-button-icon-30',
+								buttonToggleEffect && isActive && 'is-active',
 							)}
-
 							{...additionalProps}
 						/>
 					</div>

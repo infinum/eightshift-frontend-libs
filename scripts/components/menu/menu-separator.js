@@ -8,6 +8,4 @@ import { MenuSeparator as EsUicMenuSeparator } from '@eightshift/ui-components';
  *
  * A simple menu separator.
  */
-export const MenuSeparator = () => (
-	<EsUicMenuSeparator />
-);
+export const MenuSeparator = () => <EsUicMenuSeparator />;

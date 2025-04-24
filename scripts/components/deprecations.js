@@ -19,7 +19,7 @@ export const ColorPickerComponent = () => <></>;
 
 /**
  * @deprecated since 8.0.0 - Removed, use `type` prop inside ColorPicker instead (string).
-*/
+ */
 export const ColorPickerType = {};
 
 /**
@@ -76,7 +76,7 @@ export const CustomSelectCustomDropdownIndicator = () => <></>;
 
 /**
  * @deprecated since 8.0.0 - Removed.
-*/
+ */
 export const CustomSelectStyle = {};
 
 /**
@@ -107,7 +107,7 @@ export const InlineNotification = () => <></>;
 
 /**
  * @deprecated since 8.0.0 - Removed, use `type` prop inside ColorPicker instead (string).
-*/
+ */
 export const InlineNotificationType = {};
 
 /**
@@ -135,7 +135,7 @@ export const VisibilityToggleResponsive = () => <></>;
 
 /**
  * @deprecated since 8.0.0 - Removed.
-*/
+ */
 export const AlignmentToolbarType = {};
 
 /**

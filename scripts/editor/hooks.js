@@ -8,12 +8,9 @@ import { STORE_NAME } from './store';
  *
  * @abstract private
  */
- export const blocksFilterHook = createHigherOrderComponent((BlockListBlock) => {
+export const blocksFilterHook = createHigherOrderComponent((BlockListBlock) => {
 	return (innerProps) => {
-		const {
-			name,
-			clientId,
-		} = innerProps;
+		const { name, clientId } = innerProps;
 
 		let updatedProps = innerProps;
 
@@ -39,7 +36,7 @@ import { STORE_NAME } from './store';
 
 					// Add className to block defined by our project.
 					className: select(STORE_NAME).getSettingsGlobalVariablesCustomBlockName(),
-				}
+				},
 			};
 		}
 

@@ -66,10 +66,13 @@ export const ResponsiveNumberPicker = (props) => {
 
 	const breakpointNames = Object.keys(value);
 
-	const rawValues = Object.entries(value).reduce((all, [breakpointName, value]) => ({
-		...all,
-		[breakpointName]: value,
-	}), {});
+	const rawValues = Object.entries(value).reduce(
+		(all, [breakpointName, value]) => ({
+			...all,
+			[breakpointName]: value,
+		}),
+		{},
+	);
 
 	const fieldWidth = Math.max(`${Math.abs(max)}`.length, `${Math.abs(min)}`.length);
 
@@ -139,24 +142,27 @@ export const ResponsiveNumberPicker = (props) => {
 						min={min}
 						max={max}
 						step={step}
-						extraButton={typeof resetButton !== 'undefined' &&
-							<Button
-								icon={resetButton === 0 ? icons.resetToZero : icons.reset}
-								onClick={() => {
-									const newValue = stringValues ? `${resetButton}` : resetButton;
-									onChange({
-										...value,
-										[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
-									});
-								}}
-								disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
-								className={clsx(
-									'es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition',
-									(parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!'
-								)}
-								label={__('Reset', 'eightshift-frontend-libs')}
-								showTooltip
-							/>
+						extraButton={
+							typeof resetButton !== 'undefined' && (
+								<Button
+									icon={resetButton === 0 ? icons.resetToZero : icons.reset}
+									onClick={() => {
+										const newValue = stringValues ? `${resetButton}` : resetButton;
+										onChange({
+											...value,
+											[breakpoint]: modifyOutput ? modifyOutput(newValue) : newValue,
+										});
+									}}
+									disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
+									className={clsx(
+										'es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition',
+										(parsedValue === resetButton || isInherited) &&
+											'es-pointer-events-none es-nested-color-cool-gray-400!',
+									)}
+									label={__('Reset', 'eightshift-frontend-libs')}
+									showTooltip
+								/>
+							)
 						}
 						{...additionalProps}
 					/>

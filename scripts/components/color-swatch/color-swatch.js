@@ -15,5 +15,10 @@ import { ColorSwatch as EsUicColorSwatch } from '@eightshift/ui-components';
 export const ColorSwatch = (props) => {
 	const { color, additionalClasses } = props;
 
-	return <EsUicColorSwatch color={color} className={additionalClasses} />;
+	return (
+		<EsUicColorSwatch
+			color={color}
+			className={additionalClasses}
+		/>
+	);
 };

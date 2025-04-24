@@ -17,7 +17,10 @@ export const AnimatedContentVisibility = (props) => {
 	const { showIf, additionalContainerClasses, children } = props;
 
 	return (
-		<AnimatedVisibility visible={showIf} className={additionalContainerClasses}>
+		<AnimatedVisibility
+			visible={showIf}
+			className={additionalContainerClasses}
+		>
 			{children}
 		</AnimatedVisibility>
 	);

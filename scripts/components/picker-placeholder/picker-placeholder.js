@@ -74,7 +74,9 @@ export const PickerPlaceholder = (props) => {
 					<Button
 						key={index}
 						onPress={async () => {
-							const blocksToInsert = blockData.map(({ name: blockName, attributes: blockAttrs }) => createBlock(blockName, blockAttrs));
+							const blocksToInsert = blockData.map(({ name: blockName, attributes: blockAttrs }) =>
+								createBlock(blockName, blockAttrs),
+							);
 
 							onChange(attrsToSet);
 

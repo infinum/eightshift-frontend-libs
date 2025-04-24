@@ -1,12 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
-import {
-	BaseControl,
-	Menu,
-	MenuItem,
-	MenuSeparator,
-} from '@eightshift/ui-components';
+import { BaseControl, Menu, MenuItem, MenuSeparator } from '@eightshift/ui-components';
 
 /**
  * A picker for presets defined in the manifest, with additional configurable options.
@@ -35,10 +30,7 @@ export const PresetPicker = (props) => {
 
 		icon = icons.sliders,
 		label = __('Presets', 'eightshift-frontend-libs'),
-		help = __(
-			'Current settings will be overwritten',
-			'eightshift-frontend-libs'
-		),
+		help = __('Current settings will be overwritten', 'eightshift-frontend-libs'),
 
 		offButton = false,
 		defaultButton = false,
@@ -48,22 +40,19 @@ export const PresetPicker = (props) => {
 		return null;
 	}
 
-	const defaultManifestAttributes = Object.entries(manifest.attributes).reduce(
-		(curr, [k, v]) => {
-			if ('default' in v) {
-				return {
-					...curr,
-					[k]: v.default,
-				};
-			}
-
+	const defaultManifestAttributes = Object.entries(manifest.attributes).reduce((curr, [k, v]) => {
+		if ('default' in v) {
 			return {
 				...curr,
-				[k]: undefined,
+				[k]: v.default,
 			};
-		},
-		{}
-	);
+		}
+
+		return {
+			...curr,
+			[k]: undefined,
+		};
+	}, {});
 
 	const presetsContent = (
 		<Menu
@@ -87,11 +76,7 @@ export const PresetPicker = (props) => {
 				<>
 					<MenuItem
 						icon={defaultButton?.icon ?? icons.checkCircle}
-						onClick={() =>
-							setAttributes(
-								defaultButton?.attributes ?? defaultManifestAttributes
-							)
-						}
+						onClick={() => setAttributes(defaultButton?.attributes ?? defaultManifestAttributes)}
 					>
 						{defaultButton?.label ?? __('Default', 'eightshift-frontend-libs')}
 					</MenuItem>
@@ -100,26 +85,21 @@ export const PresetPicker = (props) => {
 				</>
 			)}
 
-			{manifest[configPresetsKey].map(
-				(
-					{ name: presetName, icon: presetIcon, attributes: presetAttrs },
-					i
-				) => (
-					<MenuItem
-						key={i}
-						icon={icons?.[presetIcon] ?? icons.genericShapesAlt}
-						onClick={() =>
-							setAttributes(
-								excludeDefaultsFromPresets && defaultManifestAttributes
-									? presetAttrs
-									: { ...defaultManifestAttributes, ...presetAttrs }
-							)
-						}
-					>
-						{presetName}
-					</MenuItem>
-				)
-			)}
+			{manifest[configPresetsKey].map(({ name: presetName, icon: presetIcon, attributes: presetAttrs }, i) => (
+				<MenuItem
+					key={i}
+					icon={icons?.[presetIcon] ?? icons.genericShapesAlt}
+					onClick={() =>
+						setAttributes(
+							excludeDefaultsFromPresets && defaultManifestAttributes
+								? presetAttrs
+								: { ...defaultManifestAttributes, ...presetAttrs },
+						)
+					}
+				>
+					{presetName}
+				</MenuItem>
+			))}
 		</Menu>
 	);
 
@@ -128,7 +108,12 @@ export const PresetPicker = (props) => {
 	}
 
 	return (
-		<BaseControl label={label} icon={icon} help={help} inline>
+		<BaseControl
+			label={label}
+			icon={icon}
+			help={help}
+			inline
+		>
 			{presetsContent}
 		</BaseControl>
 	);

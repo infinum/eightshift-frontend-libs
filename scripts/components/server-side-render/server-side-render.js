@@ -29,7 +29,10 @@ export const ServerSideRender = (props) => {
 			{...rest}
 			block={block}
 			attributes={attributes}
-			className={clsx('es:pointer-events-none es:rounded-lg es:border es:border-dotted es:border-gray-300 es:p-2 es:flow-root', className)}
+			className={clsx(
+				'es:pointer-events-none es:rounded-lg es:border es:border-dotted es:border-gray-300 es:p-2 es:flow-root',
+				className,
+			)}
 		/>
 	);
 };

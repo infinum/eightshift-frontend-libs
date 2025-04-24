@@ -38,18 +38,13 @@ export const inserter = () => {
 	window['eightshift']['inserter'] = {
 		save: false,
 		reset: false,
-		runAll: function(
-			namespace,
-			save = this.save,
-			reset = this.reset
-		) {
-
+		runAll: function (namespace, save = this.save, reset = this.reset) {
 			if (isEmpty(namespace)) {
 				throw Error('Must provide namespace for this method.');
 			}
 
 			// Find all blocks.
-			const blocks = select( 'core/blocks' ).getBlockTypes();
+			const blocks = select('core/blocks').getBlockTypes();
 
 			// If reset is used remove all block from dom.
 			if (reset) {
@@ -64,18 +59,13 @@ export const inserter = () => {
 				dispatch('core/editor').savePost();
 			}
 		},
-		runOne: function(
-			name,
-			save = this.save,
-			reset = this.reset,
-		) {
-
+		runOne: function (name, save = this.save, reset = this.reset) {
 			if (isEmpty(name)) {
 				throw Error('Must provide full block name for this method. Example eightshift-boilerplate/card.');
 			}
 
 			// Find all blocks.
-			const blocks = select( 'core/blocks' ).getBlockTypes();
+			const blocks = select('core/blocks').getBlockTypes();
 
 			// If reset is used remove all block from dom.
 			if (reset) {
@@ -90,14 +80,14 @@ export const inserter = () => {
 				dispatch('core/editor').savePost();
 			}
 		},
-		runReset: function() {
+		runReset: function () {
 			// Remove all block from dom.
 			dispatch('core/block-editor').resetBlocks([]);
 		},
-		runSave: function() {
+		runSave: function () {
 			// Save after insertion in dom.
 			dispatch('core/editor').savePost();
-		}
+		},
 	};
 };
 
@@ -116,9 +106,7 @@ export const inserter = () => {
  */
 const iterateBlocksByName = (blocks, blockFullName) => {
 	for (const value of blocks) {
-		const {
-			name,
-		} = value;
+		const { name } = value;
 
 		// Bailout if block name is not correct.
 		if (name !== blockFullName) {
@@ -142,9 +130,7 @@ const iterateBlocksByName = (blocks, blockFullName) => {
  */
 const iterateBlocksByNamespace = (blocks, namespace) => {
 	for (const value of blocks) {
-		const {
-			name,
-		} = value;
+		const { name } = value;
 
 		// Split the name and find the namespace.
 		const blockNamespace = name.split('/')[0];
@@ -209,9 +195,9 @@ const buildBlocks = (blocks) => {
 		let innerBlocksOutput = [];
 
 		if (!isEmpty(innerBlocks)) {
-			innerBlocksOutput = createBlock( name, attributes, buildBlocks(innerBlocks));
+			innerBlocksOutput = createBlock(name, attributes, buildBlocks(innerBlocks));
 		} else {
-			innerBlocksOutput = createBlock( name, attributes, innerBlocks);
+			innerBlocksOutput = createBlock(name, attributes, innerBlocks);
 		}
 
 		output.push(innerBlocksOutput);

@@ -147,7 +147,6 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
  * ```
  */
 export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
-
 	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
 
 	// Define variables from manifest.
@@ -156,10 +155,9 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	const responsiveAttributes = manifest?.responsiveAttributes;
 
 	// Sort breakpoints in correct order.
-	const sortedBreakpoints = Object.entries(breakpoints)
-		.sort((a, b) => {
-			return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
-		});
+	const sortedBreakpoints = Object.entries(breakpoints).sort((a, b) => {
+		return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
+	});
 
 	const defaultBreakpoints = {
 		min: sortedBreakpoints?.[0]?.[0] || '',
@@ -172,7 +170,13 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	if (typeof variables !== 'undefined') {
 		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
 		if (typeof responsiveAttributes !== 'undefined') {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
+			setVariablesToBreakpoints(
+				attributes,
+				setupResponsiveVariables(responsiveAttributes, variables),
+				data,
+				manifest,
+				defaultBreakpoints,
+			);
 		}
 
 		// Iterate each variable from variables field.
@@ -182,7 +186,13 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (typeof variablesEditor !== 'undefined') {
 		if (typeof responsiveAttributes !== 'undefined') {
-			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
+			setVariablesToBreakpoints(
+				attributes,
+				setupResponsiveVariables(responsiveAttributes, variablesEditor),
+				data,
+				manifest,
+				defaultBreakpoints,
+			);
 		}
 
 		// Iterate each variable from variablesEditor field.
@@ -203,7 +213,9 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	}
 
 	// Find if style exists in the store.
-	const existsIndex = select(STORE_NAME).getStyles().findIndex((item) => item?.name === name && item?.unique === unique);
+	const existsIndex = select(STORE_NAME)
+		.getStyles()
+		.findIndex((item) => item?.name === name && item?.unique === unique);
 
 	// Find blockClientId from the attributes.
 	const blockClientId = attributes?.blockClientId;
@@ -212,7 +224,10 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
 	if (typeof blockClientId !== 'undefined') {
 		if (existsIndex !== -1) {
 			// Update existing styles.
-			dispatch(STORE_NAME).setStyleByIndex(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId), existsIndex);
+			dispatch(STORE_NAME).setStyleByIndex(
+				getCssVariablesTypeInline(name, data, manifest, unique, blockClientId),
+				existsIndex,
+			);
 		} else {
 			// Add new styles.
 			dispatch(STORE_NAME).setStyle(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId));
@@ -231,8 +246,10 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
  *
  * @return {string}
  */
- export const hexToRgb = (input) => {
-	let r = 0, g = 0, b = 0;
+export const hexToRgb = (input) => {
+	let r = 0,
+		g = 0,
+		b = 0;
 	const hex = input.replace('#', '').trim();
 
 	if (hex.length === 3) {
@@ -305,7 +322,7 @@ export const outputCssVariablesInline = () => {
 				// Output inline style tag from store data.
 				outputCssVariablesCombinedInner(select(STORE_NAME).getStyles());
 			}
-		}, 50)
+		}, 50),
 	);
 
 	// Find current tree with all inner blocks and all reusable blocks.
@@ -328,14 +345,16 @@ export const outputCssVariablesInline = () => {
 			// If blocks are deleted remove them from the style store.
 			if (deleted) {
 				// Loop all styles.
-				select(STORE_NAME).getStyles().forEach((item, index) => {
-					// Find index of deleted item by clientId and remove it from the store.
-					deleted.forEach((element) => {
-						if (element.clientId === item.blockClientId) {
-							dispatch(STORE_NAME).unsetStyleByIndex(index);
-						}
+				select(STORE_NAME)
+					.getStyles()
+					.forEach((item, index) => {
+						// Find index of deleted item by clientId and remove it from the store.
+						deleted.forEach((element) => {
+							if (element.clientId === item.blockClientId) {
+								dispatch(STORE_NAME).unsetStyleByIndex(index);
+							}
+						});
 					});
-				});
 			}
 		}
 
@@ -355,8 +374,8 @@ export const outputCssVariablesInline = () => {
  * @returns {array}
  */
 export const getDifference = (array1, array2) => {
-	return array1.filter(object1 => {
-		return !array2.some(object2 => {
+	return array1.filter((object1) => {
+		return !array2.some((object2) => {
 			return object1.clientId === object2.clientId;
 		});
 	});
@@ -384,13 +403,13 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	}
 
 	// Loop data and provide correct selectors from data array.
-	for(const {type, value, variable} of data) {
+	for (const { type, value, variable } of data) {
 		// If breakpoint value is 0 then don't wrap the media query around it.
 		if (variable.length === 0) {
 			continue;
 		}
 
-		const variableOutput = variable?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`).join('\n');
+		const variableOutput = variable?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`)).join('\n');
 
 		if (value === 0) {
 			// No breakpoint outputted.
@@ -403,7 +422,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 
 	// Output manual output from the array of variables.
 	let manual = '';
-	const variablesCustom = manifest?.variablesCustom?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`);
+	const variablesCustom = manifest?.variablesCustom?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`));
 
 	if (typeof variablesCustom !== 'undefined') {
 		manual = variablesCustom.join(';\n');
@@ -411,16 +430,11 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 
 	// Output manual editor output from the array of variables.
 	let manualEditor = '';
-	const variablesCustomEditor = manifest?.variablesCustomEditor?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`);
+	const variablesCustomEditor = manifest?.variablesCustomEditor?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`));
 
 	if (typeof variablesCustomEditor !== 'undefined') {
 		manualEditor = variablesCustomEditor.join(';\n');
 	}
-
-	// Process CSS variables.
-	output = processCssVarsRemBaseSize(output);
-	manual = processCssVarsRemBaseSize(manual);
-	manualEditor = processCssVarsRemBaseSize(manualEditor);
 
 	// Prepare final output for testing.
 	const fullOutput = `
@@ -444,7 +458,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	}
 
 	// Output the style for CSS variables.
-	return <style dangerouslySetInnerHTML={{__html: `${output} ${finalManualOutput}`}} />;
+	return <style dangerouslySetInnerHTML={{ __html: `${output} ${finalManualOutput}` }} />;
 };
 
 /**
@@ -470,7 +484,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 	};
 
 	// Loop data and provide correct selectors from data array.
-	for (const {type, value, variable} of data) {
+	for (const { type, value, variable } of data) {
 		// If breakpoint value is 0 then don't wrap the media query around it.
 		if (variable.length === 0) {
 			continue;
@@ -491,7 +505,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 		styles.variables.push({
 			type: 'min',
 			variable: variablesCustom,
-			value: 0
+			value: 0,
 		});
 	}
 
@@ -502,7 +516,7 @@ export const getCssVariablesTypeInline = (name, data, manifest, unique, blockCli
 		styles.variables.push({
 			type: 'min',
 			variable: variablesCustomEditor,
-			value: 0
+			value: 0,
 		});
 	}
 
@@ -526,11 +540,7 @@ export const globalInner = (itemValues, itemKey) => {
 		const innerKey = kebabCase(key);
 		const itemInnerKey = kebabCase(itemKey);
 
-		const {
-			slug,
-			color,
-			gradient,
-		} = value;
+		const { slug, color, gradient } = value;
 
 		switch (itemInnerKey) {
 			case 'colors':
@@ -542,13 +552,13 @@ export const globalInner = (itemValues, itemKey) => {
 				output += `--global-${itemInnerKey}-${value.slug}-values: ${hexToRgb(value.color)};\n`;
 				break;
 			case 'gradients':
-				if ( typeof slug === 'undefined' || typeof gradient === 'undefined') {
+				if (typeof slug === 'undefined' || typeof gradient === 'undefined') {
 					break;
 				}
 				output += `--global-${itemInnerKey}-${value.slug}: ${value.gradient};\n`;
 				break;
 			case 'font-sizes':
-				if ( typeof slug === 'undefined') {
+				if (typeof slug === 'undefined') {
 					break;
 				}
 				output += `--global-${itemInnerKey}-${value.slug}: ${value.slug};\n`;
@@ -572,11 +582,15 @@ export const globalInner = (itemValues, itemKey) => {
  *
  * @return {array}
  */
-export const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
+export const setBreakpointResponsiveVariables = (
+	attributeVariables,
+	breakpointName,
+	breakpointIndex,
+	numberOfBreakpoints,
+) => {
 	return attributeVariables.map((attributeVariablesObject) => {
-
 		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
-		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : (numberOfBreakpoints - 1);
+		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : numberOfBreakpoints - 1;
 
 		// Expanding an object with an additional breakpoint property.
 		return {
@@ -596,9 +610,8 @@ export const setBreakpointResponsiveVariables = (attributeVariables, breakpointN
  */
 export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 	// Iterate through responsive attributes.
-	return Object.entries(responsiveAttributes)
-		.reduce((responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
-
+	return Object.entries(responsiveAttributes).reduce(
+		(responsiveAttributesVariables, [responsiveAttributeName, responsiveAttributeObject]) => {
 			// If responsive attribute doesn't exist in variables object, skip it.
 			if (!responsiveAttributeName || isEmpty(variables[responsiveAttributeName])) {
 				return responsiveAttributesVariables;
@@ -609,16 +622,17 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 
 			// Iterate each responsive attribute object as breakpoint name is the key of the object,
 			// and value represents the name of the responsive variable.
-			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject)
-				.reduce((responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
+			const responsiveAttributeVariables = Object.entries(responsiveAttributeObject).reduce(
+				(responsiveAttribute, [breakpointName, breakpointVariableName], breakpointIndex) => {
 					let breakpointVariables = {};
 
-					if (Array.isArray(variables[responsiveAttributeName])) { // Array represents direct value(default or value).
+					if (Array.isArray(variables[responsiveAttributeName])) {
+						// Array represents direct value(default or value).
 						breakpointVariables = setBreakpointResponsiveVariables(
 							variables[responsiveAttributeName],
 							breakpointName,
 							breakpointIndex,
-							numberOfBreakpoints
+							numberOfBreakpoints,
 						);
 
 						return {
@@ -629,24 +643,35 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 
 					// Object treatment goes depending on a value inserted(multiple choice, boolean or similar).
 					// Iterate options/multiple choices/boolean...
-					breakpointVariables = Object.entries(variables[responsiveAttributeName])
-						.reduce((acc, [attributeValue, attributeObject]) => {
+					breakpointVariables = Object.entries(variables[responsiveAttributeName]).reduce(
+						(acc, [attributeValue, attributeObject]) => {
 							return {
 								...acc,
-								[attributeValue]: setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints),
+								[attributeValue]: setBreakpointResponsiveVariables(
+									attributeObject,
+									breakpointName,
+									breakpointIndex,
+									numberOfBreakpoints,
+								),
 							};
-						}, {});
+						},
+						{},
+					);
 
 					// Collect all the values from one responsive attribute to one object.
 					return {
 						...responsiveAttribute,
 						[breakpointVariableName]: breakpointVariables,
 					};
-				}, {});
+				},
+				{},
+			);
 
 			// Merge multiple responsive attributes to one object.
-			return {...responsiveAttributesVariables, ...responsiveAttributeVariables};
-		}, {});
+			return { ...responsiveAttributesVariables, ...responsiveAttributeVariables };
+		},
+		{},
+	);
 };
 
 /**
@@ -665,7 +690,6 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 export const setVariablesToBreakpoints = (attributes, variables, data, manifest, defaultBreakpoints) => {
 	// Iterate each variable.
 	for (const [variableName, variableValue] of Object.entries(variables)) {
-
 		// Constant for attributes set value (in db or default).
 		const attributeValue = attributes[getAttrKey(variableName, attributes, manifest)];
 
@@ -674,7 +698,6 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 
 		// Iterate variable array to check breakpoints.
 		internalBreakpoints.forEach((breakpointItem) => {
-
 			// Define variables from breakpointItem.
 			const {
 				breakpoint: itemBreakpoint, // Put in temporary variable before checking the type of breakpointItem.
@@ -686,14 +709,12 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
 			const type = inverse ? 'max' : 'min';
 
 			// If breakpoint is not set or has default breakpoint value use default name.
-			const breakpoint = (!itemBreakpoint || itemBreakpoint === defaultBreakpoints[type]) ? 'default' : itemBreakpoint;
+			const breakpoint = !itemBreakpoint || itemBreakpoint === defaultBreakpoints[type] ? 'default' : itemBreakpoint;
 
 			// Iterate each data array to find the correct breakpoint.
 			data.some((item, index) => {
-
 				// Check if breakpoint and type match.
 				if (item.name === breakpoint && item.type === type) {
-
 					// Merge data variables with the new variables array.
 					data[index].variable = item.variable.concat(variablesInner(variable, attributeValue, attributes, manifest));
 
@@ -719,7 +740,6 @@ export const setVariablesToBreakpoints = (attributes, variables, data, manifest,
  * @return {array}
  */
 export const prepareVariableData = (globalBreakpoints) => {
-
 	// Define the min and max arrays.
 	const min = [];
 	const max = [];
@@ -727,7 +747,6 @@ export const prepareVariableData = (globalBreakpoints) => {
 
 	// Loop the global breakpoints and populate the data.
 	Object.values(globalBreakpoints).forEach(([item, value]) => {
-
 		// Initial inner object.
 		const itemObject = {
 			name: item,
@@ -893,9 +912,7 @@ export const getAllBlocksFlat = (blocks) => {
 
 	// Loop all blocks.
 	blocks.forEach((block) => {
-		const {
-			innerBlocks,
-		} = block;
+		const { innerBlocks } = block;
 
 		// Internal output.
 		let innerOutput = [];
@@ -918,22 +935,6 @@ export const getAllBlocksFlat = (blocks) => {
 /**
  * Output css variables as a one inline style tag - inner.
  *
- * @param {string} styles - CSS variables to process.
- *
- * @access private
- *
- * @returns {string}
- */
-const processCssVarsRemBaseSize = (styles) => {
-	const remRegex = /([0-9.-]+rem)/g;
-	const remReplacement = 'calc($1 * var(--base-font-size, 1))';
-
-	return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
-};
-
-/**
- * Output css variables as a one inline style tag - inner.
- *
  * @access private
  *
  * @returns {string}
@@ -942,7 +943,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const breakpoints = [];
 
 	// Loop styles.
-	for (const {name, unique, variables} of styles) {
+	for (const { name, unique, variables } of styles) {
 		// Bailout if variables are missing.
 		if (variables.length === 0) {
 			continue;
@@ -955,7 +956,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 		}
 
 		// Loop inner variables.
-		for (const {type, value, variable} of variables) {
+		for (const { type, value, variable } of variables) {
 			// Bailout if variable is missing.
 			if (variable.length === 0) {
 				continue;
@@ -966,7 +967,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 				breakpoints[`${type}---${value}`] = '';
 			}
 
-			const variableOutput = variable?.map((v) => v?.trim()?.endsWith(';') ? v : `${v};`).join('\n');
+			const variableOutput = variable?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`)).join('\n');
 
 			// Populate breakpoints output.
 			breakpoints[`${type}---${value}`] += `\n.${name}${uniqueSelector}{\n${variableOutput}\n} `;
@@ -977,7 +978,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	let output = '';
 
 	// Loop all breakpoints prepared for output.
-	breakpointsPreparedVariableDataCache.forEach(({type, value}) => {
+	breakpointsPreparedVariableDataCache.forEach(({ type, value }) => {
 		const breakpointValue = breakpoints[`${type}---${value}`] ?? '';
 
 		// Bailout if breakpoint is missing.
@@ -1014,11 +1015,11 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const styleTag = document.getElementById(selector);
 
 	// Process styles.
-	output = processCssVarsRemBaseSize(output);
-	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
-
 	if (!styleTag) {
-		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
+		document.body.insertAdjacentHTML(
+			'beforeend',
+			`<style id="${selector}">${output} ${additionalStylesOutput}</style>`,
+		);
 	} else {
 		styleTag.innerHTML = `${output} ${additionalStylesOutput}`;
 	}

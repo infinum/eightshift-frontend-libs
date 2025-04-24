@@ -9,12 +9,7 @@ export {
 	props,
 } from './attributes';
 export { getPaletteColors } from './colors';
-export {
-	outputCssVariablesGlobal,
-	outputCssVariables,
-	hexToRgb,
-	getUnique,
-} from './css-variables';
+export { outputCssVariablesGlobal, outputCssVariables, hexToRgb, getUnique } from './css-variables';
 export {
 	GutenbergBlock,
 	lockIfUndefined,
@@ -23,10 +18,9 @@ export {
 	getResponsiveLegacyData,
 	generateOptionsFromValue,
 } from './editor';
-export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './fetch';
+export { fetchFromWpRest, wpSearchRoute, buildWpRestUrl } from './fetch';
 export { inserter } from './inserter';
 export { getOption, getOptionColors, getOptions } from './options';
-export { pasteInto } from './paste-handler';
 export {
 	getAttributes,
 	getExample,
@@ -36,10 +30,4 @@ export {
 	registerVariations,
 } from './registration';
 export { bem, selector, responsiveSelectors } from './selectors';
-export {
-	STORE_NAME,
-	BUILD_VERSION,
-	setStore,
-	setStoreGlobalWindow,
-	setConfigFlags,
-} from './store';
+export { STORE_NAME, BUILD_VERSION, setStore, setStoreGlobalWindow, setConfigFlags } from './store';

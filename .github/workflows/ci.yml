@@ -25,7 +25,8 @@ jobs:
         node: [ 'latest' ]
     steps:
       - name: Lint assets
-        uses: infinum/eightshift-deploy-actions-public/.github/actions/lint-assets@main
+        uses: infinum/eightshift-deploy-actions-public/.github/actions/lint/assets@main
         with:
           NODE_VERSION: ${{ matrix.node }}
           PROJECT_PATH: '/'
+          USE_BUN: 'true'

@@ -5,14 +5,7 @@ import { icons } from '@eightshift/ui-components/icons';
 import { SortableItem } from './sortable-item';
 import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
-import {
-	DndContext,
-	closestCenter,
-	KeyboardSensor,
-	PointerSensor,
-	useSensor,
-	useSensors,
-} from '@dnd-kit/core';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 import {
 	arrayMove,
@@ -70,7 +63,7 @@ export const Repeater = (props) => {
 		useSensor(PointerSensor),
 		useSensor(KeyboardSensor, {
 			coordinateGetter: sortableKeyboardCoordinates,
-		})
+		}),
 	);
 
 	const handleDragEnd = ({ active, over }) => {
@@ -91,7 +84,7 @@ export const Repeater = (props) => {
 
 	// Check for duplicates and reassign IDs if needed.
 	const allIds = items?.map(({ id }) => id) ?? [];
-	const hasDuplicates = (input) => (new Set(input))?.size !== input?.length;
+	const hasDuplicates = (input) => new Set(input)?.size !== input?.length;
 
 	if (hasDuplicates(allIds) && items?.length > 0) {
 		const newItems = [...items].map((item, index) => ({ ...item, id: index + 1 }));
@@ -122,7 +115,7 @@ export const Repeater = (props) => {
 				<>
 					{actions}
 
-					{!customAddButton &&
+					{!customAddButton && (
 						<Button
 							onPress={handleAddButtonClick}
 							icon={icons.add}
@@ -131,7 +124,7 @@ export const Repeater = (props) => {
 							tooltip={__('Add item', 'eightshift-frontend-libs')}
 							disabled={disableItemAdd}
 						/>
-					}
+					)}
 
 					{customAddButton && customAddButton({ disabled: disableItemAdd, onClick: handleAddButtonClick })}
 				</>
@@ -157,12 +150,13 @@ export const Repeater = (props) => {
 								icon={item?.props?.icon}
 								title={item?.props?.title ?? __('New item', 'eightshift-frontend-libs')}
 								subtitle={item?.props?.subtitle}
-								onRemove={item?.props?.onRemove ?? (
-									() => {
+								onRemove={
+									item?.props?.onRemove ??
+									(() => {
 										const newArray = [...items].filter((_, index) => index !== i);
 										setAttributes({ [attributeName]: newArray });
-									}
-								)}
+									})
+								}
 								isActive={items?.[i]?.id === active?.id}
 								isFirst={i === 0}
 								isLast={i === items?.length - 1}
