@@ -1,9 +1,0 @@
-.block-columns {
-	--columns-grid-side-columns: calc(var(--global-grid-side-padding) - var(--global-grid-gutter));
-	--columns-grid-template-columns: var(--columns-grid-side-columns) repeat(var(--global-main-content-width), minmax(0, 1fr)) var(--columns-grid-side-columns);
-
-	display: grid;
-	grid-template-columns: var(--columns-grid-template-columns);
-	column-gap: calc(var(--columns-column-gap, 0) * var(--base-font-size) * 0.1rem);
-	row-gap: calc(var(--columns-row-gap, 0) * var(--base-font-size) * 0.1rem);
-}

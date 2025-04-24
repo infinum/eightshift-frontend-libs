@@ -417,11 +417,6 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 		manualEditor = variablesCustomEditor.join(';\n');
 	}
 
-	// Process CSS variables.
-	output = processCssVarsRemBaseSize(output);
-	manual = processCssVarsRemBaseSize(manual);
-	manualEditor = processCssVarsRemBaseSize(manualEditor);
-
 	// Prepare final output for testing.
 	const fullOutput = `
 		${output}
@@ -918,22 +913,6 @@ export const getAllBlocksFlat = (blocks) => {
 /**
  * Output css variables as a one inline style tag - inner.
  *
- * @param {string} styles - CSS variables to process.
- *
- * @access private
- *
- * @returns {string}
- */
-const processCssVarsRemBaseSize = (styles) => {
-	const remRegex = /([0-9.-]+rem)/g;
-	const remReplacement = 'calc($1 * var(--base-font-size, 1))';
-
-	return select(STORE_NAME).getConfigUseRemBaseSize() ? styles.replaceAll(remRegex, remReplacement) : styles;
-};
-
-/**
- * Output css variables as a one inline style tag - inner.
- *
  * @access private
  *
  * @returns {string}
@@ -1014,9 +993,6 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	const styleTag = document.getElementById(selector);
 
 	// Process styles.
-	output = processCssVarsRemBaseSize(output);
-	additionalStylesOutput = processCssVarsRemBaseSize(additionalStylesOutput);
-
 	if (!styleTag) {
 		document.body.insertAdjacentHTML('beforeend', `<style id="${selector}">${output} ${additionalStylesOutput}</style>`);
 	} else {

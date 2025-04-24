@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [14.0.2]
+
+### Changed
+
+- Webpack config now user mjs files and no longer has assets config key.
+- Es and style linters
+
+### Removed
+
+- Most of the SCSS mixing and files
+- All initial Blocks
+
 ## [14.0.1]
 
 ### Changed
