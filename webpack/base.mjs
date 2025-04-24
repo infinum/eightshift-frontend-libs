@@ -83,7 +83,7 @@ export default (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
-						implementation: require("sass"),
+						implementation: require.resolve("sass"),
 						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},
