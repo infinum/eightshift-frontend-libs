@@ -5,7 +5,7 @@
 
 import fs from "fs";
 
-module.exports = (options) => {
+export default (options) => {
 	const entry = {};
 	const output = {
 		path: options.config.outputPath,
