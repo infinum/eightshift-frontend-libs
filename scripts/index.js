@@ -117,7 +117,7 @@ export {
 	getResponsiveLegacyData,
 	generateOptionsFromValue,
 } from './editor/editor';
-export { getFetchWpApi, fetchFromWpRest, wpSearchRoute } from './editor/fetch';
+export { fetchFromWpRest, wpSearchRoute, buildWpRestUrl } from './editor/fetch';
 export { inserter } from './editor/inserter';
 export { getOption, getOptionColors, getOptions } from './editor/options';
 export { pasteInto } from './editor/paste-handler';

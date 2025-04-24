@@ -23,7 +23,7 @@ export {
   getResponsiveLegacyData,
   generateOptionsFromValue,
 } from "./editor";
-export { fetchFromWpRest, fetchFromWpRest, buildWpRestUrl } from "./fetch";
+export { fetchFromWpRest, wpSearchRoute, buildWpRestUrl } from "./fetch";
 export { inserter } from "./inserter";
 export { getOption, getOptionColors, getOptions } from "./options";
 export {
