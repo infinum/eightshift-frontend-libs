@@ -6,7 +6,7 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
-import { convertJsonToSass } from './helpers';
+import { convertJsonToSass } from './helpers.mjs';
 import DependencyExtractionWebpackPlugin from '@wordpress/dependency-extraction-webpack-plugin';
 
 export default (options) => {
