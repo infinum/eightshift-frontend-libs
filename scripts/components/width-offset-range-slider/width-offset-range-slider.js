@@ -154,7 +154,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									(autoOffsetToggle && index === 0)
 								)
 							}
-							className='es-uic-mb-1'
+							className='es:mb-1'
 						>
 							<ToggleButton
 								hidden={
@@ -174,7 +174,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									});
 								}}
 								size='small'
-								className='es-uic-ml-auto'
+								className='es:ml-auto'
 							>
 								{__('Full-width', 'eightshift-frontend-libs')}
 							</ToggleButton>
@@ -196,7 +196,7 @@ export const WidthOffsetRangeSlider = (props) => {
 									!(
 										fullWidthToggle &&
 										(index === 0 || !inheritCheck(fullWidth))
-									) && 'es-uic-ml-auto'
+									) && 'es:ml-auto'
 								)}
 							>
 								{__('Automatic offset', 'eightshift-frontend-libs')}
@@ -253,10 +253,10 @@ export const WidthOffsetRangeSlider = (props) => {
 							hidden={index === 0}
 							icon={icons.inherit}
 							label={__('Inherit', 'eightshift-frontend-libs')}
-							className='es-uic-mt-2 es-uic-mb-2 es-uic-ml-auto es-uic-w-fit'
+							className='es:mt-2 es:mb-2 es:ml-auto es:w-fit'
 							inline
 						>
-							<HStack className='es-uic-ml-1'>
+							<HStack className='es:ml-1'>
 								<ToggleButton
 									selected={inheritCheck(offset)}
 									onChange={() => {

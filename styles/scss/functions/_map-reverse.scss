@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 /// Returns an the same map only flipped in reverse.
 ///
 /// ### Map
@@ -34,7 +36,7 @@
 		$map-reversed: ();
 
 		@for $i from length($keys) through 1 {
-			$map-reversed: map-merge($map-reversed, (nth($keys, $i): map-get($map, nth($keys, $i))));
+			$map-reversed: map-merge($map-reversed, (list.nth($keys, $i): map-get($map, nth($keys, $i))));
 		}
 
 		@if type-of($map-reversed) == 'map' {

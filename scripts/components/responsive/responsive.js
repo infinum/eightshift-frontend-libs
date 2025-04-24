@@ -54,7 +54,7 @@ export const Responsive = (props) => {
 			label={label}
 			help={help}
 			subtitle={subtitle}
-			className={clsx('es-uic-space-y-2', additionalClasses)}
+			className={clsx('es:space-y-2', additionalClasses)}
 			actions={
 				<>
 					{inline && (
@@ -96,7 +96,7 @@ export const Responsive = (props) => {
 					<Button
 						icon={icons.inherit}
 						onPress={currentInheritButton?.callback}
-						className='es-uic-w-full'
+						className='es:w-full'
 						size='large'
 					>
 						{currentInheritButton?.isActive && (
@@ -143,7 +143,7 @@ export const Responsive = (props) => {
 						<AnimatedVisibility
 							visible={isOpen}
 							className={clsx(
-								isOpen && index !== children.length - 1 && 'es-uic-mb-2'
+								isOpen && index !== children.length - 1 && 'es:mb-2'
 							)}
 							key={index}
 						>
@@ -192,7 +192,7 @@ export const Responsive = (props) => {
 										  )
 										: breakpointLabel
 								}
-								className='es-uic-mb-2'
+								className='es:mb-2'
 							/>
 
 							{index > 0 && currentInheritButton && inheritButtonComponent}
@@ -209,7 +209,7 @@ export const Responsive = (props) => {
 								(currentInheritButton ? !currentInheritButton.isActive : true)
 							}
 							className={clsx(
-								isOpen && index !== children.length - 1 && 'es-uic-mb-2'
+								isOpen && index !== children.length - 1 && 'es:mb-2'
 							)}
 						>
 							{child}
