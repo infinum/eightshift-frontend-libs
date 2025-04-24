@@ -4,6 +4,7 @@
  */
 
 import webpack from 'webpack';
+import sass from 'sass';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import { convertJsonToSass } from './helpers.mjs';
@@ -83,7 +84,7 @@ export default (options) => {
 				{
 					loader: 'sass-loader',
 					options: {
-						implementation: require.resolve("sass"),
+						implementation: sass,
 						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},
