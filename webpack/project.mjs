@@ -3,7 +3,7 @@
  *
  */
 
-import fs from "fs";
+import fs from 'fs';
 
 export default (options) => {
 	const entry = {};
@@ -15,28 +15,22 @@ export default (options) => {
 		clean: true,
 
 		// If you are using the multiple webpack builds with dynamic import you must provide different name here in order to avoid collision.
-		library: "[name]",
+		library: '[name]',
 	};
 
 	// Load ApplicationAdmin Entrypoint.
-	if (
-		!options.overrides.includes("applicationAdmin") &&
-		fs.existsSync(options.config.applicationAdminEntry)
-	) {
+	if (!options.overrides.includes('applicationAdmin') && fs.existsSync(options.config.applicationAdminEntry)) {
 		entry.applicationAdmin = options.config.applicationAdminEntry;
 	}
 
 	// Load ApplicationBlocks Entrypoint.
-	if (
-		!options.overrides.includes("applicationBlocks") &&
-		fs.existsSync(options.config.applicationBlocksEntry)
-	) {
+	if (!options.overrides.includes('applicationBlocks') && fs.existsSync(options.config.applicationBlocksEntry)) {
 		entry.applicationBlocks = options.config.applicationBlocksEntry;
 	}
 
 	// Load ApplicationBlocksEditor Entrypoint.
 	if (
-		!options.overrides.includes("applicationBlocksEditor") &&
+		!options.overrides.includes('applicationBlocksEditor') &&
 		fs.existsSync(options.config.applicationBlocksEditorEntry)
 	) {
 		entry.applicationBlocksEditor = options.config.applicationBlocksEditorEntry;
@@ -44,15 +38,14 @@ export default (options) => {
 
 	// Load applicationBlocksFrontend Entrypoint.
 	if (
-		!options.overrides.includes("applicationBlocksFrontend") &&
+		!options.overrides.includes('applicationBlocksFrontend') &&
 		fs.existsSync(options.config.applicationBlocksFrontendEntry)
 	) {
-		entry.applicationBlocksFrontend =
-			options.config.applicationBlocksFrontendEntry;
+		entry.applicationBlocksFrontend = options.config.applicationBlocksFrontendEntry;
 	}
 
 	// Load filename Output.
-	if (!options.overrides.includes("filename")) {
+	if (!options.overrides.includes('filename')) {
 		output.filename = `${options.config.filesOutput}.js`;
 	}
 

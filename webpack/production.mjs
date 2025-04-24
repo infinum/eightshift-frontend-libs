@@ -3,10 +3,10 @@
  *
  */
 
-import TerserPlugin from "terser-webpack-plugin";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import { browserslistToTargets } from "lightningcss";
-import browserslist from "browserslist";
+import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { browserslistToTargets } from 'lightningcss';
+import browserslist from 'browserslist';
 
 export default (options) => {
 	// Enable Webpack caching for production
@@ -22,7 +22,7 @@ export default (options) => {
 	};
 
 	// Plugin used to minify output.
-	if (!options.overrides.includes("terserPlugin")) {
+	if (!options.overrides.includes('terserPlugin')) {
 		optimization.minimizer.push(
 			new TerserPlugin({
 				parallel: true,
@@ -36,19 +36,19 @@ export default (options) => {
 						comments: false,
 					},
 				},
-			})
+			}),
 		);
 	}
 
-	if (!options.overrides.includes("cssMinimizerPlugin")) {
+	if (!options.overrides.includes('cssMinimizerPlugin')) {
 		optimization.minimizer.push(
 			new CssMinimizerPlugin({
 				parallel: true,
 				minify: CssMinimizerPlugin.lightningCssMinify,
 				minimizerOptions: {
-					targets: browserslistToTargets(browserslist(">= 0.25%")),
+					targets: browserslistToTargets(browserslist('>= 0.25%')),
 				},
-			})
+			}),
 		);
 	}
 

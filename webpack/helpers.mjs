@@ -21,17 +21,17 @@ function getConfig(
 	projectPathConfig,
 	blocksAssetsPathConfig = 'src/Blocks/assets',
 	outputPathConfig = 'public',
-	blocksManifestSettingsPath = 'src/Blocks/manifest.json'
+	blocksManifestSettingsPath = 'src/Blocks/manifest.json',
 ) {
 	if (typeof projectDir === 'undefined') {
 		throw Error(
-			'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname'
+			'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname',
 		);
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
 		throw Error(
-			'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate'
+			'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate',
 		);
 	}
 
@@ -51,39 +51,23 @@ function getConfig(
 		outputPath: path.resolve(absolutePath, outputPathConfigClean),
 
 		// Output files relative location, added before every output file in manifest.json. Should start and end with "/".
-		publicPath: path.join(
-			"/",
-			projectPathConfigClean,
-			outputPathConfigClean,
-			"/"
-		),
+		publicPath: path.join('/', projectPathConfigClean, outputPathConfigClean, '/'),
 
 		// Source files entries absolute locations.
-		applicationAdminEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			"application-admin.js"
-		),
-		applicationBlocksEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			"application-blocks.js"
-		),
+		applicationAdminEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-admin.js'),
+		applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
 		applicationBlocksEditorEntry: path.resolve(
 			absolutePath,
 			blocksAssetsPathConfigClean,
-			"application-blocks-editor.js"
+			'application-blocks-editor.js',
 		),
 		applicationBlocksFrontendEntry: path.resolve(
 			absolutePath,
 			blocksAssetsPathConfigClean,
-			"application-blocks-frontend.js"
+			'application-blocks-frontend.js',
 		),
 
-		blocksManifestSettingsPath: path.resolve(
-			absolutePath,
-			blocksManifestSettingsPathClean
-		),
+		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 	};
 }
 
@@ -93,10 +77,10 @@ function getConfig(
  * @param {object} data Json data to convert.
  */
 function convertJsonToSassMap(data) {
-	let output = "";
+	let output = '';
 
 	for (const [key, value] of Object.entries(data)) {
-		if (typeof value === "object") {
+		if (typeof value === 'object') {
 			output += `${key}: (${convertJsonToSassMapInner(value, key)}),`;
 			continue;
 		}
@@ -114,7 +98,7 @@ function convertJsonToSassMap(data) {
  * @returns Input value with parentheses around the value if needed.
  */
 function escapeSassMapComma(input) {
-	if (typeof input === "string" && input?.includes(",")) {
+	if (typeof input === 'string' && input?.includes(',')) {
 		return `(${input})`;
 	}
 
@@ -128,22 +112,18 @@ function escapeSassMapComma(input) {
  * @param {string} key Parent string
  */
 function convertJsonToSassMapInner(data, key) {
-	let output = "";
+	let output = '';
 
 	for (const [innerKey, innerValue] of Object.entries(data)) {
 		switch (key) {
-			case "colors":
-				output += `${innerValue["slug"]}: ${escapeSassMapComma(
-					innerValue["color"]
-				)},`;
+			case 'colors':
+				output += `${innerValue['slug']}: ${escapeSassMapComma(innerValue['color'])},`;
 				break;
-			case "gradients":
-				output += `${innerValue["slug"]}: ${escapeSassMapComma(
-					innerValue["gradient"]
-				)},`;
+			case 'gradients':
+				output += `${innerValue['slug']}: ${escapeSassMapComma(innerValue['gradient'])},`;
 				break;
-			case "fontSizes":
-				output += `${innerKey}: ${escapeSassMapComma(innerValue["slug"])},`;
+			case 'fontSizes':
+				output += `${innerKey}: ${escapeSassMapComma(innerValue['slug'])},`;
 				break;
 			default:
 				if (Array.isArray(data)) {
@@ -167,22 +147,15 @@ function convertJsonToSassMapInner(data, key) {
  *
  * @return string Sass variable
  */
-function convertJsonToSass(
-	srcPath,
-	propertyName = "globalVariables",
-	variableName = "global-variables"
-) {
+function convertJsonToSass(srcPath, propertyName = 'globalVariables', variableName = 'global-variables') {
 	let data = {};
 
 	if (fs.existsSync(srcPath)) {
 		data = JSON.parse(fs.readFileSync(srcPath));
 	}
 
-	if (
-		Object.getOwnPropertyNames(data).length === 0 ||
-		!Object.prototype.hasOwnProperty.call(data, "globalVariables")
-	) {
-		return "";
+	if (Object.getOwnPropertyNames(data).length === 0 || !Object.prototype.hasOwnProperty.call(data, 'globalVariables')) {
+		return '';
 	}
 
 	return `$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;

@@ -68,7 +68,6 @@ export const RangeSlider = (props) => {
 		leftAddition,
 		rightAddition,
 		inputField = false,
-
 	} = props;
 
 	return (

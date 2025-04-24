@@ -4,38 +4,45 @@
  */
 
 import webpack from 'webpack';
-import * as sass from 'sass'
+import * as sass from 'sass';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import { convertJsonToSass } from './helpers.mjs';
 import DependencyExtractionWebpackPlugin from '@wordpress/dependency-extraction-webpack-plugin';
 
 export default (options) => {
-
 	// All Plugins used in production and development build.
 	const plugins = [];
 
 	// Provide global variables to window object.
 	if (!options.overrides.includes('providePlugin')) {
-		plugins.push(new webpack.ProvidePlugin({
-			$: 'jquery',
-			jQuery: 'jquery',
-		}));
+		plugins.push(
+			new webpack.ProvidePlugin({
+				$: 'jquery',
+				jQuery: 'jquery',
+			}),
+		);
 	}
 
 	// Provide variables to code build.
 	if (!options.overrides.includes('definePlugin')) {
-		plugins.push(new webpack.DefinePlugin({
-			'process.env.VERSION': JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)),
-			'process.browser': true,
-		}));
+		plugins.push(
+			new webpack.DefinePlugin({
+				'process.env.VERSION': JSON.stringify(
+					Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+				),
+				'process.browser': true,
+			}),
+		);
 	}
 
 	// Output css from Js.
 	if (!options.overrides.includes('miniCssExtractPlugin')) {
-		plugins.push(new MiniCssExtractPlugin({
-			filename: `${options.config.filesOutput}.css`,
-		}));
+		plugins.push(
+			new MiniCssExtractPlugin({
+				filename: `${options.config.filesOutput}.css`,
+			}),
+		);
 	}
 
 	// Create manifest.json file.
@@ -85,7 +92,10 @@ export default (options) => {
 					loader: 'sass-loader',
 					options: {
 						implementation: sass,
-						additionalData: convertJsonToSass(options.config.blocksManifestSettingsPath) + ' ' + convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
+						additionalData:
+							convertJsonToSass(options.config.blocksManifestSettingsPath) +
+							' ' +
+							convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
 					},
 				},
 			],
@@ -138,6 +148,6 @@ export default (options) => {
 	return {
 		plugins,
 		module,
-		resolve
+		resolve,
 	};
 };

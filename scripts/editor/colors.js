@@ -13,14 +13,15 @@ import { STORE_NAME } from './store';
  * getPaletteColors()
  * ```
  */
-export const getPaletteColors = () => useSelect((select) => {
-	const colors = select(STORE_NAME).getSettings().globalVariables.colors;
+export const getPaletteColors = () =>
+	useSelect((select) => {
+		const colors = select(STORE_NAME).getSettings().globalVariables.colors;
 
-	return colors.reduce(
-		(obj, item) => ({
-			...obj,
-			[item.slug]: item,
-		}),
-		{}
-	);
-});
+		return colors.reduce(
+			(obj, item) => ({
+				...obj,
+				[item.slug]: item,
+			}),
+			{},
+		);
+	});

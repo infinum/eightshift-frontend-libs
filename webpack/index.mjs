@@ -27,7 +27,7 @@ const eightshiftConfig = (mode, optionsData = {}) => {
 	);
 
 	options.config.mode = mode;
-	options.config.filesOutput = (mode === 'production' ? '[name]-[contenthash]' : '[name]');
+	options.config.filesOutput = mode === 'production' ? '[name]-[contenthash]' : '[name]';
 
 	// Get all webpack partials.
 	const base = baseConfig(options);

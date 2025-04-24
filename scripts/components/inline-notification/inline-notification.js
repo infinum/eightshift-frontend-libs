@@ -17,13 +17,7 @@ import { Notice } from '@eightshift/ui-components';
  * @param {NotificationType} [props.type] - Help text displayed below the picker.
  * @param {string?} [props.additionalClasses] - If provided, the classes are added
  */
-export const Notification = ({
-	text,
-	iconOverride,
-	subtitle,
-	type,
-	additionalClasses,
-}) => {
+export const Notification = ({ text, iconOverride, subtitle, type, additionalClasses }) => {
 	return (
 		<Notice
 			type={type}

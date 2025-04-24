@@ -1,4 +1,3 @@
-
 /**
  * A simple repeater item.
  *
@@ -13,9 +12,5 @@
  * @param {React.Component?} [props.preIcon]           - Element to show left of the icon.
  */
 export const RepeaterItem = (props) => {
-	return (
-		<div {...props}>
-			{props.children}
-		</div>
-	);
+	return <div {...props}>{props.children}</div>;
 };

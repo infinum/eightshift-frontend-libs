@@ -3,13 +3,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { getDefaultBreakpointNames } from '../../helpers';
 import { icons } from '@eightshift/ui-components/icons';
 import { clsx, upperFirst } from '@eightshift/ui-components/utilities';
-import {
-	AnimatedVisibility,
-	BaseControl,
-	Button,
-	RichLabel,
-	ToggleButton,
-} from '@eightshift/ui-components';
+import { AnimatedVisibility, BaseControl, Button, RichLabel, ToggleButton } from '@eightshift/ui-components';
 
 /**
  * A component that displays options adjustable across screen sizes.
@@ -58,7 +52,10 @@ export const Responsive = (props) => {
 			actions={
 				<>
 					{inline && (
-						<AnimatedVisibility visible={!isOpen} transition='scaleFade'>
+						<AnimatedVisibility
+							visible={!isOpen}
+							transition='scaleFade'
+						>
 							{children[0]}
 						</AnimatedVisibility>
 					)}
@@ -81,13 +78,9 @@ export const Responsive = (props) => {
 			}
 		>
 			{children.map((child, index) => {
-				const breakpointLabel =
-					breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
+				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
 				const previousBreakpointLabel =
-					index === 0
-						? ''
-						: breakpointLabels?.at(index - 1) ??
-						  fallbackBreakpointLabels.at(index - 1);
+					index === 0 ? '' : (breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1));
 				const breakpointIcon = icons[`screen${upperFirst(breakpoints[index])}`];
 
 				const currentInheritButton = inheritButton?.at(index);
@@ -105,11 +98,8 @@ export const Responsive = (props) => {
 									<div
 										dangerouslySetInnerHTML={{
 											__html: sprintf(
-												__(
-													'Using value from <span class="es-font-weight-600">%s</span>',
-													'eightshift-frontend-libs'
-												),
-												previousBreakpointLabel
+												__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'),
+												previousBreakpointLabel,
 											),
 										}}
 									/>
@@ -122,11 +112,8 @@ export const Responsive = (props) => {
 							<div
 								dangerouslySetInnerHTML={{
 									__html: sprintf(
-										__(
-											'Use value from <span class="es-font-weight-600">%s</span>',
-											'eightshift-frontend-libs'
-										),
-										previousBreakpointLabel
+										__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'),
+										previousBreakpointLabel,
 									),
 								}}
 							/>
@@ -142,30 +129,19 @@ export const Responsive = (props) => {
 					return (
 						<AnimatedVisibility
 							visible={isOpen}
-							className={clsx(
-								isOpen && index !== children.length - 1 && 'es:mb-2'
-							)}
+							className={clsx(isOpen && index !== children.length - 1 && 'es:mb-2')}
 							key={index}
 						>
 							<BaseControl
 								icon={breakpointIcon}
 								label={
 									index === 0
-										? sprintf(
-												__('%s (default)', 'eightshift-frontend-libs'),
-												breakpointLabel
-										  )
+										? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel)
 										: breakpointLabel
 								}
 								actions={
 									index > 0 && (
-										<AnimatedVisibility
-											visible={
-												currentInheritButton
-													? !currentInheritButton.isActive
-													: true
-											}
-										>
+										<AnimatedVisibility visible={currentInheritButton ? !currentInheritButton.isActive : true}>
 											{child}
 										</AnimatedVisibility>
 									)
@@ -186,10 +162,7 @@ export const Responsive = (props) => {
 								icon={breakpointIcon}
 								label={
 									index === 0
-										? sprintf(
-												__('%s (default)', 'eightshift-frontend-libs'),
-												breakpointLabel
-										  )
+										? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel)
 										: breakpointLabel
 								}
 								className='es:mb-2'
@@ -203,14 +176,8 @@ export const Responsive = (props) => {
 						{index === 0 && isOpen && <div className=''>{child}</div>}
 
 						<AnimatedVisibility
-							visible={
-								index > 0 &&
-								isOpen &&
-								(currentInheritButton ? !currentInheritButton.isActive : true)
-							}
-							className={clsx(
-								isOpen && index !== children.length - 1 && 'es:mb-2'
-							)}
+							visible={index > 0 && isOpen && (currentInheritButton ? !currentInheritButton.isActive : true)}
+							className={clsx(isOpen && index !== children.length - 1 && 'es:mb-2')}
 						>
 							{child}
 						</AnimatedVisibility>

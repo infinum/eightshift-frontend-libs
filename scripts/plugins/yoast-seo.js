@@ -68,7 +68,6 @@ export const yoastSeo = (options) => {
 		 * @return {string} The content of the post.
 		 */
 		const onSaveCallback = (edits) => {
-
 			fetchContent();
 
 			return edits;

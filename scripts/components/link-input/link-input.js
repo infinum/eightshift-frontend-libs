@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-	LinkInput as EsUicLinkInput,
-	Toggle,
-	TriggeredPopover,
-} from '@eightshift/ui-components';
+import { LinkInput as EsUicLinkInput, Toggle, TriggeredPopover } from '@eightshift/ui-components';
 import { __ } from '@wordpress/i18n';
 import { icons } from '@eightshift/ui-components/icons';
 import { wpSearchRoute } from '../../editor';
@@ -66,9 +62,7 @@ export const LinkInput = ({
 		<>
 			<EsUicLinkInput
 				url={url}
-				onChange={({ url, isAnchor }) =>
-					onChange({ url: url, newTab: opensInNewTab, isAnchor: isAnchor })
-				}
+				onChange={({ url, isAnchor }) => onChange({ url: url, newTab: opensInNewTab, isAnchor: isAnchor })}
 				label={label}
 				help={help}
 				actions={
@@ -99,9 +93,7 @@ export const LinkInput = ({
 					icon={icons.newTab}
 					label={__('Open in new tab', 'eightshift-frontend-libs')}
 					checked={opensInNewTab}
-					onChange={(value) =>
-						onChange({ url: url, newTab: value, isAnchor: url?.includes('#') })
-					}
+					onChange={(value) => onChange({ url: url, newTab: value, isAnchor: url?.includes('#') })}
 					disabled={disabled}
 				/>
 			)}

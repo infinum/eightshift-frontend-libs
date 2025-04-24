@@ -15,18 +15,12 @@ export { ColumnConfigSlider } from './components/custom-slider/column-config-sli
 export { Slider } from './components/custom-slider/custom-slider';
 export { RangeSlider } from './components/custom-slider/custom-range-slider';
 export { FancyDivider } from './components/fancy-divider/fancy-divider';
-export {
-	FileSelector,
-	ManageFileButton,
-} from './components/file-pickers/file-picker';
+export { FileSelector, ManageFileButton } from './components/file-pickers/file-picker';
 export { MediaPicker } from './components/file-pickers/media-picker';
 export { IconLabel } from './components/icon-label/icon-label';
 export { Toggle, IconToggle } from './components/toggle/toggle';
 export { Notification } from './components/inline-notification/inline-notification';
-export {
-	LinkInput,
-	LinkEditComponent,
-} from './components/link-input/link-input';
+export { LinkInput, LinkEditComponent } from './components/link-input/link-input';
 export { MatrixAlignControl } from './components/matrix-align-control/matrix-align-control';
 export { Menu } from './components/menu/menu';
 export { MenuItem } from './components/menu/menu-item';
@@ -52,10 +46,7 @@ export { ServerSideRender } from './components/server-side-render/server-side-re
 export { Repeater } from './components/repeater/repeater';
 export { RepeaterItem } from './components/repeater/repeater-item';
 export { TileButton } from './components/tile-button/tile-button';
-export {
-	UseToggle,
-	generateUseToggleConfig,
-} from './components/use-toggle/use-toggle';
+export { UseToggle, generateUseToggleConfig } from './components/use-toggle/use-toggle';
 export { WidthOffsetRangeSlider } from './components/width-offset-range-slider/width-offset-range-slider';
 export { generateWidthOffsetRangeSliderConfig } from './components/width-offset-range-slider/auto-config';
 
@@ -103,12 +94,7 @@ export {
 	props,
 } from './editor/attributes';
 export { getPaletteColors } from './editor/colors';
-export {
-	outputCssVariablesGlobal,
-	outputCssVariables,
-	hexToRgb,
-	getUnique,
-} from './editor/css-variables';
+export { outputCssVariablesGlobal, outputCssVariables, hexToRgb, getUnique } from './editor/css-variables';
 export {
 	GutenbergBlock,
 	lockIfUndefined,
@@ -129,13 +115,7 @@ export {
 	registerVariations,
 } from './editor/registration';
 export { bem, selector, responsiveSelectors } from './editor/selectors';
-export {
-	STORE_NAME,
-	BUILD_VERSION,
-	setStore,
-	setStoreGlobalWindow,
-	setConfigFlags,
-} from './editor/store';
+export { STORE_NAME, BUILD_VERSION, setStore, setStoreGlobalWindow, setConfigFlags } from './editor/store';
 
 // Helpers
 export { getDefaultBreakpointNames } from './helpers/breakpoints';

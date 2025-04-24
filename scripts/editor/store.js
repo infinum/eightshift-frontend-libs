@@ -196,7 +196,7 @@ const actions = {
 };
 
 // Define reducers - only setters.
-const reducer = ( state = DEFAULT_STATE, action ) => {
+const reducer = (state = DEFAULT_STATE, action) => {
 	switch (action.type) {
 		case 'SET_BLOCKS': {
 			return {
@@ -222,7 +222,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssGlobally: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE': {
@@ -231,7 +231,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssOptimize: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_CONFIG_OUTPUT_CSS_SELECTOR_NAME': {
@@ -240,7 +240,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssSelectorName: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_CONFIG_USE_REM_BASE_SIZE': {
@@ -249,7 +249,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					useRemBaseSize: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES': {
@@ -258,7 +258,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					outputCssGloballyAdditionalStyles: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_CONFIG_USE_WRAPPER': {
@@ -267,7 +267,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				config: {
 					...state.config,
 					useWrapper: action.config,
-				}
+				},
 			};
 		}
 		case 'SET_WRAPPER': {
@@ -343,11 +343,13 @@ export const setStore = () => {
 		window['eightshift'] = {};
 	}
 
-	register(createReduxStore(STORE_NAME, {
-		selectors,
-		actions,
-		reducer,
-	}));
+	register(
+		createReduxStore(STORE_NAME, {
+			selectors,
+			actions,
+			reducer,
+		}),
+	);
 };
 
 /**
@@ -357,8 +359,7 @@ export const setStore = () => {
  *
  * @returns {void}
  */
- export const setConfigFlags = () => {
-
+export const setConfigFlags = () => {
 	const config = select(STORE_NAME).getSettings()?.config;
 
 	if (typeof config !== 'undefined') {
