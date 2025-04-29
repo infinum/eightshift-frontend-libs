@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [15.0.1]
+
+### Fixed
+
+- Broken import on mjs files.
+
 ## [15.0.0]
 
 ### Changed
@@ -19,6 +25,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [14.0.1]
 
 ### Changed
+
 - Updated dependencies
 - Modified built-in mixins to use new SCSS functions
 
@@ -32,11 +39,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [13.0.11]
 
 ### Fixed
+
 - option to set css variables to other attribute values in the `outputCssVariables` method on inner components.
 
 ## [13.0.10]
 
 ### Added
+
 - option to set css variables to other attribute values in the `outputCssVariables` method.
 
 ## [13.0.9]
@@ -49,6 +58,7 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [13.0.8]
 
 ### Changed
+
 - Updated dependencies.
 - `BlockInserter` is now only visible when the block it's assigned to is selected. This behavior can be changed by setting `alwaysVisible`.
 
@@ -1433,6 +1443,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[15.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.0...15.0.1
 [15.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/14.0.1...15.0.0
 [14.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/14.0.0...14.0.1
 [14.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/13.0.11...14.0.0

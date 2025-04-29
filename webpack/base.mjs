@@ -75,6 +75,16 @@ export default (options) => {
 		});
 	}
 
+	// Module for MJS.
+	if (!options.overrides.includes('mjs')) {
+		module.rules.push({
+			test: /\.m?js/,
+			resolve: {
+				fullySpecified: false,
+			},
+		});
+	}
+
 	// Module for Scss and Css.
 	if (!options.overrides.includes('css')) {
 		module.rules.push({
