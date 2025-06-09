@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [15.0.2]
+
+### Updated
+
+- Updated dependencies
+
 ## [15.0.1]
 
 ### Fixed
@@ -1443,6 +1449,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[15.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.1...15.0.2
 [15.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.0...15.0.1
 [15.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/14.0.1...15.0.0
 [14.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/14.0.0...14.0.1
