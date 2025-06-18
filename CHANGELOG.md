@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [15.0.3]
+
+### Updated
+
+- Updated dependencies
+- Package will now use your project's version of ES UI components, instead of bundling one. `peerDependencies` should automatically install it, if not please install `@eightshift/ui-components` yourself.
+
 ## [15.0.2]
 
 ### Updated
@@ -1449,6 +1456,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[15.0.3]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.2...15.0.3
 [15.0.2]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.1...15.0.2
 [15.0.1]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.0...15.0.1
 [15.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/14.0.1...15.0.0
