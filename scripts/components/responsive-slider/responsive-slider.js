@@ -65,7 +65,13 @@ export const ResponsiveSlider = (props) => {
 		responsiveDefaultValue = min,
 
 		noInputField = false,
+
+		hidden,
 	} = props;
+
+	if (hidden) {
+		return null;
+	}
 
 	const breakpointNames = Object.keys(value);
 
