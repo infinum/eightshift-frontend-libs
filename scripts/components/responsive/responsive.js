@@ -36,7 +36,13 @@ export const Responsive = (props) => {
 		additionalClasses,
 
 		inline = false,
+
+		hidden,
 	} = props;
+
+	if (hidden) {
+		return null;
+	}
 
 	const fallbackBreakpointLabels = breakpoints.map((v) => upperFirst(v));
 

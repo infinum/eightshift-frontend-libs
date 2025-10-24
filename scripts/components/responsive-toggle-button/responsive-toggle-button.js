@@ -49,7 +49,13 @@ export const ResponsiveToggleButton = (props) => {
 		additionalProps = {},
 
 		buttonToggleEffect = false,
+
+		hidden,
 	} = props;
+
+	if (hidden) {
+		return null;
+	}
 
 	const breakpointNames = Object.keys(value);
 
