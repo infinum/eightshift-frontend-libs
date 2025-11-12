@@ -130,7 +130,7 @@ export const AdvancedColorPicker = (props) => {
 						className='es:min-w-72 es:p-2'
 					>
 						<GradientEditor
-							value={colorGradient ?? 'linear-gradient(to right, #000000 0%, #ffffff 100%)'}
+							value={colorGradient || 'linear-gradient(to right, #000000 0%, #ffffff 100%)'}
 							onChange={(value) => onChangeGradient(value)}
 						/>
 
