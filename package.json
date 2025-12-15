@@ -74,7 +74,7 @@
 		"@wordpress/api-fetch": "^7.36.0"
 	},
 	"peerDependencies": {
-		"@eightshift/ui-components": "^5.0.2"
+		"@eightshift/ui-components": "^5.6.1"
 	},
 	"sideEffects": false,
 	"lint-staged": {
