@@ -1,6 +1,6 @@
-// import react from 'eslint-plugin-react';
-// import reactHooks from 'eslint-plugin-react-hooks';
-import stylistic from '@stylistic/eslint-plugin-js';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import stylistic from '@stylistic/eslint-plugin';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 
@@ -23,9 +23,9 @@ export default [
 			},
 		},
 		plugins: {
-			// react,
-			// 'react-hooks': reactHooks,
-			'@stylistic/js': stylistic,
+			react,
+			'react-hooks': reactHooks,
+			'@stylistic': stylistic,
 		},
 		rules: {
 			'newline-before-return': 'error',
@@ -35,7 +35,7 @@ export default [
 			'no-nested-ternary': 'error',
 			'no-underscore-dangle': ['error', { allowAfterThis: true }],
 			'no-void': 'error',
-			'@stylistic/js/semi': 'error',
+			'@stylistic/semi': 'error',
 			'max-len': [
 				'error',
 				{
@@ -61,21 +61,20 @@ export default [
 				},
 			],
 			// React-specific.
-			// Note: React rules are temporarily disabled until the plugin gets full compatibility with ESLint 9.
-			// 'consistent-return': 'warn',
-			// 'no-param-reassign': 'warn',
-			// 'react-hooks/rules-of-hooks': 'error',
-			// // 'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useSafeLayoutEffect|useUpdateEffect)' }],
-			// 'react/prop-types': ['error', { skipUndeclared: true }],
-			// 'react/react-in-jsx-scope': 'off',
-			// 'react/self-closing-comp': ['warn', { component: true, html: true }],
-			// 'react/no-unknown-property': ['error', { ignore: ['css'] }],
+			'consistent-return': 'warn',
+			'no-param-reassign': 'warn',
+			'react-hooks/rules-of-hooks': 'error',
+			'react-hooks/exhaustive-deps': ['warn', { additionalHooks: '(useSafeLayoutEffect|useUpdateEffect)' }],
+			'react/prop-types': ['error', { skipUndeclared: true }],
+			'react/react-in-jsx-scope': 'off',
+			'react/self-closing-comp': ['warn', { component: true, html: true }],
+			'react/no-unknown-property': ['error', { ignore: ['css'] }],
 		},
-		// settings: {
-		// 	react: {
-		// 		version: '18',
-		// 	},
-		// },
+		settings: {
+			react: {
+				version: '18',
+			},
+		},
 	},
 	eslintPluginPrettierRecommended,
 ];
