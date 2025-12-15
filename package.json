@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "15.0.5",
+	"version": "15.1.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -38,12 +38,12 @@
 		"@dnd-kit/utilities": "^3.2.2",
 		"@stylistic/eslint-plugin-js": "^4.4.1",
 		"@stylistic/stylelint-plugin": "^4.0.0",
-		"@swc/core": "^1.15.1",
-		"@wordpress/dependency-extraction-webpack-plugin": "^6.34.0",
+		"@swc/core": "^1.15.3",
+		"@wordpress/dependency-extraction-webpack-plugin": "^6.36.0",
 		"autoprefixer": "^10.4.22",
-		"browserslist": "^4.28.0",
+		"browserslist": "^4.28.1",
 		"css-loader": "^7.1.2",
-		"css-minimizer-webpack-plugin": "^7.0.2",
+		"css-minimizer-webpack-plugin": "^7.0.3",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.4",
@@ -54,25 +54,25 @@
 		"postcss": "^8.5.6",
 		"postcss-loader": "^8.2.0",
 		"postcss-scss": "^4.0.9",
-		"sass": "^1.94.0",
+		"sass": "^1.94.2",
 		"sass-loader": "^16.0.6",
 		"style-loader": "^4.0.0",
-		"stylelint": "^16.25.0",
+		"stylelint": "^16.26.1",
 		"stylelint-config-standard": "^39.0.1",
 		"stylelint-config-standard-scss": "^16.0.0",
 		"swc-loader": "^0.2.6",
-		"terser-webpack-plugin": "^5.3.14",
-		"webpack": "^5.102.1",
+		"terser-webpack-plugin": "^5.3.15",
+		"webpack": "^5.103.0",
 		"webpack-cli": "^6.0.1",
 		"webpack-manifest-plugin": "^6.0.1",
 		"webpack-merge": "^6.0.1"
 	},
 	"devDependencies": {
-		"lint-staged": "^16.2.6",
-		"@wordpress/api-fetch": "^7.34.0"
+		"lint-staged": "^16.2.7",
+		"@wordpress/api-fetch": "^7.36.0"
 	},
 	"peerDependencies": {
-		"@eightshift/ui-components": "^5.0.2"
+		"@eightshift/ui-components": "^6.0.8"
 	},
 	"sideEffects": false,
 	"lint-staged": {
