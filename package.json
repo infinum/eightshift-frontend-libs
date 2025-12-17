@@ -74,7 +74,7 @@
 		"lint-staged": "^16.2.7"
 	},
 	"peerDependencies": {
-		"@eightshift/ui-components": "^5.6.1"
+		"@eightshift/ui-components": "^6.0.8"
 	},
 	"sideEffects": false,
 	"lint-staged": {
