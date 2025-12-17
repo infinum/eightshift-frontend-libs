@@ -9,6 +9,7 @@
         "@dnd-kit/modifiers": "^9.0.0",
         "@dnd-kit/sortable": "^10.0.0",
         "@dnd-kit/utilities": "^3.2.2",
+        "@stylistic/eslint-plugin": "^5.6.1",
         "@stylistic/stylelint-plugin": "^4.0.0",
         "@swc/core": "^1.15.3",
         "@wordpress/dependency-extraction-webpack-plugin": "^6.36.0",
@@ -42,12 +43,11 @@
         "webpack-merge": "^6.0.1",
       },
       "devDependencies": {
-        "@stylistic/eslint-plugin": "^5.6.1",
         "@wordpress/api-fetch": "^7.36.0",
         "lint-staged": "^16.2.7",
       },
       "peerDependencies": {
-        "@eightshift/ui-components": "^5.6.1",
+        "@eightshift/ui-components": "^6.0.8",
       },
     },
   },
