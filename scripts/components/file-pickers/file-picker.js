@@ -1,8 +1,18 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button, HStack, VStack, FilePlaceholder, AnimatedVisibility } from '@eightshift/ui-components';
-import { icons } from '@eightshift/ui-components/icons';
+import {
+	trash,
+	itemSelect,
+	upload,
+	swap,
+	imageFile,
+	videoFile,
+	closedCaptions,
+	fileMetadata,
+	animationFile,
+	file,
+} from '@eightshift/ui-components/icons';
 
 /**
  * A customizable button for managing files from the Media library.
@@ -58,9 +68,9 @@ export const ManageFileButton = (props) => {
 				replace: __('Select a new file', 'eightshift-frontend-libs-tailwind'),
 			},
 			buttonIcon: {
-				browse: icons.itemSelect,
-				upload: icons.upload,
-				replace: icons.swap,
+				browse: itemSelect,
+				upload: upload,
+				replace: swap,
 			},
 		},
 		video: {
@@ -206,18 +216,18 @@ export const FileSelector = (props) => {
 	};
 
 	const fileIcons = {
-		image: icons.imageFile,
-		video: icons.videoFile,
-		subtitle: icons.closedCaptions,
-		geoJson: icons.fileMetadata,
-		lottie: icons.animationFile,
+		image: imageFile,
+		video: videoFile,
+		subtitle: closedCaptions,
+		geoJson: fileMetadata,
+		lottie: animationFile,
 		custom: labels?.removeIcon,
 	};
 
 	return (
 		<VStack noWrap>
 			<FilePlaceholder
-				icon={fileIcons[kind] ?? icons.file}
+				icon={fileIcons[kind] ?? file}
 				fileName={fileName}
 			>
 				<HStack
@@ -247,7 +257,7 @@ export const FileSelector = (props) => {
 					/>
 					{!noDelete && (
 						<Button
-							icon={icons.trash}
+							icon={trash}
 							tooltip={removeTooltips[kind] ?? removeTooltips.file}
 							onPress={() => onChange({ id: undefined, url: undefined })}
 							type='danger'

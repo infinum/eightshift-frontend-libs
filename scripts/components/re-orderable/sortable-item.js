@@ -2,7 +2,7 @@ import React from 'react';
 import { IconLabel } from '@eightshift/frontend-libs/scripts';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { icons } from '@eightshift/ui-components/icons';
+import { reorderGrabberV } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
@@ -86,7 +86,7 @@ export const SortableItem = (props) => {
 							)}
 							{...additionalTriggerProps}
 						>
-							{customGrabHandle ?? icons.reorderGrabberV}
+							{customGrabHandle ?? reorderGrabberV}
 						</button>
 					</div>
 				)}

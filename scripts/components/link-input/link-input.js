@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkInput as EsUicLinkInput, Toggle, TriggeredPopover } from '@eightshift/ui-components';
 import { __ } from '@wordpress/i18n';
-import { icons } from '@eightshift/ui-components/icons';
+import { clearAlt, globe, moreH, newTab } from '@eightshift/ui-components/icons';
 import { wpSearchRoute } from '../../editor';
 
 /**
@@ -16,9 +16,9 @@ import { wpSearchRoute } from '../../editor';
  * @param {React.Component?} [props.label='URL']                  - If provided, overrides the default component label.
  * @param {React.Component?} [props.help]                         - Help text shown below the component.
  * @param {React.Component?} [props.actions]                      - Actions to show to the right of the label.
- * @param {React.Component?} [props.icon=icons.globe]             - If provided, overrides the default component icon.
- * @param {React.Component?} [props.removeIcon=icons.trash]       - If provided, overrides the default remove icon.
- * @param {React.Component?} [props.anchorIcon=icons.globeAnchor] - If provided, overrides the default component icon when an anchor link is selected.
+ * @param {React.Component?} [props.icon=globe]                   - If provided, overrides the default component icon.
+ * @param {React.Component?} [props.removeIcon=trash]             - If provided, overrides the default remove icon.
+ * @param {React.Component?} [props.anchorIcon=globeAnchor]       - If provided, overrides the default component icon when an anchor link is selected.
  * @param {boolean} [props.disabled=false]                        - If `true`, control is disabled.
  * @param {boolean} [props.hideOpensInNewTab=false]               - If `true`, the 'Opens in new tab' button is not shown.
  * @param {string?} [props.additionalClass]                       - If passed, the classes are forwarded to the component.
@@ -40,8 +40,8 @@ export const LinkInput = ({
 	help,
 	actions,
 
-	icon = icons.globe,
-	removeIcon = icons.clearAlt,
+	icon = globe,
+	removeIcon = clearAlt,
 
 	disabled = false,
 
@@ -71,7 +71,7 @@ export const LinkInput = ({
 
 						{(additionalOptions || additionalOptionTiles) && (
 							<TriggeredPopover
-								triggerButtonIcon={icons.moreH}
+								triggerButtonIcon={moreH}
 								triggerButtonProps={{ size: 'small', disabled: disabled }}
 							>
 								{additionalOptions}
@@ -90,7 +90,7 @@ export const LinkInput = ({
 			/>
 			{!hideOpensInNewTab && (
 				<Toggle
-					icon={icons.newTab}
+					icon={newTab}
 					label={__('Open in new tab', 'eightshift-frontend-libs')}
 					checked={opensInNewTab}
 					onChange={(value) => onChange({ url: url, newTab: value, isAnchor: url?.includes('#') })}

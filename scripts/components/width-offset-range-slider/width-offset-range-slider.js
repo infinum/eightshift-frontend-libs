@@ -1,6 +1,6 @@
 import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
-import { icons } from '@eightshift/ui-components/icons';
+import { inherit, positioningWidthGuide } from '@eightshift/ui-components/icons';
 import { __ } from '@wordpress/i18n';
 import { BaseControl, HStack, ToggleButton, ColumnConfigSlider } from '@eightshift/ui-components';
 import { clsx } from '@eightshift/ui-components/utilities';
@@ -30,7 +30,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
  */
 export const WidthOffsetRangeSlider = (props) => {
 	const {
-		icon = icons.positioningWidthGuide,
+		icon = positioningWidthGuide,
 		label = __('Width & offset', 'eightshift-frontend-libs'),
 
 		value,
@@ -224,7 +224,7 @@ export const WidthOffsetRangeSlider = (props) => {
 
 						<BaseControl
 							hidden={index === 0}
-							icon={icons.inherit}
+							icon={inherit}
 							label={__('Inherit', 'eightshift-frontend-libs')}
 							className='es:mt-2 es:mb-2 es:ml-auto es:w-fit'
 							inline

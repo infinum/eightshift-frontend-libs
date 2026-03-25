@@ -14,6 +14,7 @@ import { STORE_NAME } from './store';
  * ```
  */
 export const getPaletteColors = () =>
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useSelect((select) => {
 		const colors = select(STORE_NAME).getSettings().globalVariables.colors;
 

@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { getDefaultBreakpointNames } from '../../helpers';
-import { icons } from '@eightshift/ui-components/icons';
+import { Icon, inherit, responsiveOverridesAlt } from '@eightshift/ui-components/icons';
 import { clsx, upperFirst } from '@eightshift/ui-components/utilities';
 import { AnimatedVisibility, BaseControl, Button, RichLabel, ToggleButton } from '@eightshift/ui-components';
 
@@ -40,13 +40,13 @@ export const Responsive = (props) => {
 		hidden,
 	} = props;
 
-	if (hidden) {
-		return null;
-	}
-
 	const fallbackBreakpointLabels = breakpoints.map((v) => upperFirst(v));
 
 	const [isOpen, setIsOpen] = useState(false);
+
+	if (hidden) {
+		return null;
+	}
 
 	return (
 		<BaseControl
@@ -78,7 +78,7 @@ export const Responsive = (props) => {
 								: __('Open responsive overrides', 'eightshift-frontend-libs')
 						}
 						onChange={setIsOpen}
-						icon={icons.responsiveOverridesAlt}
+						icon={responsiveOverridesAlt}
 					/>
 				</>
 			}
@@ -87,13 +87,13 @@ export const Responsive = (props) => {
 				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
 				const previousBreakpointLabel =
 					index === 0 ? '' : (breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1));
-				const breakpointIcon = icons[`screen${upperFirst(breakpoints[index])}`];
+				const breakpointIcon = <Icon icon={`screen${upperFirst(breakpoints[index])}`} />;
 
 				const currentInheritButton = inheritButton?.at(index);
 
 				const inheritButtonComponent = (
 					<Button
-						icon={icons.inherit}
+						icon={inherit}
 						onPress={currentInheritButton?.callback}
 						className='es:w-full'
 						size='large'

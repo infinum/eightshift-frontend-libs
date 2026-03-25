@@ -1,7 +1,6 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, HStack, ImagePlaceholder } from '@eightshift/ui-components';
-import { icons } from '@eightshift/ui-components/icons';
+import { trash } from '@eightshift/ui-components/icons';
 import { ManageFileButton } from './file-picker';
 
 const MediaButton = (props) => {
@@ -98,7 +97,7 @@ export const MediaPicker = (props) => {
 					/>
 					{!noDelete && (
 						<Button
-							icon={icons.trash}
+							icon={trash}
 							tooltip={__('Remove image', 'infobip')}
 							onPress={() => onChange({ id: undefined, url: undefined })}
 							type='danger'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
-import { icons } from '@eightshift/ui-components/icons';
+import { icons, toggleOff } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
@@ -132,7 +132,7 @@ export const ResponsiveToggleButton = (props) => {
 							}}
 							icon={
 								buttonIcon ??
-								React.cloneElement(icons.toggleOff, {
+								React.cloneElement(toggleOff, {
 									className: clsx('es-animated-toggle-icon', isActive && 'is-checked'),
 								})
 							}

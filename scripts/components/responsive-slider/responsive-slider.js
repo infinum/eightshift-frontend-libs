@@ -2,7 +2,7 @@ import React from 'react';
 import { Responsive, Slider } from '@eightshift/frontend-libs/scripts';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
-import { icons } from '@eightshift/ui-components/icons';
+import { reset, resetToZero } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
@@ -157,7 +157,7 @@ export const ResponsiveSlider = (props) => {
 							rightAddition={
 								typeof resetButton !== 'undefined' && (
 									<Button
-										icon={resetButton === 0 ? icons.resetToZero : icons.reset}
+										icon={resetButton === 0 ? resetToZero : reset}
 										onClick={() => {
 											const newValue = stringValues ? `${resetButton}` : resetButton;
 											onChange({

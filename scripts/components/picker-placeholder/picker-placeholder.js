@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { RichLabel, Button } from '@eightshift/ui-components';
-import { icons, blockIcons, BlockIcon } from '@eightshift/ui-components/icons';
+import { icons, blockIcons, BlockIcon, componentGeneric, Icon } from '@eightshift/ui-components/icons';
 import { dispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { BlockInserter } from '../block-inserter/block-inserter';
@@ -47,13 +47,12 @@ export const PickerPlaceholder = (props) => {
 	const blockIcon = rawBlockIcon ?? manifest?.icon?.src;
 	const presets = rawPresets ?? manifest?.layoutPresets;
 
-	let icon = blockIcon ?? icons.componentGeneric;
-
-	if (blockIcon in blockIcons) {
-		icon = <BlockIcon iconName={blockIcon} />;
-	} else if (blockIcon in icons) {
-		icon = icons[blockIcon];
-	}
+	const icon = (
+		<Icon
+			icon={blockIcon}
+			fallback={blockIcon in blockIcons ? <BlockIcon iconName={blockIcon} /> : componentGeneric}
+		/>
+	);
 
 	if (hidden) {
 		return null;
