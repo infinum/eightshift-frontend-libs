@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { RichLabel, Button } from '@eightshift/ui-components';
-import { icons, blockIcons, BlockIcon, componentGeneric, Icon } from '@eightshift/ui-components/icons';
+import { blockIcons, BlockIcon, componentGeneric, Icon } from '@eightshift/ui-components/icons';
 import { dispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { BlockInserter } from '../block-inserter/block-inserter';
@@ -81,7 +81,7 @@ export const PickerPlaceholder = (props) => {
 
 							await dispatch('core/block-editor').insertBlocks(blocksToInsert, 0, clientId);
 						}}
-						icon={icons?.[icon]}
+						icon={<Icon icon={icon} />}
 						size='large'
 					>
 						{name}
