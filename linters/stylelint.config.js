@@ -141,7 +141,6 @@ module.exports = {
 
 		'scss/at-function-pattern': null,
 		'scss/dollar-variable-pattern': null,
-		'scss/at-import-partial-extension': null,
 		'scss/no-global-function-names': null,
 		'scss/dollar-variable-empty-line-before': null,
 		'scss/at-if-closing-brace-newline-after': null,

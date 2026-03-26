@@ -1,9 +1,8 @@
-import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Inserter } from '@wordpress/block-editor';
 import { useSuspenseSelect } from '@wordpress/data';
 import { Button } from '@eightshift/ui-components';
-import { add, icons } from '@eightshift/ui-components/icons';
+import { add } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**

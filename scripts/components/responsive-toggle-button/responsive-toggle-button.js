@@ -1,7 +1,7 @@
 import React from 'react';
 import { Responsive } from '@eightshift/frontend-libs/scripts';
 import { Button } from '@wordpress/components';
-import { icons, toggleOff } from '@eightshift/ui-components/icons';
+import { toggleOff } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
