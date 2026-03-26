@@ -126,6 +126,7 @@ export const registerBlocks = (
 				);
 
 				if (blockOverridesComponent !== null) {
+					// eslint-disable-next-line no-param-reassign
 					blockManifest = Object.assign(blockManifest, blockOverridesComponent);
 				}
 			}
@@ -243,6 +244,7 @@ export const registerVariations = (
 				);
 
 				if (blockOverridesComponent !== null) {
+					// eslint-disable-next-line no-param-reassign
 					variationManifest = Object.assign(variationManifest, blockOverridesComponent);
 				}
 			}

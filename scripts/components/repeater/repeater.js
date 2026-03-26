@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button, BaseControl } from '@eightshift/ui-components';
-import { icons } from '@eightshift/ui-components/icons';
+import { add } from '@eightshift/ui-components/icons';
 import { SortableItem } from './sortable-item';
 import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
@@ -118,7 +118,7 @@ export const Repeater = (props) => {
 					{!customAddButton && (
 						<Button
 							onPress={handleAddButtonClick}
-							icon={icons.add}
+							icon={add}
 							size='small'
 							aria-label={__('Add item', 'eightshift-frontend-libs')}
 							tooltip={__('Add item', 'eightshift-frontend-libs')}

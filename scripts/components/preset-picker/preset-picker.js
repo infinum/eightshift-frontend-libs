@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { icons } from '@eightshift/ui-components/icons';
+import { checkCircle, genericShapesAlt, Icon, none, sliders } from '@eightshift/ui-components/icons';
 import { BaseControl, Menu, MenuItem, MenuSeparator } from '@eightshift/ui-components';
 
 /**
@@ -28,7 +28,7 @@ export const PresetPicker = (props) => {
 
 		excludeDefaultsFromPresets = false,
 
-		icon = icons.sliders,
+		icon = sliders,
 		label = __('Presets', 'eightshift-frontend-libs'),
 		help = __('Current settings will be overwritten', 'eightshift-frontend-libs'),
 
@@ -62,7 +62,7 @@ export const PresetPicker = (props) => {
 			{offButton && offButton?.label && offButton?.attributes && (
 				<>
 					<MenuItem
-						icon={offButton?.icon ?? icons.none}
+						icon={offButton?.icon ?? none}
 						onClick={() => setAttributes(offButton.attributes)}
 					>
 						{offButton?.label}
@@ -75,7 +75,7 @@ export const PresetPicker = (props) => {
 			{defaultButton && (
 				<>
 					<MenuItem
-						icon={defaultButton?.icon ?? icons.checkCircle}
+						icon={defaultButton?.icon ?? checkCircle}
 						onClick={() => setAttributes(defaultButton?.attributes ?? defaultManifestAttributes)}
 					>
 						{defaultButton?.label ?? __('Default', 'eightshift-frontend-libs')}
@@ -88,7 +88,12 @@ export const PresetPicker = (props) => {
 			{manifest[configPresetsKey].map(({ name: presetName, icon: presetIcon, attributes: presetAttrs }, i) => (
 				<MenuItem
 					key={i}
-					icon={icons?.[presetIcon] ?? icons.genericShapesAlt}
+					icon={
+						<Icon
+							icon={presetIcon}
+							fallback={genericShapesAlt}
+						/>
+					}
 					onClick={() =>
 						setAttributes(
 							excludeDefaultsFromPresets && defaultManifestAttributes

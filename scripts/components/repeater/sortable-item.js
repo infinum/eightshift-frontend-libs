@@ -1,10 +1,9 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Button as GutenbergButton } from '@wordpress/components';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { RichLabel, Menu, MenuItem, Expandable } from '@eightshift/ui-components';
-import { icons } from '@eightshift/ui-components/icons';
+import { hamburgerMenu, reorderGrabberV, trash } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 export const SortableItem = (props) => {
@@ -65,18 +64,18 @@ export const SortableItem = (props) => {
 							{...additionalTriggerProps}
 							className={clsx('[&>svg]:es:size-5 es:min-w-5 es:w-5', isOnly ? 'es:hidden' : 'es:opacity-50')}
 							size='small'
-							icon={icons.reorderGrabberV}
+							icon={reorderGrabberV}
 							disabled={noReordering}
 						/>
 
 						<Menu
 							hidden={!(!hideRemove || additionalMenuOptions)}
-							triggerIcon={icons.hamburgerMenu}
+							triggerIcon={hamburgerMenu}
 							triggerProps={{ size: 'small', type: 'ghost' }}
 						>
 							{!hideRemove && (
 								<MenuItem
-									icon={icons.trash}
+									icon={trash}
 									onClick={onRemove}
 								>
 									{__('Remove', 'eightshift-frontend-libs')}

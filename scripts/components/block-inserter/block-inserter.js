@@ -1,9 +1,8 @@
-import React from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import { Inserter } from '@wordpress/block-editor';
 import { useSuspenseSelect } from '@wordpress/data';
 import { Button } from '@eightshift/ui-components';
-import { icons } from '@eightshift/ui-components/icons';
+import { add } from '@eightshift/ui-components/icons';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**
@@ -70,7 +69,7 @@ export const BlockInserter = (props) => {
 					<Button
 						onPress={onToggle}
 						disabled={disabled}
-						icon={icons.add}
+						icon={add}
 						size={small ? 'small' : 'default'}
 						className={clsx(className, 'es:font-sans')}
 					>

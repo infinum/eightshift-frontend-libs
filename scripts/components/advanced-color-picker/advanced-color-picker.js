@@ -1,6 +1,5 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { icons } from '@eightshift/ui-components/icons';
+import { color, emptyCircle, gradient, imageOverlayAlt2, paletteColor } from '@eightshift/ui-components/icons';
 import {
 	SolidColorPicker,
 	GradientEditor,
@@ -53,7 +52,7 @@ export const AdvancedColorPicker = (props) => {
 		onChangeGradient,
 		onChangeType,
 
-		icon = icons.imageOverlayAlt2,
+		icon = imageOverlayAlt2,
 		label = __('Background', 'eightshift-frontend-libs'),
 		help,
 
@@ -61,23 +60,23 @@ export const AdvancedColorPicker = (props) => {
 			{
 				label: __('None', 'eightshift-frontend-libs'),
 				value: '',
-				endIcon: icons.emptyCircle,
+				endIcon: emptyCircle,
 				separator: 'below',
 			},
 			{
 				label: __('Project color', 'eightshift-frontend-libs'),
 				value: 'project',
-				endIcon: icons.paletteColor,
+				endIcon: paletteColor,
 			},
 			{
 				label: __('Color', 'eightshift-frontend-libs'),
 				value: 'solid',
-				endIcon: icons.color,
+				endIcon: color,
 			},
 			{
 				label: __('Gradient', 'eightshift-frontend-libs'),
 				value: 'gradient',
-				endIcon: icons.gradient,
+				endIcon: gradient,
 			},
 		],
 
