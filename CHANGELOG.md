@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [16.1.0]
+
+### Removed
+
+- Removed `useRemBaseSize` config option from the editor store and `globalManifest.json` schema.
+
+### Changed
+
+- Updated `outputCssGlobally` default value to `true`.
+- Updated `outputCssOptimize` default value to `true`.
+
 ## [16.0.0]
 
 ### Updated
@@ -1493,6 +1504,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[16.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.0.0...16.1.0
 [16.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/15.1.1...16.0.0
 [15.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/15.1.0...15.1.1
 [15.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/15.0.5...15.1.0
