@@ -9,11 +9,10 @@ const DEFAULT_STATE = {
 	blocks: {},
 	components: {},
 	config: {
-		outputCssGlobally: false,
-		outputCssOptimize: false,
+		outputCssGlobally: true,
+		outputCssOptimize: true,
 		outputCssSelectorName: 'esCssVariables',
 		outputCssGloballyAdditionalStyles: [],
-		useRemBaseSize: false,
 		useWrapper: true,
 	},
 	wrapper: {},
@@ -57,9 +56,6 @@ const selectors = {
 	},
 	getConfigOutputCssGloballyAdditionalStyles(state) {
 		return state.config.outputCssGloballyAdditionalStyles;
-	},
-	getConfigUseRemBaseSize(state) {
-		return state.config.useRemBaseSize;
 	},
 	getConfigUseWrapper(state) {
 		return state.config.useWrapper;
@@ -119,12 +115,6 @@ const actions = {
 	setConfigOutputCssOptimize(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE',
-			config,
-		};
-	},
-	setConfigUseRemBaseSize(config) {
-		return {
-			type: 'SET_CONFIG_USE_REM_BASE_SIZE',
 			config,
 		};
 	},
@@ -240,15 +230,6 @@ const reducer = (state = DEFAULT_STATE, action) => {
 				config: {
 					...state.config,
 					outputCssSelectorName: action.config,
-				},
-			};
-		}
-		case 'SET_CONFIG_USE_REM_BASE_SIZE': {
-			return {
-				...state,
-				config: {
-					...state.config,
-					useRemBaseSize: action.config,
 				},
 			};
 		}
@@ -371,11 +352,6 @@ export const setConfigFlags = () => {
 		// outputCssOptimize
 		if (typeof config?.outputCssOptimize === 'boolean') {
 			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
-		}
-
-		// useRemBaseSize
-		if (typeof config?.useRemBaseSize === 'boolean') {
-			dispatch(STORE_NAME).setConfigUseRemBaseSize(config.useRemBaseSize);
 		}
 
 		// outputCssSelectorName
