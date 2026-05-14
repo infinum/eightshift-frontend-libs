@@ -90,7 +90,7 @@ import { camelCase, debounce, isEmpty, isObject, isPlainObject, kebabCase } from
  * </style>
  * ```
  */
-export const outputCssVariablesGlobal = (globalManifest = {}) => {
+export const outputCssVariablesGlobal = (_globalManifest = {}) => {
 	let output = '';
 
 	for (const [itemKey, itemValue] of Object.entries(select(STORE_NAME).getSettingsGlobalVariables())) {
@@ -145,7 +145,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
  * outputCssVariables(attributes, manifest, unique);
  * ```
  */
-export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
+export const outputCssVariables = (attributes, manifest, unique, _globalManifest = {}, customSelector = '') => {
 	// Define variables from manifest.
 	const variables = manifest?.variables;
 	const variablesEditor = manifest?.variablesEditor;

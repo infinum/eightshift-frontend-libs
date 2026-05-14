@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { checkAttr, getAttrKey } from '@eightshift/frontend-libs/scripts';
 import { ComponentToggle, Spacer } from '@eightshift/ui-components';
 

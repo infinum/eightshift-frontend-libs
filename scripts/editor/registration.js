@@ -276,6 +276,7 @@ const getBlockComponent = (blockName, paths, fileName, required) => {
 
 	if (typeof component === 'undefined') {
 		if (!required) return null;
+
 		throw Error(
 			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
 		);

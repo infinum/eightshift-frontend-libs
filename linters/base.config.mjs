@@ -80,6 +80,7 @@ export default [
 			'no-param-reassign': 'warn',
 			'react-hooks/rules-of-hooks': 'error',
 			'react-hooks/exhaustive-deps': ['warn', { additionalHooks: '(useSafeLayoutEffect|useUpdateEffect)' }],
+			'react/jsx-uses-vars': 'error',
 			'react/prop-types': ['error', { skipUndeclared: true }],
 			'react/react-in-jsx-scope': 'off',
 			'react/self-closing-comp': ['warn', { component: true, html: true }],

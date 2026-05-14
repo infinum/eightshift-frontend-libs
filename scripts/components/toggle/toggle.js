@@ -22,7 +22,7 @@ export const Toggle = ({
 	type = 'toggle',
 
 	help,
-	inlineHelp = false,
+	inlineHelp: _inlineHelp = false,
 
 	checked,
 	onChange,

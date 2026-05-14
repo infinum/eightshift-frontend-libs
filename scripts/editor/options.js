@@ -61,12 +61,14 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 	// Bailout if componentOptions is missing — build name lazily only when about to throw.
 	if (typeof componentOptions === 'undefined') {
 		const name = 'blockName' in manifest ? manifest.blockName : manifest.componentName;
+
 		throw Error(`It looks like you are missing options key in your ${name} manifest.`);
 	}
 
 	// Bailout if key is missing in manifest options or skip if option is color type.
 	if (!Object.prototype.hasOwnProperty.call(componentOptions, key) && !isColor) {
 		const name = 'blockName' in manifest ? manifest.blockName : manifest.componentName;
+
 		throw Error(`It looks like you are missing ${key} options key in your ${name} manifest.`);
 	}
 

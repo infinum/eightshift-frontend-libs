@@ -1,4 +1,3 @@
-import React from 'react';
 import { MenuSeparator as EsUicMenuSeparator } from '@eightshift/ui-components';
 
 /**

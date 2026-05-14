@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { ColorSwatch as EsUicColorSwatch } from '@eightshift/ui-components';
 
 /**
