@@ -247,26 +247,24 @@ export const outputCssVariables = (attributes, manifest, unique, globalManifest 
  * @return {string}
  */
 export const hexToRgb = (input) => {
-	let r = 0,
-		g = 0,
-		b = 0;
-	const hex = input.replace('#', '').trim();
-
-	if (hex.length === 3) {
-		const [r1, g1, b1] = hex;
-		r = `0x${r1}${r1}`;
-		g = `0x${g1}${g1}`;
-		b = `0x${b1}${b1}`;
-	} else if (hex.length === 6) {
-		const [r1, r2, g1, g2, b1, b2] = hex;
-		r = `0x${r1}${r2}`;
-		g = `0x${g1}${g2}`;
-		b = `0x${b1}${b2}`;
+	if (!input) {
+		return '0 0 0';
 	}
 
-	r = Number(r);
-	g = Number(g);
-	b = Number(b);
+	const hex = input.replace('#', '').trim();
+	let r, g, b;
+
+	if (hex.length === 3 || hex.length === 4) {
+		r = parseInt(hex[0] + hex[0], 16);
+		g = parseInt(hex[1] + hex[1], 16);
+		b = parseInt(hex[2] + hex[2], 16);
+	} else if (hex.length === 6 || hex.length === 8) {
+		r = parseInt(hex.slice(0, 2), 16);
+		g = parseInt(hex.slice(2, 4), 16);
+		b = parseInt(hex.slice(4, 6), 16);
+	} else {
+		return '0 0 0';
+	}
 
 	if (isNaN(r) || isNaN(g) || isNaN(b)) {
 		return '0 0 0';
@@ -293,6 +291,12 @@ export const hexToRgb = (input) => {
  * ```
  */
 export const getUnique = () => {
+	if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+		const arr = new Uint32Array(1);
+		crypto.getRandomValues(arr);
+		return arr[0].toString(36);
+	}
+
 	return (Math.random() + 1).toString(36).substring(4);
 };
 

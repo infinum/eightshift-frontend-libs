@@ -59,9 +59,17 @@ export const cookies = {
 	 * ```
 	 */
 	getCookie(key) {
-		const keyValue = document.cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
+		const pair = document.cookie.split('; ').find((p) => p.startsWith(`${key}=`));
 
-		return keyValue ? keyValue[2] : null;
+		if (!pair) {
+			return null;
+		}
+
+		try {
+			return decodeURIComponent(pair.slice(key.length + 1));
+		} catch {
+			return pair.slice(key.length + 1);
+		}
 	},
 	setHalfDay() {
 		return 43200000;

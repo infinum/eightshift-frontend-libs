@@ -412,9 +412,7 @@ export const getMergeCallback = (blockManifest) => {
 			let outputObject = {};
 
 			for (const { attribute: attributeName, mergeStrategy } of mergeableAttributes) {
-				const attribute = Object.keys(receiver).find((k) => {
-					return k?.toLowerCase()?.includes(attributeName.toLowerCase());
-				});
+				const attribute = Object.keys(receiver).find((k) => k === attributeName);
 
 				switch (mergeStrategy) {
 					case 'append': {
