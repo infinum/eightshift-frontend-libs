@@ -144,6 +144,9 @@ export const registerBlocks = (
 
 			// Format the 'deprecated' attribute details to match the format Gutenberg wants.
 			if (blockDetails?.options?.deprecated) {
+				// Compute once and let both the attributes spread and the migrate closure capture it.
+				const baseAttributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+
 				blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
 					if (deprecation?.attributes && deprecation?.migrate) {
 						return {
@@ -155,12 +158,12 @@ export const registerBlocks = (
 
 					return {
 						attributes: {
-							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+							...baseAttributes,
 							...deprecation.oldAttributes,
 						},
 						migrate: (attributes) => {
 							return {
-								...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+								...baseAttributes,
 								...attributes,
 								...deprecation.newAttributes(attributes),
 							};
@@ -449,16 +452,19 @@ export const getMergeCallback = (blockManifest) => {
  *
  * @returns {React.Component}
  */
-export const getEditCallback = (Component, Wrapper) => (props) => {
+export const getEditCallback = (Component, Wrapper) => {
+	// Config is set once during init via setConfigFlags() — read it now instead of on every render.
 	const useWrapper = select(STORE_NAME).getConfigUseWrapper();
 
-	return useWrapper ? (
-		<Wrapper props={props}>
-			<Component {...props} />
-		</Wrapper>
-	) : (
-		<Component {...props} />
-	);
+	if (useWrapper) {
+		return (props) => (
+			<Wrapper props={props}>
+				<Component {...props} />
+			</Wrapper>
+		);
+	}
+
+	return (props) => <Component {...props} />;
 };
 
 /**
@@ -531,9 +537,11 @@ export const prepareComponentAttribute = (
 
 	// Prepare parent case.
 	const newParent = camelCase(parent);
+	// Loop-invariant — compute once if we'll need it.
+	const realNameLowerCamel = currentAttributes ? lowerFirst(camelCase(realName)) : '';
 
 	// Iterate each attribute and attach parent prefixes.
-	for (const [componentAttribute] of Object.entries(componentAttributes)) {
+	for (const [componentAttribute, value] of Object.entries(componentAttributes)) {
 		let attribute = componentAttribute;
 
 		// If there is a attribute name switch use the new one.
@@ -543,17 +551,17 @@ export const prepareComponentAttribute = (
 
 		// Check if current attribute is used strip component prefix from attribute and replace it with parent prefix.
 		if (currentAttributes) {
-			attribute = componentAttribute.replace(`${lowerFirst(camelCase(realName))}`, '');
+			attribute = componentAttribute.replace(realNameLowerCamel, '');
 		}
 
 		// Wrapper attributes that should not be modified.
 		const isWrapperAttribute = attribute.startsWith('wrapper') || attribute.startsWith('showWrapper');
 
 		// Determine if parent is empty and if parent name is the same as component/block name and skip wrapper attributes.
-		let attributeName = isWrapperAttribute ? attribute : `${newParent}${upperFirst(attribute)}`;
+		const attributeName = isWrapperAttribute ? attribute : `${newParent}${upperFirst(attribute)}`;
 
 		// Output new attribute names.
-		output[attributeName] = componentAttributes[componentAttribute];
+		output[attributeName] = value;
 	}
 
 	return output;
@@ -583,9 +591,10 @@ export const prepareComponentAttributes = (componentsManifest, manifest, isExamp
 	const newParent = parent === '' ? name : parent;
 
 	// Iterate over components key in manifest recursively and check component names.
-	for (let [newComponentName, realComponentName] of Object.entries(components)) {
-		// Filter components real name.
-		const [component] = componentsManifest.filter((item) => item.componentName === kebabCase(realComponentName));
+	for (const [newComponentName, realComponentName] of Object.entries(components)) {
+		// Hoist kebabCase out of the predicate and short-circuit with .find() instead of .filter()[0].
+		const realComponentKebab = kebabCase(realComponentName);
+		const component = componentsManifest.find((item) => item.componentName === realComponentKebab);
 
 		// Bailout if component doesn't exist.
 		if (!component) {
@@ -829,6 +838,10 @@ export const registerBlock = (
 		__experimentalMetadata: true,
 	};
 
+	// Closure-static values for the label callback — read once at register time.
+	const blockTitle = blockManifest?.title;
+	const labelFallback = blockTitle ?? fullBlockName;
+
 	return {
 		blockName: fullBlockName,
 		options: {
@@ -844,10 +857,10 @@ export const registerBlock = (
 			// WP 6.4+ Block renaming support
 			__experimentalBlockRenaming: true,
 			__experimentalLabel: (attributes, { context }) => {
-				const customName = attributes?.metadata?.name ?? blockManifest?.title ?? fullBlockName;
+				const customName = attributes?.metadata?.name ?? labelFallback;
 
-				if (context === 'visual' && customName !== blockManifest?.title) {
-					return `${customName} (${blockManifest?.title})`;
+				if (context === 'visual' && customName !== blockTitle) {
+					return `${customName} (${blockTitle})`;
 				}
 
 				if (context === 'accessibility') {
