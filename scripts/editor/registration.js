@@ -74,11 +74,13 @@ export const registerBlocks = (
 	setStoreGlobalWindow();
 
 	// Iterate blocks to register.
-	blocksManifests.map((blockManifest) => {
-		const { active = true } = blockManifest;
+	blocksManifests.forEach((blockManifestOriginal) => {
+		const { active = true } = blockManifestOriginal;
 
 		// If block has active key set to false the block will not show in the block editor.
 		if (active) {
+			let blockManifest = { ...blockManifestOriginal };
+
 			// Get Block edit component from block name and blocksEditComponentPath.
 			const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
 
@@ -91,7 +93,7 @@ export const registerBlocks = (
 				);
 
 				if (blockTransformsComponent !== null) {
-					blockManifest.transforms = blockTransformsComponent;
+					blockManifest = { ...blockManifest, transforms: blockTransformsComponent };
 				}
 			}
 
@@ -104,7 +106,7 @@ export const registerBlocks = (
 				);
 
 				if (blockDeprecationsComponent !== null) {
-					blockManifest.deprecated = blockDeprecationsComponent;
+					blockManifest = { ...blockManifest, deprecated: blockDeprecationsComponent };
 				}
 			}
 
@@ -126,8 +128,7 @@ export const registerBlocks = (
 				);
 
 				if (blockOverridesComponent !== null) {
-					// eslint-disable-next-line no-param-reassign
-					blockManifest = Object.assign(blockManifest, blockOverridesComponent);
+					blockManifest = { ...blockManifest, ...blockOverridesComponent };
 				}
 			}
 
@@ -176,8 +177,6 @@ export const registerBlocks = (
 			// Native WP method for block registration.
 			registerBlockType(blockDetails.blockName, blockDetails.options);
 		}
-
-		return null;
 	});
 
 	// Add icon foreground and background colors as CSS variables for later use.
@@ -229,12 +228,14 @@ export const registerVariations = (
 	// Set all store values.
 	dispatch(STORE_NAME).setVariations(variationsManifests);
 
-	// Iterate blocks to register.
-	variationsManifests.map((variationManifest) => {
-		const { active = true } = variationManifest;
+	// Iterate variations to register.
+	variationsManifests.forEach((variationManifestOriginal) => {
+		const { active = true } = variationManifestOriginal;
 
 		// If variation has active key set to false the variation will not show in the block editor.
 		if (active) {
+			let variationManifest = { ...variationManifestOriginal };
+
 			// Get Block Overrides component from block name and overridesComponentPath.
 			if (overridesComponentPath !== null) {
 				const blockOverridesComponent = getBlockGenericComponent(
@@ -244,8 +245,7 @@ export const registerVariations = (
 				);
 
 				if (blockOverridesComponent !== null) {
-					// eslint-disable-next-line no-param-reassign
-					variationManifest = Object.assign(variationManifest, blockOverridesComponent);
+					variationManifest = { ...variationManifest, ...blockOverridesComponent };
 				}
 			}
 
@@ -259,8 +259,6 @@ export const registerVariations = (
 			// Native WP method for block registration.
 			registerBlockVariation(blockDetails.blockName, blockDetails.options);
 		}
-
-		return null;
 	});
 };
 
@@ -820,28 +818,17 @@ export const registerBlock = (
 	wrapperComponent,
 	blockComponent,
 ) => {
-	// Block Icon option.
-	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
-
-	// This is a full block name used in Block Editor.
+	const icon = getIconOptions(globalManifest, blockManifest);
 	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
-
-	// Set full attributes list.
 	const attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
 
-	blockManifest['attributes'] = {
+	const fullAttributes = {
 		metadata: {
 			type: 'object',
 		},
 		...attributes,
 	};
 
-	// Set full example list.
-	if (typeof blockManifest['example'] === 'undefined') {
-		blockManifest['example'] = {};
-	}
-
-	// Find all attributes that have default value and output that to example.
 	const exampleAttributes = {};
 
 	for (const [key, value] of Object.entries(attributes)) {
@@ -850,22 +837,27 @@ export const registerBlock = (
 		}
 	}
 
-	// Set full examples list.
-	blockManifest['example'].viewportWidth = 800;
-	blockManifest['example'].attributes = {
-		...exampleAttributes,
-		...getExample('', blockManifest),
+	const example = {
+		...(blockManifest['example'] ?? {}),
+		viewportWidth: 800,
+		attributes: {
+			...exampleAttributes,
+			...getExample('', blockManifest),
+		},
 	};
 
-	// Block supports.
-	if (typeof blockManifest['supports'] === 'undefined') {
-		blockManifest['supports'] = {};
-	}
+	const supports = {
+		...(blockManifest['supports'] ?? {}),
+		__experimentalMetadata: true,
+	};
 
 	return {
 		blockName: fullBlockName,
 		options: {
 			...blockManifest,
+			icon,
+			attributes: fullAttributes,
+			example,
 			blockName: fullBlockName,
 			edit: getEditCallback(blockComponent, wrapperComponent),
 			save: getSaveCallback(blockManifest),
@@ -888,10 +880,7 @@ export const registerBlock = (
 
 				return customName;
 			},
-			supports: {
-				...blockManifest['supports'],
-				__experimentalMetadata: true,
-			},
+			supports,
 		},
 	};
 };
