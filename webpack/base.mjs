@@ -14,16 +14,6 @@ export default (options) => {
 	// All Plugins used in production and development build.
 	const plugins = [];
 
-	// Provide global variables to window object.
-	if (!options.overrides.includes('providePlugin')) {
-		plugins.push(
-			new webpack.ProvidePlugin({
-				$: 'jquery',
-				jQuery: 'jquery',
-			}),
-		);
-	}
-
 	// Provide variables to code build.
 	if (!options.overrides.includes('definePlugin')) {
 		plugins.push(

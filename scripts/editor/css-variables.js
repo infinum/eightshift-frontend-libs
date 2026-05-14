@@ -109,9 +109,6 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 		output = output.replace(/\n/g, '');
 	}
 
-	// Prepare output.
-	const finalOutput = `<style id="${select(STORE_NAME).getConfigOutputCssSelectorName()}-global">:root {${output}}</style>`;
-
 	// Set breakpoints cache for optimized load time.
 	setBreakpointsCacheData();
 
@@ -121,7 +118,10 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 	}
 
 	// Output style tag.
-	return document.head.insertAdjacentHTML('afterbegin', finalOutput);
+	const styleEl = document.createElement('style');
+	styleEl.id = `${select(STORE_NAME).getConfigOutputCssSelectorName()}-global`;
+	styleEl.textContent = `:root {${output}}`;
+	document.head.prepend(styleEl);
 };
 
 /**
@@ -986,12 +986,12 @@ export const outputCssVariablesCombinedInner = (styles) => {
 
 	// Process styles.
 	if (!styleTag) {
-		document.body.insertAdjacentHTML(
-			'beforeend',
-			`<style id="${selector}">${output} ${additionalStylesOutput}</style>`,
-		);
+		const styleEl = document.createElement('style');
+		styleEl.id = selector;
+		styleEl.textContent = `${output} ${additionalStylesOutput}`;
+		document.body.append(styleEl);
 	} else {
-		styleTag.innerHTML = `${output} ${additionalStylesOutput}`;
+		styleTag.textContent = `${output} ${additionalStylesOutput}`;
 	}
 
 	// Reset state to original.
