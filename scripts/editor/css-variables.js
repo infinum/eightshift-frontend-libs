@@ -914,7 +914,7 @@ export const getAllBlocksFlat = (blocks) => {
  * @returns {string}
  */
 export const outputCssVariablesCombinedInner = (styles) => {
-	const breakpoints = [];
+	const breakpoints = {};
 
 	// Loop styles.
 	for (const { name, unique, variables } of styles) {

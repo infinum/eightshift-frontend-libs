@@ -33,20 +33,18 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
 
 	const block = getBlock(clientId);
 
-	block.innerBlocks.map((item) => {
+	block.innerBlocks.forEach((item) => {
 		const { attributes, name } = item;
 
 		if (!exclude.includes(name)) {
 			for (const attribute in attributesObject) {
 				if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
-					if (attribute !== attributes[attribute]) {
+					if (attributesObject[attribute] !== attributes[attribute]) {
 						attributes[attribute] = attributesObject[attribute];
 					}
 				}
 			}
 		}
-
-		return item;
 	});
 };
 
@@ -373,8 +371,7 @@ export const props = (newName, attributes, manual = {}) => {
 		'clientId',
 	];
 
-	// Check if in test mode and use different setting.
-	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
+	const blockName = attributes.blockName;
 
 	// Populate prefix key for recursive checks of attribute names.
 	const prefix = typeof attributes.prefix === 'undefined' ? camelCase(blockName) : attributes['prefix'];
