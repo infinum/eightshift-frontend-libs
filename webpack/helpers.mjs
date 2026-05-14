@@ -139,26 +139,45 @@ function convertJsonToSassMapInner(data, key) {
 }
 
 /**
- * Convert Json to SASS valid output and prefix it with map key.
+ * Read and parse a manifest JSON file, returning an empty object if missing.
  *
- * @param path Path to JSON file.
- * @param propertyName Name of the variable that will it be exported.
- * @param variableName Name of the variable that will it be exported.
- *
- * @return string Sass variable
+ * @param {string} srcPath Path to the JSON file.
+ * @return {object}
  */
-function convertJsonToSass(srcPath, propertyName = 'globalVariables', variableName = 'global-variables') {
-	let data = {};
-
+function readManifestJson(srcPath) {
 	if (fs.existsSync(srcPath)) {
-		data = JSON.parse(fs.readFileSync(srcPath));
+		return JSON.parse(fs.readFileSync(srcPath));
 	}
 
-	if (Object.getOwnPropertyNames(data).length === 0 || !Object.prototype.hasOwnProperty.call(data, 'globalVariables')) {
+	return {};
+}
+
+/**
+ * Convert pre-parsed manifest data to a SASS variable string.
+ *
+ * @param {object} data Parsed manifest JSON.
+ * @param {string} propertyName Property key to read from data.
+ * @param {string} variableName SASS variable name to output.
+ * @return {string}
+ */
+function convertDataToSass(data, propertyName = 'globalVariables', variableName = 'global-variables') {
+	if (!Object.prototype.hasOwnProperty.call(data, propertyName)) {
 		return '';
 	}
 
 	return `$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
 }
 
-export { getConfig, convertJsonToSass };
+/**
+ * Convert Json to SASS valid output and prefix it with map key.
+ *
+ * @param {string} srcPath Path to JSON file.
+ * @param {string} propertyName Property key to read from data.
+ * @param {string} variableName SASS variable name to output.
+ * @return {string}
+ */
+function convertJsonToSass(srcPath, propertyName = 'globalVariables', variableName = 'global-variables') {
+	return convertDataToSass(readManifestJson(srcPath), propertyName, variableName);
+}
+
+export { getConfig, convertJsonToSass, convertDataToSass, readManifestJson };

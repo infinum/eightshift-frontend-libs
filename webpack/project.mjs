@@ -49,6 +49,10 @@ export default (options) => {
 		output.filename = `${options.config.filesOutput}.js`;
 	}
 
+	if (options.extraEntries && Object.keys(options.extraEntries).length) {
+		Object.assign(entry, options.extraEntries);
+	}
+
 	return {
 		entry,
 		output,

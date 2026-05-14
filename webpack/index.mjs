@@ -14,6 +14,8 @@ const eightshiftConfig = (mode, optionsData = {}) => {
 	const options = {
 		config: {},
 		overrides: [],
+		extraEntries: {},
+		extraPlugins: [],
 		...optionsData,
 	};
 
