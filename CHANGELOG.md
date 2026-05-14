@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [17.0.0]
+
+### Added
+
+- Added `eslint-plugin-unused-imports` to the base ESLint config to flag unused imports and variables.
+- Added `extraEntries` and `extraPlugins` options to the Webpack project config so projects can extend entry points and plugins without overriding the full config.
+- Added `at-rule-no-unknown` to the Stylelint config with the SCSS at-rule allowlist to surface unknown at-rules without breaking SCSS files.
+
+### Changed
+
+- Updated all dependencies to their latest versions.
+- Updated React ESLint setting from a pinned version `18` to `detect`.
+- Updated `store.js` reducer cases (`SET_STYLE`, `SET_STYLE_BY_INDEX`, `UNSET_STYLE_BY_INDEX`) to return new state objects instead of mutating existing state.
+- Updated `getCookie` helper to parse cookies via `document.cookie.split` and `decodeURIComponent` for safer value handling.
+- Updated `attributes.js`, `options.js`, and related helpers with `WeakMap`-based caching for `componentName` lookups and other performance refinements.
+- Updated `webpack/helpers.mjs` to expose `readManifestJson` and `convertDataToSass` helpers, reducing duplicate manifest reads.
+
+### Removed
+
+- Removed the global `jQuery` and `$` Webpack `ProvidePlugin` injection. Projects that relied on globally injected jQuery must import it explicitly.
+- Removed the `process.browser` Webpack `DefinePlugin` value in favor of `typeof window: '"object"'`. Code that referenced `process.browser` must be updated.
+- Removed unused `React` import from `css-variables.js` and cleaned up other unused imports across components.
+
+### Fixed
+
+- Fixed the MJS Webpack rule regex (`/\.m?js/` → `/\.m?js$/`) so non-JS paths containing `js` are no longer matched.
+- Downgraded ESLint to `^9.39.4` to restore compatibility with the current plugin ecosystem.
+
 ## [16.1.0]
 
 ### Removed
@@ -1504,6 +1532,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[17.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.1.0...17.0.0
 [16.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.0.0...16.1.0
 [16.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/15.1.1...16.0.0
 [15.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/15.1.0...15.1.1
