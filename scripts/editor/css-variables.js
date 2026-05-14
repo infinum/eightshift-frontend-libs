@@ -147,25 +147,19 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
  * ```
  */
 export const outputCssVariables = (attributes, manifest, unique, globalManifest = {}, customSelector = '') => {
-	const breakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
-
 	// Define variables from manifest.
 	const variables = manifest?.variables;
 	const variablesEditor = manifest?.variablesEditor;
 	const responsiveAttributes = manifest?.responsiveAttributes;
 
-	// Sort breakpoints in correct order.
-	const sortedBreakpoints = Object.entries(breakpoints).sort((a, b) => {
-		return a[1] - b[1]; // Sort from the smallest to the largest breakpoint.
-	});
+	if (!variables && !variablesEditor && !manifest?.variablesCustom && !manifest?.variablesCustomEditor) {
+		return select(STORE_NAME).getConfigOutputCssGlobally() ? null : '';
+	}
 
-	const defaultBreakpoints = {
-		min: sortedBreakpoints?.[0]?.[0] || '',
-		max: sortedBreakpoints?.[sortedBreakpoints.length - 1]?.[0] || '',
-	};
+	const { sorted: sortedBreakpoints, defaults: defaultBreakpoints, template } = getBreakpointData();
 
-	// Get the initial data array.
-	const data = prepareVariableData(sortedBreakpoints);
+	// Clone just the variable arrays from the cached template.
+	const data = template.map((item) => ({ ...item, variable: [] }));
 
 	if (typeof variables !== 'undefined') {
 		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
@@ -307,6 +301,25 @@ export const getUnique = () => {
 // Internal variable for storing caches breakpoint data.
 let breakpointsPreparedVariableDataCache = [];
 
+let breakpointDataCache = null;
+
+const getBreakpointData = () => {
+	if (breakpointDataCache) {
+		return breakpointDataCache;
+	}
+
+	const rawBreakpoints = select(STORE_NAME).getSettingsGlobalVariablesBreakpoints();
+	const sorted = Object.entries(rawBreakpoints).sort((a, b) => a[1] - b[1]);
+	const defaults = {
+		min: sorted[0]?.[0] || '',
+		max: sorted[sorted.length - 1]?.[0] || '',
+	};
+	const template = prepareVariableData(sorted);
+
+	breakpointDataCache = { sorted, defaults, template };
+	return breakpointDataCache;
+};
+
 /**
  * Output CSS variables as one inline style tag.
  *
@@ -421,7 +434,7 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	const variablesCustom = manifest?.variablesCustom?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`));
 
 	if (typeof variablesCustom !== 'undefined') {
-		manual = variablesCustom.join(';\n');
+		manual = variablesCustom.join('\n');
 	}
 
 	// Output manual editor output from the array of variables.
@@ -429,18 +442,10 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	const variablesCustomEditor = manifest?.variablesCustomEditor?.map((v) => (v?.trim()?.endsWith(';') ? v : `${v};`));
 
 	if (typeof variablesCustomEditor !== 'undefined') {
-		manualEditor = variablesCustomEditor.join(';\n');
+		manualEditor = variablesCustomEditor.join('\n');
 	}
 
-	// Prepare final output for testing.
-	const fullOutput = `
-		${output}
-		${manual}
-		${manualEditor}
-	`;
-
-	// Check if final output is empty and return if empty string if it is.
-	if (isEmpty(fullOutput.trim())) {
+	if (!output && !manual && !manualEditor) {
 		return '';
 	}
 
@@ -798,6 +803,9 @@ export const variablesInner = (variables, attributeValue, attributes, manifest) 
 		return output;
 	}
 
+	const prefix = attributes?.prefix;
+	const componentName = prefix ? camelCase(manifest.componentName) : '';
+
 	// Iterate each attribute and make corrections.
 	for (const [variableKey, variableValue] of Object.entries(variables)) {
 		let value = variableValue;
@@ -807,15 +815,13 @@ export const variablesInner = (variables, attributeValue, attributes, manifest) 
 			value = variableValue.replace('%value%', attributeValue);
 		}
 
-		for (const [attrKey, attrValue] of Object.entries(attributes)) {
-			let key = attrKey;
+		if (variableValue.includes('%attr-')) {
+			for (const [attrKey, attrValue] of Object.entries(attributes)) {
+				const key = prefix ? attrKey.replace(prefix, componentName) : attrKey;
 
-			if (attributes?.prefix) {
-				key = key.replace(attributes.prefix, camelCase(manifest.componentName));
-			}
-
-			if (variableValue.includes(`%attr-${key}%`)) {
-				value = variableValue.replace(`%attr-${key}%`, attrValue);
+				if (variableValue.includes(`%attr-${key}%`)) {
+					value = variableValue.replace(`%attr-${key}%`, attrValue);
+				}
 			}
 		}
 
