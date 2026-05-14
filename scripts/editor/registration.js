@@ -265,6 +265,30 @@ export const registerVariations = (
 //---------------------------------------------------------------
 // Private methods
 
+const getBlockComponent = (blockName, paths, fileName, required) => {
+	const component = paths
+		.keys()
+		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
+		.map(paths)[0];
+
+	if (typeof component === 'undefined') {
+		if (!required) return null;
+		throw Error(
+			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
+		);
+	}
+
+	const callback = component[Object.keys(component)[0]];
+
+	if (required && typeof callback === 'undefined') {
+		throw Error(
+			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
+		);
+	}
+
+	return callback ?? null;
+};
+
 /**
  * Filter array of JS paths and get the correct edit components.
  *
@@ -277,34 +301,8 @@ export const registerVariations = (
  * @returns {function}
  *
  */
-export const getBlockEditComponent = (blockName, paths, fileName) => {
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
-
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys
-		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
-		.map(paths)[0];
-
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	const editCallback = editComponent[Object.keys(editComponent)[0]];
-
-	// If edit component callback is missing throw and error.
-	if (typeof editCallback === 'undefined') {
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
-	}
-
-	return editCallback;
-};
+export const getBlockEditComponent = (blockName, paths, fileName) =>
+	getBlockComponent(blockName, paths, fileName, true);
 
 /**
  * Filter array of JS paths and get the correct transforms, hooks, etc components.
@@ -318,23 +316,8 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
  * @returns {function}
  *
  */
-export const getBlockGenericComponent = (blockName, paths, fileName) => {
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
-
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys
-		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
-		.map(paths)[0];
-
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		return null;
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	return editComponent[Object.keys(editComponent)[0]];
-};
+export const getBlockGenericComponent = (blockName, paths, fileName) =>
+	getBlockComponent(blockName, paths, fileName, false);
 
 /**
  * Check if namespace is defined in block or in global manifest settings and return namespace.
@@ -633,10 +616,7 @@ export const prepareComponentAttributes = (componentsManifest, manifest, isExamp
 		}
 
 		// Populate the output recursively.
-		Object.assign(output, {
-			...output,
-			...outputAttributes,
-		});
+		Object.assign(output, outputAttributes);
 	}
 
 	// Add the current block/component attributes to the output.

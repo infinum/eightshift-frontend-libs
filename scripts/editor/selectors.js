@@ -108,7 +108,7 @@ export const responsiveSelectors = (items, selector, parent, useModifier = true)
  * @returns {string|null} The BEM selector, or null if `block` is missing.
  */
 export const bem = (block, element, modifier) => {
-	if (block?.length < 1) {
+	if (!block) {
 		return null;
 	}
 

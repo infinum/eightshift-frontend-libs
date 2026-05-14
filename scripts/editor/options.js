@@ -73,7 +73,7 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 		}
 
 		// If array only user array value for check.
-		return manifest.options[key].filter((item) => options[newKey].includes(item));
+		return componentOptions[key].filter((item) => options[newKey].includes(item));
 	}
 
 	// If color type use color output. Used for current component of no parent overrides are provided.
@@ -81,8 +81,7 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 		return getOptionColors(componentOptions[key]);
 	}
 
-	// If you have default name for component.
-	return manifest.options[key];
+	return componentOptions[key];
 };
 
 /**
@@ -142,8 +141,10 @@ export const getOptions = (attributes = {}, manifest = {}) => {
 	const output = {};
 	const prefix = typeof attributes['prefix'] === 'undefined' ? '' : attributes['prefix'];
 
+	const componentPrefix = lowerFirst(camelCase(componentName));
+
 	for (const [key, value] of Object.entries(optionsManifest)) {
-		const newKey = key.replace(`${lowerFirst(camelCase(componentName))}`, '');
+		const newKey = key.replace(componentPrefix, '');
 
 		output[`${prefix}${newKey}`] = value;
 	}

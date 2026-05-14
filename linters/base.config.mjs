@@ -1,6 +1,7 @@
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import stylistic from '@stylistic/eslint-plugin';
+import unusedImports from 'eslint-plugin-unused-imports';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 
@@ -26,6 +27,7 @@ export default [
 			react,
 			'react-hooks': reactHooks,
 			'@stylistic': stylistic,
+			'unused-imports': unusedImports,
 		},
 		rules: {
 			'newline-before-return': 'error',
@@ -34,6 +36,19 @@ export default [
 			'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
 			'no-nested-ternary': 'error',
 			'no-underscore-dangle': ['error', { allowAfterThis: true }],
+			'no-unused-vars': 'off',
+			'unused-imports/no-unused-imports': 'error',
+			'unused-imports/no-unused-vars': [
+				'error',
+				{
+					args: 'after-used',
+					argsIgnorePattern: '^_',
+					caughtErrors: 'all',
+					caughtErrorsIgnorePattern: '^_',
+					ignoreRestSiblings: true,
+					varsIgnorePattern: '^_',
+				},
+			],
 			'no-void': 'error',
 			'@stylistic/semi': 'error',
 			'max-len': [

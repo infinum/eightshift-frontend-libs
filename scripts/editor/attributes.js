@@ -311,6 +311,22 @@ export const getAttrKey = (key, attributes, manifest) => {
 	return key.replace(camelCase(manifest.componentName), attributes.prefix);
 };
 
+const PROPS_INCLUDES = new Set([
+	'blockName',
+	'blockClientId',
+	'blockTopLevelId',
+	'blockFullName',
+	'blockClass',
+	'blockJsClass',
+	'componentJsClass',
+	'selectorClass',
+	'additionalClass',
+	'setAttributes',
+	'uniqueWrapperId',
+	'options',
+	'clientId',
+]);
+
 /**
  * Output only attributes that are used in the component and remove everything else.
  *
@@ -354,23 +370,6 @@ export const getAttrKey = (key, attributes, manifest) => {
 export const props = (newName, attributes, manual = {}) => {
 	const output = {};
 
-	// Check which attributes we need to include.
-	const includes = [
-		'blockName',
-		'blockClientId',
-		'blockTopLevelId',
-		'blockFullName',
-		'blockClass',
-		'blockJsClass',
-		'componentJsClass',
-		'selectorClass',
-		'additionalClass',
-		'setAttributes',
-		'uniqueWrapperId',
-		'options',
-		'clientId',
-	];
-
 	const blockName = attributes.blockName;
 
 	// Populate prefix key for recursive checks of attribute names.
@@ -383,44 +382,33 @@ export const props = (newName, attributes, manual = {}) => {
 		output['prefix'] = `${prefix}${upperFirst(camelCase(newName))}`;
 	}
 
-	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
-		// Includes attributes from iteration.
-		if (includes.includes(key)) {
-			Object.assign(output, { [key]: value });
+		if (PROPS_INCLUDES.has(key)) {
+			output[key] = value;
 			continue;
 		}
 
-		// If attribute starts with the prefix key leave it in the object if not remove it.
 		if (key.startsWith(output['prefix'])) {
-			Object.assign(output, { [key]: value });
+			output[key] = value;
 		}
 	}
 
-	// Check if you have manual object and prepare the attribute keys and merge them with the original attributes for output.
 	if (!isEmpty(manual)) {
-		// Iterate manual attributes.
 		for (let [key, value] of Object.entries(manual)) {
-			// Includes attributes from iteration.
-			if (includes.includes(key)) {
-				Object.assign(output, { [key]: value });
+			if (PROPS_INCLUDES.has(key)) {
+				output[key] = value;
 				continue;
 			}
 
-			// Remove the current component name from the attribute name.
 			const newKey = key.replace(`${lowerFirst(camelCase(newName))}`, '');
 
-			// Remove the old key.
 			delete manual[key];
 
-			// // Add new key to the output with prepared attribute name.
-			Object.assign(manual, { [`${output['prefix']}${newKey}`]: value });
+			manual[`${output['prefix']}${newKey}`] = value;
 		}
 
-		// Merge manual and output objects to one.
 		Object.assign(output, manual);
 	}
 
-	// Return the original attribute for optimization purposes.
 	return output;
 };

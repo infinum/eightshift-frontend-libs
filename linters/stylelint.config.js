@@ -1,6 +1,6 @@
 module.exports = {
 	plugins: ['@stylistic/stylelint-plugin'],
-	extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
+	extends: ['stylelint-config-standard'],
 	rules: {
 		// Stylistic rules.
 		'@stylistic/indentation': 'tab',
@@ -148,5 +148,12 @@ module.exports = {
 		'scss/at-else-closing-brace-newline-after': null,
 		'scss/at-else-closing-brace-space-after': null,
 		'scss/at-if-no-null': null,
+
+		'at-rule-no-unknown': [
+			true,
+			{
+				ignoreAtRules: ['tailwind'],
+			},
+		],
 	},
 };
