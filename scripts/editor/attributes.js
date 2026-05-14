@@ -259,11 +259,11 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	if (typeof responsiveAttributes === 'undefined') {
 		if (typeof manifest['blockName'] === 'undefined') {
 			throw Error(
-				`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
+				`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`,
 			);
 		} else {
 			throw Error(
-				`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`,
+				`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
 			);
 		}
 	}

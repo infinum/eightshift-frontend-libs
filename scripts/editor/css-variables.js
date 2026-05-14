@@ -106,7 +106,7 @@ export const outputCssVariablesGlobal = (globalManifest = {}) => {
 
 	// Optimize if necessary.
 	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
-		output.replace('\n', '');
+		output = output.replace(/\n/g, '');
 	}
 
 	// Prepare output.
@@ -449,12 +449,12 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	}
 
 	// Prepare output for manual variables.
-	const finalManualOutput = manual || manualEditor ? `.${name}${uniqueSelector}{ ${manual} ${manualEditor}}` : '';
+	let finalManualOutput = manual || manualEditor ? `.${name}${uniqueSelector}{ ${manual} ${manualEditor}}` : '';
 
 	// Implement some optimizations if necessary.
 	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
-		output.replace('\n', '');
-		finalManualOutput.replace('\n', '');
+		output = output.replace(/\n/g, '');
+		finalManualOutput = finalManualOutput.replace(/\n/g, '');
 	}
 
 	// Output the style for CSS variables.

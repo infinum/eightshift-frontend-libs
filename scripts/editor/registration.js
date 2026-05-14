@@ -436,15 +436,13 @@ export const getMergeCallback = (blockManifest) => {
 						break;
 					}
 					case 'addNumericPixelValue': {
-						// Remove numbers
-						const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
+						const receiverRaw = receiver[attribute] ?? '0px';
+						const mergerRaw = merger[attribute] ?? '0px';
+						const receiverUnit = String(receiverRaw).replace(/[\d.-]/g, '');
+						const receiverValue = parseInt(receiverRaw, 10) || 0;
+						const mergerValue = parseInt(mergerRaw, 10) || 0;
 
-						// Remove value labels (= everything but numbers)
-						const receiverValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const calculatedValue = receiverValue + mergerValue;
-
-						outputObject[attribute] = `${calculatedValue}${receiverUnit}`;
+						outputObject[attribute] = `${receiverValue + mergerValue}${receiverUnit}`;
 						break;
 					}
 					default: {

@@ -276,29 +276,31 @@ const reducer = (state = DEFAULT_STATE, action) => {
 			};
 		}
 		case 'SET_STYLE': {
-			state.styles.push(action.styles);
-			state.hasStylesUpdated = true;
-
-			return state;
+			return {
+				...state,
+				styles: [...state.styles, action.styles],
+				hasStylesUpdated: true,
+			};
 		}
 		case 'SET_STYLE_BY_INDEX': {
 			if (JSON.stringify(state.styles[action.index]) !== JSON.stringify(action.styles)) {
-				state.styles[action.index] = action.styles;
-				state.hasStylesUpdated = true;
+				const styles = [...state.styles];
+				styles[action.index] = action.styles;
 
-				return state;
+				return {
+					...state,
+					styles,
+					hasStylesUpdated: true,
+				};
 			}
 
 			return state;
 		}
 		case 'UNSET_STYLE_BY_INDEX': {
-			let internalStyles = {
+			return {
 				...state,
+				styles: state.styles.filter((_, i) => i !== action.index),
 			};
-
-			internalStyles.styles.splice(action.index, 1);
-
-			return internalStyles;
 		}
 		case 'SET_STYLES_UPDATED': {
 			return {
