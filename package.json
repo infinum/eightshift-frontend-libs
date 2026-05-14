@@ -25,7 +25,7 @@
 	},
 	"scripts": {
 		"lintStyle": "stylelint **/*.scss",
-		"lintJs": "bunx eslint",
+		"lintJs": "eslint",
 		"lint": "bun run lintJs && bun run lintStyle",
 		"prepare": "husky"
 	},
