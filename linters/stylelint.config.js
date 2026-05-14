@@ -1,6 +1,6 @@
 module.exports = {
 	plugins: ['@stylistic/stylelint-plugin'],
-	extends: ['stylelint-config-standard'],
+	extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
 	rules: {
 		// Stylistic rules.
 		'@stylistic/indentation': 'tab',
