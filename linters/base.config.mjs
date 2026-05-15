@@ -88,7 +88,7 @@ export default [
 		},
 		settings: {
 			react: {
-				version: 'detect',
+				version: '18',
 			},
 		},
 	},
