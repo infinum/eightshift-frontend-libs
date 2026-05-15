@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './../../editor/store';
 import { ColorPicker } from '@eightshift/ui-components';

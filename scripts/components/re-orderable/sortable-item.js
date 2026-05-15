@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconLabel } from '@eightshift/frontend-libs/scripts';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';

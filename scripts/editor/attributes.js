@@ -1,5 +1,18 @@
 import { camelCase, has, isEmpty, lowerFirst, upperFirst } from '@eightshift/ui-components/utilities';
 
+const componentNameCache = new WeakMap();
+
+const getComponentCamelName = (manifest) => {
+	let cached = componentNameCache.get(manifest);
+
+	if (cached === undefined) {
+		cached = camelCase(manifest.componentName);
+		componentNameCache.set(manifest, cached);
+	}
+
+	return cached;
+};
+
 /**
  * Sets attributes on all `innerBlocks`. This value will be stored in the Block editor store and set to a block.
  *
@@ -32,21 +45,20 @@ export const overrideInnerBlockAttributes = (select, clientId, attributesObject 
 	const { getBlock } = select('core/block-editor');
 
 	const block = getBlock(clientId);
+	const entries = Object.entries(attributesObject);
 
-	block.innerBlocks.map((item) => {
+	block.innerBlocks.forEach((item) => {
 		const { attributes, name } = item;
 
-		if (!exclude.includes(name)) {
-			for (const attribute in attributesObject) {
-				if (Object.prototype.hasOwnProperty.call(attributesObject, attribute)) {
-					if (attribute !== attributes[attribute]) {
-						attributes[attribute] = attributesObject[attribute];
-					}
-				}
-			}
+		if (exclude.includes(name)) {
+			return;
 		}
 
-		return item;
+		for (const [attribute, value] of entries) {
+			if (value !== attributes[attribute]) {
+				attributes[attribute] = value;
+			}
+		}
 	});
 };
 
@@ -142,53 +154,45 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 	// Check current component attributes.
 	const manifestKey = manifest.attributes[key];
 
-	let tipOutput = '';
-
-	if ('components' in manifest) {
-		tipOutput =
-			' If you are using additional components, check if you used the correct block/component prefix in your attribute name.';
-	}
-
-	// Bailout if key is missing.
+	// Bailout if key is missing — build the tip string lazily, only when we actually throw.
 	if (typeof manifestKey === 'undefined') {
+		const tipOutput =
+			'components' in manifest
+				? ' If you are using additional components, check if you used the correct block/component prefix in your attribute name.'
+				: '';
+
 		if ('blockName' in manifest) {
 			throw Error(
 				`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`,
 			);
-		} else {
-			throw Error(
-				`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`,
-			);
 		}
+
+		throw Error(
+			`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`,
+		);
 	}
 
-	// If undefinedAllowed is true and attribute is missing default just return undefined to be able to unset attribute in block editor.
-	if (!Object.prototype.hasOwnProperty.call(manifestKey, 'default') && undefinedAllowed) {
+	// Single hasOwnProperty check shared across all type branches.
+	if (Object.prototype.hasOwnProperty.call(manifestKey, 'default')) {
+		return manifestKey.default;
+	}
+
+	// No default present — caller may opt in to undefined so block editor can unset the attribute.
+	if (undefinedAllowed) {
 		return undefined;
 	}
 
-	// Check type.
-	const defaultType = manifestKey.type;
-
-	let defaultValue;
-
-	// Output "default values" if none are defined.
-	switch (defaultType) {
+	// Fall back to a fresh type-appropriate empty value.
+	switch (manifestKey.type) {
 		case 'boolean':
-			defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : false;
-			break;
+			return false;
 		case 'array':
-			defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : [];
-			break;
+			return [];
 		case 'object':
-			defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : {};
-			break;
+			return {};
 		default:
-			defaultValue = Object.prototype.hasOwnProperty.call(manifestKey, 'default') ? manifestKey.default : '';
-			break;
+			return '';
 	}
-
-	return defaultValue;
 };
 
 /**
@@ -259,13 +263,13 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	if (typeof responsiveAttributes === 'undefined') {
 		if (typeof manifest['blockName'] === 'undefined') {
 			throw Error(
-				`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
-			);
-		} else {
-			throw Error(
 				`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`,
 			);
 		}
+
+		throw Error(
+			`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
+		);
 	}
 
 	// Bailout if attribute keys is missing.
@@ -274,7 +278,9 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 	}
 
 	// Iterate keys in responsiveAttributes object and use checkAttr helper.
-	for (const [key, value] of Object.entries(responsiveAttributes[keyName])) {
+	const responsiveKeyAttrs = responsiveAttributes[keyName];
+
+	for (const [key, value] of Object.entries(responsiveKeyAttrs)) {
 		output[key] = checkAttr(value, attributes, manifest, undefinedAllowed);
 	}
 
@@ -310,8 +316,24 @@ export const getAttrKey = (key, attributes, manifest) => {
 
 	// No need to test if this is block or component because on top level block there is no prefix.
 	// If there is a prefix, remove the attribute component name prefix and replace it with the new prefix.
-	return key.replace(camelCase(manifest.componentName), attributes.prefix);
+	return key.replace(getComponentCamelName(manifest), attributes.prefix);
 };
+
+const PROPS_INCLUDES = new Set([
+	'blockName',
+	'blockClientId',
+	'blockTopLevelId',
+	'blockFullName',
+	'blockClass',
+	'blockJsClass',
+	'componentJsClass',
+	'selectorClass',
+	'additionalClass',
+	'setAttributes',
+	'uniqueWrapperId',
+	'options',
+	'clientId',
+]);
 
 /**
  * Output only attributes that are used in the component and remove everything else.
@@ -356,74 +378,40 @@ export const getAttrKey = (key, attributes, manifest) => {
 export const props = (newName, attributes, manual = {}) => {
 	const output = {};
 
-	// Check which attributes we need to include.
-	const includes = [
-		'blockName',
-		'blockClientId',
-		'blockTopLevelId',
-		'blockFullName',
-		'blockClass',
-		'blockJsClass',
-		'componentJsClass',
-		'selectorClass',
-		'additionalClass',
-		'setAttributes',
-		'uniqueWrapperId',
-		'options',
-		'clientId',
-	];
-
-	// Check if in test mode and use different setting.
-	const blockName = process.env.NODE_ENV === 'test' ? attributes.blockName.default : attributes.blockName;
+	const blockName = attributes.blockName;
 
 	// Populate prefix key for recursive checks of attribute names.
 	const prefix = typeof attributes.prefix === 'undefined' ? camelCase(blockName) : attributes['prefix'];
 
 	// Set component prefix.
-	if (prefix === '') {
-		output['prefix'] = camelCase(newName);
-	} else {
-		output['prefix'] = `${prefix}${upperFirst(camelCase(newName))}`;
-	}
+	const outputPrefix = prefix === '' ? camelCase(newName) : `${prefix}${upperFirst(camelCase(newName))}`;
+	output['prefix'] = outputPrefix;
 
-	// Iterate over attributes.
 	for (const [key, value] of Object.entries(attributes)) {
-		// Includes attributes from iteration.
-		if (includes.includes(key)) {
-			Object.assign(output, { [key]: value });
+		if (PROPS_INCLUDES.has(key)) {
+			output[key] = value;
 			continue;
 		}
 
-		// If attribute starts with the prefix key leave it in the object if not remove it.
-		if (key.startsWith(output['prefix'])) {
-			Object.assign(output, { [key]: value });
+		if (key.startsWith(outputPrefix)) {
+			output[key] = value;
 		}
 	}
 
-	// Check if you have manual object and prepare the attribute keys and merge them with the original attributes for output.
 	if (!isEmpty(manual)) {
-		// Iterate manual attributes.
-		for (let [key, value] of Object.entries(manual)) {
-			// Includes attributes from iteration.
-			if (includes.includes(key)) {
-				Object.assign(output, { [key]: value });
+		// Loop-invariant — compute once instead of per-key.
+		const renamePrefix = lowerFirst(camelCase(newName));
+
+		for (const [key, value] of Object.entries(manual)) {
+			if (PROPS_INCLUDES.has(key)) {
+				output[key] = value;
 				continue;
 			}
 
-			// Remove the current component name from the attribute name.
-			const newKey = key.replace(`${lowerFirst(camelCase(newName))}`, '');
-
-			// Remove the old key.
-			delete manual[key];
-
-			// // Add new key to the output with prepared attribute name.
-			Object.assign(manual, { [`${output['prefix']}${newKey}`]: value });
+			// Write the renamed key directly to output instead of mutating the caller's manual object.
+			output[`${outputPrefix}${key.replace(renamePrefix, '')}`] = value;
 		}
-
-		// Merge manual and output objects to one.
-		Object.assign(output, manual);
 	}
 
-	// Return the original attribute for optimization purposes.
 	return output;
 };

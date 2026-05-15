@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { __ } from '@wordpress/i18n';
 import { Expandable } from '@eightshift/ui-components';
 
 /**

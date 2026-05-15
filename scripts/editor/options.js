@@ -2,6 +2,19 @@ import { getPaletteColors } from './colors';
 import { getAttrKey } from './attributes';
 import { lowerFirst, camelCase } from '@eightshift/ui-components/utilities';
 
+const componentPrefixCache = new WeakMap();
+
+const getComponentPrefix = (manifest) => {
+	let cached = componentPrefixCache.get(manifest);
+
+	if (cached === undefined) {
+		cached = lowerFirst(camelCase(manifest.componentName));
+		componentPrefixCache.set(manifest, cached);
+	}
+
+	return cached;
+};
+
 /**
  * Provides the ability to override component options from the parent block/component.
  * The components must have the same options name as attribute standard with componentName prefix.
@@ -45,44 +58,46 @@ export const getOption = (key, attributes, manifest, isColor = false) => {
 	// Determine if manifest options key exists.
 	const componentOptions = manifest?.options;
 
-	// Determine if this is component or block and provide the name, not used for anything important but only to output the error msg.
-	const name = Object.prototype.hasOwnProperty.call(manifest, 'blockName')
-		? manifest.blockName
-		: manifest.componentName;
-
-	// Bailout if componentOptions is missing.
+	// Bailout if componentOptions is missing — build name lazily only when about to throw.
 	if (typeof componentOptions === 'undefined') {
+		const name = 'blockName' in manifest ? manifest.blockName : manifest.componentName;
+
 		throw Error(`It looks like you are missing options key in your ${name} manifest.`);
 	}
 
 	// Bailout if key is missing in manifest options or skip if option is color type.
-	if (!Object.prototype.hasOwnProperty.call(manifest.options, key) && !isColor) {
+	if (!Object.prototype.hasOwnProperty.call(componentOptions, key) && !isColor) {
+		const name = 'blockName' in manifest ? manifest.blockName : manifest.componentName;
+
 		throw Error(`It looks like you are missing ${key} options key in your ${name} manifest.`);
 	}
 
+	const componentOption = componentOptions[key];
+
 	// Check the provided options overrides.
 	if (Object.prototype.hasOwnProperty.call(options, newKey)) {
+		const overrideValue = options[newKey];
+
 		// If color type use color output.
 		if (isColor) {
-			return getOptionColors(options[newKey]);
+			return getOptionColors(overrideValue);
 		}
 
 		// Used for array of objects (selectControl options). If so check override by value key.
-		if (typeof componentOptions[key][0] === 'object') {
-			return componentOptions[key].filter((item) => options[newKey].includes(item.value));
+		if (typeof componentOption[0] === 'object') {
+			return componentOption.filter((item) => overrideValue.includes(item.value));
 		}
 
 		// If array only user array value for check.
-		return manifest.options[key].filter((item) => options[newKey].includes(item));
+		return componentOption.filter((item) => overrideValue.includes(item));
 	}
 
 	// If color type use color output. Used for current component of no parent overrides are provided.
 	if (isColor) {
-		return getOptionColors(componentOptions[key]);
+		return getOptionColors(componentOption);
 	}
 
-	// If you have default name for component.
-	return manifest.options[key];
+	return componentOption;
 };
 
 /**
@@ -137,13 +152,14 @@ export const getOptionColors = (colors) => {
 export const getOptions = (attributes = {}, manifest = {}) => {
 	const optionsManifest = manifest?.['options'] ?? {};
 	const optionsAttributes = attributes?.['options'] ?? {};
-	const componentName = manifest['componentName'];
 
 	const output = {};
 	const prefix = typeof attributes['prefix'] === 'undefined' ? '' : attributes['prefix'];
 
+	const componentPrefix = getComponentPrefix(manifest);
+
 	for (const [key, value] of Object.entries(optionsManifest)) {
-		const newKey = key.replace(`${lowerFirst(camelCase(componentName))}`, '');
+		const newKey = key.replace(componentPrefix, '');
 
 		output[`${prefix}${newKey}`] = value;
 	}

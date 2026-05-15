@@ -46,7 +46,7 @@ export default (options) => {
 				parallel: true,
 				minify: CssMinimizerPlugin.lightningCssMinify,
 				minimizerOptions: {
-					targets: browserslistToTargets(browserslist('>= 0.25%')),
+					targets: browserslistToTargets(browserslist()),
 				},
 			}),
 		);

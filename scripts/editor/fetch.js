@@ -2,6 +2,20 @@ import { truncate, unescapeHTML } from '@eightshift/ui-components/utilities';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
+function buildBaseParams(perPage, fields, searchColumns, additionalParams) {
+	const params = { per_page: perPage };
+
+	if (fields?.length > 0) {
+		params['_fields'] = fields;
+	}
+
+	if (searchColumns?.length > 0) {
+		params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
+	}
+
+	return { ...params, ...additionalParams };
+}
+
 /**
  * Returns a function that fetches data from WordPress REST API.
  *
@@ -53,24 +67,7 @@ export function fetchFromWpRest(endpoint, options = {}) {
 	} = options;
 
 	return async (searchText = '', abortSignal) => {
-		let params = {
-			per_page: perPage,
-		};
-
-		if (fields?.length > 0) {
-			params['_fields'] = fields;
-		}
-
-		if (searchColumns?.length > 0) {
-			params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
-		}
-
-		if (Object.keys(params).length > 0) {
-			params = {
-				...params,
-				...additionalParams,
-			};
-		}
+		const params = buildBaseParams(perPage, fields, searchColumns, additionalParams);
 
 		if (searchText?.length > 0) {
 			params.search = searchText;
@@ -100,13 +97,10 @@ export const wpSearchRoute = fetchFromWpRest('search', {
 	labelProp: 'title',
 	processMetadata: ({ type, subtype }) => ({ type, subtype }),
 	perPage: 5,
-	additionalParam: {
-		type: 'post',
-		_locale: 'user',
-	},
-	noCache: true,
 	searchColumns: 'post_title',
 	fields: 'id,title,type,subtype,url',
+	type: 'post',
+	_locale: 'user',
 });
 
 /**
@@ -148,24 +142,7 @@ export function buildWpRestUrl(endpoint, options = {}) {
 		...additionalParams
 	} = options;
 
-	let params = {
-		per_page: perPage,
-	};
-
-	if (fields?.length > 0) {
-		params['_fields'] = fields;
-	}
-
-	if (searchColumns?.length > 0) {
-		params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
-	}
-
-	if (Object.keys(params).length > 0) {
-		params = {
-			...params,
-			...additionalParams,
-		};
-	}
+	const params = buildBaseParams(perPage, fields, searchColumns, additionalParams);
 
 	if (noSearch) {
 		return addQueryArgs(`${routePrefix}/${endpoint}/`, params);

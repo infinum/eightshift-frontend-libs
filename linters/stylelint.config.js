@@ -148,5 +148,29 @@ module.exports = {
 		'scss/at-else-closing-brace-newline-after': null,
 		'scss/at-else-closing-brace-space-after': null,
 		'scss/at-if-no-null': null,
+
+		'at-rule-no-unknown': [
+			true,
+			{
+				ignoreAtRules: [
+					'use',
+					'forward',
+					'mixin',
+					'include',
+					'function',
+					'return',
+					'extend',
+					'at-root',
+					'each',
+					'for',
+					'while',
+					'if',
+					'else',
+					'error',
+					'warn',
+					'debug',
+				],
+			},
+		],
 	},
 };

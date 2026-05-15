@@ -74,11 +74,13 @@ export const registerBlocks = (
 	setStoreGlobalWindow();
 
 	// Iterate blocks to register.
-	blocksManifests.map((blockManifest) => {
-		const { active = true } = blockManifest;
+	blocksManifests.forEach((blockManifestOriginal) => {
+		const { active = true } = blockManifestOriginal;
 
 		// If block has active key set to false the block will not show in the block editor.
 		if (active) {
+			let blockManifest = { ...blockManifestOriginal };
+
 			// Get Block edit component from block name and blocksEditComponentPath.
 			const blockComponent = getBlockEditComponent(blockManifest.blockName, blocksEditComponentPath, 'block');
 
@@ -91,7 +93,7 @@ export const registerBlocks = (
 				);
 
 				if (blockTransformsComponent !== null) {
-					blockManifest.transforms = blockTransformsComponent;
+					blockManifest = { ...blockManifest, transforms: blockTransformsComponent };
 				}
 			}
 
@@ -104,7 +106,7 @@ export const registerBlocks = (
 				);
 
 				if (blockDeprecationsComponent !== null) {
-					blockManifest.deprecated = blockDeprecationsComponent;
+					blockManifest = { ...blockManifest, deprecated: blockDeprecationsComponent };
 				}
 			}
 
@@ -126,8 +128,7 @@ export const registerBlocks = (
 				);
 
 				if (blockOverridesComponent !== null) {
-					// eslint-disable-next-line no-param-reassign
-					blockManifest = Object.assign(blockManifest, blockOverridesComponent);
+					blockManifest = { ...blockManifest, ...blockOverridesComponent };
 				}
 			}
 
@@ -143,6 +144,9 @@ export const registerBlocks = (
 
 			// Format the 'deprecated' attribute details to match the format Gutenberg wants.
 			if (blockDetails?.options?.deprecated) {
+				// Compute once and let both the attributes spread and the migrate closure capture it.
+				const baseAttributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
+
 				blockDetails.options.deprecated = blockDetails.options.deprecated.map((deprecation) => {
 					if (deprecation?.attributes && deprecation?.migrate) {
 						return {
@@ -154,12 +158,12 @@ export const registerBlocks = (
 
 					return {
 						attributes: {
-							...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+							...baseAttributes,
 							...deprecation.oldAttributes,
 						},
 						migrate: (attributes) => {
 							return {
-								...getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest),
+								...baseAttributes,
 								...attributes,
 								...deprecation.newAttributes(attributes),
 							};
@@ -176,8 +180,6 @@ export const registerBlocks = (
 			// Native WP method for block registration.
 			registerBlockType(blockDetails.blockName, blockDetails.options);
 		}
-
-		return null;
 	});
 
 	// Add icon foreground and background colors as CSS variables for later use.
@@ -229,12 +231,14 @@ export const registerVariations = (
 	// Set all store values.
 	dispatch(STORE_NAME).setVariations(variationsManifests);
 
-	// Iterate blocks to register.
-	variationsManifests.map((variationManifest) => {
-		const { active = true } = variationManifest;
+	// Iterate variations to register.
+	variationsManifests.forEach((variationManifestOriginal) => {
+		const { active = true } = variationManifestOriginal;
 
 		// If variation has active key set to false the variation will not show in the block editor.
 		if (active) {
+			let variationManifest = { ...variationManifestOriginal };
+
 			// Get Block Overrides component from block name and overridesComponentPath.
 			if (overridesComponentPath !== null) {
 				const blockOverridesComponent = getBlockGenericComponent(
@@ -244,8 +248,7 @@ export const registerVariations = (
 				);
 
 				if (blockOverridesComponent !== null) {
-					// eslint-disable-next-line no-param-reassign
-					variationManifest = Object.assign(variationManifest, blockOverridesComponent);
+					variationManifest = { ...variationManifest, ...blockOverridesComponent };
 				}
 			}
 
@@ -259,13 +262,36 @@ export const registerVariations = (
 			// Native WP method for block registration.
 			registerBlockVariation(blockDetails.blockName, blockDetails.options);
 		}
-
-		return null;
 	});
 };
 
 //---------------------------------------------------------------
 // Private methods
+
+const getBlockComponent = (blockName, paths, fileName, required) => {
+	const component = paths
+		.keys()
+		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
+		.map(paths)[0];
+
+	if (typeof component === 'undefined') {
+		if (!required) return null;
+
+		throw Error(
+			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
+		);
+	}
+
+	const callback = component[Object.keys(component)[0]];
+
+	if (required && typeof callback === 'undefined') {
+		throw Error(
+			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
+		);
+	}
+
+	return callback ?? null;
+};
 
 /**
  * Filter array of JS paths and get the correct edit components.
@@ -279,34 +305,8 @@ export const registerVariations = (
  * @returns {function}
  *
  */
-export const getBlockEditComponent = (blockName, paths, fileName) => {
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
-
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys
-		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
-		.map(paths)[0];
-
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	const editCallback = editComponent[Object.keys(editComponent)[0]];
-
-	// If edit component callback is missing throw and error.
-	if (typeof editCallback === 'undefined') {
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
-	}
-
-	return editCallback;
-};
+export const getBlockEditComponent = (blockName, paths, fileName) =>
+	getBlockComponent(blockName, paths, fileName, true);
 
 /**
  * Filter array of JS paths and get the correct transforms, hooks, etc components.
@@ -320,23 +320,8 @@ export const getBlockEditComponent = (blockName, paths, fileName) => {
  * @returns {function}
  *
  */
-export const getBlockGenericComponent = (blockName, paths, fileName) => {
-	// Create an array of all blocks file paths.
-	const pathsKeys = paths.keys();
-
-	// Get Block edit component from block name and pathsKeys.
-	const editComponent = pathsKeys
-		.filter((filePath) => filePath === `./${blockName}/${blockName}-${fileName}.js`)
-		.map(paths)[0];
-
-	// If edit component is missing throw and error.
-	if (typeof editComponent === 'undefined') {
-		return null;
-	}
-
-	// No mater if class of functional component is used fetch the first item in an object.
-	return editComponent[Object.keys(editComponent)[0]];
-};
+export const getBlockGenericComponent = (blockName, paths, fileName) =>
+	getBlockComponent(blockName, paths, fileName, false);
 
 /**
  * Check if namespace is defined in block or in global manifest settings and return namespace.
@@ -414,9 +399,7 @@ export const getMergeCallback = (blockManifest) => {
 			let outputObject = {};
 
 			for (const { attribute: attributeName, mergeStrategy } of mergeableAttributes) {
-				const attribute = Object.keys(receiver).find((k) => {
-					return k?.toLowerCase()?.includes(attributeName.toLowerCase());
-				});
+				const attribute = Object.keys(receiver).find((k) => k === attributeName);
 
 				switch (mergeStrategy) {
 					case 'append': {
@@ -436,15 +419,13 @@ export const getMergeCallback = (blockManifest) => {
 						break;
 					}
 					case 'addNumericPixelValue': {
-						// Remove numbers
-						const receiverUnit = (receiver[attribute] ?? '0px').replace(/\d/g, '');
+						const receiverRaw = receiver[attribute] ?? '0px';
+						const mergerRaw = merger[attribute] ?? '0px';
+						const receiverUnit = String(receiverRaw).replace(/[\d.-]/g, '');
+						const receiverValue = parseInt(receiverRaw, 10) || 0;
+						const mergerValue = parseInt(mergerRaw, 10) || 0;
 
-						// Remove value labels (= everything but numbers)
-						const receiverValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const mergerValue = parseInt(receiver[attribute] ?? '0px').replace(/\D/g, '');
-						const calculatedValue = receiverValue + mergerValue;
-
-						outputObject[attribute] = `${calculatedValue}${receiverUnit}`;
+						outputObject[attribute] = `${receiverValue + mergerValue}${receiverUnit}`;
 						break;
 					}
 					default: {
@@ -472,16 +453,19 @@ export const getMergeCallback = (blockManifest) => {
  *
  * @returns {React.Component}
  */
-export const getEditCallback = (Component, Wrapper) => (props) => {
+export const getEditCallback = (Component, Wrapper) => {
+	// Config is set once during init via setConfigFlags() — read it now instead of on every render.
 	const useWrapper = select(STORE_NAME).getConfigUseWrapper();
 
-	return useWrapper ? (
-		<Wrapper props={props}>
-			<Component {...props} />
-		</Wrapper>
-	) : (
-		<Component {...props} />
-	);
+	if (useWrapper) {
+		return (props) => (
+			<Wrapper props={props}>
+				<Component {...props} />
+			</Wrapper>
+		);
+	}
+
+	return (props) => <Component {...props} />;
 };
 
 /**
@@ -554,9 +538,11 @@ export const prepareComponentAttribute = (
 
 	// Prepare parent case.
 	const newParent = camelCase(parent);
+	// Loop-invariant — compute once if we'll need it.
+	const realNameLowerCamel = currentAttributes ? lowerFirst(camelCase(realName)) : '';
 
 	// Iterate each attribute and attach parent prefixes.
-	for (const [componentAttribute] of Object.entries(componentAttributes)) {
+	for (const [componentAttribute, value] of Object.entries(componentAttributes)) {
 		let attribute = componentAttribute;
 
 		// If there is a attribute name switch use the new one.
@@ -566,17 +552,17 @@ export const prepareComponentAttribute = (
 
 		// Check if current attribute is used strip component prefix from attribute and replace it with parent prefix.
 		if (currentAttributes) {
-			attribute = componentAttribute.replace(`${lowerFirst(camelCase(realName))}`, '');
+			attribute = componentAttribute.replace(realNameLowerCamel, '');
 		}
 
 		// Wrapper attributes that should not be modified.
 		const isWrapperAttribute = attribute.startsWith('wrapper') || attribute.startsWith('showWrapper');
 
 		// Determine if parent is empty and if parent name is the same as component/block name and skip wrapper attributes.
-		let attributeName = isWrapperAttribute ? attribute : `${newParent}${upperFirst(attribute)}`;
+		const attributeName = isWrapperAttribute ? attribute : `${newParent}${upperFirst(attribute)}`;
 
 		// Output new attribute names.
-		output[attributeName] = componentAttributes[componentAttribute];
+		output[attributeName] = value;
 	}
 
 	return output;
@@ -606,9 +592,10 @@ export const prepareComponentAttributes = (componentsManifest, manifest, isExamp
 	const newParent = parent === '' ? name : parent;
 
 	// Iterate over components key in manifest recursively and check component names.
-	for (let [newComponentName, realComponentName] of Object.entries(components)) {
-		// Filter components real name.
-		const [component] = componentsManifest.filter((item) => item.componentName === kebabCase(realComponentName));
+	for (const [newComponentName, realComponentName] of Object.entries(components)) {
+		// Hoist kebabCase out of the predicate and short-circuit with .find() instead of .filter()[0].
+		const realComponentKebab = kebabCase(realComponentName);
+		const component = componentsManifest.find((item) => item.componentName === realComponentKebab);
 
 		// Bailout if component doesn't exist.
 		if (!component) {
@@ -639,10 +626,7 @@ export const prepareComponentAttributes = (componentsManifest, manifest, isExamp
 		}
 
 		// Populate the output recursively.
-		Object.assign(output, {
-			...output,
-			...outputAttributes,
-		});
+		Object.assign(output, outputAttributes);
 	}
 
 	// Add the current block/component attributes to the output.
@@ -822,28 +806,17 @@ export const registerBlock = (
 	wrapperComponent,
 	blockComponent,
 ) => {
-	// Block Icon option.
-	blockManifest['icon'] = getIconOptions(globalManifest, blockManifest);
-
-	// This is a full block name used in Block Editor.
+	const icon = getIconOptions(globalManifest, blockManifest);
 	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
-
-	// Set full attributes list.
 	const attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);
 
-	blockManifest['attributes'] = {
+	const fullAttributes = {
 		metadata: {
 			type: 'object',
 		},
 		...attributes,
 	};
 
-	// Set full example list.
-	if (typeof blockManifest['example'] === 'undefined') {
-		blockManifest['example'] = {};
-	}
-
-	// Find all attributes that have default value and output that to example.
 	const exampleAttributes = {};
 
 	for (const [key, value] of Object.entries(attributes)) {
@@ -852,22 +825,31 @@ export const registerBlock = (
 		}
 	}
 
-	// Set full examples list.
-	blockManifest['example'].viewportWidth = 800;
-	blockManifest['example'].attributes = {
-		...exampleAttributes,
-		...getExample('', blockManifest),
+	const example = {
+		...(blockManifest['example'] ?? {}),
+		viewportWidth: 800,
+		attributes: {
+			...exampleAttributes,
+			...getExample('', blockManifest),
+		},
 	};
 
-	// Block supports.
-	if (typeof blockManifest['supports'] === 'undefined') {
-		blockManifest['supports'] = {};
-	}
+	const supports = {
+		...(blockManifest['supports'] ?? {}),
+		__experimentalMetadata: true,
+	};
+
+	// Closure-static values for the label callback — read once at register time.
+	const blockTitle = blockManifest?.title;
+	const labelFallback = blockTitle ?? fullBlockName;
 
 	return {
 		blockName: fullBlockName,
 		options: {
 			...blockManifest,
+			icon,
+			attributes: fullAttributes,
+			example,
 			blockName: fullBlockName,
 			edit: getEditCallback(blockComponent, wrapperComponent),
 			save: getSaveCallback(blockManifest),
@@ -876,10 +858,10 @@ export const registerBlock = (
 			// WP 6.4+ Block renaming support
 			__experimentalBlockRenaming: true,
 			__experimentalLabel: (attributes, { context }) => {
-				const customName = attributes?.metadata?.name ?? blockManifest?.title ?? fullBlockName;
+				const customName = attributes?.metadata?.name ?? labelFallback;
 
-				if (context === 'visual' && customName !== blockManifest?.title) {
-					return `${customName} (${blockManifest?.title})`;
+				if (context === 'visual' && customName !== blockTitle) {
+					return `${customName} (${blockTitle})`;
 				}
 
 				if (context === 'accessibility') {
@@ -890,10 +872,7 @@ export const registerBlock = (
 
 				return customName;
 			},
-			supports: {
-				...blockManifest['supports'],
-				__experimentalMetadata: true,
-			},
+			supports,
 		},
 	};
 };
