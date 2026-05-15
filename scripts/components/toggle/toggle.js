@@ -9,7 +9,6 @@ import { Checkbox, Toggle as EsUicToggle } from '@eightshift/ui-components';
  * @param {string} props.label                                                           - Usually component name.
  * @param {'toggle'|'checkbox'|'button'|'iconButton'|'tileButton'} [props.type='toggle'] - Kind of toggle to render.
  * @param {string?} props.help                                                           - Help text to display.
- * @param {boolean} [props.inlineHelp=false]                                             - If `true` and `help` is provided, the help content is rended below the label, instead of below the component.
  * @param {boolean} props.checked                                                        - Is the component currently in use.
  * @param {function} props.onChange                                                      - `onChange` handler from the `ToggleSwitch`/`CheckboxControl`.
  * @param {boolean} [props.disabled=false]                                               - If `true`, control is disabled.
@@ -22,7 +21,6 @@ export const Toggle = ({
 	type = 'toggle',
 
 	help,
-	inlineHelp: _inlineHelp = false,
 
 	checked,
 	onChange,
