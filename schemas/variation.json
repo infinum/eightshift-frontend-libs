@@ -74,9 +74,5 @@
 			"description": "The list of scopes where the variation is applicable."
 		}
 	},
-	"required": [
-		"parentName",
-		"name",
-		"title"
-	]
+	"required": ["parentName", "name", "title"]
 }

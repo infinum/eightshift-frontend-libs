@@ -94,13 +94,7 @@ export const PresetPicker = (props) => {
 							fallback={genericShapesAlt}
 						/>
 					}
-					onClick={() =>
-						setAttributes(
-							excludeDefaultsFromPresets && defaultManifestAttributes
-								? presetAttrs
-								: { ...defaultManifestAttributes, ...presetAttrs },
-						)
-					}
+					onClick={() => setAttributes(excludeDefaultsFromPresets && defaultManifestAttributes ? presetAttrs : { ...defaultManifestAttributes, ...presetAttrs })}
 				>
 					{presetName}
 				</MenuItem>

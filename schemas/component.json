@@ -32,32 +32,17 @@
 					"properties": {
 						"type": {
 							"description": "The type indicates the type of data that is stored by the attribute. It does not indicate where the data is stored, which is defined by the source field.\n\nA type is required, unless an enum is provided. A type can be used with an enum.\n\nNote that the validity of an object is determined by your source. For an example, see the query details below.",
-							"oneOf": [{
+							"oneOf": [
+								{
 									"type": "string",
-									"enum": [
-										"null",
-										"boolean",
-										"object",
-										"array",
-										"string",
-										"integer",
-										"number"
-									]
+									"enum": ["null", "boolean", "object", "array", "string", "integer", "number"]
 								},
 								{
 									"type": "array",
 									"uniqueItems": true,
 									"items": {
 										"type": "string",
-										"enum": [
-											"null",
-											"boolean",
-											"object",
-											"array",
-											"string",
-											"integer",
-											"number"
-										]
+										"enum": ["null", "boolean", "object", "array", "string", "integer", "number"]
 									}
 								}
 							]
@@ -66,7 +51,8 @@
 							"type": "array",
 							"description": "An attribute can be defined as one of a fixed set of values. This is specified by an enum, which contains an array of allowed values:",
 							"items": {
-								"oneOf": [{
+								"oneOf": [
+									{
 										"type": "boolean"
 									},
 									{
@@ -81,18 +67,14 @@
 						"source": {
 							"type": "string",
 							"description": "Attribute sources are used to define how the attribute values are extracted from saved post content. They provide a mechanism to map from the saved markup to a JavaScript representation of a block.",
-							"enum": [
-								"attribute"
-							]
+							"enum": ["attribute"]
 						},
 						"attribute": {
 							"type": "string",
 							"description": "Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.\n\nExample: Extract the src attribute from an image found in the block's markup."
 						}
 					},
-					"required": [
-						"type"
-					]
+					"required": ["type"]
 				}
 			},
 			"additionalProperties": false
@@ -128,8 +110,5 @@
 			"description": "This key is used to provide options used in the Block Editor options for components like SelectControl or RangeControl. With this key, you can pass options and change them depending on the component used. Please check https://eightshift.com/docs/basics/blocks-component-in-block/ chapter for more details."
 		}
 	},
-	"required": [
-		"componentName",
-		"title"
-	]
+	"required": ["componentName", "title"]
 }

@@ -7,25 +7,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
 export const SortableItem = (props) => {
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
 
-	const {
-		icon,
-		title,
-		subtitle,
-		isActive,
-		isFirst,
-		isLast,
-		additionalLabelClass,
-		noReordering,
-		preIcon,
-		postIcon,
-		firstItemClass = '',
-		lastItemClass = '',
-		itemClass,
-		innerClass,
-		horizontal,
-		horizontalVertical,
-		customGrabHandle,
-	} = props;
+	const { icon, title, subtitle, isActive, isFirst, isLast, additionalLabelClass, noReordering, preIcon, postIcon, firstItemClass = '', lastItemClass = '', itemClass, innerClass, horizontal, horizontalVertical, customGrabHandle } = props;
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
@@ -41,11 +23,7 @@ export const SortableItem = (props) => {
 				...attributes,
 			};
 
-	const itemLabel = ((typeof title !== 'string' && title) ||
-		(typeof title === 'string' && title?.length > 0) ||
-		(typeof subtitle !== 'string' && subtitle) ||
-		(typeof subtitle === 'string' && subtitle?.length > 0) ||
-		icon) && (
+	const itemLabel = ((typeof title !== 'string' && title) || (typeof title === 'string' && title?.length > 0) || (typeof subtitle !== 'string' && subtitle) || (typeof subtitle === 'string' && subtitle?.length > 0) || icon) && (
 		<IconLabel
 			icon={icon}
 			label={title}
@@ -61,13 +39,7 @@ export const SortableItem = (props) => {
 			style={style}
 			className={clsx(itemClass, isFirst && firstItemClass, isLast && lastItemClass)}
 		>
-			<div
-				className={clsx(
-					'es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition',
-					isActive && 'es-bg-cool-gray-50',
-					innerClass,
-				)}
-			>
+			<div className={clsx('es-display-flex es-items-center es-gap-1.5 es-p-1 es-rounded-1.5 es-transition', isActive && 'es-bg-cool-gray-50', innerClass)}>
 				{preIcon}
 
 				{noReordering && itemLabel}
@@ -77,12 +49,7 @@ export const SortableItem = (props) => {
 						{itemLabel}
 
 						<button
-							className={clsx(
-								'es-button-reset',
-								!customGrabHandle &&
-									'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition',
-								!customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!',
-							)}
+							className={clsx('es-button-reset', !customGrabHandle && 'es-color-cool-gray-400 es-nested-color-current! es-line-h-0 es-w-5 es-p-0! es-h-7 es-h-center es-rounded-1 es-transition', !customGrabHandle && isActive && 'es-bg-admin-accent! es-color-pure-white!')}
 							{...additionalTriggerProps}
 						>
 							{customGrabHandle ?? reorderGrabberV}

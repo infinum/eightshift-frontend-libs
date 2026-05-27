@@ -8,7 +8,7 @@ module.exports = {
 		'@stylistic/max-empty-lines': 2,
 		'@stylistic/max-line-length': 250,
 
-		'@stylistic/color-hex-case': 'upper',
+		'@stylistic/color-hex-case': 'lower',
 
 		'@stylistic/no-eol-whitespace': true,
 
@@ -152,24 +152,7 @@ module.exports = {
 		'at-rule-no-unknown': [
 			true,
 			{
-				ignoreAtRules: [
-					'use',
-					'forward',
-					'mixin',
-					'include',
-					'function',
-					'return',
-					'extend',
-					'at-root',
-					'each',
-					'for',
-					'while',
-					'if',
-					'else',
-					'error',
-					'warn',
-					'debug',
-				],
+				ignoreAtRules: ['use', 'forward', 'mixin', 'include', 'function', 'return', 'extend', 'at-root', 'each', 'for', 'while', 'if', 'else', 'error', 'warn', 'debug'],
 			},
 		],
 	},

@@ -45,18 +45,7 @@ import { camelCase, kebabCase, lowerFirst, upperFirst } from '@eightshift/ui-com
  * ```
  */
 
-export const registerBlocks = (
-	globalManifest = {},
-	wrapperComponent = null,
-	wrapperManifest = {},
-	componentsManifestPath,
-	blocksManifestPath,
-	blocksEditComponentPath,
-	hooksComponentPath = null,
-	transformsComponentPath = null,
-	deprecationsComponentPath = null,
-	overridesComponentPath = null,
-) => {
+export const registerBlocks = (globalManifest = {}, wrapperComponent = null, wrapperManifest = {}, componentsManifestPath, blocksManifestPath, blocksEditComponentPath, hooksComponentPath = null, transformsComponentPath = null, deprecationsComponentPath = null, overridesComponentPath = null) => {
 	const componentsManifest = componentsManifestPath.keys().map(componentsManifestPath);
 	const blocksManifests = blocksManifestPath.keys().map(blocksManifestPath);
 
@@ -86,11 +75,7 @@ export const registerBlocks = (
 
 			// Get Block Transforms component from block name and transformsComponentPath.
 			if (transformsComponentPath !== null) {
-				const blockTransformsComponent = getBlockGenericComponent(
-					blockManifest.blockName,
-					transformsComponentPath,
-					'transforms',
-				);
+				const blockTransformsComponent = getBlockGenericComponent(blockManifest.blockName, transformsComponentPath, 'transforms');
 
 				if (blockTransformsComponent !== null) {
 					blockManifest = { ...blockManifest, transforms: blockTransformsComponent };
@@ -99,11 +84,7 @@ export const registerBlocks = (
 
 			// Get Block Deprecations component from block name and deprecationsComponentPath.
 			if (deprecationsComponentPath !== null) {
-				const blockDeprecationsComponent = getBlockGenericComponent(
-					blockManifest.blockName,
-					deprecationsComponentPath,
-					'deprecations',
-				);
+				const blockDeprecationsComponent = getBlockGenericComponent(blockManifest.blockName, deprecationsComponentPath, 'deprecations');
 
 				if (blockDeprecationsComponent !== null) {
 					blockManifest = { ...blockManifest, deprecated: blockDeprecationsComponent };
@@ -121,11 +102,7 @@ export const registerBlocks = (
 
 			// Get Block Overrides component from block name and overridesComponentPath.
 			if (overridesComponentPath !== null) {
-				const blockOverridesComponent = getBlockGenericComponent(
-					blockManifest.blockName,
-					overridesComponentPath,
-					'overrides',
-				);
+				const blockOverridesComponent = getBlockGenericComponent(blockManifest.blockName, overridesComponentPath, 'overrides');
 
 				if (blockOverridesComponent !== null) {
 					blockManifest = { ...blockManifest, ...blockOverridesComponent };
@@ -133,14 +110,7 @@ export const registerBlocks = (
 			}
 
 			// Pass data to registerBlock helper to get final output for registerBlockType.
-			const blockDetails = registerBlock(
-				globalManifest,
-				wrapperManifest,
-				componentsManifest,
-				blockManifest,
-				wrapperComponent,
-				blockComponent,
-			);
+			const blockDetails = registerBlock(globalManifest, wrapperManifest, componentsManifest, blockManifest, wrapperComponent, blockComponent);
 
 			// Format the 'deprecated' attribute details to match the format Gutenberg wants.
 			if (blockDetails?.options?.deprecated) {
@@ -168,10 +138,7 @@ export const registerBlocks = (
 								...deprecation.newAttributes(attributes),
 							};
 						},
-						isEligible:
-							deprecation?.isEligible ??
-							((attributes) =>
-								Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
+						isEligible: deprecation?.isEligible ?? ((attributes) => Object.keys(deprecation.oldAttributes).every((v) => Object.keys(attributes).includes(v))),
 						save: blockDetails.options.save,
 					};
 				});
@@ -220,12 +187,7 @@ export const registerBlocks = (
  * );
  * ```
  */
-export const registerVariations = (
-	globalManifest = {},
-	variationsManifestPath,
-	blocksManifestPath = null,
-	overridesComponentPath = null,
-) => {
+export const registerVariations = (globalManifest = {}, variationsManifestPath, blocksManifestPath = null, overridesComponentPath = null) => {
 	const variationsManifests = variationsManifestPath.keys().map(variationsManifestPath);
 
 	// Set all store values.
@@ -241,11 +203,7 @@ export const registerVariations = (
 
 			// Get Block Overrides component from block name and overridesComponentPath.
 			if (overridesComponentPath !== null) {
-				const blockOverridesComponent = getBlockGenericComponent(
-					variationManifest.name,
-					overridesComponentPath,
-					'overrides',
-				);
+				const blockOverridesComponent = getBlockGenericComponent(variationManifest.name, overridesComponentPath, 'overrides');
 
 				if (blockOverridesComponent !== null) {
 					variationManifest = { ...variationManifest, ...blockOverridesComponent };
@@ -253,11 +211,7 @@ export const registerVariations = (
 			}
 
 			// Pass data to registerVariation helper to get final output for registerBlockVariation.
-			const blockDetails = registerVariation(
-				globalManifest,
-				variationManifest,
-				blocksManifestPath !== null ? blocksManifestPath.keys().map(blocksManifestPath) : [],
-			);
+			const blockDetails = registerVariation(globalManifest, variationManifest, blocksManifestPath !== null ? blocksManifestPath.keys().map(blocksManifestPath) : []);
 
 			// Native WP method for block registration.
 			registerBlockVariation(blockDetails.blockName, blockDetails.options);
@@ -277,17 +231,13 @@ const getBlockComponent = (blockName, paths, fileName, required) => {
 	if (typeof component === 'undefined') {
 		if (!required) return null;
 
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
 	}
 
 	const callback = component[Object.keys(component)[0]];
 
 	if (required && typeof callback === 'undefined') {
-		throw Error(
-			`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`,
-		);
+		throw Error(`It looks like you are missing block edit component for block: ${blockName}, please check if you have ${blockName}-block.js file in your block folder.`);
 	}
 
 	return callback ?? null;
@@ -305,8 +255,7 @@ const getBlockComponent = (blockName, paths, fileName, required) => {
  * @returns {function}
  *
  */
-export const getBlockEditComponent = (blockName, paths, fileName) =>
-	getBlockComponent(blockName, paths, fileName, true);
+export const getBlockEditComponent = (blockName, paths, fileName) => getBlockComponent(blockName, paths, fileName, true);
 
 /**
  * Filter array of JS paths and get the correct transforms, hooks, etc components.
@@ -320,8 +269,7 @@ export const getBlockEditComponent = (blockName, paths, fileName) =>
  * @returns {function}
  *
  */
-export const getBlockGenericComponent = (blockName, paths, fileName) =>
-	getBlockComponent(blockName, paths, fileName, false);
+export const getBlockGenericComponent = (blockName, paths, fileName) => getBlockComponent(blockName, paths, fileName, false);
 
 /**
  * Check if namespace is defined in block or in global manifest settings and return namespace.
@@ -518,14 +466,7 @@ export const getIconOptions = (globalManifest, blockManifest) => {
  *
  * @returns {object}
  */
-export const prepareComponentAttribute = (
-	manifest,
-	newName,
-	realName,
-	isExample = false,
-	parent = '',
-	currentAttributes = false,
-) => {
+export const prepareComponentAttribute = (manifest, newName, realName, isExample = false, parent = '', currentAttributes = false) => {
 	const output = {};
 
 	// Define different data point for attributes or example.
@@ -599,30 +540,17 @@ export const prepareComponentAttributes = (componentsManifest, manifest, isExamp
 
 		// Bailout if component doesn't exist.
 		if (!component) {
-			throw Error(
-				`Component specified in "${name}" manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`,
-			);
+			throw Error(`Component specified in "${name}" manifest doesn't exist in your components list. Please check if you project has "${realComponentName}" component.`);
 		}
 
 		let outputAttributes = {};
 
 		// If component has more components do recursive loop.
 		if (component?.components) {
-			outputAttributes = prepareComponentAttributes(
-				componentsManifest,
-				component,
-				isExample,
-				`${newParent}${upperFirst(camelCase(newComponentName))}`,
-			);
+			outputAttributes = prepareComponentAttributes(componentsManifest, component, isExample, `${newParent}${upperFirst(camelCase(newComponentName))}`);
 		} else {
 			// Output the component attributes if there is no nesting left, and append the parent prefixes.
-			outputAttributes = prepareComponentAttribute(
-				component,
-				newComponentName,
-				realComponentName,
-				isExample,
-				newParent,
-			);
+			outputAttributes = prepareComponentAttribute(component, newComponentName, realComponentName, isExample, newParent);
 		}
 
 		// Populate the output recursively.
@@ -798,14 +726,7 @@ export const registerVariation = (globalManifest = {}, variationManifest = {}) =
  *
  * @returns {object}
  */
-export const registerBlock = (
-	globalManifest = {},
-	wrapperManifest = {},
-	componentsManifest = {},
-	blockManifest = {},
-	wrapperComponent,
-	blockComponent,
-) => {
+export const registerBlock = (globalManifest = {}, wrapperManifest = {}, componentsManifest = {}, blockManifest = {}, wrapperComponent, blockComponent) => {
 	const icon = getIconOptions(globalManifest, blockManifest);
 	const fullBlockName = getFullBlockName(globalManifest, blockManifest);
 	const attributes = getAttributes(globalManifest, wrapperManifest, componentsManifest, blockManifest);

@@ -16,23 +16,13 @@ import fs from 'fs';
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
  */
-function getConfig(
-	projectDir,
-	projectPathConfig,
-	blocksAssetsPathConfig = 'src/Blocks/assets',
-	outputPathConfig = 'public',
-	blocksManifestSettingsPath = 'src/Blocks/manifest.json',
-) {
+function getConfig(projectDir, projectPathConfig, blocksAssetsPathConfig = 'src/Blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/Blocks/manifest.json') {
 	if (typeof projectDir === 'undefined') {
-		throw Error(
-			'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname',
-		);
+		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
-		throw Error(
-			'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate',
-		);
+		throw Error('projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate');
 	}
 
 	// Clear all slashes from user config.
@@ -56,16 +46,8 @@ function getConfig(
 		// Source files entries absolute locations.
 		applicationAdminEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-admin.js'),
 		applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
-		applicationBlocksEditorEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			'application-blocks-editor.js',
-		),
-		applicationBlocksFrontendEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			'application-blocks-frontend.js',
-		),
+		applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
+		applicationBlocksFrontendEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-frontend.js'),
 
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 	};

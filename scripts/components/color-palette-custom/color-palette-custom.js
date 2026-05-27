@@ -27,18 +27,7 @@ import { ColorPicker } from '@eightshift/ui-components';
  * @param {React.Component?} [props.actions] - Actions to show to the right of the label.
  */
 export const ColorPalette = (props) => {
-	const {
-		colors = select(STORE_NAME).getSettings().globalVariables.colors,
-		value,
-		onChange,
-		clearable = false,
-		label,
-		help,
-		icon,
-		disabled,
-		noShadeGrouping = false,
-		subtitle,
-	} = props;
+	const { colors = select(STORE_NAME).getSettings().globalVariables.colors, value, onChange, clearable = false, label, help, icon, disabled, noShadeGrouping = false, subtitle } = props;
 
 	return (
 		<ColorPicker

@@ -1,18 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button, HStack, VStack, FilePlaceholder, AnimatedVisibility } from '@eightshift/ui-components';
-import {
-	trash,
-	itemSelect,
-	upload,
-	swap,
-	imageFile,
-	videoFile,
-	closedCaptions,
-	fileMetadata,
-	animationFile,
-	file,
-} from '@eightshift/ui-components/icons';
+import { trash, itemSelect, upload, swap, imageFile, videoFile, closedCaptions, fileMetadata, animationFile, file } from '@eightshift/ui-components/icons';
 
 /**
  * A customizable button for managing files from the Media library.

@@ -156,20 +156,13 @@ export const checkAttr = (key, attributes, manifest, undefinedAllowed = false) =
 
 	// Bailout if key is missing — build the tip string lazily, only when we actually throw.
 	if (typeof manifestKey === 'undefined') {
-		const tipOutput =
-			'components' in manifest
-				? ' If you are using additional components, check if you used the correct block/component prefix in your attribute name.'
-				: '';
+		const tipOutput = 'components' in manifest ? ' If you are using additional components, check if you used the correct block/component prefix in your attribute name.' : '';
 
 		if ('blockName' in manifest) {
-			throw Error(
-				`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`,
-			);
+			throw Error(`${key} key does not exist in the ${manifest.blockName} block manifest. Please check your implementation.${tipOutput}`);
 		}
 
-		throw Error(
-			`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`,
-		);
+		throw Error(`${key} key does not exist in the ${manifest.componentName} component manifest. Please check your implementation.${tipOutput}`);
 	}
 
 	// Single hasOwnProperty check shared across all type branches.
@@ -262,14 +255,10 @@ export const checkAttrResponsive = (keyName, attributes, manifest, undefinedAllo
 
 	if (typeof responsiveAttributes === 'undefined') {
 		if (typeof manifest['blockName'] === 'undefined') {
-			throw Error(
-				`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`,
-			);
+			throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['componentName']} component manifest.`);
 		}
 
-		throw Error(
-			`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`,
-		);
+		throw Error(`It looks like you are missing responsiveAttributes key in your ${manifest['blockName']} block manifest.`);
 	}
 
 	// Bailout if attribute keys is missing.
@@ -319,21 +308,7 @@ export const getAttrKey = (key, attributes, manifest) => {
 	return key.replace(getComponentCamelName(manifest), attributes.prefix);
 };
 
-const PROPS_INCLUDES = new Set([
-	'blockName',
-	'blockClientId',
-	'blockTopLevelId',
-	'blockFullName',
-	'blockClass',
-	'blockJsClass',
-	'componentJsClass',
-	'selectorClass',
-	'additionalClass',
-	'setAttributes',
-	'uniqueWrapperId',
-	'options',
-	'clientId',
-]);
+const PROPS_INCLUDES = new Set(['blockName', 'blockClientId', 'blockTopLevelId', 'blockFullName', 'blockClass', 'blockJsClass', 'componentJsClass', 'selectorClass', 'additionalClass', 'setAttributes', 'uniqueWrapperId', 'options', 'clientId']);
 
 /**
  * Output only attributes that are used in the component and remove everything else.

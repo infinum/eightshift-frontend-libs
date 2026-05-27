@@ -31,17 +31,7 @@ import { BlockInserter } from '../block-inserter/block-inserter';
  * @preserve
  */
 export const PickerPlaceholder = (props) => {
-	const {
-		title: rawTitle,
-		presets: rawPresets,
-		blockIcon: rawBlockIcon,
-		onChange,
-		clientId,
-		manifest,
-		inserter,
-		presetsHeading = __('Select a preset', 'eightshift-frontend-libs-tailwind'),
-		hidden,
-	} = props;
+	const { title: rawTitle, presets: rawPresets, blockIcon: rawBlockIcon, onChange, clientId, manifest, inserter, presetsHeading = __('Select a preset', 'eightshift-frontend-libs-tailwind'), hidden } = props;
 
 	const title = rawTitle ?? manifest?.title;
 	const blockIcon = rawBlockIcon ?? manifest?.icon?.src;
@@ -73,9 +63,7 @@ export const PickerPlaceholder = (props) => {
 					<Button
 						key={index}
 						onPress={async () => {
-							const blocksToInsert = blockData.map(({ name: blockName, attributes: blockAttrs }) =>
-								createBlock(blockName, blockAttrs),
-							);
+							const blocksToInsert = blockData.map(({ name: blockName, attributes: blockAttrs }) => createBlock(blockName, blockAttrs));
 
 							onChange(attrsToSet);
 

@@ -85,35 +85,14 @@ export {
 } from './components/deprecations';
 
 // Editor
-export {
-	overrideInnerBlockAttributes,
-	overrideInnerBlockSimpleWrapperAttributes,
-	checkAttr,
-	checkAttrResponsive,
-	getAttrKey,
-	props,
-} from './editor/attributes';
+export { overrideInnerBlockAttributes, overrideInnerBlockSimpleWrapperAttributes, checkAttr, checkAttrResponsive, getAttrKey, props } from './editor/attributes';
 export { getPaletteColors } from './editor/colors';
 export { outputCssVariablesGlobal, outputCssVariables, hexToRgb, getUnique } from './editor/css-variables';
-export {
-	GutenbergBlock,
-	lockIfUndefined,
-	lockPostEditing,
-	unlockPostEditing,
-	getResponsiveLegacyData,
-	generateOptionsFromValue,
-} from './editor/editor';
+export { GutenbergBlock, lockIfUndefined, lockPostEditing, unlockPostEditing, getResponsiveLegacyData, generateOptionsFromValue } from './editor/editor';
 export { fetchFromWpRest, wpSearchRoute, buildWpRestUrl } from './editor/fetch';
 export { inserter } from './editor/inserter';
 export { getOption, getOptionColors, getOptions } from './editor/options';
-export {
-	getAttributes,
-	getExample,
-	getFullBlockName,
-	getFullBlockNameVariation,
-	registerBlocks,
-	registerVariations,
-} from './editor/registration';
+export { getAttributes, getExample, getFullBlockName, getFullBlockNameVariation, registerBlocks, registerVariations } from './editor/registration';
 export { bem, selector, responsiveSelectors } from './editor/selectors';
 export { STORE_NAME, BUILD_VERSION, setStore, setStoreGlobalWindow, setConfigFlags } from './editor/store';
 

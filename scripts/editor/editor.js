@@ -129,12 +129,7 @@ export const GutenbergBlock = (props) => {
  * @returns Object
  */
 export const getResponsiveLegacyData = (responsiveAttr, attributes, manifest, setAttributes) => ({
-	attribute: Object.fromEntries(
-		Object.entries(responsiveAttr).map(([breakpoint, attrName]) => [
-			breakpoint,
-			getAttrKey(attrName, attributes, manifest),
-		]),
-	),
+	attribute: Object.fromEntries(Object.entries(responsiveAttr).map(([breakpoint, attrName]) => [breakpoint, getAttrKey(attrName, attributes, manifest)])),
 	value: attributes,
 	onChange: (attributeName, value) => setAttributes({ [attributeName]: value }),
 });

@@ -175,13 +175,7 @@ export const outputCssVariables = (attributes, manifest, unique, _globalManifest
 	if (typeof variables !== 'undefined') {
 		// Iterate each responsiveAttribute from responsiveAttributes that appears in variables field.
 		if (typeof responsiveAttributes !== 'undefined') {
-			setVariablesToBreakpoints(
-				attributes,
-				setupResponsiveVariables(responsiveAttributes, variables),
-				data,
-				manifest,
-				defaultBreakpoints,
-			);
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variables), data, manifest, defaultBreakpoints);
 		}
 
 		// Iterate each variable from variables field.
@@ -191,13 +185,7 @@ export const outputCssVariables = (attributes, manifest, unique, _globalManifest
 	// Iterate each responsiveAttribute from responsiveAttributes that appears in variablesEditor field.
 	if (typeof variablesEditor !== 'undefined') {
 		if (typeof responsiveAttributes !== 'undefined') {
-			setVariablesToBreakpoints(
-				attributes,
-				setupResponsiveVariables(responsiveAttributes, variablesEditor),
-				data,
-				manifest,
-				defaultBreakpoints,
-			);
+			setVariablesToBreakpoints(attributes, setupResponsiveVariables(responsiveAttributes, variablesEditor), data, manifest, defaultBreakpoints);
 		}
 
 		// Iterate each variable from variablesEditor field.
@@ -227,10 +215,7 @@ export const outputCssVariables = (attributes, manifest, unique, _globalManifest
 	if (typeof blockClientId !== 'undefined') {
 		if (existsIndex !== -1) {
 			// Update existing styles.
-			dispatch(STORE_NAME).setStyleByIndex(
-				getCssVariablesTypeInline(name, data, manifest, unique, blockClientId),
-				existsIndex,
-			);
+			dispatch(STORE_NAME).setStyleByIndex(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId), existsIndex);
 		} else {
 			// Add new styles.
 			dispatch(STORE_NAME).setStyle(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId));
@@ -609,12 +594,7 @@ export const globalInner = (itemValues, itemKey) => {
  *
  * @return {array}
  */
-export const setBreakpointResponsiveVariables = (
-	attributeVariables,
-	breakpointName,
-	breakpointIndex,
-	numberOfBreakpoints,
-) => {
+export const setBreakpointResponsiveVariables = (attributeVariables, breakpointName, breakpointIndex, numberOfBreakpoints) => {
 	return attributeVariables.map((attributeVariablesObject) => {
 		// Calculate default breakpoint index based on order of the breakpoint, inverse property and number of properties in responsiveAttributeObject.
 		const defaultBreakpointIndex = attributeVariablesObject.inverse ? 0 : numberOfBreakpoints - 1;
@@ -662,22 +642,12 @@ export const setupResponsiveVariables = (responsiveAttributes, variables) => {
 
 		for (const [breakpointName, breakpointVariableName] of Object.entries(responsiveAttributeObject)) {
 			if (Array.isArray(variables[responsiveAttributeName])) {
-				responsiveAttributeVariables[breakpointVariableName] = setBreakpointResponsiveVariables(
-					variables[responsiveAttributeName],
-					breakpointName,
-					breakpointIndex,
-					numberOfBreakpoints,
-				);
+				responsiveAttributeVariables[breakpointVariableName] = setBreakpointResponsiveVariables(variables[responsiveAttributeName], breakpointName, breakpointIndex, numberOfBreakpoints);
 			} else {
 				const breakpointVariables = {};
 
 				for (const [attributeValue, attributeObject] of Object.entries(variables[responsiveAttributeName])) {
-					breakpointVariables[attributeValue] = setBreakpointResponsiveVariables(
-						attributeObject,
-						breakpointName,
-						breakpointIndex,
-						numberOfBreakpoints,
-					);
+					breakpointVariables[attributeValue] = setBreakpointResponsiveVariables(attributeObject, breakpointName, breakpointIndex, numberOfBreakpoints);
 				}
 
 				responsiveAttributeVariables[breakpointVariableName] = breakpointVariables;
