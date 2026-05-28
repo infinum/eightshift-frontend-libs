@@ -15,11 +15,7 @@ export const yoastSeo = (options) => {
 
 	domReady(() => {
 		// Ensure YoastSEO.js is present and can access the necessary features.
-		if (
-			typeof YoastSEO === 'undefined' ||
-			typeof YoastSEO.analysis === 'undefined' ||
-			typeof YoastSEO.analysis.worker === 'undefined'
-		) {
+		if (typeof YoastSEO === 'undefined' || typeof YoastSEO.analysis === 'undefined' || typeof YoastSEO.analysis.worker === 'undefined') {
 			return;
 		}
 

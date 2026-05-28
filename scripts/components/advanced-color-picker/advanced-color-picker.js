@@ -1,16 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { color, emptyCircle, gradient, imageOverlayAlt2, paletteColor } from '@eightshift/ui-components/icons';
-import {
-	SolidColorPicker,
-	GradientEditor,
-	TriggeredPopover,
-	OptionSelect,
-	ButtonGroup,
-	ColorSwatch,
-	HStack,
-	Button,
-	Spacer,
-} from '@eightshift/ui-components';
+import { SolidColorPicker, GradientEditor, TriggeredPopover, OptionSelect, ButtonGroup, ColorSwatch, HStack, Button, Spacer } from '@eightshift/ui-components';
 import { BaseControl } from '@eightshift/ui-components';
 import { ColorPicker } from '@eightshift/ui-components';
 

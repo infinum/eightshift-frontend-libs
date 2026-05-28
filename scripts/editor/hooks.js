@@ -1,4 +1,3 @@
-import React from 'react';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select } from '@wordpress/data';
 import { STORE_NAME } from './store';

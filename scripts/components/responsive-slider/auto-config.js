@@ -15,14 +15,7 @@ import { upperFirst } from '@eightshift/ui-components/utilities';
  * @returns Configuration object.
  */
 export const generateResponsiveSliderConfig = (options) => {
-	const {
-		attributeName,
-		attributes,
-		setAttributes,
-		manifest,
-		minMaxStepOptionName = attributeName,
-		breakpointNames = getDefaultBreakpointNames(),
-	} = options;
+	const { attributeName, attributes, setAttributes, manifest, minMaxStepOptionName = attributeName, breakpointNames = getDefaultBreakpointNames() } = options;
 
 	const values = checkAttrResponsive(attributeName, attributes, manifest, true);
 

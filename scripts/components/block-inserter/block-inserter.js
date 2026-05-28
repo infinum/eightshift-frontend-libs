@@ -26,15 +26,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
  * @preserve
  */
 export const BlockInserter = (props) => {
-	const {
-		clientId,
-		label,
-		small = false,
-		className,
-		prioritizePatterns = false,
-		alwaysVisible = false,
-		hidden,
-	} = props;
+	const { clientId, label, small = false, className, prioritizePatterns = false, alwaysVisible = false, hidden } = props;
 
 	const currentBlockClientId = useSuspenseSelect((select) => select('core/block-editor')?.getSelectedBlockClientId());
 
@@ -59,10 +51,7 @@ export const BlockInserter = (props) => {
 				let labelText = label;
 
 				if (label === true) {
-					labelText = sprintf(
-						__('Add %s', 'eightshift-frontend-libs'),
-						hasSingleBlockType ? blockTitle : __('a block', 'eightshift-frontend-libs'),
-					);
+					labelText = sprintf(__('Add %s', 'eightshift-frontend-libs'), hasSingleBlockType ? blockTitle : __('a block', 'eightshift-frontend-libs'));
 				}
 
 				return (

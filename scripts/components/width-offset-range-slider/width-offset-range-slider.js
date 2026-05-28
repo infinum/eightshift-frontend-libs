@@ -126,8 +126,7 @@ export const WidthOffsetRangeSlider = (props) => {
 				const nearestValidWidth = getNearest('width');
 
 				const offsetValue = inheritCheck(offset) ? nearestValidOffset : offset;
-				const parsedOffset =
-					autoOffsetToggle && offsetValue === autoOffsetValue ? autoStartOffset : parseInt(offsetValue);
+				const parsedOffset = autoOffsetToggle && offsetValue === autoOffsetValue ? autoStartOffset : parseInt(offsetValue);
 
 				const parsedWidth = parseInt(inheritCheck(width) ? nearestValidWidth : width);
 				const parsedFullWidth = inheritCheck(fullWidth) ? nearestValidFullWidth : fullWidth;
@@ -139,9 +138,7 @@ export const WidthOffsetRangeSlider = (props) => {
 				return (
 					<>
 						<HStack
-							hidden={
-								!((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0))
-							}
+							hidden={!((fullWidthToggle && (index === 0 || !inheritCheck(fullWidth))) || (autoOffsetToggle && index === 0))}
 							className='es:mb-1'
 						>
 							<ToggleButton
@@ -185,11 +182,7 @@ export const WidthOffsetRangeSlider = (props) => {
 							key={breakpoint}
 							aria-label={__('Width & offset', 'eightshift-frontend-libs')}
 							columns={totalNumberOfColumns}
-							value={
-								isWidthInherited && !isOffsetInherited
-									? [parsedOffset, parsedOffset + 1]
-									: [parsedOffset, displayedWidth]
-							}
+							value={isWidthInherited && !isOffsetInherited ? [parsedOffset, parsedOffset + 1] : [parsedOffset, displayedWidth]}
 							showOuterAsGutter={showOuterAsGutter ?? parsedFullWidth}
 							onChange={([o, w]) => {
 								let newValues = {};

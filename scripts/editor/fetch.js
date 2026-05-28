@@ -2,6 +2,20 @@ import { truncate, unescapeHTML } from '@eightshift/ui-components/utilities';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
+function buildBaseParams(perPage, fields, searchColumns, additionalParams) {
+	const params = { per_page: perPage };
+
+	if (fields?.length > 0) {
+		params['_fields'] = fields;
+	}
+
+	if (searchColumns?.length > 0) {
+		params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
+	}
+
+	return { ...params, ...additionalParams };
+}
+
 /**
  * Returns a function that fetches data from WordPress REST API.
  *
@@ -38,39 +52,10 @@ import apiFetch from '@wordpress/api-fetch';
  *
  */
 export function fetchFromWpRest(endpoint, options = {}) {
-	const {
-		processId = ({ id }) => id,
-		labelProp = 'title',
-		processLabel = (item) => item[labelProp],
-		processMetadata = () => null,
-		perPage = 30,
-		routePrefix = 'wp/v2',
-		fields = 'id,title',
-		searchColumns,
-		noUnescapeTitle = false,
-		truncateTitle = 32,
-		...additionalParams
-	} = options;
+	const { processId = ({ id }) => id, labelProp = 'title', processLabel = (item) => item[labelProp], processMetadata = () => null, perPage = 30, routePrefix = 'wp/v2', fields = 'id,title', searchColumns, noUnescapeTitle = false, truncateTitle = 32, ...additionalParams } = options;
 
 	return async (searchText = '', abortSignal) => {
-		let params = {
-			per_page: perPage,
-		};
-
-		if (fields?.length > 0) {
-			params['_fields'] = fields;
-		}
-
-		if (searchColumns?.length > 0) {
-			params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
-		}
-
-		if (Object.keys(params).length > 0) {
-			params = {
-				...params,
-				...additionalParams,
-			};
-		}
+		const params = buildBaseParams(perPage, fields, searchColumns, additionalParams);
 
 		if (searchText?.length > 0) {
 			params.search = searchText;
@@ -83,8 +68,7 @@ export function fetchFromWpRest(endpoint, options = {}) {
 
 		return newData.map((item) => {
 			const rawLabel = !noUnescapeTitle ? unescapeHTML(processLabel(item)) : processLabel(item);
-			const truncatedLabel =
-				Number.isInteger(truncateTitle) && truncateTitle > 0 ? truncate(rawLabel, truncateTitle) : rawLabel;
+			const truncatedLabel = Number.isInteger(truncateTitle) && truncateTitle > 0 ? truncate(rawLabel, truncateTitle) : rawLabel;
 
 			return {
 				label: truncatedLabel,
@@ -100,13 +84,10 @@ export const wpSearchRoute = fetchFromWpRest('search', {
 	labelProp: 'title',
 	processMetadata: ({ type, subtype }) => ({ type, subtype }),
 	perPage: 5,
-	additionalParam: {
-		type: 'post',
-		_locale: 'user',
-	},
-	noCache: true,
 	searchColumns: 'post_title',
 	fields: 'id,title,type,subtype,url',
+	type: 'post',
+	_locale: 'user',
 });
 
 /**
@@ -139,33 +120,9 @@ export const wpSearchRoute = fetchFromWpRest('search', {
  *
  */
 export function buildWpRestUrl(endpoint, options = {}) {
-	const {
-		perPage = 30,
-		routePrefix = 'wp/v2',
-		fields = 'id,title',
-		searchColumns,
-		noSearch,
-		...additionalParams
-	} = options;
+	const { perPage = 30, routePrefix = 'wp/v2', fields = 'id,title', searchColumns, noSearch, ...additionalParams } = options;
 
-	let params = {
-		per_page: perPage,
-	};
-
-	if (fields?.length > 0) {
-		params['_fields'] = fields;
-	}
-
-	if (searchColumns?.length > 0) {
-		params.search_columns = Array.isArray(searchColumns) ? searchColumns.join(',') : searchColumns;
-	}
-
-	if (Object.keys(params).length > 0) {
-		params = {
-			...params,
-			...additionalParams,
-		};
-	}
+	const params = buildBaseParams(perPage, fields, searchColumns, additionalParams);
 
 	if (noSearch) {
 		return addQueryArgs(`${routePrefix}/${endpoint}/`, params);

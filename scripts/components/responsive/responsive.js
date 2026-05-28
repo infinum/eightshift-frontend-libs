@@ -67,16 +67,8 @@ export const Responsive = (props) => {
 					)}
 
 					<ToggleButton
-						aria-label={
-							isOpen
-								? __('Close responsive overrides', 'eightshift-frontend-libs')
-								: __('Open responsive overrides', 'eightshift-frontend-libs')
-						}
-						tooltip={
-							isOpen
-								? __('Close responsive overrides', 'eightshift-frontend-libs')
-								: __('Open responsive overrides', 'eightshift-frontend-libs')
-						}
+						aria-label={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
+						tooltip={isOpen ? __('Close responsive overrides', 'eightshift-frontend-libs') : __('Open responsive overrides', 'eightshift-frontend-libs')}
 						onChange={setIsOpen}
 						icon={responsiveOverridesAlt}
 					/>
@@ -85,8 +77,7 @@ export const Responsive = (props) => {
 		>
 			{children.map((child, index) => {
 				const breakpointLabel = breakpointLabels?.at(index) ?? fallbackBreakpointLabels.at(index);
-				const previousBreakpointLabel =
-					index === 0 ? '' : (breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1));
+				const previousBreakpointLabel = index === 0 ? '' : (breakpointLabels?.at(index - 1) ?? fallbackBreakpointLabels.at(index - 1));
 				const breakpointIcon = <Icon icon={`screen${upperFirst(breakpoints[index])}`} />;
 
 				const currentInheritButton = inheritButton?.at(index);
@@ -103,10 +94,7 @@ export const Responsive = (props) => {
 								label={
 									<div
 										dangerouslySetInnerHTML={{
-											__html: sprintf(
-												__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'),
-												previousBreakpointLabel,
-											),
+											__html: sprintf(__('Using value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel),
 										}}
 									/>
 								}
@@ -117,10 +105,7 @@ export const Responsive = (props) => {
 						{!currentInheritButton?.isActive && (
 							<div
 								dangerouslySetInnerHTML={{
-									__html: sprintf(
-										__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'),
-										previousBreakpointLabel,
-									),
+									__html: sprintf(__('Use value from <span class="es-font-weight-600">%s</span>', 'eightshift-frontend-libs'), previousBreakpointLabel),
 								}}
 							/>
 						)}
@@ -140,18 +125,8 @@ export const Responsive = (props) => {
 						>
 							<BaseControl
 								icon={breakpointIcon}
-								label={
-									index === 0
-										? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel)
-										: breakpointLabel
-								}
-								actions={
-									index > 0 && (
-										<AnimatedVisibility visible={currentInheritButton ? !currentInheritButton.isActive : true}>
-											{child}
-										</AnimatedVisibility>
-									)
-								}
+								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
+								actions={index > 0 && <AnimatedVisibility visible={currentInheritButton ? !currentInheritButton.isActive : true}>{child}</AnimatedVisibility>}
 								inlineLabel={index === 0}
 							>
 								{index === 0 && child}
@@ -166,11 +141,7 @@ export const Responsive = (props) => {
 						<AnimatedVisibility visible={isOpen}>
 							<RichLabel
 								icon={breakpointIcon}
-								label={
-									index === 0
-										? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel)
-										: breakpointLabel
-								}
+								label={index === 0 ? sprintf(__('%s (default)', 'eightshift-frontend-libs'), breakpointLabel) : breakpointLabel}
 								className='es:mb-2'
 							/>
 

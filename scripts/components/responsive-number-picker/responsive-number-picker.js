@@ -154,11 +154,7 @@ export const ResponsiveNumberPicker = (props) => {
 										});
 									}}
 									disabled={(modifyInput ? modifyInput(parsedValue) : parsedValue) === resetButton || isInherited}
-									className={clsx(
-										'es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition',
-										(parsedValue === resetButton || isInherited) &&
-											'es-pointer-events-none es-nested-color-cool-gray-400!',
-									)}
+									className={clsx('es-size-7! es-min-size-0! es-p-0! es-button-icon-20 es-rounded-1! es-hover-bg-cool-gray-100 es-transition', (parsedValue === resetButton || isInherited) && 'es-pointer-events-none es-nested-color-cool-gray-400!')}
 									label={__('Reset', 'eightshift-frontend-libs')}
 									showTooltip
 								/>

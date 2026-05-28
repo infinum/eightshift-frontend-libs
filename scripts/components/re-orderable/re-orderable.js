@@ -6,14 +6,7 @@ import { restrictToVerticalAxis, restrictToHorizontalAxis, restrictToParentEleme
 
 import { DndContext, rectIntersection, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 
-import {
-	arrayMove,
-	SortableContext,
-	sortableKeyboardCoordinates,
-	verticalListSortingStrategy,
-	horizontalListSortingStrategy,
-	rectSortingStrategy,
-} from '@dnd-kit/sortable';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, horizontalListSortingStrategy, rectSortingStrategy } from '@dnd-kit/sortable';
 import { clsx } from '@eightshift/ui-components/utilities';
 
 /**

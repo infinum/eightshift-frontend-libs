@@ -7,31 +7,19 @@ import webpack from 'webpack';
 import * as sass from 'sass';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
-import { convertJsonToSass } from './helpers.mjs';
+import { convertDataToSass, readManifestJson } from './helpers.mjs';
 import DependencyExtractionWebpackPlugin from '@wordpress/dependency-extraction-webpack-plugin';
 
 export default (options) => {
 	// All Plugins used in production and development build.
 	const plugins = [];
 
-	// Provide global variables to window object.
-	if (!options.overrides.includes('providePlugin')) {
-		plugins.push(
-			new webpack.ProvidePlugin({
-				$: 'jquery',
-				jQuery: 'jquery',
-			}),
-		);
-	}
-
 	// Provide variables to code build.
 	if (!options.overrides.includes('definePlugin')) {
 		plugins.push(
 			new webpack.DefinePlugin({
-				'process.env.VERSION': JSON.stringify(
-					Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-				),
-				'process.browser': true,
+				'process.env.VERSION': JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)),
+				'typeof window': '"object"',
 			}),
 		);
 	}
@@ -78,7 +66,7 @@ export default (options) => {
 	// Module for MJS.
 	if (!options.overrides.includes('mjs')) {
 		module.rules.push({
-			test: /\.m?js/,
+			test: /\.m?js$/,
 			resolve: {
 				fullySpecified: false,
 			},
@@ -102,10 +90,10 @@ export default (options) => {
 					loader: 'sass-loader',
 					options: {
 						implementation: sass,
-						additionalData:
-							convertJsonToSass(options.config.blocksManifestSettingsPath) +
-							' ' +
-							convertJsonToSass(options.config.blocksManifestSettingsPath, 'config', 'global-config'),
+						additionalData: (() => {
+							const manifest = readManifestJson(options.config.blocksManifestSettingsPath);
+							return convertDataToSass(manifest) + ' ' + convertDataToSass(manifest, 'config', 'global-config');
+						})(),
 					},
 				},
 			],
@@ -149,6 +137,10 @@ export default (options) => {
 			exclude: [/fonts/, /node_modules/],
 			type: 'asset/resource',
 		});
+	}
+
+	if (options.extraPlugins?.length) {
+		plugins.push(...options.extraPlugins);
 	}
 
 	const resolve = {

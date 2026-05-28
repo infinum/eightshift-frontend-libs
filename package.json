@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "16.1.0",
+	"version": "17.0.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -25,8 +25,7 @@
 	},
 	"scripts": {
 		"lintStyle": "stylelint **/*.scss",
-		"lintJs": "bunx eslint",
-		"lint": "bun run lintJs && bun run lintStyle",
+		"lintJs": "eslint",
 		"prepare": "husky"
 	},
 	"homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
@@ -37,41 +36,42 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@stylistic/eslint-plugin": "^5.10.0",
-		"@stylistic/stylelint-plugin": "^5.0.1",
-		"@swc/core": "^1.15.18",
-		"@wordpress/dependency-extraction-webpack-plugin": "^6.41.0",
-		"autoprefixer": "^10.4.27",
-		"browserslist": "^4.28.1",
+		"@stylistic/stylelint-plugin": "^5.1.0",
+		"@swc/core": "^1.15.33",
+		"@wordpress/dependency-extraction-webpack-plugin": "^6.46.0",
+		"autoprefixer": "^10.5.0",
+		"browserslist": "^4.28.2",
 		"css-loader": "^7.1.4",
 		"css-minimizer-webpack-plugin": "^8.0.0",
-		"eslint": "^10.0.3",
+		"eslint": "^10.4.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.5",
 		"eslint-plugin-react": "^7.37.5",
-		"eslint-plugin-react-hooks": "^7.0.1",
-		"globals": "^17.4.0",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"eslint-plugin-unused-imports": "^4.4.1",
+		"globals": "^17.6.0",
 		"husky": "^9.1.7",
 		"lightningcss": "^1.32.0",
-		"mini-css-extract-plugin": "^2.10.1",
-		"postcss": "^8.5.8",
+		"mini-css-extract-plugin": "^2.10.2",
+		"postcss": "^8.5.15",
 		"postcss-loader": "^8.2.1",
 		"postcss-scss": "^4.0.9",
-		"sass": "^1.98.0",
-		"sass-loader": "^16.0.7",
+		"sass": "^1.99.0",
+		"sass-loader": "^16.0.8",
 		"style-loader": "^4.0.0",
-		"stylelint": "^17.4.0",
+		"stylelint": "^17.11.1",
 		"stylelint-config-standard": "^40.0.0",
 		"stylelint-config-standard-scss": "^17.0.0",
 		"swc-loader": "^0.2.7",
-		"terser-webpack-plugin": "^5.4.0",
-		"webpack": "^5.105.4",
+		"terser-webpack-plugin": "^5.6.0",
+		"use-sync-external-store": "^1.6.0",
+		"webpack": "^5.106.2",
 		"webpack-cli": "^7.0.2",
 		"webpack-manifest-plugin": "^6.0.1",
-		"webpack-merge": "^6.0.1",
-		"use-sync-external-store": "^1.6.0"
+		"webpack-merge": "^6.0.1"
 	},
 	"devDependencies": {
-		"@wordpress/api-fetch": "^7.41.0",
+		"@wordpress/api-fetch": "^7.46.0",
 		"lint-staged": "^16.4.0"
 	},
 	"peerDependencies": {
@@ -84,9 +84,6 @@
 		],
 		"*.js": [
 			"bun run lintJs"
-		],
-		"*.php": [
-			"composer test"
 		]
 	},
 	"browserslist": [

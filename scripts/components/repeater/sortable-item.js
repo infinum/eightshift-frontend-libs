@@ -9,18 +9,7 @@ import { clsx } from '@eightshift/ui-components/utilities';
 export const SortableItem = (props) => {
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
 
-	const {
-		icon,
-		title,
-		subtitle,
-		onRemove,
-		isOnly,
-		noReordering,
-		hideRemove,
-		additionalMenuOptions,
-		preIcon,
-		additionalLabelContainerClass,
-	} = props;
+	const { icon, title, subtitle, onRemove, isOnly, noReordering, hideRemove, additionalMenuOptions, preIcon, additionalLabelContainerClass } = props;
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
@@ -44,9 +33,7 @@ export const SortableItem = (props) => {
 		/>
 	);
 
-	const expandDisabled = Array.isArray(props?.children)
-		? props?.children?.filter(Boolean)?.length < 1
-		: !props?.children;
+	const expandDisabled = Array.isArray(props?.children) ? props?.children?.filter(Boolean)?.length < 1 : !props?.children;
 
 	return (
 		<div

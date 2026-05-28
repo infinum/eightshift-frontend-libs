@@ -16,23 +16,13 @@ import fs from 'fs';
  * @param {string} blocksManifestSettingsPath Main global settings manifest.json path after projectPath location.
  *
  */
-function getConfig(
-	projectDir,
-	projectPathConfig,
-	blocksAssetsPathConfig = 'src/Blocks/assets',
-	outputPathConfig = 'public',
-	blocksManifestSettingsPath = 'src/Blocks/manifest.json',
-) {
+function getConfig(projectDir, projectPathConfig, blocksAssetsPathConfig = 'src/Blocks/assets', outputPathConfig = 'public', blocksManifestSettingsPath = 'src/Blocks/manifest.json') {
 	if (typeof projectDir === 'undefined') {
-		throw Error(
-			'projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname',
-		);
+		throw Error('projectDir parameter is empty, please provide. This key represents: Current project directory absolute path. For example: __dirname');
 	}
 
 	if (typeof projectPathConfig === 'undefined') {
-		throw Error(
-			'projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate',
-		);
+		throw Error('projectPath parameter is empty, please provide. This key represents: Project path relative to project root. For example: wp-content/themes/eightshift-boilerplate');
 	}
 
 	// Clear all slashes from user config.
@@ -56,16 +46,8 @@ function getConfig(
 		// Source files entries absolute locations.
 		applicationAdminEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-admin.js'),
 		applicationBlocksEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks.js'),
-		applicationBlocksEditorEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			'application-blocks-editor.js',
-		),
-		applicationBlocksFrontendEntry: path.resolve(
-			absolutePath,
-			blocksAssetsPathConfigClean,
-			'application-blocks-frontend.js',
-		),
+		applicationBlocksEditorEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-editor.js'),
+		applicationBlocksFrontendEntry: path.resolve(absolutePath, blocksAssetsPathConfigClean, 'application-blocks-frontend.js'),
 
 		blocksManifestSettingsPath: path.resolve(absolutePath, blocksManifestSettingsPathClean),
 	};
@@ -139,26 +121,45 @@ function convertJsonToSassMapInner(data, key) {
 }
 
 /**
- * Convert Json to SASS valid output and prefix it with map key.
+ * Read and parse a manifest JSON file, returning an empty object if missing.
  *
- * @param path Path to JSON file.
- * @param propertyName Name of the variable that will it be exported.
- * @param variableName Name of the variable that will it be exported.
- *
- * @return string Sass variable
+ * @param {string} srcPath Path to the JSON file.
+ * @return {object}
  */
-function convertJsonToSass(srcPath, propertyName = 'globalVariables', variableName = 'global-variables') {
-	let data = {};
-
+function readManifestJson(srcPath) {
 	if (fs.existsSync(srcPath)) {
-		data = JSON.parse(fs.readFileSync(srcPath));
+		return JSON.parse(fs.readFileSync(srcPath));
 	}
 
-	if (Object.getOwnPropertyNames(data).length === 0 || !Object.prototype.hasOwnProperty.call(data, 'globalVariables')) {
+	return {};
+}
+
+/**
+ * Convert pre-parsed manifest data to a SASS variable string.
+ *
+ * @param {object} data Parsed manifest JSON.
+ * @param {string} propertyName Property key to read from data.
+ * @param {string} variableName SASS variable name to output.
+ * @return {string}
+ */
+function convertDataToSass(data, propertyName = 'globalVariables', variableName = 'global-variables') {
+	if (!Object.prototype.hasOwnProperty.call(data, propertyName)) {
 		return '';
 	}
 
 	return `$${variableName}: (${convertJsonToSassMap(data[propertyName])});`;
 }
 
-export { getConfig, convertJsonToSass };
+/**
+ * Convert Json to SASS valid output and prefix it with map key.
+ *
+ * @param {string} srcPath Path to JSON file.
+ * @param {string} propertyName Property key to read from data.
+ * @param {string} variableName SASS variable name to output.
+ * @return {string}
+ */
+function convertJsonToSass(srcPath, propertyName = 'globalVariables', variableName = 'global-variables') {
+	return convertDataToSass(readManifestJson(srcPath), propertyName, variableName);
+}
+
+export { getConfig, convertJsonToSass, convertDataToSass, readManifestJson };
