@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [17.1.0]
+
+### Added
+
+- Added `apiVersion: 3` to block registration settings in `registerBlock`.
+- Added support for the `blockOptions` key in the global manifest — its contents are spread into the block registration `supports` settings.
+
+### Changed
+
+- Updated CSS variables output to always strip newlines and always render the combined inline style tag — optimization and global output are no longer config-gated.
+
+### Removed
+
+- Removed `outputCssGlobally`, `outputCssOptimize`, and `outputCssGloballyAdditionalStyles` config options from the editor store and the `globalManifest.json` schema. Global output and optimization are now always enabled; projects using `outputCssGloballyAdditionalStyles` must output additional styles themselves.
+- Removed the related store selectors and actions (`getConfigOutputCssGlobally`, `getConfigOutputCssOptimize`, `getConfigOutputCssGloballyAdditionalStyles`, `setConfigOutputCssGlobally`, `setConfigOutputCssOptimize`, `setConfigOutputCssGloballyAdditionalStyles`).
+- Removed the per-block inline style store handling from `outputCssVariables` — it now always returns the default style output.
+
 ## [17.0.0]
 
 ### Added
@@ -1532,6 +1549,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[17.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/17.0.0...17.1.0
 [17.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.1.0...17.0.0
 [16.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.0.0...16.1.0
 [16.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/15.1.1...16.0.0
