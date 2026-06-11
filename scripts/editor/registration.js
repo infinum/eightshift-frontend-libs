@@ -755,11 +755,6 @@ export const registerBlock = (globalManifest = {}, wrapperManifest = {}, compone
 		},
 	};
 
-	const supports = {
-		...(blockManifest['supports'] ?? {}),
-		__experimentalMetadata: true,
-	};
-
 	// Closure-static values for the label callback — read once at register time.
 	const blockTitle = blockManifest?.title;
 	const labelFallback = blockTitle ?? fullBlockName;
@@ -768,6 +763,7 @@ export const registerBlock = (globalManifest = {}, wrapperManifest = {}, compone
 		blockName: fullBlockName,
 		options: {
 			...blockManifest,
+			apiVersion: 3,
 			icon,
 			attributes: fullAttributes,
 			example,
@@ -793,7 +789,8 @@ export const registerBlock = (globalManifest = {}, wrapperManifest = {}, compone
 
 				return customName;
 			},
-			supports,
+			__experimentalMetadata: true,
+			...(globalManifest?.blockOptions ?? {}),
 		},
 	};
 };

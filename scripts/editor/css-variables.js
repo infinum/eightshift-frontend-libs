@@ -103,18 +103,13 @@ export const outputCssVariablesGlobal = (_globalManifest = {}) => {
 		}
 	}
 
-	// Optimize if necessary.
-	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
-		output = output.replace(/\n/g, '');
-	}
+	output = output.replace(/\n/g, '');
 
 	// Set breakpoints cache for optimized load time.
 	setBreakpointsCacheData();
 
 	// If using inline css variables output them.
-	if (select(STORE_NAME).getConfigOutputCssGlobally()) {
-		outputCssVariablesInline();
-	}
+	outputCssVariablesInline();
 
 	// Output style tag.
 	const styleEl = document.createElement('style');
@@ -151,11 +146,8 @@ export const outputCssVariables = (attributes, manifest, unique, _globalManifest
 	const variablesEditor = manifest?.variablesEditor;
 	const responsiveAttributes = manifest?.responsiveAttributes;
 
-	const store = select(STORE_NAME);
-	const isGlobalOutput = store.getConfigOutputCssGlobally();
-
 	if (!variables && !variablesEditor && !manifest?.variablesCustom && !manifest?.variablesCustomEditor) {
-		return isGlobalOutput ? null : '';
+		return '';
 	}
 
 	const { defaults: defaultBreakpoints, template } = getBreakpointData();
@@ -200,29 +192,7 @@ export const outputCssVariables = (attributes, manifest, unique, _globalManifest
 		name = customSelector;
 	}
 
-	// If default output just echo.
-	if (!isGlobalOutput) {
-		return getCssVariablesTypeDefault(name, data, manifest, unique);
-	}
-
-	// Find if style exists in the store.
-	const existsIndex = store.getStyles().findIndex((item) => item?.name === name && item?.unique === unique);
-
-	// Find blockClientId from the attributes.
-	const blockClientId = attributes?.blockClientId;
-
-	// Don't do anything if blockClientId is missing.
-	if (typeof blockClientId !== 'undefined') {
-		if (existsIndex !== -1) {
-			// Update existing styles.
-			dispatch(STORE_NAME).setStyleByIndex(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId), existsIndex);
-		} else {
-			// Add new styles.
-			dispatch(STORE_NAME).setStyle(getCssVariablesTypeInline(name, data, manifest, unique, blockClientId));
-		}
-	}
-
-	return null;
+	return getCssVariablesTypeDefault(name, data, manifest, unique);
 };
 
 /**
@@ -465,10 +435,8 @@ export const getCssVariablesTypeDefault = (name, data, manifest, unique) => {
 	let finalManualOutput = manual || manualEditor ? `.${name}${uniqueSelector}{ ${manual} ${manualEditor}}` : '';
 
 	// Implement some optimizations if necessary.
-	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
-		output = output.replace(/\n/g, '');
-		finalManualOutput = finalManualOutput.replace(/\n/g, '');
-	}
+	output = output.replace(/\n/g, '');
+	finalManualOutput = finalManualOutput.replace(/\n/g, '');
 
 	// Output the style for CSS variables.
 	return <style dangerouslySetInnerHTML={{ __html: `${output} ${finalManualOutput}` }} />;
@@ -984,18 +952,7 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	});
 
 	// Do optimizations if necessary.
-	if (select(STORE_NAME).getConfigOutputCssOptimize()) {
-		output = output.replace(/\n|\r/g, '');
-	}
-
-	// Add additional style from config settings.
-	const additionalStyles = select(STORE_NAME).getConfigOutputCssGloballyAdditionalStyles();
-
-	let additionalStylesOutput = '';
-
-	if (typeof additionalStyles !== 'undefined') {
-		additionalStylesOutput = additionalStyles.join(';\n');
-	}
+	output = output.replace(/\n|\r/g, '');
 
 	// Get style id name from store.
 	const selector = select(STORE_NAME).getConfigOutputCssSelectorName();
@@ -1007,10 +964,10 @@ export const outputCssVariablesCombinedInner = (styles) => {
 	if (!styleTag) {
 		const styleEl = document.createElement('style');
 		styleEl.id = selector;
-		styleEl.textContent = `${output} ${additionalStylesOutput}`;
+		styleEl.textContent = output;
 		document.body.append(styleEl);
 	} else {
-		styleTag.textContent = `${output} ${additionalStylesOutput}`;
+		styleTag.textContent = output;
 	}
 
 	// Reset state to original.

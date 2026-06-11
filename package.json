@@ -1,6 +1,6 @@
 {
 	"name": "@eightshift/frontend-libs",
-	"version": "17.0.0",
+	"version": "17.1.0",
 	"description": "A collection of useful frontend utility modules. powered by Eightshift",
 	"author": {
 		"name": "Eightshift team",
@@ -26,6 +26,7 @@
 	"scripts": {
 		"lintStyle": "stylelint **/*.scss",
 		"lintJs": "eslint",
+		"test": "bun run lintStyle && bun run lintJs",
 		"prepare": "husky"
 	},
 	"homepage": "https://github.com/infinum/eightshift-frontend-libs#readme",
@@ -79,12 +80,8 @@
 	},
 	"sideEffects": false,
 	"lint-staged": {
-		"*.scss": [
-			"bun run lintStyle"
-		],
-		"*.js": [
-			"bun run lintJs"
-		]
+		"*.js": "eslint",
+		"*.scss": "eslint"
 	},
 	"browserslist": [
 		">= 0.25%"

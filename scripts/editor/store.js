@@ -9,10 +9,7 @@ const DEFAULT_STATE = {
 	blocks: {},
 	components: {},
 	config: {
-		outputCssGlobally: true,
-		outputCssOptimize: true,
 		outputCssSelectorName: 'esCssVariables',
-		outputCssGloballyAdditionalStyles: [],
 		useWrapper: true,
 	},
 	wrapper: {},
@@ -45,17 +42,8 @@ const selectors = {
 	getConfig(state) {
 		return state.config;
 	},
-	getConfigOutputCssGlobally(state) {
-		return state.config.outputCssGlobally;
-	},
-	getConfigOutputCssOptimize(state) {
-		return state.config.outputCssOptimize;
-	},
 	getConfigOutputCssSelectorName(state) {
 		return state.config.outputCssSelectorName;
-	},
-	getConfigOutputCssGloballyAdditionalStyles(state) {
-		return state.config.outputCssGloballyAdditionalStyles;
 	},
 	getConfigUseWrapper(state) {
 		return state.config.useWrapper;
@@ -106,27 +94,9 @@ const actions = {
 			variations,
 		};
 	},
-	setConfigOutputCssGlobally(config) {
-		return {
-			type: 'SET_CONFIG_OUTPUT_CSS_GLOBALLY',
-			config,
-		};
-	},
-	setConfigOutputCssOptimize(config) {
-		return {
-			type: 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE',
-			config,
-		};
-	},
 	setConfigOutputCssSelectorName(config) {
 		return {
 			type: 'SET_CONFIG_OUTPUT_CSS_SELECTOR_NAME',
-			config,
-		};
-	},
-	setConfigOutputCssGloballyAdditionalStyles(config) {
-		return {
-			type: 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES',
 			config,
 		};
 	},
@@ -206,39 +176,12 @@ const reducer = (state = DEFAULT_STATE, action) => {
 				variations: action.variations,
 			};
 		}
-		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY': {
-			return {
-				...state,
-				config: {
-					...state.config,
-					outputCssGlobally: action.config,
-				},
-			};
-		}
-		case 'SET_CONFIG_OUTPUT_CSS_OPTIMIZE': {
-			return {
-				...state,
-				config: {
-					...state.config,
-					outputCssOptimize: action.config,
-				},
-			};
-		}
 		case 'SET_CONFIG_OUTPUT_CSS_SELECTOR_NAME': {
 			return {
 				...state,
 				config: {
 					...state.config,
 					outputCssSelectorName: action.config,
-				},
-			};
-		}
-		case 'SET_CONFIG_OUTPUT_CSS_GLOBALLY_ADDITIONAL_STYLES': {
-			return {
-				...state,
-				config: {
-					...state.config,
-					outputCssGloballyAdditionalStyles: action.config,
 				},
 			};
 		}
@@ -346,24 +289,9 @@ export const setConfigFlags = () => {
 	const config = select(STORE_NAME).getSettings()?.config;
 
 	if (typeof config !== 'undefined') {
-		// outputCssGlobally
-		if (typeof config?.outputCssGlobally === 'boolean') {
-			dispatch(STORE_NAME).setConfigOutputCssGlobally(config.outputCssGlobally);
-		}
-
-		// outputCssOptimize
-		if (typeof config?.outputCssOptimize === 'boolean') {
-			dispatch(STORE_NAME).setConfigOutputCssOptimize(config.outputCssOptimize);
-		}
-
 		// outputCssSelectorName
 		if (typeof config?.outputCssSelectorName === 'string') {
 			dispatch(STORE_NAME).setConfigOutputCssSelectorName(config.outputCssSelectorName);
-		}
-
-		// outputCssGloballyAdditionalStyles
-		if (Array.isArray(config?.outputCssGloballyAdditionalStyles)) {
-			dispatch(STORE_NAME).setConfigOutputCssGloballyAdditionalStyles(config.outputCssGloballyAdditionalStyles);
 		}
 
 		// useWrapper
