@@ -6,10 +6,6 @@
 		"$schema": {
 			"type": "string"
 		},
-		"active": {
-			"type": "boolean",
-			"description": "If set to false your block will not be registered and will not show in the block editor. Default: true."
-		},
 		"namespace": {
 			"type": "string",
 			"pattern": "^[^\/][a-z0-9-]*$",
