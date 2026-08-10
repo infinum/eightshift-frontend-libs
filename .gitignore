@@ -1,6 +1,5 @@
 node_modules
 vendor
-composer.lock
 package-lock.json
 bun.lockb
 /docs

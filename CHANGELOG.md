@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [17.1.1]
+
+### Changed
+
+- Updated dependencies to their latest versions.
+- Updated CI workflow to no longer trigger on the `develop` branch and removed the unused `NODE_VERSION` env var.
+
+### Fixed
+
+- Fixed the `lintJs` script pointing at a non-existent `src/` directory.
+
 ## [17.1.0]
 
 ### Added
@@ -1549,6 +1560,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[17.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/17.1.0...17.1.1
 [17.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/17.0.0...17.1.0
 [17.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.1.0...17.0.0
 [16.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.0.0...16.1.0
