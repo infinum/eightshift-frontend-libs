@@ -3,7 +3,6 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - develop
       - master
     paths-ignore:
       - '**.md'
@@ -27,6 +26,5 @@ jobs:
       - name: Lint assets
         uses: infinum/eightshift-deploy-actions-public/.github/actions/lint/assets@main
         with:
-          NODE_VERSION: ${{ matrix.node }}
           PROJECT_PATH: '.'
           USE_BUILD: false
