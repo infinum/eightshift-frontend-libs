@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [17.1.2]
+
+### Changed
+
+- Updated dependencies (`@wordpress/dependency-extraction-webpack-plugin` 7, `@wordpress/api-fetch` 8, `sass-loader` 17, `lint-staged` 17, `eslint`, `stylelint`, `sass`, `webpack`, `webpack-cli`, `@swc/core`).
+- `@wordpress/dependency-extraction-webpack-plugin` 7, `@wordpress/api-fetch` 8 and `sass-loader` 17 require Node.js 22.13 or newer.
+
 ## [17.1.1]
 
 ### Changed
@@ -1560,6 +1567,7 @@ Follow this migration script in order for you project to work correctly with the
 
 - Initial tagged release.
 
+[17.1.2]: https://github.com/infinum/eightshift-frontend-libs/compare/17.1.1...17.1.2
 [17.1.1]: https://github.com/infinum/eightshift-frontend-libs/compare/17.1.0...17.1.1
 [17.1.0]: https://github.com/infinum/eightshift-frontend-libs/compare/17.0.0...17.1.0
 [17.0.0]: https://github.com/infinum/eightshift-frontend-libs/compare/16.1.0...17.0.0
